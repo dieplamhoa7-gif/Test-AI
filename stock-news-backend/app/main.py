@@ -2,7 +2,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from app.services.scraper import collect_news
-from app.services.summarizer import summarize_news
+from app.services.summarizer import enrich_news_with_ai, summarize_news
 
 app = FastAPI(title="VN Stock News Backend", version="0.1.0")
 
@@ -332,12 +332,12 @@ def health():
 
 @app.get("/news")
 def news(limit: int = Query(default=10, ge=1, le=50)):
-    items = collect_news(limit=limit)
+    items = enrich_news_with_ai(collect_news(limit=limit))
     return {"total_items": len(items), "items": items}
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
 def summarize(limit: int = Query(default=10, ge=1, le=50), max_chars: int = Query(default=1200, ge=300, le=4000)):
-    items = collect_news(limit=limit)
+    items = enrich_news_with_ai(collect_news(limit=limit))
     summary = summarize_news(items, max_chars=max_chars)
     return {"total_items": len(items), "summary": summary, "items": items}
