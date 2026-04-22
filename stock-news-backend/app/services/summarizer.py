@@ -8,7 +8,7 @@ load_dotenv()
 
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "APIFREE")
 DEFAULT_BASE_URL = os.getenv("OPENAI_BASE_URL", "http://localhost:20128/v1")
-SUMMARY_MAX_WORDS = int(os.getenv("SUMMARY_MAX_WORDS", "100"))
+SUMMARY_MAX_WORDS = int(os.getenv("SUMMARY_MAX_WORDS", "50"))
 
 
 def _client() -> OpenAI | None:
