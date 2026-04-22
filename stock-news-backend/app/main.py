@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
+from app.store import load_news, merge_news
 
 app = FastAPI(title="VN Stock News Backend", version="0.1.0")
 
@@ -368,10 +369,10 @@ DASHBOARD_HTML = """
           <div class="search-box">
             <input id="searchInput" type="text" placeholder="Tìm tiêu đề, công ty, nguồn..." />
             <select id="limitInput">
-              <option value="6">6</option>
               <option value="10" selected>10</option>
-              <option value="15">15</option>
               <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
             </select>
           </div>
         </div>
@@ -399,6 +400,15 @@ DASHBOARD_HTML = """
           </div>
         </div>
         <div class="news-list" id="newsList"></div>
+        <div class="section-head" style="margin-top:16px;">
+          <div class="categories" style="align-items:center;">
+            <button class="chip-btn" id="prevPageBtn">← Lùi</button>
+            <input id="pageInput" type="number" min="1" value="1" style="width:90px;background:var(--panel-2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px;" />
+            <button class="chip-btn" id="goPageBtn">Đi tới</button>
+            <button class="chip-btn" id="nextPageBtn">Tiếp →</button>
+          </div>
+          <p id="pageInfo">Trang 1/1</p>
+        </div>
       </main>
 
       <aside class="side-stack">
@@ -456,12 +466,20 @@ DASHBOARD_HTML = """
       statusText: document.getElementById('statusText'),
       newsList: document.getElementById('newsList'),
       summaryText: document.getElementById('summaryText'),
-      watchlist: document.getElementById('watchlist')
+      watchlist: document.getElementById('watchlist'),
+      prevPageBtn: document.getElementById('prevPageBtn'),
+      nextPageBtn: document.getElementById('nextPageBtn'),
+      goPageBtn: document.getElementById('goPageBtn'),
+      pageInput: document.getElementById('pageInput'),
+      pageInfo: document.getElementById('pageInfo')
     };
 
+    const PAGE_SIZE = 5;
     let allItems = [];
+    let filteredItems = [];
     let activeCategory = 'Tổng hợp';
     let autoRefreshTimer = null;
+    let currentPage = 1;
 
     function escapeHtml(text = '') {
       return String(text)
@@ -514,15 +532,24 @@ DASHBOARD_HTML = """
     }
 
     function renderNews(items) {
-      elements.totalCount.textContent = items.length;
+      filteredItems = items;
+      elements.totalCount.textContent = allItems.length;
+      const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+      elements.pageInput.value = currentPage;
+      elements.pageInfo.textContent = `Trang ${currentPage}/${totalPages}`;
+
       if (!items.length) {
         elements.newsList.innerHTML = '<div class="empty">Không có tin phù hợp với bộ lọc hiện tại.</div>';
         elements.statusText.textContent = 'Không có dữ liệu hiển thị';
         return;
       }
 
-      elements.statusText.textContent = `Hiển thị ${items.length} tin`;
-      elements.newsList.innerHTML = items.map((item, index) => `
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const pagedItems = items.slice(start, start + PAGE_SIZE);
+      elements.statusText.textContent = `Hiển thị ${pagedItems.length}/${items.length} tin`;
+      elements.newsList.innerHTML = pagedItems.map((item, index) => `
         <article class="news-card">
           <div class="news-meta">
             <span class="source-tag">${escapeHtml(item.source || 'unknown')}</span>
@@ -532,15 +559,17 @@ DASHBOARD_HTML = """
           <p class="news-snippet">${escapeHtml(item.snippet || '')}</p>
           <div class="news-actions">
             <a class="open-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">Đọc bài gốc</a>
-            <div class="mini-stat">Tin #${index + 1} • ${escapeHtml(inferCategory(item))}</div>
+            <div class="mini-stat">Tin #${start + index + 1} • ${escapeHtml(inferCategory(item))}</div>
           </div>
         </article>
       `).join('');
     }
 
-    function applyFilters() {
+    function applyFilters(resetPage = true) {
       const q = elements.searchInput.value.trim().toLowerCase();
       let items = [...allItems];
+
+      if (resetPage) currentPage = 1;
 
       if (activeCategory !== 'Tổng hợp') {
         items = items.filter(item => inferCategory(item) === activeCategory);
@@ -585,6 +614,7 @@ DASHBOARD_HTML = """
         const summaryData = await summaryRes.json();
 
         allItems = Array.isArray(newsData.items) ? newsData.items : [];
+        currentPage = 1;
         updateHero(newsData, summaryData);
         applyFilters();
         elements.apiStatus.textContent = 'Online';
@@ -599,9 +629,15 @@ DASHBOARD_HTML = """
       }
     }
 
-    elements.searchInput.addEventListener('input', applyFilters);
+    elements.searchInput.addEventListener('input', () => applyFilters(true));
     elements.limitInput.addEventListener('change', loadData);
     elements.reloadBtn.addEventListener('click', loadData);
+    elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); });
+    elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); });
+    elements.goPageBtn.addEventListener('click', () => {
+      currentPage = Number(elements.pageInput.value) || 1;
+      renderNews(filteredItems);
+    });
 
     renderCategories();
     renderWatchlist();
@@ -623,13 +659,17 @@ def health():
 
 
 @app.get("/news")
-def news(limit: int = Query(default=10, ge=1, le=50)):
-    items = enrich_news_with_ai(collect_news(limit=limit))
-    return {"total_items": len(items), "items": items}
+def news(limit: int = Query(default=20, ge=1, le=100)):
+    fresh_items = enrich_news_with_ai(collect_news(limit=min(limit, 20)))
+    items = merge_news(fresh_items)
+    return {"total_items": len(items), "items": items[:limit]}
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=10, ge=1, le=50), max_chars: int = Query(default=1200, ge=300, le=4000)):
-    items = enrich_news_with_ai(collect_news(limit=limit))
+def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=1200, ge=300, le=4000)):
+    cached_items = load_news()
+    if not cached_items:
+        cached_items = merge_news(enrich_news_with_ai(collect_news(limit=min(limit, 20))))
+    items = cached_items[:limit]
     summary = summarize_news(items, max_chars=max_chars)
     return {"total_items": len(items), "summary": summary, "items": items}
