@@ -432,6 +432,7 @@ DASHBOARD_HTML = """
 
   <script>
     const API_BASE = '';
+    const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Pháp luật', 'Chính trị', 'Khác'];
     const WATCHLIST = [
       { code: 'FPT', price: '148.50', change: '+2.41%' },
@@ -460,6 +461,7 @@ DASHBOARD_HTML = """
 
     let allItems = [];
     let activeCategory = 'Tổng hợp';
+    let autoRefreshTimer = null;
 
     function escapeHtml(text = '') {
       return String(text)
@@ -561,10 +563,15 @@ DASHBOARD_HTML = """
       elements.summaryText.textContent = summaryData.summary || 'Chưa có tóm tắt thị trường.';
     }
 
-    async function loadData() {
+    function scheduleAutoRefresh() {
+      if (autoRefreshTimer) clearTimeout(autoRefreshTimer);
+      autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS);
+    }
+
+    async function loadData(isAutoRefresh = false) {
       const limit = Number(elements.limitInput.value) || 10;
-      elements.apiStatus.textContent = 'Đang tải';
-      elements.statusText.textContent = 'Đang đồng bộ dữ liệu...';
+      elements.apiStatus.textContent = isAutoRefresh ? 'Tự động cập nhật' : 'Đang tải';
+      elements.statusText.textContent = isAutoRefresh ? 'Đang tự động cập nhật dữ liệu...' : 'Đang đồng bộ dữ liệu...';
       elements.summaryText.textContent = 'Đang tạo tóm tắt...';
       try {
         const [newsRes, summaryRes] = await Promise.all([
@@ -581,12 +588,14 @@ DASHBOARD_HTML = """
         updateHero(newsData, summaryData);
         applyFilters();
         elements.apiStatus.textContent = 'Online';
+        scheduleAutoRefresh();
       } catch (error) {
         allItems = [];
         elements.apiStatus.textContent = 'Offline';
         elements.statusText.innerHTML = '<span class="error">Lỗi tải dữ liệu từ API.</span>';
         elements.summaryText.textContent = 'Không tải được tóm tắt.';
         elements.newsList.innerHTML = '<div class="empty error">Không thể kết nối API.</div>';
+        scheduleAutoRefresh();
       }
     }
 
