@@ -19,7 +19,7 @@ DASHBOARD_HTML = """
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOA Investment News</title>
+  <title>HoaInvest97.vn</title>
   <style>
     :root {
       --bg: #070b14;
@@ -343,7 +343,7 @@ DASHBOARD_HTML = """
       <div class="brand-wrap">
         <div class="brand-icon">H</div>
         <div class="brand-text">
-          <h1>Cập Nhật Tin Nhanh</h1>
+          <h1>HoaInvest97.vn</h1>
           <p>HOA INVESTMENT</p>
         </div>
       </div>
