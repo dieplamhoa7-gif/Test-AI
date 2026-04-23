@@ -14,7 +14,6 @@ except Exception:  # pragma: no cover
     Quote = None
 
 DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI", "VCB", "VIC"]
-DEFAULT_CW_TICKERS = ["CFPT2314", "CHPG2401", "CVPB2402"]
 
 _market_cache: list[dict[str, Any]] = []
 _symbol_cache: list[dict[str, str]] = []
@@ -291,7 +290,9 @@ def get_market_symbol(symbol: str) -> dict[str, Any]:
     normalized = symbol.strip().upper()
     if not normalized:
         raise ValueError("Symbol is required")
-    return _fetch_symbol(normalized) or _mock_item(normalized, is_cw=normalized.startswith("C"))
+    if normalized.startswith("C"):
+        raise ValueError("Covered warrants are disabled")
+    return _fetch_symbol(normalized) or _mock_item(normalized)
 
 
 def get_symbol_catalog(query: str = "", limit: int = 50) -> list[dict[str, str]]:
@@ -323,8 +324,6 @@ def refresh_market_cache() -> list[dict[str, Any]]:
     for ticker in DEFAULT_TICKERS:
         item = _fetch_symbol(ticker)
         items.append(item or _mock_item(ticker))
-    for ticker in DEFAULT_CW_TICKERS:
-        items.append(_mock_item(ticker, is_cw=True))
     _market_cache = items
     _last_updated = _now_iso()
     return _market_cache
