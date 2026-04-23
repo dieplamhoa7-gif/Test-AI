@@ -263,7 +263,7 @@ DASHBOARD_HTML = """
     }
     .layout {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr;
       gap: 18px;
       margin-top: 18px;
       align-items: start;
@@ -324,26 +324,13 @@ DASHBOARD_HTML = """
     .mini-stat {
       font-size: 12px; color: var(--muted);
     }
-    .side-stack {
-      display: flex; flex-direction: column; gap: 18px;
+    .summary-bar {
+      margin-top: 18px;
+      padding: 18px;
     }
-    .side-box { padding: 18px; }
-    .big-number {
-      font-size: 34px; font-weight: 800; margin: 6px 0 4px;
+    .summary-bar .side-summary {
+      color: #c9d3ea; font-size: 14px; line-height: 1.8; white-space: pre-wrap;
     }
-    .side-summary {
-      color: #c9d3ea; font-size: 14px; line-height: 1.7; white-space: pre-wrap;
-    }
-    .ai-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    }
-    .ai-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-      padding: 14px;
-    }
-    .ai-card strong { display: block; margin-bottom: 6px; }
     .muted { color: var(--muted); }
     .error { color: var(--danger); }
     .empty {
@@ -421,6 +408,11 @@ DASHBOARD_HTML = """
       </aside>
     </section>
 
+    <section class="panel summary-bar">
+      <div class="side-title">Tóm tắt nhanh</div>
+      <div class="side-summary" id="summaryText">Đang tạo tóm tắt...</div>
+    </section>
+
     <section class="layout">
       <main class="panel feed-panel">
         <div class="section-head">
@@ -440,33 +432,6 @@ DASHBOARD_HTML = """
           <p id="pageInfo">Trang 1/1</p>
         </div>
       </main>
-
-      <aside class="side-stack">
-        <section class="panel side-box">
-          <div class="side-title">Tổng số tin</div>
-          <div class="big-number" id="totalCount">0</div>
-          <div class="muted">Đồng bộ trực tiếp từ backend FastAPI.</div>
-        </section>
-
-        <section class="panel side-box">
-          <div class="side-title">Hệ thống AI</div>
-          <div class="ai-grid">
-            <div class="ai-card">
-              <strong>Model</strong>
-              <div class="muted">Router API</div>
-            </div>
-            <div class="ai-card">
-              <strong>Frontend</strong>
-              <div class="muted">HTML + CSS + JS</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel side-box">
-          <div class="side-title">Tóm tắt nhanh</div>
-          <div class="side-summary" id="summaryText">Đang tạo tóm tắt...</div>
-        </section>
-      </aside>
     </section>
   </div>
 
@@ -492,7 +457,6 @@ DASHBOARD_HTML = """
       reloadBtn: document.getElementById('reloadBtn'),
       heroTitle: document.getElementById('heroTitle'),
       heroSummary: document.getElementById('heroSummary'),
-      totalCount: document.getElementById('totalCount'),
       statusText: document.getElementById('statusText'),
       newsList: document.getElementById('newsList'),
       summaryText: document.getElementById('summaryText'),
@@ -564,7 +528,6 @@ DASHBOARD_HTML = """
 
     function renderNews(items) {
       filteredItems = items;
-      elements.totalCount.textContent = allItems.length;
       const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
       if (currentPage > totalPages) currentPage = totalPages;
       if (currentPage < 1) currentPage = 1;
