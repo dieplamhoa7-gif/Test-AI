@@ -674,28 +674,27 @@ DASHBOARD_HTML = """
     function computeFrameTechnical(item, frame) {
       const tech = item.technical || {};
       const multipliers = {
-        hour: { macd: 0.45, rsi: 0.92, ma20: 0.998, ma50: 0.992, ma200: 0.978 },
-        day: { macd: 1, rsi: 1, ma20: 1, ma50: 1, ma200: 1 },
-        week: { macd: 1.35, rsi: 1.04, ma20: 1.012, ma50: 1.008, ma200: 0.992 },
-        month: { macd: 1.7, rsi: 1.08, ma20: 1.02, ma50: 1.015, ma200: 1.005 },
+        hour: { macd: 0.65, rsi: 0.96, adx: 0.9, support: 1, resistance: 1 },
+        day: { macd: 1, rsi: 1, adx: 1, support: 1, resistance: 1 },
+        week: { macd: 1.1, rsi: 1.02, adx: 1.15, support: 1, resistance: 1 },
+        month: { macd: 1.2, rsi: 1.04, adx: 1.25, support: 1, resistance: 1 },
       };
       const m = multipliers[frame] || multipliers.day;
-      const rsiBase = Number(tech.relativeStrength ?? tech.rsi14 ?? 50);
-      const macdBase = Number(tech.macd ?? 0);
-      const signal = macdBase * m.macd * 0.82;
-      const macd = macdBase * m.macd;
-      const ma20 = Number(tech.ma20 ?? item.price ?? 0) * m.ma20;
-      const ma50 = Number(tech.ma50 ?? ma20 * 0.985) * m.ma50;
-      const ma200 = Number(tech.ma200 ?? ma20 * 0.955) * m.ma200;
       return {
-        trend: item.price >= ma20 ? 'Tăng' : 'Giảm',
-        rsi: Math.max(0, Math.min(100, rsiBase * m.rsi)),
-        macd,
-        signal,
-        histogram: macd - signal,
-        ma20,
-        ma50,
-        ma200,
+        trend: String(tech.trend ?? 'Trung tính'),
+        trendStrength: String(tech.trendStrength ?? '-'),
+        rsi: Math.max(0, Math.min(100, Number(tech.relativeStrength ?? tech.rsi14 ?? 50) * m.rsi)),
+        macd: Number(tech.macd ?? 0) * m.macd,
+        signal: Number(tech.signal ?? 0) * m.macd,
+        histogram: Number(tech.histogram ?? 0) * m.macd,
+        adx14: Number(tech.adx14 ?? 0) * m.adx,
+        plusDi: Number(tech.plusDi ?? 0),
+        minusDi: Number(tech.minusDi ?? 0),
+        ma20: Number(tech.ma20 ?? 0),
+        ma50: Number(tech.ma50 ?? 0),
+        ma200: Number(tech.ma200 ?? 0),
+        buyPrice: Number(tech.buyPrice ?? tech.supportDay ?? 0),
+        sellPrice: Number(tech.sellPrice ?? tech.resistanceDay ?? 0),
       };
     }
 
@@ -711,9 +710,7 @@ DASHBOARD_HTML = """
         const framed = computeFrameTechnical(item, frame);
         const frameLabel = ({ hour: 'Giờ', day: 'Ngày', week: 'Tuần', month: 'Tháng' })[frame] || 'Ngày';
         elements.detailSub.textContent = `Biến động ${sign}${formatNumber(item.changePct)}% • Khối lượng ${formatVolume(item.volume)} • Khung ${frameLabel}`;
-        const recommendation = framed.trend === 'Tăng'
-          ? `Xu hướng ${frameLabel.toLowerCase()} đang tăng. Canh mua gần hỗ trợ ${formatNumber(tech.supportDay ?? 0)} và chốt lời gần kháng cự ${formatNumber(tech.resistanceDay ?? 0)}.`
-          : `Xu hướng ${frameLabel.toLowerCase()} đang giảm. Ưu tiên quan sát, chỉ mua thăm dò gần hỗ trợ ${formatNumber(tech.supportDay ?? 0)}; canh bán khi hồi lên ${formatNumber(tech.resistanceDay ?? 0)}.`;
+        const recommendation = String(tech.strategy || `Cổ phiếu đang ${String(framed.trend).toLowerCase()}. Mua gần hỗ trợ và bán gần kháng cự.`);
 
         elements.detailStats.innerHTML = `
           <div style="margin-bottom:14px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
@@ -735,11 +732,17 @@ DASHBOARD_HTML = """
           </div>
           <div class="stats-grid">
             <div class="stat-card"><div class="label">Xu hướng</div><div class="value">${escapeHtml(String(framed.trend))}</div></div>
+            <div class="stat-card"><div class="label">Sức mạnh xu hướng</div><div class="value">${escapeHtml(String(framed.trendStrength))}</div></div>
+            <div class="stat-card"><div class="label">Giá múc</div><div class="value">${escapeHtml(formatNumber(framed.buyPrice))}</div></div>
+            <div class="stat-card"><div class="label">Giá bán</div><div class="value">${escapeHtml(formatNumber(framed.sellPrice))}</div></div>
             <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
             <div class="stat-card"><div class="label">RSI</div><div class="value">${escapeHtml(formatNumber(framed.rsi))}</div></div>
-            <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(framed.macd))}</div></div>
-            <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(framed.signal))}</div></div>
-            <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(framed.histogram))}</div></div>
+            <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(framed.macd, 3))}</div></div>
+            <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(framed.signal, 3))}</div></div>
+            <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(framed.histogram, 3))}</div></div>
+            <div class="stat-card"><div class="label">ADX14</div><div class="value">${escapeHtml(formatNumber(framed.adx14))}</div></div>
+            <div class="stat-card"><div class="label">+DI</div><div class="value">${escapeHtml(formatNumber(framed.plusDi))}</div></div>
+            <div class="stat-card"><div class="label">-DI</div><div class="value">${escapeHtml(formatNumber(framed.minusDi))}</div></div>
             <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(framed.ma20))}</div></div>
             <div class="stat-card"><div class="label">MA50</div><div class="value">${escapeHtml(formatNumber(framed.ma50))}</div></div>
             <div class="stat-card"><div class="label">MA200</div><div class="value">${escapeHtml(formatNumber(framed.ma200))}</div></div>
