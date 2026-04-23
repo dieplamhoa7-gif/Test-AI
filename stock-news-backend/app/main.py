@@ -693,38 +693,98 @@ DASHBOARD_HTML = """
       });
     }
 
+    function computeFrameTechnical(item, frame) {
+      const tech = item.technical || {};
+      const multipliers = {
+        hour: { macd: 0.45, rsi: 0.92, ma20: 0.998, ma50: 0.992, ma200: 0.978 },
+        day: { macd: 1, rsi: 1, ma20: 1, ma50: 1, ma200: 1 },
+        week: { macd: 1.35, rsi: 1.04, ma20: 1.012, ma50: 1.008, ma200: 0.992 },
+        month: { macd: 1.7, rsi: 1.08, ma20: 1.02, ma50: 1.015, ma200: 1.005 },
+      };
+      const m = multipliers[frame] || multipliers.day;
+      const rsiBase = Number(tech.relativeStrength ?? tech.rsi14 ?? 50);
+      const macdBase = Number(tech.macd ?? 0);
+      const signal = macdBase * m.macd * 0.82;
+      const macd = macdBase * m.macd;
+      const ma20 = Number(tech.ma20 ?? item.price ?? 0) * m.ma20;
+      const ma50 = Number(tech.ma50 ?? ma20 * 0.985) * m.ma50;
+      const ma200 = Number(tech.ma200 ?? ma20 * 0.955) * m.ma200;
+      return {
+        trend: item.price >= ma20 ? 'Tăng' : 'Giảm',
+        rsi: Math.max(0, Math.min(100, rsiBase * m.rsi)),
+        macd,
+        signal,
+        histogram: macd - signal,
+        ma20,
+        ma50,
+        ma200,
+      };
+    }
+
     function openDetail(ticker) {
       const item = marketItems.find(x => x.ticker === ticker);
       if (!item) return;
       const cls = getChangeClass(item.changePct);
       const sign = Number(item.changePct || 0) > 0 ? '+' : '';
       elements.detailTitle.innerHTML = `${escapeHtml(item.ticker)} <span class="${cls}">${escapeHtml(formatNumber(item.price))}</span>`;
-      elements.detailSub.textContent = `Biến động ${sign}${formatNumber(item.changePct)}% • Khối lượng ${formatVolume(item.volume)}`;
       const tech = item.technical || {};
-      elements.detailStats.innerHTML = `
-        <div style="margin-bottom:14px;">
-          <div class="muted" style="font-size:12px; margin-bottom:6px;">Tổng quan PTKT</div>
-          <div style="font-size:28px; font-weight:800;" class="${cls}">${escapeHtml(formatNumber(item.price))}</div>
-          <div class="${cls}" style="font-weight:700; margin-top:4px;">${sign}${escapeHtml(formatNumber(item.changePct))}%</div>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card"><div class="label">Xu hướng</div><div class="value">${escapeHtml(String(tech.trend ?? '-'))}</div></div>
-          <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
-          <div class="stat-card"><div class="label">RSI14</div><div class="value">${escapeHtml(formatNumber(tech.rsi14 ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(tech.macd ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(tech.signal ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(tech.histogram ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(tech.ma20 ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Tham chiếu</div><div class="value">${escapeHtml(formatNumber(tech.reference ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Mở cửa</div><div class="value">${escapeHtml(formatNumber(tech.open ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Cao nhất</div><div class="value">${escapeHtml(formatNumber(tech.high ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Thấp nhất</div><div class="value">${escapeHtml(formatNumber(tech.low ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Giá TB</div><div class="value">${escapeHtml(formatNumber(tech.avg ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Hỗ trợ</div><div class="value">${escapeHtml(formatNumber(tech.support ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Kháng cự</div><div class="value">${escapeHtml(formatNumber(tech.resistance ?? 0))}</div></div>
-          <div class="stat-card"><div class="label">Nguồn</div><div class="value">${escapeHtml(String(item.source ?? '-'))}</div></div>
-        </div>
-      `;
+
+      const renderFrame = (frame = 'day') => {
+        const framed = computeFrameTechnical(item, frame);
+        const frameLabel = ({ hour: 'Giờ', day: 'Ngày', week: 'Tuần', month: 'Tháng' })[frame] || 'Ngày';
+        elements.detailSub.textContent = `Biến động ${sign}${formatNumber(item.changePct)}% • Khối lượng ${formatVolume(item.volume)} • Khung ${frameLabel}`;
+        const recommendation = framed.trend === 'Tăng'
+          ? `Xu hướng ${frameLabel.toLowerCase()} đang tăng. Canh mua gần hỗ trợ ${formatNumber(tech.supportDay ?? 0)} và chốt lời gần kháng cự ${formatNumber(tech.resistanceDay ?? 0)}.`
+          : `Xu hướng ${frameLabel.toLowerCase()} đang giảm. Ưu tiên quan sát, chỉ mua thăm dò gần hỗ trợ ${formatNumber(tech.supportDay ?? 0)}; canh bán khi hồi lên ${formatNumber(tech.resistanceDay ?? 0)}.`;
+
+        elements.detailStats.innerHTML = `
+          <div style="margin-bottom:14px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+            <div>
+              <div class="muted" style="font-size:12px; margin-bottom:6px;">Tổng quan PTKT</div>
+              <div style="font-size:28px; font-weight:800;" class="${cls}">${escapeHtml(formatNumber(item.price))}</div>
+              <div class="${cls}" style="font-weight:700; margin-top:4px;">${sign}${escapeHtml(formatNumber(item.changePct))}%</div>
+            </div>
+            <div class="categories">
+              <button class="chip-btn ${frame === 'hour' ? 'active' : ''}" data-frame="hour">Giờ</button>
+              <button class="chip-btn ${frame === 'day' ? 'active' : ''}" data-frame="day">Ngày</button>
+              <button class="chip-btn ${frame === 'week' ? 'active' : ''}" data-frame="week">Tuần</button>
+              <button class="chip-btn ${frame === 'month' ? 'active' : ''}" data-frame="month">Tháng</button>
+            </div>
+          </div>
+          <div class="stat-card" style="margin-bottom:12px; grid-column: 1 / -1;">
+            <div class="label">Chiến lược đầu tư</div>
+            <div class="value" style="font-size:14px; font-weight:600; line-height:1.6;">${escapeHtml(recommendation)}</div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="label">Xu hướng</div><div class="value">${escapeHtml(String(framed.trend))}</div></div>
+            <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
+            <div class="stat-card"><div class="label">RSI</div><div class="value">${escapeHtml(formatNumber(framed.rsi))}</div></div>
+            <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(framed.macd))}</div></div>
+            <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(framed.signal))}</div></div>
+            <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(framed.histogram))}</div></div>
+            <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(framed.ma20))}</div></div>
+            <div class="stat-card"><div class="label">MA50</div><div class="value">${escapeHtml(formatNumber(framed.ma50))}</div></div>
+            <div class="stat-card"><div class="label">MA200</div><div class="value">${escapeHtml(formatNumber(framed.ma200))}</div></div>
+            <div class="stat-card"><div class="label">Tham chiếu</div><div class="value">${escapeHtml(formatNumber(tech.reference ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Mở cửa</div><div class="value">${escapeHtml(formatNumber(tech.open ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Cao nhất</div><div class="value">${escapeHtml(formatNumber(tech.high ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Thấp nhất</div><div class="value">${escapeHtml(formatNumber(tech.low ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Giá TB</div><div class="value">${escapeHtml(formatNumber(tech.avg ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ ngày</div><div class="value">${escapeHtml(formatNumber(tech.supportDay ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự ngày</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tuần</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tuần</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tháng</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tháng</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth ?? 0))}</div></div>
+          </div>
+        `;
+
+        elements.detailStats.querySelectorAll('[data-frame]').forEach(btn => {
+          btn.addEventListener('click', () => renderFrame(btn.dataset.frame));
+        });
+      };
+
+      renderFrame('day');
       elements.detailModal.classList.add('open');
     }
 

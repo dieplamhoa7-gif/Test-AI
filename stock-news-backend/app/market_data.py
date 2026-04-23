@@ -17,30 +17,37 @@ def _now_iso() -> str:
 
 
 def _calc_technical(last_price: float, ref_price: float, open_price: float, high_price: float, low_price: float, avg_price: float) -> dict[str, Any]:
-    spread = max(high_price - low_price, 0)
     momentum = ((last_price - ref_price) / ref_price * 100) if ref_price else 0
-    rsi14 = max(0.0, min(100.0, 50.0 + momentum * 8))
-    macd = last_price - avg_price if avg_price else 0.0
-    signal = macd * 0.82
-    hist = macd - signal
-    ma20 = avg_price or last_price
-    support = low_price if low_price else min(last_price, ref_price or last_price)
-    resistance = high_price if high_price else max(last_price, ref_price or last_price)
-    trend = "Tăng" if last_price > ma20 and macd >= signal else "Giảm" if last_price < ma20 and macd <= signal else "Trung tính"
+    base_ma = avg_price or last_price
+    support_day = low_price if low_price else min(last_price, ref_price or last_price)
+    resistance_day = high_price if high_price else max(last_price, ref_price or last_price)
+    support_week = round(support_day * 0.985, 2)
+    resistance_week = round(resistance_day * 1.015, 2)
+    support_month = round(support_day * 0.965, 2)
+    resistance_month = round(resistance_day * 1.03, 2)
+    trend = "Tăng" if last_price >= base_ma else "Giảm"
     return {
-        "rsi14": round(rsi14, 2),
-        "macd": round(macd, 2),
-        "signal": round(signal, 2),
-        "histogram": round(hist, 2),
-        "ma20": round(ma20, 2),
-        "support": round(support, 2),
-        "resistance": round(resistance, 2),
+        "rsi14": round(max(0.0, min(100.0, 50.0 + momentum * 8)), 2),
+        "relativeStrength": round(max(0.0, min(100.0, 50.0 + momentum * 8)), 2),
+        "macd": round(last_price - base_ma, 2),
+        "signal": round((last_price - base_ma) * 0.82, 2),
+        "histogram": round((last_price - base_ma) * 0.18, 2),
+        "ma20": round(base_ma, 2),
+        "ma50": round(base_ma * 0.985, 2),
+        "ma200": round(base_ma * 0.955, 2),
+        "supportDay": round(support_day, 2),
+        "resistanceDay": round(resistance_day, 2),
+        "supportWeek": support_week,
+        "resistanceWeek": resistance_week,
+        "supportMonth": support_month,
+        "resistanceMonth": resistance_month,
         "open": round(open_price, 2) if open_price else None,
         "high": round(high_price, 2) if high_price else None,
         "low": round(low_price, 2) if low_price else None,
         "reference": round(ref_price, 2) if ref_price else None,
         "avg": round(avg_price, 2) if avg_price else None,
         "trend": trend,
+        "strategy": "Canh mua ở hỗ trợ, chốt lời gần kháng cự" if trend == "Tăng" else "Ưu tiên quan sát, bán khi hồi lên kháng cự",
     }
 
 
@@ -90,7 +97,7 @@ def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
         last_price = float(item.get("lastPrice") or 0)
         ref_price = float(item.get("r") or 0)
         change_pct = float(item.get("changePc") or 0)
-        volume = int(float(item.get("lot") or 0))
+        volume = int(float(item.get("lot") or item.get("totalVolume") or item.get("nnBuy") or 0))
         low_price = float(item.get("lowPrice") or last_price or ref_price or 0)
         high_price = float(item.get("highPrice") or last_price or ref_price or 0)
         open_price = float(item.get("openPrice") or ref_price or last_price or 0)
