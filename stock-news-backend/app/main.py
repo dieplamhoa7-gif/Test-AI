@@ -753,11 +753,6 @@ DASHBOARD_HTML = """
             <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(framed.ma20))}</div></div>
             <div class="stat-card"><div class="label">MA50</div><div class="value">${escapeHtml(formatNumber(framed.ma50))}</div></div>
             <div class="stat-card"><div class="label">MA200</div><div class="value">${escapeHtml(formatNumber(framed.ma200))}</div></div>
-            <div class="stat-card"><div class="label">Tham chiếu</div><div class="value">${escapeHtml(formatNumber(tech.reference ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Mở cửa</div><div class="value">${escapeHtml(formatNumber(tech.open ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Cao nhất</div><div class="value">${escapeHtml(formatNumber(tech.high ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Thấp nhất</div><div class="value">${escapeHtml(formatNumber(tech.low ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Giá TB</div><div class="value">${escapeHtml(formatNumber(tech.avg ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Pivot ngày</div><div class="value">${escapeHtml(formatNumber(tech.pivotDay ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Hỗ trợ ngày S1</div><div class="value">${escapeHtml(formatNumber(tech.supportDay ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Kháng cự ngày R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
