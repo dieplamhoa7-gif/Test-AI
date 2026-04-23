@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from typing import Any
+import math
 
 import httpx
 import pandas as pd
@@ -79,6 +80,16 @@ def _compute_indicators(df: pd.DataFrame) -> pd.DataFrame:
     dx = (((work["plusDi"] - work["minusDi"]).abs() / (work["plusDi"] + work["minusDi"]).replace(0, float("nan"))) * 100).astype(float)
     work["adx14"] = dx.ewm(alpha=1 / 14, adjust=False).mean().astype(float)
     return work
+
+
+def _safe_number(value: Any, digits: int = 2) -> float | None:
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return None
+    if math.isnan(n) or math.isinf(n):
+        return None
+    return round(n, digits)
 
 
 def _describe_trend_strength(adx: float) -> str:
@@ -159,42 +170,42 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
     strategy, buy_price, sell_price = _build_strategy(last_price, support_day, resistance_day, trend, strength, rsi14, macd, signal)
 
     return {
-        "rsi14": round(rsi14, 2),
-        "relativeStrength": round(rsi14, 2),
-        "macd": round(macd, 3),
-        "signal": round(signal, 3),
-        "histogram": round(histogram, 3),
-        "adx14": round(adx14, 2),
-        "plusDi": round(plus_di, 2),
-        "minusDi": round(minus_di, 2),
-        "ma20": round(ma20, 2),
-        "ma50": round(ma50, 2),
-        "ma200": round(ma200, 2),
-        "pivotDay": pivot_day,
-        "supportDay": round(support_day, 2),
-        "resistanceDay": round(resistance_day, 2),
-        "supportDay2": support_day_2,
-        "resistanceDay2": resistance_day_2,
-        "pivotWeek": pivot_week,
-        "supportWeek": support_week,
-        "resistanceWeek": resistance_week,
-        "supportWeek2": support_week_2,
-        "resistanceWeek2": resistance_week_2,
-        "pivotMonth": pivot_month,
-        "supportMonth": support_month,
-        "resistanceMonth": resistance_month,
-        "supportMonth2": support_month_2,
-        "resistanceMonth2": resistance_month_2,
-        "open": round(open_price, 2) if open_price else None,
-        "high": round(high_price, 2) if high_price else None,
-        "low": round(low_price, 2) if low_price else None,
-        "reference": round(ref_price, 2) if ref_price else None,
-        "avg": round(avg_price, 2) if avg_price else None,
+        "rsi14": _safe_number(rsi14, 2),
+        "relativeStrength": _safe_number(rsi14, 2),
+        "macd": _safe_number(macd, 3),
+        "signal": _safe_number(signal, 3),
+        "histogram": _safe_number(histogram, 3),
+        "adx14": _safe_number(adx14, 2),
+        "plusDi": _safe_number(plus_di, 2),
+        "minusDi": _safe_number(minus_di, 2),
+        "ma20": _safe_number(ma20, 2),
+        "ma50": _safe_number(ma50, 2),
+        "ma200": _safe_number(ma200, 2),
+        "pivotDay": _safe_number(pivot_day, 2),
+        "supportDay": _safe_number(support_day, 2),
+        "resistanceDay": _safe_number(resistance_day, 2),
+        "supportDay2": _safe_number(support_day_2, 2),
+        "resistanceDay2": _safe_number(resistance_day_2, 2),
+        "pivotWeek": _safe_number(pivot_week, 2),
+        "supportWeek": _safe_number(support_week, 2),
+        "resistanceWeek": _safe_number(resistance_week, 2),
+        "supportWeek2": _safe_number(support_week_2, 2),
+        "resistanceWeek2": _safe_number(resistance_week_2, 2),
+        "pivotMonth": _safe_number(pivot_month, 2),
+        "supportMonth": _safe_number(support_month, 2),
+        "resistanceMonth": _safe_number(resistance_month, 2),
+        "supportMonth2": _safe_number(support_month_2, 2),
+        "resistanceMonth2": _safe_number(resistance_month_2, 2),
+        "open": _safe_number(open_price, 2),
+        "high": _safe_number(high_price, 2),
+        "low": _safe_number(low_price, 2),
+        "reference": _safe_number(ref_price, 2),
+        "avg": _safe_number(avg_price, 2),
         "trend": trend,
         "trendStrength": strength,
         "strategy": strategy,
-        "buyPrice": buy_price,
-        "sellPrice": sell_price,
+        "buyPrice": _safe_number(buy_price, 2),
+        "sellPrice": _safe_number(sell_price, 2),
     }
 
 
