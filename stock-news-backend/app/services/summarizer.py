@@ -72,18 +72,18 @@ def _fallback_snippet(item: Dict) -> str:
 def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
     full_text = _clip_text(item.get("fullText") or "")
     if not full_text:
-        return {"category": "Khác", "summary": ""}
+        return {"category": "Kinh Tế", "summary": ""}
 
     client = _client()
     if client is None:
-        return {"category": "Khác", "summary": _fallback_snippet(item)}
+        return {"category": "Kinh Tế", "summary": _fallback_snippet(item)}
 
     prompt = (
-        "Phân loại 1 nhãn: Tổng hợp, Chứng khoán, Ngân hàng, Bất động sản, Pháp luật, Chính trị, Khác. "
-        "Tóm tắt đúng 5 câu, ngắn gọn, đủ ý, không lặp tiêu đề, không bịa, được viết tắt. "
-        "Chỉ giữ ý chính: số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động. Bỏ ý phụ. "
-        "Nếu đủ dữ kiện, chèn rất ngắn mã/DN tích cực hoặc tiêu cực vào 1 câu phù hợp. "
-        "Không dùng gạch đầu dòng. Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
+        "Đọc kỹ tin và phân loại đúng 1 nhãn: Chứng khoán, Kinh Tế, BĐS, Pháp Luật, Chiến Tranh. "
+        "Tóm tắt đúng 5 câu: đủ ý, có sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian. "
+        "Phong cách thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; có thể viết tắt. "
+        "Nêu nhận định ảnh hưởng tích cực/tiêu cực đến các cổ phiếu có trong bài nếu đủ dữ kiện. "
+        "Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
     )
 
     try:
@@ -97,7 +97,7 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
             ],
         )
         content = (resp.choices[0].message.content or "").strip()
-        category = "Khác"
+        category = "Kinh Tế"
         summary = ""
         for line in content.splitlines():
             line = line.strip()
@@ -110,7 +110,7 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
             summary = content.strip()
         return {"category": category, "summary": summary or _fallback_snippet(item)}
     except Exception:
-        return {"category": "Khác", "summary": _fallback_snippet(item)}
+        return {"category": "Kinh Tế", "summary": _fallback_snippet(item)}
 
 
 def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
@@ -147,18 +147,18 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                 {
                     "role": "system",
                     "content": (
-                        "Tóm tắt tin tài chính. "
-                        "Đúng 5 câu, ngắn gọn, đủ ý, không lặp tiêu đề, không bịa, được viết tắt. "
-                        "Chỉ giữ ý chính: số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động. Bỏ ý phụ. "
-                        "Nếu đủ dữ kiện, nêu rất ngắn mã tích cực/tiêu cực trong 1 câu. Không gạch đầu dòng."
+                        "Đọc kỹ các tin. Phân loại theo: Chứng khoán, Kinh Tế, BĐS, Pháp Luật, Chiến Tranh. "
+                        "Tóm tắt đúng 5 câu, đủ ý, có sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian. "
+                        "Viết thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; có thể viết tắt. "
+                        "Nêu nhận định ảnh hưởng tích cực/tiêu cực đến các cổ phiếu có trong bài nếu đủ dữ kiện."
                     ),
                 },
                 {
                     "role": "user",
                     "content": (
-                        "Tóm tắt dữ liệu sau thành đúng 5 câu, ngắn gọn nhưng đủ ý. "
-                        "Giữ số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động chính; bỏ ý phụ; được viết tắt. "
-                        "Nếu đủ dữ kiện, thêm nhận xét rất ngắn mã tích cực/tiêu cực. Không lặp tiêu đề.\n\n"
+                        "Tóm tắt dữ liệu sau thành đúng 5 câu. "
+                        "Giữ sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian; có thể viết tắt. "
+                        "Viết ngắn gọn, đi thẳng vào vấn đề. Nếu đủ dữ kiện, nêu ảnh hưởng tích cực/tiêu cực đến cổ phiếu có trong bài. Không lặp tiêu đề.\n\n"
                         f"DỮ LIỆU:\n{content}"
                     ),
                 },
