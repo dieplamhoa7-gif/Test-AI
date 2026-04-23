@@ -6,7 +6,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from app.market_data import get_market_cache, get_market_symbol, refresh_market_cache
+from app.market_data import get_market_cache, get_market_symbol, get_symbol_catalog, refresh_market_cache
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
@@ -486,7 +486,8 @@ DASHBOARD_HTML = """
         </div>
       </div>
       <div class="stock-search-bar">
-        <input id="stockSearchInput" type="text" placeholder="Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB..." />
+        <input id="stockSearchInput" type="text" placeholder="Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB..." list="stockSearchList" />
+        <datalist id="stockSearchList"></datalist>
         <button class="reload-btn" id="stockSearchBtn">Tìm & thêm</button>
       </div>
       <div class="market-grid" id="marketGrid"></div>
@@ -547,6 +548,7 @@ DASHBOARD_HTML = """
       marketGrid: document.getElementById('marketGrid'),
       stockSearchInput: document.getElementById('stockSearchInput'),
       stockSearchBtn: document.getElementById('stockSearchBtn'),
+      stockSearchList: document.getElementById('stockSearchList'),
       detailModal: document.getElementById('detailModal'),
       detailTitle: document.getElementById('detailTitle'),
       detailSub: document.getElementById('detailSub'),
@@ -835,6 +837,20 @@ DASHBOARD_HTML = """
       autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS);
     }
 
+    async function searchStockCatalog() {
+      const q = (elements.stockSearchInput.value || '').trim();
+      if (!q) {
+        elements.stockSearchList.innerHTML = '';
+        return;
+      }
+      try {
+        const res = await fetch(`${API_BASE}/market-symbols?query=${encodeURIComponent(q)}&limit=20`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const items = await res.json();
+        elements.stockSearchList.innerHTML = items.map(item => `<option value="${escapeHtml(item.symbol)}">${escapeHtml(item.name || '')}</option>`).join('');
+      } catch (_) {}
+    }
+
     async function addStockToWatchlist() {
       const symbol = (elements.stockSearchInput.value || '').trim().toUpperCase();
       if (!symbol) return;
@@ -897,6 +913,7 @@ DASHBOARD_HTML = """
     }
 
     elements.stockSearchBtn.addEventListener('click', addStockToWatchlist);
+    elements.stockSearchInput.addEventListener('input', searchStockCatalog);
     elements.stockSearchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') addStockToWatchlist();
     });
@@ -952,3 +969,8 @@ def market_data():
 @app.get("/market-data/{symbol}")
 def market_symbol(symbol: str):
     return get_market_symbol(symbol)
+
+
+@app.get("/market-symbols")
+def market_symbols(query: str = Query(default=""), limit: int = Query(default=20, ge=1, le=100)):
+    return get_symbol_catalog(query=query, limit=limit)

@@ -7,14 +7,16 @@ import httpx
 import pandas as pd
 
 try:
-    from vnstock import Quote
+    from vnstock import Listing, Quote
 except Exception:  # pragma: no cover
+    Listing = None
     Quote = None
 
 DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI", "VCB", "VIC"]
 DEFAULT_CW_TICKERS = ["CFPT2314", "CHPG2401", "CVPB2402"]
 
 _market_cache: list[dict[str, Any]] = []
+_symbol_cache: list[dict[str, str]] = []
 _last_updated: str | None = None
 
 
@@ -278,6 +280,29 @@ def get_market_symbol(symbol: str) -> dict[str, Any]:
     if not normalized:
         raise ValueError("Symbol is required")
     return _fetch_symbol(normalized) or _mock_item(normalized, is_cw=normalized.startswith("C"))
+
+
+def get_symbol_catalog(query: str = "", limit: int = 50) -> list[dict[str, str]]:
+    global _symbol_cache
+    if not _symbol_cache and Listing is not None:
+        try:
+            df = Listing().all_symbols()
+            if isinstance(df, pd.DataFrame) and not df.empty:
+                _symbol_cache = [
+                    {
+                        "symbol": str(row.get("symbol") or "").upper(),
+                        "name": str(row.get("organ_name") or "").strip(),
+                    }
+                    for _, row in df.iterrows()
+                    if str(row.get("symbol") or "").strip()
+                ]
+        except Exception:
+            _symbol_cache = []
+    items = _symbol_cache
+    q = query.strip().lower()
+    if q:
+        items = [item for item in items if q in item["symbol"].lower() or q in item["name"].lower()]
+    return items[:limit]
 
 
 def refresh_market_cache() -> list[dict[str, Any]]:
