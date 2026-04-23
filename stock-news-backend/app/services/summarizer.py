@@ -42,13 +42,14 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
     prompt = (
         "Bạn là trợ lý phân loại và tóm tắt tin tài chính/chứng khoán bằng tiếng Việt. "
         "Phân loại bài vào đúng 1 nhóm trong danh sách: Tổng hợp, Chứng khoán, Ngân hàng, Bất động sản, Pháp luật, Chính trị, Khác. "
-        f"Tóm tắt tối đa {SUMMARY_MAX_WORDS} chữ. "
+        "Phần tóm tắt phải viết thành 5 đến 8 câu, đủ ý, mạch lạc, bao quát đầy đủ nội dung quan trọng nhất của bài. "
         "Không nhắc lại, không chép lại tiêu đề bài. "
-        "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, sự kiện quan trọng. "
-        "Văn phong trực diện, ngắn gọn, thực dụng. Không thêm suy diễn. "
+        "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, mốc thời gian, quyết định, nguyên nhân, tác động và sự kiện chính. "
+        "Văn phong trực diện, rõ ràng, dễ hiểu, không lan man, không thêm suy diễn. "
+        "Mỗi câu phải có thông tin, tránh câu rỗng. "
         "Trả đúng định dạng 2 dòng:\n"
         "Category: <1 nhãn>\n"
-        "Summary: <tóm tắt>"
+        "Summary: <đoạn tóm tắt 5-8 câu>"
     )
 
     try:
@@ -113,19 +114,17 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                     "role": "system",
                     "content": (
                         "Bạn là trợ lý tài chính tiếng Việt. "
-                        "Phân loại và tóm tắt tin từ nội dung bài viết, không lặp tiêu đề, không bịa thêm dữ kiện. "
-                        "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, sự kiện chính. "
-                        "Văn phong trực diện, ngắn gọn, thực dụng. "
-                        "Chỉ xuất đúng 3 phần:\n"
-                        "1. Toàn cảnh: 1-2 câu\n"
-                        "2. Điểm chính: tối đa 4 gạch đầu dòng\n"
-                        "3. Nhóm tin/Mã/Doanh nghiệp: liệt kê ngắn"                    ),
+                        "Hãy tóm tắt các tin từ nội dung bài viết, không lặp tiêu đề, không bịa thêm dữ kiện. "
+                        "Bài tóm tắt phải gồm 5 đến 8 câu hoàn chỉnh, đủ ý, đầy đủ nội dung cốt lõi, mạch lạc và dễ đọc. "
+                        "Ưu tiên giữ số liệu quan trọng, tên công ty, mã cổ phiếu, mốc thời gian, nguyên nhân, diễn biến và tác động chính. "
+                        "Văn phong trực diện, rõ ràng, thực dụng. Không viết gạch đầu dòng, không chia mục, không viết quá ngắn."                    ),
                 },
                 {
                     "role": "user",
                     "content": (
                         "Tóm tắt các tin sau từ nội dung bài viết. "
-                        "Giữ nguyên số liệu, tên công ty, sự kiện quan trọng. "
+                        "Viết thành 5 đến 8 câu hoàn chỉnh, đủ ý, đầy đủ nội dung quan trọng. "
+                        "Giữ nguyên số liệu, tên công ty, mã cổ phiếu và sự kiện quan trọng. "
                         "Không lặp lại tiêu đề bài.\n\n"
                         f"DỮ LIỆU:\n{content}"
                     ),
