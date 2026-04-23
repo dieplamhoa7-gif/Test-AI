@@ -41,6 +41,7 @@ uvicorn app.main:app --reload --port 8000
 - `GET /health`
 - `GET /news?limit=10`
 - `GET /summarize?limit=10&max_chars=1200`
+- `GET /market-data` → trả về mảng object cho React/Next.js map()
 
 ## 4) Lưu ý pháp lý/kỹ thuật khi crawl
 
@@ -60,3 +61,9 @@ uvicorn app.main:app --reload --port 8000
 ### MongoDB
 - Env vars hỗ trợ: MONGODB_URI, MONGODB_DB, MONGODB_COLLECTION
 - Nếu có MONGODB_URI, app sẽ lưu tối đa 100 tin trên MongoDB thay vì file local.
+
+### Market Data
+- `GET /market-data` trả về array object gồm ticker, price, changePct, volume, chart, technical.
+- Có nền cập nhật dữ liệu mỗi 30 giây khi app chạy.
+- Đã bật CORS cho localhost:3000 / 5173.
+- Đã thêm `vnstock3` vào requirements cho bước tích hợp nguồn thực tế.
