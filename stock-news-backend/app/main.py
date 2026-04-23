@@ -466,32 +466,6 @@ DASHBOARD_HTML = """
         <div class="hero-actions categories" id="categoryBar"></div>
       </article>
 
-      <aside class="panel hero-side">
-        <div>
-          <div class="side-title">Tìm kiếm</div>
-          <div class="search-box">
-            <input id="searchInput" type="text" placeholder="Tìm tiêu đề, công ty, nguồn..." />
-            <select id="limitInput">
-              <option value="10" selected>10</option>
-              <option value="20">20</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <div class="side-title">Danh mục quan tâm</div>
-          <div class="watchlist" id="watchlist"></div>
-        </div>
-
-        <div>
-          <div class="side-title">Điều khiển</div>
-          <div class="categories">
-            <button class="reload-btn" id="reloadBtn">Làm mới dữ liệu</button>
-          </div>
-        </div>
-      </aside>
     </section>
 
     <section class="panel summary-bar">
@@ -550,22 +524,11 @@ DASHBOARD_HTML = """
     const API_BASE = '';
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Pháp luật', 'Chính trị', 'Khác'];
-    const WATCHLIST = [
-      { code: 'FPT', price: '148.50', change: '+2.41%' },
-      { code: 'MWG', price: '68.12', change: '+0.92%' },
-      { code: 'VIC', price: '43.41', change: '+0.95%' },
-      { code: 'HPG', price: '31.71', change: '+2.29%' },
-      { code: 'VCB', price: '98.48', change: '+1.53%' },
-      { code: 'SSI', price: '39.20', change: '+2.62%' }
-    ];
 
     const elements = {
       apiStatus: document.getElementById('apiStatus'),
       tickerTrack: document.getElementById('tickerTrack'),
       categoryBar: document.getElementById('categoryBar'),
-      searchInput: document.getElementById('searchInput'),
-      limitInput: document.getElementById('limitInput'),
-      reloadBtn: document.getElementById('reloadBtn'),
       heroTitle: document.getElementById('heroTitle'),
       heroSummary: document.getElementById('heroSummary'),
       statusText: document.getElementById('statusText'),
@@ -578,7 +541,6 @@ DASHBOARD_HTML = """
       detailSub: document.getElementById('detailSub'),
       detailStats: document.getElementById('detailStats'),
       closeDetailBtn: document.getElementById('closeDetailBtn'),
-      watchlist: document.getElementById('watchlist'),
       prevPageBtn: document.getElementById('prevPageBtn'),
       nextPageBtn: document.getElementById('nextPageBtn'),
       goPageBtn: document.getElementById('goPageBtn'),
@@ -673,12 +635,6 @@ DASHBOARD_HTML = """
             <div class="market-meta"><span>KL</span><span>${escapeHtml(formatVolume(item.volume))}</span></div>
           </div>
         `;
-      }).join('');
-
-      elements.watchlist.innerHTML = marketItems.slice(0, 6).map(item => {
-        const cls = getChangeClass(item.changePct);
-        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
-        return `<div class="watch-pill">${escapeHtml(item.ticker)} ${escapeHtml(formatNumber(item.price))} <span class="${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</span></div>`;
       }).join('');
 
       const tickerItems = [...marketItems, ...marketItems].slice(0, 12).map(item => {
@@ -788,17 +744,6 @@ DASHBOARD_HTML = """
       elements.detailModal.classList.add('open');
     }
 
-    function renderWatchlist() {
-      elements.watchlist.innerHTML = WATCHLIST.map(item => `
-        <div class="watch-pill">${item.code} ${item.price} <span>${item.change}</span></div>
-      `).join('');
-
-      const tickerItems = [...WATCHLIST, ...WATCHLIST].map(item => `
-        <span class="ticker-item"><strong>${item.code}</strong> ${item.price} <span class="ticker-up">${item.change}</span></span>
-      `).join('');
-      elements.tickerTrack.innerHTML = tickerItems;
-    }
-
     function renderNews(items) {
       filteredItems = items;
       const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
@@ -833,20 +778,12 @@ DASHBOARD_HTML = """
     }
 
     function applyFilters(resetPage = true) {
-      const q = elements.searchInput.value.trim().toLowerCase();
       let items = [...allItems];
 
       if (resetPage) currentPage = 1;
 
       if (activeCategory !== 'Tổng hợp') {
         items = items.filter(item => inferCategory(item) === activeCategory);
-      }
-
-      if (q) {
-        items = items.filter(item => {
-          const text = `${item.title || ''} ${item.snippet || ''} ${item.source || ''}`.toLowerCase();
-          return text.includes(q);
-        });
       }
 
       renderNews(items);
@@ -865,7 +802,7 @@ DASHBOARD_HTML = """
     }
 
     async function loadData(isAutoRefresh = false, forceRefresh = false) {
-      const limit = Number(elements.limitInput.value) || 10;
+      const limit = 200;
       const ts = Date.now();
       const refreshFlag = forceRefresh || isAutoRefresh;
       elements.apiStatus.textContent = isAutoRefresh ? 'Tự động cập nhật' : 'Đang tải';
@@ -907,9 +844,6 @@ DASHBOARD_HTML = """
       }
     }
 
-    elements.searchInput.addEventListener('input', () => applyFilters(true));
-    elements.limitInput.addEventListener('change', () => loadData(false, true));
-    elements.reloadBtn.addEventListener('click', () => loadData(false, true));
     elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); });
     elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); });
     elements.goPageBtn.addEventListener('click', () => {

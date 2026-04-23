@@ -25,7 +25,7 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
     resistance_week = round(resistance_day * 1.015, 2)
     support_month = round(support_day * 0.965, 2)
     resistance_month = round(resistance_day * 1.03, 2)
-    trend = "Tăng" if last_price >= base_ma else "Giảm"
+    trend = "Tăng" if last_price > ref_price else "Giảm" if last_price < ref_price else "Trung tính"
     return {
         "rsi14": round(max(0.0, min(100.0, 50.0 + momentum * 8)), 2),
         "relativeStrength": round(max(0.0, min(100.0, 50.0 + momentum * 8)), 2),
@@ -96,7 +96,7 @@ def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
 
         last_price = float(item.get("lastPrice") or 0)
         ref_price = float(item.get("r") or 0)
-        change_pct = float(item.get("changePc") or 0)
+        change_pct = (((last_price - ref_price) / ref_price) * 100) if ref_price else 0
         volume = int(float(item.get("lot") or item.get("totalVolume") or item.get("nnBuy") or 0))
         low_price = float(item.get("lowPrice") or last_price or ref_price or 0)
         high_price = float(item.get("highPrice") or last_price or ref_price or 0)
