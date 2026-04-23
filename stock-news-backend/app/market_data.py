@@ -1,13 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any
-import sys
-
-VNSTOCK_REPO = Path(__file__).resolve().parents[2] / "vnstock"
-if VNSTOCK_REPO.exists():
-    sys.path.insert(0, str(VNSTOCK_REPO))
 
 try:
     from vnstock import Vnstock
