@@ -22,7 +22,7 @@ def _clip_text(text: str, limit: int = 6000) -> str:
     return (text or "").strip()[:limit]
 
 
-def _fallback_sentences(text: str, min_sentences: int = 5, max_sentences: int = 8) -> str:
+def _fallback_sentences(text: str, min_sentences: int = 5, max_sentences: int = 5) -> str:
     raw = " ".join((text or "").split())
     if not raw:
         return ""
@@ -76,10 +76,11 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
 
     prompt = (
         "Phân loại tin vào 1 nhóm: Tổng hợp, Chứng khoán, Ngân hàng, Bất động sản, Pháp luật, Chính trị, Khác. "
-        "Tóm tắt 5-8 câu bằng tiếng Việt, đủ ý, không lặp tiêu đề, không bịa. "
-        "Ưu tiên số liệu, công ty, mã cổ phiếu, thời gian, nguyên nhân, diễn biến, tác động. "
-        "Nếu đủ dữ kiện, nêu ngắn mã/doanh nghiệp nào tích cực hoặc tiêu cực. "
-        "Trả đúng 2 dòng:\nCategory: <nhãn>\nSummary: <tóm tắt>"
+        "Tóm tắt đúng 5 câu bằng tiếng Việt, ngắn gọn nhưng đủ ý, không lặp tiêu đề, không bịa. "
+        "Có thể dùng viết tắt. Bỏ chi tiết/câu chữ không quan trọng. "
+        "Ưu tiên số liệu, công ty, mã cổ phiếu, thời gian, nguyên nhân, diễn biến, tác động chính. "
+        "Nếu đủ dữ kiện, nêu rất ngắn mã/doanh nghiệp nào tích cực hoặc tiêu cực. "
+        "Trả đúng 2 dòng:\nCategory: <nhãn>\nSummary: <đúng 5 câu>"
     )
 
     try:
@@ -144,18 +145,19 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                     "role": "system",
                     "content": (
                         "Tóm tắt tin tài chính bằng tiếng Việt. "
-                        "Viết 5-8 câu, đủ ý, không lặp tiêu đề, không bịa. "
-                        "Giữ số liệu, công ty, mã cổ phiếu, thời gian, nguyên nhân, diễn biến, tác động. "
-                        "Nếu đủ dữ kiện, nêu ngắn mã nào tích cực/tiêu cực. "
-                        "Không gạch đầu dòng, không chia mục."
+                        "Viết đúng 5 câu, ngắn gọn nhưng đủ ý, không lặp tiêu đề, không bịa. "
+                        "Có thể dùng viết tắt; bỏ chi tiết không quan trọng. "
+                        "Giữ số liệu, công ty, mã cổ phiếu, thời gian, nguyên nhân, diễn biến, tác động chính. "
+                        "Nếu đủ dữ kiện, nêu rất ngắn mã nào tích cực/tiêu cực. Không gạch đầu dòng."
                     ),
                 },
                 {
                     "role": "user",
                     "content": (
-                        "Tóm tắt dữ liệu sau thành 5-8 câu, đủ ý. "
+                        "Tóm tắt dữ liệu sau thành đúng 5 câu, ngắn gọn nhưng đủ ý. "
                         "Giữ số liệu, công ty, mã cổ phiếu, sự kiện chính. "
-                        "Nếu đủ dữ kiện, thêm nhận xét ngắn mã nào tích cực/tiêu cực. "
+                        "Có thể dùng viết tắt, bỏ ý phụ không quan trọng. "
+                        "Nếu đủ dữ kiện, thêm nhận xét rất ngắn mã nào tích cực/tiêu cực. "
                         "Không lặp tiêu đề.\n\n"
                         f"DỮ LIỆU:\n{content}"
                     ),
