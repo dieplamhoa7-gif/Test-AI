@@ -231,12 +231,13 @@ def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
     low_price = round(last_price * 0.98, 2)
     high_price = round(last_price * 1.02, 2)
     avg_price = round((open_price + low_price + high_price + last_price) / 4, 2)
+    history_df = None if is_cw else _load_history(symbol)
     item = {
         "ticker": symbol,
         "price": last_price,
         "changePct": change_pct,
         "volume": volume,
-        "technical": _calc_technical(last_price, base_price, open_price, high_price, low_price, avg_price, _load_history(symbol)),
+        "technical": _calc_technical(last_price, base_price, open_price, high_price, low_price, avg_price, history_df),
         "type": "cw" if is_cw else "stock",
         "source": "fallback-local",
     }

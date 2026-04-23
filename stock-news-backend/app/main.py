@@ -744,12 +744,6 @@ DASHBOARD_HTML = """
             <div class="stat-card"><div class="label">Giá bán</div><div class="value">${escapeHtml(formatNumber(framed.sellPrice))}</div></div>
             <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
             <div class="stat-card"><div class="label">RSI</div><div class="value">${escapeHtml(formatNumber(framed.rsi))}</div></div>
-            <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(framed.macd, 3))}</div></div>
-            <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(framed.signal, 3))}</div></div>
-            <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(framed.histogram, 3))}</div></div>
-            <div class="stat-card"><div class="label">ADX14</div><div class="value">${escapeHtml(formatNumber(framed.adx14))}</div></div>
-            <div class="stat-card"><div class="label">+DI</div><div class="value">${escapeHtml(formatNumber(framed.plusDi))}</div></div>
-            <div class="stat-card"><div class="label">-DI</div><div class="value">${escapeHtml(formatNumber(framed.minusDi))}</div></div>
             <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(framed.ma20))}</div></div>
             <div class="stat-card"><div class="label">MA50</div><div class="value">${escapeHtml(formatNumber(framed.ma50))}</div></div>
             <div class="stat-card"><div class="label">MA200</div><div class="value">${escapeHtml(formatNumber(framed.ma200))}</div></div>
