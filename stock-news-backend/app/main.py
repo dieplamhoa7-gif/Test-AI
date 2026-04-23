@@ -463,21 +463,6 @@ DASHBOARD_HTML = """
       <div class="ticker-track" id="tickerTrack">Đang tải mã quan tâm...</div>
     </section>
 
-    <section class="hero">
-      <article class="panel hero-main">
-        <div class="eyebrow">Tổng hợp tin nổi bật</div>
-        <h2 id="heroTitle">Đang tải dữ liệu thị trường...</h2>
-        <p id="heroSummary">Hệ thống đang lấy nội dung từ API /news và /summarize.</p>
-        <div class="hero-actions categories" id="categoryBar"></div>
-      </article>
-
-    </section>
-
-    <section class="panel summary-bar">
-      <div class="side-title">Tóm tắt nhanh</div>
-      <div class="side-summary" id="summaryText">Đang tạo tóm tắt...</div>
-    </section>
-
     <section class="panel market-panel">
       <div class="section-head">
         <div>
@@ -491,6 +476,21 @@ DASHBOARD_HTML = """
         <button class="reload-btn" id="stockSearchBtn">Tìm & thêm</button>
       </div>
       <div class="market-grid" id="marketGrid"></div>
+    </section>
+
+    <section class="hero">
+      <article class="panel hero-main">
+        <div class="eyebrow">Tổng hợp tin nổi bật</div>
+        <h2 id="heroTitle">Đang tải dữ liệu thị trường...</h2>
+        <p id="heroSummary">Hệ thống đang lấy nội dung từ API /news và /summarize.</p>
+        <div class="hero-actions categories" id="categoryBar"></div>
+      </article>
+
+    </section>
+
+    <section class="panel summary-bar">
+      <div class="side-title">Tóm tắt nhanh</div>
+      <div class="side-summary" id="summaryText">Đang tạo tóm tắt...</div>
     </section>
 
     <section class="layout">
