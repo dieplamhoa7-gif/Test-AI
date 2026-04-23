@@ -497,6 +497,7 @@ DASHBOARD_HTML = """
     }
 
     function inferCategory(item) {
+      if (item.category) return item.category;
       const text = `${item.title || ''} ${item.snippet || ''}`.toLowerCase();
       if (/ngân hàng|bank|tcb|vcb|mbb|acb|bid/.test(text)) return 'Ngân hàng';
       if (/bất động sản|địa ốc|vinhome|vic|vhm|nvl|kdh/.test(text)) return 'Bất động sản';

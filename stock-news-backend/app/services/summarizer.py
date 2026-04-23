@@ -30,21 +30,25 @@ def _fallback_snippet(item: Dict) -> str:
     return ""
 
 
-def summarize_item(item: Dict) -> str:
+def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
     full_text = _clip_text(item.get("fullText") or "")
     if not full_text:
-        return ""
+        return {"category": "Khác", "summary": ""}
 
     client = _client()
     if client is None:
-        return _fallback_snippet(item)
+        return {"category": "Khác", "summary": _fallback_snippet(item)}
 
     prompt = (
-        "Tóm tắt nội dung bài báo tài chính/chứng khoán bằng tiếng Việt trong tối đa "
-        f"{SUMMARY_MAX_WORDS} chữ. "
-        "Chỉ dùng nội dung bài, không nhắc lại hoặc chép lại tiêu đề. "
-        "Giữ nguyên số liệu, tên công ty, mã cổ phiếu và sự kiện quan trọng nếu có. "
-        "Viết thành 1 đoạn ngắn, rõ ý, không mở đầu, không kết luận, không thêm nhận định ngoài dữ liệu."
+        "Bạn là trợ lý phân loại và tóm tắt tin tài chính/chứng khoán bằng tiếng Việt. "
+        "Phân loại bài vào đúng 1 nhóm trong danh sách: Tổng hợp, Chứng khoán, Ngân hàng, Bất động sản, Pháp luật, Chính trị, Khác. "
+        f"Tóm tắt tối đa {SUMMARY_MAX_WORDS} chữ. "
+        "Không nhắc lại, không chép lại tiêu đề bài. "
+        "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, sự kiện quan trọng. "
+        "Văn phong trực diện, ngắn gọn, thực dụng. Không thêm suy diễn. "
+        "Trả đúng định dạng 2 dòng:\n"
+        "Category: <1 nhãn>\n"
+        "Summary: <tóm tắt>"
     )
 
     try:
@@ -57,10 +61,21 @@ def summarize_item(item: Dict) -> str:
                 {"role": "user", "content": full_text},
             ],
         )
-        summary = (resp.choices[0].message.content or "").strip()
-        return summary or _fallback_snippet(item)
+        content = (resp.choices[0].message.content or "").strip()
+        category = "Khác"
+        summary = ""
+        for line in content.splitlines():
+            line = line.strip()
+            lower = line.lower()
+            if lower.startswith("category:"):
+                category = line.split(":", 1)[1].strip() or "Khác"
+            elif lower.startswith("summary:"):
+                summary = line.split(":", 1)[1].strip()
+        if not summary:
+            summary = content.strip()
+        return {"category": category, "summary": summary or _fallback_snippet(item)}
     except Exception:
-        return _fallback_snippet(item)
+        return {"category": "Khác", "summary": _fallback_snippet(item)}
 
 
 def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
@@ -98,12 +113,13 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                     "role": "system",
                     "content": (
                         "Bạn là trợ lý tài chính tiếng Việt. "
-                        "Tóm tắt ngắn từ nội dung bài viết, không lặp tiêu đề, không bịa thêm dữ kiện. "
+                        "Phân loại và tóm tắt tin từ nội dung bài viết, không lặp tiêu đề, không bịa thêm dữ kiện. "
+                        "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, sự kiện chính. "
+                        "Văn phong trực diện, ngắn gọn, thực dụng. "
                         "Chỉ xuất đúng 3 phần:\n"
                         "1. Toàn cảnh: 1-2 câu\n"
                         "2. Điểm chính: tối đa 4 gạch đầu dòng\n"
-                        "3. Mã/Doanh nghiệp: liệt kê ngắn, nếu không có thì ghi 'Không rõ'"
-                    ),
+                        "3. Nhóm tin/Mã/Doanh nghiệp: liệt kê ngắn"                    ),
                 },
                 {
                     "role": "user",
@@ -130,9 +146,10 @@ def enrich_news_with_ai(items: List[Dict]) -> List[Dict]:
     enriched = []
     for item in items:
         current = dict(item)
-        summary = summarize_item(current)
-        if summary:
-            current["snippet"] = summary
+        result = classify_and_summarize_item(current)
+        current["category"] = result.get("category") or "Khác"
+        if result.get("summary"):
+            current["snippet"] = result["summary"]
         elif current.get("fullText"):
             current["snippet"] = _fallback_snippet(current)
         else:
