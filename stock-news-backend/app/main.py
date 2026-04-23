@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta, timezone
+
 from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -6,6 +8,34 @@ from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
 
 app = FastAPI(title="VN Stock News Backend", version="0.1.0")
+
+REFRESH_INTERVAL = timedelta(minutes=15)
+_last_refresh_at: datetime | None = None
+
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
+    global _last_refresh_at
+
+    cached_items = load_news()
+    now = _utcnow()
+    should_refresh = force or not cached_items or _last_refresh_at is None or (now - _last_refresh_at) >= REFRESH_INTERVAL
+
+    if should_refresh:
+        try:
+            fresh_items = enrich_news_with_ai(collect_news(limit=min(limit, 20)))
+            if fresh_items:
+                cached_items = merge_news(fresh_items)
+                _last_refresh_at = now
+        except Exception:
+            if cached_items:
+                return cached_items
+            raise
+
+    return cached_items
 
 
 class SummarizeResponse(BaseModel):
@@ -600,24 +630,28 @@ DASHBOARD_HTML = """
 
     async function loadData(isAutoRefresh = false) {
       const limit = Number(elements.limitInput.value) || 10;
+      const ts = Date.now();
       elements.apiStatus.textContent = isAutoRefresh ? 'Tự động cập nhật' : 'Đang tải';
       elements.statusText.textContent = isAutoRefresh ? 'Đang tự động cập nhật dữ liệu...' : 'Đang đồng bộ dữ liệu...';
       elements.summaryText.textContent = 'Đang tạo tóm tắt...';
       try {
-        const [newsRes, summaryRes] = await Promise.all([
-          fetch(`${API_BASE}/news?limit=${limit}`),
-          fetch(`${API_BASE}/summarize?limit=${limit}`)
-        ]);
-
-        if (!newsRes.ok || !summaryRes.ok) throw new Error('API lỗi');
-
+        const newsRes = await fetch(`${API_BASE}/news?limit=${limit}&ts=${ts}`, { cache: 'no-store' });
+        if (!newsRes.ok) throw new Error('News API lỗi');
         const newsData = await newsRes.json();
-        const summaryData = await summaryRes.json();
 
         allItems = Array.isArray(newsData.items) ? newsData.items : [];
         currentPage = 1;
-        updateHero(newsData, summaryData);
         applyFilters();
+
+        let summaryData = { summary: '' };
+        try {
+          const summaryRes = await fetch(`${API_BASE}/summarize?limit=${limit}&ts=${ts}`, { cache: 'no-store' });
+          if (summaryRes.ok) {
+            summaryData = await summaryRes.json();
+          }
+        } catch (_) {}
+
+        updateHero(newsData, summaryData);
         elements.apiStatus.textContent = 'Online';
         scheduleAutoRefresh();
       } catch (error) {
@@ -660,17 +694,13 @@ def health():
 
 
 @app.get("/news")
-def news(limit: int = Query(default=20, ge=1, le=100)):
-    fresh_items = enrich_news_with_ai(collect_news(limit=min(limit, 20)))
-    items = merge_news(fresh_items)
+def news(limit: int = Query(default=20, ge=1, le=100), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=limit)
     return {"total_items": len(items), "items": items[:limit]}
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=1200, ge=300, le=4000)):
-    cached_items = load_news()
-    if not cached_items:
-        cached_items = merge_news(enrich_news_with_ai(collect_news(limit=min(limit, 20))))
-    items = cached_items[:limit]
+def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=1200, ge=300, le=4000), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=limit)[:limit]
     summary = summarize_news(items, max_chars=max_chars)
     return {"total_items": len(items), "summary": summary, "items": items}
