@@ -758,16 +758,6 @@ DASHBOARD_HTML = """
             <div class="stat-card"><div class="label">Kháng cự ngày R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Hỗ trợ ngày S2</div><div class="value">${escapeHtml(formatNumber(tech.supportDay2 ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Kháng cự ngày R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay2 ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Pivot tuần</div><div class="value">${escapeHtml(formatNumber(tech.pivotWeek ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tuần S1</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tuần R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tuần S2</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek2 ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tuần R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek2 ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Pivot tháng</div><div class="value">${escapeHtml(formatNumber(tech.pivotMonth ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tháng S1</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tháng R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tháng S2</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth2 ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tháng R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth2 ?? 0))}</div></div>
           </div>
         `;
 
