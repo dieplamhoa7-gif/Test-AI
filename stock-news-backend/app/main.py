@@ -628,14 +628,15 @@ DASHBOARD_HTML = """
       autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS);
     }
 
-    async function loadData(isAutoRefresh = false) {
+    async function loadData(isAutoRefresh = false, forceRefresh = false) {
       const limit = Number(elements.limitInput.value) || 10;
       const ts = Date.now();
+      const refreshFlag = forceRefresh || isAutoRefresh;
       elements.apiStatus.textContent = isAutoRefresh ? 'Tự động cập nhật' : 'Đang tải';
       elements.statusText.textContent = isAutoRefresh ? 'Đang tự động cập nhật dữ liệu...' : 'Đang đồng bộ dữ liệu...';
       elements.summaryText.textContent = 'Đang tạo tóm tắt...';
       try {
-        const newsRes = await fetch(`${API_BASE}/news?limit=${limit}&ts=${ts}`, { cache: 'no-store' });
+        const newsRes = await fetch(`${API_BASE}/news?limit=${limit}&refresh=${refreshFlag}&ts=${ts}`, { cache: 'no-store' });
         if (!newsRes.ok) throw new Error('News API lỗi');
         const newsData = await newsRes.json();
 
@@ -645,7 +646,7 @@ DASHBOARD_HTML = """
 
         let summaryData = { summary: '' };
         try {
-          const summaryRes = await fetch(`${API_BASE}/summarize?limit=${limit}&ts=${ts}`, { cache: 'no-store' });
+          const summaryRes = await fetch(`${API_BASE}/summarize?limit=${limit}&max_chars=2200&refresh=false&ts=${ts}`, { cache: 'no-store' });
           if (summaryRes.ok) {
             summaryData = await summaryRes.json();
           }
@@ -665,8 +666,8 @@ DASHBOARD_HTML = """
     }
 
     elements.searchInput.addEventListener('input', () => applyFilters(true));
-    elements.limitInput.addEventListener('change', loadData);
-    elements.reloadBtn.addEventListener('click', loadData);
+    elements.limitInput.addEventListener('change', () => loadData(false, true));
+    elements.reloadBtn.addEventListener('click', () => loadData(false, true));
     elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); });
     elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); });
     elements.goPageBtn.addEventListener('click', () => {
@@ -700,7 +701,7 @@ def news(limit: int = Query(default=20, ge=1, le=100), refresh: bool = Query(def
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=1200, ge=300, le=4000), refresh: bool = Query(default=False)):
+def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=limit)[:limit]
     summary = summarize_news(items, max_chars=max_chars)
     return {"total_items": len(items), "summary": summary, "items": items}

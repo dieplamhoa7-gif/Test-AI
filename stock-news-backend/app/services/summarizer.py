@@ -18,7 +18,7 @@ def _client() -> OpenAI | None:
     return OpenAI(api_key=api_key, base_url=DEFAULT_BASE_URL)
 
 
-def _clip_text(text: str, limit: int = 4000) -> str:
+def _clip_text(text: str, limit: int = 6000) -> str:
     return (text or "").strip()[:limit]
 
 
@@ -51,7 +51,7 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
         resp = client.chat.completions.create(
             model=OPENAI_MODEL,
             temperature=0.1,
-            max_tokens=220,
+            max_tokens=420,
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": full_text},
@@ -103,7 +103,7 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
         resp = client.chat.completions.create(
             model=OPENAI_MODEL,
             temperature=0.1,
-            max_tokens=220,
+            max_tokens=520,
             messages=[
                 {
                     "role": "system",
@@ -112,7 +112,8 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                         "Viết 5-8 câu, đủ ý, không lặp tiêu đề, không bịa. "
                         "Giữ số liệu, công ty, mã cổ phiếu, thời gian, nguyên nhân, diễn biến, tác động. "
                         "Nếu đủ dữ kiện, nêu ngắn mã nào tích cực/tiêu cực. "
-                        "Không gạch đầu dòng, không chia mục."                    ),
+                        "Không gạch đầu dòng, không chia mục."
+                    ),
                 },
                 {
                     "role": "user",
