@@ -371,6 +371,40 @@ DASHBOARD_HTML = """
     .summary-bar .side-summary {
       color: #c9d3ea; font-size: 14px; line-height: 1.8; white-space: pre-wrap;
     }
+    .market-panel { margin-top: 18px; padding: 18px; }
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .market-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+      cursor: pointer;
+    }
+    .market-card strong { display:block; font-size:18px; margin-bottom:6px; }
+    .market-price { font-size: 20px; font-weight: 800; }
+    .market-up { color: var(--accent-2); }
+    .market-down { color: var(--danger); }
+    .market-meta { color: var(--muted); font-size: 12px; margin-top: 6px; }
+    .detail-modal {
+      position: fixed; inset: 0; background: rgba(3, 7, 16, .78); display: none;
+      align-items: center; justify-content: center; padding: 20px; z-index: 99;
+    }
+    .detail-modal.open { display: flex; }
+    .detail-box {
+      width: min(900px, 100%); background: #0f1726; border: 1px solid var(--line);
+      border-radius: 24px; box-shadow: var(--shadow); padding: 20px;
+    }
+    .detail-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
+    .detail-grid { display:grid; grid-template-columns: 1.3fr .9fr; gap: 18px; }
+    .chart-box {
+      height: 320px; border:1px solid var(--line); border-radius:18px; background: rgba(255,255,255,.03);
+      padding: 12px; display:flex; align-items:flex-end; gap:8px;
+    }
+    .chart-bar { flex:1; background: linear-gradient(180deg, var(--accent), #7a74ff); border-radius:10px 10px 0 0; min-height: 8px; }
+    .stats-box {
+      border:1px solid var(--line); border-radius:18px; background: rgba(255,255,255,.03); padding: 14px;
+    }
+    .stats-box p { margin: 0 0 10px; color: #dbe5ff; }
     .muted { color: var(--muted); }
     .error { color: var(--danger); }
     .empty {
@@ -453,6 +487,16 @@ DASHBOARD_HTML = """
       <div class="side-summary" id="summaryText">Đang tạo tóm tắt...</div>
     </section>
 
+    <section class="panel market-panel">
+      <div class="section-head">
+        <div>
+          <h3>Thị trường realtime</h3>
+          <p id="marketStatus">Đang tải dữ liệu giá...</p>
+        </div>
+      </div>
+      <div class="market-grid" id="marketGrid"></div>
+    </section>
+
     <section class="layout">
       <main class="panel feed-panel">
         <div class="section-head">
@@ -473,6 +517,22 @@ DASHBOARD_HTML = """
         </div>
       </main>
     </section>
+  </div>
+
+  <div class="detail-modal" id="detailModal">
+    <div class="detail-box">
+      <div class="detail-head">
+        <div>
+          <h3 id="detailTitle" style="margin:0;">Chi tiết mã</h3>
+          <p id="detailSub" class="muted" style="margin:6px 0 0;">Đang tải...</p>
+        </div>
+        <button class="chip-btn" id="closeDetailBtn">Đóng</button>
+      </div>
+      <div class="detail-grid">
+        <div class="chart-box" id="detailChart"></div>
+        <div class="stats-box" id="detailStats"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -500,6 +560,14 @@ DASHBOARD_HTML = """
       statusText: document.getElementById('statusText'),
       newsList: document.getElementById('newsList'),
       summaryText: document.getElementById('summaryText'),
+      marketStatus: document.getElementById('marketStatus'),
+      marketGrid: document.getElementById('marketGrid'),
+      detailModal: document.getElementById('detailModal'),
+      detailTitle: document.getElementById('detailTitle'),
+      detailSub: document.getElementById('detailSub'),
+      detailChart: document.getElementById('detailChart'),
+      detailStats: document.getElementById('detailStats'),
+      closeDetailBtn: document.getElementById('closeDetailBtn'),
       watchlist: document.getElementById('watchlist'),
       prevPageBtn: document.getElementById('prevPageBtn'),
       nextPageBtn: document.getElementById('nextPageBtn'),
@@ -514,6 +582,7 @@ DASHBOARD_HTML = """
     let activeCategory = 'Tổng hợp';
     let autoRefreshTimer = null;
     let currentPage = 1;
+    let marketItems = [];
 
     function escapeHtml(text = '') {
       return String(text)
@@ -553,6 +622,45 @@ DASHBOARD_HTML = """
           applyFilters();
         });
       });
+    }
+
+    function renderMarket(items) {
+      marketItems = Array.isArray(items) ? items : [];
+      elements.marketStatus.textContent = marketItems.length ? `Cập nhật ${marketItems.length} mã` : 'Không có dữ liệu giá';
+      elements.marketGrid.innerHTML = marketItems.map(item => {
+        const cls = Number(item.changePct || 0) >= 0 ? 'market-up' : 'market-down';
+        return `
+          <div class="market-card" data-ticker="${escapeHtml(item.ticker || '')}">
+            <strong>${escapeHtml(item.ticker || '')}</strong>
+            <div class="market-price">${escapeHtml(String(item.price ?? '-'))}</div>
+            <div class="${cls}">${escapeHtml(String(item.changePct ?? 0))}%</div>
+            <div class="market-meta">KL: ${escapeHtml(String(item.volume ?? 0))}</div>
+          </div>
+        `;
+      }).join('');
+
+      elements.marketGrid.querySelectorAll('[data-ticker]').forEach(card => {
+        card.addEventListener('click', () => openDetail(card.dataset.ticker));
+      });
+    }
+
+    function openDetail(ticker) {
+      const item = marketItems.find(x => x.ticker === ticker);
+      if (!item) return;
+      elements.detailTitle.textContent = `${item.ticker} - ${item.price}`;
+      elements.detailSub.textContent = `Biến động ${item.changePct}% • KL ${item.volume}`;
+      const values = Array.isArray(item.chart) ? item.chart : [];
+      const max = Math.max(...values, 1);
+      elements.detailChart.innerHTML = values.map(v => `<div class="chart-bar" style="height:${Math.max(8, (Number(v)/max)*100)}%;" title="${escapeHtml(String(v))}"></div>`).join('');
+      const tech = item.technical || {};
+      elements.detailStats.innerHTML = `
+        <p>MA20: <strong>${escapeHtml(String(tech.ma20 ?? '-'))}</strong></p>
+        <p>RSI14: <strong>${escapeHtml(String(tech.rsi14 ?? '-'))}</strong></p>
+        <p>MACD: <strong>${escapeHtml(String(tech.macd ?? '-'))}</strong></p>
+        <p>Signal: <strong>${escapeHtml(String(tech.signal ?? '-'))}</strong></p>
+        <p>Nguồn: <strong>${escapeHtml(String(item.source ?? '-'))}</strong></p>
+      `;
+      elements.detailModal.classList.add('open');
     }
 
     function renderWatchlist() {
@@ -639,6 +747,12 @@ DASHBOARD_HTML = """
       elements.statusText.textContent = isAutoRefresh ? 'Đang tự động cập nhật dữ liệu...' : 'Đang đồng bộ dữ liệu...';
       elements.summaryText.textContent = 'Đang tạo tóm tắt...';
       try {
+        const marketRes = await fetch(`${API_BASE}/market-data?ts=${ts}`, { cache: 'no-store' });
+        if (marketRes.ok) {
+          const marketData = await marketRes.json();
+          renderMarket(marketData);
+        }
+
         const newsRes = await fetch(`${API_BASE}/news?limit=${limit}&refresh=${refreshFlag}&ts=${ts}`, { cache: 'no-store' });
         if (!newsRes.ok) throw new Error('News API lỗi');
         const newsData = await newsRes.json();
@@ -676,6 +790,11 @@ DASHBOARD_HTML = """
     elements.goPageBtn.addEventListener('click', () => {
       currentPage = Number(elements.pageInput.value) || 1;
       renderNews(filteredItems);
+    });
+
+    elements.closeDetailBtn.addEventListener('click', () => elements.detailModal.classList.remove('open'));
+    elements.detailModal.addEventListener('click', (e) => {
+      if (e.target === elements.detailModal) elements.detailModal.classList.remove('open');
     });
 
     renderCategories();
