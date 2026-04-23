@@ -39,14 +39,15 @@ def _fallback_sentences(text: str, min_sentences: int = 5, max_sentences: int = 
     if current.strip():
         parts.append(current.strip())
 
-    cleaned = [p for p in parts if len(p.split()) >= 6]
+    cleaned = [p.strip() for p in parts if len(p.split()) >= 8]
     selected = cleaned[:max_sentences]
+
     if len(selected) < min_sentences:
         words = raw.split()
-        chunk_size = max(18, min(32, len(words) // max(min_sentences, 1) or 18))
+        chunk_size = max(22, min(36, max(1, len(words) // 5)))
         generated = []
         for i in range(0, len(words), chunk_size):
-            chunk = " ".join(words[i:i + chunk_size]).strip()
+            chunk = " ".join(words[i:i + chunk_size]).strip(" ,;:-")
             if chunk:
                 if chunk[-1] not in ".!?":
                     chunk += "."
@@ -55,7 +56,10 @@ def _fallback_sentences(text: str, min_sentences: int = 5, max_sentences: int = 
                 break
         selected = generated[:max_sentences]
 
-    return " ".join(selected[:max_sentences])
+    final_sentences = selected[:max_sentences]
+    if len(final_sentences) > 5:
+        final_sentences = final_sentences[:5]
+    return " ".join(final_sentences)
 
 
 def _fallback_snippet(item: Dict) -> str:
@@ -76,10 +80,10 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
 
     prompt = (
         "Phân loại 1 nhãn: Tổng hợp, Chứng khoán, Ngân hàng, Bất động sản, Pháp luật, Chính trị, Khác. "
-        "Tóm tắt đúng 5 câu, ngắn, đủ ý, không lặp tiêu đề, không bịa; được viết tắt. "
-        "Giữ số liệu, DN, mã CP, thời gian, diễn biến chính; bỏ ý phụ. "
-        "Nếu đủ dữ kiện, nêu rất ngắn mã/DN tích cực hoặc tiêu cực. "
-        "Trả 2 dòng: Category: <nhãn> / Summary: <5 câu>."
+        "Tóm tắt đúng 5 câu, ngắn gọn, đủ ý, không lặp tiêu đề, không bịa, được viết tắt. "
+        "Chỉ giữ ý chính: số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động. Bỏ ý phụ. "
+        "Nếu đủ dữ kiện, chèn rất ngắn mã/DN tích cực hoặc tiêu cực vào 1 câu phù hợp. "
+        "Không dùng gạch đầu dòng. Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
     )
 
     try:
@@ -144,18 +148,17 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                     "role": "system",
                     "content": (
                         "Tóm tắt tin tài chính. "
-                        "Đúng 5 câu, ngắn, đủ ý, không lặp tiêu đề, không bịa; được viết tắt. "
-                        "Giữ số liệu, DN, mã CP, thời gian, diễn biến chính; bỏ ý phụ. "
-                        "Nếu đủ dữ kiện, nêu rất ngắn mã tích cực/tiêu cực. Không gạch đầu dòng."
+                        "Đúng 5 câu, ngắn gọn, đủ ý, không lặp tiêu đề, không bịa, được viết tắt. "
+                        "Chỉ giữ ý chính: số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động. Bỏ ý phụ. "
+                        "Nếu đủ dữ kiện, nêu rất ngắn mã tích cực/tiêu cực trong 1 câu. Không gạch đầu dòng."
                     ),
                 },
                 {
                     "role": "user",
                     "content": (
-                        "Tóm tắt dữ liệu sau thành đúng 5 câu. "
-                        "Giữ số liệu, DN, mã CP, sự kiện chính; bỏ ý phụ; được viết tắt. "
-                        "Nếu đủ dữ kiện, thêm nhận xét rất ngắn mã tích cực/tiêu cực. "
-                        "Không lặp tiêu đề.\n\n"
+                        "Tóm tắt dữ liệu sau thành đúng 5 câu, ngắn gọn nhưng đủ ý. "
+                        "Giữ số liệu, DN, mã CP, thời gian, nguyên nhân, diễn biến, tác động chính; bỏ ý phụ; được viết tắt. "
+                        "Nếu đủ dữ kiện, thêm nhận xét rất ngắn mã tích cực/tiêu cực. Không lặp tiêu đề.\n\n"
                         f"DỮ LIỆU:\n{content}"
                     ),
                 },

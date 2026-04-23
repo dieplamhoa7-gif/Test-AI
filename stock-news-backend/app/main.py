@@ -313,7 +313,8 @@ DASHBOARD_HTML = """
     }
     .news-snippet {
       margin: 0; color: #c3cfe8; font-size: 14px; line-height: 1.75;
-      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+      white-space: pre-wrap;
+      overflow: visible;
     }
     .news-actions {
       display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
