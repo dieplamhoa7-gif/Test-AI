@@ -45,6 +45,8 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
         "Phần tóm tắt phải viết thành 5 đến 8 câu, đủ ý, mạch lạc, bao quát đầy đủ nội dung quan trọng nhất của bài. "
         "Không nhắc lại, không chép lại tiêu đề bài. "
         "Ưu tiên số liệu quan trọng, tên công ty, mã cổ phiếu, mốc thời gian, quyết định, nguyên nhân, tác động và sự kiện chính. "
+        "Nếu bài có đủ dữ kiện, hãy nêu nhận xét ngắn về tác động tích cực hoặc tiêu cực tới mã cổ phiếu/doanh nghiệp liên quan; nói rõ mã nào hưởng lợi, mã nào chịu ảnh hưởng. "
+        "Nếu không đủ dữ kiện để nhận định thì không được bịa thêm. "
         "Văn phong trực diện, rõ ràng, dễ hiểu, không lan man, không thêm suy diễn. "
         "Mỗi câu phải có thông tin, tránh câu rỗng. "
         "Trả đúng định dạng 2 dòng:\n"
@@ -117,6 +119,8 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                         "Hãy tóm tắt các tin từ nội dung bài viết, không lặp tiêu đề, không bịa thêm dữ kiện. "
                         "Bài tóm tắt phải gồm 5 đến 8 câu hoàn chỉnh, đủ ý, đầy đủ nội dung cốt lõi, mạch lạc và dễ đọc. "
                         "Ưu tiên giữ số liệu quan trọng, tên công ty, mã cổ phiếu, mốc thời gian, nguyên nhân, diễn biến và tác động chính. "
+                        "Nếu dữ liệu đủ rõ, hãy thêm nhận xét ngắn về ảnh hưởng tích cực/tiêu cực tới mã cổ phiếu hoặc doanh nghiệp liên quan, nêu rõ mã nào được lợi hoặc bị ảnh hưởng. "
+                        "Nếu không đủ dữ kiện thì không suy diễn. "
                         "Văn phong trực diện, rõ ràng, thực dụng. Không viết gạch đầu dòng, không chia mục, không viết quá ngắn."                    ),
                 },
                 {
@@ -125,6 +129,7 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
                         "Tóm tắt các tin sau từ nội dung bài viết. "
                         "Viết thành 5 đến 8 câu hoàn chỉnh, đủ ý, đầy đủ nội dung quan trọng. "
                         "Giữ nguyên số liệu, tên công ty, mã cổ phiếu và sự kiện quan trọng. "
+                        "Nếu có đủ dữ kiện, thêm nhận xét ngắn về mã nào tích cực, mã nào tiêu cực và vì sao. "
                         "Không lặp lại tiêu đề bài.\n\n"
                         f"DỮ LIỆU:\n{content}"
                     ),
