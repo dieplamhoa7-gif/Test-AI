@@ -55,3 +55,8 @@ uvicorn app.main:app --reload --port 8000
 - Lưu DB (Postgres) + cache (Redis).
 - Track duplicate bằng hash URL + title.
 - Add auth, logging, metrics, alerting.
+
+
+### MongoDB
+- Env vars hỗ trợ: MONGODB_URI, MONGODB_DB, MONGODB_COLLECTION
+- Nếu có MONGODB_URI, app sẽ lưu tối đa 100 tin trên MongoDB thay vì file local.
