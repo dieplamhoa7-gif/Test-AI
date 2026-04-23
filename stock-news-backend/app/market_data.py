@@ -115,6 +115,13 @@ def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
         return None
 
 
+def get_market_symbol(symbol: str) -> dict[str, Any]:
+    normalized = symbol.strip().upper()
+    if not normalized:
+        raise ValueError("Symbol is required")
+    return _fetch_symbol(normalized) or _mock_item(normalized, is_cw=normalized.startswith("C"))
+
+
 def refresh_market_cache() -> list[dict[str, Any]]:
     global _market_cache, _last_updated
     items: list[dict[str, Any]] = []

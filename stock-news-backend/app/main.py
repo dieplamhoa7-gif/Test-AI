@@ -6,7 +6,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from app.market_data import get_market_cache, refresh_market_cache
+from app.market_data import get_market_cache, get_market_symbol, refresh_market_cache
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
@@ -372,6 +372,11 @@ DASHBOARD_HTML = """
       color: #c9d3ea; font-size: 14px; line-height: 1.8; white-space: pre-wrap;
     }
     .market-panel { margin-top: 18px; padding: 18px; }
+    .stock-search-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+    .stock-search-bar input {
+      flex:1; min-width:220px; background: var(--panel-2); color: var(--text);
+      border:1px solid var(--line); border-radius:14px; padding: 12px 14px; outline:none;
+    }
     .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
     .market-card {
       border: 1px solid rgba(76, 90, 125, .45);
@@ -476,9 +481,13 @@ DASHBOARD_HTML = """
     <section class="panel market-panel">
       <div class="section-head">
         <div>
-          <h3>Thị trường realtime</h3>
+          <h3>Danh mục quan tâm</h3>
           <p id="marketStatus">Đang tải dữ liệu giá...</p>
         </div>
+      </div>
+      <div class="stock-search-bar">
+        <input id="stockSearchInput" type="text" placeholder="Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB..." />
+        <button class="reload-btn" id="stockSearchBtn">Tìm & thêm</button>
       </div>
       <div class="market-grid" id="marketGrid"></div>
     </section>
@@ -536,6 +545,8 @@ DASHBOARD_HTML = """
       summaryText: document.getElementById('summaryText'),
       marketStatus: document.getElementById('marketStatus'),
       marketGrid: document.getElementById('marketGrid'),
+      stockSearchInput: document.getElementById('stockSearchInput'),
+      stockSearchBtn: document.getElementById('stockSearchBtn'),
       detailModal: document.getElementById('detailModal'),
       detailTitle: document.getElementById('detailTitle'),
       detailSub: document.getElementById('detailSub'),
@@ -555,6 +566,7 @@ DASHBOARD_HTML = """
     let autoRefreshTimer = null;
     let currentPage = 1;
     let marketItems = [];
+    let watchSymbols = [];
 
     function escapeHtml(text = '') {
       return String(text)
@@ -616,7 +628,17 @@ DASHBOARD_HTML = """
     }
 
     function renderMarket(payload) {
-      marketItems = Array.isArray(payload) ? payload : (Array.isArray(payload?.items) ? payload.items : []);
+      const incoming = Array.isArray(payload) ? payload : (Array.isArray(payload?.items) ? payload.items : []);
+      if (!watchSymbols.length) {
+        watchSymbols = incoming.map(item => String(item.ticker || '').toUpperCase()).filter(Boolean);
+      }
+      const merged = [...marketItems];
+      incoming.forEach(item => {
+        const idx = merged.findIndex(x => x.ticker === item.ticker);
+        if (idx >= 0) merged[idx] = item;
+        else merged.push(item);
+      });
+      marketItems = merged.filter(item => watchSymbols.includes(String(item.ticker || '').toUpperCase()));
       const updatedAt = payload?.updatedAt ? formatTime(payload.updatedAt) : null;
       elements.marketStatus.textContent = marketItems.length
         ? `Cập nhật ${marketItems.length} mã${updatedAt ? ` • ${updatedAt}` : ''}`
@@ -801,6 +823,24 @@ DASHBOARD_HTML = """
       autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS);
     }
 
+    async function addStockToWatchlist() {
+      const symbol = (elements.stockSearchInput.value || '').trim().toUpperCase();
+      if (!symbol) return;
+      elements.stockSearchBtn.textContent = 'Đang thêm...';
+      try {
+        const res = await fetch(`${API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Không tìm thấy mã');
+        const item = await res.json();
+        if (!watchSymbols.includes(symbol)) watchSymbols.unshift(symbol);
+        renderMarket([item]);
+        elements.stockSearchInput.value = '';
+      } catch (_) {
+        elements.marketStatus.textContent = `Không tìm thấy mã ${symbol}`;
+      } finally {
+        elements.stockSearchBtn.textContent = 'Tìm & thêm';
+      }
+    }
+
     async function loadData(isAutoRefresh = false, forceRefresh = false) {
       const limit = 200;
       const ts = Date.now();
@@ -844,6 +884,10 @@ DASHBOARD_HTML = """
       }
     }
 
+    elements.stockSearchBtn.addEventListener('click', addStockToWatchlist);
+    elements.stockSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addStockToWatchlist();
+    });
     elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); });
     elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); });
     elements.goPageBtn.addEventListener('click', () => {
@@ -891,3 +935,8 @@ def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Que
 def market_data():
     data = get_market_cache()
     return data["items"]
+
+
+@app.get("/market-data/{symbol}")
+def market_symbol(symbol: str):
+    return get_market_symbol(symbol)
