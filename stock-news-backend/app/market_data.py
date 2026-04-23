@@ -20,10 +20,11 @@ def _now_iso() -> str:
 
 
 def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
-    base_price = 100.0 + len(symbol)
-    change_pct = round(((len(symbol) % 5) - 2) * 0.73, 2)
+    seed = sum(ord(c) for c in symbol)
+    base_price = 20.0 + (seed % 120)
+    change_pct = round((((seed % 9) - 4) * 0.41), 2)
     last_price = round(base_price * (1 + change_pct / 100), 2)
-    volume = 100000 * max(1, len(symbol))
+    volume = 50000 * max(1, (seed % 20) + 1)
     chart = [
         round(last_price * 0.97, 2),
         round(last_price * 0.99, 2),
@@ -44,7 +45,7 @@ def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
             "ma20": round(sum(chart) / len(chart), 2),
         },
         "type": "cw" if is_cw else "stock",
-        "source": "fallback",
+        "source": "fallback-local",
     }
     if is_cw:
         item.update(
