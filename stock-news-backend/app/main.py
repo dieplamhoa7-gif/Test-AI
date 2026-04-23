@@ -65,10 +65,15 @@ def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
 
     if should_refresh:
         try:
-            fresh_items = enrich_news_with_ai(collect_news(limit=min(limit, 20)))
-            if fresh_items:
-                cached_items = merge_news(fresh_items)
-                _last_refresh_at = now
+            raw_items = collect_news(limit=min(limit, 20))
+            if raw_items:
+                try:
+                    fresh_items = enrich_news_with_ai(raw_items)
+                except Exception:
+                    fresh_items = raw_items
+                if fresh_items:
+                    cached_items = merge_news(fresh_items)
+                    _last_refresh_at = now
         except Exception:
             if cached_items:
                 return cached_items
@@ -876,13 +881,19 @@ DASHBOARD_HTML = """
       elements.apiStatus.textContent = isAutoRefresh ? 'Tự động cập nhật' : 'Đang tải';
       elements.statusText.textContent = isAutoRefresh ? 'Đang tự động cập nhật dữ liệu...' : 'Đang đồng bộ dữ liệu...';
       elements.summaryText.textContent = 'Đang tạo tóm tắt...';
+
+      let hasAnyData = false;
+
       try {
         const marketRes = await fetch(`${API_BASE}/market-data?ts=${ts}`, { cache: 'no-store' });
         if (marketRes.ok) {
           const marketData = await marketRes.json();
           renderMarket(marketData);
+          hasAnyData = true;
         }
+      } catch (_) {}
 
+      try {
         const newsRes = await fetch(`${API_BASE}/news?limit=${limit}&refresh=${refreshFlag}&ts=${ts}`, { cache: 'no-store' });
         if (!newsRes.ok) throw new Error('News API lỗi');
         const newsData = await newsRes.json();
@@ -890,6 +901,7 @@ DASHBOARD_HTML = """
         allItems = Array.isArray(newsData.items) ? newsData.items : [];
         currentPage = 1;
         applyFilters();
+        hasAnyData = true;
 
         let summaryData = { summary: '' };
         try {
@@ -900,16 +912,16 @@ DASHBOARD_HTML = """
         } catch (_) {}
 
         updateHero(newsData, summaryData);
-        elements.apiStatus.textContent = 'Online';
-        scheduleAutoRefresh();
-      } catch (error) {
-        allItems = [];
-        elements.apiStatus.textContent = 'Offline';
-        elements.statusText.innerHTML = '<span class="error">Lỗi tải dữ liệu từ API.</span>';
-        elements.summaryText.textContent = 'Không tải được tóm tắt.';
-        elements.newsList.innerHTML = '<div class="empty error">Không thể kết nối API.</div>';
-        scheduleAutoRefresh();
+      } catch (_) {
+        if (!allItems.length) {
+          elements.statusText.innerHTML = '<span class="error">Lỗi tải tin tức.</span>';
+          elements.summaryText.textContent = 'Không tải được tóm tắt.';
+          elements.newsList.innerHTML = '<div class="empty error">Không thể cập nhật tin tức lúc này.</div>';
+        }
       }
+
+      elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline';
+      scheduleAutoRefresh();
     }
 
     elements.stockSearchBtn.addEventListener('click', addStockToWatchlist);
