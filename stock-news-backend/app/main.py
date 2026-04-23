@@ -739,19 +739,9 @@ DASHBOARD_HTML = """
           </div>
           <div class="stats-grid">
             <div class="stat-card"><div class="label">Xu hướng</div><div class="value">${escapeHtml(String(framed.trend))}</div></div>
-            <div class="stat-card"><div class="label">Sức mạnh xu hướng</div><div class="value">${escapeHtml(String(framed.trendStrength))}</div></div>
             <div class="stat-card"><div class="label">Giá múc</div><div class="value">${escapeHtml(formatNumber(framed.buyPrice))}</div></div>
             <div class="stat-card"><div class="label">Giá bán</div><div class="value">${escapeHtml(formatNumber(framed.sellPrice))}</div></div>
-            <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
             <div class="stat-card"><div class="label">RSI</div><div class="value">${escapeHtml(formatNumber(framed.rsi))}</div></div>
-            <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(framed.ma20))}</div></div>
-            <div class="stat-card"><div class="label">MA50</div><div class="value">${escapeHtml(formatNumber(framed.ma50))}</div></div>
-            <div class="stat-card"><div class="label">MA200</div><div class="value">${escapeHtml(formatNumber(framed.ma200))}</div></div>
-            <div class="stat-card"><div class="label">Pivot ngày</div><div class="value">${escapeHtml(formatNumber(tech.pivotDay ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ ngày S1</div><div class="value">${escapeHtml(formatNumber(tech.supportDay ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự ngày R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ ngày S2</div><div class="value">${escapeHtml(formatNumber(tech.supportDay2 ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự ngày R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay2 ?? 0))}</div></div>
           </div>
         `;
 
