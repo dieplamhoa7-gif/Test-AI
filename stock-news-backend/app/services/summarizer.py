@@ -22,11 +22,46 @@ def _clip_text(text: str, limit: int = 6000) -> str:
     return (text or "").strip()[:limit]
 
 
+def _fallback_sentences(text: str, min_sentences: int = 5, max_sentences: int = 8) -> str:
+    raw = " ".join((text or "").split())
+    if not raw:
+        return ""
+
+    parts = []
+    current = ""
+    for ch in raw:
+        current += ch
+        if ch in ".!?;\n":
+            sentence = current.strip()
+            if sentence:
+                parts.append(sentence)
+            current = ""
+    if current.strip():
+        parts.append(current.strip())
+
+    cleaned = [p for p in parts if len(p.split()) >= 6]
+    selected = cleaned[:max_sentences]
+    if len(selected) < min_sentences:
+        words = raw.split()
+        chunk_size = max(18, min(32, len(words) // max(min_sentences, 1) or 18))
+        generated = []
+        for i in range(0, len(words), chunk_size):
+            chunk = " ".join(words[i:i + chunk_size]).strip()
+            if chunk:
+                if chunk[-1] not in ".!?":
+                    chunk += "."
+                generated.append(chunk)
+            if len(generated) >= max_sentences:
+                break
+        selected = generated[:max_sentences]
+
+    return " ".join(selected[:max_sentences])
+
+
 def _fallback_snippet(item: Dict) -> str:
     full_text = (item.get("fullText") or "").strip()
     if full_text:
-        words = full_text.split()
-        return " ".join(words[:SUMMARY_MAX_WORDS])
+        return _fallback_sentences(full_text)
     return ""
 
 
@@ -90,12 +125,12 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
         return "Không có đủ nội dung bài để tóm tắt."
 
     if client is None:
-        texts = []
-        for it in items[:4]:
-            text = _fallback_snippet(it)
-            if text:
-                texts.append(f"- {text}")
-        return "\n".join(texts) if texts else "Không có đủ nội dung bài để tóm tắt."
+        merged_text = " ".join(
+            (it.get("fullText") or it.get("snippet") or "").strip()
+            for it in items[:4]
+            if (it.get("fullText") or it.get("snippet") or "").strip()
+        )
+        return _fallback_sentences(merged_text) or "Không có đủ nội dung bài để tóm tắt."
 
     content = "\n\n".join(blocks)[:max_chars * 2]
 
@@ -129,12 +164,12 @@ def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
         )
         return (resp.choices[0].message.content or "").strip()
     except Exception:
-        texts = []
-        for it in items[:4]:
-            text = _fallback_snippet(it)
-            if text:
-                texts.append(f"- {text}")
-        return "\n".join(texts) if texts else "Không có đủ nội dung bài để tóm tắt."
+        merged_text = " ".join(
+            (it.get("fullText") or it.get("snippet") or "").strip()
+            for it in items[:4]
+            if (it.get("fullText") or it.get("snippet") or "").strip()
+        )
+        return _fallback_sentences(merged_text) or "Không có đủ nội dung bài để tóm tắt."
 
 
 def enrich_news_with_ai(items: List[Dict]) -> List[Dict]:
