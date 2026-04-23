@@ -66,4 +66,4 @@ uvicorn app.main:app --reload --port 8000
 - `GET /market-data` trả về array object gồm ticker, price, changePct, volume, chart, technical.
 - Có nền cập nhật dữ liệu mỗi 30 giây khi app chạy.
 - Đã bật CORS cho localhost:3000 / 5173.
-- Đã thêm `vnstock3` vào requirements cho bước tích hợp nguồn thực tế.
+- Dùng `httpx` để lấy dữ liệu realtime từ web/API public thay cho `vnstock3`.
