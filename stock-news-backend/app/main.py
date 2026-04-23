@@ -372,39 +372,51 @@ DASHBOARD_HTML = """
       color: #c9d3ea; font-size: 14px; line-height: 1.8; white-space: pre-wrap;
     }
     .market-panel { margin-top: 18px; padding: 18px; }
-    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
     .market-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(76, 90, 125, .45);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(15, 21, 34, .95), rgba(10, 15, 25, .98));
       padding: 14px;
       cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
     }
-    .market-card strong { display:block; font-size:18px; margin-bottom:6px; }
-    .market-price { font-size: 20px; font-weight: 800; }
-    .market-up { color: var(--accent-2); }
-    .market-down { color: var(--danger); }
-    .market-meta { color: var(--muted); font-size: 12px; margin-top: 6px; }
+    .market-card:hover { transform: translateY(-2px); border-color: rgba(100, 181, 255, .4); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+    .market-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+    .market-type {
+      font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+      border: 1px solid rgba(151, 170, 214, .18); border-radius: 999px; padding: 4px 8px;
+    }
+    .market-card strong { display:block; font-size:18px; margin-bottom:2px; }
+    .market-price { font-size: 24px; font-weight: 800; margin: 6px 0 4px; }
+    .market-change { font-size: 13px; font-weight: 700; }
+    .market-up { color: #23c77a; }
+    .market-down { color: #ff5b6e; }
+    .market-flat { color: #ffd166; }
+    .market-meta { color: var(--muted); font-size: 12px; margin-top: 8px; display:flex; justify-content:space-between; gap:8px; }
     .detail-modal {
-      position: fixed; inset: 0; background: rgba(3, 7, 16, .78); display: none;
+      position: fixed; inset: 0; background: rgba(3, 7, 16, .82); display: none;
       align-items: center; justify-content: center; padding: 20px; z-index: 99;
     }
     .detail-modal.open { display: flex; }
     .detail-box {
-      width: min(900px, 100%); background: #0f1726; border: 1px solid var(--line);
-      border-radius: 24px; box-shadow: var(--shadow); padding: 20px;
+      width: min(1080px, 100%); background: #0b101a; border: 1px solid rgba(92, 110, 148, .32);
+      border-radius: 24px; box-shadow: var(--shadow); padding: 0; overflow: hidden;
     }
-    .detail-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
-    .detail-grid { display:grid; grid-template-columns: 1.3fr .9fr; gap: 18px; }
-    .chart-box {
-      height: 320px; border:1px solid var(--line); border-radius:18px; background: rgba(255,255,255,.03);
-      padding: 12px; display:flex; align-items:flex-end; gap:8px;
+    .detail-head {
+      display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 18px 20px;
+      border-bottom: 1px solid rgba(92, 110, 148, .18); background: #0f1522;
     }
-    .chart-bar { flex:1; background: linear-gradient(180deg, var(--accent), #7a74ff); border-radius:10px 10px 0 0; min-height: 8px; }
+    .detail-grid { display:grid; grid-template-columns: 1fr; gap: 0; }
     .stats-box {
-      border:1px solid var(--line); border-radius:18px; background: rgba(255,255,255,.03); padding: 14px;
+      padding: 18px; background: #0d131f;
     }
-    .stats-box p { margin: 0 0 10px; color: #dbe5ff; }
+    .stats-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat-card {
+      border:1px solid rgba(92,110,148,.18); border-radius:14px; padding: 12px; background: rgba(255,255,255,.02);
+    }
+    .stat-card .label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .stat-card .value { color: #edf2ff; font-size: 16px; font-weight: 800; }
     .muted { color: var(--muted); }
     .error { color: var(--danger); }
     .empty {
@@ -415,7 +427,7 @@ DASHBOARD_HTML = """
       text-align: center;
     }
     @media (max-width: 980px) {
-      .hero, .layout { grid-template-columns: 1fr; }
+      .hero, .layout, .detail-grid { grid-template-columns: 1fr; }
       .topbar { position: static; }
     }
     @media (max-width: 640px) {
@@ -529,7 +541,6 @@ DASHBOARD_HTML = """
         <button class="chip-btn" id="closeDetailBtn">Đóng</button>
       </div>
       <div class="detail-grid">
-        <div class="chart-box" id="detailChart"></div>
         <div class="stats-box" id="detailStats"></div>
       </div>
     </div>
@@ -565,7 +576,6 @@ DASHBOARD_HTML = """
       detailModal: document.getElementById('detailModal'),
       detailTitle: document.getElementById('detailTitle'),
       detailSub: document.getElementById('detailSub'),
-      detailChart: document.getElementById('detailChart'),
       detailStats: document.getElementById('detailStats'),
       closeDetailBtn: document.getElementById('closeDetailBtn'),
       watchlist: document.getElementById('watchlist'),
@@ -624,20 +634,59 @@ DASHBOARD_HTML = """
       });
     }
 
-    function renderMarket(items) {
-      marketItems = Array.isArray(items) ? items : [];
-      elements.marketStatus.textContent = marketItems.length ? `Cập nhật ${marketItems.length} mã` : 'Không có dữ liệu giá';
+    function formatNumber(value, digits = 2) {
+      const n = Number(value);
+      if (Number.isNaN(n)) return '-';
+      return n.toLocaleString('vi-VN', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+    }
+
+    function formatVolume(value) {
+      const n = Number(value || 0);
+      if (!n) return '-';
+      return n.toLocaleString('vi-VN');
+    }
+
+    function getChangeClass(change) {
+      const n = Number(change || 0);
+      if (n > 0) return 'market-up';
+      if (n < 0) return 'market-down';
+      return 'market-flat';
+    }
+
+    function renderMarket(payload) {
+      marketItems = Array.isArray(payload) ? payload : (Array.isArray(payload?.items) ? payload.items : []);
+      const updatedAt = payload?.updatedAt ? formatTime(payload.updatedAt) : null;
+      elements.marketStatus.textContent = marketItems.length
+        ? `Cập nhật ${marketItems.length} mã${updatedAt ? ` • ${updatedAt}` : ''}`
+        : 'Không có dữ liệu giá';
       elements.marketGrid.innerHTML = marketItems.map(item => {
-        const cls = Number(item.changePct || 0) >= 0 ? 'market-up' : 'market-down';
+        const cls = getChangeClass(item.changePct);
+        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
         return `
           <div class="market-card" data-ticker="${escapeHtml(item.ticker || '')}">
-            <strong>${escapeHtml(item.ticker || '')}</strong>
-            <div class="market-price">${escapeHtml(String(item.price ?? '-'))}</div>
-            <div class="${cls}">${escapeHtml(String(item.changePct ?? 0))}%</div>
-            <div class="market-meta">KL: ${escapeHtml(String(item.volume ?? 0))}</div>
+            <div class="market-top">
+              <strong>${escapeHtml(item.ticker || '')}</strong>
+              <span class="market-type">${escapeHtml(item.type || 'stock')}</span>
+            </div>
+            <div class="market-price ${cls}">${escapeHtml(formatNumber(item.price))}</div>
+            <div class="market-change ${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</div>
+            <div class="market-meta"><span>KL</span><span>${escapeHtml(formatVolume(item.volume))}</span></div>
           </div>
         `;
       }).join('');
+
+      elements.watchlist.innerHTML = marketItems.slice(0, 6).map(item => {
+        const cls = getChangeClass(item.changePct);
+        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+        return `<div class="watch-pill">${escapeHtml(item.ticker)} ${escapeHtml(formatNumber(item.price))} <span class="${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</span></div>`;
+      }).join('');
+
+      const tickerItems = [...marketItems, ...marketItems].slice(0, 12).map(item => {
+        const cls = getChangeClass(item.changePct);
+        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+        return `<span class="ticker-item"><strong>${escapeHtml(item.ticker)}</strong> ${escapeHtml(formatNumber(item.price))} <span class="${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</span></span>`;
+      }).join('');
+      if (tickerItems) elements.tickerTrack.innerHTML = tickerItems;
 
       elements.marketGrid.querySelectorAll('[data-ticker]').forEach(card => {
         card.addEventListener('click', () => openDetail(card.dataset.ticker));
@@ -647,18 +696,34 @@ DASHBOARD_HTML = """
     function openDetail(ticker) {
       const item = marketItems.find(x => x.ticker === ticker);
       if (!item) return;
-      elements.detailTitle.textContent = `${item.ticker} - ${item.price}`;
-      elements.detailSub.textContent = `Biến động ${item.changePct}% • KL ${item.volume}`;
-      const values = Array.isArray(item.chart) ? item.chart : [];
-      const max = Math.max(...values, 1);
-      elements.detailChart.innerHTML = values.map(v => `<div class="chart-bar" style="height:${Math.max(8, (Number(v)/max)*100)}%;" title="${escapeHtml(String(v))}"></div>`).join('');
+      const cls = getChangeClass(item.changePct);
+      const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+      elements.detailTitle.innerHTML = `${escapeHtml(item.ticker)} <span class="${cls}">${escapeHtml(formatNumber(item.price))}</span>`;
+      elements.detailSub.textContent = `Biến động ${sign}${formatNumber(item.changePct)}% • Khối lượng ${formatVolume(item.volume)}`;
       const tech = item.technical || {};
       elements.detailStats.innerHTML = `
-        <p>MA20: <strong>${escapeHtml(String(tech.ma20 ?? '-'))}</strong></p>
-        <p>RSI14: <strong>${escapeHtml(String(tech.rsi14 ?? '-'))}</strong></p>
-        <p>MACD: <strong>${escapeHtml(String(tech.macd ?? '-'))}</strong></p>
-        <p>Signal: <strong>${escapeHtml(String(tech.signal ?? '-'))}</strong></p>
-        <p>Nguồn: <strong>${escapeHtml(String(item.source ?? '-'))}</strong></p>
+        <div style="margin-bottom:14px;">
+          <div class="muted" style="font-size:12px; margin-bottom:6px;">Tổng quan PTKT</div>
+          <div style="font-size:28px; font-weight:800;" class="${cls}">${escapeHtml(formatNumber(item.price))}</div>
+          <div class="${cls}" style="font-weight:700; margin-top:4px;">${sign}${escapeHtml(formatNumber(item.changePct))}%</div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="label">Xu hướng</div><div class="value">${escapeHtml(String(tech.trend ?? '-'))}</div></div>
+          <div class="stat-card"><div class="label">Khối lượng</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
+          <div class="stat-card"><div class="label">RSI14</div><div class="value">${escapeHtml(formatNumber(tech.rsi14 ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">MACD</div><div class="value">${escapeHtml(formatNumber(tech.macd ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Signal</div><div class="value">${escapeHtml(formatNumber(tech.signal ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Histogram</div><div class="value">${escapeHtml(formatNumber(tech.histogram ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">MA20</div><div class="value">${escapeHtml(formatNumber(tech.ma20 ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Tham chiếu</div><div class="value">${escapeHtml(formatNumber(tech.reference ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Mở cửa</div><div class="value">${escapeHtml(formatNumber(tech.open ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Cao nhất</div><div class="value">${escapeHtml(formatNumber(tech.high ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Thấp nhất</div><div class="value">${escapeHtml(formatNumber(tech.low ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Giá TB</div><div class="value">${escapeHtml(formatNumber(tech.avg ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Hỗ trợ</div><div class="value">${escapeHtml(formatNumber(tech.support ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Kháng cự</div><div class="value">${escapeHtml(formatNumber(tech.resistance ?? 0))}</div></div>
+          <div class="stat-card"><div class="label">Nguồn</div><div class="value">${escapeHtml(String(item.source ?? '-'))}</div></div>
+        </div>
       `;
       elements.detailModal.classList.add('open');
     }
@@ -798,7 +863,6 @@ DASHBOARD_HTML = """
     });
 
     renderCategories();
-    renderWatchlist();
     loadData();
   </script>
 </body>
