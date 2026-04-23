@@ -1,13 +1,21 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
+import sys
 
-import httpx
+VNSTOCK_REPO = Path(__file__).resolve().parents[2] / "vnstock"
+if VNSTOCK_REPO.exists():
+    sys.path.insert(0, str(VNSTOCK_REPO))
 
-DEFAULT_TICKERS = ["VNINDEX", "VN30", "FPT", "HPG", "SSI", "VCB", "VIC"]
+try:
+    from vnstock import Vnstock
+except Exception:
+    Vnstock = None
+
+DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI", "VCB", "VIC"]
 DEFAULT_CW_TICKERS = ["CFPT2314", "CHPG2401", "CVPB2402"]
-USER_AGENT = "Mozilla/5.0"
 
 _market_cache: list[dict[str, Any]] = []
 _last_updated: str | None = None
@@ -36,9 +44,9 @@ def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
         "volume": volume,
         "chart": chart,
         "technical": {
-            "rsi14": round(45 + (len(symbol) % 20), 2),
-            "macd": round((len(symbol) % 7) * 0.11, 2),
-            "signal": round((len(symbol) % 5) * 0.09, 2),
+            "rsi14": None,
+            "macd": None,
+            "signal": None,
             "ma20": round(sum(chart) / len(chart), 2),
         },
         "type": "cw" if is_cw else "stock",
@@ -58,50 +66,41 @@ def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
 
 
 def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
-    urls = [
-        f"https://price.tpbs.com.vn/api/SymbolApi/getStockQuote?symbol={symbol}",
-        f"https://bgapidatafeed.vps.com.vn/getliststockdata/{symbol}",
-    ]
-    headers = {"User-Agent": USER_AGENT}
+    if Vnstock is None:
+        return None
+    try:
+        stock = Vnstock().stock(symbol=symbol, source="KBS")
+        intraday = stock.quote.intraday()
+        if intraday is None or intraday.empty:
+            return None
 
-    for url in urls:
-        try:
-            with httpx.Client(timeout=5.0, headers=headers, follow_redirects=True) as client:
-                resp = client.get(url)
-                if resp.status_code != 200:
-                    continue
-                data = resp.json()
-                if isinstance(data, list) and data:
-                    data = data[0]
-                if not isinstance(data, dict):
-                    continue
+        latest = intraday.iloc[0]
+        closes = intraday["price"].astype(float).head(20).tolist()
+        ref_price = closes[-1] if closes else float(latest["price"])
+        last_price = float(latest["price"])
+        change_pct = round(((last_price - ref_price) / ref_price) * 100, 2) if ref_price else 0.0
+        volume = int(intraday["volume"].astype(float).sum())
+        chart = [round(x, 2) for x in list(reversed(closes[:20]))][-20:]
+        if not chart:
+            chart = [round(last_price, 2)]
 
-                price = data.get("matchPrice") or data.get("lastPrice") or data.get("close") or data.get("price")
-                change_pct = data.get("changePc") or data.get("percentChange") or data.get("changePercent") or 0
-                volume = data.get("totalVolume") or data.get("nmVolume") or data.get("volume") or 0
-                if price is None:
-                    continue
-
-                last_price = float(price)
-                chart = [round(last_price * x, 2) for x in (0.97, 0.99, 1.0, 1.01, 1.02)]
-                return {
-                    "ticker": symbol,
-                    "price": last_price,
-                    "changePct": round(float(change_pct), 2),
-                    "volume": int(float(volume)),
-                    "chart": chart,
-                    "technical": {
-                        "rsi14": None,
-                        "macd": None,
-                        "signal": None,
-                        "ma20": round(sum(chart) / len(chart), 2),
-                    },
-                    "type": "stock",
-                    "source": url,
-                }
-        except Exception:
-            continue
-    return None
+        return {
+            "ticker": symbol,
+            "price": round(last_price, 2),
+            "changePct": change_pct,
+            "volume": volume,
+            "chart": chart,
+            "technical": {
+                "rsi14": None,
+                "macd": None,
+                "signal": None,
+                "ma20": round(sum(chart) / len(chart), 2),
+            },
+            "type": "stock",
+            "source": "vnstock:KBS",
+        }
+    except Exception:
+        return None
 
 
 def refresh_market_cache() -> list[dict[str, Any]]:
