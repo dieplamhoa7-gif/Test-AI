@@ -89,6 +89,15 @@ def _describe_trend_strength(adx: float) -> str:
     return "Yếu"
 
 
+def _pivot_levels(high_price: float, low_price: float, close_price: float) -> tuple[float, float, float, float, float]:
+    pivot = (high_price + low_price + close_price) / 3 if high_price and low_price and close_price else close_price
+    support1 = 2 * pivot - high_price
+    resistance1 = 2 * pivot - low_price
+    support2 = pivot - (high_price - low_price)
+    resistance2 = pivot + (high_price - low_price)
+    return round(pivot, 2), round(support1, 2), round(resistance1, 2), round(support2, 2), round(resistance2, 2)
+
+
 def _build_strategy(price: float, support: float, resistance: float, trend: str, strength: str, rsi: float, macd: float, signal: float) -> tuple[str, float | None, float | None]:
     buy_price = round(support, 2) if support else None
     sell_price = round(resistance, 2) if resistance else None
@@ -104,12 +113,9 @@ def _build_strategy(price: float, support: float, resistance: float, trend: str,
 
 
 def _calc_technical(last_price: float, ref_price: float, open_price: float, high_price: float, low_price: float, avg_price: float, history_df: pd.DataFrame | None = None) -> dict[str, Any]:
-    support_day = low_price if low_price else min(last_price, ref_price or last_price)
-    resistance_day = high_price if high_price else max(last_price, ref_price or last_price)
-    support_week = round(support_day * 0.985, 2)
-    resistance_week = round(resistance_day * 1.015, 2)
-    support_month = round(support_day * 0.965, 2)
-    resistance_month = round(resistance_day * 1.03, 2)
+    pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_levels(high_price, low_price, last_price)
+    pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_levels(high_price, low_price, last_price)
+    pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_levels(high_price, low_price, last_price)
 
     if history_df is None or history_df.empty or len(history_df) < 35:
         momentum = ((last_price - ref_price) / ref_price * 100) if ref_price else 0
@@ -136,16 +142,15 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         adx14 = float(row.get("adx14") or 0)
         plus_di = float(row.get("plusDi") or 0)
         minus_di = float(row.get("minusDi") or 0)
-        support_day = round(float(daily["low"].tail(20).min()), 2)
-        resistance_day = round(float(daily["high"].tail(20).max()), 2)
+        pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_levels(float(row.get("high") or high_price), float(row.get("low") or low_price), last_price)
         weekly = _to_ohlc(history_df, "week")
         if not weekly.empty:
-            support_week = round(float(weekly["low"].tail(10).min()), 2)
-            resistance_week = round(float(weekly["high"].tail(10).max()), 2)
+            week_row = weekly.iloc[-1]
+            pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_levels(float(week_row.get("high") or high_price), float(week_row.get("low") or low_price), float(week_row.get("close") or last_price))
         monthly = _to_ohlc(history_df, "month")
         if not monthly.empty:
-            support_month = round(float(monthly["low"].tail(6).min()), 2)
-            resistance_month = round(float(monthly["high"].tail(6).max()), 2)
+            month_row = monthly.iloc[-1]
+            pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_levels(float(month_row.get("high") or high_price), float(month_row.get("low") or low_price), float(month_row.get("close") or last_price))
 
     trend = "Tăng" if last_price > ma20 and macd > signal and plus_di >= minus_di else "Giảm" if last_price < ma20 and macd < signal and minus_di > plus_di else "Trung tính"
     strength = _describe_trend_strength(adx14)
@@ -163,12 +168,21 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         "ma20": round(ma20, 2),
         "ma50": round(ma50, 2),
         "ma200": round(ma200, 2),
+        "pivotDay": pivot_day,
         "supportDay": round(support_day, 2),
         "resistanceDay": round(resistance_day, 2),
+        "supportDay2": support_day_2,
+        "resistanceDay2": resistance_day_2,
+        "pivotWeek": pivot_week,
         "supportWeek": support_week,
         "resistanceWeek": resistance_week,
+        "supportWeek2": support_week_2,
+        "resistanceWeek2": resistance_week_2,
+        "pivotMonth": pivot_month,
         "supportMonth": support_month,
         "resistanceMonth": resistance_month,
+        "supportMonth2": support_month_2,
+        "resistanceMonth2": resistance_month_2,
         "open": round(open_price, 2) if open_price else None,
         "high": round(high_price, 2) if high_price else None,
         "low": round(low_price, 2) if low_price else None,

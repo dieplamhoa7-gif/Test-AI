@@ -751,12 +751,21 @@ DASHBOARD_HTML = """
             <div class="stat-card"><div class="label">Cao nhất</div><div class="value">${escapeHtml(formatNumber(tech.high ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Thấp nhất</div><div class="value">${escapeHtml(formatNumber(tech.low ?? 0))}</div></div>
             <div class="stat-card"><div class="label">Giá TB</div><div class="value">${escapeHtml(formatNumber(tech.avg ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ ngày</div><div class="value">${escapeHtml(formatNumber(tech.supportDay ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự ngày</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tuần</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tuần</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Hỗ trợ tháng</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth ?? 0))}</div></div>
-            <div class="stat-card"><div class="label">Kháng cự tháng</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Pivot ngày</div><div class="value">${escapeHtml(formatNumber(tech.pivotDay ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ ngày S1</div><div class="value">${escapeHtml(formatNumber(tech.supportDay ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự ngày R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ ngày S2</div><div class="value">${escapeHtml(formatNumber(tech.supportDay2 ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự ngày R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceDay2 ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Pivot tuần</div><div class="value">${escapeHtml(formatNumber(tech.pivotWeek ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tuần S1</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tuần R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tuần S2</div><div class="value">${escapeHtml(formatNumber(tech.supportWeek2 ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tuần R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceWeek2 ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Pivot tháng</div><div class="value">${escapeHtml(formatNumber(tech.pivotMonth ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tháng S1</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tháng R1</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Hỗ trợ tháng S2</div><div class="value">${escapeHtml(formatNumber(tech.supportMonth2 ?? 0))}</div></div>
+            <div class="stat-card"><div class="label">Kháng cự tháng R2</div><div class="value">${escapeHtml(formatNumber(tech.resistanceMonth2 ?? 0))}</div></div>
           </div>
         `;
 
