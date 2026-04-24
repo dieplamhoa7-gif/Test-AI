@@ -135,14 +135,16 @@ def _pivot_from_recent(df: pd.DataFrame | None, fallback_high: float, fallback_l
 def _build_strategy(price: float, support: float, resistance: float, trend: str, strength: str, rsi: float, macd: float, signal: float) -> tuple[str, float | None, float | None]:
     buy_price = round(support, 2) if support else None
     sell_price = round(resistance, 2) if resistance else None
+    buy_text = f"{buy_price:.2f}" if buy_price is not None else "-"
+    sell_text = f"{sell_price:.2f}" if sell_price is not None else "-"
     if trend == "Tăng":
-        action = f"Cổ phiếu đang tăng, sức mạnh xu hướng {strength.lower()}. Canh mua khi lùi về hỗ trợ {buy_price:.2f} và ưu tiên chốt lời/bán khi lên kháng cự {sell_price:.2f}."
+        action = f"Cổ phiếu đang tăng, sức mạnh xu hướng {strength.lower()}. Canh mua khi lùi về hỗ trợ {buy_text} và ưu tiên chốt lời/bán khi lên kháng cự {sell_text}."
         if strength in {"Mạnh", "Rất mạnh"} and macd > signal and rsi < 70:
             action += " Có thể múc thăm dò tại vùng hỗ trợ nếu giá phản ứng tốt."
     elif trend == "Giảm":
-        action = f"Cổ phiếu đang giảm, sức mạnh xu hướng {strength.lower()}. Hạn chế mua đuổi; chỉ cân nhắc múc thăm dò quanh hỗ trợ {buy_price:.2f} nếu xuất hiện tín hiệu hồi, và canh bán/giảm tỷ trọng gần kháng cự {sell_price:.2f}."
+        action = f"Cổ phiếu đang giảm, sức mạnh xu hướng {strength.lower()}. Hạn chế mua đuổi; chỉ cân nhắc múc thăm dò quanh hỗ trợ {buy_text} nếu xuất hiện tín hiệu hồi, và canh bán/giảm tỷ trọng gần kháng cự {sell_text}."
     else:
-        action = f"Cổ phiếu đang đi ngang, sức mạnh xu hướng {strength.lower()}. Có thể mua gần hỗ trợ {buy_price:.2f} và bán gần kháng cự {sell_price:.2f}."
+        action = f"Cổ phiếu đang đi ngang, sức mạnh xu hướng {strength.lower()}. Có thể mua gần hỗ trợ {buy_text} và bán gần kháng cự {sell_text}."
     return action, buy_price, sell_price
 
 
@@ -187,6 +189,8 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
     trend = "Tăng" if last_price > ma20 and macd > signal and plus_di >= minus_di else "Giảm" if last_price < ma20 and macd < signal and minus_di > plus_di else "Trung tính"
     strength = _describe_trend_strength(adx14)
     strategy, buy_price, sell_price = _build_strategy(last_price, support_day, resistance_day, trend, strength, rsi14, macd, signal)
+    week_strategy, buy_price_week, sell_price_week = _build_strategy(last_price, support_week, resistance_week, trend, strength, rsi14, macd, signal)
+    month_strategy, buy_price_month, sell_price_month = _build_strategy(last_price, support_month, resistance_month, trend, strength, rsi14, macd, signal)
 
     return {
         "rsi14": _safe_number(rsi14, 2),
@@ -225,6 +229,12 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         "strategy": strategy,
         "buyPrice": _safe_number(buy_price, 2),
         "sellPrice": _safe_number(sell_price, 2),
+        "buyPriceWeek": _safe_number(buy_price_week, 2),
+        "sellPriceWeek": _safe_number(sell_price_week, 2),
+        "buyPriceMonth": _safe_number(buy_price_month, 2),
+        "sellPriceMonth": _safe_number(sell_price_month, 2),
+        "strategyWeek": week_strategy,
+        "strategyMonth": month_strategy,
     }
 
 
@@ -293,7 +303,7 @@ def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
         last_price = float(item.get("lastPrice") or 0)
         ref_price = float(item.get("r") or 0)
         change_pct = (((last_price - ref_price) / ref_price) * 100) if ref_price else 0
-        volume = int(float(item.get("lot") or item.get("totalVolume") or item.get("nnBuy") or 0))
+        volume = int(float(item.get("totalVolume") or item.get("lot") or item.get("lastVolume") or item.get("nnBuy") or 0))
         low_price = float(item.get("lowPrice") or last_price or ref_price or 0)
         high_price = float(item.get("highPrice") or last_price or ref_price or 0)
         open_price = float(item.get("openPrice") or ref_price or last_price or 0)
