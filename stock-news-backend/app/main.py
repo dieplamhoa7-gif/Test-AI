@@ -71,7 +71,7 @@ class SummarizeResponse(BaseModel):
 
 MARKET_API_BASE = os.getenv("MARKET_API_BASE", "").rstrip("/")
 
-DASHBOARD_HTML = f"""
+DASHBOARD_HTML = """
 <!doctype html>
 <html lang="vi">
 <head>
@@ -520,7 +520,7 @@ DASHBOARD_HTML = f"""
 
   <script>
     const API_BASE = '';
-    const MARKET_API_BASE = {MARKET_API_BASE!r};
+    const MARKET_API_BASE = '__MARKET_API_BASE__';
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Pháp luật', 'Chính trị', 'Khác'];
 
@@ -904,7 +904,8 @@ DASHBOARD_HTML = f"""
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
-    return HTMLResponse(DASHBOARD_HTML)
+    html = DASHBOARD_HTML.replace("__MARKET_API_BASE__", MARKET_API_BASE)
+    return HTMLResponse(html)
 
 
 @app.get("/health")
