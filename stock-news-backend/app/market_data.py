@@ -102,11 +102,21 @@ def _describe_trend_strength(adx: float) -> str:
 
 
 def _pivot_levels(high_price: float, low_price: float, close_price: float) -> tuple[float, float, float, float, float]:
-    pivot = (high_price + low_price + close_price) / 3 if high_price and low_price and close_price else close_price
-    support1 = 2 * pivot - high_price
-    resistance1 = 2 * pivot - low_price
-    support2 = pivot - (high_price - low_price)
-    resistance2 = pivot + (high_price - low_price)
+    high_price = float(high_price or 0)
+    low_price = float(low_price or 0)
+    close_price = float(close_price or 0)
+    if high_price <= 0 or low_price <= 0 or close_price <= 0:
+        pivot = close_price
+        support1 = close_price
+        resistance1 = close_price
+        support2 = close_price
+        resistance2 = close_price
+    else:
+        pivot = (high_price + low_price + close_price) / 3
+        support1 = (2 * pivot) - high_price
+        resistance1 = (2 * pivot) - low_price
+        support2 = pivot - (high_price - low_price)
+        resistance2 = pivot + (high_price - low_price)
     return round(pivot, 2), round(support1, 2), round(resistance1, 2), round(support2, 2), round(resistance2, 2)
 
 
