@@ -13,7 +13,7 @@ except Exception:  # pragma: no cover
     Listing = None
     Quote = None
 
-DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI", "VCB", "VIC"]
+DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI"]
 
 _market_cache: list[dict[str, Any]] = []
 _symbol_cache: list[dict[str, str]] = []
@@ -209,14 +209,6 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
 
 
 def _load_history(symbol: str) -> pd.DataFrame | None:
-    if Quote is None:
-        return None
-    try:
-        df = Quote(symbol=symbol, source="VCI").history(start="2025-01-01", end=datetime.now().strftime("%Y-%m-%d"))
-        if isinstance(df, pd.DataFrame) and not df.empty:
-            return df
-    except Exception:
-        return None
     return None
 
 

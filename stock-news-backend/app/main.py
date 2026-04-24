@@ -1,6 +1,5 @@
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
-import asyncio
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,32 +10,12 @@ from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
 
-_market_task: asyncio.Task | None = None
-
-
-async def _market_data_loop() -> None:
-    while True:
-        try:
-            refresh_market_cache()
-        except Exception:
-            pass
-        await asyncio.sleep(30)
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _market_task
-    refresh_market_cache()
-    _market_task = asyncio.create_task(_market_data_loop())
     try:
         yield
     finally:
-        if _market_task:
-            _market_task.cancel()
-            try:
-                await _market_task
-            except asyncio.CancelledError:
-                pass
+        pass
 
 
 app = FastAPI(title="VN Stock News Backend", version="0.1.0", lifespan=lifespan)
