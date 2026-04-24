@@ -120,6 +120,18 @@ def _pivot_levels(high_price: float, low_price: float, close_price: float) -> tu
     return round(pivot, 2), round(support1, 2), round(resistance1, 2), round(support2, 2), round(resistance2, 2)
 
 
+def _pivot_from_recent(df: pd.DataFrame | None, fallback_high: float, fallback_low: float, fallback_close: float, window: int = 10) -> tuple[float, float, float, float, float]:
+    if df is None or df.empty:
+        return _pivot_levels(fallback_high, fallback_low, fallback_close)
+    recent = df.tail(window)
+    if recent.empty:
+        return _pivot_levels(fallback_high, fallback_low, fallback_close)
+    high_price = float(recent["high"].max() or fallback_high)
+    low_price = float(recent["low"].min() or fallback_low)
+    close_price = float(recent["close"].iloc[-1] or fallback_close)
+    return _pivot_levels(high_price, low_price, close_price)
+
+
 def _build_strategy(price: float, support: float, resistance: float, trend: str, strength: str, rsi: float, macd: float, signal: float) -> tuple[str, float | None, float | None]:
     buy_price = round(support, 2) if support else None
     sell_price = round(resistance, 2) if resistance else None
@@ -139,7 +151,11 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
     pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_levels(high_price, low_price, last_price)
     pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_levels(high_price, low_price, last_price)
 
-    if history_df is None or history_df.empty or len(history_df) < 35:
+    daily_raw = _to_ohlc(history_df, "day") if history_df is not None and not history_df.empty else pd.DataFrame()
+    weekly_raw = _to_ohlc(history_df, "week") if history_df is not None and not history_df.empty else pd.DataFrame()
+    monthly_raw = _to_ohlc(history_df, "month") if history_df is not None and not history_df.empty else pd.DataFrame()
+
+    if history_df is None or history_df.empty or len(daily_raw) < 35:
         momentum = ((last_price - ref_price) / ref_price * 100) if ref_price else 0
         rsi14 = max(0.0, min(100.0, 50.0 + momentum * 8))
         macd = last_price - (avg_price or last_price)
@@ -152,7 +168,7 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         plus_di = max(momentum, 0) * 2 + 20
         minus_di = max(-momentum, 0) * 2 + 20
     else:
-        daily = _compute_indicators(_to_ohlc(history_df, "day"))
+        daily = _compute_indicators(daily_raw)
         row = daily.iloc[-1]
         rsi14 = float(row.get("rsi14") or 50)
         macd = float(row.get("macd") or 0)
@@ -164,15 +180,9 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         adx14 = float(row.get("adx14") or 0)
         plus_di = float(row.get("plusDi") or 0)
         minus_di = float(row.get("minusDi") or 0)
-        pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_levels(float(row.get("high") or high_price), float(row.get("low") or low_price), last_price)
-        weekly = _to_ohlc(history_df, "week")
-        if not weekly.empty:
-            week_row = weekly.iloc[-1]
-            pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_levels(float(week_row.get("high") or high_price), float(week_row.get("low") or low_price), float(week_row.get("close") or last_price))
-        monthly = _to_ohlc(history_df, "month")
-        if not monthly.empty:
-            month_row = monthly.iloc[-1]
-            pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_levels(float(month_row.get("high") or high_price), float(month_row.get("low") or low_price), float(month_row.get("close") or last_price))
+        pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_from_recent(daily_raw, high_price, low_price, last_price, 10)
+        pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_from_recent(weekly_raw, high_price, low_price, last_price, 10)
+        pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_from_recent(monthly_raw, high_price, low_price, last_price, 10)
 
     trend = "Tăng" if last_price > ma20 and macd > signal and plus_di >= minus_di else "Giảm" if last_price < ma20 and macd < signal and minus_di > plus_di else "Trung tính"
     strength = _describe_trend_strength(adx14)
@@ -219,7 +229,32 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
 
 
 def _load_history(symbol: str) -> pd.DataFrame | None:
-    return None
+    if Quote is None:
+        return None
+    try:
+        df = Quote(symbol=symbol, source="VCI").history(start="2024-01-01", end=_now_iso()[:10], interval="1D")
+        if not isinstance(df, pd.DataFrame) or df.empty:
+            return None
+        rename_map = {
+            "datetime": "time",
+            "date": "time",
+            "Date": "time",
+            "open": "open",
+            "high": "high",
+            "low": "low",
+            "close": "close",
+            "volume": "volume",
+        }
+        work = df.rename(columns=rename_map).copy()
+        required = ["time", "open", "high", "low", "close"]
+        if any(col not in work.columns for col in required):
+            return None
+        if "volume" not in work.columns:
+            work["volume"] = 0
+        work = work[required + ["volume"]].dropna().reset_index(drop=True)
+        return work
+    except Exception:
+        return None
 
 
 def _mock_item(symbol: str) -> dict[str, Any]:
