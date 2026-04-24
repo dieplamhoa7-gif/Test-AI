@@ -126,8 +126,8 @@ def _pivot_from_recent(df: pd.DataFrame | None, fallback_high: float, fallback_l
     recent = df.tail(window)
     if recent.empty:
         return _pivot_levels(fallback_high, fallback_low, fallback_close)
-    high_price = float(recent["high"].max() or fallback_high)
-    low_price = float(recent["low"].min() or fallback_low)
+    high_price = float(recent["high"].mean() or fallback_high)
+    low_price = float(recent["low"].mean() or fallback_low)
     close_price = float(recent["close"].mean() or fallback_close)
     return _pivot_levels(high_price, low_price, close_price)
 
