@@ -1,6 +1,8 @@
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 
+import os
+
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -67,7 +69,9 @@ class SummarizeResponse(BaseModel):
     items: list[dict]
 
 
-DASHBOARD_HTML = """
+MARKET_API_BASE = os.getenv("MARKET_API_BASE", "").rstrip("/")
+
+DASHBOARD_HTML = f"""
 <!doctype html>
 <html lang="vi">
 <head>
@@ -516,6 +520,7 @@ DASHBOARD_HTML = """
 
   <script>
     const API_BASE = '';
+    const MARKET_API_BASE = {MARKET_API_BASE!r};
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Pháp luật', 'Chính trị', 'Khác'];
 
@@ -797,7 +802,7 @@ DASHBOARD_HTML = """
         return;
       }
       try {
-        const res = await fetch(`${API_BASE}/market-symbols?query=${encodeURIComponent(q)}&limit=20`, { cache: 'no-store' });
+        const res = await fetch(`${MARKET_API_BASE || API_BASE}/market-symbols?query=${encodeURIComponent(q)}&limit=20`, { cache: 'no-store' });
         if (!res.ok) return;
         const items = await res.json();
         elements.stockSearchList.innerHTML = items.map(item => `<option value="${escapeHtml(item.symbol)}">${escapeHtml(item.name || '')}</option>`).join('');
@@ -809,7 +814,7 @@ DASHBOARD_HTML = """
       if (!symbol) return;
       elements.stockSearchBtn.textContent = 'Đang thêm...';
       try {
-        const res = await fetch(`${API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' });
+        const res = await fetch(`${MARKET_API_BASE || API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Không tìm thấy mã');
         const item = await res.json();
         if (!watchSymbols.includes(symbol)) watchSymbols.unshift(symbol);
@@ -833,7 +838,7 @@ DASHBOARD_HTML = """
       let hasAnyData = false;
 
       try {
-        const marketRes = await fetch(`${API_BASE}/market-data?ts=${ts}`, { cache: 'no-store' });
+        const marketRes = await fetch(`${MARKET_API_BASE || API_BASE}/market-data?ts=${ts}`, { cache: 'no-store' });
         if (marketRes.ok) {
           const marketData = await marketRes.json();
           renderMarket(marketData);
