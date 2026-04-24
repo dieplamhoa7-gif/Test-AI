@@ -7,7 +7,6 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from app.market_data import get_market_cache, get_market_symbol, get_symbol_catalog, refresh_market_cache
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
@@ -925,18 +924,3 @@ def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Que
     summary = summarize_news(items, max_chars=max_chars)
     return {"total_items": len(items), "summary": summary, "items": items}
 
-
-@app.get("/market-data")
-def market_data():
-    data = get_market_cache()
-    return data["items"]
-
-
-@app.get("/market-data/{symbol}")
-def market_symbol(symbol: str):
-    return get_market_symbol(symbol)
-
-
-@app.get("/market-symbols")
-def market_symbols(query: str = Query(default=""), limit: int = Query(default=20, ge=1, le=100)):
-    return get_symbol_catalog(query=query, limit=limit)
