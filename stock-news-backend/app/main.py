@@ -828,10 +828,6 @@ DASHBOARD_HTML = """
     async function addStockToWatchlist() {
       const symbol = (elements.stockSearchInput.value || '').trim().toUpperCase();
       if (!symbol) return;
-      if (symbol.startsWith('C')) {
-        elements.marketStatus.textContent = 'Đã tắt chứng quyền';
-        return;
-      }
       elements.stockSearchBtn.textContent = 'Đang thêm...';
       try {
         const res = await fetch(`${API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' });

@@ -220,7 +220,7 @@ def _load_history(symbol: str) -> pd.DataFrame | None:
     return None
 
 
-def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
+def _mock_item(symbol: str) -> dict[str, Any]:
     seed = sum(ord(c) for c in symbol)
     base_price = 20.0 + (seed % 120)
     change_pct = round((((seed % 9) - 4) * 0.41), 2)
@@ -230,27 +230,16 @@ def _mock_item(symbol: str, is_cw: bool = False) -> dict[str, Any]:
     low_price = round(last_price * 0.98, 2)
     high_price = round(last_price * 1.02, 2)
     avg_price = round((open_price + low_price + high_price + last_price) / 4, 2)
-    history_df = None if is_cw else _load_history(symbol)
-    item = {
+    history_df = _load_history(symbol)
+    return {
         "ticker": symbol,
         "price": last_price,
         "changePct": change_pct,
         "volume": volume,
         "technical": _calc_technical(last_price, base_price, open_price, high_price, low_price, avg_price, history_df),
-        "type": "cw" if is_cw else "stock",
+        "type": "stock",
         "source": "fallback-local",
     }
-    if is_cw:
-        item.update(
-            {
-                "underlyingTicker": symbol[1:4] if len(symbol) >= 4 else None,
-                "underlyingPrice": round(last_price * 1.18, 2),
-                "expiryDate": "2026-12-31",
-                "conversionRatio": "2:1",
-                "breakevenPrice": round(last_price * 1.12, 2),
-            }
-        )
-    return item
 
 
 def _fetch_symbol(symbol: str) -> dict[str, Any] | None:
@@ -290,8 +279,6 @@ def get_market_symbol(symbol: str) -> dict[str, Any]:
     normalized = symbol.strip().upper()
     if not normalized:
         raise ValueError("Symbol is required")
-    if normalized.startswith("C"):
-        raise ValueError("Covered warrants are disabled")
     return _fetch_symbol(normalized) or _mock_item(normalized)
 
 
