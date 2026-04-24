@@ -19,14 +19,14 @@ def health():
 
 
 @app.get("/market-data")
-def market_data():
-    data = get_market_cache()
-    return data["items"]
+def market_data(refresh: bool = Query(default=False)):
+    data = get_market_cache(force_refresh=refresh)
+    return data
 
 
 @app.get("/market-data/{symbol}")
-def market_symbol(symbol: str):
-    return get_market_symbol(symbol)
+def market_symbol(symbol: str, refresh: bool = Query(default=False)):
+    return get_market_symbol(symbol, force_refresh=refresh)
 
 
 @app.get("/market-symbols")

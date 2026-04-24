@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
+from app.market_data import get_market_cache, get_market_symbol, get_symbol_catalog
 
 
 @asynccontextmanager
@@ -30,6 +31,7 @@ app.add_middleware(
 )
 
 REFRESH_INTERVAL = timedelta(minutes=15)
+_summary_cache: dict[tuple[int, int], dict] = {}
 _last_refresh_at: datetime | None = None
 
 
@@ -73,10 +75,29 @@ MARKET_API_BASE = os.getenv("MARKET_API_BASE", "").rstrip("/")
 from app.dashboard_template import DASHBOARD_HTML
 
 
-@app.get("/", response_class=HTMLResponse)
-def dashboard():
+def _dashboard_response():
     html = DASHBOARD_HTML.replace("__MARKET_API_BASE__", MARKET_API_BASE)
     return HTMLResponse(html)
+
+
+@app.get("/", response_class=HTMLResponse)
+def dashboard():
+    return _dashboard_response()
+
+
+@app.get("/stocks", response_class=HTMLResponse)
+def stocks_page():
+    return _dashboard_response()
+
+
+@app.get("/warrants", response_class=HTMLResponse)
+def warrants_page():
+    return _dashboard_response()
+
+
+@app.get("/news-page", response_class=HTMLResponse)
+def news_page():
+    return _dashboard_response()
 
 
 @app.head("/")
@@ -94,6 +115,21 @@ def health_head():
     return HTMLResponse("")
 
 
+@app.get("/market-data")
+def market_data(refresh: bool = Query(default=False)):
+    return get_market_cache(force_refresh=refresh)
+
+
+@app.get("/market-data/{symbol}")
+def market_symbol(symbol: str, refresh: bool = Query(default=False)):
+    return get_market_symbol(symbol, force_refresh=refresh)
+
+
+@app.get("/market-symbols")
+def market_symbols(query: str = Query(default=""), limit: int = Query(default=20, ge=1, le=100)):
+    return get_symbol_catalog(query=query, limit=limit)
+
+
 @app.get("/news")
 def news(limit: int = Query(default=20, ge=1, le=300), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=limit)
@@ -101,7 +137,12 @@ def news(limit: int = Query(default=20, ge=1, le=300), refresh: bool = Query(def
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=20, ge=1, le=100), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
+def summarize(limit: int = Query(default=20, ge=1, le=300), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
+    key = (limit, max_chars)
+    if not refresh and key in _summary_cache:
+        return _summary_cache[key]
     items = _refresh_news_if_needed(force=refresh, limit=limit)[:limit]
     summary = summarize_news(items, max_chars=max_chars)
-    return {"total_items": len(items), "summary": summary, "items": items}
+    payload = {"total_items": len(items), "summary": summary, "items": items}
+    _summary_cache[key] = payload
+    return payload
