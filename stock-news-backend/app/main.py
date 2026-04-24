@@ -79,13 +79,23 @@ def dashboard():
     return HTMLResponse(html)
 
 
+@app.head("/")
+def dashboard_head():
+    return HTMLResponse("")
+
+
 @app.get("/health")
 def health():
     return {"ok": True}
 
 
+@app.head("/health")
+def health_head():
+    return HTMLResponse("")
+
+
 @app.get("/news")
-def news(limit: int = Query(default=20, ge=1, le=100), refresh: bool = Query(default=False)):
+def news(limit: int = Query(default=20, ge=1, le=300), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=limit)
     return {"total_items": len(items), "items": items[:limit]}
 
