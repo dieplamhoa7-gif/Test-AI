@@ -220,7 +220,12 @@ def fundamental_signals(symbol: str, limit: int = Query(default=8, ge=1, le=12))
     Expected source file: ../report_signal_mvp/all_report_signals.json
     This endpoint is local/cache-only; it does not scrape in request path.
     """
-    data_path = Path(__file__).resolve().parents[2] / "report_signal_mvp" / "all_report_signals.json"
+    root = Path(__file__).resolve().parents[1]
+    candidates = [
+        root / "report_signal_mvp" / "all_report_signals.json",
+        root.parent / "report_signal_mvp" / "all_report_signals.json",
+    ]
+    data_path = next((p for p in candidates if p.exists()), candidates[0])
     wanted = _clean_symbol(symbol)
     limit_n = int(limit) if not hasattr(limit, "default") else int(limit.default)
     items: list[dict] = []
