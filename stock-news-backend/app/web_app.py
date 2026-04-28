@@ -77,7 +77,10 @@ async def security_middleware(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    connect_sources = "'self'"
+    if MARKET_API_BASE.startswith("https://"):
+        connect_sources += f" {MARKET_API_BASE}"
+    response.headers["Content-Security-Policy"] = f"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src {connect_sources}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     response.headers["Cache-Control"] = "no-store" if path.startswith(("/market-data", "/warrants-data", "/fundamental-signals")) else "public, max-age=60"
     return response
 
