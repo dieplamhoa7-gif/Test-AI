@@ -9,8 +9,9 @@ import httpx
 import pandas as pd
 
 try:
-    from vnstock import Listing, Quote
+    from vnstock import Finance, Listing, Quote
 except Exception:  # pragma: no cover
+    Finance = None
     Listing = None
     Quote = None
 
@@ -18,12 +19,16 @@ DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI"]
 
 MARKET_CACHE_TTL_SECONDS = 60
 SYMBOL_CACHE_TTL_SECONDS = 60
+INDEX_CACHE_TTL_SECONDS = 60
 
 _market_cache: list[dict[str, Any]] = []
 _symbol_detail_cache: dict[str, tuple[float, dict[str, Any]]] = {}
 _symbol_cache: list[dict[str, str]] = []
+_financial_ratio_cache: dict[str, tuple[float, dict[str, Any]]] = {}
 _last_updated: str | None = None
 _last_market_refresh_at: float = 0.0
+_index_cache: dict[str, Any] = {}
+_last_index_refresh_at: float = 0.0
 
 
 def _now_iso() -> str:
@@ -767,6 +772,84 @@ def _load_history(symbol: str) -> pd.DataFrame | None:
         return None
 
 
+def _pick_latest_ratio(df: pd.DataFrame, aliases: tuple[str, ...]) -> float | None:
+    if not isinstance(df, pd.DataFrame) or df.empty:
+        return None
+    id_columns = [col for col in ("item_id", "item", "item_en") if col in df.columns]
+    if not id_columns:
+        return None
+    meta_columns = {"item", "item_en", "item_id", "unit", "levels", "row_number"}
+    value_columns = [col for col in df.columns if col not in meta_columns]
+    if not value_columns:
+        return None
+    normalized_aliases = tuple(alias.lower() for alias in aliases)
+    for _, row in df.iterrows():
+        haystack = " ".join(str(row.get(col, "")).lower() for col in id_columns)
+        if not any(alias in haystack for alias in normalized_aliases):
+            continue
+        for col in value_columns:
+            value = _safe_number(row.get(col), 2)
+            if value is not None:
+                return value
+    return None
+
+
+
+def _load_vndirect_pe_pb(symbol: str) -> dict[str, Any]:
+    try:
+        url = f"https://api-finfo.vndirect.com.vn/v4/ratios?q=code:{symbol}&size=500"
+        resp = httpx.get(url, timeout=6, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+        data = resp.json().get("data", [])
+        def latest(codes):
+            rows = [r for r in data if str(r.get("ratioCode") or "").upper() in codes]
+            if not rows:
+                return None
+            rows.sort(key=lambda r: str(r.get("reportDate") or ""), reverse=True)
+            return _safe_number(rows[0].get("value"), 2)
+        # Prefer current PE/PB; fallback to 1Y average if current is old/unavailable.
+        pe = latest({"PRICE_TO_EARNINGS", "PRICE_TO_EARNINGS_AVG_CR_1Y", "PRICE_TO_EARNINGS_AVG_CR_YD"})
+        pb = latest({"PRICE_TO_BOOK", "PRICE_TO_BOOK_AVG_CR_1Y", "PRICE_TO_BOOK_AVG_CR_YD"})
+        return {"pe": pe, "pb": pb, "source": "vndirect", "status": "ok" if pe or pb else "unavailable"}
+    except Exception as exc:
+        return {"pe": None, "pb": None, "source": "vndirect", "status": "unavailable", "error": str(exc)[:160]}
+
+def _load_financial_ratios(symbol: str) -> dict[str, Any]:
+    normalized = symbol.strip().upper()
+    now = monotonic()
+    cached = _financial_ratio_cache.get(normalized)
+    if cached and (now - cached[0]) < 3600:
+        return cached[1]
+    ratios: dict[str, Any] = {"pe": None, "pb": None, "source": "vnstock", "status": "unavailable"}
+    fallback = _load_vndirect_pe_pb(normalized)
+    if Finance is None:
+        _financial_ratio_cache[normalized] = (now, fallback)
+        return fallback
+    for source in ("KBS", "VCI"):
+        try:
+            finance = Finance(source=source, symbol=normalized, period="quarter", show_log=False)
+            df = finance.ratio(period="quarter", lang="en")
+            ratios.update({
+                "pe": _pick_latest_ratio(df, ("p/e", "price to earnings", "price/earnings", "pe")),
+                "pb": _pick_latest_ratio(df, ("p/b", "price to book", "price/book", "pb")),
+                "source": f"vnstock-{source.lower()}",
+                "status": "ok",
+            })
+            if ratios.get("pe") or ratios.get("pb"):
+                break
+        except Exception as exc:
+            ratios["error"] = str(exc)[:160]
+    if not ratios.get("pe") and fallback.get("pe"):
+        ratios["pe"] = fallback.get("pe")
+    if not ratios.get("pb") and fallback.get("pb"):
+        ratios["pb"] = fallback.get("pb")
+    if ratios.get("pe") or ratios.get("pb"):
+        ratios["status"] = "ok"
+        ratios["source"] = ratios.get("source") if ratios.get("source", "").startswith("vnstock") and (ratios.get("pe") or ratios.get("pb")) else fallback.get("source", "vndirect")
+    _financial_ratio_cache[normalized] = (now, ratios)
+    return ratios
+
+
 def _mock_item(symbol: str) -> dict[str, Any]:
     seed = sum(ord(c) for c in symbol)
     base_price = 20.0 + (seed % 120)
@@ -784,6 +867,7 @@ def _mock_item(symbol: str) -> dict[str, Any]:
         "changePct": change_pct,
         "volume": volume,
         "technical": _calc_technical(last_price, base_price, open_price, high_price, low_price, avg_price, history_df),
+        "financial": _load_financial_ratios(symbol),
         "type": "stock",
         "source": "fallback-local",
     }
@@ -819,12 +903,56 @@ def _fetch_symbol(symbol: str, include_history: bool = True) -> dict[str, Any] |
             "changePct": round(change_pct, 2),
             "volume": volume,
             "technical": _calc_technical(last_price, ref_price, open_price, high_price, low_price, avg_price, history_df) if include_history else {},
+            "financial": _load_financial_ratios(symbol) if include_history else {},
             "type": "stock",
             "source": "vps",
         }
     except Exception:
         return None
 
+
+
+def _index_item(symbol: str, label: str) -> dict[str, Any] | None:
+    if Quote is None:
+        return None
+    try:
+        df = Quote(symbol=symbol, source="VCI").history(start="2026-01-01", end=datetime.now().strftime("%Y-%m-%d"), interval="1D")
+        if not isinstance(df, pd.DataFrame) or df.empty or len(df) < 2:
+            return None
+        df = df.sort_values("time")
+        last = df.iloc[-1]
+        prev = df.iloc[-2]
+        close = float(last.get("close") or 0)
+        prev_close = float(prev.get("close") or 0)
+        change = close - prev_close
+        change_pct = (change / prev_close * 100) if prev_close else 0
+        return {
+            "symbol": symbol,
+            "label": label,
+            "close": round(close, 2),
+            "change": round(change, 2),
+            "changePct": round(change_pct, 2),
+            "volume": int(float(last.get("volume") or 0)),
+            "time": str(last.get("time") or ""),
+        }
+    except Exception:
+        return None
+
+
+def get_index_overview(force_refresh: bool = False) -> dict[str, Any]:
+    global _index_cache, _last_index_refresh_at
+    now = monotonic()
+    if _index_cache and not force_refresh and (now - _last_index_refresh_at) < INDEX_CACHE_TTL_SECONDS:
+        return _index_cache
+    indices = [
+        _index_item("VNINDEX", "VN-Index"),
+        _index_item("HNXINDEX", "HNX-Index"),
+        _index_item("UPCOMINDEX", "UPCOM-Index"),
+    ]
+    indices = [x for x in indices if x]
+    _index_cache = {"updatedAt": _now_iso(), "items": indices, "cached": False, "ttlSeconds": INDEX_CACHE_TTL_SECONDS}
+    _last_index_refresh_at = now
+    return _index_cache
 
 def get_market_symbol(symbol: str, force_refresh: bool = False) -> dict[str, Any]:
     normalized = symbol.strip().upper()

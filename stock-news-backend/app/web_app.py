@@ -1,6 +1,8 @@
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
+import json
 import os
+from pathlib import Path
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,7 +12,8 @@ from pydantic import BaseModel
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai, summarize_news
 from app.store import load_news, merge_news
-from app.market_data import get_market_cache, get_market_symbol, get_symbol_catalog
+from app.market_data import get_index_overview, get_market_cache, get_market_symbol, get_symbol_catalog
+from app.warrants.service import get_warrants_data
 
 
 @asynccontextmanager
@@ -115,6 +118,11 @@ def health_head():
     return HTMLResponse("")
 
 
+@app.get("/market-overview")
+def market_overview(refresh: bool = Query(default=False)):
+    return get_index_overview(force_refresh=refresh)
+
+
 @app.get("/market-data")
 def market_data(refresh: bool = Query(default=False)):
     return get_market_cache(force_refresh=refresh)
@@ -128,6 +136,40 @@ def market_symbol(symbol: str, refresh: bool = Query(default=False)):
 @app.get("/market-symbols")
 def market_symbols(query: str = Query(default=""), limit: int = Query(default=20, ge=1, le=100)):
     return get_symbol_catalog(query=query, limit=limit)
+
+
+@app.get("/warrants-data")
+def warrants_data(symbols: str = Query(default=""), refresh: bool = Query(default=False)):
+    symbol_list = [s.strip().upper() for s in symbols.split(",") if s.strip()]
+    return get_warrants_data(force_refresh=refresh, symbols=symbol_list or None)
+
+
+@app.get("/fundamental-signals/{symbol}")
+def fundamental_signals(symbol: str, limit: int = Query(default=8, ge=1, le=30)):
+    """Read weekly analyst-report signal cache produced by report_signal_mvp.
+
+    Expected source file: ../report_signal_mvp/all_report_signals.json
+    This endpoint is local/cache-only; it does not scrape in request path.
+    """
+    data_path = Path(__file__).resolve().parents[2] / "report_signal_mvp" / "all_report_signals.json"
+    if not data_path.exists():
+        return {"symbol": symbol.upper(), "items": [], "updatedAt": None, "status": "missing"}
+    try:
+        rows = json.loads(data_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {"symbol": symbol.upper(), "items": [], "updatedAt": None, "status": "error", "error": str(exc)}
+    wanted = symbol.upper()
+    limit_n = int(limit) if not hasattr(limit, "default") else int(limit.default)
+    items = [r for r in rows if str(r.get("symbol", "")).upper() == wanted]
+    items.sort(key=lambda r: str(r.get("report_date") or ""), reverse=True)
+    stat = data_path.stat()
+    return {
+        "symbol": wanted,
+        "items": items[:limit_n],
+        "total": len(items),
+        "updatedAt": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).isoformat(),
+        "status": "ok",
+    }
 
 
 @app.get("/news")
