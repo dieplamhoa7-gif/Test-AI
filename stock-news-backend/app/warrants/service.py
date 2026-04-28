@@ -15,9 +15,11 @@ except Exception:  # pragma: no cover
 
 DATA_PATH = Path(__file__).resolve().parent / "warrants_static.json"
 CATALOG_PATH = Path(__file__).resolve().parent / "warrant_catalog.json"
-CACHE_TTL_SECONDS = 60
+CACHE_TTL_SECONDS = 180
+DETAIL_CACHE_TTL_SECONDS = 60
 _cache: dict[str, Any] | None = None
 _cache_at = 0.0
+_detail_cache: dict[str, tuple[float, dict[str, Any]]] = {}
 
 
 def _num(value: Any) -> float | None:
@@ -301,6 +303,14 @@ def get_warrants_data(force_refresh: bool = False, symbols: list[str] | None = N
     want = [str(x).upper().strip() for x in (symbols or []) if str(x).strip()]
     static = _static_map()
 
+    if want and not force_refresh:
+        key = ",".join(want)
+        cached = _detail_cache.get(key)
+        if cached and (now - cached[0]) < DETAIL_CACHE_TTL_SECONDS:
+            payload = dict(cached[1])
+            payload["cached"] = True
+            return payload
+
     if not want and _cache and not force_refresh and (now - _cache_at) < CACHE_TTL_SECONDS:
         return _cache
 
@@ -326,7 +336,9 @@ def get_warrants_data(force_refresh: bool = False, symbols: list[str] | None = N
                 items.append(item)
 
     payload = {"updatedAt": datetime.now().isoformat(), "items": items, "cached": False, "ttlSeconds": CACHE_TTL_SECONDS, "detailMode": bool(want)}
-    if not want:
+    if want:
+        _detail_cache[",".join(want)] = (now, payload)
+    else:
         _cache = payload
         _cache_at = now
     return payload

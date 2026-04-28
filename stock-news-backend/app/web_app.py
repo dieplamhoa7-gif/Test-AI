@@ -81,7 +81,12 @@ async def security_middleware(request: Request, call_next):
     if MARKET_API_BASE.startswith("https://"):
         connect_sources += f" {MARKET_API_BASE}"
     response.headers["Content-Security-Policy"] = f"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src {connect_sources}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-    response.headers["Cache-Control"] = "no-store" if path.startswith(("/market-data", "/warrants-data", "/fundamental-signals")) else "public, max-age=60"
+    if path.startswith(("/market-data", "/warrants-data")):
+        response.headers["Cache-Control"] = "public, max-age=15, stale-while-revalidate=30"
+    elif path.startswith(("/fundamental-signals", "/news")):
+        response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=600"
+    else:
+        response.headers["Cache-Control"] = "public, max-age=300"
     return response
 
 
