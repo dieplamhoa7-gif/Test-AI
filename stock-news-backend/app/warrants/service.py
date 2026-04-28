@@ -191,6 +191,7 @@ def enrich_warrant(row: dict[str, Any]) -> dict[str, Any]:
     moneyness = str(row.get("moneyness") or "").upper().strip() or None
     breakeven_gap_pct = None
     premium_pct = None
+    breakeven_gap_value = None
     required_daily_gain = None
     required_daily_gain_pct = None
     leverage = None
@@ -216,6 +217,7 @@ def enrich_warrant(row: dict[str, Any]) -> dict[str, Any]:
 
     if underlying_price and breakeven:
         breakeven_gap = breakeven - underlying_price
+        breakeven_gap_value = breakeven_gap
         breakeven_gap_pct = breakeven_gap / underlying_price * 100
         premium_pct = breakeven_gap_pct
         if days_left and days_left > 0:
@@ -275,6 +277,7 @@ def enrich_warrant(row: dict[str, Any]) -> dict[str, Any]:
             "timeValue": _round(time_value),
             "moneyness": moneyness,
             "moneynessPct": _round(moneyness_pct),
+            "breakevenGap": _round(breakeven_gap_value),
             "breakevenGapPct": _round(breakeven_gap_pct),
             "premiumPct": _round(premium_pct),
             "requiredDailyGain": _round(required_daily_gain),

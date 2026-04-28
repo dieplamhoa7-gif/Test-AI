@@ -19,10 +19,14 @@ DEFAULT_TICKERS = ["MWG", "FPT", "HPG", "SSI"]
 
 MARKET_CACHE_TTL_SECONDS = 60
 SYMBOL_CACHE_TTL_SECONDS = 60
+QUOTE_CACHE_TTL_SECONDS = 15
+HISTORY_CACHE_TTL_SECONDS = 15 * 60
 INDEX_CACHE_TTL_SECONDS = 60
 
 _market_cache: list[dict[str, Any]] = []
 _symbol_detail_cache: dict[str, tuple[float, dict[str, Any]]] = {}
+_quote_cache: dict[str, tuple[float, dict[str, Any]]] = {}
+_history_cache: dict[str, tuple[float, pd.DataFrame | None]] = {}
 _symbol_cache: list[dict[str, str]] = []
 _financial_ratio_cache: dict[str, tuple[float, dict[str, Any]]] = {}
 _last_updated: str | None = None
@@ -744,10 +748,15 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
 
 
 def _load_history(symbol: str) -> pd.DataFrame | None:
+    normalized = symbol.strip().upper()
+    now = monotonic()
+    cached = _history_cache.get(normalized)
+    if cached and (now - cached[0]) < HISTORY_CACHE_TTL_SECONDS:
+        return cached[1]
     if Quote is None:
         return None
     try:
-        df = Quote(symbol=symbol, source="VCI").history(start="2024-01-01", end=_now_iso()[:10], interval="1D")
+        df = Quote(symbol=normalized, source="VCI").history(start="2025-01-01", end=_now_iso()[:10], interval="1D")
         if not isinstance(df, pd.DataFrame) or df.empty:
             return None
         rename_map = {
@@ -767,8 +776,10 @@ def _load_history(symbol: str) -> pd.DataFrame | None:
         if "volume" not in work.columns:
             work["volume"] = 0
         work = work[required + ["volume"]].dropna().reset_index(drop=True)
+        _history_cache[normalized] = (now, work)
         return work
     except Exception:
+        _history_cache[normalized] = (now, None)
         return None
 
 
@@ -820,32 +831,7 @@ def _load_financial_ratios(symbol: str) -> dict[str, Any]:
     cached = _financial_ratio_cache.get(normalized)
     if cached and (now - cached[0]) < 3600:
         return cached[1]
-    ratios: dict[str, Any] = {"pe": None, "pb": None, "source": "vnstock", "status": "unavailable"}
-    fallback = _load_vndirect_pe_pb(normalized)
-    if Finance is None:
-        _financial_ratio_cache[normalized] = (now, fallback)
-        return fallback
-    for source in ("KBS", "VCI"):
-        try:
-            finance = Finance(source=source, symbol=normalized, period="quarter", show_log=False)
-            df = finance.ratio(period="quarter", lang="en")
-            ratios.update({
-                "pe": _pick_latest_ratio(df, ("p/e", "price to earnings", "price/earnings", "pe")),
-                "pb": _pick_latest_ratio(df, ("p/b", "price to book", "price/book", "pb")),
-                "source": f"vnstock-{source.lower()}",
-                "status": "ok",
-            })
-            if ratios.get("pe") or ratios.get("pb"):
-                break
-        except Exception as exc:
-            ratios["error"] = str(exc)[:160]
-    if not ratios.get("pe") and fallback.get("pe"):
-        ratios["pe"] = fallback.get("pe")
-    if not ratios.get("pb") and fallback.get("pb"):
-        ratios["pb"] = fallback.get("pb")
-    if ratios.get("pe") or ratios.get("pb"):
-        ratios["status"] = "ok"
-        ratios["source"] = ratios.get("source") if ratios.get("source", "").startswith("vnstock") and (ratios.get("pe") or ratios.get("pb")) else fallback.get("source", "vndirect")
+    ratios = _load_vndirect_pe_pb(normalized)
     _financial_ratio_cache[normalized] = (now, ratios)
     return ratios
 
@@ -873,42 +859,62 @@ def _mock_item(symbol: str) -> dict[str, Any]:
     }
 
 
-def _fetch_symbol(symbol: str, include_history: bool = True) -> dict[str, Any] | None:
+def _fetch_quote(symbol: str) -> dict[str, Any] | None:
+    normalized = symbol.strip().upper()
+    now = monotonic()
+    cached = _quote_cache.get(normalized)
+    if cached and (now - cached[0]) < QUOTE_CACHE_TTL_SECONDS:
+        return cached[1]
     try:
-        url = f"https://bgapidatafeed.vps.com.vn/getliststockdata/{symbol}"
-        resp = httpx.get(url, timeout=4, headers={"User-Agent": "Mozilla/5.0"})
+        url = f"https://bgapidatafeed.vps.com.vn/getliststockdata/{normalized}"
+        resp = httpx.get(url, timeout=2.5, headers={"User-Agent": "Mozilla/5.0"})
         if resp.status_code != 200:
             return None
         data = resp.json()
         if not isinstance(data, list) or not data:
             return None
         item = data[0]
-
         last_price = float(item.get("lastPrice") or 0)
         ref_price = float(item.get("r") or 0)
         change_pct = (((last_price - ref_price) / ref_price) * 100) if ref_price else 0
         raw_volume = item.get("totalVolume")
         if raw_volume in (None, "", 0, "0"):
-            # VPS `lot` is board-lot quantity; convert to shares for display.
             raw_volume = float(item.get("lot") or item.get("lastVolume") or item.get("nnBuy") or 0) * 10
-        volume = int(float(raw_volume or 0))
-        low_price = float(item.get("lowPrice") or last_price or ref_price or 0)
-        high_price = float(item.get("highPrice") or last_price or ref_price or 0)
-        open_price = float(item.get("openPrice") or ref_price or last_price or 0)
-        avg_price = float(item.get("avePrice") or last_price or 0)
-        history_df = _load_history(symbol) if include_history else None
-        return {
-            "ticker": symbol,
+        quote = {
+            "ticker": normalized,
             "price": round(last_price, 2),
+            "refPrice": ref_price,
             "changePct": round(change_pct, 2),
-            "volume": volume,
-            "technical": _calc_technical(last_price, ref_price, open_price, high_price, low_price, avg_price, history_df) if include_history else {},
-            "financial": _load_financial_ratios(symbol) if include_history else {},
-            "type": "stock",
-            "source": "vps",
+            "volume": int(float(raw_volume or 0)),
+            "lowPrice": float(item.get("lowPrice") or last_price or ref_price or 0),
+            "highPrice": float(item.get("highPrice") or last_price or ref_price or 0),
+            "openPrice": float(item.get("openPrice") or ref_price or last_price or 0),
+            "avgPrice": float(item.get("avePrice") or last_price or 0),
         }
+        _quote_cache[normalized] = (now, quote)
+        return quote
     except Exception:
         return None
+
+
+def _fetch_symbol(symbol: str, include_history: bool = True) -> dict[str, Any] | None:
+    normalized = symbol.strip().upper()
+    quote = _fetch_quote(normalized)
+    if not quote:
+        return None
+    last_price = quote["price"]
+    ref_price = quote.get("refPrice") or 0
+    history_df = _load_history(normalized) if include_history else None
+    return {
+        "ticker": normalized,
+        "price": round(last_price, 2),
+        "changePct": quote["changePct"],
+        "volume": quote["volume"],
+        "technical": _calc_technical(last_price, ref_price, quote.get("openPrice") or 0, quote.get("highPrice") or 0, quote.get("lowPrice") or 0, quote.get("avgPrice") or last_price, history_df) if include_history else {},
+        "financial": _load_financial_ratios(normalized) if include_history else {},
+        "type": "stock",
+        "source": "vps",
+    }
 
 
 

@@ -1,0 +1,29 @@
+NEWS_HTML = r'''
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tin tức - Investment Information</title>
+  <style>
+    :root{--bg:#070b14;--panel:#101726;--panel2:#151f32;--line:rgba(151,170,214,.14);--text:#edf2ff;--muted:#92a0c0;--accent:#64b5ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#101a2e,#070b14 45%,#05070d);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}a{color:inherit;text-decoration:none}.shell{width:min(980px,calc(100% - 24px));margin:0 auto;padding:14px 0 36px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid var(--line);background:rgba(9,14,24,.9);border-radius:22px;position:sticky;top:10px;z-index:5}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#7a74ff);font-weight:800}.brand h1{font-size:22px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px;letter-spacing:.16em}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.chip{border:1px solid var(--line);background:var(--panel2);padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700}.chip.active{background:rgba(100,181,255,.16);color:var(--text);border-color:rgba(100,181,255,.35)}.panel{border:1px solid var(--line);background:rgba(16,23,38,.9);border-radius:24px;padding:18px}.head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}.head h3{margin:0;font-size:24px}.head p{margin:6px 0 0;color:var(--muted)}.news-list{display:grid;gap:12px}.card{border:1px solid var(--line);background:rgba(21,31,50,.82);border-radius:18px;padding:14px}.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-bottom:8px}.tag{color:#4ef0c0}.title{font-size:17px;margin:0 0 8px;line-height:1.35}.snippet{margin:0;color:var(--muted);line-height:1.5}.open{display:inline-flex;margin-top:10px;color:var(--accent);font-weight:700}.pager{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}.pager input{width:86px;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:10px 14px;cursor:pointer}.status{color:var(--muted)}.error{color:#ff6b6b}.disclaimer{margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:12px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="brand" href="/stocks"><div class="logo">H</div><div><h1>Investment Information</h1><p>HOA INVESTMENT</p></div></a><span class="chip active" id="apiStatus">Online</span></header>
+    <nav class="tabs"><a class="chip" href="/stocks">Chứng Khoán</a><a class="chip" href="/warrants">Chứng Quyền</a><a class="chip active" href="/news-page">Tin Tức</a></nav>
+    <main class="panel"><div class="head"><div><h3>Dòng tin</h3><p id="statusText">Đang tải...</p></div></div><div class="news-list" id="newsList"></div><div class="pager"><button class="btn" id="prevBtn">← Lùi</button><input id="pageInput" type="number" min="1" value="1"><button class="btn" id="goBtn">Đi tới</button><button class="btn" id="nextBtn">Tiếp →</button><span class="status" id="pageInfo">Trang 1/1</span></div></main>
+    <div class="disclaimer"><b>Lưu ý:</b> Dữ liệu chỉ phục vụ tham khảo, không phải khuyến nghị mua bán. Người dùng tự chịu trách nhiệm với quyết định đầu tư.</div>
+  </div>
+<script>
+const API_BASE=''; const PAGE_SIZE=5; let currentPage=1,totalItems=0;
+const $=id=>document.getElementById(id); const esc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+function fmtTime(v){if(!v)return 'Không rõ thời gian'; const d=new Date(String(v)); if(!Number.isNaN(d.getTime())) return d.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}); return String(v).replace(/^[A-Za-z]{3},\s*/,'').replace(/\s*\+0700$/,'')}
+function render(items){const pages=Math.max(1,Math.ceil(totalItems/PAGE_SIZE)); $('pageInput').value=currentPage; $('pageInfo').textContent=`Trang ${currentPage}/${pages}`; $('statusText').textContent=`Hiển thị ${items.length}/${totalItems} tin`; $('newsList').innerHTML=items.length?items.map(x=>`<article class="card"><div class="meta"><span class="tag">${esc(x.source||'unknown')}</span><span>${esc(fmtTime(x.published_at||x.fetched_at))}</span></div><h3 class="title">${esc(x.title||'Không có tiêu đề')}</h3><p class="snippet">${esc(x.snippet||'')}</p><a class="open" href="${esc(x.url||'#')}" target="_blank" rel="noreferrer">Đọc bài gốc</a></article>`).join(''):'<div class="card">Không có tin.</div>'}
+async function load(page=1){currentPage=Math.max(1,page); $('statusText').textContent='Đang tải tin tức...'; try{const r=await fetch(`${API_BASE}/news?limit=${PAGE_SIZE}&page=${currentPage}`,{cache:'default'}); if(!r.ok)throw new Error(); const d=await r.json(); totalItems=Number(d.total_items||0); currentPage=Number(d.page||currentPage); render(Array.isArray(d.items)?d.items:[]); $('apiStatus').textContent='Online'}catch(e){$('apiStatus').textContent='Offline'; $('statusText').innerHTML='<span class="error">Lỗi tải tin tức.</span>'}}
+$('prevBtn').onclick=()=>load(currentPage-1); $('nextBtn').onclick=()=>load(currentPage+1); $('goBtn').onclick=()=>load(Number($('pageInput').value)||1); load(1);
+</script>
+</body>
+</html>
+'''
