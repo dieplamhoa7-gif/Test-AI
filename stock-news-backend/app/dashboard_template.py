@@ -517,19 +517,36 @@ DASHBOARD_HTML = r'''
       return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>Chiến lược:</b><br>${escapeHtml(col.summary || col.name || '')}</div><div><b>Chỉ báo dùng:</b><br>${escapeHtml(indicators)}</div><div><b>Kiểm định:</b><br>${escapeHtml(validation)}</div></span></span>`;
     }
 
+    function parsePriceMid(value) {
+      if (value === null || value === undefined || value === '') return null;
+      if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+      const nums = String(value).match(/\d+(?:[.,]\d+)?/g);
+      if (!nums || !nums.length) return null;
+      const values = nums.map(v => Number(v.replace(',', '.'))).filter(Number.isFinite);
+      if (!values.length) return null;
+      return values.reduce((a,b)=>a+b,0) / values.length;
+    }
+
+    function fmtOneDecimal(value) {
+      const n = parsePriceMid(value);
+      return n === null ? '-' : n.toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    }
+
     function compactSymbols(items, max=6) {
       const rows = Array.isArray(items) ? items : [];
       if (!rows.length) return '<span class="strategy-empty">-</span>';
       return rows.slice(0,max).map(x => {
         const rawSymbol = x.symbol || x.ticker || '';
         const symbol = escapeHtml(rawSymbol);
-        const action = '';
-        const entry = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '-';
-        const target = x.takeProfit ?? x.target ?? '-';
-        const stop = x.stopLoss ?? x.stop ?? '-';
+        const entryRaw = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '-';
+        const targetRaw = x.takeProfit ?? x.target ?? '-';
+        const stopRaw = x.stopLoss ?? x.stop ?? '-';
+        const entry = fmtOneDecimal(entryRaw);
+        const target = fmtOneDecimal(targetRaw);
+        const stop = fmtOneDecimal(stopRaw);
         const rank = x.rankScore ?? x.rank ?? '';
-        const title = escapeHtml([x.reason || '', entry !== '-' ? `Vùng mua: ${entry}` : '', target !== '-' ? `Target: ${target}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
-        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span>${action ? `<small>${action}</small>` : ''}<span class="trade-line"><span>Vùng mua</span><b>${escapeHtml(String(entry))}</b></span><span class="trade-line"><span>Target</span><b>${escapeHtml(String(target))}</b></span><span class="trade-line"><span>Cắt lỗ</span><b>${escapeHtml(String(stop))}</b></span></button>`;
+        const title = escapeHtml([x.reason || '', entry !== '-' ? `Điểm mua: ${entry}` : '', target !== '-' ? `Target: ${target}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="trade-line"><span>Điểm mua</span><b>${escapeHtml(entry)}</b></span><span class="trade-line"><span>Target</span><b>${escapeHtml(target)}</b></span><span class="trade-line"><span>Cắt lỗ</span><b>${escapeHtml(stop)}</b></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
 
