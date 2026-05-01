@@ -511,10 +511,14 @@ DASHBOARD_HTML = r'''
     }
 
     function renderStrategyTooltip(col) {
-      const v = col.validation || {};
-      const indicators = col.indicators || col.outputIndicators || 'RSI, MACD, Bollinger/MA, Volume, R/S cache, Ichimoku khi có.';
-      const validation = v.combined || v.multiWindow || v.current180 || v.oos || '-';
-      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>Chiến lược:</b><br>${escapeHtml(col.summary || col.name || '')}</div><div><b>Chỉ báo dùng:</b><br>${escapeHtml(indicators)}</div><div><b>Kiểm định:</b><br>${escapeHtml(validation)}</div></span></span>`;
+      const indicators = col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S';
+      const m = col.tooltipMetrics || {};
+      const validation = [
+        `Win rate: ${m.winRate || '-'}`,
+        `Average Return: ${m.averageReturn || '-'}`,
+        `Total Return: ${m.totalReturn || '-'}`
+      ].join('<br>');
+      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>Chiến lược:</b><br>${escapeHtml(col.summary || col.name || '')}</div><div><b>Chỉ báo:</b><br>${escapeHtml(indicators)}</div><div><b>Kiểm định:</b><br>${validation}</div></span></span>`;
     }
 
     function parsePriceMid(value) {

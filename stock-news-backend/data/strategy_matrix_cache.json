@@ -6,12 +6,17 @@
   "columns": [
     {
       "id": "b4_trend_pullback",
-      "name": "Mua Pullback trong trend",
-      "shortName": "Pullback trend",
+      "name": "Trend Pullback Pro",
+      "shortName": "Trend Pullback",
       "priority": 1,
       "style": "primary",
-      "summary": "Chiến lược chính hiện tại: mua hồi trong trend.",
-      "indicators": "RSI vùng hồi trong trend, MACD hồi phục, Volume xác nhận, R/S cache, Ichimoku tránh dưới mây, bearish divergence để chặn rủi ro.",
+      "summary": "Mua cổ phiếu đang nằm trong xu hướng tăng, chờ nhịp điều chỉnh về vùng hỗ trợ rồi vào khi lực hồi phục xuất hiện. Chiến lược ưu tiên cổ phiếu còn khỏe, không bắt dao rơi và tránh mã đã gãy xu hướng.",
+      "indicators": "RSI, MACD, Volume, R/S, Ichimoku",
+      "tooltipMetrics": {
+        "winRate": "58.14%",
+        "averageReturn": "+0.79%/lệnh",
+        "totalReturn": "+33.78%"
+      },
       "validation": {
         "status": "Đang dùng làm chiến lược chính",
         "current180": "11 lệnh · win rate 63.64% · tổng PnL +17.51%",
@@ -27,12 +32,17 @@
     },
     {
       "id": "clean_split_a_bottom",
-      "name": "Bắt đáy gần hỗ trợ",
-      "shortName": "Bắt đáy hỗ trợ",
+      "name": "Support Rebound Hunter",
+      "shortName": "Support Rebound",
       "priority": 3,
       "style": "warning",
-      "summary": "Setup phụ: bắt nhịp hồi từ vùng quá bán gần hỗ trợ.",
-      "indicators": "Vùng hỗ trợ R/S cache, trạng thái quá bán/hồi phục, MACD/RSI hồi phục, Bollinger/MA, volume cạn cung hoặc hồi xác nhận.",
+      "summary": "Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.",
+      "indicators": "R/S, RSI, MACD, Bollinger, Volume",
+      "tooltipMetrics": {
+        "winRate": "88.89%",
+        "averageReturn": "+4.42%/lệnh",
+        "totalReturn": "+39.75%"
+      },
       "validation": {
         "status": "Setup phụ, tín hiệu hiếm",
         "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
@@ -49,12 +59,17 @@
     },
     {
       "id": "shakeout_breakdown_rebound",
-      "name": "Mua rũ / Shakeout",
-      "shortName": "Mua rũ",
+      "name": "Shakeout Rebound",
+      "shortName": "Shakeout",
       "priority": 2,
       "style": "danger",
-      "summary": "Setup rũ hàng: rủi ro cao hơn, hợp midcap hơn.",
-      "indicators": "Break hỗ trợ rồi hồi lại, volume rũ hàng, MACD/RSI hồi phục, R/S cache để xác định vùng rũ, quản trị stop chặt.",
+      "summary": "Bắt nhịp hồi sau pha rũ hàng: giá thủng hỗ trợ ngắn hạn để loại bỏ lực yếu, sau đó kéo ngược lại vùng hỗ trợ cũ. Setup này biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.",
+      "indicators": "R/S, Volume, RSI, MACD",
+      "tooltipMetrics": {
+        "winRate": "52.17%",
+        "averageReturn": "+0.86%/lệnh",
+        "totalReturn": "+39.38%"
+      },
       "validation": {
         "status": "Có tiềm năng, cần kiểm soát rủi ro",
         "train": "Midcap train: 11 lệnh · win rate 36.36% · tổng PnL -9.50%",
