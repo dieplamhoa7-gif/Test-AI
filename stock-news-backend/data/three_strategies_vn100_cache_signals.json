@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-05-01T22:59:13.484558",
-  "note": "Current strategy signal cache refreshed from VN100 cache scan. Source: data/three_strategies_vn100_cache_signals.json. Web reads output only.",
-  "strategies": [
-    {
-      "id": "b4_trend_pullback",
-      "name": "Trend Pullback Pro",
+  "createdAt": "2026-05-01T22:59:13.484558",
+  "source": "data\\v3_full_indicator_cache_v2.json",
+  "note": "VN100 cache scan based on available indicator cache. Does not call provider. Universe limited to symbols present in cache.",
+  "inputCount": 29,
+  "strategies": {
+    "b4_trend_pullback": {
       "buy": [],
       "watchlist": [
         {
@@ -76,20 +76,40 @@
           "asOfDate": "2026-04-29"
         }
       ],
-      "rejectCount": 25,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
+      "rejects": [
+        "FPT",
+        "HPG",
+        "SSI",
+        "VCI",
+        "VND",
+        "HCM",
+        "MBS",
+        "TCB",
+        "MBB",
+        "ACB",
+        "BID",
+        "VPB",
+        "VIB",
+        "VHM",
+        "VIC",
+        "VRE",
+        "KDH",
+        "VTP",
+        "REE",
+        "PC1",
+        "SZC",
+        "BCM",
+        "HDG",
+        "KSB",
+        "ANV"
+      ],
+      "summary": {
+        "buy": 0,
+        "watch": 4,
+        "reject": 25
+      }
     },
-    {
-      "id": "shakeout_breakdown_rebound",
-      "name": "Shakeout Rebound",
-      "buy": [],
-      "watchlist": [],
-      "rejectCount": 29,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
-    },
-    {
-      "id": "clean_split_a_bottom",
-      "name": "Support Rebound Hunter",
+    "clean_split_a_bottom": {
       "buy": [
         {
           "symbol": "SZC",
@@ -126,8 +146,80 @@
           "asOfDate": "2026-04-29"
         }
       ],
-      "rejectCount": 27,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
+      "rejects": [
+        "FPT",
+        "MWG",
+        "HPG",
+        "SSI",
+        "VCI",
+        "VND",
+        "HCM",
+        "MBS",
+        "TCB",
+        "MBB",
+        "ACB",
+        "CTG",
+        "BID",
+        "VPB",
+        "STB",
+        "VIB",
+        "VHM",
+        "VIC",
+        "VRE",
+        "KDH",
+        "VTP",
+        "CTR",
+        "REE",
+        "BCM",
+        "HDG",
+        "KSB",
+        "ANV"
+      ],
+      "summary": {
+        "buy": 1,
+        "watch": 1,
+        "reject": 27
+      }
+    },
+    "shakeout_breakdown_rebound": {
+      "buy": [],
+      "watchlist": [],
+      "rejects": [
+        "FPT",
+        "MWG",
+        "HPG",
+        "SSI",
+        "VCI",
+        "VND",
+        "HCM",
+        "MBS",
+        "TCB",
+        "MBB",
+        "ACB",
+        "CTG",
+        "BID",
+        "VPB",
+        "STB",
+        "VIB",
+        "VHM",
+        "VIC",
+        "VRE",
+        "KDH",
+        "VTP",
+        "CTR",
+        "REE",
+        "PC1",
+        "SZC",
+        "BCM",
+        "HDG",
+        "KSB",
+        "ANV"
+      ],
+      "summary": {
+        "buy": 0,
+        "watch": 0,
+        "reject": 29
+      }
     }
-  ]
+  }
 }
