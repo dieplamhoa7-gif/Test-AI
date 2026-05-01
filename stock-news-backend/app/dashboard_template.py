@@ -498,18 +498,6 @@ DASHBOARD_HTML = r'''
 
     function strategyVisualSvg(style='primary') {
       const color = style === 'danger' ? '#ff7d7d' : (style === 'warning' ? '#ffb454' : (style === 'research' ? '#a68bff' : '#4ef0c0'));
-      return `<svg viewBox="0 0 240 54" preserveAspectRatio="none" aria-hidden="true"><path d="M0 42 C35 36 44 28 68 31 C92 34 105 17 126 21 C150 25 160 9 184 13 C208 16 216 8 240 6" fill="none" stroke="${color}" stroke-width="3"/><path d="M0 47 L240 47" stroke="rgba(151,170,214,.22)" stroke-dasharray="5 5"/><circle cx="184" cy="13" r="4" fill="${color}"/><circle cx="126" cy="21" r="3" fill="${color}" opacity=".8"/></svg>`;
-    }
-
-    function renderStrategyTooltip(col) {
-      const v = col.validation || {};
-      const indicators = col.indicators || col.outputIndicators || 'RSI, MACD, Bollinger/MA, Volume, R/S cache, Ichimoku khi có.';
-      const validation = v.combined || v.multiWindow || v.current180 || v.oos || '-';
-      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>Chiến lược:</b><br>${escapeHtml(col.summary || col.name || '')}</div><div><b>Chỉ báo dùng:</b><br>${escapeHtml(indicators)}</div><div><b>Kiểm định:</b><br>${escapeHtml(validation)}</div></span></span>`;
-    }
-
-    function strategyVisualSvg(style='primary') {
-      const color = style === 'danger' ? '#ff7d7d' : (style === 'warning' ? '#ffb454' : (style === 'research' ? '#a68bff' : '#4ef0c0'));
       return `<svg viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C35 31 48 22 72 25 C94 28 108 12 132 17 C154 21 164 8 188 11 C210 14 222 7 240 5" fill="none" stroke="${color}" stroke-width="3"/><path d="M0 40 L240 40" stroke="rgba(151,170,214,.22)" stroke-dasharray="5 5"/><circle cx="188" cy="11" r="4" fill="${color}"/></svg>`;
     }
 
