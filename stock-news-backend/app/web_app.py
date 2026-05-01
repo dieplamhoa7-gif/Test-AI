@@ -13,9 +13,13 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 
 from app.services.scraper import collect_news
-from app.services.summarizer import enrich_news_with_ai, summarize_news
+from app.services.summarizer import enrich_news_with_ai
 from app.store import load_news, merge_news
+from app.fundamental_filters import normalize_target_price, top_target_upside
 from app.market_data import get_index_overview, get_market_cache, get_market_symbol, get_symbol_catalog
+from app.report_sources import load_cached_24hmoney_reports
+from app.technical_filters import top_technical_setups
+from app.strategy_recommendations import current_strategy_recommendations
 from app.warrants.service import get_warrants_data
 
 
@@ -28,6 +32,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
+APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -49,7 +54,6 @@ SYMBOL_RE = re.compile(r"^[A-Z0-9]{1,12}$")
 _rate_buckets: dict[str, list[float]] = {}
 RATE_LIMIT_WINDOW = 60.0
 RATE_LIMIT_MAX = 180
-_summary_cache: dict[tuple[int, int], dict] = {}
 _last_refresh_at: datetime | None = None
 
 
@@ -79,11 +83,14 @@ async def security_middleware(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["X-App-Version"] = APP_ASSET_VERSION
     connect_sources = "'self'"
     if MARKET_API_BASE.startswith("https://"):
         connect_sources += f" {MARKET_API_BASE}"
     response.headers["Content-Security-Policy"] = f"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src {connect_sources}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-    if path.startswith(("/market-data", "/warrants-data")):
+    if path in {"/", "/stocks", "/warrants", "/news-page"} or path.startswith(("/stocks/", "/warrants/")):
+        response.headers["Cache-Control"] = "no-store, max-age=0"
+    elif path.startswith(("/market-data", "/warrants-data")):
         response.headers["Cache-Control"] = "public, max-age=15, stale-while-revalidate=30"
     elif path.startswith(("/fundamental-signals", "/news")):
         response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=600"
@@ -133,21 +140,11 @@ class SummarizeResponse(BaseModel):
 
 MARKET_API_BASE = os.getenv("MARKET_API_BASE", "").rstrip("/")
 from app.dashboard_template import DASHBOARD_HTML
-from app.news_light_template import NEWS_HTML
-from app.warrants_light_template import WARRANTS_HTML
 
 
 def _dashboard_response():
     html = DASHBOARD_HTML.replace("__MARKET_API_BASE__", MARKET_API_BASE)
     return HTMLResponse(html)
-
-
-def _news_response():
-    return HTMLResponse(NEWS_HTML)
-
-
-def _warrants_response():
-    return HTMLResponse(WARRANTS_HTML)
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -168,18 +165,18 @@ def stock_detail_page(symbol: str):
 
 @app.get("/warrants", response_class=HTMLResponse)
 def warrants_page():
-    return _warrants_response()
+    return _dashboard_response()
 
 
 @app.get("/warrants/{symbol}", response_class=HTMLResponse)
 def warrant_detail_page(symbol: str):
     _clean_symbol(symbol)
-    return _warrants_response()
+    return _dashboard_response()
 
 
 @app.get("/news-page", response_class=HTMLResponse)
 def news_page():
-    return _news_response()
+    return _dashboard_response()
 
 
 @app.head("/")
@@ -212,6 +209,7 @@ def market_symbol(symbol: str, refresh: bool = Query(default=False)):
     return get_market_symbol(_clean_symbol(symbol), force_refresh=refresh)
 
 
+
 @app.get("/market-symbols")
 def market_symbols(query: str = Query(default="", max_length=20), limit: int = Query(default=20, ge=1, le=30)):
     return get_symbol_catalog(query=query[:20], limit=limit)
@@ -223,8 +221,45 @@ def warrants_data(symbols: str = Query(default="", max_length=160), refresh: boo
     return get_warrants_data(force_refresh=refresh, symbols=symbol_list or None)
 
 
+@app.get("/fundamental-top-upside")
+def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=200), refresh: bool = Query(default=False)):
+    return top_target_upside(limit=limit, max_symbols=max_symbols, force_refresh=refresh)
+
+
+@app.get("/technical-top-setups")
+def technical_top_setups(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=50, ge=10, le=50), refresh: bool = Query(default=False)):
+    return top_technical_setups(limit=limit, max_symbols=max_symbols, force_refresh=refresh)
+
+
+@app.get("/strategy-results-cache")
+def strategy_results_cache():
+    cache_path = Path(__file__).resolve().parents[1] / "data" / "strategy_results_cache.json"
+    if cache_path.exists():
+        try:
+            return json.loads(cache_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"updatedAt": None, "strategies": [], "note": "missing cache"}
+
+
+@app.get("/strategy-matrix-cache")
+def strategy_matrix_cache():
+    cache_path = Path(__file__).resolve().parents[1] / "data" / "strategy_matrix_cache.json"
+    if cache_path.exists():
+        try:
+            return json.loads(cache_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"updatedAt": None, "columns": [], "rows": [], "note": "missing strategy matrix cache"}
+
+
+@app.get("/strategy-recommendations")
+def strategy_recommendations(max_symbols: int = Query(default=60, ge=10, le=80), refresh: bool = Query(default=False)):
+    return current_strategy_recommendations(max_symbols=max_symbols, force_refresh=refresh)
+
+
 @app.get("/fundamental-signals/{symbol}")
-def fundamental_signals(symbol: str, limit: int = Query(default=8, ge=1, le=12)):
+def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)):
     """Read weekly analyst-report signal cache produced by report_signal_mvp.
 
     Expected source file: ../report_signal_mvp/all_report_signals.json
@@ -260,7 +295,44 @@ def fundamental_signals(symbol: str, limit: int = Query(default=8, ge=1, le=12))
                 updated_at = datetime.fromtimestamp(db_path.stat().st_mtime, tz=timezone.utc).isoformat()
             except Exception:
                 items = []
+    reports_path = root / "data" / "24hmoney_reports.json"
+    report_rows = load_cached_24hmoney_reports(reports_path)
+    existing_keys = {str(r.get("source_url") or r.get("url") or r.get("title") or "").lower() for r in items}
+    for report in report_rows:
+        symbols = [str(s).upper() for s in report.get("symbols") or []]
+        if wanted not in symbols and str(report.get("symbol", "")).upper() != wanted:
+            continue
+        key = str(report.get("url") or report.get("title") or "").lower()
+        if key in existing_keys:
+            continue
+        existing_keys.add(key)
+        items.append({
+            "symbol": wanted,
+            "report_date": report.get("report_date"),
+            "title": report.get("title"),
+            "source": report.get("source") or "24HMoney",
+            "source_url": report.get("url"),
+            "url": report.get("url"),
+            "summary": report.get("summary"),
+            "recommendation": "Báo cáo phân tích",
+            "provider": "24HMoney",
+        })
     items.sort(key=lambda r: str(r.get("report_date") or ""), reverse=True)
+    quote_price = 0.0
+    try:
+        quote_res = get_market_symbol(wanted, force_refresh=False)
+        quote_price = float((quote_res or {}).get("price") or 0)
+        if 0 < quote_price < 1000:
+            quote_price *= 1000
+    except Exception:
+        quote_price = 0.0
+    if quote_price > 0:
+        for row in items:
+            for key in ("target_price", "buy_low", "buy_high", "stop_loss"):
+                if row.get(key) not in (None, ""):
+                    normalized_value = normalize_target_price(row.get(key), quote_price)
+                    if normalized_value > 0:
+                        row[key] = normalized_value
     return {
         "symbol": wanted,
         "items": items[:limit_n],
@@ -272,21 +344,9 @@ def fundamental_signals(symbol: str, limit: int = Query(default=8, ge=1, le=12))
 
 @app.get("/news")
 def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=200), refresh: bool = Query(default=False)):
-    # Runtime web path is cache-only to avoid slow scraping or abuse on public deploy.
-    items = load_news()
+    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
     start = (page - 1) * limit
     end = start + limit
-    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": True}
+    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh}
 
 
-@app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=5, ge=1, le=20), max_chars: int = Query(default=1200, ge=300, le=2500), refresh: bool = Query(default=False)):
-    key = (limit, max_chars)
-    if not refresh and key in _summary_cache:
-        return _summary_cache[key]
-    # Cache-only; do not scrape realtime from summarize endpoint.
-    items = load_news()[:limit]
-    summary = summarize_news(items, max_chars=max_chars)
-    payload = {"total_items": len(items), "summary": summary, "items": items}
-    _summary_cache[key] = payload
-    return payload

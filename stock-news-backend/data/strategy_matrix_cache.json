@@ -1,0 +1,85 @@
+{
+  "updatedAt": "2026-05-01T20:35:00+07:00",
+  "title": "Ma trận chiến lược PTKT",
+  "note": "Web chỉ hiển thị kết quả/ma trận đã lưu, không chạy tính toán nặng khi render. WATCH nghĩa là xem xét/chờ thêm, không phải khuyến nghị mua.",
+  "columns": [
+    {
+      "id": "b4_trend_pullback",
+      "name": "Mua Pullback trong trend",
+      "shortName": "Pullback trend",
+      "priority": 1,
+      "style": "primary",
+      "summary": "Mua cổ phiếu còn trend khỏe, điều chỉnh về gần hỗ trợ rồi hồi tiếp.",
+      "indicators": ["Ichimoku", "Support/Resistance", "RSI", "MACD histogram", "Bollinger", "Volume ratio", "ROC20", "Divergence"],
+      "tradePlan": "Target +6%, chốt 50% tại +6%, trailing phần còn lại, stop 6%.",
+      "validation": {
+        "status": "Chiến lược chính hiện tại",
+        "current180": "11 lệnh · win rate 63.64% · tổng PnL +17.51%",
+        "oosPrev3m": "32 lệnh · win rate 56.25% · tổng PnL +16.27%",
+        "combined": "43 lệnh · 25 win / 18 loss · win rate ~58.14% · tổng PnL +33.78%",
+        "source": "data/b4_trend_pullback_locked_backtest.json"
+      },
+      "matrix": {
+        "buy": "BUY khi còn above-cloud, về gần hỗ trợ, RSI trung tính, MACD hồi/phân kỳ dương, không có tín hiệu suy yếu rõ.",
+        "watch": "WATCH khi thiếu 1–2 điều kiện như chưa đủ gần hỗ trợ hoặc MACD chưa hồi đủ. Chỉ theo dõi, chưa mua.",
+        "avoid": "AVOID khi below-cloud, MACD cắt xuống mạnh, RSI rơi, giá xa hỗ trợ hoặc có phân kỳ âm."
+      }
+    },
+    {
+      "id": "clean_split_a_bottom",
+      "name": "Bắt đáy gần hỗ trợ",
+      "shortName": "Bắt đáy hỗ trợ",
+      "priority": 3,
+      "style": "warning",
+      "summary": "Tìm nhịp hồi khi cổ phiếu bị bán quá đà, về sát hỗ trợ nhưng chưa gãy cấu trúc quá xấu.",
+      "indicators": ["Support/Resistance", "Ichimoku", "RSI", "Bollinger", "Volume ratio", "MACD histogram", "Divergence"],
+      "tradePlan": "Ưu tiên đồng bộ với hệ thống: target +6%, chốt 50%, trailing, stop 6%. Bản lịch sử từng test cả target +10 full.",
+      "validation": {
+        "status": "Setup phụ, tín hiệu đẹp nhưng hiếm",
+        "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
+        "altCurrent180": "Target +10 full: 9 lệnh · win rate 77.78% · tổng PnL +52.57%",
+        "oosPrev3m": "0 lệnh",
+        "combined": "Mẫu ít, chưa đủ làm chiến lược chính",
+        "source": "data/v3_clean_split_rs_action_backtest.json; data/v3_clean_split_baseline_locked.json"
+      },
+      "matrix": {
+        "buy": "BUY khi cổ phiếu quá bán, sát hỗ trợ, BB thấp, volume ổn, MACD không còn xấu và chưa thủng cấu trúc.",
+        "watch": "WATCH khi gần đạt nhưng RSI chưa đủ thấp, chưa sát hỗ trợ hoặc MACD chưa ngừng xấu.",
+        "avoid": "AVOID khi thủng mây dưới, MACD rơi tiếp, giá không giữ được hỗ trợ hoặc giảm chưa có dấu hiệu hãm."
+      }
+    },
+    {
+      "id": "shakeout_breakdown_rebound",
+      "name": "Mua rũ / Shakeout",
+      "shortName": "Mua rũ",
+      "priority": 2,
+      "style": "danger",
+      "summary": "Mua sau nhịp rũ bỏ dưới hỗ trợ nhẹ, kỳ vọng bật lại sau khi quét stop/rũ hàng.",
+      "indicators": ["Previous support", "Break support %", "RSI", "Volume ratio", "Gap", "Risk/Reward", "Market regime"],
+      "tradePlan": "Mua phiên kế tiếp sau rũ, target +6%, stop -4%, RR khoảng 1.5. Không dùng khi thị trường breakdown thật.",
+      "validation": {
+        "status": "Có tiềm năng, rủi ro cao hơn B4; hợp midcap hơn",
+        "train": "Midcap target +6 train: 11 lệnh · win rate 36.36% · tổng PnL -9.50%",
+        "oos": "Midcap target +6 OOS: 26 lệnh · win rate 69.23% · tổng PnL +66.24%",
+        "multiWindow": "Fixed current qua 4 cửa sổ: 46 lệnh · 24 win / 20 loss / 2 timeout · win rate 52.17% · tổng PnL +39.38%",
+        "source": "data/breakdown_rebound_midcap50_target6.json; data/midcap_shakeout_strategy_analysis.json"
+      },
+      "matrix": {
+        "buy": "BUY khi thủng hỗ trợ nhẹ 2–4%, không rơi quá sâu, rủi ro nhỏ và có dấu hiệu hồi lại sau rũ.",
+        "watch": "WATCH khi có rũ nhưng chưa xác nhận hồi, gap/volume/rủi ro chưa đẹp hoặc thị trường chung chưa rõ.",
+        "avoid": "AVOID khi thủng sâu, gap down mạnh, volume bán lớn, rơi tiếp sau breakdown hoặc thị trường đang gãy thật."
+      },
+      "webParityCheck": {
+        "checkedAt": "2026-05-01T20:35:00+07:00",
+        "currentWebLogic": "app/strategy_recommendations.py::_shakeout_candidate dùng break support 2–4%, RSI không quá thấp, volume <=2.4, stop -4%, target +6%.",
+        "matchesDraft": true,
+        "note": "Nội dung cũ trong dashboard_template cũng ghi Mua rũ Target +6%, close thủng support 2–4%, mua phiên kế tiếp, stop -4%, target +6%. Bản draft giữ đúng logic này nhưng bỏ công thức dài khỏi UI."
+      }
+    }
+  ],
+  "rows": [
+    {"id": "buy", "label": "MUA"},
+    {"id": "watch", "label": "XEM XÉT"},
+    {"id": "avoid", "label": "TRÁNH XA"}
+  ]
+}
