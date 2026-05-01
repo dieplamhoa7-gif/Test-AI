@@ -312,7 +312,15 @@ DASHBOARD_HTML = r'''
     .strategy-matrix-table th { color:var(--text); background:rgba(78,240,192,.06); }
     body.light-theme .strategy-matrix-table th { color:#132033; background:#eefbf7; }
     .strategy-matrix-table td { color:var(--muted); }
+    .strategy-mobile-matrix { display:none; gap:12px; }
+    .strategy-mobile-block { border:1px solid rgba(92,110,148,.16); border-radius:16px; padding:12px; background:rgba(0,0,0,.08); }
+    .strategy-mobile-block h5 { margin:0 0 8px; font-size:15px; color:var(--text); }
+    .strategy-mobile-row { border-top:1px solid rgba(92,110,148,.12); padding:9px 0; }
+    .strategy-mobile-row:first-of-type { border-top:0; }
+    .strategy-mobile-row b { display:block; font-size:12px; margin-bottom:4px; color:var(--accent-2); }
+    .strategy-mobile-row span { display:block; color:var(--muted); font-size:12px; line-height:1.45; }
     @media (max-width: 860px) { .strategy-grid { grid-template-columns:1fr; } .strategy-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 640px) { .strategy-matrix-table { display:none; } .strategy-mobile-matrix { display:grid; } .strategy-card { padding:12px; border-radius:16px; } .strategy-title h4 { font-size:16px; } .strategy-desc, .strategy-rule { font-size:12px; } .strategy-metrics { grid-template-columns:1fr; } }
     @media (max-width: 760px) { .filter-grid { grid-template-columns:1fr; } }
 
   </style>
@@ -417,7 +425,8 @@ DASHBOARD_HTML = r'''
         const v = col.validation || {};
         return `<div class="strategy-card ${col.style === 'primary' ? 'core' : ''}"><div class="strategy-title"><div><h4>${escapeHtml(col.name || '')}</h4><div class="strategy-desc">${escapeHtml(col.summary || '')}</div></div><span class="strategy-pill">${escapeHtml(col.shortName || '')}</span></div><div class="strategy-metrics"><div class="strategy-metric"><span>Trạng thái</span><b>${escapeHtml(v.status || '-')}</b></div><div class="strategy-metric"><span>Current</span><b>${escapeHtml(v.current180 || v.oos || '-')}</b></div><div class="strategy-metric"><span>OOS</span><b>${escapeHtml(v.oosPrev3m || v.multiWindow || '-')}</b></div></div><div class="strategy-rule"><b>Kiểm định:</b><br>${escapeHtml(v.combined || v.multiWindow || v.oos || '')}</div></div>`;
       }).join('');
-      const table = `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>Ma trận MUA / XEM XÉT / TRÁNH XA</h4><div class="strategy-desc">Chỉ hiển thị output/cache đã tính sẵn. Không hiển thị công thức, không tính R/S hay chiến lược trên web.</div></div><span class="strategy-pill">Output only</span></div><div style="overflow:auto;"><table class="strategy-matrix-table"><thead><tr><th>Trạng thái</th>${columns.map(c => `<th>${escapeHtml(c.shortName || c.name || '')}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr><th>${escapeHtml(row.label)}</th>${columns.map(c => `<td>${escapeHtml((c.matrix || {})[row.id] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+      const mobile = `<div class="strategy-mobile-matrix">${columns.map(c => `<div class="strategy-mobile-block"><h5>${escapeHtml(c.shortName || c.name || '')}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${escapeHtml((c.matrix || {})[row.id] || '')}</span></div>`).join('')}</div>`).join('')}</div>`;
+      const table = `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>Ma trận MUA / XEM XÉT / TRÁNH XA</h4><div class="strategy-desc">Chỉ hiển thị output/cache đã tính sẵn. Không hiển thị công thức, không tính R/S hay chiến lược trên web.</div></div><span class="strategy-pill">Output only</span></div><div style="overflow:auto;"><table class="strategy-matrix-table"><thead><tr><th>Trạng thái</th>${columns.map(c => `<th>${escapeHtml(c.shortName || c.name || '')}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr><th>${escapeHtml(row.label)}</th>${columns.map(c => `<td>${escapeHtml((c.matrix || {})[row.id] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>${mobile}</div></div>`;
       return `<div class="strategy-grid">${cards}${table}</div>`;
     }
 
