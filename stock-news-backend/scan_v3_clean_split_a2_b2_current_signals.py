@@ -37,8 +37,13 @@ def action_indicators(price,row,hist,ind_until):
     roc20=(price/f(hist.close.iloc[-21],price)-1)*100 if len(hist)>21 else 0
     ret5=(price/f(hist.close.iloc[-6],price)-1)*100 if len(hist)>6 else 0
     div=_detect_momentum_divergence(ind_until); ichi=ichimoku_state(hist)
-    mh_prev=f(ind_until.iloc[-2].get('histogram'),mh) if len(ind_until)>1 else mh
-    return {'rsi':r(rsi),'macd':r(macd,4),'macdSignal':r(sig,4),'macdHist':r(mh,4),'macdHistImproving':bool(mh>=mh_prev),'bbPercent':r(bbp,3),'volumeRatio':r(volr,2),'roc20':r(roc20),'ret5':r(ret5),'ichimoku':ichi,'bullishDivergence':bool(div.get('bullish')),'bearishDivergence':bool(div.get('bearish'))}
+    hists=[]
+    for j in range(max(0,len(ind_until)-4),len(ind_until)):
+        hists.append(f(ind_until.iloc[j].get('histogram'),mh))
+    mh_prev=hists[-2] if len(hists)>=2 else mh
+    macd_recovering=bool(len(hists)>=3 and hists[-1]>hists[-2]>hists[-3])
+    macd_not_falling=bool(len(hists)>=2 and hists[-1]>=hists[-2])
+    return {'rsi':r(rsi),'macd':r(macd,4),'macdSignal':r(sig,4),'macdHist':r(mh,4),'macdHistSeq':[r(x,4) for x in hists],'macdHistImproving':macd_not_falling,'macdHistRecovering':macd_recovering,'bbPercent':r(bbp,3),'volumeRatio':r(volr,2),'roc20':r(roc20),'ret5':r(ret5),'ichimoku':ichi,'bullishDivergence':bool(div.get('bullish')),'bearishDivergence':bool(div.get('bearish'))}
 
 def eval_strategy(name,price,rs,ai):
     sup=f(rs.get('activeSupportDay') or rs.get('supportDay')); res=f(rs.get('activeResistanceDay') or rs.get('resistanceDay'))
@@ -47,16 +52,16 @@ def eval_strategy(name,price,rs,ai):
     reasons=[]
     if ai.get('bearishDivergence'): reasons.append('bearish divergence')
     if name=='A2_oversold_near_support':
-        checks=[dist<=2.5, rsi<=45, bbp<=0.55, 0.55<=volr<=2.5, roc>=-12, (improving or mh>=-0.08 or ai.get('bullishDivergence')), not ai.get('bearishDivergence')]
-        labels=['gần hỗ trợ <=2.5%','RSI <=45','BB thấp <=0.55','volume vừa','ROC20 không quá xấu','MACD có dấu bật','không bearish divergence']
+        checks=[ichi!='below_cloud', dist<=2.5, rsi<=45, bbp<=0.55, 0.55<=volr<=2.5, roc>=-12, ai.get('macdHistRecovering'), not ai.get('bearishDivergence')]
+        labels=['không thủng mây dưới','gần hỗ trợ <=2.5%','RSI <=45','BB thấp <=0.55','volume vừa','ROC20 không quá xấu','MACD hist hồi dần 3 phiên','không bearish divergence']
         ok=sum(1 for x in checks if x)
         passed=all(checks)
         if not passed: reasons=[labels[i] for i,x in enumerate(checks) if not x]
         target=price*1.10; stop=price*0.94
         score=ok/len(checks)*100
     elif name=='B2_confirmed_rebound_above_cloud':
-        checks=[ichi=='above_cloud', dist<=3.0, 48<=rsi<=62, 0.55<=volr<=2.5, -8<=roc<=15, (mh>=-0.05 or improving), bbp<=0.9, not ai.get('bearishDivergence')]
-        labels=['above cloud','gần hỗ trợ <=3%','RSI 48-62','volume vừa','ROC20 hợp lệ','MACD không xấu','BB không quá cao','không bearish divergence']
+        checks=[ichi=='above_cloud', dist<=3.0, 48<=rsi<=62, 0.55<=volr<=2.5, -8<=roc<=15, ai.get('macdHistRecovering'), bbp<=0.9, not ai.get('bearishDivergence')]
+        labels=['above cloud','gần hỗ trợ <=3%','RSI 48-62','volume vừa','ROC20 hợp lệ','MACD hist hồi dần 3 phiên','BB không quá cao','không bearish divergence']
         ok=sum(1 for x in checks if x)
         passed=all(checks)
         if not passed: reasons=[labels[i] for i,x in enumerate(checks) if not x]
