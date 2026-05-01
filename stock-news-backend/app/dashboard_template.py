@@ -332,7 +332,11 @@ DASHBOARD_HTML = r'''
     .strategy-state small { display:block; color:var(--muted); font-size:10px; line-height:1.3; margin-top:3px; }
     .state-buy span { color:#23c77a; } .state-watch span { color:#ffb454; } .state-avoid span { color:#ff7d7d; }
     .strategy-table-wrap { overflow:visible; }
-    .strategy-th { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .strategy-th { display:flex; align-items:center; justify-content:space-between; gap:8px; color:#fff; font-weight:900; border-radius:14px; padding:10px 12px; background:linear-gradient(135deg, rgba(100,181,255,.95), rgba(122,116,255,.82)); box-shadow:0 10px 20px rgba(100,181,255,.16); }
+    .strategy-matrix-table thead th:nth-child(2) .strategy-th { background:linear-gradient(135deg,#23c77a,#0f9f7a); }
+    .strategy-matrix-table thead th:nth-child(3) .strategy-th { background:linear-gradient(135deg,#ffb454,#f97316); }
+    .strategy-matrix-table thead th:nth-child(4) .strategy-th { background:linear-gradient(135deg,#ff7d7d,#db2777); }
+    .strategy-th .strategy-help { background:rgba(255,255,255,.20); border-color:rgba(255,255,255,.45); color:#fff; }
     .strategy-symbol-chip { display:inline-block; text-align:left; vertical-align:top; border:1px solid rgba(100,181,255,.26); border-radius:12px; background:rgba(100,181,255,.09); color:var(--text); padding:8px 9px; margin:4px; cursor:pointer; font-size:12px; max-width:170px; min-width:128px; }
     .strategy-symbol-chip .sym { display:block; font-size:14px; font-weight:900; margin-bottom:5px; color:var(--text); }
     .strategy-symbol-chip .trade-line { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:10px; line-height:1.3; border-top:1px solid rgba(151,170,214,.12); padding-top:3px; margin-top:3px; }
@@ -341,14 +345,19 @@ DASHBOARD_HTML = r'''
     .strategy-more, .strategy-empty { display:inline-flex; border-radius:999px; padding:6px 8px; margin:3px; color:var(--muted); background:rgba(151,170,214,.08); font-size:12px; }
     .strategy-row-buy th { color:#23c77a; } .strategy-row-watch th { color:#ffb454; } .strategy-row-avoid th { color:#ff7d7d; }
     body.light-theme .strategy-symbol-chip { background:#eef6ff; color:#132033; }
-    .strategy-matrix-table { width:100%; border-collapse:separate; border-spacing:0; min-width:760px; }
+    .strategy-matrix-table { width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0; min-width:760px; }
+    .strategy-matrix-table th:first-child, .strategy-matrix-table td:first-child { width:96px; }
+    .strategy-matrix-table th:not(:first-child), .strategy-matrix-table td:not(:first-child) { width:calc((100% - 96px) / 3); }
     .strategy-matrix-table th, .strategy-matrix-table td { border-bottom:1px solid rgba(92,110,148,.16); padding:12px; text-align:left; vertical-align:top; font-size:13px; line-height:1.45; }
     .strategy-matrix-table th { color:var(--text); background:rgba(78,240,192,.06); }
     body.light-theme .strategy-matrix-table th { color:#132033; background:#eefbf7; }
     .strategy-matrix-table td { color:var(--muted); }
     .strategy-mobile-matrix { display:none; gap:12px; }
     .strategy-mobile-block { border:1px solid rgba(92,110,148,.16); border-radius:16px; padding:12px; background:rgba(0,0,0,.08); }
-    .strategy-mobile-block h5 { margin:0 0 8px; font-size:15px; color:var(--text); }
+    .strategy-mobile-block h5 { margin:0 0 8px; font-size:15px; color:#fff; border-radius:14px; padding:10px 12px; background:linear-gradient(135deg, rgba(100,181,255,.95), rgba(122,116,255,.82)); }
+    .strategy-mobile-0 h5 { background:linear-gradient(135deg,#23c77a,#0f9f7a); }
+    .strategy-mobile-1 h5 { background:linear-gradient(135deg,#ffb454,#f97316); }
+    .strategy-mobile-2 h5 { background:linear-gradient(135deg,#ff7d7d,#db2777); }
     .strategy-mobile-row { border-top:1px solid rgba(92,110,148,.12); padding:9px 0; }
     .strategy-mobile-row:first-of-type { border-top:0; }
     .strategy-mobile-row b { display:block; font-size:12px; margin-bottom:4px; color:var(--accent-2); }
@@ -514,7 +523,7 @@ DASHBOARD_HTML = r'''
       return rows.slice(0,max).map(x => {
         const rawSymbol = x.symbol || x.ticker || '';
         const symbol = escapeHtml(rawSymbol);
-        const action = escapeHtml(x.action || '');
+        const action = '';
         const entry = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '-';
         const target = x.takeProfit ?? x.target ?? '-';
         const stop = x.stopLoss ?? x.stop ?? '-';
@@ -537,7 +546,7 @@ DASHBOARD_HTML = r'''
       const rows = [{ id: 'buy', label: 'MUA' }, { id: 'watch', label: 'THEO DÕI' }, { id: 'avoid', label: 'LOẠI TRỪ' }];
       const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(col.shortName || col.name || '')}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
       const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 7)}</td>`).join('')}</tr>`).join('');
-      const mobile = `<div class="strategy-mobile-matrix">${columns.map(col => `<div class="strategy-mobile-block"><h5>${escapeHtml(col.shortName || col.name || '')} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
+      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(col.shortName || col.name || '')} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
       return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>Ma trận chiến lược PTKT</h4><div class="strategy-desc">Mã khuyến nghị nằm trực tiếp trong ma trận. Dọc: Mua / Theo dõi / Loại trừ. Dấu ? là chú thích.</div></div><span class="strategy-pill">Cache only</span></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>Trạng thái</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
     }
 
