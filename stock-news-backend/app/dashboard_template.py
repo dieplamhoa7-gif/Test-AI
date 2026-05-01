@@ -333,10 +333,11 @@ DASHBOARD_HTML = r'''
     .state-buy span { color:#23c77a; } .state-watch span { color:#ffb454; } .state-avoid span { color:#ff7d7d; }
     .strategy-table-wrap { overflow:visible; }
     .strategy-th { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-    .strategy-curve.small { height:34px; margin:8px 0 0; }
-    .strategy-symbol-chip { display:inline-flex; align-items:center; gap:5px; border:1px solid rgba(100,181,255,.26); border-radius:999px; background:rgba(100,181,255,.09); color:var(--text); padding:6px 8px; margin:3px; cursor:pointer; font-size:12px; max-width:100%; }
-    .strategy-symbol-chip .sym { font-size:12px; font-weight:900; }
-    .strategy-symbol-chip small { color:var(--muted); font-size:10px; max-width:92px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .strategy-symbol-chip { display:inline-block; text-align:left; vertical-align:top; border:1px solid rgba(100,181,255,.26); border-radius:12px; background:rgba(100,181,255,.09); color:var(--text); padding:8px 9px; margin:4px; cursor:pointer; font-size:12px; max-width:170px; min-width:128px; }
+    .strategy-symbol-chip .sym { display:block; font-size:14px; font-weight:900; margin-bottom:5px; color:var(--text); }
+    .strategy-symbol-chip .trade-line { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:10px; line-height:1.3; border-top:1px solid rgba(151,170,214,.12); padding-top:3px; margin-top:3px; }
+    .strategy-symbol-chip .trade-line b { color:var(--text); font-size:10px; text-align:right; font-weight:800; }
+    .strategy-symbol-chip small { color:var(--muted); font-size:10px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .strategy-more, .strategy-empty { display:inline-flex; border-radius:999px; padding:6px 8px; margin:3px; color:var(--muted); background:rgba(151,170,214,.08); font-size:12px; }
     .strategy-row-buy th { color:#23c77a; } .strategy-row-watch th { color:#ffb454; } .strategy-row-avoid th { color:#ff7d7d; }
     body.light-theme .strategy-symbol-chip { background:#eef6ff; color:#132033; }
@@ -526,10 +527,12 @@ DASHBOARD_HTML = r'''
         const rawSymbol = x.symbol || x.ticker || '';
         const symbol = escapeHtml(rawSymbol);
         const action = escapeHtml(x.action || '');
-        const entry = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '';
+        const entry = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '-';
+        const target = x.takeProfit ?? x.target ?? '-';
+        const stop = x.stopLoss ?? x.stop ?? '-';
         const rank = x.rankScore ?? x.rank ?? '';
-        const title = escapeHtml([x.reason || '', entry ? `Giá/vùng: ${entry}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
-        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span>${action ? `<small>${action}</small>` : ''}</button>`;
+        const title = escapeHtml([x.reason || '', entry !== '-' ? `Vùng mua: ${entry}` : '', target !== '-' ? `Target: ${target}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span>${action ? `<small>${action}</small>` : ''}<span class="trade-line"><span>Vùng mua</span><b>${escapeHtml(String(entry))}</b></span><span class="trade-line"><span>Target</span><b>${escapeHtml(String(target))}</b></span><span class="trade-line"><span>Cắt lỗ</span><b>${escapeHtml(String(stop))}</b></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
 
@@ -544,7 +547,7 @@ DASHBOARD_HTML = r'''
       const columns = Array.isArray(matrix?.columns) ? matrix.columns : [];
       if (!columns.length) return '';
       const rows = [{ id: 'buy', label: 'MUA' }, { id: 'watch', label: 'THEO DÕI' }, { id: 'avoid', label: 'LOẠI TRỪ' }];
-      const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(col.shortName || col.name || '')}</span>${renderStrategyTooltip(col)}</div><div class="strategy-curve small">${strategyVisualSvg(col.style || 'primary')}</div></th>`).join('');
+      const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(col.shortName || col.name || '')}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
       const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 7)}</td>`).join('')}</tr>`).join('');
       const mobile = `<div class="strategy-mobile-matrix">${columns.map(col => `<div class="strategy-mobile-block"><h5>${escapeHtml(col.shortName || col.name || '')} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
       return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>Ma trận chiến lược PTKT</h4><div class="strategy-desc">Mã khuyến nghị nằm trực tiếp trong ma trận. Dọc: Mua / Theo dõi / Loại trừ. Dấu ? là chú thích.</div></div><span class="strategy-pill">Cache only</span></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>Trạng thái</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
