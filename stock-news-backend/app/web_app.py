@@ -111,7 +111,11 @@ def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
 
     cached_items = load_news()
     now = _utcnow()
-    should_refresh = force or not cached_items or _last_refresh_at is None or (now - _last_refresh_at) >= REFRESH_INTERVAL
+
+    # Local/mobile page must render fast from saved cache. Heavy scraping/AI refresh is
+    # only allowed when explicitly requested with refresh=true, otherwise slow network
+    # calls can make the News tab look broken on phone.
+    should_refresh = force or not cached_items
 
     if should_refresh:
         try:
