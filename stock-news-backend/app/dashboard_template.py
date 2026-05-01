@@ -579,7 +579,10 @@ DASHBOARD_HTML = r'''
         const id = st.id || '';
         const name = normalize(st.name || id);
         let key = id;
-        if (name.includes('pullback') || name.includes('b4')) key = 'b4_trend_pullback';
+        if (id === 'clean_split_a_bottom' || id === 'support_rebound_hunter') key = 'clean_split_a_bottom';
+        else if (id === 'shakeout_breakdown_rebound' || id === 'shakeout') key = 'shakeout_breakdown_rebound';
+        else if (id === 'b4_trend_pullback' || id === 'trend_pullback') key = 'b4_trend_pullback';
+        else if (name.includes('pullback') || name.includes('b4')) key = 'b4_trend_pullback';
         else if (name.includes('shakeout') || name.includes('rũ')) key = 'shakeout_breakdown_rebound';
         else if (name.includes('split') || name.includes('hỗ trợ') || name.includes('support')) key = 'clean_split_a_bottom';
         put(key, 'buy', st.buy || []);
