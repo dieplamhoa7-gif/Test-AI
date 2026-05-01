@@ -1,29 +1,12 @@
 {
-  "updatedAt": "2026-05-01T22:59:13.484558",
-  "note": "Current strategy signal cache refreshed from VN100 cache scan. Source: data/three_strategies_vn100_cache_signals.json. Web reads output only.",
+  "updatedAt": "2026-05-01T23:02:11.778885",
+  "note": "Current strategy signal cache refreshed from VN30 excluding VIC/VHM cache scan. Source: data/three_strategies_vn30x_cache_signals.json. Web reads output only.",
   "strategies": [
     {
       "id": "b4_trend_pullback",
       "name": "Trend Pullback Pro",
       "buy": [],
       "watchlist": [
-        {
-          "symbol": "MWG",
-          "strategy": "b4_trend_pullback",
-          "action": "WATCH",
-          "lastClose": 84.0,
-          "entryPrice": 84.0,
-          "stopLoss": 78.96,
-          "takeProfit": 89.04,
-          "support": 80.4,
-          "resistance": 86.5,
-          "rankScore": 75.0,
-          "missingReasons": [
-            "gần hỗ trợ <=3%"
-          ],
-          "reason": "Trend pullback từ cache indicator VN100.",
-          "asOfDate": "2026-04-29"
-        },
         {
           "symbol": "CTG",
           "strategy": "b4_trend_pullback",
@@ -34,6 +17,23 @@
           "takeProfit": 37.05,
           "support": 33.7,
           "resistance": 36.0,
+          "rankScore": 75.0,
+          "missingReasons": [
+            "gần hỗ trợ <=3%"
+          ],
+          "reason": "Trend pullback từ cache indicator VN100.",
+          "asOfDate": "2026-04-29"
+        },
+        {
+          "symbol": "MWG",
+          "strategy": "b4_trend_pullback",
+          "action": "WATCH",
+          "lastClose": 84.0,
+          "entryPrice": 84.0,
+          "stopLoss": 78.96,
+          "takeProfit": 89.04,
+          "support": 80.4,
+          "resistance": 86.5,
           "rankScore": 75.0,
           "missingReasons": [
             "gần hỗ trợ <=3%"
@@ -57,77 +57,26 @@
           ],
           "reason": "Trend pullback từ cache indicator VN100.",
           "asOfDate": "2026-04-29"
-        },
-        {
-          "symbol": "CTR",
-          "strategy": "b4_trend_pullback",
-          "action": "WATCH",
-          "lastClose": 85.9,
-          "entryPrice": 85.9,
-          "stopLoss": 80.75,
-          "takeProfit": 91.05,
-          "support": 82.8,
-          "resistance": 88.5,
-          "rankScore": 75.0,
-          "missingReasons": [
-            "gần hỗ trợ <=3%"
-          ],
-          "reason": "Trend pullback từ cache indicator VN100.",
-          "asOfDate": "2026-04-29"
         }
       ],
-      "rejectCount": 25,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
+      "rejectCount": 11,
+      "source": "data\\three_strategies_vn30x_cache_signals.json"
     },
     {
       "id": "shakeout_breakdown_rebound",
       "name": "Shakeout Rebound",
       "buy": [],
       "watchlist": [],
-      "rejectCount": 29,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
+      "rejectCount": 14,
+      "source": "data\\three_strategies_vn30x_cache_signals.json"
     },
     {
       "id": "clean_split_a_bottom",
       "name": "Support Rebound Hunter",
-      "buy": [
-        {
-          "symbol": "SZC",
-          "strategy": "clean_split_a_bottom",
-          "action": "BUY",
-          "lastClose": 27.2,
-          "entryPrice": 27.2,
-          "stopLoss": 25.57,
-          "takeProfit": 28.83,
-          "support": 27.0,
-          "resistance": 28.5,
-          "rankScore": 100.0,
-          "missingReasons": [],
-          "reason": "Support rebound từ cache indicator VN100.",
-          "asOfDate": "2026-04-29"
-        }
-      ],
-      "watchlist": [
-        {
-          "symbol": "PC1",
-          "strategy": "clean_split_a_bottom",
-          "action": "WATCH",
-          "lastClose": 19.55,
-          "entryPrice": 19.55,
-          "stopLoss": 18.38,
-          "takeProfit": 20.72,
-          "support": 19.4,
-          "resistance": 22.2,
-          "rankScore": 70.0,
-          "missingReasons": [
-            "MACD/volume ổn"
-          ],
-          "reason": "Support rebound từ cache indicator VN100.",
-          "asOfDate": "2026-04-29"
-        }
-      ],
-      "rejectCount": 27,
-      "source": "data\\three_strategies_vn100_cache_signals.json"
+      "buy": [],
+      "watchlist": [],
+      "rejectCount": 14,
+      "source": "data\\three_strategies_vn30x_cache_signals.json"
     }
   ]
 }
