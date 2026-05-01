@@ -435,24 +435,30 @@ DASHBOARD_HTML = r'''
       const items = Array.isArray(payload?.items) ? payload.items : [];
       elements.stockFilterStatus.textContent = `PTKT: hiển thị ma trận chiến lược và tín hiệu cache`;
       elements.stockFilterCriteria.innerHTML = '';
-      let coreStrategiesHtml = '';
+      let coreStrategiesHtml = '<div class="empty">Đang tải ma trận chiến lược...</div>';
       const setupHtml = items.length ? items.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${escapeHtml(x.setupGroup || '')}</span></div><div class="filter-metrics"><div class="filter-metric"><span>Giá</span><b>${escapeHtml(formatNumber(x.price))}</b></div><div class="filter-metric"><span>R/S</span><b>${escapeHtml(formatNumber(x.supportScore))}/${escapeHtml(formatNumber(x.resistanceScore))}</b></div><div class="filter-metric"><span>RR/Risk</span><b>${escapeHtml(formatNumber(x.riskReward))} / ${escapeHtml(formatNumber(x.riskPct))}%</b></div></div><div class="filter-reason">${escapeHtml(x.reason || '')}</div>${x.warning ? `<div class="filter-warning">⚠ ${escapeHtml(x.warning)}</div>` : ''}</div>`).join('') : '<div class="empty">Chưa có mã đạt bộ lọc PTKT hiện tại.</div>';
       try {
         const matrixRes = await fetch(`${API_BASE}/strategy-matrix-cache?ts=${Date.now()}`, { cache: 'no-store' });
         if (matrixRes.ok) coreStrategiesHtml = renderStrategyMatrix(await matrixRes.json());
       } catch (_) {}
+      if (coreStrategiesHtml.includes('Đang tải ma trận')) {
+        elements.stockFilterStatus.textContent = 'PTKT: không tải được strategy_matrix_cache';
+        elements.stockFilterGrid.innerHTML = coreStrategiesHtml;
+        return;
+      }
       try {
         const cacheRes = await fetch(`${API_BASE}/strategy-results-cache?ts=${Date.now()}`, { cache: 'no-store' });
         if (cacheRes.ok) {
           const cache = await cacheRes.json();
-          const blocks = (cache.strategies || []).map(st => {
+          const visibleStrategies = (cache.strategies || []).filter(st => Array.isArray(st.items) && st.items.length > 0);
+          const blocks = visibleStrategies.map(st => {
             const rows = Array.isArray(st.items) ? st.items : [];
             const body = rows.length ? rows.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${escapeHtml(x.action || 'Theo dõi')}</span></div><div class="filter-metrics"><div class="filter-metric"><span>Giá vào</span><b>${escapeHtml(String(x.entry || '-'))}</b></div><div class="filter-metric"><span>Cắt lỗ</span><b>${escapeHtml(String(x.stopLoss || '-'))}</b></div><div class="filter-metric"><span>Chốt lời</span><b>${escapeHtml(String(x.target || '-'))}</b></div></div><div class="filter-reason">${escapeHtml(x.reason || '')}</div></div>`).join('') : '<div class="empty">Chưa có mã mua hiện tại trong cache.</div>';
             return `<div class="strategy-card core" style="grid-column:1/-1;"><div class="strategy-title"><h4>${escapeHtml(st.name || '')}</h4><span class="strategy-pill">Kết quả cache</span></div><div class="filter-grid">${body}</div></div>`;
           }).join('');
-          elements.stockFilterStatus.textContent = `PTKT: chỉ hiển thị kết quả cache, không tính realtime`;
-          elements.stockFilterCriteria.innerHTML = cache.updatedAt ? `Cập nhật cache: ${escapeHtml(cache.updatedAt)}` : '';
-          elements.stockFilterGrid.innerHTML = coreStrategiesHtml + blocks;
+          elements.stockFilterStatus.textContent = `PTKT: ma trận chiến lược output-only`;
+          elements.stockFilterCriteria.innerHTML = cache.updatedAt ? `Cache tín hiệu: ${escapeHtml(cache.updatedAt)}` : 'Không có mã mua hiện tại trong cache';
+          elements.stockFilterGrid.innerHTML = coreStrategiesHtml + (blocks || '<div class="empty">Hiện chưa có mã mua trong cache tín hiệu.</div>');
           elements.stockFilterGrid.querySelectorAll('[data-filter-symbol]').forEach(card => card.addEventListener('click', () => openStockSymbol(card.dataset.filterSymbol)));
           return;
         }
