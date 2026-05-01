@@ -73,7 +73,8 @@ def eval_b4(price,rs,ai):
     ]
     ok=sum(1 for x,_ in checks if x); missing=[lab for x,lab in checks if not x]
     action='BUY' if ok==len(checks) else 'WATCH' if ok>=6 and not ai.get('bearishDivergence') else 'REJECT'
-    return {'strategy':'B4_above_cloud_bullish_div_or_recovering','action':action,'rankScore':r(ok/len(checks)*100),'entryPrice':r(price),'stopLoss':r(price*0.94),'takeProfit':r(price*1.06),'targetPct':6,'stopPct':6,'distSupportPct':r(dist),'support':r(sup),'resistance':r(res),'missingReasons':missing,'entryIndicators':ai,'rsSnapshot':{'supportZoneDay':rs.get('supportZoneDay'),'resistanceZoneDay':rs.get('resistanceZoneDay'),'activeSupportDay':rs.get('activeSupportDay'),'activeResistanceDay':rs.get('activeResistanceDay')}}
+    entry=r(sup or price)
+    return {'strategy':'B4_above_cloud_bullish_div_or_recovering','action':action,'rankScore':r(ok/len(checks)*100),'entryPrice':entry,'lastClose':r(price),'stopLoss':r(entry*0.94),'takeProfit':r(entry*1.06),'targetPct':6,'stopPct':6,'distSupportPct':r(dist),'support':r(sup),'resistance':r(res),'missingReasons':missing,'entryIndicators':ai,'rsSnapshot':{'supportZoneDay':rs.get('supportZoneDay'),'resistanceZoneDay':rs.get('resistanceZoneDay'),'activeSupportDay':rs.get('activeSupportDay'),'activeResistanceDay':rs.get('activeResistanceDay')}}
 
 def main():
     rows=[]; errors=[]
