@@ -335,7 +335,7 @@ DASHBOARD_HTML = r'''
     .strategy-th { display:flex; align-items:center; justify-content:space-between; gap:8px; }
     .strategy-curve.small { height:34px; margin:8px 0 0; }
     .strategy-symbol-chip { display:inline-flex; align-items:center; gap:5px; border:1px solid rgba(100,181,255,.26); border-radius:999px; background:rgba(100,181,255,.09); color:var(--text); padding:6px 8px; margin:3px; cursor:pointer; font-size:12px; max-width:100%; }
-    .strategy-symbol-chip b { font-size:12px; }
+    .strategy-symbol-chip .sym { font-size:12px; font-weight:900; }
     .strategy-symbol-chip small { color:var(--muted); font-size:10px; max-width:92px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .strategy-more, .strategy-empty { display:inline-flex; border-radius:999px; padding:6px 8px; margin:3px; color:var(--muted); background:rgba(151,170,214,.08); font-size:12px; }
     .strategy-row-buy th { color:#23c77a; } .strategy-row-watch th { color:#ffb454; } .strategy-row-avoid th { color:#ff7d7d; }
@@ -523,12 +523,13 @@ DASHBOARD_HTML = r'''
       const rows = Array.isArray(items) ? items : [];
       if (!rows.length) return '<span class="strategy-empty">-</span>';
       return rows.slice(0,max).map(x => {
-        const symbol = escapeHtml(x.symbol || x.ticker || '');
+        const rawSymbol = x.symbol || x.ticker || '';
+        const symbol = escapeHtml(rawSymbol);
         const action = escapeHtml(x.action || '');
         const entry = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '';
         const rank = x.rankScore ?? x.rank ?? '';
         const title = escapeHtml([x.reason || '', entry ? `Giá/vùng: ${entry}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
-        return `<button class="strategy-symbol-chip" data-filter-symbol="${symbol}" title="${title}"><b>${symbol}</b>${action ? `<small>${action}</small>` : ''}</button>`;
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span>${action ? `<small>${action}</small>` : ''}</button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
 
