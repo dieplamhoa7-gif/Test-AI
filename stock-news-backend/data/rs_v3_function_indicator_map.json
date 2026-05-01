@@ -1,0 +1,154 @@
+{
+  "createdAt": "2026-05-01T09:00:00+07:00",
+  "architecture": {
+    "layer1_RS": "File/module riêng chỉ tính R/S, chạy cho toàn bộ mã hoặc danh sách tùy chỉnh, xuất output RS JSON.",
+    "layer2_V3_Indicators": "Các chiến lược/V3/calc khác không tính lại R/S; chỉ đọc output RS rồi chạy indicator/logic còn lại."
+  },
+  "rsFile": {
+    "module": "app/rs_levels.py",
+    "builderScript": "build_rs_levels_only_cache.py",
+    "output": "data/rs_levels_only_cache.json",
+    "mainFunction": "calc_rs_levels_only(last_price, ref_price, open_price, high_price, low_price, avg_price, history_df)",
+    "copiedOrReusedFormulaFunctionsFromMarketData": [
+      "_pivot_levels",
+      "_pivot_from_recent",
+      "_to_ohlc",
+      "_build_support_resistance",
+      "_safe_number"
+    ],
+    "internalFormulaFunctionsUsedBy_build_support_resistance": [
+      "_swing_levels",
+      "_volume_levels",
+      "_vwap_value",
+      "_donchian_levels",
+      "_atr_value",
+      "_dedupe_levels",
+      "_strongest_levels"
+    ],
+    "rsIndicatorsAndFields": [
+      "pivotDay",
+      "supportDay",
+      "resistanceDay",
+      "supportDay2",
+      "resistanceDay2",
+      "supportLevelsDay",
+      "resistanceLevelsDay",
+      "nearSupportDay",
+      "nextSupportDay",
+      "nearResistanceDay",
+      "nextResistanceDay",
+      "activeSupportDay",
+      "activeResistanceDay",
+      "supportZoneDay",
+      "resistanceZoneDay",
+      "srStatusDay",
+      "pivotWeek",
+      "supportWeek",
+      "resistanceWeek",
+      "supportLevelsWeek",
+      "resistanceLevelsWeek",
+      "activeSupportWeek",
+      "activeResistanceWeek",
+      "srStatusWeek",
+      "pivotMonth",
+      "supportMonth",
+      "resistanceMonth",
+      "supportLevelsMonth",
+      "resistanceLevelsMonth",
+      "activeSupportMonth",
+      "activeResistanceMonth",
+      "srStatusMonth",
+      "atr",
+      "vwapDay",
+      "donchianHighDay",
+      "donchianLowDay",
+      "donchianMidDay",
+      "marketStructureDay",
+      "ma20Anchor",
+      "ma50Anchor",
+      "ma200Anchor"
+    ],
+    "rsFormulaSources": {
+      "pivot": "Pivot S/R từ high/low/close gần nhất hoặc recent window.",
+      "swingLevels": "Swing high/low từ lịch sử giá.",
+      "volumeLevels": "Vùng giá có volume tập trung theo bins.",
+      "vwap": "VWAP từ typical price * volume / total volume.",
+      "donchian": "Donchian high/low/mid và market structure.",
+      "fibonacciInsideRS": "Fibonacci 0.382/0.5/0.618 từ high-low 180 phiên được đưa vào candidates support/resistance.",
+      "maAnchors": "MA20/50/200 làm anchor cho R/S, nhưng chỉ tính rolling MA nhẹ, không tính full PTKT.",
+      "atr": "ATR dùng để gom zone và tạo supportZone/resistanceZone."
+    },
+    "customization": {
+      "currentDefaultUniverse": "TECHNICAL_UNIVERSE",
+      "canCustomize": [
+        "symbol list",
+        "exclude list",
+        "output path",
+        "later: lookback/window/bins nếu anh muốn"
+      ]
+    }
+  },
+  "v3File": {
+    "originalArchivedFile": "archive_unused_strategy_files/20260430_200953/backtest_confirmed_support_v3.py",
+    "currentRerunFile": "rerun_v3_original_with_full_indicators.py",
+    "setupExportFile": "build_v3_setups_with_future.py",
+    "savedSetupOutput": "data/v3_confirmed_support_setups_with_future.json",
+    "wideStopTargetScript": "optimize_v3_from_saved_setups.py",
+    "wideStopTargetOutput": "data/v3_saved_setups_wide_stop_high_target_results.json",
+    "v3CoreFunctions": [
+      "ema",
+      "enrich",
+      "confirm",
+      "run_sym",
+      "summ",
+      "main"
+    ],
+    "v3CoreIndicatorsActuallyUsedByOriginalLogic": [
+      "support zone / supportLevelsDay / supportZoneDay from RS output",
+      "resistanceLevelsDay from RS output",
+      "MA20",
+      "MA50",
+      "RSI14",
+      "MACD line",
+      "MACD signal",
+      "MACD histogram",
+      "Volume",
+      "Volume average 20",
+      "ATR14",
+      "ret5 = close / close.shift(5) - 1",
+      "future candles for backtest"
+    ],
+    "v3FullTechnicalSnapshotAvailableButNotOriginalFilter": [
+      "ADX14",
+      "+DI",
+      "-DI",
+      "MA200",
+      "Bollinger upper/lower/percent",
+      "VWAP",
+      "Donchian high/low/mid",
+      "Market structure",
+      "Volume ratio",
+      "Divergence",
+      "Effective trend",
+      "Signal score",
+      "Risk reward",
+      "Fibonacci levels inside RS candidates"
+    ],
+    "notConfirmedInCurrentCalcOutput": [
+      "Ichimoku direct fields",
+      "Keltner direct fields",
+      "ROC20 direct field"
+    ],
+    "v3EntryRulesOriginal": [
+      "Có support zone score >= 55",
+      "Touch candle: low <= zoneHigh và close >= zoneLow",
+      "Confirm candle: giữ support, close_pos >= 0.55, và có nến xanh/rút chân/reclaim",
+      "MA filter: closeConfirm >= MA50*0.985; MA20 >= MA50*0.975; MA50 không dốc xuống quá mạnh",
+      "ret5 >= -9%",
+      "Đạt ít nhất 2/3: RSI OK, MACD histogram OK, Volume OK",
+      "RiskPct nằm trong 1% đến 6.2%",
+      "Target gốc 1R hoặc kháng cự gần nếu RR 0.8-1.25"
+    ],
+    "requiredChangeNext": "Patch V3/calc để nạp data/rs_levels_only_cache.json theo symbol/date thay vì gọi _calc_technical để lấy R/S. Nếu cần indicator khác thì tính indicator riêng, không gọi phần R/S nữa."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "createdAt": "2026-05-01T12:37:16.089569",
+  "classification": {
+    "RS_ENGINE_ONLY_do_not_score_again": {
+      "purpose": "Xác định vùng giá: hỗ trợ/kháng cự, zone, khoảng cách tới zone, điểm stop/target. Không đưa lại vào model như tín hiệu hành động độc lập để tránh double-count.",
+      "indicators": [
+        {
+          "name": "Pivot levels",
+          "fields": [
+            "pivotDay",
+            "supportDay",
+            "resistanceDay",
+            "supportDay2",
+            "resistanceDay2",
+            "pivotWeek",
+            "supportWeek",
+            "resistanceWeek",
+            "pivotMonth",
+            "supportMonth",
+            "resistanceMonth"
+          ],
+          "use": "Tạo candidate R/S theo OHLC."
+        },
+        {
+          "name": "Swing high/low",
+          "fields": [
+            "supportLevelsDay",
+            "resistanceLevelsDay",
+            "supportLevelsWeek",
+            "resistanceLevelsWeek",
+            "supportLevelsMonth",
+            "resistanceLevelsMonth"
+          ],
+          "use": "Tạo candidate R/S từ đỉnh/đáy lịch sử."
+        },
+        {
+          "name": "Volume-at-price levels",
+          "fields": [
+            "internal _volume_levels"
+          ],
+          "use": "Tìm vùng giá có volume tập trung để làm R/S."
+        },
+        {
+          "name": "VWAP in RS",
+          "fields": [
+            "vwapDay"
+          ],
+          "use": "Anchor giá nội tại trong R/S. Nếu đã dùng để tạo/đánh giá R/S thì không cộng điểm hành động lần nữa."
+        },
+        {
+          "name": "Donchian in RS",
+          "fields": [
+            "donchianHighDay",
+            "donchianLowDay",
+            "donchianMidDay",
+            "marketStructureDay"
+          ],
+          "use": "Biên range/structure để hỗ trợ xác định R/S. Không dùng lại như filter chiến lược nếu mục tiêu là tránh trùng."
+        },
+        {
+          "name": "Fibonacci in RS",
+          "fields": [
+            "fibonacciLevelsDay",
+            "fibonacciLevelsWeek",
+            "fibonacciLevelsMonth"
+          ],
+          "use": "Candidate R/S từ retracement. Không cộng điểm riêng trong model hành động."
+        },
+        {
+          "name": "MA anchors in RS",
+          "fields": [
+            "ma20Anchor",
+            "ma50Anchor",
+            "ma200Anchor"
+          ],
+          "use": "Anchor động để xây R/S. Nếu giữ MA trong action model thì phải dùng biến khác như slope/relative trend, không dùng chính MA anchor làm điểm R/S lần nữa."
+        },
+        {
+          "name": "ATR in RS",
+          "fields": [
+            "atr"
+          ],
+          "use": "Gom vùng supportZone/resistanceZone và độ rộng zone. Dùng cho sizing/stop là được, nhưng không cộng điểm action như indicator riêng."
+        },
+        {
+          "name": "Derived R/S outputs",
+          "fields": [
+            "activeSupportDay",
+            "activeResistanceDay",
+            "supportZoneDay",
+            "resistanceZoneDay",
+            "nearSupportDay",
+            "nearResistanceDay",
+            "srStatusDay"
+          ],
+          "use": "Đầu ra chính để quyết định giá vào/cắt lỗ/chốt lời; được dùng trong rule hành động ở dạng price geometry, không phải indicator score độc lập."
+        }
+      ]
+    },
+    "ACTION_STRATEGY_ALLOWED": {
+      "purpose": "Chỉ báo xác định xác suất hành động: có nên mua/không, mua kiểu hồi/xác nhận/quá bán, giữ/bán khi động lượng xấu. Không dùng để dựng R/S chính.",
+      "indicators": [
+        {
+          "name": "RSI14",
+          "fields": [
+            "rsi14"
+          ],
+          "use": "Phân loại trạng thái quá bán/hồi có lực. Nên tách 2 regime: RSI<=40 bắt đáy; RSI 50-55/60 hồi có xác nhận."
+        },
+        {
+          "name": "MACD momentum",
+          "fields": [
+            "macdLine",
+            "macdSignal",
+            "macdHist"
+          ],
+          "use": "Xác nhận động lượng cải thiện; đặc biệt hist tăng/qua 0. Không dùng cho R/S."
+        },
+        {
+          "name": "Bollinger position",
+          "fields": [
+            "bbPercent",
+            "bbUpper",
+            "bbLower"
+          ],
+          "use": "Đo vị trí giá trong band để tránh mua quá cao/đánh bắt đáy. BB band không nên dùng làm R/S nếu đã có RS engine riêng."
+        },
+        {
+          "name": "Volume confirmation",
+          "fields": [
+            "volumeRatio",
+            "volume",
+            "vol20"
+          ],
+          "use": "Xác nhận lực mua/không đuổi volume spike. Không phải R/S."
+        },
+        {
+          "name": "ROC/return momentum",
+          "fields": [
+            "roc20",
+            "ret5"
+          ],
+          "use": "Tránh mã rơi quá mạnh hoặc đuổi quá nóng. Không phải R/S."
+        },
+        {
+          "name": "Ichimoku state",
+          "fields": [
+            "ichimoku.state",
+            "above_cloud",
+            "in_cloud",
+            "below_cloud",
+            "bullishTkCross"
+          ],
+          "use": "Filter regime cổ phiếu. Dữ liệu OOS cho thấy above_cloud tốt, below_cloud xấu. Đây là action filter, không dùng để dựng R/S."
+        },
+        {
+          "name": "ADX/DI",
+          "fields": [
+            "adx14",
+            "plusDI",
+            "minusDI"
+          ],
+          "use": "Đo trend strength/direction nếu muốn, nhưng user trước đó muốn bỏ ADX/DI khỏi V3 high-winrate. Nếu dùng lại thì chỉ dùng action/regime, không R/S."
+        },
+        {
+          "name": "Divergence",
+          "fields": [
+            "bullishDivergence",
+            "bearishDivergence"
+          ],
+          "use": "Bullish divergence chỉ bonus reversal; bearish divergence có thể cảnh báo bán/không mua. Không phải R/S."
+        },
+        {
+          "name": "Keltner position",
+          "fields": [
+            "keltner.percent",
+            "keltner.state"
+          ],
+          "use": "Đo volatility/channel position cho action; tránh double với ATR nếu ATR đã dùng trong R/S thì không dùng raw ATR làm score."
+        }
+      ]
+    },
+    "TRADE_MANAGEMENT_NOT_ENTRY_SCORE": {
+      "purpose": "Dùng sau khi có tín hiệu để tính entry/stop/target, trailing, time-stop; không nên đưa vào score mua nếu đã lấy từ R/S.",
+      "items": [
+        {
+          "name": "Distance to support",
+          "fields": [
+            "distSupportPct"
+          ],
+          "use": "Rule hình học: mua sát hỗ trợ. Không nên cộng điểm cùng với các indicator đã dựng R/S; dùng như hard filter/positioning."
+        },
+        {
+          "name": "RiskPct",
+          "fields": [
+            "riskPct"
+          ],
+          "use": "Quản trị rủi ro; filter stop quá xa/quá gần."
+        },
+        {
+          "name": "Resistance distance / target",
+          "fields": [
+            "activeResistanceDay",
+            "resistanceZoneDay"
+          ],
+          "use": "Xác định chốt lời/RR. Không phải tín hiệu mua độc lập."
+        },
+        {
+          "name": "FuturePath-derived exits",
+          "fields": [
+            "takePartialAt6",
+            "trailAfterTarget",
+            "earlyBreak",
+            "timeStop"
+          ],
+          "use": "Exit logic: chốt 50%, trailing, thoát khi gãy hỗ trợ/không hồi."
+        }
+      ]
+    },
+    "REMOVE_OR_DEMOTE_FROM_MODEL_TO_AVOID_DOUBLE_COUNT": [
+      "vwapDay as score component if already used inside R/S",
+      "donchianHigh/Low/Mid or marketStructureDay as score component if already used inside R/S",
+      "fibonacci levels as separate score if already inside R/S candidates",
+      "MA20/50/200 absolute anchors as score if they are used as R/S anchors; only keep trend slope/cross if explicitly strategy-level",
+      "ATR raw as action score if used for supportZone width; keep for stop/sizing only",
+      "distSupportPct as weighted score; use as hard filter instead"
+    ],
+    "recommended_new_model": {
+      "step1_RS_precompute": "Use rs_levels_only_cache to produce activeSupport/resistance, zones, distSupport, stop reference, target reference. This stage may use pivot, swing, volume levels, VWAP, Donchian, Fibonacci, MA anchors, ATR.",
+      "step2_action_entry": "Use only action indicators not consumed by RS: RSI regime, MACD hist slope/cross, BB percent, volume ratio, ROC20/ret5, Ichimoku state, optional divergence. Apply distSupport as hard filter, not score.",
+      "step3_trade_management": "Use RS outputs for entry/stop/target: near support <= threshold, stop below support/zone or support break 6%, partial target +6/+10, trailing, time stop.",
+      "candidate_rules_to_test": [
+        {
+          "name": "Reversal near support",
+          "rules": [
+            "distSupportPct <= 1-2%",
+            "RSI <= 40 or BB percent low",
+            "MACD hist improving",
+            "volumeRatio not spike",
+            "target 10%, stop/support break 6%"
+          ]
+        },
+        {
+          "name": "Confirmed rebound",
+          "rules": [
+            "Ichimoku above_cloud",
+            "RSI 50-55/60",
+            "distSupportPct <= 2.5%",
+            "MACD hist >=0 or improving",
+            "volumeRatio 0.55-1.8",
+            "target 6/10 with partial+trail"
+          ]
+        }
+      ]
+    }
+  }
+}
