@@ -323,6 +323,51 @@ DASHBOARD_HTML = r'''
     @media (max-width: 640px) { .strategy-matrix-table { display:none; } .strategy-mobile-matrix { display:grid; } .strategy-card { padding:12px; border-radius:16px; } .strategy-title h4 { font-size:16px; } .strategy-desc, .strategy-rule { font-size:12px; } .strategy-metrics { grid-template-columns:1fr; } }
     @media (max-width: 760px) { .filter-grid { grid-template-columns:1fr; } }
 
+    /* Mobile/LAN preview hardening: keep tabs/buttons/cards readable on phones */
+    @media (max-width: 900px) {
+      .shell { width: calc(100% - 14px); padding-top: 8px; }
+      .topbar { position: static; align-items:flex-start; padding:10px; border-radius:16px; }
+      .brand-wrap { gap:10px; min-width:0; }
+      .brand-icon { width:38px; height:38px; border-radius:12px; flex:0 0 auto; }
+      .brand-text { min-width:0; }
+      .brand-text h1 { font-size:18px; white-space:normal; line-height:1.15; }
+      .brand-text p { font-size:10px; letter-spacing:.12em; }
+      .top-actions { flex:0 0 auto; gap:6px; }
+      .theme-toggle, .status-pill { padding:8px 10px; font-size:12px; }
+      .main-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin-top:10px; }
+      .main-tabs .chip-btn { text-align:center; padding:10px 6px; font-size:12px; white-space:normal; line-height:1.2; }
+      .panel, .filter-board, .strategy-card { border-radius:16px; }
+      .feed-panel, .market-panel, .warrant-panel, .summary-bar { padding:12px; }
+      .section-head { gap:8px; margin-bottom:10px; }
+      .section-head h3 { font-size:18px; }
+      .section-head p { font-size:12px; }
+      .stock-search-wrap { min-width:100%; }
+      .stock-actions { width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+      .stock-actions button { min-width:0; width:100%; padding:10px 8px; white-space:normal; }
+      .sector-grid, .warrant-grid, .index-overview, .filter-grid, .strategy-grid { grid-template-columns:1fr; }
+      .mini-stock { grid-template-columns:56px 1fr; padding:10px; }
+      .strategy-metrics, .filter-metrics { grid-template-columns:1fr; }
+      .strategy-title, .filter-card-top, .warrant-card strong { flex-wrap:wrap; }
+      .strategy-pill, .filter-badge, .warrant-badge { white-space:normal; text-align:left; }
+      .news-card, .filter-card, .warrant-card, .strategy-card { padding:11px; }
+      .news-title { font-size:16px; line-height:1.35; }
+      .news-snippet, .filter-reason, .strategy-rule { overflow-wrap:anywhere; word-break:normal; }
+      .detail-modal { padding:8px; align-items:flex-start; overflow:auto; }
+      .detail-box { border-radius:16px; margin-top:8px; }
+      .detail-head { padding:12px; align-items:flex-start; flex-direction:column; }
+      .detail-head h3, #detailTitle, #warrantTitle { font-size:24px !important; }
+      .stats-box { padding:12px; }
+      .stats-grid, .detail-summary, .detail-table, .fundamental-list, .fundamental-metrics, .fundamental-tools { grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .brand-text h1 { font-size:16px; }
+      .theme-toggle { max-width:58px; overflow:hidden; }
+      .status-pill { display:none; }
+      .main-tabs .chip-btn { font-size:11px; }
+      .stock-actions { grid-template-columns:1fr; }
+    }
+
   </style>
 </head>
 <body>
