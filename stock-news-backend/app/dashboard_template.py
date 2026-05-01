@@ -430,7 +430,7 @@ DASHBOARD_HTML = r'''
       return `<div class="strategy-grid">${cards}${table}</div>`;
     }
 
-    function renderTechnicalFilters(payload) {
+    async function renderTechnicalFilters(payload) {
       if (!elements.stockFilterGrid) return;
       const items = Array.isArray(payload?.items) ? payload.items : [];
       elements.stockFilterStatus.textContent = `PTKT: hiển thị ma trận chiến lược và tín hiệu cache`;
