@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-05-01T22:43:27.170955",
-  "note": "Current strategy signal cache; web reads this output only. Shakeout fixed to real shakeout logic, not V3 Plus6.",
+  "note": "Current strategy signal cache; web reads this output only. Shakeout is NOT mapped from V3 Plus6; it must come only from scan_shakeout_current_cache.py / _shakeout_candidate.",
   "strategies": [
     {
       "id": "b4_trend_pullback",
@@ -65,8 +65,8 @@
       "name": "Shakeout Rebound",
       "buy": [],
       "watchlist": [],
-      "rejectCount": 20,
-      "note": "Rechecked with real shakeout logic on 2026-05-01: first 20 symbols all rejected before API rate limit; previous many BUY/WATCH were wrong mapping to V3 Plus6 Focused."
+      "rejectCount": 0,
+      "note": "Real shakeout only; never V3 Plus6."
     },
     {
       "id": "clean_split_a_bottom",

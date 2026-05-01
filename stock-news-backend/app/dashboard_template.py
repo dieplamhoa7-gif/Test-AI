@@ -588,7 +588,10 @@ DASHBOARD_HTML = r'''
       });
       const raw = cache.strategies && !Array.isArray(cache.strategies) ? cache.strategies : null;
       if (raw) Object.entries(raw).forEach(([name, st]) => {
-        let key = name.includes('B4') ? 'b4_trend_pullback' : (name.includes('Clean') ? 'clean_split_a_bottom' : (name.includes('V3') ? 'shakeout_breakdown_rebound' : name));
+        let key = name.includes('B4') ? 'b4_trend_pullback' : (name.includes('Clean') ? 'clean_split_a_bottom' : name);
+        // Do not map V3 Plus6 Focused into Shakeout. Shakeout must only come from
+        // explicit shakeout_breakdown_rebound cache/scan.
+        if (name.includes('V3') || name.includes('Plus6')) return;
         put(key, 'buy', st.buy || []); put(key, 'watch', st.watchlist || st.watch || []); put(key, 'avoid', st.rejects || st.reject || []);
       });
       return map;
