@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json
+import time
 from datetime import datetime
 from pathlib import Path
 from app.strategy_recommendations import SHAKEOUT_UNIVERSE, _shakeout_candidate
@@ -9,8 +10,11 @@ OUT = Path('data/shakeout_rebound_current_signals.json')
 
 def main():
     buy=[]; reject=[]; errors=[]
-    for sym in SHAKEOUT_UNIVERSE:
+    for idx, sym in enumerate(SHAKEOUT_UNIVERSE, 1):
         try:
+            if idx > 1 and (idx - 1) % 18 == 0:
+                print('sleep 65s to avoid provider rate limit', flush=True)
+                time.sleep(65)
             item=get_market_symbol(sym, force_refresh=True)
             c=_shakeout_candidate(item)
             if c:
