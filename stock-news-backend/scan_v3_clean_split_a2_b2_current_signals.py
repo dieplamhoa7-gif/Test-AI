@@ -69,7 +69,9 @@ def eval_strategy(name,price,rs,ai):
         score=ok/len(checks)*100
     else:
         return None
-    action='BUY' if passed else 'WATCH' if score>=75 and dist<=3.5 and not ai.get('bearishDivergence') else 'REJECT'
+    macd_ok = bool(ai.get('macdHistRecovering'))
+    watch_ok = score>=75 and dist<=3.5 and macd_ok and not ai.get('bearishDivergence')
+    action='BUY' if passed else 'WATCH' if watch_ok else 'REJECT'
     entry=r(sup or price)
     target_pct=10 if name.startswith('A2') else 6
     return {'strategy':name,'action':action,'rankScore':r(score),'entryPrice':entry,'lastClose':r(price),'stopLoss':r(entry*0.94),'takeProfit':r(entry*(1+target_pct/100)),'targetPct':target_pct,'stopPct':6,'distSupportPct':r(dist),'support':r(sup),'resistance':r(res),'reasonsOk':[] if not passed else ['đạt đủ điều kiện'], 'missingReasons':reasons,'entryIndicators':ai,'rsSnapshot':{'supportZoneDay':rs.get('supportZoneDay'),'resistanceZoneDay':rs.get('resistanceZoneDay'),'activeSupportDay':rs.get('activeSupportDay'),'activeResistanceDay':rs.get('activeResistanceDay')}}
