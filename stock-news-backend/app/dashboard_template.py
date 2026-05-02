@@ -226,7 +226,7 @@ DASHBOARD_HTML = r'''
     .analysis-title { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px; }
     .analysis-title h4 { margin:0; font-size:18px; }
     .analysis-title p { margin:4px 0 0; color:var(--muted); font-size:12px; }
-    .fundamental-tools { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:14px; }
+    .fundamental-tools { display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:8px; margin-bottom:14px; }
     .fundamental-tool { border:1px solid rgba(92,110,148,.20); border-radius:16px; padding:13px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); min-height:74px; }
     body.light-theme .fundamental-tool { background:#f8fbff; border-color:rgba(38,61,99,.12); }
     .fundamental-tool span { display:block; color:var(--muted); font-size:12px; margin-bottom:7px; }
@@ -507,14 +507,14 @@ DASHBOARD_HTML = r'''
     function median(values) { const arr = values.filter(v => Number.isFinite(v)).sort((a,b) => a-b); if (!arr.length) return null; const mid = Math.floor(arr.length / 2); return arr.length % 2 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2; }
     function normalizeReportTarget(target, referencePrice = 0) { let n = Number(target || 0); const price = Number(referencePrice || 0); if (price > 0 && n > 0 && n < price * 0.45 && price * 0.8 <= n * 10 && n * 10 <= price * 3.5) n *= 10; return n; }
     function renderFundamentalPanel(payload, averageItem = null) { const items = Array.isArray(payload?.items) ? payload.items : []; if (!items.length) return `<div class="fundamental-panel"><div class="empty">Chưa có dữ liệu báo cáo định giá cho mã này trong file tuần.</div></div>`; const rawDefaultBuy = Number((marketItems.find(x => x.ticker === payload?.symbol)?.price) || averageItem?.price || 0); const defaultBuy = rawDefaultBuy > 0 && rawDefaultBuy < 1000 ? rawDefaultBuy * 1000 : rawDefaultBuy; const targets = items.map(x => normalizeReportTarget(x.target_price, defaultBuy)).filter(v => Number.isFinite(v) && v > 0); const localAvg = targets.length ? targets.reduce((a,b)=>a+b,0) / targets.length : null; const avg = Number(averageItem?.avgTargetPrice || 0) || localAvg; const med = median(targets); const reportCount = Number(averageItem?.reportCount || 0) || targets.length; const panelId = `fundCalc_${Date.now()}`; const cards = items.map(row => { const normalizedTarget = normalizeReportTarget(row.target_price, defaultBuy); const buyLow = normalizeReportTarget(row.buy_low, defaultBuy); const buyHigh = normalizeReportTarget(row.buy_high, defaultBuy); const stopLoss = normalizeReportTarget(row.stop_loss, defaultBuy); const buyRange = buyLow && buyHigh && buyLow !== buyHigh ? `${formatPrice(buyLow)} - ${formatPrice(buyHigh)}` : formatPrice(buyLow || buyHigh); return `<div class="fundamental-card"><div class="fundamental-top"><span class="broker-pill">${escapeHtml(row.broker || row.source || '-')}</span><span class="fundamental-date">${escapeHtml(row.report_date || '-')}</span></div><div class="fundamental-title">${escapeHtml(row.title || '')}</div><div class="fundamental-metrics"><div class="fundamental-metric"><span>Giá mục tiêu</span><b>${escapeHtml(formatPrice(normalizedTarget))}</b></div><div class="fundamental-metric"><span>Cắt lỗ</span><b>${escapeHtml(formatPrice(stopLoss))}</b></div><div class="fundamental-metric"><span>Vùng mua</span><b>${escapeHtml(buyRange)}</b></div></div></div>`; }).join(''); setTimeout(() => bindFundamentalCalc(panelId, avg || med || 0), 0); return `<div class="fundamental-panel" id="${panelId}">
-        <div class="analysis-title"><div><h4>Phân tích cơ bản</h4><p>Dữ liệu báo cáo định giá cache</p></div></div>
-        <div class="detail-table fundamental-summary-table">
-          <div class="detail-row"><span>Trung bình tất cả BC</span><b>${escapeHtml(formatPrice(avg))} <small>${escapeHtml(String(reportCount))} báo cáo</small></b></div>
-          <div class="detail-row"><span>Trung vị dòng đang hiển thị</span><b>${escapeHtml(formatPrice(med))}</b></div>
-          <div class="detail-row"><span>Chiết khấu (%)</span><b><input data-discount type="number" value="15" min="0" max="80" step="1"></b></div>
-          <div class="detail-row"><span>Giá mua</span><b><input data-buy-price type="number" value="${defaultBuy ? Math.round(defaultBuy) : ''}" step="100"></b></div>
-          <div class="detail-row"><span>Mục tiêu sau CK</span><b data-target-result>-</b></div>
-          <div class="detail-row"><span>Lợi nhuận kỳ vọng</span><b data-profit-result>-</b></div>
+        <div class="analysis-title"><div><h4>Phân tích cơ bản</h4></div></div>
+        <div class="fundamental-tools">
+          <div class="fundamental-tool"><span>Trung bình tất cả BC</span><b>${escapeHtml(formatPrice(avg))}</b><small>${escapeHtml(String(reportCount))} báo cáo</small></div>
+          <div class="fundamental-tool"><span>Trung vị dòng đang hiển thị</span><b>${escapeHtml(formatPrice(med))}</b></div>
+          <div class="fundamental-tool"><span>Chiết khấu (%)</span><input data-discount type="number" value="15" min="0" max="80" step="1"></div>
+          <div class="fundamental-tool"><span>Giá mua</span><input data-buy-price type="number" value="${defaultBuy ? Math.round(defaultBuy) : ''}" step="100"></div>
+          <div class="fundamental-tool"><span>Mục tiêu sau CK</span><b data-target-result>-</b></div>
+          <div class="fundamental-tool"><span>Lợi nhuận kỳ vọng</span><b data-profit-result>-</b></div>
         </div>
         <div class="fundamental-list">${cards}</div>
       </div>`; }
