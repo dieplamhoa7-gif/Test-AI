@@ -69,7 +69,7 @@ def eval_strategy(name,price,rs,ai):
         score=ok/len(checks)*100
     else:
         return None
-    macd_ok = bool(ai.get('macdHistRecovering'))
+    macd_ok = bool(ai.get('bullishDivergence'))
     watch_ok = score>=75 and dist<=3.5 and macd_ok and not ai.get('bearishDivergence')
     action='BUY' if passed else 'WATCH' if watch_ok else 'REJECT'
     entry=r(sup or price)

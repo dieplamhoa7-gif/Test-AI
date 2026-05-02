@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-02T17:30:15.342066",
+  "updatedAt": "2026-05-02T18:06:10.573245",
   "note": "Current strategy signal cache rebuilt from canonical selected strategy scanners only. Web reads output only.",
   "canonical": true,
   "sourceFiles": [
@@ -377,8 +377,70 @@
       "id": "clean_split_a_bottom",
       "name": "Support Rebound Hunter",
       "buy": [],
-      "watchlist": [],
-      "rejectCount": 48,
+      "watchlist": [
+        {
+          "strategy": "clean_split_a_bottom",
+          "action": "WATCH",
+          "rankScore": 75.0,
+          "entryPrice": 74.3,
+          "lastClose": 76.8,
+          "stopLoss": 69.84,
+          "takeProfit": 78.76,
+          "targetPct": 6,
+          "stopPct": 6,
+          "distSupportPct": 3.26,
+          "support": 74.3,
+          "resistance": 79.9,
+          "reasonsOk": [],
+          "missingReasons": [
+            "gần hỗ trợ <=3%",
+            "MACD hist hồi dần 3 phiên"
+          ],
+          "entryIndicators": {
+            "rsi": 49.0,
+            "macd": 0.6211,
+            "macdSignal": 0.753,
+            "macdHist": -0.1319,
+            "macdHistSeq": [
+              0.2237,
+              0.0678,
+              -0.0279,
+              -0.1319
+            ],
+            "macdHistImproving": false,
+            "macdHistRecovering": false,
+            "bbPercent": 0.377,
+            "volumeRatio": 0.67,
+            "roc20": 1.72,
+            "ret5": -2.78,
+            "ichimoku": {
+              "state": "above_cloud",
+              "bullishTkCross": true,
+              "tenkan": 79.3,
+              "kijun": 77.1,
+              "cloudTop": 75.8,
+              "cloudBottom": 73.15
+            },
+            "bullishDivergence": true,
+            "bearishDivergence": false
+          },
+          "rsSnapshot": {
+            "supportZoneDay": [
+              73.89,
+              74.81
+            ],
+            "resistanceZoneDay": [
+              79.42,
+              80.34
+            ],
+            "activeSupportDay": 74.3,
+            "activeResistanceDay": 79.9
+          },
+          "symbol": "MSN",
+          "asOfDate": "2026-04-29"
+        }
+      ],
+      "rejectCount": 47,
       "source": "data\\v3_clean_split_a2_b2_current_signals.json",
       "canonical": true,
       "method": "Current signal scan using saved clean split A2/B2 rules. Not historical winners. R/S only for zone/entry/stop/target; action uses RSI/MACD/BB/Volume/ROC/Ichimoku/Divergence. Excludes VIC/VHM."
