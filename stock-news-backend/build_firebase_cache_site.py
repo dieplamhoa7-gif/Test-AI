@@ -108,6 +108,42 @@ def build_fundamental_cache() -> dict[str, Any]:
     return {"items": reports if isinstance(reports, list) else [], "source": "firebase-static-cache"}
 
 
+def build_fundamental_top_upside(reports: list[dict[str, Any]], market_items: list[dict[str, Any]]) -> dict[str, Any]:
+    prices = {str(x.get("ticker") or x.get("symbol") or "").upper(): float(x.get("price") or 0) for x in market_items if isinstance(x, dict)}
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in reports:
+        if not isinstance(row, dict):
+            continue
+        sym = str(row.get("symbol") or "").upper().strip()
+        target = float(row.get("target_price") or 0)
+        if not sym or target <= 0:
+            continue
+        grouped.setdefault(sym, []).append(row)
+    out = []
+    for sym, rows in grouped.items():
+        targets = [float(r.get("target_price") or 0) for r in rows if float(r.get("target_price") or 0) > 0]
+        if not targets:
+            continue
+        avg = sum(targets) / len(targets)
+        price = prices.get(sym, 0)
+        # market prices are in thousand VND while report targets are VND; normalize display fields to VND.
+        price_vnd = price * 1000 if 0 < price < 1000 else price
+        upside = ((avg / price_vnd - 1) * 100) if price_vnd > 0 else None
+        latest = sorted(rows, key=lambda r: str(r.get("report_date") or ""), reverse=True)[0]
+        out.append({
+            "symbol": sym,
+            "price": round(price_vnd, 0) if price_vnd else None,
+            "avgTargetPrice": round(avg, 0),
+            "upsidePct": round(upside, 1) if upside is not None else None,
+            "reportCount": len(rows),
+            "latestReportDate": latest.get("report_date"),
+            "latestTitle": latest.get("title"),
+            "name": latest.get("title"),
+        })
+    out.sort(key=lambda x: (x.get("upsidePct") is None, -(x.get("upsidePct") or -9999), x.get("symbol") or ""))
+    return {"items": out[:50], "source": "firebase-static-cache"}
+
+
 def patch_html_for_firebase(html: str) -> str:
     """Patch dashboard to call Firebase static JSON directly.
 
@@ -198,7 +234,7 @@ def main() -> None:
     write_json(PUBLIC_DATA / "warrants_data.json", build_warrants_cache())
     fundamental = build_fundamental_cache()
     write_json(PUBLIC_DATA / "fundamental_signals.json", fundamental)
-    write_json(PUBLIC_DATA / "fundamental_top_upside.json", {"items": fundamental.get("items", [])[:50], "source": "firebase-static-cache"})
+    write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market_cache.get("items", [])))
     write_json(PUBLIC_DATA / "market_overview.json", {"items":[
         {"symbol":"VNINDEX","label":"VN-Index","close":1040.0,"change":0,"changePct":0},
         {"symbol":"HNXINDEX","label":"HNX-Index","close":0,"change":0,"changePct":0},
