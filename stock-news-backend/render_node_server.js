@@ -247,6 +247,14 @@ const server = http.createServer((req, res) => {
     if (pathname === '/health') {
       return send(res, 200, JSON.stringify({ ok: true, service: 'web', runtime: 'node-cache-server' }));
     }
+    if (pathname.startsWith('/assets/')) {
+      const assetName = path.basename(pathname);
+      const assetPath = path.join(DATA, 'assets', assetName);
+      if (!fs.existsSync(assetPath)) return notFound(res);
+      const ext = path.extname(assetName).toLowerCase();
+      const type = ext === '.png' ? 'image/png' : (ext === '.jpg' || ext === '.jpeg') ? 'image/jpeg' : 'application/octet-stream';
+      return send(res, 200, fs.readFileSync(assetPath), type);
+    }
     if (pathname === '/' || pathname === '/stocks' || pathname === '/warrants' || pathname === '/news-page' || pathname.startsWith('/stocks/') || pathname.startsWith('/warrants/')) {
       const html = fs.readFileSync(HTML_PATH, 'utf8');
       return send(res, 200, html, 'text/html; charset=utf-8');
