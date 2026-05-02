@@ -126,10 +126,10 @@ function warrantsFromCache(symbols = '') {
     if (!item.code) return false;
     if (!item.maturityDate || item.daysLeft === undefined || item.daysLeft === null) return false;
     if (Number(item.daysLeft) <= 0) return false;
-    const price = Number(item.marketPrice || item.lastPrice || item.fairValue || 0);
+    const hasPriceInfo = item.marketPrice !== undefined || item.lastPrice !== undefined || item.fairValue !== undefined;
     const underlyingPrice = Number(item.underlyingPrice || 0);
     const exercisePrice = Number(item.exercisePrice || 0);
-    return Number.isFinite(price) && price > 0 && underlyingPrice > 0 && exercisePrice > 0;
+    return hasPriceInfo && underlyingPrice > 0 && exercisePrice > 0;
   });
   const wanted = String(symbols || '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
   if (wanted.length) items = items.filter(x => wanted.includes(String(x.code || '').toUpperCase()));
