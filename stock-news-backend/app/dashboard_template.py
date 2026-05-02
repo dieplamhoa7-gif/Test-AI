@@ -119,7 +119,10 @@ DASHBOARD_HTML = r'''
     .remove-btn { border-color: rgba(255,125,125,.42); color:#ffb8b8; background:rgba(255,91,110,.08); }
     .remove-btn:hover { background:rgba(255,91,110,.16); }
     .stock-search-bar input { width:100%; background: var(--panel-2); color: var(--text); border:1px solid var(--line); border-radius:14px; padding: 12px 14px; outline:none; }
-    .search-suggest { position:absolute; top:calc(100% + 6px); left:0; right:0; background:#0f1522; border:1px solid rgba(92,110,148,.24); border-radius:16px; box-shadow: var(--shadow); max-height:260px; overflow:auto; z-index:30; display:none; }
+    .search-suggest { position:absolute; top:calc(100% + 6px); left:0; right:0; background:#0f1522; border:1px solid rgba(92,110,148,.24); border-radius:16px; box-shadow: var(--shadow); max-height:min(62vh,520px); overflow-y:auto; overflow-x:hidden; z-index:30; display:none; scrollbar-width:thin; scrollbar-color:#64b5ff rgba(151,170,214,.16); }
+    .search-suggest::-webkit-scrollbar { width:8px; }
+    .search-suggest::-webkit-scrollbar-track { background:rgba(151,170,214,.12); border-radius:999px; }
+    .search-suggest::-webkit-scrollbar-thumb { background:rgba(100,181,255,.75); border-radius:999px; }
     body.light-theme .search-suggest { background:#fff; border-color:rgba(38,61,99,.14); }
     .search-suggest.open { display:block; }
     .search-option { padding:10px 12px; border-bottom:1px solid rgba(92,110,148,.14); cursor:pointer; }
@@ -481,7 +484,7 @@ DASHBOARD_HTML = r'''
       const q = String(elements.warrantSearchInput?.value || '').trim().toUpperCase();
       selectedWarrant = '';
       if (!q) { elements.warrantSuggest.classList.remove('open'); elements.warrantSuggest.innerHTML = ''; return; }
-      const found = warrantItems.filter(item => String(item.code || '').toUpperCase().includes(q) || String(item.underlying || '').toUpperCase().includes(q)).slice(0, 20);
+      const found = warrantItems.filter(item => String(item.code || '').toUpperCase().includes(q) || String(item.underlying || '').toUpperCase().includes(q)).slice(0, 50);
       elements.warrantSuggest.innerHTML = found.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div class="search-option" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<em class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</em></strong><span>${escapeHtml(item.underlying || '')} • Hòa vốn ${escapeHtml(formatPrice(item.breakeven))} • Còn ${escapeHtml(item.daysLeft ?? '-')} ngày</span></div>`; }).join('');
       elements.warrantSuggest.classList.toggle('open', found.length > 0);
       elements.warrantSuggest.querySelectorAll('[data-warrant]').forEach(option => option.addEventListener('click', () => { selectedWarrant = option.dataset.warrant; elements.warrantSearchInput.value = selectedWarrant; elements.warrantSuggest.classList.remove('open'); }));
