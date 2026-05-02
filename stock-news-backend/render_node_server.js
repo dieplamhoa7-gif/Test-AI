@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 10000;
 const ROOT = __dirname;
 const DATA = path.join(ROOT, 'data');
 const HTML_PATH = path.join(DATA, 'dashboard_static.html');
+const WARRANTS_STATIC = path.join(ROOT, 'app', 'warrants', 'warrants_static.json');
+const WARRANTS_CATALOG = path.join(ROOT, 'app', 'warrants', 'warrant_catalog.json');
 
 function send(res, status, body, type = 'application/json; charset=utf-8') {
   res.writeHead(status, {
@@ -23,6 +25,10 @@ function readJsonFile(name) {
 
 function readJson(name) {
   return JSON.parse(readJsonFile(name));
+}
+
+function readJsonPath(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
 function rsCacheFile() {
@@ -86,6 +92,30 @@ function marketDataFromRs() {
   return { items, updatedAt: cache.createdAt, status: 'rs-cache-node-fallback' };
 }
 
+function newsFromCache(limit = 30) {
+  const raw = readJson('news_cache.json');
+  const items = Array.isArray(raw) ? raw : (Array.isArray(raw.items) ? raw.items : []);
+  return { items: items.slice(0, limit), updatedAt: raw.updatedAt || raw.createdAt || null, status: 'news-cache-node-fallback' };
+}
+
+function warrantsFromCache(symbols = '') {
+  const staticPayload = fs.existsSync(WARRANTS_STATIC) ? readJsonPath(WARRANTS_STATIC) : { items: [] };
+  const catalogPayload = fs.existsSync(WARRANTS_CATALOG) ? readJsonPath(WARRANTS_CATALOG) : { items: [] };
+  const byCode = new Map();
+  for (const item of (catalogPayload.items || [])) {
+    const code = String(item.code || '').toUpperCase();
+    if (code) byCode.set(code, { code, underlying: item.underlying || '', source: item.source || 'catalog' });
+  }
+  for (const item of (staticPayload.items || [])) {
+    const code = String(item.code || '').toUpperCase();
+    if (code) byCode.set(code, { ...(byCode.get(code) || {}), ...item, code });
+  }
+  let items = Array.from(byCode.values());
+  const wanted = String(symbols || '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
+  if (wanted.length) items = items.filter(x => wanted.includes(String(x.code || '').toUpperCase()));
+  return { items, updatedAt: staticPayload.updatedAt || catalogPayload.updatedAt || null, status: 'warrants-cache-node-fallback' };
+}
+
 function notFound(res) {
   send(res, 404, JSON.stringify({ detail: 'Not Found' }));
 }
@@ -131,10 +161,11 @@ const server = http.createServer((req, res) => {
       return send(res, 200, JSON.stringify(items));
     }
     if (pathname === '/warrants-data') {
-      return send(res, 200, JSON.stringify({ items: [], status: 'cache-only-node-fallback' }));
+      return send(res, 200, JSON.stringify(warrantsFromCache(url.searchParams.get('symbols') || '')));
     }
     if (pathname === '/news') {
-      return send(res, 200, JSON.stringify({ items: [], status: 'cache-only-node-fallback' }));
+      const limit = Math.max(1, Math.min(200, Number(url.searchParams.get('limit') || 30)));
+      return send(res, 200, JSON.stringify(newsFromCache(limit)));
     }
     return notFound(res);
   } catch (err) {
