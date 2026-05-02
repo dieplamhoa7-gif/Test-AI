@@ -542,15 +542,21 @@ DASHBOARD_HTML = r'''
       return rows.slice(0,max).map(x => {
         const rawSymbol = x.symbol || x.ticker || '';
         const symbol = escapeHtml(rawSymbol);
-        const entryRaw = x.entryPrice ?? x.entry ?? x.price ?? x.lastClose ?? '-';
+        const currentRaw = x.lastClose ?? x.price ?? '-';
+        const entryRaw = x.entryPrice ?? x.entry ?? x.support ?? '-';
         const targetRaw = x.takeProfit ?? x.target ?? '-';
         const stopRaw = x.stopLoss ?? x.stop ?? '-';
+        const zone = Array.isArray(x.rsSnapshot?.supportZoneDay) && x.rsSnapshot.supportZoneDay.length >= 2 ? `${fmtOneDecimal(x.rsSnapshot.supportZoneDay[0])}-${fmtOneDecimal(x.rsSnapshot.supportZoneDay[1])}` : '';
+        const resistanceZone = Array.isArray(x.rsSnapshot?.resistanceZoneDay) && x.rsSnapshot.resistanceZoneDay.length >= 2 ? `${fmtOneDecimal(x.rsSnapshot.resistanceZoneDay[0])}-${fmtOneDecimal(x.rsSnapshot.resistanceZoneDay[1])}` : '';
+        const current = fmtOneDecimal(currentRaw);
         const entry = fmtOneDecimal(entryRaw);
         const target = fmtOneDecimal(targetRaw);
         const stop = fmtOneDecimal(stopRaw);
+        const gap = Number(x.gapToEntryPct ?? x.distSupportPct);
+        const gapText = Number.isFinite(gap) ? `${gap >= 0 ? '+' : ''}${gap.toFixed(1)}%` : '';
         const rank = x.rankScore ?? x.rank ?? '';
-        const title = escapeHtml([x.reason || '', entry !== '-' ? `Điểm mua: ${entry}` : '', target !== '-' ? `Target: ${target}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
-        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="trade-line"><span>Điểm mua</span><b>${escapeHtml(entry)}</b></span><span class="trade-line"><span>Target</span><b>${escapeHtml(target)}</b></span><span class="trade-line"><span>Cắt lỗ</span><b>${escapeHtml(stop)}</b></span></button>`;
+        const title = escapeHtml([x.reason || '', current !== '-' ? `Giá hiện tại: ${current}` : '', entry !== '-' ? `Điểm mua: ${entry}` : '', zone ? `Vùng mua: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `Vùng cản: ${resistanceZone}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="trade-line"><span>Giá hiện tại</span><b>${escapeHtml(current)}</b></span><span class="trade-line"><span>Điểm mua</span><b>${escapeHtml(entry)}${gapText ? ` <small>${escapeHtml(gapText)}</small>` : ''}</b></span>${zone ? `<span class="trade-line"><span>Vùng mua</span><b>${escapeHtml(zone)}</b></span>` : ''}<span class="trade-line"><span>Target</span><b>${escapeHtml(target)}</b></span><span class="trade-line"><span>Cắt lỗ</span><b>${escapeHtml(stop)}</b></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
 
