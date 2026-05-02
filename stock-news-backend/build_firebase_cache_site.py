@@ -123,7 +123,7 @@ def patch_html_for_firebase(html: str) -> str:
         "`${API_BASE}/strategy-matrix-cache?ts=${Date.now()}`": "`/data/strategy_matrix_cache.json?ts=${Date.now()}`",
         "`${API_BASE}/strategy-results-cache?ts=${Date.now()}`": "`/data/strategy_results_cache.json?ts=${Date.now()}`",
         "`${API_BASE}/fundamental-top-upside?limit=50&max_symbols=200&ts=${Date.now()}`": "`/data/fundamental_top_upside.json?ts=${Date.now()}`",
-        "`${MARKET_API_BASE || API_BASE}/market-data?refresh=${refreshFlag}&ts=${Date.now()}`": "`/data/market_data.json?ts=${Date.now()}`",
+        "`${MARKET_API_BASE || API_BASE}/market-data?refresh=${refreshFlag}&ts=${Date.now()}`": "`/data/market_watch.json?ts=${Date.now()}`",
         "`${API_BASE}/news?limit=${limit}&lang=${currentLang}`": "`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?limit=${limit}&ts=${Date.now()}`",
     }
     for old, new in replacements.items():
@@ -164,6 +164,8 @@ def main() -> None:
 
     market = build_market_cache()
     write_json(PUBLIC_DATA / "market_data.json", market)
+    default_watch = {"MWG", "FPT", "HPG", "SSI"}
+    write_json(PUBLIC_DATA / "market_watch.json", {"items": [x for x in market["items"] if str(x.get("ticker") or x.get("symbol") or "").upper() in default_watch], "source": "firebase-static-watch-cache"})
     symbols = []
     for item in market["items"]:
         sym = str(item.get("symbol") or item.get("ticker") or "").upper()
