@@ -761,12 +761,14 @@ DASHBOARD_HTML = r'''
           <div class="analysis-grid">
             <div class="technical-panel">
               <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
-              <div class="detail-table">
-                ${row(label('trend'), escapeHtml(String(tech.trend || '-')))}
-                ${row('MA20/50/200', `${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}`)}
-                ${row('RSI 14', val(tech.rsi14 ?? item.rsi14 ?? 0))}
-                ${row('BB Upper/Lower', `${price(tech.bbUpper ?? item.bbUpper ?? 0)} / ${price(tech.bbLower ?? item.bbLower ?? 0)}`)}
-                ${row('%BB', `${val(((tech.bbPercent ?? item.bbPercent ?? null) !== null && (tech.bbPercent ?? item.bbPercent ?? 0) <= 1) ? (tech.bbPercent ?? item.bbPercent ?? 0) * 100 : (tech.bbPercent ?? item.bbPercent ?? 0))}%`)}
+              <div class="detail-summary">
+                <div class="detail-price-card"><div class="label">${label('trend')}</div><div class="value">${escapeHtml(String(tech.trend || '-'))}</div></div>
+                <div class="detail-price-card"><div class="label">MA20/50/200</div><div class="value">${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">RSI 14</div><div class="value">${val(tech.rsi14 ?? item.rsi14 ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">BB Upper/Lower</div><div class="value">${price(tech.bbUpper ?? item.bbUpper ?? 0)} / ${price(tech.bbLower ?? item.bbLower ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">%BB</div><div class="value">${val(((tech.bbPercent ?? item.bbPercent ?? null) !== null && (tech.bbPercent ?? item.bbPercent ?? 0) <= 1) ? (tech.bbPercent ?? item.bbPercent ?? 0) * 100 : (tech.bbPercent ?? item.bbPercent ?? 0))}%</div></div>
+              </div>
+              <div class="detail-table" style="margin-top:12px;">
                 ${row(label('currentSupport'), price(support))}
                 ${row(label('nextSupport'), price(nextSupport))}
                 ${row(label('currentResistance'), price(resistance))}
