@@ -199,21 +199,11 @@ DASHBOARD_HTML = r'''
     .stat-card .value { color: #edf2ff; font-size: 16px; font-weight: 800; }
     body.light-theme .stat-card { background:#fff; border-color:rgba(38,61,99,.12); }
     body.light-theme .stat-card .value { color:#132033; }
-    .detail-summary { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-bottom:14px; }
-    .technical-panel .detail-summary { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .detail-price-card { border:1px solid rgba(92,110,148,.22); border-radius:18px; padding:14px 15px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
-    .detail-price-card.accent-blue { background:linear-gradient(135deg, rgba(100,181,255,.16), rgba(100,181,255,.035)); border-color:rgba(100,181,255,.32); }
-    .detail-price-card.accent-green { background:linear-gradient(135deg, rgba(78,240,192,.15), rgba(78,240,192,.035)); border-color:rgba(78,240,192,.30); }
-    .detail-price-card.accent-yellow { background:linear-gradient(135deg, rgba(255,209,102,.14), rgba(255,209,102,.035)); border-color:rgba(255,209,102,.28); }
-    .detail-price-card.accent-purple { background:linear-gradient(135deg, rgba(168,139,250,.15), rgba(168,139,250,.035)); border-color:rgba(168,139,250,.30); }
-    body.light-theme .detail-price-card { background:#fff; border-color:rgba(38,61,99,.12); box-shadow:0 6px 18px rgba(15,23,42,.04); }
-    body.light-theme .detail-price-card.accent-blue { background:#eef6ff; }
-    body.light-theme .detail-price-card.accent-green { background:#ecfdf5; }
-    body.light-theme .detail-price-card.accent-yellow { background:#fff8e1; }
-    body.light-theme .detail-price-card.accent-purple { background:#f5f3ff; }
-    .detail-price-card .label { color:var(--muted); font-size:12px; margin-bottom:7px; font-weight:800; text-transform:uppercase; letter-spacing:.02em; }
-    .detail-price-card .value { font-size:20px; font-weight:950; color:#edf2ff; }
-    body.light-theme .detail-price-card .value { color:#132033; }
+    .detail-summary { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:10px; margin-bottom:14px; }
+    .detail-price-card { border:1px solid rgba(92,110,148,.22); border-radius:16px; padding:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)); }
+    body.light-theme .detail-price-card { background:#fff; border-color:rgba(38,61,99,.12); }
+    .detail-price-card .label { color:var(--muted); font-size:12px; margin-bottom:6px; }
+    .detail-price-card .value { font-size:20px; font-weight:900; }
     .detail-actions { display:flex; justify-content:flex-end; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
     .detail-table { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
     .detail-row { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:11px 12px; background:rgba(255,255,255,.025); }
@@ -764,19 +754,19 @@ DASHBOARD_HTML = r'''
         const nextResistance = tech.nextResistanceDay ?? tech.resistanceDay2 ?? 0;
         elements.detailStats.innerHTML = `
           <div class="detail-summary">
-            <div class="detail-price-card accent-blue"><div class="label">${label('currentPrice')}</div><div class="value ${changeCls}">${price(item.price)}</div></div>
-            <div class="detail-price-card accent-green"><div class="label">${label('changePct')}</div><div class="value ${changeCls}">${sign}${val(item.changePct)}%</div></div>
-            <div class="detail-price-card accent-purple"><div class="label">${label('volume')}</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
+            <div class="detail-price-card"><div class="label">${label('currentPrice')}</div><div class="value ${changeCls}">${price(item.price)}</div></div>
+            <div class="detail-price-card"><div class="label">${label('changePct')}</div><div class="value ${changeCls}">${sign}${val(item.changePct)}%</div></div>
+            <div class="detail-price-card"><div class="label">${label('volume')}</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
           </div>
           <div class="analysis-grid">
             <div class="technical-panel">
               <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
               <div class="detail-summary">
-                <div class="detail-price-card accent-blue"><div class="label">${label('trend')}</div><div class="value">${escapeHtml(String(tech.trend || '-'))}</div></div>
-                <div class="detail-price-card accent-purple"><div class="label">MA20/50/200</div><div class="value">${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}</div></div>
-                <div class="detail-price-card accent-green"><div class="label">RSI 14</div><div class="value">${val(tech.rsi14 ?? item.rsi14 ?? 0)}</div></div>
-                <div class="detail-price-card accent-yellow"><div class="label">BB Upper/Lower</div><div class="value">${price(tech.bbUpper ?? item.bbUpper ?? 0)} / ${price(tech.bbLower ?? item.bbLower ?? 0)}</div></div>
-                <div class="detail-price-card accent-blue"><div class="label">%BB</div><div class="value">${val(((tech.bbPercent ?? item.bbPercent ?? null) !== null && (tech.bbPercent ?? item.bbPercent ?? 0) <= 1) ? (tech.bbPercent ?? item.bbPercent ?? 0) * 100 : (tech.bbPercent ?? item.bbPercent ?? 0))}%</div></div>
+                <div class="detail-price-card"><div class="label">${label('trend')}</div><div class="value">${escapeHtml(String(tech.trend || '-'))}</div></div>
+                <div class="detail-price-card"><div class="label">MA20/50/200</div><div class="value">${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">RSI 14</div><div class="value">${val(tech.rsi14 ?? item.rsi14 ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">BB Upper/Lower</div><div class="value">${price(tech.bbUpper ?? item.bbUpper ?? 0)} / ${price(tech.bbLower ?? item.bbLower ?? 0)}</div></div>
+                <div class="detail-price-card"><div class="label">%BB</div><div class="value">${val(((tech.bbPercent ?? item.bbPercent ?? null) !== null && (tech.bbPercent ?? item.bbPercent ?? 0) <= 1) ? (tech.bbPercent ?? item.bbPercent ?? 0) * 100 : (tech.bbPercent ?? item.bbPercent ?? 0))}%</div></div>
               </div>
               <div class="detail-table" style="margin-top:12px;">
                 ${row(label('currentSupport'), price(support))}
