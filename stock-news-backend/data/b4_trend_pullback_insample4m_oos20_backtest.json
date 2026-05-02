@@ -1,0 +1,1522 @@
+{
+  "createdAt": "2026-05-02T07:16:33.916464",
+  "name": "B4 Trend Pullback insample4m oos20",
+  "method": "Fixed locked B4 rules. In-sample is ~4 calendar months before the latest 20 candles. OOS is the latest 20 candles.",
+  "windows": {
+    "insampleStart": "2025-11-30",
+    "oosStart": "2026-04-01",
+    "end": "2026-04-29",
+    "oosCandles": 20
+  },
+  "exit": {
+    "targetPct": 6,
+    "takeProfitAtTargetPct": 50,
+    "trailingAfterTarget": "max(entry+0.5%, peak-3%)",
+    "stopPct": 6
+  },
+  "insample4m": {
+    "window": "insample4m",
+    "start": "2025-11-30",
+    "end": "2026-04-01",
+    "requireFullHorizon": true,
+    "summary": {
+      "totalTrades": 9,
+      "wins": 6,
+      "losses": 3,
+      "winRatePct": 66.67,
+      "avgPnlPct": 1.77,
+      "sumPnlPct": 15.97,
+      "avgWinPct": 5.66,
+      "avgLossPct": -6.0,
+      "avgHoldSessions": 5.89
+    },
+    "trades": [
+      {
+        "outcome": "win",
+        "entry": 81.6,
+        "stopInitial": 76.7,
+        "target": 86.5,
+        "pnlPct": 5.3,
+        "riskPct": 6,
+        "holdSessions": 3,
+        "exitDate": "2025-12-23",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2025-12-19",
+            "open": 81.5,
+            "high": 83.0,
+            "low": 81.3,
+            "close": 82.9,
+            "stop": 76.7,
+            "event": null
+          },
+          {
+            "date": "2025-12-22",
+            "open": 82.7,
+            "high": 85.0,
+            "low": 82.7,
+            "close": 85.0,
+            "stop": 76.7,
+            "event": null
+          },
+          {
+            "date": "2025-12-23",
+            "open": 85.0,
+            "high": 88.0,
+            "low": 84.9,
+            "close": 87.5,
+            "stop": 85.36,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "MWG",
+        "signalDate": "2025-12-17",
+        "entryDate": "2025-12-18",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.56,
+        "support": 79.8,
+        "resistance": 84.7,
+        "supportZone": [
+          79.27,
+          80.35
+        ],
+        "resistanceZone": [
+          84.17,
+          85.25
+        ],
+        "entryIndicators": {
+          "rsi": 51.23,
+          "macd": 0.076,
+          "macdSignal": 0.2951,
+          "macdHist": -0.2192,
+          "macdHistSeq": [
+            -0.1493,
+            -0.4227,
+            -0.3014,
+            -0.2192
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.547,
+          "volumeRatio": 0.84,
+          "roc20": -0.61,
+          "ret5": -1.33,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 81.6,
+            "kijun": 81.85,
+            "cloudTop": 80.83,
+            "cloudBottom": 80.8
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 79.9,
+            "priceLow2": 77.7,
+            "rsiLow1": 47.7,
+            "rsiLow2": 38.11,
+            "macdHistLow1": -0.1433,
+            "macdHistLow2": -0.4227
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "loss",
+        "entry": 28.3,
+        "stopInitial": 26.6,
+        "target": 30.0,
+        "pnlPct": -6.0,
+        "riskPct": 6,
+        "holdSessions": 9,
+        "exitDate": "2026-03-09",
+        "partialTaken": false,
+        "futurePath": [
+          {
+            "date": "2026-02-25",
+            "open": 28.4,
+            "high": 29.7,
+            "low": 28.4,
+            "close": 29.3,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-02-26",
+            "open": 29.5,
+            "high": 29.55,
+            "low": 28.8,
+            "close": 29.4,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-02-27",
+            "open": 29.35,
+            "high": 29.4,
+            "low": 28.8,
+            "close": 28.8,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-02",
+            "open": 28.2,
+            "high": 29.25,
+            "low": 28.05,
+            "close": 28.5,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-03",
+            "open": 28.8,
+            "high": 28.85,
+            "low": 27.6,
+            "close": 27.7,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-04",
+            "open": 27.6,
+            "high": 27.85,
+            "low": 26.8,
+            "close": 27.7,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-05",
+            "open": 27.95,
+            "high": 28.15,
+            "low": 27.1,
+            "close": 27.25,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-06",
+            "open": 27.0,
+            "high": 27.6,
+            "low": 26.85,
+            "close": 27.25,
+            "stop": 26.6,
+            "event": null
+          },
+          {
+            "date": "2026-03-09",
+            "open": 25.5,
+            "high": 26.15,
+            "low": 25.35,
+            "close": 25.35,
+            "stop": 26.6,
+            "event": "stop"
+          }
+        ],
+        "symbol": "HPG",
+        "signalDate": "2026-02-23",
+        "entryDate": "2026-02-24",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.91,
+        "support": 26.7,
+        "resistance": 28.5,
+        "supportZone": [
+          26.53,
+          26.89
+        ],
+        "resistanceZone": [
+          28.28,
+          28.64
+        ],
+        "entryIndicators": {
+          "rsi": 56.12,
+          "macd": 0.0589,
+          "macdSignal": 0.0452,
+          "macdHist": 0.0137,
+          "macdHistSeq": [
+            -0.0327,
+            -0.0291,
+            -0.029,
+            0.0137
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.823,
+          "volumeRatio": 0.94,
+          "roc20": -0.72,
+          "ret5": 2.8,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": true,
+            "tenkan": 27.5,
+            "kijun": 27.38,
+            "cloudTop": 26.85,
+            "cloudBottom": 26.52
+          },
+          "bullishDivergence": true,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 26.55,
+            "priceLow2": 26.55,
+            "rsiLow1": 46.51,
+            "rsiLow2": 46.43,
+            "macdHistLow1": -0.0456,
+            "macdHistLow2": -0.0313
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "loss",
+        "entry": 35.8,
+        "stopInitial": 33.65,
+        "target": 37.95,
+        "pnlPct": -6.0,
+        "riskPct": 6,
+        "holdSessions": 5,
+        "exitDate": "2026-03-03",
+        "partialTaken": false,
+        "futurePath": [
+          {
+            "date": "2026-02-25",
+            "open": 35.8,
+            "high": 36.45,
+            "low": 35.7,
+            "close": 36.0,
+            "stop": 33.65,
+            "event": null
+          },
+          {
+            "date": "2026-02-26",
+            "open": 36.1,
+            "high": 36.45,
+            "low": 36.0,
+            "close": 36.45,
+            "stop": 33.65,
+            "event": null
+          },
+          {
+            "date": "2026-02-27",
+            "open": 36.05,
+            "high": 36.4,
+            "low": 35.85,
+            "close": 36.25,
+            "stop": 33.65,
+            "event": null
+          },
+          {
+            "date": "2026-03-02",
+            "open": 35.8,
+            "high": 35.8,
+            "low": 34.65,
+            "close": 34.65,
+            "stop": 33.65,
+            "event": null
+          },
+          {
+            "date": "2026-03-03",
+            "open": 34.65,
+            "high": 34.95,
+            "low": 33.6,
+            "close": 33.6,
+            "stop": 33.65,
+            "event": "stop"
+          }
+        ],
+        "symbol": "TCB",
+        "signalDate": "2026-02-23",
+        "entryDate": "2026-02-24",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.93,
+        "support": 34.8,
+        "resistance": 37.0,
+        "supportZone": [
+          34.64,
+          35.0
+        ],
+        "resistanceZone": [
+          36.78,
+          37.14
+        ],
+        "entryIndicators": {
+          "rsi": 55.61,
+          "macd": 0.0032,
+          "macdSignal": -0.0478,
+          "macdHist": 0.051,
+          "macdHistSeq": [
+            -0.0846,
+            -0.0321,
+            0.0031,
+            0.051
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.745,
+          "volumeRatio": 0.83,
+          "roc20": -1.24,
+          "ret5": 3.17,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 35.0,
+            "kijun": 36.15,
+            "cloudTop": 34.46,
+            "cloudBottom": 33.83
+          },
+          "bullishDivergence": true,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 34.55,
+            "priceLow2": 34.6,
+            "rsiLow1": 44.59,
+            "rsiLow2": 45.33,
+            "macdHistLow1": -0.2082,
+            "macdHistLow2": -0.1452
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "loss",
+        "entry": 36.0,
+        "stopInitial": 33.84,
+        "target": 38.16,
+        "pnlPct": -6.0,
+        "riskPct": 6,
+        "holdSessions": 4,
+        "exitDate": "2026-03-03",
+        "partialTaken": false,
+        "futurePath": [
+          {
+            "date": "2026-02-26",
+            "open": 36.1,
+            "high": 36.45,
+            "low": 36.0,
+            "close": 36.45,
+            "stop": 33.84,
+            "event": null
+          },
+          {
+            "date": "2026-02-27",
+            "open": 36.05,
+            "high": 36.4,
+            "low": 35.85,
+            "close": 36.25,
+            "stop": 33.84,
+            "event": null
+          },
+          {
+            "date": "2026-03-02",
+            "open": 35.8,
+            "high": 35.8,
+            "low": 34.65,
+            "close": 34.65,
+            "stop": 33.84,
+            "event": null
+          },
+          {
+            "date": "2026-03-03",
+            "open": 34.65,
+            "high": 34.95,
+            "low": 33.6,
+            "close": 33.6,
+            "stop": 33.84,
+            "event": "stop"
+          }
+        ],
+        "symbol": "TCB",
+        "signalDate": "2026-02-24",
+        "entryDate": "2026-02-25",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.79,
+        "support": 34.8,
+        "resistance": 37.0,
+        "supportZone": [
+          34.62,
+          34.94
+        ],
+        "resistanceZone": [
+          36.8,
+          37.12
+        ],
+        "entryIndicators": {
+          "rsi": 55.1,
+          "macd": 0.0467,
+          "macdSignal": -0.0289,
+          "macdHist": 0.0756,
+          "macdHistSeq": [
+            -0.0321,
+            0.0031,
+            0.051,
+            0.0756
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.73,
+          "volumeRatio": 1.01,
+          "roc20": -0.42,
+          "ret5": 3.47,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 35.0,
+            "kijun": 36.15,
+            "cloudTop": 35.06,
+            "cloudBottom": 34.25
+          },
+          "bullishDivergence": true,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 34.55,
+            "priceLow2": 34.6,
+            "rsiLow1": 44.59,
+            "rsiLow2": 45.33,
+            "macdHistLow1": -0.2082,
+            "macdHistLow2": -0.1452
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "win",
+        "entry": 27.7,
+        "stopInitial": 26.04,
+        "target": 29.36,
+        "pnlPct": 4.65,
+        "riskPct": 6,
+        "holdSessions": 6,
+        "exitDate": "2026-02-11",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2026-02-04",
+            "open": 27.85,
+            "high": 28.1,
+            "low": 27.55,
+            "close": 27.8,
+            "stop": 26.04,
+            "event": null
+          },
+          {
+            "date": "2026-02-05",
+            "open": 27.85,
+            "high": 27.9,
+            "low": 27.05,
+            "close": 27.05,
+            "stop": 26.04,
+            "event": null
+          },
+          {
+            "date": "2026-02-06",
+            "open": 27.0,
+            "high": 28.1,
+            "low": 26.45,
+            "close": 27.35,
+            "stop": 26.04,
+            "event": null
+          },
+          {
+            "date": "2026-02-09",
+            "open": 27.8,
+            "high": 28.1,
+            "low": 27.4,
+            "close": 27.6,
+            "stop": 26.04,
+            "event": null
+          },
+          {
+            "date": "2026-02-10",
+            "open": 27.8,
+            "high": 28.5,
+            "low": 27.5,
+            "close": 27.85,
+            "stop": 26.04,
+            "event": null
+          },
+          {
+            "date": "2026-02-11",
+            "open": 28.1,
+            "high": 29.5,
+            "low": 28.05,
+            "close": 29.0,
+            "stop": 28.61,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "MBB",
+        "signalDate": "2026-02-02",
+        "entryDate": "2026-02-03",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.56,
+        "support": 26.6,
+        "resistance": 28.3,
+        "supportZone": [
+          26.39,
+          26.73
+        ],
+        "resistanceZone": [
+          28.13,
+          28.47
+        ],
+        "entryIndicators": {
+          "rsi": 60.15,
+          "macd": 0.3782,
+          "macdSignal": 0.4628,
+          "macdHist": -0.0846,
+          "macdHistSeq": [
+            -0.1688,
+            -0.1598,
+            -0.1186,
+            -0.0846
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.644,
+          "volumeRatio": 0.76,
+          "roc20": 7.69,
+          "ret5": 4.6,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": true,
+            "tenkan": 26.8,
+            "kijun": 26.15,
+            "cloudTop": 25.3,
+            "cloudBottom": 24.49
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 27.05,
+            "priceLow2": 26.1,
+            "rsiLow1": 61.85,
+            "rsiLow2": 47.99,
+            "macdHistLow1": 0.1122,
+            "macdHistLow2": -0.1405
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "win",
+        "entry": 35.75,
+        "stopInitial": 33.6,
+        "target": 37.9,
+        "pnlPct": 6.59,
+        "riskPct": 6,
+        "holdSessions": 4,
+        "exitDate": "2026-01-08",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2026-01-05",
+            "open": 35.8,
+            "high": 36.1,
+            "low": 34.55,
+            "close": 35.5,
+            "stop": 33.6,
+            "event": null
+          },
+          {
+            "date": "2026-01-06",
+            "open": 35.4,
+            "high": 36.2,
+            "low": 34.8,
+            "close": 36.2,
+            "stop": 33.6,
+            "event": null
+          },
+          {
+            "date": "2026-01-07",
+            "open": 36.4,
+            "high": 37.5,
+            "low": 36.35,
+            "close": 37.45,
+            "stop": 33.6,
+            "event": null
+          },
+          {
+            "date": "2026-01-08",
+            "open": 37.55,
+            "high": 39.5,
+            "low": 37.1,
+            "close": 38.2,
+            "stop": 38.31,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "CTG",
+        "signalDate": "2025-12-30",
+        "entryDate": "2025-12-31",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.95,
+        "support": 34.6,
+        "resistance": 36.6,
+        "supportZone": [
+          34.35,
+          34.77
+        ],
+        "resistanceZone": [
+          36.42,
+          36.84
+        ],
+        "entryIndicators": {
+          "rsi": 58.54,
+          "macd": 0.2339,
+          "macdSignal": 0.1635,
+          "macdHist": 0.0704,
+          "macdHistSeq": [
+            0.0369,
+            0.0419,
+            0.048,
+            0.0704
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.791,
+          "volumeRatio": 0.92,
+          "roc20": 5.13,
+          "ret5": 1.86,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": true,
+            "tenkan": 35.2,
+            "kijun": 34.78,
+            "cloudTop": 35.62,
+            "cloudBottom": 34.22
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 34.35,
+            "priceLow2": 35.0,
+            "rsiLow1": 48.27,
+            "rsiLow2": 52.94,
+            "macdHistLow1": -0.0093,
+            "macdHistLow2": 0.0369
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "win",
+        "entry": 47.0,
+        "stopInitial": 44.18,
+        "target": 49.82,
+        "pnlPct": 4.8,
+        "riskPct": 6,
+        "holdSessions": 7,
+        "exitDate": "2026-01-13",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2026-01-05",
+            "open": 47.14,
+            "high": 47.19,
+            "low": 46.08,
+            "close": 46.13,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-06",
+            "open": 46.23,
+            "high": 46.23,
+            "low": 45.22,
+            "close": 45.61,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-07",
+            "open": 45.65,
+            "high": 46.85,
+            "low": 45.65,
+            "close": 46.52,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-08",
+            "open": 46.52,
+            "high": 47.38,
+            "low": 46.32,
+            "close": 46.32,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-09",
+            "open": 46.9,
+            "high": 47.86,
+            "low": 46.61,
+            "close": 46.95,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-12",
+            "open": 47.2,
+            "high": 47.45,
+            "low": 46.15,
+            "close": 47.0,
+            "stop": 44.18,
+            "event": null
+          },
+          {
+            "date": "2026-01-13",
+            "open": 47.05,
+            "high": 50.2,
+            "low": 47.05,
+            "close": 50.2,
+            "stop": 48.69,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "SAB",
+        "signalDate": "2025-12-30",
+        "entryDate": "2025-12-31",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.88,
+        "support": 46.2,
+        "resistance": 53.0,
+        "supportZone": [
+          45.82,
+          46.5
+        ],
+        "resistanceZone": [
+          52.7,
+          53.38
+        ],
+        "entryIndicators": {
+          "rsi": 51.67,
+          "macd": 0.1361,
+          "macdSignal": 0.4569,
+          "macdHist": -0.3208,
+          "macdHistSeq": [
+            -0.4446,
+            -0.4313,
+            -0.4036,
+            -0.3208
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.361,
+          "volumeRatio": 0.64,
+          "roc20": -5.35,
+          "ret5": 0.19,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 47.38,
+            "kijun": 48.62,
+            "cloudTop": 44.44,
+            "cloudBottom": 44.19
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 47.96,
+            "priceLow2": 46.23,
+            "rsiLow1": 53.77,
+            "rsiLow2": 44.35,
+            "macdHistLow1": 0.1721,
+            "macdHistLow2": -0.4446
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "win",
+        "entry": 35.6,
+        "stopInitial": 33.46,
+        "target": 37.74,
+        "pnlPct": 5.86,
+        "riskPct": 6,
+        "holdSessions": 8,
+        "exitDate": "2026-01-06",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2025-12-24",
+            "open": 35.55,
+            "high": 35.65,
+            "low": 35.15,
+            "close": 35.15,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2025-12-25",
+            "open": 35.45,
+            "high": 35.9,
+            "low": 35.05,
+            "close": 35.05,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2025-12-26",
+            "open": 35.05,
+            "high": 35.55,
+            "low": 34.7,
+            "close": 35.55,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2025-12-29",
+            "open": 35.7,
+            "high": 37.0,
+            "low": 35.6,
+            "close": 36.5,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2025-12-30",
+            "open": 36.6,
+            "high": 36.6,
+            "low": 35.7,
+            "close": 35.75,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2025-12-31",
+            "open": 35.95,
+            "high": 36.3,
+            "low": 35.3,
+            "close": 35.3,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2026-01-05",
+            "open": 35.9,
+            "high": 37.0,
+            "low": 35.35,
+            "close": 36.3,
+            "stop": 33.46,
+            "event": null
+          },
+          {
+            "date": "2026-01-06",
+            "open": 36.35,
+            "high": 38.8,
+            "low": 36.3,
+            "close": 38.75,
+            "stop": 37.64,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "PLX",
+        "signalDate": "2025-12-22",
+        "entryDate": "2025-12-23",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.83,
+        "support": 34.3,
+        "resistance": 36.4,
+        "supportZone": [
+          34.06,
+          34.46
+        ],
+        "resistanceZone": [
+          36.24,
+          36.64
+        ],
+        "entryIndicators": {
+          "rsi": 57.7,
+          "macd": 0.1298,
+          "macdSignal": 0.0719,
+          "macdHist": 0.0579,
+          "macdHistSeq": [
+            -0.0287,
+            -0.0016,
+            0.0182,
+            0.0579
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.828,
+          "volumeRatio": 0.99,
+          "roc20": 4.28,
+          "ret5": 4.13,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 34.45,
+            "kijun": 34.8,
+            "cloudTop": 34.85,
+            "cloudBottom": 34.6
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 34.4,
+            "priceLow2": 33.7,
+            "rsiLow1": 50.84,
+            "rsiLow2": 43.68,
+            "macdHistLow1": 0.0697,
+            "macdHistLow2": -0.0331
+          },
+          "bearishDivergence": false
+        }
+      },
+      {
+        "outcome": "win",
+        "entry": 22.1,
+        "stopInitial": 20.77,
+        "target": 23.43,
+        "pnlPct": 6.77,
+        "riskPct": 6,
+        "holdSessions": 7,
+        "exitDate": "2026-01-06",
+        "partialTaken": true,
+        "futurePath": [
+          {
+            "date": "2025-12-25",
+            "open": 22.2,
+            "high": 22.2,
+            "low": 21.85,
+            "close": 21.95,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2025-12-26",
+            "open": 21.95,
+            "high": 22.25,
+            "low": 21.3,
+            "close": 21.75,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2025-12-29",
+            "open": 22.05,
+            "high": 23.25,
+            "low": 22.05,
+            "close": 22.6,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2025-12-30",
+            "open": 22.55,
+            "high": 22.95,
+            "low": 22.5,
+            "close": 22.7,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2025-12-31",
+            "open": 22.8,
+            "high": 23.2,
+            "low": 22.55,
+            "close": 22.55,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2026-01-05",
+            "open": 22.65,
+            "high": 23.4,
+            "low": 22.4,
+            "close": 22.9,
+            "stop": 20.77,
+            "event": null
+          },
+          {
+            "date": "2026-01-06",
+            "open": 23.15,
+            "high": 24.5,
+            "low": 23.05,
+            "close": 24.5,
+            "stop": 23.77,
+            "event": "take_50_at_6+stop"
+          }
+        ],
+        "symbol": "PC1",
+        "signalDate": "2025-12-23",
+        "entryDate": "2025-12-24",
+        "strategy": "B4_trend_pullback_locked",
+        "distSupportPct": 2.95,
+        "support": 21.4,
+        "resistance": 22.8,
+        "supportZone": [
+          21.18,
+          21.56
+        ],
+        "resistanceZone": [
+          22.61,
+          22.99
+        ],
+        "entryIndicators": {
+          "rsi": 51.78,
+          "macd": 0.0205,
+          "macdSignal": 0.066,
+          "macdHist": -0.0455,
+          "macdHistSeq": [
+            -0.0835,
+            -0.0921,
+            -0.0712,
+            -0.0455
+          ],
+          "macdHistRecovering": true,
+          "bbPercent": 0.493,
+          "volumeRatio": 0.78,
+          "roc20": 1.61,
+          "ret5": -1.78,
+          "ichimoku": {
+            "state": "above_cloud",
+            "bullishTkCross": false,
+            "tenkan": 21.48,
+            "kijun": 22.35,
+            "cloudTop": 21.67,
+            "cloudBottom": 21.18
+          },
+          "bullishDivergence": false,
+          "bullishDivergenceDetail": {
+            "rsiBullish": false,
+            "macdBullish": false,
+            "priceLow1": 20.6,
+            "priceLow2": 21.55,
+            "rsiLow1": 36.89,
+            "rsiLow2": 47.24,
+            "macdHistLow1": -0.2108,
+            "macdHistLow2": -0.0921
+          },
+          "bearishDivergence": false
+        }
+      }
+    ],
+    "rejects": {
+      "not_above_cloud": 1530,
+      "dist>3": 647,
+      "bearish_divergence": 449,
+      "rsi_not_48_62": 26,
+      "no_macd_recovery_or_div": 18,
+      "vol_bad": 5,
+      "bbp_too_high": 4
+    },
+    "counts": {
+      "FPT": {
+        "loops": 56,
+        "trades": 0
+      },
+      "MWG": {
+        "loops": 56,
+        "trades": 1
+      },
+      "HPG": {
+        "loops": 56,
+        "trades": 1
+      },
+      "SSI": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VCI": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VND": {
+        "loops": 56,
+        "trades": 0
+      },
+      "HCM": {
+        "loops": 56,
+        "trades": 0
+      },
+      "MBS": {
+        "loops": 56,
+        "trades": 0
+      },
+      "TCB": {
+        "loops": 56,
+        "trades": 2
+      },
+      "MBB": {
+        "loops": 56,
+        "trades": 1
+      },
+      "ACB": {
+        "loops": 56,
+        "trades": 0
+      },
+      "CTG": {
+        "loops": 56,
+        "trades": 1
+      },
+      "BID": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VPB": {
+        "loops": 56,
+        "trades": 0
+      },
+      "STB": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VIB": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VRE": {
+        "loops": 56,
+        "trades": 0
+      },
+      "KDH": {
+        "loops": 56,
+        "trades": 0
+      },
+      "DXG": {
+        "loops": 56,
+        "trades": 0
+      },
+      "NVL": {
+        "loops": 56,
+        "trades": 0
+      },
+      "KBC": {
+        "loops": 56,
+        "trades": 0
+      },
+      "GEX": {
+        "loops": 56,
+        "trades": 0
+      },
+      "GVR": {
+        "loops": 56,
+        "trades": 0
+      },
+      "PNJ": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VNM": {
+        "loops": 56,
+        "trades": 0
+      },
+      "MSN": {
+        "loops": 56,
+        "trades": 0
+      },
+      "SAB": {
+        "loops": 56,
+        "trades": 1
+      },
+      "GAS": {
+        "loops": 56,
+        "trades": 0
+      },
+      "PLX": {
+        "loops": 56,
+        "trades": 1
+      },
+      "PVD": {
+        "loops": 56,
+        "trades": 0
+      },
+      "PVS": {
+        "loops": 56,
+        "trades": 0
+      },
+      "DGC": {
+        "loops": 56,
+        "trades": 0
+      },
+      "DCM": {
+        "loops": 56,
+        "trades": 0
+      },
+      "DPM": {
+        "loops": 56,
+        "trades": 0
+      },
+      "HSG": {
+        "loops": 56,
+        "trades": 0
+      },
+      "NKG": {
+        "loops": 56,
+        "trades": 0
+      },
+      "DIG": {
+        "loops": 56,
+        "trades": 0
+      },
+      "CEO": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VTP": {
+        "loops": 56,
+        "trades": 0
+      },
+      "CTR": {
+        "loops": 56,
+        "trades": 0
+      },
+      "REE": {
+        "loops": 56,
+        "trades": 0
+      },
+      "PC1": {
+        "loops": 56,
+        "trades": 1
+      },
+      "SZC": {
+        "loops": 56,
+        "trades": 0
+      },
+      "BCM": {
+        "loops": 56,
+        "trades": 0
+      },
+      "HDG": {
+        "loops": 56,
+        "trades": 0
+      },
+      "KSB": {
+        "loops": 56,
+        "trades": 0
+      },
+      "ANV": {
+        "loops": 56,
+        "trades": 0
+      },
+      "VHC": {
+        "loops": 56,
+        "trades": 0
+      }
+    }
+  },
+  "oos20": {
+    "window": "oos20",
+    "start": "2026-04-01",
+    "end": "2026-04-30",
+    "requireFullHorizon": false,
+    "summary": {
+      "totalTrades": 0,
+      "wins": 0,
+      "losses": 0,
+      "winRatePct": 0,
+      "avgPnlPct": 0,
+      "sumPnlPct": 0,
+      "avgWinPct": 0,
+      "avgLossPct": 0,
+      "avgHoldSessions": 0
+    },
+    "trades": [],
+    "rejects": {
+      "not_above_cloud": 598,
+      "dist>3": 127,
+      "bearish_divergence": 126,
+      "rsi_not_48_62": 5,
+      "no_macd_recovery_or_div": 4,
+      "bbp_too_high": 2,
+      "vol_bad": 2
+    },
+    "counts": {
+      "FPT": {
+        "loops": 18,
+        "trades": 0
+      },
+      "MWG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "HPG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "SSI": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VCI": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VND": {
+        "loops": 18,
+        "trades": 0
+      },
+      "HCM": {
+        "loops": 18,
+        "trades": 0
+      },
+      "MBS": {
+        "loops": 18,
+        "trades": 0
+      },
+      "TCB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "MBB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "ACB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "CTG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "BID": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VPB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "STB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VIB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VRE": {
+        "loops": 18,
+        "trades": 0
+      },
+      "KDH": {
+        "loops": 18,
+        "trades": 0
+      },
+      "DXG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "NVL": {
+        "loops": 18,
+        "trades": 0
+      },
+      "KBC": {
+        "loops": 18,
+        "trades": 0
+      },
+      "GEX": {
+        "loops": 18,
+        "trades": 0
+      },
+      "GVR": {
+        "loops": 18,
+        "trades": 0
+      },
+      "PNJ": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VNM": {
+        "loops": 18,
+        "trades": 0
+      },
+      "MSN": {
+        "loops": 18,
+        "trades": 0
+      },
+      "SAB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "GAS": {
+        "loops": 18,
+        "trades": 0
+      },
+      "PLX": {
+        "loops": 18,
+        "trades": 0
+      },
+      "PVD": {
+        "loops": 18,
+        "trades": 0
+      },
+      "PVS": {
+        "loops": 18,
+        "trades": 0
+      },
+      "DGC": {
+        "loops": 18,
+        "trades": 0
+      },
+      "DCM": {
+        "loops": 18,
+        "trades": 0
+      },
+      "DPM": {
+        "loops": 18,
+        "trades": 0
+      },
+      "HSG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "NKG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "DIG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "CEO": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VTP": {
+        "loops": 18,
+        "trades": 0
+      },
+      "CTR": {
+        "loops": 18,
+        "trades": 0
+      },
+      "REE": {
+        "loops": 18,
+        "trades": 0
+      },
+      "PC1": {
+        "loops": 18,
+        "trades": 0
+      },
+      "SZC": {
+        "loops": 18,
+        "trades": 0
+      },
+      "BCM": {
+        "loops": 18,
+        "trades": 0
+      },
+      "HDG": {
+        "loops": 18,
+        "trades": 0
+      },
+      "KSB": {
+        "loops": 18,
+        "trades": 0
+      },
+      "ANV": {
+        "loops": 18,
+        "trades": 0
+      },
+      "VHC": {
+        "loops": 18,
+        "trades": 0
+      }
+    }
+  }
+}
