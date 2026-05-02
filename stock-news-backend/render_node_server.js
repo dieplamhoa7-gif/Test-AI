@@ -121,20 +121,19 @@ function newsFromCache(limit = 30) {
 
 function warrantsFromCache(symbols = '') {
   const staticPayload = fs.existsSync(WARRANTS_STATIC) ? readJsonPath(WARRANTS_STATIC) : { items: [] };
-  const catalogPayload = fs.existsSync(WARRANTS_CATALOG) ? readJsonPath(WARRANTS_CATALOG) : { items: [] };
-  const byCode = new Map();
-  for (const item of (catalogPayload.items || [])) {
-    const code = String(item.code || '').toUpperCase();
-    if (code) byCode.set(code, { code, underlying: item.underlying || '', source: item.source || 'catalog' });
-  }
-  for (const item of (staticPayload.items || [])) {
-    const code = String(item.code || '').toUpperCase();
-    if (code) byCode.set(code, { ...(byCode.get(code) || {}), ...item, code });
-  }
-  let items = Array.from(byCode.values());
+  let items = (staticPayload.items || []).map(item => ({ ...item, code: String(item.code || '').toUpperCase() }));
+  items = items.filter(item => {
+    if (!item.code) return false;
+    if (!item.maturityDate || item.daysLeft === undefined || item.daysLeft === null) return false;
+    if (Number(item.daysLeft) <= 0) return false;
+    const price = Number(item.marketPrice || item.lastPrice || item.fairValue || 0);
+    const underlyingPrice = Number(item.underlyingPrice || 0);
+    const exercisePrice = Number(item.exercisePrice || 0);
+    return Number.isFinite(price) && price > 0 && underlyingPrice > 0 && exercisePrice > 0;
+  });
   const wanted = String(symbols || '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
   if (wanted.length) items = items.filter(x => wanted.includes(String(x.code || '').toUpperCase()));
-  return { items, updatedAt: staticPayload.updatedAt || catalogPayload.updatedAt || null, status: 'warrants-cache-node-fallback' };
+  return { items, updatedAt: staticPayload.updatedAt || null, status: 'warrants-static-cache-node-fallback' };
 }
 
 function allReportSignals() {
