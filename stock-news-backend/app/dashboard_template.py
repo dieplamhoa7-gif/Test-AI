@@ -774,7 +774,6 @@ DASHBOARD_HTML = r'''
           const technicalPane = document.querySelector('[data-analysis-pane="technical"]');
           if (!technicalPane) return;
           technicalPane.innerHTML = `<div class="technical-panel">
-            <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
             <div class="detail-actions">
               <button type="button" class="chip-btn ${frame === 'hour' ? 'active' : ''}" data-frame="hour">${label('hour')}</button>
               <button type="button" class="chip-btn ${frame === 'day' ? 'active' : ''}" data-frame="day">${label('day')}</button>
