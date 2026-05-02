@@ -46,23 +46,36 @@ def calc_rs_levels_only(
     weekly_raw = _to_ohlc(history_df, "week") if history_df is not None and not history_df.empty else pd.DataFrame()
     monthly_raw = _to_ohlc(history_df, "month") if history_df is not None and not history_df.empty else pd.DataFrame()
 
-    # R/S engine expects MA anchors. Keep these cheap rolling anchors instead of full indicator stack.
+    def _ma_anchors(frame_df: pd.DataFrame | None, fallback: float) -> tuple[float, float, float]:
+        if frame_df is None or frame_df.empty:
+            base = float(fallback or last_price)
+            return base, base * 0.985, base * 0.955
+        close = pd.to_numeric(frame_df["close"], errors="coerce")
+        base = float(fallback or last_price)
+        ma20_val = close.rolling(20, min_periods=min(20, max(5, len(close)))).mean().iloc[-1] if len(close) >= 5 else base
+        ma20_local = float(ma20_val) if pd.notna(ma20_val) else base
+        ma50_val = close.rolling(50, min_periods=min(50, max(10, len(close)))).mean().iloc[-1] if len(close) >= 10 else ma20_local
+        ma50_local = float(ma50_val) if pd.notna(ma50_val) else ma20_local
+        ma200_val = close.rolling(200, min_periods=min(200, max(20, len(close)))).mean().iloc[-1] if len(close) >= 20 else ma50_local
+        ma200_local = float(ma200_val) if pd.notna(ma200_val) else ma50_local
+        return ma20_local, ma50_local, ma200_local
+
+    # R/S anchors must be computed per timeframe. Do not reuse daily MA anchors for week/month.
     if daily_raw is not None and not daily_raw.empty:
-        close = pd.to_numeric(daily_raw["close"], errors="coerce")
-        ma20 = float(close.rolling(20).mean().iloc[-1]) if len(close) >= 20 and pd.notna(close.rolling(20).mean().iloc[-1]) else float(avg_price or last_price)
-        ma50 = float(close.rolling(50).mean().iloc[-1]) if len(close) >= 50 and pd.notna(close.rolling(50).mean().iloc[-1]) else ma20
-        ma200 = float(close.rolling(200).mean().iloc[-1]) if len(close) >= 200 and pd.notna(close.rolling(200).mean().iloc[-1]) else ma50
+        ma20, ma50, ma200 = _ma_anchors(daily_raw, avg_price or last_price)
+        ma20_week, ma50_week, ma200_week = _ma_anchors(weekly_raw, last_price)
+        ma20_month, ma50_month, ma200_month = _ma_anchors(monthly_raw, last_price)
         pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_from_recent(daily_raw, high_price, low_price, last_price, 10)
         pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_from_recent(weekly_raw, high_price, low_price, last_price, 10)
         pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_from_recent(monthly_raw, high_price, low_price, last_price, 10)
     else:
-        ma20 = float(avg_price or last_price)
-        ma50 = ma20 * 0.985
-        ma200 = ma20 * 0.955
+        ma20, ma50, ma200 = _ma_anchors(pd.DataFrame(), avg_price or last_price)
+        ma20_week, ma50_week, ma200_week = ma20, ma50, ma200
+        ma20_month, ma50_month, ma200_month = ma20, ma50, ma200
 
     sr_day = _build_support_resistance(last_price, daily_raw, pivot_day, support_day, resistance_day, support_day_2, resistance_day_2, ma20, ma50, ma200)
-    sr_week = _build_support_resistance(last_price, weekly_raw, pivot_week, support_week, resistance_week, support_week_2, resistance_week_2, ma20, ma50, ma200)
-    sr_month = _build_support_resistance(last_price, monthly_raw, pivot_month, support_month, resistance_month, support_month_2, resistance_month_2, ma20, ma50, ma200)
+    sr_week = _build_support_resistance(last_price, weekly_raw, pivot_week, support_week, resistance_week, support_week_2, resistance_week_2, ma20_week, ma50_week, ma200_week)
+    sr_month = _build_support_resistance(last_price, monthly_raw, pivot_month, support_month, resistance_month, support_month_2, resistance_month_2, ma20_month, ma50_month, ma200_month)
     fib_day = _fibonacci_levels(daily_raw, 180)
     fib_week = _fibonacci_levels(weekly_raw, 80)
     fib_month = _fibonacci_levels(monthly_raw, 36)
