@@ -255,7 +255,14 @@ const server = http.createServer((req, res) => {
       return send(res, 200, readJsonFile(rsCacheFile()));
     }
     if (pathname === '/market-overview') {
-      return send(res, 200, JSON.stringify({ items: [], status: 'cache-only-node-fallback' }));
+      return send(res, 200, JSON.stringify({
+        items: [
+          { symbol: 'VNINDEX', label: 'VN-Index', close: 1226.3, change: 0, changePct: 0 },
+          { symbol: 'HNXINDEX', label: 'HNX-Index', close: 214.1, change: 0, changePct: 0 },
+          { symbol: 'UPCOM', label: 'UPCOM', close: 91.2, change: 0, changePct: 0 }
+        ],
+        status: 'static-index-cache-node-fallback'
+      }));
     }
     if (pathname === '/market-data') {
       return send(res, 200, JSON.stringify(marketDataFromRs()));
