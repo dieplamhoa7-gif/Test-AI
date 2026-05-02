@@ -154,6 +154,17 @@ def patch_html_for_firebase(html: str) -> str:
 def build_html() -> None:
     dashboard = extract_raw_py_string((APP / "dashboard_template.py").read_text(encoding="utf-8"), "DASHBOARD_HTML")
     dashboard = patch_html_for_firebase(dashboard)
+    # Keep HTML small: use file logo instead of huge inline base64.
+    import re
+    dashboard = re.sub(r'src="data:image/jpeg;base64,[^"]+"', 'src="/assets/lh-logo.jpg"', dashboard)
+    # Firebase ultra-light startup: stocks page loads only watchlist + index first.
+    light_load = """async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length); try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; }"""
+    dashboard = re.sub(r"async function loadData\(isAutoRefresh = false, forceRefresh = false\) \{.*?\n    elements\.tabs\.forEach", light_load + "\n    elements.tabs.forEach", dashboard, flags=re.S)
+    dashboard = dashboard.replace("applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);", "applyLanguage(currentLang); renderCategories(); loadData(); setTimeout(loadIndexOverview, 300);")
+    (PUBLIC / "assets").mkdir(exist_ok=True)
+    logo = DATA / "assets" / "lh-logo.jpg"
+    if logo.exists():
+        shutil.copyfile(logo, PUBLIC / "assets" / "lh-logo.jpg")
     for name in ["index.html", "stocks.html", "news-page.html", "warrants.html"]:
         (PUBLIC / name).write_text(dashboard, encoding="utf-8")
 
