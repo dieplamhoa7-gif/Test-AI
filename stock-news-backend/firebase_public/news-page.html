@@ -770,8 +770,14 @@
                 ${row(label('nextResistance'), price(nextResistance))}
               </div>
             </div>
+            <div id="fundamentalDetailPanel" class="fundamental-panel"><div class="empty">Đang tải Fundamental Analysis...</div></div>
           </div>`;
         elements.detailModal.classList.add('open');
+        Promise.all([loadFundamentalSignals(item.ticker), loadFundamentalAverage(item.ticker)]).then(([faPayload, faAvg]) => {
+          if (activeDetailTicker !== item.ticker) return;
+          const panel = document.getElementById('fundamentalDetailPanel');
+          if (panel) panel.outerHTML = renderFundamentalPanel(faPayload, faAvg);
+        }).catch(() => { const panel = document.getElementById('fundamentalDetailPanel'); if (panel) panel.innerHTML = '<div class="empty">Không tải được Fundamental Analysis.</div>'; });
       } catch (err) {
         console.error('openDetail failed', err);
         elements.detailStats.innerHTML = `<div class="empty error">${currentLang === 'en' ? 'Cannot open stock detail right now.' : 'Khong mo duoc popup co phieu luc nay.'}</div>`;
