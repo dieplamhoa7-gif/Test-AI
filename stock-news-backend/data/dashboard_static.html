@@ -770,9 +770,9 @@
             <div class="detail-table">
               ${row(label('trend'), escapeHtml(String(framed.trend || tech.trend || '-')))}
               ${row('RSI', val(framed.rsi ?? tech.rsi14 ?? 0))}
-              ${row('ADX', val(framed.adx || tech.adx14 || item.adx14 || 0))}
               ${row('BB', `${price(tech.bbLower || item.bbLower || 0)} - ${price(tech.bbUpper || item.bbUpper || 0)}`)}
               ${row('%BB', `${val(((tech.bbPercent ?? item.bbPercent) || 0) * 100)}%`)}
+              ${row('ADX', val(framed.adx || tech.adx14 || item.adx14 || 0))}
               ${row('MA20/50/200', `${val(framed.ma20 ?? tech.ma20 ?? 0)} / ${val(framed.ma50 ?? tech.ma50 ?? 0)} / ${val(framed.ma200 ?? tech.ma200 ?? 0)}`)}
               ${row(label('currentSupport'), price(support))}
               ${row(label('nextSupport'), price(nextSupport))}
