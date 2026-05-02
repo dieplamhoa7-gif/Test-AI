@@ -234,7 +234,7 @@ def main() -> None:
     write_json(PUBLIC_DATA / "warrants_data.json", build_warrants_cache())
     fundamental = build_fundamental_cache()
     write_json(PUBLIC_DATA / "fundamental_signals.json", fundamental)
-    write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market_cache.get("items", [])))
+    write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market.get("items", [])))
     write_json(PUBLIC_DATA / "market_overview.json", {"items":[
         {"symbol":"VNINDEX","label":"VN-Index","close":1040.0,"change":0,"changePct":0},
         {"symbol":"HNXINDEX","label":"HNX-Index","close":0,"change":0,"changePct":0},
