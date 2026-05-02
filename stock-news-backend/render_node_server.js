@@ -55,9 +55,13 @@ function itemFromRs(row) {
   const strategyRows = strategyInfoFor(symbol);
   const firstStrategy = strategyRows[0] || {};
   const ind = firstStrategy.entryIndicators || {};
-  const recommendation = strategyRows.length
-    ? strategyRows.map(x => `${x.strategyName || x.strategy || 'Strategy'}: ${x.action || 'WATCH'} | Mua ${x.entryPrice || x.entry || x.support || '-'} | Target ${x.takeProfit || x.target || '-'} | SL ${x.stopLoss || x.stop || '-'}`).join(' | ')
+  const recommendationVi = strategyRows.length
+    ? strategyRows.map(x => `${x.strategyName || x.strategy || 'Chiến lược'}: ${x.action || 'WATCH'} | Mua ${x.entryPrice || x.entry || x.support || '-'} | Target ${x.takeProfit || x.target || '-'} | Cắt lỗ ${x.stopLoss || x.stop || '-'}`).join(' | ')
     : (row.srStatusDay || 'Theo dõi vùng hỗ trợ/kháng cự từ cache R/S.');
+  const recommendationEn = strategyRows.length
+    ? strategyRows.map(x => `${x.strategyName || x.strategy || 'Strategy'}: ${x.action || 'WATCH'} | Entry ${x.entryPrice || x.entry || x.support || '-'} | Target ${x.takeProfit || x.target || '-'} | Stop ${x.stopLoss || x.stop || '-'}`).join(' | ')
+    : 'Track support/resistance zones from cached R/S output.';
+  const recommendation = recommendationVi;
   return {
     ticker: symbol,
     symbol,
@@ -120,6 +124,8 @@ function itemFromRs(row) {
       strategyWeek: recommendation,
       strategyMonth: recommendation,
       recommendation,
+      recommendationVi,
+      recommendationEn,
       recommendationWeek: recommendation,
       recommendationMonth: recommendation
     },
