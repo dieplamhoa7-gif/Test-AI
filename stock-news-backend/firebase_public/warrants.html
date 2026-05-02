@@ -235,8 +235,8 @@
     body.light-theme .fundamental-tool b { color:#132033; }
     .fundamental-tool input { width:100%; min-width:0; border:1px solid rgba(92,110,148,.25); border-radius:12px; background:#0d131f; color:#fff; padding:8px 9px; outline:none; font-weight:900; font-size:16px; }
     body.light-theme .fundamental-tool input { background:#fff; color:#132033; border-color:rgba(38,61,99,.14); }
-    .fundamental-list { display:flex; gap:12px; overflow-x:auto; overflow-y:hidden; padding:2px 4px 10px 0; scroll-snap-type:x proximity; }
-    .fundamental-card { flex:0 0 min(320px, 88vw); scroll-snap-align:start; border:1px solid rgba(92,110,148,.22); border-radius:18px; padding:13px; background:rgba(7,11,20,.62); box-shadow:0 12px 26px rgba(0,0,0,.12); }
+    .fundamental-list { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; max-height:520px; overflow:auto; padding-right:4px; }
+    .fundamental-card { border:1px solid rgba(92,110,148,.22); border-radius:18px; padding:13px; background:rgba(7,11,20,.62); box-shadow:0 12px 26px rgba(0,0,0,.12); }
     body.light-theme .fundamental-card { background:#fff; border-color:rgba(38,61,99,.12); }
     .fundamental-top { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
     .broker-pill { padding:6px 10px; border-radius:999px; background:rgba(100,181,255,.12); color:#b9dcff; border:1px solid rgba(100,181,255,.18); font-weight:900; font-size:12px; }
@@ -244,11 +244,11 @@
     .fundamental-date { color:var(--muted); font-size:12px; }
     .fundamental-title { font-size:13px; color:#d8e2fb; line-height:1.38; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height:52px; }
     body.light-theme .fundamental-title { color:#1e293b; }
-    .fundamental-metrics { display:grid; grid-template-columns: 1fr; gap:8px; }
-    .fundamental-metric { display:flex; justify-content:space-between; align-items:center; gap:10px; border-radius:13px; padding:9px 10px; background:rgba(255,255,255,.035); border:1px solid rgba(92,110,148,.14); }
+    .fundamental-metrics { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:7px; }
+    .fundamental-metric { display:block; border-radius:11px; padding:8px; background:rgba(255,255,255,.035); border:1px solid rgba(92,110,148,.14); min-width:0; }
     body.light-theme .fundamental-metric { background:#f8fbff; border-color:rgba(38,61,99,.10); }
-    .fundamental-metric span { display:block; color:var(--muted); font-size:12px; margin:0; }
-    .fundamental-metric b { display:block; font-size:14px; color:#fff; text-align:right; }
+    .fundamental-metric span { display:block; color:var(--muted); font-size:11px; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-metric b { display:block; font-size:14px; color:#fff; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     body.light-theme .fundamental-metric b { color:#132033; }
     .fundamental-summary-table { margin-bottom:14px; }
     .fundamental-summary-table input { max-width:150px; border:1px solid rgba(92,110,148,.25); border-radius:10px; background:#0d131f; color:#fff; padding:7px 9px; outline:none; font-weight:900; text-align:right; }
@@ -264,8 +264,9 @@
     .help-list li { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:10px 12px; background:rgba(255,255,255,.025); color:var(--muted); line-height:1.45; }
     .help-list b { color:#edf2ff; }
     @media (max-width: 840px) { .analysis-grid { grid-template-columns:1fr; } }
+    @media (max-width: 1100px) { .fundamental-list { grid-template-columns: repeat(2, minmax(0,1fr)); } }
     @media (max-width: 900px) { .fundamental-tools { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 640px) { .detail-summary, .detail-table, .fundamental-metrics, .fundamental-tools { grid-template-columns: 1fr; } .help-fab { right: 14px; bottom: 14px; } }
+    @media (max-width: 640px) { .detail-summary, .detail-table, .fundamental-list, .fundamental-tools { grid-template-columns: 1fr; } .fundamental-metrics { grid-template-columns: repeat(3, minmax(0,1fr)); } .help-fab { right: 14px; bottom: 14px; } }
     .muted { color: var(--muted); }
     .error { color: var(--danger); }
     .empty { padding: 24px; border: 1px dashed var(--line); border-radius: 18px; color: var(--muted); text-align: center; }
