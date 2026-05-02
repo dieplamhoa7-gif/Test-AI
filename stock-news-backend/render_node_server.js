@@ -116,6 +116,56 @@ function warrantsFromCache(symbols = '') {
   return { items, updatedAt: staticPayload.updatedAt || catalogPayload.updatedAt || null, status: 'warrants-cache-node-fallback' };
 }
 
+function allReportSignals() {
+  const file = path.join(DATA, 'all_report_signals.json');
+  return fs.existsSync(file) ? readJsonPath(file) : [];
+}
+
+function normalizeTarget(target, referencePrice = 0) {
+  let n = Number(target || 0);
+  const price = Number(referencePrice || 0);
+  if (price > 0 && n > 0 && n < price * 0.45 && price * 0.8 <= n * 10 && n * 10 <= price * 3.5) n *= 10;
+  return n;
+}
+
+function fundamentalSignals(symbol, limit = 50) {
+  const wanted = String(symbol || '').toUpperCase();
+  const reports = allReportSignals().filter(r => String(r.symbol || '').toUpperCase() === wanted);
+  const more = (readJson('24hmoney_reports.json').items || []).filter(r => {
+    const symbols = Array.isArray(r.symbols) ? r.symbols.map(s => String(s).toUpperCase()) : [];
+    return String(r.symbol || '').toUpperCase() === wanted || symbols.includes(wanted);
+  }).map(r => ({ symbol: wanted, report_date: r.report_date, title: r.title, source: r.source || '24HMoney', broker: r.source || '24HMoney', url: r.url, source_url: r.url, summary: r.summary, recommendation: 'Báo cáo phân tích', provider: '24HMoney' }));
+  const items = reports.concat(more).sort((a,b) => String(b.report_date || '').localeCompare(String(a.report_date || ''))).slice(0, limit);
+  return { symbol: wanted, items, total: reports.length + more.length, updatedAt: null, status: items.length ? 'ok-cache-node-fallback' : 'missing' };
+}
+
+function fundamentalTopUpside(limit = 20, maxSymbols = 200) {
+  const rows = allReportSignals();
+  const cache = readJson(rsCacheFile());
+  const prices = new Map((cache.items || []).map(x => [String(x.symbol || '').toUpperCase(), Number(x.price || 0)]));
+  const grouped = new Map();
+  for (const row of rows) {
+    const sym = String(row.symbol || '').toUpperCase();
+    const target = Number(row.target_price || 0);
+    if (!sym || !target) continue;
+    if (!grouped.has(sym)) grouped.set(sym, []);
+    grouped.get(sym).push(row);
+  }
+  const items = [];
+  for (const [symbol, reports] of grouped.entries()) {
+    let price = prices.get(symbol) || 0;
+    if (price > 0 && price < 1000) price *= 1000;
+    if (!price) continue;
+    const targets = reports.map(r => normalizeTarget(r.target_price, price)).filter(v => v > 0);
+    if (!targets.length) continue;
+    const avgTargetPrice = targets.reduce((a,b) => a+b, 0) / targets.length;
+    const latest = reports.slice().sort((a,b) => String(b.report_date || '').localeCompare(String(a.report_date || '')))[0] || {};
+    items.push({ symbol, price, rawQuotePrice: prices.get(symbol) || 0, avgTargetPrice: Math.round(avgTargetPrice), recentAvgTargetPrice: Math.round(avgTargetPrice), latestTargetPrice: Math.round(normalizeTarget(latest.target_price, price)), upsidePct: Math.round(((avgTargetPrice - price) / price * 100) * 100) / 100, recentUpsidePct: Math.round(((avgTargetPrice - price) / price * 100) * 100) / 100, latestUpsidePct: Math.round(((normalizeTarget(latest.target_price, price) - price) / price * 100) * 100) / 100, reportCount: reports.length, latestReportDate: latest.report_date, latestTitle: latest.title, brokers: Array.from(new Set(reports.map(r => r.broker || r.source).filter(Boolean))) });
+  }
+  items.sort((a,b) => b.upsidePct - a.upsidePct);
+  return { items: items.slice(0, limit), total: items.length, status: 'fundamental-cache-node-fallback', maxSymbols };
+}
+
 function notFound(res) {
   send(res, 404, JSON.stringify({ detail: 'Not Found' }));
 }
@@ -159,6 +209,16 @@ const server = http.createServer((req, res) => {
       const cache = readJson(rsCacheFile());
       const items = (cache.items || []).filter(x => !q || String(x.symbol || '').toUpperCase().includes(q)).slice(0, limit).map(x => ({ symbol: String(x.symbol || '').toUpperCase(), name: '' }));
       return send(res, 200, JSON.stringify(items));
+    }
+    if (pathname === '/fundamental-top-upside') {
+      const limit = Math.max(1, Math.min(50, Number(url.searchParams.get('limit') || 20)));
+      const maxSymbols = Math.max(20, Math.min(300, Number(url.searchParams.get('max_symbols') || 200)));
+      return send(res, 200, JSON.stringify(fundamentalTopUpside(limit, maxSymbols)));
+    }
+    if (pathname.startsWith('/fundamental-signals/')) {
+      const symbol = decodeURIComponent(pathname.split('/').pop() || '').toUpperCase();
+      const limit = Math.max(1, Math.min(80, Number(url.searchParams.get('limit') || 50)));
+      return send(res, 200, JSON.stringify(fundamentalSignals(symbol, limit)));
     }
     if (pathname === '/warrants-data') {
       return send(res, 200, JSON.stringify(warrantsFromCache(url.searchParams.get('symbols') || '')));
