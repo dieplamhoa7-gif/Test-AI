@@ -62,6 +62,18 @@ def build_market_cache() -> dict[str, Any]:
         detail = dict(row)
         detail["ticker"] = sym
         detail["symbol"] = sym
+        detail["technical"] = {
+            "trend": detail.get("trend") or detail.get("marketStructureDay") or "-",
+            "ma20": detail.get("ma20") or detail.get("ma20Anchor"),
+            "ma50": detail.get("ma50") or detail.get("ma50Anchor"),
+            "ma200": detail.get("ma200") or detail.get("ma200Anchor"),
+            "activeSupportDay": detail.get("activeSupportDay") or detail.get("supportDay"),
+            "nextSupportDay": detail.get("nextSupportDay") or detail.get("supportDay2"),
+            "activeResistanceDay": detail.get("activeResistanceDay") or detail.get("resistanceDay"),
+            "nextResistanceDay": detail.get("nextResistanceDay") or detail.get("resistanceDay2"),
+            "supportDay": detail.get("supportDay"),
+            "resistanceDay": detail.get("resistanceDay"),
+        }
         srow = by_symbol.get(sym) or {}
         if srow:
             detail["technical"] = {**(detail.get("technical") or {}), **(srow.get("technical") or {})}
