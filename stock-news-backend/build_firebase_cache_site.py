@@ -279,11 +279,8 @@ def main() -> None:
     fundamental = build_fundamental_cache()
     write_json(PUBLIC_DATA / "fundamental_signals.json", fundamental)
     write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market.get("items", [])))
-    write_json(PUBLIC_DATA / "market_overview.json", {"items":[
-        {"symbol":"VNINDEX","label":"VN-Index","close":1040.0,"change":0,"changePct":0},
-        {"symbol":"HNXINDEX","label":"HNX-Index","close":0,"change":0,"changePct":0},
-        {"symbol":"UPCOM","label":"UPCOM","close":0,"change":0,"changePct":0},
-    ], "source":"firebase-static-cache"})
+    overview = read_json(DATA / "market_overview.json", {"items": []})
+    write_json(PUBLIC_DATA / "market_overview.json", overview if isinstance(overview, dict) else {"items": []})
 
     build_html()
     print(f"Built Firebase static cache site: {PUBLIC}")
