@@ -338,8 +338,7 @@
     .strategy-matrix-table thead th:nth-child(4) .strategy-th { background:linear-gradient(135deg,#ff7d7d,#db2777); }
     .strategy-th .strategy-help { background:rgba(255,255,255,.20); border-color:rgba(255,255,255,.45); color:#fff; }
     .strategy-symbol-chip { display:inline-block; text-align:left; vertical-align:top; border:1px solid rgba(100,181,255,.22); border-radius:12px; background:rgba(100,181,255,.08); color:var(--text); padding:6px 7px; margin:3px; cursor:pointer; font-size:11px; max-width:132px; min-width:104px; }
-    .strategy-symbol-chip .sym { display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:13px; font-weight:900; margin-bottom:4px; color:var(--text); }
-    .strategy-symbol-chip .price-now { color:var(--muted); font-size:10px; font-weight:800; }
+    .strategy-symbol-chip .sym { display:block; font-size:13px; font-weight:900; margin-bottom:4px; color:var(--text); }
     .strategy-symbol-chip .mini-levels { display:block; color:var(--muted); font-size:10px; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .strategy-symbol-chip .mini-levels b { color:var(--text); font-weight:850; }
     .strategy-symbol-chip .mini-target { color:#23c77a; }
@@ -559,7 +558,7 @@
         const gapText = Number.isFinite(gap) ? `${gap >= 0 ? '+' : ''}${gap.toFixed(1)}%` : '';
         const rank = x.rankScore ?? x.rank ?? '';
         const title = escapeHtml([x.reason || '', current !== '-' ? `Giá hiện tại: ${current}` : '', entry !== '-' ? `Điểm mua: ${entry}` : '', zone ? `Vùng mua: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `Vùng cản: ${resistanceZone}` : '', stop !== '-' ? `Cắt lỗ: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
-        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym"><span>${symbol}</span><span class="price-now">${escapeHtml(current)}</span></span><span class="mini-levels">Mua <b>${escapeHtml(entry)}</b>${gapText ? ` <small>${escapeHtml(gapText)}</small>` : ''}</span><span class="mini-levels"><span class="mini-target">T ${escapeHtml(target)}</span> · <span class="mini-stop">SL ${escapeHtml(stop)}</span></span></button>`;
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="mini-levels">Mua <b>${escapeHtml(entry)}</b></span><span class="mini-levels"><span class="mini-target">T ${escapeHtml(target)}</span> · <span class="mini-stop">SL ${escapeHtml(stop)}</span></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
 
