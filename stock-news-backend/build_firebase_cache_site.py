@@ -59,6 +59,14 @@ def build_market_cache() -> dict[str, Any]:
         sym = str(row.get("ticker") or row.get("symbol") or "").upper()
         if sym:
             indicator_by_symbol[sym] = row
+    hourly_cache = read_json(DATA / "hourly_indicators_vn100_cache.json", {})
+    for row in hourly_cache.get("items", []) if isinstance(hourly_cache, dict) else []:
+        sym = str(row.get("ticker") or row.get("symbol") or "").upper()
+        if not sym:
+            continue
+        indicator_by_symbol.setdefault(sym, {})
+        hour_fields = {k: v for k, v in row.items() if k.endswith("Hour")}
+        indicator_by_symbol[sym].setdefault("indicators", {}).update(hour_fields)
 
     items = []
     for row in rs.get("items", []) if isinstance(rs, dict) else []:
@@ -118,8 +126,8 @@ def build_market_cache() -> dict[str, Any]:
                 "bbMiddle": indicators.get("bbMiddle"),
                 "bbPercent": indicators.get("bbPercent"),
             }
-            for suffix in ["Week", "Month"]:
-                for key in ["rsi14", "adx14", "plusDi", "minusDi", "ma20", "ma50", "ma200", "bbUpper", "bbLower", "bbMiddle", "bbPercent", "macd", "signal", "histogram"]:
+            for suffix in ["Hour", "Week", "Month"]:
+                for key in ["rsi14", "adx14", "plusDi", "minusDi", "ma20", "ma50", "ma200", "bbUpper", "bbLower", "bbMiddle", "bbPercent", "macd", "signal", "histogram", "activeSupport", "activeResistance", "support", "resistance", "supportLevels", "resistanceLevels", "srStatus", "pivot"]:
                     indicator_fields[f"{key}{suffix}"] = indicators.get(f"{key}{suffix}")
             detail["technical"] = {**(detail.get("technical") or {}), **{k: v for k, v in indicator_fields.items() if v is not None}}
         srow = by_symbol.get(sym) or {}
