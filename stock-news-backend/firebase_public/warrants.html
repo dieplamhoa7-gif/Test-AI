@@ -453,7 +453,7 @@
         const p = u.pathname;
         if (p === '/news') return nativeFetch(`/data/${(u.searchParams.get('lang')||'vi').startsWith('en') ? 'news_cache_en.json' : 'news_cache.json'}`, init);
         if (p === '/market-data') return nativeFetch('/data/market_data.json', init);
-        if (p.startsWith('/market-data/')) return nativeFetch(`/data/market-data/${encodeURIComponent(decodeURIComponent(p.split('/').pop()).toUpperCase())}.json`, init);
+        if (p.startsWith('/market-data/')) { const sym=decodeURIComponent(p.split('/').pop()).toUpperCase(); const all=await loadJson('/data/market_data.json'); const item=(all.items||[]).find(x=>String(x.symbol||x.ticker||'').toUpperCase()===sym); return item ? jsonResponse(item) : jsonResponse({detail:'Not found', symbol:sym}); }
         if (p === '/market-symbols') {
           const q=(u.searchParams.get('query')||'').toUpperCase(); const limit=Number(u.searchParams.get('limit')||50);
           const rows=await loadJson('/data/market_symbols.json');

@@ -24,7 +24,6 @@ APP = ROOT / "app"
 WARRANTS = APP / "warrants"
 
 PUBLIC_DATA = PUBLIC / "data"
-PUBLIC_MARKET_DETAIL = PUBLIC_DATA / "market-data"
 
 
 def read_json(path: Path, default: Any) -> Any:
@@ -113,7 +112,7 @@ def patch_html_for_firebase(html: str) -> str:
         const p = u.pathname;
         if (p === '/news') return nativeFetch(`/data/${(u.searchParams.get('lang')||'vi').startsWith('en') ? 'news_cache_en.json' : 'news_cache.json'}`, init);
         if (p === '/market-data') return nativeFetch('/data/market_data.json', init);
-        if (p.startsWith('/market-data/')) return nativeFetch(`/data/market-data/${encodeURIComponent(decodeURIComponent(p.split('/').pop()).toUpperCase())}.json`, init);
+        if (p.startsWith('/market-data/')) { const sym=decodeURIComponent(p.split('/').pop()).toUpperCase(); const all=await loadJson('/data/market_data.json'); const item=(all.items||[]).find(x=>String(x.symbol||x.ticker||'').toUpperCase()===sym); return item ? jsonResponse(item) : jsonResponse({detail:'Not found', symbol:sym}); }
         if (p === '/market-symbols') {
           const q=(u.searchParams.get('query')||'').toUpperCase(); const limit=Number(u.searchParams.get('limit')||50);
           const rows=await loadJson('/data/market_symbols.json');
@@ -147,7 +146,6 @@ def build_html() -> None:
 def main() -> None:
     PUBLIC.mkdir(exist_ok=True)
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
-    PUBLIC_MARKET_DETAIL.mkdir(parents=True, exist_ok=True)
 
     market = build_market_cache()
     write_json(PUBLIC_DATA / "market_data.json", market)
@@ -156,7 +154,6 @@ def main() -> None:
         sym = str(item.get("symbol") or item.get("ticker") or "").upper()
         if not sym:
             continue
-        write_json(PUBLIC_MARKET_DETAIL / f"{sym}.json", item)
         symbols.append({"symbol": sym, "name": item.get("name") or item.get("companyName") or sym})
     write_json(PUBLIC_DATA / "market_symbols.json", symbols)
 
