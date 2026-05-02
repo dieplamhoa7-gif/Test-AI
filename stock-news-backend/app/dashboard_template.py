@@ -227,13 +227,13 @@ DASHBOARD_HTML = r'''
     .analysis-title h4 { margin:0; font-size:18px; }
     .analysis-title p { margin:4px 0 0; color:var(--muted); font-size:12px; }
     .fundamental-tools { display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:8px; margin-bottom:14px; }
-    .fundamental-tool { border:1px solid rgba(92,110,148,.20); border-radius:16px; padding:13px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); min-height:74px; }
+    .fundamental-tool { border:1px solid rgba(92,110,148,.20); border-radius:14px; padding:9px 8px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); min-height:64px; min-width:0; overflow:hidden; }
     body.light-theme .fundamental-tool { background:#f8fbff; border-color:rgba(38,61,99,.12); }
-    .fundamental-tool span { display:block; color:var(--muted); font-size:12px; margin-bottom:7px; }
-    .fundamental-tool b { display:block; font-size:20px; color:#fff; line-height:1.15; }
-    .fundamental-tool small { display:block; color:var(--muted); margin-top:4px; font-size:12px; }
+    .fundamental-tool span { display:block; color:var(--muted); font-size:10px; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-tool b { display:block; font-size:15px; color:#fff; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-tool small { display:block; color:var(--muted); margin-top:3px; font-size:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     body.light-theme .fundamental-tool b { color:#132033; }
-    .fundamental-tool input { width:100%; border:1px solid rgba(92,110,148,.25); border-radius:12px; background:#0d131f; color:#fff; padding:9px 10px; outline:none; font-weight:900; font-size:18px; }
+    .fundamental-tool input { width:100%; min-width:0; border:1px solid rgba(92,110,148,.25); border-radius:10px; background:#0d131f; color:#fff; padding:6px 7px; outline:none; font-weight:900; font-size:14px; }
     body.light-theme .fundamental-tool input { background:#fff; color:#132033; border-color:rgba(38,61,99,.14); }
     .fundamental-list { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; max-height:520px; overflow:auto; padding-right:4px; }
     .fundamental-card { border:1px solid rgba(92,110,148,.22); border-radius:18px; padding:13px; background:rgba(7,11,20,.62); box-shadow:0 12px 26px rgba(0,0,0,.12); }
@@ -510,7 +510,7 @@ DASHBOARD_HTML = r'''
         <div class="analysis-title"><div><h4>Phân tích cơ bản</h4></div></div>
         <div class="fundamental-tools">
           <div class="fundamental-tool"><span>Trung bình tất cả BC</span><b>${escapeHtml(formatPrice(avg))}</b><small>${escapeHtml(String(reportCount))} báo cáo</small></div>
-          <div class="fundamental-tool"><span>Trung vị dòng đang hiển thị</span><b>${escapeHtml(formatPrice(med))}</b></div>
+          <div class="fundamental-tool"><span>Trung vị</span><b>${escapeHtml(formatPrice(med))}</b></div>
           <div class="fundamental-tool"><span>Chiết khấu (%)</span><input data-discount type="number" value="15" min="0" max="80" step="1"></div>
           <div class="fundamental-tool"><span>Giá mua</span><input data-buy-price type="number" value="${defaultBuy ? Math.round(defaultBuy) : ''}" step="100"></div>
           <div class="fundamental-tool"><span>Mục tiêu sau CK</span><b data-target-result>-</b></div>
