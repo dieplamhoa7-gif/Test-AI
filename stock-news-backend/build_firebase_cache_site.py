@@ -48,6 +48,14 @@ def build_market_cache() -> dict[str, Any]:
     rs = read_json(DATA / "rs_levels_hsx_all_cache.json", {})
     strategy = read_json(DATA / "strategy_results_cache.json", {})
     strategy_items = strategy.get("items") if isinstance(strategy, dict) else []
+    indicator_payload = read_json(DATA / "v3_full_indicator_cache_v2.json", {})
+    indicator_items = indicator_payload.get("items", []) if isinstance(indicator_payload, dict) else []
+    indicators_by_symbol: dict[str, dict[str, Any]] = {}
+    for row in indicator_items or []:
+        sym = str(row.get("symbol") or row.get("ticker") or "").upper()
+        ind = row.get("indicators") or {}
+        if sym and isinstance(ind, dict):
+            indicators_by_symbol[sym] = ind
     by_symbol: dict[str, dict[str, Any]] = {}
     for row in strategy_items or []:
         sym = str(row.get("ticker") or row.get("symbol") or "").upper()
@@ -74,6 +82,15 @@ def build_market_cache() -> dict[str, Any]:
             "supportDay": detail.get("supportDay"),
             "resistanceDay": detail.get("resistanceDay"),
         }
+        ind = indicators_by_symbol.get(sym) or {}
+        if ind:
+            detail["technical"].update({
+                "rsi14": ind.get("rsi14"),
+                "bbUpper": ind.get("bbUpper"),
+                "bbLower": ind.get("bbLower"),
+                "bbPercent": ind.get("bbPercent"),
+                "bbMiddle": ind.get("bbMiddle"),
+            })
         srow = by_symbol.get(sym) or {}
         if srow:
             detail["technical"] = {**(detail.get("technical") or {}), **(srow.get("technical") or {})}

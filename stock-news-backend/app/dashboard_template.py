@@ -764,6 +764,9 @@ DASHBOARD_HTML = r'''
               <div class="detail-table">
                 ${row(label('trend'), escapeHtml(String(tech.trend || '-')))}
                 ${row('MA20/50/200', `${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}`)}
+                ${row('RSI 14', val(tech.rsi14 ?? item.rsi14 ?? 0))}
+                ${row('BB Upper/Lower', `${price(tech.bbUpper ?? item.bbUpper ?? 0)} / ${price(tech.bbLower ?? item.bbLower ?? 0)}`)}
+                ${row('%BB', `${val(((tech.bbPercent ?? item.bbPercent ?? null) !== null && (tech.bbPercent ?? item.bbPercent ?? 0) <= 1) ? (tech.bbPercent ?? item.bbPercent ?? 0) * 100 : (tech.bbPercent ?? item.bbPercent ?? 0))}%`)}
                 ${row(label('currentSupport'), price(support))}
                 ${row(label('nextSupport'), price(nextSupport))}
                 ${row(label('currentResistance'), price(resistance))}
