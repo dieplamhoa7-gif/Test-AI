@@ -105,22 +105,45 @@ def build_market_cache() -> dict[str, Any]:
     return {"items": items, "count": len(items), "source": "firebase-static-cache"}
 
 
-def build_warrants_cache() -> dict[str, Any]:
-    static_payload = read_json(WARRANTS / "warrants_static.json", {"items": []})
-    items = static_payload.get("items", []) if isinstance(static_payload, dict) else []
-    valid = []
-    for item in items:
-        if not item.get("code") or not item.get("maturityDate"):
-            continue
-        if item.get("daysLeft") is None or float(item.get("daysLeft") or 0) <= 0:
-            continue
-        if item.get("underlyingPrice") is None or item.get("exercisePrice") is None:
-            continue
-        if not any(k in item for k in ["marketPrice", "lastPrice", "fairValue"]):
-            continue
-        valid.append(item)
-    return {"items": valid, "count": len(valid), "source": "firebase-static-cache"}
+def _infer_underlying_from_warrant(code: str) -> str:
+    text = str(code or "").upper().strip()
+    if text.startswith("C") and len(text) >= 4:
+        return text[1:4]
+    return ""
 
+
+def build_warrants_cache() -> dict[str, Any]:
+    """Build a broad static warrant catalog for Firebase without live quoting."""
+    static_payload = read_json(WARRANTS / "warrants_static.json", {"items": []})
+    static_items = static_payload.get("items", []) if isinstance(static_payload, dict) else []
+    catalog_payload = read_json(WARRANTS / "warrant_catalog.json", {"items": []})
+    catalog_items = catalog_payload.get("items", []) if isinstance(catalog_payload, dict) else []
+    by_code: dict[str, dict[str, Any]] = {}
+    for item in static_items:
+        if not isinstance(item, dict):
+            continue
+        code = str(item.get("code") or "").upper().strip()
+        if not code:
+            continue
+        if item.get("daysLeft") is not None and float(item.get("daysLeft") or 0) <= 0:
+            continue
+        row = dict(item)
+        row["code"] = code
+        row.setdefault("underlying", _infer_underlying_from_warrant(code))
+        by_code[code] = row
+    for item in catalog_items:
+        if not isinstance(item, dict):
+            continue
+        code = str(item.get("code") or "").upper().strip()
+        if not code:
+            continue
+        row = {**dict(item), **by_code.get(code, {})}
+        row["code"] = code
+        row.setdefault("underlying", item.get("underlying") or _infer_underlying_from_warrant(code))
+        row.setdefault("source", item.get("source") or "warrant-catalog-cache")
+        by_code[code] = row
+    valid = sorted(by_code.values(), key=lambda x: (str(x.get("underlying") or ""), str(x.get("code") or "")))
+    return {"items": valid, "count": len(valid), "source": "firebase-static-cache"}
 
 def build_fundamental_cache() -> dict[str, Any]:
     reports = read_json(DATA / "all_report_signals.json", [])
