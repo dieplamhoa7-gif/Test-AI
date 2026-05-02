@@ -35,8 +35,29 @@ function rsCacheFile() {
   return fs.existsSync(path.join(DATA, 'rs_levels_hsx_all_cache.json')) ? 'rs_levels_hsx_all_cache.json' : 'rs_levels_only_cache.json';
 }
 
+function strategyInfoFor(symbol) {
+  try {
+    const cache = readJson('strategy_results_cache.json');
+    const out = [];
+    for (const st of (cache.strategies || [])) {
+      for (const bucket of ['buy', 'watchlist', 'watch', 'items']) {
+        for (const x of (st[bucket] || [])) {
+          if (String(x.symbol || x.ticker || '').toUpperCase() === symbol) out.push({ ...x, strategyName: st.name || st.id || x.strategy });
+        }
+      }
+    }
+    return out;
+  } catch (_) { return []; }
+}
+
 function itemFromRs(row) {
   const symbol = String(row.symbol || '').toUpperCase();
+  const strategyRows = strategyInfoFor(symbol);
+  const firstStrategy = strategyRows[0] || {};
+  const ind = firstStrategy.entryIndicators || {};
+  const recommendation = strategyRows.length
+    ? strategyRows.map(x => `${x.strategyName || x.strategy || 'Strategy'}: ${x.action || 'WATCH'} | Mua ${x.entryPrice || x.entry || x.support || '-'} | Target ${x.takeProfit || x.target || '-'} | SL ${x.stopLoss || x.stop || '-'}`).join(' | ')
+    : (row.srStatusDay || 'Theo dõi vùng hỗ trợ/kháng cự từ cache R/S.');
   return {
     ticker: symbol,
     symbol,
@@ -44,6 +65,7 @@ function itemFromRs(row) {
     changePct: row.changePct || 0,
     volume: row.volume || 0,
     sector: 'Khác',
+    strategySignals: strategyRows,
     technical: {
       trend: row.marketStructureDay || 'Trung tính',
       supportDay: row.supportDay,
@@ -77,7 +99,29 @@ function itemFromRs(row) {
       ma20: row.ma20Anchor,
       ma50: row.ma50Anchor,
       ma200: row.ma200Anchor,
-      recommendation: row.srStatusDay || 'Theo dõi vùng hỗ trợ/kháng cự từ cache R/S.'
+      relativeStrength: ind.rsi,
+      rsi14: ind.rsi,
+      macd: ind.macd,
+      signal: ind.macdSignal,
+      histogram: ind.macdHist,
+      volumeRatio: ind.volumeRatio,
+      roc20: ind.roc20,
+      bbPercent: ind.bbPercent,
+      bbUpper: ind.bbUpper,
+      bbLower: ind.bbLower,
+      adx14: ind.adx,
+      plusDi: ind.plusDi,
+      minusDi: ind.minusDi,
+      zoneState: row.srStatusDay || '',
+      setupType: strategyRows.length ? strategyRows.map(x => x.strategyName || x.strategy).join(', ') : 'R/S cache',
+      volumeState: ind.volumeRatio ? `Volume ${ind.volumeRatio}x` : '',
+      signalScore: firstStrategy.rankScore || 0,
+      strategy: recommendation,
+      strategyWeek: recommendation,
+      strategyMonth: recommendation,
+      recommendation,
+      recommendationWeek: recommendation,
+      recommendationMonth: recommendation
     },
     financial: {}
   };
