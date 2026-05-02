@@ -109,43 +109,46 @@ def build_fundamental_cache() -> dict[str, Any]:
 
 
 def patch_html_for_firebase(html: str) -> str:
-    # Keep API bases relative and intercept old endpoint fetches to static JSON files.
+    """Patch dashboard to call Firebase static JSON directly.
+
+    Avoid overriding window.fetch; direct URLs are simpler and safer on mobile.
+    """
     html = html.replace("const API_BASE = '';", "const API_BASE = '';")
     html = html.replace("const MARKET_API_BASE = '';", "const MARKET_API_BASE = '';")
-    adapter = r'''
-    // Firebase static-cache adapter: maps old API endpoints to local JSON files.
-    (function installFirebaseStaticFetch(){
-      const nativeFetch = window.fetch.bind(window);
-      function jsonResponse(obj){ return new Response(JSON.stringify(obj), {status:200, headers:{'content-type':'application/json; charset=utf-8'}}); }
-      async function loadJson(path){ const r = await nativeFetch(path, {cache:'no-store'}); if(!r.ok) throw new Error(path); return r.json(); }
-      window.fetch = async function(input, init){
-        const raw = String(input && input.url ? input.url : input);
-        let u; try { u = new URL(raw, location.origin); } catch(_) { return nativeFetch(input, init); }
-        const p = u.pathname;
-        if (p === '/news') return nativeFetch(`/data/${(u.searchParams.get('lang')||'vi').startsWith('en') ? 'news_cache_en.json' : 'news_cache.json'}`, init);
-        if (p === '/market-data') return nativeFetch('/data/market_data.json', init);
-        if (p.startsWith('/market-data/')) { const sym=decodeURIComponent(p.split('/').pop()).toUpperCase(); const all=await loadJson('/data/market_data.json'); const item=(all.items||[]).find(x=>String(x.symbol||x.ticker||'').toUpperCase()===sym); return item ? jsonResponse(item) : jsonResponse({detail:'Not found', symbol:sym}); }
-        if (p === '/market-symbols') {
-          const q=(u.searchParams.get('query')||'').toUpperCase(); const limit=Number(u.searchParams.get('limit')||50);
-          const rows=await loadJson('/data/market_symbols.json');
-          return jsonResponse(rows.filter(x => String(x.symbol||'').includes(q) || String(x.name||'').toUpperCase().includes(q)).slice(0,limit));
-        }
-        if (p === '/warrants-data') return nativeFetch('/data/warrants_data.json', init);
-        if (p === '/strategy-results-cache') return nativeFetch('/data/strategy_results_cache.json', init);
-        if (p === '/strategy-matrix-cache') return nativeFetch('/data/strategy_matrix_cache.json', init);
-        if (p === '/rs-levels-cache') return nativeFetch('/data/rs_levels_hsx_all_cache.json', init);
-        if (p === '/market-overview') return nativeFetch('/data/market_overview.json', init);
-        if (p === '/fundamental-top-upside') return nativeFetch('/data/fundamental_top_upside.json', init);
-        if (p.startsWith('/fundamental-signals/')) {
-          const sym=decodeURIComponent(p.split('/').pop()).toUpperCase(); const all=await loadJson('/data/fundamental_signals.json');
-          const items=(all.items||[]).filter(x => String(x.symbol||x.ticker||'').toUpperCase()===sym).slice(0,50);
-          return jsonResponse({symbol:sym, items, status:'firebase-static-cache'});
-        }
-        return nativeFetch(input, init);
-      };
-    })();
-'''
-    return html.replace("    const AUTO_REFRESH_MS = 15 * 60 * 1000;", "    const AUTO_REFRESH_MS = 15 * 60 * 1000;" + adapter)
+    replacements = {
+        "`${API_BASE}/market-overview?ts=${Date.now()}`": "`/data/market_overview.json?ts=${Date.now()}`",
+        "`${API_BASE}/warrants-data?ts=${Date.now()}`": "`/data/warrants_data.json?ts=${Date.now()}`",
+        "`${API_BASE}/warrants-data?symbols=${encodeURIComponent(code)}&ts=${Date.now()}`": "`/data/warrants_data.json?ts=${Date.now()}`",
+        "`${API_BASE}/warrants-data?symbols=${encodeURIComponent(warrantWatchSymbols.join(','))}&ts=${Date.now()}`": "`/data/warrants_data.json?ts=${Date.now()}`",
+        "`${API_BASE}/strategy-matrix-cache?ts=${Date.now()}`": "`/data/strategy_matrix_cache.json?ts=${Date.now()}`",
+        "`${API_BASE}/strategy-results-cache?ts=${Date.now()}`": "`/data/strategy_results_cache.json?ts=${Date.now()}`",
+        "`${API_BASE}/fundamental-top-upside?limit=50&max_symbols=200&ts=${Date.now()}`": "`/data/fundamental_top_upside.json?ts=${Date.now()}`",
+        "`${MARKET_API_BASE || API_BASE}/market-data?refresh=${refreshFlag}&ts=${Date.now()}`": "`/data/market_data.json?ts=${Date.now()}`",
+        "`${API_BASE}/news?limit=${limit}&lang=${currentLang}`": "`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?limit=${limit}&ts=${Date.now()}`",
+    }
+    for old, new in replacements.items():
+        html = html.replace(old, new)
+
+    # Replace functions that need endpoint logic with local-cache lookups.
+    html = re.sub(
+        r"async function refreshStockDetail\(symbol\) \{.*?\n    async function openStockSymbol",
+        """async function refreshStockDetail(symbol) { const normalized = (symbol || '').trim().toUpperCase(); if (!normalized) return; const existing = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (existing) { if (activeDetailTicker === normalized) openDetail(normalized); return existing; } const res = await fetch(`/data/market_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('market cache'); const payload = await res.json(); marketItems = Array.isArray(payload.items) ? payload.items : []; const item = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (!item) throw new Error('Not found'); if (activeDetailTicker === normalized) openDetail(normalized); return item; }\n    async function openStockSymbol""",
+        html,
+        flags=re.S,
+    )
+    html = re.sub(
+        r"async function searchStockCatalog\(\) \{.*?\n    async function addStockToWatchlist",
+        """async function searchStockCatalog() { const q = (elements.stockSearchInput.value || '').trim().toUpperCase(); selectedSymbol = ''; if (!q) { elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; return; } try { const res = await fetch('/data/market_symbols.json', { cache: 'default' }); if (!res.ok) return; const rows = await res.json(); const items = rows.filter(item => String(item.symbol||'').includes(q) || String(item.name||'').toUpperCase().includes(q)).slice(0, 50); elements.stockSuggest.innerHTML = items.map(item => `<div class=\"search-option\" data-symbol=\"${escapeHtml(item.symbol)}\"><strong>${escapeHtml(item.symbol)}</strong><span>${escapeHtml(item.name || '')}</span></div>`).join(''); elements.stockSuggest.classList.toggle('open', items.length > 0); elements.stockSuggest.querySelectorAll('[data-symbol]').forEach(option => option.addEventListener('click', async () => { selectedSymbol = option.dataset.symbol; elements.stockSearchInput.value = selectedSymbol; elements.stockSuggest.classList.remove('open'); await openStockSymbol(selectedSymbol); })); } catch (_) {} }\n    async function addStockToWatchlist""",
+        html,
+        flags=re.S,
+    )
+    html = re.sub(
+        r"async function addStockToWatchlist\(symbolOverride = ''\) \{.*?\n    function removeStockFromWatchlist",
+        """async function addStockToWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || '').trim().toUpperCase(); if (!symbol) return; try { await refreshStockDetail(symbol); if (!watchSymbols.includes(symbol)) watchSymbols.unshift(symbol); renderMarket({ items: marketItems, updatedAt: new Date().toISOString() }); elements.stockSearchInput.value = ''; selectedSymbol = ''; elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; } catch (_) { elements.marketStatus.textContent = `Khong tim thay ma ${symbol}`; } finally { elements.stockSearchBtn.textContent = L('add'); } }\n    function removeStockFromWatchlist""",
+        html,
+        flags=re.S,
+    )
+    return html
 
 
 def build_html() -> None:
