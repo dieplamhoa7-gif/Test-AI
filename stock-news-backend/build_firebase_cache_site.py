@@ -53,6 +53,12 @@ def build_market_cache() -> dict[str, Any]:
         sym = str(row.get("ticker") or row.get("symbol") or "").upper()
         if sym:
             by_symbol[sym] = row
+    indicator_cache = read_json(DATA / "v3_full_indicator_cache_v2.json", {})
+    indicator_by_symbol: dict[str, dict[str, Any]] = {}
+    for row in indicator_cache.get("items", []) if isinstance(indicator_cache, dict) else []:
+        sym = str(row.get("ticker") or row.get("symbol") or "").upper()
+        if sym:
+            indicator_by_symbol[sym] = row
 
     items = []
     for row in rs.get("items", []) if isinstance(rs, dict) else []:
@@ -74,12 +80,27 @@ def build_market_cache() -> dict[str, Any]:
             "supportDay": detail.get("supportDay"),
             "resistanceDay": detail.get("resistanceDay"),
         }
+        irow = indicator_by_symbol.get(sym) or {}
+        indicators = irow.get("indicators") if isinstance(irow, dict) else {}
+        if isinstance(indicators, dict):
+            indicator_fields = {
+                "rsi14": indicators.get("rsi14"),
+                "adx14": indicators.get("adx14"),
+                "plusDi": indicators.get("plusDi"),
+                "minusDi": indicators.get("minusDi"),
+                "bbUpper": indicators.get("bbUpper"),
+                "bbLower": indicators.get("bbLower"),
+                "bbMiddle": indicators.get("bbMiddle"),
+                "bbPercent": indicators.get("bbPercent"),
+            }
+            detail["technical"] = {**(detail.get("technical") or {}), **{k: v for k, v in indicator_fields.items() if v is not None}}
         srow = by_symbol.get(sym) or {}
         if srow:
             detail["technical"] = {**(detail.get("technical") or {}), **(srow.get("technical") or {})}
-            for key in ["price", "changePct", "volume", "strategySignals", "rsi14", "macd", "signal", "histogram", "volumeRatio", "roc20", "bbPercent", "setupType", "recommendation"]:
+            for key in ["price", "changePct", "volume", "strategySignals", "rsi14", "adx14", "plusDi", "minusDi", "bbUpper", "bbLower", "bbMiddle", "bbPercent", "setupType", "recommendation"]:
                 if key in srow and srow[key] is not None:
                     detail[key] = srow[key]
+                    detail["technical"][key] = srow[key]
         items.append(detail)
     return {"items": items, "count": len(items), "source": "firebase-static-cache"}
 
