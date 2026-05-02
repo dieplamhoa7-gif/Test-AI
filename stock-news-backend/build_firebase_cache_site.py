@@ -45,7 +45,7 @@ def extract_raw_py_string(text: str, var_name: str) -> str:
 
 
 def build_market_cache() -> dict[str, Any]:
-    rs = read_json(DATA / "rs_levels_hsx_all_cache.json", {})
+    rs = read_json(DATA / "rs_levels_vn100_cache.json", {})
     strategy = read_json(DATA / "strategy_results_cache.json", {})
     strategy_items = strategy.get("items") if isinstance(strategy, dict) else []
     by_symbol: dict[str, dict[str, Any]] = {}
