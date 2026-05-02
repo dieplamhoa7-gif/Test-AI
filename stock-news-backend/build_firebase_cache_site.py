@@ -118,6 +118,9 @@ def build_market_cache() -> dict[str, Any]:
                 "bbMiddle": indicators.get("bbMiddle"),
                 "bbPercent": indicators.get("bbPercent"),
             }
+            for suffix in ["Week", "Month"]:
+                for key in ["rsi14", "adx14", "plusDi", "minusDi", "ma20", "ma50", "ma200", "bbUpper", "bbLower", "bbMiddle", "bbPercent", "macd", "signal", "histogram"]:
+                    indicator_fields[f"{key}{suffix}"] = indicators.get(f"{key}{suffix}")
             detail["technical"] = {**(detail.get("technical") or {}), **{k: v for k, v in indicator_fields.items() if v is not None}}
         srow = by_symbol.get(sym) or {}
         if srow:
