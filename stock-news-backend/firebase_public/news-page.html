@@ -595,20 +595,47 @@
     async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); const saved = readLocalCache('hoa.warrants.watchlist'); warrantWatchSymbols = Array.isArray(saved) ? saved.map(x => String(x).toUpperCase()) : []; renderWarrants(); if (warrantWatchSymbols.length) { elements.warrantStatus.textContent = `Đang cập nhật ${warrantWatchSymbols.length} mã chứng quyền...`; const detailRes = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (detailRes.ok) { const detailPayload = await detailRes.json(); (detailPayload.items || []).forEach(detail => { const code = String(detail.code || '').toUpperCase(); const idx = warrantItems.findIndex(x => String(x.code || '').toUpperCase() === code); if (idx >= 0) warrantItems[idx] = { ...warrantItems[idx], ...detail, code }; else warrantItems.push({ ...detail, code }); }); renderWarrants(); } } } catch (_) { elements.warrantStatus.textContent = 'Không tải được dữ liệu chứng quyền'; elements.warrantGrid.innerHTML = '<div class="empty error">Không tải được dữ liệu chứng quyền.</div>'; } }
 
 
+    
+    function translateStrategyText(text='') {
+      const raw = String(text || '');
+      if (currentLang !== 'en') return raw;
+      const exact = {
+        'Trend Pullback':'Trend Pullback',
+        'Support Rebound':'Support Rebound',
+        'Shakeout':'Shakeout'
+      };
+      if (exact[raw]) return exact[raw];
+      const map = [
+        ['Mua cổ phiếu đang nằm trong xu hướng tăng, chờ nhịp điều chỉnh về vùng hỗ trợ rồi vào khi lực hồi phục xuất hiện. Chiến lược ưu tiên cổ phiếu còn khỏe, không bắt dao rơi và tránh mã đã gãy xu hướng.','Buy stocks in an uptrend, wait for a pullback to support, then enter when recovery strength appears. Prioritizes strong stocks, avoids catching falling knives and broken trends.'],
+        ['Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.','Find stocks near strong support with signs of stopping the decline and starting to rebound. This is a secondary, rare setup; only suitable when entry is close to support and risk is clearly controlled.'],
+        ['Bắt nhịp hồi sau pha rũ hàng: giá thủng hỗ trợ ngắn hạn để loại bỏ lực yếu, sau đó kéo ngược lại vùng hỗ trợ cũ. Setup này biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.','Capture the rebound after a shakeout: price breaks short-term support to flush weak hands, then pulls back above the old support zone. More volatile; requires tight stops and clear returning money flow.'],
+        ['Hiện mã đạt tín hiệu mua theo cache.','Shows symbols with cached buy signals.'],
+        ['Hiện mã gần đạt, cần chờ thêm tín hiệu xác nhận.','Shows near-qualified symbols that need confirmation.'],
+        ['Hiện mã gần đạt, chưa mua.','Shows near-qualified symbols, not buy yet.'],
+        ['Hiện mã đạt tín hiệu mua rũ theo cache.','Shows symbols with cached shakeout-buy signals.'],
+        ['Hiện mã cần theo dõi thêm, chưa mua.','Shows symbols to watch further, not buy yet.'],
+        ['Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro.','Not shown in the buy list; only warns if cache flags risk.'],
+        ['Đang dùng làm chiến lược chính','Primary strategy in use'], ['Setup phụ, tín hiệu hiếm','Secondary setup, rare signal'], ['Có tiềm năng, cần kiểm soát rủi ro','Potential setup, requires risk control'],
+        ['lệnh','trades'], ['tổng PnL','total PnL'], ['Mẫu ít, chưa đủ làm chiến lược chính','Small sample, not enough for a primary strategy'], ['Mua rũ','Shakeout buy'], ['theo cache','from cache'], ['cần theo dõi thêm','needs further watch'], ['chưa mua','not buy yet'], ['khuyến nghị','recommendation'], ['Không hiện','Not shown']
+      ];
+      return map.reduce((out, pair) => out.replaceAll(pair[0], pair[1]), raw);
+    }
+    function strategyLabel(col, field='shortName') { return translateStrategyText(col?.[field] || col?.shortName || col?.name || ''); }
+
     function strategyVisualSvg(style='primary') {
       const color = style === 'danger' ? '#ff7d7d' : (style === 'warning' ? '#ffb454' : (style === 'research' ? '#a68bff' : '#4ef0c0'));
       return `<svg viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C35 31 48 22 72 25 C94 28 108 12 132 17 C154 21 164 8 188 11 C210 14 222 7 240 5" fill="none" stroke="${color}" stroke-width="3"/><path d="M0 40 L240 40" stroke="rgba(151,170,214,.22)" stroke-dasharray="5 5"/><circle cx="188" cy="11" r="4" fill="${color}"/></svg>`;
     }
 
     function renderStrategyTooltip(col) {
-      const indicators = col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S';
+      const indicators = translateStrategyText(col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S');
       const m = col.tooltipMetrics || {};
       const validation = [
         `Win rate: ${m.winRate || '-'}`,
-        `Average Return: ${m.averageReturn || '-'}`,
-        `Total Return: ${m.totalReturn || '-'}`
+        `${currentLang === 'en' ? 'Average Return' : 'Lợi nhuận TB'}: ${translateStrategyText(m.averageReturn || '-')}`,
+        `${currentLang === 'en' ? 'Total Return' : 'Tổng lợi nhuận'}: ${translateStrategyText(m.totalReturn || '-')}`
       ].join('<br>');
-      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>Chiến lược:</b><br>${escapeHtml(col.summary || col.name || '')}</div><div><b>Chỉ báo:</b><br>${escapeHtml(indicators)}</div><div><b>Kiểm định:</b><br>${validation}</div></span></span>`;
+      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>${currentLang === 'en' ? 'Strategy' : 'Chiến lược'}:</b><br>${escapeHtml(translateStrategyText(col.summary || col.name || ''))}</div><div><b>${currentLang === 'en' ? 'Indicators' : 'Chỉ báo'}:</b><br>${escapeHtml(indicators)}</div><div><b>${currentLang === 'en' ? 'Validation' : 'Kiểm định'}:</b><br>${validation}</div></span></span>`;
     }
 
     function parsePriceMid(value) {
@@ -645,7 +672,7 @@
         const gap = Number(x.gapToEntryPct ?? x.distSupportPct);
         const gapText = Number.isFinite(gap) ? `${gap >= 0 ? '+' : ''}${gap.toFixed(1)}%` : '';
         const rank = x.rankScore ?? x.rank ?? '';
-        const title = escapeHtml([x.reason || '', current !== '-' ? `${L('currentPriceLabel')}: ${current}` : '', entry !== '-' ? `${L('entryPoint')}: ${entry}` : '', zone ? `${L('faBuyRange')}: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `${L('resistanceZone')}: ${resistanceZone}` : '', stop !== '-' ? `${L('faStopLoss')}: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        const title = escapeHtml([translateStrategyText(x.reason || ''), current !== '-' ? `${L('currentPriceLabel')}: ${current}` : '', entry !== '-' ? `${L('entryPoint')}: ${entry}` : '', zone ? `${L('faBuyRange')}: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `${L('resistanceZone')}: ${resistanceZone}` : '', stop !== '-' ? `${L('faStopLoss')}: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
         return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="mini-levels">${currentLang === 'en' ? 'Buy' : 'Mua'} <b>${escapeHtml(entry)}</b></span><span class="mini-levels"><span class="mini-target">T ${escapeHtml(target)}</span> · <span class="mini-stop">SL ${escapeHtml(stop)}</span></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
@@ -661,10 +688,10 @@
       const columns = Array.isArray(matrix?.columns) ? matrix.columns : [];
       if (!columns.length) return '';
       const rows = [{ id: 'buy', label: L('rowBuy') }, { id: 'watch', label: L('rowWatch') }, { id: 'avoid', label: L('rowAvoid') }];
-      const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(col.shortName || col.name || '')}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
+      const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(strategyLabel(col))}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
       const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 7)}</td>`).join('')}</tr>`).join('');
-      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(col.shortName || col.name || '')} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
-      return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>Technical Strategy Matrix</h4></div></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>Status</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
+      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(strategyLabel(col))} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
+      return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>${currentLang === 'en' ? 'Technical Strategy Matrix' : 'Ma trận chiến lược kỹ thuật'}</h4></div></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>${currentLang === 'en' ? 'Status' : 'Trạng thái'}</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
     }
 
     function buildSignalMap(cache) {
@@ -702,7 +729,7 @@
       elements.stockFilterStatus.textContent = '';
       elements.stockFilterCriteria.innerHTML = '';
       let coreStrategiesHtml = '<div class="empty">Đang tải ma trận chiến lược...</div>';
-      const setupHtml = items.length ? items.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${escapeHtml(x.setupGroup || '')}</span></div><div class="filter-metrics"><div class="filter-metric"><span>Giá</span><b>${escapeHtml(formatNumber(x.price))}</b></div><div class="filter-metric"><span>R/S</span><b>${escapeHtml(formatNumber(x.supportScore))}/${escapeHtml(formatNumber(x.resistanceScore))}</b></div><div class="filter-metric"><span>RR/Risk</span><b>${escapeHtml(formatNumber(x.riskReward))} / ${escapeHtml(formatNumber(x.riskPct))}%</b></div></div><div class="filter-reason">${escapeHtml(x.reason || '')}</div>${x.warning ? `<div class="filter-warning">⚠ ${escapeHtml(x.warning)}</div>` : ''}</div>`).join('') : '<div class="empty">Chưa có mã đạt bộ lọc PTKT hiện tại.</div>';
+      const setupHtml = items.length ? items.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${escapeHtml(x.setupGroup || '')}</span></div><div class="filter-metrics"><div class="filter-metric"><span>Giá</span><b>${escapeHtml(formatNumber(x.price))}</b></div><div class="filter-metric"><span>R/S</span><b>${escapeHtml(formatNumber(x.supportScore))}/${escapeHtml(formatNumber(x.resistanceScore))}</b></div><div class="filter-metric"><span>RR/Risk</span><b>${escapeHtml(formatNumber(x.riskReward))} / ${escapeHtml(formatNumber(x.riskPct))}%</b></div></div><div class="filter-reason">${escapeHtml(translateStrategyText(x.reason || ''))}</div>${x.warning ? `<div class="filter-warning">⚠ ${escapeHtml(x.warning)}</div>` : ''}</div>`).join('') : '<div class="empty">Chưa có mã đạt bộ lọc PTKT hiện tại.</div>';
       try {
         const matrixRes = await fetch(`/data/strategy_matrix_cache.json?ts=${Date.now()}`, { cache: 'no-store' });
         const cacheRes = await fetch(`/data/strategy_results_cache.json?ts=${Date.now()}`, { cache: 'no-store' });
