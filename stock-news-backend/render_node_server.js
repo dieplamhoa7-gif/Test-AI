@@ -157,16 +157,18 @@ function stripHtml(value = '') {
     .trim();
 }
 
-function newsFromCache(limit = 30) {
-  const raw = readJson('news_cache.json');
+function newsFromCache(limit = 30, lang = 'vi') {
+  const useEn = String(lang || '').toLowerCase().startsWith('en');
+  const enPath = path.join(DATA, 'news_cache_en.json');
+  const raw = useEn && fs.existsSync(enPath) ? readJsonPath(enPath) : readJson('news_cache.json');
   const items = Array.isArray(raw) ? raw : (Array.isArray(raw.items) ? raw.items : []);
-  const cleanItems = items.slice(0, limit).map(item => ({
-    ...item,
-    title: stripHtml(item.title || ''),
-    snippet: stripHtml(item.snippet || item.summary || ''),
-    summary: stripHtml(item.summary || item.snippet || ''),
-  }));
-  return { items: cleanItems, updatedAt: raw.updatedAt || raw.createdAt || null, status: 'news-cache-node-fallback' };
+  const cleanItems = items.slice(0, limit).map(item => {
+    const title = useEn ? (item.titleEn || item.title) : item.title;
+    const snippet = useEn ? (item.snippetEn || item.summaryEn || item.snippet || item.summary) : (item.snippet || item.summary);
+    const summary = useEn ? (item.summaryEn || item.snippetEn || item.summary || item.snippet) : (item.summary || item.snippet);
+    return { ...item, title: stripHtml(title || ''), snippet: stripHtml(snippet || ''), summary: stripHtml(summary || ''), lang: useEn ? 'en' : (item.lang || 'vi') };
+  });
+  return { items: cleanItems, updatedAt: raw.updatedAt || raw.createdAt || null, translation: raw.translation || null, status: useEn ? 'news-en-cache-node-fallback' : 'news-cache-node-fallback' };
 }
 
 function warrantsFromCache(symbols = '') {
@@ -310,7 +312,8 @@ const server = http.createServer((req, res) => {
     }
     if (pathname === '/news') {
       const limit = Math.max(1, Math.min(200, Number(url.searchParams.get('limit') || 30)));
-      return send(res, 200, JSON.stringify(newsFromCache(limit)));
+      const lang = url.searchParams.get('lang') || 'vi';
+      return send(res, 200, JSON.stringify(newsFromCache(limit, lang)));
     }
     return notFound(res);
   } catch (err) {
