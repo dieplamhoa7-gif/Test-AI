@@ -456,11 +456,34 @@ DASHBOARD_HTML = r'''
     let currentLang = (() => { try { return localStorage.getItem('lh.lang') || 'vi'; } catch(_) { return 'vi'; } })();
     function L(key){ return (LANG_TEXT[currentLang] && LANG_TEXT[currentLang][key]) || LANG_TEXT.vi[key] || key; }
     function setText(selector, text){ const el=document.querySelector(selector); if(el) el.textContent=text; }
-    function applyLanguage(lang=currentLang){ currentLang = lang === 'en' ? 'en' : 'vi'; try{localStorage.setItem('lh.lang', currentLang);}catch(_){} document.documentElement.lang=currentLang; elements.langViBtn?.classList.toggle('active', currentLang==='vi'); elements.langEnBtn?.classList.toggle('active', currentLang==='en');
-      document.querySelector('[data-tab=stocks]').textContent=L('stocks'); document.querySelector('[data-tab=warrants]').textContent=L('warrants'); document.querySelector('[data-tab=news]').textContent=L('news');
-      const hs=[...document.querySelectorAll('h3')]; hs.forEach(h=>{ const raw=h.textContent.trim().toLowerCase(); if(raw==='market overview') h.textContent=L('marketOverview'); if(raw.includes('danh')&&raw.includes('quan')) h.textContent=L('watchlist'); if(raw==='strategy filter') h.textContent=L('strategyFilter'); if(raw.includes('dòng')||raw==='news feed') h.textContent=L('newsFlow'); });
-      elements.stockSearchBtn.textContent=L('add'); elements.warrantAddBtn.textContent=L('add'); elements.stockRemoveBtn.textContent=L('remove'); elements.warrantRemoveBtn.textContent=L('remove'); elements.closeDetailBtn.textContent=L('close'); elements.closeWarrantBtn.textContent=L('close'); elements.stockSearchInput.placeholder=L('stockPlaceholder'); elements.warrantSearchInput.placeholder=L('warrantPlaceholder');
-      document.querySelector('[data-filter-mode=technical]').textContent=L('technical'); document.querySelector('[data-filter-mode=fundamental]').textContent=L('fundamental'); const dis=document.querySelector('.disclaimer-box'); if(dis) dis.textContent=L('disclaimer'); if(elements.apiStatus) elements.apiStatus.textContent=L('online'); if(activeDetailTicker) openDetail(activeDetailTicker);
+    function applyLanguage(lang=currentLang){
+      currentLang = lang === 'en' ? 'en' : 'vi';
+      const en = currentLang === 'en';
+      try{localStorage.setItem('lh.lang', currentLang);}catch(_){}
+      document.documentElement.lang=currentLang;
+      elements.langViBtn?.classList.toggle('active', !en);
+      elements.langEnBtn?.classList.toggle('active', en);
+      const set = (sel, text) => { const el=document.querySelector(sel); if(el) el.textContent=text; };
+      set('[data-tab=stocks]', L('stocks'));
+      set('[data-tab=warrants]', L('warrants'));
+      set('[data-tab=news]', L('news'));
+      set('#stocksPanel .market-panel > .section-head:nth-of-type(1) h3', L('marketOverview'));
+      set('#stocksPanel .market-panel > .section-head:nth-of-type(2) h3', L('watchlist'));
+      set('#stockFilterBoard h3', L('strategyFilter'));
+      set('#warrantsPanel h3', L('warrantWatch'));
+      set('#newsPanel h3', L('newsFlow'));
+      if(elements.marketStatus && /dang|loading|dữ|du lieu|giá|gia/i.test(elements.marketStatus.textContent)) elements.marketStatus.textContent = en ? 'Loading price data...' : 'Dang tai du lieu gia...';
+      if(elements.warrantStatus && /dang|loading|dữ|du lieu/i.test(elements.warrantStatus.textContent)) elements.warrantStatus.textContent = en ? 'Loading warrant data...' : 'Dang tai du lieu chung quyen...';
+      if(elements.statusText && /dang|loading/i.test(elements.statusText.textContent)) elements.statusText.textContent = en ? 'Loading...' : 'Dang tai...';
+      elements.stockSearchBtn.textContent=L('add'); elements.warrantAddBtn.textContent=L('add'); elements.stockRemoveBtn.textContent=L('remove'); elements.warrantRemoveBtn.textContent=L('remove');
+      elements.closeDetailBtn.textContent=L('close'); elements.closeWarrantBtn.textContent=L('close'); elements.removeDetailBtn.textContent=L('remove');
+      elements.stockSearchInput.placeholder=L('stockPlaceholder'); elements.warrantSearchInput.placeholder=L('warrantPlaceholder');
+      set('[data-filter-mode=technical]', L('technical')); set('[data-filter-mode=fundamental]', L('fundamental'));
+      set('#prevPageBtn', en ? 'Prev' : 'Lui'); set('#goPageBtn', en ? 'Go' : 'Di toi'); set('#nextPageBtn', en ? 'Next' : 'Tiep');
+      const dis=document.querySelector('.disclaimer-box'); if(dis) dis.textContent=L('disclaimer');
+      if(elements.apiStatus) elements.apiStatus.textContent=L('online');
+      document.querySelectorAll('.empty').forEach(el=>{ if(en){ el.textContent = el.textContent.replace(/Dang tai|Dang tải|Đang tải/gi,'Loading').replace(/Khong co du lieu|Không có dữ liệu/gi,'No data'); }});
+      if(activeDetailTicker) openDetail(activeDetailTicker);
     }
     function formatTime(value) { if (!value) return 'Không rõ thời gian'; const raw = String(value).trim(); const d = new Date(raw); if (!Number.isNaN(d.getTime())) { const now = new Date(); const tz = 'Asia/Ho_Chi_Minh'; const sameDay = d.toLocaleDateString('vi-VN', { timeZone: tz }) === now.toLocaleDateString('vi-VN', { timeZone: tz }); const opts = sameDay ? { timeZone: tz, hour: '2-digit', minute: '2-digit' } : { timeZone: tz, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }; return d.toLocaleString('vi-VN', opts).replace(',', ' •'); } return raw.replace(/^[A-Za-z]{3},\s*/,'').replace(/\s*\+0700$/,'').replace(/GMT\+7|GMT\+0700/,'').trim(); }
     function highlightNewsNumbers(text='') { return escapeHtml(text).replace(/((?:\d{1,3}(?:[.,]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|tỷ|triệu|nghìn|đồng|VND|USD|cp|cổ phiếu|lần|x|điểm|ha|MW|kWh|năm|tháng|ngày)?)/gi, '<b class="news-number">$1</b>'); }
