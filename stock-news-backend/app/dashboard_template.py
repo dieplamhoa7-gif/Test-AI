@@ -763,15 +763,7 @@ DASHBOARD_HTML = r'''
               <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
               <div class="detail-table">
                 ${row(label('trend'), escapeHtml(String(tech.trend || '-')))}
-                ${row(label('zoneState'), escapeHtml(String(tech.zoneState || '-')))}
-                ${row(label('setup'), escapeHtml(String(tech.setupType || '-')))}
-                ${row('RSI', val(tech.rsi14 ?? tech.relativeStrength ?? 0))}
-                ${row('MACD', `${val(tech.macd ?? 0)} / ${val(tech.signal ?? 0)} / ${val(tech.histogram ?? 0)}`)}
-                ${row('Volume ratio', val(tech.volumeRatio ?? 0))}
-                ${row('ROC20', `${val(tech.roc20 ?? 0)}%`)}
                 ${row('MA20/50/200', `${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}`)}
-                ${row(label('bollinger'), `${val(tech.bbLower ?? 0)} - ${val(tech.bbUpper ?? 0)} | BB% ${val((tech.bbPercent ?? 0) * 100)}%`)}
-                ${row(label('structure'), escapeHtml(String(tech.marketStructureDay || tech.marketStructure || '-')))}
                 ${row(label('currentSupport'), price(support))}
                 ${row(label('nextSupport'), price(nextSupport))}
                 ${row(label('currentResistance'), price(resistance))}
