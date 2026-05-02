@@ -827,9 +827,7 @@ DASHBOARD_HTML = r'''
         const renderTechnicalFrame = (frame = 'day') => {
           const framed = computeFrameTechnical(item, frame);
           const support = framed.support || tech.activeSupportDay || tech.supportDay || tech.support || 0;
-          const nextSupport = framed.nextSupport || tech.nextSupportDay || tech.supportDay2 || 0;
           const resistance = framed.resistance || tech.activeResistanceDay || tech.resistanceDay || tech.resistance || 0;
-          const nextResistance = framed.nextResistance || tech.nextResistanceDay || tech.resistanceDay2 || 0;
           const technicalPane = document.querySelector('[data-analysis-pane="technical"]');
           if (!technicalPane) return;
           technicalPane.innerHTML = `<div class="technical-panel">
@@ -840,16 +838,13 @@ DASHBOARD_HTML = r'''
               <button type="button" class="chip-btn ${frame === 'month' ? 'active' : ''}" data-frame="month">${label('month')}</button>
             </div>
             <div class="detail-table">
-              ${row(label('trend'), escapeHtml(String(framed.trend || tech.trend || '-')))}
               ${row('RSI', val(framed.rsi ?? tech.rsi14 ?? 0))}
               ${row('BB', `${price(tech.bbLower || item.bbLower || 0)} - ${price(tech.bbUpper || item.bbUpper || 0)}`)}
               ${row('%BB', `${val(((tech.bbPercent ?? item.bbPercent) || 0) * 100)}%`)}
               ${row('ADX', val(framed.adx || tech.adx14 || item.adx14 || 0))}
               ${row('MA20/50/200', `${val(framed.ma20 ?? tech.ma20 ?? 0)} / ${val(framed.ma50 ?? tech.ma50 ?? 0)} / ${val(framed.ma200 ?? tech.ma200 ?? 0)}`)}
               ${row(label('currentSupport'), price(support))}
-              ${row(label('nextSupport'), price(nextSupport))}
               ${row(label('currentResistance'), price(resistance))}
-              ${row(label('nextResistance'), price(nextResistance))}
             </div>
           </div>`;
           technicalPane.querySelectorAll('[data-frame]').forEach(btn => btn.addEventListener('click', () => renderTechnicalFrame(btn.dataset.frame)));
