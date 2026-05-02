@@ -92,10 +92,31 @@ function marketDataFromRs() {
   return { items, updatedAt: cache.createdAt, status: 'rs-cache-node-fallback' };
 }
 
+function stripHtml(value = '') {
+  return String(value)
+    .replace(/<\/?strong>/gi, '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function newsFromCache(limit = 30) {
   const raw = readJson('news_cache.json');
   const items = Array.isArray(raw) ? raw : (Array.isArray(raw.items) ? raw.items : []);
-  return { items: items.slice(0, limit), updatedAt: raw.updatedAt || raw.createdAt || null, status: 'news-cache-node-fallback' };
+  const cleanItems = items.slice(0, limit).map(item => ({
+    ...item,
+    title: stripHtml(item.title || ''),
+    snippet: stripHtml(item.snippet || item.summary || ''),
+    summary: stripHtml(item.summary || item.snippet || ''),
+  }));
+  return { items: cleanItems, updatedAt: raw.updatedAt || raw.createdAt || null, status: 'news-cache-node-fallback' };
 }
 
 function warrantsFromCache(symbols = '') {
