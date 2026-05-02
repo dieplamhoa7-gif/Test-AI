@@ -758,20 +758,37 @@
             <div class="detail-price-card"><div class="label">${label('changePct')}</div><div class="value ${changeCls}">${sign}${val(item.changePct)}%</div></div>
             <div class="detail-price-card"><div class="label">${label('volume')}</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
           </div>
+          <div class="analysis-switch">
+            <button type="button" class="analysis-tab-btn active" data-analysis-tab="technical"><strong>${label('technical')}</strong><span>${label('timeframeNote')}</span></button>
+            <button type="button" class="analysis-tab-btn" data-analysis-tab="fundamental"><strong>${currentLang === 'en' ? 'Fundamental Analysis' : 'Phân tích cơ bản'}</strong><span>${currentLang === 'en' ? 'Cached broker reports' : 'Dữ liệu báo cáo định giá cũ'}</span></button>
+          </div>
           <div class="analysis-grid">
-            <div class="technical-panel">
-              <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
-              <div class="detail-table">
-                ${row(label('trend'), escapeHtml(String(tech.trend || '-')))}
-                ${row('MA20/50/200', `${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}`)}
-                ${row(label('currentSupport'), price(support))}
-                ${row(label('nextSupport'), price(nextSupport))}
-                ${row(label('currentResistance'), price(resistance))}
-                ${row(label('nextResistance'), price(nextResistance))}
+            <div class="analysis-pane active" data-analysis-pane="technical">
+              <div class="technical-panel">
+                <div class="analysis-title"><div><h4>${label('technical')}</h4><p>${label('timeframeNote')}</p></div></div>
+                <div class="detail-table">
+                  ${row(label('trend'), escapeHtml(String(tech.trend || '-')))}
+                  ${row('MA20/50/200', `${val(tech.ma20 ?? 0)} / ${val(tech.ma50 ?? 0)} / ${val(tech.ma200 ?? 0)}`)}
+                  ${row(label('currentSupport'), price(support))}
+                  ${row(label('nextSupport'), price(nextSupport))}
+                  ${row(label('currentResistance'), price(resistance))}
+                  ${row(label('nextResistance'), price(nextResistance))}
+                </div>
               </div>
             </div>
+            <div class="analysis-pane" data-analysis-pane="fundamental" id="fundamentalDetailPane"><div class="fundamental-panel"><div class="empty">Đang tải Fundamental Analysis...</div></div></div>
           </div>`;
+        elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(btn => btn.addEventListener('click', () => {
+          const tab = btn.dataset.analysisTab;
+          elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(x => x.classList.toggle('active', x.dataset.analysisTab === tab));
+          elements.detailStats.querySelectorAll('[data-analysis-pane]').forEach(x => x.classList.toggle('active', x.dataset.analysisPane === tab));
+        }));
         elements.detailModal.classList.add('open');
+        Promise.all([loadFundamentalSignals(item.ticker), loadFundamentalAverage(item.ticker)]).then(([faPayload, faAvg]) => {
+          if (activeDetailTicker !== item.ticker) return;
+          const pane = document.getElementById('fundamentalDetailPane');
+          if (pane) pane.innerHTML = renderFundamentalPanel(faPayload, faAvg);
+        }).catch(() => { const pane = document.getElementById('fundamentalDetailPane'); if (pane) pane.innerHTML = '<div class="fundamental-panel"><div class="empty">Không tải được Fundamental Analysis.</div></div>'; });
       } catch (err) {
         console.error('openDetail failed', err);
         elements.detailStats.innerHTML = `<div class="empty error">${currentLang === 'en' ? 'Cannot open stock detail right now.' : 'Khong mo duoc popup co phieu luc nay.'}</div>`;
