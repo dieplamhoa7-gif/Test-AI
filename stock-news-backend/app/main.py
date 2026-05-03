@@ -131,13 +131,13 @@ def market_symbols(query: str = Query(default=""), limit: int = Query(default=20
 
 
 @app.get("/news")
-def news(limit: int = Query(default=20, ge=1, le=300), refresh: bool = Query(default=False)):
+def news(limit: int = Query(default=20, ge=1, le=500), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=limit)
     return {"total_items": len(items), "items": items[:limit]}
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=20, ge=1, le=300), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
+def summarize(limit: int = Query(default=20, ge=1, le=500), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
     key = (limit, max_chars)
     if not refresh and key in _summary_cache:
         return _summary_cache[key]

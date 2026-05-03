@@ -7,7 +7,7 @@ from pymongo import MongoClient, DESCENDING
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DATA_FILE = DATA_DIR / "news_cache.json"
-MAX_NEWS_ITEMS = 200
+MAX_NEWS_ITEMS = 500
 MONGODB_URI = os.getenv("MONGODB_URI", "").strip()
 MONGODB_DB = os.getenv("MONGODB_DB", "hoa_investment")
 MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION", "news_cache")

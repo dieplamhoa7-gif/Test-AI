@@ -226,7 +226,7 @@ def warrants_data(symbols: str = Query(default="", max_length=160), refresh: boo
 
 
 @app.get("/fundamental-top-upside")
-def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=200), refresh: bool = Query(default=False)):
+def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=500), refresh: bool = Query(default=False)):
     return top_target_upside(limit=limit, max_symbols=max_symbols, force_refresh=refresh)
 
 
@@ -347,7 +347,7 @@ def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)
 
 
 @app.get("/news")
-def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=200), refresh: bool = Query(default=False)):
+def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
     start = (page - 1) * limit
     end = start + limit
