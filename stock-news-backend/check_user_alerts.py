@@ -1,4 +1,4 @@
-import json, os, time, urllib.parse, urllib.request
+import base64, json, os, time, urllib.parse, urllib.request
 from pathlib import Path
 from typing import Any
 
@@ -70,9 +70,13 @@ def init_firestore():
     from firebase_admin import credentials, firestore
     if not firebase_admin._apps:
         raw = os.getenv('FIREBASE_SERVICE_ACCOUNT_JSON', '').strip()
-        if raw:
-            credentials.Certificate(json.loads(raw))
-            firebase_admin.initialize_app(credentials.Certificate(json.loads(raw)))
+        raw_b64 = os.getenv('FIREBASE_SERVICE_ACCOUNT_B64', '').strip()
+        if raw_b64:
+            info = json.loads(base64.b64decode(raw_b64).decode('utf-8'))
+            firebase_admin.initialize_app(credentials.Certificate(info))
+        elif raw:
+            info = json.loads(raw)
+            firebase_admin.initialize_app(credentials.Certificate(info))
         else:
             firebase_admin.initialize_app()
     return firestore.client(), firestore
