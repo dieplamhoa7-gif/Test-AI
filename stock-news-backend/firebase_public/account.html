@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/warrants">Warrants</a><a href="/news-page">News</a></div></div>
+  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/warrants">Warrants</a><a href="/news-page">News</a><a href="/portfolio-test">Portfolio Test</a></div></div>
   <div id="status" class="muted"></div>
   <section id="authCard" class="card">
     <h2>Tài khoản</h2><p class="muted">Đăng ký/đăng nhập bằng tên đăng nhập hoặc email + mật khẩu. Không cần OTP.</p>
@@ -22,7 +22,7 @@
     <div class="card"><div class="row" style="justify-content:space-between"><div><h2>My Alerts</h2><p id="userLine" class="muted"></p></div><button id="logoutBtn" class="ghost">Đăng xuất</button></div></div>
     <div class="grid">
       <div class="card"><h3>Thông tin nhận cảnh báo</h3><label>Tên đăng nhập</label><input id="username" placeholder="Tên hiển thị"><label>SĐT</label><input id="phone" placeholder="Số điện thoại"><label>Telegram chat ID (tuỳ chọn)</label><input id="telegramChatId" placeholder="VD: 5780893485"><div class="alert"><b>Hướng dẫn nhận thông báo Telegram</b><br>1) Bấm mở bot: <a style="color:#8ecbff" href="https://t.me/LHINVESTMENT_BOT" target="_blank" rel="noreferrer">@LHINVESTMENT_BOT</a><br>2) Bấm <b>Start</b> hoặc nhắn <b>/start</b> cho bot.<br>3) Bot sẽ tự trả lời <b>Telegram chat ID</b> của bạn. Copy số đó dán vào ô trên rồi bấm <b>Lưu thông tin</b>.<br><span class="muted small">Lưu ý: nếu chưa bấm Start bot, Telegram sẽ không cho bot gửi tin. Bot kiểm tra tin nhắn khoảng mỗi 5 phút.</span></div><div class="toggle"><button id="notifyOn">Bật thông báo</button><button id="notifyOff" class="ghost">Tắt</button></div><br><button id="saveProfileBtn">Lưu thông tin</button><p class="muted small">Nếu không nhập Telegram chat ID thì web vẫn lưu cảnh báo, nhưng không gửi thông báo.</p></div>
-      <div class="card"><h3>Danh mục cổ phiếu</h3><div class="row"><input id="symbolInput" style="flex:1;min-width:160px" placeholder="VD: HPG, FPT, MSN"><button id="addSymbolBtn">Thêm</button></div><div id="watchlist"></div><p class="muted small">Job nền 15 phút/lần sẽ đọc output R/S và kiểm tra gãy/chạm hỗ trợ/kháng cự.</p></div>
+      <div class="card"><h3>Danh mục quan tâm theo account</h3><p class="muted small">Các mã ở đây được lưu theo tài khoản đăng nhập. Đăng nhập máy khác vẫn thấy lại danh mục này.</p><div class="row"><input id="symbolInput" style="flex:1;min-width:160px" placeholder="VD: HPG, FPT, MSN"><button id="addSymbolBtn">Thêm</button></div><div id="watchlist"></div><p class="muted small">Job nền 15 phút/lần sẽ đọc output R/S và kiểm tra gãy/chạm hỗ trợ/kháng cự.</p><a class="open-link" style="color:#8ecbff;font-weight:800" href="/portfolio-test">Mở Portfolio Test để xem trạng thái danh mục →</a></div>
     </div>
     <div class="card"><h3>Lịch sử cảnh báo</h3><div id="alerts"><p class="muted">Chưa có cảnh báo.</p></div></div>
   </section>

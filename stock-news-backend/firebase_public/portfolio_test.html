@@ -10,12 +10,12 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Portfolio Test - không ảnh hưởng trang public chính</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/account">Account</a><a href="/portfolio-test">Portfolio Test</a></div></div>
+  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Portfolio Test - đọc danh mục quan tâm theo account</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/account">Account</a><a href="/portfolio-test">Portfolio Test</a></div></div>
   <div id="status" class="muted"></div>
   <section id="authCard" class="card"><h2>Đăng nhập Portfolio Test</h2><p class="muted">Dùng cùng tài khoản ở trang Account.</p><div class="grid"><div><label>Email hoặc tên đăng nhập</label><input id="email" placeholder="VD: hoa hoặc you@example.com"></div><div><label>Mật khẩu</label><input id="password" type="password" placeholder="Mật khẩu"></div></div><div class="row"><button id="loginBtn">Đăng nhập</button><button id="signupBtn" class="ghost">Tạo tài khoản</button></div></section>
   <section id="portfolioApp" class="hide">
     <div class="card"><div class="row" style="justify-content:space-between"><div><h1>My Portfolio</h1><p id="userLine" class="muted"></p></div><button id="logoutBtn" class="ghost">Đăng xuất</button></div></div>
-    <div class="grid"><div class="card"><h3>Thêm mã theo dõi</h3><div class="row"><input id="symbolInput" style="flex:1;min-width:160px" placeholder="VD: HPG"><button id="addSymbolBtn">Thêm</button></div><p class="muted small">Dữ liệu đọc từ output cache, không chạy lại R/S trên web.</p></div><div class="card"><h3>Tổng quan</h3><div id="summary" class="muted">Đang tải...</div></div></div>
+    <div class="grid"><div class="card"><h3>Thêm mã theo dõi</h3><div class="row"><input id="symbolInput" style="flex:1;min-width:160px" placeholder="VD: HPG"><button id="addSymbolBtn">Thêm</button></div><p class="muted small">Mã được lưu theo account tại users/{uid}/watchlist. Dữ liệu đọc từ output cache, không chạy lại R/S trên web.</p></div><div class="card"><h3>Tổng quan</h3><div id="summary" class="muted">Đang tải...</div></div></div>
     <div class="card"><h3>Trạng thái danh mục theo R/S</h3><div id="portfolioGrid" class="portfolio-grid"><div class="empty">Đang tải danh mục...</div></div></div>
   </section>
 </div>
