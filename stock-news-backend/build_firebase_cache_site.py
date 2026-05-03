@@ -68,6 +68,14 @@ def build_market_cache() -> dict[str, Any]:
         indicator_by_symbol.setdefault(sym, {})
         hour_fields = {k: v for k, v in row.items() if k.endswith("Hour")}
         indicator_by_symbol[sym].setdefault("indicators", {}).update(hour_fields)
+    weekly_cache = read_json(DATA / "weekly_indicators_vn100_cache.json", {})
+    for row in weekly_cache.get("items", []) if isinstance(weekly_cache, dict) else []:
+        sym = str(row.get("ticker") or row.get("symbol") or "").upper()
+        if not sym:
+            continue
+        indicator_by_symbol.setdefault(sym, {})
+        week_fields = {k: v for k, v in row.items() if k.endswith("Week")}
+        indicator_by_symbol[sym].setdefault("indicators", {}).update(week_fields)
 
     items = []
     for row in rs.get("items", []) if isinstance(rs, dict) else []:

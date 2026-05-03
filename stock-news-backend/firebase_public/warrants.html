@@ -834,9 +834,11 @@
           const resistance = framed.resistance || tech.activeResistanceDay || tech.resistanceDay || tech.resistance || 0;
           const technicalPane = document.querySelector('[data-analysis-pane="technical"]');
           if (!technicalPane) return;
+          const notEnoughText = currentLang === 'en' ? 'Not enough data' : 'Chua du data';
+          const maPart = (value) => Number(value || 0) ? val(value) : notEnoughText;
           const maText = frame === 'month'
-            ? (currentLang === 'en' ? 'Not enough data' : 'Chưa đủ data')
-            : `${val(framed.ma20 ?? tech.ma20 ?? 0)} / ${val(framed.ma50 ?? tech.ma50 ?? 0)} / ${val(framed.ma200 ?? tech.ma200 ?? 0)}`;
+            ? notEnoughText
+            : `${maPart(framed.ma20 ?? tech.ma20 ?? 0)} / ${maPart(framed.ma50 ?? tech.ma50 ?? 0)} / ${maPart(framed.ma200 ?? tech.ma200 ?? 0)}`;
           technicalPane.innerHTML = `<div class="technical-panel">
             <div class="detail-actions">
               <button type="button" class="chip-btn ${frame === 'hour' ? 'active' : ''}" data-frame="hour">${label('hour')}</button>
