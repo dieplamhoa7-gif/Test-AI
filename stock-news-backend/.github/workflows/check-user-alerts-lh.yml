@@ -1,0 +1,26 @@
+name: Check LH user stock alerts
+
+on:
+  schedule:
+    # Every 15 minutes during Vietnam market hours, Mon-Fri: 09:00-15:45 ICT = 02:00-08:45 UTC.
+    - cron: '*/15 2-8 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  check-alerts:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-news-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install alert dependencies
+        run: pip install firebase-admin
+      - name: Check alerts from output cache
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python check_user_alerts.py

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LHInvestment Account</title>
+  <style>
+    :root{--bg:#07111f;--panel:#101b2e;--line:#233552;--text:#eaf2ff;--muted:#91a4c4;--blue:#4da3ff;--green:#34d399;--red:#fb7185}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:radial-gradient(circle at top,#123056,#07111f 55%);color:var(--text);min-height:100vh}.wrap{max-width:980px;margin:0 auto;padding:18px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.brand{font-weight:900;letter-spacing:.12em}.nav a{color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:9px 12px;margin-left:6px}.card{background:rgba(16,27,46,.88);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 18px 50px rgba(0,0,0,.22)}h1,h2,h3{margin:0 0 10px}.muted{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}input,button{font:inherit}input{width:100%;background:#07111f;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text);margin:6px 0 10px}button{border:0;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer;background:var(--blue);color:white}.ghost{background:transparent;border:1px solid var(--line)}.danger{background:var(--red)}.ok{color:var(--green)}.err{color:var(--red)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 10px;margin:4px;background:#0b1526}.pill button{padding:5px 8px;border-radius:999px}.alert{border-left:4px solid var(--blue);padding:10px 12px;background:#0b1526;border-radius:12px;margin:8px 0}.hide{display:none}.small{font-size:12px}.toggle{display:flex;gap:8px}.toggle button{flex:1}.toggle .active{background:var(--green)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/warrants">Warrants</a><a href="/news-page">News</a></div></div>
+  <div id="status" class="muted"></div>
+  <section id="authCard" class="card">
+    <h2>Tài khoản</h2><p class="muted">Đăng ký/đăng nhập bằng email + mật khẩu. Không cần OTP.</p>
+    <div class="grid"><div><label>Email</label><input id="email" type="email" placeholder="you@example.com"></div><div><label>Mật khẩu</label><input id="password" type="password" placeholder="Ít nhất 6 ký tự"></div></div>
+    <div class="row"><button id="loginBtn">Đăng nhập</button><button id="signupBtn" class="ghost">Tạo tài khoản</button></div>
+  </section>
+  <section id="appCard" class="hide">
+    <div class="card"><div class="row" style="justify-content:space-between"><div><h2>My Alerts</h2><p id="userLine" class="muted"></p></div><button id="logoutBtn" class="ghost">Đăng xuất</button></div></div>
+    <div class="grid">
+      <div class="card"><h3>Thông tin nhận cảnh báo</h3><label>Tên đăng nhập</label><input id="username" placeholder="Tên hiển thị"><label>SĐT</label><input id="phone" placeholder="Số điện thoại"><label>Telegram chat ID (tuỳ chọn)</label><input id="telegramChatId" placeholder="VD: 5780893485"><div class="toggle"><button id="notifyOn">Bật thông báo</button><button id="notifyOff" class="ghost">Tắt</button></div><br><button id="saveProfileBtn">Lưu thông tin</button><p class="muted small">Nếu không nhập Telegram chat ID thì web vẫn lưu cảnh báo, nhưng không gửi thông báo.</p></div>
+      <div class="card"><h3>Danh mục cổ phiếu</h3><div class="row"><input id="symbolInput" style="flex:1;min-width:160px" placeholder="VD: HPG, FPT, MSN"><button id="addSymbolBtn">Thêm</button></div><div id="watchlist"></div><p class="muted small">Job nền 15 phút/lần sẽ đọc output R/S và kiểm tra gãy/chạm hỗ trợ/kháng cự.</p></div>
+    </div>
+    <div class="card"><h3>Lịch sử cảnh báo</h3><div id="alerts"><p class="muted">Chưa có cảnh báo.</p></div></div>
+  </section>
+</div>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, onSnapshot, serverTimestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+const firebaseConfig = { projectId:'lhinvestment', appId:'1:17989244201:web:c2185c64a67d9515b95338', storageBucket:'lhinvestment.firebasestorage.app', apiKey:'AIzaSyCu4aWXDU3VUGry2MNy4zdRGeiINKi3GwQ', authDomain:'lhinvestment.firebaseapp.com', messagingSenderId:'17989244201' };
+const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
+const $=id=>document.getElementById(id); let uid='', notifyEnabled=true;
+function msg(t, cls='muted'){ $('status').className=cls; $('status').textContent=t||''; }
+function symClean(v){ return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,12); }
+$('signupBtn').onclick=async()=>{try{await createUserWithEmailAndPassword(auth,$('email').value.trim(),$('password').value); msg('Đã tạo tài khoản','ok')}catch(e){msg(e.message,'err')}};
+$('loginBtn').onclick=async()=>{try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value); msg('Đã đăng nhập','ok')}catch(e){msg(e.message,'err')}};
+$('logoutBtn').onclick=()=>signOut(auth);
+$('notifyOn').onclick=()=>{notifyEnabled=true; $('notifyOn').classList.add('active'); $('notifyOff').classList.remove('active')};
+$('notifyOff').onclick=()=>{notifyEnabled=false; $('notifyOff').classList.add('active'); $('notifyOn').classList.remove('active')};
+$('saveProfileBtn').onclick=async()=>{if(!uid)return; await setDoc(doc(db,'users',uid),{email:auth.currentUser.email,username:$('username').value.trim(),phone:$('phone').value.trim(),telegramChatId:$('telegramChatId').value.trim(),notifyEnabled,updatedAt:serverTimestamp()},{merge:true}); msg('Đã lưu thông tin','ok')};
+$('addSymbolBtn').onclick=async()=>{const s=symClean($('symbolInput').value); if(!uid||!s)return; await setDoc(doc(db,'users',uid,'watchlist',s),{symbol:s,enabled:true,createdAt:serverTimestamp()},{merge:true}); $('symbolInput').value='';};
+onAuthStateChanged(auth, async user=>{ uid=user?.uid||''; $('authCard').classList.toggle('hide',!!user); $('appCard').classList.toggle('hide',!user); if(!user)return; $('userLine').textContent=user.email; const snap=await getDoc(doc(db,'users',uid)); if(snap.exists()){const p=snap.data(); $('username').value=p.username||''; $('phone').value=p.phone||''; $('telegramChatId').value=p.telegramChatId||''; notifyEnabled=p.notifyEnabled!==false;} $('notifyOn').classList.toggle('active',notifyEnabled); $('notifyOff').classList.toggle('active',!notifyEnabled);
+ onSnapshot(collection(db,'users',uid,'watchlist'), qs=>{ $('watchlist').innerHTML=qs.empty?'<p class="muted">Chưa có mã.</p>':qs.docs.map(d=>`<span class="pill"><b>${d.id}</b><button class="danger" data-del="${d.id}">x</button></span>`).join(''); document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>deleteDoc(doc(db,'users',uid,'watchlist',b.dataset.del))); });
+ onSnapshot(query(collection(db,'users',uid,'alerts'),orderBy('createdAt','desc'),limit(30)), qs=>{ $('alerts').innerHTML=qs.empty?'<p class="muted">Chưa có cảnh báo.</p>':qs.docs.map(d=>{const a=d.data(); const ts=a.createdAt?.toDate? a.createdAt.toDate().toLocaleString('vi-VN') : ''; return `<div class="alert"><b>${a.symbol||''}</b> - ${a.type||''}<br>${a.message||''}<br><span class="muted small">${ts}</span></div>`}).join(''); });
+});
+</script>
+</body></html>
