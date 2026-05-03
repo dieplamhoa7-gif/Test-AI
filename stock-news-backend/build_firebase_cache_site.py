@@ -22,6 +22,7 @@ PUBLIC = ROOT / "firebase_public"
 DATA = ROOT / "data"
 APP = ROOT / "app"
 WARRANTS = APP / "warrants"
+EXCLUDED_WARRANT_CODES = {"CHPG2527", "CMSN2518", "CSHB2510", "CSSB2508", "CSTB2523", "CVHM2518", "CVIC2511", "CVNM2519", "CVPB2520", "CVRE2518"}
 
 PUBLIC_DATA = PUBLIC / "data"
 
@@ -221,7 +222,7 @@ def build_warrants_cache() -> dict[str, Any]:
         if not isinstance(item, dict):
             continue
         code = str(item.get("code") or "").upper().strip()
-        if not code:
+        if not code or code in EXCLUDED_WARRANT_CODES:
             continue
         if item.get("daysLeft") is not None and float(item.get("daysLeft") or 0) <= 0:
             continue
@@ -233,7 +234,7 @@ def build_warrants_cache() -> dict[str, Any]:
         if not isinstance(item, dict):
             continue
         code = str(item.get("code") or "").upper().strip()
-        if not code:
+        if not code or code in EXCLUDED_WARRANT_CODES:
             continue
         row = {**dict(item), **by_code.get(code, {})}
         row["code"] = code
