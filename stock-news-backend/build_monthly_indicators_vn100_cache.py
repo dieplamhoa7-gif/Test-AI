@@ -10,8 +10,8 @@ import pandas as pd
 from app.market_data import _load_history, _compute_indicators
 from app.technical_filters import TECHNICAL_UNIVERSE
 
-OUT = Path('data/weekly_indicators_vn100_cache.json')
-TMP = Path('data/weekly_indicators_vn100_cache.partial.json')
+OUT = Path('data/monthly_indicators_vn100_cache.json')
+TMP = Path('data/monthly_indicators_vn100_cache.partial.json')
 REM = Path('data/vn100_remaining_symbols.json')
 SLEEP_EVERY = 18
 SLEEP_SECONDS = 65
@@ -47,7 +47,7 @@ def save(items: list[dict], errors: list[dict], universe: list[str], final: bool
     payload = {
         'createdAt': datetime.now().isoformat(),
         'universe': 'VN100 local universe',
-        'method': 'Weekly technical indicator cache from weekly OHLC. Web reads output only.',
+        'method': 'Monthly technical indicator cache from monthly OHLC. Web reads output only. MA row uses MA10/20/50.',
         'universeCount': len(universe),
         'count': len(items),
         'errorCount': len(errors),
@@ -66,46 +66,45 @@ def r(value, digits=2):
         return None
 
 
-def weekly_ohlc(df: pd.DataFrame) -> pd.DataFrame:
+def monthly_ohlc(df: pd.DataFrame) -> pd.DataFrame:
     work = df.copy()
     work['time'] = pd.to_datetime(work['time'])
     work = work.sort_values('time').set_index('time')
     agg = {'open': 'first', 'high': 'max', 'low': 'min', 'close': 'last'}
     if 'volume' in work.columns:
         agg['volume'] = 'sum'
-    wk = work.resample('W-FRI').agg(agg).dropna(subset=['open', 'high', 'low', 'close']).reset_index()
-    return wk
+    mo = work.resample('ME').agg(agg).dropna(subset=['open', 'high', 'low', 'close']).reset_index()
+    return mo
 
 
 def run_symbol(sym: str) -> tuple[dict | None, str | None]:
     df = _load_history(sym)
     if df is None or df.empty:
         return None, 'missing history'
-    wk = weekly_ohlc(df)
-    if len(wk) < 20:
-        return None, f'insufficient weekly history {len(wk)}'
-    ind = _compute_indicators(wk.copy())
+    mo = monthly_ohlc(df)
+    if len(mo) < 10:
+        return None, f'insufficient monthly history {len(mo)}'
+    ind = _compute_indicators(mo.copy())
     ind['ma10'] = pd.to_numeric(ind['close'], errors='coerce').rolling(10).mean()
     row = ind.iloc[-1]
     item = {
         'symbol': sym,
         'date': str(pd.to_datetime(row.get('time')).date()),
-        'weeklyBars': len(wk),
-        'rsi14Week': r(row.get('rsi14')),
-        'adx14Week': r(row.get('adx14')),
-        'plusDiWeek': r(row.get('plusDi')),
-        'minusDiWeek': r(row.get('minusDi')),
-        'ma10Week': r(row.get('ma10')),
-        'ma20Week': r(row.get('ma20')),
-        'ma50Week': r(row.get('ma50')),
-        'ma200Week': r(row.get('ma200')),
-        'bbUpperWeek': r(row.get('bbUpper')),
-        'bbLowerWeek': r(row.get('bbLower')),
-        'bbMiddleWeek': r(row.get('bbMiddle') if 'bbMiddle' in row else row.get('bbMid')),
-        'bbPercentWeek': r(row.get('bbPercent'), 3),
-        'macdWeek': r(row.get('macd'), 4),
-        'signalWeek': r(row.get('signal'), 4),
-        'histogramWeek': r(row.get('histogram'), 4),
+        'monthlyBars': len(mo),
+        'rsi14Month': r(row.get('rsi14')),
+        'adx14Month': r(row.get('adx14')),
+        'plusDiMonth': r(row.get('plusDi')),
+        'minusDiMonth': r(row.get('minusDi')),
+        'ma10Month': r(row.get('ma10')),
+        'ma20Month': r(row.get('ma20')),
+        'ma50Month': r(row.get('ma50')),
+        'bbUpperMonth': r(row.get('bbUpper')),
+        'bbLowerMonth': r(row.get('bbLower')),
+        'bbMiddleMonth': r(row.get('bbMiddle') if 'bbMiddle' in row else row.get('bbMid')),
+        'bbPercentMonth': r(row.get('bbPercent'), 3),
+        'macdMonth': r(row.get('macd'), 4),
+        'signalMonth': r(row.get('signal'), 4),
+        'histogramMonth': r(row.get('histogram'), 4),
     }
     return item, None
 
@@ -115,7 +114,7 @@ def main() -> None:
     items, errors = load_partial()
     done = {x.get('symbol') for x in items} | {x.get('symbol') for x in errors}
     calls = 0
-    print('weekly universe', len(universe), 'already done', len(done), flush=True)
+    print('monthly universe', len(universe), 'already done', len(done), flush=True)
     for sym in universe:
         if sym in done:
             print(sym, 'SKIP', flush=True)
@@ -128,7 +127,7 @@ def main() -> None:
             calls += 1
             if item:
                 items.append(item)
-                print(sym, 'OK', item.get('ma20Week'), item.get('ma50Week'), item.get('ma200Week'), 'bars', item.get('weeklyBars'), flush=True)
+                print(sym, 'OK', item.get('ma10Month'), item.get('ma20Month'), item.get('ma50Month'), 'bars', item.get('monthlyBars'), flush=True)
             else:
                 errors.append({'symbol': sym, 'error': err})
                 print(sym, 'ERR', err, flush=True)
