@@ -1,0 +1,57 @@
+name: Refresh LH news cache
+
+on:
+  schedule:
+    # Vietnam market/news hours: every 2 hours from 08:10 to 22:10 ICT.
+    - cron: '10 1-15/2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-news:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-news-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Refresh Vietnamese news output
+        run: python refresh_news_cache_lh.py
+
+      - name: Build English news output
+        run: python build_news_translate_cache.py --limit 120
+
+      - name: Build Firebase static output
+        run: python build_firebase_cache_site.py
+
+      - name: Commit updated cache
+        run: |
+          git config user.name "LH Investment Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add firebase_public/data/news_cache.json firebase_public/data/news_cache_en.json
+          git add -f data/news_cache.json data/news_cache_en.json data/translation_memory_vi_en.json
+          git diff --cached --quiet || git commit -m "Auto refresh LH news cache"
+          git push
+
+      - name: Deploy LHInvestment hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          npm install -g firebase-tools
+          firebase deploy --only hosting --project lhinvestment --token "$FIREBASE_TOKEN"
