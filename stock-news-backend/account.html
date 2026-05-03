@@ -14,8 +14,8 @@
   <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/warrants">Warrants</a><a href="/news-page">News</a></div></div>
   <div id="status" class="muted"></div>
   <section id="authCard" class="card">
-    <h2>Tài khoản</h2><p class="muted">Đăng ký/đăng nhập bằng email + mật khẩu. Không cần OTP.</p>
-    <div class="grid"><div><label>Email</label><input id="email" type="email" placeholder="you@example.com"></div><div><label>Mật khẩu</label><input id="password" type="password" placeholder="Ít nhất 6 ký tự"></div></div>
+    <h2>Tài khoản</h2><p class="muted">Đăng ký/đăng nhập bằng tên đăng nhập hoặc email + mật khẩu. Không cần OTP.</p>
+    <div class="grid"><div><label>Email hoặc tên đăng nhập</label><input id="email" type="text" placeholder="VD: hoa hoặc you@example.com"></div><div><label>Mật khẩu</label><input id="password" type="password" placeholder="Ít nhất 6 ký tự"></div></div>
     <div class="row"><button id="loginBtn">Đăng nhập</button><button id="signupBtn" class="ghost">Tạo tài khoản</button></div>
   </section>
   <section id="appCard" class="hide">
@@ -36,8 +36,9 @@ const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app)
 const $=id=>document.getElementById(id); let uid='', notifyEnabled=true;
 function msg(t, cls='muted'){ $('status').className=cls; $('status').textContent=t||''; }
 function symClean(v){ return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,12); }
-$('signupBtn').onclick=async()=>{try{await createUserWithEmailAndPassword(auth,$('email').value.trim(),$('password').value); msg('Đã tạo tài khoản','ok')}catch(e){msg(e.message,'err')}};
-$('loginBtn').onclick=async()=>{try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value); msg('Đã đăng nhập','ok')}catch(e){msg(e.message,'err')}};
+function loginEmail(){ const raw=String($('email').value||'').trim().toLowerCase(); if(!raw) return ''; return raw.includes('@') ? raw : raw.replace(/[^a-z0-9._-]/g,'') + '@lhinvestment.local'; }
+$('signupBtn').onclick=async()=>{try{await createUserWithEmailAndPassword(auth,loginEmail(),$('password').value); msg('Đã tạo tài khoản','ok')}catch(e){msg(e.message,'err')}};
+$('loginBtn').onclick=async()=>{try{await signInWithEmailAndPassword(auth,loginEmail(),$('password').value); msg('Đã đăng nhập','ok')}catch(e){msg(e.message,'err')}};
 $('logoutBtn').onclick=()=>signOut(auth);
 $('notifyOn').onclick=()=>{notifyEnabled=true; $('notifyOn').classList.add('active'); $('notifyOff').classList.remove('active')};
 $('notifyOff').onclick=()=>{notifyEnabled=false; $('notifyOff').classList.add('active'); $('notifyOn').classList.remove('active')};
