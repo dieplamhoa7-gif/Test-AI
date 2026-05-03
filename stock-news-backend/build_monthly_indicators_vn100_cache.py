@@ -85,7 +85,14 @@ def run_symbol(sym: str) -> tuple[dict | None, str | None]:
     if len(mo) < 10:
         return None, f'insufficient monthly history {len(mo)}'
     ind = _compute_indicators(mo.copy())
-    ind['ma10'] = pd.to_numeric(ind['close'], errors='coerce').rolling(10).mean()
+    close = pd.to_numeric(ind['close'], errors='coerce')
+    ind['ma10'] = close.rolling(10).mean()
+    bb10_mid = close.rolling(10).mean()
+    bb10_std = close.rolling(10).std()
+    ind['bb10Upper'] = bb10_mid + bb10_std * 2
+    ind['bb10Lower'] = bb10_mid - bb10_std * 2
+    ind['bb10Middle'] = bb10_mid
+    ind['bb10Percent'] = (close - ind['bb10Lower']) / (ind['bb10Upper'] - ind['bb10Lower']).replace(0, float('nan'))
     row = ind.iloc[-1]
     item = {
         'symbol': sym,
@@ -98,10 +105,10 @@ def run_symbol(sym: str) -> tuple[dict | None, str | None]:
         'ma10Month': r(row.get('ma10')),
         'ma20Month': r(row.get('ma20')),
         'ma50Month': r(row.get('ma50')),
-        'bbUpperMonth': r(row.get('bbUpper')),
-        'bbLowerMonth': r(row.get('bbLower')),
-        'bbMiddleMonth': r(row.get('bbMiddle') if 'bbMiddle' in row else row.get('bbMid')),
-        'bbPercentMonth': r(row.get('bbPercent'), 3),
+        'bbUpperMonth': r(row.get('bbUpper') if r(row.get('bbUpper')) is not None else row.get('bb10Upper')),
+        'bbLowerMonth': r(row.get('bbLower') if r(row.get('bbLower')) is not None else row.get('bb10Lower')),
+        'bbMiddleMonth': r(row.get('bbMiddle') if r(row.get('bbMiddle') if 'bbMiddle' in row else row.get('bbMid')) is not None else row.get('bb10Middle')),
+        'bbPercentMonth': r(row.get('bbPercent') if r(row.get('bbPercent'), 3) is not None else row.get('bb10Percent'), 3),
         'macdMonth': r(row.get('macd'), 4),
         'signalMonth': r(row.get('signal'), 4),
         'histogramMonth': r(row.get('histogram'), 4),

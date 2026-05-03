@@ -849,8 +849,8 @@
             </div>
             <div class="detail-table">
               ${row('RSI', val(framed.rsi ?? tech.rsi14 ?? 0))}
-              ${row('BB', `${price(tech.bbLower || item.bbLower || 0)} - ${price(tech.bbUpper || item.bbUpper || 0)}`)}
-              ${row('%BB', `${val(((tech.bbPercent ?? item.bbPercent) || 0) * 100)}%`)}
+              ${row('BB', `${price(framed.bbLower || 0)} - ${price(framed.bbUpper || 0)}`)}
+              ${row('%BB', `${val((framed.bbPercent || 0) * 100)}%`)}
               ${row('ADX', val(framed.adx || tech.adx14 || item.adx14 || 0))}
               ${row(maLabel, maText)}
               ${row(label('currentSupport'), price(support))}
