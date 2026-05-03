@@ -1,0 +1,26 @@
+name: LH Telegram bot helper
+
+on:
+  schedule:
+    # Poll every 5 minutes so new users can get their chat ID without asking admin.
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  telegram-helper:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-news-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install firebase-admin
+      - name: Reply with Telegram chat ID
+        env:
+          FIREBASE_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python telegram_bot_poll.py
