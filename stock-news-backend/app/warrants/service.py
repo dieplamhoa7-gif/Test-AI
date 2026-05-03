@@ -127,7 +127,7 @@ def _covered_warrant_symbols() -> list[str]:
     if CATALOG_PATH.exists():
         try:
             payload = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-            return [str(item.get("code") or "").upper().strip() for item in payload.get("items", []) if str(item.get("code") or "").strip()]
+            return [str(item.get("code") or "").upper().strip() for item in payload.get("items", []) if str(item.get("code") or "").strip() and _is_active_warrant(item)]
         except Exception:
             pass
     if Listing is None:
@@ -139,12 +139,20 @@ def _covered_warrant_symbols() -> list[str]:
         return []
 
 
+def _is_active_warrant(row: dict[str, Any]) -> bool:
+    days_left = _num(row.get("daysLeft"))
+    if days_left is None:
+        days_left = _days_left(row.get("lastTradingDate") or row.get("maturityDate"))
+    # Clear expired/matured warrants from runtime data/search/list.
+    return days_left is None or days_left > 0
+
+
 def _static_map() -> dict[str, dict[str, Any]]:
     if not DATA_PATH.exists():
         return {}
     try:
         payload = json.loads(DATA_PATH.read_text(encoding="utf-8"))
-        return {str(item.get("code") or "").upper(): item for item in payload.get("items", [])}
+        return {str(item.get("code") or "").upper(): item for item in payload.get("items", []) if _is_active_warrant(item)}
     except Exception:
         return {}
 
@@ -174,7 +182,20 @@ def enrich_warrant(row: dict[str, Any]) -> dict[str, Any]:
         underlying_price = _num(row.get("underlyingPrice"))
     fair_value = _num(row.get("fairValue"))
     last_price = _num(row.get("lastPrice"))
-    market_price = last_price if last_price is not None and last_price > 0 else fair_value
+    bid_price = _num(row.get("bid"))
+    ask_price = _num(row.get("ask"))
+    ref_price = _num(row.get("refPrice"))
+    # Some newly listed / inactive intraday warrants report lastPrice=0 although
+    # bid/ask/ref and contract terms are available. For static analysis, use a
+    # deterministic board-price fallback instead of showing empty derived fields.
+    if last_price is not None and last_price > 0:
+        market_price = last_price
+    elif bid_price and ask_price:
+        market_price = (bid_price + ask_price) / 2
+    elif ref_price and ref_price > 0:
+        market_price = ref_price
+    else:
+        market_price = fair_value
     exercise_price = _num(row.get("exercisePrice"))
     conversion_ratio = _num(row.get("conversionRatio")) or 1
     days_left = _num(row.get("daysLeft"))
@@ -326,13 +347,16 @@ def get_warrants_data(force_refresh: bool = False, symbols: list[str] | None = N
             # Fast catalog mode: do not quote every warrant; search only needs code/underlying.
             merged = {**base, "code": sym, "source": base.get("source") or "vnstock-list"}
         merged.setdefault("underlying", base.get("underlying") or _infer_underlying(sym))
-        items.append(enrich_warrant(merged) if want else merged)
+        enriched = enrich_warrant(merged) if want else merged
+        if not _is_active_warrant(enriched):
+            continue
+        items.append(enriched)
 
     # Include uploaded static items missing from VNStock list.
     if not want:
         existing = {str(item.get("code") or "").upper() for item in items}
         for code, item in static.items():
-            if code and code not in existing:
+            if code and code not in existing and _is_active_warrant(item):
                 items.append(item)
 
     payload = {"updatedAt": datetime.now().isoformat(), "items": items, "cached": False, "ttlSeconds": CACHE_TTL_SECONDS, "detailMode": bool(want)}

@@ -141,6 +141,68 @@ def build_market_cache() -> dict[str, Any]:
     return {"items": items, "count": len(items), "source": "firebase-static-cache"}
 
 
+def _num(value: Any) -> float | None:
+    try:
+        if value is None or value == "":
+            return None
+        return float(str(value).replace(",", ""))
+    except Exception:
+        return None
+
+
+def _round(value: float | None, digits: int = 2) -> float | None:
+    if value is None:
+        return None
+    return round(value, digits)
+
+
+def _enrich_static_warrant(row: dict[str, Any]) -> dict[str, Any]:
+    enriched = dict(row)
+    last_price = _num(enriched.get("lastPrice"))
+    bid = _num(enriched.get("bid"))
+    ask = _num(enriched.get("ask"))
+    ref = _num(enriched.get("refPrice"))
+    fair = _num(enriched.get("fairValue"))
+    if last_price is not None and last_price > 0:
+        market = last_price
+    elif bid and ask:
+        market = (bid + ask) / 2
+    elif ref and ref > 0:
+        market = ref
+    else:
+        market = fair
+    underlying_price = _num(enriched.get("underlyingPrice"))
+    exercise = _num(enriched.get("exercisePrice"))
+    ratio = _num(enriched.get("conversionRatio")) or 1
+    if market is not None:
+        enriched["marketPrice"] = _round(market)
+    if exercise and market is not None and ratio:
+        breakeven = exercise + market * ratio
+        enriched["breakeven"] = _round(breakeven)
+        if underlying_price:
+            gap = breakeven - underlying_price
+            enriched["breakevenGap"] = _round(gap)
+            enriched["breakevenGapPct"] = _round(gap / underlying_price * 100)
+            enriched["premiumPct"] = enriched["breakevenGapPct"]
+            days = _num(enriched.get("daysLeft"))
+            if days and days > 0:
+                enriched["requiredDailyGain"] = _round(gap / days)
+                enriched["requiredDailyGainPct"] = _round((gap / underlying_price * 100) / days, 3)
+    if underlying_price and exercise and ratio:
+        intrinsic = max(0.0, (underlying_price - exercise) / ratio)
+        enriched["intrinsicValue"] = _round(intrinsic)
+        if market is not None:
+            enriched["timeValue"] = _round(market - intrinsic)
+            if market > 0:
+                lev = underlying_price / (market * ratio)
+                enriched["leverage"] = _round(lev)
+                enriched["effectiveGearing"] = _round(lev)
+        mny = (underlying_price / exercise - 1) * 100
+        enriched["moneynessPct"] = _round(mny)
+        enriched["moneyness"] = "ATM" if abs(mny) <= 2 else ("ITM" if mny > 2 else "OTM")
+    return enriched
+
+
 def _infer_underlying_from_warrant(code: str) -> str:
     text = str(code or "").upper().strip()
     if text.startswith("C") and len(text) >= 4:
@@ -178,7 +240,7 @@ def build_warrants_cache() -> dict[str, Any]:
         row.setdefault("underlying", item.get("underlying") or _infer_underlying_from_warrant(code))
         row.setdefault("source", item.get("source") or "warrant-catalog-cache")
         by_code[code] = row
-    valid = sorted(by_code.values(), key=lambda x: (str(x.get("underlying") or ""), str(x.get("code") or "")))
+    valid = sorted((_enrich_static_warrant(x) for x in by_code.values()), key=lambda x: (str(x.get("underlying") or ""), str(x.get("code") or "")))
     return {"items": valid, "count": len(valid), "source": "firebase-static-cache"}
 
 def build_fundamental_cache() -> dict[str, Any]:
