@@ -910,22 +910,33 @@
     function removeStockFromWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || activeDetailTicker || '').trim().toUpperCase(); if (!symbol) return; watchSymbols = watchSymbols.filter(item => item !== symbol); marketItems = marketItems.filter(item => String(item.ticker || '').toUpperCase() !== symbol); renderMarket({ items: marketItems, updatedAt: new Date().toISOString() }); writeLocalCache('hoa.market.cache', { items: marketItems, updatedAt: new Date().toISOString() }); if (activeDetailTicker === symbol) elements.detailModal.classList.remove('open'); elements.stockSearchInput.value = ''; selectedSymbol = ''; }
     async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsRes = await fetch(`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; startRealtimePriceOverlay(); }
 
-    const REALTIME_PRICE_API = 'https://hoa-investment.onrender.com';
     let realtimePriceTimer = null;
+    function parseVpsQuote(item) {
+      const price = Number(item?.lastPrice || 0);
+      const ref = Number(item?.r || 0);
+      if (!price) return null;
+      let volume = Number(item?.totalVolume || 0);
+      if (!volume) volume = Number(item?.lot || item?.lastVolume || 0) * 10;
+      return { price, refPrice: ref, changePct: ref ? Math.round(((price - ref) / ref * 100) * 100) / 100 : Number(item?.changePc || 0), volume, openPrice: Number(item?.openPrice || 0), highPrice: Number(item?.highPrice || 0), lowPrice: Number(item?.lowPrice || 0), avgPrice: Number(item?.avePrice || price) };
+    }
+    async function fetchVpsQuote(symbol) {
+      const res = await fetch(`https://bgapidatafeed.vps.com.vn/getliststockdata/${encodeURIComponent(symbol)}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return parseVpsQuote(Array.isArray(data) ? data[0] : null);
+    }
     async function refreshRealtimePrices() {
-      if (pageToTab() !== 'stocks') return;
+      if (pageToTab() !== 'stocks' || !Array.isArray(marketItems) || !marketItems.length) return;
       try {
-        const res = await fetch(`${REALTIME_PRICE_API}/market-data?refresh=true&ts=${Date.now()}`, { cache: 'no-store' });
-        if (!res.ok) throw new Error('realtime price');
-        const payload = await res.json();
-        const fresh = Array.isArray(payload.items) ? payload.items : [];
-        if (!fresh.length) return;
-        const byTicker = Object.fromEntries(fresh.map(x => [String(x.ticker || x.symbol || '').toUpperCase(), x]));
+        const symbols = marketItems.map(x => String(x.ticker || x.symbol || '').toUpperCase()).filter(Boolean);
+        const fresh = await Promise.all(symbols.map(async sym => [sym, await fetchVpsQuote(sym)]));
+        const byTicker = Object.fromEntries(fresh.filter(([, q]) => q));
+        if (!Object.keys(byTicker).length) return;
         marketItems = marketItems.map(item => {
           const sym = String(item.ticker || item.symbol || '').toUpperCase();
           const q = byTicker[sym];
           if (!q) return item;
-          return { ...item, price: q.price ?? item.price, changePct: q.changePct ?? item.changePct, volume: q.volume ?? item.volume, openPrice: q.openPrice ?? item.openPrice, highPrice: q.highPrice ?? item.highPrice, lowPrice: q.lowPrice ?? item.lowPrice, avgPrice: q.avgPrice ?? item.avgPrice, realtimeUpdatedAt: payload.updatedAt || new Date().toISOString(), technical: { ...(item.technical || {}), price: q.price ?? item.price, changePct: q.changePct ?? item.changePct, volume: q.volume ?? item.volume } };
+          return { ...item, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, realtimeUpdatedAt: new Date().toISOString(), technical: { ...(item.technical || {}), price: q.price, changePct: q.changePct, volume: q.volume } };
         });
         renderMarket({ items: marketItems });
         if (activeDetailTicker && elements.detailModal?.classList.contains('open')) openDetail(activeDetailTicker);
