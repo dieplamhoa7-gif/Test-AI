@@ -34,10 +34,18 @@ def run(cmd: list[str], *, timeout: int | None = None) -> None:
 
 def main() -> None:
     py = sys.executable
+    today = datetime.now()
+    # Daily after-close keeps runtime controlled: R/S + indicators + 3 strategies on VN100 only.
+    # Full HSX R/S is heavier and runs weekly only (Monday) to refresh the broader universe cache.
+    weekly_hsx = today.weekday() == 0  # Monday
     log("START after-close output-only pipeline")
-    # Heavy/model formulas stay local. Only output/cache JSON + static Firebase files are committed/deployed.
-    steps = [
-        [py, "run_rs_levels_hsx_all_safe.py"],
+    log(f"Mode: daily VN100 strategies; weekly_hsx={weekly_hsx}")
+    steps = []
+    if weekly_hsx:
+        steps.append([py, "run_rs_levels_hsx_all_safe.py"])
+    else:
+        log("Skip run_rs_levels_hsx_all_safe.py (weekly Monday only)")
+    steps.extend([
         [py, "run_rs_levels_vn100_safe.py"],
         [py, "build_rs_levels_only_cache.py"],
         [py, "build_v3_full_indicator_cache_v2.py"],
@@ -47,7 +55,7 @@ def main() -> None:
         [py, "tmp_build_strategy_results_from_canonical.py"],
         [py, "refresh_market_prices_lh.py"],
         [py, "build_firebase_cache_site.py"],
-    ]
+    ])
     for step in steps:
         run(step)
 
