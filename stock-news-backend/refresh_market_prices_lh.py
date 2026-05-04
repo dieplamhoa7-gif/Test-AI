@@ -58,18 +58,24 @@ def refresh_indices(now: str):
     out = []
     for sym, label in specs:
         try:
-            df = Quote(symbol=sym, source='VCI').history(start='2026-05-01', end=datetime.now(TZ).strftime('%Y-%m-%d'), interval='1m')
+            end = datetime.now(TZ).strftime('%Y-%m-%d')
+            df = Quote(symbol=sym, source='VCI').history(start='2026-04-20', end=end, interval='1m')
             if df is None or df.empty or len(df) < 2:
                 continue
             df = df.sort_values('time')
+            dates = df['time'].astype(str).str.slice(0, 10)
             last = df.iloc[-1]
-            day = df[df['time'].astype(str).str.slice(0, 10) == str(last.get('time'))[:10]]
-            first = day.iloc[0] if not day.empty else df.iloc[-2]
+            last_date = str(last.get('time'))[:10]
+            current_day = df[dates == last_date]
+            prev_days = df[dates < last_date]
+            if prev_days.empty:
+                continue
+            prev_close = float(prev_days.iloc[-1].get('close') or 0)
             close = float(last.get('close') or 0)
-            ref = float(first.get('open') or df.iloc[-2].get('close') or close)
-            change = close - ref
-            change_pct = (change / ref * 100) if ref else 0
-            out.append({'symbol': sym, 'label': label, 'close': round(close, 2), 'change': round(change, 2), 'changePct': round(change_pct, 2), 'volume': int(float(last.get('volume') or 0)), 'time': str(last.get('time') or '')})
+            change = close - prev_close
+            change_pct = (change / prev_close * 100) if prev_close else 0
+            volume = int(float(current_day['volume'].sum() if not current_day.empty else last.get('volume') or 0))
+            out.append({'symbol': sym, 'label': label, 'close': round(close, 2), 'change': round(change, 2), 'changePct': round(change_pct, 2), 'volume': volume, 'time': str(last.get('time') or ''), 'refClose': round(prev_close, 2)})
         except Exception as exc:
             print('index failed', sym, exc, flush=True)
     payload = {'updatedAt': now, 'items': out, 'cached': False, 'ttlSeconds': 60, 'source': 'vnstock-index-1m-output'}
