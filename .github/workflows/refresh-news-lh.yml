@@ -51,7 +51,16 @@ jobs:
 
       - name: Deploy LHInvestment hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}
         run: |
+          python - <<'PY'
+          import base64, os, pathlib
+          raw = os.environ.get('FIREBASE_SERVICE_ACCOUNT_B64', '').strip()
+          if not raw:
+              raise SystemExit('Missing FIREBASE_SERVICE_ACCOUNT_B64 secret')
+          path = pathlib.Path('firebase-service-account.json')
+          path.write_bytes(base64.b64decode(raw))
+          print('Wrote Firebase service account file')
+          PY
           npm install -g firebase-tools
-          firebase deploy --only hosting --project lhinvestment --token "$FIREBASE_TOKEN"
+          GOOGLE_APPLICATION_CREDENTIALS=firebase-service-account.json firebase deploy --only hosting --project lhinvestment
