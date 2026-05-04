@@ -36,8 +36,8 @@ def main() -> None:
     py = sys.executable
     today = datetime.now()
     # Daily after-close keeps runtime controlled: R/S + indicators + 3 strategies on VN100 only.
-    # Full HSX R/S is heavier and runs weekly only (Monday) to refresh the broader universe cache.
-    weekly_hsx = today.weekday() == 0  # Monday
+    # Full HSX R/S is heavier; run only when LH_WEEKLY_HSX=1, normally via a separate weekly/manual job.
+    weekly_hsx = today.weekday() == 0 and os.environ.get('LH_WEEKLY_HSX') == '1'  # Monday only when explicitly enabled
     log("START after-close output-only pipeline")
     log(f"Mode: daily VN100 strategies; weekly_hsx={weekly_hsx}")
     steps = []
