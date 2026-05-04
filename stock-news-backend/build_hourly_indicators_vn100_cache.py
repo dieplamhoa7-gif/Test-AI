@@ -18,7 +18,24 @@ SLEEP_SECONDS=65
 MIN_BARS=80
 
 
+
+def hsx_universe_from_rs():
+    p=Path('data/rs_levels_hsx_all_cache.json')
+    if p.exists():
+        try:
+            data=json.loads(p.read_text(encoding='utf-8'))
+            syms=[]
+            for row in data.get('items',[]):
+                sym=str(row.get('symbol') or row.get('ticker') or '').strip().upper()
+                if sym and sym not in syms: syms.append(sym)
+            if syms: return syms
+        except Exception:
+            pass
+    return None
+
 def universe():
+    hsx=hsx_universe_from_rs()
+    if hsx: return hsx
     base=[str(s).strip().upper() for s in TECHNICAL_UNIVERSE if str(s).strip()]
     extra=[]
     if REM.exists():
