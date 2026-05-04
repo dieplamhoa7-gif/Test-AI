@@ -3,12 +3,14 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from app.market_data import _fetch_symbol
+from vnstock import Quote
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data'
 PUBLIC_DATA = ROOT / 'firebase_public' / 'data'
 MARKET_DATA_FILES = [DATA / 'market_data.json', PUBLIC_DATA / 'market_data.json']
 MARKET_WATCH_FILES = [PUBLIC_DATA / 'market_watch.json']
+MARKET_OVERVIEW_FILES = [DATA / 'market_overview.json', PUBLIC_DATA / 'market_overview.json']
 DEFAULT_WATCH = {'MWG', 'FPT', 'HPG', 'SSI'}
 TZ = timezone(timedelta(hours=7))
 
@@ -51,6 +53,31 @@ def update_item(item, quote):
     return changed
 
 
+def refresh_indices(now: str):
+    specs = [('VNINDEX', 'VN-Index'), ('HNXINDEX', 'HNX-Index'), ('UPCOMINDEX', 'UPCOM-Index')]
+    out = []
+    for sym, label in specs:
+        try:
+            df = Quote(symbol=sym, source='VCI').history(start='2026-05-01', end=datetime.now(TZ).strftime('%Y-%m-%d'), interval='1m')
+            if df is None or df.empty or len(df) < 2:
+                continue
+            df = df.sort_values('time')
+            last = df.iloc[-1]
+            day = df[df['time'].astype(str).str.slice(0, 10) == str(last.get('time'))[:10]]
+            first = day.iloc[0] if not day.empty else df.iloc[-2]
+            close = float(last.get('close') or 0)
+            ref = float(first.get('open') or df.iloc[-2].get('close') or close)
+            change = close - ref
+            change_pct = (change / ref * 100) if ref else 0
+            out.append({'symbol': sym, 'label': label, 'close': round(close, 2), 'change': round(change, 2), 'changePct': round(change_pct, 2), 'volume': int(float(last.get('volume') or 0)), 'time': str(last.get('time') or '')})
+        except Exception as exc:
+            print('index failed', sym, exc, flush=True)
+    payload = {'updatedAt': now, 'items': out, 'cached': False, 'ttlSeconds': 60, 'source': 'vnstock-index-1m-output'}
+    for path in MARKET_OVERVIEW_FILES:
+        write_json(path, payload)
+    return len(out)
+
+
 def main():
     src = PUBLIC_DATA / 'market_data.json'
     if not src.exists():
@@ -91,7 +118,8 @@ def main():
     for path in MARKET_WATCH_FILES:
         write_json(path, watch_payload)
 
-    print(json.dumps({'updated': updated, 'errors': len(errors), 'priceUpdatedAt': now}, ensure_ascii=False), flush=True)
+    index_count = refresh_indices(now)
+    print(json.dumps({'updated': updated, 'errors': len(errors), 'indexUpdated': index_count, 'priceUpdatedAt': now}, ensure_ascii=False), flush=True)
 
 
 if __name__ == '__main__':
