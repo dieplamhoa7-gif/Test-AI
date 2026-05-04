@@ -16,7 +16,6 @@ import re
 import shutil
 from pathlib import Path
 from typing import Any
-from app.macro_engine import build_macro_payload, stock_macro_decision
 
 ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "firebase_public"
@@ -46,7 +45,7 @@ def extract_raw_py_string(text: str, var_name: str) -> str:
     return text[start:end]
 
 
-def build_market_cache(macro: dict[str, Any] | None = None) -> dict[str, Any]:
+def build_market_cache() -> dict[str, Any]:
     rs = read_json(DATA / "rs_levels_vn100_cache.json", {})
     strategy = read_json(DATA / "strategy_results_cache.json", {})
     strategy_items = strategy.get("items") if isinstance(strategy, dict) else []
@@ -155,10 +154,6 @@ def build_market_cache(macro: dict[str, Any] | None = None) -> dict[str, Any]:
                 if key in srow and srow[key] is not None:
                     detail[key] = srow[key]
                     detail["technical"][key] = srow[key]
-        base_signal = (detail.get("technical") or {}).get("signalScore") or ((detail.get("technical") or {}).get("v3FullScore") or {}).get("score100")
-        macro_decision = stock_macro_decision(base_signal, macro or {})
-        detail.setdefault("technical", {})["macroDecision"] = macro_decision
-        detail["macro"] = {"score": (macro or {}).get("score"), "regime": (macro or {}).get("regime"), "label": (macro or {}).get("label"), **macro_decision}
         items.append(detail)
     return {"items": items, "count": len(items), "source": "firebase-static-cache"}
 
@@ -418,12 +413,7 @@ def main() -> None:
     PUBLIC.mkdir(exist_ok=True)
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
-    overview = read_json(DATA / "market_overview.json", {"items": []})
-    manual_macro = read_json(DATA / "macro_manual.json", {})
-    macro = build_macro_payload(overview if isinstance(overview, dict) else {"items": []}, manual_macro if isinstance(manual_macro, dict) else {})
-    write_json(DATA / "macro_overview.json", macro)
-    write_json(PUBLIC_DATA / "macro_overview.json", macro)
-    market = build_market_cache(macro)
+    market = build_market_cache()
     write_json(PUBLIC_DATA / "market_data.json", market)
     default_watch = {"MWG", "FPT", "HPG", "SSI"}
     write_json(PUBLIC_DATA / "market_watch.json", {"items": [x for x in market["items"] if str(x.get("ticker") or x.get("symbol") or "").upper() in default_watch], "source": "firebase-static-watch-cache"})
@@ -449,6 +439,7 @@ def main() -> None:
     fundamental = build_fundamental_cache()
     write_json(PUBLIC_DATA / "fundamental_signals.json", fundamental)
     write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market.get("items", [])))
+    overview = read_json(DATA / "market_overview.json", {"items": []})
     write_json(PUBLIC_DATA / "market_overview.json", overview if isinstance(overview, dict) else {"items": []})
 
     build_html()
