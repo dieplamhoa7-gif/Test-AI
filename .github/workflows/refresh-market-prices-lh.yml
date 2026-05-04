@@ -2,8 +2,9 @@ name: Refresh LH market prices
 
 on:
   schedule:
-    # Every 5 minutes during Vietnam market hours, Mon-Fri: 09:00-15:45 ICT = 02:00-08:45 UTC.
-    - cron: '*/5 2-8 * * 1-5'
+    # Every 1 minute during Vietnam market hours, Mon-Fri: 09:00-15:45 ICT = 02:00-08:45 UTC.
+    # GitHub Actions schedule may still be delayed/throttled, but output cache target is 1-minute refresh.
+    - cron: '* 2-8 * * 1-5'
   workflow_dispatch:
 
 permissions:
