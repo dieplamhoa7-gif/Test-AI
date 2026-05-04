@@ -50,6 +50,52 @@ function strategyInfoFor(symbol) {
   } catch (_) { return []; }
 }
 
+async function fetchVpsQuote(symbol) {
+  const normalized = String(symbol || '').trim().toUpperCase();
+  if (!normalized) return null;
+  const resp = await fetch(`https://bgapidatafeed.vps.com.vn/getliststockdata/${encodeURIComponent(normalized)}`, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  if (!resp.ok) return null;
+  const data = await resp.json();
+  if (!Array.isArray(data) || !data.length) return null;
+  const item = data[0] || {};
+  const lastPrice = Number(item.lastPrice || 0);
+  const refPrice = Number(item.r || 0);
+  if (!lastPrice) return null;
+  let rawVolume = item.totalVolume;
+  if (rawVolume === undefined || rawVolume === null || rawVolume === '' || Number(rawVolume) === 0) rawVolume = Number(item.lot || item.lastVolume || item.nnBuy || 0) * 10;
+  return {
+    ticker: normalized,
+    symbol: normalized,
+    price: Math.round(lastPrice * 100) / 100,
+    refPrice,
+    changePct: refPrice ? Math.round(((lastPrice - refPrice) / refPrice * 100) * 100) / 100 : 0,
+    volume: Number(rawVolume || 0),
+    lowPrice: Number(item.lowPrice || lastPrice || refPrice || 0),
+    highPrice: Number(item.highPrice || lastPrice || refPrice || 0),
+    openPrice: Number(item.openPrice || refPrice || lastPrice || 0),
+    avgPrice: Number(item.avePrice || lastPrice || 0),
+    source: 'vps-live-node',
+  };
+}
+
+function mergeQuote(base, quote) {
+  if (!quote) return base;
+  return { ...base, price: quote.price, changePct: quote.changePct, volume: quote.volume, refPrice: quote.refPrice, lowPrice: quote.lowPrice, highPrice: quote.highPrice, openPrice: quote.openPrice, avgPrice: quote.avgPrice, source: quote.source, technical: { ...(base.technical || {}), price: quote.price, changePct: quote.changePct, volume: quote.volume } };
+}
+
+async function liveMarketDataFromRs() {
+  const base = marketDataFromRs();
+  const items = await Promise.all((base.items || []).map(async item => mergeQuote(item, await fetchVpsQuote(item.ticker || item.symbol))));
+  return { ...base, items, updatedAt: new Date().toISOString(), status: 'vps-live-node-overlay' };
+}
+
+async function liveMarketSymbol(symbol) {
+  const cache = readJson(rsCacheFile());
+  const row = (cache.items || []).find(x => String(x.symbol || '').toUpperCase() === String(symbol || '').toUpperCase());
+  if (!row) return null;
+  return mergeQuote(itemFromRs(row), await fetchVpsQuote(symbol));
+}
+
 function itemFromRs(row) {
   const symbol = String(row.symbol || '').toUpperCase();
   const strategyRows = strategyInfoFor(symbol);
@@ -281,14 +327,11 @@ const server = http.createServer((req, res) => {
       }));
     }
     if (pathname === '/market-data') {
-      return send(res, 200, JSON.stringify(marketDataFromRs()));
+      return liveMarketDataFromRs().then(payload => send(res, 200, JSON.stringify(payload))).catch(() => send(res, 200, JSON.stringify(marketDataFromRs())));
     }
     if (pathname.startsWith('/market-data/')) {
       const symbol = decodeURIComponent(pathname.split('/').pop() || '').toUpperCase();
-      const cache = readJson(rsCacheFile());
-      const row = (cache.items || []).find(x => String(x.symbol || '').toUpperCase() === symbol);
-      if (!row) return notFound(res);
-      return send(res, 200, JSON.stringify(itemFromRs(row)));
+      return liveMarketSymbol(symbol).then(item => item ? send(res, 200, JSON.stringify(item)) : notFound(res)).catch(() => notFound(res));
     }
     if (pathname === '/market-symbols') {
       const q = String(url.searchParams.get('query') || '').toUpperCase();
