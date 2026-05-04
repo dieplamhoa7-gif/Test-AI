@@ -709,8 +709,8 @@ DASHBOARD_HTML = r'''
       if (!columns.length) return '';
       const rows = [{ id: 'buy', label: L('rowBuy') }, { id: 'watch', label: L('rowWatch') }, { id: 'avoid', label: L('rowAvoid') }];
       const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(strategyLabel(col))}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
-      const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 7)}</td>`).join('')}</tr>`).join('');
-      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(strategyLabel(col))} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
+      const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 20)}</td>`).join('')}</tr>`).join('');
+      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(strategyLabel(col))} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 20)}</span></div>`).join('')}</div>`).join('')}</div>`;
       return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>${currentLang === 'en' ? 'Technical Strategy Matrix' : 'Ma trận chiến lược kỹ thuật'}</h4></div></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>${currentLang === 'en' ? 'Status' : 'Trạng thái'}</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
     }
 
