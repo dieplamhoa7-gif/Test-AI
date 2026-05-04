@@ -353,8 +353,40 @@ def build_html() -> None:
     import re
     dashboard = re.sub(r'src="data:image/jpeg;base64,[^"]+"', 'src="/assets/lh-logo.jpg"', dashboard)
     # Firebase ultra-light startup: load only data needed for the current static page.
-    light_load = """async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsRes = await fetch(`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; }"""
+    light_load = """async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsRes = await fetch(`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; startRealtimePriceOverlay(); }"""
     dashboard = re.sub(r"async function loadData\(isAutoRefresh = false, forceRefresh = false\) \{.*?\n    elements\.tabs\.forEach", light_load + "\n    elements.tabs.forEach", dashboard, flags=re.S)
+    realtime_js = """
+    const REALTIME_PRICE_API = 'https://hoainvest97-market.onrender.com';
+    let realtimePriceTimer = null;
+    async function refreshRealtimePrices() {
+      if (pageToTab() !== 'stocks') return;
+      try {
+        const res = await fetch(`${REALTIME_PRICE_API}/market-data?refresh=true&ts=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('realtime price');
+        const payload = await res.json();
+        const fresh = Array.isArray(payload.items) ? payload.items : [];
+        if (!fresh.length) return;
+        const byTicker = Object.fromEntries(fresh.map(x => [String(x.ticker || x.symbol || '').toUpperCase(), x]));
+        marketItems = marketItems.map(item => {
+          const sym = String(item.ticker || item.symbol || '').toUpperCase();
+          const q = byTicker[sym];
+          if (!q) return item;
+          return { ...item, price: q.price ?? item.price, changePct: q.changePct ?? item.changePct, volume: q.volume ?? item.volume, openPrice: q.openPrice ?? item.openPrice, highPrice: q.highPrice ?? item.highPrice, lowPrice: q.lowPrice ?? item.lowPrice, avgPrice: q.avgPrice ?? item.avgPrice, realtimeUpdatedAt: payload.updatedAt || new Date().toISOString(), technical: { ...(item.technical || {}), price: q.price ?? item.price, changePct: q.changePct ?? item.changePct, volume: q.volume ?? item.volume } };
+        });
+        renderMarket({ items: marketItems });
+        if (activeDetailTicker && elements.detailModal?.classList.contains('open')) openDetail(activeDetailTicker);
+        elements.apiStatus.textContent = 'Realtime 15s';
+      } catch (_) {
+        elements.apiStatus.textContent = 'Cache';
+      }
+    }
+    function startRealtimePriceOverlay() {
+      if (realtimePriceTimer) return;
+      refreshRealtimePrices();
+      realtimePriceTimer = setInterval(refreshRealtimePrices, 15000);
+    }
+"""
+    dashboard = dashboard.replace("    elements.tabs.forEach", realtime_js + "\n    elements.tabs.forEach", 1)
     dashboard = dashboard.replace("applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);", "applyLanguage(currentLang); renderCategories(); loadData(); setTimeout(loadIndexOverview, 300);")
     (PUBLIC / "assets").mkdir(exist_ok=True)
     logo = DATA / "assets" / "lh-logo.jpg"
