@@ -5,10 +5,10 @@ from datetime import datetime
 import pandas as pd
 from app.market_data import _load_history, _compute_indicators, _detect_momentum_divergence, _price_zone_state, _volume_state, _effective_trend, _setup_type, _signal_score
 
-RS_IN=Path('data/rs_levels_only_cache.json')
+RS_IN=Path('data/rs_levels_vn100_cache.json')
 PREV=Path('data/v3_full_indicator_cache.json')
 OUT=Path('data/v3_full_indicator_cache_v2.json')
-TMP=Path('data/v3_full_indicator_cache_v2.partial.json')
+TMP=Path('data/v3_full_indicator_cache_v2_vn100.partial.json')
 SLEEP_EVERY=18
 SLEEP_SECONDS=65
 

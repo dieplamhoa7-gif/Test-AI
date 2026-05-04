@@ -47,7 +47,6 @@ def main() -> None:
         log("Skip run_rs_levels_hsx_all_safe.py (weekly Monday only)")
     steps.extend([
         [py, "run_rs_levels_vn100_safe.py"],
-        [py, "build_rs_levels_only_cache.py"],
         [py, "build_v3_full_indicator_cache_v2.py"],
         [py, "scan_v3_b4_bullish_divergence_current_signals.py"],
         [py, "scan_v3_clean_split_a2_b2_current_signals.py"],
