@@ -2,8 +2,8 @@ name: Refresh LH news cache
 
 on:
   schedule:
-    # Vietnam market/news hours: every 2 hours from 08:10 to 22:10 ICT.
-    - cron: '10 1-15/2 * * *'
+    # Vietnam market/news hours: every 10 minutes from 08:00 to 22:59 ICT.
+    - cron: '*/10 1-15 * * *'
   workflow_dispatch:
 
 permissions:
@@ -39,6 +39,12 @@ jobs:
 
       - name: Build Firebase static output
         run: python build_firebase_cache_site.py
+
+      - name: Notify users about new watchlist news
+        env:
+          FIREBASE_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python notify_news_alerts.py
 
       - name: Commit updated cache
         run: |
