@@ -9,6 +9,7 @@ load_dotenv()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "APIFREE")
 DEFAULT_BASE_URL = os.getenv("OPENAI_BASE_URL", "http://localhost:20128/v1")
 SUMMARY_MAX_WORDS = int(os.getenv("SUMMARY_MAX_WORDS", "50"))
+ALLOWED_STRONG_TAGS = (("<strong>", "</strong>"),)
 
 
 def _client() -> OpenAI | None:
@@ -79,10 +80,12 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
         return {"category": "Kinh Tế", "summary": _fallback_snippet(item)}
 
     prompt = (
-        "Đọc kỹ tin và phân loại đúng 1 nhãn: Chứng khoán, Kinh Tế, BĐS, Pháp Luật, Chiến Tranh. "
-        "Tóm tắt đúng 5 câu: đủ ý, có sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian. "
+        "Bạn là giám đốc đầu tư chứng khoán. "
+        "Hãy đọc kỹ tin và phân loại đúng 1 nhãn: Chứng khoán, Ngân hàng, Bất động sản, Doanh nghiệp, Vĩ mô, Quốc tế, Pháp luật, Khác. "
+        "Tóm tắt đúng 5 câu: đủ ý, bôi đậm sự kiện chính và số liệu quan trọng (% giá trị, chỉ số), thời gian bằng thẻ <strong>...</strong>. "
         "Phong cách thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; có thể viết tắt. "
         "Nêu nhận định ảnh hưởng tích cực/tiêu cực đến các cổ phiếu có trong bài nếu đủ dữ kiện. "
+        "Không dùng Markdown **, không dùng HTML khác ngoài <strong>. "
         "Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
     )
 
@@ -111,67 +114,6 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
         return {"category": category, "summary": summary or _fallback_snippet(item)}
     except Exception:
         return {"category": "Kinh Tế", "summary": _fallback_snippet(item)}
-
-
-def summarize_news(items: List[Dict], max_chars: int = 1200) -> str:
-    if not items:
-        return "Không có dữ liệu tin tức để tóm tắt."
-
-    client = _client()
-    blocks = []
-    for idx, it in enumerate(items, 1):
-        full_text = _clip_text(it.get("fullText") or it.get("snippet") or "", limit=max_chars)
-        if not full_text:
-            continue
-        blocks.append(f"{idx}. Nguồn: {it.get('source', 'unknown')}\nNội dung: {full_text}")
-
-    if not blocks:
-        return "Không có đủ nội dung bài để tóm tắt."
-
-    if client is None:
-        merged_text = " ".join(
-            (it.get("fullText") or it.get("snippet") or "").strip()
-            for it in items[:4]
-            if (it.get("fullText") or it.get("snippet") or "").strip()
-        )
-        return _fallback_sentences(merged_text) or "Không có đủ nội dung bài để tóm tắt."
-
-    content = "\n\n".join(blocks)[:max_chars * 2]
-
-    try:
-        resp = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            temperature=0.1,
-            max_tokens=520,
-            messages=[
-                {
-                    "role": "system",
-                    "content": (
-                        "Đọc kỹ các tin. Phân loại theo: Chứng khoán, Kinh Tế, BĐS, Pháp Luật, Chiến Tranh. "
-                        "Tóm tắt đúng 5 câu, đủ ý, có sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian. "
-                        "Viết thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; có thể viết tắt. "
-                        "Nêu nhận định ảnh hưởng tích cực/tiêu cực đến các cổ phiếu có trong bài nếu đủ dữ kiện."
-                    ),
-                },
-                {
-                    "role": "user",
-                    "content": (
-                        "Tóm tắt dữ liệu sau thành đúng 5 câu. "
-                        "Giữ sự kiện chính, số liệu quan trọng (%, giá trị, chỉ số), thời gian; có thể viết tắt. "
-                        "Viết ngắn gọn, đi thẳng vào vấn đề. Nếu đủ dữ kiện, nêu ảnh hưởng tích cực/tiêu cực đến cổ phiếu có trong bài. Không lặp tiêu đề.\n\n"
-                        f"DỮ LIỆU:\n{content}"
-                    ),
-                },
-            ],
-        )
-        return (resp.choices[0].message.content or "").strip()
-    except Exception:
-        merged_text = " ".join(
-            (it.get("fullText") or it.get("snippet") or "").strip()
-            for it in items[:4]
-            if (it.get("fullText") or it.get("snippet") or "").strip()
-        )
-        return _fallback_sentences(merged_text) or "Không có đủ nội dung bài để tóm tắt."
 
 
 def enrich_news_with_ai(items: List[Dict]) -> List[Dict]:

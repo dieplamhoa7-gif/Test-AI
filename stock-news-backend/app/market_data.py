@@ -105,6 +105,73 @@ def _compute_indicators(df: pd.DataFrame) -> pd.DataFrame:
     return work
 
 
+
+def _detect_momentum_divergence(indicators: pd.DataFrame, lookback: int = 60) -> dict[str, Any]:
+    """Lightweight daily RSI/MACD divergence detector for after-close scans.
+
+    Uses simple pivot lows/highs on the last ~60 sessions. It is a warning signal,
+    not a standalone buy/sell recommendation.
+    """
+    empty = {
+        "bullish": False,
+        "bearish": False,
+        "type": "Không có",
+        "message": "Chưa có phân kỳ rõ",
+        "bullishScore": 0,
+        "bearishScore": 0,
+    }
+    if indicators is None or indicators.empty or len(indicators) < 35:
+        return empty
+    cols = {"close", "low", "high", "rsi14", "histogram"}
+    if any(c not in indicators.columns for c in cols):
+        return empty
+    df = indicators.tail(max(lookback, 35)).copy().reset_index(drop=True)
+    for c in ["close", "low", "high", "rsi14", "histogram"]:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    df = df.dropna(subset=["close", "low", "high", "rsi14", "histogram"]).reset_index(drop=True)
+    if len(df) < 20:
+        return empty
+    lows: list[int] = []
+    highs: list[int] = []
+    for i in range(2, len(df) - 2):
+        low = float(df.loc[i, "low"])
+        high = float(df.loc[i, "high"])
+        if low <= float(df.loc[i-1, "low"]) and low <= float(df.loc[i-2, "low"]) and low <= float(df.loc[i+1, "low"]) and low <= float(df.loc[i+2, "low"]):
+            lows.append(i)
+        if high >= float(df.loc[i-1, "high"]) and high >= float(df.loc[i-2, "high"]) and high >= float(df.loc[i+1, "high"]) and high >= float(df.loc[i+2, "high"]):
+            highs.append(i)
+    result = dict(empty)
+    if len(lows) >= 2:
+        a, b = lows[-2], lows[-1]
+        price_lower = float(df.loc[b, "low"]) <= float(df.loc[a, "low"]) * 1.01
+        rsi_higher = float(df.loc[b, "rsi14"]) >= float(df.loc[a, "rsi14"]) + 2.0
+        hist_higher = float(df.loc[b, "histogram"]) >= float(df.loc[a, "histogram"]) * 0.85 if float(df.loc[a, "histogram"]) < 0 else float(df.loc[b, "histogram"]) > float(df.loc[a, "histogram"])
+        recent = (len(df) - 1 - b) <= 8
+        score = int(price_lower) * 35 + int(rsi_higher) * 30 + int(hist_higher) * 25 + int(recent) * 10
+        result["bullishScore"] = score
+        if score >= 70:
+            result["bullish"] = True
+    if len(highs) >= 2:
+        a, b = highs[-2], highs[-1]
+        price_higher = float(df.loc[b, "high"]) >= float(df.loc[a, "high"]) * 0.99
+        rsi_lower = float(df.loc[b, "rsi14"]) <= float(df.loc[a, "rsi14"]) - 2.0
+        hist_lower = float(df.loc[b, "histogram"]) <= float(df.loc[a, "histogram"]) * 0.85 if float(df.loc[a, "histogram"]) > 0 else float(df.loc[b, "histogram"]) < float(df.loc[a, "histogram"])
+        recent = (len(df) - 1 - b) <= 8
+        score = int(price_higher) * 35 + int(rsi_lower) * 30 + int(hist_lower) * 25 + int(recent) * 10
+        result["bearishScore"] = score
+        if score >= 70:
+            result["bearish"] = True
+    if result["bullish"] and result["bearish"]:
+        result["type"] = "Hai chiều"
+        result["message"] = "Có cả phân kỳ dương và âm gần đây, cần chờ xác nhận giá"
+    elif result["bullish"]:
+        result["type"] = "Phân kỳ dương RSI/MACD"
+        result["message"] = "Giá tạo 2 đáy nhưng RSI/MACD yếu bán giảm dần — theo dõi đảo chiều, chưa mua độc lập"
+    elif result["bearish"]:
+        result["type"] = "Phân kỳ âm RSI/MACD"
+        result["message"] = "Giá tạo 2 đỉnh nhưng RSI/MACD suy yếu — hạn chế mua đuổi/cân nhắc chốt lời"
+    return result
+
 def _safe_number(value: Any, digits: int = 2) -> float | None:
     try:
         n = float(value)
@@ -607,6 +674,7 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         bb_lower = last_price * 0.96
         bb_percent = 0.5
         volume_ratio = 1.0
+        divergence = _detect_momentum_divergence(pd.DataFrame())
     else:
         daily = _compute_indicators(daily_raw)
         row = daily.iloc[-1]
@@ -624,6 +692,7 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         bb_lower = float(row.get("bbLower") or last_price)
         bb_percent = float(row.get("bbPercent") or 0.5)
         volume_ratio = float(row.get("volumeRatio") or 1.0)
+        divergence = _detect_momentum_divergence(daily)
         pivot_day, support_day, resistance_day, support_day_2, resistance_day_2 = _pivot_from_recent(daily_raw, high_price, low_price, last_price, 10)
         pivot_week, support_week, resistance_week, support_week_2, resistance_week_2 = _pivot_from_recent(weekly_raw, high_price, low_price, last_price, 10)
         pivot_month, support_month, resistance_month, support_month_2, resistance_month_2 = _pivot_from_recent(monthly_raw, high_price, low_price, last_price, 10)
@@ -666,6 +735,11 @@ def _calc_technical(last_price: float, ref_price: float, open_price: float, high
         "bbPercent": _safe_number(bb_percent, 2),
         "zoneState": _price_zone_state(last_price, rsi14, bb_percent, sr_day.get("donchianHigh"), sr_day.get("donchianLow"), sr_day.get("vwap")),
         "volumeRatio": _safe_number(volume_ratio, 2),
+        "divergence": divergence,
+        "divergenceType": divergence.get("type"),
+        "divergenceMessage": divergence.get("message"),
+        "bullishDivergence": divergence.get("bullish"),
+        "bearishDivergence": divergence.get("bearish"),
         "volumeState": recommendation_meta.get("volumeState"),
         "setupType": recommendation_meta.get("setupType"),
         "signalScore": recommendation_meta.get("signalScore"),
