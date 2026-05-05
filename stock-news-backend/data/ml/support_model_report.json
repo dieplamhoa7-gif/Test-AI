@@ -1,0 +1,61 @@
+{
+  "createdAt": "2026-05-05T10:53:15.201272",
+  "dataset": "data\\ml\\support_rebound_dataset.csv",
+  "featureColumns": [
+    "distanceToSupportPct",
+    "distanceToResistancePct",
+    "supportZoneWidthPct",
+    "rsi14",
+    "rsiSlope5",
+    "macdHist",
+    "macdHistSlope3",
+    "bbPercent",
+    "bbWidthPct",
+    "adx14",
+    "plusMinusDiDiff",
+    "ma20DistancePct",
+    "ma50DistancePct",
+    "atrPct",
+    "volumeRatio",
+    "roc20",
+    "cloudDistancePct",
+    "cloudThicknessPct",
+    "cloudStateNum",
+    "vwapDistancePct",
+    "vwapSlopePct5",
+    "vwapZ",
+    "donchianPositionPct",
+    "donchianZoneNum",
+    "liquiditySweepLow",
+    "liquiditySweepHigh"
+  ],
+  "supportHoldModel": {
+    "target": "supportHold10d",
+    "rows": 12550,
+    "positiveRate": 0.7397,
+    "trainAccuracyInSample": 0.741,
+    "trainBrierInSample": 0.1796,
+    "model": "LogisticModelLite gradient descent; local baseline only"
+  },
+  "reboundModel": {
+    "target": "rebound5BeforeStop4_10d",
+    "rows": 12550,
+    "positiveRate": 0.4264,
+    "trainAccuracyInSample": 0.581,
+    "trainBrierInSample": 0.2396,
+    "model": "LogisticModelLite gradient descent; local baseline only"
+  },
+  "supportHoldLatest20Pct": {
+    "testRowsLatest20Pct": 2510,
+    "accuracy": 0.6072,
+    "brier": 0.2385,
+    "positiveRateTest": 0.5996
+  },
+  "reboundLatest20Pct": {
+    "testRowsLatest20Pct": 2510,
+    "accuracy": 0.5825,
+    "brier": 0.2419,
+    "positiveRateTest": 0.4084
+  },
+  "note": "Local baseline ML. Use for probability/ranking support only; not standalone buy/sell advice."
+}
