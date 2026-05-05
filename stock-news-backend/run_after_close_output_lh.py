@@ -32,31 +32,49 @@ def run(cmd: list[str], *, timeout: int | None = None) -> None:
         raise SystemExit(f"Command failed {p.returncode}: {' '.join(cmd)}")
 
 
-def notify_after_close(status: str) -> None:
-    try:
-        env = os.environ.copy()
-        env.setdefault("PYTHONUTF8", "1")
-        env["LH_AFTER_CLOSE_STATUS"] = status
-        log(f"RUN notify_after_close_lh.py status={status}")
-        p = subprocess.run([sys.executable, "notify_after_close_lh.py"], cwd=ROOT, env=env, text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)
-        if p.stdout:
-            with LOG.open("a", encoding="utf-8") as f:
-                f.write(p.stdout)
-            print(p.stdout, end="", flush=True)
-        if p.returncode != 0:
-            log(f"notify_after_close_lh.py failed {p.returncode}")
-    except Exception as exc:
-        log(f"notify_after_close failed: {exc!r}")
+def _run_notice_script(script: str, env: dict, timeout: int = 60) -> None:
+    log(f"RUN {script} status={env.get('LH_AFTER_CLOSE_STATUS')}")
+    p = subprocess.run([sys.executable, script], cwd=ROOT, env=env, text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
+    if p.stdout:
+        with LOG.open("a", encoding="utf-8") as f:
+            f.write(p.stdout)
+        print(p.stdout, end="", flush=True)
+    if p.returncode != 0:
+        log(f"{script} failed {p.returncode}")
+
+
+def notify_after_close(status: str, detail: str = "") -> None:
+    env = os.environ.copy()
+    env.setdefault("PYTHONUTF8", "1")
+    env["LH_AFTER_CLOSE_STATUS"] = status
+    if detail:
+        env["LH_AFTER_CLOSE_DETAIL"] = detail[:900]
+    for script in ["notify_desktop_lh.py", "notify_after_close_lh.py"]:
+        try:
+            _run_notice_script(script, env, timeout=60)
+        except Exception as exc:
+            log(f"{script} notice failed: {exc!r}")
 
 
 def main() -> None:
     py = sys.executable
     success = False
+    detail = ""
     try:
         _run_pipeline(py)
         success = True
-    finally:
-        notify_after_close("success" if success else "error")
+    except subprocess.TimeoutExpired as exc:
+        detail = f"Pipeline timeout/co the bi do: {exc}"
+        log(detail)
+        notify_after_close("timeout", detail)
+        raise
+    except Exception as exc:
+        detail = f"Pipeline error: {exc!r}"
+        log(detail)
+        notify_after_close("error", detail)
+        raise
+    else:
+        notify_after_close("success")
 
 
 def _run_pipeline(py: str) -> None:
