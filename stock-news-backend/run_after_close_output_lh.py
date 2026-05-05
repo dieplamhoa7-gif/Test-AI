@@ -32,8 +32,34 @@ def run(cmd: list[str], *, timeout: int | None = None) -> None:
         raise SystemExit(f"Command failed {p.returncode}: {' '.join(cmd)}")
 
 
+def notify_after_close(status: str) -> None:
+    try:
+        env = os.environ.copy()
+        env.setdefault("PYTHONUTF8", "1")
+        env["LH_AFTER_CLOSE_STATUS"] = status
+        log(f"RUN notify_after_close_lh.py status={status}")
+        p = subprocess.run([sys.executable, "notify_after_close_lh.py"], cwd=ROOT, env=env, text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)
+        if p.stdout:
+            with LOG.open("a", encoding="utf-8") as f:
+                f.write(p.stdout)
+            print(p.stdout, end="", flush=True)
+        if p.returncode != 0:
+            log(f"notify_after_close_lh.py failed {p.returncode}")
+    except Exception as exc:
+        log(f"notify_after_close failed: {exc!r}")
+
+
 def main() -> None:
     py = sys.executable
+    success = False
+    try:
+        _run_pipeline(py)
+        success = True
+    finally:
+        notify_after_close("success" if success else "error")
+
+
+def _run_pipeline(py: str) -> None:
     today = datetime.now()
     # Daily after-close keeps runtime controlled: R/S + indicators + 3 strategies on VN100 only.
     # Full HSX R/S is heavier; run only when LH_WEEKLY_HSX=1, normally via a separate weekly/manual job.
