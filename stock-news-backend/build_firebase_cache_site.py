@@ -133,6 +133,7 @@ def build_market_cache() -> dict[str, Any]:
         irow = indicator_by_symbol.get(sym) or {}
         indicators = irow.get("indicators") if isinstance(irow, dict) else {}
         if isinstance(indicators, dict):
+            ichi = indicators.get("ichimoku") if isinstance(indicators.get("ichimoku"), dict) else {}
             indicator_fields = {
                 "rsi14": indicators.get("rsi14"),
                 "adx14": indicators.get("adx14"),
@@ -142,6 +143,11 @@ def build_market_cache() -> dict[str, Any]:
                 "bbLower": indicators.get("bbLower"),
                 "bbMiddle": indicators.get("bbMiddle"),
                 "bbPercent": indicators.get("bbPercent"),
+                "cloudTop": ichi.get("cloudTop"),
+                "cloudBottom": ichi.get("cloudBottom"),
+                "ichimokuState": ichi.get("state"),
+                "tenkan": ichi.get("tenkan"),
+                "kijun": ichi.get("kijun"),
             }
             for suffix in ["Hour", "Week", "Month"]:
                 for key in ["rsi14", "adx14", "plusDi", "minusDi", "ma10", "ma20", "ma50", "ma200", "bbUpper", "bbLower", "bbMiddle", "bbPercent", "macd", "signal", "histogram", "activeSupport", "activeResistance", "support", "resistance", "supportLevels", "resistanceLevels", "srStatus", "pivot"]:
