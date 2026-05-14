@@ -1,14 +1,966 @@
 
-<!doctype html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Chứng quyền - Investment Information</title><style>
-:root{--bg:#070b14;--panel:#101726;--panel2:#151f32;--line:rgba(151,170,214,.14);--text:#edf2ff;--muted:#92a0c0;--accent:#64b5ff;--green:#4ef0c0;--red:#ff6b6b;--yellow:#ffda6b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#101a2e,#070b14 45%,#05070d);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}body.light-theme{--bg:#f4f7fb;--panel:#fff;--panel2:#f7f9fd;--line:rgba(38,61,99,.14);--text:#132033;--muted:#64748b;--accent:#2563eb;--green:#0f9f7a;--red:#d43f55;--yellow:#b7791f;background:linear-gradient(180deg,#f6f8fc,#edf2f8)}a{color:inherit;text-decoration:none}.shell{width:min(1120px,calc(100% - 24px));margin:0 auto;padding:14px 0 36px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid var(--line);background:rgba(9,14,24,.9);border-radius:22px;position:sticky;top:10px;z-index:5}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#7a74ff);font-weight:800}.brand h1{font-size:22px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px;letter-spacing:.16em}.tabs,.actions{display:flex;gap:10px;flex-wrap:wrap}.tabs{margin:14px 0}.chip,.btn{border:1px solid var(--line);background:var(--panel2);padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700;cursor:pointer}.btn{color:var(--text);border-radius:12px}.chip.active{background:rgba(100,181,255,.16);color:var(--text);border-color:rgba(100,181,255,.35)}.danger{background:rgba(255,107,107,.12);color:#ffb0b0}.panel{border:1px solid var(--line);background:rgba(16,23,38,.9);border-radius:24px;padding:18px}body.light-theme .topbar,body.light-theme .panel,body.light-theme .card,body.light-theme .box{background:#fff}body.light-theme .card{box-shadow:0 10px 24px rgba(24,39,75,.06)}body.light-theme .box{border-color:rgba(38,61,99,.14)}.head{margin-bottom:14px}.head h3{margin:0;font-size:24px}.head p{margin:6px 0 0;color:var(--muted)}.search{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.wrap{position:relative;flex:1;min-width:230px}input{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px 14px}.suggest{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:10;background:#0c1322;border:1px solid var(--line);border-radius:14px;display:none;overflow:hidden}.suggest.open{display:block}.option{padding:11px 13px;border-bottom:1px solid var(--line);cursor:pointer}.option:hover{background:rgba(100,181,255,.12)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.card{border:1px solid var(--line);background:rgba(21,31,50,.82);border-radius:18px;padding:14px;cursor:pointer}.card strong{display:flex;justify-content:space-between;gap:8px;font-size:18px}.badge{font-size:11px;padding:4px 8px;border-radius:999px}.itm{background:rgba(78,240,192,.15);color:var(--green)}.atm{background:rgba(255,218,107,.15);color:var(--yellow)}.otm{background:rgba(255,107,107,.15);color:#ffb0b0}.row{display:flex;justify-content:space-between;gap:12px;margin-top:9px;color:var(--muted)}.row b{color:var(--text)}.up{color:var(--green)!important}.down{color:var(--red)!important}.flat{color:var(--yellow)!important}.modal{position:fixed;inset:0;background:rgba(2,6,14,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.open{display:flex}.box{width:min(760px,100%);max-height:90vh;overflow:auto;border:1px solid var(--line);background:#101726;border-radius:24px;padding:18px}.boxhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.box h3{margin:0;font-size:32px}.muted{color:var(--muted)}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}.metric{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:12px}.metric span{display:block;color:var(--muted);font-size:12px}.metric b{font-size:20px}.table{border:1px solid var(--line);border-radius:16px;overflow:hidden}.trow{display:flex;justify-content:space-between;gap:12px;padding:11px 13px;border-bottom:1px solid var(--line)}.trow:last-child{border-bottom:0}.disclaimer{margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:12px;color:var(--muted);font-size:13px}
-</style></head><body><div class="shell"><header class="topbar"><a class="brand" href="/stocks"><div class="logo">H</div><div><h1>Investment Information</h1><p>HOA INVESTMENT</p></div></a><span class="chip active" id="apiStatus">Online</span></header><nav class="tabs"><a class="chip" href="/stocks">Chứng Khoán</a><a class="chip active" href="/warrants">Chứng Quyền</a><a class="chip" href="/news-page">Tin Tức</a></nav><main class="panel"><div class="head"><h3>Danh mục chứng quyền quan tâm</h3><p id="status">Đang tải dữ liệu chứng quyền...</p></div><div class="search"><div class="wrap"><input id="search" placeholder="Tìm mã chứng quyền, ví dụ: CMWG2511..." autocomplete="off"><div class="suggest" id="suggest"></div></div><div class="actions"><button class="btn" id="addBtn">Thêm</button><button class="btn danger" id="removeBtn">Xóa khỏi danh mục</button></div></div><div class="grid" id="grid"></div></main><div class="disclaimer"><b>Lưu ý:</b> Dữ liệu chỉ phục vụ tham khảo, không phải khuyến nghị mua bán.</div></div><div class="modal" id="modal"><div class="box"><div class="boxhead"><div><h3 id="title">CW</h3><p class="muted" id="sub"></p></div><div class="actions"><button class="btn" id="detailAdd">Thêm vào danh mục</button><button class="btn danger" id="detailRemove">Xóa</button><button class="btn" id="closeBtn">Đóng</button></div></div><div id="stats"></div></div></div><script>
-const API_BASE=''; const APP_CACHE_VERSION='2026-04-29-light-v2'; try{if(localStorage.getItem('hoa.theme')==='light')document.body.classList.add('light-theme')}catch(_){} let items=[],watch=[],selected=''; const $=id=>document.getElementById(id); const esc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;'); const num=(v,d=2)=>{const n=Number(v);return Number.isFinite(n)?n.toLocaleString('vi-VN',{maximumFractionDigits:d,minimumFractionDigits:d}):'-'}; const price=v=>{const n=Number(v);return Number.isFinite(n)?n.toLocaleString('vi-VN',{maximumFractionDigits:0}):'-'}; const vol=v=>{const n=Number(v);return Number.isFinite(n)?n.toLocaleString('vi-VN'): '-'}; const cls=v=>Number(v)>0?'up':Number(v)<0?'down':'flat'; const badge=s=>String(s).toUpperCase()==='ITM'?'itm':String(s).toUpperCase()==='ATM'?'atm':'otm'; const timePerDay=x=>{const tv=Number(x?.timeValue),d=Number(x?.daysLeft);return Number.isFinite(tv)&&Number.isFinite(d)&&d>0?price(tv/d):'-'};
-function read(){try{return JSON.parse(localStorage.getItem('hoa.warrants.watchlist')||'[]').map(x=>String(x).toUpperCase())}catch{return[]}} function write(){localStorage.setItem('hoa.warrants.watchlist',JSON.stringify(watch))}
-function render(){const display=items.filter(x=>watch.includes(String(x.code||'').toUpperCase())); $('status').textContent=display.length?`Đang hiển thị ${display.length} mã chứng quyền`:'Chưa có mã chứng quyền trong danh mục. Anh search mã rồi bấm Thêm.'; $('grid').innerHTML=display.length?display.map(x=>{const c=cls(x.changePct),sg=Number(x.changePct)>0?'+':'';return `<div class="card" data-code="${esc(x.code)}"><strong>${esc(x.code)}<span class="${c}">${esc(price(x.marketPrice||x.lastPrice||x.fairValue))} / ${sg}${esc(num(x.changePct))}%</span></strong><div class="row"><span>Giá hòa vốn</span><b>${esc(price(x.breakeven))}</b></div><div class="row"><span>Ngày còn lại</span><b>${esc(x.daysLeft??'-')}</b></div><div class="row"><span>Giá trị thời gian/ngày còn lại</span><b>${esc(timePerDay(x))}</b></div></div>`}).join(''):'<div class="card muted">Chưa có mã chứng quyền trong danh mục.</div>'}
-async function detail(code){code=String(code||'').toUpperCase(); if(!code)return null; let item=items.find(x=>String(x.code||'').toUpperCase()===code); if(!item||!item.marketPrice){const r=await fetch(`${API_BASE}/warrants-data?symbols=${encodeURIComponent(code)}&ts=${Date.now()}`,{cache:'no-store'}); if(r.ok){const d=await r.json(); const got=(d.items||[])[0]; if(got){const i=items.findIndex(x=>String(x.code||'').toUpperCase()===code); if(i>=0)items[i]={...items[i],...got,code}; else items.push({...got,code}); item=items.find(x=>String(x.code||'').toUpperCase()===code)}}} return item}
-async function openDetail(code,push=true){code=String(code||'').trim().toUpperCase(); if(!code)return; selected=code; $('title').textContent=code; $('sub').textContent='Đang tải chi tiết...'; $('detailAdd').textContent=watch.includes(selected)?'Đã thêm':'Thêm vào danh mục'; $('stats').innerHTML='<div class="metric">Đang tải dữ liệu chứng quyền...</div>'; $('modal').classList.add('open'); const x=await detail(code); if(!x){$('sub').textContent='Không tải được chi tiết'; $('stats').innerHTML='<div class="metric">Không tìm thấy dữ liệu cho mã này.</div>'; return;} selected=String(x.code).toUpperCase(); const c=cls(x.changePct),sg=Number(x.changePct)>0?'+':''; $('title').textContent=x.code; $('sub').textContent=`${x.underlying||'-'} • ${x.moneyness||'-'}`; $('detailAdd').textContent=watch.includes(selected)?'Đã thêm':'Thêm vào danh mục'; $('stats').innerHTML=`<div class="summary"><div class="metric"><span>Giá hiện tại</span><b class="${c}">${esc(price(x.marketPrice||x.lastPrice||x.fairValue))}</b></div><div class="metric"><span>% thay đổi</span><b class="${c}">${sg}${esc(num(x.changePct))}%</b></div><div class="metric"><span>Mã cơ sở</span><b>${esc(x.underlying||'-')}</b></div></div><div class="table"><div class="trow"><span>Giá cơ sở</span><b>${esc(price(x.underlyingPrice))}</b></div><div class="trow"><span>Giá thực hiện</span><b>${esc(price(x.exercisePrice))}</b></div><div class="trow"><span>Hòa vốn</span><b>${esc(price(x.breakeven))}</b></div><div class="trow"><span>Chênh hòa vốn</span><b>${Number(x.breakevenGap||0)>0?'+':''}${esc(price(x.breakevenGap))} (${Number(x.breakevenGapPct||0)>0?'+':''}${esc(num(x.breakevenGapPct))}%)</b></div><div class="trow"><span>Đòn bẩy</span><b>${esc(num(x.leverage))}x</b></div><div class="trow"><span>Bid / Ask</span><b>${esc(price(x.bid))} / ${esc(price(x.ask))}</b></div><div class="trow"><span>Spread</span><b>${esc(num(x.spreadPct))}%</b></div><div class="trow"><span>Volume</span><b>${esc(vol(x.volume))}</b></div><div class="trow"><span>Rủi ro</span><b>${esc(x.riskLevel||'-')}</b></div><div class="trow"><span>Tín hiệu</span><b>${esc(x.advancedSignal||'-')}</b></div><div class="trow"><span>Đáo hạn</span><b>${esc(x.maturityDate||'-')}</b></div><div class="trow"><span>Còn lại</span><b>${esc(x.daysLeft??'-')} ngày</b></div></div>`; $('modal').classList.add('open'); if(push&&location.pathname!==`/warrants/${selected}`)history.pushState({},'',`/warrants/${selected}`)}
-function search(){const q=$('search').value.trim().toUpperCase(); selected=''; if(!q){$('suggest').classList.remove('open');$('suggest').innerHTML='';return} const found=items.filter(x=>String(x.code||'').includes(q)||String(x.underlying||'').includes(q)).slice(0,20); $('suggest').innerHTML=found.map(x=>`<div class="option" data-code="${esc(x.code)}"><b>${esc(x.code)}</b><span class="muted"> ${esc(x.underlying||'')} • ${esc(x.maturityDate||'-')}</span></div>`).join(''); $('suggest').classList.toggle('open',found.length>0)}
-async function add(){const code=String(selected||$('search').value).trim().toUpperCase(); if(!code)return; await detail(code); if(!watch.includes(code))watch.unshift(code); write(); $('search').value=''; selected=''; render(); if($('modal').classList.contains('open'))$('detailAdd').textContent='Đã thêm'} function remove(){const code=String(selected||$('search').value||$('title').textContent).trim().toUpperCase(); watch=watch.filter(x=>x!==code); write(); render(); $('modal').classList.remove('open'); if(location.pathname.startsWith('/warrants/'))history.pushState({},'','/warrants')}
-async function init(){watch=read(); const r=await fetch(`/data/warrants_data.json?ts=${Date.now()}`,{cache:'no-store'}); const d=await r.json(); items=(d.items||[]).map(x=>({...x,code:String(x.code||'').toUpperCase()})); render(); const parts=location.pathname.split('/').filter(Boolean); if(parts[1])openDetail(parts[1],false)}
-async function chooseWarrantFromEvent(e){const o=e.target.closest('[data-code]'); if(!o)return; e.preventDefault(); e.stopPropagation(); selected=o.dataset.code;$('search').value=selected;$('suggest').classList.remove('open');await openDetail(selected)} $('search').oninput=search; $('search').onkeydown=async e=>{if(e.key==='Enter'){e.preventDefault(); e.stopPropagation(); const code=String(selected||$('search').value).trim().toUpperCase(); if(code)await openDetail(code,false)}}; $('suggest').onpointerdown=chooseWarrantFromEvent; $('suggest').onmousedown=chooseWarrantFromEvent; $('suggest').onclick=chooseWarrantFromEvent; $('grid').onpointerdown=async e=>{const c=e.target.closest('[data-code]'); if(c){e.preventDefault(); await openDetail(c.dataset.code)}}; $('grid').onclick=async e=>{const c=e.target.closest('[data-code]'); if(c)await openDetail(c.dataset.code)}; $('addBtn').onclick=async()=>{const code=String(selected||$('search').value).trim().toUpperCase(); if(code)openDetail(code,false)}; $('removeBtn').onclick=remove; $('detailAdd').onclick=add; $('detailRemove').onclick=remove; $('closeBtn').onclick=()=>{$('modal').classList.remove('open'); if(location.pathname.startsWith('/warrants/'))history.pushState({},'','/warrants')}; $('modal').onclick=e=>{if(e.target===$('modal'))$('closeBtn').click()}; window.onpopstate=()=>{const parts=location.pathname.split('/').filter(Boolean); if(parts[0]==='warrants'&&parts[1])openDetail(parts[1],false); else $('modal').classList.remove('open')}; init();
-</script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LH INVESTMENT</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #101726;
+      --panel-2: #151f32;
+      --panel-3: #1c2740;
+      --line: rgba(151, 170, 214, 0.12);
+      --text: #edf2ff;
+      --muted: #92a0c0;
+      --accent: #64b5ff;
+      --accent-2: #4ef0c0;
+      --warning: #ffb454;
+      --danger: #ff7d7d;
+      --shadow: 0 20px 50px rgba(0, 0, 0, .32);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(83, 123, 255, .18), transparent 28%),
+        radial-gradient(circle at top right, rgba(78, 240, 192, .10), transparent 22%),
+        linear-gradient(180deg, #060912 0%, #090e18 100%);
+      color: var(--text);
+    }
+    body.light-theme {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel-2: #f7f9fd;
+      --panel-3: #eef3fb;
+      --line: rgba(38, 61, 99, .14);
+      --text: #132033;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --accent-2: #0f9f7a;
+      --warning: #b7791f;
+      --danger: #d43f55;
+      --shadow: 0 18px 42px rgba(24, 39, 75, .10);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, .13), transparent 28%),
+        radial-gradient(circle at top right, rgba(15, 159, 122, .10), transparent 22%),
+        linear-gradient(180deg, #f6f8fc 0%, #edf2f8 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1180px, calc(100% - 24px)); margin: 0 auto; padding: 14px 0 40px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); background: rgba(9, 14, 24, .85); border-radius: 24px; box-shadow: var(--shadow); backdrop-filter: blur(18px); position: sticky; top: 10px; z-index: 20; }
+    body.light-theme .topbar { background: rgba(255,255,255,.88); }
+    .brand-wrap { display: flex; align-items: center; gap: 14px; }
+    .brand-icon { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background:#0f1522; box-shadow: 0 10px 24px rgba(100, 181, 255, .25); overflow:hidden; border:1px solid rgba(100,181,255,.22); }
+    .brand-icon img { width:100%; height:100%; object-fit:cover; display:block; }
+    .top-actions { display:flex; align-items:center; gap:10px; }
+    .lang-toggle { display:flex; gap:4px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); }
+    .lang-btn { border:0; border-radius:999px; padding:6px 9px; background:transparent; color:var(--muted); font-weight:900; font-size:12px; cursor:pointer; }
+    .lang-btn.active { background:linear-gradient(135deg,var(--accent),#7a74ff); color:#06111f; }
+    body.light-theme .lang-toggle { background:#fff; }
+    .brand-text h1 { margin: 0; font-size: 26px; letter-spacing:.04em; line-height: 1.1; }
+    .brand-text p { margin: 5px 0 0; color: var(--muted); font-size: 12px; letter-spacing: .16em; font-weight:800; }
+    .status-pill { border: 1px solid rgba(78, 240, 192, .18); background: rgba(78, 240, 192, .08); color: var(--accent-2); padding: 10px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+    .ticker { overflow: hidden; white-space: nowrap; margin-top: 14px; border: 1px solid var(--line); border-radius: 18px; background: rgba(10, 16, 28, .82); box-shadow: var(--shadow); }
+    body.light-theme .ticker { background:rgba(255,255,255,.86); }
+    body.light-theme .ticker-item { color:#475569; }
+    body.light-theme .ticker-item strong { color:#132033; }
+    .ticker-track { display: inline-block; padding: 12px 0; min-width: 100%; animation: ticker 28s linear infinite; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 8px; margin-right: 22px; color: #c7d4f3; font-size: 14px; }
+    .ticker-item strong { color: #fff; }
+    .ticker-up { color: var(--accent-2); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .main-tabs { display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    .warrant-panel { padding: 18px; margin-top:18px; }
+    .warrant-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+    .warrant-card { display:block; width:100%; text-align:left; color:var(--text); font:inherit; border:1px solid rgba(92,110,148,.22); border-radius:16px; padding:14px; background:rgba(255,255,255,.03); cursor:pointer; transition:transform .14s ease, border-color .14s ease; }
+    .warrant-card strong { color:var(--text); }
+    .warrant-card:hover { transform:translateY(-1px); border-color:rgba(100,181,255,.38); }
+    .hero { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 18px; }
+    .panel { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(14, 20, 34, .92), rgba(12, 18, 31, .92)); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    body.light-theme .panel { background:linear-gradient(180deg,#ffffff,#f8fbff); }
+    .hero-main { padding: 22px; min-height: 280px; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(100, 181, 255, .10); color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-main h2 { margin: 18px 0 10px; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; max-width: 720px; }
+    .hero-main p { margin: 0; color: #bfcae4; font-size: 15px; line-height: 1.7; max-width: 760px; white-space: pre-wrap; }
+    .hero-actions { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip-btn, .reload-btn { border: 1px solid var(--line); background: rgba(18, 26, 43, .92); color: var(--text); border-radius: 999px; padding: 11px 14px; font-size: 13px; font-weight: 700; cursor: pointer; }
+    body.light-theme .chip-btn { background:#fff; }
+    .theme-toggle { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); background:rgba(18,26,43,.92); color:var(--text); border-radius:999px; padding:10px 13px; font-size:13px; font-weight:800; cursor:pointer; }
+    body.light-theme .theme-toggle { background:#fff; }
+    .chip-btn.active { background: linear-gradient(135deg, var(--accent), #7a74ff); border-color: transparent; }
+    .reload-btn { background: linear-gradient(135deg, var(--accent), #7a74ff); border-color: transparent; }
+    .layout { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 18px; align-items: start; }
+    .feed-panel, .market-panel, .summary-bar { padding: 18px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .section-head h3 { margin: 0; font-size: 22px; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 13px; }
+    .news-list { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .news-card { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(180deg, rgba(21, 31, 50, .95), rgba(14, 20, 34, .95)); }
+    body.light-theme .news-card { background:#fff; border-color:rgba(38,61,99,.12); box-shadow:0 10px 24px rgba(24,39,75,.06); }
+    .news-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; color: var(--muted); font-size: 12px; }
+    .source-tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 999px; background: rgba(78, 240, 192, .10); color: var(--accent-2); border: 1px solid rgba(78, 240, 192, .14); font-weight: 700; text-transform: capitalize; }
+    body.light-theme .source-tag { background:#e7f8f2; color:#047857; border-color:#b7ead7; }
+    .news-title { margin: 0; font-size: 20px; line-height: 1.4; }
+    body.light-theme .news-title { color:#132033; }
+    .news-snippet { margin: 0; color: #c3cfe8; font-size: 14px; line-height: 1.75; white-space: pre-wrap; overflow: visible; }
+    .news-number { color:#ffe08a; font-weight:900; }
+    body.light-theme .news-snippet { color:#475569; }
+    body.light-theme .news-number { color:#b45309; }
+    .news-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .open-link { color: var(--accent); font-weight: 700; }
+    .mini-stat { font-size: 12px; color: var(--muted); }
+    .side-title { font-size: 13px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+    .side-summary { color: #c9d3ea; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+    body.light-theme .side-summary { color:#475569; }
+    .stock-search-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; align-items:flex-start; position:relative; }
+    .stock-search-wrap { flex:1; min-width:220px; position:relative; }
+    .stock-actions { display:flex; gap:10px; align-items:center; flex-wrap:nowrap; }
+    .stock-actions button { min-width: 94px; }
+    .remove-btn { border-color: rgba(255,125,125,.42); color:#ffb8b8; background:rgba(255,91,110,.08); }
+    .remove-btn:hover { background:rgba(255,91,110,.16); }
+    .stock-search-bar input { width:100%; background: var(--panel-2); color: var(--text); border:1px solid var(--line); border-radius:14px; padding: 12px 14px; outline:none; }
+    .search-suggest { position:absolute; top:calc(100% + 6px); left:0; right:0; background:#0f1522; border:1px solid rgba(92,110,148,.24); border-radius:16px; box-shadow: var(--shadow); max-height:min(62vh,520px); overflow-y:auto; overflow-x:hidden; z-index:30; display:none; scrollbar-width:thin; scrollbar-color:#64b5ff rgba(151,170,214,.16); }
+    .search-suggest::-webkit-scrollbar { width:8px; }
+    .search-suggest::-webkit-scrollbar-track { background:rgba(151,170,214,.12); border-radius:999px; }
+    .search-suggest::-webkit-scrollbar-thumb { background:rgba(100,181,255,.75); border-radius:999px; }
+    body.light-theme .search-suggest { background:#fff; border-color:rgba(38,61,99,.14); }
+    .search-suggest.open { display:block; }
+    .search-option { padding:10px 12px; border-bottom:1px solid rgba(92,110,148,.14); cursor:pointer; }
+    .search-option:last-child { border-bottom:none; }
+    .search-option strong { display:flex; justify-content:space-between; gap:10px; align-items:center; font-size:14px; }
+    .search-option strong em { font-style:normal; font-weight:700; font-size:12px; white-space:nowrap; }
+    .search-option span { display:block; color:var(--muted); font-size:12px; margin-top:4px; }
+    .index-overview { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:14px; }
+    .index-card { border:1px solid rgba(92,110,148,.22); border-radius:14px; padding:12px 14px; background:rgba(7,11,20,.72); }
+    body.light-theme .index-card { background:#ffffff; border-color:rgba(38,61,99,.12); }
+    .index-card span { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
+    .index-card b { font-size:20px; color:#edf2ff; }
+    body.light-theme .index-card b { color:#132033; }
+    .index-card b.market-up, .index-card small.market-up { color:#23c77a; }
+    .index-card b.market-down, .index-card small.market-down { color:#ff5b6e; }
+    .index-card b.market-flat, .index-card small.market-flat { color:#ffd166; }
+    .index-card small { display:block; margin-top:4px; font-size:12px; color:var(--muted); font-weight:800; }
+        .sector-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px; }
+    .sector-board { border:1px solid rgba(92,110,148,.24); border-radius:18px; background:linear-gradient(180deg, rgba(18,26,43,.78), rgba(9,14,24,.92)); overflow:hidden; box-shadow:0 12px 28px rgba(0,0,0,.18); }
+    body.light-theme .sector-board { background:linear-gradient(180deg,#ffffff,#f7f9fd); box-shadow:0 12px 28px rgba(24,39,75,.08); }
+    body.light-theme .sector-board h4 { background:#edf4ff; }
+    .sector-board h4 { margin:0; padding:13px 15px; background:rgba(100,181,255,.10); border-bottom:1px solid rgba(92,110,148,.18); font-size:15px; letter-spacing:.02em; }
+    .sector-list { display:flex; flex-direction:column; gap:9px; padding:12px; min-height:64px; }
+    .mini-stock { display:grid; grid-template-columns: 64px 1fr; gap:8px 12px; align-items:center; padding:11px 12px; border-radius:14px; background:rgba(7,11,20,.88); border:1px solid rgba(92,110,148,.18); cursor:pointer; transition:transform .14s ease, border-color .14s ease; }
+    body.light-theme .mini-stock { background:#ffffff; border-color:rgba(38,61,99,.12); }
+    .mini-stock:hover { transform:translateY(-1px); border-color:rgba(100,181,255,.36); }
+    .mini-stock strong { grid-row:span 2; display:grid; place-items:center; min-height:44px; border-radius:12px; background:rgba(100,181,255,.10); font-size:15px; letter-spacing:.03em; }
+    .stock-line { display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12px; color:var(--muted); }
+    .stock-line b { font-size:15px; }
+    .stock-line b.market-up { color:#23c77a; }
+    .stock-line b.market-down { color:#ff5b6e; }
+    .stock-line b.market-flat { color:#ffd166; }
+    .mini-stock .price { font-weight:800; }
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+    .market-card { border: 1px solid rgba(76, 90, 125, .45); border-radius: 16px; background: linear-gradient(180deg, rgba(15, 21, 34, .95), rgba(10, 15, 25, .98)); padding: 14px; cursor: pointer; }
+    .market-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+    .market-type { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px solid rgba(151, 170, 214, .18); border-radius: 999px; padding: 4px 8px; }
+    .market-card strong { display:block; font-size:18px; margin-bottom:2px; }
+    .market-price { font-size: 24px; font-weight: 800; margin: 6px 0 4px; }
+    .market-change { font-size: 13px; font-weight: 700; }
+    .market-up { color: #23c77a; }
+    .market-down { color: #ff5b6e; }
+    .market-flat { color: #ffd166; }
+    .market-meta { color: var(--muted); font-size: 12px; margin-top: 8px; display:flex; justify-content:space-between; gap:8px; }
+    .warrant-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:12px; }
+    .warrant-card { border:1px solid rgba(92,110,148,.22); border-radius:16px; padding:13px; background:rgba(7,11,20,.72); }
+    body.light-theme .warrant-card { background:#fff; border-color:rgba(38,61,99,.12); box-shadow:0 10px 24px rgba(24,39,75,.06); }
+    .warrant-card strong { display:flex; justify-content:space-between; gap:8px; align-items:center; font-size:18px; margin-bottom:10px; }
+    body.light-theme .warrant-card strong { color:#132033; }
+    .warrant-badge { border-radius:999px; padding:4px 8px; font-size:11px; font-weight:900; border:1px solid rgba(151,170,214,.18); }
+    .warrant-itm { color:#23c77a; background:rgba(35,199,122,.10); border-color:rgba(35,199,122,.25); }
+    .warrant-atm { color:#ffd166; background:rgba(255,209,102,.10); border-color:rgba(255,209,102,.25); }
+    .warrant-otm { color:#ff5b6e; background:rgba(255,91,110,.10); border-color:rgba(255,91,110,.25); }
+    .warrant-row { display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-top:1px solid rgba(92,110,148,.12); font-size:12px; color:var(--muted); }
+    .warrant-row b { color:#edf2ff; text-align:right; }
+    body.light-theme .warrant-row b { color:#132033; }
+    .detail-modal { position: fixed; inset: 0; background: rgba(3, 7, 16, .82); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 99; overflow:hidden; }
+    .detail-modal.open { display: flex; }
+    .detail-box { width: min(1080px, 100%); max-height: calc(100vh - 40px); display:flex; flex-direction:column; background: #0b101a; border: 1px solid rgba(92, 110, 148, .32); border-radius: 24px; box-shadow: var(--shadow); padding: 0; overflow: hidden; }
+    body.light-theme .detail-box { background:#fff; border-color:rgba(38,61,99,.14); }
+    .detail-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 18px 20px; border-bottom: 1px solid rgba(92, 110, 148, .18); background: #0f1522; }
+    body.light-theme .detail-head { background:#f1f5fb; border-bottom-color:rgba(38,61,99,.12); }
+    .detail-grid { display:grid; grid-template-columns: 1fr; gap: 0; overflow:auto; min-height:0; }
+    .stats-box { padding: 18px; background: #0d131f; }
+    body.light-theme .stats-box { background:#f8fbff; }
+    .stats-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat-card { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding: 12px; background: rgba(255,255,255,.02); }
+    .stat-card .label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .stat-card .value { color: #edf2ff; font-size: 16px; font-weight: 800; }
+    body.light-theme .stat-card { background:#fff; border-color:rgba(38,61,99,.12); }
+    body.light-theme .stat-card .value { color:#132033; }
+    .detail-summary { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:10px; margin-bottom:14px; }
+    .detail-price-card { border:1px solid rgba(92,110,148,.22); border-radius:16px; padding:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)); }
+    body.light-theme .detail-price-card { background:#fff; border-color:rgba(38,61,99,.12); }
+    .detail-price-card .label { color:var(--muted); font-size:12px; margin-bottom:6px; }
+    .detail-price-card .value { font-size:20px; font-weight:900; }
+    .detail-actions { display:flex; justify-content:flex-end; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+    .detail-table { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
+    .detail-row { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:11px 12px; background:rgba(255,255,255,.025); }
+    body.light-theme .detail-row { background:#fff; border-color:rgba(38,61,99,.12); }
+    .detail-row span { color:var(--muted); font-size:12px; }
+    .detail-row b { color:#edf2ff; font-size:15px; }
+    body.light-theme .detail-row b { color:#132033; }
+    .analysis-switch { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin: 0 0 14px; }
+    .analysis-tab-btn { border:1px solid rgba(92,110,148,.28); border-radius:16px; padding:14px 16px; background:rgba(255,255,255,.035); color:#dbe7ff; cursor:pointer; text-align:left; transition:.16s ease; }
+    body.light-theme .analysis-tab-btn { background:#fff; color:#132033; border-color:rgba(38,61,99,.12); }
+    .analysis-tab-btn strong { display:block; font-size:16px; margin-bottom:4px; }
+    .analysis-tab-btn span { display:block; color:var(--muted); font-size:12px; }
+    .analysis-tab-btn.active { border-color:rgba(100,181,255,.55); background:linear-gradient(135deg, rgba(100,181,255,.22), rgba(78,240,192,.10)); box-shadow:0 10px 24px rgba(100,181,255,.10); }
+    .analysis-grid { display:block; }
+    .analysis-pane { display:none; }
+    .analysis-pane.active { display:block; }
+    .technical-panel, .fundamental-panel { border:1px solid rgba(92,110,148,.20); border-radius:18px; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)); min-width:0; }
+    .fundamental-panel { border-color:rgba(78,240,192,.18); background:linear-gradient(180deg, rgba(78,240,192,.055), rgba(100,181,255,.025)); }
+    body.light-theme .technical-panel, body.light-theme .fundamental-panel { background:#fff; border-color:rgba(38,61,99,.12); }
+    .analysis-title { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px; }
+    .analysis-title h4 { margin:0; font-size:18px; }
+    .analysis-title p { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .fundamental-tools { display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:8px; margin-bottom:14px; }
+    .fundamental-tool { border:1px solid rgba(92,110,148,.20); border-radius:16px; padding:13px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); min-height:74px; min-width:0; }
+    body.light-theme .fundamental-tool { background:#f8fbff; border-color:rgba(38,61,99,.12); }
+    .fundamental-tool span { display:block; color:var(--muted); font-size:11px; margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-tool b { display:block; font-size:18px; color:#fff; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-tool small { display:block; color:var(--muted); margin-top:4px; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    body.light-theme .fundamental-tool b { color:#132033; }
+    .fundamental-tool input { width:100%; min-width:0; border:1px solid rgba(92,110,148,.25); border-radius:12px; background:#0d131f; color:#fff; padding:8px 9px; outline:none; font-weight:900; font-size:16px; }
+    body.light-theme .fundamental-tool input { background:#fff; color:#132033; border-color:rgba(38,61,99,.14); }
+    .fundamental-list { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; max-height:520px; overflow:auto; padding-right:4px; }
+    .fundamental-card { border:1px solid rgba(92,110,148,.22); border-radius:18px; padding:13px; background:rgba(7,11,20,.62); box-shadow:0 12px 26px rgba(0,0,0,.12); }
+    body.light-theme .fundamental-card { background:#fff; border-color:rgba(38,61,99,.12); }
+    .fundamental-top { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+    .broker-pill { padding:6px 10px; border-radius:999px; background:rgba(100,181,255,.12); color:#b9dcff; border:1px solid rgba(100,181,255,.18); font-weight:900; font-size:12px; }
+    body.light-theme .broker-pill { background:#e9f2ff; color:#1d4ed8; }
+    .fundamental-date { color:var(--muted); font-size:12px; }
+    .fundamental-title { font-size:13px; color:#d8e2fb; line-height:1.38; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height:52px; }
+    body.light-theme .fundamental-title { color:#1e293b; }
+    .fundamental-metrics { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:7px; }
+    .fundamental-metric { display:block; border-radius:11px; padding:8px; background:rgba(255,255,255,.035); border:1px solid rgba(92,110,148,.14); min-width:0; }
+    body.light-theme .fundamental-metric { background:#f8fbff; border-color:rgba(38,61,99,.10); }
+    .fundamental-metric span { display:block; color:var(--muted); font-size:11px; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .fundamental-metric b { display:block; font-size:14px; color:#fff; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    body.light-theme .fundamental-metric b { color:#132033; }
+    .fundamental-summary-table { margin-bottom:14px; }
+    .fundamental-summary-table input { max-width:150px; border:1px solid rgba(92,110,148,.25); border-radius:10px; background:#0d131f; color:#fff; padding:7px 9px; outline:none; font-weight:900; text-align:right; }
+    body.light-theme .fundamental-summary-table input { background:#fff; color:#132033; border-color:rgba(38,61,99,.14); }
+    .fundamental-summary-table small { color:var(--muted); font-size:12px; font-weight:700; }
+    .disclaimer-box { margin-top:14px; border:1px solid rgba(255,209,102,.24); border-radius:16px; padding:11px 13px; background:rgba(255,209,102,.06); color:#f5d58a; font-size:12px; line-height:1.5; }
+    .disclaimer-box b { color:#ffe29a; }
+    body.light-theme .disclaimer-box { background:#fff8e1; color:#8a5a00; border-color:#f3d27b; }
+    body.light-theme .disclaimer-box b { color:#744600; }
+    .help-fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 48px; height: 48px; border-radius: 999px; border:1px solid rgba(100,181,255,.45); background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#06101f; font-size:24px; font-weight:900; box-shadow: var(--shadow); cursor:pointer; }
+    .help-box { max-width: 620px; }
+    .help-list { display:grid; gap:10px; padding: 0; margin: 0; list-style:none; }
+    .help-list li { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:10px 12px; background:rgba(255,255,255,.025); color:var(--muted); line-height:1.45; }
+    .help-list b { color:#edf2ff; }
+    @media (max-width: 840px) { .analysis-grid { grid-template-columns:1fr; } }
+    @media (max-width: 1100px) { .fundamental-list { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 900px) { .fundamental-tools { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px) { .detail-summary, .detail-table, .fundamental-list, .fundamental-tools { grid-template-columns: 1fr; } .fundamental-metrics { grid-template-columns: repeat(3, minmax(0,1fr)); } .help-fab { right: 14px; bottom: 14px; } }
+    .muted { color: var(--muted); }
+    .error { color: var(--danger); }
+    .empty { padding: 24px; border: 1px dashed var(--line); border-radius: 18px; color: var(--muted); text-align: center; }
+    @media (max-width: 980px) { .hero, .layout, .detail-grid { grid-template-columns: 1fr; } .topbar { position: static; } }
+    @media (max-width: 640px) { .shell { width: min(100% - 16px, 1180px); } .topbar { padding: 12px; border-radius: 18px; } .brand-text h1 { font-size: 21px; } .hero-main, .feed-panel { padding: 16px; } .news-title { font-size: 18px; } .stock-search-bar { flex-direction: column; } }
+  
+    .filter-board { margin-top:16px; border:1px solid rgba(92,110,148,.20); border-radius:20px; padding:14px; background:rgba(7,11,20,.52); }
+    body.light-theme .filter-board { background:#fff; border-color:rgba(38,61,99,.12); }
+    .filter-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    .filter-tab { border:1px solid rgba(100,181,255,.25); background:rgba(100,181,255,.08); color:#d8eaff; border-radius:999px; padding:8px 12px; font-weight:800; cursor:pointer; }
+    .filter-tab.active { background:#2f8cff; color:#fff; border-color:#2f8cff; }
+    body.light-theme .filter-tab { background:#eef6ff; color:#1d4ed8; }
+    body.light-theme .filter-tab.active { background:#2563eb; color:#fff; }
+    .filter-criteria { color:var(--muted); font-size:12px; line-height:1.55; margin-bottom:12px; }
+    .filter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .filter-card { border:1px solid rgba(92,110,148,.18); border-radius:16px; padding:12px; background:rgba(255,255,255,.035); cursor:pointer; }
+    body.light-theme .filter-card { background:#f8fbff; border-color:rgba(38,61,99,.12); }
+    .filter-card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px; }
+    .filter-card strong { font-size:18px; color:#fff; }
+    body.light-theme .filter-card strong { color:#132033; }
+    .filter-badge { border-radius:999px; padding:5px 8px; background:rgba(255,209,102,.14); color:#ffd166; font-size:11px; font-weight:900; text-align:right; }
+    body.light-theme .filter-badge { background:#fff4cf; color:#8a5a00; }
+    .filter-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin:9px 0; }
+    .filter-metric { border-radius:11px; padding:7px; background:rgba(0,0,0,.12); }
+    body.light-theme .filter-metric { background:#fff; }
+    .filter-metric span { display:block; color:var(--muted); font-size:10px; margin-bottom:3px; }
+    .filter-metric b { display:block; font-size:13px; color:#fff; }
+    body.light-theme .filter-metric b { color:#132033; }
+    .filter-reason { color:#cbd7ef; font-size:12px; line-height:1.45; }
+    body.light-theme .filter-reason { color:#334155; }
+    .filter-warning { margin-top:7px; color:#ffd166; font-size:12px; line-height:1.4; }
+    body.light-theme .filter-warning { color:#9a5a00; }
+
+    .strategy-board { margin-top:16px; border:1px solid rgba(92,110,148,.20); border-radius:20px; padding:14px; background:rgba(7,11,20,.52); }
+    body.light-theme .strategy-board { background:#fff; border-color:rgba(38,61,99,.12); }
+    .strategy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .strategy-card { border:1px solid rgba(92,110,148,.18); border-radius:18px; padding:14px; background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02)); }
+    body.light-theme .strategy-card { background:#f8fbff; border-color:rgba(38,61,99,.12); }
+    .strategy-card.core { border-color:rgba(78,240,192,.36); box-shadow:0 10px 28px rgba(78,240,192,.08); }
+    .strategy-title { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:10px; }
+    .strategy-title h4 { margin:0; font-size:18px; }
+    .strategy-pill { border-radius:999px; padding:5px 9px; background:rgba(78,240,192,.12); color:var(--accent-2); font-size:11px; font-weight:900; white-space:nowrap; }
+    .strategy-desc { color:var(--muted); font-size:12px; line-height:1.5; margin-bottom:10px; }
+    .strategy-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin:10px 0; }
+    .strategy-metric { border-radius:12px; padding:8px; background:rgba(0,0,0,.14); }
+    body.light-theme .strategy-metric { background:#fff; }
+    .strategy-metric span { display:block; color:var(--muted); font-size:10px; margin-bottom:3px; }
+    .strategy-metric b { display:block; color:#fff; font-size:13px; }
+    body.light-theme .strategy-metric b { color:#132033; }
+    .strategy-rule { color:#cbd7ef; font-size:12px; line-height:1.55; margin-top:9px; }
+    body.light-theme .strategy-rule { color:#334155; }
+    .strategy-symbols { margin-top:9px; display:flex; flex-wrap:wrap; gap:6px; }
+    .strategy-symbols span { border-radius:999px; border:1px solid rgba(100,181,255,.20); padding:4px 7px; color:#d8eaff; font-size:11px; font-weight:800; background:rgba(100,181,255,.08); }
+    .strategy-symbol-inline { border:0; background:transparent; color:#64b5ff; font:inherit; font-weight:900; padding:0 2px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+    .strategy-symbol-inline:hover { color:#4ef0c0; }
+    body.light-theme .strategy-symbols span { color:#1d4ed8; background:#eef6ff; }
+
+    .strategy-illustrated-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin-bottom:12px; }
+    .strategy-visual-card { position:relative; min-height:170px; border:1px solid rgba(92,110,148,.18); border-radius:20px; padding:14px; overflow:visible; background:linear-gradient(160deg, rgba(100,181,255,.12), rgba(78,240,192,.05)); box-shadow:0 12px 26px rgba(0,0,0,.12); }
+    .strategy-visual-card.primary { border-color:rgba(78,240,192,.34); background:linear-gradient(160deg, rgba(78,240,192,.18), rgba(100,181,255,.08)); }
+    .strategy-visual-card.warning { border-color:rgba(255,180,84,.32); background:linear-gradient(160deg, rgba(255,180,84,.16), rgba(100,181,255,.06)); }
+    .strategy-visual-card.danger { border-color:rgba(255,125,125,.32); background:linear-gradient(160deg, rgba(255,125,125,.15), rgba(100,181,255,.05)); }
+    .strategy-visual-card.research { border-color:rgba(166,139,255,.34); background:linear-gradient(160deg, rgba(166,139,255,.16), rgba(78,240,192,.05)); }
+    body.light-theme .strategy-visual-card { background:#fff; box-shadow:0 12px 24px rgba(24,39,75,.07); }
+    .strategy-visual-head { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:10px; }
+    .strategy-visual-head h4 { margin:0; font-size:16px; line-height:1.25; }
+    .strategy-help { position:relative; display:inline-grid; place-items:center; width:22px; height:22px; border-radius:999px; border:1px solid rgba(100,181,255,.38); background:rgba(100,181,255,.12); color:var(--accent); font-weight:900; font-size:12px; cursor:help; flex:0 0 auto; }
+    .strategy-tooltip { display:none; position:absolute; right:0; top:28px; width:min(320px, calc(100vw - 34px)); z-index:60; border:1px solid rgba(92,110,148,.28); border-radius:16px; padding:12px; background:#07101f; color:#dbe7ff; box-shadow:0 18px 45px rgba(0,0,0,.36); text-align:left; line-height:1.45; font-size:12px; }
+    body.light-theme .strategy-tooltip { background:#fff; color:#132033; box-shadow:0 18px 45px rgba(24,39,75,.16); }
+    .strategy-help:hover .strategy-tooltip, .strategy-help:focus .strategy-tooltip, .strategy-help:active .strategy-tooltip { display:block; }
+    .strategy-tooltip b { color:var(--accent-2); }
+    .strategy-tooltip div { margin-top:7px; }
+    .strategy-curve { height:54px; border-radius:14px; margin:10px 0 12px; background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); border:1px solid rgba(92,110,148,.12); position:relative; overflow:hidden; }
+    .strategy-curve svg { width:100%; height:100%; display:block; }
+    .strategy-state { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+    .strategy-state div { border-radius:12px; padding:7px 6px; background:rgba(0,0,0,.12); border:1px solid rgba(92,110,148,.10); min-height:54px; }
+    body.light-theme .strategy-state div { background:#f8fbff; }
+    .strategy-state span { display:block; font-size:10px; font-weight:900; letter-spacing:.04em; }
+    .strategy-state small { display:block; color:var(--muted); font-size:10px; line-height:1.3; margin-top:3px; }
+    .state-buy span { color:#23c77a; } .state-watch span { color:#ffb454; } .state-avoid span { color:#ff7d7d; }
+    .strategy-table-wrap { overflow:visible; }
+    .strategy-th { display:flex; align-items:center; justify-content:space-between; gap:8px; color:#fff; font-weight:900; border-radius:14px; padding:10px 12px; background:linear-gradient(135deg, rgba(100,181,255,.95), rgba(122,116,255,.82)); box-shadow:0 10px 20px rgba(100,181,255,.16); }
+    .strategy-matrix-table thead th:nth-child(2) .strategy-th { background:linear-gradient(135deg,#23c77a,#0f9f7a); }
+    .strategy-matrix-table thead th:nth-child(3) .strategy-th { background:linear-gradient(135deg,#ffb454,#f97316); }
+    .strategy-matrix-table thead th:nth-child(4) .strategy-th { background:linear-gradient(135deg,#ff7d7d,#db2777); }
+    .strategy-th .strategy-help { background:rgba(255,255,255,.20); border-color:rgba(255,255,255,.45); color:#fff; }
+    .strategy-symbol-chip { display:inline-block; text-align:left; vertical-align:top; border:1px solid rgba(100,181,255,.22); border-radius:12px; background:rgba(100,181,255,.08); color:var(--text); padding:6px 7px; margin:3px; cursor:pointer; font-size:11px; max-width:132px; min-width:104px; }
+    .strategy-symbol-chip .sym { display:block; font-size:13px; font-weight:900; margin-bottom:4px; color:var(--text); }
+    .strategy-symbol-chip .mini-levels { display:block; color:var(--muted); font-size:10px; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .strategy-symbol-chip .mini-levels b { color:var(--text); font-weight:850; }
+    .strategy-symbol-chip .mini-target { color:#23c77a; }
+    .strategy-symbol-chip .mini-stop { color:#ff7d7d; }
+    .strategy-symbol-chip small { color:var(--muted); font-size:9px; display:inline; }
+    .strategy-more, .strategy-empty { display:inline-flex; border-radius:999px; padding:6px 8px; margin:3px; color:var(--muted); background:rgba(151,170,214,.08); font-size:12px; }
+    .strategy-row-buy th { color:#23c77a; } .strategy-row-watch th { color:#ffb454; } .strategy-row-avoid th { color:#ff7d7d; }
+    body.light-theme .strategy-symbol-chip { background:#eef6ff; color:#132033; }
+    .strategy-matrix-table { width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0; min-width:760px; }
+    .strategy-matrix-table th:first-child, .strategy-matrix-table td:first-child { width:96px; }
+    .strategy-matrix-table th:not(:first-child), .strategy-matrix-table td:not(:first-child) { width:calc((100% - 96px) / 3); }
+    .strategy-matrix-table th, .strategy-matrix-table td { border-bottom:1px solid rgba(92,110,148,.16); padding:12px; text-align:left; vertical-align:top; font-size:13px; line-height:1.45; }
+    .strategy-matrix-table th { color:var(--text); background:rgba(78,240,192,.06); }
+    body.light-theme .strategy-matrix-table th { color:#132033; background:#eefbf7; }
+    .strategy-matrix-table td { color:var(--muted); }
+    .strategy-mobile-matrix { display:none; gap:12px; }
+    .strategy-mobile-block { border:1px solid rgba(92,110,148,.16); border-radius:16px; padding:12px; background:rgba(0,0,0,.08); }
+    .strategy-mobile-block h5 { margin:0 0 8px; font-size:15px; color:#fff; border-radius:14px; padding:10px 12px; background:linear-gradient(135deg, rgba(100,181,255,.95), rgba(122,116,255,.82)); }
+    .strategy-mobile-0 h5 { background:linear-gradient(135deg,#23c77a,#0f9f7a); }
+    .strategy-mobile-1 h5 { background:linear-gradient(135deg,#ffb454,#f97316); }
+    .strategy-mobile-2 h5 { background:linear-gradient(135deg,#ff7d7d,#db2777); }
+    .strategy-mobile-row { border-top:1px solid rgba(92,110,148,.12); padding:9px 0; }
+    .strategy-mobile-row:first-of-type { border-top:0; }
+    .strategy-mobile-row b { display:block; font-size:12px; margin-bottom:4px; color:var(--accent-2); }
+    .strategy-mobile-row span { display:block; color:var(--muted); font-size:12px; line-height:1.45; }
+    @media (max-width: 860px) { .strategy-grid { grid-template-columns:1fr; } .strategy-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 640px) { .strategy-matrix-table { display:none; } .strategy-mobile-matrix { display:grid; } .strategy-card { padding:12px; border-radius:16px; } .strategy-title h4 { font-size:16px; } .strategy-desc, .strategy-rule { font-size:12px; } .strategy-metrics { grid-template-columns:1fr; } }
+    @media (max-width: 760px) { .filter-grid { grid-template-columns:1fr; } }
+
+    /* Mobile/LAN preview hardening: keep tabs/buttons/cards readable on phones */
+    @media (max-width: 900px) {
+      .shell { width: calc(100% - 14px); padding-top: 8px; }
+      .topbar { position: static; align-items:flex-start; padding:10px; border-radius:16px; }
+      .brand-wrap { gap:10px; min-width:0; }
+      .brand-icon { width:38px; height:38px; border-radius:12px; flex:0 0 auto; }
+      .brand-text { min-width:0; }
+      .brand-text h1 { font-size:18px; white-space:normal; line-height:1.15; }
+      .brand-text p { font-size:10px; letter-spacing:.12em; }
+      .top-actions { flex:0 0 auto; gap:6px; }
+      .theme-toggle, .status-pill { padding:8px 10px; font-size:12px; }
+      .main-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin-top:10px; }
+      .main-tabs .chip-btn { text-align:center; padding:10px 6px; font-size:12px; white-space:normal; line-height:1.2; }
+      .panel, .filter-board, .strategy-card { border-radius:16px; }
+      .feed-panel, .market-panel, .warrant-panel, .summary-bar { padding:12px; }
+      .section-head { gap:8px; margin-bottom:10px; }
+      .section-head h3 { font-size:18px; }
+      .section-head p { font-size:12px; }
+      .stock-search-wrap { min-width:100%; }
+      .stock-actions { width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+      .stock-actions button { min-width:0; width:100%; padding:10px 8px; white-space:normal; }
+      .sector-grid, .warrant-grid, .index-overview, .filter-grid, .strategy-grid { grid-template-columns:1fr; }
+      .mini-stock { grid-template-columns:56px 1fr; padding:10px; }
+      .strategy-metrics, .filter-metrics { grid-template-columns:1fr; }
+      .strategy-title, .filter-card-top, .warrant-card strong { flex-wrap:wrap; }
+      .strategy-pill, .filter-badge, .warrant-badge { white-space:normal; text-align:left; }
+      .news-card, .filter-card, .warrant-card, .strategy-card { padding:11px; }
+      .news-title { font-size:16px; line-height:1.35; }
+      .news-snippet, .filter-reason, .strategy-rule { overflow-wrap:anywhere; word-break:normal; }
+      .detail-modal { padding:8px; align-items:flex-start; overflow:hidden; }
+      .detail-box { border-radius:16px; margin-top:8px; max-height: calc(100vh - 16px); }
+      .detail-head { padding:12px; align-items:flex-start; flex-direction:column; }
+      .detail-head h3, #detailTitle, #warrantTitle { font-size:24px !important; }
+      .stats-box { padding:12px; }
+      .stats-grid, .detail-summary, .detail-table, .fundamental-metrics, .fundamental-tools { grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .brand-text h1 { font-size:16px; }
+      .theme-toggle { max-width:58px; overflow:hidden; }
+      .status-pill { display:none; }
+      .main-tabs .chip-btn { font-size:11px; }
+      .stock-actions { grid-template-columns:1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
+    <nav class="main-tabs"><a class="chip-btn active" data-tab="stocks" href="/stocks">Chứng Khoán</a><a class="chip-btn" data-tab="warrants" href="/warrants">Chứng Quyền</a><a class="chip-btn" data-tab="news" href="/news-page">Tin Tức</a><a class="chip-btn" href="/account">Account</a></nav>
+    <section class="tab-panel active" id="stocksPanel"><section class="panel market-panel"><div class="section-head"><div><h3>Market Overview</h3></div></div><div class="index-overview" id="indexOverview"><div class="index-card"><span>Đang tải</span><b>-</b><small>VN-Index / HNX / UPCOM</small></div></div><div class="section-head"><div><h3>Danh mục quan tâm</h3><p id="marketStatus">Đang tải dữ liệu giá...</p></div></div><div class="stock-search-bar"><div class="stock-search-wrap"><input id="stockSearchInput" type="text" placeholder="Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB..." autocomplete="off" /><div class="search-suggest" id="stockSuggest"></div></div><div class="stock-actions"><button class="reload-btn" id="stockSearchBtn">Thêm</button><button class="chip-btn remove-btn" id="stockRemoveBtn">Xóa khỏi danh mục</button></div></div><div class="sector-grid" id="marketGrid"></div><div class="filter-board" id="stockFilterBoard"><div class="section-head"><div><h3>STRATEGY FILTER</h3><p id="stockFilterStatus"></p></div></div><div class="filter-tabs"><button class="filter-tab active" data-filter-mode="technical">Technical Analysis</button><button class="filter-tab" data-filter-mode="fundamental">Fundamental Analysis</button></div><div class="filter-criteria" id="stockFilterCriteria"></div><div class="filter-grid" id="stockFilterGrid"><div class="empty">Đang tải bộ lọc...</div></div></div></section></section>
+    <section class="tab-panel" id="warrantsPanel"><section class="panel warrant-panel"><div class="section-head"><div><h3>Danh mục chứng quyền quan tâm</h3><p id="warrantStatus">Đang tải dữ liệu chứng quyền...</p></div></div><div class="stock-search-bar"><div class="stock-search-wrap"><input id="warrantSearchInput" type="text" placeholder="Tìm mã chứng quyền, ví dụ: CMWG2511..." autocomplete="off" /><div class="search-suggest" id="warrantSuggest"></div></div><div class="stock-actions"><button class="reload-btn" id="warrantAddBtn">Thêm</button><button class="chip-btn remove-btn" id="warrantRemoveBtn">Xóa khỏi danh mục</button></div></div><div class="warrant-grid" id="warrantGrid"><div class="warrant-card"><strong>Đang tải</strong><p class="muted">Đang đọc dữ liệu chứng quyền local.</p></div></div></section></section>
+    <section class="tab-panel" id="newsPanel"><section class="layout"><main class="panel feed-panel"><div class="section-head"><div><h3>Dòng tin</h3><p id="statusText">Đang tải...</p></div></div><div class="hero-actions categories" id="categoryBar" style="margin:0 0 14px;"></div><div class="news-list" id="newsList"></div><div class="section-head" style="margin-top:16px;"><div class="categories" style="align-items:center;"><button class="chip-btn" id="prevPageBtn">← Lùi</button><input id="pageInput" type="number" min="1" value="1" autocomplete="off" style="width:90px;background:var(--panel-2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px;" /><button class="chip-btn" id="goPageBtn">Đi tới</button><button class="chip-btn" id="nextPageBtn">Tiếp →</button></div><p id="pageInfo">Trang 1/1</p></div></main></section></section>
+    <div class="disclaimer-box"><b>Lưu ý:</b> Dữ liệu chỉ phục vụ tham khảo, không phải khuyến nghị mua bán. Người dùng tự chịu trách nhiệm với quyết định đầu tư.</div>
+  </div>
+  <div class="detail-modal" id="detailModal"><div class="detail-box"><div class="detail-head"><div><h3 id="detailTitle" style="margin:0;font-size:34px;letter-spacing:.08em;">Chi tiết mã</h3><p id="detailSub" class="muted" style="margin:6px 0 0;display:none;"></p></div><div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><button class="chip-btn" id="addDetailBtn">Thêm</button><button class="chip-btn remove-btn" id="removeDetailBtn">Xóa khỏi danh mục</button><button class="chip-btn" id="closeDetailBtn">Đóng</button></div></div><div class="detail-grid"><div class="stats-box" id="detailStats"></div></div></div></div>
+  <div class="detail-modal" id="warrantModal"><div class="detail-box"><div class="detail-head"><div><h3 id="warrantTitle" style="margin:0;font-size:34px;letter-spacing:.08em;">Chi tiết CW</h3><p id="warrantSub" class="muted" style="margin:6px 0 0;"></p></div><div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><button class="chip-btn" id="addWarrantDetailBtn">Thêm vào danh mục</button><button class="chip-btn remove-btn" id="removeWarrantDetailBtn">Xóa khỏi danh mục</button><button class="chip-btn" id="closeWarrantBtn">Đóng</button></div></div><div class="detail-grid"><div class="stats-box" id="warrantStats"></div></div></div></div>
+  <button class="help-fab" id="helpFab" title="Chú thích nhanh">?</button>
+  <div class="detail-modal" id="helpModal"><div class="detail-box help-box"><div class="detail-head"><div><h3 style="margin:0;">Chú thích nhanh</h3><p class="muted" style="margin:6px 0 0;">Giải thích các trường trong popup cổ phiếu</p></div><button class="chip-btn" id="closeHelpBtn">Đóng</button></div><div class="stats-box"><ul class="help-list"><li><b>Trạng thái:</b> xu hướng chính: Tăng, Giảm, Sideway/tích lũy; lực xu hướng dựa trên ADX.</li><li><b>Hỗ trợ / Kháng cự:</b> vùng giá quan trọng lấy từ swing, MA, volume, Fibonacci, VWAP, Donchian.</li><li><b>Thiết lập:</b> loại cơ hội hiện tại như chờ xác nhận, mua hồi hỗ trợ, mua breakout, tránh quá mua/bắt dao rơi.</li><li><b>Volume:</b> so với trung bình 20 phiên: thấp, trung bình, xác nhận mạnh, cạn cung tại hỗ trợ, áp lực bán tại kháng cự.</li><li><b>Cắt lỗ:</b> chọn theo hỗ trợ bên dưới, ưu tiên rủi ro gần 6% nhưng không vượt 6%.</li><li><b>Bollinger:</b> vùng biên giá để nhận biết quá mua/quá bán.</li></ul></div></div></div>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+    import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+    const firebaseConfig = { projectId:'lhinvestment', appId:'1:17989244201:web:c2185c64a67d9515b95338', storageBucket:'lhinvestment.firebasestorage.app', apiKey:'AIzaSyCu4aWXDU3VUGry2MNy4zdRGeiINKi3GwQ', authDomain:'lhinvestment.firebaseapp.com', messagingSenderId:'17989244201' };
+    const firebaseApp = initializeApp(firebaseConfig);
+    const auth = getAuth(firebaseApp);
+    const db = getFirestore(firebaseApp);
+    const API_BASE = '';
+    const MARKET_API_BASE = '';
+    const APP_CACHE_VERSION = '2026-04-29-warrant-suggest-v4';
+    (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
+    const AUTO_REFRESH_MS = 15 * 60 * 1000;
+    const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
+    const elements = { apiStatus: document.getElementById('apiStatus'), themeToggle: document.getElementById('themeToggle'), langViBtn: document.getElementById('langViBtn'), langEnBtn: document.getElementById('langEnBtn'), tickerTrack: document.getElementById('tickerTrack'), categoryBar: document.getElementById('categoryBar'), heroTitle: document.getElementById('heroTitle'), heroSummary: document.getElementById('heroSummary'), statusText: document.getElementById('statusText'), newsList: document.getElementById('newsList'), summaryText: document.getElementById('summaryText'), marketStatus: document.getElementById('marketStatus'), indexOverview: document.getElementById('indexOverview'), marketGrid: document.getElementById('marketGrid'), stockFilterStatus: document.getElementById('stockFilterStatus'), stockFilterCriteria: document.getElementById('stockFilterCriteria'), stockFilterGrid: document.getElementById('stockFilterGrid'), stockSearchInput: document.getElementById('stockSearchInput'), stockSearchBtn: document.getElementById('stockSearchBtn'), stockRemoveBtn: document.getElementById('stockRemoveBtn'), stockSuggest: document.getElementById('stockSuggest'), detailModal: document.getElementById('detailModal'), detailTitle: document.getElementById('detailTitle'), detailSub: document.getElementById('detailSub'), detailStats: document.getElementById('detailStats'), addDetailBtn: document.getElementById('addDetailBtn'), removeDetailBtn: document.getElementById('removeDetailBtn'), closeDetailBtn: document.getElementById('closeDetailBtn'), prevPageBtn: document.getElementById('prevPageBtn'), nextPageBtn: document.getElementById('nextPageBtn'), goPageBtn: document.getElementById('goPageBtn'), pageInput: document.getElementById('pageInput'), pageInfo: document.getElementById('pageInfo'), tabs: document.querySelectorAll('[data-tab]'), stocksPanel: document.getElementById('stocksPanel'), warrantsPanel: document.getElementById('warrantsPanel'), warrantStatus: document.getElementById('warrantStatus'), warrantGrid: document.getElementById('warrantGrid'), warrantModal: document.getElementById('warrantModal'), warrantTitle: document.getElementById('warrantTitle'), warrantSub: document.getElementById('warrantSub'), warrantStats: document.getElementById('warrantStats'), closeWarrantBtn: document.getElementById('closeWarrantBtn'), removeWarrantDetailBtn: document.getElementById('removeWarrantDetailBtn'), warrantSearchInput: document.getElementById('warrantSearchInput'), warrantSuggest: document.getElementById('warrantSuggest'), addWarrantDetailBtn: document.getElementById('addWarrantDetailBtn'), warrantAddBtn: document.getElementById('warrantAddBtn'), warrantRemoveBtn: document.getElementById('warrantRemoveBtn'), newsPanel: document.getElementById('newsPanel'), helpFab: document.getElementById('helpFab'), helpModal: document.getElementById('helpModal'), closeHelpBtn: document.getElementById('closeHelpBtn') };
+    const PAGE_SIZE = 5; const SECTORS = ['Ngân Hàng', 'Chứng Khoán', 'BĐS', 'Thép', 'Bán Lẻ & Thực Phẩm', 'Dầu Khí', 'Năng Lượng', 'Khác']; const SECTOR_MAP = { 'Ngân Hàng': ['VCB','BID','CTG','TCB','MBB','ACB','VPB','STB','HDB','TPB','EIB','SHB','LPB','VIB','OCB','MSB','SSB'], 'Chứng Khoán': ['SSI','VND','VCI','HCM','MBS','SHS','VIX','FTS','CTS','BSI','ORS'], 'BĐS': ['VIC','VHM','VRE','NVL','PDR','DXG','DIG','KDH','NLG','CEO','HDC','IJC','TCH','SCR'], 'Thép': ['HPG','HSG','NKG','SMC','TLH','VGS'], 'Bán Lẻ & Thực Phẩm': ['MWG','FRT','DGW','PET','MSN','VNM','SAB','KDC','DBC','BAF','PAN','QNS'], 'Dầu Khí': ['GAS','PVD','PVS','PLX','PVT','BSR','OIL','PVC'], 'Năng Lượng': ['POW','REE','NT2','GEG','HDG','PC1','GEX','BCG','TTA','QTP','VSH'] }; let allItems = []; let filteredItems = []; let activeCategory = 'Tổng hợp';
+    let currentFilterMode = 'technical'; let autoRefreshTimer = null; let currentPage = 1; let marketItems = []; let watchSymbols = []; let authReady = false; let currentUserId = ''; let watchlistUnsubscribe = null; let selectedSymbol = ''; let warrantItems = []; let warrantWatchSymbols = []; let warrantWatchlistUnsubscribe = null; let selectedWarrant = '';
+    let activeWarrantCode = ''; let activeDetailTicker = ''; const detailFetchState = new Map(); const DETAIL_CACHE_MS = 180000;
+    function applyTheme(theme){ const light = theme === 'light'; let lang='vi'; try{ lang=localStorage.getItem('lh.lang') || 'vi'; }catch(_){} document.body.classList.toggle('light-theme', light); if(elements.themeToggle) elements.themeToggle.textContent = light ? (lang === 'en' ? '☀️ Light' : '☀️ Sáng') : (lang === 'en' ? '🌙 Dark' : '🌙 Tối'); try{localStorage.setItem('hoa.theme', theme);}catch(_){} }
+    applyTheme((()=>{try{return localStorage.getItem('hoa.theme') || 'dark';}catch(_){return 'dark';}})());
+    if(elements.themeToggle) elements.themeToggle.addEventListener('click',()=>applyTheme(document.body.classList.contains('light-theme')?'dark':'light'));
+    function escapeHtml(text = '') { return String(text).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;'); }
+    const LANG_TEXT = {
+      vi: { stocks:'Cổ phiếu', warrants:'Chứng quyền', news:'Tin tức', marketOverview:'Tổng quan thị trường', watchlist:'Danh mục quan tâm', add:'Thêm', remove:'Xóa khỏi danh mục', strategyFilter:'Bộ lọc chiến lược', technical:'Phân tích kỹ thuật', fundamental:'Phân tích cơ bản', warrantWatch:'Danh mục chứng quyền quan tâm', newsFlow:'Dòng tin', disclaimer:'Lưu ý: Dữ liệu chỉ phục vụ tham khảo, không phải khuyến nghị mua bán. Người dùng tự chịu trách nhiệm với quyết định đầu tư.', close:'Đóng', detailStock:'Chi tiết mã', detailCw:'Chi tiết chứng quyền', helpTitle:'Chú thích nhanh', online:'Online', loadingPrice:'Đang tải dữ liệu giá...', loadingWarrant:'Đang tải dữ liệu chứng quyền...', stockPlaceholder:'Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB...', warrantPlaceholder:'Tìm mã chứng quyền, ví dụ: CMWG2511...', currentPrice:'Giá hiện tại', changePct:'% thay đổi', volume:'Khối lượng', investmentStrategy:'Chiến lược đầu tư', technicalSignal:'Tín hiệu kỹ thuật', timeframeNote:'PTKT theo giờ / ngày / tuần / tháng', hour:'Giờ', day:'Ngày', week:'Tuần', month:'Tháng', trend:'Xu hướng', zoneState:'Trạng thái quá mua/bán', setup:'Thiết lập', bollinger:'Bollinger Band', structure:'Cấu trúc', currentSupport:'Hỗ trợ hiện tại', nextSupport:'Hỗ trợ tiếp theo', currentResistance:'Kháng cự hiện tại', nextResistance:'Kháng cự tiếp theo', noStrategy:'Chưa có chiến lược cache cho mã này. Theo dõi vùng hỗ trợ/kháng cự.', faNoData:'Chưa có dữ liệu báo cáo định giá cho mã này trong file tuần.', faTitle:'Phân tích cơ bản', faAvgAll:'Trung bình tất cả BC', faReports:'báo cáo', faMedian:'Trung vị', faDiscount:'Chiết khấu (%)', faBuyPrice:'Giá mua', faTargetAfterDiscount:'Mục tiêu sau CK', faExpectedProfit:'Lợi nhuận kỳ vọng', faTargetPrice:'Giá mục tiêu', faStopLoss:'Cắt lỗ', faBuyRange:'Vùng mua', currentPriceLabel:'Giá hiện tại', entryPoint:'Điểm mua', resistanceZone:'Vùng cản', rowBuy:'MUA', rowWatch:'THEO DÕI', rowAvoid:'LOẠI TRỪ' },
+      en: { stocks:'Stocks', warrants:'Warrants', news:'News', marketOverview:'Market Overview', watchlist:'Watchlist', add:'Add', remove:'Remove from watchlist', strategyFilter:'Strategy Filter', technical:'Technical Analysis', fundamental:'Fundamental Analysis', warrantWatch:'Warrant Watchlist', newsFlow:'News Feed', disclaimer:'Disclaimer: Data is for reference only and is not investment advice. Users are responsible for their own investment decisions.', close:'Close', detailStock:'Stock Detail', detailCw:'Warrant Detail', helpTitle:'Quick Help', online:'Online', loadingPrice:'Loading price data...', loadingWarrant:'Loading warrant data...', stockPlaceholder:'Search stock symbol, e.g. VNM, MSN, TCB...', warrantPlaceholder:'Search warrant code, e.g. CMWG2511...', currentPrice:'Current Price', changePct:'Change %', volume:'Volume', investmentStrategy:'Investment Strategy', technicalSignal:'Technical Signal', timeframeNote:'Technical analysis by hour / day / week / month', hour:'Hour', day:'Day', week:'Week', month:'Month', trend:'Trend', zoneState:'Overbought/Oversold', setup:'Setup', bollinger:'Bollinger Band', structure:'Structure', currentSupport:'Current Support', nextSupport:'Next Support', currentResistance:'Current Resistance', nextResistance:'Next Resistance', noStrategy:'No cached strategy for this symbol. Track support/resistance zones.', faNoData:'No cached valuation reports for this symbol this week.', faTitle:'Fundamental Analysis', faAvgAll:'Average target', faReports:'reports', faMedian:'Median', faDiscount:'Discount (%)', faBuyPrice:'Buy price', faTargetAfterDiscount:'Target after discount', faExpectedProfit:'Expected return', faTargetPrice:'Target price', faStopLoss:'Stop loss', faBuyRange:'Buy range', currentPriceLabel:'Current price', entryPoint:'Entry', resistanceZone:'Resistance zone', rowBuy:'BUY', rowWatch:'WATCH', rowAvoid:'EXCLUDE' }
+    };
+    let currentLang = (() => { try { return localStorage.getItem('lh.lang') || 'vi'; } catch(_) { return 'vi'; } })();
+    function L(key){ return (LANG_TEXT[currentLang] && LANG_TEXT[currentLang][key]) || LANG_TEXT.vi[key] || key; }
+    function setText(selector, text){ const el=document.querySelector(selector); if(el) el.textContent=text; }
+    function applyLanguage(lang=currentLang){
+      currentLang = lang === 'en' ? 'en' : 'vi';
+      const en = currentLang === 'en';
+      try{localStorage.setItem('lh.lang', currentLang);}catch(_){}
+      document.documentElement.lang=currentLang;
+      elements.langViBtn?.classList.toggle('active', !en);
+      elements.langEnBtn?.classList.toggle('active', en);
+      const set = (sel, text) => { const el=document.querySelector(sel); if(el) el.textContent=text; };
+      set('[data-tab=stocks]', L('stocks'));
+      set('[data-tab=warrants]', L('warrants'));
+      set('[data-tab=news]', L('news'));
+      set('#stocksPanel .market-panel > .section-head:nth-of-type(1) h3', L('marketOverview'));
+      set('#marketStatus', elements.marketStatus?.textContent || '');
+      const marketHeads=[...document.querySelectorAll('#stocksPanel .market-panel .section-head h3')]; if(marketHeads[1]) marketHeads[1].textContent=L('watchlist');
+      set('#stockFilterBoard h3', L('strategyFilter'));
+      set('#warrantsPanel h3', L('warrantWatch'));
+      set('#newsPanel h3', L('newsFlow'));
+      if(elements.marketStatus && /dang|loading|dữ|du lieu|giá|gia/i.test(elements.marketStatus.textContent)) elements.marketStatus.textContent = en ? 'Loading price data...' : 'Dang tai du lieu gia...';
+      if(elements.warrantStatus && /dang|loading|dữ|du lieu/i.test(elements.warrantStatus.textContent)) elements.warrantStatus.textContent = en ? 'Loading warrant data...' : 'Dang tai du lieu chung quyen...';
+      if(elements.statusText && /dang|loading/i.test(elements.statusText.textContent)) elements.statusText.textContent = en ? 'Loading...' : 'Dang tai...';
+      elements.stockSearchBtn.textContent=L('add'); elements.warrantAddBtn.textContent=L('add'); elements.stockRemoveBtn.textContent=L('remove'); elements.warrantRemoveBtn.textContent=L('remove');
+      elements.closeDetailBtn.textContent=L('close'); elements.closeWarrantBtn.textContent=L('close'); elements.removeDetailBtn.textContent=L('remove');
+      elements.stockSearchInput.placeholder=L('stockPlaceholder'); elements.warrantSearchInput.placeholder=L('warrantPlaceholder');
+      set('[data-filter-mode=technical]', L('technical')); set('[data-filter-mode=fundamental]', L('fundamental'));
+      set('#prevPageBtn', en ? 'Prev' : 'Lui'); set('#goPageBtn', en ? 'Go' : 'Di toi'); set('#nextPageBtn', en ? 'Next' : 'Tiep');
+      const dis=document.querySelector('.disclaimer-box'); if(dis) dis.textContent=L('disclaimer');
+      if(elements.apiStatus) elements.apiStatus.textContent=L('online');
+      applyTheme(document.body.classList.contains('light-theme') ? 'light' : 'dark');
+      document.querySelectorAll('.empty').forEach(el=>{ if(en){ el.textContent = el.textContent.replace(/Dang tai|Dang tải|Đang tải/gi,'Loading').replace(/Khong co du lieu|Không có dữ liệu/gi,'No data'); }});
+      renderCategories(); if (elements.stockFilterGrid && document.getElementById('stocksPanel')?.classList.contains('active')) loadStockFilters(currentFilterMode); if (filteredItems.length || allItems.length) renderNews(filteredItems.length ? filteredItems : allItems); if (warrantItems.length) renderWarrants(); if(activeDetailTicker) openDetail(activeDetailTicker); if(activeWarrantCode && elements.warrantModal?.classList.contains('open')) openWarrantDetail(activeWarrantCode);
+    }
+    function formatTime(value) { if (!value) return 'Không rõ thời gian'; const raw = String(value).trim(); const d = new Date(raw); if (!Number.isNaN(d.getTime())) { const now = new Date(); const tz = 'Asia/Ho_Chi_Minh'; const sameDay = d.toLocaleDateString('vi-VN', { timeZone: tz }) === now.toLocaleDateString('vi-VN', { timeZone: tz }); const opts = sameDay ? { timeZone: tz, hour: '2-digit', minute: '2-digit' } : { timeZone: tz, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }; return d.toLocaleString('vi-VN', opts).replace(',', ' •'); } return raw.replace(/^[A-Za-z]{3},\s*/,'').replace(/\s*\+0700$/,'').replace(/GMT\+7|GMT\+0700/,'').trim(); }
+    function stripHtmlTags(value) { return String(value ?? '').replace(/<[^>]*>/g, ' ').replace(/\*\*(.*?)\*\*/g, '$1').replace(/__(.*?)__/g, '$1').replace(/\s+/g, ' ').trim(); }
+    function highlightNewsNumbers(text='') { return escapeHtml(text).replace(/((?:\d{1,3}(?:[.,]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|tỷ|triệu|nghìn|đồng|VND|USD|cp|cổ phiếu|lần|x|điểm|ha|MW|kWh|năm|tháng|ngày)?)/gi, '<b class="news-number">$1</b>'); }
+    function inferCategory(item) { const explicit = String(item.category || item.category_name || '').trim(); if (DEFAULT_CATEGORIES.includes(explicit)) return explicit; const text = `${item.title || ''} ${item.snippet || ''} ${item.source || ''}`.toLowerCase(); if (/phạt|xử phạt|khởi tố|vi phạm|điều tra|pháp luật|thao túng|bắt giữ|ủy ban chứng khoán|khai sai thuế/.test(text)) return 'Pháp luật'; if (/bất động sản|địa ốc|nhà ở|khu công nghiệp|vinhome|novaland|vhm|vic|vre|nvl|kdh|pdr|dxg|dig|nlg/.test(text)) return 'Bất động sản'; if (/ngân hàng|bank|lãi suất|tín dụng|nợ xấu|nhnn|omo|vcb|bid|ctg|tcb|vpb|mbb|acb|stb|hdb|vib/.test(text)) return 'Ngân hàng'; if (/gdp|cpi|lạm phát|tỷ giá|xuất khẩu|nhập khẩu|fdi|pmi|vĩ mô|kinh tế việt nam|ngân sách|trái phiếu|tăng trưởng/.test(text)) return 'Vĩ mô'; if (/fed|dow jones|nasdaq|s&p|trung quốc|mỹ|châu âu|nhật bản|hàn quốc|quốc tế|toàn cầu|gold|bitcoin/.test(text)) return 'Quốc tế'; if (/doanh nghiệp|lợi nhuận|doanh thu|cổ tức|đhcđ|kế hoạch kinh doanh|báo cáo tài chính|kqkd|lãi ròng|quý 1|quý i|hpg|fpt|mwg|msn|vnm|gas|vjc|gmd|dgc|ree|pvoil|pv oil/.test(text)) return 'Doanh nghiệp'; if (/vn-index|vnindex|hnx-index|upcom|chứng khoán|cổ phiếu|thị trường|thanh khoản|khối ngoại|tự doanh|phái sinh|margin|niêm yết|hose|hnx|upcom/.test(text)) return 'Chứng khoán'; return 'Khác'; }
+    function pageToTab(path = window.location.pathname) { if (path.startsWith('/warrants')) return 'warrants'; if (path.startsWith('/news-page')) return 'news'; return 'stocks'; }
+    function switchTab(tab, push = false) { const paths = { stocks: '/stocks', warrants: '/warrants', news: '/news-page' }; elements.tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab)); elements.stocksPanel.classList.toggle('active', tab === 'stocks'); elements.warrantsPanel.classList.toggle('active', tab === 'warrants'); elements.newsPanel.classList.toggle('active', tab === 'news'); if (push && paths[tab]) history.pushState({ tab }, '', paths[tab]); if (push && typeof loadData === 'function') loadData(false, true); }
+    
+    const CATEGORY_EN = { 'Tổng hợp':'All', 'Chứng khoán':'Stocks', 'Ngân hàng':'Banks', 'Bất động sản':'Real Estate', 'Doanh nghiệp':'Companies', 'Vĩ mô':'Macro', 'Quốc tế':'Global', 'Pháp luật':'Legal', 'Khác':'Other' };
+    const CATEGORY_VI_BY_EN = Object.fromEntries(Object.entries(CATEGORY_EN).map(([vi,en]) => [en, vi]));
+    function categoryLabel(cat) { return currentLang === 'en' ? (CATEGORY_EN[cat] || cat) : (CATEGORY_VI_BY_EN[cat] || cat); }
+    function newsText(vi, en) { return currentLang === 'en' ? en : vi; }
+
+    function renderCategories() { elements.categoryBar.innerHTML = DEFAULT_CATEGORIES.map(cat => `<button class="chip-btn ${cat === activeCategory ? 'active' : ''}" data-cat="${escapeHtml(cat)}">${escapeHtml(categoryLabel(cat))}</button>`).join(''); elements.categoryBar.querySelectorAll('[data-cat]').forEach(btn => btn.addEventListener('click', () => { activeCategory = btn.dataset.cat; renderCategories(); applyFilters(); })); }
+    function formatNumber(value, digits = 2) { const n = Number(value); if (Number.isNaN(n)) return '-'; return n.toLocaleString('vi-VN', { minimumFractionDigits: digits, maximumFractionDigits: digits }); }
+    function formatVolume(value) { const n = Number(value || 0); if (!n) return '-'; return n.toLocaleString('vi-VN'); }
+    function formatPrice(value) { const n = Number(value || 0); if (!n) return '-'; return n.toLocaleString('vi-VN', { maximumFractionDigits: 0 }); }
+    function formatVndPrice(value) { const n = Number(value || 0); if (!n) return '-'; return `${n.toLocaleString('vi-VN', { maximumFractionDigits: 0 })}đ`; }
+    function formatPct(value, digits = 1) { const n = Number(value); if (Number.isNaN(n)) return '-'; return `${n.toLocaleString('vi-VN', { minimumFractionDigits: digits, maximumFractionDigits: digits })}%`; }
+    function median(values) { const arr = values.filter(v => Number.isFinite(v)).sort((a,b) => a-b); if (!arr.length) return null; const mid = Math.floor(arr.length / 2); return arr.length % 2 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2; }
+    function normalizeReportTarget(target, referencePrice = 0) { let n = Number(target || 0); const price = Number(referencePrice || 0); if (price > 0 && n > 0 && n < price * 0.45 && price * 0.8 <= n * 10 && n * 10 <= price * 3.5) n *= 10; return n; }
+    function renderFundamentalPanel(payload, averageItem = null) { const items = Array.isArray(payload?.items) ? payload.items : []; if (!items.length) return `<div class="fundamental-panel"><div class="empty">${escapeHtml(L('faNoData'))}</div></div>`; const rawDefaultBuy = Number((marketItems.find(x => x.ticker === payload?.symbol)?.price) || averageItem?.price || 0); const defaultBuy = rawDefaultBuy > 0 && rawDefaultBuy < 1000 ? rawDefaultBuy * 1000 : rawDefaultBuy; const targets = items.map(x => normalizeReportTarget(x.target_price, defaultBuy)).filter(v => Number.isFinite(v) && v > 0); const localAvg = targets.length ? targets.reduce((a,b)=>a+b,0) / targets.length : null; const avg = Number(averageItem?.avgTargetPrice || 0) || localAvg; const med = median(targets); const reportCount = Number(averageItem?.reportCount || 0) || targets.length; const panelId = `fundCalc_${Date.now()}`; const cards = items.map(row => { const normalizedTarget = normalizeReportTarget(row.target_price, defaultBuy); const buyLow = normalizeReportTarget(row.buy_low, defaultBuy); const buyHigh = normalizeReportTarget(row.buy_high, defaultBuy); const stopLoss = normalizeReportTarget(row.stop_loss, defaultBuy); const buyRange = buyLow && buyHigh && buyLow !== buyHigh ? `${formatPrice(buyLow)} - ${formatPrice(buyHigh)}` : formatPrice(buyLow || buyHigh); return `<div class="fundamental-card"><div class="fundamental-top"><span class="broker-pill">${escapeHtml(row.broker || row.source || '-')}</span><span class="fundamental-date">${escapeHtml(row.report_date || '-')}</span></div><div class="fundamental-title">${escapeHtml(row.title || '')}</div><div class="fundamental-metrics"><div class="fundamental-metric"><span>${escapeHtml(L('faTargetPrice'))}</span><b>${escapeHtml(formatPrice(normalizedTarget))}</b></div><div class="fundamental-metric"><span>${escapeHtml(L('faStopLoss'))}</span><b>${escapeHtml(formatPrice(stopLoss))}</b></div><div class="fundamental-metric"><span>${escapeHtml(L('faBuyRange'))}</span><b>${escapeHtml(buyRange)}</b></div></div></div>`; }).join(''); setTimeout(() => bindFundamentalCalc(panelId, avg || med || 0), 0); return `<div class="fundamental-panel" id="${panelId}">
+        <div class="analysis-title"><div><h4>${escapeHtml(L('faTitle'))}</h4></div></div>
+        <div class="fundamental-tools">
+          <div class="fundamental-tool"><span>${escapeHtml(L('faAvgAll'))}</span><b>${escapeHtml(formatPrice(avg))}</b><small>${escapeHtml(String(reportCount))} ${escapeHtml(L('faReports'))}</small></div>
+          <div class="fundamental-tool"><span>${escapeHtml(L('faMedian'))}</span><b>${escapeHtml(formatPrice(med))}</b></div>
+          <div class="fundamental-tool"><span>${escapeHtml(L('faDiscount'))}</span><input data-discount type="number" value="15" min="0" max="80" step="1"></div>
+          <div class="fundamental-tool"><span>${escapeHtml(L('faBuyPrice'))}</span><input data-buy-price type="number" value="${defaultBuy ? Math.round(defaultBuy) : ''}" step="100"></div>
+          <div class="fundamental-tool"><span>${escapeHtml(L('faTargetAfterDiscount'))}</span><b data-target-result>-</b></div>
+          <div class="fundamental-tool"><span>${escapeHtml(L('faExpectedProfit'))}</span><b data-profit-result>-</b></div>
+        </div>
+        <div class="fundamental-list">${cards}</div>
+      </div>`; }
+    function bindFundamentalCalc(panelId, baseTarget) { const root = document.getElementById(panelId); if (!root) return; const discountEl = root.querySelector('[data-discount]'); const buyEl = root.querySelector('[data-buy-price]'); const targetEl = root.querySelector('[data-target-result]'); const profitEl = root.querySelector('[data-profit-result]'); const recalc = () => { const discount = Math.max(0, Math.min(80, Number(discountEl?.value || 0))); let buy = Number(buyEl?.value || 0); if (buy > 0 && buy < 1000) buy = buy * 1000; const target = baseTarget ? baseTarget * (1 - discount / 100) : 0; const profitPct = buy > 0 && target > 0 ? ((target / buy - 1) * 100) : null; if (targetEl) targetEl.textContent = target ? formatPrice(target) : '-'; if (profitEl) { profitEl.textContent = profitPct === null ? '-' : `${profitPct >= 0 ? '+' : ''}${profitPct.toFixed(1)}%`; profitEl.className = profitPct === null ? '' : (profitPct >= 0 ? 'market-up' : 'market-down'); } }; discountEl?.addEventListener('input', recalc); buyEl?.addEventListener('input', recalc); recalc(); }
+    async function loadFundamentalSignals(symbol) { try { const res = await fetch(`/data/fundamental_signals.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) return { items: [], status: 'error' }; const payload = await res.json(); const sym = String(symbol || '').toUpperCase(); const items = (payload.items || payload.signals || []).filter(x => String(x.symbol || '').toUpperCase() === sym).slice(0,50); return { symbol: sym, items, status: 'ok' }; } catch (_) { return { items: [], status: 'error' }; } }
+    async function loadFundamentalAverage(symbol) { try { const res = await fetch(`/data/fundamental_top_upside.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) return null; const payload = await res.json(); return (payload.items || []).find(x => String(x.symbol || '').toUpperCase() === String(symbol || '').toUpperCase()) || null; } catch (_) { return null; } }
+    async function loadFundamentalAveragesBySymbols(symbols = []) { const wanted = symbols.map(x => String(x || '').toUpperCase()).filter(Boolean); if (!wanted.length) return {}; try { const payload = await Promise.all(wanted.map(sym => loadFundamentalAverage(sym))); const out = {}; payload.forEach(item => { if (item?.symbol) out[String(item.symbol).toUpperCase()] = item; }); return out; } catch (_) { return {}; } }
+    async function loadIndexOverview() { if (!elements.indexOverview) return; try { const res = await fetch(`/data/market_overview.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('overview'); const payload = await res.json(); const items = Array.isArray(payload?.items) ? payload.items : []; elements.indexOverview.innerHTML = items.length ? items.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.change || 0) > 0 ? '+' : ''; const pctSign = Number(item.changePct || 0) > 0 ? '+' : ''; return `<div class="index-card"><span>${escapeHtml(item.label || item.symbol || '')}</span><b class="${cls}">${escapeHtml(formatNumber(item.close))}</b><small class="${cls}">${sign}${escapeHtml(formatNumber(item.change))} • ${pctSign}${escapeHtml(formatNumber(item.changePct))}%</small></div>`; }).join('') : '<div class="index-card"><span>Market Overview</span><b>-</b><small>Chưa có dữ liệu chỉ số</small></div>'; } catch (_) { elements.indexOverview.innerHTML = '<div class="index-card"><span>Market Overview</span><b>-</b><small>Không tải được dữ liệu chỉ số</small></div>'; } }
+    function getChangeClass(change) { const n = Number(change || 0); if (n > 0) return 'market-up'; if (n < 0) return 'market-down'; return 'market-flat'; }
+    
+    function warrantTextViEn(vi, en) { return currentLang === 'en' ? en : vi; }
+    function translateWarrantValue(text='') {
+      const raw = String(text || '');
+      if (currentLang !== 'en') return raw;
+      const map = [
+        ['Rất cao','Very high'], ['Trung bình cao','Medium-high'], ['Trung bình','Medium'], ['Cao','High'],
+        ['Tránh nếu không có sóng mạnh','Avoid unless strong move'], ['Chỉ phù hợp trading ngắn','Short-term trading only'], ['Tương đối tốt','Relatively good'], ['Có thể theo dõi','Watchable'], ['Theo dõi','Watch'],
+        ['Sắp đáo hạn, time decay mạnh','Near expiry, strong time decay'], ['Thời gian còn lại ngắn','Short time remaining'], ['Đang OTM xa','Deep OTM'], ['Đang OTM','OTM'], ['ITM và còn thời gian','ITM with time remaining'], ['Đang ITM','ITM'], ['Spread rộng, thanh khoản rủi ro','Wide spread, liquidity risk'], ['Spread tương đối tốt','Relatively good spread'], ['Cần cổ phiếu cơ sở tăng mạnh mới hòa vốn','Underlying must rise strongly to breakeven'], ['Khoảng cách hòa vốn khá xa','Breakeven gap is far'], ['Giá cơ sở đang trên/vùng hòa vốn','Underlying is at/above breakeven'], ['Chưa có cảnh báo đặc biệt','No special warning']
+      ];
+      return map.reduce((out, pair) => out.replaceAll(pair[0], pair[1]), raw);
+    }
+
+    function getWarrantClass(state) { const s = String(state || '').toUpperCase(); if (s === 'ITM') return 'warrant-itm'; if (s === 'ATM') return 'warrant-atm'; return 'warrant-otm'; }
+    function renderWarrants() {
+      if (!elements.warrantGrid) return;
+      const display = warrantItems.filter(item => warrantWatchSymbols.includes(String(item.code || '').toUpperCase()));
+      elements.warrantStatus.textContent = !authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Đăng nhập để dùng danh mục chứng quyền theo account.','Login to use account warrant watchlist.') : (warrantWatchSymbols.length ? `${warrantTextViEn('Đang hiển thị','Showing')} ${display.length} ${warrantTextViEn('mã chứng quyền','warrants')}` : warrantTextViEn('Danh mục chứng quyền đang trống. Thêm mã để theo dõi.','Warrant watchlist is empty. Add codes to track.')));
+      elements.warrantGrid.innerHTML = display.length ? display.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<span class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</span></strong><div class="warrant-row"><span>${warrantTextViEn('Giá hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="warrant-row"><span>${warrantTextViEn('Ngày còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft ?? '-')}</b></div></div>`; }).join('') : `<div class="empty">${!authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Vui lòng đăng nhập ở trang Account để xem danh mục chứng quyền.','Please login on Account page to view warrant watchlist.') : warrantTextViEn('Danh mục chứng quyền đang trống.','Warrant watchlist is empty.'))}</div>`; elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
+    }
+    function openWarrantDetail(code) {
+      const item = warrantItems.find(x => String(x.code || '').toUpperCase() === String(code || '').toUpperCase());
+      if (!item) return;
+      activeWarrantCode = String(item.code || code || '').toUpperCase();
+      selectedWarrant = activeWarrantCode;
+      const inWatch = warrantWatchSymbols.includes(activeWarrantCode);
+      if (elements.addWarrantDetailBtn) { elements.addWarrantDetailBtn.style.display = inWatch ? 'none' : ''; elements.addWarrantDetailBtn.textContent = warrantTextViEn('Thêm vào danh mục','Add to watchlist'); }
+      if (elements.removeWarrantDetailBtn) { elements.removeWarrantDetailBtn.style.display = inWatch ? '' : 'none'; elements.removeWarrantDetailBtn.textContent = warrantTextViEn('Xóa khỏi danh mục','Remove from watchlist'); }
+      const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+      elements.warrantTitle.textContent = item.code;
+      elements.warrantSub.textContent = `${item.underlying || '-'} • ${item.moneyness || '-'}`;
+      elements.warrantStats.innerHTML = `<div class="detail-summary"><div class="detail-price-card"><div class="label">${warrantTextViEn('Giá hiện tại','Current price')}</div><div class="value ${cls}">${escapeHtml(formatPrice(item.marketPrice || item.lastPrice || item.fairValue))}</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('% thay đổi','Change %')}</div><div class="value ${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('Mã cơ sở','Underlying')}</div><div class="value">${escapeHtml(item.underlying || '-')}</div></div></div><div class="detail-table"><div class="detail-row"><span>${warrantTextViEn('Giá cơ sở','Underlying price')}</span><b>${escapeHtml(formatPrice(item.underlyingPrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá thực hiện','Exercise price')}</span><b>${escapeHtml(formatPrice(item.exercisePrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đòn bẩy','Leverage')}</span><b>${escapeHtml(formatNumber(item.leverage, 2))}x</b></div><div class="detail-row"><span>Bid / Ask</span><b>${escapeHtml(formatPrice(item.bid))} / ${escapeHtml(formatPrice(item.ask))}</b></div><div class="detail-row"><span>Spread</span><b>${escapeHtml(formatNumber(item.spreadPct, 2))}%</b></div><div class="detail-row"><span>Volume</span><b>${escapeHtml(formatVolume(item.volume))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị nội tại','Intrinsic value')}</span><b>${escapeHtml(formatPrice(item.intrinsicValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị thời gian','Time value')}</span><b>${escapeHtml(formatPrice(item.timeValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Rủi ro','Risk')}</span><b>${escapeHtml(translateWarrantValue(item.riskLevel || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Tín hiệu','Signal')}</span><b>${escapeHtml(translateWarrantValue(item.advancedSignal || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đáo hạn','Maturity')}</span><b>${escapeHtml(item.maturityDate || '-')}</b></div><div class="detail-row"><span>${warrantTextViEn('Còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft || '-')} ${warrantTextViEn('ngày','days')}</b></div></div><div class="stat-card" style="margin-top:12px;"><div class="label">${warrantTextViEn('Ghi chú','Note')}</div><div class="value" style="font-size:14px;line-height:1.5;">${escapeHtml(translateWarrantValue(item.analysisNote || ''))}</div></div>`;
+      elements.warrantModal.classList.add('open');
+    }
+    function searchWarrants() {
+      const q = String(elements.warrantSearchInput?.value || '').trim().toUpperCase();
+      selectedWarrant = '';
+      if (!q) { elements.warrantSuggest.classList.remove('open'); elements.warrantSuggest.innerHTML = ''; return; }
+      const found = warrantItems.filter(item => String(item.code || '').toUpperCase().includes(q) || String(item.underlying || '').toUpperCase().includes(q)).slice(0, 50);
+      elements.warrantSuggest.innerHTML = found.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div class="search-option" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<em class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</em></strong><span>${escapeHtml(item.underlying || '')} • ${warrantTextViEn('Hòa vốn','Breakeven')} ${escapeHtml(formatPrice(item.breakeven))} • ${warrantTextViEn('Còn','Left')} ${escapeHtml(item.daysLeft ?? '-')} ${warrantTextViEn('ngày','days')}</span></div>`; }).join('');
+      elements.warrantSuggest.classList.toggle('open', found.length > 0);
+      elements.warrantSuggest.querySelectorAll('[data-warrant]').forEach(option => option.addEventListener('click', async () => { selectedWarrant = option.dataset.warrant; elements.warrantSearchInput.value = selectedWarrant; elements.warrantSuggest.classList.remove('open'); await openWarrantDetail(selectedWarrant); }));
+    }
+    async function addWarrantToWatchlist(codeOverride = '') {
+      const code = String(codeOverride || activeWarrantCode || selectedWarrant || elements.warrantTitle?.textContent || elements.warrantSearchInput?.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+      if (!code) return;
+      if (!currentUserId) { elements.warrantStatus.textContent = warrantTextViEn('Vui lòng đăng nhập để lưu danh mục chứng quyền theo account.','Please login to save warrant watchlist.'); return; }
+      const exists = warrantItems.some(item => String(item.code || '').toUpperCase() === code);
+      if (!exists) { elements.warrantStatus.textContent = `${warrantTextViEn('Không tìm thấy mã','Symbol not found')} ${code}`; return; }
+      elements.warrantStatus.textContent = `${warrantTextViEn('Đã thêm','Added')} ${code} ${warrantTextViEn('vào danh mục','to watchlist')}`;
+      await setDoc(doc(db,'users',currentUserId,'warrantWatchlist',code),{code,enabled:true,updatedAt:serverTimestamp()},{merge:true});
+      if (!warrantWatchSymbols.includes(code)) warrantWatchSymbols.unshift(code);
+      activeWarrantCode = code; selectedWarrant = code;
+      elements.warrantSearchInput.value = '';
+      renderWarrants();
+      if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
+    }
+    async function removeWarrantFromWatchlist(codeOverride = '') {
+      const code = String(codeOverride || activeWarrantCode || selectedWarrant || elements.warrantTitle?.textContent || elements.warrantSearchInput?.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+      if (!code) return;
+      if (!currentUserId) { elements.warrantStatus.textContent = warrantTextViEn('Vui lòng đăng nhập để sửa danh mục chứng quyền.','Please login to edit warrant watchlist.'); return; }
+      try { await deleteDoc(doc(db,'users',currentUserId,'warrantWatchlist',code)); } catch (_) {}
+      warrantWatchSymbols = warrantWatchSymbols.filter(x => x !== code);
+      activeWarrantCode = code; selectedWarrant = code;
+      elements.warrantSearchInput.value = ''; renderWarrants();
+      elements.warrantStatus.textContent = `${warrantTextViEn('Đã xóa','Removed')} ${code} ${warrantTextViEn('khỏi danh mục','from watchlist')}`;
+      if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
+    }
+    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); renderWarrants(); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
+
+
+    
+    function translateStrategyText(text='') {
+      const raw = String(text || '');
+      if (currentLang !== 'en') return raw;
+      const exact = {
+        'Trend Pullback':'Trend Pullback',
+        'Support Rebound':'Support Rebound',
+        'Shakeout':'Shakeout'
+      };
+      if (exact[raw]) return exact[raw];
+      const map = [
+        ['Mua cổ phiếu đang nằm trong xu hướng tăng, chờ nhịp điều chỉnh về vùng hỗ trợ rồi vào khi lực hồi phục xuất hiện. Chiến lược ưu tiên cổ phiếu còn khỏe, không bắt dao rơi và tránh mã đã gãy xu hướng.','Buy stocks in an uptrend, wait for a pullback to support, then enter when recovery strength appears. Prioritizes strong stocks, avoids catching falling knives and broken trends.'],
+        ['Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.','Find stocks near strong support with signs of stopping the decline and starting to rebound. This is a secondary, rare setup; only suitable when entry is close to support and risk is clearly controlled.'],
+        ['Bắt nhịp hồi sau pha rũ hàng: giá thủng hỗ trợ ngắn hạn để loại bỏ lực yếu, sau đó kéo ngược lại vùng hỗ trợ cũ. Setup này biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.','Capture the rebound after a shakeout: price breaks short-term support to flush weak hands, then pulls back above the old support zone. More volatile; requires tight stops and clear returning money flow.'],
+        ['Hiện mã đạt tín hiệu mua theo cache.','Shows symbols with cached buy signals.'],
+        ['Hiện mã gần đạt, cần chờ thêm tín hiệu xác nhận.','Shows near-qualified symbols that need confirmation.'],
+        ['Hiện mã gần đạt, chưa mua.','Shows near-qualified symbols, not buy yet.'],
+        ['Hiện mã đạt tín hiệu mua rũ theo cache.','Shows symbols with cached shakeout-buy signals.'],
+        ['Hiện mã cần theo dõi thêm, chưa mua.','Shows symbols to watch further, not buy yet.'],
+        ['Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro.','Not shown in the buy list; only warns if cache flags risk.'],
+        ['Đang dùng làm chiến lược chính','Primary strategy in use'], ['Setup phụ, tín hiệu hiếm','Secondary setup, rare signal'], ['Có tiềm năng, cần kiểm soát rủi ro','Potential setup, requires risk control'],
+        ['lệnh','trades'], ['tổng PnL','total PnL'], ['Mẫu ít, chưa đủ làm chiến lược chính','Small sample, not enough for a primary strategy'], ['Mua rũ','Shakeout buy'], ['theo cache','from cache'], ['cần theo dõi thêm','needs further watch'], ['chưa mua','not buy yet'], ['khuyến nghị','recommendation'], ['Không hiện','Not shown']
+      ];
+      return map.reduce((out, pair) => out.replaceAll(pair[0], pair[1]), raw);
+    }
+    function strategyLabel(col, field='shortName') { return translateStrategyText(col?.[field] || col?.shortName || col?.name || ''); }
+
+    function strategyVisualSvg(style='primary') {
+      const color = style === 'danger' ? '#ff7d7d' : (style === 'warning' ? '#ffb454' : (style === 'research' ? '#a68bff' : '#4ef0c0'));
+      return `<svg viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C35 31 48 22 72 25 C94 28 108 12 132 17 C154 21 164 8 188 11 C210 14 222 7 240 5" fill="none" stroke="${color}" stroke-width="3"/><path d="M0 40 L240 40" stroke="rgba(151,170,214,.22)" stroke-dasharray="5 5"/><circle cx="188" cy="11" r="4" fill="${color}"/></svg>`;
+    }
+
+    function renderStrategyTooltip(col) {
+      const indicators = translateStrategyText(col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S');
+      const m = col.tooltipMetrics || {};
+      const validation = [
+        `Win rate: ${m.winRate || '-'}`,
+        `${currentLang === 'en' ? 'Average Return' : 'Lợi nhuận TB'}: ${translateStrategyText(m.averageReturn || '-')}`,
+        `${currentLang === 'en' ? 'Total Return' : 'Tổng lợi nhuận'}: ${translateStrategyText(m.totalReturn || '-')}`
+      ].join('<br>');
+      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>${currentLang === 'en' ? 'Strategy' : 'Chiến lược'}:</b><br>${escapeHtml(translateStrategyText(col.summary || col.name || ''))}</div><div><b>${currentLang === 'en' ? 'Indicators' : 'Chỉ báo'}:</b><br>${escapeHtml(indicators)}</div><div><b>${currentLang === 'en' ? 'Validation' : 'Kiểm định'}:</b><br>${validation}</div></span></span>`;
+    }
+
+    function parsePriceMid(value) {
+      if (value === null || value === undefined || value === '') return null;
+      if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+      const nums = String(value).match(/\d+(?:[.,]\d+)?/g);
+      if (!nums || !nums.length) return null;
+      const values = nums.map(v => Number(v.replace(',', '.'))).filter(Number.isFinite);
+      if (!values.length) return null;
+      return values.reduce((a,b)=>a+b,0) / values.length;
+    }
+
+    function fmtOneDecimal(value) {
+      const n = parsePriceMid(value);
+      return n === null ? '-' : n.toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    }
+
+    function compactSymbols(items, max=6) {
+      const rows = Array.isArray(items) ? items : [];
+      if (!rows.length) return '<span class="strategy-empty">-</span>';
+      return rows.slice(0,max).map(x => {
+        const rawSymbol = x.symbol || x.ticker || '';
+        const symbol = escapeHtml(rawSymbol);
+        const currentRaw = x.lastClose ?? x.price ?? '-';
+        const entryRaw = x.entryPrice ?? x.entry ?? x.support ?? '-';
+        const targetRaw = x.takeProfit ?? x.target ?? '-';
+        const stopRaw = x.stopLoss ?? x.stop ?? '-';
+        const zone = Array.isArray(x.rsSnapshot?.supportZoneDay) && x.rsSnapshot.supportZoneDay.length >= 2 ? `${fmtOneDecimal(x.rsSnapshot.supportZoneDay[0])}-${fmtOneDecimal(x.rsSnapshot.supportZoneDay[1])}` : '';
+        const resistanceZone = Array.isArray(x.rsSnapshot?.resistanceZoneDay) && x.rsSnapshot.resistanceZoneDay.length >= 2 ? `${fmtOneDecimal(x.rsSnapshot.resistanceZoneDay[0])}-${fmtOneDecimal(x.rsSnapshot.resistanceZoneDay[1])}` : '';
+        const current = fmtOneDecimal(currentRaw);
+        const entry = fmtOneDecimal(entryRaw);
+        const target = fmtOneDecimal(targetRaw);
+        const stop = fmtOneDecimal(stopRaw);
+        const gap = Number(x.gapToEntryPct ?? x.distSupportPct);
+        const gapText = Number.isFinite(gap) ? `${gap >= 0 ? '+' : ''}${gap.toFixed(1)}%` : '';
+        const rank = x.rankScore ?? x.rank ?? '';
+        const title = escapeHtml([translateStrategyText(x.reason || ''), current !== '-' ? `${L('currentPriceLabel')}: ${current}` : '', entry !== '-' ? `${L('entryPoint')}: ${entry}` : '', zone ? `${L('faBuyRange')}: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `${L('resistanceZone')}: ${resistanceZone}` : '', stop !== '-' ? `${L('faStopLoss')}: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="mini-levels">${currentLang === 'en' ? 'Buy' : 'Mua'} <b>${escapeHtml(entry)}</b></span><span class="mini-levels"><span class="mini-target">T ${escapeHtml(target)}</span> · <span class="mini-stop">SL ${escapeHtml(stop)}</span></span></button>`;
+      }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
+    }
+
+    function getStrategyBucket(col, signalMap, state) {
+      const sig = signalMap[col.id] || signalMap[col.signalKey] || {};
+      if (state === 'buy') return sig.buy || sig.items || [];
+      if (state === 'watch') return sig.watch || sig.watchlist || [];
+      return sig.avoid || sig.reject || sig.rejects || [];
+    }
+
+    function renderStrategyMatrix(matrix, signalMap = {}) {
+      const columns = Array.isArray(matrix?.columns) ? matrix.columns : [];
+      if (!columns.length) return '';
+      const rows = [{ id: 'buy', label: L('rowBuy') }, { id: 'watch', label: L('rowWatch') }, { id: 'avoid', label: L('rowAvoid') }];
+      const heads = columns.map(col => `<th><div class="strategy-th"><span>${escapeHtml(strategyLabel(col))}</span>${renderStrategyTooltip(col)}</div></th>`).join('');
+      const body = rows.map(row => `<tr class="strategy-row-${row.id}"><th>${escapeHtml(row.label)}</th>${columns.map(col => `<td>${compactSymbols(getStrategyBucket(col, signalMap, row.id), row.id === 'avoid' ? 4 : 7)}</td>`).join('')}</tr>`).join('');
+      const mobile = `<div class="strategy-mobile-matrix">${columns.map((col, idx) => `<div class="strategy-mobile-block strategy-mobile-${idx}"><h5>${escapeHtml(strategyLabel(col))} ${renderStrategyTooltip(col)}</h5>${rows.map(row => `<div class="strategy-mobile-row"><b>${escapeHtml(row.label)}</b><span>${compactSymbols(getStrategyBucket(col, signalMap, row.id), 6)}</span></div>`).join('')}</div>`).join('')}</div>`;
+      return `<div class="strategy-card" style="grid-column:1/-1;"><div class="strategy-title"><div><h4>${currentLang === 'en' ? 'Technical Strategy Matrix' : 'Ma trận chiến lược kỹ thuật'}</h4></div></div><div class="strategy-table-wrap"><table class="strategy-matrix-table"><thead><tr><th>${currentLang === 'en' ? 'Status' : 'Trạng thái'}</th>${heads}</tr></thead><tbody>${body}</tbody></table>${mobile}</div></div>`;
+    }
+
+    function buildSignalMap(cache) {
+      const map = {};
+      const normalize = (s='') => String(s).toLowerCase();
+      const put = (id, bucket, arr) => { if (!map[id]) map[id] = { buy: [], watch: [], avoid: [] }; map[id][bucket].push(...(Array.isArray(arr) ? arr : [])); };
+      (cache.strategies || []).forEach(st => {
+        const id = st.id || '';
+        const name = normalize(st.name || id);
+        let key = id;
+        if (id === 'clean_split_a_bottom' || id === 'support_rebound_hunter') key = 'clean_split_a_bottom';
+        else if (id === 'shakeout_breakdown_rebound' || id === 'shakeout') key = 'shakeout_breakdown_rebound';
+        else if (id === 'b4_trend_pullback' || id === 'trend_pullback') key = 'b4_trend_pullback';
+        else if (name.includes('pullback') || name.includes('b4')) key = 'b4_trend_pullback';
+        else if (name.includes('shakeout') || name.includes('rũ')) key = 'shakeout_breakdown_rebound';
+        else if (name.includes('split') || name.includes('hỗ trợ') || name.includes('support')) key = 'clean_split_a_bottom';
+        put(key, 'buy', st.buy || []);
+        put(key, 'watch', st.watchlist || st.watch || st.items || []);
+        put(key, 'avoid', st.rejects || st.reject || st.avoid || []);
+      });
+      const raw = cache.strategies && !Array.isArray(cache.strategies) ? cache.strategies : null;
+      if (raw) Object.entries(raw).forEach(([name, st]) => {
+        let key = name.includes('B4') ? 'b4_trend_pullback' : (name.includes('Clean') ? 'clean_split_a_bottom' : name);
+        // Do not map V3 Plus6 Focused into Shakeout. Shakeout must only come from
+        // explicit shakeout_breakdown_rebound cache/scan.
+        if (name.includes('V3') || name.includes('Plus6')) return;
+        put(key, 'buy', st.buy || []); put(key, 'watch', st.watchlist || st.watch || []); put(key, 'avoid', st.rejects || st.reject || []);
+      });
+      return map;
+    }
+
+    async function renderTechnicalFilters(payload) {
+      if (!elements.stockFilterGrid) return;
+      const items = Array.isArray(payload?.items) ? payload.items : [];
+      elements.stockFilterStatus.textContent = '';
+      elements.stockFilterCriteria.innerHTML = '';
+      let coreStrategiesHtml = '<div class="empty">Đang tải ma trận chiến lược...</div>';
+      const setupHtml = items.length ? items.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${escapeHtml(x.setupGroup || '')}</span></div><div class="filter-metrics"><div class="filter-metric"><span>Giá</span><b>${escapeHtml(formatNumber(x.price))}</b></div><div class="filter-metric"><span>R/S</span><b>${escapeHtml(formatNumber(x.supportScore))}/${escapeHtml(formatNumber(x.resistanceScore))}</b></div><div class="filter-metric"><span>RR/Risk</span><b>${escapeHtml(formatNumber(x.riskReward))} / ${escapeHtml(formatNumber(x.riskPct))}%</b></div></div><div class="filter-reason">${escapeHtml(translateStrategyText(x.reason || ''))}</div>${x.warning ? `<div class="filter-warning">⚠ ${escapeHtml(x.warning)}</div>` : ''}</div>`).join('') : '<div class="empty">Chưa có mã đạt bộ lọc PTKT hiện tại.</div>';
+      try {
+        const matrixRes = await fetch(`/data/strategy_matrix_cache.json?ts=${Date.now()}`, { cache: 'no-store' });
+        const cacheRes = await fetch(`/data/strategy_results_cache.json?ts=${Date.now()}`, { cache: 'no-store' });
+        if (matrixRes.ok) {
+          const matrix = await matrixRes.json();
+          const cache = cacheRes.ok ? await cacheRes.json() : {};
+          coreStrategiesHtml = renderStrategyMatrix(matrix, buildSignalMap(cache));
+          elements.stockFilterStatus.textContent = '';
+          elements.stockFilterCriteria.innerHTML = '';
+          elements.stockFilterGrid.innerHTML = coreStrategiesHtml;
+          elements.stockFilterGrid.querySelectorAll('[data-filter-symbol]').forEach(card => card.addEventListener('click', () => openStockSymbol(card.dataset.filterSymbol)));
+          return;
+        }
+      } catch (_) {}
+      if (coreStrategiesHtml.includes('Đang tải ma trận')) {
+        elements.stockFilterStatus.textContent = 'PTKT: không tải được strategy_matrix_cache';
+        elements.stockFilterGrid.innerHTML = coreStrategiesHtml;
+        return;
+      }
+      elements.stockFilterGrid.innerHTML = coreStrategiesHtml + setupHtml;
+      elements.stockFilterGrid.querySelectorAll('[data-filter-symbol]').forEach(card => card.addEventListener('click', () => openStockSymbol(card.dataset.filterSymbol)));
+    }
+    async function renderFundamentalFilters(payload) {
+      if (!elements.stockFilterGrid) return;
+      const items = Array.isArray(payload?.items) ? payload.items : [];
+      elements.stockFilterStatus.textContent = '';
+      elements.stockFilterCriteria.innerHTML = '';
+      if (!items.length) { elements.stockFilterGrid.innerHTML = `<div class="empty">${currentLang === 'en' ? 'No FA data.' : 'Chưa có dữ liệu FA.'}</div>`; return; }
+      elements.stockFilterGrid.innerHTML = items.map(x => `<div class="filter-card" data-filter-symbol="${escapeHtml(x.symbol || '')}"><div class="filter-card-top"><strong>${escapeHtml(x.symbol || '')}</strong><span class="filter-badge">${currentLang === 'en' ? 'Avg upside' : 'Upside TB'} ${escapeHtml(formatPct(x.upsidePct, 1))}</span></div><div class="filter-metrics"><div class="filter-metric"><span>${currentLang === 'en' ? 'Current price' : 'Giá hiện tại'}</span><b>${escapeHtml(formatVndPrice(x.price))}</b></div><div class="filter-metric"><span>${currentLang === 'en' ? 'Avg target' : 'Target TB tất cả BC'}</span><b>${escapeHtml(formatVndPrice(x.avgTargetPrice))}</b></div><div class="filter-metric"><span>${currentLang === 'en' ? 'Reports' : 'Báo cáo'}</span><b>${escapeHtml(String(x.reportCount || 0))}</b></div></div><div class="filter-reason">${escapeHtml(x.latestReportDate || '')} • ${escapeHtml(x.name || x.latestTitle || (currentLang === 'en' ? 'Has upside in analyst reports' : 'Có dư địa theo báo cáo phân tích'))}</div></div>`).join('');
+      elements.stockFilterGrid.querySelectorAll('[data-filter-symbol]').forEach(card => card.addEventListener('click', () => openStockSymbol(card.dataset.filterSymbol)));
+    }
+    function renderCoreStrategies() {
+      if (!elements.stockFilterGrid) return;
+      elements.stockFilterStatus.textContent = '2 chiến lược core đang phát triển: V3 và Mua rũ target +6%';
+      elements.stockFilterCriteria.innerHTML = '• Đây là backtest nghiên cứu, không phải khuyến nghị mua bán<br>• Core dùng để theo dõi/phát triển tiếp, chưa tự động phát lệnh';
+      const strategies = [
+        { name: 'V3 Target 1R', tag: 'PTKT tham khảo', group: 'Sample 80 mã', desc: 'Chiến lược PTKT dùng MTF/filter trend-volume, risk khoảng 5%, target 1R. Hiệu quả trên sample chọn nhưng chưa generalize tốt sang midcap rộng.', metrics: [['OOS','20 lệnh'], ['Win-rate','60.00%'], ['Avg net','+0.57%'], ['Sum net','+11.31%']], rule: ['Score PTKT >= 70', 'Risk khoảng 5%', 'Target 1R', 'Filter MTF + red volume + close position'], symbols: ['Sample 80', 'tham khảo PTKT', 'không dùng broad midcap'] },
+        { name: 'Mua rũ Target +6%', tag: 'Core chính', group: 'VN30x + Midcap', desc: 'Chiến lược mua shakeout: giá đóng cửa thủng support phiên trước 2–4%, mua phiên kế tiếp, stop -4%, target +6%. Đây là nhánh chính để phát triển tiếp.', metrics: [['VN30x','WR 61.54%'], ['VN30 avg','+1.65%'], ['Midcap','WR 69.23%'], ['Mid avg','+2.55%']], rule: ['Support = support phiên trước', 'Close thủng support 2–4%', 'Mua phiên kế tiếp', 'Stop -4%, Target +6%; thực tế tối đa 26 phiên, phí 0.5%'], symbols: ['VN30x: MSN FPT LPB TPB VPB VRE', 'Midcap: LCG AAA APH BIC CTD FIT VIX VCG', 'Dùng khi regime không breakdown thật'] }
+      ];
+      elements.stockFilterGrid.innerHTML = `<div class="strategy-grid">${strategies.map(s => `<div class="strategy-card ${s.tag.includes('Core') ? 'core' : ''}"><div class="strategy-title"><div><h4>${escapeHtml(s.name)}</h4><div class="strategy-desc">${escapeHtml(s.group)}</div></div><span class="strategy-pill">${escapeHtml(s.tag)}</span></div><div class="strategy-desc">${escapeHtml(s.desc)}</div><div class="strategy-metrics">${s.metrics.map(m => `<div class="strategy-metric"><span>${escapeHtml(m[0])}</span><b>${escapeHtml(m[1])}</b></div>`).join('')}</div><div class="strategy-rule"><b>Rule/Giả định:</b><br>${s.rule.map(x => `• ${escapeHtml(x)}`).join('<br>')}</div><div class="strategy-symbols">${s.symbols.map(line => `<span>${escapeHtml(line).replace(/\b([A-Z]{2,4})\b/g, '<button type="button" class="strategy-symbol-inline" data-filter-symbol="$1" onclick="openStockSymbol(\'$1\');event.stopPropagation();">$1</button>')}</span>`).join('')}</div></div>`).join('')}</div>`;
+    }
+
+    async function loadStockFilters(mode = 'technical') {
+      if (!elements.stockFilterGrid) return;
+      currentFilterMode = mode;
+      if (mode === 'technical') {
+        renderTechnicalFilters({ items: [], totalCandidates: 0, criteria: [] });
+        elements.stockFilterStatus.textContent = currentLang === 'en' ? 'Technical: core strategies from cache; buy results are end-of-day cache output' : 'PTKT: hiển thị chiến lược core; kết quả mua sẽ lấy từ cache cuối phiên';
+        return;
+      }
+      elements.stockFilterStatus.textContent = currentLang === 'en' ? 'Loading FA filter...' : 'Đang tải bộ lọc FA...';
+      elements.stockFilterGrid.innerHTML = `<div class="empty">${currentLang === 'en' ? 'Loading filter...' : 'Đang tải bộ lọc...'}</div>`;
+      try {
+        const url = `/data/fundamental_top_upside.json?ts=${Date.now()}`;
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('filter');
+        const payload = await res.json();
+        await renderFundamentalFilters(payload);
+      } catch (_) {
+        elements.stockFilterStatus.textContent = 'Không tải được bộ lọc';
+        elements.stockFilterGrid.innerHTML = '<div class="empty error">Không tải được bộ lọc.</div>';
+      }
+    }
+
+    function inferSector(symbol = '') { const s = String(symbol || '').toUpperCase(); for (const [sector, symbols] of Object.entries(SECTOR_MAP)) { if (symbols.includes(s)) return sector; } return 'Khác'; }
+        function sectorLabel(sector){ const map={ 'Ngân Hàng':'Banks', 'Chứng Khoán':'Securities', 'BDS':'Real Estate', 'Thép':'Steel', 'Bán Lẻ & Thực Phẩm':'Retail & Food', 'Dầu Khí':'Oil & Gas', 'Năng Lượng':'Energy', 'Khác':'Other' }; let lang='vi'; try{ lang=localStorage.getItem('lh.lang')||'vi'; }catch(_){} return lang === 'en' ? (map[sector] || sector) : sector; }
+    function renderMarket(payload) { const incoming = Array.isArray(payload) ? payload : (Array.isArray(payload?.items) ? payload.items : []); const merged = [...marketItems]; incoming.forEach(item => { const ticker = String(item.ticker || '').toUpperCase(); const idx = merged.findIndex(x => String(x.ticker || '').toUpperCase() === ticker); if (idx >= 0) merged[idx] = item; else merged.push(item); }); marketItems = merged; const displayItems = marketItems.filter(item => watchSymbols.includes(String(item.ticker || '').toUpperCase())); elements.marketStatus.textContent = !authReady ? 'Đang kiểm tra đăng nhập...' : (!currentUserId ? 'Đăng nhập để dùng danh mục quan tâm theo account.' : (watchSymbols.length ? '' : 'Danh mục quan tâm đang trống. Thêm mã để theo dõi.')); if (!displayItems.length) { elements.marketGrid.innerHTML = `<div class="empty">${!authReady ? 'Đang kiểm tra đăng nhập...' : (!currentUserId ? 'Vui lòng đăng nhập ở trang Account để xem danh mục quan tâm.' : 'Danh mục quan tâm đang trống.')}</div>`; return; } const grouped = Object.fromEntries(SECTORS.map(s => [s, []])); displayItems.forEach(item => grouped[inferSector(item.ticker)].push(item)); elements.marketGrid.innerHTML = SECTORS.map(sector => `<div class="sector-board"><h4>${escapeHtml(sectorLabel(sector))}</h4><div class="sector-list">${grouped[sector].length ? grouped[sector].map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; return `<div class="mini-stock" data-ticker="${escapeHtml(item.ticker || '')}"><strong>${escapeHtml(item.ticker || '')}</strong><span class="stock-line"><span>${escapeHtml((()=>{try{return localStorage.getItem('lh.lang')==='en'?'Current Price':'Giá hiện tại'}catch(_){return 'Giá hiện tại'}})())}</span><b class="price ${cls}">${escapeHtml(formatNumber(item.price))}</b></span><span class="stock-line"><span>${escapeHtml((()=>{try{return localStorage.getItem('lh.lang')==='en'?'Change %':'% thay đổi'}catch(_){return '% thay đổi'}})())}</span><b class="${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</b></span></div>`; }).join('') : `<span class="muted">${((()=>{try{return localStorage.getItem('lh.lang')==='en'}catch(_){return false}})()) ? 'No symbols' : 'Chua co ma'}</span>`}</div></div>`).join(''); elements.marketGrid.querySelectorAll('[data-ticker]').forEach(card => card.addEventListener('click', () => openStockSymbol(card.dataset.ticker))); }
+    function computeFrameTechnical(item, frame) { const tech = item.technical || {}; const fin = item.financial || {}; const multipliers = { hour: { rsi: 0.96 }, day: { rsi: 1 }, week: { rsi: 1.02 }, month: { rsi: 1.04 } }; const m = multipliers[frame] || multipliers.day; const frameMap = { hour: { support: 'supportHour', resistance: 'resistanceHour', buy: 'buyPriceHour', sell: 'sellPriceHour', strategy: 'strategyHour' }, day: { support: 'supportDay', resistance: 'resistanceDay', buy: 'buyPrice', sell: 'sellPrice', strategy: 'strategy' }, week: { support: 'supportWeek', resistance: 'resistanceWeek', buy: 'buyPriceWeek', sell: 'sellPriceWeek', strategy: 'strategyWeek' }, month: { support: 'supportMonth', resistance: 'resistanceMonth', buy: 'buyPriceMonth', sell: 'sellPriceMonth', strategy: 'strategyMonth' } }; const current = frameMap[frame] || frameMap.day; const suffix = frame === 'hour' ? 'Hour' : frame === 'week' ? 'Week' : frame === 'month' ? 'Month' : 'Day'; const frameValue = (base, fallback=null) => frame === 'day' ? (tech[base] ?? fallback) : (tech[`${base}${suffix}`] ?? null); return { trend: String(tech.trend ?? 'Trung tính'), rsi: Math.max(0, Math.min(100, Number(frameValue('rsi14', tech.relativeStrength ?? tech.rsi14 ?? 50)) * (frame === 'day' || frame === 'hour' ? m.rsi : 1))), buyPrice: Number(tech[current.buy] ?? tech[current.support] ?? tech.buyPrice ?? tech.supportDay ?? 0), sellPrice: Number(tech[current.sell] ?? tech[current.resistance] ?? tech.sellPrice ?? tech.resistanceDay ?? 0), adx: Number(frameValue('adx14', 0)), ma10: Number(frameValue('ma10', 0)), ma20: Number(frameValue('ma20', tech.ma20 ?? 0)), ma50: Number(frameValue('ma50', tech.ma50 ?? 0)), ma200: Number(frameValue('ma200', tech.ma200 ?? 0)), pivot: Number(tech[`pivot${suffix}`] ?? tech.pivotDay ?? 0), support: Number(tech[`activeSupport${suffix}`] ?? tech[current.support] ?? tech.supportDay ?? 0), resistance: Number(tech[`activeResistance${suffix}`] ?? tech[current.resistance] ?? tech.resistanceDay ?? 0), nextSupport: Number(tech[`nextSupport${suffix}`] ?? tech.supportDay2 ?? 0), nextResistance: Number(tech[`nextResistance${suffix}`] ?? tech.resistanceDay2 ?? 0), supportLevels: tech[`supportLevels${suffix}`] || [], resistanceLevels: tech[`resistanceLevels${suffix}`] || [], srStatus: String(tech[`srStatus${suffix}`] || ''), atr: Number(tech.atr || 0), vwap: Number(tech[`vwap${suffix}`] || 0), donchianHigh: Number(tech[`donchianHigh${suffix}`] || 0), donchianLow: Number(tech[`donchianLow${suffix}`] || 0), donchianMid: Number(tech[`donchianMid${suffix}`] || 0), bbUpper: Number(frameValue('bbUpper', tech.bbUpper ?? 0) || 0), bbLower: Number(frameValue('bbLower', tech.bbLower ?? 0) || 0), bbPercent: Number(frameValue('bbPercent', tech.bbPercent ?? 0) || 0), zoneState: String(tech.zoneState || ''), setupType: String(tech.setupType || ''), volumeState: String(tech.volumeState || ''), signalScore: Number(tech.signalScore || 0), macd: Number(tech.macd || 0), signal: Number(tech.signal || 0), histogram: Number(tech.histogram || 0), plusDi: Number(frameValue('plusDi', tech.plusDi ?? 0) || 0), minusDi: Number(frameValue('minusDi', tech.minusDi ?? 0) || 0), marketStructure: String(tech[`marketStructure${suffix}`] || ''), pe: Number(fin.pe || 0), pb: Number(fin.pb || 0), financialStatus: String(fin.status || ''), strategy: String(tech[`recommendation${suffix}`] ?? tech.recommendation ?? tech[current.strategy] ?? tech.strategy ?? '') }; }
+    function openDetail(ticker) {
+      const item = marketItems.find(x => String(x.ticker || '').toUpperCase() === String(ticker || '').toUpperCase());
+      if (!item) return;
+      try {
+        activeDetailTicker = item.ticker;
+        if (location.pathname !== `/stocks/${encodeURIComponent(item.ticker)}`) history.pushState({ tab: 'stocks', ticker: item.ticker }, '', `/stocks/${encodeURIComponent(item.ticker)}`);
+        elements.addDetailBtn.textContent = watchSymbols.includes(item.ticker) ? (currentLang === 'en' ? 'Added' : 'Da them') : L('add');
+        elements.removeDetailBtn.textContent = L('remove');
+        elements.closeDetailBtn.textContent = L('close');
+        elements.detailTitle.textContent = item.ticker;
+        elements.detailSub.textContent = '';
+        const tech = item.technical || {};
+        const changeCls = getChangeClass(item.changePct);
+        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+        const val = (v, digits=2) => escapeHtml(formatNumber(v, digits));
+        const price = (v) => escapeHtml(formatNumber(v));
+        const label = (key) => escapeHtml(L(key));
+        const row = (name, value) => `<div class="detail-row"><span>${name}</span><b>${value}</b></div>`;
+        let fundamentalLoaded = false;
+        const renderTechnicalFrame = (frame = 'day') => {
+          const framed = computeFrameTechnical(item, frame);
+          const support = framed.support || tech.activeSupportDay || tech.supportDay || tech.support || 0;
+          const resistance = framed.resistance || tech.activeResistanceDay || tech.resistanceDay || tech.resistance || 0;
+          const technicalPane = document.querySelector('[data-analysis-pane="technical"]');
+          if (!technicalPane) return;
+          const notEnoughText = currentLang === 'en' ? 'Not enough data' : 'Chua du data';
+          const maPart = (value) => Number(value || 0) ? val(value) : notEnoughText;
+          const maLabel = (frame === 'week' || frame === 'month') ? 'MA10/20/50' : 'MA20/50/200';
+          const maText = (frame === 'week' || frame === 'month')
+            ? `${maPart(framed.ma10 ?? tech[`ma10${frame === 'week' ? 'Week' : 'Month'}`] ?? 0)} / ${maPart(framed.ma20 ?? tech[`ma20${frame === 'week' ? 'Week' : 'Month'}`] ?? 0)} / ${maPart(framed.ma50 ?? tech[`ma50${frame === 'week' ? 'Week' : 'Month'}`] ?? 0)}`
+            : `${maPart(framed.ma20 ?? tech.ma20 ?? 0)} / ${maPart(framed.ma50 ?? tech.ma50 ?? 0)} / ${maPart(framed.ma200 ?? tech.ma200 ?? 0)}`;
+          technicalPane.innerHTML = `<div class="technical-panel">
+            <div class="detail-actions">
+              <button type="button" class="chip-btn ${frame === 'hour' ? 'active' : ''}" data-frame="hour">${label('hour')}</button>
+              <button type="button" class="chip-btn ${frame === 'day' ? 'active' : ''}" data-frame="day">${label('day')}</button>
+              <button type="button" class="chip-btn ${frame === 'week' ? 'active' : ''}" data-frame="week">${label('week')}</button>
+              <button type="button" class="chip-btn ${frame === 'month' ? 'active' : ''}" data-frame="month">${label('month')}</button>
+            </div>
+            <div class="detail-table">
+              ${row('RSI', val(framed.rsi ?? tech.rsi14 ?? 0))}
+              ${row('BB', `${price(framed.bbLower || 0)} - ${price(framed.bbUpper || 0)}`)}
+              ${row('%BB', `${val((framed.bbPercent || 0) * 100)}%`)}
+              ${row('ADX', val(framed.adx || tech.adx14 || item.adx14 || 0))}
+              ${row(maLabel, maText)}
+              ${row(label('currentSupport'), price(support))}
+              ${row(label('currentResistance'), price(resistance))}
+            </div>
+          </div>`;
+          technicalPane.querySelectorAll('[data-frame]').forEach(btn => btn.addEventListener('click', () => renderTechnicalFrame(btn.dataset.frame)));
+        };
+        elements.detailStats.innerHTML = `
+          <div class="detail-summary">
+            <div class="detail-price-card"><div class="label">${label('currentPrice')}</div><div class="value ${changeCls}">${price(item.price)}</div></div>
+            <div class="detail-price-card"><div class="label">${label('changePct')}</div><div class="value ${changeCls}">${sign}${val(item.changePct)}%</div></div>
+            <div class="detail-price-card"><div class="label">${label('volume')}</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
+          </div>
+          <div class="analysis-switch">
+            <button type="button" class="analysis-tab-btn active" data-analysis-tab="technical"><strong>${label('technical')}</strong><span>${label('timeframeNote')}</span></button>
+            <button type="button" class="analysis-tab-btn" data-analysis-tab="fundamental"><strong>${currentLang === 'en' ? 'Fundamental Analysis' : 'Phân tích cơ bản'}</strong><span>${currentLang === 'en' ? 'Cached broker reports' : 'Dữ liệu báo cáo định giá cũ'}</span></button>
+          </div>
+          <div class="analysis-grid">
+            <div class="analysis-pane active" data-analysis-pane="technical"></div>
+            <div class="analysis-pane" data-analysis-pane="fundamental" id="fundamentalDetailPane"><div class="fundamental-panel"><div class="empty">Đang tải Fundamental Analysis...</div></div></div>
+          </div>`;
+        elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(btn => btn.addEventListener('click', () => {
+          const tab = btn.dataset.analysisTab;
+          elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(x => x.classList.toggle('active', x.dataset.analysisTab === tab));
+          elements.detailStats.querySelectorAll('[data-analysis-pane]').forEach(x => x.classList.toggle('active', x.dataset.analysisPane === tab));
+          if (tab === 'fundamental' && !fundamentalLoaded) loadFundamentalForDetail();
+        }));
+        const loadFundamentalForDetail = () => {
+          fundamentalLoaded = true;
+          Promise.all([loadFundamentalSignals(item.ticker), loadFundamentalAverage(item.ticker)]).then(([faPayload, faAvg]) => {
+            if (activeDetailTicker !== item.ticker) return;
+            const pane = document.getElementById('fundamentalDetailPane');
+            if (pane) pane.innerHTML = renderFundamentalPanel(faPayload, faAvg);
+          }).catch(() => { const pane = document.getElementById('fundamentalDetailPane'); if (pane) pane.innerHTML = '<div class="fundamental-panel"><div class="empty">Không tải được Fundamental Analysis.</div></div>'; });
+        };
+        renderTechnicalFrame('day');
+        elements.detailModal.classList.add('open');
+      } catch (err) {
+        console.error('openDetail failed', err);
+        elements.detailStats.innerHTML = `<div class="empty error">${currentLang === 'en' ? 'Cannot open stock detail right now.' : 'Khong mo duoc popup co phieu luc nay.'}</div>`;
+        elements.detailModal.classList.add('open');
+      }
+    }
+    function normalizeTextForCompare(text='') { return stripHtmlTags(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+    function removeDuplicateNewsLead(title='', snippet='') { const cleanTitle = stripHtmlTags(title || ''); let cleanSnippet = stripHtmlTags(snippet || ''); const normTitle = normalizeTextForCompare(cleanTitle); let normSnippet = normalizeTextForCompare(cleanSnippet); if (normTitle && normSnippet.startsWith(normTitle)) { cleanSnippet = cleanSnippet.slice(cleanTitle.length).replace(/^\s*[.。:：\-–—|]+\s*/, '').trim(); } const titleWords = normTitle.split(' ').filter(Boolean); if (titleWords.length >= 5) { for (let n = Math.min(titleWords.length, 14); n >= 5; n--) { const lead = titleWords.slice(0, n).join(' '); if (normSnippet.startsWith(lead)) { const rawWords = cleanSnippet.split(/\s+/); cleanSnippet = rawWords.slice(n).join(' ').replace(/^\s*[.。:：\-–—|]+\s*/, '').trim(); break; } } } return cleanSnippet; }
+    function renderNews(items) { filteredItems = items; const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE)); if (currentPage > totalPages) currentPage = totalPages; if (currentPage < 1) currentPage = 1; elements.pageInput.value = currentPage; elements.pageInfo.textContent = `${newsText('Trang','Page')} ${currentPage}/${totalPages}`; if (!items.length) { elements.newsList.innerHTML = `<div class="empty">${newsText('Không có tin phù hợp với bộ lọc hiện tại.','No news matches the current filter.')}</div>`; elements.statusText.textContent = newsText('Không có dữ liệu hiển thị','No data to display'); return; } const start = (currentPage - 1) * PAGE_SIZE; const pagedItems = items.slice(start, start + PAGE_SIZE); elements.statusText.textContent = `${newsText('Hiển thị','Showing')} ${pagedItems.length}/${items.length} ${newsText('tin','news items')}`; elements.newsList.innerHTML = pagedItems.map((item, index) => { const rawTitle = currentLang === 'en' ? (item.titleEn || item.title || newsText('Không có tiêu đề','Untitled')) : (item.title || newsText('Không có tiêu đề','Untitled')); const rawSnippet = currentLang === 'en' ? (item.snippetEn || item.summaryEn || item.snippet || item.summary || '') : (item.snippet || item.summary || ''); const title = stripHtmlTags(rawTitle); const snippet = removeDuplicateNewsLead(title, rawSnippet); return `<article class="news-card"><div class="news-meta"><span class="source-tag">${escapeHtml(item.source || 'unknown')}</span><span>${escapeHtml(formatTime(item.published_at || item.fetched_at))}</span></div><h3 class="news-title">${highlightNewsNumbers(title)}</h3><p class="news-snippet">${highlightNewsNumbers(snippet)}</p><div class="news-actions"><a class="open-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">${newsText('Đọc bài gốc','Read original')}</a></div></article>`; }).join(''); }
+    function applyFilters(resetPage = true) { let items = [...allItems]; if (resetPage) currentPage = 1; if (activeCategory !== 'Tổng hợp') items = items.filter(item => inferCategory(item) === activeCategory); renderNews(items); }
+        function scheduleAutoRefresh() { if (autoRefreshTimer) clearTimeout(autoRefreshTimer); autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS); }
+    function readLocalCache(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (_) { return null; } }
+    function writeLocalCache(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {} }
+    function hydrateFromLocalCache() { const marketCache = readLocalCache('hoa.market.cache'); if (marketCache?.items?.length) { renderMarket(marketCache); } const newsCache = readLocalCache('hoa.news.cache'); if (newsCache?.items?.length) { allItems = newsCache.items; currentPage = 1; applyFilters(); elements.apiStatus.textContent = 'Cache'; elements.statusText.textContent = 'Đang hiển thị cache, cập nhật nền...'; } }
+    async function refreshStockDetail(symbol) { const normalized = (symbol || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!normalized) return; const existing = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (existing) { if (activeDetailTicker === normalized) openDetail(normalized); return existing; } let payload = null; try { const res = await fetch(`/data/market_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (res.ok) payload = await res.json(); } catch (_) {} const cacheItems = payload ? (Array.isArray(payload.items) ? payload.items : []) : []; const cached = cacheItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (cached) { marketItems.push(cached); if (activeDetailTicker === normalized) openDetail(normalized); return cached; } const q = await fetchVpsQuote(normalized); if (!q) throw new Error('Not found'); const item = { ticker: normalized, symbol: normalized, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, sector: inferSector(normalized), source: 'vps-live-direct', technical: { price: q.price, changePct: q.changePct, volume: q.volume, trend: 'Chưa có cache R/S', recommendation: 'Mã này đang có giá realtime nhưng chưa có output R/S/PTKT. Cần chạy pipeline R/S để có phân tích kỹ thuật.' } }; marketItems.push(item); if (activeDetailTicker === normalized) openDetail(normalized); return item; }
+    async function openStockSymbol(symbol) { const normalized = (symbol || '').trim().toUpperCase(); if (!normalized) return; const existing = marketItems.find(x => x.ticker === normalized); if (existing) { openDetail(normalized); setTimeout(() => refreshStockDetail(normalized).catch(() => { elements.marketStatus.textContent = `Không cập nhật được mã ${normalized}`; }), 250); return; } try { await refreshStockDetail(normalized); openDetail(normalized); } catch (_) { elements.marketStatus.textContent = `Không tìm thấy mã ${normalized}`; } }
+    async function searchStockCatalog() { const q = (elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); selectedSymbol = ''; if (!q) { elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; return; } try { const res = await fetch('/data/market_symbols.json', { cache: 'default' }); const rows = res.ok ? await res.json() : []; let items = rows.filter(item => String(item.symbol||'').includes(q) || String(item.name||'').toUpperCase().includes(q)).slice(0, 50); if (!items.some(x => String(x.symbol||'').toUpperCase() === q)) items.unshift({ symbol: q, name: 'Tra cứu realtime VPS' }); elements.stockSuggest.innerHTML = items.map(item => `<div class="search-option" data-symbol="${escapeHtml(item.symbol)}"><strong>${escapeHtml(item.symbol)}</strong><span>${escapeHtml(item.name || '')}</span></div>`).join(''); elements.stockSuggest.classList.toggle('open', items.length > 0); elements.stockSuggest.querySelectorAll('[data-symbol]').forEach(option => option.addEventListener('click', async () => { selectedSymbol = option.dataset.symbol; elements.stockSearchInput.value = selectedSymbol; elements.stockSuggest.classList.remove('open'); await openStockSymbol(selectedSymbol); })); } catch (_) {} }
+    async function addStockToWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!symbol) return; if (!currentUserId) { elements.marketStatus.textContent = 'Vui lòng đăng nhập để lưu danh mục quan tâm theo account.'; return; } elements.stockSearchBtn.textContent = 'Đang thêm...'; try { let item = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === symbol); if (!item) { const res = await fetch(`${MARKET_API_BASE || API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('Không tìm thấy mã'); item = await res.json(); item.sector = inferSector(symbol); } await setDoc(doc(db,'users',currentUserId,'watchlist',symbol),{symbol,enabled:true,updatedAt:serverTimestamp()},{merge:true}); if (!watchSymbols.includes(symbol)) watchSymbols.unshift(symbol); renderMarket([item]); elements.stockSearchInput.value = ''; selectedSymbol = ''; elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; } catch (_) { elements.marketStatus.textContent = `Không tìm thấy mã ${symbol}`; } finally { elements.stockSearchBtn.textContent = 'Thêm'; } }
+    async function removeStockFromWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || activeDetailTicker || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!symbol) return; if (!currentUserId) { elements.marketStatus.textContent = 'Vui lòng đăng nhập để sửa danh mục quan tâm.'; return; } try { await deleteDoc(doc(db,'users',currentUserId,'watchlist',symbol)); } catch (_) {} watchSymbols = watchSymbols.filter(item => item !== symbol); renderMarket({ items: marketItems, updatedAt: new Date().toISOString() }); if (activeDetailTicker === symbol) elements.detailModal.classList.remove('open'); elements.stockSearchInput.value = ''; selectedSymbol = ''; }
+    async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsRes = await fetch(`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; startRealtimePriceOverlay(); }
+
+    let realtimePriceTimer = null;
+    function parseVpsQuote(item) {
+      const price = Number(item?.lastPrice || 0);
+      const ref = Number(item?.r || 0);
+      if (!price) return null;
+      let volume = Number(item?.totalVolume || 0);
+      if (!volume) volume = Number(item?.lot || item?.lastVolume || 0) * 10;
+      return { price, refPrice: ref, changePct: ref ? Math.round(((price - ref) / ref * 100) * 100) / 100 : Number(item?.changePc || 0), volume, openPrice: Number(item?.openPrice || 0), highPrice: Number(item?.highPrice || 0), lowPrice: Number(item?.lowPrice || 0), avgPrice: Number(item?.avePrice || price) };
+    }
+    async function fetchVpsQuote(symbol) {
+      const res = await fetch(`https://bgapidatafeed.vps.com.vn/getliststockdata/${encodeURIComponent(symbol)}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return parseVpsQuote(Array.isArray(data) ? data[0] : null);
+    }
+    async function refreshRealtimePrices() {
+      if (pageToTab() !== 'stocks' || !Array.isArray(marketItems) || !marketItems.length) return;
+      try {
+        const symbols = marketItems.map(x => String(x.ticker || x.symbol || '').toUpperCase()).filter(Boolean);
+        const fresh = await Promise.all(symbols.map(async sym => [sym, await fetchVpsQuote(sym)]));
+        const byTicker = Object.fromEntries(fresh.filter(([, q]) => q));
+        if (!Object.keys(byTicker).length) return;
+        marketItems = marketItems.map(item => {
+          const sym = String(item.ticker || item.symbol || '').toUpperCase();
+          const q = byTicker[sym];
+          if (!q) return item;
+          return { ...item, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, realtimeUpdatedAt: new Date().toISOString(), technical: { ...(item.technical || {}), price: q.price, changePct: q.changePct, volume: q.volume } };
+        });
+        renderMarket({ items: marketItems });
+        if (activeDetailTicker && elements.detailModal?.classList.contains('open')) openDetail(activeDetailTicker);
+        elements.apiStatus.textContent = 'Realtime 15s';
+      } catch (_) {
+        elements.apiStatus.textContent = 'Cache';
+      }
+    }
+    function startRealtimePriceOverlay() {
+      if (realtimePriceTimer) return;
+      refreshRealtimePrices();
+      realtimePriceTimer = setInterval(refreshRealtimePrices, 15000);
+    }
+
+    elements.tabs.forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); switchTab(btn.dataset.tab, true); })); window.addEventListener('popstate', () => { switchTab(pageToTab()); const parts = location.pathname.split('/').filter(Boolean); if (parts[0] === 'stocks' && parts[1]) openStockSymbol(parts[1]); else elements.detailModal.classList.remove('open'); }); switchTab(pageToTab()); document.querySelectorAll('[data-filter-mode]').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('[data-filter-mode]').forEach(b => b.classList.toggle('active', b.dataset.filterMode === btn.dataset.filterMode)); loadStockFilters(btn.dataset.filterMode); })); elements.stockFilterGrid?.addEventListener('click', (e) => { const el = e.target.closest('[data-filter-symbol]'); if (el) openStockSymbol(el.dataset.filterSymbol); }); loadStockFilters('technical'); elements.stockSearchBtn.addEventListener('click', () => addStockToWatchlist()); elements.stockRemoveBtn.addEventListener('click', () => removeStockFromWatchlist()); elements.stockSearchInput.addEventListener('input', searchStockCatalog); elements.stockSearchInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); await openStockSymbol(selectedSymbol || elements.stockSearchInput.value); } }); elements.warrantSearchInput?.addEventListener('input', searchWarrants); elements.warrantSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); const code = selectedWarrant || elements.warrantSearchInput.value; if (code) { await openWarrantDetail(String(code).trim().toUpperCase()); } } }); elements.warrantAddBtn?.addEventListener('click', () => addWarrantToWatchlist()); elements.warrantRemoveBtn?.addEventListener('click', () => removeWarrantFromWatchlist()); elements.warrantGrid?.addEventListener('click', (e) => { const card = e.target.closest('[data-warrant]'); if (card) openWarrantDetail(card.dataset.warrant); }); document.addEventListener('click', (e) => { if (!e.target.closest('.stock-search-bar')) { elements.stockSuggest.classList.remove('open'); elements.warrantSuggest?.classList.remove('open'); } }); elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); }); elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); }); elements.goPageBtn.addEventListener('click', () => { currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); }); elements.pageInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); } }); elements.addDetailBtn.addEventListener('click', async () => { const symbol = activeDetailTicker || selectedSymbol || elements.stockSearchInput.value; if (!symbol || watchSymbols.includes(symbol)) { if (watchSymbols.includes(symbol)) elements.addDetailBtn.textContent = 'Đã thêm'; return; } elements.addDetailBtn.textContent = 'Đang thêm...'; await addStockToWatchlist(symbol); elements.addDetailBtn.textContent = 'Đã thêm'; }); elements.removeDetailBtn.addEventListener('click', () => removeStockFromWatchlist(activeDetailTicker)); elements.addWarrantDetailBtn?.addEventListener('click', () => addWarrantToWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.removeWarrantDetailBtn?.addEventListener('click', () => removeWarrantFromWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.closeWarrantBtn?.addEventListener('click', () => elements.warrantModal.classList.remove('open')); elements.warrantModal?.addEventListener('click', (e) => { if (e.target === elements.warrantModal) elements.warrantModal.classList.remove('open'); }); elements.closeDetailBtn.addEventListener('click', () => { elements.detailModal.classList.remove('open'); if (location.pathname.startsWith('/stocks/')) history.pushState({ tab: 'stocks' }, '', '/stocks'); }); elements.detailModal.addEventListener('click', (e) => { if (e.target === elements.detailModal) elements.closeDetailBtn.click(); }); elements.helpFab.addEventListener('click', () => elements.helpModal.classList.add('open')); elements.closeHelpBtn.addEventListener('click', () => elements.helpModal.classList.remove('open')); elements.helpModal.addEventListener('click', (e) => { if (e.target === elements.helpModal) elements.helpModal.classList.remove('open'); }); async function switchLanguage(lang) { const nextLang = lang === 'en' ? 'en' : 'vi'; if (nextLang === currentLang) { applyLanguage(nextLang); return; } applyLanguage(nextLang); currentPage = 1; const tab = pageToTab(); if (tab === 'news') { allItems = []; elements.newsList.innerHTML = `<div class="empty">${nextLang === 'en' ? 'Loading news...' : 'Dang tai tin tuc...'}</div>`; await loadData(false, true); } else { renderMarket({ items: marketItems }); if (warrantItems.length) renderWarrants(); await loadData(false, true); } } elements.langViBtn?.addEventListener('click',()=>{ switchLanguage('vi'); }); elements.langEnBtn?.addEventListener('click',()=>{ switchLanguage('en'); }); applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); onAuthStateChanged(auth, user => { authReady = true; currentUserId = user?.uid || ''; if (watchlistUnsubscribe) { watchlistUnsubscribe(); watchlistUnsubscribe = null; } if (warrantWatchlistUnsubscribe) { warrantWatchlistUnsubscribe(); warrantWatchlistUnsubscribe = null; } watchSymbols = []; warrantWatchSymbols = []; renderMarket({ items: marketItems }); renderWarrants(); if (currentUserId) { watchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'watchlist'), qs => { watchSymbols = qs.docs.map(d => String((d.data() || {}).symbol || d.id).toUpperCase()).filter(Boolean).sort(); renderMarket({ items: marketItems }); }); warrantWatchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'warrantWatchlist'), qs => { warrantWatchSymbols = qs.docs.map(d => String((d.data() || {}).code || d.id).toUpperCase()).filter(Boolean).sort(); renderWarrants(); }); } }); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);
+  </script>
+</body>
+</html>
