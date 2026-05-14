@@ -320,6 +320,9 @@ function buildAlonhadatUrls(locationText = '', target = {}) {
   if (/vo nguyen giap/.test(norm) && /hai phong|le chan|kenh duong|hoang huy/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/duong-dai-lo-vo-nguyen-giap-quan-le-chan-dp19865.html`);
   if (/kenh duong/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/kenh-duong-quan-le-chan-px1176.html`);
   if (/ha noi/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/1/ha-noi.html`);
+  if (/hoan kiem|cua nam|ly thuong kiet/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/ha-noi/412/quan-hoan-kiem.html`);
+  if (/cua nam/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/cua-nam-quan-hoan-kiem-px85.html`);
+  if (/ly thuong kiet/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/pho-ly-thuong-kiet-quan-hoan-kiem-dp486.html`);
   if (/cau giay|trung hoa|yen hoa|nghia do/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/ha-noi/408/quan-cau-giay.html`);
   if (/trung hoa/.test(norm)) { urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/trung-hoa-quan-cau-giay-px22.html`); urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/duong-trung-hoa-quan-cau-giay-dp141.html`); }
   if (/tay mo|smart city|vinhomes/.test(norm)) urls.push(`https://alonhadat.com.vn/nha-dat/can-ban/${prop}/tay-mo-quan-nam-tu-liem-px399.html`);
@@ -482,7 +485,7 @@ function directCategoryUrls(locationText, target = {}) {
     if (asset === 'shophouse' || code === 'TMD') urls.push('https://batdongsan.com.vn/ban-nha-mat-pho-duong-vo-van-ngan-phuong-binh-tho');
     urls.push('https://batdongsan.com.vn/ban-dat-duong-vo-van-ngan-phuong-binh-tho');
   }
-  const hasHaNoi = /ha noi|cau giay|trung hoa|tay mo|smart city|vinhomes|nguyen trai|thanh xuan/.test(norm);
+  const hasHaNoi = /ha noi|hoan kiem|cua nam|ly thuong kiet|cau giay|trung hoa|tay mo|smart city|vinhomes|nguyen trai|thanh xuan/.test(norm);
   const hasHaiPhong = /hai phong|le chan|kenh duong|hoang huy commerce/.test(norm);
   const hasDaNang = !hasHaiPhong && !hasHaNoi && /da nang|ngu hanh son|son tra|nguyen van thoai|vo nguyen giap/.test(norm);
   const hasNguHanhSon = /ngu hanh son/.test(norm);
@@ -517,6 +520,12 @@ function directCategoryUrls(locationText, target = {}) {
     if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi');
     else if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-ha-noi');
     else urls.push('https://batdongsan.com.vn/ban-dat-ha-noi');
+    if (/hoan kiem|cua nam|ly thuong kiet/.test(norm)) {
+      if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-hoan-kiem');
+      else if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-quan-hoan-kiem');
+      else urls.push('https://batdongsan.com.vn/ban-dat-quan-hoan-kiem');
+      if (/ly thuong kiet/.test(norm)) urls.push('https://batdongsan.com.vn/nha-dat-ban-pho-ly-thuong-kiet-hoan-kiem');
+    }
     if (/cau giay|trung hoa|yen hoa|nghia do/.test(norm)) {
       if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-cau-giay');
       else if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-quan-cau-giay');
@@ -567,11 +576,11 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
   const wantsHvn = /huynh van nghe/.test(locNorm);
   const wantsVoVanNgan = /vo van ngan/.test(locNorm);
   const locNormForFilter = normalizeText(locationText || '');
-  const strictRoadTerms = ['vo van ngan', 'huynh van nghe', 'nguyen van thoai', 'vo nguyen giap', 'pham van dong', 'nguyen duy trinh', 'mai chi tho', 'nguyen trung truc', 'tran phu', 'lac hong']
+  const strictRoadTerms = ['vo van ngan', 'huynh van nghe', 'nguyen van thoai', 'vo nguyen giap', 'pham van dong', 'nguyen duy trinh', 'mai chi tho', 'nguyen trung truc', 'tran phu', 'lac hong', 'ly thuong kiet']
     .filter(term => locNormForFilter.includes(term));
   const cityTerms = ['ha noi', 'hai phong', 'da nang', 'kien giang', 'ho chi minh', 'dong nai', 'binh duong']
     .filter(term => locNormForFilter.includes(term));
-  const strongAreaTerms = ['binh trung', 'lai thieu', 'binh hoa', 'binh tho', 'truong tho', 'an phu', 'thao dien', 'linh dong', 'linh chieu', 'ngu hanh son', 'son tra', 'rach gia', 'kien giang', 'hai phong', 'le chan', 'kenh duong', 'hoang huy commerce', 'ha noi', 'cau giay', 'trung hoa', 'tay mo', 'smart city', 'vinhomes', 'nguyen trai', 'thanh xuan']
+  const strongAreaTerms = ['binh trung', 'lai thieu', 'binh hoa', 'binh tho', 'truong tho', 'an phu', 'thao dien', 'linh dong', 'linh chieu', 'ngu hanh son', 'son tra', 'rach gia', 'kien giang', 'hai phong', 'le chan', 'kenh duong', 'hoang huy commerce', 'ha noi', 'hoan kiem', 'cua nam', 'ly thuong kiet', 'cau giay', 'trung hoa', 'tay mo', 'smart city', 'vinhomes', 'nguyen trai', 'thanh xuan']
     .filter(term => locNormForFilter.includes(term));
   const wantsApartment = String(target.asset || '').toLowerCase() === 'apartment';
   const seenUrls = new Set();
