@@ -454,7 +454,7 @@ async function fetchListItemsViaBrowser(url, limit = 8) {
       await send('Page.enable');
       await send('Page.navigate', { url });
       await wait(7000);
-      const res = await send('Runtime.evaluate', { expression: `(() => { const out=[]; for (const a of document.querySelectorAll('a[href*="/ban-"]')) { const href=new URL(a.getAttribute('href'),location.origin).href; let box=a; for(let i=0;i<6&&box.parentElement;i++){ const t=(box.innerText||box.textContent||'').replace(/\\s+/g,' ').trim(); if(/(tß╗╖|triß╗çu|m┬▓|m2|tr\\/m)/i.test(t)&&t.length>80) break; box=box.parentElement;} const text=(box.innerText||a.innerText||'').replace(/\\s+/g,' ').trim(); if(!/pr\\d+/i.test(href)||!/(tß╗╖|triß╗çu|m┬▓|m2|tr\\/m)/i.test(text)) continue; out.push({url:href,title:(a.querySelector('h3')?.innerText||box.querySelector('h3')?.innerText||'').trim(),snippet:text.slice(0,2500)});} return out.slice(0,${limit}); })()`, returnByValue: true, __timeoutMs: 12000 });
+      const res = await send('Runtime.evaluate', { expression: `(() => { const out=[]; const priceRe=/(tỷ|triệu|m²|m2|tr\\/m)/i; for (const a of document.querySelectorAll('a[href]')) { const href=new URL(a.getAttribute('href'),location.origin).href; if(!/batdongsan\\.com\\.vn\\//i.test(href) || /wiki\\.batdongsan|javascript:/i.test(href)) continue; let box=a; for(let i=0;i<8&&box.parentElement;i++){ const t=(box.innerText||box.textContent||'').replace(/\\s+/g,' ').trim(); if(priceRe.test(t)&&t.length>80) break; box=box.parentElement;} const text=(box.innerText||a.innerText||'').replace(/\\s+/g,' ').trim(); if(!priceRe.test(text) || text.length<80) continue; const title=(a.querySelector('h3')?.innerText||box.querySelector('h3')?.innerText||a.innerText||'').replace(/\\s+/g,' ').trim(); if(!title || /Bán căn hộ chung cư|Bán nhà riêng|Bán đất|Nhà đất bán/i.test(title)) continue; out.push({url:href.split('#')[0],title,snippet:text.slice(0,2500)});} const seen=new Set(); return out.filter(x=>!seen.has(x.url)&&(seen.add(x.url),true)).slice(0,${limit}); })()`, returnByValue: true, __timeoutMs: 12000 });
       return res.result?.value || [];
     });
   } finally { if (tab.id) await fetch(`${DEFAULT_CDP}/json/close/${tab.id}`).catch(() => null); }
@@ -524,7 +524,17 @@ function directCategoryUrls(locationText, target = {}) {
       if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-hoan-kiem');
       else if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-quan-hoan-kiem');
       else urls.push('https://batdongsan.com.vn/ban-dat-quan-hoan-kiem');
-      if (/ly thuong kiet/.test(norm)) urls.push('https://batdongsan.com.vn/nha-dat-ban-pho-ly-thuong-kiet-hoan-kiem');
+      if (/ly thuong kiet/.test(norm)) {
+        if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-pho-ly-thuong-kiet-hoan-kiem');
+        if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-pho-ly-thuong-kiet-hoan-kiem');
+        urls.push('https://batdongsan.com.vn/nha-dat-ban-pho-ly-thuong-kiet-hoan-kiem');
+        urls.push('https://batdongsan.com.vn/nha-dat-ban-pho-ly-thuong-kiet-quan-hoan-kiem');
+      }
+      if (/cua nam/.test(norm)) {
+        urls.push('https://batdongsan.com.vn/nha-dat-ban-phuong-cua-nam');
+        if (asset === 'house') urls.push('https://batdongsan.com.vn/ban-nha-rieng-phuong-cua-nam');
+        if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-cua-nam');
+      }
     }
     if (/cau giay|trung hoa|yen hoa|nghia do/.test(norm)) {
       if (asset === 'apartment') urls.push('https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-cau-giay');
@@ -585,6 +595,7 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
   const wantsApartment = String(target.asset || '').toLowerCase() === 'apartment';
   const seenUrls = new Set();
   const comparables = listings.filter(x => !x.blocked && !/Just a moment|Enable JavaScript and cookies|Cloudflare|Attention Required/i.test(`${x.title || ''} ${x.snippet || ''}`)).map(x => resultToComparable(x, target))
+    .filter(x => !/\/nha-dat-ban(?:-|$)|\/ban-nha-rieng(?:-|$)|\/ban-dat(?:-|$)|\/ban-can-ho-chung-cu(?:-|$)/i.test(new URL(x.url || 'https://x.invalid', 'https://x.invalid').pathname) || /pr\d+/i.test(x.url || ''))
     .filter(x => !seenUrls.has(x.url) && (seenUrls.add(x.url), true))
     .filter(x => !wantsApartment || x.asset_type === 'chung c╞░/c─ân hß╗Ö')
     .filter(x => !Number.isFinite(x.price_million_m2) || (x.price_million_m2 >= 1 && x.price_million_m2 <= 1000))
