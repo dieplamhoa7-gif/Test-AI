@@ -556,7 +556,18 @@
       const exists = warrantItems.some(item => String(item.code || '').toUpperCase() === code);
       if (!exists) { elements.warrantStatus.textContent = `Không tìm thấy mã ${code}`; return; }
       elements.warrantStatus.textContent = `Đang tải chi tiết ${code}...`;
-      try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (res.ok) { const payload = await res.json(); const detail = (payload.items || [])[0]; if (detail) { const idx = warrantItems.findIndex(x => String(x.code || '').toUpperCase() === code); if (idx >= 0) warrantItems[idx] = detail; else warrantItems.push(detail); } } } catch (_) {}
+      try {
+        const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' });
+        if (res.ok) {
+          const payload = await res.json();
+          const detail = (payload.items || []).find(x => String(x.code || '').toUpperCase() === code);
+          if (detail) {
+            const normalized = { ...detail, code };
+            const idx = warrantItems.findIndex(x => String(x.code || '').toUpperCase() === code);
+            if (idx >= 0) warrantItems[idx] = normalized; else warrantItems.push(normalized);
+          }
+        }
+      } catch (_) {}
       if (!warrantWatchSymbols.includes(code)) warrantWatchSymbols.unshift(code);
       writeLocalCache('hoa.warrants.watchlist', warrantWatchSymbols);
       elements.warrantSearchInput.value = ''; selectedWarrant = ''; renderWarrants();
