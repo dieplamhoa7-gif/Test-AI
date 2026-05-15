@@ -514,6 +514,7 @@ async function handleMessage(msg) {
   if (!chatId || !allowed(chatId)) return;
 
   const rawText = [msg.text, msg.caption].filter(Boolean).join(' ');
+  console.log(`[inbound] chat=${chatId} msg=${msg.message_id} from=${msg.from?.username || msg.from?.id || '-'} text=${JSON.stringify(rawText).slice(0, 500)}`);
   const mentioned = botWasMentioned(rawText, [...(msg.entities || []), ...(msg.caption_entities || [])]);
   const text = stripBotMention(rawText);
   const replyText = msg.reply_to_message ? [msg.reply_to_message.text, msg.reply_to_message.caption].filter(Boolean).join(' ') : '';
