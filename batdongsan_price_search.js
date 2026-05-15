@@ -206,14 +206,33 @@ function resultToComparable(item, target = {}) {
 
 function simplifyLocationVariants(locationText) {
   const raw = repairMojibake(String(locationText || '')).replace(/^\/gi?á|^\/gia|^\/qh/ig, '').trim();
-  const parts = [raw];
-  const road = raw.match(/(?:─æ╞░ß╗¥ng|duong)?\s*([A-Z├Ç-ß╗╕][\w├Ç-ß╗╣]+\s+V─ân\s+[A-Z├Ç-ß╗╕][\w├Ç-ß╗╣]+)/i)?.[1]
-    || raw.match(/(Huß╗│nh V─ân Nghß╗ç|─Éß║╖ng V─ân Bi|V├╡ V─ân Ng├ón)/i)?.[1];
-  const province = raw.match(/(─Éß╗ông Nai|Hß╗ô Ch├¡ Minh|TP HCM|Kh├ính H├▓a|B├¼nh D╞░╞íng|Long An)/i)?.[1];
-  const ward = raw.match(/(Trß║Ñn Bi├¬n|Bß╗¡u Long|Thß╗º ─Éß╗⌐c|B├¼nh Thß╗ì|Nha Trang|Lß╗Öc Thß╗ì)/i)?.[1];
-  if (road && province) parts.push(`${road} ${province}`);
-  if (ward && province) parts.push(`${ward} ${province}`);
-  if (province) parts.push(province);
+  const norm = normalizeText(raw);
+  const parts = [];
+  const roadMap = [
+    ['ly thuong kiet', 'Phố Lý Thường Kiệt'],
+    ['vo van ngan', 'Võ Văn Ngân'], ['huynh van nghe', 'Huỳnh Văn Nghệ'],
+    ['dang van bi', 'Đặng Văn Bi'], ['kha van can', 'Kha Vạn Cân'],
+    ['pham van dong', 'Phạm Văn Đồng'], ['nguyen van thoai', 'Nguyễn Văn Thoại'],
+    ['vo nguyen giap', 'Võ Nguyên Giáp'], ['nguyen trung truc', 'Nguyễn Trung Trực'],
+    ['tran phu', 'Trần Phú'], ['lac hong', 'Lạc Hồng'], ['nguyen trai', 'Nguyễn Trãi'],
+  ];
+  const areaMap = [
+    ['hoan kiem|cua nam', 'Hoàn Kiếm Hà Nội'],
+    ['ha noi', 'Hà Nội'],
+    ['cau giay|trung hoa', 'Cầu Giấy Hà Nội'],
+    ['thanh xuan', 'Thanh Xuân Hà Nội'],
+    ['thu duc|binh tho|binh trung', 'Thủ Đức TP HCM'],
+    ['bien hoa|dong nai|tran bien|buu long', 'Biên Hòa Đồng Nai'],
+    ['da nang|ngu hanh son|son tra', 'Đà Nẵng'],
+    ['rach gia|kien giang', 'Rạch Giá Kiên Giang'],
+    ['hai phong|le chan|kenh duong', 'Lê Chân Hải Phòng'],
+  ];
+  const road = roadMap.find(([pat]) => new RegExp(pat).test(norm))?.[1] || '';
+  const area = areaMap.find(([pat]) => new RegExp(pat).test(norm))?.[1] || '';
+  if (road && area) parts.push(`${road} ${area}`);
+  if (road) parts.push(road);
+  if (area) parts.push(area);
+  if (!parts.length) parts.push(raw.split(/[,;\n]/)[0].split(/\s+/).slice(0, 6).join(' '));
   return [...new Set(parts.filter(Boolean))];
 }
 
@@ -222,34 +241,30 @@ function targetAssetKeywords(code, asset, position) {
   const a = String(asset || '').toLowerCase();
   const p = String(position || '').toLowerCase();
   let base;
-  if (a === 'apartment') base = ['chung c╞░', 'c─ân hß╗Ö'];
-  else if (a === 'house') base = ['b├ín nh├á'];
-  else if (a === 'factory' || c === 'SKC') base = ['kho x╞░ß╗ƒng', 'nh├á x╞░ß╗ƒng', '─æß║Ñt sß║ún xuß║Ñt'];
-  else if (a === 'shophouse' || c === 'TMD') base = ['shophouse', 'mß║╖t bß║▒ng kinh doanh', 'nh├á mß║╖t tiß╗ün'];
-  else if (c === 'CLN') base = ['─æß║Ñt v╞░ß╗¥n', '─æß║Ñt c├óy l├óu n─âm'];
-  else if (c === 'NN') base = ['─æß║Ñt n├┤ng nghiß╗çp', '─æß║Ñt v╞░ß╗¥n'];
-  else base = ['b├ín ─æß║Ñt', '─æß║Ñt thß╗ò c╞░', 'nh├á ─æß║Ñt b├ín'];
-  const pos = p === 'frontage' ? 'mß║╖t tiß╗ün' : p === 'alley' ? 'hß║╗m' : p === 'corner' ? 'c─ân g├│c 2 mß║╖t tiß╗ün' : '';
+  if (a === 'apartment') base = ['chung cư', 'căn hộ'];
+  else if (a === 'house') base = ['bán nhà'];
+  else if (a === 'factory' || c === 'SKC') base = ['kho xưởng', 'nhà xưởng', 'đất sản xuất'];
+  else if (a === 'shophouse' || c === 'TMD') base = ['shophouse', 'mặt bằng kinh doanh', 'nhà mặt tiền'];
+  else if (c === 'CLN') base = ['đất vườn', 'đất cây lâu năm'];
+  else if (c === 'NN') base = ['đất nông nghiệp', 'đất vườn'];
+  else base = ['bán đất', 'đất thổ cư', 'nhà đất bán'];
+  const pos = p === 'frontage' ? 'mặt tiền' : p === 'alley' ? 'hẻm' : p === 'corner' ? 'căn góc 2 mặt tiền' : '';
   return pos ? base.flatMap(x => [x, `${x} ${pos}`]) : base;
 }
 
 function buildQueries(locationText, target = {}) {
   const locs = simplifyLocationVariants(repairMojibake(locationText));
   const code = String(target.code || '').toUpperCase();
-  const kinds = targetAssetKeywords(code, target.asset, target.position).map(repairMojibake);
+  const kinds = targetAssetKeywords(code, target.asset, target.position).map(repairMojibake).slice(0, 2);
   const queries = [];
-  for (const loc of locs) {
+  for (const loc of locs.slice(0, 3)) {
     for (const kind of kinds) {
-      // User-requested pattern: road name + city/province + selected real-estate type.
-      // Prefer natural Google query first; `site:` can hide/redirect links in browser automation.
-      queries.push(repairMojibake(`${kind} ${loc} batdongsan.com.vn`));
-      queries.push(repairMojibake(`${kind} ${loc} alonhadat cafeland nhadat24h muaban`));
-      queries.push(`site:batdongsan.com.vn ${kind} ${loc}`);
-      queries.push(`site:alonhadat.com.vn ${kind} ${loc}`);
-      queries.push(`site:nhadat.cafeland.vn ${kind} ${loc}`);
-      queries.push(`site:muaban.net ${kind} ${loc}`);
+      // Keep keywords short: asset + road/area only. Long ward/city strings dilute Google.
+      queries.push(repairMojibake(`${kind} ${loc}`));
+      queries.push(repairMojibake(`${kind} ${loc} batdongsan`));
+      queries.push(repairMojibake(`${kind} ${loc} alonhadat`));
     }
-    if (code) queries.push(`${code} ${loc} batdongsan alonhadat cafeland`);
+    if (code) queries.push(repairMojibake(`${code} ${loc}`));
   }
   return queries.filter(Boolean);
 }
