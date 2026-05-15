@@ -1,0 +1,161 @@
+{
+  "createdAt": "2026-05-15T15:11:00+07:00",
+  "purpose": "Core 12 technical indicators selected from initial ML evaluation for future RS/D1S/D1A strategy research and production scanners. Production scanners should compute only selected indicators/parameters from approved configs, not retrain ML.",
+  "selectionCriteria": [
+    "OOS avgPrecision and minPrecision",
+    "OOS F1 as secondary metric",
+    "Sufficient OOS signal count where possible",
+    "Feature importance appearance in tree models",
+    "Sector/task consistency",
+    "Technical-market logic"
+  ],
+  "core12": [
+    {
+      "id": "SR_CLUSTER",
+      "name": "Support/Resistance Cluster",
+      "role": [
+        "RS",
+        "D1A"
+      ],
+      "why": "Most important family for RS and D1A in initial ML; captures near support/resistance, touch count, zone strength."
+    },
+    {
+      "id": "MA_EMA_WMA",
+      "name": "Moving Average Structure",
+      "role": [
+        "RS",
+        "D1A",
+        "D1S"
+      ],
+      "why": "Trend/context family appearing strongly across RS, D1A and retail/real-estate tasks."
+    },
+    {
+      "id": "ADX_DMI",
+      "name": "ADX / DMI",
+      "role": [
+        "RS",
+        "D1A"
+      ],
+      "why": "Trend strength and directional pressure; repeatedly important with MA/SR context."
+    },
+    {
+      "id": "MACD",
+      "name": "MACD Histogram/Slope",
+      "role": [
+        "RS",
+        "D1A",
+        "D1S"
+      ],
+      "why": "Momentum/trend transition signal with strong appearance in RS/D1A top features."
+    },
+    {
+      "id": "SUPERTREND",
+      "name": "Supertrend",
+      "role": [
+        "RS",
+        "D1A"
+      ],
+      "why": "Trend structure and stop/flip context; useful with S/R and MA."
+    },
+    {
+      "id": "TRIX",
+      "name": "TRIX",
+      "role": [
+        "D1A",
+        "D1S"
+      ],
+      "why": "Smooth momentum/base survival feature; important in BDS D1A and overall D1A."
+    },
+    {
+      "id": "ICHIMOKU",
+      "name": "Ichimoku Cloud Position",
+      "role": [
+        "RS",
+        "D1A"
+      ],
+      "why": "Structural trend/cloud context; appears in RS and retail/real estate."
+    },
+    {
+      "id": "VWAP_VWMA",
+      "name": "VWAP / VWMA",
+      "role": [
+        "D1A",
+        "RS"
+      ],
+      "why": "Volume-weighted price context, especially for Bank D1A and trend quality."
+    },
+    {
+      "id": "ATR_VOLATILITY",
+      "name": "ATR / Volatility",
+      "role": [
+        "RS",
+        "D1A",
+        "D1S"
+      ],
+      "why": "Replaces PVI/NVI after full-room foreign-flow distortion review. Rank #13 in SHAKEOUT_RECLAIM selected-indicator list; captures volatility contraction/flush risk and stop-distance context without relying on foreign room data."
+    },
+    {
+      "id": "ROC_MOMENTUM",
+      "name": "ROC / Momentum",
+      "role": [
+        "D1S",
+        "RS"
+      ],
+      "why": "Momentum weakening/rebound family; strong in D1S securities and BDS RS."
+    },
+    {
+      "id": "RSI",
+      "name": "RSI",
+      "role": [
+        "D1S",
+        "RS"
+      ],
+      "why": "Classic oscillator; important in D1S securities momentum weakness and parameter search."
+    },
+    {
+      "id": "MFI_CMF",
+      "name": "MFI / CMF",
+      "role": [
+        "D1S",
+        "D1A",
+        "RS"
+      ],
+      "why": "Volume-pressure/flow family; group-level volume was important for D1S, especially securities."
+    }
+  ],
+  "initialTaskMapping": {
+    "RS": [
+      "SR_CLUSTER",
+      "MA_EMA_WMA",
+      "ADX_DMI",
+      "MACD",
+      "SUPERTREND",
+      "ICHIMOKU",
+      "VWAP_VWMA",
+      "ROC_MOMENTUM",
+      "RSI"
+    ],
+    "D1A": [
+      "SR_CLUSTER",
+      "MA_EMA_WMA",
+      "ADX_DMI",
+      "MACD",
+      "SUPERTREND",
+      "TRIX",
+      "ICHIMOKU",
+      "VWAP_VWMA",
+      "ATR_VOLATILITY",
+      "MFI_CMF"
+    ],
+    "D1S": [
+      "ROC_MOMENTUM",
+      "RSI",
+      "MACD",
+      "TRIX",
+      "MFI_CMF",
+      "MA_EMA_WMA",
+      "ATR_VOLATILITY"
+    ]
+  },
+  "replacementNote": "PVI_NVI removed from Core12 per user instruction because PVI/NVI/foreign-flow proxies can be misleading for full-room stocks such as MWG. Replacement is ATR_VOLATILITY, the rank #13 indicator in SHAKEOUT_RECLAIM scope from support_buy_step1_select12_indicators_from40_no_lookahead.json/csv."
+}
