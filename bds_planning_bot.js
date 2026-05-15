@@ -102,15 +102,15 @@ function formatBatdongsanReport(result) {
     ...rows.slice(0, 6).map((r, i) => [
       `${i + 1}. ─É╞░ß╗¥ng: ${r.road_name || '-'}`,
       `   Diß╗çn t├¡ch: ${fmtAreaShort(r.area_m2)} | Tß╗òng tiß╗ün: ${formatMoneyBillion(r.total_billion)} | Gi├í/m2: ${Number.isFinite(r.price_million_m2) ? `*${fmtPrice(r.price_million_m2)}*` : '-'}`,
-      `   M─ÉSD─É: ${r.land_use_code || 'ch╞░a r├╡'} | Vß╗ï tr├¡: ${r.position || 'ch╞░a r├╡'} | Loß║íi: ${r.asset_type || '-'}`,
-      `   Nguß╗ôn: ${r.source || 'web'}${r.url ? ` - ${r.url}` : ''}`,
+      `   MĐSDĐ: ${r.land_use_code || 'chưa rõ'} | Vị trí: ${r.position || 'chưa rõ'} | Loß║íi: ${r.asset_type || '-'}`,
+      `   Nguồn: ${r.source || 'web'}${r.url ? ` - ${r.url}` : ''}`,
     ].filter(Boolean).join('\n')),
-    result?.url ? `Nguß╗ôn search: ${result.url}` : null,
+    result?.url ? `Nguồn search: ${result.url}` : null,
   ].filter(Boolean).join('\n');
 }
 
 function assetLabel(code) {
-  return ({ land: '─Éß║Ñt', house: 'Nh├á', apartment: 'Chung c╞░', factory: 'Kho/x╞░ß╗ƒng', shophouse: 'Shophouse/mß║╖t bß║▒ng' })[code] || code || 'ch╞░a chß╗ìn';
+  return ({ land: 'Đất', house: 'Nhà', apartment: 'Chung cư', factory: 'Kho/xưởng', shophouse: 'Shophouse/mặt bằng' })[code] || code || 'ch╞░a chß╗ìn';
 }
 function positionLabel(code) {
   return ({ frontage: 'Mß║╖t tiß╗ün', alley: 'Hß║╗m', corner: 'C─ân g├│c/2 mß║╖t tiß╗ün', any: 'Bß╗Å qua' })[code] || code || 'ch╞░a chß╗ìn';
@@ -225,11 +225,11 @@ function buildBdsSearchLocation(locationText = '') {
 
 function landUseTraitsForCode(code) {
   const c = String(code || '').toUpperCase();
-  if (c === 'ODT') return ['M─ÉSD─É ─æß║Ñt ß╗ƒ/thß╗ò c╞░'];
-  if (c === 'TMD' || c === 'TMDV') return ['M─ÉSD─É TMDV/hß╗ùn hß╗úp'];
-  if (c === 'SKC') return ['M─ÉSD─É SKC/sß║ún xuß║Ñt'];
-  if (c === 'CLN') return ['M─ÉSD─É CLN/─æß║Ñt v╞░ß╗¥n'];
-  if (c === 'NN') return ['M─ÉSD─É n├┤ng nghiß╗çp'];
+  if (c === 'ODT') return ['MĐSDĐ ─æß║Ñt ß╗ƒ/thß╗ò c╞░'];
+  if (c === 'TMD' || c === 'TMDV') return ['MĐSDĐ TMDV/hß╗ùn hß╗úp'];
+  if (c === 'SKC') return ['MĐSDĐ SKC/sß║ún xuß║Ñt'];
+  if (c === 'CLN') return ['MĐSDĐ CLN/─æß║Ñt v╞░ß╗¥n'];
+  if (c === 'NN') return ['MĐSDĐ n├┤ng nghiß╗çp'];
   return [];
 }
 
@@ -278,26 +278,26 @@ function fmtPrice(v) {
 function formatPriceReport(priceStats) {
   if (!priceStats || !priceStats.sample_count) {
     return [
-      'Gi├í tham khß║úo Guland',
-      '- Ch╞░a lß║Ñy ─æ╞░ß╗úc mß║½u gi├í quanh khu vß╗▒c.',
-      priceStats?.error ? `- L├╜ do: ${priceStats.error}` : null,
+      'Giá tham khảo Guland',
+      '- Chưa lấy được mẫu giá quanh khu vực.',
+      priceStats?.error ? `- Lý do: ${priceStats.error}` : null,
     ].filter(Boolean).join('\n');
   }
   return [
-    'Gi├í tham khß║úo Guland',
-    `- Sß╗æ mß║½u d├╣ng ─æß╗â t├¡nh: ${priceStats.sample_count}`,
-    `- Khoß║úng gi├í: *${fmtPrice(priceStats.min_million_m2)} - ${fmtPrice(priceStats.max_million_m2)}*`,
-    `- Trung b├¼nh: *${fmtPrice(priceStats.avg_million_m2)}*`,
-    `- Trung vß╗ï: *${fmtPrice(priceStats.median_million_m2)}*`,
-    priceStats.filter_note ? `- Bß╗Ö lß╗ìc: ${priceStats.filter_note}` : null,
-    '3 mß║½u so s├ính bß║»t buß╗Öc ╞░u ti├¬n c├╣ng M─ÉSD─É + c├╣ng ─æ╞░ß╗¥ng + c├╣ng mß║╖t tiß╗ün/hß║╗m:',
+    'Giá tham khảo Guland',
+    `- Số mẫu dùng để tính: ${priceStats.sample_count}`,
+    `- Khoảng giá: *${fmtPrice(priceStats.min_million_m2)} - ${fmtPrice(priceStats.max_million_m2)}*`,
+    `- Trung bình: *${fmtPrice(priceStats.avg_million_m2)}*`,
+    `- Trung vị: *${fmtPrice(priceStats.median_million_m2)}*`,
+    priceStats.filter_note ? `- Bộ lọc: ${priceStats.filter_note}` : null,
+    '3 mẫu so sánh ưu tiên cùng MĐSDĐ + cùng đường + cùng mặt tiền/hẻm:',
     ...(priceStats.comparable_positions || []).map((p, idx) => {
       const r = p.representative || {};
-      const range = p.sample_count > 1 ? `; khoß║úng ${fmtPrice(p.min_million_m2)}-${fmtPrice(p.max_million_m2)}` : '';
-      const road = p.road_name ? `; ─æ╞░ß╗¥ng ${p.road_name}` : '';
+      const range = p.sample_count > 1 ? `; khoảng ${fmtPrice(p.min_million_m2)}-${fmtPrice(p.max_million_m2)}` : '';
+      const road = p.road_name ? `; đường ${p.road_name}` : '';
       const traits = p.traits?.length ? `; ${p.traits.join(', ')}` : '';
       const src = r.source_url ? `\n   Link: ${r.source_url}` : '';
-      return `${idx + 1}. *${fmtPrice(p.price_million_m2)}*; c├ích ~${Math.round(p.distance_m)}m${road}${traits}${range}\n   ${String(r.title || '').slice(0, 120)}${src}`;
+      return `${idx + 1}. *${fmtPrice(p.price_million_m2)}*; cách ~${Math.round(p.distance_m)}m${road}${traits}${range}\n   ${String(r.title || '').slice(0, 120)}${src}`;
     }).filter(Boolean),
   ].filter(x => x !== null).join('\n');
 }
@@ -352,13 +352,13 @@ function formatSourceBlock(name, parsed, sourceUrl, official = {}) {
   });
   return [
     `Theo ${name}`,
-    uniqueLandLines.length ? '- M─ÉSD─É/chß╗⌐c n─âng ─æß║Ñt:' : null,
+    uniqueLandLines.length ? '- MĐSDĐ/chß╗⌐c n─âng ─æß║Ñt:' : null,
     ...uniqueLandLines,
     official.population || main.danso ? `- D├ón sß╗æ: ${official.population || main.danso}` : null,
     official.floors || main.floors ? `- Tß║ºng cao: ${official.floors || main.floors}` : null,
     official.density || main.building_density ? `- M─ÉXD: ${official.density || main.building_density}` : null,
     official.far || main.far ? `- HSSD─É: ${official.far || main.far}` : null,
-    sourceUrl ? `- Nguß╗ôn: ${sourceUrl}` : null,
+    sourceUrl ? `- Nguồn: ${sourceUrl}` : null,
   ].filter(Boolean).join('\n');
 }
 
@@ -370,8 +370,8 @@ function comparePlanningSources(guland, qhviet) {
   if (!a.size || !b.size) return null;
   const onlyA = [...a].filter(x => !b.has(x));
   const onlyB = [...b].filter(x => !a.has(x));
-  if (!onlyA.length && !onlyB.length) return 'Kß║┐t luß║¡n: Quy hoß║ích Guland giß╗æng QH Viß╗çt vß╗ü nh├│m chß╗⌐c n─âng ─æß║Ñt ─æß╗ìc ─æ╞░ß╗úc.';
-  return 'Kß║┐t luß║¡n: Quy hoß║ích Guland kh├íc QH Viß╗çt hoß║╖c ch╞░a khß╗¢p ho├án to├án vß╗ü chß╗⌐c n─âng ─æß║Ñt; ╞░u ti├¬n kiß╗âm tra lß║íi popup ─æ├║ng ─æiß╗âm v├á nguß╗ôn ch├¡nh thß╗æng.';
+  if (!onlyA.length && !onlyB.length) return 'Kß║┐t luß║¡n: Quy hoß║ích Guland giß╗æng QH Việt vß╗ü nh├│m chß╗⌐c n─âng ─æß║Ñt ─æß╗ìc ─æ╞░ß╗úc.';
+  return 'Kß║┐t luß║¡n: Quy hoß║ích Guland kh├íc QH Việt hoß║╖c ch╞░a khß╗¢p ho├án to├án vß╗ü chß╗⌐c n─âng ─æß║Ñt; ưu tiên kiß╗âm tra lß║íi popup ─æ├║ng ─æiß╗âm v├á nguß╗ôn ch├¡nh thß╗æng.';
 }
 
 function buildFinalReport(summary, gulandText, priceStats, qhvietText = null) {
@@ -383,18 +383,18 @@ function buildFinalReport(summary, gulandText, priceStats, qhvietText = null) {
   const sourceConclusion = comparePlanningSources(guland, qhviet);
   const inHcm = summary.official_functional_lots?.skipped !== 'outside_hcm';
   const sources = inHcm ? [
-    `QHHCM ╞░u ti├¬n: ${summary.cross_check_links?.hcm_official?.web_url || `https://thongtinquyhoach.hochiminhcity.gov.vn/#/${summary.input.lat}/${summary.input.lon}/18`}`,
-    e.source_url ? `Chß╗ë ti├¬u ├┤ chß╗⌐c n─âng: ${e.source_url}` : null,
-    e.mixed_source_url ? `Bß║úng chß╗⌐c n─âng hß╗ùn hß╗úp: ${e.mixed_source_url}` : null,
-    `QH Viß╗çt/Guland fallback: ${summary.cross_check_links?.qhviet?.home_url} | ${summary.cross_check_links?.guland?.coordinate_planning_url}`,
+    `QHHCM ưu tiên: ${summary.cross_check_links?.hcm_official?.web_url || `https://thongtinquyhoach.hochiminhcity.gov.vn/#/${summary.input.lat}/${summary.input.lon}/18`}`,
+    e.source_url ? `Chỉ tiêu ô chức năng: ${e.source_url}` : null,
+    e.mixed_source_url ? `Bảng chức năng hỗn hợp: ${e.mixed_source_url}` : null,
+    `QH Việt/Guland fallback: ${summary.cross_check_links?.qhviet?.home_url} | ${summary.cross_check_links?.guland?.coordinate_planning_url}`,
   ] : [
     `Guland: ${summary.cross_check_links?.guland?.coordinate_planning_url}`,
-    `QH Viß╗çt: ${summary.cross_check_links?.qhviet?.home_url}`,
+    `QH Việt: ${summary.cross_check_links?.qhviet?.home_url}`,
   ];
   return [
-    'B├üO C├üO QUY HOß║áCH',
-    `Tß╗ìa ─æß╗Ö: ${summary.input.lat}, ${summary.input.lon}`,
-    summary.location?.display_name ? `Vß╗ï tr├¡: ${summary.location.display_name}` : null,
+    'BÁO CÁO QUY HOẠCH',
+    `Tọa độ: ${summary.input.lat}, ${summary.input.lon}`,
+    summary.location?.display_name ? `Vị trí: ${summary.location.display_name}` : null,
     '',
     formatParcelHeader(summary, qhviet, guland, officialAsParsed),
     '',
@@ -407,13 +407,13 @@ function buildFinalReport(summary, gulandText, priceStats, qhvietText = null) {
       location: summary.location?.display_name,
     }) : null,
     guland ? formatSourceBlock('Guland', guland, summary.cross_check_links?.guland?.coordinate_planning_url, {}) : null,
-    qhviet ? formatSourceBlock('QH Viß╗çt', qhviet, summary.cross_check_links?.qhviet?.home_url, {}) : null,
+    qhviet ? formatSourceBlock('QH Việt', qhviet, summary.cross_check_links?.qhviet?.home_url, {}) : null,
     sourceConclusion,
-    !guland && !qhviet && !officialAsParsed ? 'Ch╞░a ─æß╗ìc ─æ╞░ß╗úc th├┤ng tin quy hoß║ích chi tiß║┐t.' : null,
+    !guland && !qhviet && !officialAsParsed ? 'Chưa đọc được thông tin quy hoạch chi tiết.' : null,
     '',
     formatPriceReport(priceStats),
     '',
-    'Nguß╗ôn',
+    'Nguồn',
     sources.filter(Boolean).map(x => `- ${x}`).join('\n'),
   ].filter(Boolean).join('\n');
 }
@@ -424,31 +424,31 @@ async function answerCallbackQuery(id, text = '') {
 }
 
 function buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors = []) {
-  const emptyPrice = { sample_count: 0, error: 'D├╣ng /gi├í ─æß╗â tra gi├í ri├¬ng.' };
+  const emptyPrice = { sample_count: 0, error: 'Dùng /giá để tra giá riêng.' };
   let report = buildFinalReport(summary, gulandText, emptyPrice, qhvietText)
-    .replace(/\nGi├í tham khß║úo Guland[\s\S]*?\nNguß╗ôn\n/, '\nNguß╗ôn\n');
-  if (popupErrors.length && !gulandText && !qhvietText) report += `\n\nPopup tß╗▒ ─æß╗Öng\n${popupErrors.map(x => `- ${x}`).join('\n')}`;
+    .replace(/\nGi├í tham khß║úo Guland[\s\S]*?\nNguồn\n/, '\nNguồn\n');
+  if (popupErrors.length && !gulandText && !qhvietText) report += `\n\nPopup tự động\n${popupErrors.map(x => `- ${x}`).join('\n')}`;
   return report;
 }
 
 async function askPriceStep(req, key) {
   const selected = [
-    req.asset ? `Loß║íi t├ái sß║ún: ${assetLabel(req.asset)}` : null,
-    req.landUse ? `M─ÉSD─É: ${req.landUse}` : null,
+    req.asset ? `Loại tài sản: ${assetLabel(req.asset)}` : null,
+    req.landUse ? `MĐSDĐ: ${req.landUse}` : null,
   ].filter(Boolean).join('\n');
   if (!req.asset) {
-    await sendMessage(req.chatId, ['Anh chß╗ìn loß║íi t├ái sß║ún ─æß╗â em lß╗ìc gi├í:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
-      { text: '─Éß║Ñt', callback_data: `price:asset:land:${key}` },
-      { text: 'Nh├á', callback_data: `price:asset:house:${key}` },
-      { text: 'Chung c╞░', callback_data: `price:asset:apartment:${key}` },
+    await sendMessage(req.chatId, ['Anh chọn loại tài sản để em lọc giá:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
+      { text: 'Đất', callback_data: `price:asset:land:${key}` },
+      { text: 'Nhà', callback_data: `price:asset:house:${key}` },
+      { text: 'Chung cư', callback_data: `price:asset:apartment:${key}` },
     ], [
-      { text: 'Kho/x╞░ß╗ƒng', callback_data: `price:asset:factory:${key}` },
-      { text: 'Shophouse/mß║╖t bß║▒ng', callback_data: `price:asset:shophouse:${key}` },
+      { text: 'Kho/xưởng', callback_data: `price:asset:factory:${key}` },
+      { text: 'Shophouse/mặt bằng', callback_data: `price:asset:shophouse:${key}` },
     ]] } });
     return;
   }
   if (!req.landUse) {
-    await sendMessage(req.chatId, ['Anh chß╗ìn M─ÉSD─É:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
+    await sendMessage(req.chatId, ['Anh chß╗ìn MĐSDĐ:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
       { text: 'ODT', callback_data: `price:land:ODT:${key}` },
       { text: 'TMD', callback_data: `price:land:TMD:${key}` },
       { text: 'SKC', callback_data: `price:land:SKC:${key}` },
@@ -476,7 +476,7 @@ async function runPriceLookup(req) {
     target: { code: req.landUse, asset: req.asset },
   }).catch(err => ({ error: err.message || String(err), comparables: [] }));
   console.log(`[price] external comparables=${bds.comparables?.length || 0} error=${bds.error || ''} query=${bds.query || ''}`);
-  await sendMessage(req.chatId, [`GI├ü B─ÉS`, `Tß╗ìa ─æß╗Ö: ${req.lat}, ${req.lon}`, `Khu vß╗▒c search: ${bdsLocationText || 'ch╞░a r├╡'}`, `Loß║íi t├ái sß║ún: ${assetLabel(req.asset)}`, `M─ÉSD─É: ${req.landUse}`, '', formatPriceReport(stats), '', formatBatdongsanReport(bds)].join('\n'), req.replyTo);
+  await sendMessage(req.chatId, [`GIÁ BĐS`, `Tọa độ: ${req.lat}, ${req.lon}`, `Khu vực search: ${bdsLocationText || 'chưa rõ'}`, `Loại tài sản: ${assetLabel(req.asset)}`, `MĐSDĐ: ${req.landUse}`, '', formatPriceReport(stats), '', formatBatdongsanReport(bds)].join('\n'), req.replyTo);
 }
 
 async function handlePriceSelection(query) {
@@ -552,7 +552,7 @@ async function handleMessage(msg) {
     const raw = await lookupHcmPlanning(parsed.lat, parsed.lon);
     const summary = summarize(raw);
     let gulandText = /Tß╗¥\s+\d+\s+Thß╗¡a\s+\d+|Th├┤ng tin quy hoß║ích x├óy dß╗▒ng|\b(?:ODT|ONT|CLN|LUA|SKC|TMD|TMDV|DGT)\b\s*[\d.,]+\s*m2/i.test(combinedText) ? combinedText : null;
-    let qhvietText = /Th├┤ng tin thß╗¡a\s+Sß╗æ tß╗¥\s+\d+\s+Sß╗æ thß╗¡a\s+\d+|Khu vß╗▒c mß╗¢i|\b(?:ODT|ONT|CLN|LUA|SKC|TMD|TMDV|DGT|DKV|SON)\b\s+─Éß║Ñt/i.test(combinedText) ? combinedText : null;
+    let qhvietText = /Th├┤ng tin thß╗¡a\s+Sß╗æ tß╗¥\s+\d+\s+Sß╗æ thß╗¡a\s+\d+|Khu vß╗▒c mß╗¢i|\b(?:ODT|ONT|CLN|LUA|SKC|TMD|TMDV|DGT|DKV|SON)\b\s+Đất/i.test(combinedText) ? combinedText : null;
     const popupErrors = [];
     const browserPopupsEnabled = process.env.BDS_DISABLE_BROWSER_POPUPS !== '1';
     if (browserPopupsEnabled && !gulandText && planningBrowserPopups?.readGulandPopupText) {
@@ -563,11 +563,11 @@ async function handleMessage(msg) {
       popupErrors.push('Guland popup: auto-click ─æang bß╗ï tß║»t bß║▒ng BDS_DISABLE_BROWSER_POPUPS=1.');
     }
     if (browserPopupsEnabled && !qhvietText && planningBrowserPopups?.readQhVietPopupText) {
-      const got = await planningBrowserPopups.readQhVietPopupText(parsed.lat, parsed.lon, summary.location || {}).catch(err => { popupErrors.push(`QH Viß╗çt popup: ${err.message || err}`); return null; });
+      const got = await planningBrowserPopups.readQhVietPopupText(parsed.lat, parsed.lon, summary.location || {}).catch(err => { popupErrors.push(`QH Việt popup: ${err.message || err}`); return null; });
       if (got?.text && !got.degraded) qhvietText = got.text;
-      else if (got?.degraded) popupErrors.push(`QH Viß╗çt popup: ${got.text.split('\n')[0]}`);
+      else if (got?.degraded) popupErrors.push(`QH Việt popup: ${got.text.split('\n')[0]}`);
     } else if (!qhvietText) {
-      popupErrors.push('QH Viß╗çt popup: auto-click ─æang bß╗ï tß║»t bß║▒ng BDS_DISABLE_BROWSER_POPUPS=1.');
+      popupErrors.push('QH Việt popup: auto-click ─æang bß╗ï tß║»t bß║▒ng BDS_DISABLE_BROWSER_POPUPS=1.');
     }
     const planningTraitsText = [
       summary.exact_indicators?.chuc_nang_dat,
