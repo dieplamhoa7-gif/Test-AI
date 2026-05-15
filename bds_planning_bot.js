@@ -61,8 +61,10 @@ const pendingPriceRequests = new Map();
 
 function commandKind(text) {
   const s = String(text || '').trim().toLowerCase();
-  if (s.startsWith('/gi├í') || s.startsWith('/gia')) return 'price';
-  if (s.startsWith('/qh')) return 'planning';
+  const first = s.split(/\s+/)[0].replace(/@\w+$/, '');
+  // Accept /gia, /giá, and mojibake/replacement variants like /gi�.
+  if (first === '/gi' || first.startsWith('/gia') || first.startsWith('/giá') || first.startsWith('/gi├') || first.startsWith('/gi�')) return 'price';
+  if (first.startsWith('/qh')) return 'planning';
   return null;
 }
 
