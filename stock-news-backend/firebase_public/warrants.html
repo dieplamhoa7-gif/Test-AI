@@ -445,7 +445,7 @@
   <script>
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '2026-05-15-warrant-realtime-v5';
+    const APP_CACHE_VERSION = '2026-05-15-warrant-realtime-v6';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
@@ -581,7 +581,23 @@
       writeLocalCache('hoa.warrants.watchlist', warrantWatchSymbols);
       elements.warrantSearchInput.value = ''; selectedWarrant = ''; renderWarrants();
     }
-    function parseVpsWarrantQuote(row, base = {}) { const price = Number(row?.lastPrice || 0) * 1000; const ref = Number(row?.r || 0) * 1000; const underlyingPrice = Number(row?.ot || 0) * 1000 || Number(base.underlyingPrice || 0); const exercisePrice = Number(row?.CWExcersisePrice || row?.CWExercisePrice || 0) * 1000 || Number(base.exercisePrice || 0); const ratioText = String(row?.CWExerciseRatio || base.exerciseRatio || '1:1'); const ratioParts = ratioText.split(':').map(Number); const ratio = ratioParts.length === 2 && ratioParts[0] > 0 ? ratioParts[1] / ratioParts[0] : Number(base.exerciseRatioValue || 1); const intrinsicValue = Math.max(0, (underlyingPrice - exercisePrice) / (ratio || 1)); const timeValue = price > 0 ? Math.max(0, price - intrinsicValue) : Number(base.timeValue || 0); return { marketPrice: price || Number(base.marketPrice || base.lastPrice || 0), lastPrice: price || Number(base.lastPrice || 0), refPrice: ref || Number(base.refPrice || 0), changePct: (price && ref ? Math.round(((price - ref) / ref * 100) * 100) / 100 : Number(row?.changePc ?? base.changePct ?? 0)), volume: Number(row?.lot || row?.totalVolume || base.volume || 0), bid: String(row?.g1 || '').split('|')[0] ? Number(String(row.g1).split('|')[0]) * 1000 : Number(base.bid || 0), ask: String(row?.g4 || '').split('|')[0] ? Number(String(row.g4).split('|')[0]) * 1000 : Number(base.ask || 0), underlyingPrice, exercisePrice, intrinsicValue, timeValue, realtimeUpdatedAt: new Date().toISOString() }; }
+    function parseVpsWarrantQuote(row, base = {}) {
+      const toVnd = (v) => { const n = Number(v || 0); return n && n < 100 ? n * 1000 : n; };
+      const price = toVnd(row?.lastPrice);
+      const ref = toVnd(row?.r);
+      const underlyingSymbol = String(base.underlying || row?.CWUnderlying || '').toUpperCase();
+      const stock = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === underlyingSymbol);
+      const underlyingPrice = Number(stock?.price || stock?.technical?.price || base.underlyingPrice || 0);
+      const exercisePrice = toVnd(row?.CWExcersisePrice || row?.CWExercisePrice) || Number(base.exercisePrice || 0);
+      const ratioText = String(row?.CWExerciseRatio || base.exerciseRatio || '1:1');
+      const ratioParts = ratioText.split(':').map(Number);
+      const conversionRatio = ratioParts.length === 2 && ratioParts[0] > 0 ? (ratioParts[0] / (ratioParts[1] || 1)) : Number(base.conversionRatio || 1);
+      const intrinsicValue = underlyingPrice && exercisePrice ? Math.max(0, (underlyingPrice - exercisePrice) / (conversionRatio || 1)) : Number(base.intrinsicValue || 0);
+      const timeValue = price > 0 ? Math.max(0, price - intrinsicValue) : Number(base.timeValue || 0);
+      const bidRaw = String(row?.g1 || '').split('|')[0];
+      const askRaw = String(row?.g4 || '').split('|')[0];
+      return { marketPrice: price || Number(base.marketPrice || base.lastPrice || 0), lastPrice: price || Number(base.lastPrice || 0), refPrice: ref || Number(base.refPrice || 0), changePct: (price && ref ? Math.round(((price - ref) / ref * 100) * 100) / 100 : Number(row?.changePc ?? base.changePct ?? 0)), volume: Number(row?.lot || row?.totalVolume || base.volume || 0), bid: bidRaw ? toVnd(bidRaw) : Number(base.bid || 0), ask: askRaw ? toVnd(askRaw) : Number(base.ask || 0), underlyingPrice, exercisePrice, conversionRatio, intrinsicValue, timeValue, realtimeUpdatedAt: new Date().toISOString() };
+    }
     async function refreshWarrantRealtime(symbols = []) { const list = symbols.map(x => String(x || '').toUpperCase()).filter(Boolean); if (!list.length) return; try { const fresh = await Promise.all(list.map(async code => { const res = await fetch(`https://bgapidatafeed.vps.com.vn/getliststockdata/${encodeURIComponent(code)}`, { cache: 'no-store' }); if (!res.ok) return [code, null]; const data = await res.json(); return [code, Array.isArray(data) ? data[0] : null]; })); fresh.forEach(([code, row]) => { if (!row) return; const idx = warrantItems.findIndex(x => String(x.code || '').toUpperCase() === code); if (idx < 0) return; warrantItems[idx] = { ...warrantItems[idx], ...parseVpsWarrantQuote(row, warrantItems[idx]), code }; }); renderWarrants(); if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(elements.warrantTitle.textContent); elements.apiStatus.textContent = 'CW realtime'; } catch (_) { elements.apiStatus.textContent = 'CW cache'; } }
     async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); const saved = readLocalCache('hoa.warrants.watchlist'); warrantWatchSymbols = Array.isArray(saved) && saved.length ? saved.map(x => String(x).toUpperCase()) : ['CACB2510','CMWG2511','CFPT2514','CHPG2514','CSSI2509']; renderWarrants(); await refreshWarrantRealtime(warrantWatchSymbols); } catch (_) { elements.warrantStatus.textContent = 'Không tải được dữ liệu chứng quyền'; elements.warrantGrid.innerHTML = '<div class="empty error">Không tải được dữ liệu chứng quyền.</div>'; } }
 
