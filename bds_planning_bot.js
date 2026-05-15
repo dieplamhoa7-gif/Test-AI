@@ -39,9 +39,57 @@ function allowed(chatId) {
   return ALLOWED_CHAT_IDS.length === 0 || ALLOWED_CHAT_IDS.includes(String(chatId));
 }
 
+
+function fixKnownBadVietnamese(text) {
+  return repairMojibake(String(text ?? ''))
+    .replaceAll('GIA BDS', 'GIÁ BĐS')
+    .replaceAll('T?a d?', 'Tọa độ')
+    .replaceAll('Khu v?c', 'Khu vực')
+    .replaceAll('chua ro', 'chưa rõ')
+    .replaceAll('Lo?i t�i s?n', 'Loại tài sản')
+    .replaceAll('MDSDD', 'MĐSDĐ')
+    .replaceAll('V? tr�', 'Vị trí')
+    .replaceAll('Ngu?n', 'Nguồn')
+    .replaceAll('Gi� tham kh?o', 'Giá tham khảo')
+    .replaceAll('Ly do', 'Lý do')
+    .replaceAll('S? m?u d�ng d? t�nh', 'Số mẫu dùng để tính')
+    .replaceAll('Kho?ng gi�', 'Khoảng giá')
+    .replaceAll('Trung b�nh', 'Trung bình')
+    .replaceAll('Trung v?', 'Trung vị')
+    .replaceAll('B? l?c', 'Bộ lọc')
+    .replaceAll('m?u so s�nh uu ti�n c�ng', 'mẫu so sánh ưu tiên cùng')
+    .replaceAll('du?ng', 'đường')
+    .replaceAll('m?t ti?n', 'mặt tiền')
+    .replaceAll('h?m', 'hẻm')
+    .replaceAll('c�ch', 'cách')
+    .replaceAll('D?t', 'Đất')
+    .replaceAll('Nh�', 'Nhà')
+    .replaceAll('Chung cu', 'Chung cư')
+    .replaceAll('Kho/xu?ng', 'Kho/xưởng')
+    .replaceAll('Shophouse/m?t b?ng', 'Shophouse/mặt bằng')
+    .replaceAll('Anh ch?n lo?i t�i s?n d? em l?c gi�', 'Anh chọn loại tài sản để em lọc giá')
+    .replaceAll('Lo?i t�i s?n', 'Loại tài sản')
+    .replaceAll('QH Vi?t', 'QH Việt')
+    .replaceAll('uu ti�n', 'ưu tiên')
+    .replaceAll('Ch? ti�u � ch?c nang', 'Chỉ tiêu ô chức năng')
+    .replaceAll('Chua d?c du?c th�ng tin quy ho?ch chi ti?t', 'Chưa đọc được thông tin quy hoạch chi tiết')
+    .replaceAll('D�ng /gi� d? tra gi� ri�ng', 'Dùng /giá để tra giá riêng')
+    .replaceAll('Popup t? d?ng', 'Popup tự động');
+}
+
+function sanitizeExtra(extra = {}) {
+  if (!extra || typeof extra !== 'object') return extra;
+  const out = JSON.parse(JSON.stringify(extra));
+  const rows = out.reply_markup?.inline_keyboard;
+  if (Array.isArray(rows)) {
+    for (const row of rows) for (const btn of row) if (btn && typeof btn.text === 'string') btn.text = fixKnownBadVietnamese(btn.text);
+  }
+  return out;
+}
+
 function cleanTelegramMarkdown(text) {
   // Keep simple bold markers for important prices; strip only fragile chars.
-  return repairMojibake(text).replace(/[_`\[]/g, '');
+  return fixKnownBadVietnamese(text).replace(/[_`\[]/g, '');
 }
 
 async function resolveShortMapLinks(text) {
@@ -269,7 +317,7 @@ async function sendMessage(chatId, text, replyTo, extra = {}) {
       parse_mode: 'Markdown',
       reply_parameters: replyTo ? { message_id: replyTo } : undefined,
       disable_web_page_preview: true,
-      ...extra,
+      ...sanitizeExtra(extra),
     });
   }
 }
@@ -423,7 +471,7 @@ function buildFinalReport(summary, gulandText, priceStats, qhvietText = null) {
 
 async function answerCallbackQuery(id, text = '') {
   if (!id) return;
-  await tg('answerCallbackQuery', { callback_query_id: id, text }).catch(() => null);
+  await tg('answerCallbackQuery', { callback_query_id: id, text: fixKnownBadVietnamese(text) }).catch(() => null);
 }
 
 function buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors = []) {
