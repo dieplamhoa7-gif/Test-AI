@@ -165,9 +165,9 @@ function extractRoadName(text) {
 
 function resultToComparable(item, target = {}) {
   const text = [item.title, item.snippet].filter(Boolean).join(' ');
-  const assetType = detectAssetType(text);
+  const assetType = repairMojibake(detectAssetType(text));
   const landUseCode = detectLandUseCode(text);
-  const position = detectPosition(text);
+  const position = repairMojibake(detectPosition(text));
   const price_million_m2 = parsePriceMillionM2(text);
   const area_m2 = parseAreaM2(text);
   const total_billion = parseTotalBillion(text);
@@ -187,8 +187,8 @@ function resultToComparable(item, target = {}) {
   };
   return {
     source: sourceName(item.url),
-    title: item.title,
-    snippet: item.snippet,
+    title: repairMojibake(item.title),
+    snippet: repairMojibake(item.snippet),
     url: item.url,
     asset_type: assetType,
     land_use_code: landUseCode,
@@ -595,10 +595,16 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
     .filter(term => locNormForFilter.includes(term));
   const wantsApartment = String(target.asset || '').toLowerCase() === 'apartment';
   const seenUrls = new Set();
-  const comparables = listings.filter(x => !x.blocked && !/Just a moment|Enable JavaScript and cookies|Cloudflare|Attention Required/i.test(`${x.title || ''} ${x.snippet || ''}`)).map(x => resultToComparable(x, target))
-    .filter(x => !/\/nha-dat-ban(?:-|$)|\/ban-nha-rieng(?:-|$)|\/ban-dat(?:-|$)|\/ban-can-ho-chung-cu(?:-|$)/i.test(new URL(x.url || 'https://x.invalid', 'https://x.invalid').pathname) || /pr\d+/i.test(x.url || ''))
+  const mappedAll = listings.filter(x => !x.blocked && !/Just a moment|Enable JavaScript and cookies|Cloudflare|Attention Required/i.test(`${x.title || ''} ${x.snippet || ''}`)).map(x => resultToComparable(x, target));
+  const buildComparableList = (strict = true) => mappedAll
+    .filter(x => {
+      const u = new URL(x.url || 'https://x.invalid', 'https://x.invalid');
+      const path = u.pathname.replace(/\/$/, '');
+      if (/^\/$|^\/nguoi-ban|^\/nha-dat-ban$|^\/ban-nha-rieng$|^\/ban-dat$|^\/ban-can-ho-chung-cu$/i.test(path)) return false;
+      return !/\/nha-dat-ban(?:-|$)|\/ban-nha-rieng(?:-|$)|\/ban-dat(?:-|$)|\/ban-can-ho-chung-cu(?:-|$)/i.test(path) || /pr\d+/i.test(x.url || '');
+    })
     .filter(x => !seenUrls.has(x.url) && (seenUrls.add(x.url), true))
-    .filter(x => !wantsApartment || x.asset_type === 'chung c╞░/c─ân hß╗Ö')
+    .filter(x => !wantsApartment || x.asset_type === 'chung cư/căn hộ')
     .filter(x => !Number.isFinite(x.price_million_m2) || (x.price_million_m2 >= 1 && x.price_million_m2 <= 1000))
     .filter(x => Number.isFinite(x.price_million_m2) || Number.isFinite(x.total_billion))
     .filter(x => {
@@ -615,7 +621,19 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
-  return { source, query: queries.join(' | '), url: `https://www.google.com/search?q=${encodeURIComponent(queries[0] || '')}`, comparables };
+  let comparables = buildComparableList(true);
+  if (!comparables.length && mappedAll.length) {
+    source += ' (nới lọc khu vực vì không đủ mẫu khớp đường)';
+    comparables = mappedAll
+      .filter(x => !seenUrls.has('loose:' + x.url) && (seenUrls.add('loose:' + x.url), true))
+      .filter(x => !wantsApartment || x.asset_type === 'chung cư/căn hộ')
+      .filter(x => { const u = new URL(x.url || 'https://x.invalid', 'https://x.invalid'); const path = u.pathname.replace(/\/$/, ''); return !(/^\/$|^\/nguoi-ban|^\/nha-dat-ban$|^\/ban-nha-rieng$|^\/ban-dat$|^\/ban-can-ho-chung-cu$/i.test(path)); })
+      .filter(x => !Number.isFinite(x.price_million_m2) || (x.price_million_m2 >= 1 && x.price_million_m2 <= 1000))
+      .filter(x => Number.isFinite(x.price_million_m2) || Number.isFinite(x.total_billion))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
+  }
+  return { source, query: repairMojibake(queries.join(' | ')), url: `https://www.google.com/search?q=${encodeURIComponent(repairMojibake(queries[0] || ''))}`, comparables };
 }
 
 function stripHtml(s) {
