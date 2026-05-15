@@ -600,7 +600,7 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
     .filter(x => {
       const u = new URL(x.url || 'https://x.invalid', 'https://x.invalid');
       const path = u.pathname.replace(/\/$/, '');
-      if (/^\/$|^\/nguoi-ban|^\/nha-dat-ban$|^\/ban-nha-rieng$|^\/ban-dat$|^\/ban-can-ho-chung-cu$/i.test(path)) return false;
+      if (/^\/$|^\/nguoi-ban|^\/nha-dat-ban(?:-[a-z0-9-]+)?$|^\/ban-nha-rieng(?:-[a-z0-9-]+)?$|^\/ban-dat(?:-[a-z0-9-]+)?$|^\/ban-can-ho-chung-cu(?:-[a-z0-9-]+)?$/i.test(path)) return false;
       return !/\/nha-dat-ban(?:-|$)|\/ban-nha-rieng(?:-|$)|\/ban-dat(?:-|$)|\/ban-can-ho-chung-cu(?:-|$)/i.test(path) || /pr\d+/i.test(x.url || '');
     })
     .filter(x => !seenUrls.has(x.url) && (seenUrls.add(x.url), true))
@@ -622,17 +622,8 @@ async function searchBatdongsanComparables({ lat, lon, locationText = '', target
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
   let comparables = buildComparableList(true);
-  if (!comparables.length && mappedAll.length) {
-    source += ' (nới lọc khu vực vì không đủ mẫu khớp đường)';
-    comparables = mappedAll
-      .filter(x => !seenUrls.has('loose:' + x.url) && (seenUrls.add('loose:' + x.url), true))
-      .filter(x => !wantsApartment || x.asset_type === 'chung cư/căn hộ')
-      .filter(x => { const u = new URL(x.url || 'https://x.invalid', 'https://x.invalid'); const path = u.pathname.replace(/\/$/, ''); return !(/^\/$|^\/nguoi-ban|^\/nha-dat-ban$|^\/ban-nha-rieng$|^\/ban-dat$|^\/ban-can-ho-chung-cu$/i.test(path)); })
-      .filter(x => !Number.isFinite(x.price_million_m2) || (x.price_million_m2 >= 1 && x.price_million_m2 <= 1000))
-      .filter(x => Number.isFinite(x.price_million_m2) || Number.isFinite(x.total_billion))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, limit);
-  }
+  // Do not fall back to far/irrelevant Google results. Returning no sample is better
+  // than returning another district/city and misleading price guidance.
   return { source, query: repairMojibake(queries.join(' | ')), url: `https://www.google.com/search?q=${encodeURIComponent(repairMojibake(queries[0] || ''))}`, comparables };
 }
 
