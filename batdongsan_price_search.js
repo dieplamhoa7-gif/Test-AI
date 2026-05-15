@@ -3,6 +3,7 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
+const { repairMojibake } = require('./mojibake_repair');
 const DEFAULT_CDP = process.env.BDS_BROWSER_CDP || 'http://127.0.0.1:18800';
 const DEFAULT_CHROME = process.env.BDS_CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const DEFAULT_PROFILE = process.env.BDS_BROWSER_PROFILE || path.join(__dirname, '.bds-browser-profile');
@@ -76,8 +77,8 @@ async function withCdp(wsUrl, fn) {
 }
 
 function normalizeText(s) {
-  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/─æ/g, 'd').replace(/─É/g, 'D').toLowerCase();
+  return repairMojibake(String(s || '')).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
 }
 
 function detectAssetType(text) {
@@ -204,7 +205,7 @@ function resultToComparable(item, target = {}) {
 }
 
 function simplifyLocationVariants(locationText) {
-  const raw = String(locationText || '').replace(/^\/gi?├í|^\/gia|^\/qh/ig, '').trim();
+  const raw = repairMojibake(String(locationText || '')).replace(/^\/gi?á|^\/gia|^\/qh/ig, '').trim();
   const parts = [raw];
   const road = raw.match(/(?:─æ╞░ß╗¥ng|duong)?\s*([A-Z├Ç-ß╗╕][\w├Ç-ß╗╣]+\s+V─ân\s+[A-Z├Ç-ß╗╕][\w├Ç-ß╗╣]+)/i)?.[1]
     || raw.match(/(Huß╗│nh V─ân Nghß╗ç|─Éß║╖ng V─ân Bi|V├╡ V─ân Ng├ón)/i)?.[1];
@@ -233,16 +234,16 @@ function targetAssetKeywords(code, asset, position) {
 }
 
 function buildQueries(locationText, target = {}) {
-  const locs = simplifyLocationVariants(locationText);
+  const locs = simplifyLocationVariants(repairMojibake(locationText));
   const code = String(target.code || '').toUpperCase();
-  const kinds = targetAssetKeywords(code, target.asset, target.position);
+  const kinds = targetAssetKeywords(code, target.asset, target.position).map(repairMojibake);
   const queries = [];
   for (const loc of locs) {
     for (const kind of kinds) {
       // User-requested pattern: road name + city/province + selected real-estate type.
       // Prefer natural Google query first; `site:` can hide/redirect links in browser automation.
-      queries.push(`${kind} ${loc} batdongsan.com.vn`);
-      queries.push(`${kind} ${loc} alonhadat cafeland nhadat24h muaban`);
+      queries.push(repairMojibake(`${kind} ${loc} batdongsan.com.vn`));
+      queries.push(repairMojibake(`${kind} ${loc} alonhadat cafeland nhadat24h muaban`));
       queries.push(`site:batdongsan.com.vn ${kind} ${loc}`);
       queries.push(`site:alonhadat.com.vn ${kind} ${loc}`);
       queries.push(`site:nhadat.cafeland.vn ${kind} ${loc}`);

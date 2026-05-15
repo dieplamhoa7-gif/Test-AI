@@ -11,6 +11,7 @@ const { parseCoordinateInput, lookupHcmPlanning, lookupGulandPriceStats, summari
 const { parseGulandPopupText, formatGulandPopup } = require('./guland_popup_parser');
 const { parseQhVietPopupText, formatQhVietPopup } = require('./qhviet_popup_parser');
 const { searchBatdongsanComparables } = require('./batdongsan_price_search');
+const { repairMojibake } = require('./mojibake_repair');
 let planningBrowserPopups = null;
 try { planningBrowserPopups = require('./planning_browser_popups'); } catch (_) {}
 
@@ -40,7 +41,7 @@ function allowed(chatId) {
 
 function cleanTelegramMarkdown(text) {
   // Keep simple bold markers for important prices; strip only fragile chars.
-  return text.replace(/[_`\[]/g, '');
+  return repairMojibake(text).replace(/[_`\[]/g, '');
 }
 
 async function resolveShortMapLinks(text) {
