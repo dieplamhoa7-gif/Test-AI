@@ -8,8 +8,14 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pandas as pd
 from vnstock import Listing, Quote, Trading
+
+try:
+    import ml_core12_group_combo_search as core12
+except Exception:
+    core12 = None
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -44,6 +50,84 @@ def round_or_none(v: Any, n: int = 2):
     x = sf(v)
     return round(x, n) if x is not None else None
 
+
+
+def calc_core12(sym: str, df: pd.DataFrame) -> dict[str, Any]:
+    cfg_path = DATA / "core12_group_combo_config.json"
+    if not cfg_path.exists():
+        return {"available": False, "reason": "missing core12 config"}
+    try:
+        if core12 is None:
+            return {"available": False, "reason": "core12 module unavailable"}
+        cfg = json.loads(cfg_path.read_text(encoding="utf-8")).get("selected", {})
+        sector = core12.sg(sym)
+        tasks: dict[str, Any] = {}
+        basic = None
+        for task in ["RS", "D1A", "D1S"]:
+            use_sector = sector if sector in cfg and task in cfg.get(sector, {}) else ("ALL" if task in cfg.get("ALL", {}) else None)
+            if not use_sector:
+                continue
+            rec = cfg[use_sector][task]
+            indicators = rec.get("indicators") or []
+            params_map = rec.get("indicatorParams") or {}
+            values: dict[str, Any] = {}
+            signals = []
+            pos = neg = neu = 0
+            for ind in indicators:
+                if ind == "SR_CLUSTER":
+                    if basic is None:
+                        basic = calc_indicators(df)
+                    price = sf(df.close.iloc[-1]) or 0
+                    supports = basic.get("supportLevelsDay") or []
+                    resistances = basic.get("resistanceLevelsDay") or []
+                    s1 = supports[0] if supports else None
+                    r1 = resistances[0] if resistances else None
+                    near_s = bool(s1 and price <= s1 * 1.018)
+                    broken = bool(s1 and price < s1 * 0.992)
+                    sig = 1 if near_s and not broken else (-1 if broken else 0)
+                    values[ind] = {"nearSupport": near_s, "supportBroken": broken, "S1": s1, "R1": r1}
+                else:
+                    out = core12.calc(df, ind, params_map.get(ind, []) or [], {})
+                    last = {k: round_or_none(v.iloc[-1], 4) if hasattr(v, "iloc") else None for k, v in out.items()}
+                    values[ind] = last
+                    score = 0
+                    for k, v in last.items():
+                        x = sf(v)
+                        if x is None:
+                            continue
+                        kl = k.lower()
+                        if any(a in kl for a in ["dist", "cloud_pos", "slope", "hist", "trix", "roc", "mom", "spread", "tk"]):
+                            score += 1 if x > 0 else (-1 if x < 0 else 0)
+                        elif "rsi" in kl:
+                            score += 1 if 40 <= x <= 70 else (-1 if x < 35 else 0)
+                        elif "mfi" in kl or "cmf" in kl:
+                            score += 1 if x >= 45 else -1
+                        elif "dir" in kl:
+                            score += 1 if x > 0 else -1
+                    sig = 1 if score > 0 else (-1 if score < 0 else 0)
+                pos += 1 if sig > 0 else 0
+                neg += 1 if sig < 0 else 0
+                neu += 1 if sig == 0 else 0
+                signals.append({"indicator": ind, "signal": sig})
+            total = max(1, pos + neg + neu)
+            tasks[task] = {
+                "sectorGroup": sector,
+                "configSector": use_sector,
+                "indicators": indicators,
+                "model": rec.get("model"),
+                "mode": rec.get("mode"),
+                "avgPrecision": rec.get("avgPrecision"),
+                "avgRecall": rec.get("avgRecall"),
+                "positive": pos,
+                "negative": neg,
+                "neutral": neu,
+                "score": round((pos - neg) / total * 100, 2),
+                "signals": signals,
+                "values": values,
+            }
+        return {"available": True, "sectorGroup": sector, "tasks": tasks}
+    except Exception as exc:
+        return {"available": False, "reason": str(exc)[:180]}
 
 def calc_indicators(df: pd.DataFrame) -> dict[str, Any]:
     d = df.copy().sort_values("time").reset_index(drop=True)
@@ -189,6 +273,7 @@ def fetch_symbol(row: dict[str, Any], end: str) -> tuple[str, dict[str, Any] | N
         df = df.rename(columns={"time": "time"})
         out = {"symbol": sym, "exchange": row.get("exchange"), "organName": row.get("organ_name"), "marketCap": round_or_none(row.get("marketCap"), 0), "listedShare": row.get("listedShare")}
         out.update(calc_indicators(df))
+        out["core12"] = calc_core12(sym, df)
         return sym, out, None
     except Exception as exc:
         return sym, None, str(exc)[:180]
