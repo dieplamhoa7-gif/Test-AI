@@ -2,8 +2,9 @@ name: Refresh LH warrants cache
 
 on:
   schedule:
-    # Vietnam market hours: every 10 minutes from 09:00 to 15:00 ICT on weekdays.
-    - cron: '*/10 2-8 * * 1-5'
+    # Vietnam market hours: refresh as often as GitHub scheduled workflows allow.
+    # GitHub cron minimum is 5 minutes; frontend still refreshes watched/visible CW faster.
+    - cron: '*/5 2-8 * * 1-5'
   workflow_dispatch:
 
 permissions:
