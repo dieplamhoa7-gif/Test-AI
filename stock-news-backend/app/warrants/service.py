@@ -198,9 +198,11 @@ def enrich_warrant(row: dict[str, Any]) -> dict[str, Any]:
         market_price = fair_value
     exercise_price = _num(row.get("exercisePrice"))
     conversion_ratio = _num(row.get("conversionRatio")) or 1
-    days_left = _num(row.get("daysLeft"))
+    # Always derive remaining days from live contract dates when available.
+    # Static caches may carry stale daysLeft values from the day they were built.
+    days_left = _days_left(row.get("lastTradingDate") or row.get("maturityDate"))
     if days_left is None:
-        days_left = _days_left(row.get("lastTradingDate") or row.get("maturityDate"))
+        days_left = _num(row.get("daysLeft"))
     # Covered warrant formulas for Vietnamese CW:
     # Intrinsic value per CW = max(0, underlying - exercise) / conversion_ratio.
     # Breakeven underlying price = exercise + market_price * conversion_ratio.
