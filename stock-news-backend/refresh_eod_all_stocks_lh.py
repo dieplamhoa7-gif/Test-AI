@@ -1,21 +1,31 @@
 from __future__ import annotations
 
 import json
+import os
+import sys
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from vnstock import Listing, Quote
+from vnstock import Listing, Quote, Trading
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+os.environ.setdefault("PYTHONIOENCODING", "utf-8")
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 PUBLIC = ROOT / "firebase_public" / "data"
 TZ = timezone(timedelta(hours=7))
 START = "2025-01-01"
-MAX_WORKERS = 8
+MAX_WORKERS = 1
+REQUEST_DELAY_SECONDS = 3.3
+TOP_N = 200
 
 
 def sf(v: Any) -> float | None:
@@ -109,14 +119,75 @@ def calc_indicators(df: pd.DataFrame) -> dict[str, Any]:
     }
 
 
+def flatten_columns(df: pd.DataFrame) -> pd.DataFrame:
+    if isinstance(df.columns, pd.MultiIndex):
+        df = df.copy()
+        df.columns = ["_".join([str(x) for x in col if str(x) != ""]).strip("_") for col in df.columns]
+    return df
+
+
+def pick_col(df: pd.DataFrame, *names: str) -> str | None:
+    lower = {str(c).lower(): c for c in df.columns}
+    for name in names:
+        if name.lower() in lower:
+            return lower[name.lower()]
+    for c in df.columns:
+        lc = str(c).lower()
+        if any(name.lower() in lc for name in names):
+            return c
+    return None
+
+
+def top_market_cap_rows(listing: pd.DataFrame) -> list[dict[str, Any]]:
+    base = listing[["symbol", "exchange", "organ_name"]].drop_duplicates("symbol").copy()
+    records: list[dict[str, Any]] = []
+    symbols = base["symbol"].astype(str).str.upper().tolist()
+    meta = {str(r["symbol"]).upper(): r for r in base.to_dict("records")}
+    trading = Trading(source="VCI")
+    for start in range(0, len(symbols), 50):
+        chunk = symbols[start:start + 50]
+        try:
+            board = flatten_columns(trading.price_board(chunk))
+            sym_col = pick_col(board, "listing_symbol", "symbol")
+            share_col = pick_col(board, "listing_listed_share", "listed_share")
+            price_col = pick_col(board, "match_match_price", "match_price")
+            ref_col = pick_col(board, "listing_ref_price", "reference_price", "ref_price")
+            if not sym_col or not share_col:
+                continue
+            for _, row in board.iterrows():
+                sym = str(row.get(sym_col) or "").upper().strip()
+                if not sym or sym not in meta:
+                    continue
+                shares = sf(row.get(share_col)) or 0
+                price = sf(row.get(price_col)) or sf(row.get(ref_col)) or 0
+                market_cap = shares * price
+                rec = dict(meta[sym])
+                rec["listedShare"] = int(shares) if shares else None
+                rec["marketCap"] = market_cap
+                records.append(rec)
+        except Exception as exc:
+            print("price_board chunk failed", chunk[:3], str(exc)[:120], flush=True)
+    if len(records) < TOP_N:
+        print(f"market-cap board only returned {len(records)} rows; falling back to listing order for missing names", flush=True)
+        seen = {r["symbol"] for r in records}
+        for r in base.to_dict("records"):
+            if r["symbol"] not in seen:
+                rec = dict(r)
+                rec["marketCap"] = 0
+                records.append(rec)
+    records.sort(key=lambda r: sf(r.get("marketCap")) or 0, reverse=True)
+    return records[:TOP_N]
+
+
 def fetch_symbol(row: dict[str, Any], end: str) -> tuple[str, dict[str, Any] | None, str | None]:
     sym = str(row["symbol"]).upper().strip()
     try:
+        time.sleep(REQUEST_DELAY_SECONDS)
         df = Quote(symbol=sym, source="VCI").history(start=START, end=end, interval="1D")
         if df is None or df.empty or len(df) < 30:
             return sym, None, "missing/short history"
         df = df.rename(columns={"time": "time"})
-        out = {"symbol": sym, "exchange": row.get("exchange"), "organName": row.get("organ_name")}
+        out = {"symbol": sym, "exchange": row.get("exchange"), "organName": row.get("organ_name"), "marketCap": round_or_none(row.get("marketCap"), 0), "listedShare": row.get("listedShare")}
         out.update(calc_indicators(df))
         return sym, out, None
     except Exception as exc:
@@ -127,24 +198,21 @@ def main() -> None:
     end = datetime.now(TZ).strftime("%Y-%m-%d")
     listing = Listing().symbols_by_exchange()
     listing = listing[(listing["type"] == "stock") & (listing["exchange"].isin(["HOSE", "HNX"]))]
-    rows = listing[["symbol", "exchange", "organ_name"]].drop_duplicates("symbol").to_dict("records")
+    rows = top_market_cap_rows(listing)
     items: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        futures = {ex.submit(fetch_symbol, r, end): r for r in rows}
-        for i, fut in enumerate(as_completed(futures), 1):
-            sym, item, err = fut.result()
-            if item:
-                items.append(item)
-            else:
-                errors.append({"symbol": sym, "error": err or "unknown"})
-            if i % 50 == 0:
-                print(f"processed {i}/{len(rows)} items={len(items)} errors={len(errors)}", flush=True)
-            time.sleep(0.02)
+    for i, row in enumerate(rows, 1):
+        sym, item, err = fetch_symbol(row, end)
+        if item:
+            items.append(item)
+        else:
+            errors.append({"symbol": sym, "error": err or "unknown"})
+        if i % 20 == 0 or i == len(rows):
+            print(f"processed {i}/{len(rows)} items={len(items)} errors={len(errors)}", flush=True)
     items.sort(key=lambda x: (x.get("exchange") or "", x.get("symbol") or ""))
     now = datetime.now(TZ).isoformat(timespec="seconds")
-    payload = {"updatedAt": now, "source": "vnstock-vci-eod-all-hose-hnx", "start": START, "end": end, "count": len(items), "items": items, "errors": errors[:200], "errorCount": len(errors)}
-    for path in [DATA / "eod_all_stocks_hose_hnx.json", PUBLIC / "eod_all_stocks_hose_hnx.json"]:
+    payload = {"updatedAt": now, "source": "vnstock-vci-eod-top200-marketcap-hose-hnx", "universeRule": "Top 200 HOSE+HNX by market cap from VCI price board after 15:15 ICT", "topN": TOP_N, "start": START, "end": end, "count": len(items), "items": items, "errors": errors[:200], "errorCount": len(errors)}
+    for path in [DATA / "eod_top200_marketcap_hose_hnx.json", PUBLIC / "eod_top200_marketcap_hose_hnx.json", DATA / "eod_all_stocks_hose_hnx.json", PUBLIC / "eod_all_stocks_hose_hnx.json"]:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"updatedAt": now, "symbols": len(rows), "items": len(items), "errors": len(errors)}, ensure_ascii=False), flush=True)

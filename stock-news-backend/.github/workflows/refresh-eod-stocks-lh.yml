@@ -1,20 +1,20 @@
-name: Refresh LH EOD stocks HOSE HNX
+name: Refresh LH EOD top200 market cap
 
 on:
   schedule:
-    # After Vietnam market close, weekdays: 16:25 ICT = 09:25 UTC.
-    - cron: '25 9 * * 1-5'
+    # After 15:15 Vietnam close window, weekdays: 15:25 ICT = 08:25 UTC.
+    - cron: '25 8 * * 1-5'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-lh-eod-stocks
+  group: refresh-lh-eod-top200-marketcap
   cancel-in-progress: true
 
 jobs:
-  refresh-eod-stocks:
+  refresh-eod-top200:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Refresh EOD HOSE HNX indicators
+      - name: Refresh EOD top 200 market cap indicators
         run: python refresh_eod_all_stocks_lh.py
 
       - name: Refresh public Firebase cache
@@ -48,6 +48,7 @@ jobs:
         run: |
           git config user.name "LH Investment Bot"
           git config user.email "actions@users.noreply.github.com"
+          git add data/eod_top200_marketcap_hose_hnx.json firebase_public/data/eod_top200_marketcap_hose_hnx.json
           git add data/eod_all_stocks_hose_hnx.json firebase_public/data/eod_all_stocks_hose_hnx.json
           git add firebase_public/data/warrants_data.json firebase_public/data/app_version.json
           git diff --cached --quiet || git commit -m "Auto refresh LH EOD stocks cache"
