@@ -644,16 +644,17 @@
     function currentVisibleWarrantSymbols() { const q = String(elements.warrantSearchInput?.value || '').trim().toUpperCase(); const search = q ? warrantItems.filter(item => String(item.code || '').toUpperCase().includes(q) || String(item.underlying || '').toUpperCase().includes(q)).slice(0, 20).map(item => item.code) : []; const modal = elements.warrantModal?.classList.contains('open') ? [elements.warrantTitle.textContent] : []; return [...warrantWatchSymbols, ...search, ...modal].filter(Boolean); }
     function scheduleWarrantAutoRefresh() {
       if (warrantAutoRefreshTimer) clearInterval(warrantAutoRefreshTimer);
-      warrantAutoRefreshTimer = setInterval(() => { if (document.hidden) return; const symbols = currentVisibleWarrantSymbols(); if (symbols.length) refreshWarrantRealtime(symbols); }, 3000);
+      warrantAutoRefreshTimer = setInterval(() => { if (document.hidden) return; if (warrantWatchSymbols.length) refreshWarrantRealtime(warrantWatchSymbols); }, 60000);
       if (warrantUniverseRefreshTimer) clearInterval(warrantUniverseRefreshTimer);
       warrantUniverseRefreshTimer = setInterval(() => {
         if (document.hidden || !warrantItems.length) return;
-        const batch = [];
-        for (let i = 0; i < 20; i += 1) { const item = warrantItems[warrantUniverseCursor % warrantItems.length]; warrantUniverseCursor += 1; if (item?.code) batch.push(item.code); }
-        if (batch.length) refreshWarrantRealtime(batch);
-      }, 5000);
+        const nonWatch = warrantItems.filter(item => item?.code && !warrantWatchSymbols.includes(String(item.code).toUpperCase()));
+        if (!nonWatch.length) return;
+        const batch = nonWatch.map(item => item.code);
+        refreshWarrantRealtime(batch);
+      }, 3600000);
     }
-    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => normalizeWarrantDates({ ...x, code: String(x.code || '').toUpperCase() })); const saved = readLocalCache('hoa.warrants.watchlist'); warrantWatchSymbols = Array.isArray(saved) && saved.length ? saved.map(x => String(x).toUpperCase()) : ['CACB2510','CMWG2511','CFPT2514','CHPG2514','CSSI2509']; renderWarrants(); await refreshWarrantRealtime([...warrantWatchSymbols, ...warrantItems.slice(0, 40).map(x => x.code)]); scheduleWarrantAutoRefresh(); } catch (_) { elements.warrantStatus.textContent = 'Không tải được dữ liệu chứng quyền'; elements.warrantGrid.innerHTML = '<div class="empty error">Không tải được dữ liệu chứng quyền.</div>'; } }
+    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => normalizeWarrantDates({ ...x, code: String(x.code || '').toUpperCase() })); const saved = readLocalCache('hoa.warrants.watchlist'); warrantWatchSymbols = Array.isArray(saved) && saved.length ? saved.map(x => String(x).toUpperCase()) : ['CACB2510','CMWG2511','CFPT2514','CHPG2514','CSSI2509']; renderWarrants(); await refreshWarrantRealtime(warrantWatchSymbols); scheduleWarrantAutoRefresh(); } catch (_) { elements.warrantStatus.textContent = 'Không tải được dữ liệu chứng quyền'; elements.warrantGrid.innerHTML = '<div class="empty error">Không tải được dữ liệu chứng quyền.</div>'; } }
 
 
     function strategyVisualSvg(style='primary') {

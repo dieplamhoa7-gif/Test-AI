@@ -2,9 +2,9 @@ name: Refresh LH warrants cache
 
 on:
   schedule:
-    # Vietnam market hours: refresh as often as GitHub scheduled workflows allow.
-    # GitHub cron minimum is 5 minutes; frontend still refreshes watched/visible CW faster.
-    - cron: '*/5 2-8 * * 1-5'
+    # Vietnam market hours: background universe cache hourly for non-watchlist CW.
+    # Watchlist symbols are refreshed by the frontend every 1 minute while the page is open.
+    - cron: '0 2-8 * * 1-5'
   workflow_dispatch:
 
 permissions:
