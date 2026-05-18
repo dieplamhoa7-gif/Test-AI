@@ -445,7 +445,7 @@
   <script>
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '2026-05-15-warrant-realtime-v9';
+    const APP_CACHE_VERSION = '2026-05-18-warrant-realtime-v10';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
@@ -591,19 +591,8 @@
       if (!code) return;
       const exists = warrantItems.some(item => String(item.code || '').toUpperCase() === code);
       if (!exists) { elements.warrantStatus.textContent = `Không tìm thấy mã ${code}`; return; }
-      elements.warrantStatus.textContent = `Đang tải chi tiết ${code}...`;
-      try {
-        const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' });
-        if (res.ok) {
-          const payload = await res.json();
-          const detail = (payload.items || []).find(x => String(x.code || '').toUpperCase() === code);
-          if (detail) {
-            const normalized = { ...detail, code };
-            const idx = warrantItems.findIndex(x => String(x.code || '').toUpperCase() === code);
-            if (idx >= 0) warrantItems[idx] = normalized; else warrantItems.push(normalized);
-          }
-        }
-      } catch (_) {}
+      elements.warrantStatus.textContent = `Đang tải realtime ${code}...`;
+      await refreshWarrantRealtime([code]);
       if (!warrantWatchSymbols.includes(code)) warrantWatchSymbols.unshift(code);
       writeLocalCache('hoa.warrants.watchlist', warrantWatchSymbols);
       elements.warrantSearchInput.value = ''; selectedWarrant = ''; renderWarrants();
