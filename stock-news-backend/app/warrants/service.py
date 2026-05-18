@@ -8,6 +8,8 @@ import json
 
 import httpx
 
+from app.market_calendar import vn_market_workdays_left
+
 try:
     from vnstock import Listing
 except Exception:  # pragma: no cover
@@ -50,7 +52,7 @@ def _days_left(value: Any) -> int | None:
         return None
     for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"):
         try:
-            return max(0, (datetime.strptime(text, fmt).date() - datetime.now().date()).days)
+            return vn_market_workdays_left(datetime.strptime(text, fmt).date(), datetime.now().date())
         except Exception:
             pass
     return None
