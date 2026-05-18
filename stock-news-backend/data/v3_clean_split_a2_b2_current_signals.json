@@ -1,1252 +1,1418 @@
 {
-  "createdAt": "2026-05-05T09:38:45.907184",
+  "createdAt": "2026-05-18T15:22:34.913621",
   "method": "Current signal scan using saved clean split A2/B2 rules. Not historical winners. R/S only for zone/entry/stop/target; action uses RSI/MACD/BB/Volume/ROC/Ichimoku/Divergence. Excludes VIC/VHM.",
   "summary": {
-    "buyCount": 0,
-    "watchCount": 0,
-    "rejectCount": 48,
+    "buyCount": 1,
+    "watchCount": 2,
+    "rejectCount": 45,
     "errorCount": 0
   },
-  "buy": [],
-  "watchlist": [],
+  "buy": [
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "BUY",
+      "rankScore": 100.0,
+      "entryPrice": 15.7,
+      "lastClose": 16.1,
+      "stopLoss": 14.76,
+      "takeProfit": 16.64,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 2.48,
+      "support": 15.7,
+      "resistance": 16.7,
+      "reasonsOk": [
+        "đạt đủ điều kiện"
+      ],
+      "missingReasons": [],
+      "entryIndicators": {
+        "rsi": 48.29,
+        "macd": -0.0539,
+        "macdSignal": -0.0338,
+        "macdHist": -0.0201,
+        "macdHistSeq": [
+          -0.0507,
+          -0.0409,
+          -0.0292,
+          -0.0201
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.367,
+        "volumeRatio": 0.74,
+        "roc20": -2.13,
+        "ret5": 0.94,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": false,
+          "tenkan": 16.1,
+          "kijun": 16.48,
+          "cloudTop": 16.09,
+          "cloudBottom": 15.86
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          15.61,
+          15.73
+        ],
+        "resistanceZoneDay": [
+          16.61,
+          16.73
+        ],
+        "activeSupportDay": 15.7,
+        "activeResistanceDay": 16.7
+      },
+      "symbol": "VIB",
+      "asOfDate": "2026-05-18"
+    }
+  ],
+  "watchlist": [
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "WATCH",
+      "rankScore": 75.0,
+      "entryPrice": 74.3,
+      "lastClose": 76.5,
+      "stopLoss": 69.84,
+      "takeProfit": 78.76,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 2.88,
+      "support": 74.3,
+      "resistance": 79.0,
+      "reasonsOk": [],
+      "missingReasons": [
+        "RSI 48-62",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 45.48,
+        "macd": 0.321,
+        "macdSignal": 0.5489,
+        "macdHist": -0.2279,
+        "macdHistSeq": [
+          -0.0392,
+          -0.0148,
+          -0.1066,
+          -0.2279
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.156,
+        "volumeRatio": 0.84,
+        "roc20": -0.91,
+        "ret5": -1.29,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 79.4,
+          "kijun": 79.3,
+          "cloudTop": 75.8,
+          "cloudBottom": 73.75
+        },
+        "bullishDivergence": true,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          73.85,
+          74.81
+        ],
+        "resistanceZoneDay": [
+          78.48,
+          79.44
+        ],
+        "activeSupportDay": 74.3,
+        "activeResistanceDay": 79.0
+      },
+      "symbol": "MSN",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "A2_oversold_near_support",
+      "action": "WATCH",
+      "rankScore": 75.0,
+      "entryPrice": 24.4,
+      "lastClose": 24.45,
+      "stopLoss": 22.94,
+      "takeProfit": 26.84,
+      "targetPct": 10,
+      "stopPct": 6,
+      "distSupportPct": 0.2,
+      "support": 24.4,
+      "resistance": 25.2,
+      "reasonsOk": [],
+      "missingReasons": [
+        "không thủng mây dưới",
+        "ROC20 không quá xấu"
+      ],
+      "entryIndicators": {
+        "rsi": 29.38,
+        "macd": -0.8853,
+        "macdSignal": -0.7795,
+        "macdHist": -0.1057,
+        "macdHistSeq": [
+          -0.168,
+          -0.1456,
+          -0.1173,
+          -0.1057
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.184,
+        "volumeRatio": 0.9,
+        "roc20": -13.91,
+        "ret5": -1.61,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 25.2,
+          "kijun": 26.77,
+          "cloudTop": 28.47,
+          "cloudBottom": 27.75
+        },
+        "bullishDivergence": true,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          24.27,
+          24.53
+        ],
+        "resistanceZoneDay": [
+          25.08,
+          25.34
+        ],
+        "activeSupportDay": 24.4,
+        "activeResistanceDay": 25.2
+      },
+      "symbol": "HDG",
+      "asOfDate": "2026-05-18"
+    }
+  ],
   "rejectTop": [
     {
       "strategy": "B2_confirmed_rebound_above_cloud",
       "action": "REJECT",
       "rankScore": 87.5,
-      "entryPrice": 14.9,
-      "lastClose": 15.35,
-      "stopLoss": 14.01,
-      "takeProfit": 15.79,
+      "entryPrice": 33.0,
+      "lastClose": 34.0,
+      "stopLoss": 31.02,
+      "takeProfit": 34.98,
       "targetPct": 6,
       "stopPct": 6,
-      "distSupportPct": 2.93,
-      "support": 14.9,
-      "resistance": 16.1,
+      "distSupportPct": 2.94,
+      "support": 33.0,
+      "resistance": 35.0,
       "reasonsOk": [],
       "missingReasons": [
-        "volume vừa"
+        "MACD hist hồi dần 3 phiên"
       ],
       "entryIndicators": {
-        "rsi": 58.17,
-        "macd": 0.1901,
-        "macdSignal": 0.1456,
-        "macdHist": 0.0444,
+        "rsi": 60.67,
+        "macd": 0.5739,
+        "macdSignal": 0.596,
+        "macdHist": -0.0221,
         "macdHistSeq": [
-          -0.0173,
-          0.0135,
-          0.0404,
-          0.0444
+          -0.003,
+          -0.0069,
+          -0.0113,
+          -0.0221
         ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.726,
-        "volumeRatio": 0.09,
-        "roc20": 6.23,
-        "ret5": 5.86,
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.68,
+        "volumeRatio": 0.95,
+        "roc20": 6.75,
+        "ret5": 0.59,
         "ichimoku": {
           "state": "above_cloud",
           "bullishTkCross": true,
-          "tenkan": 15.25,
-          "kijun": 14.85,
-          "cloudTop": 14.95,
-          "cloudBottom": 14.1
+          "tenkan": 34.0,
+          "kijun": 32.25,
+          "cloudTop": 32.62,
+          "cloudBottom": 30.75
         },
         "bullishDivergence": false,
         "bearishDivergence": false
       },
       "rsSnapshot": {
         "supportZoneDay": [
-          14.76,
-          15.0
+          32.85,
+          33.15
         ],
         "resistanceZoneDay": [
-          16.0,
-          16.24
+          34.89,
+          35.19
         ],
-        "activeSupportDay": 14.9,
-        "activeResistanceDay": 16.1
+        "activeSupportDay": 33.0,
+        "activeResistanceDay": 35.0
       },
-      "symbol": "DXG",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 75.0,
-      "entryPrice": 14.2,
-      "lastClose": 14.55,
-      "stopLoss": 13.35,
-      "takeProfit": 15.05,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 2.41,
-      "support": 14.2,
-      "resistance": 15.1,
-      "reasonsOk": [],
-      "missingReasons": [
-        "above cloud",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 54.26,
-        "macd": 0.0725,
-        "macdSignal": 0.0406,
-        "macdHist": 0.0319,
-        "macdHistSeq": [
-          -0.0187,
-          0.0138,
-          0.03,
-          0.0319
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.655,
-        "volumeRatio": 0.06,
-        "roc20": 2.11,
-        "ret5": 3.56,
-        "ichimoku": {
-          "state": "in_cloud",
-          "bullishTkCross": true,
-          "tenkan": 14.47,
-          "kijun": 14.28,
-          "cloudTop": 14.93,
-          "cloudBottom": 13.86
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          14.04,
-          14.26
-        ],
-        "resistanceZoneDay": [
-          14.94,
-          15.16
-        ],
-        "activeSupportDay": 14.2,
-        "activeResistanceDay": 15.1
-      },
-      "symbol": "DIG",
-      "asOfDate": "2026-05-05"
+      "symbol": "TCB",
+      "asOfDate": "2026-05-18"
     },
     {
       "strategy": "A2_oversold_near_support",
       "action": "REJECT",
       "rankScore": 75.0,
-      "entryPrice": 27.0,
-      "lastClose": 27.35,
-      "stopLoss": 25.38,
-      "takeProfit": 29.7,
+      "entryPrice": 25.6,
+      "lastClose": 26.45,
+      "stopLoss": 24.06,
+      "takeProfit": 28.16,
       "targetPct": 10,
       "stopPct": 6,
-      "distSupportPct": 1.28,
-      "support": 27.0,
-      "resistance": 28.2,
+      "distSupportPct": 3.21,
+      "support": 25.6,
+      "resistance": 27.3,
       "reasonsOk": [],
       "missingReasons": [
-        "không thủng mây dưới",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 36.8,
-        "macd": -0.565,
-        "macdSignal": -0.5004,
-        "macdHist": -0.0646,
-        "macdHistSeq": [
-          -0.0469,
-          -0.077,
-          -0.0684,
-          -0.0646
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.179,
-        "volumeRatio": 0.07,
-        "roc20": -4.54,
-        "ret5": -2.32,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 28.18,
-          "kijun": 28.48,
-          "cloudTop": 32.23,
-          "cloudBottom": 30.23
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          26.87,
-          27.17
-        ],
-        "resistanceZoneDay": [
-          28.05,
-          28.35
-        ],
-        "activeSupportDay": 27.0,
-        "activeResistanceDay": 28.2
-      },
-      "symbol": "SZC",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 73.1,
-      "lastClose": 73.2,
-      "stopLoss": 68.71,
-      "takeProfit": 80.41,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 0.14,
-      "support": 73.1,
-      "resistance": 75.4,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "volume vừa",
+        "gần hỗ trợ <=2.5%",
         "MACD hist hồi dần 3 phiên"
       ],
       "entryIndicators": {
-        "rsi": 40.6,
-        "macd": -1.3972,
-        "macdSignal": -1.5628,
-        "macdHist": 0.1656,
+        "rsi": 41.15,
+        "macd": -0.0681,
+        "macdSignal": 0.0456,
+        "macdHist": -0.1136,
         "macdHistSeq": [
-          0.2426,
-          0.3128,
-          0.2407,
-          0.1656
+          -0.0766,
+          -0.0705,
+          -0.0958,
+          -0.1136
         ],
         "macdHistImproving": false,
         "macdHistRecovering": false,
-        "bbPercent": 0.19,
-        "volumeRatio": 0.14,
-        "roc20": -2.01,
-        "ret5": -1.48,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 75.1,
-          "kijun": 76.0,
-          "cloudTop": 90.15,
-          "cloudBottom": 81.0
-        },
-        "bullishDivergence": true,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          72.69,
-          73.57
-        ],
-        "resistanceZoneDay": [
-          75.0,
-          75.88
-        ],
-        "activeSupportDay": 73.1,
-        "activeResistanceDay": 75.4
-      },
-      "symbol": "FPT",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 80.4,
-      "lastClose": 84.6,
-      "stopLoss": 75.58,
-      "takeProfit": 85.22,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 4.96,
-      "support": 80.4,
-      "resistance": 87.9,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=3%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 52.92,
-        "macd": 0.719,
-        "macdSignal": 0.4729,
-        "macdHist": 0.2461,
-        "macdHistSeq": [
-          0.5347,
-          0.3839,
-          0.3237,
-          0.2461
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.653,
-        "volumeRatio": 0.06,
-        "roc20": 3.42,
-        "ret5": 0.12,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 85.95,
-          "kijun": 82.55,
-          "cloudTop": 84.3,
-          "cloudBottom": 81.8
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          79.92,
-          80.96
-        ],
-        "resistanceZoneDay": [
-          87.39,
-          88.43
-        ],
-        "activeSupportDay": 80.4,
-        "activeResistanceDay": 87.9
-      },
-      "symbol": "MWG",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 16.8,
-      "lastClose": 17.8,
-      "stopLoss": 15.79,
-      "takeProfit": 18.48,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 5.62,
-      "support": 16.8,
-      "resistance": 18.9,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=2.5%",
-        "RSI <=45",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 56.02,
-        "macd": 1.3921,
-        "macdSignal": 1.3855,
-        "macdHist": 0.0066,
-        "macdHistSeq": [
-          0.2857,
-          0.2938,
-          0.1819,
-          0.0066
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.55,
-        "volumeRatio": 0.97,
-        "roc20": 28.06,
-        "ret5": -7.29,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 18.93,
-          "kijun": 17.27,
-          "cloudTop": 12.88,
-          "cloudBottom": 12.4
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          16.55,
-          17.05
-        ],
-        "resistanceZoneDay": [
-          18.69,
-          19.19
-        ],
-        "activeSupportDay": 16.8,
-        "activeResistanceDay": 18.9
-      },
-      "symbol": "NVL",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 33.3,
-      "lastClose": 34.2,
-      "stopLoss": 31.3,
-      "takeProfit": 35.3,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 2.63,
-      "support": 33.3,
-      "resistance": 35.4,
-      "reasonsOk": [],
-      "missingReasons": [
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên",
-        "không bearish divergence"
-      ],
-      "entryIndicators": {
-        "rsi": 56.38,
-        "macd": 0.5481,
-        "macdSignal": 0.5728,
-        "macdHist": -0.0247,
-        "macdHistSeq": [
-          0.0519,
-          0.0004,
-          -0.0021,
-          -0.0247
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.599,
-        "volumeRatio": 0.04,
-        "roc20": 6.38,
-        "ret5": 0.0,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 34.8,
-          "kijun": 32.1,
-          "cloudTop": 32.3,
-          "cloudBottom": 30.39
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": true
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          33.03,
-          33.51
-        ],
-        "resistanceZoneDay": [
-          35.17,
-          35.65
-        ],
-        "activeSupportDay": 33.3,
-        "activeResistanceDay": 35.4
-      },
-      "symbol": "KBC",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 26.4,
-      "lastClose": 27.9,
-      "stopLoss": 24.82,
-      "takeProfit": 27.98,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 5.38,
-      "support": 26.4,
-      "resistance": 29.1,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=3%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 57.62,
-        "macd": 0.5466,
-        "macdSignal": 0.6446,
-        "macdHist": -0.098,
-        "macdHistSeq": [
-          -0.0721,
-          -0.1174,
-          -0.1371,
-          -0.098
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": false,
-        "bbPercent": 0.653,
-        "volumeRatio": 0.33,
-        "roc20": 11.91,
-        "ret5": 2.27,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 27.62,
-          "kijun": 26.54,
-          "cloudTop": 25.73,
-          "cloudBottom": 24.22
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          26.14,
-          26.7
-        ],
-        "resistanceZoneDay": [
-          28.86,
-          29.42
-        ],
-        "activeSupportDay": 26.4,
-        "activeResistanceDay": 29.1
-      },
-      "symbol": "GEX",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 75.8,
-      "lastClose": 78.3,
-      "stopLoss": 71.25,
-      "takeProfit": 80.35,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 3.19,
-      "support": 75.8,
-      "resistance": 80.3,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=3%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 55.9,
-        "macd": 0.531,
-        "macdSignal": 0.6692,
-        "macdHist": -0.1382,
-        "macdHistSeq": [
-          -0.0279,
-          -0.1319,
-          -0.197,
-          -0.1382
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": false,
-        "bbPercent": 0.641,
-        "volumeRatio": 0.29,
-        "roc20": 2.89,
-        "ret5": 0.13,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 78.5,
-          "kijun": 77.15,
-          "cloudTop": 75.8,
-          "cloudBottom": 73.52
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          75.39,
-          76.29
-        ],
-        "resistanceZoneDay": [
-          79.85,
-          80.75
-        ],
-        "activeSupportDay": 75.8,
-        "activeResistanceDay": 80.3
-      },
-      "symbol": "MSN",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 73.0,
-      "lastClose": 76.5,
-      "stopLoss": 68.62,
-      "takeProfit": 80.3,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 4.58,
-      "support": 73.0,
-      "resistance": 78.8,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 40.66,
-        "macd": -3.0522,
-        "macdSignal": -3.4969,
-        "macdHist": 0.4448,
-        "macdHistSeq": [
-          0.4221,
-          0.3481,
-          0.4002,
-          0.4448
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.256,
-        "volumeRatio": 0.06,
-        "roc20": -2.8,
-        "ret5": -1.16,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 77.15,
-          "kijun": 78.1,
-          "cloudTop": 104.65,
-          "cloudBottom": 97.45
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          72.38,
-          73.62
-        ],
-        "resistanceZoneDay": [
-          78.2,
-          79.44
-        ],
-        "activeSupportDay": 73.0,
-        "activeResistanceDay": 78.8
-      },
-      "symbol": "GAS",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 36.0,
-      "lastClose": 38.1,
-      "stopLoss": 33.84,
-      "takeProfit": 39.6,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 5.51,
-      "support": 36.0,
-      "resistance": 39.4,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 39.78,
-        "macd": -1.8531,
-        "macdSignal": -2.1352,
-        "macdHist": 0.2821,
-        "macdHistSeq": [
-          0.3068,
-          0.2239,
-          0.2799,
-          0.2821
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.218,
-        "volumeRatio": 0.13,
-        "roc20": -5.69,
-        "ret5": -3.05,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 38.8,
-          "kijun": 39.62,
-          "cloudTop": 53.35,
-          "cloudBottom": 50.45
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          35.65,
-          36.35
-        ],
-        "resistanceZoneDay": [
-          39.05,
-          39.75
-        ],
-        "activeSupportDay": 36.0,
-        "activeResistanceDay": 39.4
-      },
-      "symbol": "PLX",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 30.7,
-      "lastClose": 32.0,
-      "stopLoss": 28.86,
-      "takeProfit": 33.77,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 4.06,
-      "support": 30.7,
-      "resistance": 33.3,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 43.64,
-        "macd": -0.9611,
-        "macdSignal": -0.9579,
-        "macdHist": -0.0032,
-        "macdHistSeq": [
-          -0.1623,
-          -0.1495,
-          -0.0773,
-          -0.0032
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.376,
-        "volumeRatio": 0.11,
-        "roc20": -7.11,
-        "ret5": 1.11,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 31.55,
-          "kijun": 33.23,
-          "cloudTop": 37.96,
-          "cloudBottom": 36.23
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          30.44,
-          31.04
-        ],
-        "resistanceZoneDay": [
-          33.03,
-          33.63
-        ],
-        "activeSupportDay": 30.7,
-        "activeResistanceDay": 33.3
-      },
-      "symbol": "PVD",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 37.5,
-      "lastClose": 39.6,
-      "stopLoss": 35.25,
-      "takeProfit": 39.75,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 5.3,
-      "support": 37.5,
-      "resistance": 41.7,
-      "reasonsOk": [],
-      "missingReasons": [
-        "above cloud",
-        "gần hỗ trợ <=3%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 51.0,
-        "macd": -0.7959,
-        "macdSignal": -1.0868,
-        "macdHist": 0.2908,
-        "macdHistSeq": [
-          -0.0131,
-          0.0541,
-          0.1874,
-          0.2908
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.817,
-        "volumeRatio": 0.22,
-        "roc20": -1.49,
-        "ret5": 5.88,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 37.45,
-          "kijun": 39.65,
-          "cloudTop": 45.7,
-          "cloudBottom": 44.8
-        },
-        "bullishDivergence": true,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          37.0,
-          37.96
-        ],
-        "resistanceZoneDay": [
-          41.26,
-          42.22
-        ],
-        "activeSupportDay": 37.5,
-        "activeResistanceDay": 41.7
-      },
-      "symbol": "PVS",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 39.5,
-      "lastClose": 42.25,
-      "stopLoss": 37.13,
-      "takeProfit": 43.45,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 6.51,
-      "support": 39.5,
-      "resistance": 44.7,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 43.66,
-        "macd": -0.8003,
-        "macdSignal": -0.4049,
-        "macdHist": -0.3954,
-        "macdHistSeq": [
-          -0.5877,
-          -0.5013,
-          -0.4606,
-          -0.3954
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.223,
-        "volumeRatio": 0.04,
-        "roc20": -8.15,
-        "ret5": -2.65,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 43.2,
-          "kijun": 45.35,
-          "cloudTop": 46.17,
-          "cloudBottom": 42.95
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          39.06,
-          39.92
-        ],
-        "resistanceZoneDay": [
-          44.24,
-          45.1
-        ],
-        "activeSupportDay": 39.5,
-        "activeResistanceDay": 44.7
-      },
-      "symbol": "DCM",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 25.3,
-      "lastClose": 26.35,
-      "stopLoss": 23.78,
-      "takeProfit": 27.83,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 3.98,
-      "support": 25.3,
-      "resistance": 27.8,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 39.92,
-        "macd": -0.7485,
-        "macdSignal": -0.4867,
-        "macdHist": -0.2618,
-        "macdHistSeq": [
-          -0.3407,
-          -0.3136,
-          -0.3057,
-          -0.2618
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.163,
-        "volumeRatio": 0.06,
-        "roc20": -10.68,
-        "ret5": -2.41,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 27.32,
-          "kijun": 28.68,
-          "cloudTop": 31.1,
-          "cloudBottom": 29.22
-        },
-        "bullishDivergence": true,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          25.1,
-          25.54
-        ],
-        "resistanceZoneDay": [
-          27.54,
-          27.98
-        ],
-        "activeSupportDay": 25.3,
-        "activeResistanceDay": 27.8
-      },
-      "symbol": "DPM",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 16.5,
-      "lastClose": 17.5,
-      "stopLoss": 15.51,
-      "takeProfit": 17.49,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 5.71,
-      "support": 16.5,
-      "resistance": 18.2,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=3%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 55.96,
-        "macd": 0.2164,
-        "macdSignal": 0.166,
-        "macdHist": 0.0504,
-        "macdHistSeq": [
-          0.0113,
-          0.0474,
-          0.0598,
-          0.0504
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.701,
-        "volumeRatio": 0.11,
-        "roc20": 4.17,
-        "ret5": 2.94,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 17.4,
-          "kijun": 17.1,
-          "cloudTop": 17.2,
-          "cloudBottom": 15.9
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          16.28,
-          16.7
-        ],
-        "resistanceZoneDay": [
-          17.99,
-          18.41
-        ],
-        "activeSupportDay": 16.5,
-        "activeResistanceDay": 18.2
-      },
-      "symbol": "CEO",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "A2_oversold_near_support",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 59.6,
-      "lastClose": 61.5,
-      "stopLoss": 56.02,
-      "takeProfit": 65.56,
-      "targetPct": 10,
-      "stopPct": 6,
-      "distSupportPct": 3.09,
-      "support": 59.6,
-      "resistance": 64.1,
-      "reasonsOk": [],
-      "missingReasons": [
-        "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa"
-      ],
-      "entryIndicators": {
-        "rsi": 40.23,
-        "macd": -1.1117,
-        "macdSignal": -0.5745,
-        "macdHist": -0.5372,
-        "macdHistSeq": [
-          -0.6682,
-          -0.7096,
-          -0.6384,
-          -0.5372
-        ],
-        "macdHistImproving": true,
-        "macdHistRecovering": true,
-        "bbPercent": 0.189,
-        "volumeRatio": 0.03,
-        "roc20": -7.24,
-        "ret5": -1.13,
-        "ichimoku": {
-          "state": "below_cloud",
-          "bullishTkCross": false,
-          "tenkan": 63.0,
-          "kijun": 67.1,
-          "cloudTop": 65.38,
-          "cloudBottom": 64.3
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": false
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          59.22,
-          59.96
-        ],
-        "resistanceZoneDay": [
-          63.74,
-          64.48
-        ],
-        "activeSupportDay": 59.6,
-        "activeResistanceDay": 64.1
-      },
-      "symbol": "REE",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 62.5,
-      "entryPrice": 60.2,
-      "lastClose": 61.9,
-      "stopLoss": 56.59,
-      "takeProfit": 63.81,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 2.75,
-      "support": 60.2,
-      "resistance": 63.9,
-      "reasonsOk": [],
-      "missingReasons": [
-        "above cloud",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
-      ],
-      "entryIndicators": {
-        "rsi": 56.2,
-        "macd": 0.6443,
-        "macdSignal": 0.6163,
-        "macdHist": 0.0279,
-        "macdHistSeq": [
-          0.2074,
-          0.0992,
-          0.0527,
-          0.0279
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.659,
-        "volumeRatio": 0.1,
-        "roc20": 5.63,
-        "ret5": -0.16,
+        "bbPercent": 0.016,
+        "volumeRatio": 0.9,
+        "roc20": -3.99,
+        "ret5": -2.04,
         "ichimoku": {
           "state": "in_cloud",
-          "bullishTkCross": true,
-          "tenkan": 61.2,
-          "kijun": 59.55,
-          "cloudTop": 62.5,
-          "cloudBottom": 59.33
+          "bullishTkCross": false,
+          "tenkan": 26.88,
+          "kijun": 27.59,
+          "cloudTop": 26.98,
+          "cloudBottom": 26.38
         },
         "bullishDivergence": false,
         "bearishDivergence": false
       },
       "rsSnapshot": {
         "supportZoneDay": [
-          59.94,
-          60.54
+          25.48,
+          25.7
         ],
         "resistanceZoneDay": [
-          63.63,
-          64.23
+          27.23,
+          27.45
         ],
-        "activeSupportDay": 60.2,
-        "activeResistanceDay": 63.9
-      },
-      "symbol": "VHC",
-      "asOfDate": "2026-05-05"
-    },
-    {
-      "strategy": "B2_confirmed_rebound_above_cloud",
-      "action": "REJECT",
-      "rankScore": 50.0,
-      "entryPrice": 26.5,
-      "lastClose": 27.5,
-      "stopLoss": 24.91,
-      "takeProfit": 28.09,
-      "targetPct": 6,
-      "stopPct": 6,
-      "distSupportPct": 3.64,
-      "support": 26.5,
-      "resistance": 28.4,
-      "reasonsOk": [],
-      "missingReasons": [
-        "gần hỗ trợ <=3%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên",
-        "không bearish divergence"
-      ],
-      "entryIndicators": {
-        "rsi": 48.29,
-        "macd": 0.1562,
-        "macdSignal": 0.2469,
-        "macdHist": -0.0907,
-        "macdHistSeq": [
-          -0.0262,
-          -0.0478,
-          -0.071,
-          -0.0907
-        ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.351,
-        "volumeRatio": 0.05,
-        "roc20": 0.55,
-        "ret5": -1.08,
-        "ichimoku": {
-          "state": "above_cloud",
-          "bullishTkCross": true,
-          "tenkan": 28.42,
-          "kijun": 27.65,
-          "cloudTop": 27.48,
-          "cloudBottom": 26.89
-        },
-        "bullishDivergence": false,
-        "bearishDivergence": true
-      },
-      "rsSnapshot": {
-        "supportZoneDay": [
-          26.39,
-          26.65
-        ],
-        "resistanceZoneDay": [
-          28.24,
-          28.5
-        ],
-        "activeSupportDay": 26.5,
-        "activeResistanceDay": 28.4
+        "activeSupportDay": 25.6,
+        "activeResistanceDay": 27.3
       },
       "symbol": "HPG",
-      "asOfDate": "2026-05-05"
+      "asOfDate": "2026-05-18"
     },
     {
       "strategy": "A2_oversold_near_support",
       "action": "REJECT",
-      "rankScore": 50.0,
-      "entryPrice": 25.1,
-      "lastClose": 25.9,
-      "stopLoss": 23.59,
-      "takeProfit": 27.61,
+      "rankScore": 75.0,
+      "entryPrice": 24.3,
+      "lastClose": 25.75,
+      "stopLoss": 22.84,
+      "takeProfit": 26.73,
       "targetPct": 10,
       "stopPct": 6,
-      "distSupportPct": 3.09,
-      "support": 25.1,
-      "resistance": 26.9,
+      "distSupportPct": 5.63,
+      "support": 24.3,
+      "resistance": 26.8,
       "reasonsOk": [],
       "missingReasons": [
         "không thủng mây dưới",
-        "gần hỗ trợ <=2.5%",
-        "volume vừa",
-        "MACD hist hồi dần 3 phiên"
+        "gần hỗ trợ <=2.5%"
       ],
       "entryIndicators": {
-        "rsi": 41.0,
-        "macd": -0.2003,
-        "macdSignal": -0.0104,
-        "macdHist": -0.1899,
+        "rsi": 43.86,
+        "macd": -0.3584,
+        "macdSignal": -0.2977,
+        "macdHist": -0.0607,
         "macdHistSeq": [
-          -0.1394,
-          -0.1647,
-          -0.1759,
-          -0.1899
+          -0.129,
+          -0.0911,
+          -0.0826,
+          -0.0607
         ],
-        "macdHistImproving": false,
-        "macdHistRecovering": false,
-        "bbPercent": 0.12,
-        "volumeRatio": 0.12,
-        "roc20": -3.9,
-        "ret5": -4.6,
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.285,
+        "volumeRatio": 0.8,
+        "roc20": -7.04,
+        "ret5": 0.19,
         "ichimoku": {
           "state": "below_cloud",
           "bullishTkCross": false,
-          "tenkan": 26.8,
-          "kijun": 27.35,
-          "cloudTop": 27.75,
-          "cloudBottom": 27.05
+          "tenkan": 26.05,
+          "kijun": 27.18,
+          "cloudTop": 27.81,
+          "cloudBottom": 27.32
+        },
+        "bullishDivergence": true,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          24.14,
+          24.46
+        ],
+        "resistanceZoneDay": [
+          26.62,
+          26.94
+        ],
+        "activeSupportDay": 24.3,
+        "activeResistanceDay": 26.8
+      },
+      "symbol": "VCI",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 16.2,
+      "lastClose": 16.65,
+      "stopLoss": 15.23,
+      "takeProfit": 17.17,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 2.7,
+      "support": 16.2,
+      "resistance": 17.1,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "không bearish divergence"
+      ],
+      "entryIndicators": {
+        "rsi": 54.54,
+        "macd": -0.0004,
+        "macdSignal": -0.0332,
+        "macdHist": 0.0328,
+        "macdHistSeq": [
+          0.0173,
+          0.0168,
+          0.0192,
+          0.0328
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.776,
+        "volumeRatio": 1.39,
+        "roc20": -0.89,
+        "ret5": 1.22,
+        "ichimoku": {
+          "state": "in_cloud",
+          "bullishTkCross": false,
+          "tenkan": 16.48,
+          "kijun": 16.55,
+          "cloudTop": 17.55,
+          "cloudBottom": 16.46
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": true
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          16.13,
+          16.33
+        ],
+        "resistanceZoneDay": [
+          17.05,
+          17.25
+        ],
+        "activeSupportDay": 16.2,
+        "activeResistanceDay": 17.1
+      },
+      "symbol": "VND",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 19.5,
+      "lastClose": 20.1,
+      "stopLoss": 18.33,
+      "takeProfit": 20.67,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 2.99,
+      "support": 19.5,
+      "resistance": 20.7,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "volume vừa"
+      ],
+      "entryIndicators": {
+        "rsi": 56.08,
+        "macd": -0.1303,
+        "macdSignal": -0.1635,
+        "macdHist": 0.0332,
+        "macdHistSeq": [
+          -0.029,
+          -0.0292,
+          -0.0199,
+          0.0332
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.799,
+        "volumeRatio": 3.19,
+        "roc20": -2.9,
+        "ret5": 3.08,
+        "ichimoku": {
+          "state": "in_cloud",
+          "bullishTkCross": false,
+          "tenkan": 19.35,
+          "kijun": 20.05,
+          "cloudTop": 20.59,
+          "cloudBottom": 19.96
         },
         "bullishDivergence": false,
         "bearishDivergence": false
       },
       "rsSnapshot": {
         "supportZoneDay": [
-          24.95,
-          25.27
+          19.38,
+          19.62
         ],
         "resistanceZoneDay": [
-          26.77,
-          27.09
+          20.57,
+          20.82
         ],
-        "activeSupportDay": 25.1,
-        "activeResistanceDay": 26.9
+        "activeSupportDay": 19.5,
+        "activeResistanceDay": 20.7
       },
-      "symbol": "VCI",
-      "asOfDate": "2026-05-05"
+      "symbol": "MBS",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "A2_oversold_near_support",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 24.9,
+      "lastClose": 25.5,
+      "stopLoss": 23.41,
+      "takeProfit": 27.39,
+      "targetPct": 10,
+      "stopPct": 6,
+      "distSupportPct": 2.35,
+      "support": 24.9,
+      "resistance": 26.2,
+      "reasonsOk": [],
+      "missingReasons": [
+        "không thủng mây dưới",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 37.11,
+        "macd": -0.1692,
+        "macdSignal": -0.1176,
+        "macdHist": -0.0516,
+        "macdHistSeq": [
+          -0.0279,
+          -0.028,
+          -0.0384,
+          -0.0516
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": -0.073,
+        "volumeRatio": 1.35,
+        "roc20": -4.14,
+        "ret5": -1.92,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 25.98,
+          "kijun": 26.25,
+          "cloudTop": 27.18,
+          "cloudBottom": 26.31
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          24.77,
+          24.93
+        ],
+        "resistanceZoneDay": [
+          26.11,
+          26.27
+        ],
+        "activeSupportDay": 24.9,
+        "activeResistanceDay": 26.2
+      },
+      "symbol": "MBB",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 69.3,
+      "lastClose": 72.1,
+      "stopLoss": 65.14,
+      "takeProfit": 73.46,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.88,
+      "support": 69.3,
+      "resistance": 75.0,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 58.0,
+        "macd": 2.4592,
+        "macdSignal": 2.1768,
+        "macdHist": 0.2824,
+        "macdHistSeq": [
+          0.8134,
+          0.6772,
+          0.4936,
+          0.2824
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.686,
+        "volumeRatio": 0.86,
+        "roc20": 12.13,
+        "ret5": -0.14,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 71.7,
+          "kijun": 69.95,
+          "cloudTop": 63.7,
+          "cloudBottom": 62.53
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          68.61,
+          69.93
+        ],
+        "resistanceZoneDay": [
+          74.36,
+          75.68
+        ],
+        "activeSupportDay": 69.3,
+        "activeResistanceDay": 75.0
+      },
+      "symbol": "STB",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 31.1,
+      "lastClose": 33.1,
+      "stopLoss": 29.23,
+      "takeProfit": 32.97,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 6.04,
+      "support": 31.1,
+      "resistance": 35.7,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 54.8,
+        "macd": 1.6008,
+        "macdSignal": 1.7536,
+        "macdHist": -0.1527,
+        "macdHistSeq": [
+          0.1794,
+          0.075,
+          -0.0203,
+          -0.1527
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.558,
+        "volumeRatio": 0.77,
+        "roc20": 12.97,
+        "ret5": -1.49,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 35.0,
+          "kijun": 32.0,
+          "cloudTop": 28.25,
+          "cloudBottom": 26.35
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          30.64,
+          31.66
+        ],
+        "resistanceZoneDay": [
+          35.15,
+          36.17
+        ],
+        "activeSupportDay": 31.1,
+        "activeResistanceDay": 35.7
+      },
+      "symbol": "VRE",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 15.3,
+      "lastClose": 15.9,
+      "stopLoss": 14.38,
+      "takeProfit": 16.22,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.77,
+      "support": 15.3,
+      "resistance": 16.5,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 59.59,
+        "macd": 0.3438,
+        "macdSignal": 0.295,
+        "macdHist": 0.0488,
+        "macdHistSeq": [
+          0.0811,
+          0.0755,
+          0.0687,
+          0.0488
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.757,
+        "volumeRatio": 1.1,
+        "roc20": 4.26,
+        "ret5": 1.27,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 15.85,
+          "kijun": 15.38,
+          "cloudTop": 14.53,
+          "cloudBottom": 14.19
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          15.19,
+          15.45
+        ],
+        "resistanceZoneDay": [
+          16.37,
+          16.63
+        ],
+        "activeSupportDay": 15.3,
+        "activeResistanceDay": 16.5
+      },
+      "symbol": "DXG",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 16.1,
+      "lastClose": 17.15,
+      "stopLoss": 15.13,
+      "takeProfit": 17.07,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 6.12,
+      "support": 16.1,
+      "resistance": 21.0,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "volume vừa"
+      ],
+      "entryIndicators": {
+        "rsi": 51.9,
+        "macd": 0.2877,
+        "macdSignal": 0.5947,
+        "macdHist": -0.3071,
+        "macdHistSeq": [
+          -0.4364,
+          -0.4193,
+          -0.352,
+          -0.3071
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.375,
+        "volumeRatio": 0.46,
+        "roc20": -2.0,
+        "ret5": 2.08,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": false,
+          "tenkan": 16.8,
+          "kijun": 17.95,
+          "cloudTop": 13.49,
+          "cloudBottom": 12.6
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          15.8,
+          16.32
+        ],
+        "resistanceZoneDay": [
+          20.74,
+          21.26
+        ],
+        "activeSupportDay": 16.1,
+        "activeResistanceDay": 21.0
+      },
+      "symbol": "NVL",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "A2_oversold_near_support",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 29.5,
+      "lastClose": 32.05,
+      "stopLoss": 27.73,
+      "takeProfit": 32.45,
+      "targetPct": 10,
+      "stopPct": 6,
+      "distSupportPct": 7.96,
+      "support": 29.5,
+      "resistance": 33.8,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=2.5%",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 40.06,
+        "macd": -0.1744,
+        "macdSignal": 0.1526,
+        "macdHist": -0.3269,
+        "macdHistSeq": [
+          -0.2663,
+          -0.285,
+          -0.3198,
+          -0.3269
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.049,
+        "volumeRatio": 0.82,
+        "roc20": -3.75,
+        "ret5": -1.38,
+        "ichimoku": {
+          "state": "in_cloud",
+          "bullishTkCross": false,
+          "tenkan": 33.3,
+          "kijun": 33.67,
+          "cloudTop": 32.3,
+          "cloudBottom": 30.6
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          29.27,
+          29.73
+        ],
+        "resistanceZoneDay": [
+          33.59,
+          34.05
+        ],
+        "activeSupportDay": 29.5,
+        "activeResistanceDay": 33.8
+      },
+      "symbol": "KBC",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 46.8,
+      "lastClose": 48.4,
+      "stopLoss": 43.99,
+      "takeProfit": 49.61,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.31,
+      "support": 46.8,
+      "resistance": 49.9,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "không bearish divergence"
+      ],
+      "entryIndicators": {
+        "rsi": 59.03,
+        "macd": 0.5821,
+        "macdSignal": 0.4923,
+        "macdHist": 0.0898,
+        "macdHistSeq": [
+          -0.0355,
+          -0.0435,
+          0.0485,
+          0.0898
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.833,
+        "volumeRatio": 0.61,
+        "roc20": 4.88,
+        "ret5": 1.68,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 47.45,
+          "kijun": 46.95,
+          "cloudTop": 48.17,
+          "cloudBottom": 44.09
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": true
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          46.45,
+          47.11
+        ],
+        "resistanceZoneDay": [
+          49.57,
+          50.23
+        ],
+        "activeSupportDay": 46.8,
+        "activeResistanceDay": 49.9
+      },
+      "symbol": "SAB",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 43.0,
+      "lastClose": 45.0,
+      "stopLoss": 40.42,
+      "takeProfit": 45.58,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 4.44,
+      "support": 43.0,
+      "resistance": 48.0,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "gần hỗ trợ <=3%"
+      ],
+      "entryIndicators": {
+        "rsi": 55.56,
+        "macd": -0.2611,
+        "macdSignal": -0.5566,
+        "macdHist": 0.2955,
+        "macdHistSeq": [
+          0.0566,
+          0.1003,
+          0.1733,
+          0.2955
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.802,
+        "volumeRatio": 1.58,
+        "roc20": 1.24,
+        "ret5": 4.9,
+        "ichimoku": {
+          "state": "in_cloud",
+          "bullishTkCross": false,
+          "tenkan": 42.85,
+          "kijun": 44.02,
+          "cloudTop": 46.94,
+          "cloudBottom": 43.58
+        },
+        "bullishDivergence": true,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          42.51,
+          43.39
+        ],
+        "resistanceZoneDay": [
+          47.56,
+          48.44
+        ],
+        "activeSupportDay": 43.0,
+        "activeResistanceDay": 48.0
+      },
+      "symbol": "DCM",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 26.7,
+      "lastClose": 28.15,
+      "stopLoss": 25.1,
+      "takeProfit": 28.3,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 5.15,
+      "support": 26.7,
+      "resistance": 29.5,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "gần hỗ trợ <=3%"
+      ],
+      "entryIndicators": {
+        "rsi": 55.29,
+        "macd": -0.3535,
+        "macdSignal": -0.553,
+        "macdHist": 0.1995,
+        "macdHistSeq": [
+          0.0432,
+          0.0779,
+          0.1076,
+          0.1995
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.77,
+        "volumeRatio": 2.18,
+        "roc20": -0.71,
+        "ret5": 6.63,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 27.1,
+          "kijun": 27.6,
+          "cloudTop": 30.71,
+          "cloudBottom": 29.32
+        },
+        "bullishDivergence": true,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          26.49,
+          26.95
+        ],
+        "resistanceZoneDay": [
+          29.31,
+          29.77
+        ],
+        "activeSupportDay": 26.7,
+        "activeResistanceDay": 29.5
+      },
+      "symbol": "DPM",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 14.3,
+      "lastClose": 14.85,
+      "stopLoss": 13.44,
+      "takeProfit": 15.16,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.7,
+      "support": 14.3,
+      "resistance": 15.6,
+      "reasonsOk": [],
+      "missingReasons": [
+        "gần hỗ trợ <=3%",
+        "MACD hist hồi dần 3 phiên"
+      ],
+      "entryIndicators": {
+        "rsi": 57.47,
+        "macd": 0.1454,
+        "macdSignal": 0.1014,
+        "macdHist": 0.0441,
+        "macdHistSeq": [
+          0.0216,
+          0.0344,
+          0.0463,
+          0.0441
+        ],
+        "macdHistImproving": false,
+        "macdHistRecovering": false,
+        "bbPercent": 0.839,
+        "volumeRatio": 0.91,
+        "roc20": 1.37,
+        "ret5": 2.77,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 14.75,
+          "kijun": 14.52,
+          "cloudTop": 14.48,
+          "cloudBottom": 13.76
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          14.2,
+          14.44
+        ],
+        "resistanceZoneDay": [
+          15.43,
+          15.67
+        ],
+        "activeSupportDay": 14.3,
+        "activeResistanceDay": 15.6
+      },
+      "symbol": "DIG",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 66.0,
+      "lastClose": 68.2,
+      "stopLoss": 62.04,
+      "takeProfit": 69.96,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.23,
+      "support": 66.0,
+      "resistance": 70.5,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "gần hỗ trợ <=3%"
+      ],
+      "entryIndicators": {
+        "rsi": 50.57,
+        "macd": -1.1677,
+        "macdSignal": -1.2593,
+        "macdHist": 0.0916,
+        "macdHistSeq": [
+          -0.2717,
+          -0.1313,
+          -0.1272,
+          0.0916
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.574,
+        "volumeRatio": 2.19,
+        "roc20": -5.01,
+        "ret5": 7.91,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 65.8,
+          "kijun": 69.2,
+          "cloudTop": 78.16,
+          "cloudBottom": 69.81
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          65.45,
+          66.53
+        ],
+        "resistanceZoneDay": [
+          69.93,
+          71.01
+        ],
+        "activeSupportDay": 66.0,
+        "activeResistanceDay": 70.5
+      },
+      "symbol": "VTP",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 84.4,
+      "lastClose": 87.3,
+      "stopLoss": 79.34,
+      "takeProfit": 89.46,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 3.32,
+      "support": 84.4,
+      "resistance": 90.3,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "gần hỗ trợ <=3%"
+      ],
+      "entryIndicators": {
+        "rsi": 56.83,
+        "macd": -0.1388,
+        "macdSignal": -0.3205,
+        "macdHist": 0.1817,
+        "macdHistSeq": [
+          -0.1784,
+          -0.0463,
+          -0.0024,
+          0.1817
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.799,
+        "volumeRatio": 2.32,
+        "roc20": 0.34,
+        "ret5": 6.08,
+        "ichimoku": {
+          "state": "in_cloud",
+          "bullishTkCross": false,
+          "tenkan": 84.6,
+          "kijun": 85.35,
+          "cloudTop": 91.7,
+          "cloudBottom": 84.25
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          83.86,
+          84.9
+        ],
+        "resistanceZoneDay": [
+          89.8,
+          90.84
+        ],
+        "activeSupportDay": 84.4,
+        "activeResistanceDay": 90.3
+      },
+      "symbol": "CTR",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "A2_oversold_near_support",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 51.3,
+      "lastClose": 52.8,
+      "stopLoss": 48.22,
+      "takeProfit": 56.43,
+      "targetPct": 10,
+      "stopPct": 6,
+      "distSupportPct": 2.84,
+      "support": 51.3,
+      "resistance": 55.7,
+      "reasonsOk": [],
+      "missingReasons": [
+        "không thủng mây dưới",
+        "gần hỗ trợ <=2.5%"
+      ],
+      "entryIndicators": {
+        "rsi": 39.69,
+        "macd": -0.9648,
+        "macdSignal": -0.9257,
+        "macdHist": -0.0392,
+        "macdHistSeq": [
+          -0.108,
+          -0.0933,
+          -0.0819,
+          -0.0392
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.323,
+        "volumeRatio": 0.75,
+        "roc20": -6.45,
+        "ret5": -0.62,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 53.3,
+          "kijun": 55.35,
+          "cloudTop": 58.74,
+          "cloudBottom": 57.35
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          51.01,
+          51.51
+        ],
+        "resistanceZoneDay": [
+          55.48,
+          55.98
+        ],
+        "activeSupportDay": 51.3,
+        "activeResistanceDay": 55.7
+      },
+      "symbol": "REE",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "A2_oversold_near_support",
+      "action": "REJECT",
+      "rankScore": 75.0,
+      "entryPrice": 21.9,
+      "lastClose": 22.7,
+      "stopLoss": 20.59,
+      "takeProfit": 24.09,
+      "targetPct": 10,
+      "stopPct": 6,
+      "distSupportPct": 3.52,
+      "support": 21.9,
+      "resistance": 23.7,
+      "reasonsOk": [],
+      "missingReasons": [
+        "không thủng mây dưới",
+        "gần hỗ trợ <=2.5%"
+      ],
+      "entryIndicators": {
+        "rsi": 36.58,
+        "macd": -0.4176,
+        "macdSignal": -0.2859,
+        "macdHist": -0.1317,
+        "macdHistSeq": [
+          -0.1597,
+          -0.1502,
+          -0.1409,
+          -0.1317
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.155,
+        "volumeRatio": 0.68,
+        "roc20": -7.16,
+        "ret5": -2.37,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 23.35,
+          "kijun": 24.12,
+          "cloudTop": 25.73,
+          "cloudBottom": 23.81
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": false
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          21.73,
+          21.97
+        ],
+        "resistanceZoneDay": [
+          23.56,
+          23.8
+        ],
+        "activeSupportDay": 21.9,
+        "activeResistanceDay": 23.7
+      },
+      "symbol": "ANV",
+      "asOfDate": "2026-05-18"
+    },
+    {
+      "strategy": "B2_confirmed_rebound_above_cloud",
+      "action": "REJECT",
+      "rankScore": 62.5,
+      "entryPrice": 71.9,
+      "lastClose": 74.9,
+      "stopLoss": 67.59,
+      "takeProfit": 76.21,
+      "targetPct": 6,
+      "stopPct": 6,
+      "distSupportPct": 4.01,
+      "support": 71.9,
+      "resistance": 79.2,
+      "reasonsOk": [],
+      "missingReasons": [
+        "above cloud",
+        "gần hỗ trợ <=3%",
+        "không bearish divergence"
+      ],
+      "entryIndicators": {
+        "rsi": 51.51,
+        "macd": -1.1646,
+        "macdSignal": -1.4855,
+        "macdHist": 0.3209,
+        "macdHistSeq": [
+          -0.1965,
+          0.0338,
+          0.1271,
+          0.3209
+        ],
+        "macdHistImproving": true,
+        "macdHistRecovering": true,
+        "bbPercent": 0.671,
+        "volumeRatio": 1.71,
+        "roc20": -0.27,
+        "ret5": 7.0,
+        "ichimoku": {
+          "state": "below_cloud",
+          "bullishTkCross": false,
+          "tenkan": 72.65,
+          "kijun": 74.6,
+          "cloudTop": 90.15,
+          "cloudBottom": 78.25
+        },
+        "bullishDivergence": false,
+        "bearishDivergence": true
+      },
+      "rsSnapshot": {
+        "supportZoneDay": [
+          71.46,
+          72.41
+        ],
+        "resistanceZoneDay": [
+          78.73,
+          79.67
+        ],
+        "activeSupportDay": 71.9,
+        "activeResistanceDay": 79.2
+      },
+      "symbol": "FPT",
+      "asOfDate": "2026-05-18"
     }
   ],
   "errors": []
