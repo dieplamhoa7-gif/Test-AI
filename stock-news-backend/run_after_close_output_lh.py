@@ -6,6 +6,12 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 LOG_DIR.mkdir(exist_ok=True)
@@ -23,6 +29,7 @@ def run(cmd: list[str], *, timeout: int | None = None) -> None:
     log("RUN " + " ".join(cmd))
     env = os.environ.copy()
     env.setdefault("PYTHONUTF8", "1")
+    env.setdefault("PYTHONIOENCODING", "utf-8")
     p = subprocess.run(cmd, cwd=ROOT, env=env, text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
     if p.stdout:
         with LOG.open("a", encoding="utf-8") as f:
@@ -46,6 +53,7 @@ def _run_notice_script(script: str, env: dict, timeout: int = 60) -> None:
 def notify_after_close(status: str, detail: str = "") -> None:
     env = os.environ.copy()
     env.setdefault("PYTHONUTF8", "1")
+    env.setdefault("PYTHONIOENCODING", "utf-8")
     env["LH_AFTER_CLOSE_STATUS"] = status
     if detail:
         env["LH_AFTER_CLOSE_DETAIL"] = detail[:900]
@@ -94,6 +102,8 @@ def _run_pipeline(py: str) -> None:
         [py, "build_v3_full_indicator_cache_v2.py"],
         [py, "build_weekly_indicators_vn100_cache.py"],
         [py, "build_monthly_indicators_vn100_cache.py"],
+        [py, "refresh_vn100_history_for_core12.py"],
+        [py, "build_core12_ml_sr_full_universe.py"],
         [py, "build_lh_canonical_indicators_daily.py"],
         [py, "build_strategy_results_from_indicator_cache.py"],
         [py, "refresh_market_prices_lh.py"],
@@ -110,6 +120,9 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/v3_full_indicator_cache_v2.json",
          "stock-news-backend/data/weekly_indicators_vn100_cache.json",
          "stock-news-backend/data/monthly_indicators_vn100_cache.json",
+         "stock-news-backend/data/vn100_history_2025_06_2026_05_cache.json",
+         "stock-news-backend/data/core12_ml_sr_full_universe.json",
+         "stock-news-backend/data/core12_ml_sr_full_universe_summary.csv",
          "stock-news-backend/data/lh_canonical_indicators_daily.json",
          "stock-news-backend/data/strategy_results_cache.json",
          "stock-news-backend/data/market_data.json",
