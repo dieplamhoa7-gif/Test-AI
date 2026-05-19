@@ -47,6 +47,83 @@ def core12_by_symbol(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return out
 
 
+def _first(values: list[Any], default: Any = None) -> Any:
+    for v in values:
+        if v is not None:
+            return v
+    return default
+
+
+def build_preferred_indicators(daily: dict[str, Any], rs: dict[str, Any], core12: dict[str, Any] | None) -> dict[str, Any]:
+    """Preferred production indicators.
+
+    If Core12 has an overlapping indicator family, prefer Core12 feature values
+    because they are tuned/selected by the Core12 ML config. Keep raw daily/R-S
+    under `daily` and `rs` for audit/debug.
+    """
+    cvals = (core12 or {}).get('core12Values') or {}
+    rsi = cvals.get('RSI') or {}
+    adx = cvals.get('ADX_DMI') or {}
+    roc = cvals.get('ROC_MOMENTUM') or {}
+    ichi = cvals.get('ICHIMOKU') or {}
+    ma = cvals.get('MA_EMA_WMA') or {}
+    vwap = cvals.get('VWAP_VWMA') or {}
+    sr = cvals.get('SR_CLUSTER') or {}
+    mfi = cvals.get('MFI_CMF') or {}
+    pvi = cvals.get('PVI_NVI') or {}
+    trix = cvals.get('TRIX') or {}
+    st = cvals.get('SUPERTREND') or {}
+
+    preferred = dict(daily or {})
+    source_map: dict[str, str] = {}
+
+    def put(key: str, value: Any, source: str) -> None:
+        if value is not None:
+            preferred[key] = value
+            source_map[key] = source
+
+    # Overlap families: prefer Core12 tuned periods when present.
+    put('rsiPreferred', _first([rsi.get('RSI24'), rsi.get('RSI50'), daily.get('rsi14')]), 'core12.RSI' if rsi else 'daily.rsi14')
+    put('rsiSlope5Preferred', _first([rsi.get('RSI24_slope5'), rsi.get('RSI50_slope5')]), 'core12.RSI')
+    put('adxPreferred', _first([adx.get('ADX41'), daily.get('adx14')]), 'core12.ADX_DMI' if adx else 'daily.adx14')
+    put('diSpreadPreferred', _first([adx.get('DI41_spread')]), 'core12.ADX_DMI')
+    put('rocPreferred', _first([roc.get('ROC72'), roc.get('ROC80'), roc.get('ROC90'), roc.get('ROC52'), daily.get('roc20')]), 'core12.ROC_MOMENTUM' if roc else 'daily.roc20')
+    put('momentumPreferred', _first([roc.get('MOM72'), roc.get('MOM80'), roc.get('MOM90'), roc.get('MOM52')]), 'core12.ROC_MOMENTUM')
+    put('ichimokuCloudPreferred', ichi.get('ICHI5_29_89_cloud_pos'), 'core12.ICHIMOKU')
+    put('ichimokuTkPreferred', ichi.get('ICHI5_29_89_tk'), 'core12.ICHIMOKU')
+    put('maTrendPreferred', _first([ma.get('MA108_dist'), ma.get('EMA229_dist')]), 'core12.MA_EMA_WMA')
+    put('maTrendSlope5Preferred', _first([ma.get('MA108_slope5'), ma.get('EMA229_slope5')]), 'core12.MA_EMA_WMA')
+    put('vwapPreferred', _first([vwap.get('VWAP60_dist'), vwap.get('VWAP75_dist'), vwap.get('VWAP98_dist'), daily.get('vwapDay')]), 'core12.VWAP_VWMA' if vwap else 'daily.vwapDay')
+    put('vwmaSlope5Preferred', _first([vwap.get('VWMA60_slope5'), vwap.get('VWMA75_slope5'), vwap.get('VWMA98_slope5')]), 'core12.VWAP_VWMA')
+    put('mfiPreferred', _first([mfi.get('MFI20'), mfi.get('MFI60'), mfi.get('MFI61'), mfi.get('MFI73')]), 'core12.MFI_CMF')
+    put('pviSlopePreferred', _first([pvi.get('PVI_slope63'), pvi.get('PVI_slope75')]), 'core12.PVI_NVI')
+    put('nviSlopePreferred', _first([pvi.get('NVI_slope63'), pvi.get('NVI_slope75')]), 'core12.PVI_NVI')
+    put('trixPreferred', _first([trix.get('TRIX38'), trix.get('TRIX58')]), 'core12.TRIX')
+    put('trixSlope5Preferred', _first([trix.get('TRIX38_slope5'), trix.get('TRIX58_slope5')]), 'core12.TRIX')
+    put('supertrendDirPreferred', st.get('ST15_5.0_dir'), 'core12.SUPERTREND')
+    put('supertrendDistPreferred', st.get('ST15_5.0_dist'), 'core12.SUPERTREND')
+    put('nearSupportPreferred', _first([sr.get('nearSupport'), rs.get('nearSupportDay')]), 'core12.SR_CLUSTER' if sr else 'rs.nearSupportDay')
+    put('supportBrokenPreferred', sr.get('supportBroken'), 'core12.SR_CLUSTER')
+    if sr.get('S1') is not None:
+        put('supportPreferred', sr.get('S1'), 'core12.SR_CLUSTER')
+    elif rs.get('activeSupportDay') is not None:
+        put('supportPreferred', rs.get('activeSupportDay'), 'rs.activeSupportDay')
+    if sr.get('R1') is not None:
+        put('resistancePreferred', sr.get('R1'), 'core12.SR_CLUSTER')
+    elif rs.get('activeResistanceDay') is not None:
+        put('resistancePreferred', rs.get('activeResistanceDay'), 'rs.activeResistanceDay')
+
+    preferred['_sourceMap'] = source_map
+    return preferred
+
+
+def core12_decision(core12: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not core12:
+        return None
+    keys = ['symbol', 'sectorGroup', 'configSector', 'task', 'date', 'close', 'currentZone', 'mlConfig', 'core12Signals', 'priceStatus', 'reason', 'core12Positive', 'core12Negative', 'core12Neutral', 'holdScore', 'breakRiskScore', 'finalStatus']
+    return {k: core12.get(k) for k in keys if k in core12}
+
+
 def clean_source_meta(name: str, payload: dict[str, Any], path: Path) -> dict[str, Any]:
     return {
         'name': name,
@@ -75,18 +152,21 @@ def main() -> None:
         d = daily.get(sym, {})
         indicators = d.get('indicators') or {}
         rs = d.get('rs') or rs_vn100.get(sym) or rs_hsx.get(sym) or {}
+        c12 = core12.get(sym)
         item = {
             'symbol': sym,
             'date': d.get('date') or weekly.get(sym, {}).get('date') or monthly.get(sym, {}).get('date'),
             'price': d.get('price') or rs.get('price') or rs.get('lastClose'),
+            'preferred': build_preferred_indicators(indicators, rs, c12),
             'daily': indicators,
             'rs': rs,
             'hourly': hourly.get(sym),
             'weekly': weekly.get(sym),
             'monthly': monthly.get(sym),
-            'core12': core12.get(sym),
+            'core12': core12_decision(c12),
             'raw': {
                 'dailyV3': d or None,
+                'core12Values': (c12 or {}).get('core12Values') if c12 else None,
             },
         }
         items.append(item)
@@ -94,7 +174,7 @@ def main() -> None:
     out = {
         'createdAt': datetime.now().isoformat(),
         'schemaVersion': 'lh-canonical-indicators-daily.v1',
-        'note': 'Canonical daily indicator/feature store. Strategies should read this single output instead of recomputing indicators/R-S/timeframes.',
+        'note': 'Canonical daily indicator/feature store. Overlapping indicator families prefer Core12 tuned features in `preferred`; raw daily/R-S/Core12 values remain for audit.',
         'sources': [clean_source_meta(name, payloads[name], SOURCES[name]) for name in SOURCES],
         'count': len(items),
         'items': items,

@@ -41,10 +41,11 @@ def load_indicator_items() -> list[dict[str, Any]]:
         sym = str(x.get('symbol') or '').upper()
         if not sym or sym in EXCLUDE:
             continue
-        # Canonical shape keeps indicators under `daily`; old v3 cache kept them under `indicators`.
+        # Canonical shape keeps production indicators under `preferred`.
+        # `preferred` uses Core12 tuned features for overlapping indicator families.
         if 'indicators' not in x:
             x = dict(x)
-            x['indicators'] = x.get('daily') or {}
+            x['indicators'] = x.get('preferred') or x.get('daily') or {}
         out.append(x)
     return out
 
