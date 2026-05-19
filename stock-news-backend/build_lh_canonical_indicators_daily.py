@@ -83,18 +83,40 @@ def build_preferred_indicators(daily: dict[str, Any], rs: dict[str, Any], core12
             source_map[key] = source
 
     # Overlap families: prefer Core12 tuned periods when present.
+    # Also overwrite compatible public keys when the parameter difference is not material
+    # for strategy direction/score. Large horizon changes keep explicit `*Preferred` keys.
     put('rsiPreferred', _first([rsi.get('RSI24'), rsi.get('RSI50'), daily.get('rsi14')]), 'core12.RSI' if rsi else 'daily.rsi14')
     put('rsiSlope5Preferred', _first([rsi.get('RSI24_slope5'), rsi.get('RSI50_slope5')]), 'core12.RSI')
+    if rsi.get('RSI24') is not None:
+        put('rsi14', rsi.get('RSI24'), 'core12.RSI24 replaces daily.rsi14')
     put('adxPreferred', _first([adx.get('ADX41'), daily.get('adx14')]), 'core12.ADX_DMI' if adx else 'daily.adx14')
     put('diSpreadPreferred', _first([adx.get('DI41_spread')]), 'core12.ADX_DMI')
-    put('rocPreferred', _first([roc.get('ROC72'), roc.get('ROC80'), roc.get('ROC90'), roc.get('ROC52'), daily.get('roc20')]), 'core12.ROC_MOMENTUM' if roc else 'daily.roc20')
+    if adx.get('ADX41') is not None:
+        put('adx14', adx.get('ADX41'), 'core12.ADX41 replaces daily.adx14')
+    if adx.get('DI41_spread') is not None:
+        spread = adx.get('DI41_spread')
+        put('plusDi', max(float(spread), 0.0), 'core12.DI41_spread direction replaces daily.plusDi')
+        put('minusDi', max(-float(spread), 0.0), 'core12.DI41_spread direction replaces daily.minusDi')
+    put('rocPreferred', _first([roc.get('ROC52'), roc.get('ROC72'), roc.get('ROC80'), roc.get('ROC90'), daily.get('roc20')]), 'core12.ROC_MOMENTUM' if roc else 'daily.roc20')
+    if roc.get('ROC52') is not None:
+        put('roc20', roc.get('ROC52'), 'core12.ROC52 replaces daily.roc20 for momentum direction')
     put('momentumPreferred', _first([roc.get('MOM72'), roc.get('MOM80'), roc.get('MOM90'), roc.get('MOM52')]), 'core12.ROC_MOMENTUM')
     put('ichimokuCloudPreferred', ichi.get('ICHI5_29_89_cloud_pos'), 'core12.ICHIMOKU')
     put('ichimokuTkPreferred', ichi.get('ICHI5_29_89_tk'), 'core12.ICHIMOKU')
+    if ichi:
+        old_ichi = preferred.get('ichimoku') if isinstance(preferred.get('ichimoku'), dict) else {}
+        core_state_raw = ichi.get('ICHI5_29_89_cloud_pos')
+        if isinstance(core_state_raw, (int, float)):
+            core_state = 'above_cloud' if core_state_raw > 0 else 'below_cloud' if core_state_raw < 0 else 'in_cloud'
+        else:
+            core_state = old_ichi.get('state')
+        put('ichimoku', {**old_ichi, 'state': core_state, 'core12CloudPos': core_state_raw, 'core12Tk': ichi.get('ICHI5_29_89_tk'), 'source': 'core12.ICHIMOKU'}, 'core12.ICHIMOKU replaces daily.ichimoku state')
     put('maTrendPreferred', _first([ma.get('MA108_dist'), ma.get('EMA229_dist')]), 'core12.MA_EMA_WMA')
     put('maTrendSlope5Preferred', _first([ma.get('MA108_slope5'), ma.get('EMA229_slope5')]), 'core12.MA_EMA_WMA')
     put('vwapPreferred', _first([vwap.get('VWAP60_dist'), vwap.get('VWAP75_dist'), vwap.get('VWAP98_dist'), daily.get('vwapDay')]), 'core12.VWAP_VWMA' if vwap else 'daily.vwapDay')
     put('vwmaSlope5Preferred', _first([vwap.get('VWMA60_slope5'), vwap.get('VWMA75_slope5'), vwap.get('VWMA98_slope5')]), 'core12.VWAP_VWMA')
+    if vwap.get('VWAP60_dist') is not None:
+        put('vwapDay', vwap.get('VWAP60_dist'), 'core12.VWAP60_dist replaces daily.vwapDay as distance feature')
     put('mfiPreferred', _first([mfi.get('MFI20'), mfi.get('MFI60'), mfi.get('MFI61'), mfi.get('MFI73')]), 'core12.MFI_CMF')
     put('pviSlopePreferred', _first([pvi.get('PVI_slope63'), pvi.get('PVI_slope75')]), 'core12.PVI_NVI')
     put('nviSlopePreferred', _first([pvi.get('NVI_slope63'), pvi.get('NVI_slope75')]), 'core12.PVI_NVI')
@@ -106,10 +128,12 @@ def build_preferred_indicators(daily: dict[str, Any], rs: dict[str, Any], core12
     put('supportBrokenPreferred', sr.get('supportBroken'), 'core12.SR_CLUSTER')
     if sr.get('S1') is not None:
         put('supportPreferred', sr.get('S1'), 'core12.SR_CLUSTER')
+        put('activeSupportDay', sr.get('S1'), 'core12.SR_CLUSTER.S1 replaces rs.activeSupportDay')
     elif rs.get('activeSupportDay') is not None:
         put('supportPreferred', rs.get('activeSupportDay'), 'rs.activeSupportDay')
     if sr.get('R1') is not None:
         put('resistancePreferred', sr.get('R1'), 'core12.SR_CLUSTER')
+        put('activeResistanceDay', sr.get('R1'), 'core12.SR_CLUSTER.R1 replaces rs.activeResistanceDay')
     elif rs.get('activeResistanceDay') is not None:
         put('resistancePreferred', rs.get('activeResistanceDay'), 'rs.activeResistanceDay')
 

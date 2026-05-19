@@ -84,8 +84,8 @@ def rs_snapshot(rs: dict[str, Any]) -> dict[str, Any]:
 def support_resistance(item: dict[str, Any]) -> tuple[float, float]:
     rs = item.get('rs') or {}
     ind = item.get('indicators') or {}
-    sup = f(rs.get('activeSupportDay') or rs.get('supportDay') or ind.get('activeSupportDay'))
-    res = f(rs.get('activeResistanceDay') or rs.get('resistanceDay') or ind.get('activeResistanceDay'))
+    sup = f(ind.get('activeSupportDay') or ind.get('supportPreferred') or rs.get('activeSupportDay') or rs.get('supportDay'))
+    res = f(ind.get('activeResistanceDay') or ind.get('resistancePreferred') or rs.get('activeResistanceDay') or rs.get('resistanceDay'))
     return sup, res
 
 
