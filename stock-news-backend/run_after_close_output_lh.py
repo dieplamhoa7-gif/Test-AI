@@ -92,10 +92,7 @@ def _run_pipeline(py: str) -> None:
     steps.extend([
         [py, "run_rs_levels_vn100_safe.py"],
         [py, "build_v3_full_indicator_cache_v2.py"],
-        [py, "scan_v3_b4_bullish_divergence_current_signals.py"],
-        [py, "scan_v3_clean_split_a2_b2_current_signals.py"],
-        [py, "scan_shakeout_current_cache.py"],
-        [py, "tmp_build_strategy_results_from_canonical.py"],
+        [py, "build_strategy_results_from_indicator_cache.py"],
         [py, "refresh_market_prices_lh.py"],
         [py, "build_firebase_cache_site.py"],
     ])
@@ -108,9 +105,6 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/rs_levels_vn100_cache.json",
          "stock-news-backend/data/rs_levels_only_cache.json",
          "stock-news-backend/data/v3_full_indicator_cache_v2.json",
-         "stock-news-backend/data/v3_b4_bullish_divergence_current_signals.json",
-         "stock-news-backend/data/v3_clean_split_a2_b2_current_signals.json",
-         "stock-news-backend/data/shakeout_rebound_current_signals.json",
          "stock-news-backend/data/strategy_results_cache.json",
          "stock-news-backend/data/market_data.json",
          "stock-news-backend/data/market_overview.json",
