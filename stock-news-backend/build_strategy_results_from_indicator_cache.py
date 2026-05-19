@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path('data')
-IN = ROOT / 'v3_full_indicator_cache_v2.json'
+IN = ROOT / 'lh_canonical_indicators_daily.json'
 OUT = ROOT / 'strategy_results_cache.json'
 EXCLUDE = {'VIC', 'VHM'}
 
@@ -36,7 +36,17 @@ def r(v: Any, n: int = 2):
 
 def load_indicator_items() -> list[dict[str, Any]]:
     data = json.loads(IN.read_text(encoding='utf-8'))
-    return [x for x in data.get('items', []) if str(x.get('symbol') or '').upper() not in EXCLUDE]
+    out = []
+    for x in data.get('items', []):
+        sym = str(x.get('symbol') or '').upper()
+        if not sym or sym in EXCLUDE:
+            continue
+        # Canonical shape keeps indicators under `daily`; old v3 cache kept them under `indicators`.
+        if 'indicators' not in x:
+            x = dict(x)
+            x['indicators'] = x.get('daily') or {}
+        out.append(x)
+    return out
 
 
 def base_ai(ind: dict[str, Any]) -> dict[str, Any]:
@@ -103,7 +113,7 @@ def norm_result(item: dict[str, Any], sid: str, strategy_name: str, action: str,
         'entryIndicators': ai,
         'rsSnapshot': rs_snapshot(rs),
         'asOfDate': item.get('date'),
-        'source': 'v3_full_indicator_cache_v2.json',
+        'source': 'lh_canonical_indicators_daily.json',
         'strategyId': sid,
     }
 
@@ -175,7 +185,7 @@ def pack_strategy(sid: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
         'rejectCount': len(rejects),
         'source': str(IN),
         'canonical': True,
-        'method': 'Rules evaluated from one canonical indicator/R-S cache; no per-strategy history reload or R/S recomputation.',
+        'method': 'Rules evaluated from lh_canonical_indicators_daily.json; no per-strategy history reload or R/S recomputation.',
     }
 
 
@@ -189,7 +199,7 @@ def main() -> None:
     strategies = [pack_strategy(sid, by_sid[sid]) for sid in ORDER]
     payload = {
         'updatedAt': datetime.now().isoformat(),
-        'note': 'Current strategy signal cache rebuilt directly from canonical v3_full_indicator_cache_v2.json. Web reads output only.',
+        'note': 'Current strategy signal cache rebuilt directly from canonical lh_canonical_indicators_daily.json. Web reads output only.',
         'canonical': True,
         'sourceFiles': [str(IN)],
         'removedIntermediateFiles': [
