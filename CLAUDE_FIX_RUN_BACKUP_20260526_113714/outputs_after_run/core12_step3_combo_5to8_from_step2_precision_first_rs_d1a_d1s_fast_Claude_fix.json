@@ -1,0 +1,868 @@
+{
+  "createdAt": "2026-05-26T12:20:38",
+  "method": "STEP 3 Claude-fix: Walk-forward combo 5-8 family/task; pool family Ä‘Ã£ filter theo expected_pnl > 0 vÃ  CI lower bound â‰¥ 50 tá»« Step 2 fix. N_FOLDS=2, purged gap=10d, isotonic calibration, threshold tune trÃªn VAL, bootstrap CI, rank theo lower bound, Bonferroni penalty (n_configs=36), net cost 0.4%, MIN_TOTAL_PRED=10.",
+  "config": {
+    "nFolds": 2,
+    "horizonDays": 10,
+    "valRatio": 0.2,
+    "minTotalPred": 10,
+    "minFoldPred": 3,
+    "bootstrapN": 100,
+    "txCostPct": 0.4,
+    "tasks": [
+      "RS",
+      "D1A",
+      "D1S",
+      "SUPPORT_HOLD",
+      "RESISTANCE_REJECT"
+    ],
+    "totalConfigsScanned": 36,
+    "groupSizes": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "maxPoolPerTask": 8
+  },
+  "folds": [
+    {
+      "fold": 2,
+      "trainDates": [
+        "2025-05-16",
+        "2025-08-21"
+      ],
+      "valDates": [
+        "2025-10-09",
+        "2025-12-08"
+      ],
+      "testDates": [
+        "2026-01-26",
+        "2026-04-01"
+      ],
+      "purgedGapDays": 10
+    }
+  ],
+  "sourceStep2": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\CLAUDE_INVESTMENT_MODEL_REVIEW\\stock-news-backend\\data\\core12_step2_tune_params_precision_first_rs_d1a_d1s_Claude_fix.json",
+  "pools": {
+    "RS": [],
+    "D1A": [
+      {
+        "family": "SMA",
+        "setName": "sma200_dist",
+        "model": "LOG",
+        "avgPrecision": 57.14,
+        "precisionCI95LowerMean": 28.57,
+        "totalPredN": 14,
+        "expectedNetPnlPerTrade": 1.171
+      },
+      {
+        "family": "AO",
+        "setName": "ao_slope5",
+        "model": "ET",
+        "avgPrecision": 33.33,
+        "precisionCI95LowerMean": 0.0,
+        "totalPredN": 3,
+        "expectedNetPnlPerTrade": -0.734
+      },
+      {
+        "family": "TRIX",
+        "setName": "TRIX_ALL",
+        "model": "ET",
+        "avgPrecision": 0.0,
+        "precisionCI95LowerMean": 0.0,
+        "totalPredN": 4,
+        "expectedNetPnlPerTrade": -3.4
+      },
+      {
+        "family": "MOMENTUM",
+        "setName": "mom10",
+        "model": "ET",
+        "avgPrecision": 0.0,
+        "precisionCI95LowerMean": 0.0,
+        "totalPredN": 2,
+        "expectedNetPnlPerTrade": -3.4
+      }
+    ],
+    "D1S": [],
+    "SUPPORT_HOLD": [],
+    "RESISTANCE_REJECT": [
+      {
+        "family": "BOLLINGER",
+        "setName": "BOLLINGER_ALL",
+        "model": "LOG",
+        "avgPrecision": 66.67,
+        "precisionCI95LowerMean": 15.83,
+        "totalPredN": 3,
+        "expectedNetPnlPerTrade": 1.934
+      },
+      {
+        "family": "SMA",
+        "setName": "sma10_dist",
+        "model": "RF",
+        "avgPrecision": 12.5,
+        "precisionCI95LowerMean": 0.0,
+        "totalPredN": 8,
+        "expectedNetPnlPerTrade": -2.4
+      }
+    ]
+  },
+  "selectedByTask": {
+    "RS": [],
+    "D1A": [
+      {
+        "task": "D1A",
+        "groupSize": 2,
+        "families": [
+          "SMA",
+          "AO"
+        ],
+        "setNames": [
+          "sma200_dist",
+          "ao_slope5"
+        ],
+        "model": "LOG",
+        "featureCount": 2,
+        "nFolds": 1,
+        "avgPrecision": 32.5,
+        "stdPrecision": 0.0,
+        "minPrecision": 32.5,
+        "precisionCI95LowerMean": 22.5,
+        "avgRecall": 46.43,
+        "avgF1": 38.24,
+        "totalPredN": 40,
+        "expectedNetPnlPerTrade": -0.8,
+        "passStrict": false,
+        "passConservative": false,
+        "bonferroniPenalty": 4.3,
+        "score": 73.705,
+        "folds": [
+          {
+            "fold": 2,
+            "threshold": 0.87,
+            "calibrated": true,
+            "valStats": {
+              "n": 142,
+              "tp": 9,
+              "fp": 3,
+              "tn": 99,
+              "fn": 31,
+              "precision": 75.0,
+              "recall": 22.5,
+              "accuracy": 76.06,
+              "f1": 34.62,
+              "predN": 12,
+              "oracleN": 40
+            },
+            "testStats": {
+              "n": 113,
+              "tp": 13,
+              "fp": 27,
+              "tn": 58,
+              "fn": 15,
+              "precision": 32.5,
+              "recall": 46.43,
+              "accuracy": 62.83,
+              "f1": 38.24,
+              "predN": 40,
+              "oracleN": 28
+            },
+            "precisionCI95": [
+              22.5,
+              46.31
+            ],
+            "precisionMean": 32.33,
+            "featureCount": 2
+          }
+        ]
+      },
+      {
+        "task": "D1A",
+        "groupSize": 3,
+        "families": [
+          "SMA",
+          "AO",
+          "MOMENTUM"
+        ],
+        "setNames": [
+          "sma200_dist",
+          "ao_slope5",
+          "mom10"
+        ],
+        "model": "LOG",
+        "featureCount": 3,
+        "nFolds": 1,
+        "avgPrecision": 32.43,
+        "stdPrecision": 0.0,
+        "minPrecision": 32.43,
+        "precisionCI95LowerMean": 18.92,
+        "avgRecall": 42.86,
+        "avgF1": 36.92,
+        "totalPredN": 37,
+        "expectedNetPnlPerTrade": -0.806,
+        "passStrict": false,
+        "passConservative": false,
+        "bonferroniPenalty": 4.3,
+        "score": 65.92,
+        "folds": [
+          {
+            "fold": 2,
+            "threshold": 0.86,
+            "calibrated": true,
+            "valStats": {
+              "n": 142,
+              "tp": 10,
+              "fp": 6,
+              "tn": 96,
+              "fn": 30,
+              "precision": 62.5,
+              "recall": 25.0,
+              "accuracy": 74.65,
+              "f1": 35.71,
+              "predN": 16,
+              "oracleN": 40
+            },
+            "testStats": {
+              "n": 113,
+              "tp": 12,
+              "fp": 25,
+              "tn": 60,
+              "fn": 16,
+              "precision": 32.43,
+              "recall": 42.86,
+              "accuracy": 63.72,
+              "f1": 36.92,
+              "predN": 37,
+              "oracleN": 28
+            },
+            "precisionCI95": [
+              18.92,
+              47.36
+            ],
+            "precisionMean": 32.05,
+            "featureCount": 3
+          }
+        ]
+      },
+      {
+        "task": "D1A",
+        "groupSize": 2,
+        "families": [
+          "SMA",
+          "MOMENTUM"
+        ],
+        "setNames": [
+          "sma200_dist",
+          "mom10"
+        ],
+        "model": "LOG",
+        "featureCount": 2,
+        "nFolds": 1,
+        "avgPrecision": 28.95,
+        "stdPrecision": 0.0,
+        "minPrecision": 28.95,
+        "precisionCI95LowerMean": 15.79,
+        "avgRecall": 39.29,
+        "avgF1": 33.33,
+        "totalPredN": 38,
+        "expectedNetPnlPerTrade": -1.084,
+        "passStrict": false,
+        "passConservative": false,
+        "bonferroniPenalty": 4.3,
+        "score": 56.985,
+        "folds": [
+          {
+            "fold": 2,
+            "threshold": 0.87,
+            "calibrated": true,
+            "valStats": {
+              "n": 142,
+              "tp": 7,
+              "fp": 4,
+              "tn": 98,
+              "fn": 33,
+              "precision": 63.64,
+              "recall": 17.5,
+              "accuracy": 73.94,
+              "f1": 27.45,
+              "predN": 11,
+              "oracleN": 40
+            },
+            "testStats": {
+              "n": 113,
+              "tp": 11,
+              "fp": 27,
+              "tn": 58,
+              "fn": 17,
+              "precision": 28.95,
+              "recall": 39.29,
+              "accuracy": 61.06,
+              "f1": 33.33,
+              "predN": 38,
+              "oracleN": 28
+            },
+            "precisionCI95": [
+              15.79,
+              43.49
+            ],
+            "precisionMean": 29.18,
+            "featureCount": 2
+          }
+        ]
+      },
+      {
+        "task": "D1A",
+        "groupSize": 4,
+        "families": [
+          "SMA",
+          "AO",
+          "TRIX",
+          "MOMENTUM"
+        ],
+        "setNames": [
+          "sma200_dist",
+          "ao_slope5",
+          "TRIX_ALL",
+          "mom10"
+        ],
+        "model": "ET",
+        "featureCount": 5,
+        "nFolds": 1,
+        "avgPrecision": 0.0,
+        "stdPrecision": 0.0,
+        "minPrecision": 0.0,
+        "precisionCI95LowerMean": 0.0,
+        "avgRecall": 0.0,
+        "avgF1": 0.0,
+        "totalPredN": 7,
+        "expectedNetPnlPerTrade": -3.4,
+        "passStrict": false,
+        "passConservative": false,
+        "bonferroniPenalty": 4.3,
+        "score": -3.95,
+        "folds": [
+          {
+            "fold": 2,
+            "threshold": 0.94,
+            "calibrated": true,
+            "valStats": {
+              "n": 142,
+              "tp": 4,
+              "fp": 1,
+              "tn": 101,
+              "fn": 36,
+              "precision": 80.0,
+              "recall": 10.0,
+              "accuracy": 73.94,
+              "f1": 17.78,
+              "predN": 5,
+              "oracleN": 40
+            },
+            "testStats": {
+              "n": 113,
+              "tp": 0,
+              "fp": 7,
+              "tn": 78,
+              "fn": 28,
+              "precision": 0.0,
+              "recall": 0.0,
+              "accuracy": 69.03,
+              "f1": 0.0,
+              "predN": 7,
+              "oracleN": 28
+            },
+            "precisionCI95": [
+              0.0,
+              0.0
+            ],
+            "precisionMean": 0.0,
+            "featureCount": 5
+          }
+        ]
+      },
+      {
+        "task": "D1A",
+        "groupSize": 3,
+        "families": [
+          "SMA",
+          "TRIX",
+          "MOMENTUM"
+        ],
+        "setNames": [
+          "sma200_dist",
+          "TRIX_ALL",
+          "mom10"
+        ],
+        "model": "ET",
+        "featureCount": 4,
+        "nFolds": 1,
+        "avgPrecision": 0.0,
+        "stdPrecision": 0.0,
+        "minPrecision": 0.0,
+        "precisionCI95LowerMean": 0.0,
+        "avgRecall": 0.0,
+        "avgF1": 0.0,
+        "totalPredN": 1,
+        "expectedNetPnlPerTrade": -3.4,
+        "passStrict": false,
+        "passConservative": false,
+        "bonferroniPenalty": 4.3,
+        "score": -4.25,
+        "folds": [
+          {
+            "fold": 2,
+            "threshold": 0.98,
+            "calibrated": true,
+            "valStats": {
+              "n": 142,
+              "tp": 5,
+              "fp": 2,
+              "tn": 100,
+              "fn": 35,
+              "precision": 71.43,
+              "recall": 12.5,
+              "accuracy": 73.94,
+              "f1": 21.28,
+              "predN": 7,
+              "oracleN": 40
+            },
+            "testStats": {
+              "n": 113,
+              "tp": 0,
+              "fp": 1,
+              "tn": 84,
+              "fn": 28,
+              "precision": 0.0,
+              "recall": 0.0,
+              "accuracy": 74.34,
+              "f1": 0.0,
+              "predN": 1,
+              "oracleN": 28
+            },
+            "precisionCI95": [
+              0.0,
+              0.0
+            ],
+            "precisionMean": 0.0,
+            "featureCount": 4
+          }
+        ]
+      }
+    ],
+    "D1S": [],
+    "SUPPORT_HOLD": [],
+    "RESISTANCE_REJECT": []
+  },
+  "topPerTask": {
+    "RS": null,
+    "D1A": {
+      "task": "D1A",
+      "groupSize": 2,
+      "families": [
+        "SMA",
+        "AO"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "ao_slope5"
+      ],
+      "model": "LOG",
+      "featureCount": 2,
+      "nFolds": 1,
+      "avgPrecision": 32.5,
+      "stdPrecision": 0.0,
+      "minPrecision": 32.5,
+      "precisionCI95LowerMean": 22.5,
+      "avgRecall": 46.43,
+      "avgF1": 38.24,
+      "totalPredN": 40,
+      "expectedNetPnlPerTrade": -0.8,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": 73.705,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.87,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 9,
+            "fp": 3,
+            "tn": 99,
+            "fn": 31,
+            "precision": 75.0,
+            "recall": 22.5,
+            "accuracy": 76.06,
+            "f1": 34.62,
+            "predN": 12,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 13,
+            "fp": 27,
+            "tn": 58,
+            "fn": 15,
+            "precision": 32.5,
+            "recall": 46.43,
+            "accuracy": 62.83,
+            "f1": 38.24,
+            "predN": 40,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            22.5,
+            46.31
+          ],
+          "precisionMean": 32.33,
+          "featureCount": 2
+        }
+      ]
+    },
+    "D1S": null,
+    "SUPPORT_HOLD": null,
+    "RESISTANCE_REJECT": null
+  },
+  "allRuns": [
+    {
+      "task": "D1A",
+      "groupSize": 2,
+      "families": [
+        "SMA",
+        "AO"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "ao_slope5"
+      ],
+      "model": "LOG",
+      "featureCount": 2,
+      "nFolds": 1,
+      "avgPrecision": 32.5,
+      "stdPrecision": 0.0,
+      "minPrecision": 32.5,
+      "precisionCI95LowerMean": 22.5,
+      "avgRecall": 46.43,
+      "avgF1": 38.24,
+      "totalPredN": 40,
+      "expectedNetPnlPerTrade": -0.8,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": 73.705,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.87,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 9,
+            "fp": 3,
+            "tn": 99,
+            "fn": 31,
+            "precision": 75.0,
+            "recall": 22.5,
+            "accuracy": 76.06,
+            "f1": 34.62,
+            "predN": 12,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 13,
+            "fp": 27,
+            "tn": 58,
+            "fn": 15,
+            "precision": 32.5,
+            "recall": 46.43,
+            "accuracy": 62.83,
+            "f1": 38.24,
+            "predN": 40,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            22.5,
+            46.31
+          ],
+          "precisionMean": 32.33,
+          "featureCount": 2
+        }
+      ]
+    },
+    {
+      "task": "D1A",
+      "groupSize": 2,
+      "families": [
+        "SMA",
+        "MOMENTUM"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "mom10"
+      ],
+      "model": "LOG",
+      "featureCount": 2,
+      "nFolds": 1,
+      "avgPrecision": 28.95,
+      "stdPrecision": 0.0,
+      "minPrecision": 28.95,
+      "precisionCI95LowerMean": 15.79,
+      "avgRecall": 39.29,
+      "avgF1": 33.33,
+      "totalPredN": 38,
+      "expectedNetPnlPerTrade": -1.084,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": 56.985,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.87,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 7,
+            "fp": 4,
+            "tn": 98,
+            "fn": 33,
+            "precision": 63.64,
+            "recall": 17.5,
+            "accuracy": 73.94,
+            "f1": 27.45,
+            "predN": 11,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 11,
+            "fp": 27,
+            "tn": 58,
+            "fn": 17,
+            "precision": 28.95,
+            "recall": 39.29,
+            "accuracy": 61.06,
+            "f1": 33.33,
+            "predN": 38,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            15.79,
+            43.49
+          ],
+          "precisionMean": 29.18,
+          "featureCount": 2
+        }
+      ]
+    },
+    {
+      "task": "D1A",
+      "groupSize": 3,
+      "families": [
+        "SMA",
+        "AO",
+        "MOMENTUM"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "ao_slope5",
+        "mom10"
+      ],
+      "model": "LOG",
+      "featureCount": 3,
+      "nFolds": 1,
+      "avgPrecision": 32.43,
+      "stdPrecision": 0.0,
+      "minPrecision": 32.43,
+      "precisionCI95LowerMean": 18.92,
+      "avgRecall": 42.86,
+      "avgF1": 36.92,
+      "totalPredN": 37,
+      "expectedNetPnlPerTrade": -0.806,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": 65.92,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.86,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 10,
+            "fp": 6,
+            "tn": 96,
+            "fn": 30,
+            "precision": 62.5,
+            "recall": 25.0,
+            "accuracy": 74.65,
+            "f1": 35.71,
+            "predN": 16,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 12,
+            "fp": 25,
+            "tn": 60,
+            "fn": 16,
+            "precision": 32.43,
+            "recall": 42.86,
+            "accuracy": 63.72,
+            "f1": 36.92,
+            "predN": 37,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            18.92,
+            47.36
+          ],
+          "precisionMean": 32.05,
+          "featureCount": 3
+        }
+      ]
+    },
+    {
+      "task": "D1A",
+      "groupSize": 3,
+      "families": [
+        "SMA",
+        "TRIX",
+        "MOMENTUM"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "TRIX_ALL",
+        "mom10"
+      ],
+      "model": "ET",
+      "featureCount": 4,
+      "nFolds": 1,
+      "avgPrecision": 0.0,
+      "stdPrecision": 0.0,
+      "minPrecision": 0.0,
+      "precisionCI95LowerMean": 0.0,
+      "avgRecall": 0.0,
+      "avgF1": 0.0,
+      "totalPredN": 1,
+      "expectedNetPnlPerTrade": -3.4,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": -4.25,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.98,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 5,
+            "fp": 2,
+            "tn": 100,
+            "fn": 35,
+            "precision": 71.43,
+            "recall": 12.5,
+            "accuracy": 73.94,
+            "f1": 21.28,
+            "predN": 7,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 0,
+            "fp": 1,
+            "tn": 84,
+            "fn": 28,
+            "precision": 0.0,
+            "recall": 0.0,
+            "accuracy": 74.34,
+            "f1": 0.0,
+            "predN": 1,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            0.0,
+            0.0
+          ],
+          "precisionMean": 0.0,
+          "featureCount": 4
+        }
+      ]
+    },
+    {
+      "task": "D1A",
+      "groupSize": 4,
+      "families": [
+        "SMA",
+        "AO",
+        "TRIX",
+        "MOMENTUM"
+      ],
+      "setNames": [
+        "sma200_dist",
+        "ao_slope5",
+        "TRIX_ALL",
+        "mom10"
+      ],
+      "model": "ET",
+      "featureCount": 5,
+      "nFolds": 1,
+      "avgPrecision": 0.0,
+      "stdPrecision": 0.0,
+      "minPrecision": 0.0,
+      "precisionCI95LowerMean": 0.0,
+      "avgRecall": 0.0,
+      "avgF1": 0.0,
+      "totalPredN": 7,
+      "expectedNetPnlPerTrade": -3.4,
+      "passStrict": false,
+      "passConservative": false,
+      "bonferroniPenalty": 4.3,
+      "score": -3.95,
+      "folds": [
+        {
+          "fold": 2,
+          "threshold": 0.94,
+          "calibrated": true,
+          "valStats": {
+            "n": 142,
+            "tp": 4,
+            "fp": 1,
+            "tn": 101,
+            "fn": 36,
+            "precision": 80.0,
+            "recall": 10.0,
+            "accuracy": 73.94,
+            "f1": 17.78,
+            "predN": 5,
+            "oracleN": 40
+          },
+          "testStats": {
+            "n": 113,
+            "tp": 0,
+            "fp": 7,
+            "tn": 78,
+            "fn": 28,
+            "precision": 0.0,
+            "recall": 0.0,
+            "accuracy": 69.03,
+            "f1": 0.0,
+            "predN": 7,
+            "oracleN": 28
+          },
+          "precisionCI95": [
+            0.0,
+            0.0
+          ],
+          "precisionMean": 0.0,
+          "featureCount": 5
+        }
+      ]
+    }
+  ]
+}

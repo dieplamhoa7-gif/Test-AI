@@ -1,0 +1,26 @@
+﻿Claude-fix run summary 2026-05-26
+
+Backup folder:
+- CLAUDE_FIX_RUN_BACKUP_20260526_113714
+
+Important: original review folder was backed up before run. Because source data has only 72 unique dates, Claude's default N_FOLDS=5/HORIZON=20 cannot run. For execution test, *_run.py copies were created with smaller validation settings:
+- N_FOLDS=2
+- HORIZON_DAYS=10
+- BOOTSTRAP_N=100
+- step3 exploratory group sizes relaxed to [2,3,4,5] and pool filters relaxed for diagnosis only.
+
+Outputs produced:
+- data/core12_step1_select12_from40_rs_d1a_d1s_Claude_fix.json/csv
+- data/core12_step2_tune_params_precision_first_rs_d1a_d1s_Claude_fix.json/csv
+- data/core12_step3_combo_5to8_from_step2_precision_first_rs_d1a_d1s_fast_Claude_fix.json/csv
+
+Main finding:
+- Claude methodology is safer against leakage, but current dataset is too short for the default strict walk-forward setup.
+- With relaxed test settings, Step 1 and Step 2 run, but almost nothing passes conservative gates.
+- Step 2 selected only weak/low-sample candidates: D1A and RESISTANCE_REJECT only; RS/D1S/SUPPORT_HOLD empty.
+- Step 3 strict settings found no pool. Relaxed diagnostic run found D1A SMA+AO avgPrecision 32.5, lower CI 22.5, totalPredN 40, expectedNetPnlPerTrade -0.8, not pass.
+
+Recommendation:
+- Do not port directly into production now.
+- Keep Claude-fix ideas: purged walk-forward, threshold tune on validation only, bootstrap CI lower-bound ranking, net PnL guard.
+- Need longer history before strict Claude-fix pipeline is meaningful.
