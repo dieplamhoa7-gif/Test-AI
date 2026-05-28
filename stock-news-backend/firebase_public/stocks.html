@@ -1097,9 +1097,12 @@
           return wideEnough >= Math.max(2, idx.length - 1);
         };
         const isMeaningfulTrendLine = (line) => { const touches = Number(line?.touches || 0); const touchRulePass = touches >= 3; const lengthBars = Number(line?.lengthBars || 0); const pts = normalizePoints(line?.points || []); return pts.length >= 2 && touchRulePass && lengthBars >= 18 && trendTouchSpacingOk(line); };
+        const fallbackTrendLine = (line) => { const touches = Number(line?.touches || 0); const lengthBars = Number(line?.lengthBars || 0); const pts = normalizePoints(line?.points || []); return pts.length >= 2 && touches >= 3 && lengthBars >= 18; };
         const trendLineQuality = (line) => { const touchIdx = trendTouchIndexes(line); const gaps = touchIdx.slice(1).map((v, i) => v - touchIdx[i]).filter(x => x > 0); const spacingScore = gaps.length ? Math.min(...gaps) * 12 + gaps.reduce((a, b) => a + b, 0) * 0.8 : 0; const touchPointBonus = Array.isArray(line?.touchPoints) && line.touchPoints.length ? 180 : 0; const reversalBonus = line?.reversalConfirmed ? 120 : 0; return (Number(line?.touches || 0) * 1000) + (Number(line?.lengthBars || 0) * 1.5) + spacingScore + touchPointBonus + reversalBonus + Math.max(0, Number(line?.score || 0)); };
         const dedupeTrendLines = (lines = [], maxPerSide = 4) => {
-          const valid = (Array.isArray(lines) ? lines : []).filter(x => isMeaningfulTrendLine(x));
+          const source = (Array.isArray(lines) ? lines : []);
+          const strict = source.filter(x => isMeaningfulTrendLine(x));
+          const valid = strict.length ? strict : source.filter(x => fallbackTrendLine(x));
           const groupSide = (items = []) => items.sort((a, b) => {
             const av = lineLastValue(a) || 0;
             const bv = lineLastValue(b) || 0;
