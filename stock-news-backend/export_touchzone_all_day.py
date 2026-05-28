@@ -96,20 +96,26 @@ def build_for_symbol(symbol: str):
                 })
     lines=sorted(lines, key=lambda x:(x['touches'], -x['breaks'], x['score']), reverse=True)
     selected=[]
+    family_counts={}
     for l in lines:
-        dup=False
         lmid=(l['y0']+l['y1'])/2
-        for s in selected:
+        family_key=None
+        for idx,s in enumerate(selected):
             smid=(s['y0']+s['y1'])/2
             slope_near=abs(l['slope']-s['slope'])<=0.03 and np.sign(l['slope'])==np.sign(s['slope'])
             price_near=abs(lmid/smid-1)<=0.02 if smid else False
             overlap=not (l['x1']<s['x0'] or l['x0']>s['x1'])
             if l['kind']==s['kind'] and slope_near and price_near and overlap:
-                dup=True
+                family_key=(l['kind'], idx)
                 break
-        if not dup:
+        if family_key is None:
             selected.append(l)
-        if len(selected)>=8:
+            family_counts[(l['kind'], len(selected)-1)] = 1
+        else:
+            if family_counts.get(family_key, 0) < 2:
+                selected.append(l)
+                family_counts[family_key] = family_counts.get(family_key, 0) + 1
+        if len(selected)>=10:
             break
     payload={
         'symbol':symbol,'asOfDate':str(df.iloc[-1].time),'asOfPrice':float(df.iloc[-1].close),'createdAt':'2026-05-28T09:55:00+00:00',
