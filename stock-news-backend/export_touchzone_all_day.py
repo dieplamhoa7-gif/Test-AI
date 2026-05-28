@@ -82,7 +82,7 @@ def build_for_symbol(symbol: str):
                     y=slope*k+intercept
                     if kind=='support' and df.close.iloc[k] < y*(1-ZONE_PCT*1.2): breaks+=1
                     if kind=='resistance' and df.close.iloc[k] > y*(1+ZONE_PCT*1.2): breaks+=1
-                if breaks > max(1, len(zones)//2):
+                if breaks > max(2, len(zones), length//60):
                     continue
                 score=len(zones)*35 + length*0.35 - breaks*18 + a['amp']*0.8 + b['amp']*0.8
                 end_idx = N - 1
