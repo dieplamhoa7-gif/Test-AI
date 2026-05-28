@@ -31,7 +31,7 @@ def annotate(idxs, kind):
 
 highs=annotate(hi_idx,'high'); lows=annotate(lo_idx,'low')
 
-ZONE_PCT=0.005
+ZONE_PCT=0.003
 MIN_TOUCH=3
 MIN_SPAN=45
 
