@@ -48,11 +48,15 @@ def build_for_symbol(symbol: str):
         return out
 
     highs=annotate(hi_idx,'high'); lows=annotate(lo_idx,'low')
+    candle_high=df.high.values
+    candle_low=df.low.values
+    candle_close=df.close.values
     lines=[]
-    for pivots, kind in [(lows,'support'), (highs,'resistance')]:
-        for i in range(len(pivots)):
-            for j in range(i+1, len(pivots)):
-                a,b=pivots[i], pivots[j]
+    for anchor_pivots, kind in [(lows,'support'), (highs,'resistance')]:
+        side_price_arr = candle_low if kind=='support' else candle_high
+        for i in range(len(anchor_pivots)):
+            for j in range(i+1, len(anchor_pivots)):
+                a,b=anchor_pivots[i], anchor_pivots[j]
                 span=b['idx']-a['idx']
                 if span<MIN_SPAN: continue
                 slope=(b['price']-a['price'])/span
@@ -60,15 +64,16 @@ def build_for_symbol(symbol: str):
                 if kind=='resistance' and slope > 0.05: continue
                 intercept=a['price']-slope*a['idx']
                 touches=[]
-                for p in pivots:
-                    y=slope*p['idx']+intercept
-                    rel=abs(p['price']/max(1e-9,y)-1)
+                for k in range(a['idx'], min(N, b['idx']+1)):
+                    y=slope*k+intercept
+                    px=float(side_price_arr[k])
+                    rel=abs(px/max(1e-9,y)-1)
                     if rel<=ZONE_PCT:
-                        touches.append({'idx':p['idx'],'price':p['price'],'time':p['time'],'rel':rel})
+                        touches.append({'idx':k,'price':px,'time':str(df.iloc[k].time),'rel':rel})
                 touches=sorted(touches,key=lambda x:x['idx'])
                 zones=[]
                 for t in touches:
-                    if zones and t['idx']-zones[-1]['idx']<=8 and abs(t['price']/zones[-1]['price']-1)<=ZONE_PCT:
+                    if zones and t['idx']-zones[-1]['idx']<=4 and abs(t['price']/zones[-1]['price']-1)<=ZONE_PCT:
                         if t['rel']<zones[-1]['rel']:
                             zones[-1]=t
                     else:
@@ -83,6 +88,10 @@ def build_for_symbol(symbol: str):
                     if kind=='support' and df.close.iloc[k] < y*(1-ZONE_PCT*1.2): breaks+=1
                     if kind=='resistance' and df.close.iloc[k] > y*(1+ZONE_PCT*1.2): breaks+=1
                 if breaks > max(2, len(zones), length//60):
+                    continue
+                last_close = float(df.close.iloc[N-1])
+                y_last = slope*(N-1)+intercept
+                if last_close > 0 and abs(y_last/last_close - 1) > 0.35:
                     continue
                 score=len(zones)*35 + length*0.35 - breaks*18 + a['amp']*0.8 + b['amp']*0.8
                 end_idx = N - 1
