@@ -73,12 +73,15 @@ for pivots, kind in [(lows,'support'), (highs,'resistance')]:
             score=len(zones)*35 + length*0.35 - breaks*18 + a['amp']*0.8 + b['amp']*0.8
             if breaks > max(1, len(zones)//2):
                 continue
+            extend_full = (len(zones) >= 4) or (length >= 140)
+            end_idx = (N - 1) if extend_full else last['idx']
+            end_time = str(df.iloc[end_idx].time)
             lines.append({
                 'kind':kind,'slope':float(slope),'intercept':float(intercept),'score':float(score),'touches':len(zones),'breaks':int(breaks),
-                'x0':first['idx'],'x1':last['idx'],'y0':float(slope*first['idx']+intercept),'y1':float(slope*last['idx']+intercept),
-                'points':[{'time':first['time'],'value':round(float(slope*first['idx']+intercept),2)},{'time':last['time'],'value':round(float(slope*last['idx']+intercept),2)}],
+                'x0':first['idx'],'x1':end_idx,'y0':float(slope*first['idx']+intercept),'y1':float(slope*end_idx+intercept),
+                'points':[{'time':first['time'],'value':round(float(slope*first['idx']+intercept),2)},{'time':end_time,'value':round(float(slope*end_idx+intercept),2)}],
                 'touchPoints':[{'idx':z['idx'],'time':z['time'],'price':round(z['price'],2)} for z in zones],
-                'source':'touchzone-0.5pct'
+                'source':'touchzone-0.3pct-full' if extend_full else 'touchzone-0.3pct'
             })
 
 lines=sorted(lines, key=lambda x:(x['touches'], -x['breaks'], x['score']), reverse=True)
