@@ -152,14 +152,14 @@ class TrendlineDetector:
     """
 
     def __init__(self, atr_tol_mult: float = 0.6, min_touches: int = 3,
-                 min_length_bars: int = 20, max_lines_per_side: int = 2,
+                 min_length_bars: int = 20, max_lines_per_side: int = 4,
                  lookback_bars: int = 240,
                  merge_slope_rel_tol: float = 0.25,
                  merge_end_dist_atr: float = 2.5):
         self.atr_tol_mult = atr_tol_mult
         self.min_touches = min_touches
         self.min_length_bars = min_length_bars
-        self.max_lines_per_side = max_lines_per_side   # giảm default 3 → 2
+        self.max_lines_per_side = max_lines_per_side   # mở rộng để frontend còn dữ liệu mà gộp/lọc
         self.lookback_bars = lookback_bars
         self.merge_slope_rel_tol = merge_slope_rel_tol
         self.merge_end_dist_atr = merge_end_dist_atr
