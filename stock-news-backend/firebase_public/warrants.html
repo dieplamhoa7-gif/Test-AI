@@ -1132,6 +1132,7 @@
         let manualDraftPoints = [];
         let manualLines = loadManualLines();
         let measureState = { active:false, start:null, end:null };
+        let measureRaf = 0;
         const hideMeasure = () => { if (measureBox) measureBox.style.display = 'none'; };
         const renderMeasure = () => {
           if (!measureBox || !measureState?.start || !measureState?.end) return;
@@ -1153,6 +1154,13 @@
           measureBox.style.left = `${Math.max(8, Math.min(box.clientWidth - 170, (b.x || 0) + 14))}px`;
           measureBox.style.top = `${Math.max(8, Math.min(box.clientHeight - 110, (b.y || 0) + 14))}px`;
           measureBox.innerHTML = `<b>${delta >= 0 ? '+' : ''}${formatNumber(delta)}</b> (${delta >= 0 ? '+' : ''}${formatNumber(pct)}%)\n${candles} nến • ${days} ngày\nVol: ${escapeHtml(formatVolume(volSum))}`;
+        };
+        const scheduleMeasureRender = () => {
+          if (measureRaf) return;
+          measureRaf = requestAnimationFrame(() => {
+            measureRaf = 0;
+            renderMeasure();
+          });
         };
         const draw = (keepRange = true, forcedRange = null) => {
           let range = isRangeUsable(forcedRange) ? forcedRange : (keepRange ? currentRange() : null); if (!isRangeUsable(range)) range = null; try { box._lhChart?.remove(); volBox?._lhChart?.remove(); macdBox?._lhChart?.remove(); rsiBox?._lhChart?.remove(); } catch(_) {}
@@ -1194,8 +1202,10 @@
                 manualLines = [...manualLines, manualDraftPoints.slice(0, 2)];
                 saveManualLines(manualLines);
                 manualDraftPoints = [];
+                redrawKeepingView();
+              } else if (legend) {
+                legend.innerHTML = `${legend.innerHTML}<span style="color:#ffd54f">Đã chọn điểm 1</span>`;
               }
-              redrawKeepingView();
             });
           }
           resizeChartWhenVisible(chart, box, true);
@@ -1207,23 +1217,24 @@
         const updateVolFromPointer = (ev) => { const rect = box.getBoundingClientRect(); const y = Math.max(0, Math.min(rect.height, ev.clientY - rect.top)); settings.volume = Math.max(6, Math.min(35, Math.round((1 - y / rect.height) * 100))); redrawKeepingView(); };
         volSlider?.addEventListener('input', e => { settings.volume = Math.max(6, Math.min(35, Number(e.target?.value) || 14)); if (!state.volume) { state.volume = true; } syncPills(); redrawKeepingView(); });
         manualDrawToggle?.addEventListener('click', () => { manualDrawEnabled = !manualDrawEnabled; manualDraftPoints = []; syncPills(); redrawKeepingView(); });
-        box.onmousedown = null; box.onmousemove = null; box.onmouseup = null; box.onmouseleave = null;
+        box.onpointerdown = null; box.onpointermove = null; box.onpointerup = null; box.onpointerleave = null;
         manualDrawClear?.addEventListener('click', () => { manualDraftPoints = []; manualLines = []; saveManualLines(manualLines); redrawKeepingView(); });
         syncPills();
         draw(true);
-        box.onmousedown = (ev) => {
+        box.onpointerdown = (ev) => {
           if (!ev.shiftKey || manualDrawEnabled) return;
           const chart = box._lhChart; const candleSeries = box._lhCandleSeries;
           if (!chart || !candleSeries) return;
+          box.setPointerCapture?.(ev.pointerId);
           const rect = box.getBoundingClientRect();
           const x = ev.clientX - rect.left; const y = ev.clientY - rect.top;
           const timeVal = normalizeStoredTime(chart.timeScale()?.coordinateToTime?.(x));
           const priceVal = candleSeries.coordinateToPrice ? candleSeries.coordinateToPrice(y) : null;
           if (!timeVal || !Number.isFinite(priceVal)) return;
           measureState = { active:true, start:{ time: timeVal, price: Number(priceVal.toFixed(2)), x, y }, end:{ time: timeVal, price: Number(priceVal.toFixed(2)), x, y } };
-          renderMeasure();
+          scheduleMeasureRender();
         };
-        box.onmousemove = (ev) => {
+        box.onpointermove = (ev) => {
           if (!measureState.active) return;
           const chart = box._lhChart; const candleSeries = box._lhCandleSeries;
           if (!chart || !candleSeries) return;
@@ -1233,10 +1244,10 @@
           const priceVal = candleSeries.coordinateToPrice ? candleSeries.coordinateToPrice(y) : null;
           if (!timeVal || !Number.isFinite(priceVal)) return;
           measureState.end = { time: timeVal, price: Number(priceVal.toFixed(2)), x, y };
-          renderMeasure();
+          scheduleMeasureRender();
         };
-        box.onmouseup = () => { if (measureState.active) { measureState.active = false; renderMeasure(); } };
-        box.onmouseleave = () => { if (!measureState.active) return; measureState.active = false; renderMeasure(); };
+        box.onpointerup = (ev) => { try { box.releasePointerCapture?.(ev.pointerId); } catch(_) {} if (measureState.active) { measureState.active = false; scheduleMeasureRender(); } };
+        box.onpointerleave = () => { if (!measureState.active) return; measureState.active = false; scheduleMeasureRender(); };
         window.addEventListener('resize', () => { resizeChartWhenVisible(box._lhChart, box, true); resizeChartWhenVisible(volBox?._lhChart, volBox, true); resizeChartWhenVisible(macdBox?._lhChart, macdBox, true); resizeChartWhenVisible(rsiBox?._lhChart, rsiBox, true); });
       } catch (_) { box.innerHTML = '<div class="empty">Chưa có dữ liệu chart cho mã này.</div>'; }
     }
