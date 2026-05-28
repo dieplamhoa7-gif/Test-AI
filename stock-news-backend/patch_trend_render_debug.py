@@ -1,0 +1,7 @@
+from pathlib import Path
+p=Path('firebase_public/stocks.html')
+s=p.read_text(encoding='utf-8')
+s=s.replace('const trendLines = dedupeTrendLines(overlayData.trendlines, 6); const supportLike = trendLines.filter(x => Number(x?.slopePerBar || 0) >= 0); const resistanceLike = trendLines.filter(x => Number(x?.slopePerBar || 0) < 0); const drawTrendWithPriceTag = (line, style, tag) => { const r = addOverlayLine(chart, line, style); if (!r || !r.points?.length) return; addTrendInlineLabel(r.points, style.color || \"#9fb3d9\", tag); };', 'let trendLines = dedupeTrendLines(overlayData.trendlines, 6); if (!trendLines.length && Array.isArray(overlayData.trendlines)) trendLines = overlayData.trendlines.filter(x => fallbackTrendLine(x)).slice(0, 9); const supportLike = trendLines.filter(x => Number(x?.slopePerBar || 0) >= 0); const resistanceLike = trendLines.filter(x => Number(x?.slopePerBar || 0) < 0); const drawTrendWithPriceTag = (line, style, tag) => { try { const r = addOverlayLine(chart, line, style); if (!r || !r.points?.length) return; addTrendInlineLabel(r.points, style.color || \"#9fb3d9\", tag); } catch(_) {} };', 1)
+s=s.replace('TL:${escapeHtml(String((overlayData?.trendlines || []).length))} @', 'TL:${escapeHtml(String((overlayData?.trendlines || []).length))} SEL:${escapeHtml(String(trendLines.length))} S:${escapeHtml(String(supportLike.length))} R:${escapeHtml(String(resistanceLike.length))} @', 1)
+p.write_text(s, encoding='utf-8')
+print('done')
