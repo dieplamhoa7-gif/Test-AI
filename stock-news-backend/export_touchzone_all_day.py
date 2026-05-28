@@ -56,8 +56,8 @@ def build_for_symbol(symbol: str):
                 span=b['idx']-a['idx']
                 if span<MIN_SPAN: continue
                 slope=(b['price']-a['price'])/span
-                if kind=='support' and slope < -0.03: continue
-                if kind=='resistance' and slope > 0.03: continue
+                if kind=='support' and slope < -0.05: continue
+                if kind=='resistance' and slope > 0.05: continue
                 intercept=a['price']-slope*a['idx']
                 touches=[]
                 for p in pivots:
@@ -94,29 +94,33 @@ def build_for_symbol(symbol: str):
                     'touchPoints':[{'idx':z['idx'],'time':z['time'],'price':round(z['price'],2)} for z in zones],
                     'source':'touchzone-0.3pct-full'
                 })
-    lines=sorted(lines, key=lambda x:(x['touches'], -x['breaks'], x['score']), reverse=True)
-    selected=[]
-    family_counts={}
-    for l in lines:
-        lmid=(l['y0']+l['y1'])/2
-        family_key=None
-        for idx,s in enumerate(selected):
-            smid=(s['y0']+s['y1'])/2
-            slope_near=abs(l['slope']-s['slope'])<=0.03 and np.sign(l['slope'])==np.sign(s['slope'])
-            price_near=abs(lmid/smid-1)<=0.02 if smid else False
-            overlap=not (l['x1']<s['x0'] or l['x0']>s['x1'])
-            if l['kind']==s['kind'] and slope_near and price_near and overlap:
-                family_key=(l['kind'], idx)
-                break
-        if family_key is None:
-            selected.append(l)
-            family_counts[(l['kind'], len(selected)-1)] = 1
-        else:
-            if family_counts.get(family_key, 0) < 2:
-                selected.append(l)
+    def pick_side(side_lines, max_lines=6):
+        side_lines = sorted(side_lines, key=lambda x:(x['touches'], -x['breaks'], x['score']), reverse=True)
+        picked=[]
+        family_counts={}
+        for l in side_lines:
+            lmid=(l['y0']+l['y1'])/2
+            family_key=None
+            for idx,s in enumerate(picked):
+                smid=(s['y0']+s['y1'])/2
+                slope_near=abs(l['slope']-s['slope'])<=0.03 and np.sign(l['slope'])==np.sign(s['slope'])
+                price_near=abs(lmid/smid-1)<=0.02 if smid else False
+                overlap=not (l['x1']<s['x0'] or l['x0']>s['x1'])
+                if slope_near and price_near and overlap:
+                    family_key=idx
+                    break
+            if family_key is None:
+                picked.append(l)
+                family_counts[len(picked)-1] = 1
+            elif family_counts.get(family_key, 0) < 2:
+                picked.append(l)
                 family_counts[family_key] = family_counts.get(family_key, 0) + 1
-        if len(selected)>=10:
-            break
+            if len(picked)>=max_lines:
+                break
+        return picked
+    sup_lines=[l for l in lines if l['kind']=='support']
+    res_lines=[l for l in lines if l['kind']=='resistance']
+    selected=pick_side(sup_lines, 6) + pick_side(res_lines, 6)
     payload={
         'symbol':symbol,'asOfDate':str(df.iloc[-1].time),'asOfPrice':float(df.iloc[-1].close),'createdAt':'2026-05-28T09:55:00+00:00',
         'summary':{'trendlines':len(selected),'parallelChannels':0,'pitchforks':0,'linregChannels':0,'srLevels':0,'patterns':0,'candlestickSignals':0,'currentBias':'touchzone-0.3pct'},
