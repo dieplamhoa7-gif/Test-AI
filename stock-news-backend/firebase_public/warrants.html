@@ -1169,12 +1169,6 @@
           box._lhChart = chart;
           const candleSeries = chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350' }); candleSeries.setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
           box._lhCandleSeries = candleSeries;
-          const manualPreviewSeries = chart.addLineSeries({ color:'#ffe082', lineWidth:2, lineStyle:2, priceLineVisible:false, lastValueVisible:false });
-          const measurePreviewSeries = chart.addLineSeries({ color:'#90caf9', lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false });
-          manualPreviewSeries.setData([]);
-          measurePreviewSeries.setData([]);
-          box._lhManualPreviewSeries = manualPreviewSeries;
-          box._lhMeasurePreviewSeries = measurePreviewSeries;
           const legendItems = [];
           if (volBox) volBox.style.display = state.volume ? 'block' : 'none';
           if (state.volume && volBox) { volBox.innerHTML = ''; volBox.style.height = `${Math.max(60, Math.min(220, Number(settings.volume || 14) * 4))}px`; const volChart = LightweightCharts.createChart(volBox, { width: volBox.clientWidth, height: volBox.clientHeight || 96, layout: { background: { color:'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color:'rgba(120,140,180,.08)' }, horzLines: { color:'rgba(120,140,180,.08)' } }, rightPriceScale: { borderColor:'rgba(120,140,180,.18)', scaleMargins:{ top:.12, bottom:.12 } }, timeScale: { borderColor:'rgba(120,140,180,.22)' } }); volBox._lhChart = volChart; volChart.addHistogramSeries({ priceFormat:{type:'volume'}, priceLineVisible:false, lastValueVisible:false, color:'#8fb3ff' }).setData(rows.map(r => ({ time:r.time, value:Number(r.volume || 0), color:Number(r.close || 0) >= Number(r.open || 0) ? 'rgba(38,166,154,.46)' : 'rgba(239,83,80,.46)' }))); if (range) volChart.timeScale().setVisibleLogicalRange(range); else volChart.timeScale().fitContent(); chart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { volChart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); volChart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { chart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); legendItems.push(`<span style="color:#8fb3ff">VOL pane ${Math.max(60, Math.min(220, Number(settings.volume || 14) * 4))}px</span>`); }
@@ -1197,27 +1191,6 @@
           if (legend) legend.innerHTML = legendItems.join('');
           if (range) { chart.timeScale().setVisibleLogicalRange(range); setTimeout(() => { try { chart.timeScale().setVisibleLogicalRange(range); saveRange(range); } catch(_){} }, 0); } else { chart.timeScale().fitContent(); setTimeout(() => saveRange(chart.timeScale().getVisibleLogicalRange()), 0); }
           chart.timeScale().subscribeVisibleLogicalRangeChange(saveRange);
-          if (chart.subscribeCrosshairMove) {
-            chart.subscribeCrosshairMove(param => {
-              if (!param?.point) {
-                try { manualPreviewSeries.setData([]); } catch(_) {}
-                if (!measureState.active) { try { measurePreviewSeries.setData([]); } catch(_) {} }
-                return;
-              }
-              const hoverTime = normalizeStoredTime(param.time || chart.timeScale()?.coordinateToTime?.(param.point.x));
-              const hoverPrice = candleSeries.coordinateToPrice ? candleSeries.coordinateToPrice(param.point.y) : null;
-              if (manualDrawEnabled && manualDraftPoints.length === 1 && hoverTime && Number.isFinite(hoverPrice)) {
-                try { manualPreviewSeries.setData([{ time: manualDraftPoints[0].time, value: manualDraftPoints[0].value }, { time: hoverTime, value: Number(hoverPrice.toFixed(2)) }]); } catch(_) {}
-              } else {
-                try { manualPreviewSeries.setData([]); } catch(_) {}
-              }
-              if (measureState.active && measureState.start && hoverTime && Number.isFinite(hoverPrice)) {
-                try { measurePreviewSeries.setData([{ time: measureState.start.time, value: measureState.start.price }, { time: hoverTime, value: Number(hoverPrice.toFixed(2)) }]); } catch(_) {}
-              } else if (!measureState.active) {
-                try { measurePreviewSeries.setData([]); } catch(_) {}
-              }
-            });
-          }
           if (chart.subscribeClick) {
             chart.subscribeClick(param => {
               if (!manualDrawEnabled || !param?.point) return;
@@ -1229,7 +1202,6 @@
                 manualLines = [...manualLines, manualDraftPoints.slice(0, 2)];
                 saveManualLines(manualLines);
                 manualDraftPoints = [];
-                try { manualPreviewSeries.setData([]); } catch(_) {}
                 redrawKeepingView();
               } else if (legend) {
                 legend.innerHTML = `${legend.innerHTML}<span style="color:#ffd54f">Đã chọn điểm 1</span>`;
@@ -1274,8 +1246,8 @@
           measureState.end = { time: timeVal, price: Number(priceVal.toFixed(2)), x, y };
           scheduleMeasureRender();
         };
-        box.onpointerup = (ev) => { try { box.releasePointerCapture?.(ev.pointerId); } catch(_) {} if (measureState.active) { measureState.active = false; scheduleMeasureRender(); } try { box._lhMeasurePreviewSeries?.setData([]); } catch(_) {} };
-        box.onpointerleave = () => { if (!measureState.active) return; measureState.active = false; scheduleMeasureRender(); try { box._lhMeasurePreviewSeries?.setData([]); } catch(_) {} };
+        box.onpointerup = (ev) => { try { box.releasePointerCapture?.(ev.pointerId); } catch(_) {} if (measureState.active) { measureState.active = false; scheduleMeasureRender(); } };
+        box.onpointerleave = () => { if (!measureState.active) return; measureState.active = false; scheduleMeasureRender(); };
         window.addEventListener('resize', () => { resizeChartWhenVisible(box._lhChart, box, true); resizeChartWhenVisible(volBox?._lhChart, volBox, true); resizeChartWhenVisible(macdBox?._lhChart, macdBox, true); resizeChartWhenVisible(rsiBox?._lhChart, rsiBox, true); });
       } catch (_) { box.innerHTML = '<div class="empty">Chưa có dữ liệu chart cho mã này.</div>'; }
     }
