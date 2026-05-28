@@ -1132,6 +1132,7 @@
         const parsePeriods = (text) => String(text || '20,50').split(',').map(x => parseInt(x.trim(), 10)).filter(x => x >= 2 && x <= 250).slice(0, 7);
         const rangeKey = () => `${String(symbol || '').toUpperCase()}:${activeFrame}`;
         const rangeStorageKey = () => `lh.stockChart.range.${rangeKey()}`;
+        const normalizeStoredTime = (t) => { if (typeof t === 'string') return t; if (t && typeof t === 'object' && Number.isFinite(t.year) && Number.isFinite(t.month) && Number.isFinite(t.day)) return `${t.year}-${String(t.month).padStart(2,'0')}-${String(t.day).padStart(2,'0')}`; return normalizePointTime(t); };
         const loadStoredRange = () => { try { const r = JSON.parse(localStorage.getItem(rangeStorageKey()) || 'null'); return r && Number.isFinite(r.from) && Number.isFinite(r.to) ? r : null; } catch(_) { return null; } };
         const isRangeUsable = (r) => r && Number.isFinite(r.from) && Number.isFinite(r.to) && r.to > r.from;
         const saveRange = (r) => { if (isRangeUsable(r)) { const clean = { from:r.from, to:r.to }; chartRangeState.set(rangeKey(), clean); try { localStorage.setItem(rangeStorageKey(), JSON.stringify(clean)); } catch(_) {} } };
