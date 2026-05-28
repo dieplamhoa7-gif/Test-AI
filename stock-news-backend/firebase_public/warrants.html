@@ -1179,7 +1179,7 @@
           box.innerHTML = '';
           const chart = LightweightCharts.createChart(box, { width: box.clientWidth, height: box.clientHeight || 320, layout: { background: { color: 'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color: 'rgba(120,140,180,.07)' }, horzLines: { color: 'rgba(120,140,180,.07)' } }, rightPriceScale: { borderColor: 'rgba(120,140,180,.18)', scaleMargins: { top: 0.10, bottom: 0.08 } }, timeScale: { visible:false, borderColor: 'rgba(120,140,180,.18)' }, crosshair: { mode: 0 } });
           box._lhChart = chart;
-          const candleSeries = chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350' }); candleSeries.setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
+          const candleSeries = chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350', priceLineVisible:false, lastValueVisible:true, lastPriceAnimation:0 }); candleSeries.setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
           box._lhCandleSeries = candleSeries;
           const legendItems = [];
           if (volBox) volBox.style.display = state.volume ? 'block' : 'none';
