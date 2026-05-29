@@ -1135,21 +1135,37 @@
         const fallbackTrendLine = (line) => { const touches = Number(line?.touches || 0); const lengthBars = Number(line?.lengthBars || 0); const pts = normalizePoints(line?.points || []); return pts.length >= 2 && touches >= 3 && lengthBars >= 18; };
         const trendLineQuality = (line) => { const touchIdx = trendTouchIndexes(line); const gaps = touchIdx.slice(1).map((v, i) => v - touchIdx[i]).filter(x => x > 0); const spacingScore = gaps.length ? Math.min(...gaps) * 12 + gaps.reduce((a, b) => a + b, 0) * 0.8 : 0; const touchPointBonus = Array.isArray(line?.touchPoints) && line.touchPoints.length ? 180 : 0; const reversalBonus = line?.reversalConfirmed ? 120 : 0; return (Number(line?.touches || 0) * 1000) + (Number(line?.lengthBars || 0) * 1.5) + spacingScore + touchPointBonus + reversalBonus + Math.max(0, Number(line?.score || 0)); };
         const trendLineMidValue = (line) => { const pts = normalizePoints(line?.points || []); if (!pts.length) return lineLastValue(line) || 0; const mid = pts[Math.floor((pts.length - 1) / 2)]; return Number(mid?.value || lineLastValue(line) || 0); };
-        const clusterTrendLines = (items = [], max = 6) => (Array.isArray(items) ? items : []).sort((a, b) => (lineLastValue(a) || 0) - (lineLastValue(b) || 0)).reduce((clusters, line) => {
+        const trendLineTargetValue = (line) => { const pts = normalizePoints(line?.points || []); if (!pts.length) return lineLastValue(line) || 0; return Number(pts[pts.length - 1]?.value || lineLastValue(line) || 0); };
+        const sameTrendCluster = (line, cluster) => {
+          if (!cluster) return false;
           const last = lineLastValue(line) || 0;
           const mid = trendLineMidValue(line) || last;
+          const target = trendLineTargetValue(line) || last;
           const slope = Number(line?.slopePerBar || 0);
-          const cluster = clusters[clusters.length - 1];
-          const nearLast = cluster?.lastValue && last && Math.abs(last / cluster.lastValue - 1) <= 0.02;
-          const nearMid = cluster?.midValue && mid && Math.abs(mid / cluster.midValue - 1) <= 0.02;
-          const similarSlope = !cluster || ((Math.sign(slope) === Math.sign(cluster.slope) || !slope || !cluster.slope) && Math.abs(slope - cluster.slope) < 0.08);
-          if (cluster && (nearLast || nearMid) && similarSlope) {
+          const type = String(line?.type || '');
+          const sameType = !cluster.type || !type || cluster.type === type;
+          const sameDirection = (Math.sign(slope) === Math.sign(cluster.slope) || !slope || !cluster.slope);
+          const similarSlope = sameDirection && Math.abs(slope - cluster.slope) <= 0.03;
+          const nearLast = cluster.lastValue && last && Math.abs(last / cluster.lastValue - 1) <= 0.018;
+          const nearMid = cluster.midValue && mid && Math.abs(mid / cluster.midValue - 1) <= 0.018;
+          const nearTarget = cluster.targetValue && target && Math.abs(target / cluster.targetValue - 1) <= 0.018;
+          return sameType && similarSlope && ((nearLast && nearTarget) || (nearMid && nearTarget));
+        };
+        const clusterTrendLines = (items = [], max = 6) => (Array.isArray(items) ? items : []).sort((a, b) => trendLineQuality(b) - trendLineQuality(a)).reduce((clusters, line) => {
+          const last = lineLastValue(line) || 0;
+          const mid = trendLineMidValue(line) || last;
+          const target = trendLineTargetValue(line) || last;
+          const slope = Number(line?.slopePerBar || 0);
+          const type = String(line?.type || '');
+          const cluster = clusters.find(c => sameTrendCluster(line, c));
+          if (cluster) {
             cluster.lines.push(line);
             cluster.lastValue = (cluster.lastValue + last) / 2;
             cluster.midValue = (cluster.midValue + mid) / 2;
+            cluster.targetValue = (cluster.targetValue + target) / 2;
             cluster.slope = (cluster.slope + slope) / 2;
           } else {
-            clusters.push({ lastValue: last, midValue: mid, slope, lines: [line] });
+            clusters.push({ type, lastValue: last, midValue: mid, targetValue: target, slope, lines: [line] });
           }
           return clusters;
         }, []).map(cluster => cluster.lines.sort((a, b) => trendLineQuality(b) - trendLineQuality(a))[0]).sort((a, b) => trendLineQuality(b) - trendLineQuality(a)).slice(0, max);
