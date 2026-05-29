@@ -509,7 +509,7 @@
     const db = getFirestore(firebaseApp);
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '2026-05-29-candle-main-hotfix-v3';
+    const APP_CACHE_VERSION = '2026-05-29-candle-main-hotfix-v4';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Luật BĐS', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
