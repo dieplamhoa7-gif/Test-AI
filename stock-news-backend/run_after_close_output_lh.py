@@ -108,6 +108,8 @@ def _run_pipeline(py: str) -> None:
         [py, "build_strategy_results_from_indicator_cache.py"],
         [py, "refresh_market_prices_lh.py"],
         [py, "build_firebase_cache_site.py"],
+        [py, "build_stock_chart_cache.py"],
+        [py, "export_touchzone_all_day.py"],
     ])
     for step in steps:
         run(step)
@@ -130,6 +132,7 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/firebase_public/data/market_data.json",
          "stock-news-backend/firebase_public/data/market_watch.json",
          "stock-news-backend/firebase_public/data/market_overview.json",
+         "stock-news-backend/firebase_public/data/charts",
          "stock-news-backend/firebase_public/data/strategy_results_cache.json",
          "stock-news-backend/firebase_public/data/strategy_matrix_cache.json",
          "stock-news-backend/firebase_public/data/market_symbols.json",
