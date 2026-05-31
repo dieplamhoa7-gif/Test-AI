@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wyckoff Board</title>
+  <script src="./lightweight-charts.standalone.production.js"></script>
+  <style>
+    :root{
+      --bg:#07111d;--panel:#0d1827;--panel2:#111f31;--line:#203349;--text:#e9f0f8;--muted:#8fa3bc;
+      --green:#37d39a;--red:#ff6f81;--amber:#ffc857;--blue:#6fb3ff;--cyan:#67d8ff;
+    }
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#10203a 0,#07111d 45%,#05101a 100%);color:var(--text);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif}
+    .page{max-width:1480px;margin:0 auto;padding:18px}
+    .header{display:flex;justify-content:space-between;align-items:center;gap:16px;background:rgba(11,19,30,.92);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px;box-shadow:0 18px 40px rgba(0,0,0,.24)}
+    .title{font-size:28px;font-weight:900;letter-spacing:.4px}.subtitle{color:var(--muted);font-size:13px;margin-top:4px}
+    .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;font-weight:800;color:#dbe8f8}
+    select{background:#0c1624;color:var(--text);border:1px solid #2f4863;border-radius:10px;padding:8px 12px;font-weight:700}
+    .grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(320px,.9fr);gap:14px;align-items:start}
+    .panel{background:rgba(10,18,29,.94);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 40px rgba(0,0,0,.24)}
+    .chartPanel{padding:14px}.chartHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}.bigSymbol{font-size:24px;font-weight:900}.meta{display:flex;gap:8px;flex-wrap:wrap}.badge{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:12px;font-weight:800}.bias-range{color:var(--amber)} .bias-bull{color:var(--green)} .bias-bear{color:var(--red)}
+    .chartWrap{position:relative;border-radius:18px;overflow:hidden;background:#08111c;border:1px solid rgba(255,255,255,.06)}
+    #chart{height:770px}.overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5}.tag{position:absolute;padding:3px 8px;border-radius:8px;background:rgba(8,14,22,.96);border:1px solid rgba(255,255,255,.15);font-size:10px;font-weight:900;white-space:nowrap;opacity:.9;transition:opacity .15s ease, transform .15s ease, box-shadow .15s ease, filter .15s ease}.box{position:absolute;border-radius:10px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.03);opacity:.72;transition:opacity .15s ease, box-shadow .15s ease, filter .15s ease, border-color .15s ease}
+    .main-tr{border-color:rgba(111,179,255,.75);background:rgba(111,179,255,.08)} .phase{border-color:rgba(255,200,87,.75);background:rgba(255,200,87,.10)} .support{border-color:rgba(55,211,154,.75);background:rgba(55,211,154,.08)} .resistance{border-color:rgba(255,111,129,.78);background:rgba(255,111,129,.08)}
+    .overlay.dim .box,.overlay.dim .tag{opacity:.08;filter:saturate(.45) blur(.2px)}
+    .overlay.dim .box.active{opacity:1;filter:none;border-width:4px;background:rgba(255,255,255,.16);box-shadow:0 0 0 2px rgba(255,255,255,.35),0 0 34px rgba(255,216,102,.85),inset 0 0 28px rgba(255,216,102,.22)}
+    .overlay.dim .tag.active{opacity:1;filter:none;transform:translateY(-2px) scale(1.08);background:#ffd866;color:#08111c;border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.55),0 0 28px rgba(255,216,102,.95)}
+    .side{padding:14px;display:grid;gap:12px}.card{background:linear-gradient(180deg,rgba(17,31,49,.95),rgba(11,20,31,.97));border:1px solid var(--line);border-radius:18px;padding:14px}.card h3{margin:0 0 10px;font-size:13px;letter-spacing:.6px;color:#a9bfd7;text-transform:uppercase}.verdict{font-size:26px;font-weight:900;line-height:1.15}.muted{color:var(--muted)}
+    .kv{display:flex;flex-wrap:wrap;gap:8px;font-size:13px}.stat{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.stat .k{color:#9fb3ca;font-size:12px;font-weight:700}.stat .v{font-weight:900;color:#eef5ff}.list{display:grid;gap:8px}.item{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:border-color .15s ease, background .15s ease, transform .15s ease}.item:hover,.item.active{border-color:#ffd866;background:rgba(255,216,102,.10);transform:translateY(-1px);box-shadow:0 0 18px rgba(255,216,102,.18)} .event{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.event b{font-size:12px}.tip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(255,216,102,.14);border:1px solid rgba(255,216,102,.45);color:#ffd866;font-size:11px;font-weight:900;margin-left:6px;position:relative;cursor:help;vertical-align:middle}.tip:hover::after{content:attr(data-tip);position:absolute;right:0;top:24px;width:260px;z-index:40;background:#07111d;color:#e9f0f8;border:1px solid #ffd866;border-radius:12px;padding:10px 12px;font-size:12px;font-weight:600;line-height:1.35;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+    .footer{margin-top:10px;color:var(--muted);font-size:12px}
+    @media (max-width:1100px){.grid{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}} @media (max-width:760px){.header{flex-direction:column;align-items:stretch}.side{grid-template-columns:1fr} #chart{height:560px}.title{font-size:24px}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div>
+      <div class="title">PHÂN TÍCH CẤU TRÚC — WYCKOFF BOARD</div>
+      <div class="subtitle">Frontend mới theo style bảng phân tích · dùng dữ liệu Wyckoff của mình · MWG giữ logic cũ, mã khác dùng full timeframe</div>
+    </div>
+    <div class="tools">
+      <span class="chip" id="modeChip">LEGACY MWG / FULL TF</span>
+      <span class="chip" id="timeChip">Daily</span>
+      <label class="chip">Mã <select id="symbolSel"></select></label>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel chartPanel">
+      <div class="chartHead">
+        <div>
+          <div class="bigSymbol" id="heroSymbol">MWG</div>
+          <div class="subtitle" id="heroSubtitle">Wyckoff structure / active range / support-resistance / event review</div>
+        </div>
+        <div class="meta" id="heroMeta"></div>
+      </div>
+      <div class="chartWrap">
+        <div id="chart"></div>
+        <div id="overlay" class="overlay"></div>
+      </div>
+      <div class="footer">SC / AR / ST / Spring / Test Spring bám vào nến thật nếu dữ liệu event có. Vùng support 6M + support 1Y được giữ cố định.</div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h3>Kết luận</h3>
+        <div class="verdict" id="verdict">RANGE / WAIT</div>
+        <div class="muted" id="verdictText">Đang chờ breakout thật khỏi range để xác nhận hướng tiếp theo.</div>
+      </div>
+      <div class="card">
+        <h3>Trạng thái hiện tại</h3>
+        <div class="kv" id="statusKv"></div>
+      </div>
+      <div class="card">
+        <h3>Support / Resistance</h3>
+        <div class="list" id="zonesList"></div>
+      </div>
+      <div class="card">
+        <h3>Wyckoff Events</h3>
+        <div class="list" id="eventsList"></div>
+      </div>
+      <div class="card">
+        <h3>Kịch bản & hành động</h3>
+        <div class="list" id="scenarioList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const VER='2026-05-31-wyckoff-board-merged-clean-v31';
+const S={chart:null,candle:null,symbol:'MWG',rows:[],hy:null,multi:null,legacy:null,like:null,focus:null,lockedFocus:null};
+const q=id=>document.getElementById(id);
+function el(tag,cls,txt){const e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;}
+function num(v,d=1){return Number.isFinite(+v)?(+v).toFixed(d):'—';}
+function biasClass(b){b=(b||'').toLowerCase(); if(b.includes('bull')||b.includes('markup')) return 'bias-bull'; if(b.includes('bear')||b.includes('down')||b.includes('markdown')) return 'bias-bear'; return 'bias-range';}
+async function j(url){const r=await fetch(url,{cache:'no-store'}); return await r.json();}
+async function loadRows(symbol){const obj=await j(`/data/charts/${symbol}.json?v=${VER}`); return (Array.isArray(obj)?obj:(obj.rows||[])).map(x=>({time:x.time,open:+x.open,high:+x.high,low:+x.low,close:+x.close,volume:+x.volume}));}
+async function bootData(){S.multi=await j(`/data/wyckoff_hybrid_multi_full.json?v=${VER}`); S.legacy=await j(`/data/wyckoff_hybrid_cache.json?v=${VER}`); S.like=await j(`/data/wyckoff_hybrid_like_mwg_multi.json?v=${VER}`);}
+function getHybrid(symbol){ const hy=(S.like?.symbols||{})[symbol]; if(hy) return {...hy,__mode:(symbol==='MWG'?'legacy-mwg':'like-mwg-multi')}; if(symbol==='MWG') return {...S.legacy,__mode:'legacy-mwg'}; const old=(S.multi?.symbols||{})[symbol]; return old?{...old,__mode:'full-tf-fallback'}:null; }
+function ensureChart(){ if(S.chart) return; S.chart=LightweightCharts.createChart(q('chart'),{layout:{background:{color:'#08111c'},textColor:'#d6e2f0'},grid:{vertLines:{color:'rgba(255,255,255,.04)'},horzLines:{color:'rgba(255,255,255,.04)'}},crosshair:{mode:1},rightPriceScale:{borderColor:'rgba(255,255,255,.08)'},timeScale:{borderColor:'rgba(255,255,255,.08)'}}); S.candle=S.chart.addCandlestickSeries({upColor:'#26a69a',downColor:'#ef5350',borderVisible:false,wickUpColor:'#26a69a',wickDownColor:'#ef5350'}); }
+function pY(p){ const c=S.candle.priceToCoordinate(+p); return Number.isFinite(c)?c:0; }
+function tX(t){ const c=S.chart.timeScale().timeToCoordinate(t); return Number.isFinite(c)?c:0; }
+function idxByTime(t){ return S.rows.findIndex(r=>r.time===t); }
+function barHalf(i){ if(!S.rows.length) return 4; const x=tX(S.rows[i]?.time); const prev=i>0?tX(S.rows[i-1].time):NaN; const next=i<S.rows.length-1?tX(S.rows[i+1].time):NaN; const ds=[prev,next].filter(Number.isFinite).map(v=>Math.abs(v-x)).filter(v=>v>0); const step=ds.length?Math.min(...ds):8; return Math.max(2, step*0.45); }
+function focusOn(key){ if(S.lockedFocus) return; S.focus=key||null; requestAnimationFrame(applyFocus); }
+function toggleLock(key){ S.lockedFocus = S.lockedFocus===key ? null : key; S.focus=S.lockedFocus||key||null; requestAnimationFrame(applyFocus); }
+function applyFocus(){ const ov=q('overlay'); if(!ov) return; const items=[...ov.querySelectorAll('.box,.tag')]; const key=S.lockedFocus||S.focus; ov.classList.toggle('dim', !!key); items.forEach(n=>{ const k=n.dataset.focus||''; const active=!!key && (k===key || k.startsWith(key+'|') || key.startsWith(k+'|')); n.classList.toggle('active', active); }); document.querySelectorAll('.item').forEach(n=>n.classList.toggle('active', !!key && n.dataset.focus===key)); }
+function bindFocus(node,key){ if(!node||!key) return node; node.dataset.focus=key; return node; }
+function addTag(text,left,top,border,focus){const d=el('div','tag',text); d.style.left=`${left}px`; d.style.top=`${top}px`; d.style.borderColor=border||'rgba(255,255,255,.16)'; bindFocus(d,focus); q('overlay').appendChild(d); return d;}
+function addBox(cls,left,top,width,height,focus){const d=el('div',`box ${cls}`); d.style.left=`${left}px`; d.style.top=`${top}px`; d.style.width=`${width}px`; d.style.height=`${height}px`; bindFocus(d,focus); q('overlay').appendChild(d); return d;}
+function addLine(x1,y1,x2,y2,color,focus,dashed=false){const d=el('div',''); const dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy); if(!Number.isFinite(len)||len<8) return null; d.style.position='absolute'; d.style.left=`${x1}px`; d.style.top=`${y1}px`; d.style.width=`${len}px`; d.style.height='0'; d.style.borderTop=`${dashed?2:3}px ${dashed?'dashed':'solid'} ${color||'rgba(255,255,255,.7)'}`; d.style.transformOrigin='0 0'; d.style.transform=`rotate(${Math.atan2(dy,dx)}rad)`; d.style.opacity='.88'; bindFocus(d,focus); q('overlay').appendChild(d); return d;}
+function trToVisible(tr){ if(!tr) return null; const s=S.rows[tr.start_idx], e=S.rows[tr.end_idx]; if(!s||!e) return tr; return tr; }
+function drawRangeBox(tr,cls,label,focus){ try{ if(!tr) return; const i0=Number(tr.start_idx), i1=Number(tr.end_idx); const hi=Number(tr.high), lo=Number(tr.low); if(!Number.isFinite(i0)||!Number.isFinite(i1)||!Number.isFinite(hi)||!Number.isFinite(lo)||!S.rows[i0]||!S.rows[i1]) return; const x0=tX(S.rows[i0].time), x1=tX(S.rows[i1].time); if(!Number.isFinite(x0)||!Number.isFinite(x1)) return; const left=Math.min(x0,x1)-barHalf(i0), right=Math.max(x0,x1)+barHalf(i1); const top=Math.min(pY(hi),pY(lo)); const h=Math.max(16,Math.abs(pY(lo)-pY(hi))); addBox(cls,left,top,Math.max(8,right-left),h,focus); addTag(label,Math.max(8,left+4),Math.max(54,top-18), cls==='main-tr'?'rgba(111,179,255,.5)':cls==='phase'?'rgba(255,200,87,.5)':'rgba(255,255,255,.18)',focus); }catch(e){ console.warn('drawRangeBox failed', label, e); } }
+function buildZones(){ const out=[]; const sw=S.hy?.supportsByWindow||{}; const rw=S.hy?.resistancesByWindow||{}; if(sw['6m']) out.push({type:'support', label:'S 6M', focus:'zone:s6m', ...sw['6m']}); if(sw['1y']) out.push({type:'support', label:'S 1Y', focus:'zone:s1y', ...sw['1y']}); if(rw['6m']) out.push({type:'resistance', label:'R 6M', focus:'zone:r6m', ...rw['6m']}); if(rw['1y']) out.push({type:'resistance', label:'R 1Y', focus:'zone:r1y', ...rw['1y']}); return out; }
+function drawZone(z){ try{ const i0=idxByTime(z.from), i1=idxByTime(z.to); if(i0<0||i1<0) return; const x0=tX(S.rows[i0].time), x1=tX(S.rows[i1].time); if(!Number.isFinite(x0)||!Number.isFinite(x1)) return; const low=Number(z.low), high=Number(z.high); if(!Number.isFinite(low)||!Number.isFinite(high)) return; const left=Math.min(x0,x1)-barHalf(i0), right=Math.max(x0,x1)+barHalf(i1); const top=Math.min(pY(high),pY(low)); const h=Math.max(10,Math.abs(pY(low)-pY(high))); addBox(z.type==='support'?'support':'resistance',left,top,Math.max(8,right-left),h,z.focus); addTag(`${z.label} ${num(z.low)}-${num(z.high)}`,Math.max(8,left+4),Math.max(56,top-18),z.type==='support'?'rgba(55,211,154,.45)':'rgba(255,111,129,.45)',z.focus); }catch(e){ console.warn('drawZone failed', z, e); } }
+function drawTrendChannel(){ try{ const wc=S.hy?.modelState?.wyckoffChannel||{}; const focus='trend:channel'; const typ=String(wc.type||''); if(!['SIDEWAY_UP','SIDEWAY_DOWN','RANGE_MIXED'].includes(typ)) return; const lowPts=(wc.anchors?.lowPoints||[]).map(p=>({...p, gi:(wc.window?.start_idx||0)+p.idx})).filter(p=>S.rows[p.gi]); const highPts=(wc.anchors?.highPoints||[]).map(p=>({...p, gi:(wc.window?.start_idx||0)+p.idx})).filter(p=>S.rows[p.gi]); if(lowPts.length<2 || highPts.length<2) return; const up=typ==='SIDEWAY_UP'; const down=typ==='SIDEWAY_DOWN'; const mixed=typ==='RANGE_MIXED'; const color=up?'rgba(55,211,154,.95)':down?'rgba(255,111,129,.95)':'rgba(255,216,102,.95)'; const fill=up?'rgba(55,211,154,.12)':down?'rgba(255,111,129,.12)':'rgba(255,216,102,.10)';
+const firstIdx=Math.min(lowPts[0].gi, highPts[0].gi), lastIdx=Math.max(lowPts[lowPts.length-1].gi, highPts[highPts.length-1].gi); if(!S.rows[firstIdx]||!S.rows[lastIdx]) return; const lowLine=wc.lines?.lowLine, highLine=wc.lines?.highLine; const rel=(gi)=>gi-(wc.window?.start_idx||0); const lowPrice=(gi)=> lowLine ? lowLine.slope*rel(gi)+lowLine.intercept : null; const highPrice=(gi)=> highLine ? highLine.slope*rel(gi)+highLine.intercept : null;
+const x0=tX(S.rows[firstIdx].time), x1=tX(S.rows[lastIdx].time); const yLow0=pY(lowPrice(firstIdx)), yLow1=pY(lowPrice(lastIdx)), yHigh0=pY(highPrice(firstIdx)), yHigh1=pY(highPrice(lastIdx));
+const band=document.createElement('div'); const left=Math.min(x0,x1), width=Math.max(8,Math.abs(x1-x0)); const top=Math.min(yHigh0,yHigh1,yLow0,yLow1); const bottom=Math.max(yHigh0,yHigh1,yLow0,yLow1); band.style.position='absolute'; band.style.left=`${left}px`; band.style.top=`${top}px`; band.style.width=`${width}px`; band.style.height=`${Math.max(16,bottom-top)}px`; band.style.background=fill; band.style.border=`1px solid ${color}`; band.style.borderRadius='14px'; band.style.opacity='.9'; band.style.pointerEvents='none'; band.style.clipPath=`polygon(0% ${(yHigh0-top)/Math.max(1,bottom-top)*100}%,100% ${(yHigh1-top)/Math.max(1,bottom-top)*100}%,100% ${(yLow1-top)/Math.max(1,bottom-top)*100}%,0% ${(yLow0-top)/Math.max(1,bottom-top)*100}%)`; bindFocus(band,focus+'|band'); q('overlay').appendChild(band);
+addLine(x0,yLow0,x1,yLow1,color,focus,false); addLine(x0,yHigh0,x1,yHigh1,color,focus,false); addLine(x0,(yLow0+yHigh0)/2,x1,(yLow1+yHigh1)/2,'rgba(255,255,255,.30)',focus+'|mid',true);
+const hist=wc.isHistorical?'HISTORICAL ':''; const fail=(S.hy?.modelState?.currentTrend?.structure||'').includes('FAILED')||String(S.hy?.modelState?.currentTrend?.trend||'').includes('WEAKNESS'); const label=up?`${hist}SIDEWAY UP`:down?`${hist}SIDEWAY DOWN`:`${hist}RANGE MIXED`; addTag(`${label}${fail?' → FAILED/WEAK':''}`,Math.max(8,left+12),Math.max(70,Math.min(yHigh0,yHigh1)-26),color,focus); }catch(e){ console.warn('drawTrendChannel failed', e); } }
+function drawEvents(){ try{ const keep=['SC','AR','ST','Spring','Test Spring','Shake_out','SOS','UT','UTAD','SOW','LPS','LPSY']; for(const ev of (S.hy?.events||[]).filter(e=>keep.includes(e.type))){ const x=tX(ev.time), y=pY(ev.price); if(!Number.isFinite(x)||!Number.isFinite(y)) continue; const bull=['SC','AR','ST','Spring','Test Spring','SOS','LPS'].includes(ev.type); const txt=ev.type==='Test Spring'?'T.Spring':ev.type==='Shake_out'?'Shake':ev.type; const focus=`event:${ev.type}:${ev.time}`; addTag(txt,Math.max(8,x-24),Math.max(60,bull?y-28:y+10),bull?'rgba(55,211,154,.48)':'rgba(255,111,129,.48)',focus); } const src=S.hy?.supportsByWindow?.['6m']?.sourceEvents||[]; src.forEach((ev,idx)=>{ const x=tX(ev.time), y=pY(ev.low); if(Number.isFinite(x)&&Number.isFinite(y)) addTag(idx===0?'Floor test':`Test ${idx}`,Math.max(8,x-22),Math.max(60,y+10),'rgba(103,216,255,.42)','zone:s6m'); }); }catch(e){ console.warn('drawEvents failed', e); } }
+function drawOverlay(){ q('overlay').innerHTML=''; if(S.hy?.mainTr) drawRangeBox(S.hy.mainTr,'main-tr','Main TR','maintr'); const segs=S.hy?.mainTr?.phase_segments||[]; const active=S.hy?.phaseBox?.phase; segs.forEach(seg=>{ try{ if(seg.start==null||seg.end==null||seg.start<0||seg.end>=S.rows.length||seg.end<seg.start) return; const slice=S.rows.slice(seg.start,seg.end+1); if(!slice.length) return; drawRangeBox({start_idx:seg.start,end_idx:seg.end,high:Math.max(...slice.map(r=>r.high)),low:Math.min(...slice.map(r=>r.low))},'phase',seg.phase===active?`Phase ${seg.phase} (active)`: `Phase ${seg.phase}`,`phase:${seg.phase}`); }catch(e){ console.warn('phase failed', seg, e); }}); drawTrendChannel(); buildZones().forEach(drawZone); drawEvents(); applyFocus(); }
+function fillHeader(){ const s=S.hy?.story?.summary||{}; const bias=(S.hy?.mainTr?.bias&&S.hy.mainTr.bias!=='unknown'?S.hy.mainTr.bias:(s.bias||'range')); q('heroSymbol').textContent=S.symbol; q('heroSubtitle').textContent=S.hy?.__mode==='legacy-mwg'?'MWG giữ logic cũ Đại ka đã ưng':'Các mã khác đã chuyển sang template giống MWG'; q('modeChip').textContent=S.hy?.__mode==='legacy-mwg'?'LEGACY MWG':(S.hy?.__mode==='like-mwg-multi'?'LIKE MWG MULTI':'FALLBACK'); const hm=q('heroMeta'); hm.innerHTML=''; [['Bias',bias],['Phase',S.hy?.phaseBox?.phase||'—'],['Close',num(S.rows.at(-1)?.close)],['Post-TR',S.hy?.postTrAction?.label||'—']].forEach(([k,v])=>{const b=el('div',`badge ${k==='Bias'?biasClass(v):''}`,`${k}: ${String(v).toUpperCase?String(v):v}`); hm.appendChild(b);}); }
+function fillVerdict(){ const s=S.hy?.story?.summary||{}; const post=S.hy?.postTrAction||{}; const m=S.hy?.modelState||{}; const st=String(m.state||''); const act=String(m.action||''); let v='RANGE / WAIT';
+if(st==='POST_TR_MARKDOWN' || st==='MARKDOWN_RISK' || act==='AVOID_OR_SELL') v='MARKDOWN RISK';
+else if(st==='PHASE_D_STRENGTH' || st==='PHASE_E_MARKUP' || act==='BUY_CANDIDATE' || act==='HOLD_OR_TRAIL') v='STRENGTH / BUY CANDIDATE';
+else if(st==='PHASE_C_SPRING_TEST' || st==='POST_TR_RECLAIM' || act==='WATCH_BUY') v='RECLAIM WATCH';
+else if((s.methodBias||'').includes('accumulation')) v='ACCUMULATION WATCH';
+else if((s.methodBias||'').includes('distribution')) v='DISTRIBUTION WATCH';
+else if((s.bias||'').includes('range')) v='RANGE / WAIT';
+q('verdict').textContent=v; q('verdict').className=`verdict ${biasClass(v)}`;
+q('verdictText').textContent=(m.rationale&&m.rationale[0]) || post.reason || s.phaseInterpretation || s.bestInterpretation || 'Đợi xác nhận rõ hơn từ cấu trúc Wyckoff.'; }
+function fillStatus(){ const s=S.hy?.story?.summary||{}; const m=S.hy?.modelState||{}; const kv=q('statusKv'); kv.innerHTML=''; const rows=[
+  ['State',m.state||'—','Trạng thái kết luận chính'],
+  ['Action',m.action||'—','Hành động chính hiện tại'],
+  ['Phase',S.hy?.phaseBox?.phase||'—','Phase Wyckoff hiện tại'],
+  ['Wyckoff',m.wyckoffChannel?.type||m.sidewayType||'—','Channel/cấu trúc Wyckoff bổ sung'],
+  ['TR',S.hy?.mainTr?`${num(S.hy.mainTr.low)} – ${num(S.hy.mainTr.high)}`:'—','Biên Trading Range chính'],
+  ['Confirm',m.confirmAbove ?? s.bullishConfirmAbove ?? '—','Mốc xác nhận nếu vượt qua'],
+  ['Invalid',m.invalidBelow ?? s.invalidateBelow ?? '—','Mốc làm view hiện tại sai'],
+  ['Close',num(S.rows.at(-1)?.close),'Giá đóng cửa gần nhất']
+]; rows.forEach(([a,b,tip])=>{ const d=el('div','stat'); d.innerHTML=`<span class="k">${a}<span class="tip" data-tip="${String(tip).replace(/"/g,'&quot;')}">?</span></span><span class="v">${b}</span>`; kv.appendChild(d); }); }
+function fillZones(){ const host=q('zonesList'); host.innerHTML=''; buildZones().slice(0,4).forEach(z=>{ const d=bindFocus(el('div','item'),z.focus); const ztip=z.type==='support'?'Demand zone — vùng cầu/hỗ trợ, click để làm sáng vùng trên chart':'Supply zone — vùng cung/kháng cự, click để làm sáng vùng trên chart'; d.innerHTML=`<div class="event"><b>${z.label}<span class="tip" data-tip="${ztip}">?</span></b><span>${z.type==='support'?'Demand':'Supply'}</span></div><div class="muted">${num(z.low)} – ${num(z.high)}</div>`; d.onmouseenter=()=>focusOn(z.focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(z.focus); host.appendChild(d);}); }
+function fillEvents(){ const host=q('eventsList'); host.innerHTML=''; const keep=['SC','AR','ST','Spring','SOS','UT','UTAD','SOW','LPS','LPSY']; const evs=(S.hy?.events||[]).filter(ev=>keep.includes(ev.type)).slice(0,4); const conf=(S.hy?.story?.summary?.eventConfidence)||{}; if(!evs.length){host.appendChild(el('div','item muted','Chưa có event Wyckoff thật sự quan trọng trong cache hiện tại.')); return;} evs.forEach(ev=>{const focus=`event:${ev.type}:${ev.time}`; const d=bindFocus(el('div','item'),focus); const c=conf[ev.type]; d.innerHTML=`<div class="event"><b>${ev.type}${tipHtml(ev.type)}</b><span>${ev.time||''}${c?` · ${c}%`:''}</span></div>`; d.onmouseenter=()=>focusOn(focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(focus); host.appendChild(d);}); }
+const LEGEND={
+  'SC':'Selling Climax — bán mạnh gần đáy range, volume/spread lớn',
+  'AR':'Automatic Rally — nhịp hồi mạnh sau SC',
+  'ST':'Secondary Test — test lại đáy sau SC/AR',
+  'Spring':'Thủng hỗ trợ rồi kéo ngược trở lại range',
+  'Test Spring':'Retest sau Spring, thường volume yếu hơn',
+  'Shake_out':'Shake-out — quét dưới hỗ trợ rồi hồi lại',
+  'SOS':'Sign of Strength — tín hiệu mạnh lên / break tốt',
+  'LPS':'Last Point of Support — điểm đỡ cuối sau break lên',
+  'UT':'Upthrust — vượt cản giả rồi rơi lại',
+  'UTAD':'Upthrust After Distribution — bẫy breakout cuối phân phối',
+  'SOW':'Sign of Weakness — tín hiệu yếu đi / breakdown',
+  'LPSY':'Last Point of Supply — điểm hồi yếu cuối trong xu hướng xuống'
+};
+function tipHtml(key){ const txt=LEGEND[key]||''; return txt?`<span class="tip" data-tip="${txt.replace(/"/g,'&quot;')}">?</span>`:''; }
+function fillScenarios(){ const host=q('scenarioList'); host.innerHTML=''; const s=S.hy?.story?.summary||{}; const m=S.hy?.modelState||{}; const post=S.hy?.postTrAction||{}; [
+  `Kịch bản chính: ${post.label||m.state||s.phaseInterpretation||s.bestInterpretation||'Range continuation'}`,
+  Number.isFinite(+m.confirmAbove||+s.bullishConfirmAbove)?`Bull confirm khi vượt ${num(m.confirmAbove ?? s.bullishConfirmAbove)}`:'Chờ bull confirm rõ hơn',
+  Number.isFinite(+m.invalidBelow||+s.invalidateBelow)?`Sai view nếu thủng ${num(m.invalidBelow ?? s.invalidateBelow)}`:'Chưa có invalidate rõ',
+  `Channel bổ sung: ${m.wyckoffChannel?.type||m.currentTrend?.structure||'N/A'}`
+].forEach(t=>host.appendChild(el('div','item',t))); }
+function rerender(){ drawOverlay(); fillHeader(); fillVerdict(); fillStatus(); fillZones(); fillEvents(); fillScenarios(); }
+async function renderSymbol(symbol){ ensureChart(); S.symbol=symbol; S.focus=null; S.lockedFocus=null; const hy=getHybrid(symbol); if(!hy) throw new Error(`No hybrid data for ${symbol}`); const rows=await loadRows(symbol); S.rows=rows.slice(-260); S.hy={...hy, allRows:S.rows, localTrs:hy.localTrs||[], phaseBox:hy.phaseBox || (hy.mainTr?.phase_segments?.slice(-1)[0]||null)}; S.candle.setData(S.rows); S.chart.timeScale().fitContent(); rerender(); setTimeout(rerender,250); }
+async function run(){ await bootData(); const syms=['MWG',...Object.keys(S.multi?.symbols||{}).filter(x=>x!=='MWG')]; const sel=q('symbolSel'); syms.forEach(s=>{const o=el('option','',s); o.value=s; if(s==='MWG') o.selected=true; sel.appendChild(o);}); sel.onchange=()=>renderSymbol(sel.value).catch(e=>alert(String(e))); await renderSymbol('MWG'); try{S.chart.timeScale().subscribeVisibleLogicalRangeChange(()=>requestAnimationFrame(rerender));}catch{} try{S.chart.timeScale().subscribeVisibleTimeRangeChange(()=>requestAnimationFrame(rerender));}catch{} ['wheel','mousedown','mousemove','mouseup','touchstart','touchmove','touchend'].forEach(ev=>q('chart').addEventListener(ev,()=>requestAnimationFrame(rerender),{passive:true})); }
+run().catch(e=>alert(String(e)));
+</script>
+</body>
+</html>
