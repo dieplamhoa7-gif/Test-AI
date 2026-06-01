@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -38,7 +38,7 @@
       <div class="title">PHÂN TÍCH CẤU TRÚC — WYCKOFF BOARD</div>
       <div class="subtitle">Frontend mới theo style bảng phân tích · dùng dữ liệu Wyckoff của mình · MWG giữ logic cũ, mã khác dùng full timeframe</div>
     </div>
-    <div class="tools" id="toolsRow">
+    <div class="tools">
       <span class="chip" id="modeChip">LEGACY MWG / FULL TF</span>
       <span class="chip" id="timeChip">Daily</span>
       <label class="chip">Mã <select id="symbolSel"></select></label>
@@ -58,17 +58,17 @@
         <div id="chart"></div>
         <div id="overlay" class="overlay"></div>
       </div>
-      <div class="footer">SC / AR / ST / Spring / Test Spring b├ím v├áo nß║┐n thß║¡t nß║┐u dß╗» liß╗çu event c├│. V├╣ng support 6M + support 1Y ─æ╞░ß╗úc giß╗» cß╗æ ─æß╗ïnh.</div>
+      <div class="footer">SC / AR / ST / Spring / Test Spring bám vào nến thật nếu dữ liệu event có. Vùng support 6M + support 1Y được giữ cố định.</div>
     </div>
 
     <div class="side">
       <div class="card">
-        <h3>Kß║┐t luß║¡n</h3>
+        <h3>Kết luận</h3>
         <div class="verdict" id="verdict">RANGE / WAIT</div>
-        <div class="muted" id="verdictText">─Éang chß╗¥ breakout thß║¡t khß╗Åi range ─æß╗â x├íc nhß║¡n h╞░ß╗¢ng tiß║┐p theo.</div>
+        <div class="muted" id="verdictText">Đang chờ breakout thật khỏi range để xác nhận hướng tiếp theo.</div>
       </div>
       <div class="card">
-        <h3>Trß║íng th├íi hiß╗çn tß║íi</h3>
+        <h3>Trạng thái hiện tại</h3>
         <div class="kv" id="statusKv"></div>
       </div>
       <div class="card">
@@ -80,7 +80,7 @@
         <div class="list" id="eventsList"></div>
       </div>
       <div class="card">
-        <h3>Kß╗ïch bß║ún & h├ánh ─æß╗Öng</h3>
+        <h3>Kịch bản & hành động</h3>
         <div class="list" id="scenarioList"></div>
       </div>
     </div>
@@ -91,7 +91,7 @@ const VER='2026-05-31-wyckoff-board-merged-clean-v31';
 const S={chart:null,candle:null,symbol:'MWG',rows:[],hy:null,multi:null,legacy:null,like:null,focus:null,lockedFocus:null,toggles:{mainTr:true,phase:true,channel:true,zones:true,events:true}};
 const q=id=>document.getElementById(id);
 function el(tag,cls,txt){const e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;}
-function num(v,d=1){return Number.isFinite(+v)?(+v).toFixed(d):'ΓÇö';}
+function num(v,d=1){return Number.isFinite(+v)?(+v).toFixed(d):'—';}
 function biasClass(b){b=(b||'').toLowerCase(); if(b.includes('bull')||b.includes('markup')) return 'bias-bull'; if(b.includes('bear')||b.includes('down')||b.includes('markdown')) return 'bias-bear'; return 'bias-range';}
 async function j(url){const r=await fetch(url,{cache:'no-store'}); return await r.json();}
 async function loadRows(symbol){try{const hist=await j(`/data/vn100_history_from_2023.json?v=${VER}`); const rows=hist?.symbols?.[symbol]?.rows||[]; if(rows.length) return rows.map(x=>({time:x.time,open:+x.open,high:+x.high,low:+x.low,close:+x.close,volume:+x.volume}));}catch(e){console.warn('long history fallback',e);} const obj=await j(`/data/charts/${symbol}.json?v=${VER}`); return (Array.isArray(obj)?obj:(obj.rows||[])).map(x=>({time:x.time,open:+x.open,high:+x.high,low:+x.low,close:+x.close,volume:+x.volume}));}
@@ -119,7 +119,7 @@ const firstIdx=Math.min(lowPts[0].gi, highPts[0].gi), lastIdx=Math.max(lowPts[lo
 const x0=tX(S.rows[firstIdx].time), x1=tX(S.rows[lastIdx].time); const yLow0=pY(lowPrice(firstIdx)), yLow1=pY(lowPrice(lastIdx)), yHigh0=pY(highPrice(firstIdx)), yHigh1=pY(highPrice(lastIdx));
 const band=document.createElement('div'); const left=Math.min(x0,x1), width=Math.max(8,Math.abs(x1-x0)); const top=Math.min(yHigh0,yHigh1,yLow0,yLow1); const bottom=Math.max(yHigh0,yHigh1,yLow0,yLow1); band.style.position='absolute'; band.style.left=`${left}px`; band.style.top=`${top}px`; band.style.width=`${width}px`; band.style.height=`${Math.max(16,bottom-top)}px`; band.style.background=fill; band.style.border=`1px solid ${color}`; band.style.borderRadius='14px'; band.style.opacity='.9'; band.style.pointerEvents='none'; band.style.clipPath=`polygon(0% ${(yHigh0-top)/Math.max(1,bottom-top)*100}%,100% ${(yHigh1-top)/Math.max(1,bottom-top)*100}%,100% ${(yLow1-top)/Math.max(1,bottom-top)*100}%,0% ${(yLow0-top)/Math.max(1,bottom-top)*100}%)`; bindFocus(band,focus+'|band'); q('overlay').appendChild(band);
 addLine(x0,yLow0,x1,yLow1,color,focus,false); addLine(x0,yHigh0,x1,yHigh1,color,focus,false); addLine(x0,(yLow0+yHigh0)/2,x1,(yLow1+yHigh1)/2,'rgba(255,255,255,.30)',focus+'|mid',true);
-const hist=wc.isHistorical?'HISTORICAL ':''; const fail=(S.hy?.modelState?.currentTrend?.structure||'').includes('FAILED')||String(S.hy?.modelState?.currentTrend?.trend||'').includes('WEAKNESS'); const label=up?`${hist}SIDEWAY UP`:down?`${hist}SIDEWAY DOWN`:`${hist}RANGE MIXED`; addTag(`${label}${fail?' ΓåÆ FAILED/WEAK':''}`,Math.max(8,left+12),Math.max(70,Math.min(yHigh0,yHigh1)-26),color,focus); }catch(e){ console.warn('drawTrendChannel failed', e); } }
+const hist=wc.isHistorical?'HISTORICAL ':''; const fail=(S.hy?.modelState?.currentTrend?.structure||'').includes('FAILED')||String(S.hy?.modelState?.currentTrend?.trend||'').includes('WEAKNESS'); const label=up?`${hist}SIDEWAY UP`:down?`${hist}SIDEWAY DOWN`:`${hist}RANGE MIXED`; addTag(`${label}${fail?' → FAILED/WEAK':''}`,Math.max(8,left+12),Math.max(70,Math.min(yHigh0,yHigh1)-26),color,focus); }catch(e){ console.warn('drawTrendChannel failed', e); } }
 function drawEvents(){ try{ const keep=['SC','AR','ST','Spring','Test Spring','Shake_out','SOS','UT','UTAD','SOW','LPS','LPSY']; for(const ev of (S.hy?.events||[]).filter(e=>keep.includes(e.type))){ const x=tX(ev.time), y=pY(ev.price); if(!Number.isFinite(x)||!Number.isFinite(y)) continue; const bull=['SC','AR','ST','Spring','Test Spring','SOS','LPS'].includes(ev.type); const txt=ev.type==='Test Spring'?'T.Spring':ev.type==='Shake_out'?'Shake':ev.type; const focus=`event:${ev.type}:${ev.time}`; addTag(txt,Math.max(8,x-24),Math.max(60,bull?y-28:y+10),bull?'rgba(55,211,154,.48)':'rgba(255,111,129,.48)',focus); } const src=S.hy?.supportsByWindow?.['6m']?.sourceEvents||[]; src.forEach((ev,idx)=>{ const x=tX(ev.time), y=pY(ev.low); if(Number.isFinite(x)&&Number.isFinite(y)) addTag(idx===0?'Floor test':`Test ${idx}`,Math.max(8,x-22),Math.max(60,y+10),'rgba(103,216,255,.42)','zone:s6m'); }); }catch(e){ console.warn('drawEvents failed', e); } }
 function drawOverlay(){ q('overlay').innerHTML=''; if(S.toggles.mainTr && S.hy?.mainTr) drawRangeBox(S.hy.mainTr,'main-tr','Main TR','maintr'); const segs=S.hy?.mainTr?.phase_segments||[]; const active=S.hy?.phaseBox?.phase; if(S.toggles.phase){ segs.forEach(seg=>{ try{ if(seg.start==null||seg.end==null||seg.start<0||seg.end>=S.rows.length||seg.end<seg.start) return; const slice=S.rows.slice(seg.start,seg.end+1); if(!slice.length) return; drawRangeBox({start_idx:seg.start,end_idx:seg.end,high:Math.max(...slice.map(r=>r.high)),low:Math.min(...slice.map(r=>r.low))},'phase',seg.phase===active?`Phase ${seg.phase} (active)`: `Phase ${seg.phase}`,`phase:${seg.phase}`); }catch(e){ console.warn('phase failed', seg, e); }}); } if(S.toggles.channel) drawTrendChannel(); if(S.toggles.zones) buildZones().forEach(drawZone); if(S.toggles.events) drawEvents(); applyFocus(); }
 function fillHeader(){ const s=S.hy?.story?.summary||{}; const bias=(S.hy?.mainTr?.bias&&S.hy.mainTr.bias!=='unknown'?S.hy.mainTr.bias:(s.bias||'range')); q('heroSymbol').textContent=S.symbol; q('heroSubtitle').textContent=S.hy?.__mode==='legacy-mwg'?'MWG giữ logic cũ Đại ka đã ưng':'Các mã khác đã chuyển sang template giống MWG'; q('modeChip').textContent=S.hy?.__mode==='legacy-mwg'?'LEGACY MWG':(S.hy?.__mode==='like-mwg-multi'?'LIKE MWG MULTI':'FALLBACK'); const hm=q('heroMeta'); hm.innerHTML=''; [['Bias',bias],['Phase',S.hy?.phaseBox?.phase||'—'],['Close',num(S.rows.at(-1)?.close)],['Post-TR',S.hy?.postTrAction?.label||'—']].forEach(([k,v])=>{const b=el('div',`badge ${k==='Bias'?biasClass(v):''}`,`${k}: ${String(v).toUpperCase?String(v):v}`); hm.appendChild(b);}); }
@@ -131,39 +131,39 @@ else if((s.methodBias||'').includes('accumulation')) v='ACCUMULATION WATCH';
 else if((s.methodBias||'').includes('distribution')) v='DISTRIBUTION WATCH';
 else if((s.bias||'').includes('range')) v='RANGE / WAIT';
 q('verdict').textContent=v; q('verdict').className=`verdict ${biasClass(v)}`;
-q('verdictText').textContent=(m.rationale&&m.rationale[0]) || post.reason || s.phaseInterpretation || s.bestInterpretation || '─Éß╗úi x├íc nhß║¡n r├╡ h╞ín tß╗½ cß║Ñu tr├║c Wyckoff.'; }
+q('verdictText').textContent=(m.rationale&&m.rationale[0]) || post.reason || s.phaseInterpretation || s.bestInterpretation || 'Đợi xác nhận rõ hơn từ cấu trúc Wyckoff.'; }
 function fillStatus(){ const s=S.hy?.story?.summary||{}; const m=S.hy?.modelState||{}; const kv=q('statusKv'); kv.innerHTML=''; const rows=[
-  ['State',m.state||'ΓÇö','Trß║íng th├íi kß║┐t luß║¡n ch├¡nh'],
-  ['Action',m.action||'ΓÇö','H├ánh ─æß╗Öng ch├¡nh hiß╗çn tß║íi'],
-  ['Phase',S.hy?.phaseBox?.phase||'ΓÇö','Phase Wyckoff hiß╗çn tß║íi'],
-  ['Wyckoff',m.wyckoffChannel?.type||m.sidewayType||'ΓÇö','Channel/cß║Ñu tr├║c Wyckoff bß╗ò sung'],
-  ['TR',S.hy?.mainTr?`${num(S.hy.mainTr.low)} ΓÇô ${num(S.hy.mainTr.high)}`:'ΓÇö','Bi├¬n Trading Range ch├¡nh'],
-  ['Confirm',m.confirmAbove ?? s.bullishConfirmAbove ?? 'ΓÇö','Mß╗æc x├íc nhß║¡n nß║┐u v╞░ß╗út qua'],
-  ['Invalid',m.invalidBelow ?? s.invalidateBelow ?? 'ΓÇö','Mß╗æc l├ám view hiß╗çn tß║íi sai'],
-  ['Close',num(S.rows.at(-1)?.close),'Gi├í ─æ├│ng cß╗¡a gß║ºn nhß║Ñt']
+  ['State',m.state||'—','Trạng thái kết luận chính'],
+  ['Action',m.action||'—','Hành động chính hiện tại'],
+  ['Phase',S.hy?.phaseBox?.phase||'—','Phase Wyckoff hiện tại'],
+  ['Wyckoff',m.wyckoffChannel?.type||m.sidewayType||'—','Channel/cấu trúc Wyckoff bổ sung'],
+  ['TR',S.hy?.mainTr?`${num(S.hy.mainTr.low)} – ${num(S.hy.mainTr.high)}`:'—','Biên Trading Range chính'],
+  ['Confirm',m.confirmAbove ?? s.bullishConfirmAbove ?? '—','Mốc xác nhận nếu vượt qua'],
+  ['Invalid',m.invalidBelow ?? s.invalidateBelow ?? '—','Mốc làm view hiện tại sai'],
+  ['Close',num(S.rows.at(-1)?.close),'Giá đóng cửa gần nhất']
 ]; rows.forEach(([a,b,tip])=>{ const d=el('div','stat'); d.innerHTML=`<span class="k">${a}<span class="tip" data-tip="${String(tip).replace(/"/g,'&quot;')}">?</span></span><span class="v">${b}</span>`; kv.appendChild(d); }); }
-function fillZones(){ const host=q('zonesList'); host.innerHTML=''; buildZones().slice(0,4).forEach(z=>{ const d=bindFocus(el('div','item'),z.focus); const ztip=z.type==='support'?'Demand zone ΓÇö v├╣ng cß║ºu/hß╗ù trß╗ú, click ─æß╗â l├ám s├íng v├╣ng tr├¬n chart':'Supply zone ΓÇö v├╣ng cung/kh├íng cß╗▒, click ─æß╗â l├ám s├íng v├╣ng tr├¬n chart'; d.innerHTML=`<div class="event"><b>${z.label}<span class="tip" data-tip="${ztip}">?</span></b><span>${z.type==='support'?'Demand':'Supply'}</span></div><div class="muted">${num(z.low)} ΓÇô ${num(z.high)}</div>`; d.onmouseenter=()=>focusOn(z.focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(z.focus); host.appendChild(d);}); }
-function fillEvents(){ const host=q('eventsList'); host.innerHTML=''; const keep=['SC','AR','ST','Spring','SOS','UT','UTAD','SOW','LPS','LPSY']; const evs=(S.hy?.events||[]).filter(ev=>keep.includes(ev.type)).slice(0,4); const conf=(S.hy?.story?.summary?.eventConfidence)||{}; if(!evs.length){host.appendChild(el('div','item muted','Ch╞░a c├│ event Wyckoff thß║¡t sß╗▒ quan trß╗ìng trong cache hiß╗çn tß║íi.')); return;} evs.forEach(ev=>{const focus=`event:${ev.type}:${ev.time}`; const d=bindFocus(el('div','item'),focus); const c=conf[ev.type]; d.innerHTML=`<div class="event"><b>${ev.type}${tipHtml(ev.type)}</b><span>${ev.time||''}${c?` ┬╖ ${c}%`:''}</span></div>`; d.onmouseenter=()=>focusOn(focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(focus); host.appendChild(d);}); }
+function fillZones(){ const host=q('zonesList'); host.innerHTML=''; buildZones().slice(0,4).forEach(z=>{ const d=bindFocus(el('div','item'),z.focus); const ztip=z.type==='support'?'Demand zone — vùng cầu/hỗ trợ, click để làm sáng vùng trên chart':'Supply zone — vùng cung/kháng cự, click để làm sáng vùng trên chart'; d.innerHTML=`<div class="event"><b>${z.label}<span class="tip" data-tip="${ztip}">?</span></b><span>${z.type==='support'?'Demand':'Supply'}</span></div><div class="muted">${num(z.low)} – ${num(z.high)}</div>`; d.onmouseenter=()=>focusOn(z.focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(z.focus); host.appendChild(d);}); }
+function fillEvents(){ const host=q('eventsList'); host.innerHTML=''; const keep=['SC','AR','ST','Spring','SOS','UT','UTAD','SOW','LPS','LPSY']; const evs=(S.hy?.events||[]).filter(ev=>keep.includes(ev.type)).slice(0,4); const conf=(S.hy?.story?.summary?.eventConfidence)||{}; if(!evs.length){host.appendChild(el('div','item muted','Chưa có event Wyckoff thật sự quan trọng trong cache hiện tại.')); return;} evs.forEach(ev=>{const focus=`event:${ev.type}:${ev.time}`; const d=bindFocus(el('div','item'),focus); const c=conf[ev.type]; d.innerHTML=`<div class="event"><b>${ev.type}${tipHtml(ev.type)}</b><span>${ev.time||''}${c?` · ${c}%`:''}</span></div>`; d.onmouseenter=()=>focusOn(focus); d.onmouseleave=()=>focusOn(null); d.onclick=()=>toggleLock(focus); host.appendChild(d);}); }
 const LEGEND={
-  'SC':'Selling Climax ΓÇö b├ín mß║ính gß║ºn ─æ├íy range, volume/spread lß╗¢n',
-  'AR':'Automatic Rally ΓÇö nhß╗ïp hß╗ôi mß║ính sau SC',
-  'ST':'Secondary Test ΓÇö test lß║íi ─æ├íy sau SC/AR',
-  'Spring':'Thß╗ºng hß╗ù trß╗ú rß╗ôi k├⌐o ng╞░ß╗úc trß╗ƒ lß║íi range',
-  'Test Spring':'Retest sau Spring, th╞░ß╗¥ng volume yß║┐u h╞ín',
-  'Shake_out':'Shake-out ΓÇö qu├⌐t d╞░ß╗¢i hß╗ù trß╗ú rß╗ôi hß╗ôi lß║íi',
-  'SOS':'Sign of Strength ΓÇö t├¡n hiß╗çu mß║ính l├¬n / break tß╗æt',
-  'LPS':'Last Point of Support ΓÇö ─æiß╗âm ─æß╗í cuß╗æi sau break l├¬n',
-  'UT':'Upthrust ΓÇö v╞░ß╗út cß║ún giß║ú rß╗ôi r╞íi lß║íi',
-  'UTAD':'Upthrust After Distribution ΓÇö bß║½y breakout cuß╗æi ph├ón phß╗æi',
-  'SOW':'Sign of Weakness ΓÇö t├¡n hiß╗çu yß║┐u ─æi / breakdown',
-  'LPSY':'Last Point of Supply ΓÇö ─æiß╗âm hß╗ôi yß║┐u cuß╗æi trong xu h╞░ß╗¢ng xuß╗æng'
+  'SC':'Selling Climax — bán mạnh gần đáy range, volume/spread lớn',
+  'AR':'Automatic Rally — nhịp hồi mạnh sau SC',
+  'ST':'Secondary Test — test lại đáy sau SC/AR',
+  'Spring':'Thủng hỗ trợ rồi kéo ngược trở lại range',
+  'Test Spring':'Retest sau Spring, thường volume yếu hơn',
+  'Shake_out':'Shake-out — quét dưới hỗ trợ rồi hồi lại',
+  'SOS':'Sign of Strength — tín hiệu mạnh lên / break tốt',
+  'LPS':'Last Point of Support — điểm đỡ cuối sau break lên',
+  'UT':'Upthrust — vượt cản giả rồi rơi lại',
+  'UTAD':'Upthrust After Distribution — bẫy breakout cuối phân phối',
+  'SOW':'Sign of Weakness — tín hiệu yếu đi / breakdown',
+  'LPSY':'Last Point of Supply — điểm hồi yếu cuối trong xu hướng xuống'
 };
 function tipHtml(key){ const txt=LEGEND[key]||''; return txt?`<span class="tip" data-tip="${txt.replace(/"/g,'&quot;')}">?</span>`:''; }
 function fillScenarios(){ const host=q('scenarioList'); host.innerHTML=''; const s=S.hy?.story?.summary||{}; const m=S.hy?.modelState||{}; const post=S.hy?.postTrAction||{}; [
-  `Kß╗ïch bß║ún ch├¡nh: ${post.label||m.state||s.phaseInterpretation||s.bestInterpretation||'Range continuation'}`,
-  Number.isFinite(+m.confirmAbove||+s.bullishConfirmAbove)?`Bull confirm khi v╞░ß╗út ${num(m.confirmAbove ?? s.bullishConfirmAbove)}`:'Chß╗¥ bull confirm r├╡ h╞ín',
-  Number.isFinite(+m.invalidBelow||+s.invalidateBelow)?`Sai view nß║┐u thß╗ºng ${num(m.invalidBelow ?? s.invalidateBelow)}`:'Ch╞░a c├│ invalidate r├╡',
-  `Channel bß╗ò sung: ${m.wyckoffChannel?.type||m.currentTrend?.structure||'N/A'}`
+  `Kịch bản chính: ${post.label||m.state||s.phaseInterpretation||s.bestInterpretation||'Range continuation'}`,
+  Number.isFinite(+m.confirmAbove||+s.bullishConfirmAbove)?`Bull confirm khi vượt ${num(m.confirmAbove ?? s.bullishConfirmAbove)}`:'Chờ bull confirm rõ hơn',
+  Number.isFinite(+m.invalidBelow||+s.invalidateBelow)?`Sai view nếu thủng ${num(m.invalidBelow ?? s.invalidateBelow)}`:'Chưa có invalidate rõ',
+  `Channel bổ sung: ${m.wyckoffChannel?.type||m.currentTrend?.structure||'N/A'}`
 ].forEach(t=>host.appendChild(el('div','item',t))); }
 function rerender(){ drawOverlay(); fillHeader(); fillVerdict(); fillStatus(); fillZones(); fillEvents(); fillScenarios(); }
 async function renderSymbol(symbol){ ensureChart(); S.symbol=symbol; S.focus=null; S.lockedFocus=null; const hy=getHybrid(symbol); if(!hy) throw new Error(`No hybrid data for ${symbol}`); const rows=await loadRows(symbol); S.rows=rows; S.hy={...hy, allRows:S.rows, localTrs:hy.localTrs||[], phaseBox:hy.phaseBox || (hy.mainTr?.phase_segments?.slice(-1)[0]||null)}; S.candle.setData(S.rows); try{ if(S.rows.length){ S.chart.timeScale().setVisibleRange({ from:S.rows[0].time, to:S.rows[S.rows.length-1].time }); } else { S.chart.timeScale().fitContent(); } }catch(_){ S.chart.timeScale().fitContent(); } rerender(); setTimeout(()=>{ try{ if(S.rows.length){ S.chart.timeScale().setVisibleRange({ from:S.rows[0].time, to:S.rows[S.rows.length-1].time }); } else { S.chart.timeScale().fitContent(); } }catch(_){ S.chart.timeScale().fitContent(); } rerender(); },250); }

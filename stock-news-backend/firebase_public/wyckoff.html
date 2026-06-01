@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -34,26 +34,26 @@
   <div class="wrap">
     <div class="head">
       <div>
-        <div class="title">Wyckoff Chart ri├¬ng</div>
-        <div class="sub">Trang t├ích ri├¬ng ─æß╗â vß║╜ Wyckoff/SR/event, tr├ính l├ám chart ch├¡nh bß╗ï rß╗æi v├á nß║╖ng.</div>
+        <div class="title">Wyckoff Chart riêng</div>
+        <div class="sub">Trang tách riêng để vẽ Wyckoff/SR/event, tránh làm chart chính bị rối và nặng.</div>
       </div>
     </div>
 
     <div class="controls">
       <div>
-        <label>M├ú cß╗ò phiß║┐u</label>
-        <input id="symbolInput" value="MWG" placeholder="V├¡ dß╗Ñ: MWG" />
+        <label>Mã cổ phiếu</label>
+        <input id="symbolInput" value="MWG" placeholder="Ví dụ: MWG" />
       </div>
       <div>
         <label>Khung</label>
         <select id="frameSelect">
-          <option value="day">Ng├áy</option>
-          <option value="week">Tuß║ºn</option>
-          <option value="month">Th├íng</option>
+          <option value="day">Ngày</option>
+          <option value="week">Tuần</option>
+          <option value="month">Tháng</option>
         </select>
       </div>
       <div>
-        <label>Sß╗æ nß║┐n hiß╗ân thß╗ï</label>
+        <label>Số nến hiển thị</label>
         <select id="barsSelect">
           <option value="180">180</option>
           <option value="260" selected>260</option>
@@ -61,29 +61,29 @@
           <option value="520">520</option>
         </select>
       </div>
-      <button id="loadBtn">Tß║úi chart Wyckoff</button>
+      <button id="loadBtn">Tải chart Wyckoff</button>
     </div>
 
     <div class="grid">
       <div class="panel">
         <div id="chart"></div>
-        <div class="foot">Hiß╗ân thß╗ï: candle + SR ch├¡nh + event/tag Wyckoff + bias summary. Kh├┤ng nhß╗ôi trendline/panel kh├íc ─æß╗â giß╗» nhß║╣.</div>
+        <div class="foot">Hiển thị: candle + SR chính + event/tag Wyckoff + bias summary. Không nhồi trendline/panel khác để giữ nhẹ.</div>
       </div>
       <div style="display:grid;gap:14px;align-content:start">
         <div class="summary panel">
-          <h3>T├│m tß║»t Wyckoff</h3>
-          <div id="summaryBox" class="muted">Ch╞░a c├│ dß╗» liß╗çu.</div>
+          <h3>Tóm tắt Wyckoff</h3>
+          <div id="summaryBox" class="muted">Chưa có dữ liệu.</div>
         </div>
         <div class="events panel">
-          <h3>Event nß╗òi bß║¡t</h3>
-          <div id="eventsBox" class="muted">Ch╞░a c├│ dß╗» liß╗çu.</div>
+          <h3>Event nổi bật</h3>
+          <div id="eventsBox" class="muted">Chưa có dữ liệu.</div>
         </div>
         <div class="legend panel">
-          <h3>Ch├║ giß║úi</h3>
-          <div class="row"><span class="sw" style="background:var(--green)"></span> Support / Spring / hß║Ñp thß╗Ñ</div>
-          <div class="row"><span class="sw" style="background:var(--red)"></span> Resistance / Upthrust / suy yß║┐u</div>
+          <h3>Chú giải</h3>
+          <div class="row"><span class="sw" style="background:var(--green)"></span> Support / Spring / hấp thụ</div>
+          <div class="row"><span class="sw" style="background:var(--red)"></span> Resistance / Upthrust / suy yếu</div>
           <div class="row"><span class="sw" style="background:var(--amber)"></span> Range / build cause</div>
-          <div class="row"><span class="sw" style="background:var(--blue)"></span> Bias trung t├¡nh / theo d├╡i</div>
+          <div class="row"><span class="sw" style="background:var(--blue)"></span> Bias trung tính / theo dõi</div>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
     const state = { chart:null, candle:null, lines:[], markers:[] };
 
     function biasClass(bias='neutral'){ return ['markup','markdown','range','neutral'].includes(bias) ? bias : 'neutral'; }
-    function fmt(n){ const x=Number(n); return Number.isFinite(x) ? x.toFixed(2) : 'ΓÇö'; }
+    function fmt(n){ const x=Number(n); return Number.isFinite(x) ? x.toFixed(2) : '—'; }
     function scoreRow(name, val){ return `<div class="kv"><div>${name}</div><div><b>${fmt(val)}</b></div></div>`; }
     function clearChart(){
       if(state.chart){ try { state.chart.remove(); } catch(_){} }
@@ -112,12 +112,12 @@
     async function loadChartRows(symbol, frame){
       const suffix = frame === 'day' ? '' : `_${frame}`;
       const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}${suffix}.json?v=${APP_CACHE_VERSION}`, { cache:'no-store' });
-      if(!res.ok) throw new Error(`Kh├┤ng tß║úi ─æ╞░ß╗úc chart ${symbol} ${frame}`);
+      if(!res.ok) throw new Error(`Không tải được chart ${symbol} ${frame}`);
       return await res.json();
     }
     async function loadWyckoffCache(){
       const res = await fetch(`/data/wyckoff_overlay_cache.json?v=${APP_CACHE_VERSION}`, { cache:'no-store' });
-      if(!res.ok) throw new Error('Kh├┤ng tß║úi ─æ╞░ß╗úc wyckoff overlay cache');
+      if(!res.ok) throw new Error('Không tải được wyckoff overlay cache');
       return await res.json();
     }
     async function loadSrOverlay(symbol){
@@ -151,7 +151,7 @@
       const s = wy?.scores || {};
       const bias = s.bias || 'neutral';
       document.getElementById('summaryBox').innerHTML = `
-        <div style="margin-bottom:10px"><span class="pill ${biasClass(bias)}">${bias.toUpperCase()}</span> <span class="muted small">${symbol} ┬╖ ${wy?.time || 'ΓÇö'}</span></div>
+        <div style="margin-bottom:10px"><span class="pill ${biasClass(bias)}">${bias.toUpperCase()}</span> <span class="muted small">${symbol} · ${wy?.time || '—'}</span></div>
         ${scoreRow('Markup readiness', s.markupReadinessScore)}
         ${scoreRow('Markdown readiness', s.markdownReadinessScore)}
         ${scoreRow('Range continuation', s.rangeContinuationScore)}
@@ -164,7 +164,7 @@
         ${scoreRow('Dry test', s.dryTestScore)}
       `;
       const events = wy?.events || [];
-      document.getElementById('eventsBox').innerHTML = events.length ? events.map(ev => `<div class="event"><b>${ev}</b></div>`).join('') : '<div class="muted">Ch╞░a c├│ event confidence cao ß╗ƒ snapshot hiß╗çn tß║íi.</div>';
+      document.getElementById('eventsBox').innerHTML = events.length ? events.map(ev => `<div class="event"><b>${ev}</b></div>`).join('') : '<div class="muted">Chưa có event confidence cao ở snapshot hiện tại.</div>';
     }
 
     async function loadWyckoffPage(){
