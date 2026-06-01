@@ -1079,7 +1079,29 @@
         const frameButtons = Array.from(document.querySelectorAll('[data-chart-frame]'));
         const frameStorageKey = `lh.stockChart.frame.${String(symbol || '').toUpperCase()}`;
         let activeFrame = 'day';
-        const loadFrameData = async (frame) => { const suffix = frame === 'day' || frame === 'hour' ? '' : `_${frame}`; const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}${suffix}.json?ts=${Date.now()}`, { cache:'no-store' }); if (!res.ok) throw new Error('chart missing'); return res.json(); };
+        let longHistoryCache = null;
+        const loadLongHistoryRows = async () => {
+          if (!longHistoryCache) {
+            const res = await fetch(`/data/vn100_history_from_2023.json?ts=${Date.now()}`, { cache:'no-store' });
+            if (!res.ok) throw new Error('long history missing');
+            longHistoryCache = await res.json();
+          }
+          const sym = String(symbol || '').toUpperCase();
+          const rows = longHistoryCache?.symbols?.[sym]?.rows;
+          return Array.isArray(rows) ? rows : [];
+        };
+        const loadFrameData = async (frame) => {
+          if (frame === 'day') {
+            try {
+              const longRows = await loadLongHistoryRows();
+              if (longRows.length) return { rows: longRows };
+            } catch (_) {}
+          }
+          const suffix = frame === 'day' || frame === 'hour' ? '' : `_${frame}`;
+          const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}${suffix}.json?ts=${Date.now()}`, { cache:'no-store' });
+          if (!res.ok) throw new Error('chart missing');
+          return res.json();
+        };
         const loadOverlayData = async (frame) => { const sym = String(symbol || '').toUpperCase(); const urls = (frame === 'day') ? [`/data/charts/${encodeURIComponent(sym)}_touchzone_day.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(frame)}.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(frame)}.json?ts=${Date.now()}`] : [`/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(frame)}.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(frame)}.json?ts=${Date.now()}`]; for (const url of urls) { try { const res = await fetch(url, { cache:'no-store' }); if (!res.ok) continue; return await res.json(); } catch(_) {} } return null; };
         const normalizePointTime = (t) => { if (typeof t === 'number' && Number.isFinite(t)) { try { return new Date(t * 1000).toISOString().slice(0,10); } catch(_) { return t; } } return t; };
         const normalizePoints = (points = []) => (Array.isArray(points) ? points : []).map(p => ({ time: normalizePointTime(p.time), value: Number(p.value) }));
