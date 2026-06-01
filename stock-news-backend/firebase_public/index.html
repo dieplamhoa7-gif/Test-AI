@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LH INVESTMENT</title>
+  <title>LH INVESTMENT - Candle Trendline Experimental</title>
   <style>
     :root {
       --bg: #070b14;
@@ -24,6 +24,7 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
+      outline: 4px solid rgba(78,240,192,.28);
       margin: 0;
       font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
       background:
@@ -82,6 +83,13 @@
     .warrant-card { display:block; width:100%; text-align:left; color:var(--text); font:inherit; border:1px solid rgba(92,110,148,.22); border-radius:16px; padding:14px; background:rgba(255,255,255,.03); cursor:pointer; transition:transform .14s ease, border-color .14s ease; }
     .warrant-card strong { color:var(--text); }
     .warrant-card:hover { transform:translateY(-1px); border-color:rgba(100,181,255,.38); }
+    .cw-filter-box { margin:14px 0; padding:14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.035); }
+    .cw-filter-tools { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; align-items:end; }
+    .cw-filter-tools label { display:grid; gap:6px; color:var(--muted); font-size:12px; font-weight:800; }
+    .cw-filter-tools input { width:100%; border:1px solid var(--line); border-radius:13px; padding:11px 12px; background:var(--panel-2); color:var(--text); font-weight:800; }
+    .cw-filter-results { margin-top:12px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
+    .cw-rank-badge { display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:30px; border-radius:999px; background:linear-gradient(135deg,var(--accent),#7a74ff); color:#06111f; font-weight:1000; margin-right:8px; }
+    .cw-score-note { margin-top:8px; color:var(--muted); font-size:12px; line-height:1.5; }
     .hero { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 18px; }
     .panel { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(14, 20, 34, .92), rgba(12, 18, 31, .92)); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
     body.light-theme .panel { background:linear-gradient(180deg,#ffffff,#f8fbff); }
@@ -199,11 +207,33 @@
     .stat-card { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding: 12px; background: rgba(255,255,255,.02); }
     .stat-card .label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
     .stock-chart-card { margin-bottom:14px; border:1px solid rgba(92,110,148,.20); border-radius:18px; overflow:hidden; background:rgba(255,255,255,.02); }
-    .stock-chart-head { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; color:var(--muted); font-size:12px; font-weight:800; }
-    .stock-chart-box { height:360px; width:100%; }
-    .chart-legend { display:flex; gap:10px; flex-wrap:wrap; }
+    .stock-chart-head { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px; color:var(--muted); font-size:12px; font-weight:800; border-bottom:1px solid rgba(92,110,148,.16); }
+    .stock-chart-title { display:flex; align-items:center; gap:8px; white-space:nowrap; color:var(--text); }
+    .stock-chart-tools { display:flex; gap:5px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .stock-chart-tools input { width:132px; background:var(--panel-2); color:var(--text); border:1px solid var(--line); border-radius:10px; padding:7px 9px; font-weight:800; }
+    .stock-chart-tools label { display:inline-flex; gap:5px; align-items:center; }
+    .indicator-pill { display:inline-flex; align-items:center; gap:0; border:1px solid rgba(92,110,148,.24); border-radius:7px; overflow:hidden; background:rgba(255,255,255,.035); }
+    .chart-toggle, .chart-setting { border:0; background:transparent; color:var(--text); padding:5px 7px; font-size:11px; line-height:1; font-weight:900; cursor:pointer; }
+    .chart-toggle.active { background:linear-gradient(135deg, var(--accent), #7a74ff); color:#06111f; box-shadow:0 0 0 1px rgba(255,255,255,.12) inset, 0 0 12px rgba(100,181,255,.35); }
+    .chart-setting { border-left:1px solid rgba(92,110,148,.18); color:var(--muted); padding-left:6px; padding-right:6px; }
+    .indicator-pill.off { opacity:.45; }
+    .indicator-pill.off .chart-toggle { text-decoration:line-through; }
+    .chart-settings-pop { position:absolute; z-index:20; right:10px; top:42px; min-width:240px; padding:12px; border:1px solid rgba(92,110,148,.28); border-radius:12px; background:#111827; box-shadow:0 18px 40px rgba(0,0,0,.35); display:none; }
+    body.light-theme .chart-settings-pop { background:#fff; }
+    .chart-settings-pop.open { display:block; }
+    .chart-settings-pop h4 { margin:0 0 8px; color:var(--text); }
+    .chart-settings-pop label { display:block; margin:8px 0 4px; color:var(--muted); font-size:12px; font-weight:800; }
+    .chart-settings-pop input { width:100%; box-sizing:border-box; }
+    .stock-chart-body { position:relative; }
+    .stock-chart-box { height:320px; width:100%; }
+    .stock-vol-box, .stock-macd-box, .stock-rsi-box { height:104px; width:100%; border-top:1px solid rgba(92,110,148,.14); }
+    .chart-legend { position:absolute; left:10px; top:8px; z-index:5; display:flex; gap:8px; flex-wrap:wrap; max-width:calc(100% - 20px); padding:5px 7px; border-radius:8px; background:rgba(8,12,20,.55); backdrop-filter: blur(8px); font-size:11px; }
+    body.light-theme .chart-legend { background:rgba(255,255,255,.72); }
     .chart-legend span { display:inline-flex; align-items:center; gap:4px; }
-    @media (max-width:640px){ .stock-chart-box{height:300px;} }
+    .trend-inline-label { position:absolute; z-index:6; transform:translate(-50%, -50%); padding:2px 6px; border-radius:6px; font-size:10px; line-height:1.35; font-weight:800; color:#081018; background:rgba(255,255,255,.93); border:1px solid rgba(255,255,255,.35); pointer-events:none; white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,.16); }
+    .volume-drag-handle { display:none; }
+    .stock-chart-body a[href*="tradingview"], .stock-chart-body iframe, .stock-chart-body [title*="TradingView"], .stock-chart-body [aria-label*="TradingView"] { display:none !important; opacity:0 !important; pointer-events:none !important; }
+    @media (max-width:640px){ .stock-chart-head{align-items:flex-start; flex-direction:column;} .stock-chart-tools{justify-content:flex-start;} .stock-chart-box{height:275px;} .stock-vol-box,.stock-macd-box,.stock-rsi-box{height:96px;} }
     .stat-card .value { color: #edf2ff; font-size: 16px; font-weight: 800; }
     body.light-theme .stat-card { background:#fff; border-color:rgba(38,61,99,.12); }
     body.light-theme .stat-card .value { color:#132033; }
@@ -212,6 +242,13 @@
     body.light-theme .detail-price-card { background:#fff; border-color:rgba(38,61,99,.12); }
     .detail-price-card .label { color:var(--muted); font-size:12px; margin-bottom:6px; }
     .detail-price-card .value { font-size:20px; font-weight:900; }
+    .risk-card { grid-column:1/-1; border:1px solid rgba(255,91,110,.28); border-radius:16px; padding:12px; background:rgba(255,91,110,.08); }
+    .risk-card.low { border-color:rgba(35,199,122,.22); background:rgba(35,199,122,.07); }
+    .risk-card.watch { border-color:rgba(255,209,102,.28); background:rgba(255,209,102,.08); }
+    .risk-card.medium { border-color:rgba(255,145,77,.32); background:rgba(255,145,77,.09); }
+    .risk-card.high { border-color:rgba(255,91,110,.38); background:rgba(255,91,110,.10); }
+    .risk-card strong { display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:6px; }
+    .risk-card ul { margin:6px 0 0 18px; padding:0; color:var(--muted); font-size:12px; }
     .detail-actions { display:flex; justify-content:flex-end; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
     .detail-table { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; }
     .detail-row { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:11px 12px; background:rgba(255,255,255,.025); }
@@ -219,7 +256,7 @@
     .detail-row span { color:var(--muted); font-size:12px; }
     .detail-row b { color:#edf2ff; font-size:15px; }
     body.light-theme .detail-row b { color:#132033; }
-    .analysis-switch { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin: 0 0 14px; }
+    .analysis-switch { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:10px; margin: 0 0 14px; }
     .analysis-tab-btn { border:1px solid rgba(92,110,148,.28); border-radius:16px; padding:14px 16px; background:rgba(255,255,255,.035); color:#dbe7ff; cursor:pointer; text-align:left; transition:.16s ease; }
     body.light-theme .analysis-tab-btn { background:#fff; color:#132033; border-color:rgba(38,61,99,.12); }
     .analysis-tab-btn strong { display:block; font-size:16px; margin-bottom:4px; }
@@ -228,9 +265,10 @@
     .analysis-grid { display:block; }
     .analysis-pane { display:none; }
     .analysis-pane.active { display:block; }
-    .technical-panel, .fundamental-panel { border:1px solid rgba(92,110,148,.20); border-radius:18px; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)); min-width:0; }
+    .technical-panel, .fundamental-panel, .autochart-panel { border:1px solid rgba(92,110,148,.20); border-radius:18px; padding:14px; background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)); min-width:0; }
     .fundamental-panel { border-color:rgba(78,240,192,.18); background:linear-gradient(180deg, rgba(78,240,192,.055), rgba(100,181,255,.025)); }
-    body.light-theme .technical-panel, body.light-theme .fundamental-panel { background:#fff; border-color:rgba(38,61,99,.12); }
+    .autochart-panel { border-color:rgba(100,181,255,.22); background:linear-gradient(180deg, rgba(100,181,255,.06), rgba(122,116,255,.03)); }
+    body.light-theme .technical-panel, body.light-theme .fundamental-panel, body.light-theme .autochart-panel { background:#fff; border-color:rgba(38,61,99,.12); }
     .analysis-title { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px; }
     .analysis-title h4 { margin:0; font-size:18px; }
     .analysis-title p { margin:4px 0 0; color:var(--muted); font-size:12px; }
@@ -238,6 +276,14 @@
     .fundamental-tool { border:1px solid rgba(92,110,148,.20); border-radius:16px; padding:13px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); min-height:74px; min-width:0; }
     body.light-theme .fundamental-tool { background:#f8fbff; border-color:rgba(38,61,99,.12); }
     .fundamental-tool span { display:block; color:var(--muted); font-size:11px; margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .autochart-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
+    .autochart-card { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding:12px; background:rgba(255,255,255,.03); }
+    body.light-theme .autochart-card { background:#f8fbff; border-color:rgba(38,61,99,.12); }
+    .autochart-card span { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
+    .autochart-card b { font-size:18px; color:var(--text); }
+    .autochart-note { color:var(--muted); font-size:12px; line-height:1.6; margin-top:12px; }
+    .autochart-links { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .autochart-links a { color:var(--accent); font-weight:700; }
     .fundamental-tool b { display:block; font-size:18px; color:#fff; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .fundamental-tool small { display:block; color:var(--muted); margin-top:4px; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     body.light-theme .fundamental-tool b { color:#132033; }
@@ -445,7 +491,7 @@
     <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
     <nav class="main-tabs"><a class="chip-btn active" data-tab="stocks" href="/stocks">Chứng Khoán</a><a class="chip-btn" data-tab="warrants" href="/warrants">Chứng Quyền</a><a class="chip-btn" data-tab="news" href="/news-page">Tin Tức</a><a class="chip-btn" href="/account">Account</a></nav>
     <section class="tab-panel active" id="stocksPanel"><section class="panel market-panel"><div class="section-head"><div><h3>Market Overview</h3></div></div><div class="index-overview" id="indexOverview"><div class="index-card"><span>Đang tải</span><b>-</b><small>VN-Index / HNX / UPCOM</small></div></div><div class="section-head"><div><h3>Danh mục quan tâm</h3><p id="marketStatus">Đang tải dữ liệu giá...</p></div></div><div class="stock-search-bar"><div class="stock-search-wrap"><input id="stockSearchInput" type="text" placeholder="Tìm mã cổ phiếu, ví dụ: VNM, MSN, TCB..." autocomplete="off" /><div class="search-suggest" id="stockSuggest"></div></div><div class="stock-actions"><button class="reload-btn" id="stockSearchBtn">Thêm</button><button class="chip-btn remove-btn" id="stockRemoveBtn">Xóa khỏi danh mục</button></div></div><div class="sector-grid" id="marketGrid"></div><div class="filter-board" id="stockFilterBoard"><div class="section-head"><div><h3>STRATEGY FILTER</h3><p id="stockFilterStatus"></p></div></div><div class="filter-tabs"><button class="filter-tab active" data-filter-mode="technical">Technical Analysis</button><button class="filter-tab" data-filter-mode="fundamental">Fundamental Analysis</button></div><div class="filter-criteria" id="stockFilterCriteria"></div><div class="filter-grid" id="stockFilterGrid"><div class="empty">Đang tải bộ lọc...</div></div></div></section></section>
-    <section class="tab-panel" id="warrantsPanel"><section class="panel warrant-panel"><div class="section-head"><div><h3>Danh mục chứng quyền quan tâm</h3><p id="warrantStatus">Đang tải dữ liệu chứng quyền...</p></div></div><div class="stock-search-bar"><div class="stock-search-wrap"><input id="warrantSearchInput" type="text" placeholder="Tìm mã chứng quyền, ví dụ: CMWG2511..." autocomplete="off" /><div class="search-suggest" id="warrantSuggest"></div></div><div class="stock-actions"><button class="reload-btn" id="warrantAddBtn">Thêm</button><button class="chip-btn remove-btn" id="warrantRemoveBtn">Xóa khỏi danh mục</button></div></div><div class="warrant-grid" id="warrantGrid"><div class="warrant-card"><strong>Đang tải</strong><p class="muted">Đang đọc dữ liệu chứng quyền local.</p></div></div></section></section>
+    <section class="tab-panel" id="warrantsPanel"><section class="panel warrant-panel"><div class="section-head"><div><h3>Bộ lọc chứng quyền</h3><p id="warrantStatus">Đang tải dữ liệu chứng quyền...</p></div></div><div class="cw-filter-box"><div class="cw-filter-tools"><label>Mã cơ sở<input id="cwUnderlyingInput" type="text" placeholder="VD: MWG, FPT, HPG" autocomplete="off" /></label><label>Giá mục tiêu cổ phiếu cơ sở<input id="cwTargetInput" type="number" placeholder="VD: 85000" step="100" autocomplete="off" /></label><label>Đáo hạn còn lại tối thiểu (ngày)<input id="cwMinDaysInput" type="number" value="30" min="0" max="365" step="1" /></label><label>Số kết quả<input id="cwLimitInput" type="number" value="10" min="3" max="30" step="1" /></label><button class="reload-btn" id="cwFilterBtn">Lọc CW tốt nhất</button></div><div class="cw-score-note">Xếp hạng ưu tiên: upside theo giá mục tiêu → thanh khoản/spread → rủi ro/time decay. Dữ liệu chỉ tham khảo, không phải khuyến nghị mua bán.</div><div class="cw-filter-results" id="cwFilterResults"></div></div><div class="section-head" style="margin-top:14px;"><div><h3>Danh mục chứng quyền quan tâm</h3></div></div><div class="stock-search-bar"><div class="stock-search-wrap"><input id="warrantSearchInput" type="text" placeholder="Tìm mã chứng quyền, ví dụ: CMWG2511..." autocomplete="off" /><div class="search-suggest" id="warrantSuggest"></div></div><div class="stock-actions"><button class="reload-btn" id="warrantAddBtn">Thêm</button><button class="chip-btn remove-btn" id="warrantRemoveBtn">Xóa khỏi danh mục</button></div></div><div class="warrant-grid" id="warrantGrid"><div class="warrant-card"><strong>Đang tải</strong><p class="muted">Đang đọc dữ liệu chứng quyền local.</p></div></div></section></section>
     <section class="tab-panel" id="newsPanel"><section class="layout"><main class="panel feed-panel"><div class="section-head"><div><h3>Dòng tin</h3><p id="statusText">Đang tải...</p></div></div><div class="hero-actions categories" id="categoryBar" style="margin:0 0 14px;"></div><div class="news-list" id="newsList"></div><div class="section-head" style="margin-top:16px;"><div class="categories" style="align-items:center;"><button class="chip-btn" id="prevPageBtn">← Lùi</button><input id="pageInput" type="number" min="1" value="1" autocomplete="off" style="width:90px;background:var(--panel-2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px;" /><button class="chip-btn" id="goPageBtn">Đi tới</button><button class="chip-btn" id="nextPageBtn">Tiếp →</button></div><p id="pageInfo">Trang 1/1</p></div></main></section></section>
     <div class="disclaimer-box"><b>Lưu ý:</b> Dữ liệu chỉ phục vụ tham khảo, không phải khuyến nghị mua bán. Người dùng tự chịu trách nhiệm với quyết định đầu tư.</div>
   </div>
@@ -463,14 +509,14 @@
     const db = getFirestore(firebaseApp);
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '2026-04-29-warrant-suggest-v4';
+    const APP_CACHE_VERSION = '2026-06-01-main-clean-live-v2-cw-safe';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
-    const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
-    const elements = { apiStatus: document.getElementById('apiStatus'), themeToggle: document.getElementById('themeToggle'), langViBtn: document.getElementById('langViBtn'), langEnBtn: document.getElementById('langEnBtn'), tickerTrack: document.getElementById('tickerTrack'), categoryBar: document.getElementById('categoryBar'), heroTitle: document.getElementById('heroTitle'), heroSummary: document.getElementById('heroSummary'), statusText: document.getElementById('statusText'), newsList: document.getElementById('newsList'), summaryText: document.getElementById('summaryText'), marketStatus: document.getElementById('marketStatus'), indexOverview: document.getElementById('indexOverview'), marketGrid: document.getElementById('marketGrid'), stockFilterStatus: document.getElementById('stockFilterStatus'), stockFilterCriteria: document.getElementById('stockFilterCriteria'), stockFilterGrid: document.getElementById('stockFilterGrid'), stockSearchInput: document.getElementById('stockSearchInput'), stockSearchBtn: document.getElementById('stockSearchBtn'), stockRemoveBtn: document.getElementById('stockRemoveBtn'), stockSuggest: document.getElementById('stockSuggest'), detailModal: document.getElementById('detailModal'), detailTitle: document.getElementById('detailTitle'), detailSub: document.getElementById('detailSub'), detailStats: document.getElementById('detailStats'), addDetailBtn: document.getElementById('addDetailBtn'), removeDetailBtn: document.getElementById('removeDetailBtn'), closeDetailBtn: document.getElementById('closeDetailBtn'), prevPageBtn: document.getElementById('prevPageBtn'), nextPageBtn: document.getElementById('nextPageBtn'), goPageBtn: document.getElementById('goPageBtn'), pageInput: document.getElementById('pageInput'), pageInfo: document.getElementById('pageInfo'), tabs: document.querySelectorAll('[data-tab]'), stocksPanel: document.getElementById('stocksPanel'), warrantsPanel: document.getElementById('warrantsPanel'), warrantStatus: document.getElementById('warrantStatus'), warrantGrid: document.getElementById('warrantGrid'), warrantModal: document.getElementById('warrantModal'), warrantTitle: document.getElementById('warrantTitle'), warrantSub: document.getElementById('warrantSub'), warrantStats: document.getElementById('warrantStats'), closeWarrantBtn: document.getElementById('closeWarrantBtn'), removeWarrantDetailBtn: document.getElementById('removeWarrantDetailBtn'), warrantSearchInput: document.getElementById('warrantSearchInput'), warrantSuggest: document.getElementById('warrantSuggest'), addWarrantDetailBtn: document.getElementById('addWarrantDetailBtn'), warrantAddBtn: document.getElementById('warrantAddBtn'), warrantRemoveBtn: document.getElementById('warrantRemoveBtn'), newsPanel: document.getElementById('newsPanel'), helpFab: document.getElementById('helpFab'), helpModal: document.getElementById('helpModal'), closeHelpBtn: document.getElementById('closeHelpBtn') };
+    const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Luật BĐS', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
+    const elements = { apiStatus: document.getElementById('apiStatus'), themeToggle: document.getElementById('themeToggle'), langViBtn: document.getElementById('langViBtn'), langEnBtn: document.getElementById('langEnBtn'), tickerTrack: document.getElementById('tickerTrack'), categoryBar: document.getElementById('categoryBar'), heroTitle: document.getElementById('heroTitle'), heroSummary: document.getElementById('heroSummary'), statusText: document.getElementById('statusText'), newsList: document.getElementById('newsList'), summaryText: document.getElementById('summaryText'), marketStatus: document.getElementById('marketStatus'), indexOverview: document.getElementById('indexOverview'), marketGrid: document.getElementById('marketGrid'), stockFilterStatus: document.getElementById('stockFilterStatus'), stockFilterCriteria: document.getElementById('stockFilterCriteria'), stockFilterGrid: document.getElementById('stockFilterGrid'), stockSearchInput: document.getElementById('stockSearchInput'), stockSearchBtn: document.getElementById('stockSearchBtn'), stockRemoveBtn: document.getElementById('stockRemoveBtn'), stockSuggest: document.getElementById('stockSuggest'), detailModal: document.getElementById('detailModal'), detailTitle: document.getElementById('detailTitle'), detailSub: document.getElementById('detailSub'), detailStats: document.getElementById('detailStats'), addDetailBtn: document.getElementById('addDetailBtn'), removeDetailBtn: document.getElementById('removeDetailBtn'), closeDetailBtn: document.getElementById('closeDetailBtn'), prevPageBtn: document.getElementById('prevPageBtn'), nextPageBtn: document.getElementById('nextPageBtn'), goPageBtn: document.getElementById('goPageBtn'), pageInput: document.getElementById('pageInput'), pageInfo: document.getElementById('pageInfo'), tabs: document.querySelectorAll('[data-tab]'), stocksPanel: document.getElementById('stocksPanel'), warrantsPanel: document.getElementById('warrantsPanel'), warrantStatus: document.getElementById('warrantStatus'), warrantGrid: document.getElementById('warrantGrid'), warrantModal: document.getElementById('warrantModal'), warrantTitle: document.getElementById('warrantTitle'), warrantSub: document.getElementById('warrantSub'), warrantStats: document.getElementById('warrantStats'), closeWarrantBtn: document.getElementById('closeWarrantBtn'), removeWarrantDetailBtn: document.getElementById('removeWarrantDetailBtn'), warrantSearchInput: document.getElementById('warrantSearchInput'), warrantSuggest: document.getElementById('warrantSuggest'), addWarrantDetailBtn: document.getElementById('addWarrantDetailBtn'), warrantAddBtn: document.getElementById('warrantAddBtn'), warrantRemoveBtn: document.getElementById('warrantRemoveBtn'), cwUnderlyingInput: document.getElementById('cwUnderlyingInput'), cwTargetInput: document.getElementById('cwTargetInput'), cwMinDaysInput: document.getElementById('cwMinDaysInput'), cwLimitInput: document.getElementById('cwLimitInput'), cwFilterBtn: document.getElementById('cwFilterBtn'), cwFilterResults: document.getElementById('cwFilterResults'), newsPanel: document.getElementById('newsPanel'), helpFab: document.getElementById('helpFab'), helpModal: document.getElementById('helpModal'), closeHelpBtn: document.getElementById('closeHelpBtn') };
     const PAGE_SIZE = 5; const SECTORS = ['Ngân Hàng', 'Chứng Khoán', 'BĐS', 'Thép', 'Bán Lẻ & Thực Phẩm', 'Dầu Khí', 'Năng Lượng', 'Khác']; const SECTOR_MAP = { 'Ngân Hàng': ['VCB','BID','CTG','TCB','MBB','ACB','VPB','STB','HDB','TPB','EIB','SHB','LPB','VIB','OCB','MSB','SSB'], 'Chứng Khoán': ['SSI','VND','VCI','HCM','MBS','SHS','VIX','FTS','CTS','BSI','ORS'], 'BĐS': ['VIC','VHM','VRE','NVL','PDR','DXG','DIG','KDH','NLG','CEO','HDC','IJC','TCH','SCR'], 'Thép': ['HPG','HSG','NKG','SMC','TLH','VGS'], 'Bán Lẻ & Thực Phẩm': ['MWG','FRT','DGW','PET','MSN','VNM','SAB','KDC','DBC','BAF','PAN','QNS'], 'Dầu Khí': ['GAS','PVD','PVS','PLX','PVT','BSR','OIL','PVC'], 'Năng Lượng': ['POW','REE','NT2','GEG','HDG','PC1','GEX','BCG','TTA','QTP','VSH'] }; let allItems = []; let filteredItems = []; let activeCategory = 'Tổng hợp';
     let currentFilterMode = 'technical'; let autoRefreshTimer = null; let currentPage = 1; let marketItems = []; let watchSymbols = []; let authReady = false; let currentUserId = ''; let watchlistUnsubscribe = null; let selectedSymbol = ''; let warrantItems = []; let warrantWatchSymbols = []; let warrantWatchlistUnsubscribe = null; let selectedWarrant = '';
-    let activeWarrantCode = ''; let activeDetailTicker = ''; const detailFetchState = new Map(); const DETAIL_CACHE_MS = 180000;
+    let activeWarrantCode = ''; let activeDetailTicker = ''; const detailFetchState = new Map(); const DETAIL_CACHE_MS = 180000; const chartRangeState = new Map(); const autoChartCache = new Map();
     function applyTheme(theme){ const light = theme === 'light'; let lang='vi'; try{ lang=localStorage.getItem('lh.lang') || 'vi'; }catch(_){} document.body.classList.toggle('light-theme', light); if(elements.themeToggle) elements.themeToggle.textContent = light ? (lang === 'en' ? '☀️ Light' : '☀️ Sáng') : (lang === 'en' ? '🌙 Dark' : '🌙 Tối'); try{localStorage.setItem('hoa.theme', theme);}catch(_){} }
     applyTheme((()=>{try{return localStorage.getItem('hoa.theme') || 'dark';}catch(_){return 'dark';}})());
     if(elements.themeToggle) elements.themeToggle.addEventListener('click',()=>applyTheme(document.body.classList.contains('light-theme')?'dark':'light'));
@@ -516,11 +562,11 @@
     function formatTime(value) { if (!value) return 'Không rõ thời gian'; const raw = String(value).trim(); const d = new Date(raw); if (!Number.isNaN(d.getTime())) { const now = new Date(); const tz = 'Asia/Ho_Chi_Minh'; const sameDay = d.toLocaleDateString('vi-VN', { timeZone: tz }) === now.toLocaleDateString('vi-VN', { timeZone: tz }); const opts = sameDay ? { timeZone: tz, hour: '2-digit', minute: '2-digit' } : { timeZone: tz, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }; return d.toLocaleString('vi-VN', opts).replace(',', ' •'); } return raw.replace(/^[A-Za-z]{3},\s*/,'').replace(/\s*\+0700$/,'').replace(/GMT\+7|GMT\+0700/,'').trim(); }
     function stripHtmlTags(value) { return String(value ?? '').replace(/<[^>]*>/g, ' ').replace(/\*\*(.*?)\*\*/g, '$1').replace(/__(.*?)__/g, '$1').replace(/\s+/g, ' ').trim(); }
     function highlightNewsNumbers(text='') { return escapeHtml(text).replace(/((?:\d{1,3}(?:[.,]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|tỷ|triệu|nghìn|đồng|VND|USD|cp|cổ phiếu|lần|x|điểm|ha|MW|kWh|năm|tháng|ngày)?)/gi, '<b class="news-number">$1</b>'); }
-    function inferCategory(item) { const explicit = String(item.category || item.category_name || '').trim(); if (DEFAULT_CATEGORIES.includes(explicit)) return explicit; const text = `${item.title || ''} ${item.snippet || ''} ${item.source || ''}`.toLowerCase(); if (/phạt|xử phạt|khởi tố|vi phạm|điều tra|pháp luật|thao túng|bắt giữ|ủy ban chứng khoán|khai sai thuế/.test(text)) return 'Pháp luật'; if (/bất động sản|địa ốc|nhà ở|khu công nghiệp|vinhome|novaland|vhm|vic|vre|nvl|kdh|pdr|dxg|dig|nlg/.test(text)) return 'Bất động sản'; if (/ngân hàng|bank|lãi suất|tín dụng|nợ xấu|nhnn|omo|vcb|bid|ctg|tcb|vpb|mbb|acb|stb|hdb|vib/.test(text)) return 'Ngân hàng'; if (/gdp|cpi|lạm phát|tỷ giá|xuất khẩu|nhập khẩu|fdi|pmi|vĩ mô|kinh tế việt nam|ngân sách|trái phiếu|tăng trưởng/.test(text)) return 'Vĩ mô'; if (/fed|dow jones|nasdaq|s&p|trung quốc|mỹ|châu âu|nhật bản|hàn quốc|quốc tế|toàn cầu|gold|bitcoin/.test(text)) return 'Quốc tế'; if (/doanh nghiệp|lợi nhuận|doanh thu|cổ tức|đhcđ|kế hoạch kinh doanh|báo cáo tài chính|kqkd|lãi ròng|quý 1|quý i|hpg|fpt|mwg|msn|vnm|gas|vjc|gmd|dgc|ree|pvoil|pv oil/.test(text)) return 'Doanh nghiệp'; if (/vn-index|vnindex|hnx-index|upcom|chứng khoán|cổ phiếu|thị trường|thanh khoản|khối ngoại|tự doanh|phái sinh|margin|niêm yết|hose|hnx|upcom/.test(text)) return 'Chứng khoán'; return 'Khác'; }
+    function inferCategory(item) { const explicit = String(item.category || item.category_name || '').trim(); if (DEFAULT_CATEGORIES.includes(explicit)) return explicit; const text = `${item.title || ''} ${item.snippet || ''} ${item.source || ''}`.toLowerCase(); if (/(luật đất đai|luật nhà ở|luật kinh doanh bất động sản|nghị định|thông tư|quy định|pháp lý|sổ đỏ|giá đất|bảng giá đất|đấu giá đất|giao đất|thu hồi đất|bồi thường|giải phóng mặt bằng|quy hoạch sử dụng đất|tiền sử dụng đất|thuvienphapluat)/.test(text) && /(bất động sản|địa ốc|nhà ở|đất đai|dự án|quy hoạch)/.test(text)) return 'Luật BĐS'; if (/bất động sản|địa ốc|nhà ở|khu công nghiệp|hạ tầng kỹ thuật|htkt|cao tốc|vành đai|metro|sân bay|cảng|cầu|đường bộ|quốc lộ|tỉnh lộ|nút giao|vinhome|novaland|vhm|vic|vre|nvl|kdh|pdr|dxg|dig|nlg/.test(text)) return 'Bất động sản'; if (/phạt|xử phạt|khởi tố|vi phạm|điều tra|pháp luật|thao túng|bắt giữ|ủy ban chứng khoán|khai sai thuế/.test(text)) return 'Pháp luật'; if (/ngân hàng|bank|lãi suất|tín dụng|nợ xấu|nhnn|omo|vcb|bid|ctg|tcb|vpb|mbb|acb|stb|hdb|vib/.test(text)) return 'Ngân hàng'; if (/gdp|cpi|lạm phát|tỷ giá|xuất khẩu|nhập khẩu|fdi|pmi|vĩ mô|kinh tế việt nam|ngân sách|trái phiếu|tăng trưởng/.test(text)) return 'Vĩ mô'; if (/fed|dow jones|nasdaq|s&p|trung quốc|mỹ|châu âu|nhật bản|hàn quốc|quốc tế|toàn cầu|gold|bitcoin/.test(text)) return 'Quốc tế'; if (/doanh nghiệp|lợi nhuận|doanh thu|cổ tức|đhcđ|kế hoạch kinh doanh|báo cáo tài chính|kqkd|lãi ròng|quý 1|quý i|hpg|fpt|mwg|msn|vnm|gas|vjc|gmd|dgc|ree|pvoil|pv oil/.test(text)) return 'Doanh nghiệp'; if (/vn-index|vnindex|hnx-index|upcom|chứng khoán|cổ phiếu|thị trường|thanh khoản|khối ngoại|tự doanh|phái sinh|margin|niêm yết|hose|hnx|upcom/.test(text)) return 'Chứng khoán'; return 'Khác'; }
     function pageToTab(path = window.location.pathname) { if (path.startsWith('/warrants')) return 'warrants'; if (path.startsWith('/news-page')) return 'news'; return 'stocks'; }
     function switchTab(tab, push = false) { const paths = { stocks: '/stocks', warrants: '/warrants', news: '/news-page' }; elements.tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab)); elements.stocksPanel.classList.toggle('active', tab === 'stocks'); elements.warrantsPanel.classList.toggle('active', tab === 'warrants'); elements.newsPanel.classList.toggle('active', tab === 'news'); if (push && paths[tab]) history.pushState({ tab }, '', paths[tab]); if (push && typeof loadData === 'function') loadData(false, true); }
     
-    const CATEGORY_EN = { 'Tổng hợp':'All', 'Chứng khoán':'Stocks', 'Ngân hàng':'Banks', 'Bất động sản':'Real Estate', 'Doanh nghiệp':'Companies', 'Vĩ mô':'Macro', 'Quốc tế':'Global', 'Pháp luật':'Legal', 'Khác':'Other' };
+    const CATEGORY_EN = { 'Tổng hợp':'All', 'Chứng khoán':'Stocks', 'Ngân hàng':'Banks', 'Bất động sản':'Real Estate', 'Luật BĐS':'Real Estate Law', 'Doanh nghiệp':'Companies', 'Vĩ mô':'Macro', 'Quốc tế':'Global', 'Pháp luật':'Legal', 'Khác':'Other' };
     const CATEGORY_VI_BY_EN = Object.fromEntries(Object.entries(CATEGORY_EN).map(([vi,en]) => [en, vi]));
     function categoryLabel(cat) { return currentLang === 'en' ? (CATEGORY_EN[cat] || cat) : (CATEGORY_VI_BY_EN[cat] || cat); }
     function newsText(vi, en) { return currentLang === 'en' ? en : vi; }
@@ -547,7 +593,11 @@
       </div>`; }
     function bindFundamentalCalc(panelId, baseTarget) { const root = document.getElementById(panelId); if (!root) return; const discountEl = root.querySelector('[data-discount]'); const buyEl = root.querySelector('[data-buy-price]'); const targetEl = root.querySelector('[data-target-result]'); const profitEl = root.querySelector('[data-profit-result]'); const recalc = () => { const discount = Math.max(0, Math.min(80, Number(discountEl?.value || 0))); let buy = Number(buyEl?.value || 0); if (buy > 0 && buy < 1000) buy = buy * 1000; const target = baseTarget ? baseTarget * (1 - discount / 100) : 0; const profitPct = buy > 0 && target > 0 ? ((target / buy - 1) * 100) : null; if (targetEl) targetEl.textContent = target ? formatPrice(target) : '-'; if (profitEl) { profitEl.textContent = profitPct === null ? '-' : `${profitPct >= 0 ? '+' : ''}${profitPct.toFixed(1)}%`; profitEl.className = profitPct === null ? '' : (profitPct >= 0 ? 'market-up' : 'market-down'); } }; discountEl?.addEventListener('input', recalc); buyEl?.addEventListener('input', recalc); recalc(); }
     async function loadFundamentalSignals(symbol) { try { const res = await fetch(`/data/fundamental_signals.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) return { items: [], status: 'error' }; const payload = await res.json(); const sym = String(symbol || '').toUpperCase(); const items = (payload.items || payload.signals || []).filter(x => String(x.symbol || '').toUpperCase() === sym).slice(0,50); return { symbol: sym, items, status: 'ok' }; } catch (_) { return { items: [], status: 'error' }; } }
+    async function loadDistributionRisk(symbol) { try { const res = await fetch(`/data/distribution_risk_cache.json?ts=${Date.now()}`, { cache:'no-store' }); if (!res.ok) return null; const payload = await res.json(); const sym = String(symbol || '').toUpperCase(); return (payload.items || []).find(x => String(x.symbol || '').toUpperCase() === sym) || null; } catch(_) { return null; } }
+    function renderDistributionRiskCard(risk) { if (!risk) return ''; const cls = String(risk.level || 'LOW').toLowerCase(); const title = risk.level === 'HIGH' ? 'Cảnh báo phân phối/chuẩn bị đạp' : risk.level === 'MEDIUM' ? 'Theo dõi rủi ro phân phối' : risk.level === 'WATCH' ? 'Watch rủi ro' : 'Rủi ro thấp'; const reasons = (risk.reasons || []).slice(0,5).map(x => `<li>${escapeHtml(x)}</li>`).join(''); return `<div class="risk-card ${cls}"><strong><span>${escapeHtml(title)}</span><b>${escapeHtml(String(risk.score))}/100</b></strong><div>RSI ${escapeHtml(String(risk.rsi14 ?? '-'))} • Vol nền ${escapeHtml(String(risk.volumeRatio ?? '-'))}x • Cản ${escapeHtml(String(risk.resistance ?? '-'))}</div>${reasons ? `<ul>${reasons}</ul>` : ''}</div>`; }
     async function loadFundamentalAverage(symbol) { try { const res = await fetch(`/data/fundamental_top_upside.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) return null; const payload = await res.json(); return (payload.items || []).find(x => String(x.symbol || '').toUpperCase() === String(symbol || '').toUpperCase()) || null; } catch (_) { return null; } }
+    async function loadAutoChart(symbol, timeframe = 'week') { const sym = String(symbol || '').trim().toUpperCase(); const key = `${sym}:${timeframe}`; if (autoChartCache.has(key)) return autoChartCache.get(key); const urls = [`/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(timeframe)}.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(timeframe)}.json?ts=${Date.now()}`]; for (const url of urls) { try { const res = await fetch(url, { cache: 'no-store' }); if (!res.ok) continue; const payload = await res.json(); autoChartCache.set(key, payload); return payload; } catch (_) {} } return null; }
+    function renderAutoChartPanel(symbol, payload, timeframe = 'week') { const sym = String(symbol || '').toUpperCase(); if (!payload) return `<div class="autochart-panel"><div class="empty error">Không tải được Auto-chart cho ${escapeHtml(sym)}.</div></div>`; const isNewAutoChart = payload && payload.summary; const trendlines = isNewAutoChart ? Number(payload?.summary?.trendlines || 0) : (Array.isArray(payload?.trendlines) ? payload.trendlines.length : 0); const parallelChannels = Number(payload?.summary?.parallelChannels || 0); const pitchforks = Number(payload?.summary?.pitchforks || 0); const linregChannels = Number(payload?.summary?.linregChannels || 0); const srLevels = Number(payload?.summary?.srLevels || 0); const patterns = isNewAutoChart ? Number(payload?.summary?.patterns || 0) : (Array.isArray(payload?.patterns) ? payload.patterns.length : 0); const candlestickSignals = Number(payload?.summary?.candlestickSignals || 0); const rows = Array.isArray(payload?.rows) ? payload.rows : []; const last = rows.length ? rows[rows.length - 1] : null; const bias = payload?.summary?.currentBias || payload?.trendline?.trend || payload?.srZones?.status || 'neutral'; const biasCls = /tăng|bull|up/i.test(String(bias)) ? 'market-up' : (/giảm|bear|down/i.test(String(bias)) ? 'market-down' : 'market-flat'); const support = payload?.summary?.nearestSupport || payload?.trendline?.support || payload?.srZones?.support || null; const resistance = payload?.summary?.nearestResistance || payload?.trendline?.resistance || payload?.srZones?.resistance || null; const asOfPrice = payload?.asOfPrice || last?.close || 0; const jsonUrl = isNewAutoChart ? `/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(timeframe)}.json` : `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(timeframe)}.json`; return `<div class="autochart-panel"><div class="analysis-title"><div><h4>Auto-chart ${escapeHtml(sym)} (${escapeHtml(timeframe)})</h4><p>${isNewAutoChart ? 'Đang đọc đúng file auto-chart mới' : 'Đang fallback sang chart JSON cũ'}</p></div></div><div class="detail-table"><div class="detail-row"><span>Bias / trạng thái</span><b class="${biasCls}">${escapeHtml(String(bias || '-'))}</b></div><div class="detail-row"><span>Giá hiện tại</span><b>${escapeHtml(formatNumber(asOfPrice || 0))}</b></div><div class="detail-row"><span>Support gần nhất</span><b>${support ? escapeHtml(formatNumber(support)) : '-'}</b></div><div class="detail-row"><span>Resistance gần nhất</span><b>${resistance ? escapeHtml(formatNumber(resistance)) : '-'}</b></div></div><div class="autochart-grid"><div class="autochart-card"><span>Trendlines</span><b>${escapeHtml(String(trendlines))}</b></div><div class="autochart-card"><span>Parallel channels</span><b>${escapeHtml(String(parallelChannels))}</b></div><div class="autochart-card"><span>Pitchforks</span><b>${escapeHtml(String(pitchforks))}</b></div><div class="autochart-card"><span>Linreg channels</span><b>${escapeHtml(String(linregChannels))}</b></div><div class="autochart-card"><span>S/R levels</span><b>${escapeHtml(String(srLevels))}</b></div><div class="autochart-card"><span>Patterns</span><b>${escapeHtml(String(patterns))}</b></div><div class="autochart-card"><span>Candlestick signals</span><b>${escapeHtml(String(candlestickSignals))}</b></div><div class="autochart-card"><span>Nến dữ liệu</span><b>${escapeHtml(String(rows.length || 0))}</b></div></div><div class="autochart-links"><a href="${escapeHtml(jsonUrl)}" target="_blank" rel="noreferrer">Mở JSON Auto-chart</a></div><div class="autochart-note">Tab này đã ưu tiên file auto-chart mới bữa giờ mình làm. Nếu không có file mới cho mã nào đó thì mới fallback sang chart JSON cũ.</div></div>`; }
     async function loadFundamentalAveragesBySymbols(symbols = []) { const wanted = symbols.map(x => String(x || '').toUpperCase()).filter(Boolean); if (!wanted.length) return {}; try { const payload = await Promise.all(wanted.map(sym => loadFundamentalAverage(sym))); const out = {}; payload.forEach(item => { if (item?.symbol) out[String(item.symbol).toUpperCase()] = item; }); return out; } catch (_) { return {}; } }
     async function loadIndexOverview() { if (!elements.indexOverview) return; try { const res = await fetch(`/data/market_overview.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('overview'); const payload = await res.json(); const items = Array.isArray(payload?.items) ? payload.items : []; elements.indexOverview.innerHTML = items.length ? items.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.change || 0) > 0 ? '+' : ''; const pctSign = Number(item.changePct || 0) > 0 ? '+' : ''; return `<div class="index-card"><span>${escapeHtml(item.label || item.symbol || '')}</span><b class="${cls}">${escapeHtml(formatNumber(item.close))}</b><small class="${cls}">${sign}${escapeHtml(formatNumber(item.change))} • ${pctSign}${escapeHtml(formatNumber(item.changePct))}%</small></div>`; }).join('') : '<div class="index-card"><span>Market Overview</span><b>-</b><small>Chưa có dữ liệu chỉ số</small></div>'; } catch (_) { elements.indexOverview.innerHTML = '<div class="index-card"><span>Market Overview</span><b>-</b><small>Không tải được dữ liệu chỉ số</small></div>'; } }
     function getChangeClass(change) { const n = Number(change || 0); if (n > 0) return 'market-up'; if (n < 0) return 'market-down'; return 'market-flat'; }
@@ -564,16 +614,79 @@
       return map.reduce((out, pair) => out.replaceAll(pair[0], pair[1]), raw);
     }
 
+
+
+    function normalizeVnPrice(v) { const n = Number(v || 0); return n > 0 && n < 1000 ? Math.round(n * 1000) : n; }
+    async function fetchUnderlyingRealtime(symbol) { const sym = String(symbol || '').toUpperCase().replace(/[^A-Z0-9]/g,''); if (!sym) return null; const cached = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === sym); if (cached?.price) return normalizeVnPrice(cached.price); return null; }
+    async function refreshUnderlyingPricesForWarrants(symbols = []) { const wanted = [...new Set(symbols.map(x => String(x || '').toUpperCase()).filter(Boolean))].slice(0, 20); if (!wanted.length) return; const prices = await Promise.all(wanted.map(async sym => [sym, await fetchUnderlyingRealtime(sym)])); const priceMap = Object.fromEntries(prices.filter(([,p]) => Number(p) > 0)); warrantItems = warrantItems.map(item => { const sym = String(item.underlying || '').toUpperCase(); const underlyingPrice = priceMap[sym] || normalizeVnPrice(item.underlyingPrice || item.lastUnderlyingPrice || item.refUnderlyingPrice || 0); if (!underlyingPrice) return item; const exercise = Number(item.exercisePrice || 0); const ratio = Number(item.conversionRatio || 1) || 1; const cwPrice = Number(item.marketPrice || item.lastPrice || item.ask || 0); const intrinsicValue = exercise ? Math.max(0, (underlyingPrice - exercise) / ratio) : item.intrinsicValue; const timeValue = cwPrice ? Math.round((cwPrice - intrinsicValue) * 100) / 100 : item.timeValue; const breakeven = exercise && cwPrice ? exercise + cwPrice * ratio : item.breakeven; const breakevenGap = breakeven ? breakeven - underlyingPrice : item.breakevenGap; const breakevenGapPct = underlyingPrice ? breakevenGap / underlyingPrice * 100 : item.breakevenGapPct; const moneynessPct = exercise ? (underlyingPrice / exercise - 1) * 100 : item.moneynessPct; const moneyness = moneynessPct >= 3 ? 'ITM' : (moneynessPct <= -3 ? 'OTM' : 'ATM'); return { ...item, underlyingPrice, intrinsicValue, timeValue, breakeven, breakevenGap, breakevenGapPct, premiumPct: breakevenGapPct, moneyness, moneynessPct }; }); renderWarrants(); }
+    function riskPenalty(item) { const r = String(item.riskLevel || '').toLowerCase(); if (r.includes('rất') || r.includes('very')) return 35; if (r.includes('cao')) return 24; if (r.includes('trung bình cao')) return 18; if (r.includes('trung')) return 10; return 4; }
+    function calcWarrantOpportunity(item, targetPrice) {
+      const target = Number(targetPrice || 0); const exercise = Number(item.exercisePrice || 0); const ratio = Number(item.conversionRatio || 1) || 1; const cwPrice = Number(item.ask || item.marketPrice || item.lastPrice || item.fairValue || 0);
+      if (!(target > 0 && exercise > 0 && ratio > 0 && cwPrice > 0)) return null;
+      const targetIntrinsic = Math.max(0, (target - exercise) / ratio); const upsidePct = ((targetIntrinsic / cwPrice) - 1) * 100;
+      const volume = Number(item.volume || 0); const spreadPct = Number(item.spreadPct || 99); const days = Number(item.daysLeft || 0); const premiumPct = Number(item.premiumPct ?? item.breakevenGapPct ?? 0);
+      const liquidityScore = Math.min(30, Math.log10(Math.max(volume, 1)) * 6) + Math.max(0, 20 - Math.min(spreadPct, 20));
+      const riskScore = Math.max(0, 35 - riskPenalty(item) - (days < 14 ? 12 : days < 30 ? 6 : 0) - Math.max(0, Math.min(premiumPct, 30) / 3));
+      const score = upsidePct * 1.8 + liquidityScore + riskScore; return { targetIntrinsic, upsidePct, liquidityScore, riskScore, score, cwPrice, spreadPct, volume, days };
+    }
+    async function renderWarrantFilterResults() {
+      const sym = String(elements.cwUnderlyingInput?.value || '').trim().toUpperCase(); let target = Number(elements.cwTargetInput?.value || 0); if (target > 0 && target < 1000) target *= 1000; const minDays = Math.max(0, Number(elements.cwMinDaysInput?.value || 0)); const limit = Math.max(3, Math.min(30, Number(elements.cwLimitInput?.value || 10)));
+      if (!elements.cwFilterResults) return; if (!sym || !target) { elements.cwFilterResults.innerHTML = '<div class="empty">Nhập mã cơ sở và giá mục tiêu để lọc chứng quyền.</div>'; return; }
+      elements.cwFilterResults.innerHTML = '<div class="empty">Đang lọc chứng quyền...</div>';
+      try { await refreshUnderlyingPricesForWarrants([sym]); } catch (_) {}
+      const rows = warrantItems.filter(x => String(x.underlying || '').toUpperCase() === sym && Number(x.daysLeft || 0) >= minDays).map(item => ({ item, m: calcWarrantOpportunity(item, target) })).filter(x => x.m && Number.isFinite(x.m.upsidePct)).sort((a,b) => (b.m.upsidePct - a.m.upsidePct) || (b.m.liquidityScore - a.m.liquidityScore) || (b.m.riskScore - a.m.riskScore)).slice(0, limit);
+      elements.cwFilterResults.innerHTML = rows.length ? rows.map((row, idx) => { const item=row.item, m=row.m; const cls=m.upsidePct>=0?'market-up':'market-down'; return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}"><strong><span class="cw-rank-badge">${idx+1}</span>${escapeHtml(item.code)}<span class="${cls}">${m.upsidePct>=0?'+':''}${escapeHtml(formatNumber(m.upsidePct,1))}%</span></strong><div class="warrant-row"><span>Giá CW / giá trị tại mục tiêu</span><b>${escapeHtml(formatPrice(m.cwPrice))} / ${escapeHtml(formatPrice(m.targetIntrinsic))}</b></div><div class="warrant-row"><span>Bid-Ask / Spread</span><b>${escapeHtml(formatPrice(item.bid))}-${escapeHtml(formatPrice(item.ask))} / ${escapeHtml(formatNumber(m.spreadPct,2))}%</b></div><div class="warrant-row"><span>Volume / Rủi ro</span><b>${escapeHtml(formatVolume(m.volume))} / ${escapeHtml(translateWarrantValue(item.riskLevel || '-'))}</b></div><div class="warrant-row"><span>Hòa vốn / còn lại</span><b>${escapeHtml(formatPrice(item.breakeven))} / ${escapeHtml(m.days || '-')} ngày</b></div></div>`; }).join('') : `<div class="empty">Không tìm thấy chứng quyền cho ${escapeHtml(sym)} còn tối thiểu ${escapeHtml(minDays)} ngày hoặc thiếu dữ liệu định giá.</div>`;
+      elements.cwFilterResults.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
+    }
     function getWarrantClass(state) { const s = String(state || '').toUpperCase(); if (s === 'ITM') return 'warrant-itm'; if (s === 'ATM') return 'warrant-atm'; return 'warrant-otm'; }
     function renderWarrants() {
       if (!elements.warrantGrid) return;
       const display = warrantItems.filter(item => warrantWatchSymbols.includes(String(item.code || '').toUpperCase()));
       elements.warrantStatus.textContent = !authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Đăng nhập để dùng danh mục chứng quyền theo account.','Login to use account warrant watchlist.') : (warrantWatchSymbols.length ? `${warrantTextViEn('Đang hiển thị','Showing')} ${display.length} ${warrantTextViEn('mã chứng quyền','warrants')}` : warrantTextViEn('Danh mục chứng quyền đang trống. Thêm mã để theo dõi.','Warrant watchlist is empty. Add codes to track.')));
-      elements.warrantGrid.innerHTML = display.length ? display.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<span class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</span></strong><div class="warrant-row"><span>${warrantTextViEn('Giá hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="warrant-row"><span>${warrantTextViEn('Ngày còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft ?? '-')}</b></div></div>`; }).join('') : `<div class="empty">${!authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Vui lòng đăng nhập ở trang Account để xem danh mục chứng quyền.','Please login on Account page to view warrant watchlist.') : warrantTextViEn('Danh mục chứng quyền đang trống.','Warrant watchlist is empty.'))}</div>`; elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
+      elements.warrantGrid.innerHTML = display.length ? display.map(item => {
+        const cls = getChangeClass(item.changePct);
+        const sign = Number(item.changePct || 0) > 0 ? '+' : '';
+        const cwPrice = item.marketPrice || item.lastPrice || item.fairValue;
+        const timePerDay = (Number(item.timeValue) && Number(item.daysLeft) > 0) ? Number(item.timeValue) / Number(item.daysLeft) : null;
+        return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}">
+          <strong>${escapeHtml(item.code)}<span class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</span></strong>
+          <div class="warrant-row"><span>${warrantTextViEn('Giá trị thời gian / số ngày còn lại','Time value / days left')}</span><b>${escapeHtml(formatPrice(timePerDay))}</b></div>
+          <div class="warrant-row"><span>${warrantTextViEn('Số ngày còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft ?? '-')}</b></div>
+          <div class="warrant-row"><span>${warrantTextViEn('Giá hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div>
+        </div>`;
+      }).join('') : `<div class="empty">${!authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Vui lòng đăng nhập ở trang Account để xem danh mục chứng quyền.','Please login on Account page to view warrant watchlist.') : warrantTextViEn('Danh mục chứng quyền đang trống.','Warrant watchlist is empty.'))}</div>`;
+      elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
     }
-    function openWarrantDetail(code) {
-      const item = warrantItems.find(x => String(x.code || '').toUpperCase() === String(code || '').toUpperCase());
+    async function refreshWarrantDetails(codes = []) {
+      const list = [...new Set(codes.map(x => String(x || '').toUpperCase().replace(/[^A-Z0-9]/g,'')).filter(Boolean))].slice(0, 12);
+      if (!list.length) return;
+      try {
+        const fresh = await Promise.all(list.map(async code => {
+          const q = typeof fetchVpsQuote === 'function' ? await fetchVpsQuote(code) : null;
+          if (!q) return null;
+          const toCwVnd = (v) => { const n = Number(v || 0); return n > 0 && n < 100 ? Math.round(n * 1000) : n; };
+          return { code, marketPrice: toCwVnd(q.price), lastPrice: toCwVnd(q.price), refPrice: toCwVnd(q.refPrice), changePct: q.changePct, volume: q.volume, openPrice: toCwVnd(q.openPrice), highPrice: toCwVnd(q.highPrice), lowPrice: toCwVnd(q.lowPrice) };
+        }));
+        const byCode = new Map(warrantItems.map(x => [String(x.code || '').toUpperCase(), x]));
+        fresh.filter(Boolean).forEach(q => {
+          const old = byCode.get(q.code) || {};
+          const exercise = Number(old.exercisePrice || 0);
+          const ratio = Number(old.conversionRatio || 1) || 1;
+          const underlying = Number(old.underlyingPrice || 0);
+          const intrinsic = underlying && exercise ? Math.max(0, (underlying - exercise) / ratio) : Number(old.intrinsicValue || 0);
+          const timeValue = q.marketPrice != null && intrinsic != null ? Math.round((q.marketPrice - intrinsic) * 100) / 100 : old.timeValue;
+          const breakeven = exercise && q.marketPrice ? exercise + q.marketPrice * ratio : old.breakeven;
+          byCode.set(q.code, { ...old, ...q, timeValue, breakeven });
+        });
+        warrantItems = [...byCode.values()];
+        await refreshUnderlyingPricesForWarrants(warrantItems.filter(x => list.includes(String(x.code || '').toUpperCase())).map(x => x.underlying));
+        renderWarrants();
+      } catch (_) {}
+    }
+    async function openWarrantDetail(code) {
+      let item = warrantItems.find(x => String(x.code || '').toUpperCase() === String(code || '').toUpperCase());
       if (!item) return;
+      if (!item.marketPrice || item.changePct == null || item.timeValue == null) { await refreshWarrantDetails([code]); item = warrantItems.find(x => String(x.code || '').toUpperCase() === String(code || '').toUpperCase()) || item; }
       activeWarrantCode = String(item.code || code || '').toUpperCase();
       selectedWarrant = activeWarrantCode;
       const inWatch = warrantWatchSymbols.includes(activeWarrantCode);
@@ -582,7 +695,7 @@
       const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : '';
       elements.warrantTitle.textContent = item.code;
       elements.warrantSub.textContent = `${item.underlying || '-'} • ${item.moneyness || '-'}`;
-      elements.warrantStats.innerHTML = `<div class="detail-summary"><div class="detail-price-card"><div class="label">${warrantTextViEn('Giá hiện tại','Current price')}</div><div class="value ${cls}">${escapeHtml(formatPrice(item.marketPrice || item.lastPrice || item.fairValue))}</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('% thay đổi','Change %')}</div><div class="value ${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('Mã cơ sở','Underlying')}</div><div class="value">${escapeHtml(item.underlying || '-')}</div></div></div><div class="detail-table"><div class="detail-row"><span>${warrantTextViEn('Giá cơ sở','Underlying price')}</span><b>${escapeHtml(formatPrice(item.underlyingPrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá thực hiện','Exercise price')}</span><b>${escapeHtml(formatPrice(item.exercisePrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đòn bẩy','Leverage')}</span><b>${escapeHtml(formatNumber(item.leverage, 2))}x</b></div><div class="detail-row"><span>Bid / Ask</span><b>${escapeHtml(formatPrice(item.bid))} / ${escapeHtml(formatPrice(item.ask))}</b></div><div class="detail-row"><span>Spread</span><b>${escapeHtml(formatNumber(item.spreadPct, 2))}%</b></div><div class="detail-row"><span>Volume</span><b>${escapeHtml(formatVolume(item.volume))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị nội tại','Intrinsic value')}</span><b>${escapeHtml(formatPrice(item.intrinsicValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị thời gian','Time value')}</span><b>${escapeHtml(formatPrice(item.timeValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Rủi ro','Risk')}</span><b>${escapeHtml(translateWarrantValue(item.riskLevel || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Tín hiệu','Signal')}</span><b>${escapeHtml(translateWarrantValue(item.advancedSignal || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đáo hạn','Maturity')}</span><b>${escapeHtml(item.maturityDate || '-')}</b></div><div class="detail-row"><span>${warrantTextViEn('Còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft || '-')} ${warrantTextViEn('ngày','days')}</b></div></div><div class="stat-card" style="margin-top:12px;"><div class="label">${warrantTextViEn('Ghi chú','Note')}</div><div class="value" style="font-size:14px;line-height:1.5;">${escapeHtml(translateWarrantValue(item.analysisNote || ''))}</div></div>`;
+      elements.warrantStats.innerHTML = `<div class="detail-summary"><div class="detail-price-card"><div class="label">${warrantTextViEn('Giá hiện tại','Current price')}</div><div class="value ${cls}">${escapeHtml(formatPrice(item.marketPrice || item.lastPrice || item.fairValue))}</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('% thay đổi','Change %')}</div><div class="value ${cls}">${sign}${escapeHtml(formatNumber(item.changePct))}%</div></div><div class="detail-price-card"><div class="label">${warrantTextViEn('Mã cơ sở','Underlying')}</div><div class="value">${escapeHtml(item.underlying || '-')}</div></div></div><div class="detail-table"><div class="detail-row"><span>${warrantTextViEn('Giá cơ sở','Underlying price')}</span><b>${escapeHtml(formatPrice(item.underlyingPrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá thực hiện','Exercise price')}</span><b>${escapeHtml(formatPrice(item.exercisePrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đòn bẩy','Leverage')}</span><b>${escapeHtml(formatNumber(item.leverage, 2))}x</b></div><div class="detail-row"><span>Bid / Ask</span><b>${escapeHtml(formatPrice(item.bid))} / ${escapeHtml(formatPrice(item.ask))}</b></div><div class="detail-row"><span>Spread</span><b>${escapeHtml(formatNumber(item.spreadPct, 2))}%</b></div><div class="detail-row"><span>Volume</span><b>${escapeHtml(formatVolume(item.volume))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị nội tại','Intrinsic value')}</span><b>${escapeHtml(formatPrice(item.intrinsicValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị thời gian','Time value')}</span><b>${escapeHtml(formatPrice(item.timeValue))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá trị thời gian / ngày','Time value / day')}</span><b>${escapeHtml(formatPrice((Number(item.timeValue) && Number(item.daysLeft) > 0) ? Number(item.timeValue) / Number(item.daysLeft) : null))}</b></div><div class="detail-row"><span>${warrantTextViEn('Giá tham chiếu','Reference price')}</span><b>${escapeHtml(formatPrice(item.refPrice))}</b></div><div class="detail-row"><span>${warrantTextViEn('Rủi ro','Risk')}</span><b>${escapeHtml(translateWarrantValue(item.riskLevel || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Tín hiệu','Signal')}</span><b>${escapeHtml(translateWarrantValue(item.advancedSignal || '-'))}</b></div><div class="detail-row"><span>${warrantTextViEn('Đáo hạn','Maturity')}</span><b>${escapeHtml(item.maturityDate || '-')}</b></div><div class="detail-row"><span>${warrantTextViEn('Còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft || '-')} ${warrantTextViEn('ngày','days')}</b></div></div><div class="stat-card" style="margin-top:12px;"><div class="label">${warrantTextViEn('Ghi chú','Note')}</div><div class="value" style="font-size:14px;line-height:1.5;">${escapeHtml(translateWarrantValue(item.analysisNote || ''))}</div></div>`;
       elements.warrantModal.classList.add('open');
     }
     function searchWarrants() {
@@ -619,7 +732,7 @@
       elements.warrantStatus.textContent = `${warrantTextViEn('Đã xóa','Removed')} ${code} ${warrantTextViEn('khỏi danh mục','from watchlist')}`;
       if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
     }
-    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); renderWarrants(); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
+    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); renderWarrants(); renderWarrantFilterResults(); refreshUnderlyingPricesForWarrants([...new Set(warrantItems.map(x => x.underlying))]).catch(() => {}); const liveCodes = warrantWatchSymbols.length ? warrantWatchSymbols : warrantItems.slice(0, 12).map(x => x.code); refreshWarrantDetails(liveCodes); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
 
 
     
@@ -844,6 +957,7 @@
         const label = (key) => escapeHtml(L(key));
         const row = (name, value) => `<div class="detail-row"><span>${name}</span><b>${value}</b></div>`;
         let fundamentalLoaded = false;
+        let autoChartLoaded = false;
         const renderTechnicalFrame = (frame = 'day') => {
           const framed = computeFrameTechnical(item, frame);
           const support = framed.support || tech.activeSupportDay || tech.supportDay || tech.support || 0;
@@ -879,26 +993,38 @@
           technicalPane.querySelectorAll('[data-frame]').forEach(btn => btn.addEventListener('click', () => renderTechnicalFrame(btn.dataset.frame)));
         };
         elements.detailStats.innerHTML = `
-          <div class="stock-chart-card"><div class="stock-chart-head"><span>Biểu đồ nến + trendline tự động</span><div class="chart-legend"><span style="color:#f5c542">MA20</span><span style="color:#64b5ff">MA50</span><span style="color:#4ef0c0">Trendline</span></div></div><div class="stock-chart-box" id="stockChartBox"></div></div>
+          <div class="stock-chart-card" style="position:relative;"><div class="stock-chart-head"><div class="stock-chart-title"><span>Chart</span><small>Nến / MA / BB / MACD / RSI</small></div><div class="stock-chart-tools"><span class="indicator-pill"><button type="button" class="chart-toggle" data-chart-frame="hour">1H</button><button type="button" class="chart-toggle active" data-chart-frame="day">D</button><button type="button" class="chart-toggle" data-chart-frame="week">W</button><button type="button" class="chart-toggle" data-chart-frame="month">M</button></span><span class="indicator-pill" data-indicator-wrap="volume"><button type="button" class="chart-toggle" data-indicator="volume">VOL</button><input type="range" min="6" max="35" value="14" data-volume-height style="width:72px;accent-color:#8fb3ff;"></span><span class="indicator-pill" data-indicator-wrap="ma"><button type="button" class="chart-toggle" data-indicator="ma">MA</button><button type="button" class="chart-setting" data-setting="ma">⚙</button></span><span class="indicator-pill" data-indicator-wrap="ema"><button type="button" class="chart-toggle" data-indicator="ema">EMA</button><button type="button" class="chart-setting" data-setting="ema">⚙</button></span><span class="indicator-pill" data-indicator-wrap="bb"><button type="button" class="chart-toggle" data-indicator="bb">BB</button><button type="button" class="chart-setting" data-setting="bb">⚙</button></span><span class="indicator-pill" data-indicator-wrap="macd"><button type="button" class="chart-toggle" data-indicator="macd">MACD</button><button type="button" class="chart-setting" data-setting="macd">⚙</button></span><span class="indicator-pill" data-indicator-wrap="rsi"><button type="button" class="chart-toggle" data-indicator="rsi">RSI</button><button type="button" class="chart-setting" data-setting="rsi">⚙</button></span><span class="indicator-pill" data-indicator-wrap="trend"><button type="button" class="chart-toggle" data-indicator="trend">Trend/SR</button></span><span class="indicator-pill" data-indicator-wrap="pattern"><button type="button" class="chart-toggle" data-indicator="pattern">Mẫu hình</button></span></div></div><div class="chart-settings-pop" id="chartSettingsPop"></div><div class="stock-chart-body"><div class="chart-legend" id="stockChartLegend"></div><div class="stock-chart-box" id="stockChartBox"></div><div class="stock-vol-box" id="stockVolBox"></div><div class="stock-macd-box" id="stockMacdBox"></div><div class="stock-rsi-box" id="stockRsiBox"></div></div></div>
           <div class="detail-summary">
+            <div id="distributionRiskSlot"></div>
             <div class="detail-price-card"><div class="label">${label('currentPrice')}</div><div class="value ${changeCls}">${price(item.price)}</div></div>
             <div class="detail-price-card"><div class="label">${label('changePct')}</div><div class="value ${changeCls}">${sign}${val(item.changePct)}%</div></div>
             <div class="detail-price-card"><div class="label">${label('volume')}</div><div class="value">${escapeHtml(formatVolume(item.volume))}</div></div>
           </div>
           <div class="analysis-switch">
             <button type="button" class="analysis-tab-btn active" data-analysis-tab="technical"><strong>${label('technical')}</strong><span>${label('timeframeNote')}</span></button>
+            <button type=\"button\" class=\"analysis-tab-btn\" data-analysis-tab=\"autochart\"><strong>Auto-chart</strong><span>JSON static độc lập</span></button>
             <button type="button" class="analysis-tab-btn" data-analysis-tab="fundamental"><strong>${currentLang === 'en' ? 'Fundamental Analysis' : 'Phân tích cơ bản'}</strong><span>${currentLang === 'en' ? 'Cached broker reports' : 'Dữ liệu báo cáo định giá cũ'}</span></button>
           </div>
           <div class="analysis-grid">
             <div class="analysis-pane active" data-analysis-pane="technical"></div>
+            <div class="analysis-pane" data-analysis-pane="autochart" id="autochartDetailPane"><div class="autochart-panel"><div class="empty">Đang tải Auto-chart...</div></div></div>
             <div class="analysis-pane" data-analysis-pane="fundamental" id="fundamentalDetailPane"><div class="fundamental-panel"><div class="empty">Đang tải Fundamental Analysis...</div></div></div>
           </div>`;
         elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(btn => btn.addEventListener('click', () => {
           const tab = btn.dataset.analysisTab;
           elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(x => x.classList.toggle('active', x.dataset.analysisTab === tab));
           elements.detailStats.querySelectorAll('[data-analysis-pane]').forEach(x => x.classList.toggle('active', x.dataset.analysisPane === tab));
+          if (tab === 'autochart' && !autoChartLoaded) loadAutoChartForDetail();
           if (tab === 'fundamental' && !fundamentalLoaded) loadFundamentalForDetail();
         }));
+        const loadAutoChartForDetail = () => {
+          autoChartLoaded = true;
+          loadAutoChart(item.ticker, 'week').then(payload => {
+            if (activeDetailTicker !== item.ticker) return;
+            const pane = document.getElementById('autochartDetailPane');
+            if (pane) pane.innerHTML = renderAutoChartPanel(item.ticker, payload, 'week');
+          }).catch(() => { const pane = document.getElementById('autochartDetailPane'); if (pane) pane.innerHTML = `<div class="autochart-panel"><div class="empty error">Không tải được Auto-chart cho ${escapeHtml(item.ticker)}.</div></div>`; });
+        };
         const loadFundamentalForDetail = () => {
           fundamentalLoaded = true;
           Promise.all([loadFundamentalSignals(item.ticker), loadFundamentalAverage(item.ticker)]).then(([faPayload, faAvg]) => {
@@ -908,8 +1034,10 @@
           }).catch(() => { const pane = document.getElementById('fundamentalDetailPane'); if (pane) pane.innerHTML = '<div class="fundamental-panel"><div class="empty">Không tải được Fundamental Analysis.</div></div>'; });
         };
         renderTechnicalFrame('day');
+        loadAutoChartForDetail();
+        loadDistributionRisk(item.ticker).then(risk => { if (activeDetailTicker === item.ticker) { const slot = document.getElementById('distributionRiskSlot'); if (slot) slot.outerHTML = renderDistributionRiskCard(risk); } });
         elements.detailModal.classList.add('open');
-        renderStockChart(item.ticker);
+        renderStockChart(item.ticker, item);
       } catch (err) {
         console.error('openDetail failed', err);
         elements.detailStats.innerHTML = `<div class="empty error">${currentLang === 'en' ? 'Cannot open stock detail right now.' : 'Khong mo duoc popup co phieu luc nay.'}</div>`;
@@ -917,26 +1045,502 @@
       }
     }
 
-    function resizeChartWhenVisible(chart, box) { setTimeout(() => { try { chart.applyOptions({ width: box.clientWidth, height: box.clientHeight || 360 }); chart.timeScale().fitContent(); } catch (_) {} }, 80); }
-    async function renderStockChart(symbol) {
-      const box = document.getElementById('stockChartBox'); if (!box) return; box.innerHTML = '<div class="empty">Đang tải biểu đồ...</div>';
+    function resizeChartWhenVisible(chart, box, preserveRange = false) { setTimeout(() => { try { const ts = chart.timeScale(); const range = preserveRange ? ts.getVisibleLogicalRange() : null; chart.applyOptions({ width: box.clientWidth, height: box.clientHeight || 360 }); if (range && Number.isFinite(range.from) && Number.isFinite(range.to) && range.to > range.from) ts.setVisibleLogicalRange(range); } catch (_) {} }, 80); }
+    function calcMaRows(rows, n) { const out = [], vals = []; rows.forEach(r => { vals.push(Number(r.close || 0)); if (vals.length > n) vals.shift(); if (vals.length === n) out.push({ time:r.time, value: +(vals.reduce((a,b)=>a+b,0) / n).toFixed(3) }); }); return out; }
+    async function renderStockChart(symbol, currentItem = null) {
+      const box = document.getElementById('stockChartBox'); const volBox = document.getElementById('stockVolBox'); const macdBox = document.getElementById('stockMacdBox'); const rsiBox = document.getElementById('stockRsiBox'); if (!box) return; Array.from(box.querySelectorAll('.trend-inline-label')).forEach(el => el.remove()); box.innerHTML = '<div class="empty">Đang tải biểu đồ...</div>'; if (volBox) volBox.innerHTML = ''; if (macdBox) macdBox.innerHTML = ''; if (rsiBox) rsiBox.innerHTML = '';
       if (!window.LightweightCharts) { box.innerHTML = '<div class="empty error">Không tải được thư viện biểu đồ.</div>'; return; }
       try {
-        const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}.json?ts=${Date.now()}`, { cache:'no-store' });
+        const frameButtons = Array.from(document.querySelectorAll('[data-chart-frame]'));
+        const frameStorageKey = `lh.stockChart.frame.${String(symbol || '').toUpperCase()}`;
+        let activeFrame = 'day';
+        const loadFrameData = async (frame) => { const suffix = frame === 'day' || frame === 'hour' ? '' : `_${frame}`; const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}${suffix}.json?ts=${Date.now()}`, { cache:'no-store' }); if (!res.ok) throw new Error('chart missing'); return res.json(); };
+        const loadOverlayData = async (frame) => { const sym = String(symbol || '').toUpperCase(); const urls = (frame === 'day') ? [`/data/charts/${encodeURIComponent(sym)}_touchzone_day.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(frame)}.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(frame)}.json?ts=${Date.now()}`] : [`/data/charts/${encodeURIComponent(sym)}_auto_chart_${encodeURIComponent(frame)}.json?ts=${Date.now()}`, `/data/charts/${encodeURIComponent(sym)}_${encodeURIComponent(frame)}.json?ts=${Date.now()}`]; for (const url of urls) { try { const res = await fetch(url, { cache:'no-store' }); if (!res.ok) continue; return await res.json(); } catch(_) {} } return null; };
+        const normalizePointTime = (t) => { if (typeof t === 'number' && Number.isFinite(t)) { try { return new Date(t * 1000).toISOString().slice(0,10); } catch(_) { return t; } } return t; };
+        const normalizePoints = (points = []) => (Array.isArray(points) ? points : []).map(p => ({ time: normalizePointTime(p.time), value: Number(p.value) }));
+        const addOverlayLine = (chart, line, fallbackStyle = {}) => {
+          const points = normalizePoints(line?.points || []);
+          if (points.length < 2) return null;
+          const style = { ...(line?.lineStyle || {}), ...fallbackStyle };
+          const series = chart.addLineSeries({ color: style.color || '#4ef0c0', lineWidth: style.lineWidth || 2, lineStyle: Number(style.lineStyle || 0), priceLineVisible:false, lastValueVisible:true, title: style.title || '' });
+          series.setData(points);
+          return { series, points, style };
+        };
+        const addHorizontalSrLine = (chart, price, style = {}) => {
+          const p = Number(price || 0);
+          if (!p || !Array.isArray(rows) || rows.length < 2) return null;
+          const points = [{ time: rows[0].time, value: p }, { time: rows[rows.length - 1].time, value: p }];
+          const series = chart.addLineSeries({ color: style.color || '#ffb454', lineWidth: style.lineWidth || 2, lineStyle: 2, priceLineVisible:false, lastValueVisible:true, title: style.title || '' });
+          series.setData(points);
+          return { series, points, style };
+        };
+        const addTrendInlineLabel = (linePoints = [], color = '#9fb3d9', prefix = '') => {
+          if (!box || !box._lhChart || !box._lhCandleSeries || linePoints.length < 2) return;
+          try {
+            const chartRef = box._lhChart;
+            const candleRef = box._lhCandleSeries;
+            const p1 = linePoints[0];
+            const p2 = linePoints[linePoints.length - 1];
+            const x1 = chartRef.timeScale()?.timeToCoordinate?.(p1.time);
+            const x2 = chartRef.timeScale()?.timeToCoordinate?.(p2.time);
+            if (!Number.isFinite(x1) || !Number.isFinite(x2) || Math.abs(x2 - x1) < 1) return;
+            const targetX = Math.max(36, Math.min(box.clientWidth - 36, box.clientWidth * 0.78));
+            const ratio = (targetX - x1) / (x2 - x1);
+            const projectedValue = Number(p1.value) + (Number(p2.value) - Number(p1.value)) * ratio;
+            if (!Number.isFinite(projectedValue) || projectedValue <= 0) return;
+            const y = candleRef.priceToCoordinate ? candleRef.priceToCoordinate(projectedValue) : null;
+            if (!Number.isFinite(y)) return;
+            const label = document.createElement('div');
+            label.className = 'trend-inline-label';
+            label.textContent = `${prefix ? `${prefix} ` : ''}${formatNumber(projectedValue)}`;
+            label.style.left = `${targetX}px`;
+            label.style.top = `${Math.max(16, Math.min(box.clientHeight - 16, y - 10))}px`;
+            label.style.borderColor = color;
+            label.style.color = color;
+            box.appendChild(label);
+          } catch(_) {}
+        };
+        let data = await loadFrameData(activeFrame);
+        let overlayData = await loadOverlayData(activeFrame);
+        frameButtons.forEach(btn => btn.onclick = async () => { const nextFrame = btn.dataset.chartFrame || 'day'; const changedFrame = nextFrame !== activeFrame; activeFrame = nextFrame; try { localStorage.setItem(frameStorageKey, activeFrame); } catch(_) {} frameButtons.forEach(x => x.classList.toggle('active', x.dataset.chartFrame === activeFrame)); data = await loadFrameData(activeFrame); overlayData = await loadOverlayData(activeFrame); rows = data.rows || []; draw(!changedFrame); });
+        frameButtons.forEach(x => x.classList.toggle('active', x.dataset.chartFrame === activeFrame));
+        const res = { ok:true };
         if (!res.ok) throw new Error('chart missing');
-        const data = await res.json(); const rows = data.rows || [];
-        box.innerHTML = '';
-        const chart = LightweightCharts.createChart(box, { width: box.clientWidth, height: box.clientHeight || 360, layout: { background: { color: 'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color: 'rgba(120,140,180,.12)' }, horzLines: { color: 'rgba(120,140,180,.12)' } }, rightPriceScale: { borderColor: 'rgba(120,140,180,.22)' }, timeScale: { borderColor: 'rgba(120,140,180,.22)' } });
-        chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350' }).setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
-        chart.addLineSeries({ color:'#f5c542', lineWidth:1 }).setData(data.ma20 || []);
-        chart.addLineSeries({ color:'#64b5ff', lineWidth:1 }).setData(data.ma50 || []);
-        if (data.trendline?.points?.length === 2) chart.addLineSeries({ color:'#4ef0c0', lineWidth:2, lineStyle:2 }).setData(data.trendline.points);
-        chart.timeScale().fitContent(); resizeChartWhenVisible(chart, box); window.addEventListener('resize', () => resizeChartWhenVisible(chart, box), { once:true });
+        let rows = data.rows || [];
+        const state = { volume:false, ma:false, ema:false, bb:false, macd:false, rsi:false, trend:true, pattern:false };
+        const topByScore = (items = [], n = 1) => (Array.isArray(items) ? items : []).filter(Boolean).sort((a, b) => Number(b?.score || b?.confidence || 0) - Number(a?.score || a?.confidence || 0)).slice(0, n);
+        const nearestByPrice = (items = [], currentPrice = 0) => (Array.isArray(items) ? items : []).filter(x => Number.isFinite(Number(x?.price || x?.priceLine?.price))).sort((a, b) => Math.abs(Number(a?.price || a?.priceLine?.price || 0) - currentPrice) - Math.abs(Number(b?.price || b?.priceLine?.price || 0) - currentPrice));
+        const srQuality = (level) => {
+          const touches = Number(level?.touches || 0);
+          const confidence = Number(level?.confidence || 0);
+          const breaks = Number(level?.breaks ?? level?.brokenCount ?? 0);
+          const strength = Number(level?.strength || level?.score || 0);
+          return (touches * 1000) + (confidence * 10) + strength - (breaks * 120);
+        };
+        const pivot5SrLevelsFromRows = (rows = []) => {
+          const arr = Array.isArray(rows) ? rows : [];
+          if (arr.length < 30) return [];
+          const avgRange = arr.reduce((sum, r) => sum + Math.abs(Number(r.high||0) - Number(r.low||0)), 0) / Math.max(1, arr.length);
+          const avgVol = arr.reduce((sum, r) => sum + Number(r.volume || 0), 0) / Math.max(1, arr.length);
+          const isPivotHigh = (i) => {
+            const h = Number(arr[i]?.high || 0);
+            let neighborHigher = false;
+            for (let j = i - 2; j <= i + 2; j += 1) {
+              if (j < 0 || j >= arr.length || j === i) continue;
+              const nh = Number(arr[j]?.high || 0);
+              if (nh > h) {
+                neighborHigher = true;
+                if (Math.abs(nh / Math.max(0.0001, h) - 1) >= 0.02) return false;
+              }
+            }
+            return true;
+          };
+          const isPivotLow = (i) => {
+            const l = Number(arr[i]?.low || 0);
+            let neighborLower = false;
+            for (let j = i - 2; j <= i + 2; j += 1) {
+              if (j < 0 || j >= arr.length || j === i) continue;
+              const nl = Number(arr[j]?.low || 0);
+              if (nl < l) {
+                neighborLower = true;
+                if (Math.abs(l / Math.max(0.0001, nl) - 1) >= 0.02) return false;
+              }
+            }
+            return true;
+          };
+          const pivotQuality = (i, type) => {
+            const r = arr[i] || {};
+            const price = type === 'resistance' ? Number(r.high || 0) : Number(r.low || 0);
+            const neighbors = arr.slice(Math.max(0, i - 5), Math.min(arr.length, i + 6)).filter((_, k) => Math.max(0, i - 5) + k !== i);
+            const ref = type === 'resistance' ? Math.max(...neighbors.map(x => Number(x.high || 0))) : Math.min(...neighbors.map(x => Number(x.low || 0)));
+            const prominence = Math.max(0, type === 'resistance' ? price - ref : ref - price);
+            const range = Math.abs(Number(r.high || 0) - Number(r.low || 0));
+            const body = Math.abs(Number(r.close || 0) - Number(r.open || 0));
+            const after = arr.slice(i + 1, Math.min(arr.length, i + 6));
+            const reaction = after.length ? (type === 'resistance' ? Math.max(0, price - Math.min(...after.map(x => Number(x.low || price)))) : Math.max(0, Math.max(...after.map(x => Number(x.high || price))) - price)) : 0;
+            const prominenceScore = Math.min(35, (prominence / Math.max(0.001, avgRange)) * 20);
+            const rangeScore = Math.min(15, (range / Math.max(0.001, avgRange)) * 8);
+            const bodyScore = Math.min(10, (body / Math.max(0.001, range)) * 10);
+            const reactionScore = Math.min(25, (reaction / Math.max(0.001, avgRange)) * 12);
+            return prominenceScore + rangeScore + bodyScore + reactionScore;
+          };
+          const raw = [];
+          for (let i = 2; i < arr.length - 2; i += 1) {
+            const row = arr[i] || {};
+            const op = Number(row.open || 0);
+            const cl = Number(row.close || 0);
+            const isRed = cl < op;
+            const isGreen = cl > op;
+            if (isPivotHigh(i) && isGreen) { const q = pivotQuality(i, 'resistance'); if (q >= 28) raw.push({ price:Number(arr[i].high || 0), type:'resistance', pivotQuality:q, idx:i, seedColor:'green' }); }
+            if (isPivotLow(i) && isRed) { const q = pivotQuality(i, 'support'); if (q >= 28) raw.push({ price:Number(arr[i].low || 0), type:'support', pivotQuality:q, idx:i, seedColor:'red' }); }
+          }
+          const clusters = raw.sort((a,b)=>a.price-b.price).reduce((acc, level) => {
+            const c = acc.find(x => x.type === level.type && Math.abs(level.price / x.center - 1) < 0.01);
+            if (c) { c.levels.push(level); c.center = c.levels.reduce((s,x)=>s+x.price,0)/c.levels.length; }
+            else acc.push({ type:level.type, center:level.price, levels:[level] });
+            return acc;
+          }, []);
+          const bodyTop = r => Math.max(Number(r.open||0), Number(r.close||0));
+          const bodyBot = r => Math.min(Number(r.open||0), Number(r.close||0));
+          const evalZone = (zone) => {
+            const price = Number(zone.center || 0);
+            const type = zone.type;
+            const tol = Math.max(avgRange * 0.45, price * 0.006);
+            let touches = 0, volSum = 0, reactionSum = 0, breaks = 0, colorTouchHits = 0;
+            const touchIdx = [];
+            for (let i = 0; i < arr.length; i += 1) {
+              const r = arr[i];
+              const hi = Number(r.high||0), lo = Number(r.low||0), op = Number(r.open||0), cl = Number(r.close||0);
+              const isRedTouch = cl < op;
+              const isGreenTouch = cl > op;
+              const nearPrice = type === 'resistance' ? Math.abs(hi - price) <= tol : Math.abs(lo - price) <= tol;
+              const colorPass = type === 'support' ? isRedTouch : isGreenTouch;
+              const localExtremePass = (() => {
+                const left = Math.max(0, i - 2);
+                const right = Math.min(arr.length - 1, i + 2);
+                if (type === 'support') {
+                  const localMin = Math.min(...arr.slice(left, right + 1).map(x => Number(x?.low || 0)));
+                  return Number(lo || 0) <= localMin * 1.02;
+                }
+                const localMax = Math.max(...arr.slice(left, right + 1).map(x => Number(x?.high || 0)));
+                return Number(hi || 0) >= localMax * 0.98;
+              })();
+              const near = nearPrice && colorPass && localExtremePass;
+              if (near && (!touchIdx.length || i - touchIdx[touchIdx.length - 1] >= 3)) {
+                const after = arr.slice(i + 1, Math.min(arr.length, i + 6));
+                const reaction = after.length ? (type === 'resistance' ? Math.max(0, price - Math.min(...after.map(x => Number(x.low || price)))) : Math.max(0, Math.max(...after.map(x => Number(x.high || price))) - price)) : 0;
+                touches += 1;
+                touchIdx.push(i);
+                volSum += Number(r.volume || 0);
+                reactionSum += reaction;
+                if (reaction > avgRange * 0.35) colorTouchHits += 1;
+              }
+              if (type === 'resistance' && bodyTop(r) > price + tol) breaks += 1;
+              if (type === 'support' && bodyBot(r) < price - tol) breaks += 1;
+            }
+            let springCount = 0, upthrustCount = 0, testCount = 0, sosCount = 0, sowCount = 0, failedBreakCount = 0;
+            for (let i = 1; i < arr.length - 1; i += 1) {
+              const r = arr[i];
+              const next = arr[i + 1] || {};
+              const hi = Number(r.high || 0), lo = Number(r.low || 0), op = Number(r.open || 0), cl = Number(r.close || 0), vol = Number(r.volume || 0);
+              const green = cl >= op;
+              const wide = Math.abs(cl - op) >= avgRange * 0.45;
+              if (type === 'support') {
+                const nearZone = lo <= price + tol * 1.2 && hi >= price - tol * 2.2;
+                const spring = nearZone && lo < price - tol && lo > price - tol * 3 && cl >= price && vol >= avgVol * 0.85;
+                if (spring) {
+                  springCount += 1;
+                  const after = arr.slice(i + 1, Math.min(arr.length, i + 6));
+                  if (after.some(x => Math.abs(Number(x.low || 0) / Math.max(0.0001, price) - 1) <= 0.01 && Number(x.close || 0) >= price && Number(x.volume || 0) <= vol * 0.9)) testCount += 1;
+                }
+                if (nearZone && green && wide && cl > price + tol * 0.35 && vol >= avgVol * 1.05) sosCount += 1;
+                if (nearZone && cl < price - tol && Number(next.close || 0) >= price) failedBreakCount += 1;
+              } else {
+                const nearZone = hi >= price - tol * 1.2 && lo <= price + tol * 2.2;
+                const upthrust = nearZone && hi > price + tol && hi < price + tol * 3 && cl <= price && vol >= avgVol * 0.85;
+                if (upthrust) {
+                  upthrustCount += 1;
+                  const after = arr.slice(i + 1, Math.min(arr.length, i + 6));
+                  if (after.some(x => Math.abs(Number(x.high || 0) / Math.max(0.0001, price) - 1) <= 0.01 && Number(x.close || 0) <= price && Number(x.volume || 0) <= vol * 0.9)) testCount += 1;
+                }
+                if (nearZone && !green && wide && cl < price - tol * 0.35 && vol >= avgVol * 1.05) sowCount += 1;
+                if (nearZone && cl > price + tol && Number(next.close || 0) <= price) failedBreakCount += 1;
+              }
+            }
+            const wyckoffScore = Math.min(24, springCount * 8 + upthrustCount * 8 + testCount * 5 + sosCount * 4 + sowCount * 4 + failedBreakCount * 5);
+            const avgTouchVol = touches ? volSum / touches : 0;
+            const avgReaction = touches ? reactionSum / touches : 0;
+            const pivotQ = zone.levels.reduce((s,x)=>s+Number(x.pivotQuality||0),0) / Math.max(1, zone.levels.length);
+            const touchesScore = Math.min(40, touches * 8);
+            const volumeScore = Math.min(22, (avgTouchVol / Math.max(1, avgVol)) * 11);
+            const reactionScore = Math.min(22, (avgReaction / Math.max(0.001, avgRange)) * 11);
+            const colorTouchScore = Math.min(20, colorTouchHits * 7);
+            const pivotScore = Math.min(14, pivotQ * 0.22);
+            const breakPenalty = Math.min(45, breaks * 9);
+            const widthPenalty = Math.min(12, Math.abs((Math.max(...zone.levels.map(x=>x.price)) / Math.max(0.0001, Math.min(...zone.levels.map(x=>x.price)))) - 1) * 700);
+            const strength = touchesScore + volumeScore + reactionScore + colorTouchScore + pivotScore + wyckoffScore - breakPenalty - widthPenalty;
+            const best = zone.levels.sort((a,b)=>Number(b.pivotQuality||0)-Number(a.pivotQuality||0))[0];
+            return { ...best, price:Number(price.toFixed(2)), touches, confidence:strength, strength, breaks, wyckoffScore, colorTouchHits, seedColor:type === 'support' ? 'red' : 'green', source:'pivot5-touch-volume-sr-local-test' };
+          };
+          return clusters.map(evalZone).filter(x => Number(x.touches || 0) >= 3).sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+        };
+        const clusterSrLevels = (items = []) => (Array.isArray(items) ? items : []).filter(Boolean).sort((a, b) => Number(a?.price || a?.priceLine?.price || 0) - Number(b?.price || b?.priceLine?.price || 0)).reduce((clusters, level) => {
+          const price = Number(level?.price || level?.priceLine?.price || 0);
+          const type = String(level?.type || '');
+          const cluster = clusters.find(c => (!type || !c.type || c.type === type) && c.center && price && Math.abs(price / c.center - 1) < 0.01);
+          if (cluster) {
+            cluster.levels.push(level);
+            cluster.center = cluster.levels.reduce((s, x) => s + Number(x?.price || x?.priceLine?.price || 0), 0) / cluster.levels.length;
+          } else {
+            clusters.push({ type, center: price, levels: [level] });
+          }
+          return clusters;
+        }, []).map(cluster => cluster.levels.sort((a, b) => srQuality(b) - srQuality(a))[0]).sort((a, b) => Number(a?.price || a?.priceLine?.price || 0) - Number(b?.price || b?.priceLine?.price || 0));
+        const filterRankedSrLevels = (items = []) => {
+          const scored = (Array.isArray(items) ? items : []).map(level => ({
+            ...level,
+            finalStrength: Number(level?.strength || level?.confidence || 0) + (Number(level?.touches || 0) * 8) + Math.min(18, Number(level?.wyckoffScore || 0) * 0.8) - (Number(level?.breaks || 0) * 10)
+          })).filter(level => Number(level?.touches || 0) >= 3);
+          const zoneClusters = scored.sort((a, b) => Number(a?.price || 0) - Number(b?.price || 0)).reduce((acc, level) => {
+            const price = Number(level?.price || level?.priceLine?.price || 0);
+            const type = String(level?.type || '');
+            const cluster = acc.find(c => c.type === type && c.center && price && Math.abs(price / c.center - 1) < 0.018);
+            if (cluster) {
+              cluster.levels.push(level);
+              cluster.center = cluster.levels.reduce((s, x) => s + Number(x?.price || x?.priceLine?.price || 0), 0) / cluster.levels.length;
+            } else {
+              acc.push({ type, center: price, levels: [level] });
+            }
+            return acc;
+          }, []);
+          const rankedZones = zoneClusters.map(cluster => {
+            const best = cluster.levels.sort((a, b) => Number(b.finalStrength || 0) - Number(a.finalStrength || 0))[0];
+            const zoneTouches = cluster.levels.reduce((s, x) => s + Number(x?.touches || 0), 0);
+            const zoneWyckoff = Math.max(...cluster.levels.map(x => Number(x?.wyckoffScore || 0)));
+            const zoneBreaks = Math.min(...cluster.levels.map(x => Number(x?.breaks || 0)));
+            const clusterBonus = Math.min(18, cluster.levels.length * 5 + zoneTouches * 0.6 + zoneWyckoff * 0.7);
+            return { ...best, price: Number(cluster.center.toFixed(2)), zoneSize: cluster.levels.length, zoneTouches, zoneWyckoff, zoneBreaks, finalStrength: Number(best.finalStrength || 0) + clusterBonus };
+          }).sort((a, b) => Number(b.finalStrength || 0) - Number(a.finalStrength || 0));
+          const supports = rankedZones.filter(x => String(x?.type || '').includes('support'));
+          const resistances = rankedZones.filter(x => String(x?.type || '').includes('resistance'));
+          const mergeNearby = (arr = [], minGapPct = 0.03) => {
+            const sorted = [...arr].sort((a, b) => Number(b.finalStrength || 0) - Number(a.finalStrength || 0));
+            const groups = [];
+            for (const level of sorted) {
+              const price = Number(level.price || 0);
+              const group = groups.find(g => Math.abs(price / Math.max(0.0001, Number(g.center || 0)) - 1) < minGapPct);
+              if (group) {
+                group.levels.push(level);
+                const totalWeight = group.levels.reduce((s, x) => s + Math.max(1, Number(x.finalStrength || 0) + 2000), 0);
+                group.center = group.levels.reduce((s, x) => s + Number(x.price || 0) * Math.max(1, Number(x.finalStrength || 0) + 2000), 0) / totalWeight;
+              } else {
+                groups.push({ center: price, levels: [level] });
+              }
+            }
+            return groups.map(group => {
+              const best = group.levels.sort((a, b) => Number(b.finalStrength || 0) - Number(a.finalStrength || 0))[0];
+              return { ...best, price: Number(group.center.toFixed(2)), mergedCount: group.levels.length };
+            }).sort((a, b) => Number(b.finalStrength || 0) - Number(a.finalStrength || 0));
+          };
+          const chosenSupports = mergeNearby(supports, 0.03).slice(0, 3);
+          const chosenResistances = mergeNearby(resistances, 0.03).slice(0, 3);
+          return [...chosenSupports, ...chosenResistances].sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
+        };
+        const lineLastValue = (line) => { const pts = normalizePoints(line?.points || []); return pts.length ? Number(pts[pts.length - 1].value || 0) : null; };
+        const nearestRowIndexByTime = (timeVal) => { const norm = normalizeStoredTime(timeVal); let best = -1; let bestDist = Infinity; (rows || []).forEach((r, i) => { const dist = Math.abs(new Date(String(r.time)).getTime() - new Date(String(norm)).getTime()); if (dist < bestDist) { best = i; bestDist = dist; } }); return best; };
+        const trendTouchIndexes = (line) => {
+          const raw = Array.isArray(line?.touchPoints) ? line.touchPoints : [];
+          const idx = raw.map(tp => Number.isFinite(Number(tp?.index)) ? Number(tp.index) : nearestRowIndexByTime(tp?.time)).filter(x => Number.isInteger(x) && x >= 0).sort((a, b) => a - b);
+          if (idx.length) return idx;
+          const pts = normalizePoints(line?.points || []);
+          return pts.map(p => nearestRowIndexByTime(p?.time)).filter(x => Number.isInteger(x) && x >= 0).sort((a, b) => a - b);
+        };
+        const trendTouchSpacingOk = (line) => {
+          const idx = trendTouchIndexes(line);
+          if (idx.length < 3) return false;
+          const gaps = idx.slice(1).map((v, i) => v - idx[i]).filter(x => x > 0);
+          if (!gaps.length) return false;
+          const minGap = Math.max(4, Math.round(Number(line?.lengthBars || 0) * 0.12));
+          const wideEnough = gaps.filter(g => g >= minGap).length;
+          return wideEnough >= Math.max(2, idx.length - 1);
+        };
+        const isMeaningfulTrendLine = (line) => { const touches = Number(line?.touches || 0); const touchRulePass = touches >= 3; const lengthBars = Number(line?.lengthBars || 0); const pts = normalizePoints(line?.points || []); return pts.length >= 2 && touchRulePass && lengthBars >= 18 && trendTouchSpacingOk(line); };
+        const fallbackTrendLine = (line) => { const touches = Number(line?.touches || 0); const lengthBars = Number(line?.lengthBars || 0); const pts = normalizePoints(line?.points || []); return pts.length >= 2 && touches >= 3 && lengthBars >= 18; };
+        const trendLineQuality = (line) => { const touchIdx = trendTouchIndexes(line); const gaps = touchIdx.slice(1).map((v, i) => v - touchIdx[i]).filter(x => x > 0); const spacingScore = gaps.length ? Math.min(...gaps) * 12 + gaps.reduce((a, b) => a + b, 0) * 0.8 : 0; const touchPointBonus = Array.isArray(line?.touchPoints) && line.touchPoints.length ? 180 : 0; const reversalBonus = line?.reversalConfirmed ? 120 : 0; return (Number(line?.touches || 0) * 1000) + (Number(line?.lengthBars || 0) * 1.5) + spacingScore + touchPointBonus + reversalBonus + Math.max(0, Number(line?.score || 0)); };
+        const trendLineMidValue = (line) => { const pts = normalizePoints(line?.points || []); if (!pts.length) return lineLastValue(line) || 0; const mid = pts[Math.floor((pts.length - 1) / 2)]; return Number(mid?.value || lineLastValue(line) || 0); };
+        const trendLineTargetValue = (line) => { const pts = normalizePoints(line?.points || []); if (!pts.length) return lineLastValue(line) || 0; return Number(pts[pts.length - 1]?.value || lineLastValue(line) || 0); };
+        const sameTrendCluster = (line, cluster) => {
+          if (!cluster) return false;
+          const last = lineLastValue(line) || 0;
+          const mid = trendLineMidValue(line) || last;
+          const target = trendLineTargetValue(line) || last;
+          const slope = Number(line?.slopePerBar || 0);
+          const type = String(line?.type || '');
+          const sameType = !cluster.type || !type || cluster.type === type;
+          const sameDirection = (Math.sign(slope) === Math.sign(cluster.slope) || !slope || !cluster.slope);
+          const similarSlope = sameDirection && Math.abs(slope - cluster.slope) <= 0.055;
+          const nearLast = cluster.lastValue && last && Math.abs(last / cluster.lastValue - 1) <= 0.035;
+          const nearMid = cluster.midValue && mid && Math.abs(mid / cluster.midValue - 1) <= 0.035;
+          const nearTarget = cluster.targetValue && target && Math.abs(target / cluster.targetValue - 1) <= 0.035;
+          return sameType && similarSlope && (nearTarget || nearLast || nearMid);
+        };
+        const clusterTrendLines = (items = [], max = 6) => (Array.isArray(items) ? items : []).sort((a, b) => trendLineQuality(b) - trendLineQuality(a)).reduce((clusters, line) => {
+          const last = lineLastValue(line) || 0;
+          const mid = trendLineMidValue(line) || last;
+          const target = trendLineTargetValue(line) || last;
+          const slope = Number(line?.slopePerBar || 0);
+          const type = String(line?.type || '');
+          const cluster = clusters.find(c => sameTrendCluster(line, c));
+          if (cluster) {
+            cluster.lines.push(line);
+            cluster.lastValue = (cluster.lastValue + last) / 2;
+            cluster.midValue = (cluster.midValue + mid) / 2;
+            cluster.targetValue = (cluster.targetValue + target) / 2;
+            cluster.slope = (cluster.slope + slope) / 2;
+          } else {
+            clusters.push({ type, lastValue: last, midValue: mid, targetValue: target, slope, lines: [line] });
+          }
+          return clusters;
+        }, []).map(cluster => cluster.lines.sort((a, b) => trendLineQuality(b) - trendLineQuality(a))[0]).sort((a, b) => trendLineQuality(b) - trendLineQuality(a)).slice(0, max);
+        const dedupeTrendLines = (lines = [], max = 6) => {
+          const source = (Array.isArray(lines) ? lines : []);
+          const strict = source.filter(x => isMeaningfulTrendLine(x));
+          const valid = strict.length ? strict : source.filter(x => fallbackTrendLine(x));
+          return clusterTrendLines(valid, max);
+        };
+        
+        const detectCandleTrendlinesExperimental = (rows = []) => {
+          const arr = Array.isArray(rows) ? rows : [];
+          if (arr.length < 40) return [];
+          const pivotsHigh = [];
+          const pivotsLow = [];
+          const pivotWindow = 2; // 5-candle pivot: 2 left + self + 2 right
+          const majorWindow = 5;
+          const isPivotHigh = (i, w) => {
+            const h = Number(arr[i]?.high || 0);
+            for (let j = i - w; j <= i + w; j += 1) {
+              if (j < 0 || j >= arr.length || j === i) continue;
+              if (Number(arr[j]?.high || 0) >= h) return false;
+            }
+            return true;
+          };
+          const isPivotLow = (i, w) => {
+            const l = Number(arr[i]?.low || 0);
+            for (let j = i - w; j <= i + w; j += 1) {
+              if (j < 0 || j >= arr.length || j === i) continue;
+              if (Number(arr[j]?.low || 0) <= l) return false;
+            }
+            return true;
+          };
+          for (let i = majorWindow; i < arr.length - majorWindow; i += 1) {
+            if (isPivotHigh(i, pivotWindow)) pivotsHigh.push({ idx:i, time:arr[i].time, price:Number(arr[i].high), major:isPivotHigh(i, majorWindow) });
+            if (isPivotLow(i, pivotWindow)) pivotsLow.push({ idx:i, time:arr[i].time, price:Number(arr[i].low), major:isPivotLow(i, majorWindow) });
+          }
+          const avgRange = arr.reduce((sum, r) => sum + Math.abs(Number(r.high||0) - Number(r.low||0)), 0) / Math.max(1, arr.length);
+          const bodyTop = r => Math.max(Number(r.open||0), Number(r.close||0));
+          const bodyBot = r => Math.min(Number(r.open||0), Number(r.close||0));
+          const buildLine = (a, b, kind) => {
+            if (!a || !b || b.idx - a.idx < 30) return null;
+            const slope = (b.price - a.price) / (b.idx - a.idx);
+            const tol = Math.max(avgRange * 0.35, 0.12);
+            let touches = 0;
+            let bodyBreaks = 0;
+            const touchPoints = [];
+            for (let i = a.idx; i < arr.length; i += 1) {
+              const y = a.price + slope * (i - a.idx);
+              const row = arr[i];
+              const hi = Number(row.high||0), lo = Number(row.low||0);
+              const top = bodyTop(row), bot = bodyBot(row);
+              if (kind === 'uptrend') {
+                if (Math.abs(lo - y) <= tol) { touches += 1; touchPoints.push({ idx:i, time:row.time, price:lo }); }
+                if (y > bot + tol && i > b.idx) bodyBreaks += 1;
+              } else {
+                if (Math.abs(hi - y) <= tol) { touches += 1; touchPoints.push({ idx:i, time:row.time, price:hi }); }
+                if (y < top - tol && i > b.idx) bodyBreaks += 1;
+              }
+            }
+            const lastIdx = arr.length - 1;
+            const lastVal = a.price + slope * (lastIdx - a.idx);
+            const majorBonus = (a.major ? 1 : 0) + (b.major ? 1 : 0);
+            const score = touches * 24 + (b.idx - a.idx) * 0.32 + majorBonus * 30 - bodyBreaks * 26;
+            if (touches < 3 || bodyBreaks > 2) return null;
+            return {
+              id: `${kind}_${a.idx}_${b.idx}`,
+              type: kind,
+              points: [{ time:a.time, value:Number(a.price.toFixed(2)) }, { time:arr[lastIdx].time, value:Number(lastVal.toFixed(2)) }],
+              slopePerBar: Number(slope.toFixed(5)),
+              touches,
+              lengthBars: lastIdx - a.idx,
+              rSquared: 0.82,
+              valid: bodyBreaks <= 1,
+              score: Number(score.toFixed(2)),
+              touchPoints: touchPoints.slice(0, 12),
+              reversalConfirmed: touches >= 4,
+              source: 'candle-pivot5-local-test'
+            };
+          };
+          const candidates = [];
+          for (let i = 0; i < pivotsLow.length; i += 1) {
+            for (let j = i + 1; j < pivotsLow.length; j += 1) {
+              if (pivotsLow[j].price <= pivotsLow[i].price) continue;
+              const line = buildLine(pivotsLow[i], pivotsLow[j], 'uptrend');
+              if (line) candidates.push(line);
+            }
+          }
+          for (let i = 0; i < pivotsHigh.length; i += 1) {
+            for (let j = i + 1; j < pivotsHigh.length; j += 1) {
+              if (pivotsHigh[j].price >= pivotsHigh[i].price) continue;
+              const line = buildLine(pivotsHigh[i], pivotsHigh[j], 'downtrend');
+              if (line) candidates.push(line);
+            }
+          }
+          const dedupe = (items, max=8) => items.sort((a,b)=>Number(a.points?.[1]?.value||0)-Number(b.points?.[1]?.value||0)).reduce((acc, line) => {
+            const last = Number(line.points?.[1]?.value || 0);
+            const found = acc.find(x => Math.abs((Number(x.points?.[1]?.value||0) / Math.max(0.0001,last)) - 1) <= 0.02 && Math.abs(Number(x.slopePerBar||0) - Number(line.slopePerBar||0)) <= 0.03 && x.type === line.type);
+            if (!found) acc.push(line);
+            else if (Number(line.score||0) > Number(found.score||0)) Object.assign(found, line);
+            return acc;
+          }, []).sort((a,b)=>Number(b.score||0)-Number(a.score||0)).slice(0,max);
+          return dedupe(candidates, 10);
+        };
+
+        const goodChannels = (items = [], minScore = 70, max = 3) => topByScore((Array.isArray(items) ? items : []).filter(x => Number(x?.score || 0) >= minScore), max);
+        const goodLinreg = (items = [], max = 2) => topByScore((Array.isArray(items) ? items : []).filter(x => Number(x?.rSquared || 0) >= 0.55 || Number(x?.score || 0) >= 60), max);
+        const settings = { volume:14, ma:'20,50', ema:'20,50', bb:20, macd:'12,26,9', rsi:14 };
+        const colors = ['#f5c542','#64b5ff','#ff7d7d','#4ef0c0','#b388ff','#ffb454','#ec7fff'];
+        const toggles = Array.from(document.querySelectorAll('[data-indicator]'));
+        const legend = document.getElementById('stockChartLegend');
+        const volSlider = document.querySelector('[data-volume-height]');
+        const pop = document.getElementById('chartSettingsPop');
+        const parsePeriods = (text) => String(text || '20,50').split(',').map(x => parseInt(x.trim(), 10)).filter(x => x >= 2 && x <= 250).slice(0, 7);
+        const rangeKey = () => `${String(symbol || '').toUpperCase()}:${activeFrame}`;
+        const rangeStorageKey = () => `lh.stockChart.range.${rangeKey()}`;
+        const normalizeStoredTime = (t) => { if (typeof t === 'string') return t; if (t && typeof t === 'object' && Number.isFinite(t.year) && Number.isFinite(t.month) && Number.isFinite(t.day)) return `${t.year}-${String(t.month).padStart(2,'0')}-${String(t.day).padStart(2,'0')}`; return normalizePointTime(t); };
+        const loadStoredRange = () => { try { const r = JSON.parse(localStorage.getItem(rangeStorageKey()) || 'null'); return r && Number.isFinite(r.from) && Number.isFinite(r.to) ? r : null; } catch(_) { return null; } };
+        const isRangeUsable = (r) => r && Number.isFinite(r.from) && Number.isFinite(r.to) && r.to > r.from;
+        const saveRange = (r) => { if (isRangeUsable(r)) { const clean = { from:r.from, to:r.to }; chartRangeState.set(rangeKey(), clean); try { localStorage.setItem(rangeStorageKey(), JSON.stringify(clean)); } catch(_) {} } };
+        const currentRange = () => { try { const live = box._lhChart?.timeScale().getVisibleLogicalRange(); return isRangeUsable(live) ? live : (chartRangeState.get(rangeKey()) || loadStoredRange() || null); } catch(_) { return chartRangeState.get(rangeKey()) || loadStoredRange() || null; } };
+        const draw = (keepRange = true, forcedRange = null) => {
+          let range = isRangeUsable(forcedRange) ? forcedRange : (keepRange ? currentRange() : null); if (!isRangeUsable(range)) range = null; try { box._lhChart?.remove(); volBox?._lhChart?.remove(); macdBox?._lhChart?.remove(); rsiBox?._lhChart?.remove(); } catch(_) {}
+          box.innerHTML = '';
+          const chart = LightweightCharts.createChart(box, { width: box.clientWidth, height: box.clientHeight || 320, layout: { background: { color: 'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color: 'rgba(120,140,180,.07)' }, horzLines: { color: 'rgba(120,140,180,.07)' } }, rightPriceScale: { borderColor: 'rgba(120,140,180,.18)', scaleMargins: { top: 0.10, bottom: 0.08 } }, timeScale: { visible:false, borderColor: 'rgba(120,140,180,.18)' }, crosshair: { mode: 0 } });
+          box._lhChart = chart;
+          const candleSeries = chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350', priceLineVisible:false, lastValueVisible:true, lastPriceAnimation:0, priceFormat:{ type:'price', minMove:0.01, precision:2 } }); candleSeries.setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
+          box._lhCandleSeries = candleSeries;
+          const legendItems = [];
+          if (volBox) volBox.style.display = state.volume ? 'block' : 'none';
+          if (state.volume && volBox) { volBox.innerHTML = ''; volBox.style.height = `${Math.max(60, Math.min(220, Number(settings.volume || 14) * 4))}px`; const volChart = LightweightCharts.createChart(volBox, { width: volBox.clientWidth, height: volBox.clientHeight || 96, layout: { background: { color:'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color:'rgba(120,140,180,.08)' }, horzLines: { color:'rgba(120,140,180,.08)' } }, rightPriceScale: { borderColor:'rgba(120,140,180,.18)', scaleMargins:{ top:.12, bottom:.12 } }, timeScale: { borderColor:'rgba(120,140,180,.22)' } }); volBox._lhChart = volChart; volChart.addHistogramSeries({ priceFormat:{type:'volume'}, priceLineVisible:false, lastValueVisible:false, color:'#8fb3ff' }).setData(rows.map(r => ({ time:r.time, value:Number(r.volume || 0), color:Number(r.close || 0) >= Number(r.open || 0) ? 'rgba(38,166,154,.46)' : 'rgba(239,83,80,.46)' }))); if (range) volChart.timeScale().setVisibleLogicalRange(range); else volChart.timeScale().fitContent(); chart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { volChart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); volChart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { chart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); legendItems.push(`<span style="color:#8fb3ff">VOL pane ${Math.max(60, Math.min(220, Number(settings.volume || 14) * 4))}px</span>`); }
+          if (state.ma) { parsePeriods(settings.ma).forEach((n, i) => { const color = colors[i % colors.length]; chart.addLineSeries({ color, lineWidth:2, priceLineVisible:false, lastValueVisible:false }).setData(data[`ma${n}`] || calcMaRows(rows, n)); legendItems.push(`<span style="color:${color}">MA${n}</span>`); }); }
+          if (state.ema) { parsePeriods(settings.ema).forEach((n, i) => { const color = colors[(i + 2) % colors.length]; chart.addLineSeries({ color, lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false }).setData(data[`ema${n}`] || calcMaRows(rows, n)); legendItems.push(`<span style="color:${color}">EMA${n}</span>`); }); }
+          if (state.bb) { const bb = data.bollinger || {}; chart.addLineSeries({ color:'#9ad7ff', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData(bb.upper || []); chart.addLineSeries({ color:'#9ad7ff', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData(bb.middle || []); chart.addLineSeries({ color:'#9ad7ff', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData(bb.lower || []); legendItems.push('<span style="color:#9ad7ff">BB</span>'); }
+          if (macdBox) macdBox.style.display = state.macd ? 'block' : 'none';
+          if (state.macd && macdBox) { macdBox.innerHTML = ''; const macdChart = LightweightCharts.createChart(macdBox, { width: macdBox.clientWidth, height: macdBox.clientHeight || 104, layout: { background: { color:'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color:'rgba(120,140,180,.08)' }, horzLines: { color:'rgba(120,140,180,.08)' } }, rightPriceScale: { borderColor:'rgba(120,140,180,.18)', scaleMargins:{ top:.18, bottom:.18 } }, timeScale: { borderColor:'rgba(120,140,180,.22)' } }); macdBox._lhChart = macdChart; const macdScale = { priceLineVisible:false, lastValueVisible:false }; macdChart.addHistogramSeries({ ...macdScale, color:'#26a69a' }).setData(data.macd?.histogram || []); macdChart.addLineSeries({ ...macdScale, color:'#64b5ff', lineWidth:1 }).setData(data.macd?.macd || []); macdChart.addLineSeries({ ...macdScale, color:'#ffb454', lineWidth:1 }).setData(data.macd?.signal || []); if (range) macdChart.timeScale().setVisibleLogicalRange(range); else macdChart.timeScale().fitContent(); chart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { macdChart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); macdChart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { chart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); legendItems.push('<span style="color:#64b5ff">MACD</span><span style="color:#ffb454">Signal</span>'); }
+          if (rsiBox) rsiBox.style.display = state.rsi ? 'block' : 'none';
+          if (state.rsi && rsiBox) { rsiBox.innerHTML = ''; const rsiChart = LightweightCharts.createChart(rsiBox, { width: rsiBox.clientWidth, height: rsiBox.clientHeight || 104, layout:{ background:{color:'transparent'}, textColor:getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid:{ vertLines:{color:'rgba(120,140,180,.08)'}, horzLines:{color:'rgba(120,140,180,.08)'} }, rightPriceScale:{ borderColor:'rgba(120,140,180,.18)', scaleMargins:{top:.15,bottom:.15} }, timeScale:{ borderColor:'rgba(120,140,180,.22)' } }); rsiBox._lhChart = rsiChart; rsiChart.addLineSeries({ color:'#c792ea', lineWidth:1, priceLineVisible:false, lastValueVisible:false }).setData(data.rsi || []); rsiChart.addLineSeries({ color:'#ff7d7d', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData(rows.map(r => ({time:r.time,value:70}))); rsiChart.addLineSeries({ color:'#4ef0c0', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData(rows.map(r => ({time:r.time,value:30}))); if (range) rsiChart.timeScale().setVisibleLogicalRange(range); else rsiChart.timeScale().fitContent(); chart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { rsiChart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); rsiChart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); try { chart.timeScale().setVisibleLogicalRange(r); } catch(_){} }); legendItems.push('<span style="color:#c792ea">RSI14</span>'); }
+          if (state.trend) { const styleMap = { 'support':['#4ef0c0',2,2], 'resistance':['#ff7d7d',2,2], 'regression-mid':['#b388ff',1,0], 'regression-upper':['#b388ff',1,2], 'regression-lower':['#b388ff',1,2], 'horizontal-support':['#ffb454',1,1], 'horizontal-resistance':['#ffb454',1,1], 'legacy-support':['#00e676',2,1], 'legacy-resistance':['#ff5252',2,1], 'legacy-support-soft':['#66ffa6',1,2], 'legacy-resistance-soft':['#ff8a80',1,2], 'visual-support-trend':['#00e5ff',2,0], 'visual-resistance-trend':['#ffb454',2,0] }; const usingNewOverlay = overlayData && overlayData.summary; if (usingNewOverlay) { let trendLines; const isTouchZone = String(overlayData?.summary?.currentBias || '').includes('touchzone') || (Array.isArray(overlayData?.trendlines) && overlayData.trendlines.some(x => String(x?.source || '').includes('touchzone'))); if (isTouchZone) { const rawTouchLines = (Array.isArray(overlayData?.trendlines) ? overlayData.trendlines : []).filter(x => Number(x?.touches || 0) >= 3 && (x?.valid !== false)); trendLines = clusterTrendLines(rawTouchLines, 5); } else if (String(symbol || '').toUpperCase() === 'MWG' && activeFrame === 'day') { const candleLines = detectCandleTrendlinesExperimental(rows); const overlayLines = (Array.isArray(overlayData?.trendlines) ? overlayData.trendlines : []).filter(x => Number(x?.touches || 0) >= 3 && (x?.valid !== false)); const mergedLines = [...candleLines, ...overlayLines].sort((a,b) => trendLineQuality(b) - trendLineQuality(a)); trendLines = clusterTrendLines(mergedLines, 8); if (trendLines.length < 6) trendLines = mergedLines.slice(0, 8); } else { trendLines = dedupeTrendLines(overlayData.trendlines, 6); } if (!trendLines.length && Array.isArray(overlayData?.trendlines)) trendLines = overlayData.trendlines.slice().sort((a,b) => Number(b?.touches || b?.score || 0) - Number(a?.touches || a?.score || 0)).slice(0, 9); const supportLike = trendLines.filter(x => Number(x?.slopePerBar || 0) >= 0).slice(0,3); const resistanceLike = trendLines.filter(x => Number(x?.slopePerBar || 0) < 0).slice(0,3); const drawTrendWithPriceTag = (line, style, tag) => { const lastPt = Array.isArray(line?.points) && line.points.length ? line.points[line.points.length - 1] : null; const axisTitle = lastPt ? `${tag} ${Number(lastPt.value || 0).toFixed(1)}` : tag; const r = addOverlayLine(chart, line, { ...style, title: axisTitle }); if (!r || !r.points?.length) return; }; supportLike.forEach((line, i) => drawTrendWithPriceTag(line, { color: i === 0 ? '#00c853' : '#76ff03', lineWidth: i === 0 ? 3 : 2, lineStyle:0 }, 'S')); resistanceLike.forEach((line, i) => drawTrendWithPriceTag(line, { color: i === 0 ? '#ff5252' : '#ff8a80', lineWidth: i === 0 ? 3 : 2, lineStyle:0 }, 'R')); const selectedChannels = [];
+          const selectedLinreg = [];
+          // Tắt derived lines (channel/linreg/pitchfork) để mode Trend/SR chỉ còn line touch gốc >= 3.
+          const overlaySr = (overlayData.srLevels || []).filter(x => Number(x?.touches || 0) >= 4 && Number(x?.confidence || 0) >= 55); const pivotSr = pivot5SrLevelsFromRows(rows); const prefilterSr = (pivotSr || []).filter(x => Number(x?.touches || 0) >= 3); const mergedSr = prefilterSr.concat(overlaySr); const clusteredSr = filterRankedSrLevels(clusterSrLevels(mergedSr)); clusteredSr.forEach(level => { const cfg = level?.priceLine || {}; const isResistance = String(level?.type || '').toLowerCase().includes('resistance'); const lvlPrice = Number(cfg.price || level.price || 0); const lvlTag = isResistance ? 'R' : 'S'; const wy = Number(level?.wyckoffScore || 0); const wyTag = wy > 0 ? ` WY${Math.round(wy)}` : ''; addHorizontalSrLine(chart, lvlPrice, { color: isResistance ? '#ff5252' : '#00c853', lineWidth: wy > 0 ? 3 : Math.max(2, Number(cfg.lineWidth || 2)), title: `${lvlTag}${wyTag} ${Number.isFinite(lvlPrice) ? lvlPrice.toFixed(1) : ''}`.trim() }); }); if (clusteredSr.length) legendItems.push(`<span style="color:#ffb454">Wyckoff R/S ${clusteredSr.filter(x => Number(x?.wyckoffScore || 0) > 0).length}/${clusteredSr.length} (extreme 5-bar, soft 2%)</span>`); legendItems.push(`<span style="color:#00c853">Support trend ${supportLike.length}</span>`); legendItems.push(`<span style="color:#ff5252">Resistance trend ${resistanceLike.length}</span>`); } else { const lines = Array.isArray(data.trendlines) && data.trendlines.length ? data.trendlines : (data.trendline ? [data.trendline] : []); lines.slice(0, 7).forEach(line => { if (!line?.points?.length) return; const st = styleMap[line.type] || ['#4ef0c0',1,2]; chart.addLineSeries({ color:st[0], lineWidth:st[1], lineStyle:st[2], priceLineVisible:false, lastValueVisible:false }).setData(line.points); }); legendItems.push('<span style="color:#4ef0c0">Trend/SR</span>'); } }
+          if (state.pattern) { const usingNewOverlay = overlayData && overlayData.summary; if (usingNewOverlay) { const markerList = []; topByScore(overlayData.patterns, 1).forEach(p => { const kp = p?.keyPoints || {}; if (kp.peak1 && kp.peak2) addOverlayLine(chart, { points:[{ time:kp.peak1.time, value:kp.peak1.price }, { time:kp.peak2.time, value:kp.peak2.price }], lineStyle:{ color:'#ffb454', lineWidth:2, lineStyle:2 } }); if (kp.neckline) { try { candleSeries.createPriceLine({ price:Number(kp.neckline.price || p.pivotPrice || 0), color:'#b388ff', lineWidth:2, lineStyle:1, axisLabelVisible:true, title:'Neckline' }); } catch(_) {} } const a = p?.annotation; if (a?.time) markerList.push({ time: normalizePointTime(a.time), position: a.position || 'aboveBar', color: a.color || '#ffb454', shape: a.shape || 'arrowDown', text: a.text || p.name || 'Pattern' }); }); topByScore(overlayData.candlestickSignals, 2).forEach(p => { const m = p?.marker; if (m?.time) markerList.push({ time: normalizePointTime(m.time), position: m.position || 'aboveBar', color: m.color || '#4ef0c0', shape: m.shape || 'arrowUp', text: m.text || p.name || 'Signal' }); }); if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList); if (markerList.length) legendItems.push('<span style="color:#f5c542">Auto Patterns</span>'); } else { const patternLineStyle = { 'pattern-support':['#00e5ff',2,2], 'pattern-resistance':['#ffb454',2,2], 'pattern-neckline':['#b388ff',2,1] }; const patternLines = Array.isArray(data.patternLines) ? data.patternLines : []; patternLines.slice(0, 8).forEach(line => { if (!line?.points?.length) return; const st = patternLineStyle[line.type] || ['#b388ff',1,2]; chart.addLineSeries({ color:st[0], lineWidth:st[1], lineStyle:st[2], priceLineVisible:false, lastValueVisible:false }).setData(line.points); }); if (patternLines.length) legendItems.push('<span style="color:#00e5ff">Biên mẫu hình</span>'); const patternMap = { 'shooting-star':['aboveBar','#ff7d7d','Sao Băng'], 'bearish-engulfing':['aboveBar','#ff5252','Nhấn chìm giảm'], 'doji':['aboveBar','#f5c542','Doji'], 'hammer':['belowBar','#4ef0c0','Rút chân'], 'bullish-engulfing':['belowBar','#4ef0c0','Nhấn chìm tăng'], 'false-breakout':['aboveBar','#ff7d7d','Bull trap'], 'distribution-risk':['aboveBar','#ff7d7d','Phân phối'], 'box-consolidation':['belowBar','#9ad7ff','Tích lũy'], 'breakout-watch':['aboveBar','#4ef0c0','Breakout?'], 'spring-shakeout':['belowBar','#4ef0c0','Spring'], 'cup-handle':['belowBar','#4ef0c0','Cốc tay cầm'], 'darvas-box':['belowBar','#9ad7ff','Darvas'], 'bull-flag':['belowBar','#4ef0c0','Cờ tăng'], 'bear-flag':['aboveBar','#ff7d7d','Cờ giảm'], 'wedge-triangle':['aboveBar','#f5c542','Tam giác/Nêm'], 'ascending-triangle':['belowBar','#4ef0c0','Tam giác tăng'], 'descending-triangle':['aboveBar','#ff7d7d','Tam giác giảm'], 'sym-triangle':['aboveBar','#f5c542','Tam giác'] }; const markers = (Array.isArray(data.patterns) ? data.patterns : []).slice(0, 6).map(p => { const m = patternMap[p.type] || ['aboveBar','#b388ff',p.text || p.type]; return { time:p.time, position:m[0], color:m[1], shape:m[0] === 'belowBar' ? 'arrowUp' : 'arrowDown', text:`${m[2]} ${p.score ? Math.round(p.score) : ''}`.trim() }; }); if (markers.length && candleSeries.setMarkers) candleSeries.setMarkers(markers); if (markers.length) legendItems.push('<span style="color:#f5c542">Mẫu hình nến</span>'); } }
+          if (legend) legend.innerHTML = legendItems.join('');
+          if (range) { chart.timeScale().setVisibleLogicalRange(range); setTimeout(() => { try { chart.timeScale().setVisibleLogicalRange(range); saveRange(range); } catch(_){} }, 0); } else { chart.timeScale().fitContent(); setTimeout(() => saveRange(chart.timeScale().getVisibleLogicalRange()), 0); }
+          chart.timeScale().subscribeVisibleLogicalRangeChange(saveRange);
+          resizeChartWhenVisible(chart, box, true);
+        };
+        const syncPills = () => { Object.keys(state).forEach(k => document.querySelector(`[data-indicator-wrap="${k}"]`)?.classList.toggle('off', !state[k])); if (volSlider) { volSlider.value = String(Math.max(6, Math.min(35, Number(settings.volume) || 14))); volSlider.disabled = !state.volume; volSlider.style.opacity = state.volume ? '1' : '.45'; } };
+        const redrawKeepingView = () => { const r = currentRange(); draw(true, r); };
+        toggles.forEach(btn => { const key = btn.dataset.indicator; btn.onclick = () => { const r = currentRange(); state[key] = !state[key]; syncPills(); draw(true, r); }; });
+        document.querySelectorAll('[data-setting]').forEach(btn => btn.addEventListener('click', () => { const key = btn.dataset.setting; if (!pop) return; const labelMap = { ma:'MA periods', ema:'EMA periods', bb:'BB period', macd:'MACD fast,slow,signal', rsi:'RSI period' }; pop.innerHTML = `<h4>${key.toUpperCase()} settings</h4><label>${labelMap[key] || 'Parameter'}</label><input id="chartSettingInput" value="${settings[key]}"><div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end;"><button type="button" class="chip-btn" id="chartSettingCancel">Đóng</button><button type="button" class="reload-btn" id="chartSettingApply">Áp dụng</button></div>`; pop.classList.add('open'); pop.querySelector('#chartSettingCancel').onclick = () => pop.classList.remove('open'); pop.querySelector('#chartSettingApply').onclick = () => { const val = pop.querySelector('#chartSettingInput')?.value || settings[key]; settings[key] = (key === 'bb' || key === 'rsi') ? Math.max(2, parseInt(val, 10) || settings[key]) : val; pop.classList.remove('open'); redrawKeepingView(); }; pop.querySelector('#chartSettingInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') pop.querySelector('#chartSettingApply')?.click(); }); }));
+        const updateVolFromPointer = (ev) => { const rect = box.getBoundingClientRect(); const y = Math.max(0, Math.min(rect.height, ev.clientY - rect.top)); settings.volume = Math.max(6, Math.min(35, Math.round((1 - y / rect.height) * 100))); redrawKeepingView(); };
+        volSlider?.addEventListener('input', e => { settings.volume = Math.max(6, Math.min(35, Number(e.target?.value) || 14)); if (!state.volume) { state.volume = true; } syncPills(); redrawKeepingView(); });
+        syncPills();
+        draw(true);
+        window.addEventListener('resize', () => { resizeChartWhenVisible(box._lhChart, box, true); resizeChartWhenVisible(volBox?._lhChart, volBox, true); resizeChartWhenVisible(macdBox?._lhChart, macdBox, true); resizeChartWhenVisible(rsiBox?._lhChart, rsiBox, true); });
       } catch (_) { box.innerHTML = '<div class="empty">Chưa có dữ liệu chart cho mã này.</div>'; }
     }
     function normalizeTextForCompare(text='') { return stripHtmlTags(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
     function removeDuplicateNewsLead(title='', snippet='') { const cleanTitle = stripHtmlTags(title || ''); let cleanSnippet = stripHtmlTags(snippet || ''); const normTitle = normalizeTextForCompare(cleanTitle); let normSnippet = normalizeTextForCompare(cleanSnippet); if (normTitle && normSnippet.startsWith(normTitle)) { cleanSnippet = cleanSnippet.slice(cleanTitle.length).replace(/^\s*[.。:：\-–—|]+\s*/, '').trim(); } const titleWords = normTitle.split(' ').filter(Boolean); if (titleWords.length >= 5) { for (let n = Math.min(titleWords.length, 14); n >= 5; n--) { const lead = titleWords.slice(0, n).join(' '); if (normSnippet.startsWith(lead)) { const rawWords = cleanSnippet.split(/\s+/); cleanSnippet = rawWords.slice(n).join(' ').replace(/^\s*[.。:：\-–—|]+\s*/, '').trim(); break; } } } return cleanSnippet; }
-    function renderNews(items) { filteredItems = items; const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE)); if (currentPage > totalPages) currentPage = totalPages; if (currentPage < 1) currentPage = 1; elements.pageInput.value = currentPage; elements.pageInfo.textContent = `${newsText('Trang','Page')} ${currentPage}/${totalPages}`; if (!items.length) { elements.newsList.innerHTML = `<div class="empty">${newsText('Không có tin phù hợp với bộ lọc hiện tại.','No news matches the current filter.')}</div>`; elements.statusText.textContent = newsText('Không có dữ liệu hiển thị','No data to display'); return; } const start = (currentPage - 1) * PAGE_SIZE; const pagedItems = items.slice(start, start + PAGE_SIZE); elements.statusText.textContent = `${newsText('Hiển thị','Showing')} ${pagedItems.length}/${items.length} ${newsText('tin','news items')}`; elements.newsList.innerHTML = pagedItems.map((item, index) => { const rawTitle = currentLang === 'en' ? (item.titleEn || item.title || newsText('Không có tiêu đề','Untitled')) : (item.title || newsText('Không có tiêu đề','Untitled')); const rawSnippet = currentLang === 'en' ? (item.snippetEn || item.summaryEn || item.snippet || item.summary || '') : (item.snippet || item.summary || ''); const title = stripHtmlTags(rawTitle); const snippet = removeDuplicateNewsLead(title, rawSnippet); return `<article class="news-card"><div class="news-meta"><span class="source-tag">${escapeHtml(item.source || 'unknown')}</span><span>${escapeHtml(formatTime(item.published_at || item.fetched_at))}</span></div><h3 class="news-title">${highlightNewsNumbers(title)}</h3><p class="news-snippet">${highlightNewsNumbers(snippet)}</p><div class="news-actions"><a class="open-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">${newsText('Đọc bài gốc','Read original')}</a></div></article>`; }).join(''); }
+    function renderNews(items) { filteredItems = items; const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE)); if (currentPage > totalPages) currentPage = totalPages; if (currentPage < 1) currentPage = 1; elements.pageInput.value = currentPage; elements.pageInfo.textContent = `${newsText('Trang','Page')} ${currentPage}/${totalPages}`; if (!items.length) { elements.newsList.innerHTML = `<div class="empty">${newsText('Không có tin phù hợp với bộ lọc hiện tại.','No news matches the current filter.')}</div>`; elements.statusText.textContent = newsText('Không có dữ liệu hiển thị','No data to display'); return; } const start = (currentPage - 1) * PAGE_SIZE; const pagedItems = items.slice(start, start + PAGE_SIZE); elements.statusText.textContent = `${newsText('Hiển thị','Showing')} ${pagedItems.length}/${items.length} ${newsText('tin','news items')}`; elements.newsList.innerHTML = pagedItems.map((item, index) => { const rawTitle = currentLang === 'en' ? (item.titleEn || item.title || newsText('Không có tiêu đề','Untitled')) : (item.title || newsText('Không có tiêu đề','Untitled')); const rawSnippet = currentLang === 'en' ? (item.summaryEn || item.summaryAi || item.summary || item.snippetEn || item.snippet || '') : (item.summaryAi || item.summary || item.snippet || ''); const title = stripHtmlTags(rawTitle); const snippet = removeDuplicateNewsLead(title, rawSnippet); return `<article class="news-card"><div class="news-meta"><span class="source-tag">${escapeHtml(item.source || 'unknown')}</span><span>${escapeHtml(formatTime(item.published_at || item.fetched_at))}</span></div><h3 class="news-title">${highlightNewsNumbers(title)}</h3><p class="news-snippet">${highlightNewsNumbers(snippet)}</p><div class="news-actions"><a class="open-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noreferrer">${newsText('Đọc bài gốc','Read original')}</a></div></article>`; }).join(''); }
     function applyFilters(resetPage = true) { let items = [...allItems]; if (resetPage) currentPage = 1; if (activeCategory !== 'Tổng hợp') items = items.filter(item => inferCategory(item) === activeCategory); renderNews(items); }
         function scheduleAutoRefresh() { if (autoRefreshTimer) clearTimeout(autoRefreshTimer); autoRefreshTimer = setTimeout(() => loadData(true), AUTO_REFRESH_MS); }
     function readLocalCache(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (_) { return null; } }
@@ -947,7 +1551,7 @@
     async function searchStockCatalog() { const q = (elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); selectedSymbol = ''; if (!q) { elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; return; } try { const res = await fetch('/data/market_symbols.json', { cache: 'default' }); const rows = res.ok ? await res.json() : []; let items = rows.filter(item => String(item.symbol||'').includes(q) || String(item.name||'').toUpperCase().includes(q)).slice(0, 50); if (!items.some(x => String(x.symbol||'').toUpperCase() === q)) items.unshift({ symbol: q, name: 'Tra cứu realtime VPS' }); elements.stockSuggest.innerHTML = items.map(item => `<div class="search-option" data-symbol="${escapeHtml(item.symbol)}"><strong>${escapeHtml(item.symbol)}</strong><span>${escapeHtml(item.name || '')}</span></div>`).join(''); elements.stockSuggest.classList.toggle('open', items.length > 0); elements.stockSuggest.querySelectorAll('[data-symbol]').forEach(option => option.addEventListener('click', async () => { selectedSymbol = option.dataset.symbol; elements.stockSearchInput.value = selectedSymbol; elements.stockSuggest.classList.remove('open'); await openStockSymbol(selectedSymbol); })); } catch (_) {} }
     async function addStockToWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!symbol) return; if (!currentUserId) { elements.marketStatus.textContent = 'Vui lòng đăng nhập để lưu danh mục quan tâm theo account.'; return; } elements.stockSearchBtn.textContent = 'Đang thêm...'; try { let item = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === symbol); if (!item) { const res = await fetch(`${MARKET_API_BASE || API_BASE}/market-data/${encodeURIComponent(symbol)}?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('Không tìm thấy mã'); item = await res.json(); item.sector = inferSector(symbol); } await setDoc(doc(db,'users',currentUserId,'watchlist',symbol),{symbol,enabled:true,updatedAt:serverTimestamp()},{merge:true}); if (!watchSymbols.includes(symbol)) watchSymbols.unshift(symbol); renderMarket([item]); elements.stockSearchInput.value = ''; selectedSymbol = ''; elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; } catch (_) { elements.marketStatus.textContent = `Không tìm thấy mã ${symbol}`; } finally { elements.stockSearchBtn.textContent = 'Thêm'; } }
     async function removeStockFromWatchlist(symbolOverride = '') { const symbol = (symbolOverride || selectedSymbol || elements.stockSearchInput.value || activeDetailTicker || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!symbol) return; if (!currentUserId) { elements.marketStatus.textContent = 'Vui lòng đăng nhập để sửa danh mục quan tâm.'; return; } try { await deleteDoc(doc(db,'users',currentUserId,'watchlist',symbol)); } catch (_) {} watchSymbols = watchSymbols.filter(item => item !== symbol); renderMarket({ items: marketItems, updatedAt: new Date().toISOString() }); if (activeDetailTicker === symbol) elements.detailModal.classList.remove('open'); elements.stockSearchInput.value = ''; selectedSymbol = ''; }
-    async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsRes = await fetch(`/data/${currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; startRealtimePriceOverlay(); }
+    async function loadData(isAutoRefresh = false, forceRefresh = false) { elements.apiStatus.textContent = 'Cache'; let hasAnyData = Boolean(marketItems.length || allItems.length); const tab = pageToTab(); if (tab === 'news') { try { const newsFile = currentLang === 'en' ? 'news_cache_en.json' : 'news_cache.json'; const newsRes = await fetch(`/data/${newsFile}?ts=${Date.now()}`, { cache: 'no-store' }); if (newsRes.ok) { const newsData = await newsRes.json(); allItems = Array.isArray(newsData.items) ? newsData.items : (Array.isArray(newsData) ? newsData : []); writeLocalCache('hoa.news.cache', { items: allItems, updatedAt: new Date().toISOString(), source: newsFile }); currentPage = 1; applyFilters(); hasAnyData = true; } } catch (_) { elements.statusText.innerHTML = '<span class="error">Loi tai tin tuc.</span>'; elements.newsList.innerHTML = '<div class="empty error">Khong the tai tin tuc luc nay.</div>'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; return; } if (tab === 'warrants') { await loadWarrants(); elements.apiStatus.textContent = warrantItems.length ? 'Online' : 'Offline'; return; } try { const marketRes = await fetch(`/data/market_watch.json?ts=${Date.now()}`, { cache: 'no-store' }); if (marketRes.ok) { const marketData = await marketRes.json(); renderMarket(marketData); writeLocalCache('hoa.market.cache', marketData); hasAnyData = true; } } catch (_) { elements.marketStatus.textContent = 'Khong tai duoc watchlist'; } elements.apiStatus.textContent = hasAnyData ? 'Online' : 'Offline'; startRealtimePriceOverlay(); }
 
     let realtimePriceTimer = null;
     function parseVpsQuote(item) {
@@ -978,7 +1582,8 @@
           return { ...item, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, realtimeUpdatedAt: new Date().toISOString(), technical: { ...(item.technical || {}), price: q.price, changePct: q.changePct, volume: q.volume } };
         });
         renderMarket({ items: marketItems });
-        if (activeDetailTicker && elements.detailModal?.classList.contains('open')) openDetail(activeDetailTicker);
+        // Do not redraw the open detail/chart during realtime ticks; it resets user pan/zoom.
+        // Detail price is refreshed when the user reopens the popup or explicitly changes symbol.
         elements.apiStatus.textContent = 'Realtime 15s';
       } catch (_) {
         elements.apiStatus.textContent = 'Cache';
@@ -990,7 +1595,7 @@
       realtimePriceTimer = setInterval(refreshRealtimePrices, 15000);
     }
 
-    elements.tabs.forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); switchTab(btn.dataset.tab, true); })); window.addEventListener('popstate', () => { switchTab(pageToTab()); const parts = location.pathname.split('/').filter(Boolean); if (parts[0] === 'stocks' && parts[1]) openStockSymbol(parts[1]); else elements.detailModal.classList.remove('open'); }); switchTab(pageToTab()); document.querySelectorAll('[data-filter-mode]').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('[data-filter-mode]').forEach(b => b.classList.toggle('active', b.dataset.filterMode === btn.dataset.filterMode)); loadStockFilters(btn.dataset.filterMode); })); elements.stockFilterGrid?.addEventListener('click', (e) => { const el = e.target.closest('[data-filter-symbol]'); if (el) openStockSymbol(el.dataset.filterSymbol); }); loadStockFilters('technical'); elements.stockSearchBtn.addEventListener('click', () => addStockToWatchlist()); elements.stockRemoveBtn.addEventListener('click', () => removeStockFromWatchlist()); elements.stockSearchInput.addEventListener('input', searchStockCatalog); elements.stockSearchInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); await openStockSymbol(selectedSymbol || elements.stockSearchInput.value); } }); elements.warrantSearchInput?.addEventListener('input', searchWarrants); elements.warrantSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); const code = selectedWarrant || elements.warrantSearchInput.value; if (code) { await openWarrantDetail(String(code).trim().toUpperCase()); } } }); elements.warrantAddBtn?.addEventListener('click', () => addWarrantToWatchlist()); elements.warrantRemoveBtn?.addEventListener('click', () => removeWarrantFromWatchlist()); elements.warrantGrid?.addEventListener('click', (e) => { const card = e.target.closest('[data-warrant]'); if (card) openWarrantDetail(card.dataset.warrant); }); document.addEventListener('click', (e) => { if (!e.target.closest('.stock-search-bar')) { elements.stockSuggest.classList.remove('open'); elements.warrantSuggest?.classList.remove('open'); } }); elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); }); elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); }); elements.goPageBtn.addEventListener('click', () => { currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); }); elements.pageInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); } }); elements.addDetailBtn.addEventListener('click', async () => { const symbol = activeDetailTicker || selectedSymbol || elements.stockSearchInput.value; if (!symbol || watchSymbols.includes(symbol)) { if (watchSymbols.includes(symbol)) elements.addDetailBtn.textContent = 'Đã thêm'; return; } elements.addDetailBtn.textContent = 'Đang thêm...'; await addStockToWatchlist(symbol); elements.addDetailBtn.textContent = 'Đã thêm'; }); elements.removeDetailBtn.addEventListener('click', () => removeStockFromWatchlist(activeDetailTicker)); elements.addWarrantDetailBtn?.addEventListener('click', () => addWarrantToWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.removeWarrantDetailBtn?.addEventListener('click', () => removeWarrantFromWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.closeWarrantBtn?.addEventListener('click', () => elements.warrantModal.classList.remove('open')); elements.warrantModal?.addEventListener('click', (e) => { if (e.target === elements.warrantModal) elements.warrantModal.classList.remove('open'); }); elements.closeDetailBtn.addEventListener('click', () => { elements.detailModal.classList.remove('open'); if (location.pathname.startsWith('/stocks/')) history.pushState({ tab: 'stocks' }, '', '/stocks'); }); elements.detailModal.addEventListener('click', (e) => { if (e.target === elements.detailModal) elements.closeDetailBtn.click(); }); elements.helpFab.addEventListener('click', () => elements.helpModal.classList.add('open')); elements.closeHelpBtn.addEventListener('click', () => elements.helpModal.classList.remove('open')); elements.helpModal.addEventListener('click', (e) => { if (e.target === elements.helpModal) elements.helpModal.classList.remove('open'); }); async function switchLanguage(lang) { const nextLang = lang === 'en' ? 'en' : 'vi'; if (nextLang === currentLang) { applyLanguage(nextLang); return; } applyLanguage(nextLang); currentPage = 1; const tab = pageToTab(); if (tab === 'news') { allItems = []; elements.newsList.innerHTML = `<div class="empty">${nextLang === 'en' ? 'Loading news...' : 'Dang tai tin tuc...'}</div>`; await loadData(false, true); } else { renderMarket({ items: marketItems }); if (warrantItems.length) renderWarrants(); await loadData(false, true); } } elements.langViBtn?.addEventListener('click',()=>{ switchLanguage('vi'); }); elements.langEnBtn?.addEventListener('click',()=>{ switchLanguage('en'); }); applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); onAuthStateChanged(auth, user => { authReady = true; currentUserId = user?.uid || ''; if (watchlistUnsubscribe) { watchlistUnsubscribe(); watchlistUnsubscribe = null; } if (warrantWatchlistUnsubscribe) { warrantWatchlistUnsubscribe(); warrantWatchlistUnsubscribe = null; } watchSymbols = []; warrantWatchSymbols = []; renderMarket({ items: marketItems }); renderWarrants(); if (currentUserId) { watchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'watchlist'), qs => { watchSymbols = qs.docs.map(d => String((d.data() || {}).symbol || d.id).toUpperCase()).filter(Boolean).sort(); renderMarket({ items: marketItems }); }); warrantWatchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'warrantWatchlist'), qs => { warrantWatchSymbols = qs.docs.map(d => String((d.data() || {}).code || d.id).toUpperCase()).filter(Boolean).sort(); renderWarrants(); }); } }); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);
+    elements.tabs.forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); switchTab(btn.dataset.tab, true); })); window.addEventListener('popstate', () => { switchTab(pageToTab()); const parts = location.pathname.split('/').filter(Boolean); if (parts[0] === 'stocks' && parts[1]) openStockSymbol(parts[1]); else elements.detailModal.classList.remove('open'); }); switchTab(pageToTab()); const initialParts = location.pathname.split('/').filter(Boolean); if (initialParts[0] === 'stocks' && initialParts[1]) { setTimeout(() => openStockSymbol(initialParts[1]), 250); } document.querySelectorAll('[data-filter-mode]').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('[data-filter-mode]').forEach(b => b.classList.toggle('active', b.dataset.filterMode === btn.dataset.filterMode)); loadStockFilters(btn.dataset.filterMode); })); elements.stockFilterGrid?.addEventListener('click', (e) => { const el = e.target.closest('[data-filter-symbol]'); if (el) openStockSymbol(el.dataset.filterSymbol); }); loadStockFilters('technical'); elements.stockSearchBtn.addEventListener('click', () => addStockToWatchlist()); elements.stockRemoveBtn.addEventListener('click', () => removeStockFromWatchlist()); elements.stockSearchInput.addEventListener('input', searchStockCatalog); elements.stockSearchInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); await openStockSymbol(selectedSymbol || elements.stockSearchInput.value); } }); elements.warrantSearchInput?.addEventListener('input', searchWarrants); elements.cwFilterBtn?.addEventListener('click', renderWarrantFilterResults); elements.cwUnderlyingInput?.addEventListener('keydown', e => { if (e.key === 'Enter') renderWarrantFilterResults(); }); elements.cwTargetInput?.addEventListener('keydown', e => { if (e.key === 'Enter') renderWarrantFilterResults(); }); elements.cwMinDaysInput?.addEventListener('change', renderWarrantFilterResults); elements.cwLimitInput?.addEventListener('change', renderWarrantFilterResults); elements.warrantSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); const code = selectedWarrant || elements.warrantSearchInput.value; if (code) { await openWarrantDetail(String(code).trim().toUpperCase()); } } }); elements.warrantAddBtn?.addEventListener('click', () => addWarrantToWatchlist()); elements.warrantRemoveBtn?.addEventListener('click', () => removeWarrantFromWatchlist()); elements.warrantGrid?.addEventListener('click', (e) => { const card = e.target.closest('[data-warrant]'); if (card) openWarrantDetail(card.dataset.warrant); }); document.addEventListener('click', (e) => { if (!e.target.closest('.stock-search-bar')) { elements.stockSuggest.classList.remove('open'); elements.warrantSuggest?.classList.remove('open'); } }); elements.prevPageBtn.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); }); elements.nextPageBtn.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); }); elements.goPageBtn.addEventListener('click', () => { currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); }); elements.pageInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); } }); elements.addDetailBtn.addEventListener('click', async () => { const symbol = activeDetailTicker || selectedSymbol || elements.stockSearchInput.value; if (!symbol || watchSymbols.includes(symbol)) { if (watchSymbols.includes(symbol)) elements.addDetailBtn.textContent = 'Đã thêm'; return; } elements.addDetailBtn.textContent = 'Đang thêm...'; await addStockToWatchlist(symbol); elements.addDetailBtn.textContent = 'Đã thêm'; }); elements.removeDetailBtn.addEventListener('click', () => removeStockFromWatchlist(activeDetailTicker)); elements.addWarrantDetailBtn?.addEventListener('click', () => addWarrantToWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.removeWarrantDetailBtn?.addEventListener('click', () => removeWarrantFromWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.closeWarrantBtn?.addEventListener('click', () => elements.warrantModal.classList.remove('open')); elements.warrantModal?.addEventListener('click', (e) => { if (e.target === elements.warrantModal) elements.warrantModal.classList.remove('open'); }); elements.closeDetailBtn.addEventListener('click', () => { elements.detailModal.classList.remove('open'); if (location.pathname.startsWith('/stocks/')) history.pushState({ tab: 'stocks' }, '', '/stocks'); }); elements.detailModal.addEventListener('click', (e) => { if (e.target === elements.detailModal) elements.closeDetailBtn.click(); }); elements.helpFab.addEventListener('click', () => elements.helpModal.classList.add('open')); elements.closeHelpBtn.addEventListener('click', () => elements.helpModal.classList.remove('open')); elements.helpModal.addEventListener('click', (e) => { if (e.target === elements.helpModal) elements.helpModal.classList.remove('open'); }); async function switchLanguage(lang) { const nextLang = lang === 'en' ? 'en' : 'vi'; if (nextLang === currentLang) { applyLanguage(nextLang); return; } applyLanguage(nextLang); currentPage = 1; const tab = pageToTab(); if (tab === 'news') { allItems = []; elements.newsList.innerHTML = `<div class="empty">${nextLang === 'en' ? 'Loading news...' : 'Dang tai tin tuc...'}</div>`; await loadData(false, true); } else { renderMarket({ items: marketItems }); if (warrantItems.length) renderWarrants(); await loadData(false, true); } } elements.langViBtn?.addEventListener('click',()=>{ switchLanguage('vi'); }); elements.langEnBtn?.addEventListener('click',()=>{ switchLanguage('en'); }); applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); onAuthStateChanged(auth, user => { authReady = true; currentUserId = user?.uid || ''; if (watchlistUnsubscribe) { watchlistUnsubscribe(); watchlistUnsubscribe = null; } if (warrantWatchlistUnsubscribe) { warrantWatchlistUnsubscribe(); warrantWatchlistUnsubscribe = null; } watchSymbols = []; warrantWatchSymbols = []; renderMarket({ items: marketItems }); renderWarrants(); if (currentUserId) { watchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'watchlist'), qs => { watchSymbols = qs.docs.map(d => String((d.data() || {}).symbol || d.id).toUpperCase()).filter(Boolean).sort(); renderMarket({ items: marketItems }); }); warrantWatchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'warrantWatchlist'), qs => { warrantWatchSymbols = qs.docs.map(d => String((d.data() || {}).code || d.id).toUpperCase()).filter(Boolean).sort(); renderWarrants(); refreshWarrantDetails(warrantWatchSymbols); }); } }); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);
   </script>
 </body>
 </html>
