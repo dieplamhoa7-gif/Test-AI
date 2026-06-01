@@ -1158,7 +1158,7 @@
         const res = { ok:true };
         if (!res.ok) throw new Error('chart missing');
         let rows = data.rows || [];
-        const state = { volume:false, ma:false, ema:false, bb:true, macd:true, rsi:true, trend:true, pattern:false };
+        const state = { volume:false, ma:false, ema:false, bb:false, macd:false, rsi:false, trend:true, pattern:false };
         const topByScore = (items = [], n = 1) => (Array.isArray(items) ? items : []).filter(Boolean).sort((a, b) => Number(b?.score || b?.confidence || 0) - Number(a?.score || a?.confidence || 0)).slice(0, n);
         const nearestByPrice = (items = [], currentPrice = 0) => (Array.isArray(items) ? items : []).filter(x => Number.isFinite(Number(x?.price || x?.priceLine?.price))).sort((a, b) => Math.abs(Number(a?.price || a?.priceLine?.price || 0) - currentPrice) - Math.abs(Number(b?.price || b?.priceLine?.price || 0) - currentPrice));
         const srQuality = (level) => {
