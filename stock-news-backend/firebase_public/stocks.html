@@ -5,6 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LH INVESTMENT - Investment Dashboard</title>
+  <script>
+    (function () {
+      try {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            return Promise.all((regs || []).map(function (reg) { return reg.unregister(); }));
+          }).catch(function () {});
+        }
+        if (window.caches && window.caches.keys) {
+          window.caches.keys().then(function (keys) {
+            return Promise.all((keys || []).map(function (key) { return window.caches.delete(key); }));
+          }).catch(function () {});
+        }
+        try { localStorage.removeItem('hoa.market.cache'); localStorage.removeItem('hoa.news.cache'); localStorage.removeItem('hoa.warrants.cache'); localStorage.removeItem('hoa.warrants.detail.cache'); } catch (_) {}
+      } catch (_) {}
+    })();
+  </script>
   <style>
     :root {
       --bg: #070b14;
