@@ -223,12 +223,12 @@
     .stat-card { border:1px solid rgba(92,110,148,.18); border-radius:14px; padding: 12px; background: rgba(255,255,255,.02); }
     .stat-card .label { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
     .stock-chart-card { margin-bottom:14px; border:1px solid rgba(92,110,148,.20); border-radius:18px; overflow:hidden; background:rgba(255,255,255,.02); }
-    .stock-chart-head { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px; color:var(--muted); font-size:12px; font-weight:800; border-bottom:1px solid rgba(92,110,148,.16); }
+    .stock-chart-head { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; padding:8px 10px; color:var(--muted); font-size:12px; font-weight:800; border-bottom:1px solid rgba(92,110,148,.16); flex-wrap:wrap; }
     .stock-chart-title { display:flex; align-items:center; gap:8px; white-space:nowrap; color:var(--text); }
-    .stock-chart-tools { display:flex; gap:5px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .stock-chart-tools { display:flex; gap:5px; align-items:center; flex-wrap:wrap; justify-content:flex-end; width:100%; min-width:0; }
     .stock-chart-tools input { width:132px; background:var(--panel-2); color:var(--text); border:1px solid var(--line); border-radius:10px; padding:7px 9px; font-weight:800; }
     .stock-chart-tools label { display:inline-flex; gap:5px; align-items:center; }
-    .indicator-pill { display:inline-flex; align-items:center; gap:0; border:1px solid rgba(92,110,148,.24); border-radius:7px; overflow:hidden; background:rgba(255,255,255,.035); }
+    .indicator-pill { display:inline-flex !important; align-items:center; gap:0; border:1px solid rgba(92,110,148,.24); border-radius:7px; overflow:visible; background:rgba(255,255,255,.035); flex:0 0 auto; }
     .chart-toggle, .chart-setting { border:0; background:transparent; color:var(--text); padding:5px 7px; font-size:11px; line-height:1; font-weight:900; cursor:pointer; }
     .chart-toggle.active { background:linear-gradient(135deg, var(--accent), #7a74ff); color:#06111f; box-shadow:0 0 0 1px rgba(255,255,255,.12) inset, 0 0 12px rgba(100,181,255,.35); }
     .chart-setting { border-left:1px solid rgba(92,110,148,.18); color:var(--muted); padding-left:6px; padding-right:6px; }
@@ -1535,10 +1535,11 @@
         const goodLinreg = (items = [], max = 2) => topByScore((Array.isArray(items) ? items : []).filter(x => Number(x?.rSquared || 0) >= 0.55 || Number(x?.score || 0) >= 60), max);
         const settings = { volume:14, ma:'20,50', ema:'20,50', bb:20, macd:'12,26,9', rsi:14 };
         const colors = ['#f5c542','#64b5ff','#ff7d7d','#4ef0c0','#b388ff','#ffb454','#ec7fff'];
-        const toggles = Array.from(document.querySelectorAll('[data-indicator]'));
+        const chartCard = box.closest('.stock-chart-card') || document;
+        const toggles = Array.from(chartCard.querySelectorAll('[data-indicator]'));
         const legend = document.getElementById('stockChartLegend');
-        const volSlider = document.querySelector('[data-volume-height]');
-        const pop = document.getElementById('chartSettingsPop');
+        const volSlider = chartCard.querySelector('[data-volume-height]');
+        const pop = chartCard.querySelector('#chartSettingsPop');
         const parsePeriods = (text) => String(text || '20,50').split(',').map(x => parseInt(x.trim(), 10)).filter(x => x >= 2 && x <= 250).slice(0, 7);
         const rangeKey = () => `${String(symbol || '').toUpperCase()}:${activeFrame}`;
         const rangeStorageKey = () => `lh.stockChart.range.${rangeKey()}`;
@@ -1577,7 +1578,7 @@
         const syncPills = () => { Object.keys(state).forEach(k => document.querySelector(`[data-indicator-wrap="${k}"]`)?.classList.toggle('off', !state[k])); if (volSlider) { volSlider.value = String(Math.max(6, Math.min(35, Number(settings.volume) || 14))); volSlider.disabled = !state.volume; volSlider.style.opacity = state.volume ? '1' : '.45'; } };
         const redrawKeepingView = () => { const r = currentRange(); draw(true, r); };
         toggles.forEach(btn => { const key = btn.dataset.indicator; btn.onclick = () => { const r = currentRange(); state[key] = !state[key]; syncPills(); draw(true, r); }; });
-        document.querySelectorAll('[data-setting]').forEach(btn => btn.addEventListener('click', () => { const key = btn.dataset.setting; if (!pop) return; const labelMap = { ma:'MA periods', ema:'EMA periods', bb:'BB period', macd:'MACD fast,slow,signal', rsi:'RSI period' }; pop.innerHTML = `<h4>${key.toUpperCase()} settings</h4><label>${labelMap[key] || 'Parameter'}</label><input id="chartSettingInput" value="${settings[key]}"><div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end;"><button type="button" class="chip-btn" id="chartSettingCancel">Đóng</button><button type="button" class="reload-btn" id="chartSettingApply">Áp dụng</button></div>`; pop.classList.add('open'); pop.querySelector('#chartSettingCancel').onclick = () => pop.classList.remove('open'); pop.querySelector('#chartSettingApply').onclick = () => { const val = pop.querySelector('#chartSettingInput')?.value || settings[key]; settings[key] = (key === 'bb' || key === 'rsi') ? Math.max(2, parseInt(val, 10) || settings[key]) : val; pop.classList.remove('open'); redrawKeepingView(); }; pop.querySelector('#chartSettingInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') pop.querySelector('#chartSettingApply')?.click(); }); }));
+        chartCard.querySelectorAll('[data-setting]').forEach(btn => btn.addEventListener('click', () => { const key = btn.dataset.setting; if (!pop) return; const labelMap = { ma:'MA periods', ema:'EMA periods', bb:'BB period', macd:'MACD fast,slow,signal', rsi:'RSI period' }; pop.innerHTML = `<h4>${key.toUpperCase()} settings</h4><label>${labelMap[key] || 'Parameter'}</label><input id="chartSettingInput" value="${settings[key]}"><div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end;"><button type="button" class="chip-btn" id="chartSettingCancel">Đóng</button><button type="button" class="reload-btn" id="chartSettingApply">Áp dụng</button></div>`; pop.classList.add('open'); pop.querySelector('#chartSettingCancel').onclick = () => pop.classList.remove('open'); pop.querySelector('#chartSettingApply').onclick = () => { const val = pop.querySelector('#chartSettingInput')?.value || settings[key]; settings[key] = (key === 'bb' || key === 'rsi') ? Math.max(2, parseInt(val, 10) || settings[key]) : val; pop.classList.remove('open'); redrawKeepingView(); }; pop.querySelector('#chartSettingInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') pop.querySelector('#chartSettingApply')?.click(); }); }));
         const updateVolFromPointer = (ev) => { const rect = box.getBoundingClientRect(); const y = Math.max(0, Math.min(rect.height, ev.clientY - rect.top)); settings.volume = Math.max(6, Math.min(35, Math.round((1 - y / rect.height) * 100))); redrawKeepingView(); };
         volSlider?.addEventListener('input', e => { settings.volume = Math.max(6, Math.min(35, Number(e.target?.value) || 14)); if (!state.volume) { state.volume = true; } syncPills(); redrawKeepingView(); });
         syncPills();
