@@ -1591,8 +1591,18 @@
       if (!volume) volume = Number(item?.lastVolume || 0);
       const price = rawPrice * scale;
       const refPrice = rawRef ? rawRef * scale : 0;
-      const bid = Number(String(item?.g1 || '').split('|')[0] || item?.best1Bid || item?.bidPrice1 || item?.bestBid || 0) * scale;
-      const ask = Number(String(item?.g4 || '').split('|')[0] || item?.best1Offer || item?.offerPrice1 || item?.bestAsk || 0) * scale;
+      const bidL1 = Number(String(item?.g1 || '').split('|')[0] || 0);
+      const askL1 = Number(String(item?.g5 || '').split('|')[0] || 0);
+      const askL0 = Number(String(item?.g4 || '').split('|')[0] || 0);
+      const askL2 = Number(String(item?.g6 || '').split('|')[0] || 0);
+      const bidRaw = bidL1 || Number(item?.best1Bid || item?.bidPrice1 || item?.bestBid || 0);
+      let askRaw = askL1 || askL0 || askL2 || Number(item?.best1Offer || item?.offerPrice1 || item?.bestAsk || 0);
+      if (bidRaw > 0 && askRaw > 0 && askRaw < bidRaw) {
+        const alt = [askL0, askL1, askL2, Number(item?.best1Offer || 0), Number(item?.offerPrice1 || 0), Number(item?.bestAsk || 0)].filter(v => Number(v) >= bidRaw);
+        if (alt.length) askRaw = alt[0];
+      }
+      const bid = Number(bidRaw || 0) * scale;
+      const ask = Number(askRaw || 0) * scale;
       const openPrice = Number(item?.openPrice || 0) * scale;
       const highPrice = Number(item?.highPrice || 0) * scale;
       const lowPrice = Number(item?.lowPrice || 0) * scale;
