@@ -525,7 +525,7 @@
     const db = getFirestore(firebaseApp);
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '2026-06-01-main-clean-live-v5-cw-liquidity';
+    const APP_CACHE_VERSION = '2026-06-01-main-clean-live-v8-cw-live-fix';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Luật BĐS', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
@@ -678,14 +678,13 @@
       elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
     }
     async function refreshWarrantDetails(codes = []) {
-      const list = [...new Set(codes.map(x => String(x || '').toUpperCase().replace(/[^A-Z0-9]/g,'')).filter(Boolean))].slice(0, 12);
+      const list = [...new Set(codes.map(x => String(x || '').toUpperCase().replace(/[^A-Z0-9]/g,'')).filter(Boolean))].slice(0, 80);
       if (!list.length) return;
       try {
         const fresh = await Promise.all(list.map(async code => {
           const q = typeof fetchVpsQuote === 'function' ? await fetchVpsQuote(code) : null;
           if (!q) return null;
-          const toCwVnd = (v) => { const n = Number(v || 0); return n > 0 && n < 100 ? Math.round(n * 1000) : n; };
-          return { code, marketPrice: toCwVnd(q.price), lastPrice: toCwVnd(q.price), refPrice: toCwVnd(q.refPrice), changePct: q.changePct, volume: q.volume, openPrice: toCwVnd(q.openPrice), highPrice: toCwVnd(q.highPrice), lowPrice: toCwVnd(q.lowPrice), bid: toCwVnd(q.bid), ask: toCwVnd(q.ask) };
+          return { code, marketPrice: Number(q.price || 0), lastPrice: Number(q.price || 0), refPrice: Number(q.refPrice || 0), change: Number(q.change || 0), changePct: Number(q.changePct || 0), volume: Number(q.volume || 0), openPrice: Number(q.openPrice || 0), highPrice: Number(q.highPrice || 0), lowPrice: Number(q.lowPrice || 0), bid: Number(q.bid || 0), ask: Number(q.ask || 0) };
         }));
         const byCode = new Map(warrantItems.map(x => [String(x.code || '').toUpperCase(), x]));
         fresh.filter(Boolean).forEach(q => {
@@ -756,7 +755,7 @@
       elements.warrantStatus.textContent = `${warrantTextViEn('Đã xóa','Removed')} ${code} ${warrantTextViEn('khỏi danh mục','from watchlist')}`;
       if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
     }
-    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase(), daysLeft: computeDaysLeftFromDates(x) })); renderWarrants(); renderWarrantFilterResults(); refreshUnderlyingPricesForWarrants([...new Set(warrantItems.map(x => x.underlying))]).catch(() => {}); const liveCodes = warrantWatchSymbols.length ? warrantWatchSymbols : warrantItems.slice(0, 12).map(x => x.code); refreshWarrantDetails(liveCodes); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
+    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase(), daysLeft: computeDaysLeftFromDates(x) })); renderWarrants(); renderWarrantFilterResults(); refreshUnderlyingPricesForWarrants([...new Set(warrantItems.map(x => x.underlying))]).catch(() => {}); const liveCodes = warrantItems.slice(0, 80).map(x => x.code); refreshWarrantDetails(liveCodes); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
 
 
     
@@ -1579,14 +1578,26 @@
 
     let realtimePriceTimer = null;
     function parseVpsQuote(item) {
-      const price = Number(item?.lastPrice || 0);
-      const ref = Number(item?.r || 0);
-      if (!price) return null;
+      const sym = String(item?.sym || item?.symbol || '');
+      const isWarrant = String(item?.sType || '').toUpperCase() === 'W' || /^C[A-Z0-9]{3,}/.test(sym);
+      const scale = isWarrant ? 1000 : 1;
+      const rawPrice = Number(item?.lastPrice || 0);
+      const rawRef = Number(item?.r || item?.closePrice || 0);
+      if (!rawPrice) return null;
       let volume = Number(item?.totalVolume || 0);
-      if (!volume) volume = Number(item?.lot || item?.lastVolume || 0) * 10;
-      const bid = Number(item?.best1Bid || item?.bidPrice1 || item?.bestBid || 0);
-      const ask = Number(item?.best1Offer || item?.offerPrice1 || item?.bestAsk || 0);
-      return { price, refPrice: ref, changePct: ref ? Math.round(((price - ref) / ref * 100) * 100) / 100 : Number(item?.changePc || 0), volume, openPrice: Number(item?.openPrice || 0), highPrice: Number(item?.highPrice || 0), lowPrice: Number(item?.lowPrice || 0), avgPrice: Number(item?.avePrice || price), bid, ask };
+      if (!volume) volume = Number(item?.lot || 0);
+      if (!volume) volume = Number(item?.lastVolume || 0);
+      const price = rawPrice * scale;
+      const refPrice = rawRef ? rawRef * scale : 0;
+      const bid = Number(String(item?.g1 || '').split('|')[0] || item?.best1Bid || item?.bidPrice1 || item?.bestBid || 0) * scale;
+      const ask = Number(String(item?.g4 || '').split('|')[0] || item?.best1Offer || item?.offerPrice1 || item?.bestAsk || 0) * scale;
+      const openPrice = Number(item?.openPrice || 0) * scale;
+      const highPrice = Number(item?.highPrice || 0) * scale;
+      const lowPrice = Number(item?.lowPrice || 0) * scale;
+      const avgPrice = Number(item?.avePrice || rawPrice) * scale;
+      const change = refPrice ? price - refPrice : 0;
+      const changePct = refPrice ? Math.round(((price - refPrice) / refPrice * 100) * 100) / 100 : Number(item?.changePc || 0);
+      return { price, refPrice, change, changePct, volume, openPrice, highPrice, lowPrice, avgPrice, bid: bid || null, ask: ask || null, isWarrant };
     }
     async function fetchVpsQuote(symbol) {
       const res = await fetch(`https://bgapidatafeed.vps.com.vn/getliststockdata/${encodeURIComponent(symbol)}`, { cache: 'no-store' });
