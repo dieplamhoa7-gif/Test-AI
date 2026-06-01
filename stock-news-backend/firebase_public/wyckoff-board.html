@@ -35,13 +35,13 @@
 <div class="page">
   <div class="header">
     <div>
-      <div class="title">PHÂN TÍCH CẤU TRÚC — WYCKOFF BOARD</div>
-      <div class="subtitle">Frontend mới theo style bảng phân tích · dùng dữ liệu Wyckoff của mình · MWG giữ logic cũ, mã khác dùng full timeframe</div>
+      <div class="title">WYCKOFF BOARD STRUCTURE MAP</div>
+      <div class="subtitle">Full-history Wyckoff board - long data from 2023 - overlay index remapped to current chart</div>
     </div>
     <div class="tools">
       <span class="chip" id="modeChip">LEGACY MWG / FULL TF</span>
       <span class="chip" id="timeChip">Daily</span>
-      <label class="chip">Mã <select id="symbolSel"></select></label>
+      <label class="chip">Symbol <select id="symbolSel"></select></label>
     </div>
   </div>
 
@@ -58,14 +58,14 @@
         <div id="chart"></div>
         <div id="overlay" class="overlay"></div>
       </div>
-      <div class="footer">SC / AR / ST / Spring / Test Spring bám vào nến thật nếu dữ liệu event có. Vùng support 6M + support 1Y được giữ cố định.</div>
+      <div class="footer">SC / AR / ST / Spring / Test Spring anchor to real candles when event data exists. Support 6M + support 1Y stay fixed.</div>
     </div>
 
     <div class="side">
       <div class="card">
-        <h3>Kết luận</h3>
+        <h3>Verdict</h3>
         <div class="verdict" id="verdict">RANGE / WAIT</div>
-        <div class="muted" id="verdictText">Đang chờ breakout thật khỏi range để xác nhận hướng tiếp theo.</div>
+        <div class="muted" id="verdictText">Waiting for real breakout from the range to confirm the next move.</div>
       </div>
       <div class="card">
         <h3>Trạng thái hiện tại</h3>
