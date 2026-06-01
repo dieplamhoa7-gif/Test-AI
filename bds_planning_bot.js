@@ -8,12 +8,17 @@
 // with a planning report using bds_planning_checker.js.
 
 const { parseCoordinateInput, lookupHcmPlanning, lookupGulandPriceStats, summarize, toMarkdown } = require('./bds_planning_checker');
-const { parseGulandPopupText, formatGulandPopup } = require('./guland_popup_parser');
+let parseGulandPopupText = () => null;
+let formatGulandPopup = () => '';
+try { ({ parseGulandPopupText, formatGulandPopup } = require('./guland_popup_parser')); } catch (e) { console.error('[guland_popup_parser] load failed:', e && e.message || e); }
 const { parseQhVietPopupText, formatQhVietPopup } = require('./qhviet_popup_parser');
 const { searchBatdongsanComparables } = require('./batdongsan_price_search');
+const { collectApartmentProjectValuations, formatApartmentProjectValuationReport, projectsToMapPoints } = require('./apartment_project_valuation');
 const { repairMojibake } = require('./mojibake_repair');
 let planningBrowserPopups = null;
 try { planningBrowserPopups = require('./planning_browser_popups'); } catch (_) {}
+let mapScreenshot = null;
+try { mapScreenshot = require('./map_screenshot'); } catch (e) { console.error('[map_screenshot] load failed:', e && e.message || e); }
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const ALLOWED_CHAT_IDS = (process.env.BDS_ALLOWED_CHAT_IDS || '')
@@ -138,7 +143,7 @@ function stripBotMention(text) {
 }
 
 function formatMoneyBillion(v) {
-  return Number.isFinite(v) ? `${v.toFixed(2)} tß╗╖` : '-';
+  return Number.isFinite(v) ? `${v.toFixed(2)} tỷ` : '-';
 }
 
 function fmtAreaShort(v) {
@@ -147,13 +152,13 @@ function fmtAreaShort(v) {
 
 function formatBatdongsanReport(result) {
   const rows = result?.comparables || [];
-  if (!rows.length) return 'Mß║½u so s├ính tß╗½ nguß╗ôn ngo├ái\n- Ch╞░a t├¼m ─æ╞░ß╗úc mß║½u ph├╣ hß╗úp.';
+  if (!rows.length) return 'Mẫu so sánh từ nguồn ngoài\n- Chưa tìm được mẫu phù hợp.';
   return [
-    'Mß║½u so s├ính tß╗½ nguß╗ôn ngo├ái',
+    'Mẫu so sánh từ nguồn ngoài',
     ...rows.slice(0, 6).map((r, i) => [
-      `${i + 1}. ─É╞░ß╗¥ng: ${r.road_name || '-'}`,
-      `   Diß╗çn t├¡ch: ${fmtAreaShort(r.area_m2)} | Tß╗òng tiß╗ün: ${formatMoneyBillion(r.total_billion)} | Gi├í/m2: ${Number.isFinite(r.price_million_m2) ? `*${fmtPrice(r.price_million_m2)}*` : '-'}`,
-      `   MĐSDĐ: ${r.land_use_code || 'chưa rõ'} | Vị trí: ${r.position || 'chưa rõ'} | Loß║íi: ${r.asset_type || '-'}`,
+      `${i + 1}. Đường: ${r.road_name || '-'}`,
+      `   Diện tích: ${fmtAreaShort(r.area_m2)} | Tổng tiền: ${formatMoneyBillion(r.total_billion)} | Giá/m2: ${Number.isFinite(r.price_million_m2) ? `*${fmtPrice(r.price_million_m2)}*` : '-'}`,
+      `   MĐSDĐ: ${r.land_use_code || 'chưa rõ'} | Vị trí: ${r.position || 'chưa rõ'} | Loại: ${r.asset_type || '-'}`,
       `   Nguồn: ${r.source || 'web'}${r.url ? ` - ${r.url}` : ''}`,
     ].filter(Boolean).join('\n')),
     result?.url ? `Nguồn search: ${result.url}` : null,
@@ -161,15 +166,15 @@ function formatBatdongsanReport(result) {
 }
 
 function assetLabel(code) {
-  return ({ land: 'Đất', house: 'Nhà', apartment: 'Chung cư', factory: 'Kho/xưởng', shophouse: 'Shophouse/mặt bằng' })[code] || code || 'ch╞░a chß╗ìn';
+  return ({ land: 'Đất', house: 'Nhà', apartment: 'Chung cư', factory: 'Kho/xưởng', shophouse: 'Shophouse/mặt bằng' })[code] || code || 'chưa chọn';
 }
 function positionLabel(code) {
-  return ({ frontage: 'Mß║╖t tiß╗ün', alley: 'Hß║╗m', corner: 'C─ân g├│c/2 mß║╖t tiß╗ün', any: 'Bß╗Å qua' })[code] || code || 'ch╞░a chß╗ìn';
+  return ({ frontage: 'Mặt tiền', alley: 'Hẻm', corner: 'Căn góc/2 mặt tiền', any: 'Bỏ qua' })[code] || code || 'chưa chọn';
 }
 function positionTraitsForCode(code) {
-  if (code === 'frontage') return ['mß║╖t tiß╗ün/kinh doanh'];
-  if (code === 'alley') return ['hß║╗m/ng├╡'];
-  if (code === 'corner') return ['c─ân g├│c/2 mß║╖t tiß╗ün'];
+  if (code === 'frontage') return ['mặt tiền/kinh doanh'];
+  if (code === 'alley') return ['hẻm/ngõ'];
+  if (code === 'corner') return ['căn góc/2 mặt tiền'];
   return [];
 }
 
@@ -180,15 +185,15 @@ function normalizeViText(s) {
 
 
 function formatGeoAddress(loc) {
-  if (!loc) return 'ch╞░a x├íc ─æß╗ïnh';
+  if (!loc) return 'chưa xác định';
   return [
-    loc.road ? `─É╞░ß╗¥ng geocode: ${loc.road}` : null,
-    loc.nearest_road?.name ? `─É╞░ß╗¥ng gß║ºn nhß║Ñt: ${loc.nearest_road.name} (~${Math.round(loc.nearest_road.distance_m)}m)` : null,
-    loc.nearest_pois?.length ? `POI/dß╗▒ ├ín gß║ºn: ${loc.nearest_pois.slice(0, 3).map(p => `${p.name} ~${Math.round(p.distance_m)}m`).join('; ')}` : null,
-    loc.neighbourhood ? `Khu phß╗æ: ${loc.neighbourhood}` : null,
-    (loc.ward || loc.suburb) ? `Ph╞░ß╗¥ng/x├ú: ${loc.ward || loc.suburb}` : null,
-    loc.district ? `Quß║¡n/huyß╗çn/TP: ${loc.district}` : null,
-    (loc.city || loc.state) ? `Tß╗ënh/TP: ${loc.city || loc.state}` : null,
+    loc.road ? `Đường geocode: ${loc.road}` : null,
+    loc.nearest_road?.name ? `Đường gần nhất: ${loc.nearest_road.name} (~${Math.round(loc.nearest_road.distance_m)}m)` : null,
+    loc.nearest_pois?.length ? `POI/dự án gần: ${loc.nearest_pois.slice(0, 3).map(p => `${p.name} ~${Math.round(p.distance_m)}m`).join('; ')}` : null,
+    loc.neighbourhood ? `Khu phố: ${loc.neighbourhood}` : null,
+    (loc.ward || loc.suburb) ? `Phường/xã: ${loc.ward || loc.suburb}` : null,
+    loc.district ? `Quận/huyện/TP: ${loc.district}` : null,
+    (loc.city || loc.state) ? `Tỉnh/TP: ${loc.city || loc.state}` : null,
     loc.display_name ? `Full: ${loc.display_name}` : null,
   ].filter(Boolean).join('\n');
 }
@@ -303,6 +308,57 @@ async function tg(method, payload) {
   return data.result;
 }
 
+// Send a PNG buffer as Telegram photo via multipart/form-data.
+async function sendPhoto(chatId, pngBuffer, caption, replyTo) {
+  const fd = new FormData();
+  fd.append('chat_id', String(chatId));
+  if (caption) fd.append('caption', String(caption).slice(0, 1000));
+  if (replyTo) fd.append('reply_parameters', JSON.stringify({ message_id: replyTo }));
+  fd.append('photo', new Blob([pngBuffer], { type: 'image/png' }), 'map.png');
+  const res = await fetch(`${API}/sendPhoto`, { method: 'POST', body: fd });
+  const data = await res.json().catch(() => null);
+  if (!res.ok || !data?.ok) throw new Error(`sendPhoto failed: ${res.status} ${JSON.stringify(data)}`);
+  return data.result;
+}
+
+// Fire-and-forget multi-pin map screenshot.
+//   - 1st arg can be (chatId, lat, lon, replyTo, label) for single-pin back-compat
+//     OR (chatId, points, replyTo, label) where points = [{lat,lon,label?}, ...]
+//   - Multi-pin: fitBounds với padding 15% mỗi cạnh → bounding box 5 pins chiếm ~70% ảnh.
+//   - Single-pin: zoom 18 mặc định.
+// Never throws — only logs on failure so it never blocks the text reply.
+// Skip entirely if BDS_DISABLE_MAP_SCREENSHOT=1.
+async function trySendMapScreenshot(chatId, a, b, c, d) {
+  if (process.env.BDS_DISABLE_MAP_SCREENSHOT === '1') return;
+  if (!mapScreenshot) { console.error('[map] module not loaded'); return; }
+  // Normalize arguments: detect whether 2nd arg is points array or numeric lat
+  let points, replyTo, label;
+  if (Array.isArray(a)) {
+    points = a; replyTo = b; label = c;
+  } else {
+    points = [{ lat: Number(a), lon: Number(b), label: '📍' }];
+    replyTo = c; label = d;
+  }
+  if (!points.length) return;
+  try {
+    console.log(`[map] capture ${points.length} pin(s): ${points.map(p => p.lat+','+p.lon).join(' | ')}`);
+    const t0 = Date.now();
+    const png = await mapScreenshot.captureMultiPinMapAt(points, { width: 1920, height: 1080, zoom: 18, paddingPct: 0.15, mode: 'satellite' });
+    console.log(`[map] captured ${png.length} bytes in ${Date.now() - t0}ms`);
+    const captionLines = [
+      label || '📍 Bản đồ vị trí',
+      points.length === 1
+        ? `Tọa độ: ${points[0].lat}, ${points[0].lon}`
+        : `${points.length} điểm — bounding box ~70% ảnh, padding 15%`,
+      points.length > 1 ? points.slice(0, 8).map((p, i) => `${i+1}. ${p.label || '(không tên)'} — ${p.lat}, ${p.lon}`).join('\n') : null,
+    ].filter(Boolean);
+    await sendPhoto(chatId, png, captionLines.join('\n'), replyTo);
+    console.log('[map] photo sent OK');
+  } catch (err) {
+    console.error('[map] capture/send failed:', err && err.message || err);
+  }
+}
+
 async function sendMessage(chatId, text, replyTo, extra = {}) {
   const chunks = [];
   while (text.length > 3900) {
@@ -323,7 +379,7 @@ async function sendMessage(chatId, text, replyTo, extra = {}) {
 }
 
 function fmtPrice(v) {
-  return Number.isFinite(v) ? `${v.toFixed(2)} tr/m2` : 'ch╞░a c├│';
+  return Number.isFinite(v) ? `${v.toFixed(2)} tr/m2` : 'chưa có';
 }
 
 function formatPriceReport(priceStats) {
@@ -360,13 +416,13 @@ function fmtArea(v) {
 function formatParcelHeader(summary, ...parsedSources) {
   const parcel = parsedSources.map(x => x?.parcel).find(p => p && (p.map_sheet || p.parcel_no || p.area_m2 || p.old_area || p.new_area)) || {};
   return [
-    'Th├┤ng tin thß╗¡a',
-    parcel.map_sheet ? `- Sß╗æ tß╗¥: ${parcel.map_sheet}` : null,
-    parcel.parcel_no ? `- Sß╗æ thß╗¡a: ${parcel.parcel_no}` : null,
-    parcel.area_m2 ? `- Diß╗çn t├¡ch thß╗¡a: ${fmtArea(parcel.area_m2)}` : null,
-    parcel.old_area ? `- Khu vß╗▒c c┼⌐: ${parcel.old_area}` : null,
-    parcel.new_area ? `- Khu vß╗▒c mß╗¢i: ${parcel.new_area}` : null,
-    !parcel.old_area && !parcel.new_area && summary.location?.display_name ? `- Khu vß╗▒c: ${summary.location.display_name}` : null,
+    'Thông tin thửa',
+    parcel.map_sheet ? `- Số tờ: ${parcel.map_sheet}` : null,
+    parcel.parcel_no ? `- Số thửa: ${parcel.parcel_no}` : null,
+    parcel.area_m2 ? `- Diện tích thửa: ${fmtArea(parcel.area_m2)}` : null,
+    parcel.old_area ? `- Khu vực cũ: ${parcel.old_area}` : null,
+    parcel.new_area ? `- Khu vực mới: ${parcel.new_area}` : null,
+    !parcel.old_area && !parcel.new_area && summary.location?.display_name ? `- Khu vực: ${summary.location.display_name}` : null,
   ].filter(Boolean).join('\n');
 }
 
@@ -403,12 +459,12 @@ function formatSourceBlock(name, parsed, sourceUrl, official = {}) {
   });
   return [
     `Theo ${name}`,
-    uniqueLandLines.length ? '- MĐSDĐ/chß╗⌐c n─âng ─æß║Ñt:' : null,
+    uniqueLandLines.length ? '- MĐSDĐ/chức năng đất:' : null,
     ...uniqueLandLines,
-    official.population || main.danso ? `- D├ón sß╗æ: ${official.population || main.danso}` : null,
-    official.floors || main.floors ? `- Tß║ºng cao: ${official.floors || main.floors}` : null,
-    official.density || main.building_density ? `- M─ÉXD: ${official.density || main.building_density}` : null,
-    official.far || main.far ? `- HSSD─É: ${official.far || main.far}` : null,
+    official.population || main.danso ? `- Dân số: ${official.population || main.danso}` : null,
+    official.floors || main.floors ? `- Tầng cao: ${official.floors || main.floors}` : null,
+    official.density || main.building_density ? `- MĐXD: ${official.density || main.building_density}` : null,
+    official.far || main.far ? `- HSSDĐ: ${official.far || main.far}` : null,
     sourceUrl ? `- Nguồn: ${sourceUrl}` : null,
   ].filter(Boolean).join('\n');
 }
@@ -421,8 +477,8 @@ function comparePlanningSources(guland, qhviet) {
   if (!a.size || !b.size) return null;
   const onlyA = [...a].filter(x => !b.has(x));
   const onlyB = [...b].filter(x => !a.has(x));
-  if (!onlyA.length && !onlyB.length) return 'Kß║┐t luß║¡n: Quy hoß║ích Guland giß╗æng QH Việt vß╗ü nh├│m chß╗⌐c n─âng ─æß║Ñt ─æß╗ìc ─æ╞░ß╗úc.';
-  return 'Kß║┐t luß║¡n: Quy hoß║ích Guland kh├íc QH Việt hoß║╖c ch╞░a khß╗¢p ho├án to├án vß╗ü chß╗⌐c n─âng ─æß║Ñt; ưu tiên kiß╗âm tra lß║íi popup ─æ├║ng ─æiß╗âm v├á nguß╗ôn ch├¡nh thß╗æng.';
+  if (!onlyA.length && !onlyB.length) return 'Kết luận: Quy hoạch Guland giống QH Việt về nhóm chức năng đất đọc được.';
+  return 'Kết luận: Quy hoạch Guland khác QH Việt hoặc chưa khớp hoàn toàn về chức năng đất; ưu tiên kiểm tra lại popup đồng điểm và nguồn chính thống.';
 }
 
 function buildFinalReport(summary, gulandText, priceStats, qhvietText = null) {
@@ -477,8 +533,12 @@ async function answerCallbackQuery(id, text = '') {
 function buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors = []) {
   const emptyPrice = { sample_count: 0, error: 'Dùng /giá để tra giá riêng.' };
   let report = buildFinalReport(summary, gulandText, emptyPrice, qhvietText)
-    .replace(/\nGi├í tham khß║úo Guland[\s\S]*?\nNguồn\n/, '\nNguồn\n');
-  if (popupErrors.length && !gulandText && !qhvietText) report += `\n\nPopup tự động\n${popupErrors.map(x => `- ${x}`).join('\n')}`;
+    .replace(/\nGiá tham khảo Guland[\s\S]*?\nNguồn\n/, '\nNguồn\n');
+  if (!gulandText && !qhvietText) {
+    report += '\n\nĐối chiếu popup/browser\n';
+    if (popupErrors.length) report += popupErrors.map(x => `- ${x}`).join('\n');
+    else report += '- Chưa đọc được popup Guland/QH Việt; báo cáo hiện dùng dữ liệu quy hoạch chính + link đối chiếu.';
+  }
   return report;
 }
 
@@ -499,7 +559,7 @@ async function askPriceStep(req, key) {
     return;
   }
   if (!req.landUse) {
-    await sendMessage(req.chatId, ['Anh chß╗ìn MĐSDĐ:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
+    await sendMessage(req.chatId, ['Anh chọn MĐSDĐ:', selected].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
       { text: 'ODT', callback_data: `price:land:ODT:${key}` },
       { text: 'TMD', callback_data: `price:land:TMD:${key}` },
       { text: 'SKC', callback_data: `price:land:SKC:${key}` },
@@ -519,6 +579,28 @@ async function runPriceLookup(req) {
     planningText: [req.landUse, assetLabel(req.asset)].join(' '),
   }).catch(err => ({ error: err.message || String(err), sample_count: 0 }));
   const bdsLocationText = buildBdsSearchLocation(enrichLocationForBdsSearch(formatGeoAddress(req.geoLocation), req.locationText, req.text));
+
+  // Apartment branch: identify ~5 nearby projects + their prices, send report + multi-pin map.
+  if (req.asset === 'apartment') {
+    console.log(`[price-apartment] lat=${req.lat} lon=${req.lon} geo="${bdsLocationText}"`);
+    const projectResult = await collectApartmentProjectValuations({ lat: req.lat, lon: req.lon, geoText: bdsLocationText, limitProjects: 5 })
+      .catch(err => ({ error: err.message || String(err), projects: [] }));
+    try {
+      const summary = (projectResult.projects || []).map(p => `${(p.name || '?').slice(0, 20)}[coords=${p.lat ? 'Y' : 'N'},stat=${p.stats ? p.stats.sample_count : 0}]`).join(' | ');
+      console.log(`[price-apartment-result] subject="${projectResult.subject?.area || 'none'}" projects=${(projectResult.projects || []).length} | ${summary}`);
+    } catch (_) {}
+    await sendMessage(req.chatId, [`GIÁ CHUNG CƯ — ${(projectResult.projects || []).length} DỰ ÁN`, `Tọa độ: ${req.lat}, ${req.lon}`, `Khu vực: ${bdsLocationText || 'chưa rõ'}`, '', formatApartmentProjectValuationReport(projectResult)].join('\n'), req.replyTo);
+    // Multi-pin map: tất cả 5 dự án có lat/lon + tọa độ gốc của anh.
+    const mapPoints = projectsToMapPoints(projectResult);
+    if (mapPoints.length) {
+      mapPoints.unshift({ lat: req.lat, lon: req.lon, label: '🎯 Vị trí anh hỏi' });
+      trySendMapScreenshot(req.chatId, mapPoints, req.replyTo, `🗺️ ${mapPoints.length - 1} dự án + vị trí anh hỏi`);
+    } else {
+      trySendMapScreenshot(req.chatId, req.lat, req.lon, req.replyTo, `📍 ${bdsLocationText || 'Vị trí'}`);
+    }
+    return;
+  }
+
   console.log(`[price] search location="${bdsLocationText}" lat=${req.lat} lon=${req.lon} asset=${req.asset} land=${req.landUse}`);
   const bds = await searchBatdongsanComparables({
     lat: req.lat,
@@ -528,6 +610,7 @@ async function runPriceLookup(req) {
   }).catch(err => ({ error: err.message || String(err), comparables: [] }));
   console.log(`[price] external comparables=${bds.comparables?.length || 0} error=${bds.error || ''} query=${bds.query || ''}`);
   await sendMessage(req.chatId, [`GIÁ BĐS`, `Tọa độ: ${req.lat}, ${req.lon}`, `Khu vực search: ${bdsLocationText || 'chưa rõ'}`, `Loại tài sản: ${assetLabel(req.asset)}`, `MĐSDĐ: ${req.landUse}`, '', formatPriceReport(stats), '', formatBatdongsanReport(bds)].join('\n'), req.replyTo);
+  trySendMapScreenshot(req.chatId, req.lat, req.lon, req.replyTo, `📍 ${assetLabel(req.asset)} - ${bdsLocationText || 'Vị trí'}`);
 }
 
 async function handlePriceSelection(query) {
@@ -539,22 +622,22 @@ async function handlePriceSelection(query) {
     // Backward compatibility with old buttons: price:ODT:key
     const [, code, key] = parts;
     req = pendingPriceRequests.get(key);
-    if (!req) { await answerCallbackQuery(query.id, 'Y├¬u cß║ºu gi├í ─æ├ú hß║┐t hß║ín, gß╗¡i lß║íi /gi├í + tß╗ìa ─æß╗Ö gi├║p em.'); return true; }
+    if (!req) { await answerCallbackQuery(query.id, 'Yêu cầu giá đã hết hạn, gửi lại /giá + tọa độ giúp em.'); return true; }
     req.landUse = code;
   } else {
     const [, step, value, key] = parts;
     req = pendingPriceRequests.get(key);
-    if (!req) { await answerCallbackQuery(query.id, 'Y├¬u cß║ºu gi├í ─æ├ú hß║┐t hß║ín, gß╗¡i lß║íi /gi├í + tß╗ìa ─æß╗Ö gi├║p em.'); return true; }
+    if (!req) { await answerCallbackQuery(query.id, 'Yêu cầu giá đã hết hạn, gửi lại /giá + tọa độ giúp em.'); return true; }
     if (step === 'asset') req.asset = value;
     if (step === 'land') req.landUse = value;
     if (step === 'pos') req.position = value;
   }
-  await answerCallbackQuery(query.id, '─É├ú nhß║¡n lß╗▒a chß╗ìn.');
+  await answerCallbackQuery(query.id, 'Đã nhận lựa chọn.');
   if (!req.asset || !req.landUse) {
     await askPriceStep(req, parts[parts.length - 1]);
     return true;
   }
-  await answerCallbackQuery(query.id, '─Éang tra gi├í...');
+  await answerCallbackQuery(query.id, 'Đang tra giá...');
   await runPriceLookup(req);
   pendingPriceRequests.delete(parts[parts.length - 1]);
   return true;
@@ -576,7 +659,7 @@ async function handleMessage(msg) {
 
   const parsed = parseCoordinateInput([combinedText]);
   if (!parsed) {
-    await sendMessage(chatId, 'Em thß║Ñy anh gß╗¡i link/nhß║»c quy hoß║ích, nh╞░ng ch╞░a ─æß╗ìc ─æ╞░ß╗úc tß╗ìa ─æß╗Ö lat/lon thß║¡t. Link official dß║íng #/3/1/18 l├á trß║íng th├íi giao diß╗çn, kh├┤ng ─æß╗º ─æß╗â bot gß╗ìi API. Anh gß╗¡i tß╗ìa ─æß╗Ö dß║íng 10.845790835609225,106.76200727878299 hoß║╖c link Google Maps c├│ tß╗ìa ─æß╗Ö nh├⌐.', msg.message_id);
+    await sendMessage(chatId, 'Em thấy anh gửi link/nhắc quy hoạch, nhưng chưa đọc được tọa độ lat/lon thật. Link official dạng #/3/1/18 là trạng thái giao diện, không đủ để bot gọi API. Anh gửi tọa độ dạng 10.845790835609225,106.76200727878299 hoặc link Google Maps có tọa độ nhé.', msg.message_id);
     return;
   }
 
@@ -598,7 +681,7 @@ async function handleMessage(msg) {
     return;
   }
 
-  await sendMessage(chatId, 'Em nhß║¡n tß╗ìa ─æß╗Ö rß╗ôi, ─æang tra quy hoß║ích...', msg.message_id);
+  await sendMessage(chatId, 'Em nhận tọa độ rồi, đang tra quy hoạch...', msg.message_id);
   try {
     const raw = await lookupHcmPlanning(parsed.lat, parsed.lon);
     const summary = summarize(raw);
@@ -611,14 +694,14 @@ async function handleMessage(msg) {
       if (got?.text && !got.degraded) gulandText = got.text;
       else if (got?.degraded) popupErrors.push(`Guland popup: ${got.text.split('\n')[0]}`);
     } else if (!gulandText) {
-      popupErrors.push('Guland popup: auto-click ─æang bß╗ï tß║»t bß║▒ng BDS_DISABLE_BROWSER_POPUPS=1.');
+      popupErrors.push('Guland popup: chưa có module reader/parser, đang dùng báo cáo quy hoạch chính + link đối chiếu.');
     }
     if (browserPopupsEnabled && !qhvietText && planningBrowserPopups?.readQhVietPopupText) {
       const got = await planningBrowserPopups.readQhVietPopupText(parsed.lat, parsed.lon, summary.location || {}).catch(err => { popupErrors.push(`QH Việt popup: ${err.message || err}`); return null; });
       if (got?.text && !got.degraded) qhvietText = got.text;
       else if (got?.degraded) popupErrors.push(`QH Việt popup: ${got.text.split('\n')[0]}`);
     } else if (!qhvietText) {
-      popupErrors.push('QH Việt popup: auto-click ─æang bß╗ï tß║»t bß║▒ng BDS_DISABLE_BROWSER_POPUPS=1.');
+      popupErrors.push('QH Việt popup: chưa có module reader, đang dùng báo cáo quy hoạch chính + link đối chiếu.');
     }
     const planningTraitsText = [
       summary.exact_indicators?.chuc_nang_dat,
@@ -628,8 +711,9 @@ async function handleMessage(msg) {
     ].filter(Boolean).join(' ');
     let report = buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors);
     await sendMessage(chatId, report, msg.message_id);
+    trySendMapScreenshot(chatId, parsed.lat, parsed.lon, msg.message_id, `📍 Quy hoạch tại ${parsed.lat}, ${parsed.lon}`);
   } catch (err) {
-    await sendMessage(chatId, `Em tra bß╗ï lß╗ùi: ${err.message || err}. Anh gß╗¡i lß║íi tß╗ìa ─æß╗Ö/link gi├║p em.`, msg.message_id);
+    await sendMessage(chatId, `Em tra bị lỗi: ${err.message || err}. Anh gửi lại tọa độ/link giúp em.`, msg.message_id);
   }
 }
 
@@ -645,7 +729,7 @@ async function initBotIdentity() {
 
 async function pollLoop() {
   await initBotIdentity();
-  console.log('B─ÉS planning bot started');
+  console.log('BĐS planning bot started');
   while (true) {
     try {
       const updates = await tg('getUpdates', { offset, timeout: 35, allowed_updates: ['message', 'callback_query'] });
