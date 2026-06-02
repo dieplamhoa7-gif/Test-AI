@@ -1613,7 +1613,7 @@
             if (isClaudeOverlay) {
               const markerList = [];
               const scoreRank = x => Number(x?.score || 0) + (x?.confidence === 'high' ? 20 : x?.confidence === 'medium' ? 10 : 0);
-              const mergeCloseHorizontalLines = (lines = [], pct = 0.01) => {
+              const mergeCloseHorizontalLines = (lines = [], pct = 0.02) => {
                 const out = [];
                 const buckets = [];
                 const levelOf = (line) => {
@@ -1638,16 +1638,23 @@
                 });
                 return out;
               };
+              const currentCloseForOverlay = Number(rows?.[rows.length - 1]?.close || 0);
+              const cleanRank = (line) => {
+                const pts = normalizePoints(line.points || []).filter(p => Number.isFinite(p.value));
+                const v = pts.length ? pts.reduce((s, p) => s + p.value, 0) / pts.length : currentCloseForOverlay;
+                const dist = currentCloseForOverlay ? Math.abs(v / Math.max(0.0001, currentCloseForOverlay) - 1) : 0;
+                return scoreRank(line) + Math.min(12, 3 * Number(line.mergedCount || 1)) - dist * 180;
+              };
               const clLines = mergeCloseHorizontalLines((Array.isArray(overlayData.lines) ? overlayData.lines : [])
                 .filter(l => Array.isArray(l.points) && l.points.length >= 2)
-                .sort((a, b) => scoreRank(b) - scoreRank(a)), 0.01);
-              clLines.slice(0, 28).forEach(line => {
+                .sort((a, b) => cleanRank(b) - cleanRank(a)), 0.02);
+              clLines.slice(0, 18).forEach(line => {
                 const pts = normalizePoints(line.points).filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length < 2) return;
                 chart.addLineSeries({ color: line.color || '#f5c542', lineWidth: line.dash ? 1 : 2, lineStyle: line.dash ? 2 : 0, priceLineVisible:false, lastValueVisible:false, title: line.text || line.type || '' }).setData(pts);
                 if (line.text && !line.dash) addTrendInlineLabel(pts, line.color || '#f5c542', line.text);
               });
-              (Array.isArray(overlayData.zones) ? overlayData.zones : []).slice(0, 10).forEach(z => {
+              (Array.isArray(overlayData.zones) ? overlayData.zones : []).slice(0, 6).forEach(z => {
                 const low = Number(z.low), high = Number(z.high);
                 if (!Number.isFinite(low) || !Number.isFinite(high) || !z.from || !z.to) return;
                 const top = Math.max(low, high), bot = Math.min(low, high);
@@ -1658,7 +1665,7 @@
               const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : [])
                 .filter(x => x.time && Number.isFinite(Number(x.price)))
                 .sort((a, b) => scoreRank(b) - scoreRank(a));
-              clLabels.slice(0, 35).forEach(l => {
+              clLabels.slice(0, 18).forEach(l => {
                 const dir = String(l.direction || '').toLowerCase();
                 const below = dir === 'bullish' || String(l.color || '').includes('16a34a') || String(l.color || '').includes('4ef0c0');
                 markerList.push({ time: normalizePointTime(l.time), position: below ? 'belowBar' : 'aboveBar', color: l.color || (below ? '#16a34a' : '#dc2626'), shape: below ? 'arrowUp' : 'arrowDown', text: `${l.text || l.kind || 'Pattern'}${l.score ? ' ' + Math.round(l.score) : ''}` });
