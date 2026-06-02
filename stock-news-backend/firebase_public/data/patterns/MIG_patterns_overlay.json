@@ -1,21 +1,21 @@
 {
-  "symbol": "MWG",
-  "createdAt": "2026-06-02T07:45:55.517171+00:00",
+  "symbol": "MIG",
+  "createdAt": "2026-06-02T07:45:53.804918+00:00",
   "timeframe": "daily",
   "period": [
     "2022-10-28",
     "2026-05-29"
   ],
-  "lastClose": 76.3,
+  "lastClose": 18.65,
   "summary": {
-    "bias": "neutral",
-    "biasStrength": 11.0,
-    "bullScore": 602.9,
-    "bearScore": 751.4,
+    "bias": "bullish",
+    "biasStrength": 18.5,
+    "bullScore": 857.6,
+    "bearScore": 590.4,
     "primarySignals": [
       {
-        "type": "resistance-trendline",
-        "direction": "bearish",
+        "type": "support-trendline",
+        "direction": "bullish",
         "role": "primary",
         "tier": 1,
         "confidence": "high",
@@ -23,7 +23,19 @@
         "composite": 115.0,
         "status": "active",
         "target": null,
-        "note": "Trendline 8 chạm, 0 vi phạm"
+        "note": "Trendline 15 chạm, 10 vi phạm"
+      },
+      {
+        "type": "resistance-trendline",
+        "direction": "bearish",
+        "role": "primary",
+        "tier": 1,
+        "confidence": "high",
+        "score": 100,
+        "composite": 111.0,
+        "status": "active",
+        "target": null,
+        "note": "Trendline 11 chạm, 4 vi phạm"
       },
       {
         "type": "support-cluster",
@@ -32,22 +44,10 @@
         "tier": 1,
         "confidence": "high",
         "score": 100,
-        "composite": 103.0,
+        "composite": 99.0,
         "status": "active",
         "target": null,
-        "note": "7 pivot chạm vùng support"
-      },
-      {
-        "type": "triple-top",
-        "direction": "bearish",
-        "role": "primary",
-        "tier": 1,
-        "confidence": "high",
-        "score": 76.0,
-        "composite": 99.6,
-        "status": "active",
-        "target": 70.87,
-        "note": "3 đỉnh ~84.1, neckline 77.5"
+        "note": "12 pivot chạm vùng support"
       }
     ],
     "supportingSignals": [
@@ -64,40 +64,28 @@
         "note": "7 pivot chạm vùng resistance"
       },
       {
-        "type": "support-trendline",
-        "direction": "bullish",
-        "role": "supporting",
-        "tier": 1,
-        "confidence": "high",
-        "score": 100,
-        "composite": 99.0,
-        "status": "active",
-        "target": null,
-        "note": "Trendline 8 chạm, 2 vi phạm"
-      },
-      {
-        "type": "double-top",
-        "direction": "bearish",
-        "role": "supporting",
-        "tier": 1,
-        "confidence": "medium",
-        "score": 68.0,
-        "composite": 90.8,
-        "status": "active",
-        "target": 71.5,
-        "note": "2 đỉnh ~84.7, neckline 78.1"
-      },
-      {
         "type": "triple-bottom",
         "direction": "bullish",
         "role": "supporting",
         "tier": 1,
         "confidence": "high",
         "score": 76.0,
-        "composite": 87.6,
+        "composite": 83.6,
         "status": "active",
-        "target": 56.41,
-        "note": "3 đáy ~40.3, neckline 48.3"
+        "target": 16.88,
+        "note": "3 đáy ~14.1, neckline 15.5"
+      },
+      {
+        "type": "bullish-rsi-divergence",
+        "direction": "bullish",
+        "role": "supporting",
+        "tier": 1,
+        "confidence": "medium",
+        "score": 58.0,
+        "composite": 79.8,
+        "status": "active",
+        "target": null,
+        "note": "Giá đáy thấp hơn nhưng RSI tăng (37→39)"
       },
       {
         "type": "double-bottom",
@@ -108,70 +96,59 @@
         "score": 68.0,
         "composite": 78.8,
         "status": "active",
-        "target": 52.06,
-        "note": "2 đáy ~42.5, neckline 47.3"
+        "target": 13.98,
+        "note": "2 đáy ~11.3, neckline 12.6"
       },
       {
-        "type": "death-cross",
+        "type": "ascending-triangle",
+        "direction": "bullish",
+        "role": "supporting",
+        "tier": 2,
+        "confidence": "medium",
+        "score": 67.0,
+        "composite": 75.0,
+        "status": "active",
+        "target": 19.98,
+        "note": "ascending triangle trên 60 phiên gần nhất"
+      },
+      {
+        "type": "triple-top",
         "direction": "bearish",
         "role": "supporting",
         "tier": 1,
-        "confidence": "low",
-        "score": 56.0,
-        "composite": 77.6,
-        "status": "active",
-        "target": null,
-        "note": "SMA20 cắt xuống SMA50"
+        "confidence": "medium",
+        "score": 66.0,
+        "composite": 70.0,
+        "status": "forming",
+        "target": 12.18,
+        "note": "3 đỉnh ~14.5, neckline 13.3"
       }
     ],
     "conflicts": [
       {
-        "bullish": "support-cluster",
-        "bullScore": 103.0,
-        "bearish": "double-top",
-        "bearScore": 90.8,
+        "bullish": "triple-bottom",
+        "bullScore": 83.6,
+        "bearish": "resistance-cluster",
+        "bearScore": 99.0,
         "note": "Tín hiệu tăng và giảm cùng mạnh, cùng đang hiệu lực — cân nhắc chờ xác nhận."
       },
       {
-        "bullish": "support-cluster",
-        "bullScore": 103.0,
-        "bearish": "triple-top",
-        "bearScore": 99.6,
-        "note": "Tín hiệu tăng và giảm cùng mạnh, cùng đang hiệu lực — cân nhắc chờ xác nhận."
-      },
-      {
-        "bullish": "support-trendline",
-        "bullScore": 99.0,
-        "bearish": "double-top",
-        "bearScore": 90.8,
-        "note": "Tín hiệu tăng và giảm cùng mạnh, cùng đang hiệu lực — cân nhắc chờ xác nhận."
-      },
-      {
-        "bullish": "support-trendline",
-        "bullScore": 99.0,
-        "bearish": "triple-top",
-        "bearScore": 99.6,
-        "note": "Tín hiệu tăng và giảm cùng mạnh, cùng đang hiệu lực — cân nhắc chờ xác nhận."
-      },
-      {
-        "bullish": "double-bottom",
-        "bullScore": 78.8,
-        "bearish": "double-top",
-        "bearScore": 90.8,
+        "bullish": "bullish-rsi-divergence",
+        "bullScore": 79.8,
+        "bearish": "resistance-cluster",
+        "bearScore": 99.0,
         "note": "Tín hiệu tăng và giảm cùng mạnh, cùng đang hiệu lực — cân nhắc chờ xác nhận."
       }
     ],
     "keyLevels": {
       "supports": [
-        74.2,
-        58.35,
-        42.48,
-        40.27
+        17.39,
+        16.35,
+        14.44,
+        14.08
       ],
       "resistances": [
-        84.13,
-        84.7,
-        88.5
+        18.69
       ]
     },
     "note": "Research-only, not financial advice"
@@ -179,7 +156,18 @@
   "labels": [
     {
       "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
+      "text": "Trendline hỗ trợ 100",
+      "kind": "pattern",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 100.0,
+      "confidence": "high",
+      "role": "primary"
+    },
+    {
+      "time": "2026-05-29",
+      "price": 18.65,
       "text": "Trendline kháng cự 100",
       "kind": "pattern",
       "direction": "bearish",
@@ -190,7 +178,7 @@
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "Hỗ trợ 100",
       "kind": "pattern",
       "direction": "bullish",
@@ -200,52 +188,8 @@
       "role": "primary"
     },
     {
-      "time": "2025-11-18",
-      "price": 83.2,
-      "text": "3 Đỉnh",
-      "kind": "top",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary"
-    },
-    {
-      "time": "2025-12-04",
-      "price": 86.2,
-      "text": "3 Đỉnh",
-      "kind": "top",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary"
-    },
-    {
-      "time": "2025-12-17",
-      "price": 83.0,
-      "text": "3 Đỉnh",
-      "kind": "top",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary"
-    },
-    {
       "time": "2026-05-29",
-      "price": 76.3,
-      "text": "3 Đỉnh 76",
-      "kind": "pattern",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary"
-    },
-    {
-      "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "Kháng cự 100",
       "kind": "pattern",
       "direction": "bearish",
@@ -255,52 +199,8 @@
       "role": "supporting"
     },
     {
-      "time": "2026-05-29",
-      "price": 76.3,
-      "text": "Trendline hỗ trợ 100",
-      "kind": "pattern",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "score": 100.0,
-      "confidence": "high",
-      "role": "supporting"
-    },
-    {
-      "time": "2025-11-18",
-      "price": 83.2,
-      "text": "2 Đỉnh",
-      "kind": "top",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting"
-    },
-    {
-      "time": "2025-12-04",
-      "price": 86.2,
-      "text": "2 Đỉnh",
-      "kind": "top",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting"
-    },
-    {
-      "time": "2026-05-29",
-      "price": 76.3,
-      "text": "2 Đỉnh 68",
-      "kind": "pattern",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting"
-    },
-    {
-      "time": "2022-12-27",
-      "price": 40.2,
+      "time": "2023-09-12",
+      "price": 14.41,
       "text": "3 Đáy",
       "kind": "bottom",
       "direction": "bullish",
@@ -310,8 +210,8 @@
       "role": "supporting"
     },
     {
-      "time": "2023-01-16",
-      "price": 40.4,
+      "time": "2023-09-27",
+      "price": 14.04,
       "text": "3 Đáy",
       "kind": "bottom",
       "direction": "bullish",
@@ -321,8 +221,8 @@
       "role": "supporting"
     },
     {
-      "time": "2023-02-13",
-      "price": 40.2,
+      "time": "2023-10-04",
+      "price": 13.8,
       "text": "3 Đáy",
       "kind": "bottom",
       "direction": "bullish",
@@ -333,7 +233,7 @@
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "3 Đáy 76",
       "kind": "pattern",
       "direction": "bullish",
@@ -343,8 +243,19 @@
       "role": "supporting"
     },
     {
+      "time": "2026-05-29",
+      "price": 18.65,
+      "text": "bullish-rsi-divergence 58",
+      "kind": "pattern",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
       "time": "2022-12-07",
-      "price": 42.14,
+      "price": 11.26,
       "text": "2 Đáy",
       "kind": "bottom",
       "direction": "bullish",
@@ -355,7 +266,7 @@
     },
     {
       "time": "2022-12-20",
-      "price": 42.82,
+      "price": 11.3,
       "text": "2 Đáy",
       "kind": "bottom",
       "direction": "bullish",
@@ -366,7 +277,7 @@
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "2 Đáy 68",
       "kind": "pattern",
       "direction": "bullish",
@@ -377,95 +288,128 @@
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
-      "text": "death-cross 56",
+      "price": 18.65,
+      "text": "Tam giác tăng 67",
+      "kind": "pattern",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 67.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-05-11",
+      "price": 14.08,
+      "text": "3 Đỉnh",
+      "kind": "top",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-05-19",
+      "price": 14.65,
+      "text": "3 Đỉnh",
+      "kind": "top",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-06-16",
+      "price": 14.65,
+      "text": "3 Đỉnh",
+      "kind": "top",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2026-05-29",
+      "price": 18.65,
+      "text": "3 Đỉnh 66",
       "kind": "pattern",
       "direction": "bearish",
       "color": "#dc2626",
-      "score": 56.0,
-      "confidence": "low",
+      "score": 66.0,
+      "confidence": "medium",
       "role": "supporting"
     },
     {
-      "time": "2025-09-24",
-      "price": 79.2,
-      "text": "Vai-Đầu-Vai",
+      "time": "2023-06-16",
+      "price": 14.65,
+      "text": "2 Đỉnh",
+      "kind": "top",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-06-29",
+      "price": 14.9,
+      "text": "2 Đỉnh",
+      "kind": "top",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2026-05-29",
+      "price": 18.65,
+      "text": "2 Đỉnh 58",
+      "kind": "pattern",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-02-08",
+      "price": 11.19,
+      "text": "VĐV ngược",
       "kind": "left_shoulder",
-      "direction": "bearish",
-      "color": "#dc2626",
+      "direction": "bullish",
+      "color": "#16a34a",
       "score": 56.0,
       "confidence": "low",
       "role": "supporting"
     },
     {
-      "time": "2025-10-20",
-      "price": 87.9,
-      "text": "Vai-Đầu-Vai",
+      "time": "2023-02-27",
+      "price": 10.5,
+      "text": "VĐV ngược",
       "kind": "head",
-      "direction": "bearish",
-      "color": "#dc2626",
+      "direction": "bullish",
+      "color": "#16a34a",
       "score": 56.0,
       "confidence": "low",
       "role": "supporting"
     },
     {
-      "time": "2025-11-18",
-      "price": 83.2,
-      "text": "Vai-Đầu-Vai",
+      "time": "2023-04-11",
+      "price": 11.95,
+      "text": "VĐV ngược",
       "kind": "right_shoulder",
-      "direction": "bearish",
-      "color": "#dc2626",
+      "direction": "bullish",
+      "color": "#16a34a",
       "score": 56.0,
       "confidence": "low",
       "role": "supporting"
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
-      "text": "Vai-Đầu-Vai 56",
-      "kind": "pattern",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 56.0,
-      "confidence": "low",
-      "role": "supporting"
-    },
-    {
-      "time": "2023-08-11",
-      "price": 49.88,
-      "text": "VĐV ngược",
-      "kind": "left_shoulder",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "score": 56.0,
-      "confidence": "low",
-      "role": "supporting"
-    },
-    {
-      "time": "2023-08-22",
-      "price": 46.31,
-      "text": "VĐV ngược",
-      "kind": "head",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "score": 56.0,
-      "confidence": "low",
-      "role": "supporting"
-    },
-    {
-      "time": "2023-09-25",
-      "price": 48.8,
-      "text": "VĐV ngược",
-      "kind": "right_shoulder",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "score": 56.0,
-      "confidence": "low",
-      "role": "supporting"
-    },
-    {
-      "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "VĐV ngược 56",
       "kind": "pattern",
       "direction": "bullish",
@@ -475,19 +419,19 @@
       "role": "supporting"
     },
     {
-      "time": "2026-05-14",
-      "price": 84.2,
-      "text": "No Demand 50",
+      "time": "2026-05-28",
+      "price": 18.6,
+      "text": "Climax 55",
       "kind": "pattern",
       "direction": "bearish",
       "color": "#dc2626",
-      "score": 50.0,
+      "score": 55.0,
       "confidence": "low",
       "role": "supporting"
     },
     {
-      "time": "2026-05-13",
-      "price": 83.7,
+      "time": "2026-04-28",
+      "price": 17.6,
       "text": "No Supply 50",
       "kind": "pattern",
       "direction": "bullish",
@@ -497,9 +441,64 @@
       "role": "supporting"
     },
     {
-      "time": "2026-05-11",
-      "price": 83.5,
-      "text": "FVG giảm 48",
+      "time": "2026-05-29",
+      "price": 18.65,
+      "text": "bos-bullish 52",
+      "kind": "pattern",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 52.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2026-03-24",
+      "price": 18.7,
+      "text": "Nhấn chìm tăng 55",
+      "kind": "candlestick",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 55.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-01-06",
+      "price": 12.37,
+      "text": "Vai-Đầu-Vai",
+      "kind": "left_shoulder",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-02-01",
+      "price": 13.17,
+      "text": "Vai-Đầu-Vai",
+      "kind": "head",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2023-02-21",
+      "price": 12.48,
+      "text": "Vai-Đầu-Vai",
+      "kind": "right_shoulder",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2026-05-29",
+      "price": 18.65,
+      "text": "Vai-Đầu-Vai 48",
       "kind": "pattern",
       "direction": "bearish",
       "color": "#dc2626",
@@ -508,8 +507,30 @@
       "role": "supporting"
     },
     {
-      "time": "2026-02-03",
-      "price": 94.4,
+      "time": "2026-05-19",
+      "price": 17.5,
+      "text": "FVG tăng 48",
+      "kind": "pattern",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2026-04-23",
+      "price": 17.7,
+      "text": "No Demand 50",
+      "kind": "pattern",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "score": 50.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "time": "2025-12-08",
+      "price": 18.3,
       "text": "Cốc-Tay cầm",
       "kind": "left_rim",
       "direction": "bullish",
@@ -519,8 +540,8 @@
       "role": "supporting"
     },
     {
-      "time": "2026-03-23",
-      "price": 74.2,
+      "time": "2025-12-16",
+      "price": 16.35,
       "text": "Cốc-Tay cầm",
       "kind": "bottom",
       "direction": "bullish",
@@ -530,8 +551,8 @@
       "role": "supporting"
     },
     {
-      "time": "2026-04-20",
-      "price": 88.5,
+      "time": "2026-01-16",
+      "price": 21.35,
       "text": "Cốc-Tay cầm",
       "kind": "right_rim",
       "direction": "bullish",
@@ -542,7 +563,7 @@
     },
     {
       "time": "2026-05-29",
-      "price": 76.3,
+      "price": 18.65,
       "text": "Cốc-Tay cầm 45",
       "kind": "pattern",
       "direction": "bullish",
@@ -552,8 +573,8 @@
       "role": "supporting"
     },
     {
-      "time": "2026-03-05",
-      "price": 85.2,
+      "time": "2026-04-06",
+      "price": 18.9,
       "text": "Marubozu 55",
       "kind": "candlestick",
       "direction": "bearish",
@@ -563,8 +584,8 @@
       "role": "supporting"
     },
     {
-      "time": "2026-03-05",
-      "price": 85.2,
+      "time": "2026-04-06",
+      "price": 18.9,
       "text": "Nhấn chìm giảm 55",
       "kind": "candlestick",
       "direction": "bearish",
@@ -574,52 +595,41 @@
       "role": "supporting"
     },
     {
-      "time": "2026-05-29",
-      "price": 76.3,
-      "text": "wyckoff-distribution 50",
-      "kind": "pattern",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "score": 50.0,
-      "confidence": "low",
-      "role": "context"
-    },
-    {
-      "time": "2026-05-14",
-      "price": 84.2,
-      "text": "Nhấn chìm tăng 55",
+      "time": "2026-03-11",
+      "price": 17.45,
+      "text": "Marubozu 55",
       "kind": "candlestick",
       "direction": "bullish",
       "color": "#16a34a",
       "score": 55.0,
       "confidence": "low",
-      "role": "context"
+      "role": "supporting"
     },
     {
-      "time": "2026-04-02",
-      "price": 81.8,
+      "time": "2026-03-12",
+      "price": 17.4,
       "text": "Hammer 55",
       "kind": "candlestick",
       "direction": "bullish",
       "color": "#16a34a",
       "score": 55.0,
       "confidence": "low",
-      "role": "context"
+      "role": "supporting"
     },
     {
-      "time": "2026-05-22",
-      "price": 79.4,
-      "text": "FVG tăng 48",
+      "time": "2026-05-12",
+      "price": 17.45,
+      "text": "FVG giảm 48",
       "kind": "pattern",
-      "direction": "bullish",
-      "color": "#16a34a",
+      "direction": "bearish",
+      "color": "#dc2626",
       "score": 48.0,
       "confidence": "low",
-      "role": "context"
+      "role": "supporting"
     },
     {
-      "time": "2026-04-06",
-      "price": 78.3,
+      "time": "2026-05-20",
+      "price": 17.5,
       "text": "Doji 55",
       "kind": "candlestick",
       "direction": "neutral",
@@ -629,8 +639,8 @@
       "role": "context"
     },
     {
-      "time": "2026-04-09",
-      "price": 80.7,
+      "time": "2026-03-09",
+      "price": 16.45,
       "text": "Shooting Star 55",
       "kind": "candlestick",
       "direction": "bearish",
@@ -638,20 +648,29 @@
       "score": 55.0,
       "confidence": "low",
       "role": "context"
-    },
-    {
-      "time": "2026-03-11",
-      "price": 86.5,
-      "text": "Marubozu 55",
-      "kind": "candlestick",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "score": 55.0,
-      "confidence": "low",
-      "role": "context"
     }
   ],
   "lines": [
+    {
+      "name": "support-trendline",
+      "type": "support-trendline",
+      "text": "Trendline hỗ trợ",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "points": [
+        {
+          "time": "2022-11-16",
+          "value": 8.94
+        },
+        {
+          "time": "2026-05-29",
+          "value": 18.34
+        }
+      ],
+      "score": 100.0,
+      "confidence": "high",
+      "role": "primary"
+    },
     {
       "name": "resistance-trendline",
       "type": "resistance-trendline",
@@ -660,12 +679,12 @@
       "color": "#dc2626",
       "points": [
         {
-          "time": "2022-12-19",
-          "value": 47.27
+          "time": "2022-11-03",
+          "value": 11.8
         },
         {
           "time": "2026-05-29",
-          "value": 97.9
+          "value": 29.74
         }
       ],
       "score": 100.0,
@@ -680,12 +699,12 @@
       "color": "#16a34a",
       "points": [
         {
-          "time": "2024-05-17",
-          "value": 58.35
+          "time": "2023-07-17",
+          "value": 14.44
         },
         {
           "time": "2026-05-29",
-          "value": 58.35
+          "value": 14.44
         }
       ],
       "score": 100.0,
@@ -701,97 +720,14 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 58.35
+          "value": 14.44
         },
         {
           "time": "2026-06-18",
-          "value": 58.35
+          "value": 14.44
         }
       ],
       "score": 100.0,
-      "confidence": "high",
-      "role": "primary",
-      "dash": true
-    },
-    {
-      "name": "neckline",
-      "type": "triple-top",
-      "text": "3 Đỉnh",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "points": [
-        {
-          "time": "2025-11-18",
-          "value": 77.5
-        },
-        {
-          "time": "2026-05-29",
-          "value": 77.5
-        }
-      ],
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary"
-    },
-    {
-      "name": "resistance",
-      "type": "triple-top",
-      "text": "3 Đỉnh resistance",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 84.13
-        },
-        {
-          "time": "2026-06-18",
-          "value": 84.13
-        }
-      ],
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary",
-      "dash": true
-    },
-    {
-      "name": "neckline",
-      "type": "triple-top",
-      "text": "3 Đỉnh neckline",
-      "direction": "bearish",
-      "color": "#a855f7",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 77.5
-        },
-        {
-          "time": "2026-06-18",
-          "value": 77.5
-        }
-      ],
-      "score": 76.0,
-      "confidence": "high",
-      "role": "primary",
-      "dash": true
-    },
-    {
-      "name": "target",
-      "type": "triple-top",
-      "text": "3 Đỉnh target",
-      "direction": "bearish",
-      "color": "#2563eb",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 70.87
-        },
-        {
-          "time": "2026-06-18",
-          "value": 70.87
-        }
-      ],
-      "score": 76.0,
       "confidence": "high",
       "role": "primary",
       "dash": true
@@ -804,12 +740,12 @@
       "color": "#dc2626",
       "points": [
         {
-          "time": "2024-05-15",
-          "value": 60.78
+          "time": "2023-07-10",
+          "value": 15.08
         },
         {
           "time": "2026-05-29",
-          "value": 60.78
+          "value": 15.08
         }
       ],
       "score": 100.0,
@@ -825,118 +761,15 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 60.78
+          "value": 15.08
         },
         {
           "time": "2026-06-18",
-          "value": 60.78
+          "value": 15.08
         }
       ],
       "score": 100.0,
       "confidence": "high",
-      "role": "supporting",
-      "dash": true
-    },
-    {
-      "name": "support-trendline",
-      "type": "support-trendline",
-      "text": "Trendline hỗ trợ",
-      "direction": "bullish",
-      "color": "#16a34a",
-      "points": [
-        {
-          "time": "2022-11-16",
-          "value": 34.15
-        },
-        {
-          "time": "2026-05-29",
-          "value": 51.21
-        }
-      ],
-      "score": 100.0,
-      "confidence": "high",
-      "role": "supporting"
-    },
-    {
-      "name": "neckline",
-      "type": "double-top",
-      "text": "2 Đỉnh",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "points": [
-        {
-          "time": "2025-11-18",
-          "value": 78.1
-        },
-        {
-          "time": "2026-05-29",
-          "value": 78.1
-        }
-      ],
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting"
-    },
-    {
-      "name": "resistance",
-      "type": "double-top",
-      "text": "2 Đỉnh resistance",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 84.7
-        },
-        {
-          "time": "2026-06-18",
-          "value": 84.7
-        }
-      ],
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting",
-      "dash": true
-    },
-    {
-      "name": "neckline",
-      "type": "double-top",
-      "text": "2 Đỉnh neckline",
-      "direction": "bearish",
-      "color": "#a855f7",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 78.1
-        },
-        {
-          "time": "2026-06-18",
-          "value": 78.1
-        }
-      ],
-      "score": 68.0,
-      "confidence": "medium",
-      "role": "supporting",
-      "dash": true
-    },
-    {
-      "name": "target",
-      "type": "double-top",
-      "text": "2 Đỉnh target",
-      "direction": "bearish",
-      "color": "#2563eb",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 71.5
-        },
-        {
-          "time": "2026-06-18",
-          "value": 71.5
-        }
-      ],
-      "score": 68.0,
-      "confidence": "medium",
       "role": "supporting",
       "dash": true
     },
@@ -948,12 +781,12 @@
       "color": "#16a34a",
       "points": [
         {
-          "time": "2022-12-27",
-          "value": 48.34
+          "time": "2023-09-12",
+          "value": 15.48
         },
         {
           "time": "2026-05-29",
-          "value": 48.34
+          "value": 15.48
         }
       ],
       "score": 76.0,
@@ -969,11 +802,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 40.27
+          "value": 14.08
         },
         {
           "time": "2026-06-18",
-          "value": 40.27
+          "value": 14.08
         }
       ],
       "score": 76.0,
@@ -990,11 +823,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 48.34
+          "value": 15.48
         },
         {
           "time": "2026-06-18",
-          "value": 48.34
+          "value": 15.48
         }
       ],
       "score": 76.0,
@@ -1011,11 +844,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 56.41
+          "value": 16.88
         },
         {
           "time": "2026-06-18",
-          "value": 56.41
+          "value": 16.88
         }
       ],
       "score": 76.0,
@@ -1032,11 +865,11 @@
       "points": [
         {
           "time": "2022-12-07",
-          "value": 47.27
+          "value": 12.63
         },
         {
           "time": "2026-05-29",
-          "value": 47.27
+          "value": 12.63
         }
       ],
       "score": 68.0,
@@ -1052,11 +885,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 42.48
+          "value": 11.28
         },
         {
           "time": "2026-06-18",
-          "value": 42.48
+          "value": 11.28
         }
       ],
       "score": 68.0,
@@ -1073,11 +906,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 47.27
+          "value": 12.63
         },
         {
           "time": "2026-06-18",
-          "value": 47.27
+          "value": 12.63
         }
       ],
       "score": 68.0,
@@ -1094,11 +927,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 52.06
+          "value": 13.98
         },
         {
           "time": "2026-06-18",
-          "value": 52.06
+          "value": 13.98
         }
       ],
       "score": 68.0,
@@ -1107,64 +940,271 @@
       "dash": true
     },
     {
-      "name": "neckline",
-      "type": "head-shoulders",
-      "text": "Vai-Đầu-Vai",
-      "direction": "bearish",
-      "color": "#dc2626",
+      "name": "upper",
+      "type": "ascending-triangle",
+      "text": "Tam giác tăng",
+      "direction": "bullish",
+      "color": "#16a34a",
       "points": [
         {
-          "time": "2025-09-24",
-          "value": 77.6
+          "time": "2026-03-04",
+          "value": 19.31
         },
         {
           "time": "2026-05-29",
-          "value": 77.6
+          "value": 18.69
         }
       ],
-      "score": 56.0,
-      "confidence": "low",
+      "score": 67.0,
+      "confidence": "medium",
       "role": "supporting"
     },
     {
-      "name": "neckline",
-      "type": "head-shoulders",
-      "text": "Vai-Đầu-Vai neckline",
-      "direction": "bearish",
-      "color": "#a855f7",
+      "name": "lower",
+      "type": "ascending-triangle",
+      "text": "Tam giác tăng",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "points": [
+        {
+          "time": "2026-03-04",
+          "value": 16.49
+        },
+        {
+          "time": "2026-05-29",
+          "value": 17.39
+        }
+      ],
+      "score": 67.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "name": "support",
+      "type": "ascending-triangle",
+      "text": "Tam giác tăng support",
+      "direction": "bullish",
+      "color": "#16a34a",
       "points": [
         {
           "time": "2022-10-28",
-          "value": 77.6
+          "value": 17.39
         },
         {
           "time": "2026-06-18",
-          "value": 77.6
+          "value": 17.39
         }
       ],
-      "score": 56.0,
-      "confidence": "low",
+      "score": 67.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "resistance",
+      "type": "ascending-triangle",
+      "text": "Tam giác tăng resistance",
+      "direction": "bullish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 18.69
+        },
+        {
+          "time": "2026-06-18",
+          "value": 18.69
+        }
+      ],
+      "score": 67.0,
+      "confidence": "medium",
       "role": "supporting",
       "dash": true
     },
     {
       "name": "target",
-      "type": "head-shoulders",
-      "text": "Vai-Đầu-Vai target",
+      "type": "ascending-triangle",
+      "text": "Tam giác tăng target",
+      "direction": "bullish",
+      "color": "#2563eb",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 19.98
+        },
+        {
+          "time": "2026-06-18",
+          "value": 19.98
+        }
+      ],
+      "score": 67.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "neckline",
+      "type": "triple-top",
+      "text": "3 Đỉnh",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2023-05-11",
+          "value": 13.32
+        },
+        {
+          "time": "2026-05-29",
+          "value": 13.32
+        }
+      ],
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "name": "resistance",
+      "type": "triple-top",
+      "text": "3 Đỉnh resistance",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 14.46
+        },
+        {
+          "time": "2026-06-18",
+          "value": 14.46
+        }
+      ],
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "neckline",
+      "type": "triple-top",
+      "text": "3 Đỉnh neckline",
+      "direction": "bearish",
+      "color": "#a855f7",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 13.32
+        },
+        {
+          "time": "2026-06-18",
+          "value": 13.32
+        }
+      ],
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "target",
+      "type": "triple-top",
+      "text": "3 Đỉnh target",
       "direction": "bearish",
       "color": "#2563eb",
       "points": [
         {
           "time": "2022-10-28",
-          "value": 67.3
+          "value": 12.18
         },
         {
           "time": "2026-06-18",
-          "value": 67.3
+          "value": 12.18
         }
       ],
-      "score": 56.0,
-      "confidence": "low",
+      "score": 66.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "neckline",
+      "type": "double-top",
+      "text": "2 Đỉnh",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2023-06-16",
+          "value": 13.58
+        },
+        {
+          "time": "2026-05-29",
+          "value": 13.58
+        }
+      ],
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting"
+    },
+    {
+      "name": "resistance",
+      "type": "double-top",
+      "text": "2 Đỉnh resistance",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 14.78
+        },
+        {
+          "time": "2026-06-18",
+          "value": 14.78
+        }
+      ],
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "neckline",
+      "type": "double-top",
+      "text": "2 Đỉnh neckline",
+      "direction": "bearish",
+      "color": "#a855f7",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 13.58
+        },
+        {
+          "time": "2026-06-18",
+          "value": 13.58
+        }
+      ],
+      "score": 58.0,
+      "confidence": "medium",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "target",
+      "type": "double-top",
+      "text": "2 Đỉnh target",
+      "direction": "bearish",
+      "color": "#2563eb",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 12.38
+        },
+        {
+          "time": "2026-06-18",
+          "value": 12.38
+        }
+      ],
+      "score": 58.0,
+      "confidence": "medium",
       "role": "supporting",
       "dash": true
     },
@@ -1176,12 +1216,12 @@
       "color": "#16a34a",
       "points": [
         {
-          "time": "2023-08-11",
-          "value": 56.34
+          "time": "2023-02-08",
+          "value": 12.12
         },
         {
           "time": "2026-05-29",
-          "value": 56.34
+          "value": 12.12
         }
       ],
       "score": 56.0,
@@ -1197,11 +1237,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 56.34
+          "value": 12.12
         },
         {
           "time": "2026-06-18",
-          "value": 56.34
+          "value": 12.12
         }
       ],
       "score": 56.0,
@@ -1218,14 +1258,96 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 66.36
+          "value": 13.74
         },
         {
           "time": "2026-06-18",
-          "value": 66.36
+          "value": 13.74
         }
       ],
       "score": 56.0,
+      "confidence": "low",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "BOS",
+      "type": "bos-bullish",
+      "text": "bos-bullish",
+      "direction": "bullish",
+      "color": "#16a34a",
+      "points": [
+        {
+          "time": "2026-05-19",
+          "value": 18.05
+        },
+        {
+          "time": "2026-05-29",
+          "value": 18.05
+        }
+      ],
+      "score": 52.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "name": "neckline",
+      "type": "head-shoulders",
+      "text": "Vai-Đầu-Vai",
+      "direction": "bearish",
+      "color": "#dc2626",
+      "points": [
+        {
+          "time": "2023-01-06",
+          "value": 11.15
+        },
+        {
+          "time": "2026-05-29",
+          "value": 11.15
+        }
+      ],
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting"
+    },
+    {
+      "name": "neckline",
+      "type": "head-shoulders",
+      "text": "Vai-Đầu-Vai neckline",
+      "direction": "bearish",
+      "color": "#a855f7",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 11.15
+        },
+        {
+          "time": "2026-06-18",
+          "value": 11.15
+        }
+      ],
+      "score": 48.0,
+      "confidence": "low",
+      "role": "supporting",
+      "dash": true
+    },
+    {
+      "name": "target",
+      "type": "head-shoulders",
+      "text": "Vai-Đầu-Vai target",
+      "direction": "bearish",
+      "color": "#2563eb",
+      "points": [
+        {
+          "time": "2022-10-28",
+          "value": 9.13
+        },
+        {
+          "time": "2026-06-18",
+          "value": 9.13
+        }
+      ],
+      "score": 48.0,
       "confidence": "low",
       "role": "supporting",
       "dash": true
@@ -1238,12 +1360,12 @@
       "color": "#16a34a",
       "points": [
         {
-          "time": "2026-02-03",
-          "value": 94.4
+          "time": "2025-12-08",
+          "value": 21.35
         },
         {
           "time": "2026-05-29",
-          "value": 94.4
+          "value": 21.35
         }
       ],
       "score": 45.0,
@@ -1259,11 +1381,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 74.2
+          "value": 16.35
         },
         {
           "time": "2026-06-18",
-          "value": 74.2
+          "value": 16.35
         }
       ],
       "score": 45.0,
@@ -1280,11 +1402,11 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 94.4
+          "value": 21.35
         },
         {
           "time": "2026-06-18",
-          "value": 94.4
+          "value": 21.35
         }
       ],
       "score": 45.0,
@@ -1301,214 +1423,172 @@
       "points": [
         {
           "time": "2022-10-28",
-          "value": 114.6
+          "value": 26.35
         },
         {
           "time": "2026-06-18",
-          "value": 114.6
+          "value": 26.35
         }
       ],
       "score": 45.0,
       "confidence": "low",
       "role": "supporting",
       "dash": true
-    },
-    {
-      "name": "support",
-      "type": "wyckoff-distribution",
-      "text": "wyckoff-distribution support",
-      "direction": "bearish",
-      "color": "#16a34a",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 74.2
-        },
-        {
-          "time": "2026-06-18",
-          "value": 74.2
-        }
-      ],
-      "score": 50.0,
-      "confidence": "low",
-      "role": "context",
-      "dash": true
-    },
-    {
-      "name": "resistance",
-      "type": "wyckoff-distribution",
-      "text": "wyckoff-distribution resistance",
-      "direction": "bearish",
-      "color": "#dc2626",
-      "points": [
-        {
-          "time": "2022-10-28",
-          "value": 88.5
-        },
-        {
-          "time": "2026-06-18",
-          "value": 88.5
-        }
-      ],
-      "score": 50.0,
-      "confidence": "low",
-      "role": "context",
-      "dash": true
     }
   ],
   "zones": [
     {
-      "type": "fvg-bearish",
-      "text": "FVG giảm",
-      "from": "2026-05-11",
-      "to": "2026-05-29",
-      "low": 85.2,
-      "high": 86.0,
-      "color": "rgba(220,38,38,0.18)"
-    },
-    {
       "type": "fvg-bullish",
       "text": "FVG tăng",
-      "from": "2026-05-22",
+      "from": "2026-05-19",
       "to": "2026-05-29",
-      "low": 78.8,
-      "high": 79.1,
+      "low": 17.45,
+      "high": 17.5,
       "color": "rgba(22,163,74,0.18)"
+    },
+    {
+      "type": "fvg-bearish",
+      "text": "FVG giảm",
+      "from": "2026-05-12",
+      "to": "2026-05-29",
+      "low": 17.5,
+      "high": 17.65,
+      "color": "rgba(220,38,38,0.18)"
     }
   ],
   "forecast": [
     {
       "time": "2026-05-30",
-      "value": 76.2,
-      "lower": 74.41,
-      "upper": 78.0
+      "value": 18.64,
+      "lower": 18.28,
+      "upper": 18.99
     },
     {
       "time": "2026-05-31",
-      "value": 76.16,
-      "lower": 73.62,
-      "upper": 78.69
+      "value": 18.63,
+      "lower": 18.12,
+      "upper": 19.14
     },
     {
       "time": "2026-06-01",
-      "value": 76.12,
-      "lower": 73.01,
-      "upper": 79.23
+      "value": 18.62,
+      "lower": 18.0,
+      "upper": 19.24
     },
     {
       "time": "2026-06-02",
-      "value": 76.08,
-      "lower": 72.49,
-      "upper": 79.67
+      "value": 18.62,
+      "lower": 17.9,
+      "upper": 19.33
     },
     {
       "time": "2026-06-03",
-      "value": 76.05,
-      "lower": 72.04,
-      "upper": 80.06
+      "value": 18.61,
+      "lower": 17.81,
+      "upper": 19.41
     },
     {
       "time": "2026-06-04",
-      "value": 76.02,
-      "lower": 71.62,
-      "upper": 80.42
+      "value": 18.61,
+      "lower": 17.73,
+      "upper": 19.49
     },
     {
       "time": "2026-06-05",
-      "value": 75.99,
-      "lower": 71.24,
-      "upper": 80.74
+      "value": 18.61,
+      "lower": 17.66,
+      "upper": 19.55
     },
     {
       "time": "2026-06-06",
-      "value": 75.97,
-      "lower": 70.89,
-      "upper": 81.05
+      "value": 18.6,
+      "lower": 17.59,
+      "upper": 19.61
     },
     {
       "time": "2026-06-07",
-      "value": 75.94,
-      "lower": 70.56,
-      "upper": 81.33
+      "value": 18.6,
+      "lower": 17.53,
+      "upper": 19.67
     },
     {
       "time": "2026-06-08",
-      "value": 75.92,
-      "lower": 70.24,
-      "upper": 81.6
+      "value": 18.6,
+      "lower": 17.46,
+      "upper": 19.73
     },
     {
       "time": "2026-06-09",
-      "value": 75.9,
-      "lower": 69.94,
-      "upper": 81.85
+      "value": 18.59,
+      "lower": 17.41,
+      "upper": 19.78
     },
     {
       "time": "2026-06-10",
-      "value": 75.88,
-      "lower": 69.66,
-      "upper": 82.1
+      "value": 18.59,
+      "lower": 17.35,
+      "upper": 19.83
     },
     {
       "time": "2026-06-11",
-      "value": 75.86,
-      "lower": 69.38,
-      "upper": 82.33
+      "value": 18.59,
+      "lower": 17.3,
+      "upper": 19.88
     },
     {
       "time": "2026-06-12",
-      "value": 75.84,
-      "lower": 69.12,
-      "upper": 82.56
+      "value": 18.58,
+      "lower": 17.24,
+      "upper": 19.92
     },
     {
       "time": "2026-06-13",
-      "value": 75.82,
-      "lower": 68.86,
-      "upper": 82.77
+      "value": 18.58,
+      "lower": 17.19,
+      "upper": 19.97
     },
     {
       "time": "2026-06-14",
-      "value": 75.8,
-      "lower": 68.62,
-      "upper": 82.98
+      "value": 18.58,
+      "lower": 17.15,
+      "upper": 20.01
     },
     {
       "time": "2026-06-15",
-      "value": 75.78,
-      "lower": 68.38,
-      "upper": 83.18
+      "value": 18.57,
+      "lower": 17.1,
+      "upper": 20.05
     },
     {
       "time": "2026-06-16",
-      "value": 75.76,
-      "lower": 68.14,
-      "upper": 83.38
+      "value": 18.57,
+      "lower": 17.05,
+      "upper": 20.09
     },
     {
       "time": "2026-06-17",
-      "value": 75.74,
-      "lower": 67.92,
-      "upper": 83.57
+      "value": 18.57,
+      "lower": 17.01,
+      "upper": 20.13
     },
     {
       "time": "2026-06-18",
-      "value": 75.73,
-      "lower": 67.7,
-      "upper": 83.76
+      "value": 18.57,
+      "lower": 16.97,
+      "upper": 20.17
     }
   ],
   "scenarios": {
     "base": {
-      "target": 75.73,
+      "target": 18.57,
       "reason": "20-bar trend regression (damped)"
     },
     "bullish": {
-      "target": 114.6,
-      "reason": "cup-handle target"
+      "target": 19.98,
+      "reason": "ascending-triangle target"
     },
     "bearish": {
-      "target": 70.87,
+      "target": 12.18,
       "reason": "triple-top target"
     }
   }

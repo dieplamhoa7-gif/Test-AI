@@ -117,3 +117,41 @@ nhỉnh hơn nhóm mean-reversion (RSI, Stoch, CCI) trên cổ phiếu uptrend m
 - Box/zone cho Darvas, FVG, Order Block.
 - Gộp pattern trùng, mở rộng trục để nhãn forecast không bị cắt.
 - `render_preview.py` xuất bản PNG tĩnh (matplotlib) để xem nhanh.
+
+---
+
+## Engine tự động hóa (mới nhất)
+
+Ba lớp mới biến engine thành "tự nhận diện & gán nhãn thông minh":
+
+### 1. `config.py` — tự chỉnh tham số theo khung
+Engine tự nhận daily/weekly/monthly rồi tự đặt pivot distance, lookback, ngưỡng...
+phù hợp, và co giãn theo độ dài dữ liệu. Không cần chỉnh tay khi đổi mã/khung.
+
+### 2. `classify.py` — phân loại & xếp ưu tiên
+- Dedup pattern trùng.
+- Composite score = score × trọng_số_loại × trọng_số_tier × recency × status.
+- Confluence: nhiều tín hiệu cùng hướng tụ quanh một vùng giá → cộng điểm.
+- Conflict: tự phát hiện mâu thuẫn THỰC SỰ (bỏ qua cặp hỗ trợ/kháng cự vốn cùng tồn tại).
+- Gán vai trò: primary / supporting / context.
+
+### 3. `analyze.py` — bộ não trung tâm
+Một hàm `analyze(csv_or_df, symbol)` chạy trọn pipeline, trả dict đầy đủ.
+
+## Đầu vào tự động: 1 mã hoặc cả thư mục
+
+```bash
+# 1 mã (tự nhận khung, tự phân loại):
+python run_analysis.py data/MWG.csv MWG exports
+
+# cả thư mục nhiều mã (mỗi file = 1 mã):
+python run_analysis.py data/ --batch exports
+```
+
+Mỗi mã xuất: `<SYM>_analysis.json`, `<SYM>_summary.md`, `<SYM>_chart.html`.
+Batch xuất thêm `_portfolio_overview.json/.md` — bảng xếp hạng toàn danh mục theo
+thiên hướng (bias) từ tăng mạnh → giảm mạnh.
+
+### So với runner cũ
+- `run_mwg_pattern_forecast.py` (cũ): vẫn chạy, tham số cố định cho MWG weekly.
+- `run_analysis.py` (mới): tự thích ứng mọi mã/khung + phân loại + batch. **Khuyến nghị dùng.**

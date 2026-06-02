@@ -122,12 +122,15 @@ def trendlines(df, pivots):
 # =====================================================================
 # 3. DOUBLE BOTTOM / TOP, TRIPLE  (tier 1)
 # =====================================================================
-def double_patterns(df, pivots):
+def double_patterns(df, pivots, max_span=None, target_max_move=0.35):
     highs, lows = split_pivots(pivots)
     close = df["close"].iloc[-1]
     atr = df["atr20"].iloc[-1]
     n = len(df)
-    max_span = min(60, n)  # 2 đỉnh/đáy không cách nhau quá max_span bar
+    if max_span is None:
+        max_span = min(60, n)  # 2 đỉnh/đáy không cách nhau quá max_span bar
+    else:
+        max_span = min(max_span, n)
     out = []
 
     # Double / Triple Bottom — chỉ ghép pivot LIÊN TIẾP
@@ -147,7 +150,7 @@ def double_patterns(df, pivots):
                 continue
             target = neckline + (neckline - support)
             # sanity: target không được cách giá hiện tại quá 60%
-            if not _target_sane(target, close):
+            if not _target_sane(target, close, target_max_move):
                 continue
             active = close > support * 0.97
             score = clamp(50 + (combo - 1) * 8 + (10 if close > neckline else 0))
@@ -177,7 +180,7 @@ def double_patterns(df, pivots):
             if neckline >= resistance:
                 continue
             target = neckline - (resistance - neckline)
-            if not _target_sane(target, close):
+            if not _target_sane(target, close, target_max_move):
                 continue
             score = clamp(50 + (combo - 1) * 8 + (10 if close < neckline else 0))
             out.append(_pattern(df, name, "bearish", 1, score,
