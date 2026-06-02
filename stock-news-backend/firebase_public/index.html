@@ -246,7 +246,8 @@
     .chart-legend { position:absolute; left:10px; top:8px; z-index:5; display:flex; gap:8px; flex-wrap:wrap; max-width:calc(100% - 20px); padding:5px 7px; border-radius:8px; background:rgba(8,12,20,.55); backdrop-filter: blur(8px); font-size:11px; }
     body.light-theme .chart-legend { background:rgba(255,255,255,.72); }
     .chart-legend span { display:inline-flex; align-items:center; gap:4px; }
-    .trend-inline-label { position:absolute; z-index:6; transform:translate(-50%, -50%); padding:2px 6px; border-radius:6px; font-size:10px; line-height:1.35; font-weight:800; color:#081018; background:rgba(255,255,255,.93); border:1px solid rgba(255,255,255,.35); pointer-events:none; white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,.16); }
+    .trend-inline-label { position:absolute; z-index:12; transform:translate(-50%, -50%); padding:4px 8px; border-radius:8px; font-size:11px; line-height:1.35; font-weight:950; color:#ffffff; background:rgba(8,12,20,.92); border:1px solid currentColor; pointer-events:none; white-space:nowrap; text-shadow:0 1px 2px rgba(0,0,0,.85); box-shadow:0 0 0 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.38); }
+    body.light-theme .trend-inline-label { color:#081018; background:rgba(255,255,255,.96); text-shadow:none; box-shadow:0 0 0 2px rgba(255,255,255,.72), 0 6px 18px rgba(0,0,0,.20); }
     .volume-drag-handle { display:none; }
     .stock-chart-body a[href*="tradingview"], .stock-chart-body iframe, .stock-chart-body [title*="TradingView"], .stock-chart-body [aria-label*="TradingView"] { display:none !important; opacity:0 !important; pointer-events:none !important; }
     @media (max-width:640px){ .stock-chart-head{align-items:flex-start; flex-direction:column;} .stock-chart-tools{justify-content:flex-start;} .stock-chart-box{height:275px;} .stock-vol-box,.stock-macd-box,.stock-rsi-box{height:96px;} }
@@ -1612,9 +1613,34 @@
             if (isClaudeOverlay) {
               const markerList = [];
               const scoreRank = x => Number(x?.score || 0) + (x?.confidence === 'high' ? 20 : x?.confidence === 'medium' ? 10 : 0);
-              const clLines = (Array.isArray(overlayData.lines) ? overlayData.lines : [])
+              const mergeCloseHorizontalLines = (lines = [], pct = 0.01) => {
+                const out = [];
+                const buckets = [];
+                const levelOf = (line) => {
+                  const pts = normalizePoints(line.points || []).filter(p => Number.isFinite(p.value));
+                  if (pts.length < 2) return null;
+                  const first = pts[0].value, last = pts[pts.length - 1].value;
+                  return Math.abs(first / Math.max(0.0001, last) - 1) < 0.001 ? (first + last) / 2 : null;
+                };
+                lines.forEach(line => {
+                  const lvl = levelOf(line);
+                  if (!line.dash || !Number.isFinite(lvl)) { out.push(line); return; }
+                  let b = buckets.find(x => Math.abs(lvl / Math.max(0.0001, x.level) - 1) < pct);
+                  if (!b) { b = { level:lvl, items:[] }; buckets.push(b); }
+                  b.items.push(line);
+                  b.level = b.items.reduce((s, x) => s + levelOf(x), 0) / b.items.length;
+                });
+                buckets.forEach(b => {
+                  const best = [...b.items].sort((a, b) => scoreRank(b) - scoreRank(a))[0];
+                  const merged = { ...best, points: normalizePoints(best.points).map(p => ({ ...p, value:+b.level.toFixed(3) })) };
+                  if (b.items.length > 1) merged.text = `${best.text || best.name || 'R/S'} x${b.items.length}`;
+                  out.push(merged);
+                });
+                return out;
+              };
+              const clLines = mergeCloseHorizontalLines((Array.isArray(overlayData.lines) ? overlayData.lines : [])
                 .filter(l => Array.isArray(l.points) && l.points.length >= 2)
-                .sort((a, b) => scoreRank(b) - scoreRank(a));
+                .sort((a, b) => scoreRank(b) - scoreRank(a)), 0.01);
               clLines.slice(0, 28).forEach(line => {
                 const pts = normalizePoints(line.points).filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length < 2) return;

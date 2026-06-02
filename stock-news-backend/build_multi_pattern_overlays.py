@@ -38,6 +38,54 @@ def row_df(rows):
     df=df.dropna(subset=['date','open','high','low','close']).sort_values('date')
     return df
 
+def _line_level(line):
+    pts=line.get('points') or []
+    vals=[]
+    for p in pts:
+        if finite(p.get('value')): vals.append(float(p.get('value')))
+    if not vals: return None
+    return sum(vals)/len(vals)
+
+def _is_horizontal_rs_line(line):
+    if not line.get('dash'): return False
+    name=str(line.get('name') or '').lower()
+    typ=str(line.get('type') or '').lower()
+    return name in {'support','resistance','neckline','target'} or any(x in typ for x in ['support','resistance'])
+
+def merge_nearby_rs_lines(lines, pct=0.01):
+    """Gộp các đường ngang R/S/neckline/target cách nhau < pct để chart đỡ rối."""
+    keep=[]; mergeable=[]
+    for line in lines:
+        if _is_horizontal_rs_line(line): mergeable.append(line)
+        else: keep.append(line)
+    buckets=[]
+    for line in sorted(mergeable, key=lambda x: (_line_level(x) or 0)):
+        lvl=_line_level(line)
+        if lvl is None: continue
+        found=None
+        for b in buckets:
+            if abs(lvl / max(0.0001, b['level']) - 1) < pct:
+                found=b; break
+        if found is None:
+            buckets.append({'level':lvl,'items':[line]})
+        else:
+            found['items'].append(line)
+            levels=[_line_level(x) for x in found['items'] if _line_level(x) is not None]
+            weights=[max(1,float(x.get('score') or 1)) for x in found['items'] if _line_level(x) is not None]
+            found['level']=sum(l*w for l,w in zip(levels,weights))/sum(weights)
+    for b in buckets:
+        items=sorted(b['items'], key=lambda x: float(x.get('score') or 0), reverse=True)
+        best=dict(items[0])
+        lvl=round(float(b['level']), 3)
+        best['points']=[{**p,'value':lvl} for p in (best.get('points') or [])]
+        if len(items)>1:
+            best['text']=f"{best.get('text') or best.get('name') or 'R/S'} x{len(items)}"
+            best['mergedCount']=len(items)
+            best['mergedLevels']=[round(_line_level(x),3) for x in items if _line_level(x) is not None]
+            best['score']=round(max(float(x.get('score') or 0) for x in items),1)
+        keep.append(best)
+    return keep
+
 def overlay_from_analysis(r):
     fcpts=r.get('forecast',{}).get('points',[])
     last_forecast_time=(fcpts[-1].get('time') if fcpts else r.get('period',[None,r.get('lastDate')])[-1])
@@ -77,6 +125,7 @@ def overlay_from_analysis(r):
                 seen.add(key)
                 suffix=f" {round(score)}" if score else ''
                 overlays['labels'].append({'time':p.get('time'),'price':p.get('price'),'text':lab(typ)+suffix,'kind':'candlestick' if cat=='candlestick' else 'pattern','direction':direction,'color':color(direction,typ),'score':round(score,1),'confidence':conf,'role':role})
+    overlays['lines']=merge_nearby_rs_lines(overlays['lines'], pct=0.01)
     return overlays
 
 def main():
