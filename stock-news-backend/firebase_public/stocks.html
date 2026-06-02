@@ -1608,39 +1608,81 @@
             }
           } }
           if (state.pattern) {
-            const markerList = [];
             const isClaudeOverlay = overlayData && (Array.isArray(overlayData.labels) || Array.isArray(overlayData.lines) || Array.isArray(overlayData.zones));
             if (isClaudeOverlay) {
+              const markerList = [];
               const scoreRank = x => Number(x?.score || 0) + (x?.confidence === 'high' ? 20 : x?.confidence === 'medium' ? 10 : 0);
-              const clLines = (Array.isArray(overlayData.lines) ? overlayData.lines : []).filter(l => Array.isArray(l.points) && l.points.length >= 2).sort((a,b)=>scoreRank(b)-scoreRank(a));
+              const clLines = (Array.isArray(overlayData.lines) ? overlayData.lines : [])
+                .filter(l => Array.isArray(l.points) && l.points.length >= 2)
+                .sort((a, b) => scoreRank(b) - scoreRank(a));
               clLines.slice(0, 28).forEach(line => {
                 const pts = normalizePoints(line.points).filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length < 2) return;
-                chart.addLineSeries({ color:line.color || '#f5c542', lineWidth: line.dash ? 1 : 2, lineStyle: line.dash ? 2 : 0, priceLineVisible:false, lastValueVisible:false, title: line.text || line.type || '' }).setData(pts);
+                chart.addLineSeries({ color: line.color || '#f5c542', lineWidth: line.dash ? 1 : 2, lineStyle: line.dash ? 2 : 0, priceLineVisible:false, lastValueVisible:false, title: line.text || line.type || '' }).setData(pts);
                 if (line.text && !line.dash) addTrendInlineLabel(pts, line.color || '#f5c542', line.text);
               });
               (Array.isArray(overlayData.zones) ? overlayData.zones : []).slice(0, 10).forEach(z => {
                 const low = Number(z.low), high = Number(z.high);
                 if (!Number.isFinite(low) || !Number.isFinite(high) || !z.from || !z.to) return;
                 const top = Math.max(low, high), bot = Math.min(low, high);
-                chart.addLineSeries({ color:z.color?.includes('220') ? '#dc2626' : '#16a34a', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false, title:z.text || z.type || 'zone' }).setData([{time:z.from,value:top},{time:z.to,value:top}]);
-                chart.addLineSeries({ color:z.color?.includes('220') ? '#dc2626' : '#16a34a', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData([{time:z.from,value:bot},{time:z.to,value:bot}]);
+                const zoneColor = String(z.color || '').includes('220') ? '#dc2626' : '#16a34a';
+                chart.addLineSeries({ color: zoneColor, lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false, title:z.text || z.type || 'zone' }).setData([{ time:z.from, value:top }, { time:z.to, value:top }]);
+                chart.addLineSeries({ color: zoneColor, lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false }).setData([{ time:z.from, value:bot }, { time:z.to, value:bot }]);
               });
-              const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : []).filter(x => x.time && Number.isFinite(Number(x.price))).sort((a,b)=>scoreRank(b)-scoreRank(a));
+              const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : [])
+                .filter(x => x.time && Number.isFinite(Number(x.price)))
+                .sort((a, b) => scoreRank(b) - scoreRank(a));
               clLabels.slice(0, 35).forEach(l => {
                 const dir = String(l.direction || '').toLowerCase();
                 const below = dir === 'bullish' || String(l.color || '').includes('16a34a') || String(l.color || '').includes('4ef0c0');
                 markerList.push({ time: normalizePointTime(l.time), position: below ? 'belowBar' : 'aboveBar', color: l.color || (below ? '#16a34a' : '#dc2626'), shape: below ? 'arrowUp' : 'arrowDown', text: `${l.text || l.kind || 'Pattern'}${l.score ? ' ' + Math.round(l.score) : ''}` });
               });
               if (Array.isArray(overlayData.forecast) && overlayData.forecast.length >= 2) {
-                const pts = overlayData.forecast.map(p => ({ time: normalizePointTime(p.time || p.date), value:Number(p.mean ?? p.value ?? p.close) })).filter(p => p.time && Number.isFinite(p.value));
+                const pts = overlayData.forecast
+                  .map(p => ({ time: normalizePointTime(p.time || p.date), value: Number(p.mean ?? p.value ?? p.close) }))
+                  .filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length >= 2) chart.addLineSeries({ color:'#38bdf8', lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false, title:'Forecast' }).setData(pts);
               }
               if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList);
               legendItems.push('<span style="color:#f5c542">Claude patterns</span>');
               const sm = overlayData.summary || {};
               if (sm.bias) legendItems.push(`<span style="color:${sm.bias === 'bullish' ? '#16a34a' : sm.bias === 'bearish' ? '#dc2626' : '#f5c542'}">Bias ${sm.bias}</span>`);
-            } else { const usingNewOverlay = overlayData && overlayData.summary; if (usingNewOverlay) { const markerList = []; topByScore(overlayData.patterns, 1).forEach(p => { const kp = p?.keyPoints || {}; if (kp.peak1 && kp.peak2) addOverlayLine(chart, { points:[{ time:kp.peak1.time, value:kp.peak1.price }, { time:kp.peak2.time, value:kp.peak2.price }], lineStyle:{ color:'#ffb454', lineWidth:2, lineStyle:2 } }); if (kp.neckline) { try { candleSeries.createPriceLine({ price:Number(kp.neckline.price || p.pivotPrice || 0), color:'#b388ff', lineWidth:2, lineStyle:1, axisLabelVisible:true, title:'Neckline' }); } catch(_) {} } const a = p?.annotation; if (a?.time) markerList.push({ time: normalizePointTime(a.time), position: a.position || 'aboveBar', color: a.color || '#ffb454', shape: a.shape || 'arrowDown', text: a.text || p.name || 'Pattern' }); }); topByScore(overlayData.candlestickSignals, 2).forEach(p => { const m = p?.marker; if (m?.time) markerList.push({ time: normalizePointTime(m.time), position: m.position || 'aboveBar', color: m.color || '#4ef0c0', shape: m.shape || 'arrowUp', text: m.text || p.name || 'Signal' }); }); if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList); if (markerList.length) legendItems.push('<span style="color:#f5c542">Auto Patterns</span>'); } else { const patternLineStyle = { 'pattern-support':['#00e5ff',2,2], 'pattern-resistance':['#ffb454',2,2], 'pattern-neckline':['#b388ff',2,1] }; const patternLines = Array.isArray(data.patternLines) ? data.patternLines : []; patternLines.slice(0, 8).forEach(line => { if (!line?.points?.length) return; const st = patternLineStyle[line.type] || ['#b388ff',1,2]; chart.addLineSeries({ color:st[0], lineWidth:st[1], lineStyle:st[2], priceLineVisible:false, lastValueVisible:false }).setData(line.points); }); if (patternLines.length) legendItems.push('<span style="color:#00e5ff">Biên mẫu hình</span>'); const patternMap = { 'shooting-star':['aboveBar','#ff7d7d','Sao Băng'], 'bearish-engulfing':['aboveBar','#ff5252','Nhấn chìm giảm'], 'doji':['aboveBar','#f5c542','Doji'], 'hammer':['belowBar','#4ef0c0','Rút chân'], 'bullish-engulfing':['belowBar','#4ef0c0','Nhấn chìm tăng'], 'false-breakout':['aboveBar','#ff7d7d','Bull trap'], 'distribution-risk':['aboveBar','#ff7d7d','Phân phối'], 'box-consolidation':['belowBar','#9ad7ff','Tích lũy'], 'breakout-watch':['aboveBar','#4ef0c0','Breakout?'], 'spring-shakeout':['belowBar','#4ef0c0','Spring'], 'cup-handle':['belowBar','#4ef0c0','Cốc tay cầm'], 'darvas-box':['belowBar','#9ad7ff','Darvas'], 'bull-flag':['belowBar','#4ef0c0','Cờ tăng'], 'bear-flag':['aboveBar','#ff7d7d','Cờ giảm'], 'wedge-triangle':['aboveBar','#f5c542','Tam giác/Nêm'], 'ascending-triangle':['belowBar','#4ef0c0','Tam giác tăng'], 'descending-triangle':['aboveBar','#ff7d7d','Tam giác giảm'], 'sym-triangle':['aboveBar','#f5c542','Tam giác'] }; const markers = (Array.isArray(data.patterns) ? data.patterns : []).slice(0, 6).map(p => { const m = patternMap[p.type] || ['aboveBar','#b388ff',p.text || p.type]; return { time:p.time, position:m[0], color:m[1], shape:m[0] === 'belowBar' ? 'arrowUp' : 'arrowDown', text:`${m[2]} ${p.score ? Math.round(p.score) : ''}`.trim() }; }); if (markers.length && candleSeries.setMarkers) candleSeries.setMarkers(markers); if (markers.length) legendItems.push('<span style="color:#f5c542">Mẫu hình nến</span>'); } }
+            } else {
+              const usingNewOverlay = overlayData && overlayData.summary;
+              if (usingNewOverlay) {
+                const markerList = [];
+                topByScore(overlayData.patterns, 1).forEach(p => {
+                  const kp = p?.keyPoints || {};
+                  if (kp.peak1 && kp.peak2) addOverlayLine(chart, { points:[{ time:kp.peak1.time, value:kp.peak1.price }, { time:kp.peak2.time, value:kp.peak2.price }], lineStyle:{ color:'#ffb454', lineWidth:2, lineStyle:2 } });
+                  if (kp.neckline) {
+                    try { candleSeries.createPriceLine({ price:Number(kp.neckline.price || p.pivotPrice || 0), color:'#b388ff', lineWidth:2, lineStyle:1, axisLabelVisible:true, title:'Neckline' }); } catch(_) {}
+                  }
+                  const a = p?.annotation;
+                  if (a?.time) markerList.push({ time: normalizePointTime(a.time), position: a.position || 'aboveBar', color: a.color || '#ffb454', shape: a.shape || 'arrowDown', text: a.text || p.name || 'Pattern' });
+                });
+                topByScore(overlayData.candlestickSignals, 2).forEach(p => {
+                  const m = p?.marker;
+                  if (m?.time) markerList.push({ time: normalizePointTime(m.time), position: m.position || 'aboveBar', color: m.color || '#4ef0c0', shape: m.shape || 'arrowUp', text: m.text || p.name || 'Signal' });
+                });
+                if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList);
+                if (markerList.length) legendItems.push('<span style="color:#f5c542">Auto Patterns</span>');
+              } else {
+                const patternLineStyle = { 'pattern-support':['#00e5ff',2,2], 'pattern-resistance':['#ffb454',2,2], 'pattern-neckline':['#b388ff',2,1] };
+                const patternLines = Array.isArray(data.patternLines) ? data.patternLines : [];
+                patternLines.slice(0, 8).forEach(line => {
+                  if (!line?.points?.length) return;
+                  const st = patternLineStyle[line.type] || ['#b388ff',1,2];
+                  chart.addLineSeries({ color:st[0], lineWidth:st[1], lineStyle:st[2], priceLineVisible:false, lastValueVisible:false }).setData(line.points);
+                });
+                if (patternLines.length) legendItems.push('<span style="color:#00e5ff">Biên mẫu hình</span>');
+                const patternMap = { 'shooting-star':['aboveBar','#ff7d7d','Sao Băng'], 'bearish-engulfing':['aboveBar','#ff5252','Nhấn chìm giảm'], 'doji':['aboveBar','#f5c542','Doji'], 'hammer':['belowBar','#4ef0c0','Rút chân'], 'bullish-engulfing':['belowBar','#4ef0c0','Nhấn chìm tăng'], 'false-breakout':['aboveBar','#ff7d7d','Bull trap'], 'distribution-risk':['aboveBar','#ff7d7d','Phân phối'], 'box-consolidation':['belowBar','#9ad7ff','Tích lũy'], 'breakout-watch':['aboveBar','#4ef0c0','Breakout?'], 'spring-shakeout':['belowBar','#4ef0c0','Spring'], 'cup-handle':['belowBar','#4ef0c0','Cốc tay cầm'], 'darvas-box':['belowBar','#9ad7ff','Darvas'], 'bull-flag':['belowBar','#4ef0c0','Cờ tăng'], 'bear-flag':['aboveBar','#ff7d7d','Cờ giảm'], 'wedge-triangle':['aboveBar','#f5c542','Tam giác/Nêm'], 'ascending-triangle':['belowBar','#4ef0c0','Tam giác tăng'], 'descending-triangle':['aboveBar','#ff7d7d','Tam giác giảm'], 'sym-triangle':['aboveBar','#f5c542','Tam giác'] };
+                const markers = (Array.isArray(data.patterns) ? data.patterns : []).slice(0, 6).map(p => {
+                  const m = patternMap[p.type] || ['aboveBar','#b388ff',p.text || p.type];
+                  return { time:p.time, position:m[0], color:m[1], shape:m[0] === 'belowBar' ? 'arrowUp' : 'arrowDown', text:`${m[2]} ${p.score ? Math.round(p.score) : ''}`.trim() };
+                });
+                if (markers.length && candleSeries.setMarkers) candleSeries.setMarkers(markers);
+                if (markers.length) legendItems.push('<span style="color:#f5c542">Mẫu hình nến</span>');
+              }
             }
           }
           if (legend) legend.innerHTML = legendItems.join('');
