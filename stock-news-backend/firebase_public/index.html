@@ -1683,7 +1683,9 @@
               const clLines = mergeCloseHorizontalLines((Array.isArray(overlayData.lines) ? overlayData.lines : [])
                 .filter(l => Array.isArray(l.points) && l.points.length >= 2)
                 .sort((a, b) => cleanRank(b) - cleanRank(a)), 0.02);
-              clLines.slice(0, 9).forEach(line => {
+              const isClaudeOriginalOverlay = String(overlayData.source || '').includes('claude-original');
+              const lineLimit = isClaudeOriginalOverlay ? 80 : 9;
+              clLines.slice(0, lineLimit).forEach(line => {
                 const pts = normalizePoints(line.points).filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length < 2) return;
                 chart.addLineSeries({ color: line.color || '#f5c542', lineWidth: line.dash ? 1 : 2, lineStyle: line.dash ? 2 : 0, priceLineVisible:false, lastValueVisible:false, title: line.text || line.type || '' }).setData(pts);
@@ -1700,10 +1702,14 @@
               const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : [])
                 .filter(x => x.time && Number.isFinite(Number(x.price)))
                 .sort((a, b) => scoreRank(b) - scoreRank(a));
-              clLabels.filter(l => l.role === 'primary' && l.kind !== 'candlestick').slice(0, 6).forEach((l, idx) => {
+              const visibleLabels = isClaudeOriginalOverlay
+                ? clLabels.filter(l => l.kind !== 'pivot-label').slice(0, 80)
+                : clLabels.filter(l => l.role === 'primary' && l.kind !== 'candlestick').slice(0, 6);
+              visibleLabels.forEach((l, idx) => {
                 const dir = String(l.direction || '').toLowerCase();
                 const color = l.color || (dir === 'bullish' ? '#16a34a' : dir === 'bearish' ? '#dc2626' : '#f5c542');
-                const yShift = dir === 'bearish' ? -18 - ((idx % 2) * 14) : 18 + ((idx % 2) * 14);
+                const baseShift = Number(l.yShift || 0);
+                const yShift = baseShift || (dir === 'bearish' ? -18 - ((idx % 2) * 14) : 18 + ((idx % 2) * 14));
                 addPatternPriceLabel(l.time, l.price, l.text || l.kind || 'Pattern', color, { yShift, arrow:true });
               });
               if (Array.isArray(overlayData.forecast) && overlayData.forecast.length >= 2) {
@@ -1713,7 +1719,7 @@
                 if (pts.length >= 2) chart.addLineSeries({ color:'#38bdf8', lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false, title:'Forecast' }).setData(pts);
               }
               if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList.slice(0, 2));
-              legendItems.push('<span style="color:#f5c542">Pattern clean</span>');
+              legendItems.push(`<span style="color:#f5c542">${isClaudeOriginalOverlay ? 'Claude original' : 'Pattern clean'}</span>`);
               const sm = overlayData.summary || {};
               if (sm.bias) legendItems.push(`<span style="color:${sm.bias === 'bullish' ? '#16a34a' : sm.bias === 'bearish' ? '#dc2626' : '#f5c542'}">Bias ${sm.bias}</span>`);
             } else {
