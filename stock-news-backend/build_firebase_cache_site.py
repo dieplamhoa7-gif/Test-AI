@@ -1,4 +1,4 @@
-"""Build Firebase Hosting static cache site.
+﻿"""Build Firebase Hosting static cache site.
 
 Architecture target:
 - Local machine builds PTKT/R-S/indicator/strategy caches into data/*.json.
@@ -333,14 +333,14 @@ def patch_html_for_firebase(html: str) -> str:
     # Replace functions that need endpoint logic with local-cache lookups.
     html = re.sub(
         r"async function refreshStockDetail\(symbol\) \{.*?\n    async function openStockSymbol",
-        """async function refreshStockDetail(symbol) { const normalized = (symbol || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!normalized) return; const existing = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (existing) { if (activeDetailTicker === normalized) openDetail(normalized); return existing; } let payload = null; try { const res = await fetch(`/data/market_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (res.ok) payload = await res.json(); } catch (_) {} const cacheItems = payload ? (Array.isArray(payload.items) ? payload.items : []) : []; const cached = cacheItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (cached) { marketItems.push(cached); if (activeDetailTicker === normalized) openDetail(normalized); return cached; } const q = await fetchVpsQuote(normalized); if (!q) throw new Error('Not found'); const item = { ticker: normalized, symbol: normalized, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, sector: inferSector(normalized), source: 'vps-live-direct', technical: { price: q.price, changePct: q.changePct, volume: q.volume, trend: 'Chưa có cache R/S', recommendation: 'Mã này đang có giá realtime nhưng chưa có output R/S/PTKT. Cần chạy pipeline R/S để có phân tích kỹ thuật.' } }; marketItems.push(item); if (activeDetailTicker === normalized) openDetail(normalized); return item; }
+        """async function refreshStockDetail(symbol) { const normalized = (symbol || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); if (!normalized) return; const existing = marketItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (existing) { if (activeDetailTicker === normalized) openDetail(normalized); return existing; } let payload = null; try { const res = await fetch(`/data/market_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (res.ok) payload = await res.json(); } catch (_) {} const cacheItems = payload ? (Array.isArray(payload.items) ? payload.items : []) : []; const cached = cacheItems.find(x => String(x.ticker || x.symbol || '').toUpperCase() === normalized); if (cached) { marketItems.push(cached); if (activeDetailTicker === normalized) openDetail(normalized); return cached; } const q = await fetchVpsQuote(normalized); if (!q) throw new Error('Not found'); const item = { ticker: normalized, symbol: normalized, price: q.price, changePct: q.changePct, volume: q.volume, openPrice: q.openPrice, highPrice: q.highPrice, lowPrice: q.lowPrice, avgPrice: q.avgPrice, sector: inferSector(normalized), source: 'vps-live-direct', technical: { price: q.price, changePct: q.changePct, volume: q.volume, trend: 'Ch╞░a c├│ cache R/S', recommendation: 'M├ú n├áy ─æang c├│ gi├í realtime nh╞░ng ch╞░a c├│ output R/S/PTKT. Cß║ºn chß║íy pipeline R/S ─æß╗â c├│ ph├ón t├¡ch kß╗╣ thuß║¡t.' } }; marketItems.push(item); if (activeDetailTicker === normalized) openDetail(normalized); return item; }
     async function openStockSymbol""",
         html,
         flags=re.S,
     )
     html = re.sub(
         r"async function searchStockCatalog\(\) \{.*?\n    async function addStockToWatchlist",
-        """async function searchStockCatalog() { const q = (elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); selectedSymbol = ''; if (!q) { elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; return; } try { const res = await fetch('/data/market_symbols.json', { cache: 'default' }); const rows = res.ok ? await res.json() : []; let items = rows.filter(item => String(item.symbol||'').includes(q) || String(item.name||'').toUpperCase().includes(q)).slice(0, 50); if (!items.some(x => String(x.symbol||'').toUpperCase() === q)) items.unshift({ symbol: q, name: 'Tra cứu realtime VPS' }); elements.stockSuggest.innerHTML = items.map(item => `<div class=\"search-option\" data-symbol=\"${escapeHtml(item.symbol)}\"><strong>${escapeHtml(item.symbol)}</strong><span>${escapeHtml(item.name || '')}</span></div>`).join(''); elements.stockSuggest.classList.toggle('open', items.length > 0); elements.stockSuggest.querySelectorAll('[data-symbol]').forEach(option => option.addEventListener('click', async () => { selectedSymbol = option.dataset.symbol; elements.stockSearchInput.value = selectedSymbol; elements.stockSuggest.classList.remove('open'); await openStockSymbol(selectedSymbol); })); } catch (_) {} }
+        """async function searchStockCatalog() { const q = (elements.stockSearchInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,''); selectedSymbol = ''; if (!q) { elements.stockSuggest.classList.remove('open'); elements.stockSuggest.innerHTML = ''; return; } try { const res = await fetch('/data/market_symbols.json', { cache: 'default' }); const rows = res.ok ? await res.json() : []; let items = rows.filter(item => String(item.symbol||'').includes(q) || String(item.name||'').toUpperCase().includes(q)).slice(0, 50); if (!items.some(x => String(x.symbol||'').toUpperCase() === q)) items.unshift({ symbol: q, name: 'Tra cß╗⌐u realtime VPS' }); elements.stockSuggest.innerHTML = items.map(item => `<div class=\"search-option\" data-symbol=\"${escapeHtml(item.symbol)}\"><strong>${escapeHtml(item.symbol)}</strong><span>${escapeHtml(item.name || '')}</span></div>`).join(''); elements.stockSuggest.classList.toggle('open', items.length > 0); elements.stockSuggest.querySelectorAll('[data-symbol]').forEach(option => option.addEventListener('click', async () => { selectedSymbol = option.dataset.symbol; elements.stockSearchInput.value = selectedSymbol; elements.stockSuggest.classList.remove('open'); await openStockSymbol(selectedSymbol); })); } catch (_) {} }
     async function addStockToWatchlist""",
         html,
         flags=re.S,
@@ -355,6 +355,17 @@ def patch_html_for_firebase(html: str) -> str:
 
 
 def build_html() -> None:
+    # LOCKED: do NOT regenerate firebase_public HTML files from the Python
+    # template. The final approved frontend now lives directly inside
+    # firebase_public/*.html (committed to git). Regenerating from
+    # dashboard_template.py was overwriting the final stocks.html with an
+    # older template and reverting the live site to an older version.
+    # If you really need to rebuild HTML from the template, set the env var
+    # ALLOW_HTML_REBUILD=1 explicitly.
+    import os
+    if os.environ.get("ALLOW_HTML_REBUILD") != "1":
+        print("[build_html] SKIPPED: HTML files in firebase_public are locked.")
+        return
     dashboard = extract_raw_py_string((APP / "dashboard_template.py").read_text(encoding="utf-8"), "DASHBOARD_HTML")
     dashboard = patch_html_for_firebase(dashboard)
     # Keep HTML small: use file logo instead of huge inline base64.
