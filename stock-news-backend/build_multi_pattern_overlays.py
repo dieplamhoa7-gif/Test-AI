@@ -52,7 +52,7 @@ def _is_horizontal_rs_line(line):
     typ=str(line.get('type') or '').lower()
     return name in {'support','resistance','neckline','target'} or any(x in typ for x in ['support','resistance'])
 
-def merge_nearby_rs_lines(lines, pct=0.01):
+def merge_nearby_rs_lines(lines, pct=0.02):
     """Gộp các đường ngang R/S/neckline/target cách nhau < pct để chart đỡ rối."""
     keep=[]; mergeable=[]
     for line in lines:
@@ -125,7 +125,46 @@ def overlay_from_analysis(r):
                 seen.add(key)
                 suffix=f" {round(score)}" if score else ''
                 overlays['labels'].append({'time':p.get('time'),'price':p.get('price'),'text':lab(typ)+suffix,'kind':'candlestick' if cat=='candlestick' else 'pattern','direction':direction,'color':color(direction,typ),'score':round(score,1),'confidence':conf,'role':role})
-    overlays['lines']=merge_nearby_rs_lines(overlays['lines'], pct=0.01)
+    overlays['lines']=merge_nearby_rs_lines(overlays['lines'], pct=0.02)
+    overlays=clean_overlay_for_frontend(overlays)
+    return overlays
+
+def clean_overlay_for_frontend(overlays):
+    """Giữ chart sạch: ưu tiên R/S gần giá hiện tại + score cao; hạn chế label nến nhỏ."""
+    last=float(overlays.get('lastClose') or 0)
+    def lvl(line):
+        v=_line_level(line)
+        return float(v) if v is not None else last
+    def rank(line):
+        dist=abs(lvl(line)/max(0.0001,last)-1) if last else 0
+        score=float(line.get('score') or 0)
+        role_bonus=25 if line.get('role')=='primary' else 12 if line.get('role')=='supporting' else 0
+        merge_bonus=min(15, 3*int(line.get('mergedCount') or 1))
+        return score + role_bonus + merge_bonus - dist*180
+    horizontal=[]; trend=[]; other=[]
+    for line in overlays.get('lines',[]):
+        if _is_horizontal_rs_line(line): horizontal.append(line)
+        elif str(line.get('type') or '').endswith('trendline') or 'trendline' in str(line.get('text') or '').lower(): trend.append(line)
+        else: other.append(line)
+    supports=[x for x in horizontal if 'support' in str(x.get('name') or x.get('type') or '').lower() or str(x.get('color'))=='#16a34a']
+    resistances=[x for x in horizontal if 'resistance' in str(x.get('name') or x.get('type') or '').lower() or str(x.get('color'))=='#dc2626']
+    misc=[x for x in horizontal if x not in supports and x not in resistances]
+    lines=[]
+    lines += sorted(supports, key=rank, reverse=True)[:4]
+    lines += sorted(resistances, key=rank, reverse=True)[:4]
+    lines += sorted(misc, key=rank, reverse=True)[:3]
+    lines += sorted(trend, key=rank, reverse=True)[:6]
+    lines += sorted(other, key=rank, reverse=True)[:4]
+    overlays['lines']=lines[:18]
+    def label_rank(x):
+        price=float(x.get('price') or last or 0)
+        dist=abs(price/max(0.0001,last)-1) if last else 0
+        score=float(x.get('score') or 0)
+        role_bonus=25 if x.get('role')=='primary' else 10 if x.get('role')=='supporting' else 0
+        kind_penalty=25 if x.get('kind')=='candlestick' else 0
+        return score+role_bonus-kind_penalty-dist*120
+    overlays['labels']=sorted(overlays.get('labels',[]), key=label_rank, reverse=True)[:18]
+    overlays['zones']=(overlays.get('zones') or [])[:6]
     return overlays
 
 def main():
