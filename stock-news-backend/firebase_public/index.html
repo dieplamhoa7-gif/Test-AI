@@ -1648,13 +1648,13 @@
               const clLines = mergeCloseHorizontalLines((Array.isArray(overlayData.lines) ? overlayData.lines : [])
                 .filter(l => Array.isArray(l.points) && l.points.length >= 2)
                 .sort((a, b) => cleanRank(b) - cleanRank(a)), 0.02);
-              clLines.slice(0, 18).forEach(line => {
+              clLines.slice(0, 9).forEach(line => {
                 const pts = normalizePoints(line.points).filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length < 2) return;
                 chart.addLineSeries({ color: line.color || '#f5c542', lineWidth: line.dash ? 1 : 2, lineStyle: line.dash ? 2 : 0, priceLineVisible:false, lastValueVisible:false, title: line.text || line.type || '' }).setData(pts);
-                if (line.text && !line.dash) addTrendInlineLabel(pts, line.color || '#f5c542', line.text);
+                if (line.text && !line.dash && !String(line.text).includes('x')) addTrendInlineLabel(pts, line.color || '#f5c542', line.text);
               });
-              (Array.isArray(overlayData.zones) ? overlayData.zones : []).slice(0, 6).forEach(z => {
+              (Array.isArray(overlayData.zones) ? overlayData.zones : []).slice(0, 2).forEach(z => {
                 const low = Number(z.low), high = Number(z.high);
                 if (!Number.isFinite(low) || !Number.isFinite(high) || !z.from || !z.to) return;
                 const top = Math.max(low, high), bot = Math.min(low, high);
@@ -1665,7 +1665,7 @@
               const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : [])
                 .filter(x => x.time && Number.isFinite(Number(x.price)))
                 .sort((a, b) => scoreRank(b) - scoreRank(a));
-              clLabels.slice(0, 18).forEach(l => {
+              clLabels.filter(l => l.role === 'primary' && l.kind !== 'candlestick').slice(0, 6).forEach(l => {
                 const dir = String(l.direction || '').toLowerCase();
                 const below = dir === 'bullish' || String(l.color || '').includes('16a34a') || String(l.color || '').includes('4ef0c0');
                 markerList.push({ time: normalizePointTime(l.time), position: below ? 'belowBar' : 'aboveBar', color: l.color || (below ? '#16a34a' : '#dc2626'), shape: below ? 'arrowUp' : 'arrowDown', text: `${l.text || l.kind || 'Pattern'}${l.score ? ' ' + Math.round(l.score) : ''}` });
@@ -1677,7 +1677,7 @@
                 if (pts.length >= 2) chart.addLineSeries({ color:'#38bdf8', lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false, title:'Forecast' }).setData(pts);
               }
               if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList);
-              legendItems.push('<span style="color:#f5c542">Claude patterns</span>');
+              legendItems.push('<span style="color:#f5c542">Pattern clean</span>');
               const sm = overlayData.summary || {};
               if (sm.bias) legendItems.push(`<span style="color:${sm.bias === 'bullish' ? '#16a34a' : sm.bias === 'bearish' ? '#dc2626' : '#f5c542'}">Bias ${sm.bias}</span>`);
             } else {
