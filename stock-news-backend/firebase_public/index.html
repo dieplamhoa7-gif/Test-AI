@@ -1141,6 +1141,27 @@
           series.setData(points);
           return { series, points, style };
         };
+        const addPatternPriceLabel = (time, price, text, color = '#f5c542', opts = {}) => {
+          if (!box || !box._lhChart || !box._lhCandleSeries || !time || !Number.isFinite(Number(price))) return;
+          const place = () => {
+            try {
+              const x = box._lhChart.timeScale()?.timeToCoordinate?.(normalizePointTime(time));
+              const y = box._lhCandleSeries.priceToCoordinate ? box._lhCandleSeries.priceToCoordinate(Number(price)) : null;
+              if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+              const label = document.createElement('div');
+              label.className = `trend-inline-label pattern-price-label ${opts.arrow ? 'with-arrow' : ''}`;
+              label.textContent = text;
+              const xShift = Number(opts.xShift || 0);
+              const yShift = Number(opts.yShift || 0);
+              label.style.left = `${Math.max(24, Math.min(box.clientWidth - 24, x + xShift))}px`;
+              label.style.top = `${Math.max(14, Math.min(box.clientHeight - 14, y + yShift))}px`;
+              label.style.borderColor = color;
+              label.style.color = color;
+              box.appendChild(label);
+            } catch(_) {}
+          };
+          setTimeout(place, Number(opts.delayMs || 80));
+        };
         const addTrendInlineLabel = (linePoints = [], color = '#9fb3d9', prefix = '') => {
           if (!box || !box._lhChart || !box._lhCandleSeries || linePoints.length < 2) return;
           try {
@@ -1665,10 +1686,11 @@
               const clLabels = (Array.isArray(overlayData.labels) ? overlayData.labels : [])
                 .filter(x => x.time && Number.isFinite(Number(x.price)))
                 .sort((a, b) => scoreRank(b) - scoreRank(a));
-              clLabels.filter(l => l.role === 'primary' && l.kind !== 'candlestick').slice(0, 6).forEach(l => {
+              clLabels.filter(l => l.role === 'primary' && l.kind !== 'candlestick').slice(0, 6).forEach((l, idx) => {
                 const dir = String(l.direction || '').toLowerCase();
-                const below = dir === 'bullish' || String(l.color || '').includes('16a34a') || String(l.color || '').includes('4ef0c0');
-                markerList.push({ time: normalizePointTime(l.time), position: below ? 'belowBar' : 'aboveBar', color: l.color || (below ? '#16a34a' : '#dc2626'), shape: below ? 'arrowUp' : 'arrowDown', text: `${l.text || l.kind || 'Pattern'}${l.score ? ' ' + Math.round(l.score) : ''}` });
+                const color = l.color || (dir === 'bullish' ? '#16a34a' : dir === 'bearish' ? '#dc2626' : '#f5c542');
+                const yShift = dir === 'bearish' ? -18 - ((idx % 2) * 14) : 18 + ((idx % 2) * 14);
+                addPatternPriceLabel(l.time, l.price, l.text || l.kind || 'Pattern', color, { yShift, arrow:true });
               });
               if (Array.isArray(overlayData.forecast) && overlayData.forecast.length >= 2) {
                 const pts = overlayData.forecast
@@ -1676,7 +1698,7 @@
                   .filter(p => p.time && Number.isFinite(p.value));
                 if (pts.length >= 2) chart.addLineSeries({ color:'#38bdf8', lineWidth:2, lineStyle:1, priceLineVisible:false, lastValueVisible:false, title:'Forecast' }).setData(pts);
               }
-              if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList);
+              if (markerList.length && candleSeries.setMarkers) candleSeries.setMarkers(markerList.slice(0, 2));
               legendItems.push('<span style="color:#f5c542">Pattern clean</span>');
               const sm = overlayData.summary || {};
               if (sm.bias) legendItems.push(`<span style="color:${sm.bias === 'bullish' ? '#16a34a' : sm.bias === 'bearish' ? '#dc2626' : '#f5c542'}">Bias ${sm.bias}</span>`);
