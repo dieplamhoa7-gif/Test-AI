@@ -259,5 +259,5 @@ def make_chart(df, patterns, fc, scenarios, symbol="MWG", out_html=None):
     fig.update_xaxes(range=[df["date"].iloc[0], fdates[-1] + pd.Timedelta(days=40)], row=1, col=1)
 
     if out_html:
-        fig.write_html(out_html, include_plotlyjs="cdn")
+        fig.write_html(out_html, include_plotlyjs=True, full_html=True)
     return fig
