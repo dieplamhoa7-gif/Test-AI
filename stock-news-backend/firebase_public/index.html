@@ -1141,26 +1141,39 @@
           series.setData(points);
           return { series, points, style };
         };
+        const patternLabelAnchors = [];
+        let patternLabelRefreshTimer = null;
+        const refreshPatternLabels = () => {
+          if (!box || !box._lhChart || !box._lhCandleSeries) return;
+          try {
+            patternLabelAnchors.forEach(item => {
+              const x = box._lhChart.timeScale()?.timeToCoordinate?.(normalizePointTime(item.time));
+              const y = box._lhCandleSeries.priceToCoordinate ? box._lhCandleSeries.priceToCoordinate(Number(item.price)) : null;
+              if (!Number.isFinite(x) || !Number.isFinite(y)) { item.el.style.display = 'none'; return; }
+              item.el.style.display = 'block';
+              const xShift = Number(item.opts?.xShift || 0);
+              const yShift = Number(item.opts?.yShift || 0);
+              item.el.style.left = `${Math.max(24, Math.min(box.clientWidth - 24, x + xShift))}px`;
+              item.el.style.top = `${Math.max(14, Math.min(box.clientHeight - 14, y + yShift))}px`;
+            });
+          } catch(_) {}
+        };
+        const schedulePatternLabelRefresh = (delay = 0) => {
+          if (patternLabelRefreshTimer) clearTimeout(patternLabelRefreshTimer);
+          patternLabelRefreshTimer = setTimeout(refreshPatternLabels, delay);
+        };
         const addPatternPriceLabel = (time, price, text, color = '#f5c542', opts = {}) => {
-          if (!box || !box._lhChart || !box._lhCandleSeries || !time || !Number.isFinite(Number(price))) return;
-          const place = () => {
-            try {
-              const x = box._lhChart.timeScale()?.timeToCoordinate?.(normalizePointTime(time));
-              const y = box._lhCandleSeries.priceToCoordinate ? box._lhCandleSeries.priceToCoordinate(Number(price)) : null;
-              if (!Number.isFinite(x) || !Number.isFinite(y)) return;
-              const label = document.createElement('div');
-              label.className = `trend-inline-label pattern-price-label ${opts.arrow ? 'with-arrow' : ''}`;
-              label.textContent = text;
-              const xShift = Number(opts.xShift || 0);
-              const yShift = Number(opts.yShift || 0);
-              label.style.left = `${Math.max(24, Math.min(box.clientWidth - 24, x + xShift))}px`;
-              label.style.top = `${Math.max(14, Math.min(box.clientHeight - 14, y + yShift))}px`;
-              label.style.borderColor = color;
-              label.style.color = color;
-              box.appendChild(label);
-            } catch(_) {}
-          };
-          setTimeout(place, Number(opts.delayMs || 80));
+          if (!box || !time || !Number.isFinite(Number(price))) return;
+          try {
+            const label = document.createElement('div');
+            label.className = `trend-inline-label pattern-price-label ${opts.arrow ? 'with-arrow' : ''}`;
+            label.textContent = text;
+            label.style.borderColor = color;
+            label.style.color = color;
+            box.appendChild(label);
+            patternLabelAnchors.push({ el:label, time:normalizePointTime(time), price:Number(price), opts });
+            schedulePatternLabelRefresh(Number(opts.delayMs || 80));
+          } catch(_) {}
         };
         const addTrendInlineLabel = (linePoints = [], color = '#9fb3d9', prefix = '') => {
           if (!box || !box._lhChart || !box._lhCandleSeries || linePoints.length < 2) return;
@@ -1592,6 +1605,7 @@
         const draw = (keepRange = true, forcedRange = null) => {
           let range = isRangeUsable(forcedRange) ? forcedRange : (keepRange ? currentRange() : null); if (!isRangeUsable(range)) range = null; try { box._lhChart?.remove(); volBox?._lhChart?.remove(); macdBox?._lhChart?.remove(); rsiBox?._lhChart?.remove(); } catch(_) {}
           box.innerHTML = '';
+          patternLabelAnchors.length = 0;
           const chart = LightweightCharts.createChart(box, { width: box.clientWidth, height: box.clientHeight || 320, layout: { background: { color: 'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color: 'rgba(120,140,180,.07)' }, horzLines: { color: 'rgba(120,140,180,.07)' } }, rightPriceScale: { borderColor: 'rgba(120,140,180,.18)', scaleMargins: { top: 0.10, bottom: 0.08 } }, timeScale: { visible:false, borderColor: 'rgba(120,140,180,.18)' }, crosshair: { mode: 0 } });
           box._lhChart = chart;
           const candleSeries = chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350', priceLineVisible:false, lastValueVisible:true, lastPriceAnimation:0, priceFormat:{ type:'price', minMove:0.01, precision:2 } }); candleSeries.setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
@@ -1742,8 +1756,9 @@
           }
           if (legend) legend.innerHTML = legendItems.join('');
           if (range) { chart.timeScale().setVisibleLogicalRange(range); setTimeout(() => { try { chart.timeScale().setVisibleLogicalRange(range); saveRange(range); } catch(_){} }, 0); } else { chart.timeScale().fitContent(); setTimeout(() => saveRange(chart.timeScale().getVisibleLogicalRange()), 0); }
-          chart.timeScale().subscribeVisibleLogicalRangeChange(saveRange);
+          chart.timeScale().subscribeVisibleLogicalRangeChange(r => { saveRange(r); schedulePatternLabelRefresh(0); });
           resizeChartWhenVisible(chart, box, true);
+          schedulePatternLabelRefresh(120);
         };
         const syncPills = () => { Object.keys(state).forEach(k => document.querySelector(`[data-indicator-wrap="${k}"]`)?.classList.toggle('off', !state[k])); if (volSlider) { volSlider.value = String(Math.max(6, Math.min(35, Number(settings.volume) || 14))); volSlider.disabled = !state.volume; volSlider.style.opacity = state.volume ? '1' : '.45'; } };
         const redrawKeepingView = () => { const r = currentRange(); draw(true, r); };
@@ -1753,7 +1768,7 @@
         volSlider?.addEventListener('input', e => { settings.volume = Math.max(6, Math.min(35, Number(e.target?.value) || 14)); if (!state.volume) { state.volume = true; } syncPills(); redrawKeepingView(); });
         syncPills();
         draw(true);
-        window.addEventListener('resize', () => { resizeChartWhenVisible(box._lhChart, box, true); resizeChartWhenVisible(volBox?._lhChart, volBox, true); resizeChartWhenVisible(macdBox?._lhChart, macdBox, true); resizeChartWhenVisible(rsiBox?._lhChart, rsiBox, true); });
+        window.addEventListener('resize', () => { resizeChartWhenVisible(box._lhChart, box, true); resizeChartWhenVisible(volBox?._lhChart, volBox, true); resizeChartWhenVisible(macdBox?._lhChart, macdBox, true); resizeChartWhenVisible(rsiBox?._lhChart, rsiBox, true); schedulePatternLabelRefresh(60); });
       } catch (_) { box.innerHTML = '<div class="empty">Chưa có dữ liệu chart cho mã này.</div>'; }
     }
     function normalizeTextForCompare(text='') { return stripHtmlTags(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
