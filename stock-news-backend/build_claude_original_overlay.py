@@ -1,93 +1,153 @@
+"""Convert Claude original MWG_patterns_forecast.json into a COMPACT overlay
+suitable for the LightweightCharts frontend without overloading the page.
+
+Rules:
+- Keep top supports/resistances (max 4 each, dedup within 2%).
+- Keep top trendlines (max 2 per direction).
+- Keep top "big" patterns by score (Tier 2/3) up to 3.
+- Keep darvas/FVG/OB as zones, max 3 total.
+- Keep recent candlestick (last 30 bars) max 4.
+- Forecast line: keep all points (small).
+"""
 from __future__ import annotations
-import json, pathlib, math
+import json, math, pathlib
 
 LABEL = {
-    'support-cluster':'Hỗ trợ','resistance-cluster':'Kháng cự','support-trendline':'Trendline hỗ trợ','resistance-trendline':'Trendline kháng cự',
-    'double-bottom':'2 Đáy','double-top':'2 Đỉnh','triple-bottom':'3 Đáy','triple-top':'3 Đỉnh','head-shoulders':'Vai-Đầu-Vai','inverse-head-shoulders':'VĐV ngược',
-    'ascending-triangle':'Tam giác tăng','descending-triangle':'Tam giác giảm','symmetrical-triangle':'Tam giác cân','falling-wedge':'Nêm giảm','rising-wedge':'Nêm tăng','up-channel':'Kênh tăng','down-channel':'Kênh giảm',
-    'darvas-box':'Hộp Darvas','cup-handle':'Cốc-Tay cầm','rounding-bottom':'Đáy tròn','rounding-top':'Đỉnh tròn','bull-flag':'Cờ tăng','bear-flag':'Cờ giảm','spring-shakeout':'Spring','upthrust-bull-trap':'Upthrust','fvg-bullish':'FVG tăng','fvg-bearish':'FVG giảm','order-block-bullish':'OB tăng','order-block-bearish':'OB giảm','no-demand':'No Demand','no-supply':'No Supply','volume-climax':'Climax'
+    'support-cluster':'Hỗ trợ','resistance-cluster':'Kháng cự',
+    'support-trendline':'Trendline hỗ trợ','resistance-trendline':'Trendline kháng cự',
+    'double-bottom':'2 Đáy','double-top':'2 Đỉnh','triple-bottom':'3 Đáy','triple-top':'3 Đỉnh',
+    'head-shoulders':'Vai-Đầu-Vai','inverse-head-shoulders':'VĐV ngược',
+    'ascending-triangle':'Tam giác tăng','descending-triangle':'Tam giác giảm','symmetrical-triangle':'Tam giác cân',
+    'falling-wedge':'Nêm giảm','rising-wedge':'Nêm tăng',
+    'up-channel':'Kênh tăng','down-channel':'Kênh giảm',
+    'darvas-box':'Hộp Darvas','cup-handle':'Cốc-Tay cầm',
+    'rounding-bottom':'Đáy tròn','rounding-top':'Đỉnh tròn',
+    'bull-flag':'Cờ tăng','bear-flag':'Cờ giảm',
+    'spring-shakeout':'Spring','upthrust-bull-trap':'Upthrust',
+    'fvg-bullish':'FVG tăng','fvg-bearish':'FVG giảm',
+    'order-block-bullish':'OB tăng','order-block-bearish':'OB giảm',
 }
-def lab(t): return LABEL.get(t,t)
-def color(direction, typ=''):
-    if 'support' in typ or direction=='bullish': return '#16a34a'
-    if 'resistance' in typ or direction=='bearish': return '#dc2626'
-    if 'neckline' in typ: return '#f59e0b'
-    return '#6b7280'
+
+def lab(t): return LABEL.get(t, t)
+
 def finite(v):
     try: return v is not None and math.isfinite(float(v))
     except Exception: return False
 
+def dedupe_levels(levels, pct=0.02):
+    out = []
+    for lv in sorted(levels, key=lambda x: -x['score']):
+        v = lv['value']
+        if not any(abs(v / max(1e-9, o['value']) - 1) < pct for o in out):
+            out.append(lv)
+    return out
+
 def convert(symbol='MWG'):
-    root=pathlib.Path(__file__).resolve().parent
-    src=root/'firebase_public'/'charts_debug'/f'{symbol}_patterns_forecast.json'
-    pub=root/'firebase_public'/'data'/'patterns'/f'{symbol}_patterns_overlay.json'
-    d=json.loads(src.read_text(encoding='utf-8'))
-    pats=[p for p in d.get('patterns',[]) if p.get('category')!='candlestick']
-    last=d.get('lastDate') or d.get('period',[None,None])[-1]
-    fcpts=d.get('forecast',{}).get('points',[])
-    last_fc=(fcpts[-1].get('time') if fcpts else last)
-    ov={'symbol':symbol,'source':'claude-original-run_mwg_pattern_forecast','createdAt':d.get('createdAt'),'timeframe':d.get('timeframe'),'lastClose':d.get('lastClose'),'summary':d.get('summary',{}),'labels':[],'lines':[],'zones':[],'forecast':fcpts,'scenarios':d.get('forecast',{}).get('scenarios',{})}
-    # Match Claude plot.py order and style more closely.
-    # S/R + trendline
+    root = pathlib.Path(__file__).resolve().parent
+    src = root / 'firebase_public' / 'charts_debug' / f'{symbol}_patterns_forecast.json'
+    dst = root / 'firebase_public' / 'data' / 'patterns' / f'{symbol}_patterns_overlay.json'
+    d = json.loads(src.read_text(encoding='utf-8'))
+    last = d.get('lastDate')
+    last_close = d.get('lastClose')
+    pats = d.get('patterns', [])
+    fc_points = d.get('forecast', {}).get('points', [])
+    fc_scen = d.get('forecast', {}).get('scenarios', {})
+
+    overlay = {
+        'symbol': symbol,
+        'source': 'claude-original-compact',
+        'createdAt': d.get('createdAt'),
+        'timeframe': d.get('timeframe'),
+        'lastClose': last_close,
+        'summary': d.get('summary', {}),
+        'labels': [],
+        'lines': [],
+        'zones': [],
+        'forecast': fc_points,
+        'scenarios': fc_scen,
+        'note': 'Compact projection of Claude original output; full chart at /charts_debug/<SYM>_patterns_forecast.html',
+    }
+
+    # 1) Supports / resistances clusters
+    supports, resistances = [], []
     for p in pats:
-        t=p.get('type',''); direction=p.get('direction','neutral')
-        if t in ('support-cluster','resistance-cluster'):
-            pts=(p.get('lines') or [{}])[0].get('points') or []
+        t = p.get('type', '')
+        if t in ('support-cluster', 'resistance-cluster'):
+            pts = (p.get('lines') or [{}])[0].get('points') or []
             if pts and finite(pts[0].get('value')):
-                y=float(pts[0]['value']); col='#16a34a' if 'support' in t else '#dc2626'
-                ov['lines'].append({'type':t,'name':t,'text':f'{lab(t)} {y:g}','direction':direction,'color':col,'dash':True,'points':[{'time':pts[0].get('time'),'value':y},{'time':last,'value':y}],'score':p.get('score'),'confidence':p.get('confidence'),'claudeRole':'sr-cluster'})
-                ov['labels'].append({'time':last,'price':y,'text':f'{lab(t)} {y:g}','kind':'sr-label','direction':direction,'color':col,'score':p.get('score'),'confidence':p.get('confidence'),'xAnchor':'right'})
-        elif t in ('support-trendline','resistance-trendline'):
-            lines=p.get('lines') or []
-            if lines:
-                pts=[{'time':q.get('time'),'value':q.get('value')} for q in (lines[0].get('points') or []) if q.get('time') and finite(q.get('value'))]
-                if len(pts)>=2:
-                    col='#0891b2' if 'support' in t else '#db2777'
-                    ov['lines'].append({'type':t,'name':t,'text':lab(t),'direction':direction,'color':col,'points':pts,'score':p.get('score'),'confidence':p.get('confidence'),'claudeRole':'trendline'})
-                    q=pts[-1]
-                    ov['labels'].append({'time':q['time'],'price':q['value'],'text':lab(t),'kind':'trendline-label','direction':direction,'color':col,'score':p.get('score'),'confidence':p.get('confidence'),'yShift':12 if 'resistance' in t else -12})
-    # double/triple/H&S/triangles: keep points and neckline exactly from Claude lines.
+                entry = {'time': pts[0]['time'], 'value': float(pts[0]['value']), 'score': p.get('score') or 0, 'type': t}
+                (supports if 'support' in t else resistances).append(entry)
+    supports = dedupe_levels(supports)[:4]
+    resistances = dedupe_levels(resistances)[:4]
+    for lv in supports:
+        overlay['lines'].append({'type': 'support', 'name': lv['type'], 'text': f"Hỗ trợ {lv['value']:g}", 'direction': 'bullish', 'color': '#16a34a', 'dash': True, 'points': [{'time': lv['time'], 'value': lv['value']}, {'time': last, 'value': lv['value']}]})
+        overlay['labels'].append({'time': last, 'price': lv['value'], 'text': f"Hỗ trợ {lv['value']:g}", 'kind': 'sr-label', 'role': 'primary', 'direction': 'bullish', 'color': '#16a34a'})
+    for lv in resistances:
+        overlay['lines'].append({'type': 'resistance', 'name': lv['type'], 'text': f"Kháng cự {lv['value']:g}", 'direction': 'bearish', 'color': '#dc2626', 'dash': True, 'points': [{'time': lv['time'], 'value': lv['value']}, {'time': last, 'value': lv['value']}]})
+        overlay['labels'].append({'time': last, 'price': lv['value'], 'text': f"Kháng cự {lv['value']:g}", 'kind': 'sr-label', 'role': 'primary', 'direction': 'bearish', 'color': '#dc2626'})
+
+    # 2) Trendlines
+    tl_bull, tl_bear = [], []
     for p in pats:
-        t=p.get('type',''); direction=p.get('direction','neutral'); col=color(direction,t)
-        if t.startswith(('double','triple')) or t in ('head-shoulders','inverse-head-shoulders','cup-handle') or 'triangle' in t or 'wedge' in t or 'channel' in t:
-            for ln in p.get('lines') or []:
-                pts=[{'time':q.get('time'),'value':q.get('value')} for q in (ln.get('points') or []) if q.get('time') and finite(q.get('value'))]
-                if len(pts)>=2:
-                    lcol='#f59e0b' if ln.get('name')=='neckline' else col
-                    ov['lines'].append({'type':t,'name':ln.get('name') or t,'text':lab(t) if ln.get('name')!='neckline' else 'Neckline','direction':direction,'color':lcol,'dash':ln.get('name')=='neckline','points':pts,'score':p.get('score'),'confidence':p.get('confidence'),'claudeRole':'pattern-line'})
-                elif len(pts)==1:
-                    q=pts[0]
-                    ov['labels'].append({'time':q['time'],'price':q['value'],'text':ln.get('name') or lab(t),'kind':'pivot-label','direction':direction,'color':col,'score':p.get('score'),'confidence':p.get('confidence')})
-            anchor=None
-            for ln in p.get('lines') or []:
-                pts=ln.get('points') or []
-                if pts and finite(pts[0].get('value')):
-                    anchor=pts[0]; break
-            if anchor:
-                lv=p.get('levels') or {}; tgt=f" → {lv.get('target')}" if finite(lv.get('target')) else ''
-                ov['labels'].append({'time':anchor.get('time'),'price':anchor.get('value'),'text':lab(t)+tgt,'kind':'pattern-title','direction':direction,'color':col,'score':p.get('score'),'confidence':p.get('confidence'),'yShift':32 if direction=='bearish' else -32})
-        elif t=='darvas-box':
-            lv=p.get('levels') or {}; lines=p.get('lines') or []
-            x0=(lines[0].get('points') or [{}])[0].get('time') if lines else p.get('time')
-            if finite(lv.get('support')) and finite(lv.get('resistance')):
-                ov['zones'].append({'type':t,'text':lab(t),'from':x0,'to':last,'low':lv['support'],'high':lv['resistance'],'color':'rgba(168,85,247,0.10)'})
-                ov['labels'].append({'time':x0,'price':lv['resistance'],'text':f"{lab(t)} {lv['support']}-{lv['resistance']}",'kind':'box-label','direction':direction,'color':'#7c3aed','score':p.get('score'),'confidence':p.get('confidence'),'yShift':10})
-        elif t.startswith('fvg'):
-            lv=p.get('levels') or {}
-            if finite(lv.get('gapLow')) and finite(lv.get('gapHigh')):
-                ov['zones'].append({'type':t,'text':lab(t),'from':p.get('time'),'to':last,'low':lv['gapLow'],'high':lv['gapHigh'],'color':'rgba(22,163,74,0.18)' if 'bull' in t else 'rgba(220,38,38,0.18)'})
-        elif t.startswith('order-block'):
-            lv=p.get('levels') or {}
-            if finite(lv.get('obLow')) and finite(lv.get('obHigh')):
-                ov['zones'].append({'type':t,'text':lab(t),'from':p.get('time'),'to':last,'low':lv['obLow'],'high':lv['obHigh'],'color':'rgba(16,185,129,0.22)' if 'bull' in t else 'rgba(244,63,94,0.22)'})
-        elif t in ('spring-shakeout','upthrust-bull-trap') and p.get('time') and finite(p.get('price')):
-            ov['labels'].append({'time':p.get('time'),'price':p.get('price'),'text':lab(t),'kind':'event-label','direction':direction,'color':col,'score':p.get('score'),'confidence':p.get('confidence')})
-    # Forecast label, Claude style.
-    if fcpts:
-        q=fcpts[-1]
+        t = p.get('type', '')
+        if t in ('support-trendline', 'resistance-trendline'):
+            lines = p.get('lines') or []
+            if not lines: continue
+            pts = [{'time': q.get('time'), 'value': q.get('value')} for q in (lines[0].get('points') or []) if q.get('time') and finite(q.get('value'))]
+            if len(pts) < 2: continue
+            entry = {'pts': pts, 'score': p.get('score') or 0, 'type': t}
+            (tl_bull if 'support' in t else tl_bear).append(entry)
+    for arr, col, direction, label_txt in ((tl_bull, '#0891b2', 'bullish', 'Trendline hỗ trợ'),
+                                           (tl_bear, '#db2777', 'bearish', 'Trendline kháng cự')):
+        for tl in sorted(arr, key=lambda x: -x['score'])[:2]:
+            overlay['lines'].append({'type': tl['type'], 'name': tl['type'], 'text': label_txt, 'direction': direction, 'color': col, 'points': tl['pts']})
+
+    # 3) Big patterns
+    big_types = {'double-bottom', 'double-top', 'triple-bottom', 'triple-top', 'head-shoulders', 'inverse-head-shoulders', 'cup-handle', 'ascending-triangle', 'descending-triangle', 'symmetrical-triangle', 'falling-wedge', 'rising-wedge', 'up-channel', 'down-channel', 'bull-flag', 'bear-flag', 'rounding-bottom', 'rounding-top'}
+    big = [p for p in pats if p.get('type') in big_types]
+    big.sort(key=lambda x: -(x.get('score') or 0))
+    for p in big[:3]:
+        t = p['type']; direction = p.get('direction', 'neutral')
+        col = '#16a34a' if direction == 'bullish' else '#dc2626' if direction == 'bearish' else '#6b7280'
+        for ln in (p.get('lines') or []):
+            pts = [{'time': q.get('time'), 'value': q.get('value')} for q in (ln.get('points') or []) if q.get('time') and finite(q.get('value'))]
+            if len(pts) >= 2:
+                lcol = '#f59e0b' if ln.get('name') == 'neckline' else col
+                overlay['lines'].append({'type': t, 'name': ln.get('name') or t, 'text': lab(t) if ln.get('name') != 'neckline' else 'Neckline', 'direction': direction, 'color': lcol, 'dash': ln.get('name') == 'neckline', 'points': pts})
+        anchor = None
+        for ln in (p.get('lines') or []):
+            pts = ln.get('points') or []
+            if pts and finite(pts[0].get('value')):
+                anchor = pts[0]; break
+        if anchor:
+            lv = p.get('levels') or {}
+            tgt = f" → {lv['target']}" if finite(lv.get('target')) else ''
+            overlay['labels'].append({'time': anchor['time'], 'price': anchor['value'], 'text': lab(t) + tgt, 'kind': 'pattern-title', 'role': 'primary', 'direction': direction, 'color': col, 'yShift': 32 if direction == 'bearish' else -32})
+
+    # 4) Zones: Darvas / FVG / OB
+    zones = []
+    for p in pats:
+        t = p.get('type', '')
+        lv = p.get('levels') or {}
+        if t == 'darvas-box' and finite(lv.get('support')) and finite(lv.get('resistance')):
+            x0 = (p.get('lines') or [{}])[0].get('points') or [{}]
+            zones.append({'type': t, 'text': lab(t), 'from': (x0[0].get('time') if x0 else p.get('time')) or p.get('time'), 'to': last, 'low': lv['support'], 'high': lv['resistance'], 'color': 'rgba(168,85,247,0.10)', 'score': p.get('score') or 0})
+        elif t.startswith('fvg') and finite(lv.get('gapLow')) and finite(lv.get('gapHigh')):
+            zones.append({'type': t, 'text': lab(t), 'from': p.get('time'), 'to': last, 'low': lv['gapLow'], 'high': lv['gapHigh'], 'color': 'rgba(22,163,74,0.18)' if 'bull' in t else 'rgba(220,38,38,0.18)', 'score': p.get('score') or 0})
+        elif t.startswith('order-block') and finite(lv.get('obLow')) and finite(lv.get('obHigh')):
+            zones.append({'type': t, 'text': lab(t), 'from': p.get('time'), 'to': last, 'low': lv['obLow'], 'high': lv['obHigh'], 'color': 'rgba(16,185,129,0.22)' if 'bull' in t else 'rgba(244,63,94,0.22)', 'score': p.get('score') or 0})
+    zones.sort(key=lambda z: -z['score'])
+    overlay['zones'] = zones[:3]
+
+    # 5) Forecast label
+    if fc_points:
+        q = fc_points[-1]
         if q.get('time') and finite(q.get('value')):
-            ov['labels'].append({'time':q['time'],'price':q['value'],'text':f"Dự báo {q['value']}",'kind':'forecast-label','direction':'neutral','color':'#2563eb','score':100,'confidence':'high'})
-    pub.parent.mkdir(parents=True,exist_ok=True)
-    pub.write_text(json.dumps(ov,ensure_ascii=False,indent=2),encoding='utf-8')
-    print(pub,'lines',len(ov['lines']),'labels',len(ov['labels']),'zones',len(ov['zones']))
-if __name__=='__main__': convert()
+            overlay['labels'].append({'time': q['time'], 'price': q['value'], 'text': f"Dự báo {q['value']}", 'kind': 'forecast-label', 'role': 'primary', 'direction': 'neutral', 'color': '#2563eb'})
+
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(json.dumps(overlay, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(dst, 'lines', len(overlay['lines']), 'labels', len(overlay['labels']), 'zones', len(overlay['zones']))
+
+if __name__ == '__main__':
+    convert()
