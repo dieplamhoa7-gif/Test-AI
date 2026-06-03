@@ -121,6 +121,7 @@ function commandKind(text) {
   const first = s.split(/\s+/)[0].replace(/@\w+$/, '');
   // Accept /gia, /giá, and mojibake/replacement variants like /gi�.
   if (first === '/gi' || first.startsWith('/gia') || first.startsWith('/giá') || first.startsWith('/gi├') || first.startsWith('/gi�')) return 'price';
+  if (first === 'tc' || first.startsWith('/tc')) return 'k1';
   if (first.startsWith('/k1') || first.startsWith('/tiendat') || first.startsWith('/tiềnđất') || first.startsWith('/tien')) return 'k1';
   if (first.startsWith('/qh')) return 'planning';
   return null;
