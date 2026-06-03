@@ -617,7 +617,9 @@ function formatK1Report(k1) {
     'K1 / TIỀN SỬ DỤNG ĐẤT SƠ BỘ',
     `Tọa độ: ${k1.lat}, ${k1.lon}`,
     `Loại đất tính: ${c.label || k1.landUse}`,
-    `Match phụ lục: ${m.wardHeader || 'chưa rõ'} | ${m.road || '-'} | ${m.segment || '-'}`,
+    `Match phụ lục: ${m.wardHeader || 'chưa rõ'} | ${m.road || '-'}`,
+    `Thuộc đoạn đường: ${m.segment || '-'}`,
+    `Độ tin cậy match đoạn: ${m.confidence || 'medium'}`,
     `Trang dẫn chứng: ${m.page || '-'}`,
     `Đơn giá bảng: ${Number.isFinite(c.baseThousandPerM2) ? c.baseThousandPerM2.toLocaleString('vi-VN') + ' ngàn đ/m2' : '-'}`,
     `Hệ số điều chỉnh mức biến động thị trường: ${Number.isFinite(c.marketK) ? String(c.marketK).replace('.', ',') : '-'}`,
@@ -631,8 +633,11 @@ function formatK1Report(k1) {
     '',
     'Dẫn chứng dòng phụ lục:',
     `${m.raw || '-'}`,
+    m.alternatives?.length ? '' : null,
+    m.alternatives?.length ? 'Các đoạn ứng viên khác gần nhất:' : null,
+    ...(m.alternatives || []).slice(0, 3).map((a, i) => `${i + 1}. ${a.road} | ${a.segment} | trang ${a.page} | score ${a.score}`),
     '',
-    'Lưu ý: đây là ước tính sơ bộ theo bảng giá đất × hệ số K đọc từ phụ lục gần nhất theo tọa độ. Hồ sơ thật vẫn cần kiểm tra vị trí, loại đất, quy hoạch, diện tích tính tiền và quy định chuyển tiếp.',
+    'Lưu ý: đây là ước tính sơ bộ theo bảng giá đất × hệ số K đọc từ phụ lục gần nhất theo tọa độ. Nếu cùng một tên đường có nhiều đoạn, bot đang chọn đoạn có score cao nhất theo geocode/đường gần nhất/POI lân cận; cần đối chiếu hồ sơ vị trí để chốt chính xác.',
   ].filter(Boolean).join('\n');
 }
 

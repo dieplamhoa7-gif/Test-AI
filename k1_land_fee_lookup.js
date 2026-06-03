@@ -37,6 +37,9 @@ function compactGeo(loc = {}) {
     district: loc.district || loc.city || '',
     city: loc.city || loc.state || '',
     road: loc.road || loc.nearest_road?.name || '',
+    display: loc.display_name || '',
+    nearestRoad: loc.nearest_road?.name || '',
+    pois: (loc.nearest_pois || []).map(p => p.name).filter(Boolean),
   };
 }
 
@@ -81,6 +84,75 @@ function findWardHeader(pageText) {
   return m ? titleCaseVi(m[1]) : '';
 }
 
+function contextTextForGeo(geo) {
+  return normalize([geo.ward, geo.district, geo.city, geo.road, geo.nearestRoad, geo.display, ...(geo.pois || [])].filter(Boolean).join(' '));
+}
+
+function scoreSegmentByContext(segment, geo) {
+  const ctx = contextTextForGeo(geo);
+  const seg = normalize(segment);
+  if (!seg || !ctx) return 0;
+  let score = 0;
+  const parts = seg.split(' ').filter(x => x.length >= 3);
+  for (const p of parts) if (ctx.includes(p)) score += 1;
+  // Bonus if full endpoint/POI-ish phrase appears.
+  for (const phrase of seg.split(/\s+(?:den|toi|nguyen|tran|le|vo|pham|ton|hai|ba)\s+/).filter(Boolean)) {
+    const np = normalize(phrase);
+    if (np.length >= 5 && ctx.includes(np)) score += 2;
+  }
+  return score;
+}
+
+function extractRoadDirectCandidatesFromPage(row, road, geo = {}) {
+  const nroad = normalize(road);
+  if (!nroad) return [];
+  const text = String(row.text || '');
+  if (!normalize(text).includes(nroad)) return [];
+  const header = findWardHeader(text);
+  const roadUpper = String(road || '').toUpperCase();
+  const indices = [];
+  let start = 0;
+  const upper = text.toUpperCase();
+  while (true) {
+    const i = upper.indexOf(roadUpper, start);
+    if (i < 0) break;
+    indices.push(i);
+    start = i + Math.max(1, roadUpper.length);
+  }
+  if (!indices.length) {
+    const normText = normalize(text);
+    const idxNorm = normText.indexOf(nroad);
+    if (idxNorm >= 0) indices.push(Math.max(0, Math.floor(idxNorm * text.length / Math.max(1, normText.length)) - 50));
+  }
+  const candidates = [];
+  for (const idx of indices.slice(0, 8)) {
+    const slice = text.slice(idx, idx + 900).replace(/\s+/g, ' ');
+    const nums = slice.match(/\d{1,3}\.\d{3}|\d+,\d+/g) || [];
+    const priceNums = nums.filter(x => /\d{1,3}\.\d{3}/.test(x)).slice(0, 3);
+    const kNums = nums.filter(x => /\d+,\d+/.test(x)).slice(0, 4);
+    if (priceNums.length < 3 || kNums.length < 3) continue;
+    const segMatch = slice.match(new RegExp(roadUpper.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s+(.{0,120}?)\\s+' + priceNums[0].replace('.', '\\.'), 'i'));
+    const segment = titleCaseVi(segMatch?.[1] || 'TRỌN ĐƯỜNG/đoạn gần nhất trong phụ lục');
+    candidates.push({
+      page: row.page,
+      stt: null,
+      road: titleCaseVi(road),
+      segment,
+      priceResidentialThousand: parseNumeric(priceNums[0]),
+      priceCommercialThousand: parseNumeric(priceNums[1]),
+      priceBusinessThousand: parseNumeric(priceNums[2]),
+      kResidential: parseNumeric(kNums[0]),
+      kCommercial: parseNumeric(kNums[1]),
+      kBusiness: parseNumeric(kNums[2]),
+      kAgricultural: parseNumeric(kNums[3] || kNums[0]),
+      raw: slice.slice(0, 650),
+      areaHeader: header,
+      segmentScore: scoreSegmentByContext(segment, geo),
+    });
+  }
+  return candidates;
+}
+
 function extractRoadDirectFromPage(row, road) {
   const nroad = normalize(road);
   if (!nroad) return null;
@@ -122,16 +194,22 @@ function findBestK1ByGeo(location = {}) {
   const geo = compactGeo(location);
   const geoWard = normalize(geo.ward);
   const nroad = normalize(geo.road || '');
-  const direct = rows.map(row => {
-    const hit = extractRoadDirectFromPage(row, geo.road || '');
-    if (!hit) return null;
-    const headerNorm = normalize(hit.areaHeader);
-    let score = 10;
-    if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 8;
-    if (normalize(row.text).includes(nroad)) score += 2;
-    return { ...hit, score };
-  }).filter(Boolean).sort((a,b) => b.score - a.score || a.page - b.page);
-  if (direct.length) return direct[0];
+  const direct = rows.flatMap(row => {
+    const hits = extractRoadDirectCandidatesFromPage(row, geo.road || '', geo);
+    return hits.map(hit => {
+      const headerNorm = normalize(hit.areaHeader);
+      let score = 10 + (hit.segmentScore || 0);
+      if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 8;
+      if (normalize(row.text).includes(nroad)) score += 2;
+      return { ...hit, score };
+    });
+  }).filter(Boolean).sort((a,b) => b.score - a.score || b.segmentScore - a.segmentScore || a.page - b.page);
+  if (direct.length) {
+    const best = direct[0];
+    best.alternatives = direct.slice(1, 5).map(x => ({ road: x.road, segment: x.segment, page: x.page, score: x.score, raw: x.raw }));
+    best.confidence = direct.length === 1 || (best.score - direct[1].score >= 3) ? 'high' : 'medium';
+    return best;
+  }
 
   const roadCandidates = chooseCandidateByRoad(allEntries, geo.road || '');
   let enriched = roadCandidates.map(e => {
@@ -191,6 +269,8 @@ async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT', pos
       page: best.page,
       stt: best.stt,
       raw: best.raw,
+      confidence: best.confidence || 'medium',
+      alternatives: best.alternatives || [],
     },
     landUse,
     calc: {
