@@ -14,6 +14,22 @@ function normalize(s) {
     .trim();
 }
 
+function normalizedIndexToOriginalIndex(original, needleNorm) {
+  const src = String(original || '');
+  const target = normalize(needleNorm);
+  if (!target) return -1;
+  let acc = '';
+  const map = [];
+  for (let i = 0; i < src.length; i++) {
+    const n = normalize(src[i]);
+    if (!n) continue;
+    if (acc && !acc.endsWith(' ')) { acc += ' '; map.push(i); }
+    for (const ch of n) { acc += ch; map.push(i); }
+  }
+  const j = acc.indexOf(target);
+  return j >= 0 ? map[j] : -1;
+}
+
 function titleCaseVi(s) {
   return String(s || '').replace(/\s+/g, ' ').trim();
 }
@@ -145,14 +161,13 @@ function extractRoadDirectCandidatesFromPage(row, road, geo = {}) {
     // Accept only when the road appears as a table road-name row, normally after STT.
     // Normalized fallback is allowed because OCR may use visually different Đ/Ð/no accents.
     if (!isNormFallback && before && !/(^|\s)\d{1,3}\s*$/.test(before)) continue;
-    let slice = text.slice(idx, idx + 900).replace(/\s+/g, ' ');
-    // If fallback started a bit before the road, trim again to the road token so previous row numbers do not leak in.
-    const upperSlice = slice.toUpperCase();
-    for (const rv of roadVariants(road)) {
-      const pat = String(rv || '').toUpperCase().replace(/Ð/g, 'Đ');
-      const j = upperSlice.indexOf(pat);
-      if (j > 0) { slice = slice.slice(j); break; }
-    }
+    let sliceRaw = text.slice(idx, idx + 900);
+    // If fallback started before the road, trim again to the road token so previous row numbers do not leak in.
+    const rel = normalizedIndexToOriginalIndex(sliceRaw, road);
+    if (rel > 0) sliceRaw = sliceRaw.slice(rel);
+    let slice = sliceRaw.replace(/\s+/g, ' ');
+    const sliceNorm = normalize(slice);
+    if (!roadVariants(road).some(rv => sliceNorm.startsWith(normalize(rv)))) continue;
     const nums = slice.match(/\d{1,3}\.\d{3}|\d+,\d+/g) || [];
     const priceNums = nums.filter(x => /\d{1,3}\.\d{3}/.test(x)).slice(0, 3);
     const kNums = nums.filter(x => /\d+,\d+/.test(x)).slice(0, 4);
