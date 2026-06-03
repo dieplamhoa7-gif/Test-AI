@@ -147,19 +147,21 @@ function findBestK1ByGeo(location = {}) {
   return enriched[0] || null;
 }
 
-function calcAdjusted(entry, landUse = 'ODT') {
+function calcAdjusted(entry, landUse = 'ODT', opts = {}) {
   if (!entry) return null;
   const code = String(landUse || 'ODT').toUpperCase();
-  if (code === 'ODT') {
-    return { baseThousand: entry.priceResidentialThousand, k: entry.kResidential, adjustedThousand: entry.priceResidentialThousand * entry.kResidential, label: 'Đất ở' };
+  const positionMultiplier = Number(opts.positionMultiplier || 1);
+  const planningMultiplier = Number(opts.planningMultiplier || 1);
+  let baseThousand, marketK, label;
+  if (code === 'TMD' || code === 'TMDV') {
+    baseThousand = entry.priceCommercialThousand; marketK = entry.kCommercial; label = 'Đất thương mại dịch vụ';
+  } else if (code === 'SKC' || code === 'SXKD') {
+    baseThousand = entry.priceBusinessThousand; marketK = entry.kBusiness; label = 'Đất SXKD phi nông nghiệp';
+  } else {
+    baseThousand = entry.priceResidentialThousand; marketK = entry.kResidential; label = 'Đất ở';
   }
-  if (code === 'TMD') {
-    return { baseThousand: entry.priceCommercialThousand, k: entry.kCommercial, adjustedThousand: entry.priceCommercialThousand * entry.kCommercial, label: 'Đất thương mại dịch vụ' };
-  }
-  if (code === 'SKC') {
-    return { baseThousand: entry.priceBusinessThousand, k: entry.kBusiness, adjustedThousand: entry.priceBusinessThousand * entry.kBusiness, label: 'Đất SXKD phi nông nghiệp' };
-  }
-  return { baseThousand: entry.priceResidentialThousand, k: entry.kResidential, adjustedThousand: entry.priceResidentialThousand * entry.kResidential, label: 'Đất ở' };
+  const totalK = marketK * planningMultiplier * positionMultiplier;
+  return { baseThousand, marketK, planningMultiplier, positionMultiplier, totalK, adjustedThousand: baseThousand * totalK, label };
 }
 
 function renderEvidencePage(page) {
@@ -171,10 +173,11 @@ function renderEvidencePage(page) {
   });
 }
 
-async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT' }) {
+async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT', position='VT1', planningMultiplier=1 }) {
   const best = findBestK1ByGeo(geoLocation || {});
   if (!best) return { error: 'Chưa match được đường/phụ lục K1 từ tọa độ này.' };
-  const calc = calcAdjusted(best, landUse);
+  const positionMultiplier = String(position || 'VT1').toUpperCase() === 'VT1' ? 1 : 1.35;
+  const calc = calcAdjusted(best, landUse, { positionMultiplier, planningMultiplier });
   const area = parseAreaFromText(text);
   const totalVnd = area && calc ? area * calc.adjustedThousand * 1000 : null;
   const evidencePath = await renderEvidencePage(best.page).catch(() => null);
@@ -193,7 +196,10 @@ async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT' }) {
     calc: {
       label: calc.label,
       baseThousandPerM2: calc.baseThousand,
-      k: calc.k,
+      marketK: calc.marketK,
+      planningK: calc.planningMultiplier,
+      positionK: calc.positionMultiplier,
+      totalK: calc.totalK,
       adjustedThousandPerM2: calc.adjustedThousand,
       adjustedMillionPerM2: calc.adjustedThousand / 1000,
       estimatedTotalVnd: totalVnd,

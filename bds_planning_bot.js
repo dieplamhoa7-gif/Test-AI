@@ -114,6 +114,7 @@ async function resolveShortMapLinks(text) {
 }
 
 const pendingPriceRequests = new Map();
+const pendingK1Requests = new Map();
 
 function commandKind(text) {
   const s = String(text || '').trim().toLowerCase();
@@ -619,7 +620,10 @@ function formatK1Report(k1) {
     `Match phụ lục: ${m.wardHeader || 'chưa rõ'} | ${m.road || '-'} | ${m.segment || '-'}`,
     `Trang dẫn chứng: ${m.page || '-'}`,
     `Đơn giá bảng: ${Number.isFinite(c.baseThousandPerM2) ? c.baseThousandPerM2.toLocaleString('vi-VN') + ' ngàn đ/m2' : '-'}`,
-    `Hệ số K: ${Number.isFinite(c.k) ? String(c.k).replace('.', ',') : '-'}`,
+    `Hệ số điều chỉnh mức biến động thị trường: ${Number.isFinite(c.marketK) ? String(c.marketK).replace('.', ',') : '-'}`,
+    `Hệ số điều chỉnh quy hoạch: ${Number.isFinite(c.planningK) ? String(c.planningK).replace('.', ',') : '1'} (tạm tính; cần phụ lục/quy hoạch chi tiết nếu áp dụng)`,
+    `Hệ số điều chỉnh theo vị trí: ${Number.isFinite(c.positionK) ? String(c.positionK).replace('.', ',') : '1'} (${c.positionK === 1.35 ? 'vị trí 2/3/4' : 'vị trí 1/tạm tính'})`,
+    `Tổng hệ số đang dùng: ${Number.isFinite(c.totalK) ? c.totalK.toLocaleString('vi-VN', { maximumFractionDigits: 4 }) : '-'}`,
     `Đơn giá điều chỉnh: ${Number.isFinite(c.adjustedThousandPerM2) ? c.adjustedThousandPerM2.toLocaleString('vi-VN', { maximumFractionDigits: 3 }) + ' ngàn đ/m2' : '-'}`,
     `Tương đương: ${Number.isFinite(c.adjustedMillionPerM2) ? c.adjustedMillionPerM2.toLocaleString('vi-VN', { maximumFractionDigits: 3 }) + ' triệu đ/m2' : '-'}`,
     k1.areaM2 ? `Diện tích nhận từ tin nhắn: ${k1.areaM2} m2` : 'Chưa thấy diện tích m2 trong tin nhắn; bot mới trả đơn giá/m2.',
@@ -675,8 +679,54 @@ async function runPriceLookup(req) {
   trySendMapScreenshot(req.chatId, req.lat, req.lon, req.replyTo, `📍 ${assetLabel(req.asset)} - ${bdsLocationText || 'Vị trí'}`);
 }
 
+async function askK1Step(req, key) {
+  if (!req.landUse) {
+    await sendMessage(req.chatId, ['Chọn MĐSDĐ để tính tiền đất:', req.locationText ? `Khu vực: ${req.locationText}` : null, req.suggestedLandUse ? `Gợi ý theo quy hoạch đọc được: ${req.suggestedLandUse}` : null].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
+      { text: 'ODT / Đất ở', callback_data: `k1:land:ODT:${key}` },
+      { text: 'TMD / TMDV', callback_data: `k1:land:TMD:${key}` },
+      { text: 'SKC / SXKD', callback_data: `k1:land:SKC:${key}` },
+    ]] } });
+    return;
+  }
+  if (!req.position) {
+    await sendMessage(req.chatId, 'Chọn vị trí tính hệ số:', req.replyTo, { reply_markup: { inline_keyboard: [[
+      { text: 'VT1', callback_data: `k1:pos:VT1:${key}` },
+      { text: 'VT2/3/4', callback_data: `k1:pos:VT234:${key}` },
+    ]] } });
+    return;
+  }
+}
+
+async function runK1Lookup(req) {
+  const raw = await lookupHcmPlanning(req.lat, req.lon);
+  const summary = summarize(raw);
+  req.geoLocation = summary.location || req.geoLocation || null;
+  req.locationText = compactBdsLocationFromGeo(summary.location || {});
+  const k1 = await lookupK1LandFee({ lat: req.lat, lon: req.lon, geoLocation: summary.location || {}, text: req.text, landUse: req.landUse, position: req.position === 'VT234' ? 'VT234' : 'VT1', planningMultiplier: 1 });
+  await sendMessage(req.chatId, formatK1Report(k1), req.replyTo);
+  if (k1?.evidencePath) {
+    await sendPhotoFile(req.chatId, k1.evidencePath, `Ảnh dẫn chứng phụ lục K1 - trang ${k1.match?.page || ''}`.trim(), req.replyTo).catch(() => null);
+  }
+}
+
 async function handlePriceSelection(query) {
   const data = String(query.data || '');
+  if (data.startsWith('k1:')) {
+    const [, step, value, key] = data.split(':');
+    const req = pendingK1Requests.get(key);
+    if (!req) { await answerCallbackQuery(query.id, 'Yêu cầu K1 đã hết hạn, gửi lại tọa độ giúp em.'); return true; }
+    if (step === 'land') req.landUse = value;
+    if (step === 'pos') req.position = value;
+    await answerCallbackQuery(query.id, 'Đã nhận lựa chọn.');
+    if (!req.landUse || !req.position) {
+      await askK1Step(req, key);
+      return true;
+    }
+    await answerCallbackQuery(query.id, 'Đang tính tiền đất...');
+    await runK1Lookup(req).catch(async err => { await sendMessage(req.chatId, `Em tra K1/tiền đất bị lỗi: ${err.message || err}`, req.replyTo).catch(() => null); });
+    pendingK1Requests.delete(key);
+    return true;
+  }
   if (!data.startsWith('price:')) return false;
   const parts = data.split(':');
   let req;
@@ -731,16 +781,14 @@ async function handleMessage(msg) {
   seen.add(key);
 
   if (kind === 'k1') {
-    await sendMessage(chatId, 'Em nhận tọa độ rồi, đang tra K1/tiền sử dụng đất...', msg.message_id);
+    await sendMessage(chatId, 'Em nhận tọa độ rồi, đang xác định vị trí để tra K1...', msg.message_id);
     try {
       const raw = await lookupHcmPlanning(parsed.lat, parsed.lon);
       const summary = summarize(raw);
-      const landUse = detectLandUseCode(combinedText);
-      const k1 = await lookupK1LandFee({ lat: parsed.lat, lon: parsed.lon, geoLocation: summary.location || {}, text: combinedText, landUse });
-      await sendMessage(chatId, formatK1Report(k1), msg.message_id);
-      if (k1?.evidencePath) {
-        await sendPhotoFile(chatId, k1.evidencePath, `Ảnh dẫn chứng phụ lục K1 - trang ${k1.match?.page || ''}`.trim(), msg.message_id).catch(() => null);
-      }
+      const reqKey = `${chatId}_${msg.message_id}_k1`;
+      const req = { chatId, replyTo: msg.message_id, lat: parsed.lat, lon: parsed.lon, text: combinedText, createdAt: Date.now(), geoLocation: summary.location || null, locationText: compactBdsLocationFromGeo(summary.location || {}) };
+      pendingK1Requests.set(reqKey, req);
+      await askK1Step(req, reqKey);
       return;
     } catch (err) {
       await sendMessage(chatId, `Em tra K1/tiền đất bị lỗi: ${err.message || err}`, msg.message_id);
@@ -794,16 +842,16 @@ async function handleMessage(msg) {
     let report = buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors);
     await sendMessage(chatId, report, msg.message_id);
 
-    // Full investor workflow: reuse planning/geocode result to also estimate K1/land obligation.
+    // Full investor workflow: reuse planning/geocode result, then ask investor to choose MĐSDĐ/position.
     try {
-      const landUse = detectLandUseCodeFromPlanning(summary, planningTraitsText);
-      const k1 = await lookupK1LandFee({ lat: parsed.lat, lon: parsed.lon, geoLocation: summary.location || {}, text: combinedText, landUse });
-      await sendMessage(chatId, formatK1Report(k1), msg.message_id);
-      if (k1?.evidencePath) {
-        await sendPhotoFile(chatId, k1.evidencePath, `Ảnh dẫn chứng phụ lục K1 - trang ${k1.match?.page || ''}`.trim(), msg.message_id).catch(() => null);
-      }
+      const reqKey = `${chatId}_${msg.message_id}_k1`;
+      const req = { chatId, replyTo: msg.message_id, lat: parsed.lat, lon: parsed.lon, text: combinedText, createdAt: Date.now(), geoLocation: summary.location || null, locationText: compactBdsLocationFromGeo(summary.location || {}) };
+      const suggested = detectLandUseCodeFromPlanning(summary, planningTraitsText);
+      if (suggested) req.suggestedLandUse = suggested;
+      pendingK1Requests.set(reqKey, req);
+      await askK1Step(req, reqKey);
     } catch (k1Err) {
-      await sendMessage(chatId, `K1/tiền đất: chưa tính được tự động từ tọa độ này (${k1Err.message || k1Err}).`, msg.message_id).catch(() => null);
+      await sendMessage(chatId, `K1/tiền đất: chưa chuẩn bị được bước chọn MĐSDĐ (${k1Err.message || k1Err}).`, msg.message_id).catch(() => null);
     }
 
     trySendMapScreenshot(chatId, parsed.lat, parsed.lon, msg.message_id, `📍 Quy hoạch tại ${parsed.lat}, ${parsed.lon}`);
