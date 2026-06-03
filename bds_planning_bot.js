@@ -385,14 +385,17 @@ async function sendMessage(chatId, text, replyTo, extra = {}) {
   }
   chunks.push(text);
   for (const chunk of chunks) {
-    await tg('sendMessage', {
+    const payload = {
       chat_id: chatId,
       text: cleanTelegramMarkdown(chunk),
       parse_mode: 'Markdown',
       reply_parameters: replyTo ? { message_id: replyTo } : undefined,
       disable_web_page_preview: true,
       ...sanitizeExtra(extra),
-    });
+    };
+    if (extra && extra.plain) delete payload.parse_mode;
+    delete payload.plain;
+    await tg('sendMessage', payload);
   }
 }
 
@@ -687,7 +690,7 @@ async function runPriceLookup(req) {
 
 async function askK1Step(req, key) {
   if (!req.landUse) {
-    await sendMessage(req.chatId, ['Chọn MĐSDĐ để tính tiền đất:', req.locationText ? `Khu vực: ${req.locationText}` : null, req.suggestedLandUse ? `Gợi ý theo quy hoạch đọc được: ${req.suggestedLandUse}` : null].filter(Boolean).join('\n'), req.replyTo, { reply_markup: { inline_keyboard: [[
+    await sendMessage(req.chatId, ['Chọn MĐSDĐ để tính tiền đất:', req.locationText ? `Khu vực: ${req.locationText}` : null, req.suggestedLandUse ? `Gợi ý theo quy hoạch đọc được: ${req.suggestedLandUse}` : null].filter(Boolean).join('\n'), req.replyTo, { plain: true, reply_markup: { inline_keyboard: [[
       { text: 'ODT / Đất ở', callback_data: `k1:land:ODT:${key}` },
       { text: 'TMD / TMDV', callback_data: `k1:land:TMD:${key}` },
       { text: 'SKC / SXKD', callback_data: `k1:land:SKC:${key}` },
@@ -695,7 +698,7 @@ async function askK1Step(req, key) {
     return;
   }
   if (!req.position) {
-    await sendMessage(req.chatId, 'Chọn vị trí tính hệ số:', req.replyTo, { reply_markup: { inline_keyboard: [[
+    await sendMessage(req.chatId, 'Chọn vị trí tính hệ số:', req.replyTo, { plain: true, reply_markup: { inline_keyboard: [[
       { text: 'VT1', callback_data: `k1:pos:VT1:${key}` },
       { text: 'VT2/3/4', callback_data: `k1:pos:VT234:${key}` },
     ]] } });
