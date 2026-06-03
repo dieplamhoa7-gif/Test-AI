@@ -8,7 +8,7 @@ const rows = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 function normalize(s) {
   return String(s || '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+    .replace(/[đð]/g, 'd').replace(/[ĐÐ]/g, 'D')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
@@ -69,7 +69,8 @@ function extractStreetEntries(pageText, page) {
   return out;
 }
 
-const allEntries = rows.flatMap(r => extractStreetEntries(r.text, r.page));
+const allEntries = rows.flatMap(r => extractStreetEntries(r.text, r.page))
+  .filter(e => normalize(e.road).length >= 3 && !/^\d+$/.test(normalize(e.road)) && !/^phu\b|^stt\b/.test(normalize(e.road)));
 
 function chooseCandidateByRoad(entries, road) {
   const nr = normalize(road);
@@ -82,6 +83,18 @@ function chooseCandidateByRoad(entries, road) {
 function findWardHeader(pageText) {
   const m = String(pageText || '').match(/PHƯỜNG\s+([A-ZÀ-Ỵ0-9\s\.]+?)\s*\(/i) || String(pageText || '').match(/XÃ\s+([A-ZÀ-Ỵ0-9\s\.]+?)\s*\(/i);
   return m ? titleCaseVi(m[1]) : '';
+}
+
+function roadVariants(road) {
+  const raw = String(road || '').trim();
+  const noHem = raw.replace(/^\s*(hẻm|hem|ngõ|ngo|kiệt|kiet)\s+\d+[a-zA-Z\/\-]*\s+/i, '').trim();
+  const noPrefix = noHem.replace(/^\s*(đường|duong|đ\.|d\.)\s+/i, '').trim();
+  const noAccentTitle = normalize(noPrefix).split(' ').map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
+  const variants = [raw, noHem, noPrefix, noAccentTitle];
+  // Common aliases in OCR/table text.
+  variants.push(noPrefix.replace(/^ba\s+tháng\s+hai$/i, '3 Tháng 2'));
+  variants.push(noPrefix.replace(/^3\s+tháng\s+2$/i, '3 Tháng 2'));
+  return [...new Set(variants.filter(Boolean))];
 }
 
 function contextTextForGeo(geo) {
@@ -119,14 +132,27 @@ function extractRoadDirectCandidatesFromPage(row, road, geo = {}) {
     indices.push(i);
     start = i + Math.max(1, roadUpper.length);
   }
+  const normFallback = [];
   if (!indices.length) {
     const normText = normalize(text);
     const idxNorm = normText.indexOf(nroad);
-    if (idxNorm >= 0) indices.push(Math.max(0, Math.floor(idxNorm * text.length / Math.max(1, normText.length)) - 50));
+    if (idxNorm >= 0) normFallback.push(Math.max(0, Math.floor(idxNorm * text.length / Math.max(1, normText.length)) - 50));
   }
   const candidates = [];
-  for (const idx of indices.slice(0, 8)) {
-    const slice = text.slice(idx, idx + 900).replace(/\s+/g, ' ');
+  for (const idx of [...indices.slice(0, 12), ...normFallback.slice(0, 4)]) {
+    const isNormFallback = normFallback.includes(idx);
+    const before = text.slice(Math.max(0, idx - 35), idx).replace(/\s+/g, ' ').trim();
+    // Accept only when the road appears as a table road-name row, normally after STT.
+    // Normalized fallback is allowed because OCR may use visually different Đ/Ð/no accents.
+    if (!isNormFallback && before && !/(^|\s)\d{1,3}\s*$/.test(before)) continue;
+    let slice = text.slice(idx, idx + 900).replace(/\s+/g, ' ');
+    // If fallback started a bit before the road, trim again to the road token so previous row numbers do not leak in.
+    const upperSlice = slice.toUpperCase();
+    for (const rv of roadVariants(road)) {
+      const pat = String(rv || '').toUpperCase().replace(/Ð/g, 'Đ');
+      const j = upperSlice.indexOf(pat);
+      if (j > 0) { slice = slice.slice(j); break; }
+    }
     const nums = slice.match(/\d{1,3}\.\d{3}|\d+,\d+/g) || [];
     const priceNums = nums.filter(x => /\d{1,3}\.\d{3}/.test(x)).slice(0, 3);
     const kNums = nums.filter(x => /\d+,\d+/.test(x)).slice(0, 4);
@@ -195,12 +221,13 @@ function findBestK1ByGeo(location = {}) {
   const geoWard = normalize(geo.ward);
   const nroad = normalize(geo.road || '');
   const direct = rows.flatMap(row => {
-    const hits = extractRoadDirectCandidatesFromPage(row, geo.road || '', geo);
+    const hits = roadVariants(geo.road || '').flatMap(rv => extractRoadDirectCandidatesFromPage(row, rv, geo));
     return hits.map(hit => {
       const headerNorm = normalize(hit.areaHeader);
       let score = 10 + (hit.segmentScore || 0);
-      if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 8;
-      if (normalize(row.text).includes(nroad)) score += 2;
+      if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 30;
+      else if (geoWard && headerNorm) score -= 20;
+      if (normalize(row.text).includes(nroad) || roadVariants(geo.road || '').some(rv => normalize(row.text).includes(normalize(rv)))) score += 2;
       return { ...hit, score };
     });
   }).filter(Boolean).sort((a,b) => b.score - a.score || b.segmentScore - a.segmentScore || a.page - b.page);
