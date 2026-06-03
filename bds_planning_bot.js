@@ -7,6 +7,7 @@
 // The bot watches Telegram messages containing coordinates / map links and replies
 // with a planning report using bds_planning_checker.js.
 
+const fs = require('fs');
 const { parseCoordinateInput, lookupHcmPlanning, lookupGulandPriceStats, summarize, toMarkdown } = require('./bds_planning_checker');
 let parseGulandPopupText = () => null;
 let formatGulandPopup = () => '';
@@ -15,6 +16,7 @@ const { parseQhVietPopupText, formatQhVietPopup } = require('./qhviet_popup_pars
 const { searchBatdongsanComparables } = require('./batdongsan_price_search');
 const { collectApartmentProjectValuations, formatApartmentProjectValuationReport, projectsToMapPoints } = require('./apartment_project_valuation');
 const { repairMojibake } = require('./mojibake_repair');
+const { lookupK1LandFee } = require('./k1_land_fee_lookup');
 let planningBrowserPopups = null;
 try { planningBrowserPopups = require('./planning_browser_popups'); } catch (_) {}
 let mapScreenshot = null;
@@ -118,6 +120,7 @@ function commandKind(text) {
   const first = s.split(/\s+/)[0].replace(/@\w+$/, '');
   // Accept /gia, /giá, and mojibake/replacement variants like /gi�.
   if (first === '/gi' || first.startsWith('/gia') || first.startsWith('/giá') || first.startsWith('/gi├') || first.startsWith('/gi�')) return 'price';
+  if (first.startsWith('/k1') || first.startsWith('/tiendat') || first.startsWith('/tiềnđất') || first.startsWith('/tien')) return 'k1';
   if (first.startsWith('/qh')) return 'planning';
   return null;
 }
@@ -359,6 +362,19 @@ async function trySendMapScreenshot(chatId, a, b, c, d) {
   }
 }
 
+async function sendPhotoFile(chatId, filePath, caption, replyTo) {
+  const fd = new FormData();
+  fd.append('chat_id', String(chatId));
+  if (caption) fd.append('caption', String(caption).slice(0, 1000));
+  if (replyTo) fd.append('reply_parameters', JSON.stringify({ message_id: replyTo }));
+  const buf = fs.readFileSync(filePath);
+  fd.append('photo', new Blob([buf], { type: 'image/png' }), 'k1_evidence.png');
+  const res = await fetch(`${API}/sendPhoto`, { method: 'POST', body: fd });
+  const data = await res.json().catch(() => null);
+  if (!res.ok || !data?.ok) throw new Error(`sendPhotoFile failed: ${res.status} ${JSON.stringify(data)}`);
+  return data.result;
+}
+
 async function sendMessage(chatId, text, replyTo, extra = {}) {
   const chunks = [];
   while (text.length > 3900) {
@@ -570,6 +586,52 @@ async function askPriceStep(req, key) {
   }
 }
 
+function detectLandUseCode(text) {
+  const s = String(text || '').toUpperCase();
+  if (/\bTMD\b|TMDV|THƯƠNG MẠI DỊCH VỤ|THUONG MAI DICH VU/.test(s)) return 'TMD';
+  if (/\bSKC\b|SXKD|SẢN XUẤT KINH DOANH|SAN XUAT KINH DOANH/.test(s)) return 'SKC';
+  return 'ODT';
+}
+
+function detectLandUseCodeFromPlanning(summary, fallbackText = '') {
+  const parts = [
+    fallbackText,
+    summary?.exact_indicators?.chuc_nang_dat,
+    ...(summary?.exact_indicators?.mixed_functions || []).map(x => x.chuc_nang_dat),
+    ...(summary?.official_functional_lots?.lots || []).map(x => [x.chuc_nang_dat, x.MaChucNang, x.KyHieu].filter(Boolean).join(' ')),
+  ].filter(Boolean).join(' ');
+  return detectLandUseCode(parts);
+}
+
+function formatVnd(v) {
+  if (!Number.isFinite(v)) return 'chưa rõ';
+  return `${Math.round(v).toLocaleString('vi-VN')} đ`;
+}
+
+function formatK1Report(k1) {
+  if (!k1 || k1.error) return `K1/tiền đất\n- ${k1?.error || 'Chưa tra được.'}`;
+  const c = k1.calc || {};
+  const m = k1.match || {};
+  return [
+    'K1 / TIỀN SỬ DỤNG ĐẤT SƠ BỘ',
+    `Tọa độ: ${k1.lat}, ${k1.lon}`,
+    `Loại đất tính: ${c.label || k1.landUse}`,
+    `Match phụ lục: ${m.wardHeader || 'chưa rõ'} | ${m.road || '-'} | ${m.segment || '-'}`,
+    `Trang dẫn chứng: ${m.page || '-'}`,
+    `Đơn giá bảng: ${Number.isFinite(c.baseThousandPerM2) ? c.baseThousandPerM2.toLocaleString('vi-VN') + ' ngàn đ/m2' : '-'}`,
+    `Hệ số K: ${Number.isFinite(c.k) ? String(c.k).replace('.', ',') : '-'}`,
+    `Đơn giá điều chỉnh: ${Number.isFinite(c.adjustedThousandPerM2) ? c.adjustedThousandPerM2.toLocaleString('vi-VN', { maximumFractionDigits: 3 }) + ' ngàn đ/m2' : '-'}`,
+    `Tương đương: ${Number.isFinite(c.adjustedMillionPerM2) ? c.adjustedMillionPerM2.toLocaleString('vi-VN', { maximumFractionDigits: 3 }) + ' triệu đ/m2' : '-'}`,
+    k1.areaM2 ? `Diện tích nhận từ tin nhắn: ${k1.areaM2} m2` : 'Chưa thấy diện tích m2 trong tin nhắn; bot mới trả đơn giá/m2.',
+    Number.isFinite(c.estimatedTotalVnd) ? `Chi phí đất sơ bộ: ${formatVnd(c.estimatedTotalVnd)} (~${c.estimatedTotalBillion.toLocaleString('vi-VN', { maximumFractionDigits: 3 })} tỷ)` : null,
+    '',
+    'Dẫn chứng dòng phụ lục:',
+    `${m.raw || '-'}`,
+    '',
+    'Lưu ý: đây là ước tính sơ bộ theo bảng giá đất × hệ số K đọc từ phụ lục gần nhất theo tọa độ. Hồ sơ thật vẫn cần kiểm tra vị trí, loại đất, quy hoạch, diện tích tính tiền và quy định chuyển tiếp.',
+  ].filter(Boolean).join('\n');
+}
+
 async function runPriceLookup(req) {
   const positionTraits = [];
   const stats = await lookupGulandPriceStats(req.lat, req.lon, {
@@ -653,7 +715,8 @@ async function handleMessage(msg) {
   const text = stripBotMention(rawText);
   const replyText = msg.reply_to_message ? [msg.reply_to_message.text, msg.reply_to_message.caption].filter(Boolean).join(' ') : '';
   let combinedText = [text, replyText].filter(Boolean).join('\n');
-  const kind = commandKind(text) || commandKind(combinedText) || 'planning';
+  const lowCombined = normalizeViText(combinedText);
+  const kind = commandKind(text) || commandKind(combinedText) || (/\bk1\b|tien su dung dat|tien dat|nghia vu tai chinh|he so dieu chinh/.test(lowCombined) ? 'k1' : 'planning');
   if (!mentioned && !commandKind(combinedText) && !looksLikePlanningRequest(combinedText)) return;
   combinedText = await resolveShortMapLinks(combinedText);
 
@@ -666,6 +729,24 @@ async function handleMessage(msg) {
   const key = `${chatId}:${msg.message_id}`;
   if (seen.has(key)) return;
   seen.add(key);
+
+  if (kind === 'k1') {
+    await sendMessage(chatId, 'Em nhận tọa độ rồi, đang tra K1/tiền sử dụng đất...', msg.message_id);
+    try {
+      const raw = await lookupHcmPlanning(parsed.lat, parsed.lon);
+      const summary = summarize(raw);
+      const landUse = detectLandUseCode(combinedText);
+      const k1 = await lookupK1LandFee({ lat: parsed.lat, lon: parsed.lon, geoLocation: summary.location || {}, text: combinedText, landUse });
+      await sendMessage(chatId, formatK1Report(k1), msg.message_id);
+      if (k1?.evidencePath) {
+        await sendPhotoFile(chatId, k1.evidencePath, `Ảnh dẫn chứng phụ lục K1 - trang ${k1.match?.page || ''}`.trim(), msg.message_id).catch(() => null);
+      }
+      return;
+    } catch (err) {
+      await sendMessage(chatId, `Em tra K1/tiền đất bị lỗi: ${err.message || err}`, msg.message_id);
+      return;
+    }
+  }
 
   if (kind === 'price') {
     const reqKey = `${chatId}_${msg.message_id}`;
@@ -707,10 +788,24 @@ async function handleMessage(msg) {
       summary.exact_indicators?.chuc_nang_dat,
       ...(summary.exact_indicators?.mixed_functions || []).map(x => x.chuc_nang_dat),
       gulandText,
+      qhvietText,
       combinedText,
     ].filter(Boolean).join(' ');
     let report = buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors);
     await sendMessage(chatId, report, msg.message_id);
+
+    // Full investor workflow: reuse planning/geocode result to also estimate K1/land obligation.
+    try {
+      const landUse = detectLandUseCodeFromPlanning(summary, planningTraitsText);
+      const k1 = await lookupK1LandFee({ lat: parsed.lat, lon: parsed.lon, geoLocation: summary.location || {}, text: combinedText, landUse });
+      await sendMessage(chatId, formatK1Report(k1), msg.message_id);
+      if (k1?.evidencePath) {
+        await sendPhotoFile(chatId, k1.evidencePath, `Ảnh dẫn chứng phụ lục K1 - trang ${k1.match?.page || ''}`.trim(), msg.message_id).catch(() => null);
+      }
+    } catch (k1Err) {
+      await sendMessage(chatId, `K1/tiền đất: chưa tính được tự động từ tọa độ này (${k1Err.message || k1Err}).`, msg.message_id).catch(() => null);
+    }
+
     trySendMapScreenshot(chatId, parsed.lat, parsed.lon, msg.message_id, `📍 Quy hoạch tại ${parsed.lat}, ${parsed.lon}`);
   } catch (err) {
     await sendMessage(chatId, `Em tra bị lỗi: ${err.message || err}. Anh gửi lại tọa độ/link giúp em.`, msg.message_id);
