@@ -16,6 +16,7 @@ Local references in this skill:
 - `references/chapter-04-portfolio-risk-volatility-vi.md` — portfolio, risk, volatility modeling.
 - `references/chapter-05-derivatives-blackscholes-cw-vi.md` — derivatives, Black-Scholes, CW/chứng quyền.
 - `references/chapter-06-ml-stochastic-roadmap-vi.md` — ML, stochastic calculus, implementation roadmap.
+- `references/chapter-07-lh-investment-implementation-plan-vi.md` — concrete LH Investment implementation plan: feature matrix, EV backtest, regime, PCA, risk, CW, ML phases.
 - `references/playlist-lessons-auto-vi.md` — auto-generated Vietnamese notes for the currently public playlist videos.
 
 Compiled guide for Hòa Đại ka:
