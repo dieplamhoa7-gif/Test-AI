@@ -12,7 +12,16 @@ Local references in this skill:
 
 - `references/chapter-01-finance-foundations-vi.md` — Lecture 1 Part I–III: class intro, financial markets, bond mathematics.
 - `references/chapter-02-linear-algebra-probability-vi.md` — Linear algebra, probability, stochastic processes.
+- `references/chapter-03-regression-timeseries-pca-vi.md` — regression, time series, PCA for feature validation.
+- `references/chapter-04-portfolio-risk-volatility-vi.md` — portfolio, risk, volatility modeling.
+- `references/chapter-05-derivatives-blackscholes-cw-vi.md` — derivatives, Black-Scholes, CW/chứng quyền.
+- `references/chapter-06-ml-stochastic-roadmap-vi.md` — ML, stochastic calculus, implementation roadmap.
 - `references/playlist-lessons-auto-vi.md` — auto-generated Vietnamese notes for the currently public playlist videos.
+
+Compiled guide for Hòa Đại ka:
+
+- `reports/MIT_18_642_Huong_Dan_Hoc_Va_Ap_Dung_LH_Investment.md`
+- `reports/MIT_18_642_Huong_Dan_Hoc_Va_Ap_Dung_LH_Investment.pdf`
 
 Playlist:
 
