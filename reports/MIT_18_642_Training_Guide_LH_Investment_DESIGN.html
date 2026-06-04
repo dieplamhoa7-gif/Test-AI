@@ -1,0 +1,238 @@
+<!doctype html><html><head><meta charset="utf-8"><title>MIT 18.642 Training Guide LH Investment</title>
+<style>
+@page { size:A4; margin:0; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: Arial, Segoe UI, sans-serif; color:#111827; background:#fff; }
+.page { width:210mm; min-height:297mm; padding:18mm 16mm; position:relative; overflow:hidden; page-break-after:always; }
+.cover { background: radial-gradient(circle at 15% 15%, #3b82f6 0, transparent 25%), linear-gradient(135deg,#07152f 0%,#0f2d5c 45%,#111827 100%); color:white; display:flex; flex-direction:column; justify-content:center; }
+.badge { display:inline-block; border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:7px 12px; font-size:12px; letter-spacing:.08em; width:max-content; }
+.cover h1 { font-size:44px; line-height:1.05; margin:24px 0 10px; letter-spacing:-1.5px; }
+.cover h2 { font-size:22px; font-weight:500; opacity:.9; margin:0 0 28px; }
+.cover .meta { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
+.meta div { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); padding:14px; border-radius:16px; backdrop-filter: blur(6px); }
+.meta b { display:block; color:#93c5fd; margin-bottom:5px; }
+.footer { position:absolute; bottom:12mm; left:16mm; right:16mm; font-size:11px; opacity:.65; display:flex; justify-content:space-between; }
+.toc h2, .summary h2 { font-size:30px; color:#0f172a; margin:0 0 12px; }
+.subtitle { color:#64748b; font-size:14px; margin-bottom:18px; }
+.module-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.module-card { border:1px solid #e5e7eb; border-left:6px solid var(--accent); border-radius:15px; padding:11px; display:flex; gap:10px; background:linear-gradient(180deg,#fff,#f8fafc); min-height:82px; }
+.num { width:34px; height:34px; border-radius:11px; background:var(--accent); color:white; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.module-card h3 { margin:0 0 3px; font-size:12.5px; color:#0f172a; }
+.module-card p { margin:0; font-size:10.5px; color:#475569; line-height:1.35; }
+.module-card span { display:block; margin-top:4px; color:var(--accent); font-size:10px; font-weight:700; }
+.summary .hero { background:#f1f5f9; border-radius:22px; padding:20px; border:1px solid #e2e8f0; }
+.summary h3 { font-size:20px; margin:0 0 10px; color:#0f172a; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.pill { background:white; border:1px solid #cbd5e1; border-radius:999px; padding:8px 11px; font-size:12px; font-weight:700; color:#1e293b; }
+.module-page { padding-top:14mm; }
+.stripe { position:absolute; left:0; top:0; bottom:0; width:8mm; background:var(--accent); }
+.module-head { display:flex; gap:18px; align-items:center; border-bottom:2px solid #e5e7eb; padding-bottom:14px; margin-bottom:16px; }
+.big-num { font-size:54px; font-weight:900; color:var(--accent); line-height:1; }
+.kicker { color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+.module-head h2 { font-size:27px; margin:4px 0 5px; color:#0f172a; letter-spacing:-.6px; }
+.module-head p { margin:0; color:#475569; font-size:13px; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0; }
+.panel { border:1px solid #e5e7eb; border-radius:18px; padding:14px; background:#fff; box-shadow:0 8px 22px rgba(15,23,42,.06); }
+.panel.accent { background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, white), #fff); border-color:color-mix(in srgb, var(--accent) 25%, white); }
+.panel h4 { margin:0 0 7px; color:#0f172a; font-size:15px; }
+.panel p { margin:0; font-size:12px; line-height:1.55; color:#334155; }
+table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:16px; border:1px solid #e5e7eb; margin-top:12px; }
+th { background:#0f172a; color:white; text-align:left; font-size:12px; padding:9px; }
+td { padding:9px; border-top:1px solid #e5e7eb; font-size:12px; vertical-align:top; }
+td:first-child { font-weight:800; color:var(--accent); width:32%; }
+.callout { margin-top:14px; border-radius:16px; padding:13px 15px; background:#fffbeb; border:1px solid #fde68a; color:#78350f; font-size:12.5px; line-height:1.45; }
+.roadmap { background:#0f172a; color:white; }
+.roadmap h2 { font-size:32px; margin:0 0 8px; }
+.steps { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+.step { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:18px; padding:13px; }
+.step b { color:#93c5fd; }
+.step p { margin:6px 0 0; color:#dbeafe; font-size:12px; line-height:1.45; }
+.codebox { margin-top:16px; background:#020617; border:1px solid #334155; border-radius:18px; padding:14px; font-family:Consolas,monospace; font-size:11px; line-height:1.45; color:#bbf7d0; white-space:pre-wrap; }
+</style></head><body>
+<section class="page cover">
+  <div class="badge">MIT 18.642 · FALL 2024 · 22 PUBLIC TRANSCRIPTS</div>
+  <h1>Training Guide<br/>for LH Investment</h1>
+  <h2>Toán tài chính ứng dụng cho nhà đầu tư chứng khoán, model cổ phiếu và CW</h2>
+  <div class="meta"><div><b>Mục tiêu</b>Biến bài học MIT thành feature, backtest, risk rule, portfolio logic và ML roadmap.</div><div><b>Nguyên tắc</b>No look-ahead · Expected Value · OOS · Regime-aware · Risk-first.</div><div><b>Nguồn</b>MIT 18.642 public YouTube transcript set, 22/22 videos captured.</div><div><b>Người dùng</b>Chuẩn bị riêng cho Hòa Đại ka và hệ thống LH Investment.</div></div>
+  <div class="footer"><span>Prepared by Tiểu đệ</span><span>Premium Design Edition</span></div>
+</section>
+<section class="page toc"><h2>Mục lục dạng module</h2><div class="subtitle">Học bài gốc trước, sau đó mới áp dụng vào hệ thống LH Investment.</div><div class="module-grid">
+<div class="module-card" style="--accent:#2563eb">
+  <div class="num">01</div>
+  <div><h3>GIỚI THIỆU & THỊ TRƯỜNG</h3><p>Course overview, asset classes, risk/return, arbitrage</p><span>Lecture 1 Parts I–III</span></div>
+</div>
+<div class="module-card" style="--accent:#7c3aed">
+  <div class="num">02</div>
+  <div><h3>BOND MATH</h3><p>Discounting, yield, duration, convexity, yield curve</p><span>Lecture 1 Part III</span></div>
+</div>
+<div class="module-card" style="--accent:#0891b2">
+  <div class="num">03</div>
+  <div><h3>LINEAR ALGEBRA</h3><p>Vectors, matrices, covariance, eigenvectors, feature matrix</p><span>Lecture 2 + 4</span></div>
+</div>
+<div class="module-card" style="--accent:#059669">
+  <div class="num">04</div>
+  <div><h3>PROBABILITY & STOCHASTIC PROCESS</h3><p>Conditional probability, expectation, random path, no look-ahead</p><span>Lecture 4 + 5 + 6</span></div>
+</div>
+<div class="module-card" style="--accent:#dc2626">
+  <div class="num">05</div>
+  <div><h3>REGRESSION & PCA</h3><p>OLS, residuals, factor models, PCA, indicator redundancy</p><span>Lecture 6 + 8 + 9 + 11</span></div>
+</div>
+<div class="module-card" style="--accent:#ca8a04">
+  <div class="num">06</div>
+  <div><h3>RATES PRODUCTS</h3><p>Yield curve, forwards, swaps, hedging, rate regimes</p><span>Lecture 7</span></div>
+</div>
+<div class="module-card" style="--accent:#9333ea">
+  <div class="num">07</div>
+  <div><h3>TIME SERIES</h3><p>AR/MA, stationarity, regime shifts, forecast horizons</p><span>Lecture 12</span></div>
+</div>
+<div class="module-card" style="--accent:#0f766e">
+  <div class="num">08</div>
+  <div><h3>PORTFOLIO & RISK</h3><p>Markowitz, covariance, concentration, counterparty risk</p><span>Lecture 10 + 13</span></div>
+</div>
+<div class="module-card" style="--accent:#ea580c">
+  <div class="num">09</div>
+  <div><h3>VOLATILITY MODELING</h3><p>ATR, realized vol, clustering, GARCH intuition, sizing</p><span>Lecture 19</span></div>
+</div>
+<div class="module-card" style="--accent:#be123c">
+  <div class="num">10</div>
+  <div><h3>BLACK-SCHOLES & CW</h3><p>Options, Greeks, time decay, moneyness, break-even</p><span>Lecture 21</span></div>
+</div>
+<div class="module-card" style="--accent:#4f46e5">
+  <div class="num">11</div>
+  <div><h3>AI / ML / EVENT MARKETS</h3><p>ML workflow, calibration, event probability, overfit control</p><span>Lecture 18 + 20 + 23</span></div>
+</div>
+<div class="module-card" style="--accent:#0f172a">
+  <div class="num">12</div>
+  <div><h3>STOCHASTIC CALCULUS & SDE</h3><p>Brownian motion, Ito, SDE, scenario/path risk</p><span>Lecture 14 + 24 + 25</span></div>
+</div></div><div class="footer"><span>MIT 18.642 Training Guide</span><span>Trang 2</span></div></section>
+<section class="page summary"><h2>Executive Summary</h2><div class="hero"><h3>Không tìm “indicator thần kỳ”. Xây hệ thống xác suất.</h3><p>MIT 18.642 dạy cách nhìn tài chính như một bài toán về dữ liệu, dòng tiền, xác suất, thời gian, volatility, danh mục và rủi ro. Với LH Investment, điều này có nghĩa là mọi tín hiệu phải có horizon, xác suất, expected value, drawdown, regime và lời giải thích sai khi nào.</p><div class="pill-row"><span class="pill">Feature Matrix</span><span class="pill">No Look-Ahead</span><span class="pill">Walk-forward OOS</span><span class="pill">Expected Value</span><span class="pill">Portfolio Risk</span><span class="pill">CW Time Decay</span><span class="pill">ML Calibration</span></div></div><div class="footer"><span>Core thesis</span><span>Trang 3</span></div></section>
+
+<section class="page module-page" style="--accent:#2563eb">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">01</div><div><div class="kicker">Lecture 1 Parts I–III</div><h2>GIỚI THIỆU & THỊ TRƯỜNG</h2><p>Course overview, asset classes, risk/return, arbitrage</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Course overview, asset classes, risk/return, arbitrage. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Output recommendation phải có horizon, why, wrongIf, risk và probability — không chỉ BUY/WATCH.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Asset</td><td>Claim on future cash flow/state</td></tr><tr><td>Return vs Risk</td><td>Lợi nhuận luôn đi cùng rủi ro</td></tr><tr><td>Arbitrage</td><td>Neo logic định giá</td></tr><tr><td>Liquidity</td><td>Khả năng vào/ra vị thế</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#7c3aed">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">02</div><div><div class="kicker">Lecture 1 Part III</div><h2>BOND MATH</h2><p>Discounting, yield, duration, convexity, yield curve</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Discounting, yield, duration, convexity, yield curve. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Thêm rateSensitiveScore, valuationDurationRisk, macroRateRegime; đặc biệt quan trọng với cổ phiếu growth và CW.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>PV</td><td>CF/(1+r)^t</td></tr><tr><td>Duration</td><td>Độ nhạy với yield</td></tr><tr><td>Convexity</td><td>Sửa duration khi yield đổi lớn</td></tr><tr><td>Yield Curve</td><td>Tín hiệu macro/rate</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#0891b2">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">03</div><div><div class="kicker">Lecture 2 + 4</div><h2>LINEAR ALGEBRA</h2><p>Vectors, matrices, covariance, eigenvectors, feature matrix</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Vectors, matrices, covariance, eigenvectors, feature matrix. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Chuẩn hóa research_feature_matrix_vn100.json: mỗi stock-date là một vector feature sạch.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Vector</td><td>1 mã tại 1 ngày</td></tr><tr><td>Matrix</td><td>VN100 × ngày × feature</td></tr><tr><td>Covariance</td><td>Biến động chung</td></tr><tr><td>Eigen/PCA</td><td>Factor chính</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#059669">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">04</div><div><div class="kicker">Lecture 4 + 5 + 6</div><h2>PROBABILITY & STOCHASTIC PROCESS</h2><p>Conditional probability, expectation, random path, no look-ahead</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Conditional probability, expectation, random path, no look-ahead. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Tạo pHitTarget20d, pLossMoreThan5Pct20d; validation chronological, không random shuffle.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Probability</td><td>Xác suất thay vì chắc chắn</td></tr><tr><td>Expectation</td><td>Kỳ vọng</td></tr><tr><td>Variance</td><td>Rủi ro phân tán</td></tr><tr><td>Process</td><td>Đường đi theo thời gian</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#dc2626">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">05</div><div><div class="kicker">Lecture 6 + 8 + 9 + 11</div><h2>REGRESSION & PCA</h2><p>OLS, residuals, factor models, PCA, indicator redundancy</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>OLS, residuals, factor models, PCA, indicator redundancy. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Chạy correlation/top-bottom quintile/OOS; gom indicator trùng bằng PCA/correlation.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>OLS</td><td>Kiểm định feature</td></tr><tr><td>Residual</td><td>Phần chưa giải thích</td></tr><tr><td>Multicollinearity</td><td>Indicator trùng</td></tr><tr><td>PCA</td><td>Giảm nhiễu/factor</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#ca8a04">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">06</div><div><div class="kicker">Lecture 7</div><h2>RATES PRODUCTS</h2><p>Yield curve, forwards, swaps, hedging, rate regimes</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Yield curve, forwards, swaps, hedging, rate regimes. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Dùng rate/macro regime làm filter cho sector ngân hàng, BĐS, growth, leverage cao.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Forward Rate</td><td>Lãi suất hàm ý</td></tr><tr><td>Swap</td><td>Trao đổi dòng tiền</td></tr><tr><td>Curve</td><td>Cấu trúc kỳ hạn</td></tr><tr><td>Hedging</td><td>Giảm risk</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#9333ea">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">07</div><div><div class="kicker">Lecture 12</div><h2>TIME SERIES</h2><p>AR/MA, stationarity, regime shifts, forecast horizons</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>AR/MA, stationarity, regime shifts, forecast horizons. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Mọi score phải gắn horizon 5d/10d/20d/60d, tránh trộn timeframe mơ hồ.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>AR/MA</td><td>Phụ thuộc quá khứ</td></tr><tr><td>Stationarity</td><td>Ổn định thống kê</td></tr><tr><td>Regime Shift</td><td>Đổi luật chơi</td></tr><tr><td>Horizon</td><td>5/10/20/60d</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#0f766e">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">08</div><div><div class="kicker">Lecture 10 + 13</div><h2>PORTFOLIO & RISK</h2><p>Markowitz, covariance, concentration, counterparty risk</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Markowitz, covariance, concentration, counterparty risk. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Thêm positionSizeHint, sectorCapWarning, correlationWarning và portfolio risk layer.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Expected Return</td><td>Vector lợi nhuận</td></tr><tr><td>Covariance</td><td>Risk danh mục</td></tr><tr><td>Efficient Frontier</td><td>Return/risk tối ưu</td></tr><tr><td>Concentration</td><td>Tập trung ngành/factor</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#ea580c">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">09</div><div><div class="kicker">Lecture 19</div><h2>VOLATILITY MODELING</h2><p>ATR, realized vol, clustering, GARCH intuition, sizing</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>ATR, realized vol, clustering, GARCH intuition, sizing. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Vol cao dùng để sizing/stop/risk; không đơn giản mua/bỏ theo volatility.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>ATR%</td><td>Biên dao động</td></tr><tr><td>Realized Vol</td><td>Vol thực tế</td></tr><tr><td>Clustering</td><td>Vol cao kéo dài</td></tr><tr><td>Sizing</td><td>Điều chỉnh tỷ trọng</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#be123c">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">10</div><div><div class="kicker">Lecture 21</div><h2>BLACK-SCHOLES & CW</h2><p>Options, Greeks, time decay, moneyness, break-even</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Options, Greeks, time decay, moneyness, break-even. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>CW score cần underlying signal + maturity + moneyness + break-even + spread + liquidity + theta.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>S/K/T/r/σ</td><td>Input option</td></tr><tr><td>Delta</td><td>Nhạy với underlying</td></tr><tr><td>Theta</td><td>Time decay</td></tr><tr><td>Break-even</td><td>Ngưỡng hòa vốn</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#4f46e5">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">11</div><div><div class="kicker">Lecture 18 + 20 + 23</div><h2>AI / ML / EVENT MARKETS</h2><p>ML workflow, calibration, event probability, overfit control</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>ML workflow, calibration, event probability, overfit control. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>ML đầu tiên nên logistic/GBM nhẹ, calibrated probability, explainable, so với baseline.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Label</td><td>Mục tiêu train</td></tr><tr><td>OOS</td><td>Ngoài mẫu</td></tr><tr><td>Calibration</td><td>Xác suất đáng tin</td></tr><tr><td>Overfit</td><td>Khớp quá khứ giả</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page module-page" style="--accent:#0f172a">
+  <div class="stripe"></div>
+  <div class="module-head"><div class="big-num">12</div><div><div class="kicker">Lecture 14 + 24 + 25</div><h2>STOCHASTIC CALCULUS & SDE</h2><p>Brownian motion, Ito, SDE, scenario/path risk</p></div></div>
+  <div class="two-col">
+    <div class="panel"><h4>Bài học gốc</h4><p>Brownian motion, Ito, SDE, scenario/path risk. MIT dùng phần này để xây nền toán/tài chính cho quyết định dưới bất định. Điểm quan trọng là hiểu assumption, xác suất, thời gian và risk thay vì tìm câu trả lời chắc chắn.</p></div>
+    <div class="panel accent"><h4>Áp dụng vào LH Investment</h4><p>Dùng scenario/path-risk: max drawdown, time underwater, gap risk, bull/base/bear case.</p></div>
+  </div>
+  <table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td>Brownian</td><td>Nhiễu liên tục</td></tr><tr><td>Ito</td><td>Toán cho process</td></tr><tr><td>SDE</td><td>dS=μSdt+σSdW</td></tr><tr><td>Scenario</td><td>Base/bull/bear/gap</td></tr></tbody></table>
+  <div class="callout"><b>Checklist training:</b> feature phải đo được · có label tương lai riêng · kiểm OOS · báo EV/avgWin/avgLoss/sampleSize · giải thích why/wrongIf.</div>
+</section>
+<section class="page roadmap"><h2>Roadmap training model LH Investment</h2><p>Không nhảy thẳng vào ML. Training đúng bắt đầu từ dữ liệu sạch, feature matrix, leakage audit, backtest EV, rồi mới đến model xác suất.</p><div class="steps">
+<div class="step"><b>1. Data & Feature Matrix</b><p>OHLCV, market/sector, rolling support/resistance, pattern, volatility, labels 5/10/20/60d.</p></div>
+<div class="step"><b>2. Leakage Audit</b><p>Feature tại ngày t chỉ dùng dữ liệu <= t. Future return chỉ là label.</p></div>
+<div class="step"><b>3. Feature Report</b><p>Correlation, quintile spread, hit target, drawdown, regime summary.</p></div>
+<div class="step"><b>4. Strategy Backtest</b><p>Near support + room to resistance + volatility filter + market regime filter.</p></div>
+<div class="step"><b>5. Expected Value</b><p>precision, avgWin, avgLoss, EV, profitFactor, sampleSize.</p></div>
+<div class="step"><b>6. ML nhẹ</b><p>Logistic/GBM, probability calibration, explainability, compare baseline.</p></div>
+</div><div class="codebox">recommendation = feature matrix + probability + expected value + regime + risk-adjusted position sizing + explanation</div><div class="footer"><span>LH Investment Roadmap</span><span>Final</span></div></section>
+</body></html>
