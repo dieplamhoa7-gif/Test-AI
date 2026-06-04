@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* ============================================================
+   globals-template.css
+   Starter globals.css for Next.js + shadcn/ui + Tailwind CSS v4
+
+   Usage: Copy this file to your project's app/globals.css
+   then customize the theme tokens and color variables
+   to match your brand.
+
+   Color format: HSL values WITHOUT hsl() wrapper
+   e.g. --primary: 240 5.9% 10%;  (not hsl(240, 5.9%, 10%))
+   shadcn/ui components apply hsl() automatically via
+   Tailwind's CSS variable references.
+   ============================================================ */
+
+/* ── Custom Theme Tokens ─────────────────────────────────────
+   Extend Tailwind's default theme with project-specific
+   design tokens. These are compiled at build time and
+   available as utility classes (e.g. font-sans, animate-fade-in).
+   ──────────────────────────────────────────────────────────── */
+@theme {
+  /* Typography - replace with project-specific font choices.
+     Import fonts via next/font/google in layout.tsx and pass
+     the CSS variable (e.g. --font-sans) to the html element. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Custom animations - reference the keyframes defined below.
+     Use via utility classes: animate-fade-in, animate-slide-up, etc. */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+  --animate-slide-down: slide-down 0.4s ease-out;
+}
+
+/* ── Light Theme (Default) ───────────────────────────────────
+   HSL color variables consumed by shadcn/ui components.
+   Each variable is a space-separated HSL triplet:
+     hue (0-360)  saturation%  lightness%
+
+   shadcn/ui wraps these in hsl() at the component level,
+   so DO NOT include the hsl() function here.
+   ──────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Surface colors - page background and default text */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    /* Card - elevated surface for Card components */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    /* Popover - floating surfaces (dropdowns, tooltips) */
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Primary - main brand action color (buttons, links) */
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary - subdued actions and backgrounds */
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    /* Muted - subtle backgrounds and disabled text */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    /* Accent - hover/focus highlights */
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    /* Destructive - danger/error actions */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and form inputs */
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+
+    /* Border radius - shared across all components */
+    --radius: 0.5rem;
+
+    /* Chart palette - used by Recharts and other data viz */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  /* ── Dark Theme ──────────────────────────────────────────
+     Applied when <html class="dark"> is set by next-themes.
+     Inverts lightness values and adjusts saturation for
+     comfortable dark-mode contrast.
+     ────────────────────────────────────────────────────── */
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Dark chart palette - brighter hues for dark backgrounds */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* ── Base Styles ─────────────────────────────────────────────
+   Global resets and defaults applied to all elements.
+   Uses @layer base so these can be overridden by component
+   and utility layers when needed.
+   ──────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Enable OpenType features for better typography:
+       rlig = required ligatures, calt = contextual alternates */
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ── Custom Keyframes ────────────────────────────────────────
+   Animation keyframes referenced by --animate-* tokens above.
+   Add project-specific animations here as needed.
+   ──────────────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
