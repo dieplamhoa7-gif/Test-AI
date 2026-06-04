@@ -448,6 +448,7 @@ def main() -> None:
         (DATA / "strategy_results_cache.json", PUBLIC_DATA / "strategy_results_cache.json"),
         (DATA / "strategy_matrix_cache.json", PUBLIC_DATA / "strategy_matrix_cache.json"),
         (DATA / "rs_levels_hsx_all_cache.json", PUBLIC_DATA / "rs_levels_hsx_all_cache.json"),
+        (DATA / "trading_agents_lite.json", PUBLIC_DATA / "trading_agents_lite.json"),
     ]:
         if src.exists():
             shutil.copyfile(src, dst)
