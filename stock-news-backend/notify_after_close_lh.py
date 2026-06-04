@@ -12,6 +12,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 DEFAULT_CHAT_ID = "5780893485"
+INVESTMENT_GROUP_CHAT_ID = "-5010207361"
 
 
 def load_json(path: Path, default: Any) -> Any:
@@ -27,6 +28,19 @@ def tg_send(text: str) -> bool:
     if not token or not chat_id:
         print(json.dumps({"sent": False, "reason": "missing TELEGRAM_BOT_TOKEN or chat_id"}, ensure_ascii=False), flush=True)
         return False
+
+    # Hòa Đại ka asked to stop noisy after-close strategy notifications in
+    # the Investment group. Telegram group ids are negative; keep this notifier
+    # personal-only unless explicitly overridden for a one-off test.
+    allow_group = os.getenv("LH_AFTER_CLOSE_ALLOW_GROUP", "").strip() == "1"
+    if chat_id == INVESTMENT_GROUP_CHAT_ID or (chat_id.startswith("-") and not allow_group):
+        print(json.dumps({
+            "sent": False,
+            "reason": "group notifications disabled",
+            "chat_id": chat_id,
+        }, ensure_ascii=False), flush=True)
+        return False
+
     payload = urllib.parse.urlencode({"chat_id": chat_id, "text": text, "disable_web_page_preview": "true"}).encode()
     try:
         with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data=payload, timeout=25) as r:
