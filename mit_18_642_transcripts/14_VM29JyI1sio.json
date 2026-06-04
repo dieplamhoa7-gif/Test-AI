@@ -1,0 +1,4538 @@
+{
+  "index": 14,
+  "id": "VM29JyI1sio",
+  "title": "Lecture 14: Stochastic Processes II",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.948,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 1.948,
+      "duration": 1.461,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.409,
+      "duration": 1.948,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 12.23,
+      "duration": 1.5,
+      "text": "PETER KEMPTHORNE:\nToday, we're going"
+    },
+    {
+      "start": 13.73,
+      "duration": 3.12,
+      "text": "to talk about\nstochastic processes,"
+    },
+    {
+      "start": 16.85,
+      "duration": 2.5,
+      "text": "the second set of lectures."
+    },
+    {
+      "start": 19.35,
+      "duration": 6.89,
+      "text": "And we're going to begin with a\ndiscussion of Brownian motion."
+    },
+    {
+      "start": 26.24,
+      "duration": 4.68,
+      "text": "Brownian motion is a process\nthat I'm sure most of you"
+    },
+    {
+      "start": 30.92,
+      "duration": 0.88,
+      "text": "have heard of."
+    },
+    {
+      "start": 31.8,
+      "duration": 4.56,
+      "text": "And it was named after Robert\nBrown, an English botanist."
+    },
+    {
+      "start": 36.36,
+      "duration": 3.11,
+      "text": "And this is an\ninteresting case where"
+    },
+    {
+      "start": 39.47,
+      "duration": 4.53,
+      "text": "a scientist observes\nsome dynamics in nature"
+    },
+    {
+      "start": 44.0,
+      "duration": 6.39,
+      "text": "and then is concerned about\nwhat mathematical model might"
+    },
+    {
+      "start": 50.39,
+      "duration": 1.96,
+      "text": "describe that behavior."
+    },
+    {
+      "start": 52.35,
+      "duration": 6.53,
+      "text": "Turns out that it was, I\nguess, Albert Einstein who"
+    },
+    {
+      "start": 58.88,
+      "duration": 5.499,
+      "text": "formalized this Brownian\nmotion model, mathematically."
+    },
+    {
+      "start": 64.379,
+      "duration": 6.501,
+      "text": "And Norbert Wiener,\nour MIT hero--"
+    },
+    {
+      "start": 70.88,
+      "duration": 2.85,
+      "text": "those of you familiar\nwith the math department"
+    },
+    {
+      "start": 73.73,
+      "duration": 3.18,
+      "text": "know about the\nNorbert Wiener room"
+    },
+    {
+      "start": 76.91,
+      "duration": 3.96,
+      "text": "that we have-- and he developed\nthe mathematical foundation"
+    },
+    {
+      "start": 80.87,
+      "duration": 1.48,
+      "text": "for Brownian motion."
+    },
+    {
+      "start": 82.35,
+      "duration": 6.23,
+      "text": "Now, let's take a look at a\nsimulation of Brownian motion"
+    },
+    {
+      "start": 88.58,
+      "duration": 1.39,
+      "text": "in two dimensions."
+    },
+    {
+      "start": 89.97,
+      "duration": 6.0,
+      "text": "So this is the kind of dynamics\nthat Brown was observing."
+    },
+    {
+      "start": 95.97,
+      "duration": 3.71,
+      "text": "And so in these\nslides, we're going"
+    },
+    {
+      "start": 99.68,
+      "duration": 5.07,
+      "text": "to start the process at the\norigin of the space, where"
+    },
+    {
+      "start": 104.75,
+      "duration": 4.53,
+      "text": "the red dot is, and then move\naround in two dimensions, where"
+    },
+    {
+      "start": 109.28,
+      "duration": 4.71,
+      "text": "each step is a random\nmove in the x direction"
+    },
+    {
+      "start": 113.99,
+      "duration": 3.55,
+      "text": "and a random move\nin the y direction."
+    },
+    {
+      "start": 117.54,
+      "duration": 6.55,
+      "text": "And for this simulation, we\nuse Gaussian distributions."
+    },
+    {
+      "start": 124.09,
+      "duration": 4.53,
+      "text": "But as I page\nthrough these graphs,"
+    },
+    {
+      "start": 128.62,
+      "duration": 4.67,
+      "text": "one can see how a\nparticle moving according"
+    },
+    {
+      "start": 133.29,
+      "duration": 2.91,
+      "text": "to these dynamics will\nstart at the origin"
+    },
+    {
+      "start": 136.2,
+      "duration": 3.06,
+      "text": "and evolve to the final red dot."
+    },
+    {
+      "start": 139.26,
+      "duration": 6.85,
+      "text": "And if we hold down the\ngraphs and see where it goes,"
+    },
+    {
+      "start": 146.11,
+      "duration": 4.85,
+      "text": "you can see that\nbasically there's"
+    },
+    {
+      "start": 150.96,
+      "duration": 5.08,
+      "text": "purely random dynamics but\nof a very special kind."
+    },
+    {
+      "start": 156.04,
+      "duration": 5.57,
+      "text": "And so the special kind\nis that the movements"
+    },
+    {
+      "start": 161.61,
+      "duration": 7.17,
+      "text": "are jagged and unpredictable\nin terms of their direction."
+    },
+    {
+      "start": 168.78,
+      "duration": 3.18,
+      "text": "Something that's really quite\ninteresting when you just"
+    },
+    {
+      "start": 171.96,
+      "duration": 4.8,
+      "text": "look at this and page\nthrough the dynamics here,"
+    },
+    {
+      "start": 176.76,
+      "duration": 4.84,
+      "text": "animating the process,\nthe movements, in fact,"
+    },
+    {
+      "start": 181.6,
+      "duration": 6.45,
+      "text": "have no trend in them to\nmove left or up or down."
+    },
+    {
+      "start": 188.05,
+      "duration": 5.54,
+      "text": "And so the movements\nwe see basically"
+    },
+    {
+      "start": 193.59,
+      "duration": 4.96,
+      "text": "are movements that are\nsymmetrical in their dynamics."
+    },
+    {
+      "start": 198.55,
+      "duration": 3.08,
+      "text": "And so that's a very\ninteresting property"
+    },
+    {
+      "start": 201.63,
+      "duration": 4.06,
+      "text": "that we would like to\ncharacterize mathematically."
+    },
+    {
+      "start": 205.69,
+      "duration": 6.08,
+      "text": "So let's look at how we\ndefine Brownian motion in one"
+    },
+    {
+      "start": 211.77,
+      "duration": 1.59,
+      "text": "dimension."
+    },
+    {
+      "start": 213.36,
+      "duration": 7.2,
+      "text": "So in one dimension, we are\nsimply looking at a graph."
+    },
+    {
+      "start": 220.56,
+      "duration": 1.475,
+      "text": "Let me find the eraser here."
+    },
+    {
+      "start": 230.52,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 235.84,
+      "duration": 3.53,
+      "text": "In one dimension,\nwe have time t."
+    },
+    {
+      "start": 239.37,
+      "duration": 3.54,
+      "text": "And we're going to\nthink of a process"
+    },
+    {
+      "start": 242.91,
+      "duration": 4.99,
+      "text": "Bt, which will start at 0."
+    },
+    {
+      "start": 247.9,
+      "duration": 5.72,
+      "text": "And then it's going to evolve\nover time in such a way"
+    },
+    {
+      "start": 253.62,
+      "duration": 7.38,
+      "text": "that the increments\nof the process from t"
+    },
+    {
+      "start": 261.0,
+      "duration": 2.13,
+      "text": "to t plus delta t--"
+    },
+    {
+      "start": 263.13,
+      "duration": 3.66,
+      "text": "so if we have t and\nt plus delta t here,"
+    },
+    {
+      "start": 266.79,
+      "duration": 6.44,
+      "text": "and we look at B of t here\nand B of t plus delta t--"
+    },
+    {
+      "start": 275.79,
+      "duration": 5.67,
+      "text": "this vertical increment is\ngoing to be normally distributed"
+    },
+    {
+      "start": 281.46,
+      "duration": 4.36,
+      "text": "for any increment\nof time delta t."
+    },
+    {
+      "start": 285.82,
+      "duration": 5.63,
+      "text": "And the normal distribution for\nthe magnitude of that increment"
+    },
+    {
+      "start": 291.45,
+      "duration": 4.03,
+      "text": "will be a normal random\nvariable with mean 0"
+    },
+    {
+      "start": 295.48,
+      "duration": 4.47,
+      "text": "and a variance that is\nproportional to the length"
+    },
+    {
+      "start": 299.95,
+      "duration": 1.17,
+      "text": "of the interval."
+    },
+    {
+      "start": 301.12,
+      "duration": 6.03,
+      "text": "So as we consider increments,\ndelta t that are larger"
+    },
+    {
+      "start": 307.15,
+      "duration": 5.19,
+      "text": "will have greater variation in\nthe vertical increment that's"
+    },
+    {
+      "start": 312.34,
+      "duration": 1.54,
+      "text": "normally distributed."
+    },
+    {
+      "start": 313.88,
+      "duration": 3.72,
+      "text": "Now, in addition to\nnormal increments,"
+    },
+    {
+      "start": 317.6,
+      "duration": 4.74,
+      "text": "we have independent,\ndisjoint increments."
+    },
+    {
+      "start": 322.34,
+      "duration": 5.39,
+      "text": "So if we have different\ntime points, like t1,"
+    },
+    {
+      "start": 327.73,
+      "duration": 5.58,
+      "text": "t2, and then t3, t4--"
+    },
+    {
+      "start": 333.31,
+      "duration": 4.23,
+      "text": "if these increments are\nseparate or disjoint"
+    },
+    {
+      "start": 337.54,
+      "duration": 5.1,
+      "text": "from each other, then\nthe change from t1 to t2"
+    },
+    {
+      "start": 342.64,
+      "duration": 2.88,
+      "text": "and the change from\nt3 to t4, those"
+    },
+    {
+      "start": 345.52,
+      "duration": 4.08,
+      "text": "will be independent\nrandom variables."
+    },
+    {
+      "start": 349.6,
+      "duration": 7.77,
+      "text": "Finally, B of t turns out to be\na continuous function of time"
+    },
+    {
+      "start": 357.37,
+      "duration": 2.68,
+      "text": "if it satisfies\nthese properties."
+    },
+    {
+      "start": 360.05,
+      "duration": 6.38,
+      "text": "And so this is a\nvery simple model"
+    },
+    {
+      "start": 366.43,
+      "duration": 4.38,
+      "text": "in terms of a continuous\ntime stochastic process."
+    },
+    {
+      "start": 370.81,
+      "duration": 5.85,
+      "text": "Now, the properties\nof Brownian motion"
+    },
+    {
+      "start": 376.66,
+      "duration": 4.72,
+      "text": "are that it's a Markov process."
+    },
+    {
+      "start": 381.38,
+      "duration": 6.95,
+      "text": "So if we're looking at the\nvalue at B of t plus delta"
+    },
+    {
+      "start": 388.33,
+      "duration": 6.63,
+      "text": "t at this time point,\nthat is equal to the value"
+    },
+    {
+      "start": 394.96,
+      "duration": 2.14,
+      "text": "at any prior time point--"
+    },
+    {
+      "start": 397.1,
+      "duration": 1.73,
+      "text": "well, at B of t--"
+    },
+    {
+      "start": 398.83,
+      "duration": 2.22,
+      "text": "plus the increment."
+    },
+    {
+      "start": 401.05,
+      "duration": 5.35,
+      "text": "And so given the information\nset up to time little t,"
+    },
+    {
+      "start": 406.4,
+      "duration": 4.1,
+      "text": "the conditional\ndistribution simply"
+    },
+    {
+      "start": 410.5,
+      "duration": 4.95,
+      "text": "is equal to that\nstarting point, B of t,"
+    },
+    {
+      "start": 415.45,
+      "duration": 2.38,
+      "text": "plus the random increment."
+    },
+    {
+      "start": 417.83,
+      "duration": 5.22,
+      "text": "So displacements are\nindependent of the past,"
+    },
+    {
+      "start": 423.05,
+      "duration": 2.533,
+      "text": "apart from the last\nvalue of the past."
+    },
+    {
+      "start": 429.01,
+      "duration": 0.69,
+      "text": "OK."
+    },
+    {
+      "start": 429.7,
+      "duration": 7.23,
+      "text": "Mean and variance of B of t--\nwell, because the increments are"
+    },
+    {
+      "start": 436.93,
+      "duration": 2.77,
+      "text": "normally distributed\nwith mean 0,"
+    },
+    {
+      "start": 439.7,
+      "duration": 6.14,
+      "text": "then the expected value\nof B of t into the future"
+    },
+    {
+      "start": 445.84,
+      "duration": 2.05,
+      "text": "will stay at 0."
+    },
+    {
+      "start": 447.89,
+      "duration": 6.03,
+      "text": "But the variance of B of\nt will increase with time,"
+    },
+    {
+      "start": 453.92,
+      "duration": 5.73,
+      "text": "and so the standard deviation\nof B of t will be proportional--"
+    },
+    {
+      "start": 459.65,
+      "duration": 3.65,
+      "text": "or will be sigma times\nthe square root of t."
+    },
+    {
+      "start": 463.3,
+      "duration": 5.74,
+      "text": "So if we think of\ndrawing curves which"
+    },
+    {
+      "start": 469.04,
+      "duration": 3.55,
+      "text": "correspond to sigma\nsquare root of t,"
+    },
+    {
+      "start": 472.59,
+      "duration": 5.27,
+      "text": "this corresponds to 1\nstandard deviation above the 0"
+    },
+    {
+      "start": 477.86,
+      "duration": 1.283,
+      "text": "mean for the process."
+    },
+    {
+      "start": 482.115,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 482.615,
+      "duration": 3.685,
+      "text": "The covariance function\nof Brownian motion--"
+    },
+    {
+      "start": 486.3,
+      "duration": 5.03,
+      "text": "if we want to look at the\ncovariance between two times,"
+    },
+    {
+      "start": 491.33,
+      "duration": 5.08,
+      "text": "s and t-- so suppose here is\ntime s, in here is time t--"
+    },
+    {
+      "start": 496.41,
+      "duration": 11.12,
+      "text": "then the process paths\nto time t include"
+    },
+    {
+      "start": 507.53,
+      "duration": 3.48,
+      "text": "the process paths up to\ntime s, but then have"
+    },
+    {
+      "start": 511.01,
+      "duration": 3.159,
+      "text": "this independent\nincrement beyond time s."
+    },
+    {
+      "start": 514.169,
+      "duration": 3.831,
+      "text": "And so when we look\nat the covariance"
+    },
+    {
+      "start": 518.0,
+      "duration": 4.02,
+      "text": "of the process at\ntimes s and t, it's"
+    },
+    {
+      "start": 522.02,
+      "duration": 3.52,
+      "text": "equal to the expected\nvalue of the product."
+    },
+    {
+      "start": 525.54,
+      "duration": 5.43,
+      "text": "But we can split B of t into\nB of s plus the increment,"
+    },
+    {
+      "start": 530.97,
+      "duration": 4.26,
+      "text": "and we simply get sigma\nsquared s for the covariance."
+    },
+    {
+      "start": 535.23,
+      "duration": 2.54,
+      "text": "So the degree to\nwhich the process"
+    },
+    {
+      "start": 537.77,
+      "duration": 4.99,
+      "text": "is correlated with other\nvalues of the process,"
+    },
+    {
+      "start": 542.76,
+      "duration": 3.95,
+      "text": "it depends on how much overlap\nthere is in the time intervals"
+    },
+    {
+      "start": 546.71,
+      "duration": 3.42,
+      "text": "corresponding to\nthose two values."
+    },
+    {
+      "start": 550.13,
+      "duration": 13.47,
+      "text": "Now, this process that starts at\n0, B of 0 or B sub 0 or B of 0"
+    },
+    {
+      "start": 563.6,
+      "duration": 5.28,
+      "text": "equal to 0, we could start\nit at any other level"
+    },
+    {
+      "start": 568.88,
+      "duration": 3.52,
+      "text": "and have a process that\nhas similar properties"
+    },
+    {
+      "start": 572.4,
+      "duration": 4.08,
+      "text": "but just has a different\nmean level from time 0."
+    },
+    {
+      "start": 576.48,
+      "duration": 5.33,
+      "text": "So we can talk about starting\nthe Brownian motion at any given"
+    },
+    {
+      "start": 581.81,
+      "duration": 2.43,
+      "text": "point."
+    },
+    {
+      "start": 584.24,
+      "duration": 4.71,
+      "text": "And so in order to\nwork with these models,"
+    },
+    {
+      "start": 588.95,
+      "duration": 4.92,
+      "text": "we'll find it convenient\nto introduce the notation"
+    },
+    {
+      "start": 593.87,
+      "duration": 3.54,
+      "text": "for normal random variables."
+    },
+    {
+      "start": 597.41,
+      "duration": 6.12,
+      "text": "And so if we have Z be\na standard normal, that"
+    },
+    {
+      "start": 603.53,
+      "duration": 4.54,
+      "text": "is a normal distribution with\nmean 0 and standard deviation 1,"
+    },
+    {
+      "start": 608.07,
+      "duration": 4.79,
+      "text": "then the probability\ndensity function"
+    },
+    {
+      "start": 612.86,
+      "duration": 2.98,
+      "text": "is given by this formula."
+    },
+    {
+      "start": 615.84,
+      "duration": 3.18,
+      "text": "I'm sure everyone is\ncomfortable with that."
+    },
+    {
+      "start": 619.02,
+      "duration": 3.05,
+      "text": "And the cumulative\ndistribution function"
+    },
+    {
+      "start": 622.07,
+      "duration": 5.25,
+      "text": "is simply the integral of the\ndensity from minus infinity"
+    },
+    {
+      "start": 627.32,
+      "duration": 2.65,
+      "text": "up to c for phi of c."
+    },
+    {
+      "start": 629.97,
+      "duration": 5.81,
+      "text": "And this notation of small\ncase phi and uppercase Phi are"
+    },
+    {
+      "start": 635.78,
+      "duration": 4.14,
+      "text": "standard for referring to\nGaussian or normal densities"
+    },
+    {
+      "start": 639.92,
+      "duration": 2.17,
+      "text": "in cdf's."
+    },
+    {
+      "start": 642.09,
+      "duration": 5.76,
+      "text": "Well, if we have a normal\nwith non-zero mean mu"
+    },
+    {
+      "start": 647.85,
+      "duration": 4.86,
+      "text": "and variance tau squared,\nor standard deviation tau,"
+    },
+    {
+      "start": 652.71,
+      "duration": 7.29,
+      "text": "then we have the\ndensity of this normal Y"
+    },
+    {
+      "start": 660.0,
+      "duration": 6.18,
+      "text": "is a simple function of the\ndensity of the standard normal."
+    },
+    {
+      "start": 666.18,
+      "duration": 5.43,
+      "text": "We simply subtract the mean mu\nand divide by tau inside phi,"
+    },
+    {
+      "start": 671.61,
+      "duration": 4.69,
+      "text": "and we have a tau\ndenominator factor in front."
+    },
+    {
+      "start": 676.3,
+      "duration": 5.48,
+      "text": "And what's particularly\nconvenient at times"
+    },
+    {
+      "start": 681.78,
+      "duration": 10.35,
+      "text": "is that, if we want to calculate\nthe cdf of Y, then this cdf of Y"
+    },
+    {
+      "start": 692.13,
+      "duration": 5.82,
+      "text": "is actually the cdf under\nthe standard normal of c"
+    },
+    {
+      "start": 697.95,
+      "duration": 3.18,
+      "text": "minus mu over tau."
+    },
+    {
+      "start": 701.13,
+      "duration": 13.09,
+      "text": "So we basically have Y is equal\nto mu plus sigma or tau z."
+    },
+    {
+      "start": 714.22,
+      "duration": 6.09,
+      "text": "And so z is equal to\nY minus mu over tau."
+    },
+    {
+      "start": 720.31,
+      "duration": 5.99,
+      "text": "And so we're just substituting\nin this equation for Y"
+    },
+    {
+      "start": 726.3,
+      "duration": 2.25,
+      "text": "in terms of z."
+    },
+    {
+      "start": 728.55,
+      "duration": 5.64,
+      "text": "Now, the probability model\nof the whole Brownian motion"
+    },
+    {
+      "start": 734.19,
+      "duration": 5.26,
+      "text": "process is given by--"
+    },
+    {
+      "start": 739.45,
+      "duration": 3.77,
+      "text": "or we can represent it by saying\nthe conditional distribution"
+    },
+    {
+      "start": 743.22,
+      "duration": 5.61,
+      "text": "of the time t value,\ngiven the time s value,"
+    },
+    {
+      "start": 748.83,
+      "duration": 6.0,
+      "text": "is normally distributed with\nmean equal to the time s"
+    },
+    {
+      "start": 754.83,
+      "duration": 3.63,
+      "text": "value, X, and variance\nsigma squared times"
+    },
+    {
+      "start": 758.46,
+      "duration": 3.27,
+      "text": "the length of the increment."
+    },
+    {
+      "start": 761.73,
+      "duration": 4.17,
+      "text": "So its pdf has this form."
+    },
+    {
+      "start": 765.9,
+      "duration": 7.47,
+      "text": "So the notation here is\nthe density of y at time t,"
+    },
+    {
+      "start": 773.37,
+      "duration": 4.65,
+      "text": "given x, the value at time s."
+    },
+    {
+      "start": 778.02,
+      "duration": 5.02,
+      "text": "We have this Gaussian\ndensity that's centered at x."
+    },
+    {
+      "start": 783.04,
+      "duration": 7.13,
+      "text": "And the variance of y depends\non the increment from s"
+    },
+    {
+      "start": 790.17,
+      "duration": 5.16,
+      "text": "to t multiplied by\nthe sigma squared."
+    },
+    {
+      "start": 795.33,
+      "duration": 7.05,
+      "text": "Now, with this\nprobability model,"
+    },
+    {
+      "start": 802.38,
+      "duration": 4.83,
+      "text": "it turns out this density\nfunction satisfies the diffusion"
+    },
+    {
+      "start": 807.21,
+      "duration": 1.71,
+      "text": "equation."
+    },
+    {
+      "start": 808.92,
+      "duration": 2.28,
+      "text": "And the diffusion\nequation is going"
+    },
+    {
+      "start": 811.2,
+      "duration": 6.4,
+      "text": "to arise again and again in\nthis course, especially when we"
+    },
+    {
+      "start": 817.6,
+      "duration": 4.98,
+      "text": "get into the valuation\nof derivatives."
+    },
+    {
+      "start": 822.58,
+      "duration": 7.95,
+      "text": "And so for now, let's just\nunderstand this diffusion"
+    },
+    {
+      "start": 830.53,
+      "duration": 1.09,
+      "text": "equation."
+    },
+    {
+      "start": 831.62,
+      "duration": 2.99,
+      "text": "It says that the\npartial derivative"
+    },
+    {
+      "start": 834.61,
+      "duration": 8.04,
+      "text": "of p with respect to time\nt is equal to a multiple"
+    },
+    {
+      "start": 842.65,
+      "duration": 5.85,
+      "text": "of the second partial derivative\nof p with respect to y."
+    },
+    {
+      "start": 848.5,
+      "duration": 6.96,
+      "text": "So this is easy to verify for\ns equals 0 and sigma equals 1."
+    },
+    {
+      "start": 855.46,
+      "duration": 6.69,
+      "text": "And if we look at\nthis set of graphs,"
+    },
+    {
+      "start": 862.15,
+      "duration": 8.61,
+      "text": "here's the density of X, given--"
+    },
+    {
+      "start": 870.76,
+      "duration": 4.638,
+      "text": "or let's say, here's,\nessentially, the density of Y"
+    },
+    {
+      "start": 875.398,
+      "duration": 4.602,
+      "text": "represented by X. So\nthe notation symbol here"
+    },
+    {
+      "start": 880.0,
+      "duration": 2.95,
+      "text": "is we're using X\nnow instead of Y."
+    },
+    {
+      "start": 882.95,
+      "duration": 5.66,
+      "text": "And we're considering the\ninitial value of the Brownian"
+    },
+    {
+      "start": 888.61,
+      "duration": 1.235,
+      "text": "motion being 0."
+    },
+    {
+      "start": 892.87,
+      "duration": 7.32,
+      "text": "And if we increase time,\nthen this normal density"
+    },
+    {
+      "start": 900.19,
+      "duration": 7.68,
+      "text": "drops in the middle and it\nincreases far from the middle."
+    },
+    {
+      "start": 907.87,
+      "duration": 6.45,
+      "text": "And so the change\nin the density is"
+    },
+    {
+      "start": 914.32,
+      "duration": 8.14,
+      "text": "negative near the middle\nand positive outside."
+    },
+    {
+      "start": 922.46,
+      "duration": 5.93,
+      "text": "And that's because, if we\nlook at the second derivative"
+    },
+    {
+      "start": 928.39,
+      "duration": 4.68,
+      "text": "of this density\nfunction, it's positive,"
+    },
+    {
+      "start": 933.07,
+      "duration": 2.98,
+      "text": "then it's negative for\nthe second derivative."
+    },
+    {
+      "start": 936.05,
+      "duration": 1.65,
+      "text": "The curvature is negative."
+    },
+    {
+      "start": 937.7,
+      "duration": 4.34,
+      "text": "And then it switches from\nbeing a negative curvature"
+    },
+    {
+      "start": 942.04,
+      "duration": 1.93,
+      "text": "to a positive curvature."
+    },
+    {
+      "start": 943.97,
+      "duration": 4.4,
+      "text": "And those points of inflection\nwith the normal density"
+    },
+    {
+      "start": 948.37,
+      "duration": 4.59,
+      "text": "are actually at plus and\nminus 1 standard deviation."
+    },
+    {
+      "start": 952.96,
+      "duration": 10.11,
+      "text": "So if we increase the time\nfrom 1 to 2 to 3, or 2.5 here,"
+    },
+    {
+      "start": 963.07,
+      "duration": 5.79,
+      "text": "you can see how it's\nbasically dropping"
+    },
+    {
+      "start": 968.86,
+      "duration": 1.56,
+      "text": "in the middle of\nthe distribution"
+    },
+    {
+      "start": 970.42,
+      "duration": 2.82,
+      "text": "and it's rising\non the other side."
+    },
+    {
+      "start": 973.24,
+      "duration": 4.41,
+      "text": "So this kind of\nmotion or dynamics"
+    },
+    {
+      "start": 977.65,
+      "duration": 3.75,
+      "text": "satisfies the\ndiffusion equation."
+    },
+    {
+      "start": 981.4,
+      "duration": 5.4,
+      "text": "And so what's, I\nthink, important"
+    },
+    {
+      "start": 986.8,
+      "duration": 4.63,
+      "text": "is just to have a\ngood sense of what"
+    },
+    {
+      "start": 991.43,
+      "duration": 4.14,
+      "text": "it means when a function\nsuch as the density"
+    },
+    {
+      "start": 995.57,
+      "duration": 4.74,
+      "text": "satisfies this\ndiffusion equation."
+    },
+    {
+      "start": 1000.31,
+      "duration": 4.3,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 1004.61,
+      "duration": 6.35,
+      "text": "This diffusion equation\nrelates to a conservation"
+    },
+    {
+      "start": 1010.96,
+      "duration": 3.15,
+      "text": "of probability for every x."
+    },
+    {
+      "start": 1014.11,
+      "duration": 5.94,
+      "text": "So regardless of what\nthe starting value is,"
+    },
+    {
+      "start": 1020.05,
+      "duration": 4.799,
+      "text": "we have the probability density\nintegrating to 1 always."
+    },
+    {
+      "start": 1024.849,
+      "duration": 8.101,
+      "text": "And it turns out that this\ndensity is a unique solution"
+    },
+    {
+      "start": 1032.95,
+      "duration": 2.11,
+      "text": "to this diffusion equation."
+    },
+    {
+      "start": 1035.06,
+      "duration": 7.43,
+      "text": "So an important issue in\nthe mathematical development"
+    },
+    {
+      "start": 1042.49,
+      "duration": 5.17,
+      "text": "framework for models is our\nsolutions to our equations."
+    },
+    {
+      "start": 1047.66,
+      "duration": 1.08,
+      "text": "Do they exist?"
+    },
+    {
+      "start": 1048.74,
+      "duration": 1.2,
+      "text": "Are they unique?"
+    },
+    {
+      "start": 1049.94,
+      "duration": 2.54,
+      "text": "In fact, for this\ndiffusion equation,"
+    },
+    {
+      "start": 1052.48,
+      "duration": 6.45,
+      "text": "we get a unique solution\nsatisfying the properties."
+    },
+    {
+      "start": 1058.93,
+      "duration": 2.225,
+      "text": "OK."
+    },
+    {
+      "start": 1061.155,
+      "duration": 2.605,
+      "text": "In other disciplines--\nwell, in physics,"
+    },
+    {
+      "start": 1063.76,
+      "duration": 1.035,
+      "text": "there's a heat equation."
+    },
+    {
+      "start": 1067.66,
+      "duration": 1.05,
+      "text": "Let's see."
+    },
+    {
+      "start": 1068.71,
+      "duration": 4.26,
+      "text": "In the dynamics of\npopulations, there's"
+    },
+    {
+      "start": 1072.97,
+      "duration": 4.23,
+      "text": "the Fokker-Planck equation and\nKolmogorov Forward equation."
+    },
+    {
+      "start": 1077.2,
+      "duration": 6.15,
+      "text": "These arise outside of\nmathematical Brownian motion"
+    },
+    {
+      "start": 1083.35,
+      "duration": 0.94,
+      "text": "as well."
+    },
+    {
+      "start": 1084.29,
+      "duration": 6.44,
+      "text": "Now, the interesting\nquestion perhaps,"
+    },
+    {
+      "start": 1090.73,
+      "duration": 2.25,
+      "text": "or at least the interesting\nquestion to mathematicians"
+    },
+    {
+      "start": 1092.98,
+      "duration": 7.77,
+      "text": "is, how do we really define\nBrownian motion formally"
+    },
+    {
+      "start": 1100.75,
+      "duration": 2.73,
+      "text": "as a stochastic process?"
+    },
+    {
+      "start": 1103.48,
+      "duration": 4.14,
+      "text": "And so it turns out\nthat Brownian motion"
+    },
+    {
+      "start": 1107.62,
+      "duration": 5.85,
+      "text": "can be defined as the\nlimiting stochastic process"
+    },
+    {
+      "start": 1113.47,
+      "duration": 4.08,
+      "text": "corresponding to a random walk."
+    },
+    {
+      "start": 1117.55,
+      "duration": 5.94,
+      "text": "So let's consider\nrandom variables"
+    },
+    {
+      "start": 1123.49,
+      "duration": 3.93,
+      "text": "X indexed by integers\nthat are independent"
+    },
+    {
+      "start": 1127.42,
+      "duration": 2.25,
+      "text": "and identically distributed."
+    },
+    {
+      "start": 1129.67,
+      "duration": 5.46,
+      "text": "And let's assume that\nthose X's have mean"
+    },
+    {
+      "start": 1135.13,
+      "duration": 3.27,
+      "text": "0 and standard deviation 1."
+    },
+    {
+      "start": 1138.4,
+      "duration": 7.53,
+      "text": "Then, if we look at the\nrandom walk with steps X1"
+    },
+    {
+      "start": 1145.93,
+      "duration": 5.41,
+      "text": "to Xn for the n-th position\nof the random walk,"
+    },
+    {
+      "start": 1151.34,
+      "duration": 7.28,
+      "text": "then the limiting distribution\nof the normalized random walk"
+    },
+    {
+      "start": 1158.62,
+      "duration": 4.78,
+      "text": "is actually a standard\nnormal distribution."
+    },
+    {
+      "start": 1163.4,
+      "duration": 5.7,
+      "text": "So phi of c is our standard\nnormal cumulative distribution"
+    },
+    {
+      "start": 1169.1,
+      "duration": 0.94,
+      "text": "function."
+    },
+    {
+      "start": 1170.04,
+      "duration": 5.18,
+      "text": "The standardized random\nwalk will in the limit,"
+    },
+    {
+      "start": 1175.22,
+      "duration": 5.43,
+      "text": "as n grows large, have\na Gaussian distribution"
+    },
+    {
+      "start": 1180.65,
+      "duration": 3.48,
+      "text": "with mean 0 and\nstandard deviation 1."
+    },
+    {
+      "start": 1184.13,
+      "duration": 5.94,
+      "text": "So what we can do is\nconsider normalizing"
+    },
+    {
+      "start": 1190.07,
+      "duration": 9.39,
+      "text": "the random-walk\nprocess by having"
+    },
+    {
+      "start": 1199.46,
+      "duration": 7.05,
+      "text": "the partial sums of the\nsteps divided by root n."
+    },
+    {
+      "start": 1206.51,
+      "duration": 5.34,
+      "text": "But rather than focusing just on\nthose increments, those integer"
+    },
+    {
+      "start": 1211.85,
+      "duration": 8.64,
+      "text": "increments, we consider four\ntimes, say, between 0 and 1--"
+    },
+    {
+      "start": 1220.49,
+      "duration": 8.23,
+      "text": "we can consider values\nfor time t between, say,"
+    },
+    {
+      "start": 1228.72,
+      "duration": 4.89,
+      "text": "integer k over n and integer\nk over n plus 1 over n"
+    },
+    {
+      "start": 1233.61,
+      "duration": 11.15,
+      "text": "to define a continuous path of\nBn of t, given s of n and t."
+    },
+    {
+      "start": 1244.76,
+      "duration": 3.34,
+      "text": "And so what we\nthen can do is say,"
+    },
+    {
+      "start": 1248.1,
+      "duration": 6.02,
+      "text": "let's consider the limit as\nthe number of increments--"
+    },
+    {
+      "start": 1254.12,
+      "duration": 3.67,
+      "text": "number of steps\nincreases arbitrarily."
+    },
+    {
+      "start": 1257.79,
+      "duration": 4.44,
+      "text": "Let's consider the\nlimiting process."
+    },
+    {
+      "start": 1262.23,
+      "duration": 4.82,
+      "text": "And that turns out to be\na Brownian motion process."
+    },
+    {
+      "start": 1267.05,
+      "duration": 5.56,
+      "text": "So with this normalized\nrandom-walk process,"
+    },
+    {
+      "start": 1272.61,
+      "duration": 8.69,
+      "text": "it turns out that this\nlimiting distribution is--"
+    },
+    {
+      "start": 1281.3,
+      "duration": 4.32,
+      "text": "or this limiting process is\ninvariant to the distribution"
+    },
+    {
+      "start": 1285.62,
+      "duration": 1.92,
+      "text": "of the X's."
+    },
+    {
+      "start": 1287.54,
+      "duration": 5.25,
+      "text": "So if we have random walks\nwith independent steps"
+    },
+    {
+      "start": 1292.79,
+      "duration": 3.6,
+      "text": "that have mean 0,\nstandard deviation 1,"
+    },
+    {
+      "start": 1296.39,
+      "duration": 4.66,
+      "text": "then regardless of what\nthat distribution is,"
+    },
+    {
+      "start": 1301.05,
+      "duration": 2.99,
+      "text": "the limiting\nnormalized random walk"
+    },
+    {
+      "start": 1304.04,
+      "duration": 2.85,
+      "text": "will be the diffusion process."
+    },
+    {
+      "start": 1306.89,
+      "duration": 5.25,
+      "text": "So let's take a look at two\ncases for the steps, Bernoulli"
+    },
+    {
+      "start": 1312.14,
+      "duration": 7.35,
+      "text": "X's and Gaussian X's, which\nof course will be Gaussian."
+    },
+    {
+      "start": 1319.49,
+      "duration": 12.39,
+      "text": "And so here is a cumulation or\na random walk with 10 steps."
+    },
+    {
+      "start": 1331.88,
+      "duration": 6.55,
+      "text": "The top panel corresponds to\nunit plus 1 or minus 1 steps,"
+    },
+    {
+      "start": 1338.43,
+      "duration": 4.403,
+      "text": "and the bottom panel\ncorresponds to Gaussian steps."
+    },
+    {
+      "start": 1346.86,
+      "duration": 2.46,
+      "text": "And if we increase\nthe number of steps"
+    },
+    {
+      "start": 1349.32,
+      "duration": 5.49,
+      "text": "and normalize them by\ndividing by root t,"
+    },
+    {
+      "start": 1354.81,
+      "duration": 5.05,
+      "text": "we end up getting these\ndifferent paths tracing out."
+    },
+    {
+      "start": 1359.86,
+      "duration": 2.96,
+      "text": "And so what's important\nin this display is"
+    },
+    {
+      "start": 1362.82,
+      "duration": 4.27,
+      "text": "that, as we let n get\narbitrarily large,"
+    },
+    {
+      "start": 1367.09,
+      "duration": 3.93,
+      "text": "the process will be\nequivalent to Brownian motion."
+    },
+    {
+      "start": 1371.02,
+      "duration": 5.81,
+      "text": "So we're going to go\nup to 2,000 steps here."
+    },
+    {
+      "start": 1376.83,
+      "duration": 6.15,
+      "text": "And one can see how this\nnormalized random-walk process"
+    },
+    {
+      "start": 1382.98,
+      "duration": 2.34,
+      "text": "evolves."
+    },
+    {
+      "start": 1385.32,
+      "duration": 6.99,
+      "text": "And when we get to the end of\nthe simulation here of 2,000"
+    },
+    {
+      "start": 1392.31,
+      "duration": 3.87,
+      "text": "steps, this is what we have."
+    },
+    {
+      "start": 1396.18,
+      "duration": 7.74,
+      "text": "And so the key takeaway is\nthat the limiting process will"
+    },
+    {
+      "start": 1403.92,
+      "duration": 6.96,
+      "text": "be a Brownian motion, and it\ndoesn't matter what the step"
+    },
+    {
+      "start": 1410.88,
+      "duration": 3.69,
+      "text": "distribution is in the limit."
+    },
+    {
+      "start": 1414.57,
+      "duration": 4.92,
+      "text": "And so this implies\nthat this model"
+    },
+    {
+      "start": 1419.49,
+      "duration": 3.57,
+      "text": "may be useful in a\nvariety of contexts, where"
+    },
+    {
+      "start": 1423.06,
+      "duration": 3.9,
+      "text": "underlying steps of\nthe process increments"
+    },
+    {
+      "start": 1426.96,
+      "duration": 5.04,
+      "text": "may have some distribution\nthat's non-Gaussian."
+    },
+    {
+      "start": 1432.0,
+      "duration": 4.47,
+      "text": "But the distribution\nof increments"
+    },
+    {
+      "start": 1436.47,
+      "duration": 5.116,
+      "text": "over long periods of time will\nthen follow the diffusion."
+    },
+    {
+      "start": 1446.7,
+      "duration": 2.46,
+      "text": "So the key properties\nof Brownian motion"
+    },
+    {
+      "start": 1449.16,
+      "duration": 1.51,
+      "text": "are independent increments."
+    },
+    {
+      "start": 1450.67,
+      "duration": 3.53,
+      "text": "And the variance\nof those increments"
+    },
+    {
+      "start": 1454.2,
+      "duration": 5.61,
+      "text": "are proportional to the time\nperiod between the measures."
+    },
+    {
+      "start": 1459.81,
+      "duration": 5.49,
+      "text": "Now, there's a\nreflection principle"
+    },
+    {
+      "start": 1465.3,
+      "duration": 5.64,
+      "text": "in working with Brownian\nmotion that is very powerful."
+    },
+    {
+      "start": 1470.94,
+      "duration": 5.49,
+      "text": "This is an example where\nthe mathematical theory"
+    },
+    {
+      "start": 1476.43,
+      "duration": 4.3,
+      "text": "is a bit tricky."
+    },
+    {
+      "start": 1480.73,
+      "duration": 4.76,
+      "text": "But if you're clever\nat solving the problem,"
+    },
+    {
+      "start": 1485.49,
+      "duration": 4.51,
+      "text": "you may find an elegant,\nsimple solution to the problem."
+    },
+    {
+      "start": 1490.0,
+      "duration": 3.98,
+      "text": "So let's just understand what\nit means to be reflecting"
+    },
+    {
+      "start": 1493.98,
+      "duration": 2.64,
+      "text": "Brownian motion first."
+    },
+    {
+      "start": 1496.62,
+      "duration": 10.565,
+      "text": "So we consider Brownian motion\nto be the process B of t."
+    },
+    {
+      "start": 1513.0,
+      "duration": 5.2,
+      "text": "And so this will be one\nrealization of the path perhaps."
+    },
+    {
+      "start": 1518.2,
+      "duration": 10.17,
+      "text": "And then if we consider the\nfirst time the process hits"
+    },
+    {
+      "start": 1528.37,
+      "duration": 9.9,
+      "text": "x and define tau equal\nto the first time B of t"
+    },
+    {
+      "start": 1538.27,
+      "duration": 7.83,
+      "text": "is equal to x, then, OK,\nthis is the first time it"
+    },
+    {
+      "start": 1546.1,
+      "duration": 2.97,
+      "text": "hits that level x."
+    },
+    {
+      "start": 1549.07,
+      "duration": 8.16,
+      "text": "If we consider reflecting this\npath about the level at time"
+    },
+    {
+      "start": 1557.23,
+      "duration": 2.11,
+      "text": "x going into the future--"
+    },
+    {
+      "start": 1559.34,
+      "duration": 7.89,
+      "text": "so this would be going like\nthis and then up like that--"
+    },
+    {
+      "start": 1567.23,
+      "duration": 5.9,
+      "text": "This is the mathematical formula\nfor doing a reflection of B"
+    },
+    {
+      "start": 1573.13,
+      "duration": 2.16,
+      "text": "be about x."
+    },
+    {
+      "start": 1575.29,
+      "duration": 5.14,
+      "text": "And we'll see some examples\nof this in a minute."
+    },
+    {
+      "start": 1580.43,
+      "duration": 5.42,
+      "text": "But what is important\nin these reflected"
+    },
+    {
+      "start": 1585.85,
+      "duration": 4.59,
+      "text": "paths is that the\nprobability model"
+    },
+    {
+      "start": 1590.44,
+      "duration": 5.14,
+      "text": "for the original process\nand the reflected process,"
+    },
+    {
+      "start": 1595.58,
+      "duration": 2.9,
+      "text": "those are identical."
+    },
+    {
+      "start": 1598.48,
+      "duration": 5.7,
+      "text": "So let's take a look at this\nreflected Brownian motion"
+    },
+    {
+      "start": 1604.18,
+      "duration": 0.82,
+      "text": "simulation."
+    },
+    {
+      "start": 1605.0,
+      "duration": 5.33,
+      "text": "So what I'm doing here is\nsimulating Brownian motion over"
+    },
+    {
+      "start": 1610.33,
+      "duration": 7.48,
+      "text": "10,000 steps and looking at\nan original process in red,"
+    },
+    {
+      "start": 1617.81,
+      "duration": 3.09,
+      "text": "and then reflecting\nthat in green."
+    },
+    {
+      "start": 1620.9,
+      "duration": 4.43,
+      "text": "And because of overlapping\ncolors, I guess,"
+    },
+    {
+      "start": 1625.33,
+      "duration": 5.1,
+      "text": "the beginning process at\ntime 0 is the original"
+    },
+    {
+      "start": 1630.43,
+      "duration": 1.39,
+      "text": "and the reflected path."
+    },
+    {
+      "start": 1631.82,
+      "duration": 2.28,
+      "text": "So it appears as the reflected."
+    },
+    {
+      "start": 1634.1,
+      "duration": 4.8,
+      "text": "So once it hits\nthis level x in red,"
+    },
+    {
+      "start": 1638.9,
+      "duration": 5.04,
+      "text": "the green reflects\nabout x, the value."
+    },
+    {
+      "start": 1643.94,
+      "duration": 6.11,
+      "text": "And it continues reflecting\nacross the remaining"
+    },
+    {
+      "start": 1650.05,
+      "duration": 4.14,
+      "text": "path of the original series."
+    },
+    {
+      "start": 1654.19,
+      "duration": 5.04,
+      "text": "Now, here's another realization\nof reflected Brownian motion,"
+    },
+    {
+      "start": 1659.23,
+      "duration": 3.03,
+      "text": "has the same property."
+    },
+    {
+      "start": 1662.26,
+      "duration": 4.3,
+      "text": "And here's a third."
+    },
+    {
+      "start": 1666.56,
+      "duration": 4.26,
+      "text": "Basically, with different\nrealizations of Brownian motion,"
+    },
+    {
+      "start": 1670.82,
+      "duration": 2.87,
+      "text": "we'll get different paths."
+    },
+    {
+      "start": 1673.69,
+      "duration": 3.9,
+      "text": "And the reflected paths\nhave these same properties."
+    },
+    {
+      "start": 1677.59,
+      "duration": 7.935,
+      "text": "Now, the interesting\nquestion is--"
+    },
+    {
+      "start": 1688.25,
+      "duration": 4.02,
+      "text": "well, it's actually-- let me\ngo back to the notes here."
+    },
+    {
+      "start": 1692.27,
+      "duration": 5.37,
+      "text": "And the interesting\nquestion is to ask,"
+    },
+    {
+      "start": 1697.64,
+      "duration": 11.16,
+      "text": "what is the maximum of a\nBrownian motion up to time t?"
+    },
+    {
+      "start": 1708.8,
+      "duration": 3.3,
+      "text": "So we can define\nm of t to be, what"
+    },
+    {
+      "start": 1712.1,
+      "duration": 3.69,
+      "text": "is the maximum value that\nthe Brownian motion has"
+    },
+    {
+      "start": 1715.79,
+      "duration": 4.59,
+      "text": "realized between time 0 and t?"
+    },
+    {
+      "start": 1720.38,
+      "duration": 10.53,
+      "text": "Well, the probability of the\nmaximum exceeding x, some level,"
+    },
+    {
+      "start": 1730.91,
+      "duration": 4.11,
+      "text": "will actually be\ntwice the probability"
+    },
+    {
+      "start": 1735.02,
+      "duration": 4.84,
+      "text": "that the ending value of\nthe process exceeds x."
+    },
+    {
+      "start": 1739.86,
+      "duration": 5.003,
+      "text": "So let's take a look again\nat the reflected paths."
+    },
+    {
+      "start": 1749.18,
+      "duration": 11.79,
+      "text": "So if we look at the reflected\npaths about x, then the red"
+    },
+    {
+      "start": 1760.97,
+      "duration": 6.406,
+      "text": "and the green paths have the\nsame probabilities of occurring."
+    },
+    {
+      "start": 1773.46,
+      "duration": 1.616,
+      "text": "Let's see."
+    },
+    {
+      "start": 1775.076,
+      "duration": 6.144,
+      "text": "If we look at whether the ending\nvalue of the original Brownian"
+    },
+    {
+      "start": 1781.22,
+      "duration": 1.44,
+      "text": "motion--"
+    },
+    {
+      "start": 1782.66,
+      "duration": 6.945,
+      "text": "sorry-- or the ending\nvalue of a Brownian motion"
+    },
+    {
+      "start": 1789.605,
+      "duration": 6.345,
+      "text": "exceeds a given\nlevel, then there"
+    },
+    {
+      "start": 1795.95,
+      "duration": 5.82,
+      "text": "will be twice that number,\ntwice those realizations"
+    },
+    {
+      "start": 1801.77,
+      "duration": 3.31,
+      "text": "for which the maximum\nexceeded that level."
+    },
+    {
+      "start": 1805.08,
+      "duration": 5.33,
+      "text": "So for both of these\nreflected paths, the maximum--"
+    },
+    {
+      "start": 1810.41,
+      "duration": 5.49,
+      "text": "let's see-- the maximum\nof the path exceeded x."
+    },
+    {
+      "start": 1815.9,
+      "duration": 11.43,
+      "text": "And so looking here, the\nprobability of the maximum"
+    },
+    {
+      "start": 1827.33,
+      "duration": 3.42,
+      "text": "exceeding x, well,\nwe can just look"
+    },
+    {
+      "start": 1830.75,
+      "duration": 8.08,
+      "text": "at the probability of a path\nexceeding x at the end point."
+    },
+    {
+      "start": 1838.83,
+      "duration": 5.19,
+      "text": "And the reflected intervals\nwill match those, one for one."
+    },
+    {
+      "start": 1844.02,
+      "duration": 3.32,
+      "text": "And so we basically\nhave the formula"
+    },
+    {
+      "start": 1847.34,
+      "duration": 10.62,
+      "text": "that we have twice the final\nvalue of the process exceeding"
+    },
+    {
+      "start": 1857.96,
+      "duration": 5.11,
+      "text": "x is equal to the probability\nthat the maximum exceeds x."
+    },
+    {
+      "start": 1863.07,
+      "duration": 5.01,
+      "text": "And we can write out what\nthat probability is in terms"
+    },
+    {
+      "start": 1868.08,
+      "duration": 2.323,
+      "text": "of the standard normal cdf."
+    },
+    {
+      "start": 1874.8,
+      "duration": 9.69,
+      "text": "Now, from this result, we can\ndifferentiate this probability"
+    },
+    {
+      "start": 1884.49,
+      "duration": 11.16,
+      "text": "with respect to x and get\nthe density of the maximum."
+    },
+    {
+      "start": 1895.65,
+      "duration": 5.13,
+      "text": "And so let's see here."
+    },
+    {
+      "start": 1900.78,
+      "duration": 6.3,
+      "text": "So here is a graph of the\ncumulative probability"
+    },
+    {
+      "start": 1907.08,
+      "duration": 5.95,
+      "text": "of the maximum\nexceeding a level x."
+    },
+    {
+      "start": 1913.03,
+      "duration": 5.57,
+      "text": "And this is, basically,\nwe're interested in,"
+    },
+    {
+      "start": 1918.6,
+      "duration": 3.85,
+      "text": "what's the probability of\nexceeding x before time t?"
+    },
+    {
+      "start": 1922.45,
+      "duration": 4.86,
+      "text": "And with lower\nvalues of x, like 1,"
+    },
+    {
+      "start": 1927.31,
+      "duration": 1.645,
+      "text": "the probability is quite high."
+    },
+    {
+      "start": 1932.61,
+      "duration": 0.64,
+      "text": "Let's see."
+    },
+    {
+      "start": 1933.25,
+      "duration": 3.26,
+      "text": "If x is very--"
+    },
+    {
+      "start": 1936.51,
+      "duration": 0.63,
+      "text": "let's see."
+    },
+    {
+      "start": 1937.14,
+      "duration": 1.08,
+      "text": "Or, sorry."
+    },
+    {
+      "start": 1938.22,
+      "duration": 1.385,
+      "text": "Is that x there?"
+    },
+    {
+      "start": 1943.095,
+      "duration": 0.5,
+      "text": "Right."
+    },
+    {
+      "start": 1943.595,
+      "duration": 0.715,
+      "text": "OK."
+    },
+    {
+      "start": 1944.31,
+      "duration": 5.31,
+      "text": "So if the maximum is 3, the\nprobability of exceeding 3"
+    },
+    {
+      "start": 1949.62,
+      "duration": 1.08,
+      "text": "is much lower."
+    },
+    {
+      "start": 1950.7,
+      "duration": 6.66,
+      "text": "The probability of exceeding\n2 is in the mid-way there."
+    },
+    {
+      "start": 1957.36,
+      "duration": 3.51,
+      "text": "And what's also\nvery interesting is"
+    },
+    {
+      "start": 1960.87,
+      "duration": 6.84,
+      "text": "that we can use these results\nto calculate the density"
+    },
+    {
+      "start": 1967.71,
+      "duration": 7.17,
+      "text": "function for the first\nhitting time of a given level."
+    },
+    {
+      "start": 1974.88,
+      "duration": 4.5,
+      "text": "And so importantly, we\nhave the probability"
+    },
+    {
+      "start": 1979.38,
+      "duration": 2.25,
+      "text": "of the max up to\ntime t exceeding"
+    },
+    {
+      "start": 1981.63,
+      "duration": 8.22,
+      "text": "x is twice the probability that\nthe ending value exceeds x."
+    },
+    {
+      "start": 1989.85,
+      "duration": 6.87,
+      "text": "And we can differentiate\nthis with respect to t."
+    },
+    {
+      "start": 1996.72,
+      "duration": 6.12,
+      "text": "And we get this density function\nfor the density of the stopping"
+    },
+    {
+      "start": 2002.84,
+      "duration": 5.37,
+      "text": "time for hitting\na given level x."
+    },
+    {
+      "start": 2008.21,
+      "duration": 4.17,
+      "text": "So let's see here\nif we have that."
+    },
+    {
+      "start": 2012.38,
+      "duration": 2.516,
+      "text": "So here's the hitting\ntime densities."
+    },
+    {
+      "start": 2017.54,
+      "duration": 2.07,
+      "text": "So with standard\nBrownian motion,"
+    },
+    {
+      "start": 2019.61,
+      "duration": 5.11,
+      "text": "if we're looking at the time to\nhit the level 1 starting at 0,"
+    },
+    {
+      "start": 2024.72,
+      "duration": 3.65,
+      "text": "then there's this nice\nunimodal distribution"
+    },
+    {
+      "start": 2028.37,
+      "duration": 3.43,
+      "text": "for that time, which\nis relatively short."
+    },
+    {
+      "start": 2031.8,
+      "duration": 4.77,
+      "text": "But if we're looking at hitting\ntimes for higher levels,"
+    },
+    {
+      "start": 2036.57,
+      "duration": 5.46,
+      "text": "like two or three, then that\nhitting time distribution"
+    },
+    {
+      "start": 2042.03,
+      "duration": 1.51,
+      "text": "spreads out."
+    },
+    {
+      "start": 2043.54,
+      "duration": 2.37,
+      "text": "So now, let's see."
+    },
+    {
+      "start": 2045.91,
+      "duration": 6.71,
+      "text": "We can talk about some\nextensions of Brownian motion."
+    },
+    {
+      "start": 2052.62,
+      "duration": 5.559,
+      "text": "One is just reflected\nBrownian motion around 0."
+    },
+    {
+      "start": 2058.179,
+      "duration": 9.591,
+      "text": "So if we have the process\nbouncing off 0 level,"
+    },
+    {
+      "start": 2067.77,
+      "duration": 4.139,
+      "text": "we can think of\nthat process being"
+    },
+    {
+      "start": 2071.909,
+      "duration": 3.25,
+      "text": "a positive stochastic process."
+    },
+    {
+      "start": 2075.159,
+      "duration": 5.511,
+      "text": "And it's fairly easy to show\nthat the expected value of this"
+    },
+    {
+      "start": 2080.67,
+      "duration": 4.86,
+      "text": "reflected Brownian motion\nis a multiple of root"
+    },
+    {
+      "start": 2085.53,
+      "duration": 4.709,
+      "text": "t, square root of 2 over pi,\nand the variance is 1 minus 2"
+    },
+    {
+      "start": 2090.239,
+      "duration": 2.811,
+      "text": "over pi t."
+    },
+    {
+      "start": 2093.05,
+      "duration": 6.34,
+      "text": "And we can also consider\nabsorbed Brownian motion."
+    },
+    {
+      "start": 2099.39,
+      "duration": 5.94,
+      "text": "If we consider tau being\nthe first time the level 0--"
+    },
+    {
+      "start": 2105.33,
+      "duration": 9.84,
+      "text": "or level x is hit, then we\ncan define our process being"
+    },
+    {
+      "start": 2115.17,
+      "duration": 6.75,
+      "text": "equal to the original Brownian\nmotion B of t, or B at 0 for t"
+    },
+    {
+      "start": 2121.92,
+      "duration": 1.53,
+      "text": "greater than tau."
+    },
+    {
+      "start": 2123.45,
+      "duration": 6.72,
+      "text": "And so with absorbed Brownian\nmotion, these kinds of processes"
+    },
+    {
+      "start": 2130.17,
+      "duration": 4.38,
+      "text": "are useful, for\nexample, when we have"
+    },
+    {
+      "start": 2134.55,
+      "duration": 4.98,
+      "text": "a Brownian motion-like process\nfor a stock price, which"
+    },
+    {
+      "start": 2139.53,
+      "duration": 3.43,
+      "text": "is generally positive, so\nlong as the company is viable."
+    },
+    {
+      "start": 2142.96,
+      "duration": 1.59,
+      "text": "But if the company\ngoes bankrupt,"
+    },
+    {
+      "start": 2144.55,
+      "duration": 4.25,
+      "text": "then the price\ngets absorbed at 0."
+    },
+    {
+      "start": 2148.8,
+      "duration": 8.67,
+      "text": "Now, we have another extension\nof Brownian motion, which"
+    },
+    {
+      "start": 2157.47,
+      "duration": 3.87,
+      "text": "is called the Brownian Bridge."
+    },
+    {
+      "start": 2161.34,
+      "duration": 11.34,
+      "text": "And so if we consider a Brownian\nmotion process starting at 0,"
+    },
+    {
+      "start": 2172.68,
+      "duration": 10.56,
+      "text": "and it goes up to, let's\nsay, time 1, starting at 0,"
+    },
+    {
+      "start": 2183.24,
+      "duration": 1.073,
+      "text": "we can define--"
+    },
+    {
+      "start": 2187.68,
+      "duration": 10.36,
+      "text": "we can define the procedure\nx, which is equal to B of t--"
+    },
+    {
+      "start": 2201.93,
+      "duration": 8.34,
+      "text": "let's see-- B of\nt minus tB of 1."
+    },
+    {
+      "start": 2210.27,
+      "duration": 0.52,
+      "text": "Let's see."
+    },
+    {
+      "start": 2210.79,
+      "duration": 1.594,
+      "text": "Is that right?"
+    },
+    {
+      "start": 2212.384,
+      "duration": 3.056,
+      "text": "Minus t times B of 1."
+    },
+    {
+      "start": 2215.44,
+      "duration": 3.034,
+      "text": "So if we consider--"
+    },
+    {
+      "start": 2225.4,
+      "duration": 1.89,
+      "text": "let's see-- looking at--"
+    },
+    {
+      "start": 2227.29,
+      "duration": 0.78,
+      "text": "well, let's see."
+    },
+    {
+      "start": 2228.07,
+      "duration": 5.64,
+      "text": "This process, so x\nof 1 is equal to B"
+    },
+    {
+      "start": 2233.71,
+      "duration": 6.69,
+      "text": "of 1 minus 1 times B of\n1, which is equal to 0."
+    },
+    {
+      "start": 2240.4,
+      "duration": 6.153,
+      "text": "If we basically draw a line to--"
+    },
+    {
+      "start": 2249.73,
+      "duration": 8.49,
+      "text": "if we consider this line as\n1 and this has slope B of 1,"
+    },
+    {
+      "start": 2258.22,
+      "duration": 5.46,
+      "text": "then if we subtract\ntB of 1, we're"
+    },
+    {
+      "start": 2263.68,
+      "duration": 6.72,
+      "text": "looking at pinning down\nthe Brownian motion"
+    },
+    {
+      "start": 2270.4,
+      "duration": 8.67,
+      "text": "and looking at the distance\nfrom a constant slope, tB of 1"
+    },
+    {
+      "start": 2279.07,
+      "duration": 1.63,
+      "text": "and B of t."
+    },
+    {
+      "start": 2280.7,
+      "duration": 4.58,
+      "text": "And this particular\nprocess actually"
+    },
+    {
+      "start": 2285.28,
+      "duration": 6.12,
+      "text": "arises in a very\ninteresting context"
+    },
+    {
+      "start": 2291.4,
+      "duration": 3.91,
+      "text": "of normalized empirical\ndistribution functions."
+    },
+    {
+      "start": 2295.31,
+      "duration": 7.86,
+      "text": "So what do we want\nto highlight here?"
+    },
+    {
+      "start": 2303.17,
+      "duration": 5.45,
+      "text": "If we have a sequence\nof random variables"
+    },
+    {
+      "start": 2308.62,
+      "duration": 8.25,
+      "text": "that are uniformly\ndistributed between 0 and 1"
+    },
+    {
+      "start": 2316.87,
+      "duration": 6.36,
+      "text": "and we calculate their empirical\ndistribution function--"
+    },
+    {
+      "start": 2323.23,
+      "duration": 6.18,
+      "text": "so it's the count of the\nU's less than or equal to"
+    },
+    {
+      "start": 2329.41,
+      "duration": 2.55,
+      "text": "t divided by n--"
+    },
+    {
+      "start": 2331.96,
+      "duration": 6.12,
+      "text": "then this empirical\ndistribution function"
+    },
+    {
+      "start": 2338.08,
+      "duration": 10.32,
+      "text": "will have expectation equal to t\nand variance equal to t times 1"
+    },
+    {
+      "start": 2348.4,
+      "duration": 1.72,
+      "text": "minus t over n."
+    },
+    {
+      "start": 2350.12,
+      "duration": 7.77,
+      "text": "So if we think of these U's--"
+    },
+    {
+      "start": 2357.89,
+      "duration": 6.29,
+      "text": "so we have Ui is distributed\nuniform from 0 to 1."
+    },
+    {
+      "start": 2364.18,
+      "duration": 3.51,
+      "text": "We have the scale from 0 to 1."
+    },
+    {
+      "start": 2367.69,
+      "duration": 6.42,
+      "text": "And we consider a value\nUi as a realization."
+    },
+    {
+      "start": 2374.11,
+      "duration": 9.304,
+      "text": "Then the probability that Ui\nis less than or equal to t"
+    },
+    {
+      "start": 2383.414,
+      "duration": 1.636,
+      "text": "is equal to t."
+    },
+    {
+      "start": 2391.19,
+      "duration": 10.29,
+      "text": "And the variance\nof the indicator"
+    },
+    {
+      "start": 2401.48,
+      "duration": 2.98,
+      "text": "of Ui being less\nthan or equal to t,"
+    },
+    {
+      "start": 2404.46,
+      "duration": 5.0,
+      "text": "this is a Bernoulli\noutcome, which"
+    },
+    {
+      "start": 2409.46,
+      "duration": 5.19,
+      "text": "has variance equal to the\nprobability of occurring"
+    },
+    {
+      "start": 2414.65,
+      "duration": 3.19,
+      "text": "times the complement of that."
+    },
+    {
+      "start": 2417.84,
+      "duration": 8.93,
+      "text": "So we get this t times 1 minus\nt being the variance of--"
+    },
+    {
+      "start": 2426.77,
+      "duration": 4.2,
+      "text": "the indicator of the Ui being\nless than or equal to t."
+    },
+    {
+      "start": 2430.97,
+      "duration": 7.96,
+      "text": "And then if we consider the\nempirical distribution function,"
+    },
+    {
+      "start": 2438.93,
+      "duration": 3.6,
+      "text": "which is summing over\nthese indicators,"
+    },
+    {
+      "start": 2442.53,
+      "duration": 11.6,
+      "text": "then we get a process which\nhas a limiting value, which"
+    },
+    {
+      "start": 2454.13,
+      "duration": 7.23,
+      "text": "is basically the deviation from\nits mean, scaled up by root n,"
+    },
+    {
+      "start": 2461.36,
+      "duration": 4.35,
+      "text": "is normal with mean 0 and\nvariance t times 1 minus t."
+    },
+    {
+      "start": 2465.71,
+      "duration": 5.07,
+      "text": "And this is actually the\nBrownian Bridge process."
+    },
+    {
+      "start": 2470.78,
+      "duration": 7.71,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 2478.49,
+      "duration": 6.72,
+      "text": "With these examples where we\nuse uniform random variables"
+    },
+    {
+      "start": 2485.21,
+      "duration": 5.34,
+      "text": "and properties of functions\nof those uniforms,"
+    },
+    {
+      "start": 2490.55,
+      "duration": 8.85,
+      "text": "it's important to note that for\nany continuous distribution,"
+    },
+    {
+      "start": 2499.4,
+      "duration": 6.585,
+      "text": "say, Y distributed with some--"
+    },
+    {
+      "start": 2508.74,
+      "duration": 14.19,
+      "text": "this is the cdf of Y.\nIf we calculate F of Y,"
+    },
+    {
+      "start": 2522.93,
+      "duration": 3.346,
+      "text": "this happens to be a\nuniform distribution."
+    },
+    {
+      "start": 2529.26,
+      "duration": 3.42,
+      "text": "So this is the probability\nintegral transform"
+    },
+    {
+      "start": 2532.68,
+      "duration": 1.9,
+      "text": "of any random variable."
+    },
+    {
+      "start": 2534.58,
+      "duration": 4.52,
+      "text": "And so when we\nhave this property"
+    },
+    {
+      "start": 2539.1,
+      "duration": 5.58,
+      "text": "for the empirical distribution\nfunction of uniforms--"
+    },
+    {
+      "start": 2544.68,
+      "duration": 6.33,
+      "text": "well, of uniforms, if\nwe replace the U's,"
+    },
+    {
+      "start": 2551.01,
+      "duration": 4.2,
+      "text": "which are uniform\n0, 1 by assumption,"
+    },
+    {
+      "start": 2555.21,
+      "duration": 4.62,
+      "text": "with a distribution\nfunction F of Y, where"
+    },
+    {
+      "start": 2559.83,
+      "duration": 9.33,
+      "text": "we have Y1 to Yn iid,\nwith this cdf F sub Y,"
+    },
+    {
+      "start": 2569.16,
+      "duration": 11.62,
+      "text": "then the Ui equal to\nF of Yi F sub Y of i,"
+    },
+    {
+      "start": 2580.78,
+      "duration": 1.503,
+      "text": "these will be iid uniform."
+    },
+    {
+      "start": 2585.21,
+      "duration": 6.39,
+      "text": "So that's a really\nnice result. And it"
+    },
+    {
+      "start": 2591.6,
+      "duration": 7.53,
+      "text": "leads to issues involved with\nmodeling model selection."
+    },
+    {
+      "start": 2599.13,
+      "duration": 3.93,
+      "text": "If we want to know whether a\ngiven an assumed probability"
+    },
+    {
+      "start": 2603.06,
+      "duration": 4.53,
+      "text": "model for Y's is\ntrue or not, we can"
+    },
+    {
+      "start": 2607.59,
+      "duration": 5.64,
+      "text": "do this transformation and test\nwhether the transformed series"
+    },
+    {
+      "start": 2613.23,
+      "duration": 4.38,
+      "text": "or transformed sample is\nconsistent with being uniform"
+    },
+    {
+      "start": 2617.61,
+      "duration": 0.515,
+      "text": "or not."
+    },
+    {
+      "start": 2620.73,
+      "duration": 1.92,
+      "text": "All right."
+    },
+    {
+      "start": 2622.65,
+      "duration": 5.49,
+      "text": "Well, with simple Brownian\nmotion, standard Brownian"
+    },
+    {
+      "start": 2628.14,
+      "duration": 3.15,
+      "text": "motion, we can\nconsider an extension"
+    },
+    {
+      "start": 2631.29,
+      "duration": 5.65,
+      "text": "of that to Brownian\nmotion with drift, mu."
+    },
+    {
+      "start": 2636.94,
+      "duration": 4.01,
+      "text": "So we can consider a drift\nparameter and a volatility"
+    },
+    {
+      "start": 2640.95,
+      "duration": 2.79,
+      "text": "parameter."
+    },
+    {
+      "start": 2643.74,
+      "duration": 8.76,
+      "text": "And such a process will\nhave independent increments,"
+    },
+    {
+      "start": 2652.5,
+      "duration": 7.74,
+      "text": "with variances of differences\nproportional to the time"
+    },
+    {
+      "start": 2660.24,
+      "duration": 1.53,
+      "text": "interval between s and t."
+    },
+    {
+      "start": 2661.77,
+      "duration": 10.8,
+      "text": "And we can work with\nthe Brownian motion"
+    },
+    {
+      "start": 2672.57,
+      "duration": 8.2,
+      "text": "with drift using a\none-step analysis."
+    },
+    {
+      "start": 2680.77,
+      "duration": 7.74,
+      "text": "And in considering\nthis X process--"
+    },
+    {
+      "start": 2688.51,
+      "duration": 8.28,
+      "text": "so X is equal to t\nmu plus sigma B of t."
+    },
+    {
+      "start": 2696.79,
+      "duration": 2.18,
+      "text": "So this is X of t."
+    },
+    {
+      "start": 2702.46,
+      "duration": 7.05,
+      "text": "If we look at the increment\nahead delta t from little t,"
+    },
+    {
+      "start": 2709.51,
+      "duration": 6.09,
+      "text": "then expanding out the\nrepresentation of this Brownian"
+    },
+    {
+      "start": 2715.6,
+      "duration": 4.47,
+      "text": "motion with drift,\nwe get that it's"
+    },
+    {
+      "start": 2720.07,
+      "duration": 7.26,
+      "text": "equal to the Brownian motion at\ntime little t plus mu delta t"
+    },
+    {
+      "start": 2727.33,
+      "duration": 6.45,
+      "text": "plus sigma times the increment\nof the Brownian motion process"
+    },
+    {
+      "start": 2733.78,
+      "duration": 3.84,
+      "text": "from t to t plus delta t."
+    },
+    {
+      "start": 2737.62,
+      "duration": 6.09,
+      "text": "And so increments\nof X correspond"
+    },
+    {
+      "start": 2743.71,
+      "duration": 7.11,
+      "text": "to increments of time plus\ntimes the drift rate, mu,"
+    },
+    {
+      "start": 2750.82,
+      "duration": 2.73,
+      "text": "plus sigma, the\nvolatility parameter,"
+    },
+    {
+      "start": 2753.55,
+      "duration": 5.28,
+      "text": "times the increment of the\nstandard Brownian motion."
+    },
+    {
+      "start": 2758.83,
+      "duration": 6.06,
+      "text": "So our process X,\nBrownian with drift,"
+    },
+    {
+      "start": 2764.89,
+      "duration": 5.46,
+      "text": "will have non-zero\nmean increments"
+    },
+    {
+      "start": 2770.35,
+      "duration": 3.18,
+      "text": "and increments\nvariances that are"
+    },
+    {
+      "start": 2773.53,
+      "duration": 3.55,
+      "text": "proportional to\nthe change in time."
+    },
+    {
+      "start": 2777.08,
+      "duration": 7.1,
+      "text": "And this increment will have\nan exact normal distribution"
+    },
+    {
+      "start": 2784.18,
+      "duration": 1.98,
+      "text": "with these properties."
+    },
+    {
+      "start": 2786.16,
+      "duration": 7.14,
+      "text": "And what's particularly\nimportant is that,"
+    },
+    {
+      "start": 2793.3,
+      "duration": 5.97,
+      "text": "as we let delta t, the\nlength of our increments,"
+    },
+    {
+      "start": 2799.27,
+      "duration": 9.06,
+      "text": "get infinitesimal, then the\nexpected squared increment of X"
+    },
+    {
+      "start": 2808.33,
+      "duration": 2.44,
+      "text": "ends up being equal to--"
+    },
+    {
+      "start": 2810.77,
+      "duration": 4.61,
+      "text": "well, it's exactly equal to\nthe variance of that increment"
+    },
+    {
+      "start": 2815.38,
+      "duration": 2.52,
+      "text": "plus the square of the mean."
+    },
+    {
+      "start": 2817.9,
+      "duration": 5.97,
+      "text": "But the square of\nthe mean is a term"
+    },
+    {
+      "start": 2823.87,
+      "duration": 4.17,
+      "text": "that is small order of delta t."
+    },
+    {
+      "start": 2828.04,
+      "duration": 4.53,
+      "text": "So our expected\nsquared increments"
+    },
+    {
+      "start": 2832.57,
+      "duration": 6.21,
+      "text": "will be to order\ndelta t equal to sigma"
+    },
+    {
+      "start": 2838.78,
+      "duration": 6.0,
+      "text": "squared delta t and then a\nsmall order of delta t term"
+    },
+    {
+      "start": 2844.78,
+      "duration": 1.09,
+      "text": "after that."
+    },
+    {
+      "start": 2845.87,
+      "duration": 5.12,
+      "text": "Also, if we consider\npowers of delta X,"
+    },
+    {
+      "start": 2850.99,
+      "duration": 5.65,
+      "text": "so our increments to\na power, then when"
+    },
+    {
+      "start": 2856.64,
+      "duration": 3.4,
+      "text": "our power c is greater than 2--"
+    },
+    {
+      "start": 2860.04,
+      "duration": 2.67,
+      "text": "it's equal to 2 here--\nwhen it's greater than 2,"
+    },
+    {
+      "start": 2862.71,
+      "duration": 4.77,
+      "text": "then this will also be\na small order delta t."
+    },
+    {
+      "start": 2867.48,
+      "duration": 6.44,
+      "text": "Now, the reason why we're\ninterested in these properties"
+    },
+    {
+      "start": 2873.92,
+      "duration": 8.85,
+      "text": "is because we're going to be\nworking, ultimately, with, say,"
+    },
+    {
+      "start": 2882.77,
+      "duration": 10.59,
+      "text": "a value of some derivative\nthat depends upon X of t."
+    },
+    {
+      "start": 2893.36,
+      "duration": 8.79,
+      "text": "So there's basically a\nderivative value, which"
+    },
+    {
+      "start": 2902.15,
+      "duration": 11.25,
+      "text": "depends upon the underlying--"
+    },
+    {
+      "start": 2913.4,
+      "duration": 4.56,
+      "text": "I'll just say the\nunderlying asset price."
+    },
+    {
+      "start": 2917.96,
+      "duration": 7.74,
+      "text": "And so the dynamics of\nthe derivative prices"
+    },
+    {
+      "start": 2925.7,
+      "duration": 5.93,
+      "text": "can be written as\na Taylor series."
+    },
+    {
+      "start": 2935.9,
+      "duration": 5.07,
+      "text": "And so we'll want to be able\nto deal with increments of X"
+    },
+    {
+      "start": 2940.97,
+      "duration": 10.02,
+      "text": "and powers of increments of X\nas our valuation function may"
+    },
+    {
+      "start": 2950.99,
+      "duration": 4.16,
+      "text": "be expressed, if it has a\nTaylor series representation."
+    },
+    {
+      "start": 2960.17,
+      "duration": 0.995,
+      "text": "All right."
+    },
+    {
+      "start": 2961.165,
+      "duration": 7.885,
+      "text": "So let's consider the problem\nof Brownian motion underlying"
+    },
+    {
+      "start": 2969.05,
+      "duration": 2.55,
+      "text": "a gambler's ruin problem."
+    },
+    {
+      "start": 2971.6,
+      "duration": 6.75,
+      "text": "So let's let X of t be\nBrownian motion with drift, mu"
+    },
+    {
+      "start": 2978.35,
+      "duration": 3.0,
+      "text": "and variance sigma squared."
+    },
+    {
+      "start": 2981.35,
+      "duration": 6.39,
+      "text": "And we'll consider\nan initial level"
+    },
+    {
+      "start": 2987.74,
+      "duration": 3.605,
+      "text": "equal to X that's between\ntwo levels, a and b."
+    },
+    {
+      "start": 2998.75,
+      "duration": 10.77,
+      "text": "And we want to consider the\nstopping time hitting a or b"
+    },
+    {
+      "start": 3009.52,
+      "duration": 7.14,
+      "text": "and ask, what's the probability\nthat we hit b first?"
+    },
+    {
+      "start": 3016.66,
+      "duration": 10.98,
+      "text": "So over time t, we have,\nbasically, levels a"
+    },
+    {
+      "start": 3027.64,
+      "duration": 7.36,
+      "text": "and b and an initial\nlevel X at time 0."
+    },
+    {
+      "start": 3035.0,
+      "duration": 7.56,
+      "text": "And we're interested\nin hitting a or b"
+    },
+    {
+      "start": 3042.56,
+      "duration": 8.52,
+      "text": "so tau is equal to the\nhit time of a or b."
+    },
+    {
+      "start": 3051.08,
+      "duration": 4.08,
+      "text": "And we're interested in,\nwhat's the probability"
+    },
+    {
+      "start": 3055.16,
+      "duration": 7.11,
+      "text": "of hitting b first before a?"
+    },
+    {
+      "start": 3062.27,
+      "duration": 9.24,
+      "text": "And this generalizes our\nproblem in the first lecture"
+    },
+    {
+      "start": 3071.51,
+      "duration": 5.37,
+      "text": "on stochastic processes, where\nwe had a random walk with unit"
+    },
+    {
+      "start": 3076.88,
+      "duration": 1.66,
+      "text": "steps with drift."
+    },
+    {
+      "start": 3081.77,
+      "duration": 4.26,
+      "text": "So there was a bias of maybe\na plus 1 versus a minus 1"
+    },
+    {
+      "start": 3086.03,
+      "duration": 0.85,
+      "text": "occurring."
+    },
+    {
+      "start": 3086.88,
+      "duration": 1.97,
+      "text": "And we wanted to\nsolve for, what's"
+    },
+    {
+      "start": 3088.85,
+      "duration": 5.91,
+      "text": "the likelihood of hitting\na level b before level a?"
+    },
+    {
+      "start": 3094.76,
+      "duration": 7.84,
+      "text": "So with this, we use an\ninfinitesimal one-step analysis."
+    },
+    {
+      "start": 3102.6,
+      "duration": 6.02,
+      "text": "And this solution approach\nis illustrative of how many"
+    },
+    {
+      "start": 3108.62,
+      "duration": 6.75,
+      "text": "problems are solved with\nstochastic processes."
+    },
+    {
+      "start": 3115.37,
+      "duration": 8.34,
+      "text": "We can define u of x to be the\nprobability function, which"
+    },
+    {
+      "start": 3123.71,
+      "duration": 8.07,
+      "text": "is the probability that the\nstopped process equals b, given"
+    },
+    {
+      "start": 3131.78,
+      "duration": 12.45,
+      "text": "that it starts at X. And\nso if we consider u of x"
+    },
+    {
+      "start": 3144.23,
+      "duration": 5.82,
+      "text": "and write it as the expected\nvalue of u of x plus delta X,"
+    },
+    {
+      "start": 3150.05,
+      "duration": 9.31,
+      "text": "then if our delta t time\nincrement is very, very short,"
+    },
+    {
+      "start": 3159.36,
+      "duration": 7.37,
+      "text": "then this expectation\nwill equal u of x."
+    },
+    {
+      "start": 3166.73,
+      "duration": 5.28,
+      "text": "So the likelihood\nof hitting b first"
+    },
+    {
+      "start": 3172.01,
+      "duration": 7.41,
+      "text": "will be the expectation of u\nof x, a very short increment"
+    },
+    {
+      "start": 3179.42,
+      "duration": 1.72,
+      "text": "into the future."
+    },
+    {
+      "start": 3181.14,
+      "duration": 3.65,
+      "text": "And so if we take the\nexpectation with respect"
+    },
+    {
+      "start": 3184.79,
+      "duration": 6.87,
+      "text": "to the delta X variable,\nwell, delta X is X of t"
+    },
+    {
+      "start": 3191.66,
+      "duration": 3.36,
+      "text": "plus delta t minus X of t--"
+    },
+    {
+      "start": 3195.02,
+      "duration": 9.04,
+      "text": "then if we assume that our\nfunction u, this probability,"
+    },
+    {
+      "start": 3204.06,
+      "duration": 5.46,
+      "text": "is twice differentiable,\nthen the Taylor"
+    },
+    {
+      "start": 3209.52,
+      "duration": 6.72,
+      "text": "series about the center X\nwill equal u of x plus delta X"
+    },
+    {
+      "start": 3216.24,
+      "duration": 4.8,
+      "text": "times the first derivative\nplus a half delta"
+    },
+    {
+      "start": 3221.04,
+      "duration": 2.23,
+      "text": "X squared times the\nsecond derivative,"
+    },
+    {
+      "start": 3223.27,
+      "duration": 6.86,
+      "text": "plus small order terms\nof delta X squared."
+    },
+    {
+      "start": 3230.13,
+      "duration": 7.35,
+      "text": "And so if we take an\nexpectation of that first Taylor"
+    },
+    {
+      "start": 3237.48,
+      "duration": 6.55,
+      "text": "series on both sides, well,\nthe u of x is a constant."
+    },
+    {
+      "start": 3244.03,
+      "duration": 3.71,
+      "text": "And then we have u prime\nof x, a constant times"
+    },
+    {
+      "start": 3247.74,
+      "duration": 3.15,
+      "text": "the expected value\nof delta X. And then"
+    },
+    {
+      "start": 3250.89,
+      "duration": 2.31,
+      "text": "plus a half the\nexpected value of delta"
+    },
+    {
+      "start": 3253.2,
+      "duration": 3.63,
+      "text": "x squared times u double prime."
+    },
+    {
+      "start": 3256.83,
+      "duration": 4.65,
+      "text": "And we have mu delta t is\nthe expectation of delta"
+    },
+    {
+      "start": 3261.48,
+      "duration": 5.46,
+      "text": "X. Sigma squared delta t\nplus little o of delta t"
+    },
+    {
+      "start": 3266.94,
+      "duration": 4.29,
+      "text": "is the expectation\nof delta X squared."
+    },
+    {
+      "start": 3271.23,
+      "duration": 7.47,
+      "text": "So we have this expansion\nfrom the Taylor series."
+    },
+    {
+      "start": 3278.7,
+      "duration": 9.81,
+      "text": "And from what we said before,\nthis expected value of u"
+    },
+    {
+      "start": 3288.51,
+      "duration": 5.1,
+      "text": "evaluated at x plus delta X\nshould simply equal u of x."
+    },
+    {
+      "start": 3293.61,
+      "duration": 9.24,
+      "text": "And if that's true, then we\nget this equation for u prime"
+    },
+    {
+      "start": 3302.85,
+      "duration": 3.24,
+      "text": "and u double prime."
+    },
+    {
+      "start": 3306.09,
+      "duration": 10.05,
+      "text": "And if we take that equation\nand u prime and u double prime"
+    },
+    {
+      "start": 3316.14,
+      "duration": 3.12,
+      "text": "and we divide by\ndelta t, we then"
+    },
+    {
+      "start": 3319.26,
+      "duration": 11.1,
+      "text": "get 0 is equal to mu u prime\nof x plus a half sigma squared"
+    },
+    {
+      "start": 3330.36,
+      "duration": 1.7,
+      "text": "u double prime of x."
+    },
+    {
+      "start": 3335.1,
+      "duration": 9.1,
+      "text": "And to be really precise, little\no factor to make it an equation."
+    },
+    {
+      "start": 3344.2,
+      "duration": 7.67,
+      "text": "Now, this equation here is\na second-order differential"
+    },
+    {
+      "start": 3351.87,
+      "duration": 1.65,
+      "text": "equation."
+    },
+    {
+      "start": 3353.52,
+      "duration": 9.253,
+      "text": "And so what are solutions to\nthis second-order differential"
+    },
+    {
+      "start": 3362.773,
+      "duration": 0.5,
+      "text": "equation?"
+    },
+    {
+      "start": 3370.44,
+      "duration": 6.083,
+      "text": "This is an\ninteresting challenge."
+    },
+    {
+      "start": 3376.523,
+      "duration": 1.542,
+      "text": "Let me just get some\nmore chalk here."
+    },
+    {
+      "start": 3382.12,
+      "duration": 1.5,
+      "text": "It's maybe been\na number of years"
+    },
+    {
+      "start": 3383.62,
+      "duration": 3.01,
+      "text": "since people have taken\ndifferential equations, right?"
+    },
+    {
+      "start": 3389.35,
+      "duration": 10.38,
+      "text": "But let's consider, let's see,\nu double prime over u prime"
+    },
+    {
+      "start": 3399.73,
+      "duration": 1.273,
+      "text": "is equal to--"
+    },
+    {
+      "start": 3404.95,
+      "duration": 0.63,
+      "text": "let's see."
+    },
+    {
+      "start": 3405.58,
+      "duration": 1.32,
+      "text": "Have I done this right?"
+    },
+    {
+      "start": 3406.9,
+      "duration": 4.08,
+      "text": "u double prime\ndivided by u prime"
+    },
+    {
+      "start": 3410.98,
+      "duration": 4.175,
+      "text": "is equal to minus 2\nmu over sigma squared."
+    },
+    {
+      "start": 3422.47,
+      "duration": 10.74,
+      "text": "And so this is the derivative\nis equal to the derivative"
+    },
+    {
+      "start": 3433.21,
+      "duration": 2.03,
+      "text": "of the log of u prime."
+    },
+    {
+      "start": 3438.4,
+      "duration": 7.44,
+      "text": "And so if we integrate this,\nwe basically get log of u prime"
+    },
+    {
+      "start": 3445.84,
+      "duration": 10.123,
+      "text": "is equal to minus 2 mu over\nsigma squared x plus a constant."
+    },
+    {
+      "start": 3459.01,
+      "duration": 5.22,
+      "text": "And this is true if\nmu is not equal to 0."
+    },
+    {
+      "start": 3464.23,
+      "duration": 2.52,
+      "text": "And so we basically\nget that u prime"
+    },
+    {
+      "start": 3466.75,
+      "duration": 4.17,
+      "text": "is equal to e to the\nminus 2 mu x over sigma"
+    },
+    {
+      "start": 3470.92,
+      "duration": 2.103,
+      "text": "squared times a constant."
+    },
+    {
+      "start": 3478.96,
+      "duration": 4.6,
+      "text": "And what if we integrate\nboth sides of this?"
+    },
+    {
+      "start": 3483.56,
+      "duration": 2.0,
+      "text": "We then get u."
+    },
+    {
+      "start": 3485.56,
+      "duration": 3.0,
+      "text": "So what function\nhas a derivative"
+    },
+    {
+      "start": 3488.56,
+      "duration": 1.516,
+      "text": "equal to an exponential?"
+    },
+    {
+      "start": 3492.817,
+      "duration": 1.083,
+      "text": "AUDIENCE: The exponential."
+    },
+    {
+      "start": 3493.9,
+      "duration": 2.07,
+      "text": "PETER KEMPTHORNE: Just\nthe exponential, yeah."
+    },
+    {
+      "start": 3495.97,
+      "duration": 2.79,
+      "text": "So we get u is\njust going to equal"
+    },
+    {
+      "start": 3498.76,
+      "duration": 5.165,
+      "text": "a constant times e to the minus\n2 mu over sigma squared x."
+    },
+    {
+      "start": 3506.71,
+      "duration": 9.66,
+      "text": "And if mu is equal\nto 0, then we have"
+    },
+    {
+      "start": 3516.37,
+      "duration": 10.946,
+      "text": "the log of u prime is equal\nto 0, or the derivative--"
+    },
+    {
+      "start": 3532.49,
+      "duration": 2.63,
+      "text": "yeah, we basically have the\nderivative of the log of u"
+    },
+    {
+      "start": 3535.12,
+      "duration": 3.82,
+      "text": "prime is equal to 0."
+    },
+    {
+      "start": 3538.94,
+      "duration": 3.355,
+      "text": "So we end up getting--"
+    },
+    {
+      "start": 3544.96,
+      "duration": 2.59,
+      "text": "let's see-- basically a linear\nfunction for the solution."
+    },
+    {
+      "start": 3547.55,
+      "duration": 2.39,
+      "text": "So let me go to the notes here."
+    },
+    {
+      "start": 3549.94,
+      "duration": 3.65,
+      "text": "Well, we basically get\nu is equal to Ax plus B,"
+    },
+    {
+      "start": 3553.59,
+      "duration": 7.07,
+      "text": "if mu is equal to 0, and it's\nequal to this constant, A times"
+    },
+    {
+      "start": 3560.66,
+      "duration": 2.83,
+      "text": "e to the minus 2 mu\nx over sigma squared."
+    },
+    {
+      "start": 3563.49,
+      "duration": 0.66,
+      "text": "All right."
+    },
+    {
+      "start": 3564.15,
+      "duration": 3.62,
+      "text": "Well, this general\nsolution has to satisfy"
+    },
+    {
+      "start": 3567.77,
+      "duration": 1.65,
+      "text": "the initial conditions."
+    },
+    {
+      "start": 3569.42,
+      "duration": 5.73,
+      "text": "u of a is going to equal 0,\nand u of b is going to equal 1."
+    },
+    {
+      "start": 3575.15,
+      "duration": 5.72,
+      "text": "So if we start at a, where the--"
+    },
+    {
+      "start": 3580.87,
+      "duration": 3.79,
+      "text": "basically, we stop at\na, if we start at a."
+    },
+    {
+      "start": 3584.66,
+      "duration": 3.1,
+      "text": "So u of 0 is going to equal 0."
+    },
+    {
+      "start": 3587.76,
+      "duration": 5.36,
+      "text": "And if we start at\nb, it's equal to 1."
+    },
+    {
+      "start": 3593.12,
+      "duration": 5.91,
+      "text": "We end up getting this\nformula for what u is."
+    },
+    {
+      "start": 3599.03,
+      "duration": 5.23,
+      "text": "And so what's\ninteresting to ask is,"
+    },
+    {
+      "start": 3604.26,
+      "duration": 7.46,
+      "text": "how does this probability\nvary with different drifts"
+    },
+    {
+      "start": 3611.72,
+      "duration": 1.945,
+      "text": "and volatilities?"
+    },
+    {
+      "start": 3613.665,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 3614.165,
+      "duration": 6.135,
+      "text": "So here's the graph\nof these probabilities"
+    },
+    {
+      "start": 3620.3,
+      "duration": 6.13,
+      "text": "of hitting b before a when x--"
+    },
+    {
+      "start": 3626.43,
+      "duration": 4.25,
+      "text": "well, when a is 0."
+    },
+    {
+      "start": 3630.68,
+      "duration": 9.21,
+      "text": "So if we have 0 here\nand b is equal to 3,"
+    },
+    {
+      "start": 3639.89,
+      "duration": 10.14,
+      "text": "then here's the initial\nvalue x between 0 and 3."
+    },
+    {
+      "start": 3650.03,
+      "duration": 5.81,
+      "text": "And we have the probabilities\nof hitting b before a"
+    },
+    {
+      "start": 3655.84,
+      "duration": 6.01,
+      "text": "And if our mu is very\nhigh, so the trend"
+    },
+    {
+      "start": 3661.85,
+      "duration": 3.81,
+      "text": "is up in the Brownian motion--"
+    },
+    {
+      "start": 3665.66,
+      "duration": 5.76,
+      "text": "so basically, if mu is\ngreater than 0, then"
+    },
+    {
+      "start": 3671.42,
+      "duration": 5.65,
+      "text": "we basically have an\nupward-trending path on average,"
+    },
+    {
+      "start": 3677.07,
+      "duration": 4.19,
+      "text": "and we get high probabilities\nof hitting b first."
+    },
+    {
+      "start": 3681.26,
+      "duration": 9.7,
+      "text": "And as we decrease the\ndrift from 3 down to 0.5,"
+    },
+    {
+      "start": 3690.96,
+      "duration": 2.24,
+      "text": "we get this Brown curve."
+    },
+    {
+      "start": 3693.2,
+      "duration": 4.59,
+      "text": "And the limiting case,\nwhere mu is equal to 0,"
+    },
+    {
+      "start": 3697.79,
+      "duration": 8.67,
+      "text": "so there's no drift at all,\ncorresponds to the probability"
+    },
+    {
+      "start": 3706.46,
+      "duration": 2.19,
+      "text": "given by this line."
+    },
+    {
+      "start": 3708.65,
+      "duration": 5.76,
+      "text": "And so given the starting\nvalue x, the closer you"
+    },
+    {
+      "start": 3714.41,
+      "duration": 6.12,
+      "text": "are to b, the more likely you\nwill be to hit b first and vice"
+    },
+    {
+      "start": 3720.53,
+      "duration": 2.13,
+      "text": "versa with a."
+    },
+    {
+      "start": 3722.66,
+      "duration": 7.34,
+      "text": "So these probabilities vary with\nthe different model parameters."
+    },
+    {
+      "start": 3730.0,
+      "duration": 6.29,
+      "text": "Here is the corresponding graph\nwhen there's a negative drift."
+    },
+    {
+      "start": 3736.29,
+      "duration": 10.55,
+      "text": "So the likelihood\nof hitting b first"
+    },
+    {
+      "start": 3746.84,
+      "duration": 6.94,
+      "text": "is proportional when\nthe drift term is 0--"
+    },
+    {
+      "start": 3753.78,
+      "duration": 2.86,
+      "text": "basically how\nclose you are to b."
+    },
+    {
+      "start": 3756.64,
+      "duration": 7.8,
+      "text": "But as we increase the\nmagnitude of the negative drift,"
+    },
+    {
+      "start": 3764.44,
+      "duration": 3.92,
+      "text": "we basically get lower and\nlower probabilities coming out."
+    },
+    {
+      "start": 3768.36,
+      "duration": 2.79,
+      "text": "So that's that solution."
+    },
+    {
+      "start": 3771.15,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 3771.65,
+      "duration": 1.93,
+      "text": "So let's see."
+    },
+    {
+      "start": 3773.58,
+      "duration": 3.03,
+      "text": "The next comment\nabout Brownian motion"
+    },
+    {
+      "start": 3776.61,
+      "duration": 5.73,
+      "text": "is a very important property\nthat the Brownian motion process"
+    },
+    {
+      "start": 3782.34,
+      "duration": 2.22,
+      "text": "is not differentiable."
+    },
+    {
+      "start": 3784.56,
+      "duration": 2.5,
+      "text": "So when you look at a\nBrownian motion path,"
+    },
+    {
+      "start": 3787.06,
+      "duration": 1.62,
+      "text": "it looks very jagged."
+    },
+    {
+      "start": 3788.68,
+      "duration": 5.06,
+      "text": "And in fact, that jaggedness\nis characteristic of there"
+    },
+    {
+      "start": 3793.74,
+      "duration": 4.14,
+      "text": "not being a smooth derivative,\nor it's not being smooth enough"
+    },
+    {
+      "start": 3797.88,
+      "duration": 1.66,
+      "text": "to compute a derivative."
+    },
+    {
+      "start": 3799.54,
+      "duration": 4.31,
+      "text": "And so if we look at the\nincrement of the Brownian motion"
+    },
+    {
+      "start": 3803.85,
+      "duration": 3.21,
+      "text": "from t to t plus\ndelta t and have"
+    },
+    {
+      "start": 3807.06,
+      "duration": 5.25,
+      "text": "that being normal with mean\n0 and variance delta t,"
+    },
+    {
+      "start": 3812.31,
+      "duration": 1.77,
+      "text": "the length of that increment--"
+    },
+    {
+      "start": 3814.08,
+      "duration": 5.44,
+      "text": "if we normalize the\nincrement by delta t--"
+    },
+    {
+      "start": 3819.52,
+      "duration": 1.64,
+      "text": "so we're basically\ntrying to look"
+    },
+    {
+      "start": 3821.16,
+      "duration": 6.36,
+      "text": "at the slope between\nt and t plus delta t--"
+    },
+    {
+      "start": 3827.52,
+      "duration": 4.86,
+      "text": "then that has a normal\ndistribution with mean 0,"
+    },
+    {
+      "start": 3832.38,
+      "duration": 3.81,
+      "text": "but variance 1 over delta t."
+    },
+    {
+      "start": 3836.19,
+      "duration": 6.24,
+      "text": "So this normalized\nincrement is going to not be"
+    },
+    {
+      "start": 3842.43,
+      "duration": 1.99,
+      "text": "well defined in the limit."
+    },
+    {
+      "start": 3844.42,
+      "duration": 2.51,
+      "text": "It's basically going\nto be equivalent to--"
+    },
+    {
+      "start": 3846.93,
+      "duration": 4.3,
+      "text": "or the limiting value\nbasically doesn't exist."
+    },
+    {
+      "start": 3851.23,
+      "duration": 3.82,
+      "text": "It basically becomes an\nexplosive distribution."
+    },
+    {
+      "start": 3855.05,
+      "duration": 7.42,
+      "text": "So that's a very important\nproperty of Brownian motion."
+    },
+    {
+      "start": 3862.47,
+      "duration": 4.53,
+      "text": "Something that is a positive\nproperty of Brownian motion"
+    },
+    {
+      "start": 3867.0,
+      "duration": 5.58,
+      "text": "is the issue of\nquadratic variation."
+    },
+    {
+      "start": 3872.58,
+      "duration": 5.16,
+      "text": "And so to define\nquadratic variation,"
+    },
+    {
+      "start": 3877.74,
+      "duration": 6.913,
+      "text": "we consider looking at\npartitions of the time."
+    },
+    {
+      "start": 3889.47,
+      "duration": 9.15,
+      "text": "So we have pi, which is, what, a\npartition of the interval from 0"
+    },
+    {
+      "start": 3898.62,
+      "duration": 2.37,
+      "text": "to t, say--"
+    },
+    {
+      "start": 3900.99,
+      "duration": 3.97,
+      "text": "or 0 to capital T."
+    },
+    {
+      "start": 3904.96,
+      "duration": 7.14,
+      "text": "So we have a time scale\nfinishing at T, starting at 0."
+    },
+    {
+      "start": 3912.1,
+      "duration": 6.09,
+      "text": "And we can just draw arbitrary\npoints t, j, j equaling 1 up"
+    },
+    {
+      "start": 3918.19,
+      "duration": 14.43,
+      "text": "to n, say, or 1 to n minus 1,\nthat are inside this interval."
+    },
+    {
+      "start": 3932.62,
+      "duration": 1.273,
+      "text": "And they're ordered."
+    },
+    {
+      "start": 3937.78,
+      "duration": 7.92,
+      "text": "If we consider the partition\ncorresponding to these time"
+    },
+    {
+      "start": 3945.7,
+      "duration": 4.8,
+      "text": "points, we can\ndefine a magnitude"
+    },
+    {
+      "start": 3950.5,
+      "duration": 12.09,
+      "text": "of the partition equal to the\nmaximum of tj minus tj minus 1"
+    },
+    {
+      "start": 3962.59,
+      "duration": 0.995,
+      "text": "over j."
+    },
+    {
+      "start": 3968.5,
+      "duration": 4.41,
+      "text": "And then we can talk about\nthe quadratic variation"
+    },
+    {
+      "start": 3972.91,
+      "duration": 5.22,
+      "text": "of the process, which\nis to look at increments"
+    },
+    {
+      "start": 3978.13,
+      "duration": 8.07,
+      "text": "of b over these intervals\nfrom between tj minus 1"
+    },
+    {
+      "start": 3986.2,
+      "duration": 7.5,
+      "text": "and tj, square those, and sum\nthe squared of those values."
+    },
+    {
+      "start": 3993.7,
+      "duration": 8.94,
+      "text": "This is an appropriate term\nfor a quadratic variation."
+    },
+    {
+      "start": 4002.64,
+      "duration": 14.7,
+      "text": "And if we consider the limit\nas the partition width gets"
+    },
+    {
+      "start": 4017.34,
+      "duration": 3.84,
+      "text": "narrower and\nnarrower, then we'll"
+    },
+    {
+      "start": 4021.18,
+      "duration": 5.28,
+      "text": "define this limiting value\nto be the quadratic variation"
+    },
+    {
+      "start": 4026.46,
+      "duration": 3.54,
+      "text": "of the Brownian motion process."
+    },
+    {
+      "start": 4030.0,
+      "duration": 3.48,
+      "text": "So we can define the quadratic\nvariation corresponding"
+    },
+    {
+      "start": 4033.48,
+      "duration": 4.96,
+      "text": "to a given partition and then\nthe quadratic variation overall,"
+    },
+    {
+      "start": 4038.44,
+      "duration": 2.24,
+      "text": "if we take the limit\nover partitions that are"
+    },
+    {
+      "start": 4040.68,
+      "duration": 4.05,
+      "text": "getting infinitesimally small."
+    },
+    {
+      "start": 4044.73,
+      "duration": 5.61,
+      "text": "And the claim is that\nthis quadratic variation"
+    },
+    {
+      "start": 4050.34,
+      "duration": 6.09,
+      "text": "is going to equal capital\nT, the length of the period,"
+    },
+    {
+      "start": 4056.43,
+      "duration": 3.84,
+      "text": "with probability 1."
+    },
+    {
+      "start": 4060.27,
+      "duration": 1.72,
+      "text": "So what does that mean?"
+    },
+    {
+      "start": 4061.99,
+      "duration": 8.57,
+      "text": "That means that for\nevery realization"
+    },
+    {
+      "start": 4070.56,
+      "duration": 6.31,
+      "text": "of the process, or\nalmost every realization,"
+    },
+    {
+      "start": 4076.87,
+      "duration": 6.33,
+      "text": "this quadratic variation is\ngoing to equal a constant."
+    },
+    {
+      "start": 4083.2,
+      "duration": 9.24,
+      "text": "So here, I'm looking at\nexamples of random walks"
+    },
+    {
+      "start": 4092.44,
+      "duration": 8.11,
+      "text": "that are normalized to\nbe between time 0 and 1."
+    },
+    {
+      "start": 4100.55,
+      "duration": 2.54,
+      "text": "So these are the\nnormalized random walks,"
+    },
+    {
+      "start": 4103.09,
+      "duration": 2.82,
+      "text": "which are effectively\nBrownian-- or whose"
+    },
+    {
+      "start": 4105.91,
+      "duration": 2.279,
+      "text": "limits are Brownian motion."
+    },
+    {
+      "start": 4108.189,
+      "duration": 2.13,
+      "text": "And in the top\npanel, I'm drawing"
+    },
+    {
+      "start": 4110.319,
+      "duration": 5.531,
+      "text": "the path of the random\nwalk, with Gaussian steps."
+    },
+    {
+      "start": 4115.85,
+      "duration": 3.53,
+      "text": "And in the bottom, I'm drawing\nthe cumulative quadratic"
+    },
+    {
+      "start": 4119.38,
+      "duration": 2.97,
+      "text": "variation."
+    },
+    {
+      "start": 4122.35,
+      "duration": 4.049,
+      "text": "So this is up to 20,\n30, 40 steps now."
+    },
+    {
+      "start": 4126.399,
+      "duration": 8.701,
+      "text": "As we increase to 100 steps,\nthis cumulative quadratic"
+    },
+    {
+      "start": 4135.1,
+      "duration": 7.379,
+      "text": "variation is getting\npretty close to the time t"
+    },
+    {
+      "start": 4142.479,
+      "duration": 3.701,
+      "text": "over which we're accumulating\nthe quadratic variation."
+    },
+    {
+      "start": 4146.18,
+      "duration": 11.7,
+      "text": "And as we increase the number\nof steps from 200 to many more--"
+    },
+    {
+      "start": 4157.88,
+      "duration": 3.559,
+      "text": "1,000 and then 2,000--"
+    },
+    {
+      "start": 4161.439,
+      "duration": 3.481,
+      "text": "you can see that, basically,\nthe quadratic variation"
+    },
+    {
+      "start": 4164.92,
+      "duration": 4.59,
+      "text": "of the process\ncumulates, basically,"
+    },
+    {
+      "start": 4169.51,
+      "duration": 4.95,
+      "text": "to the time period over\nwhich that's being cumulated."
+    },
+    {
+      "start": 4174.46,
+      "duration": 5.859,
+      "text": "So this property is a\nreally nice property."
+    },
+    {
+      "start": 4180.319,
+      "duration": 3.441,
+      "text": "What it highlights\nis that there are"
+    },
+    {
+      "start": 4183.76,
+      "duration": 5.79,
+      "text": "some significant regularities\nto Brownian motion."
+    },
+    {
+      "start": 4189.55,
+      "duration": 9.42,
+      "text": "And the regularity here is that\nthe variation of the increments"
+    },
+    {
+      "start": 4198.97,
+      "duration": 4.74,
+      "text": "normalizes, basically, to\nthe length of the period"
+    },
+    {
+      "start": 4203.71,
+      "duration": 1.51,
+      "text": "over which they're accumulated."
+    },
+    {
+      "start": 4205.22,
+      "duration": 4.91,
+      "text": "So the quadratic variation is\nproportional to the time period."
+    },
+    {
+      "start": 4210.13,
+      "duration": 5.31,
+      "text": "Now, this idea, or this\nproperty of Brownian motion,"
+    },
+    {
+      "start": 4215.44,
+      "duration": 6.0,
+      "text": "is one that can be\nexplored with time series"
+    },
+    {
+      "start": 4221.44,
+      "duration": 4.71,
+      "text": "that we might think are\nwell-modeled by Brownian motion."
+    },
+    {
+      "start": 4226.15,
+      "duration": 14.79,
+      "text": "So if we were to look at a time\nseries of the log of Pt divided"
+    },
+    {
+      "start": 4240.94,
+      "duration": 14.29,
+      "text": "by P0 for Pt equal to\n0, 1, up to capital N,"
+    },
+    {
+      "start": 4255.23,
+      "duration": 4.81,
+      "text": "basically, for prices of\nassets and equity markets,"
+    },
+    {
+      "start": 4260.04,
+      "duration": 7.166,
+      "text": "this corresponds to the log\nreturn from time 0 to t."
+    },
+    {
+      "start": 4267.206,
+      "duration": 8.844,
+      "text": "And that log return from 0 to t\nmight follow a Brownian motion"
+    },
+    {
+      "start": 4276.05,
+      "duration": 6.52,
+      "text": "process with drift,\npositive return."
+    },
+    {
+      "start": 4282.57,
+      "duration": 6.78,
+      "text": "And so we basically can\nhave this process evolving."
+    },
+    {
+      "start": 4289.35,
+      "duration": 5.96,
+      "text": "If we were to calculate\nthe quadratic variation"
+    },
+    {
+      "start": 4295.31,
+      "duration": 5.966,
+      "text": "of this process,\nthen if it followed--"
+    },
+    {
+      "start": 4304.76,
+      "duration": 2.91,
+      "text": "if it followed a\nBrownian motion process,"
+    },
+    {
+      "start": 4307.67,
+      "duration": 5.04,
+      "text": "it would tend to grow\naccording to a straight line,"
+    },
+    {
+      "start": 4312.71,
+      "duration": 6.75,
+      "text": "with slope equal\nto sigma squared."
+    },
+    {
+      "start": 4319.46,
+      "duration": 5.19,
+      "text": "And in empirical\nmodeling, if we look"
+    },
+    {
+      "start": 4324.65,
+      "duration": 3.57,
+      "text": "at this quadratic\nvariation of an asset"
+    },
+    {
+      "start": 4328.22,
+      "duration": 5.67,
+      "text": "and see that it's\nnot a straight line--"
+    },
+    {
+      "start": 4333.89,
+      "duration": 3.06,
+      "text": "there may be periods\nwhere the slope is low"
+    },
+    {
+      "start": 4336.95,
+      "duration": 5.25,
+      "text": "and periods where the slope is\nhigher and it curves around--"
+    },
+    {
+      "start": 4342.2,
+      "duration": 4.5,
+      "text": "a way of trying to model\nthe dynamic volatility"
+    },
+    {
+      "start": 4346.7,
+      "duration": 9.0,
+      "text": "could be suggested by studying\nthese plots and using them."
+    },
+    {
+      "start": 4355.7,
+      "duration": 4.68,
+      "text": "So it's a very\ninteresting property."
+    },
+    {
+      "start": 4360.38,
+      "duration": 3.15,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4366.47,
+      "duration": 0.73,
+      "text": "Let's see."
+    },
+    {
+      "start": 4367.2,
+      "duration": 5.22,
+      "text": "There's one last note in\nthe slide in the notes."
+    },
+    {
+      "start": 4372.42,
+      "duration": 11.27,
+      "text": "But before doing that,\nI wanted to highlight"
+    },
+    {
+      "start": 4383.69,
+      "duration": 8.62,
+      "text": "a connection of Brownian motion\nto the Laplace distribution."
+    },
+    {
+      "start": 4392.31,
+      "duration": 5.426,
+      "text": "And so if we have--"
+    },
+    {
+      "start": 4397.736,
+      "duration": 1.014,
+      "text": "let's see."
+    },
+    {
+      "start": 4398.75,
+      "duration": 9.96,
+      "text": "If we have B of t, which\nis Brownian motion,"
+    },
+    {
+      "start": 4408.71,
+      "duration": 6.613,
+      "text": "and we observe it at--"
+    },
+    {
+      "start": 4418.19,
+      "duration": 4.223,
+      "text": "let's see-- if we look\nat, basically, x of--"
+    },
+    {
+      "start": 4428.13,
+      "duration": 7.38,
+      "text": "if we observe it at\ntimes t equals 0, 1, 2,"
+    },
+    {
+      "start": 4435.51,
+      "duration": 10.38,
+      "text": "discrete times, then\nthe delta B of t"
+    },
+    {
+      "start": 4445.89,
+      "duration": 5.88,
+      "text": "are distributed as\nnormal with mean--"
+    },
+    {
+      "start": 4451.77,
+      "duration": 8.02,
+      "text": "I guess it's mu t and variance\nsigma squared times 1,"
+    },
+    {
+      "start": 4459.79,
+      "duration": 2.12,
+      "text": "which is delta t."
+    },
+    {
+      "start": 4461.91,
+      "duration": 1.37,
+      "text": "And these are iid."
+    },
+    {
+      "start": 4466.89,
+      "duration": 8.22,
+      "text": "So we have, basically, time\npoints 0, 1, 2, and so forth."
+    },
+    {
+      "start": 4475.11,
+      "duration": 2.85,
+      "text": "If instead of\nobserving the process"
+    },
+    {
+      "start": 4477.96,
+      "duration": 4.86,
+      "text": "at equal increments\nof time, let's"
+    },
+    {
+      "start": 4482.82,
+      "duration": 5.32,
+      "text": "consider the possibility that\nthe time increments are random."
+    },
+    {
+      "start": 4488.14,
+      "duration": 17.1,
+      "text": "So let's consider B of t for\nt equal to T1, T2, up to Tn,"
+    },
+    {
+      "start": 4505.24,
+      "duration": 5.55,
+      "text": "where the delta T's,\nthe increments of time,"
+    },
+    {
+      "start": 4510.79,
+      "duration": 4.92,
+      "text": "are distributed as an\nexponential random variable,"
+    },
+    {
+      "start": 4515.71,
+      "duration": 3.57,
+      "text": "with some mean lambda, say."
+    },
+    {
+      "start": 4519.28,
+      "duration": 5.47,
+      "text": "So we're not observing the\nprocess at regular intervals."
+    },
+    {
+      "start": 4524.75,
+      "duration": 3.89,
+      "text": "We're observing it\nat random intervals."
+    },
+    {
+      "start": 4528.64,
+      "duration": 5.94,
+      "text": "It turns out, then,\nthat the Brownian motion"
+    },
+    {
+      "start": 4534.58,
+      "duration": 9.51,
+      "text": "process has increments that\nare Laplace distributed."
+    },
+    {
+      "start": 4544.09,
+      "duration": 6.62,
+      "text": "So the delta B of t,\nthen will, in fact,"
+    },
+    {
+      "start": 4550.71,
+      "duration": 4.53,
+      "text": "have what's called a\nLaplace distribution."
+    },
+    {
+      "start": 4555.24,
+      "duration": 5.7,
+      "text": "And so instead of having\na bell-shaped curve, which"
+    },
+    {
+      "start": 4560.94,
+      "duration": 2.91,
+      "text": "is a Gaussian\ndistribution, it'll"
+    },
+    {
+      "start": 4563.85,
+      "duration": 7.14,
+      "text": "be a bilateral, exponential\ndistribution about the mean."
+    },
+    {
+      "start": 4570.99,
+      "duration": 7.36,
+      "text": "And it turns out that with\nStandard and Poor's 500 returns,"
+    },
+    {
+      "start": 4578.35,
+      "duration": 5.69,
+      "text": "this Laplace model seems to\nfit the data much better, which"
+    },
+    {
+      "start": 4584.04,
+      "duration": 5.46,
+      "text": "leads to the consideration of\nwhat are called subordinated"
+    },
+    {
+      "start": 4589.5,
+      "duration": 4.02,
+      "text": "stochastic processes,\nwhere the time scale is"
+    },
+    {
+      "start": 4593.52,
+      "duration": 4.08,
+      "text": "different than our clock time."
+    },
+    {
+      "start": 4597.6,
+      "duration": 0.76,
+      "text": "All right."
+    },
+    {
+      "start": 4598.36,
+      "duration": 0.98,
+      "text": "Well, let's see."
+    },
+    {
+      "start": 4599.34,
+      "duration": 5.14,
+      "text": "The final slide here for today\naddresses what are called"
+    },
+    {
+      "start": 4604.48,
+      "duration": 2.02,
+      "text": "adapted processes."
+    },
+    {
+      "start": 4606.5,
+      "duration": 6.53,
+      "text": "And so in financial\nmodeling, we can"
+    },
+    {
+      "start": 4613.03,
+      "duration": 6.39,
+      "text": "think of there being a\nstochastic process X of t"
+    },
+    {
+      "start": 4619.42,
+      "duration": 5.25,
+      "text": "characterizing relevant\ndynamics in the system."
+    },
+    {
+      "start": 4624.67,
+      "duration": 4.44,
+      "text": "And we can think\nof X representing"
+    },
+    {
+      "start": 4629.11,
+      "duration": 3.21,
+      "text": "the prices of a single asset\nor a collection of assets"
+    },
+    {
+      "start": 4632.32,
+      "duration": 1.9,
+      "text": "as it varies over time."
+    },
+    {
+      "start": 4634.22,
+      "duration": 6.35,
+      "text": "Then, as we let\ntime increase, there"
+    },
+    {
+      "start": 4640.57,
+      "duration": 6.99,
+      "text": "are events that relate to\nwhat has happened so far."
+    },
+    {
+      "start": 4647.56,
+      "duration": 6.45,
+      "text": "And we can think of\nthese script F sub t"
+    },
+    {
+      "start": 4654.01,
+      "duration": 4.53,
+      "text": "to be the information\non realizations"
+    },
+    {
+      "start": 4658.54,
+      "duration": 2.37,
+      "text": "up to time little t."
+    },
+    {
+      "start": 4660.91,
+      "duration": 7.59,
+      "text": "And if we consider script\nF sub t prime with t"
+    },
+    {
+      "start": 4668.5,
+      "duration": 2.94,
+      "text": "prime greater than t,\nthen that corresponds"
+    },
+    {
+      "start": 4671.44,
+      "duration": 3.27,
+      "text": "to information about\nall realizations from t"
+    },
+    {
+      "start": 4674.71,
+      "duration": 1.36,
+      "text": "up until t prime."
+    },
+    {
+      "start": 4676.07,
+      "duration": 2.3,
+      "text": "So it's giving us\nmore information"
+    },
+    {
+      "start": 4678.37,
+      "duration": 2.97,
+      "text": "about what's happened\nwith the process."
+    },
+    {
+      "start": 4681.34,
+      "duration": 11.52,
+      "text": "Well, if we want to look at the\nstochastic modeling of a process"
+    },
+    {
+      "start": 4692.86,
+      "duration": 7.05,
+      "text": "Y that depends on trading\non assets with dynamics X,"
+    },
+    {
+      "start": 4699.91,
+      "duration": 7.62,
+      "text": "then we want our\nprocess Y to be adapted"
+    },
+    {
+      "start": 4707.53,
+      "duration": 6.04,
+      "text": "to X, which essentially means we\ncan't see the future in trading."
+    },
+    {
+      "start": 4713.57,
+      "duration": 6.47,
+      "text": "And so our Y of t, which is\nperhaps the value of trading up"
+    },
+    {
+      "start": 4720.04,
+      "duration": 6.3,
+      "text": "until time t, is a\nfunction only of the values"
+    },
+    {
+      "start": 4726.34,
+      "duration": 3.45,
+      "text": "of the process prior to time t."
+    },
+    {
+      "start": 4729.79,
+      "duration": 5.25,
+      "text": "And so we consider\ntransformations"
+    },
+    {
+      "start": 4735.04,
+      "duration": 7.23,
+      "text": "of our original process to the\nprocess of, say, trading gains"
+    },
+    {
+      "start": 4742.27,
+      "duration": 3.37,
+      "text": "and losses, according to\nsome trading strategy."
+    },
+    {
+      "start": 4745.64,
+      "duration": 7.47,
+      "text": "And these will be well defined\nif the process is adapted."
+    },
+    {
+      "start": 4753.11,
+      "duration": 7.25,
+      "text": "So with that, the topics\nconnect with what we had"
+    },
+    {
+      "start": 4760.36,
+      "duration": 2.97,
+      "text": "in our previous\nlecture, which was"
+    },
+    {
+      "start": 4763.33,
+      "duration": 5.85,
+      "text": "we can have martingales\ndefined on X,"
+    },
+    {
+      "start": 4769.18,
+      "duration": 3.66,
+      "text": "and then we can define\nmartingales relating"
+    },
+    {
+      "start": 4772.84,
+      "duration": 10.52,
+      "text": "to Y when we combine\nadaptive functions to X."
+    },
+    {
+      "start": 4783.36,
+      "duration": 4.79,
+      "text": "And so the martingale theory\nextends to modeling trading"
+    },
+    {
+      "start": 4788.15,
+      "duration": 2.05,
+      "text": "strategies, effectively."
+    },
+    {
+      "start": 4790.2,
+      "duration": 3.53,
+      "text": "And what's interesting\nwith those techniques"
+    },
+    {
+      "start": 4793.73,
+      "duration": 5.7,
+      "text": "is that you end up\ntransforming the process"
+    },
+    {
+      "start": 4799.43,
+      "duration": 2.73,
+      "text": "to have a constant mean."
+    },
+    {
+      "start": 4802.16,
+      "duration": 3.19,
+      "text": "Martingales are processes\nwith a constant mean."
+    },
+    {
+      "start": 4805.35,
+      "duration": 7.49,
+      "text": "And so those arguments are\napplied again and again"
+    },
+    {
+      "start": 4812.84,
+      "duration": 2.08,
+      "text": "in solving for their properties."
+    },
+    {
+      "start": 4814.92,
+      "duration": 9.56,
+      "text": "And option pricing can be\nexpressed in this context"
+    },
+    {
+      "start": 4824.48,
+      "duration": 1.18,
+      "text": "as well."
+    },
+    {
+      "start": 4825.66,
+      "duration": 0.84,
+      "text": "All right."
+    },
+    {
+      "start": 4826.5,
+      "duration": 2.49,
+      "text": "We'll finish there for today."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: Today, we're going to talk about stochastic processes, the second set of lectures. And we're going to begin with a discussion of Brownian motion. Brownian motion is a process that I'm sure most of you have heard of. And it was named after Robert Brown, an English botanist. And this is an interesting case where a scientist observes some dynamics in nature and then is concerned about what mathematical model might describe that behavior. Turns out that it was, I guess, Albert Einstein who formalized this Brownian motion model, mathematically. And Norbert Wiener, our MIT hero-- those of you familiar with the math department know about the Norbert Wiener room that we have-- and he developed the mathematical foundation for Brownian motion. Now, let's take a look at a simulation of Brownian motion in two dimensions. So this is the kind of dynamics that Brown was observing. And so in these slides, we're going to start the process at the origin of the space, where the red dot is, and then move around in two dimensions, where each step is a random move in the x direction and a random move in the y direction. And for this simulation, we use Gaussian distributions. But as I page through these graphs, one can see how a particle moving according to these dynamics will start at the origin and evolve to the final red dot. And if we hold down the graphs and see where it goes, you can see that basically there's purely random dynamics but of a very special kind. And so the special kind is that the movements are jagged and unpredictable in terms of their direction. Something that's really quite interesting when you just look at this and page through the dynamics here, animating the process, the movements, in fact, have no trend in them to move left or up or down. And so the movements we see basically are movements that are symmetrical in their dynamics. And so that's a very interesting property that we would like to characterize mathematically. So let's look at how we define Brownian motion in one dimension. So in one dimension, we are simply looking at a graph. Let me find the eraser here. OK. In one dimension, we have time t. And we're going to think of a process Bt, which will start at 0. And then it's going to evolve over time in such a way that the increments of the process from t to t plus delta t-- so if we have t and t plus delta t here, and we look at B of t here and B of t plus delta t-- this vertical increment is going to be normally distributed for any increment of time delta t. And the normal distribution for the magnitude of that increment will be a normal random variable with mean 0 and a variance that is proportional to the length of the interval. So as we consider increments, delta t that are larger will have greater variation in the vertical increment that's normally distributed. Now, in addition to normal increments, we have independent, disjoint increments. So if we have different time points, like t1, t2, and then t3, t4-- if these increments are separate or disjoint from each other, then the change from t1 to t2 and the change from t3 to t4, those will be independent random variables. Finally, B of t turns out to be a continuous function of time if it satisfies these properties. And so this is a very simple model in terms of a continuous time stochastic process. Now, the properties of Brownian motion are that it's a Markov process. So if we're looking at the value at B of t plus delta t at this time point, that is equal to the value at any prior time point-- well, at B of t-- plus the increment. And so given the information set up to time little t, the conditional distribution simply is equal to that starting point, B of t, plus the random increment. So displacements are independent of the past, apart from the last value of the past. OK. Mean and variance of B of t-- well, because the increments are normally distributed with mean 0, then the expected value of B of t into the future will stay at 0. But the variance of B of t will increase with time, and so the standard deviation of B of t will be proportional-- or will be sigma times the square root of t. So if we think of drawing curves which correspond to sigma square root of t, this corresponds to 1 standard deviation above the 0 mean for the process. OK. The covariance function of Brownian motion-- if we want to look at the covariance between two times, s and t-- so suppose here is time s, in here is time t-- then the process paths to time t include the process paths up to time s, but then have this independent increment beyond time s. And so when we look at the covariance of the process at times s and t, it's equal to the expected value of the product. But we can split B of t into B of s plus the increment, and we simply get sigma squared s for the covariance. So the degree to which the process is correlated with other values of the process, it depends on how much overlap there is in the time intervals corresponding to those two values. Now, this process that starts at 0, B of 0 or B sub 0 or B of 0 equal to 0, we could start it at any other level and have a process that has similar properties but just has a different mean level from time 0. So we can talk about starting the Brownian motion at any given point. And so in order to work with these models, we'll find it convenient to introduce the notation for normal random variables. And so if we have Z be a standard normal, that is a normal distribution with mean 0 and standard deviation 1, then the probability density function is given by this formula. I'm sure everyone is comfortable with that. And the cumulative distribution function is simply the integral of the density from minus infinity up to c for phi of c. And this notation of small case phi and uppercase Phi are standard for referring to Gaussian or normal densities in cdf's. Well, if we have a normal with non-zero mean mu and variance tau squared, or standard deviation tau, then we have the density of this normal Y is a simple function of the density of the standard normal. We simply subtract the mean mu and divide by tau inside phi, and we have a tau denominator factor in front. And what's particularly convenient at times is that, if we want to calculate the cdf of Y, then this cdf of Y is actually the cdf under the standard normal of c minus mu over tau. So we basically have Y is equal to mu plus sigma or tau z. And so z is equal to Y minus mu over tau. And so we're just substituting in this equation for Y in terms of z. Now, the probability model of the whole Brownian motion process is given by-- or we can represent it by saying the conditional distribution of the time t value, given the time s value, is normally distributed with mean equal to the time s value, X, and variance sigma squared times the length of the increment. So its pdf has this form. So the notation here is the density of y at time t, given x, the value at time s. We have this Gaussian density that's centered at x. And the variance of y depends on the increment from s to t multiplied by the sigma squared. Now, with this probability model, it turns out this density function satisfies the diffusion equation. And the diffusion equation is going to arise again and again in this course, especially when we get into the valuation of derivatives. And so for now, let's just understand this diffusion equation. It says that the partial derivative of p with respect to time t is equal to a multiple of the second partial derivative of p with respect to y. So this is easy to verify for s equals 0 and sigma equals 1. And if we look at this set of graphs, here's the density of X, given-- or let's say, here's, essentially, the density of Y represented by X. So the notation symbol here is we're using X now instead of Y. And we're considering the initial value of the Brownian motion being 0. And if we increase time, then this normal density drops in the middle and it increases far from the middle. And so the change in the density is negative near the middle and positive outside. And that's because, if we look at the second derivative of this density function, it's positive, then it's negative for the second derivative. The curvature is negative. And then it switches from being a negative curvature to a positive curvature. And those points of inflection with the normal density are actually at plus and minus 1 standard deviation. So if we increase the time from 1 to 2 to 3, or 2.5 here, you can see how it's basically dropping in the middle of the distribution and it's rising on the other side. So this kind of motion or dynamics satisfies the diffusion equation. And so what's, I think, important is just to have a good sense of what it means when a function such as the density satisfies this diffusion equation. Now, let's see. This diffusion equation relates to a conservation of probability for every x. So regardless of what the starting value is, we have the probability density integrating to 1 always. And it turns out that this density is a unique solution to this diffusion equation. So an important issue in the mathematical development framework for models is our solutions to our equations. Do they exist? Are they unique? In fact, for this diffusion equation, we get a unique solution satisfying the properties. OK. In other disciplines-- well, in physics, there's a heat equation. Let's see. In the dynamics of populations, there's the Fokker-Planck equation and Kolmogorov Forward equation. These arise outside of mathematical Brownian motion as well. Now, the interesting question perhaps, or at least the interesting question to mathematicians is, how do we really define Brownian motion formally as a stochastic process? And so it turns out that Brownian motion can be defined as the limiting stochastic process corresponding to a random walk. So let's consider random variables X indexed by integers that are independent and identically distributed. And let's assume that those X's have mean 0 and standard deviation 1. Then, if we look at the random walk with steps X1 to Xn for the n-th position of the random walk, then the limiting distribution of the normalized random walk is actually a standard normal distribution. So phi of c is our standard normal cumulative distribution function. The standardized random walk will in the limit, as n grows large, have a Gaussian distribution with mean 0 and standard deviation 1. So what we can do is consider normalizing the random-walk process by having the partial sums of the steps divided by root n. But rather than focusing just on those increments, those integer increments, we consider four times, say, between 0 and 1-- we can consider values for time t between, say, integer k over n and integer k over n plus 1 over n to define a continuous path of Bn of t, given s of n and t. And so what we then can do is say, let's consider the limit as the number of increments-- number of steps increases arbitrarily. Let's consider the limiting process. And that turns out to be a Brownian motion process. So with this normalized random-walk process, it turns out that this limiting distribution is-- or this limiting process is invariant to the distribution of the X's. So if we have random walks with independent steps that have mean 0, standard deviation 1, then regardless of what that distribution is, the limiting normalized random walk will be the diffusion process. So let's take a look at two cases for the steps, Bernoulli X's and Gaussian X's, which of course will be Gaussian. And so here is a cumulation or a random walk with 10 steps. The top panel corresponds to unit plus 1 or minus 1 steps, and the bottom panel corresponds to Gaussian steps. And if we increase the number of steps and normalize them by dividing by root t, we end up getting these different paths tracing out. And so what's important in this display is that, as we let n get arbitrarily large, the process will be equivalent to Brownian motion. So we're going to go up to 2,000 steps here. And one can see how this normalized random-walk process evolves. And when we get to the end of the simulation here of 2,000 steps, this is what we have. And so the key takeaway is that the limiting process will be a Brownian motion, and it doesn't matter what the step distribution is in the limit. And so this implies that this model may be useful in a variety of contexts, where underlying steps of the process increments may have some distribution that's non-Gaussian. But the distribution of increments over long periods of time will then follow the diffusion. So the key properties of Brownian motion are independent increments. And the variance of those increments are proportional to the time period between the measures. Now, there's a reflection principle in working with Brownian motion that is very powerful. This is an example where the mathematical theory is a bit tricky. But if you're clever at solving the problem, you may find an elegant, simple solution to the problem. So let's just understand what it means to be reflecting Brownian motion first. So we consider Brownian motion to be the process B of t. And so this will be one realization of the path perhaps. And then if we consider the first time the process hits x and define tau equal to the first time B of t is equal to x, then, OK, this is the first time it hits that level x. If we consider reflecting this path about the level at time x going into the future-- so this would be going like this and then up like that-- This is the mathematical formula for doing a reflection of B be about x. And we'll see some examples of this in a minute. But what is important in these reflected paths is that the probability model for the original process and the reflected process, those are identical. So let's take a look at this reflected Brownian motion simulation. So what I'm doing here is simulating Brownian motion over 10,000 steps and looking at an original process in red, and then reflecting that in green. And because of overlapping colors, I guess, the beginning process at time 0 is the original and the reflected path. So it appears as the reflected. So once it hits this level x in red, the green reflects about x, the value. And it continues reflecting across the remaining path of the original series. Now, here's another realization of reflected Brownian motion, has the same property. And here's a third. Basically, with different realizations of Brownian motion, we'll get different paths. And the reflected paths have these same properties. Now, the interesting question is-- well, it's actually-- let me go back to the notes here. And the interesting question is to ask, what is the maximum of a Brownian motion up to time t? So we can define m of t to be, what is the maximum value that the Brownian motion has realized between time 0 and t? Well, the probability of the maximum exceeding x, some level, will actually be twice the probability that the ending value of the process exceeds x. So let's take a look again at the reflected paths. So if we look at the reflected paths about x, then the red and the green paths have the same probabilities of occurring. Let's see. If we look at whether the ending value of the original Brownian motion-- sorry-- or the ending value of a Brownian motion exceeds a given level, then there will be twice that number, twice those realizations for which the maximum exceeded that level. So for both of these reflected paths, the maximum-- let's see-- the maximum of the path exceeded x. And so looking here, the probability of the maximum exceeding x, well, we can just look at the probability of a path exceeding x at the end point. And the reflected intervals will match those, one for one. And so we basically have the formula that we have twice the final value of the process exceeding x is equal to the probability that the maximum exceeds x. And we can write out what that probability is in terms of the standard normal cdf. Now, from this result, we can differentiate this probability with respect to x and get the density of the maximum. And so let's see here. So here is a graph of the cumulative probability of the maximum exceeding a level x. And this is, basically, we're interested in, what's the probability of exceeding x before time t? And with lower values of x, like 1, the probability is quite high. Let's see. If x is very-- let's see. Or, sorry. Is that x there? Right. OK. So if the maximum is 3, the probability of exceeding 3 is much lower. The probability of exceeding 2 is in the mid-way there. And what's also very interesting is that we can use these results to calculate the density function for the first hitting time of a given level. And so importantly, we have the probability of the max up to time t exceeding x is twice the probability that the ending value exceeds x. And we can differentiate this with respect to t. And we get this density function for the density of the stopping time for hitting a given level x. So let's see here if we have that. So here's the hitting time densities. So with standard Brownian motion, if we're looking at the time to hit the level 1 starting at 0, then there's this nice unimodal distribution for that time, which is relatively short. But if we're looking at hitting times for higher levels, like two or three, then that hitting time distribution spreads out. So now, let's see. We can talk about some extensions of Brownian motion. One is just reflected Brownian motion around 0. So if we have the process bouncing off 0 level, we can think of that process being a positive stochastic process. And it's fairly easy to show that the expected value of this reflected Brownian motion is a multiple of root t, square root of 2 over pi, and the variance is 1 minus 2 over pi t. And we can also consider absorbed Brownian motion. If we consider tau being the first time the level 0-- or level x is hit, then we can define our process being equal to the original Brownian motion B of t, or B at 0 for t greater than tau. And so with absorbed Brownian motion, these kinds of processes are useful, for example, when we have a Brownian motion-like process for a stock price, which is generally positive, so long as the company is viable. But if the company goes bankrupt, then the price gets absorbed at 0. Now, we have another extension of Brownian motion, which is called the Brownian Bridge. And so if we consider a Brownian motion process starting at 0, and it goes up to, let's say, time 1, starting at 0, we can define-- we can define the procedure x, which is equal to B of t-- let's see-- B of t minus tB of 1. Let's see. Is that right? Minus t times B of 1. So if we consider-- let's see-- looking at-- well, let's see. This process, so x of 1 is equal to B of 1 minus 1 times B of 1, which is equal to 0. If we basically draw a line to-- if we consider this line as 1 and this has slope B of 1, then if we subtract tB of 1, we're looking at pinning down the Brownian motion and looking at the distance from a constant slope, tB of 1 and B of t. And this particular process actually arises in a very interesting context of normalized empirical distribution functions. So what do we want to highlight here? If we have a sequence of random variables that are uniformly distributed between 0 and 1 and we calculate their empirical distribution function-- so it's the count of the U's less than or equal to t divided by n-- then this empirical distribution function will have expectation equal to t and variance equal to t times 1 minus t over n. So if we think of these U's-- so we have Ui is distributed uniform from 0 to 1. We have the scale from 0 to 1. And we consider a value Ui as a realization. Then the probability that Ui is less than or equal to t is equal to t. And the variance of the indicator of Ui being less than or equal to t, this is a Bernoulli outcome, which has variance equal to the probability of occurring times the complement of that. So we get this t times 1 minus t being the variance of-- the indicator of the Ui being less than or equal to t. And then if we consider the empirical distribution function, which is summing over these indicators, then we get a process which has a limiting value, which is basically the deviation from its mean, scaled up by root n, is normal with mean 0 and variance t times 1 minus t. And this is actually the Brownian Bridge process. Now, let's see. With these examples where we use uniform random variables and properties of functions of those uniforms, it's important to note that for any continuous distribution, say, Y distributed with some-- this is the cdf of Y. If we calculate F of Y, this happens to be a uniform distribution. So this is the probability integral transform of any random variable. And so when we have this property for the empirical distribution function of uniforms-- well, of uniforms, if we replace the U's, which are uniform 0, 1 by assumption, with a distribution function F of Y, where we have Y1 to Yn iid, with this cdf F sub Y, then the Ui equal to F of Yi F sub Y of i, these will be iid uniform. So that's a really nice result. And it leads to issues involved with modeling model selection. If we want to know whether a given an assumed probability model for Y's is true or not, we can do this transformation and test whether the transformed series or transformed sample is consistent with being uniform or not. All right. Well, with simple Brownian motion, standard Brownian motion, we can consider an extension of that to Brownian motion with drift, mu. So we can consider a drift parameter and a volatility parameter. And such a process will have independent increments, with variances of differences proportional to the time interval between s and t. And we can work with the Brownian motion with drift using a one-step analysis. And in considering this X process-- so X is equal to t mu plus sigma B of t. So this is X of t. If we look at the increment ahead delta t from little t, then expanding out the representation of this Brownian motion with drift, we get that it's equal to the Brownian motion at time little t plus mu delta t plus sigma times the increment of the Brownian motion process from t to t plus delta t. And so increments of X correspond to increments of time plus times the drift rate, mu, plus sigma, the volatility parameter, times the increment of the standard Brownian motion. So our process X, Brownian with drift, will have non-zero mean increments and increments variances that are proportional to the change in time. And this increment will have an exact normal distribution with these properties. And what's particularly important is that, as we let delta t, the length of our increments, get infinitesimal, then the expected squared increment of X ends up being equal to-- well, it's exactly equal to the variance of that increment plus the square of the mean. But the square of the mean is a term that is small order of delta t. So our expected squared increments will be to order delta t equal to sigma squared delta t and then a small order of delta t term after that. Also, if we consider powers of delta X, so our increments to a power, then when our power c is greater than 2-- it's equal to 2 here-- when it's greater than 2, then this will also be a small order delta t. Now, the reason why we're interested in these properties is because we're going to be working, ultimately, with, say, a value of some derivative that depends upon X of t. So there's basically a derivative value, which depends upon the underlying-- I'll just say the underlying asset price. And so the dynamics of the derivative prices can be written as a Taylor series. And so we'll want to be able to deal with increments of X and powers of increments of X as our valuation function may be expressed, if it has a Taylor series representation. All right. So let's consider the problem of Brownian motion underlying a gambler's ruin problem. So let's let X of t be Brownian motion with drift, mu and variance sigma squared. And we'll consider an initial level equal to X that's between two levels, a and b. And we want to consider the stopping time hitting a or b and ask, what's the probability that we hit b first? So over time t, we have, basically, levels a and b and an initial level X at time 0. And we're interested in hitting a or b so tau is equal to the hit time of a or b. And we're interested in, what's the probability of hitting b first before a? And this generalizes our problem in the first lecture on stochastic processes, where we had a random walk with unit steps with drift. So there was a bias of maybe a plus 1 versus a minus 1 occurring. And we wanted to solve for, what's the likelihood of hitting a level b before level a? So with this, we use an infinitesimal one-step analysis. And this solution approach is illustrative of how many problems are solved with stochastic processes. We can define u of x to be the probability function, which is the probability that the stopped process equals b, given that it starts at X. And so if we consider u of x and write it as the expected value of u of x plus delta X, then if our delta t time increment is very, very short, then this expectation will equal u of x. So the likelihood of hitting b first will be the expectation of u of x, a very short increment into the future. And so if we take the expectation with respect to the delta X variable, well, delta X is X of t plus delta t minus X of t-- then if we assume that our function u, this probability, is twice differentiable, then the Taylor series about the center X will equal u of x plus delta X times the first derivative plus a half delta X squared times the second derivative, plus small order terms of delta X squared. And so if we take an expectation of that first Taylor series on both sides, well, the u of x is a constant. And then we have u prime of x, a constant times the expected value of delta X. And then plus a half the expected value of delta x squared times u double prime. And we have mu delta t is the expectation of delta X. Sigma squared delta t plus little o of delta t is the expectation of delta X squared. So we have this expansion from the Taylor series. And from what we said before, this expected value of u evaluated at x plus delta X should simply equal u of x. And if that's true, then we get this equation for u prime and u double prime. And if we take that equation and u prime and u double prime and we divide by delta t, we then get 0 is equal to mu u prime of x plus a half sigma squared u double prime of x. And to be really precise, little o factor to make it an equation. Now, this equation here is a second-order differential equation. And so what are solutions to this second-order differential equation? This is an interesting challenge. Let me just get some more chalk here. It's maybe been a number of years since people have taken differential equations, right? But let's consider, let's see, u double prime over u prime is equal to-- let's see. Have I done this right? u double prime divided by u prime is equal to minus 2 mu over sigma squared. And so this is the derivative is equal to the derivative of the log of u prime. And so if we integrate this, we basically get log of u prime is equal to minus 2 mu over sigma squared x plus a constant. And this is true if mu is not equal to 0. And so we basically get that u prime is equal to e to the minus 2 mu x over sigma squared times a constant. And what if we integrate both sides of this? We then get u. So what function has a derivative equal to an exponential? AUDIENCE: The exponential. PETER KEMPTHORNE: Just the exponential, yeah. So we get u is just going to equal a constant times e to the minus 2 mu over sigma squared x. And if mu is equal to 0, then we have the log of u prime is equal to 0, or the derivative-- yeah, we basically have the derivative of the log of u prime is equal to 0. So we end up getting-- let's see-- basically a linear function for the solution. So let me go to the notes here. Well, we basically get u is equal to Ax plus B, if mu is equal to 0, and it's equal to this constant, A times e to the minus 2 mu x over sigma squared. All right. Well, this general solution has to satisfy the initial conditions. u of a is going to equal 0, and u of b is going to equal 1. So if we start at a, where the-- basically, we stop at a, if we start at a. So u of 0 is going to equal 0. And if we start at b, it's equal to 1. We end up getting this formula for what u is. And so what's interesting to ask is, how does this probability vary with different drifts and volatilities? OK. So here's the graph of these probabilities of hitting b before a when x-- well, when a is 0. So if we have 0 here and b is equal to 3, then here's the initial value x between 0 and 3. And we have the probabilities of hitting b before a And if our mu is very high, so the trend is up in the Brownian motion-- so basically, if mu is greater than 0, then we basically have an upward-trending path on average, and we get high probabilities of hitting b first. And as we decrease the drift from 3 down to 0.5, we get this Brown curve. And the limiting case, where mu is equal to 0, so there's no drift at all, corresponds to the probability given by this line. And so given the starting value x, the closer you are to b, the more likely you will be to hit b first and vice versa with a. So these probabilities vary with the different model parameters. Here is the corresponding graph when there's a negative drift. So the likelihood of hitting b first is proportional when the drift term is 0-- basically how close you are to b. But as we increase the magnitude of the negative drift, we basically get lower and lower probabilities coming out. So that's that solution. OK. So let's see. The next comment about Brownian motion is a very important property that the Brownian motion process is not differentiable. So when you look at a Brownian motion path, it looks very jagged. And in fact, that jaggedness is characteristic of there not being a smooth derivative, or it's not being smooth enough to compute a derivative. And so if we look at the increment of the Brownian motion from t to t plus delta t and have that being normal with mean 0 and variance delta t, the length of that increment-- if we normalize the increment by delta t-- so we're basically trying to look at the slope between t and t plus delta t-- then that has a normal distribution with mean 0, but variance 1 over delta t. So this normalized increment is going to not be well defined in the limit. It's basically going to be equivalent to-- or the limiting value basically doesn't exist. It basically becomes an explosive distribution. So that's a very important property of Brownian motion. Something that is a positive property of Brownian motion is the issue of quadratic variation. And so to define quadratic variation, we consider looking at partitions of the time. So we have pi, which is, what, a partition of the interval from 0 to t, say-- or 0 to capital T. So we have a time scale finishing at T, starting at 0. And we can just draw arbitrary points t, j, j equaling 1 up to n, say, or 1 to n minus 1, that are inside this interval. And they're ordered. If we consider the partition corresponding to these time points, we can define a magnitude of the partition equal to the maximum of tj minus tj minus 1 over j. And then we can talk about the quadratic variation of the process, which is to look at increments of b over these intervals from between tj minus 1 and tj, square those, and sum the squared of those values. This is an appropriate term for a quadratic variation. And if we consider the limit as the partition width gets narrower and narrower, then we'll define this limiting value to be the quadratic variation of the Brownian motion process. So we can define the quadratic variation corresponding to a given partition and then the quadratic variation overall, if we take the limit over partitions that are getting infinitesimally small. And the claim is that this quadratic variation is going to equal capital T, the length of the period, with probability 1. So what does that mean? That means that for every realization of the process, or almost every realization, this quadratic variation is going to equal a constant. So here, I'm looking at examples of random walks that are normalized to be between time 0 and 1. So these are the normalized random walks, which are effectively Brownian-- or whose limits are Brownian motion. And in the top panel, I'm drawing the path of the random walk, with Gaussian steps. And in the bottom, I'm drawing the cumulative quadratic variation. So this is up to 20, 30, 40 steps now. As we increase to 100 steps, this cumulative quadratic variation is getting pretty close to the time t over which we're accumulating the quadratic variation. And as we increase the number of steps from 200 to many more-- 1,000 and then 2,000-- you can see that, basically, the quadratic variation of the process cumulates, basically, to the time period over which that's being cumulated. So this property is a really nice property. What it highlights is that there are some significant regularities to Brownian motion. And the regularity here is that the variation of the increments normalizes, basically, to the length of the period over which they're accumulated. So the quadratic variation is proportional to the time period. Now, this idea, or this property of Brownian motion, is one that can be explored with time series that we might think are well-modeled by Brownian motion. So if we were to look at a time series of the log of Pt divided by P0 for Pt equal to 0, 1, up to capital N, basically, for prices of assets and equity markets, this corresponds to the log return from time 0 to t. And that log return from 0 to t might follow a Brownian motion process with drift, positive return. And so we basically can have this process evolving. If we were to calculate the quadratic variation of this process, then if it followed-- if it followed a Brownian motion process, it would tend to grow according to a straight line, with slope equal to sigma squared. And in empirical modeling, if we look at this quadratic variation of an asset and see that it's not a straight line-- there may be periods where the slope is low and periods where the slope is higher and it curves around-- a way of trying to model the dynamic volatility could be suggested by studying these plots and using them. So it's a very interesting property. Now, let's see. Let's see. There's one last note in the slide in the notes. But before doing that, I wanted to highlight a connection of Brownian motion to the Laplace distribution. And so if we have-- let's see. If we have B of t, which is Brownian motion, and we observe it at-- let's see-- if we look at, basically, x of-- if we observe it at times t equals 0, 1, 2, discrete times, then the delta B of t are distributed as normal with mean-- I guess it's mu t and variance sigma squared times 1, which is delta t. And these are iid. So we have, basically, time points 0, 1, 2, and so forth. If instead of observing the process at equal increments of time, let's consider the possibility that the time increments are random. So let's consider B of t for t equal to T1, T2, up to Tn, where the delta T's, the increments of time, are distributed as an exponential random variable, with some mean lambda, say. So we're not observing the process at regular intervals. We're observing it at random intervals. It turns out, then, that the Brownian motion process has increments that are Laplace distributed. So the delta B of t, then will, in fact, have what's called a Laplace distribution. And so instead of having a bell-shaped curve, which is a Gaussian distribution, it'll be a bilateral, exponential distribution about the mean. And it turns out that with Standard and Poor's 500 returns, this Laplace model seems to fit the data much better, which leads to the consideration of what are called subordinated stochastic processes, where the time scale is different than our clock time. All right. Well, let's see. The final slide here for today addresses what are called adapted processes. And so in financial modeling, we can think of there being a stochastic process X of t characterizing relevant dynamics in the system. And we can think of X representing the prices of a single asset or a collection of assets as it varies over time. Then, as we let time increase, there are events that relate to what has happened so far. And we can think of these script F sub t to be the information on realizations up to time little t. And if we consider script F sub t prime with t prime greater than t, then that corresponds to information about all realizations from t up until t prime. So it's giving us more information about what's happened with the process. Well, if we want to look at the stochastic modeling of a process Y that depends on trading on assets with dynamics X, then we want our process Y to be adapted to X, which essentially means we can't see the future in trading. And so our Y of t, which is perhaps the value of trading up until time t, is a function only of the values of the process prior to time t. And so we consider transformations of our original process to the process of, say, trading gains and losses, according to some trading strategy. And these will be well defined if the process is adapted. So with that, the topics connect with what we had in our previous lecture, which was we can have martingales defined on X, and then we can define martingales relating to Y when we combine adaptive functions to X. And so the martingale theory extends to modeling trading strategies, effectively. And what's interesting with those techniques is that you end up transforming the process to have a constant mean. Martingales are processes with a constant mean. And so those arguments are applied again and again in solving for their properties. And option pricing can be expressed in this context as well. All right. We'll finish there for today."
+}

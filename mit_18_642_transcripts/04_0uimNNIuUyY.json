@@ -1,0 +1,4548 @@
+{
+  "index": 4,
+  "id": "0uimNNIuUyY",
+  "title": "Lecture 2: Linear Algebra",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 2.415,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 2.415,
+      "duration": 1.932,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 4.347,
+      "duration": 1.932,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 10.933,
+      "duration": 1.167,
+      "text": "PETER KEMPTHORNE: All right."
+    },
+    {
+      "start": 12.1,
+      "duration": 3.42,
+      "text": "Well, welcome to the\nfirst math lecture."
+    },
+    {
+      "start": 15.52,
+      "duration": 2.88,
+      "text": "The topic today\nis linear algebra."
+    },
+    {
+      "start": 18.4,
+      "duration": 4.92,
+      "text": "And what I expect is\nthat, for most of you,"
+    },
+    {
+      "start": 23.32,
+      "duration": 2.34,
+      "text": "the topics will\nbe very familiar."
+    },
+    {
+      "start": 25.66,
+      "duration": 6.02,
+      "text": "At least we'll be covering basic\nfundamentals of vector algebra,"
+    },
+    {
+      "start": 31.68,
+      "duration": 4.18,
+      "text": "then dealing with\nspecial matrices,"
+    },
+    {
+      "start": 35.86,
+      "duration": 4.42,
+      "text": "matrices that are used in\napplications, eigenvectors"
+    },
+    {
+      "start": 40.28,
+      "duration": 5.74,
+      "text": "and eigenvalue, decompositions,\nsingular value decompositions,"
+    },
+    {
+      "start": 46.02,
+      "duration": 5.06,
+      "text": "and then, finally, the\nPerron-Frobenius theorem."
+    },
+    {
+      "start": 51.08,
+      "duration": 5.0,
+      "text": "And what's really neat\nabout quantitative finance"
+    },
+    {
+      "start": 56.08,
+      "duration": 3.3,
+      "text": "is that linear\nalgebra can really"
+    },
+    {
+      "start": 59.38,
+      "duration": 3.72,
+      "text": "be very useful in understanding\ndifferent computations we"
+    },
+    {
+      "start": 63.1,
+      "duration": 1.2,
+      "text": "want to do."
+    },
+    {
+      "start": 64.3,
+      "duration": 3.0,
+      "text": "So it makes our life easier."
+    },
+    {
+      "start": 67.3,
+      "duration": 3.12,
+      "text": "Well, let's just begin\nwith a discussion"
+    },
+    {
+      "start": 70.42,
+      "duration": 4.8,
+      "text": "of basic linear\nalgebra concepts."
+    },
+    {
+      "start": 75.22,
+      "duration": 2.96,
+      "text": "I'll use a notation\nwhere often I'll"
+    },
+    {
+      "start": 78.18,
+      "duration": 2.96,
+      "text": "have a bold vector notation--"
+    },
+    {
+      "start": 81.14,
+      "duration": 5.52,
+      "text": "or bold letter for\nnoting a vector."
+    },
+    {
+      "start": 86.66,
+      "duration": 5.16,
+      "text": "So this bold v is a vector\nin m-dimensional space."
+    },
+    {
+      "start": 91.82,
+      "duration": 4.4,
+      "text": "And it just consists of an\nordered list of numbers."
+    },
+    {
+      "start": 96.22,
+      "duration": 5.48,
+      "text": "And we can think of it as\na column vector typically."
+    },
+    {
+      "start": 101.7,
+      "duration": 3.56,
+      "text": "Sometimes, we'll think\nof it as a row vector."
+    },
+    {
+      "start": 105.26,
+      "duration": 4.92,
+      "text": "But special cases of vectors\nwill be the vector of all"
+    },
+    {
+      "start": 110.18,
+      "duration": 3.8,
+      "text": "0's and the vector of all 1's."
+    },
+    {
+      "start": 113.98,
+      "duration": 4.62,
+      "text": "And we can think of a\ngraphical representation"
+    },
+    {
+      "start": 118.6,
+      "duration": 6.4,
+      "text": "of a vector, where\nwe can think of it"
+    },
+    {
+      "start": 125.0,
+      "duration": 5.4,
+      "text": "as perhaps just a single\npoint in, in this case,"
+    },
+    {
+      "start": 130.4,
+      "duration": 3.28,
+      "text": "two-dimensional space."
+    },
+    {
+      "start": 133.68,
+      "duration": 7.28,
+      "text": "Or with an origin here, we might\nthink of the vector representing"
+    },
+    {
+      "start": 140.96,
+      "duration": 5.8,
+      "text": "the directed line segment\nfrom the origin to that point,"
+    },
+    {
+      "start": 146.76,
+      "duration": 3.64,
+      "text": "where this is v1 and this is v2."
+    },
+    {
+      "start": 150.4,
+      "duration": 4.33,
+      "text": "Depending on our application,\nboth of these can be useful."
+    },
+    {
+      "start": 157.4,
+      "duration": 7.4,
+      "text": "And a basic example for us\ncould be the closing prices"
+    },
+    {
+      "start": 164.8,
+      "duration": 5.28,
+      "text": "on a given day for all\nstocks in the S&P 500 index."
+    },
+    {
+      "start": 170.08,
+      "duration": 7.22,
+      "text": "So we can think of p boldface\nbeing a vector of 500 values"
+    },
+    {
+      "start": 177.3,
+      "duration": 4.04,
+      "text": "corresponding to the\nclosing price of stocks"
+    },
+    {
+      "start": 181.34,
+      "duration": 3.04,
+      "text": "that are in the S&P 500 index."
+    },
+    {
+      "start": 184.38,
+      "duration": 5.04,
+      "text": "Importantly, the\nprices are positive."
+    },
+    {
+      "start": 189.42,
+      "duration": 3.72,
+      "text": "So that's where the R\nplus comes into play."
+    },
+    {
+      "start": 193.14,
+      "duration": 8.2,
+      "text": "And if we consider a portfolio\nholding shares of the S&P 500"
+    },
+    {
+      "start": 201.34,
+      "duration": 6.44,
+      "text": "stocks, we can represent\nthat with a vector q."
+    },
+    {
+      "start": 207.78,
+      "duration": 5.2,
+      "text": "And the value of such a\nportfolio at the end of the day"
+    },
+    {
+      "start": 212.98,
+      "duration": 5.68,
+      "text": "is simply the sum of the\nquantities, the shares"
+    },
+    {
+      "start": 218.66,
+      "duration": 1.45,
+      "text": "times the price per share."
+    },
+    {
+      "start": 226.78,
+      "duration": 8.58,
+      "text": "And later on, we'll see\nthat q dot p, the dot"
+    },
+    {
+      "start": 235.36,
+      "duration": 3.68,
+      "text": "product of those two\nvectors, gives us"
+    },
+    {
+      "start": 239.04,
+      "duration": 1.906,
+      "text": "the value of the portfolio."
+    },
+    {
+      "start": 243.48,
+      "duration": 4.4,
+      "text": "What we're going to find\nuseful is to actually"
+    },
+    {
+      "start": 247.88,
+      "duration": 8.08,
+      "text": "add to our 500 stocks the\nvalue of a cash holding"
+    },
+    {
+      "start": 255.96,
+      "duration": 3.66,
+      "text": "in the portfolio."
+    },
+    {
+      "start": 259.62,
+      "duration": 6.86,
+      "text": "So we can think of p0 of\nt just being a fixed $1."
+    },
+    {
+      "start": 266.48,
+      "duration": 4.0,
+      "text": "And then q0 tells us how\nmany dollars we hold."
+    },
+    {
+      "start": 270.48,
+      "duration": 12.16,
+      "text": "And so our portfolio value, vt,\nwill be given by this number."
+    },
+    {
+      "start": 282.64,
+      "duration": 6.08,
+      "text": "And we can think about\nrebalancing portfolios,"
+    },
+    {
+      "start": 288.72,
+      "duration": 4.86,
+      "text": "computing portfolio and\nloss on a daily basis."
+    },
+    {
+      "start": 293.58,
+      "duration": 6.48,
+      "text": "And we can characterize\nrebalancing the portfolio"
+    },
+    {
+      "start": 300.06,
+      "duration": 7.12,
+      "text": "as shifting from shares\nheld at the end of day t"
+    },
+    {
+      "start": 307.18,
+      "duration": 8.96,
+      "text": "to qj of t plus 1 to be\nheld through day t plus 1"
+    },
+    {
+      "start": 316.14,
+      "duration": 6.52,
+      "text": "by adjusting the quantity\nfor each stock by a delta j."
+    },
+    {
+      "start": 322.66,
+      "duration": 8.08,
+      "text": "And if we constrain the\nsum of the change in shares"
+    },
+    {
+      "start": 330.74,
+      "duration": 6.0,
+      "text": "across the j stocks\nand cash and the pj,"
+    },
+    {
+      "start": 336.74,
+      "duration": 4.4,
+      "text": "multiplying by the pj of t,\nwe can constrain this sum"
+    },
+    {
+      "start": 341.14,
+      "duration": 2.08,
+      "text": "to be equal to 0."
+    },
+    {
+      "start": 343.22,
+      "duration": 6.62,
+      "text": "So this would correspond to a\nrebalancing of the portfolio"
+    },
+    {
+      "start": 349.84,
+      "duration": 7.6,
+      "text": "and basically not taking any of\ndistributions from the account."
+    },
+    {
+      "start": 357.44,
+      "duration": 9.92,
+      "text": "Now, with the net gain, let's\nsee, this terminology, PnL,"
+    },
+    {
+      "start": 367.36,
+      "duration": 2.6,
+      "text": "it's, in a sense, a\nmisnomer, I think,"
+    },
+    {
+      "start": 369.96,
+      "duration": 4.2,
+      "text": "because it's really\nprofit and loss."
+    },
+    {
+      "start": 374.16,
+      "duration": 3.88,
+      "text": "But it's referred to as\nPnL, portfolio net gain."
+    },
+    {
+      "start": 378.04,
+      "duration": 4.4,
+      "text": "We can just look at the\nchange in value from day t"
+    },
+    {
+      "start": 382.44,
+      "duration": 2.04,
+      "text": "to day t plus 1."
+    },
+    {
+      "start": 384.48,
+      "duration": 6.88,
+      "text": "And this will have this simple\nform for the change in portfolio"
+    },
+    {
+      "start": 391.36,
+      "duration": 0.58,
+      "text": "value--"
+    },
+    {
+      "start": 391.94,
+      "duration": 3.34,
+      "text": "basically, the shares that\nare held from the end of day"
+    },
+    {
+      "start": 395.28,
+      "duration": 4.88,
+      "text": "t to t plus 1 times the\nchange in price from day t"
+    },
+    {
+      "start": 400.16,
+      "duration": 2.04,
+      "text": "to day t plus 1."
+    },
+    {
+      "start": 402.2,
+      "duration": 5.82,
+      "text": "And so this is the\nportfolio net gain."
+    },
+    {
+      "start": 408.02,
+      "duration": 5.88,
+      "text": "And here, we're talking\nabout portfolio management"
+    },
+    {
+      "start": 413.9,
+      "duration": 3.76,
+      "text": "maybe on a daily basis,\nwhere, at the end of the day,"
+    },
+    {
+      "start": 417.66,
+      "duration": 5.0,
+      "text": "we make a decision as how\nto rebalance our portfolio."
+    },
+    {
+      "start": 422.66,
+      "duration": 5.56,
+      "text": "And there's a net gain\nduring that period."
+    },
+    {
+      "start": 428.22,
+      "duration": 5.08,
+      "text": "One could adjust the\nperiod of rebalancing"
+    },
+    {
+      "start": 433.3,
+      "duration": 4.72,
+      "text": "to be intraday on a\nregular or irregular basis."
+    },
+    {
+      "start": 438.02,
+      "duration": 4.48,
+      "text": "And we'd have to have\nextra notation to do that."
+    },
+    {
+      "start": 442.5,
+      "duration": 14.04,
+      "text": "Now, with vector concepts, if we\nmultiply vector v by a scalar c,"
+    },
+    {
+      "start": 456.54,
+      "duration": 3.84,
+      "text": "then we just multiply through\neach of the components of v"
+    },
+    {
+      "start": 460.38,
+      "duration": 1.6,
+      "text": "by that scalar."
+    },
+    {
+      "start": 461.98,
+      "duration": 4.7,
+      "text": "And if we add two\nvectors, we simply"
+    },
+    {
+      "start": 466.68,
+      "duration": 5.28,
+      "text": "comprise the sum of\ncomponents element by element."
+    },
+    {
+      "start": 471.96,
+      "duration": 3.68,
+      "text": "And the dot product\nbetween two vectors"
+    },
+    {
+      "start": 475.64,
+      "duration": 4.28,
+      "text": "is simply the sum of\nthe product of the two."
+    },
+    {
+      "start": 479.92,
+      "duration": 7.6,
+      "text": "So this allows us to work\nwith vector algebra associated"
+    },
+    {
+      "start": 487.52,
+      "duration": 1.8,
+      "text": "with portfolios."
+    },
+    {
+      "start": 489.32,
+      "duration": 7.6,
+      "text": "If we have two portfolios,\nwe can consider, let's see--"
+    },
+    {
+      "start": 496.92,
+      "duration": 11.36,
+      "text": "we can think of a qt and,\nin this notation, a wt"
+    },
+    {
+      "start": 508.28,
+      "duration": 3.2,
+      "text": "as two different portfolios."
+    },
+    {
+      "start": 511.48,
+      "duration": 3.76,
+      "text": "And with each of\nthese portfolios,"
+    },
+    {
+      "start": 515.24,
+      "duration": 8.309,
+      "text": "we can determine what the profit\nand loss is of each portfolio."
+    },
+    {
+      "start": 523.549,
+      "duration": 4.121,
+      "text": "So for q, it's the\nvalue at the end of day"
+    },
+    {
+      "start": 527.67,
+      "duration": 3.56,
+      "text": "minus the value at the beginning\nof the day and similarly"
+    },
+    {
+      "start": 531.23,
+      "duration": 2.36,
+      "text": "for portfolio w."
+    },
+    {
+      "start": 533.59,
+      "duration": 7.16,
+      "text": "And it's useful to include\nin the notation here"
+    },
+    {
+      "start": 540.75,
+      "duration": 6.96,
+      "text": "this BOD and EOD to represent\nbegining of day, end of day."
+    },
+    {
+      "start": 547.71,
+      "duration": 11.16,
+      "text": "And what's relevant\nactually is that the qt"
+    },
+    {
+      "start": 558.87,
+      "duration": 7.84,
+      "text": "portfolio composition,\nwhile it's indexed by t,"
+    },
+    {
+      "start": 566.71,
+      "duration": 5.88,
+      "text": "it's actually determined at\nthe end of day t minus 1."
+    },
+    {
+      "start": 572.59,
+      "duration": 6.56,
+      "text": "And so one needs to be\ncareful in doing computations"
+    },
+    {
+      "start": 579.15,
+      "duration": 5.54,
+      "text": "with portfolio value\nmeasurement that you're always"
+    },
+    {
+      "start": 584.69,
+      "duration": 4.52,
+      "text": "using portfolios that are\ndefined using only information"
+    },
+    {
+      "start": 589.21,
+      "duration": 2.04,
+      "text": "up to a given time point."
+    },
+    {
+      "start": 591.25,
+      "duration": 1.92,
+      "text": "So if we're going\nto be rebalancing"
+    },
+    {
+      "start": 593.17,
+      "duration": 5.56,
+      "text": "at the end of the day for\ninvestment the next day,"
+    },
+    {
+      "start": 598.73,
+      "duration": 5.12,
+      "text": "we can't know what will\nhappen on the next day."
+    },
+    {
+      "start": 603.85,
+      "duration": 0.54,
+      "text": "All right."
+    },
+    {
+      "start": 604.39,
+      "duration": 7.22,
+      "text": "Well, with these portfolios\nthat are just simple vectors,"
+    },
+    {
+      "start": 611.61,
+      "duration": 2.28,
+      "text": "we can look at their difference."
+    },
+    {
+      "start": 613.89,
+      "duration": 8.66,
+      "text": "And so if we look at dt\nequal to qt minus wt,"
+    },
+    {
+      "start": 622.55,
+      "duration": 3.82,
+      "text": "this defines another portfolio."
+    },
+    {
+      "start": 626.37,
+      "duration": 4.48,
+      "text": "We often constrain\nportfolios to be long only,"
+    },
+    {
+      "start": 630.85,
+      "duration": 6.6,
+      "text": "meaning the q's and\nw's are positive or 0."
+    },
+    {
+      "start": 637.45,
+      "duration": 6.7,
+      "text": "But there's no reason why we\ncan't allow component weights"
+    },
+    {
+      "start": 644.15,
+      "duration": 2.94,
+      "text": "in portfolios to be negative."
+    },
+    {
+      "start": 647.09,
+      "duration": 2.62,
+      "text": "And in this case,\nit's negative shares."
+    },
+    {
+      "start": 649.71,
+      "duration": 10.68,
+      "text": "And so one can have a long short\nportfolio that is given by d."
+    },
+    {
+      "start": 660.39,
+      "duration": 5.36,
+      "text": "And we can calculate the profit\nand loss of that d portfolio"
+    },
+    {
+      "start": 665.75,
+      "duration": 6.24,
+      "text": "by subtracting the profit\nand loss of the q and w."
+    },
+    {
+      "start": 671.99,
+      "duration": 6.8,
+      "text": "Now, let's see, with short\nselling in markets, let's see--"
+    },
+    {
+      "start": 678.79,
+      "duration": 3.36,
+      "text": "who in the class might\noffer a description of what"
+    },
+    {
+      "start": 682.15,
+      "duration": 3.46,
+      "text": "it means to sell short a stock?"
+    },
+    {
+      "start": 685.61,
+      "duration": 10.62,
+      "text": "So suppose that we have dt sub 2\nis equal to, say, negative 200."
+    },
+    {
+      "start": 696.23,
+      "duration": 4.42,
+      "text": "What would that mean?"
+    },
+    {
+      "start": 700.65,
+      "duration": 3.8,
+      "text": "Or can we actually\nrealize a portfolio"
+    },
+    {
+      "start": 704.45,
+      "duration": 5.73,
+      "text": "where we're short one of\nthe stocks by 200 shares?"
+    },
+    {
+      "start": 713.81,
+      "duration": 1.02,
+      "text": "I'm sure someone--"
+    },
+    {
+      "start": 714.83,
+      "duration": 0.74,
+      "text": "OK."
+    },
+    {
+      "start": 715.57,
+      "duration": 0.86,
+      "text": "What's your name?"
+    },
+    {
+      "start": 716.43,
+      "duration": 0.5,
+      "text": "STUDENT: Alexander."
+    },
+    {
+      "start": 716.93,
+      "duration": 1.24,
+      "text": "PETER KEMPTHORNE: OK,\nthank you, Alexander."
+    },
+    {
+      "start": 718.17,
+      "duration": 2.5,
+      "text": "STUDENT: I believe it is when\nyou sell someone else's stock,"
+    },
+    {
+      "start": 720.67,
+      "duration": 2.103,
+      "text": "and then you buy it\nback [INAUDIBLE]."
+    },
+    {
+      "start": 722.773,
+      "duration": 0.917,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 723.69,
+      "duration": 3.5,
+      "text": "You basically sell\nfirst, buy back later."
+    },
+    {
+      "start": 727.19,
+      "duration": 1.5,
+      "text": "And you sell by--"
+    },
+    {
+      "start": 728.69,
+      "duration": 1.58,
+      "text": "you don't have the stock."
+    },
+    {
+      "start": 730.27,
+      "duration": 4.74,
+      "text": "So you borrow it\nfrom some seller."
+    },
+    {
+      "start": 735.01,
+      "duration": 5.36,
+      "text": "And brokerage accounts\nthat have margin"
+    },
+    {
+      "start": 740.37,
+      "duration": 5.64,
+      "text": "allow you to engage in\nthis kind of transaction."
+    },
+    {
+      "start": 746.01,
+      "duration": 4.92,
+      "text": "And so the policy\nof the brokerage"
+    },
+    {
+      "start": 750.93,
+      "duration": 3.48,
+      "text": "is that if you want\nto sell short a stock,"
+    },
+    {
+      "start": 754.41,
+      "duration": 4.78,
+      "text": "they need to locate some\nshares for you to borrow."
+    },
+    {
+      "start": 759.19,
+      "duration": 5.6,
+      "text": "And what's rather neat\nabout that selling short"
+    },
+    {
+      "start": 764.79,
+      "duration": 3.92,
+      "text": "is that your brokerage\naccount gets credited"
+    },
+    {
+      "start": 768.71,
+      "duration": 3.32,
+      "text": "with the sale of those shares."
+    },
+    {
+      "start": 772.03,
+      "duration": 5.64,
+      "text": "So your brokerage account\nwill have a positive cash"
+    },
+    {
+      "start": 777.67,
+      "duration": 2.76,
+      "text": "flow due to the short selling."
+    },
+    {
+      "start": 780.43,
+      "duration": 6.16,
+      "text": "And with such a positive\ncontribution to the brokerage"
+    },
+    {
+      "start": 786.59,
+      "duration": 4.48,
+      "text": "account, you can\nactually invest long"
+    },
+    {
+      "start": 791.07,
+      "duration": 3.2,
+      "text": "in more than, say,\n100% of your wealth"
+    },
+    {
+      "start": 794.27,
+      "duration": 4.32,
+      "text": "that's in the-- or of your bank\naccount or brokerage account."
+    },
+    {
+      "start": 798.59,
+      "duration": 8.08,
+      "text": "So that's quite advantageous\nand allows for very interesting"
+    },
+    {
+      "start": 806.67,
+      "duration": 2.36,
+      "text": "trading opportunities."
+    },
+    {
+      "start": 809.03,
+      "duration": 0.58,
+      "text": "All right."
+    },
+    {
+      "start": 809.61,
+      "duration": 6.04,
+      "text": "Well, an important special\ncase of a long short portfolio"
+    },
+    {
+      "start": 815.65,
+      "duration": 3.52,
+      "text": "is a zero-cost portfolio."
+    },
+    {
+      "start": 819.17,
+      "duration": 5.96,
+      "text": "And this would be one where\nthe sum of basically the values"
+    },
+    {
+      "start": 825.13,
+      "duration": 4.36,
+      "text": "of the long and short positions\nbalance each other perfectly."
+    },
+    {
+      "start": 829.49,
+      "duration": 6.68,
+      "text": "And so we have a\nportfolio, dt in this case,"
+    },
+    {
+      "start": 836.17,
+      "duration": 4.28,
+      "text": "where the d components\nare not all 0."
+    },
+    {
+      "start": 840.45,
+      "duration": 5.76,
+      "text": "But the value, the net value of\nthe portfolio is, in fact, 0."
+    },
+    {
+      "start": 846.21,
+      "duration": 8.68,
+      "text": "And we can hope for the\npossibility of an arbitrage"
+    },
+    {
+      "start": 854.89,
+      "duration": 7.0,
+      "text": "portfolio, which could be a\nportfolio that has zero cost,"
+    },
+    {
+      "start": 861.89,
+      "duration": 8.66,
+      "text": "but has a positive profit\nand loss over a period."
+    },
+    {
+      "start": 870.55,
+      "duration": 6.2,
+      "text": "And this kind of\nopportunity, generally--"
+    },
+    {
+      "start": 876.75,
+      "duration": 4.92,
+      "text": "well, it doesn't exist\nin efficient markets."
+    },
+    {
+      "start": 881.67,
+      "duration": 3.96,
+      "text": "But markets are never\ncompletely efficient."
+    },
+    {
+      "start": 885.63,
+      "duration": 6.32,
+      "text": "And so it can be\nfeasible to identify"
+    },
+    {
+      "start": 891.95,
+      "duration": 4.28,
+      "text": "portfolios that may be close\nto an arbitrage portfolio."
+    },
+    {
+      "start": 899.23,
+      "duration": 6.64,
+      "text": "What, in fact, happens is\nthat this profit and loss"
+    },
+    {
+      "start": 905.87,
+      "duration": 5.08,
+      "text": "of a zero-cost portfolio\nwill be random."
+    },
+    {
+      "start": 910.95,
+      "duration": 4.48,
+      "text": "And depending upon\nthe market model"
+    },
+    {
+      "start": 915.43,
+      "duration": 5.4,
+      "text": "that applies to the\nmarket we're trading in,"
+    },
+    {
+      "start": 920.83,
+      "duration": 2.56,
+      "text": "it may be that there\nare opportunities"
+    },
+    {
+      "start": 923.39,
+      "duration": 6.52,
+      "text": "that yield a positive profit\nall the time, in which case"
+    },
+    {
+      "start": 929.91,
+      "duration": 2.78,
+      "text": "we would say that's an\narbitrage opportunity."
+    },
+    {
+      "start": 932.69,
+      "duration": 4.32,
+      "text": "What we'll see later\ntoday is the question of,"
+    },
+    {
+      "start": 937.01,
+      "duration": 8.08,
+      "text": "under what conditions is there\nno arbitrage in a given market?"
+    },
+    {
+      "start": 945.09,
+      "duration": 6.88,
+      "text": "And how do we characterize\nprices of assets in a market"
+    },
+    {
+      "start": 951.97,
+      "duration": 2.04,
+      "text": "with no arbitrage?"
+    },
+    {
+      "start": 954.01,
+      "duration": 7.88,
+      "text": "And ultimately, it turns out\nthat option pricing theory, that"
+    },
+    {
+      "start": 961.89,
+      "duration": 4.12,
+      "text": "was mentioned last time of\nBlack, Scholes, and Merton,"
+    },
+    {
+      "start": 966.01,
+      "duration": 5.72,
+      "text": "is all based upon arbitrage-free\nmarkets and the implications"
+    },
+    {
+      "start": 971.73,
+      "duration": 1.32,
+      "text": "of that."
+    },
+    {
+      "start": 973.05,
+      "duration": 5.36,
+      "text": "And we'll see that, in\narbitrage-free markets,"
+    },
+    {
+      "start": 978.41,
+      "duration": 4.06,
+      "text": "there does not exist any\narbitrage portfolios."
+    },
+    {
+      "start": 982.47,
+      "duration": 4.05,
+      "text": "And what will be neat is to\nunderstand why that's the case."
+    },
+    {
+      "start": 989.99,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 990.49,
+      "duration": 6.02,
+      "text": "So we have random prices\nat the end of day t."
+    },
+    {
+      "start": 996.51,
+      "duration": 2.45,
+      "text": "And so the profit and loss\nis going to be random."
+    },
+    {
+      "start": 1002.35,
+      "duration": 4.44,
+      "text": "I guess it's relevant to note\nthat there are strategies"
+    },
+    {
+      "start": 1006.79,
+      "duration": 2.76,
+      "text": "of statistical arbitrage."
+    },
+    {
+      "start": 1009.55,
+      "duration": 7.76,
+      "text": "And those are strategies where\nwe have portfolio specifications"
+    },
+    {
+      "start": 1017.31,
+      "duration": 5.08,
+      "text": "d-star for which this\nrandom profit and loss is"
+    },
+    {
+      "start": 1022.39,
+      "duration": 4.04,
+      "text": "a distribution that tends to\ngenerate positive returns."
+    },
+    {
+      "start": 1026.43,
+      "duration": 5.0,
+      "text": "And so there's a statistical\nlikelihood of making money."
+    },
+    {
+      "start": 1031.43,
+      "duration": 3.8,
+      "text": "But it's often not\na pure arbitrage,"
+    },
+    {
+      "start": 1035.23,
+      "duration": 3.599,
+      "text": "but what we might call\na statistical arbitrage."
+    },
+    {
+      "start": 1038.829,
+      "duration": 0.581,
+      "text": "All right."
+    },
+    {
+      "start": 1039.41,
+      "duration": 5.62,
+      "text": "Well, let's review just some\nother concepts of vectors."
+    },
+    {
+      "start": 1045.03,
+      "duration": 9.02,
+      "text": "We have the norm of a vector\nbeing the length of a vector."
+    },
+    {
+      "start": 1054.05,
+      "duration": 10.84,
+      "text": "So if we have a vector v\nhere, and the norm of v"
+    },
+    {
+      "start": 1064.89,
+      "duration": 5.52,
+      "text": "is basically the\nlength of this vector."
+    },
+    {
+      "start": 1070.41,
+      "duration": 6.4,
+      "text": "And if we consider what the dot\nproduct is between two vectors,"
+    },
+    {
+      "start": 1076.81,
+      "duration": 6.58,
+      "text": "we have this cosine formula\nfor what the dot product is."
+    },
+    {
+      "start": 1083.39,
+      "duration": 5.02,
+      "text": "It's actually the length\nof v times the length"
+    },
+    {
+      "start": 1088.41,
+      "duration": 5.56,
+      "text": "of w times the cosine of\nthe angle between the two."
+    },
+    {
+      "start": 1093.97,
+      "duration": 9.04,
+      "text": "So if we have another\nvector w here, then"
+    },
+    {
+      "start": 1103.01,
+      "duration": 4.3,
+      "text": "the dot product corresponds\nto that formula."
+    },
+    {
+      "start": 1107.31,
+      "duration": 5.56,
+      "text": "And what's interesting about\nthat formula is that it actually"
+    },
+    {
+      "start": 1112.87,
+      "duration": 3.04,
+      "text": "corresponds to--"
+    },
+    {
+      "start": 1115.91,
+      "duration": 6.4,
+      "text": "the dot product corresponds\nto the length of the segment"
+    },
+    {
+      "start": 1122.31,
+      "duration": 5.88,
+      "text": "along w that is closest to v."
+    },
+    {
+      "start": 1128.19,
+      "duration": 6.24,
+      "text": "And so with this dot\nproduct notation,"
+    },
+    {
+      "start": 1134.43,
+      "duration": 5.76,
+      "text": "we actually can talk about\northogonality between vectors"
+    },
+    {
+      "start": 1140.19,
+      "duration": 5.48,
+      "text": "in m-dimensional space."
+    },
+    {
+      "start": 1145.67,
+      "duration": 4.12,
+      "text": "And those can be very useful."
+    },
+    {
+      "start": 1149.79,
+      "duration": 4.4,
+      "text": "We'll actually see\nthis orthogonality"
+    },
+    {
+      "start": 1154.19,
+      "duration": 3.36,
+      "text": "applied when we talk\nabout regression"
+    },
+    {
+      "start": 1157.55,
+      "duration": 1.94,
+      "text": "and least squares regression."
+    },
+    {
+      "start": 1159.49,
+      "duration": 2.2,
+      "text": "So you may be familiar\nwith some of these topics"
+    },
+    {
+      "start": 1161.69,
+      "duration": 2.92,
+      "text": "from that discussion."
+    },
+    {
+      "start": 1164.61,
+      "duration": 1.0,
+      "text": "All right."
+    },
+    {
+      "start": 1165.61,
+      "duration": 6.28,
+      "text": "Well, with vectors, a\nreally important topic"
+    },
+    {
+      "start": 1171.89,
+      "duration": 6.32,
+      "text": "is whether vectors are linearly\nindependent of each other."
+    },
+    {
+      "start": 1178.21,
+      "duration": 5.0,
+      "text": "And so if we have\ntwo vectors, v and w,"
+    },
+    {
+      "start": 1183.21,
+      "duration": 6.36,
+      "text": "they are linearly independent\nif the only linear combination"
+    },
+    {
+      "start": 1189.57,
+      "duration": 6.48,
+      "text": "of the two which gives us the 0\nvector is the linear combination"
+    },
+    {
+      "start": 1196.05,
+      "duration": 3.96,
+      "text": "with c1 equals c2 equals 0."
+    },
+    {
+      "start": 1200.01,
+      "duration": 8.64,
+      "text": "So linear independence\nis essentially the case"
+    },
+    {
+      "start": 1208.65,
+      "duration": 5.64,
+      "text": "that we have a v and\nw that aren't aligned"
+    },
+    {
+      "start": 1214.29,
+      "duration": 5.14,
+      "text": "with each other\nin two dimensions,"
+    },
+    {
+      "start": 1219.43,
+      "duration": 4.4,
+      "text": "at least vectors emanating from\nthe origin having that property."
+    },
+    {
+      "start": 1223.83,
+      "duration": 2.96,
+      "text": "And the utility of\nlinear independence"
+    },
+    {
+      "start": 1226.79,
+      "duration": 10.16,
+      "text": "is that we can work with a\nvector space, capital S here."
+    },
+    {
+      "start": 1236.95,
+      "duration": 3.64,
+      "text": "And the definition\nof a vector space"
+    },
+    {
+      "start": 1240.59,
+      "duration": 4.04,
+      "text": "is that any vector\ncan be rescaled"
+    },
+    {
+      "start": 1244.63,
+      "duration": 1.72,
+      "text": "by an arbitrary constant c."
+    },
+    {
+      "start": 1246.35,
+      "duration": 2.0,
+      "text": "And it's still in the space."
+    },
+    {
+      "start": 1248.35,
+      "duration": 2.94,
+      "text": "And with any two vectors,\nv and w, in the space,"
+    },
+    {
+      "start": 1251.29,
+      "duration": 1.14,
+      "text": "their sum is in the space."
+    },
+    {
+      "start": 1255.35,
+      "duration": 4.08,
+      "text": "With a vector space,\nwhat's very useful is"
+    },
+    {
+      "start": 1259.43,
+      "duration": 7.52,
+      "text": "a basis for the space, which\ncorresponds to linearly"
+    },
+    {
+      "start": 1266.95,
+      "duration": 6.12,
+      "text": "independent vectors, v1\nto vp, such that the only"
+    },
+    {
+      "start": 1273.07,
+      "duration": 3.44,
+      "text": "linear combination\ngiving the 0 vector"
+    },
+    {
+      "start": 1276.51,
+      "duration": 2.9,
+      "text": "is the linear combination\nwhere all the coefficients"
+    },
+    {
+      "start": 1279.41,
+      "duration": 2.76,
+      "text": "are equal to 0."
+    },
+    {
+      "start": 1282.17,
+      "duration": 0.7,
+      "text": "All right."
+    },
+    {
+      "start": 1285.45,
+      "duration": 6.88,
+      "text": "Well, let's just go through all\nof matrix algebra, pretty much."
+    },
+    {
+      "start": 1292.33,
+      "duration": 4.72,
+      "text": "We can extend from\nvectors to matrices"
+    },
+    {
+      "start": 1297.05,
+      "duration": 6.0,
+      "text": "where we have m rows and\nn columns in a matrix A,"
+    },
+    {
+      "start": 1303.05,
+      "duration": 2.76,
+      "text": "a rectangular matrix."
+    },
+    {
+      "start": 1305.81,
+      "duration": 6.28,
+      "text": "And one very useful\nrepresentation of a matrix"
+    },
+    {
+      "start": 1312.09,
+      "duration": 3.96,
+      "text": "is as a collection\nof column vectors"
+    },
+    {
+      "start": 1316.05,
+      "duration": 3.44,
+      "text": "that are stacked\none after the other."
+    },
+    {
+      "start": 1319.49,
+      "duration": 6.44,
+      "text": "And so we can denote bold\na sub 1 through bold a sub"
+    },
+    {
+      "start": 1325.93,
+      "duration": 4.4,
+      "text": "n as the column vectors."
+    },
+    {
+      "start": 1330.33,
+      "duration": 7.78,
+      "text": "And with matrix\nalgebra, let's see,"
+    },
+    {
+      "start": 1338.11,
+      "duration": 6.8,
+      "text": "well, we can multiply a matrix,\ncapital A, by a constant."
+    },
+    {
+      "start": 1344.91,
+      "duration": 5.56,
+      "text": "And we end up multiplying each\nof the components, elements"
+    },
+    {
+      "start": 1350.47,
+      "duration": 5.32,
+      "text": "of the table of A values\nby the same constant c."
+    },
+    {
+      "start": 1355.79,
+      "duration": 3.68,
+      "text": "With a transpose\noperation, a transpose"
+    },
+    {
+      "start": 1359.47,
+      "duration": 4.12,
+      "text": "is simply to flip\nrows and columns."
+    },
+    {
+      "start": 1363.59,
+      "duration": 7.0,
+      "text": "And so if we have a sub ij\nbeing the i-th row j-th column"
+    },
+    {
+      "start": 1370.59,
+      "duration": 5.48,
+      "text": "element of A, then Aji\ncorresponds to the j-th row"
+    },
+    {
+      "start": 1376.07,
+      "duration": 2.72,
+      "text": "and i-th column."
+    },
+    {
+      "start": 1378.79,
+      "duration": 4.24,
+      "text": "Now, if we think\nof the transpose"
+    },
+    {
+      "start": 1383.03,
+      "duration": 6.44,
+      "text": "of each of the column vectors\nin A, that's a row vector."
+    },
+    {
+      "start": 1389.47,
+      "duration": 5.26,
+      "text": "And our transpose\nof the matrix A"
+    },
+    {
+      "start": 1394.73,
+      "duration": 3.64,
+      "text": "can be thought of as\nstacked row vectors"
+    },
+    {
+      "start": 1398.37,
+      "duration": 5.08,
+      "text": "corresponding to the same\nvectors, a1 through an."
+    },
+    {
+      "start": 1403.45,
+      "duration": 4.08,
+      "text": "Now, one of the reasons\nfor thinking of a matrix"
+    },
+    {
+      "start": 1407.53,
+      "duration": 4.96,
+      "text": "as being a composition of\ndifferent column vectors"
+    },
+    {
+      "start": 1412.49,
+      "duration": 8.2,
+      "text": "is that, when we multiply\na matrix A by a vector v,"
+    },
+    {
+      "start": 1420.69,
+      "duration": 6.96,
+      "text": "then this corresponds to\nthe linear combination"
+    },
+    {
+      "start": 1427.65,
+      "duration": 7.68,
+      "text": "of the columns of A with\ncoefficients corresponding to v1"
+    },
+    {
+      "start": 1435.33,
+      "duration": 1.44,
+      "text": "through vn."
+    },
+    {
+      "start": 1436.77,
+      "duration": 4.52,
+      "text": "So we have a linear\ncombination of A's columns."
+    },
+    {
+      "start": 1441.29,
+      "duration": 7.24,
+      "text": "And this representation of\nmatrix vector multiplication"
+    },
+    {
+      "start": 1448.53,
+      "duration": 4.26,
+      "text": "turns out to be\nvery, very useful."
+    },
+    {
+      "start": 1452.79,
+      "duration": 8.52,
+      "text": "Perhaps less useful is that,\nif we look at the matrix vector"
+    },
+    {
+      "start": 1461.31,
+      "duration": 8.52,
+      "text": "product, it's also a vector of\ndot products of A's rows with v."
+    },
+    {
+      "start": 1469.83,
+      "duration": 4.08,
+      "text": "And so being comfortable\nwith dot products"
+    },
+    {
+      "start": 1473.91,
+      "duration": 3.84,
+      "text": "is potentially useful."
+    },
+    {
+      "start": 1477.75,
+      "duration": 4.0,
+      "text": "But for the moment, thinking\nof linear combinations"
+    },
+    {
+      "start": 1481.75,
+      "duration": 5.32,
+      "text": "of columns of A is very useful."
+    },
+    {
+      "start": 1487.07,
+      "duration": 8.08,
+      "text": "So I guess, if we think of\nthe columns of A corresponding"
+    },
+    {
+      "start": 1495.15,
+      "duration": 3.36,
+      "text": "to potentially a\nbasis of vectors,"
+    },
+    {
+      "start": 1498.51,
+      "duration": 6.6,
+      "text": "then Av corresponds to another\nvector in the space spanned"
+    },
+    {
+      "start": 1505.11,
+      "duration": 3.32,
+      "text": "by those columns."
+    },
+    {
+      "start": 1508.43,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 1508.93,
+      "duration": 5.45,
+      "text": "Now, when we multiply\ntwo matrices together,"
+    },
+    {
+      "start": 1514.38,
+      "duration": 6.04,
+      "text": "we actually have a\nmatrix A and a matrix B,"
+    },
+    {
+      "start": 1520.42,
+      "duration": 4.28,
+      "text": "each with their respective\ncolumns, vectors."
+    },
+    {
+      "start": 1524.7,
+      "duration": 6.24,
+      "text": "And we can basically expand the\nmatrix B into b1 through bp,"
+    },
+    {
+      "start": 1530.94,
+      "duration": 3.37,
+      "text": "and then do the matrix\nvector product for each term."
+    },
+    {
+      "start": 1537.34,
+      "duration": 4.92,
+      "text": "This is equivalent, actually,\nto looking at element Cij, which"
+    },
+    {
+      "start": 1542.26,
+      "duration": 2.52,
+      "text": "are just these double sums."
+    },
+    {
+      "start": 1544.78,
+      "duration": 5.44,
+      "text": "When I learned linear\nalgebra decades ago,"
+    },
+    {
+      "start": 1550.22,
+      "duration": 5.24,
+      "text": "I used these double sums,\nwhich were not very intuitive"
+    },
+    {
+      "start": 1555.46,
+      "duration": 6.76,
+      "text": "to interpret, although one\nwith a simple algebra notation"
+    },
+    {
+      "start": 1562.22,
+      "duration": 1.3,
+      "text": "can prove everything."
+    },
+    {
+      "start": 1563.52,
+      "duration": 4.4,
+      "text": "But things are much easier to\nprove with this other notation."
+    },
+    {
+      "start": 1567.92,
+      "duration": 4.48,
+      "text": "Now, what's important when we\nmultiply two matrices together"
+    },
+    {
+      "start": 1572.4,
+      "duration": 4.32,
+      "text": "is that the matrices\nhave to be conformal,"
+    },
+    {
+      "start": 1576.72,
+      "duration": 5.84,
+      "text": "meaning we need to be able to\nmultiply A times the column"
+    },
+    {
+      "start": 1582.56,
+      "duration": 11.0,
+      "text": "vectors of B. So the\nm by n matrix of A"
+    },
+    {
+      "start": 1593.56,
+      "duration": 11.8,
+      "text": "has to be able to multiply the\nm by p matrix of B. Actually,"
+    },
+    {
+      "start": 1605.36,
+      "duration": 1.18,
+      "text": "I think there's a--"
+    },
+    {
+      "start": 1609.462,
+      "duration": 2.418,
+      "text": "all right, let's see."
+    },
+    {
+      "start": 1611.88,
+      "duration": 0.86,
+      "text": "Yeah, sorry."
+    },
+    {
+      "start": 1612.74,
+      "duration": 5.54,
+      "text": "And there are n columns\nin A and n rows in B."
+    },
+    {
+      "start": 1618.28,
+      "duration": 4.92,
+      "text": "And so the result\nis an m by p matrix."
+    },
+    {
+      "start": 1623.2,
+      "duration": 2.34,
+      "text": "All right."
+    },
+    {
+      "start": 1625.54,
+      "duration": 4.74,
+      "text": "Well, with different\nmatrix operations,"
+    },
+    {
+      "start": 1630.28,
+      "duration": 3.26,
+      "text": "you learn in linear\nalgebra all of these rules,"
+    },
+    {
+      "start": 1633.54,
+      "duration": 6.48,
+      "text": "these laws associated with\nmatrix algebra computations."
+    },
+    {
+      "start": 1640.02,
+      "duration": 4.12,
+      "text": "Everything is pretty\nobvious, except maybe when"
+    },
+    {
+      "start": 1644.14,
+      "duration": 5.16,
+      "text": "you transpose a product,\nyou reverse the order"
+    },
+    {
+      "start": 1649.3,
+      "duration": 3.48,
+      "text": "of the product of transposes."
+    },
+    {
+      "start": 1652.78,
+      "duration": 4.72,
+      "text": "And if you consider\nreversing the order of matrix"
+    },
+    {
+      "start": 1657.5,
+      "duration": 5.58,
+      "text": "multiplications, if one\ncan reverse the order,"
+    },
+    {
+      "start": 1663.08,
+      "duration": 3.34,
+      "text": "if A and B have the same\nnumber of rows and columns,"
+    },
+    {
+      "start": 1666.42,
+      "duration": 5.28,
+      "text": "it turns out that\nthe commutative law"
+    },
+    {
+      "start": 1671.7,
+      "duration": 3.52,
+      "text": "for multiplication\ndoesn't apply to matrices."
+    },
+    {
+      "start": 1675.22,
+      "duration": 5.64,
+      "text": "So you want to be careful\nwith those distinctions."
+    },
+    {
+      "start": 1680.86,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 1681.36,
+      "duration": 7.58,
+      "text": "So special matrices, when\nwe have a symmetric matrix,"
+    },
+    {
+      "start": 1688.94,
+      "duration": 4.34,
+      "text": "then its transpose\nequals itself."
+    },
+    {
+      "start": 1693.28,
+      "duration": 5.4,
+      "text": "So the matrix has basically--"
+    },
+    {
+      "start": 1701.24,
+      "duration": 1.52,
+      "text": "well, let's see."
+    },
+    {
+      "start": 1702.76,
+      "duration": 4.56,
+      "text": "The off-diagonal entries\nare matched one by one"
+    },
+    {
+      "start": 1707.32,
+      "duration": 3.36,
+      "text": "with Aij equaling Aji."
+    },
+    {
+      "start": 1710.68,
+      "duration": 6.44,
+      "text": "The identity matrix is a matrix\nwith 1's along the diagonal."
+    },
+    {
+      "start": 1717.12,
+      "duration": 4.36,
+      "text": "And it can be convenient\nto represent this"
+    },
+    {
+      "start": 1721.48,
+      "duration": 5.88,
+      "text": "as the matrix of\ncolumns where E sub"
+    },
+    {
+      "start": 1727.36,
+      "duration": 7.58,
+      "text": "j is a simple matrix\nor a simple vector,"
+    },
+    {
+      "start": 1734.94,
+      "duration": 4.74,
+      "text": "which is all 0's, but\nthen a single 1, where"
+    },
+    {
+      "start": 1739.68,
+      "duration": 3.34,
+      "text": "this is the j-th row."
+    },
+    {
+      "start": 1743.02,
+      "duration": 6.84,
+      "text": "And different computations\ncan be made easy with that"
+    },
+    {
+      "start": 1749.86,
+      "duration": 1.2,
+      "text": "sometimes."
+    },
+    {
+      "start": 1751.06,
+      "duration": 6.68,
+      "text": "Now, there's a notation of using\nthe J matrix to be the matrix"
+    },
+    {
+      "start": 1757.74,
+      "duration": 0.81,
+      "text": "of all 1's."
+    },
+    {
+      "start": 1762.34,
+      "duration": 7.092,
+      "text": "And the matrix J turns out to be\na vector 1 times its transpose."
+    },
+    {
+      "start": 1772.3,
+      "duration": 4.92,
+      "text": "And we have diagonal\nmatrices where"
+    },
+    {
+      "start": 1777.22,
+      "duration": 3.32,
+      "text": "the matrix is all 0's except\nfor the diagonal entries, which"
+    },
+    {
+      "start": 1780.54,
+      "duration": 5.24,
+      "text": "may or may not be 0, and are\ngiven by the list D1 through Dn."
+    },
+    {
+      "start": 1785.78,
+      "duration": 1.3,
+      "text": "All right."
+    },
+    {
+      "start": 1787.08,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 1787.58,
+      "duration": 8.08,
+      "text": "Well now, we can turn to some\napplications that use matrices."
+    },
+    {
+      "start": 1795.66,
+      "duration": 6.82,
+      "text": "And the first one we want to\ndiscuss is stochastic matrices."
+    },
+    {
+      "start": 1802.48,
+      "duration": 8.92,
+      "text": "So these are matrices which will\nconsider a stochastic matrix"
+    },
+    {
+      "start": 1811.4,
+      "duration": 2.24,
+      "text": "that's square."
+    },
+    {
+      "start": 1813.64,
+      "duration": 5.12,
+      "text": "And the columns of A sum to 1."
+    },
+    {
+      "start": 1818.76,
+      "duration": 13.2,
+      "text": "So we'll have an A with\nA1, A2 up to Am or An."
+    },
+    {
+      "start": 1831.96,
+      "duration": 7.96,
+      "text": "And basically, the sum of\nAij, i equaling 1 to m,"
+    },
+    {
+      "start": 1839.92,
+      "duration": 1.53,
+      "text": "is going to equal to 1."
+    },
+    {
+      "start": 1847.72,
+      "duration": 5.0,
+      "text": "This kind of matrix\nis associated"
+    },
+    {
+      "start": 1852.72,
+      "duration": 3.76,
+      "text": "with Markov chains,\nwhere we think of there"
+    },
+    {
+      "start": 1856.48,
+      "duration": 2.84,
+      "text": "being m possible states."
+    },
+    {
+      "start": 1864.46,
+      "duration": 5.8,
+      "text": "So we basically have\nm rows and m columns."
+    },
+    {
+      "start": 1870.26,
+      "duration": 5.64,
+      "text": "And we have this notation\nAij, or lowercase aij,"
+    },
+    {
+      "start": 1875.9,
+      "duration": 7.16,
+      "text": "is equal to the probability\nthat the state, the next state,"
+    },
+    {
+      "start": 1883.06,
+      "duration": 5.24,
+      "text": "equals i, given\nthe previous state"
+    },
+    {
+      "start": 1888.3,
+      "duration": 6.6,
+      "text": "equals j is given by this Aij."
+    },
+    {
+      "start": 1900.22,
+      "duration": 0.62,
+      "text": "Let's see."
+    },
+    {
+      "start": 1900.84,
+      "duration": 9.34,
+      "text": "For each column j, we have, if\nthe previous state at time t"
+    },
+    {
+      "start": 1910.18,
+      "duration": 9.98,
+      "text": "was j, then there's a transition\nto a state at time t plus 1."
+    },
+    {
+      "start": 1920.16,
+      "duration": 7.0,
+      "text": "And these transition\nprobabilities, in some cases,"
+    },
+    {
+      "start": 1927.16,
+      "duration": 6.44,
+      "text": "can be assumed to be stable\nor stationary over t."
+    },
+    {
+      "start": 1933.6,
+      "duration": 6.2,
+      "text": "And with a Markov chain, we\ncan think of there basically"
+    },
+    {
+      "start": 1939.8,
+      "duration": 12.08,
+      "text": "being different states which\nare indexed from 1 up to m."
+    },
+    {
+      "start": 1951.88,
+      "duration": 11.84,
+      "text": "And we might think of these\nas being nodes in a graph."
+    },
+    {
+      "start": 1963.72,
+      "duration": 6.56,
+      "text": "And there's a probability\nof moving from one node"
+    },
+    {
+      "start": 1970.28,
+      "duration": 4.7,
+      "text": "to another for each time point."
+    },
+    {
+      "start": 1974.98,
+      "duration": 7.24,
+      "text": "And these probabilities\nof transitions"
+    },
+    {
+      "start": 1982.22,
+      "duration": 5.08,
+      "text": "might be stationary in a\nstationary Markov chain model."
+    },
+    {
+      "start": 1987.3,
+      "duration": 7.36,
+      "text": "Well, if we have a\nvector, pi, which"
+    },
+    {
+      "start": 1994.66,
+      "duration": 9.04,
+      "text": "is going to be basically pi of\nt equaling pi 1 of t, pi 2 of t,"
+    },
+    {
+      "start": 2003.7,
+      "duration": 11.24,
+      "text": "down to pi m of t, so this\nm vector, pi, tells us"
+    },
+    {
+      "start": 2014.94,
+      "duration": 8.24,
+      "text": "at time t what's the likelihood\nof being in any of the states."
+    },
+    {
+      "start": 2023.18,
+      "duration": 6.68,
+      "text": "Then, if we want to compute\nthe probabilities of states"
+    },
+    {
+      "start": 2029.86,
+      "duration": 4.1,
+      "text": "at time t plus 1,\nthen it turns out"
+    },
+    {
+      "start": 2033.96,
+      "duration": 8.2,
+      "text": "to be simply the matrix vector\nproduct of A times pi of t."
+    },
+    {
+      "start": 2042.16,
+      "duration": 6.2,
+      "text": "So this formula\ngives us the model"
+    },
+    {
+      "start": 2048.36,
+      "duration": 5.879,
+      "text": "for how the probabilities\nof states occurring changes"
+    },
+    {
+      "start": 2054.239,
+      "duration": 4.161,
+      "text": "from time t to t plus 1."
+    },
+    {
+      "start": 2058.4,
+      "duration": 8.12,
+      "text": "Now, if we consider\nwhat is the probability"
+    },
+    {
+      "start": 2066.52,
+      "duration": 3.84,
+      "text": "vector at time t\nplus 2, well, we"
+    },
+    {
+      "start": 2070.36,
+      "duration": 4.4,
+      "text": "have the same\nmatrix vector model"
+    },
+    {
+      "start": 2074.76,
+      "duration": 3.52,
+      "text": "where the stationary\ntransition probabilities"
+    },
+    {
+      "start": 2078.28,
+      "duration": 5.84,
+      "text": "A are multiplied by the vector\nof probabilities at t plus 1."
+    },
+    {
+      "start": 2084.12,
+      "duration": 7.28,
+      "text": "And we can substitute in what\nthat product is, which is A pi."
+    },
+    {
+      "start": 2091.4,
+      "duration": 2.739,
+      "text": "And so we basically\nget the square"
+    },
+    {
+      "start": 2094.139,
+      "duration": 3.321,
+      "text": "of the transition\nprobability matrix"
+    },
+    {
+      "start": 2097.46,
+      "duration": 5.0,
+      "text": "times the pi vector at time t."
+    },
+    {
+      "start": 2102.46,
+      "duration": 5.92,
+      "text": "Now, what's interesting to\nask with Markov chains is,"
+    },
+    {
+      "start": 2108.38,
+      "duration": 9.52,
+      "text": "if we start out with\na pi vector at time 0"
+    },
+    {
+      "start": 2117.9,
+      "duration": 4.32,
+      "text": "and we have the model that the\nlikelihood of different states"
+    },
+    {
+      "start": 2122.22,
+      "duration": 11.06,
+      "text": "evolves such that the t period\ntransition probabilities from pi"
+    },
+    {
+      "start": 2133.28,
+      "duration": 8.34,
+      "text": "0 to t is given by this formula,\nthen does this limit exist"
+    },
+    {
+      "start": 2141.62,
+      "duration": 1.72,
+      "text": "or not?"
+    },
+    {
+      "start": 2143.34,
+      "duration": 10.36,
+      "text": "And so let me just ask\nthat question to the class."
+    },
+    {
+      "start": 2153.7,
+      "duration": 5.04,
+      "text": "Anyone remember from\nstochastic processes perhaps"
+    },
+    {
+      "start": 2158.74,
+      "duration": 7.42,
+      "text": "or linear algebra\nwhether that has a limit?"
+    },
+    {
+      "start": 2166.16,
+      "duration": 0.68,
+      "text": "Yes?"
+    },
+    {
+      "start": 2166.84,
+      "duration": 1.56,
+      "text": "STUDENT: The stationary\ndistribution."
+    },
+    {
+      "start": 2168.4,
+      "duration": 1.5,
+      "text": "PETER KEMPTHORNE:\nIf it exists, it's"
+    },
+    {
+      "start": 2169.9,
+      "duration": 2.82,
+      "text": "the stationary distribution."
+    },
+    {
+      "start": 2172.72,
+      "duration": 7.88,
+      "text": "And so basically, if pi star\nis the stationary distribution,"
+    },
+    {
+      "start": 2180.6,
+      "duration": 8.92,
+      "text": "it is equal to a pi star so that\nwe're at a limiting distribution"
+    },
+    {
+      "start": 2189.52,
+      "duration": 4.28,
+      "text": "where there's no change in\nprobabilities, continuing"
+    },
+    {
+      "start": 2193.8,
+      "duration": 6.24,
+      "text": "from t equal to infinity\nto infinity plus 1."
+    },
+    {
+      "start": 2200.04,
+      "duration": 3.08,
+      "text": "Then this would be the formula."
+    },
+    {
+      "start": 2203.12,
+      "duration": 4.94,
+      "text": "Now, are there\ncircumstances where"
+    },
+    {
+      "start": 2208.06,
+      "duration": 4.64,
+      "text": "such a stationary\ndistribution doesn't exist?"
+    },
+    {
+      "start": 2212.7,
+      "duration": 1.02,
+      "text": "Yes, OK."
+    },
+    {
+      "start": 2213.72,
+      "duration": 1.7,
+      "text": "And when is that?"
+    },
+    {
+      "start": 2215.42,
+      "duration": 1.32,
+      "text": "I see some solid nods."
+    },
+    {
+      "start": 2216.74,
+      "duration": 0.866,
+      "text": "Yes?"
+    },
+    {
+      "start": 2217.606,
+      "duration": 0.774,
+      "text": "STUDENT: When it's periodic."
+    },
+    {
+      "start": 2218.38,
+      "duration": 1.75,
+      "text": "PETER KEMPTHORNE: When\nit's periodic, yep."
+    },
+    {
+      "start": 2220.13,
+      "duration": 3.89,
+      "text": "So you could have\ncycles in the process."
+    },
+    {
+      "start": 2224.02,
+      "duration": 4.0,
+      "text": "And a simplest case\nwould be two states"
+    },
+    {
+      "start": 2228.02,
+      "duration": 3.48,
+      "text": "that just alternate even odd\nbeing one state or the other"
+    },
+    {
+      "start": 2231.5,
+      "duration": 1.4,
+      "text": "as an example."
+    },
+    {
+      "start": 2232.9,
+      "duration": 5.64,
+      "text": "So we need to have\nacyclic distributions."
+    },
+    {
+      "start": 2242.5,
+      "duration": 5.96,
+      "text": "Or the Markov chain\nneeds to be acyclic."
+    },
+    {
+      "start": 2248.46,
+      "duration": 8.04,
+      "text": "And actually, all these topics\nare quite interesting when"
+    },
+    {
+      "start": 2256.5,
+      "duration": 1.48,
+      "text": "you study them."
+    },
+    {
+      "start": 2257.98,
+      "duration": 8.74,
+      "text": "It turns out that you can prove\nthat a Markov chain is acyclic"
+    },
+    {
+      "start": 2266.72,
+      "duration": 7.48,
+      "text": "if all of its components of the\nA matrix, if every single one,"
+    },
+    {
+      "start": 2274.2,
+      "duration": 4.68,
+      "text": "is nonzero, so\nthat there's always"
+    },
+    {
+      "start": 2278.88,
+      "duration": 5.44,
+      "text": "a possibility of transitioning\nfrom one state to another."
+    },
+    {
+      "start": 2284.32,
+      "duration": 1.86,
+      "text": "That's a bit too restrictive."
+    },
+    {
+      "start": 2286.18,
+      "duration": 3.34,
+      "text": "But it turns out\nthat, if you consider"
+    },
+    {
+      "start": 2289.52,
+      "duration": 7.32,
+      "text": "a particular power of\nA, that for some power,"
+    },
+    {
+      "start": 2296.84,
+      "duration": 2.64,
+      "text": "not necessarily very\nbig, but there's"
+    },
+    {
+      "start": 2299.48,
+      "duration": 5.88,
+      "text": "at some point of looking at\npowers of A, the A to that power"
+    },
+    {
+      "start": 2305.36,
+      "duration": 2.84,
+      "text": "is a matrix of all\npositive entries."
+    },
+    {
+      "start": 2308.2,
+      "duration": 5.64,
+      "text": "So it's interesting just how\nthese mathematical features"
+    },
+    {
+      "start": 2313.84,
+      "duration": 1.96,
+      "text": "can be shown."
+    },
+    {
+      "start": 2315.8,
+      "duration": 3.32,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 2319.12,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 2319.62,
+      "duration": 4.52,
+      "text": "So if it does exist, we have\na stationary distribution."
+    },
+    {
+      "start": 2324.14,
+      "duration": 4.22,
+      "text": "And that's nice."
+    },
+    {
+      "start": 2328.36,
+      "duration": 1.78,
+      "text": "Let me just point\nout that, I guess,"
+    },
+    {
+      "start": 2330.14,
+      "duration": 4.96,
+      "text": "in the first problem set for\nthe course that's been posted--"
+    },
+    {
+      "start": 2335.1,
+      "duration": 1.66,
+      "text": "that's due a week from Friday."
+    },
+    {
+      "start": 2336.76,
+      "duration": 3.02,
+      "text": "So this is a healthy\namount of time away,"
+    },
+    {
+      "start": 2339.78,
+      "duration": 2.2,
+      "text": "I hope, for everybody--"
+    },
+    {
+      "start": 2341.98,
+      "duration": 4.12,
+      "text": "we're asking you to look at\nsome simple Markov chains"
+    },
+    {
+      "start": 2346.1,
+      "duration": 5.34,
+      "text": "and explore the stationary\ndistribution of those cases."
+    },
+    {
+      "start": 2351.44,
+      "duration": 4.82,
+      "text": "And the Markov\nchain model is used"
+    },
+    {
+      "start": 2356.26,
+      "duration": 8.39,
+      "text": "for modeling whether, say,\ntrades at the buy or sell side--"
+    },
+    {
+      "start": 2368.34,
+      "duration": 4.0,
+      "text": "weather successive\ntrades in a stock"
+    },
+    {
+      "start": 2372.34,
+      "duration": 1.9,
+      "text": "will be at the buy\nside or sell side,"
+    },
+    {
+      "start": 2374.24,
+      "duration": 2.78,
+      "text": "depending on what the\nprevious trade was at"
+    },
+    {
+      "start": 2377.02,
+      "duration": 0.74,
+      "text": "All right."
+    },
+    {
+      "start": 2377.76,
+      "duration": 4.318,
+      "text": "Well, let's move on to\nanother class of matrices"
+    },
+    {
+      "start": 2382.078,
+      "duration": 0.792,
+      "text": "that's of interest."
+    },
+    {
+      "start": 2388.12,
+      "duration": 2.0,
+      "text": "Actually, before\ndoing that, I'm going"
+    },
+    {
+      "start": 2390.12,
+      "duration": 2.22,
+      "text": "to jump ahead just\nin terms of topics."
+    },
+    {
+      "start": 2392.34,
+      "duration": 6.18,
+      "text": "But this formula for the\nstationary distribution"
+    },
+    {
+      "start": 2398.52,
+      "duration": 7.64,
+      "text": "is a formula that's very\nspecific to eigenvalues"
+    },
+    {
+      "start": 2406.16,
+      "duration": 1.052,
+      "text": "and eigenvectors."
+    },
+    {
+      "start": 2410.4,
+      "duration": 6.44,
+      "text": "And so if you think of the\nmatrix A having eigenvalues"
+    },
+    {
+      "start": 2416.84,
+      "duration": 6.6,
+      "text": "and eigenvectors,\nwhat's the eigenvalue"
+    },
+    {
+      "start": 2423.44,
+      "duration": 2.37,
+      "text": "and what's the\neigenvector in this case?"
+    },
+    {
+      "start": 2432.08,
+      "duration": 3.56,
+      "text": "Does anybody-- yes, go ahead."
+    },
+    {
+      "start": 2435.64,
+      "duration": 3.98,
+      "text": "STUDENT: Eigenvalue value of 1,\nand the eigenvectors would be"
+    },
+    {
+      "start": 2439.62,
+      "duration": 2.2,
+      "text": "all the pi stars [INAUDIBLE]."
+    },
+    {
+      "start": 2444.54,
+      "duration": 2.44,
+      "text": "PETER KEMPTHORNE:\nSo this basically"
+    },
+    {
+      "start": 2446.98,
+      "duration": 3.6,
+      "text": "is a case where one of\nthe eigenvalues is 1."
+    },
+    {
+      "start": 2450.58,
+      "duration": 2.5,
+      "text": "Or sorry, one of the\neigenvalues is 1."
+    },
+    {
+      "start": 2453.08,
+      "duration": 3.18,
+      "text": "And this is satisfied."
+    },
+    {
+      "start": 2456.26,
+      "duration": 7.56,
+      "text": "We'll see later that,\nbasically, the other eigenvalues"
+    },
+    {
+      "start": 2463.82,
+      "duration": 2.12,
+      "text": "may be smaller than 1."
+    },
+    {
+      "start": 2465.94,
+      "duration": 7.44,
+      "text": "And when you multiply\nthe A matrix by itself"
+    },
+    {
+      "start": 2473.38,
+      "duration": 2.52,
+      "text": "to many, many powers,\nthen it's only"
+    },
+    {
+      "start": 2475.9,
+      "duration": 3.52,
+      "text": "this one eigenvector\nthat doesn't"
+    },
+    {
+      "start": 2479.42,
+      "duration": 3.22,
+      "text": "get shrunk to 0 in the limit."
+    },
+    {
+      "start": 2482.64,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 2483.14,
+      "duration": 4.4,
+      "text": "Well, let's turn to\npositive matrices."
+    },
+    {
+      "start": 2487.54,
+      "duration": 3.18,
+      "text": "Positive matrices\narise in economics,"
+    },
+    {
+      "start": 2490.72,
+      "duration": 3.66,
+      "text": "where we think of there\nbeing, say, prices"
+    },
+    {
+      "start": 2494.38,
+      "duration": 6.99,
+      "text": "of goods under different\nstates of the market"
+    },
+    {
+      "start": 2501.37,
+      "duration": 4.04,
+      "text": "or costs of goods under\nstates of the market."
+    },
+    {
+      "start": 2505.41,
+      "duration": 4.04,
+      "text": "And those are all positive."
+    },
+    {
+      "start": 2509.45,
+      "duration": 10.44,
+      "text": "And we can think of this arising\nin a single period market"
+    },
+    {
+      "start": 2519.89,
+      "duration": 13.56,
+      "text": "model, where we have n assets\nindexed by i and, let's see,"
+    },
+    {
+      "start": 2533.45,
+      "duration": 2.56,
+      "text": "we have two periods--"
+    },
+    {
+      "start": 2536.01,
+      "duration": 5.04,
+      "text": "or sorry, a single period with\na beginning and end, t0 and t"
+    },
+    {
+      "start": 2541.05,
+      "duration": 1.84,
+      "text": "equals capital T."
+    },
+    {
+      "start": 2542.89,
+      "duration": 11.38,
+      "text": "And if we think of what is\nthe price of assets at time 0,"
+    },
+    {
+      "start": 2554.27,
+      "duration": 2.86,
+      "text": "we may know what\nthose are at time 0."
+    },
+    {
+      "start": 2557.13,
+      "duration": 4.18,
+      "text": "And then what are the\nsubsequent prices at the end"
+    },
+    {
+      "start": 2561.31,
+      "duration": 2.68,
+      "text": "of the single period?"
+    },
+    {
+      "start": 2563.99,
+      "duration": 9.62,
+      "text": "Capital T. And those prices\nmay or may not be known."
+    },
+    {
+      "start": 2573.61,
+      "duration": 8.26,
+      "text": "And so let me just give an\nexample here with two assets."
+    },
+    {
+      "start": 2581.87,
+      "duration": 4.59,
+      "text": "And so we're going to think\nof the two-period model."
+    },
+    {
+      "start": 2589.63,
+      "duration": 2.08,
+      "text": "And we're going to\nhave n equal to 2."
+    },
+    {
+      "start": 2597.91,
+      "duration": 8.88,
+      "text": "We're going to consider\nbasically a bond, B,"
+    },
+    {
+      "start": 2606.79,
+      "duration": 4.5,
+      "text": "which takes on Values."
+    },
+    {
+      "start": 2615.21,
+      "duration": 13.16,
+      "text": "that will be B0 at t equals\n0 and BT at time capital T."
+    },
+    {
+      "start": 2628.37,
+      "duration": 6.36,
+      "text": "And we'll consider the\ncase of a bond which"
+    },
+    {
+      "start": 2634.73,
+      "duration": 4.99,
+      "text": "basically pays interest\nat the interest rate RF."
+    },
+    {
+      "start": 2643.93,
+      "duration": 7.6,
+      "text": "So this B0 price of\nthe bond at time 0"
+    },
+    {
+      "start": 2651.53,
+      "duration": 6.6,
+      "text": "grows to B sub capital T,\nwhich is basically growing"
+    },
+    {
+      "start": 2658.13,
+      "duration": 3.8,
+      "text": "at a simple interest rate of RF."
+    },
+    {
+      "start": 2661.93,
+      "duration": 3.2,
+      "text": "And let's see."
+    },
+    {
+      "start": 2665.13,
+      "duration": 10.62,
+      "text": "We can talk about RB, the return\nof this, just being BT minus B0."
+    },
+    {
+      "start": 2675.75,
+      "duration": 5.52,
+      "text": "So this is the absolute return."
+    },
+    {
+      "start": 2681.27,
+      "duration": 7.96,
+      "text": "And we can also define\nthe percent return,"
+    },
+    {
+      "start": 2689.23,
+      "duration": 10.12,
+      "text": "which would be looking at R sub\nB equal to the absolute return"
+    },
+    {
+      "start": 2699.35,
+      "duration": 2.84,
+      "text": "divided by the initial value."
+    },
+    {
+      "start": 2702.19,
+      "duration": 4.56,
+      "text": "So this would be the\npercentage return."
+    },
+    {
+      "start": 2706.75,
+      "duration": 2.64,
+      "text": "And let's see."
+    },
+    {
+      "start": 2709.39,
+      "duration": 3.88,
+      "text": "If we subtract this\nhere, we end up"
+    },
+    {
+      "start": 2713.27,
+      "duration": 10.32,
+      "text": "getting that this\nis B0 RF times T."
+    },
+    {
+      "start": 2723.59,
+      "duration": 3.68,
+      "text": "So this turns out to\nbe equal to simply RF"
+    },
+    {
+      "start": 2727.27,
+      "duration": 5.5,
+      "text": "T as the percent return."
+    },
+    {
+      "start": 2732.77,
+      "duration": 3.8,
+      "text": "And let's see."
+    },
+    {
+      "start": 2736.57,
+      "duration": 7.48,
+      "text": "We can also talk about\nthe simple rate of return,"
+    },
+    {
+      "start": 2744.05,
+      "duration": 1.87,
+      "text": "which would be given by--"
+    },
+    {
+      "start": 2748.383,
+      "duration": 0.667,
+      "text": "well, let's see."
+    },
+    {
+      "start": 2749.05,
+      "duration": 5.84,
+      "text": "Actually, maybe, here I\nshould write R sub B and here"
+    },
+    {
+      "start": 2754.89,
+      "duration": 3.64,
+      "text": "R sub B instead of\nR sub F because I"
+    },
+    {
+      "start": 2758.53,
+      "duration": 9.4,
+      "text": "want to define R sub f to be\nequal to basically 1 over t,"
+    },
+    {
+      "start": 2767.93,
+      "duration": 2.96,
+      "text": "the average rate of return."
+    },
+    {
+      "start": 2770.89,
+      "duration": 7.64,
+      "text": "So it's equal to this\ntimes BT minus B0 over B0."
+    },
+    {
+      "start": 2778.53,
+      "duration": 8.42,
+      "text": "And so this, simply, in this\ncase, is equal to that RB."
+    },
+    {
+      "start": 2786.95,
+      "duration": 7.88,
+      "text": "And I guess, I'll be using\na notation of characterizing"
+    },
+    {
+      "start": 2794.83,
+      "duration": 3.6,
+      "text": "an interest rate as being\na risk-free interest rate,"
+    },
+    {
+      "start": 2798.43,
+      "duration": 6.88,
+      "text": "if this bond is guaranteed\nto have that final value."
+    },
+    {
+      "start": 2805.31,
+      "duration": 3.56,
+      "text": "And so in quantitative\nfinance, we often"
+    },
+    {
+      "start": 2808.87,
+      "duration": 2.32,
+      "text": "talk about risk-free rates."
+    },
+    {
+      "start": 2811.19,
+      "duration": 4.26,
+      "text": "And nothing in the\nworld is risk-free."
+    },
+    {
+      "start": 2815.45,
+      "duration": 3.34,
+      "text": "But when governments\ncan print money"
+    },
+    {
+      "start": 2818.79,
+      "duration": 3.72,
+      "text": "to pay off their liabilities,\nthen it essentially"
+    },
+    {
+      "start": 2822.51,
+      "duration": 3.24,
+      "text": "is a risk-free rate."
+    },
+    {
+      "start": 2825.75,
+      "duration": 4.36,
+      "text": "And we worry less\nabout it with countries"
+    },
+    {
+      "start": 2830.11,
+      "duration": 2.04,
+      "text": "with stronger economies."
+    },
+    {
+      "start": 2832.15,
+      "duration": 5.36,
+      "text": "Now, this is the first asset."
+    },
+    {
+      "start": 2837.51,
+      "duration": 4.24,
+      "text": "Let's also consider\na stock, S, which"
+    },
+    {
+      "start": 2841.75,
+      "duration": 4.78,
+      "text": "has at time 0 a value of S0."
+    },
+    {
+      "start": 2846.53,
+      "duration": 6.68,
+      "text": "And then at time T,\nit's going to be random."
+    },
+    {
+      "start": 2853.21,
+      "duration": 7.12,
+      "text": "And so we have S sub\nT is going to equal"
+    },
+    {
+      "start": 2860.33,
+      "duration": 3.36,
+      "text": "different possible outcomes."
+    },
+    {
+      "start": 2863.69,
+      "duration": 1.8,
+      "text": "And we'll consider\na special case"
+    },
+    {
+      "start": 2865.49,
+      "duration": 14.08,
+      "text": "where it's STu and STd, where\nwe have an underlying state"
+    },
+    {
+      "start": 2879.57,
+      "duration": 3.4,
+      "text": "being an up or a down market."
+    },
+    {
+      "start": 2882.97,
+      "duration": 8.2,
+      "text": "So we have a random\noutcome for ST."
+    },
+    {
+      "start": 2891.17,
+      "duration": 3.64,
+      "text": "We're not yet specifying what\nprobabilities are associated"
+    },
+    {
+      "start": 2894.81,
+      "duration": 2.22,
+      "text": "with these different states."
+    },
+    {
+      "start": 2897.03,
+      "duration": 12.36,
+      "text": "And so there are two states\nat time T, omega equal to--"
+    },
+    {
+      "start": 2909.39,
+      "duration": 4.96,
+      "text": "well, maybe I'll just write u\nand omega equal to d for that."
+    },
+    {
+      "start": 2914.35,
+      "duration": 7.08,
+      "text": "And so in thinking of a single\nmarket model with n assets, not"
+    },
+    {
+      "start": 2921.43,
+      "duration": 6.8,
+      "text": "just two, we are defining\nbasically two assets--"
+    },
+    {
+      "start": 2928.23,
+      "duration": 5.92,
+      "text": "I guess I'm using j for\nthe assets instead of i."
+    },
+    {
+      "start": 2934.15,
+      "duration": 3.6,
+      "text": "But we basically have\nknown asset prices"
+    },
+    {
+      "start": 2937.75,
+      "duration": 7.72,
+      "text": "at time 0 and potentially\nrandom prices at time capital T."
+    },
+    {
+      "start": 2945.47,
+      "duration": 10.64,
+      "text": "And so we can model this by\nassociating different states"
+    },
+    {
+      "start": 2956.11,
+      "duration": 8.26,
+      "text": "or scenarios at time capital\nT that are indexed w1 to wm."
+    },
+    {
+      "start": 2964.37,
+      "duration": 8.58,
+      "text": "And we then can have\ndifferent prices in that."
+    },
+    {
+      "start": 2972.95,
+      "duration": 3.14,
+      "text": "So here's the framework\nfor this right"
+    },
+    {
+      "start": 2976.09,
+      "duration": 7.08,
+      "text": "now, at least the\nframework with two assets."
+    },
+    {
+      "start": 2983.17,
+      "duration": 7.32,
+      "text": "And we can also characterize\nportfolios of the n"
+    },
+    {
+      "start": 2990.49,
+      "duration": 1.13,
+      "text": "equals 2 assets."
+    },
+    {
+      "start": 2994.17,
+      "duration": 3.88,
+      "text": "And we can define\na pi vector being"
+    },
+    {
+      "start": 2998.05,
+      "duration": 4.8,
+      "text": "simply equal to a weight\nin the bond and a weight"
+    },
+    {
+      "start": 3002.85,
+      "duration": 6.24,
+      "text": "in the stock, units of the\nstock, units of the bond,"
+    },
+    {
+      "start": 3009.09,
+      "duration": 2.96,
+      "text": "given by this vector."
+    },
+    {
+      "start": 3012.05,
+      "duration": 9.1,
+      "text": "And so what we can\nthen do is deal"
+    },
+    {
+      "start": 3021.15,
+      "duration": 6.532,
+      "text": "with modeling the outcomes\nof this portfolio."
+    },
+    {
+      "start": 3030.91,
+      "duration": 9.52,
+      "text": "If we consider v0, the value\nof the portfolio at time 0,"
+    },
+    {
+      "start": 3040.43,
+      "duration": 8.4,
+      "text": "this would be just pi B\ntimes B0 plus pi S times S0."
+    },
+    {
+      "start": 3052.11,
+      "duration": 8.56,
+      "text": "And at time capital\nT, then our portfolio"
+    },
+    {
+      "start": 3060.67,
+      "duration": 13.96,
+      "text": "would have values pi B BT\nplus pi S times STu for the up"
+    },
+    {
+      "start": 3074.63,
+      "duration": 8.5,
+      "text": "case and pi B BT\nplus pi S times STd"
+    },
+    {
+      "start": 3083.13,
+      "duration": 4.92,
+      "text": "when w is equal to d,\nwhen the state is down."
+    },
+    {
+      "start": 3088.05,
+      "duration": 8.52,
+      "text": "So this value of the\nportfolio will be random,"
+    },
+    {
+      "start": 3096.57,
+      "duration": 4.65,
+      "text": "depending upon the likelihood\nof these up and down states."
+    },
+    {
+      "start": 3103.85,
+      "duration": 8.68,
+      "text": "Well, with this setup,\nit's useful at this point"
+    },
+    {
+      "start": 3112.53,
+      "duration": 6.68,
+      "text": "to introduce you to\nsome concepts, which"
+    },
+    {
+      "start": 3119.21,
+      "duration": 8.76,
+      "text": "is contingent claims and\nreplicating portfolios."
+    },
+    {
+      "start": 3137.19,
+      "duration": 9.28,
+      "text": "And so suppose that we\nhave a contingent claim"
+    },
+    {
+      "start": 3146.47,
+      "duration": 12.0,
+      "text": "C, which has a value C0, is\nthe value at t equal to 0."
+    },
+    {
+      "start": 3158.47,
+      "duration": 7.56,
+      "text": "And Ct will be the value\nof this contingent claim"
+    },
+    {
+      "start": 3166.03,
+      "duration": 4.92,
+      "text": "depending upon whether\nwe have an up or down--"
+    },
+    {
+      "start": 3170.95,
+      "duration": 2.47,
+      "text": "well, actually, I'll reverse\nit, a down or an up market."
+    },
+    {
+      "start": 3183.39,
+      "duration": 4.72,
+      "text": "What we end up doing\nin these market"
+    },
+    {
+      "start": 3188.11,
+      "duration": 10.58,
+      "text": "models is being able to model\nthe prices of contingent claims"
+    },
+    {
+      "start": 3198.69,
+      "duration": 4.96,
+      "text": "when we can replicate\nthe contingent claim"
+    },
+    {
+      "start": 3203.65,
+      "duration": 2.69,
+      "text": "with a portfolio of\nthe underlying assets."
+    },
+    {
+      "start": 3210.69,
+      "duration": 9.84,
+      "text": "So we can ask, does there exist\na portfolio of B and S such"
+    },
+    {
+      "start": 3220.53,
+      "duration": 31.98,
+      "text": "that pi Bv plus pi S STu equals\nCTd and pi B plus pi S St--"
+    },
+    {
+      "start": 3252.51,
+      "duration": 4.01,
+      "text": "I've got these notations\nwrong-- equals to CTu."
+    },
+    {
+      "start": 3262.63,
+      "duration": 6.81,
+      "text": "So if this were the case, then--"
+    },
+    {
+      "start": 3272.83,
+      "duration": 11.63,
+      "text": "if so, then we could have C0\nequaling pi B B0 plus pi S S0."
+    },
+    {
+      "start": 3287.43,
+      "duration": 4.88,
+      "text": "And we would replicate this\ncontingent claim payoff"
+    },
+    {
+      "start": 3292.31,
+      "duration": 6.92,
+      "text": "at time capital T.\nNow, mathematically,"
+    },
+    {
+      "start": 3299.23,
+      "duration": 9.82,
+      "text": "can we solve for portfolio\ncoefficients that"
+    },
+    {
+      "start": 3309.05,
+      "duration": 1.77,
+      "text": "satisfy this contingent claim?"
+    },
+    {
+      "start": 3318.69,
+      "duration": 0.71,
+      "text": "Any thoughts?"
+    },
+    {
+      "start": 3326.183,
+      "duration": 0.667,
+      "text": "Well, let's see."
+    },
+    {
+      "start": 3326.85,
+      "duration": 3.79,
+      "text": "If we look at CTd versus CTu--"
+    },
+    {
+      "start": 3334.97,
+      "duration": 1.37,
+      "text": "and here's the origin."
+    },
+    {
+      "start": 3339.61,
+      "duration": 8.28,
+      "text": "If we had a portfolio\nthat was just the bond,"
+    },
+    {
+      "start": 3347.89,
+      "duration": 6.0,
+      "text": "we might have BT\nhere and BT here."
+    },
+    {
+      "start": 3353.89,
+      "duration": 5.08,
+      "text": "And here's the point\ncorresponding to BT, BT."
+    },
+    {
+      "start": 3358.97,
+      "duration": 2.72,
+      "text": "And here's the\nvector corresponding"
+    },
+    {
+      "start": 3361.69,
+      "duration": 3.08,
+      "text": "to the portfolio\nthat's just the bond."
+    },
+    {
+      "start": 3364.77,
+      "duration": 7.46,
+      "text": "And if we look at the\nstock, the portfolio, that's"
+    },
+    {
+      "start": 3372.23,
+      "duration": 11.12,
+      "text": "just the stock, we might have\nSTd here, and then way up here"
+    },
+    {
+      "start": 3383.35,
+      "duration": 7.2,
+      "text": "maybe STu, the value of the\nstock when the market is up."
+    },
+    {
+      "start": 3390.55,
+      "duration": 5.72,
+      "text": "And so this would\nbe our ST vector"
+    },
+    {
+      "start": 3396.27,
+      "duration": 5.44,
+      "text": "in the two-dimensional space\ncorresponding to down market"
+    },
+    {
+      "start": 3401.71,
+      "duration": 2.09,
+      "text": "state versus up market state."
+    },
+    {
+      "start": 3407.99,
+      "duration": 11.36,
+      "text": "Now, given this figure, if\nwe think of just an arbitrary"
+    },
+    {
+      "start": 3419.35,
+      "duration": 4.83,
+      "text": "point in this space\nof contingent claims,"
+    },
+    {
+      "start": 3424.18,
+      "duration": 3.38,
+      "text": "can we construct a\nportfolio that matches that?"
+    },
+    {
+      "start": 3427.56,
+      "duration": 1.14,
+      "text": "Yes?"
+    },
+    {
+      "start": 3428.7,
+      "duration": 2.68,
+      "text": "STUDENT: Sorry, can you\nexplain what [INAUDIBLE]?"
+    },
+    {
+      "start": 3431.38,
+      "duration": 0.92,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 3432.3,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 3432.8,
+      "duration": 6.9,
+      "text": "The contingent claim\nis a payoff that"
+    },
+    {
+      "start": 3439.7,
+      "duration": 7.92,
+      "text": "is contingent upon the state\nof the market at that time."
+    },
+    {
+      "start": 3447.62,
+      "duration": 6.0,
+      "text": "And it's either a down\nmarket or an up market"
+    },
+    {
+      "start": 3453.62,
+      "duration": 2.12,
+      "text": "over the one period."
+    },
+    {
+      "start": 3455.74,
+      "duration": 5.36,
+      "text": "And the payoff, if it's\nan up market, is CTu."
+    },
+    {
+      "start": 3461.1,
+      "duration": 4.16,
+      "text": "And the payoff, if it's\na down market, is CTd."
+    },
+    {
+      "start": 3465.26,
+      "duration": 4.32,
+      "text": "And in this space of\ncontingent claims,"
+    },
+    {
+      "start": 3469.58,
+      "duration": 2.52,
+      "text": "we can draw vectors\ncorresponding"
+    },
+    {
+      "start": 3472.1,
+      "duration": 9.31,
+      "text": "to the stock and the\nbond as these vectors."
+    },
+    {
+      "start": 3485.28,
+      "duration": 5.32,
+      "text": "And so what's curious\nto think about is--"
+    },
+    {
+      "start": 3490.6,
+      "duration": 6.38,
+      "text": "suppose we have a\ncontingent claim that--"
+    },
+    {
+      "start": 3496.98,
+      "duration": 0.9,
+      "text": "well, let's see."
+    },
+    {
+      "start": 3497.88,
+      "duration": 5.27,
+      "text": "Suppose we consider a call\noption contingent claim."
+    },
+    {
+      "start": 3510.04,
+      "duration": 0.7,
+      "text": "Well, let's see."
+    },
+    {
+      "start": 3510.74,
+      "duration": 7.41,
+      "text": "So there would be\na strike price of--"
+    },
+    {
+      "start": 3521.36,
+      "duration": 15.0,
+      "text": "let's see-- A strike price of\nK to buy the stock at time T."
+    },
+    {
+      "start": 3536.36,
+      "duration": 3.7,
+      "text": "And in order for this\nto be of interest,"
+    },
+    {
+      "start": 3540.06,
+      "duration": 7.9,
+      "text": "we might have K being smaller\nthan STu and greater than STd."
+    },
+    {
+      "start": 3551.94,
+      "duration": 7.48,
+      "text": "So we have a call option with\nstrike price K to buy the stock."
+    },
+    {
+      "start": 3559.42,
+      "duration": 6.28,
+      "text": "And the contingent\nclaim of the call"
+    },
+    {
+      "start": 3565.7,
+      "duration": 9.72,
+      "text": "would be 0, if we\nhave the down market."
+    },
+    {
+      "start": 3575.42,
+      "duration": 6.33,
+      "text": "And it would be STu minus\nK if it's the up market."
+    },
+    {
+      "start": 3586.86,
+      "duration": 4.52,
+      "text": "So we could consider\n0 in the down market."
+    },
+    {
+      "start": 3591.38,
+      "duration": 7.34,
+      "text": "And basically, maybe this\nwould be CT minus K here."
+    },
+    {
+      "start": 3598.72,
+      "duration": 6.32,
+      "text": "So this vector here would\ncorrespond to the payoff"
+    },
+    {
+      "start": 3605.04,
+      "duration": 1.87,
+      "text": "of this call option."
+    },
+    {
+      "start": 3611.96,
+      "duration": 4.04,
+      "text": "So under what\ncircumstances can we"
+    },
+    {
+      "start": 3616.0,
+      "duration": 3.04,
+      "text": "take a linear combination\nof these two vectors"
+    },
+    {
+      "start": 3619.04,
+      "duration": 1.05,
+      "text": "and get this vector?"
+    },
+    {
+      "start": 3626.84,
+      "duration": 1.04,
+      "text": "Yes?"
+    },
+    {
+      "start": 3627.88,
+      "duration": 2.842,
+      "text": "STUDENT: So you've got to\nshort one of the stocks?"
+    },
+    {
+      "start": 3630.722,
+      "duration": 0.958,
+      "text": "PETER KEMPTHORNE: Yeah."
+    },
+    {
+      "start": 3631.68,
+      "duration": 4.32,
+      "text": "I mean, basically,\nwe can solve for this"
+    },
+    {
+      "start": 3636.0,
+      "duration": 8.2,
+      "text": "here by substituting in\nfor this 0 and P minus K,"
+    },
+    {
+      "start": 3644.2,
+      "duration": 5.24,
+      "text": "and then just solve it to\nget our two equations and two"
+    },
+    {
+      "start": 3649.44,
+      "duration": 0.54,
+      "text": "unknowns."
+    },
+    {
+      "start": 3649.98,
+      "duration": 4.22,
+      "text": "So if this system of equations,\ntwo equations and two unknowns,"
+    },
+    {
+      "start": 3654.2,
+      "duration": 4.18,
+      "text": "has a solution, then\nwe can solve it."
+    },
+    {
+      "start": 3658.38,
+      "duration": 8.08,
+      "text": "And what is interesting\nis to consider"
+    },
+    {
+      "start": 3666.46,
+      "duration": 4.56,
+      "text": "what are the space of all\npossible contingent claims."
+    },
+    {
+      "start": 3671.02,
+      "duration": 7.16,
+      "text": "And let me just\nturn to this note."
+    },
+    {
+      "start": 3678.18,
+      "duration": 2.84,
+      "text": "This is on Canvas."
+    },
+    {
+      "start": 3681.02,
+      "duration": 3.0,
+      "text": "But this note that's been\nposted in Canvas talks"
+    },
+    {
+      "start": 3684.02,
+      "duration": 4.34,
+      "text": "about a one-period economy\nwith two assets in section 1."
+    },
+    {
+      "start": 3688.36,
+      "duration": 3.18,
+      "text": "That's what I've just outlined\non the chalkboard here."
+    },
+    {
+      "start": 3691.54,
+      "duration": 4.44,
+      "text": "One can generalize that\nto a single period model"
+    },
+    {
+      "start": 3695.98,
+      "duration": 3.1,
+      "text": "with more than two assets."
+    },
+    {
+      "start": 3699.08,
+      "duration": 2.62,
+      "text": "That's chapter section 2."
+    },
+    {
+      "start": 3701.7,
+      "duration": 4.8,
+      "text": "And then one can generalize to--"
+    },
+    {
+      "start": 3706.5,
+      "duration": 1.8,
+      "text": "not generalize, but\none can consider"
+    },
+    {
+      "start": 3708.3,
+      "duration": 5.9,
+      "text": "visualizing the assets and\nportfolios in section 3 here."
+    },
+    {
+      "start": 3714.2,
+      "duration": 7.88,
+      "text": "And so what I do in\nthe last section here"
+    },
+    {
+      "start": 3722.08,
+      "duration": 4.16,
+      "text": "is looking at the\nvector of payoffs"
+    },
+    {
+      "start": 3726.24,
+      "duration": 5.32,
+      "text": "of the bond and the stock,\ncolored differently."
+    },
+    {
+      "start": 3731.56,
+      "duration": 4.76,
+      "text": "And so this is a\nbond that may pay off"
+    },
+    {
+      "start": 3736.32,
+      "duration": 3.42,
+      "text": "the same amount in the\ndown versus the up market."
+    },
+    {
+      "start": 3739.74,
+      "duration": 5.26,
+      "text": "And the stock pays off more in\nthe up market than the down."
+    },
+    {
+      "start": 3745.0,
+      "duration": 2.24,
+      "text": "And then one can\nconsider collections"
+    },
+    {
+      "start": 3747.24,
+      "duration": 9.24,
+      "text": "of portfolios that weight\nthe bond and the stock"
+    },
+    {
+      "start": 3756.48,
+      "duration": 4.84,
+      "text": "so that the positive\nweights sum to 1."
+    },
+    {
+      "start": 3761.32,
+      "duration": 5.4,
+      "text": "And so these vectors correspond\nto the payoff vectors"
+    },
+    {
+      "start": 3766.72,
+      "duration": 4.28,
+      "text": "of those long portfolios."
+    },
+    {
+      "start": 3771.0,
+      "duration": 4.08,
+      "text": "And if we consider--"
+    },
+    {
+      "start": 3775.08,
+      "duration": 4.06,
+      "text": "well, let's see-- looking\nat those long portfolios,"
+    },
+    {
+      "start": 3779.14,
+      "duration": 4.16,
+      "text": "instead of representing\nvectors as pointed segments"
+    },
+    {
+      "start": 3783.3,
+      "duration": 2.8,
+      "text": "from the origin, one\ncould just represent them"
+    },
+    {
+      "start": 3786.1,
+      "duration": 2.72,
+      "text": "as points in the space."
+    },
+    {
+      "start": 3788.82,
+      "duration": 2.32,
+      "text": "And that representation\nis helpful"
+    },
+    {
+      "start": 3791.14,
+      "duration": 5.52,
+      "text": "when we want to consider a\nvariety of other portfolios"
+    },
+    {
+      "start": 3796.66,
+      "duration": 1.36,
+      "text": "in the mix."
+    },
+    {
+      "start": 3798.02,
+      "duration": 10.76,
+      "text": "And so here's a graph showing\nthe value of the payoff"
+    },
+    {
+      "start": 3808.78,
+      "duration": 5.52,
+      "text": "if we consider portfolios\nthat can invest up"
+    },
+    {
+      "start": 3814.3,
+      "duration": 9.28,
+      "text": "to 100% in each of the\nbond or the stock or both."
+    },
+    {
+      "start": 3823.58,
+      "duration": 5.1,
+      "text": "And so if we invest\n100% in both,"
+    },
+    {
+      "start": 3828.68,
+      "duration": 4.56,
+      "text": "we basically get the payoffs\nthat are really high."
+    },
+    {
+      "start": 3833.24,
+      "duration": 6.74,
+      "text": "And if we don't invest\nmuch, close to 0 in both,"
+    },
+    {
+      "start": 3839.98,
+      "duration": 2.98,
+      "text": "then we get the 0 vector."
+    },
+    {
+      "start": 3842.96,
+      "duration": 7.28,
+      "text": "But this graph shows\nthe contingent claims"
+    },
+    {
+      "start": 3850.24,
+      "duration": 4.08,
+      "text": "that are mapped or\nequivalent by replicating"
+    },
+    {
+      "start": 3854.32,
+      "duration": 3.2,
+      "text": "portfolios of these types."
+    },
+    {
+      "start": 3857.52,
+      "duration": 4.84,
+      "text": "And so if we then\nallow for shorting,"
+    },
+    {
+      "start": 3862.36,
+      "duration": 3.4,
+      "text": "this extends the\ncontingent claims"
+    },
+    {
+      "start": 3865.76,
+      "duration": 9.44,
+      "text": "to allow for negative payoffs,\nwhich are graphed here,"
+    },
+    {
+      "start": 3875.2,
+      "duration": 3.56,
+      "text": "basically with the payoff in\nthe down market versus the up."
+    },
+    {
+      "start": 3878.76,
+      "duration": 3.64,
+      "text": "And what's of interest\nhere, although it's not"
+    },
+    {
+      "start": 3882.4,
+      "duration": 6.36,
+      "text": "quite easy to see, is\nthere are portfolios"
+    },
+    {
+      "start": 3888.76,
+      "duration": 7.82,
+      "text": "where the initial value\nof the portfolio is 0."
+    },
+    {
+      "start": 3896.58,
+      "duration": 6.76,
+      "text": "And so that would correspond\nto a long short portfolio that"
+    },
+    {
+      "start": 3903.34,
+      "duration": 1.95,
+      "text": "is implemented with zero cost."
+    },
+    {
+      "start": 3911.04,
+      "duration": 5.02,
+      "text": "So this is the\npayoff vector at T"
+    },
+    {
+      "start": 3916.06,
+      "duration": 4.08,
+      "text": "and looking at\nthe value where we"
+    },
+    {
+      "start": 3920.14,
+      "duration": 6.04,
+      "text": "white out those portfolios\nthat have zero cost."
+    },
+    {
+      "start": 3926.18,
+      "duration": 3.12,
+      "text": "Now, what's useful\nhere to see is"
+    },
+    {
+      "start": 3929.3,
+      "duration": 4.16,
+      "text": "that, with these\nkinds of portfolios,"
+    },
+    {
+      "start": 3933.46,
+      "duration": 3.76,
+      "text": "we can replicate\ndifferent contingent"
+    },
+    {
+      "start": 3937.22,
+      "duration": 6.44,
+      "text": "claims which correspond to\ndifferent points in this space."
+    },
+    {
+      "start": 3943.66,
+      "duration": 11.74,
+      "text": "If we were able to invest more\nthan 100% of our portfolio,"
+    },
+    {
+      "start": 3955.4,
+      "duration": 2.92,
+      "text": "long or short, then\nwe could actually"
+    },
+    {
+      "start": 3958.32,
+      "duration": 7.4,
+      "text": "realize any point in this\nspace, in some cases."
+    },
+    {
+      "start": 3965.72,
+      "duration": 4.44,
+      "text": "And so any contingent\nclaim could be solved"
+    },
+    {
+      "start": 3970.16,
+      "duration": 5.84,
+      "text": "for with this equation here."
+    },
+    {
+      "start": 3976.0,
+      "duration": 2.88,
+      "text": "And that's rather neat."
+    },
+    {
+      "start": 3978.88,
+      "duration": 4.12,
+      "text": "But it also is\nreasonable to consider"
+    },
+    {
+      "start": 3983.0,
+      "duration": 3.12,
+      "text": "if we make certain assumptions\non the market, such"
+    },
+    {
+      "start": 3986.12,
+      "duration": 5.68,
+      "text": "as, as you buy more\nof an asset, you don't"
+    },
+    {
+      "start": 3991.8,
+      "duration": 3.56,
+      "text": "change the price of the asset."
+    },
+    {
+      "start": 3995.36,
+      "duration": 2.32,
+      "text": "There's basically a\nfixed price is suitable"
+    },
+    {
+      "start": 3997.68,
+      "duration": 1.3,
+      "text": "regardless of how much."
+    },
+    {
+      "start": 3998.98,
+      "duration": 5.52,
+      "text": "And there's no constraint\non short selling the asset,"
+    },
+    {
+      "start": 4004.5,
+      "duration": 2.62,
+      "text": "that you can do\nthat with liberty."
+    },
+    {
+      "start": 4007.12,
+      "duration": 4.94,
+      "text": "So there are these kinds\nof properties that arise."
+    },
+    {
+      "start": 4012.06,
+      "duration": 5.44,
+      "text": "Now, with the case of\nextending from the bond"
+    },
+    {
+      "start": 4017.5,
+      "duration": 4.32,
+      "text": "and the single stock to m--"
+    },
+    {
+      "start": 4021.82,
+      "duration": 5.76,
+      "text": "sorry, little n assets,\nthen everything generalizes."
+    },
+    {
+      "start": 4027.58,
+      "duration": 7.64,
+      "text": "And we end up having a\npositive price matrix at time T"
+    },
+    {
+      "start": 4035.22,
+      "duration": 4.88,
+      "text": "corresponding to different\npayoffs of the individual assets"
+    },
+    {
+      "start": 4040.1,
+      "duration": 8.16,
+      "text": "at time capital T for different\nstates omega 1 through omega m."
+    },
+    {
+      "start": 4048.26,
+      "duration": 13.58,
+      "text": "And with this kind of setup, one\ncan represent the initial value"
+    },
+    {
+      "start": 4061.84,
+      "duration": 9.4,
+      "text": "of a portfolio Q being\nthe sum of the Q weights"
+    },
+    {
+      "start": 4071.24,
+      "duration": 3.76,
+      "text": "times the initial\nprices in the A0 vector."
+    },
+    {
+      "start": 4075.0,
+      "duration": 6.08,
+      "text": "And then the payoff of the\nportfolio at time capital T"
+    },
+    {
+      "start": 4081.08,
+      "duration": 6.64,
+      "text": "is given by the same weights qj\ntimes the time capital T prices."
+    },
+    {
+      "start": 4087.72,
+      "duration": 2.28,
+      "text": "But we have different\nprices depending"
+    },
+    {
+      "start": 4090.0,
+      "duration": 5.16,
+      "text": "upon what state occurs."
+    },
+    {
+      "start": 4095.16,
+      "duration": 6.72,
+      "text": "And so in this case, we\nhave basically our matrix"
+    },
+    {
+      "start": 4101.88,
+      "duration": 7.16,
+      "text": "A times Q giving us the vector\nof state-dependent values"
+    },
+    {
+      "start": 4109.04,
+      "duration": 8.18,
+      "text": "at time capital T. And\nso with this model,"
+    },
+    {
+      "start": 4117.22,
+      "duration": 6.719,
+      "text": "we can contemplate there\nbeing an arbitrage portfolio"
+    },
+    {
+      "start": 4123.939,
+      "duration": 6.161,
+      "text": "where the initial\nvalue is not positive."
+    },
+    {
+      "start": 4130.1,
+      "duration": 2.54,
+      "text": "I guess one could\nconstrain this to be 0."
+    },
+    {
+      "start": 4132.64,
+      "duration": 2.489,
+      "text": "But it's easier to just say\nless than or equal to 0."
+    },
+    {
+      "start": 4139.02,
+      "duration": 1.759,
+      "text": "If we have a negative\ncost, that means"
+    },
+    {
+      "start": 4140.779,
+      "duration": 5.281,
+      "text": "we get paid to implement\nthis portfolio."
+    },
+    {
+      "start": 4146.06,
+      "duration": 3.719,
+      "text": "And it will be an\narbitrage portfolio"
+    },
+    {
+      "start": 4149.779,
+      "duration": 9.681,
+      "text": "if the likelihood of\na negative payoff is 0"
+    },
+    {
+      "start": 4159.46,
+      "duration": 3.529,
+      "text": "and there's some likelihood\nof a positive payoff."
+    },
+    {
+      "start": 4165.899,
+      "duration": 4.0,
+      "text": "Such a portfolio\nwould be risk-free,"
+    },
+    {
+      "start": 4169.899,
+      "duration": 2.281,
+      "text": "in terms of downside risk."
+    },
+    {
+      "start": 4172.18,
+      "duration": 1.719,
+      "text": "We never lose money."
+    },
+    {
+      "start": 4173.899,
+      "duration": 4.441,
+      "text": "We either make money all\nthe time in at least one"
+    },
+    {
+      "start": 4178.34,
+      "duration": 1.62,
+      "text": "of the states."
+    },
+    {
+      "start": 4179.96,
+      "duration": 4.04,
+      "text": "So this is an\narbitrage portfolio."
+    },
+    {
+      "start": 4184.0,
+      "duration": 8.2,
+      "text": "Now, with this\nmodel, there can be"
+    },
+    {
+      "start": 4192.2,
+      "duration": 3.56,
+      "text": "conditions that\nensure that there"
+    },
+    {
+      "start": 4195.76,
+      "duration": 3.32,
+      "text": "is no arbitrage in the market."
+    },
+    {
+      "start": 4199.08,
+      "duration": 9.0,
+      "text": "And so that's one\nissue to think about."
+    },
+    {
+      "start": 4208.08,
+      "duration": 4.28,
+      "text": "What conditions would\nensure no arbitrage?"
+    },
+    {
+      "start": 4212.36,
+      "duration": 3.88,
+      "text": "And another condition\nthat's of interest"
+    },
+    {
+      "start": 4216.24,
+      "duration": 5.04,
+      "text": "is called market\ncompleteness, which is,"
+    },
+    {
+      "start": 4221.28,
+      "duration": 6.28,
+      "text": "are there portfolios that can\nrealize any payoff vector?"
+    },
+    {
+      "start": 4227.56,
+      "duration": 6.0,
+      "text": "So in looking at the\ncontingent claims payoff,"
+    },
+    {
+      "start": 4233.56,
+      "duration": 6.86,
+      "text": "can we span this space\nfully with portfolios"
+    },
+    {
+      "start": 4240.42,
+      "duration": 3.64,
+      "text": "of the underlying\nassets in the market?"
+    },
+    {
+      "start": 4244.06,
+      "duration": 6.4,
+      "text": "And so if we can represent\nany contingent payoff"
+    },
+    {
+      "start": 4250.46,
+      "duration": 5.8,
+      "text": "as a portfolio, then we say\nthat the market is complete."
+    },
+    {
+      "start": 4256.26,
+      "duration": 10.92,
+      "text": "And it turns out that the\nconditions of no arbitrage"
+    },
+    {
+      "start": 4267.18,
+      "duration": 4.96,
+      "text": "and market completeness are\nrelated to whether a pricing"
+    },
+    {
+      "start": 4272.14,
+      "duration": 4.84,
+      "text": "measure exists on scenarios."
+    },
+    {
+      "start": 4276.98,
+      "duration": 6.8,
+      "text": "And so think about Q star being\na probability distribution"
+    },
+    {
+      "start": 4283.78,
+      "duration": 5.52,
+      "text": "over the underlying states,\nomega 1 through omega m."
+    },
+    {
+      "start": 4289.3,
+      "duration": 15.66,
+      "text": "And it turns out that if the\ninitial price of the j-th asset"
+    },
+    {
+      "start": 4304.96,
+      "duration": 4.08,
+      "text": "is the discounted\nexpected terminal"
+    },
+    {
+      "start": 4309.04,
+      "duration": 6.4,
+      "text": "price of that j-th asset\nacross the different states,"
+    },
+    {
+      "start": 4315.44,
+      "duration": 4.68,
+      "text": "then Q star is called\na pricing measure."
+    },
+    {
+      "start": 4320.12,
+      "duration": 5.12,
+      "text": "So our initial prices\nequal a discount"
+    },
+    {
+      "start": 4325.24,
+      "duration": 7.55,
+      "text": "factor times the expected\nterminal time t values."
+    },
+    {
+      "start": 4335.6,
+      "duration": 3.48,
+      "text": "If such a pricing\nmeasure exists,"
+    },
+    {
+      "start": 4339.08,
+      "duration": 2.906,
+      "text": "then there's no arbitrage."
+    },
+    {
+      "start": 4346.82,
+      "duration": 5.38,
+      "text": "So it's no arbitrage if all\nof the qj stars are positive."
+    },
+    {
+      "start": 4352.2,
+      "duration": 3.1,
+      "text": "So if this pricing measure\ngives positive weight"
+    },
+    {
+      "start": 4355.3,
+      "duration": 2.36,
+      "text": "to each of the\nunderlying states,"
+    },
+    {
+      "start": 4357.66,
+      "duration": 2.32,
+      "text": "then there's no arbitrage."
+    },
+    {
+      "start": 4359.98,
+      "duration": 5.32,
+      "text": "And we say that the market\nis complete with no arbitrage"
+    },
+    {
+      "start": 4365.3,
+      "duration": 3.32,
+      "text": "if this pricing\nmeasure is unique."
+    },
+    {
+      "start": 4368.62,
+      "duration": 6.56,
+      "text": "So it's an interesting\nset of properties"
+    },
+    {
+      "start": 4375.18,
+      "duration": 6.48,
+      "text": "that actually are quite,\nwell, useful to know about."
+    },
+    {
+      "start": 4381.66,
+      "duration": 3.36,
+      "text": "And these models\nactually underlie"
+    },
+    {
+      "start": 4385.02,
+      "duration": 7.0,
+      "text": "much of option pricing theory\nand arbitrage relationships"
+    },
+    {
+      "start": 4392.02,
+      "duration": 1.49,
+      "text": "in quantitative finance."
+    },
+    {
+      "start": 4396.34,
+      "duration": 6.08,
+      "text": "And in this single\nperiod model, note"
+    },
+    {
+      "start": 4402.42,
+      "duration": 5.36,
+      "text": "that we have distributed there's\nthis reference of this book"
+    },
+    {
+      "start": 4407.78,
+      "duration": 5.27,
+      "text": "by Albanese and\nCampolieti, where they"
+    },
+    {
+      "start": 4413.05,
+      "duration": 1.52,
+      "text": "go through proofs of these."
+    },
+    {
+      "start": 4414.57,
+      "duration": 1.66,
+      "text": "And they can get\na bit technical."
+    },
+    {
+      "start": 4416.23,
+      "duration": 6.26,
+      "text": "But the basic ideas, I think,\nare relatively accessible."
+    },
+    {
+      "start": 4422.49,
+      "duration": 3.64,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4426.13,
+      "duration": 7.56,
+      "text": "Moving on to other\napplications of matrices,"
+    },
+    {
+      "start": 4433.69,
+      "duration": 5.8,
+      "text": "we can consider systems\nof linear equations"
+    },
+    {
+      "start": 4439.49,
+      "duration": 3.88,
+      "text": "and their solution,\nwhere we basically"
+    },
+    {
+      "start": 4443.37,
+      "duration": 9.44,
+      "text": "have m equations in n unknowns."
+    },
+    {
+      "start": 4452.81,
+      "duration": 12.8,
+      "text": "And so with these m equations,\nwe have Ax equals B, a B vector."
+    },
+    {
+      "start": 4465.61,
+      "duration": 5.02,
+      "text": "And to solve such a\nsystem of equations,"
+    },
+    {
+      "start": 4470.63,
+      "duration": 4.0,
+      "text": "well, one case where\nwe can solve these"
+    },
+    {
+      "start": 4474.63,
+      "duration": 4.96,
+      "text": "is where our number of unknowns\nand number of equations"
+    },
+    {
+      "start": 4479.59,
+      "duration": 4.34,
+      "text": "are the same and our\ncoefficients matrix"
+    },
+    {
+      "start": 4483.93,
+      "duration": 4.5,
+      "text": "A in the system of\nequations has full rank."
+    },
+    {
+      "start": 4488.43,
+      "duration": 5.92,
+      "text": "So A being square\nand of full rank"
+    },
+    {
+      "start": 4494.35,
+      "duration": 3.32,
+      "text": "has a determinant\nthat's non-zero"
+    },
+    {
+      "start": 4497.67,
+      "duration": 5.0,
+      "text": "and its inverse matrix exists."
+    },
+    {
+      "start": 4502.67,
+      "duration": 4.24,
+      "text": "And so we can actually just\ntake our system of equations"
+    },
+    {
+      "start": 4506.91,
+      "duration": 8.8,
+      "text": "and multiply both sides by the\ninverse of A and get our answer."
+    },
+    {
+      "start": 4515.71,
+      "duration": 4.4,
+      "text": "When the number of\nequations is smaller"
+    },
+    {
+      "start": 4520.11,
+      "duration": 3.6,
+      "text": "than the number of\nunknowns, then we"
+    },
+    {
+      "start": 4523.71,
+      "duration": 3.58,
+      "text": "have an undetermined\nsystem of equations."
+    },
+    {
+      "start": 4527.29,
+      "duration": 3.32,
+      "text": "When m is greater than n, it's\noverdetermined and so forth."
+    },
+    {
+      "start": 4530.61,
+      "duration": 2.52,
+      "text": "So these are different\ncases that you likely"
+    },
+    {
+      "start": 4533.13,
+      "duration": 3.67,
+      "text": "are familiar with from your\nstudy of linear algebra."
+    },
+    {
+      "start": 4539.77,
+      "duration": 1.84,
+      "text": "All right."
+    },
+    {
+      "start": 4541.61,
+      "duration": 4.44,
+      "text": "The next topic in our\nremaining few minutes"
+    },
+    {
+      "start": 4546.05,
+      "duration": 5.88,
+      "text": "is eigenvalues and eigenvectors."
+    },
+    {
+      "start": 4551.93,
+      "duration": 5.08,
+      "text": "When we have square\nmatrices A, we"
+    },
+    {
+      "start": 4557.01,
+      "duration": 6.16,
+      "text": "can consider the existence\nof an eigenvalue lambda"
+    },
+    {
+      "start": 4563.17,
+      "duration": 7.32,
+      "text": "and an eigenvector V such\nthat the matrix A times"
+    },
+    {
+      "start": 4570.49,
+      "duration": 5.8,
+      "text": "v is equal to just the\nscalar lambda times v. So"
+    },
+    {
+      "start": 4576.29,
+      "duration": 8.3,
+      "text": "the matrix vector product just\nrescales v by the factor lambda."
+    },
+    {
+      "start": 4584.59,
+      "duration": 5.84,
+      "text": "And one can solve for\neigenvalues and eigenvectors"
+    },
+    {
+      "start": 4590.43,
+      "duration": 4.52,
+      "text": "by just re-expressing the\neigenvalue-eigenvector"
+    },
+    {
+      "start": 4594.95,
+      "duration": 5.16,
+      "text": "relationship as this\nsystem of equations."
+    },
+    {
+      "start": 4600.11,
+      "duration": 7.23,
+      "text": "And so this system of\nequations will correspond to--"
+    },
+    {
+      "start": 4611.51,
+      "duration": 1.6,
+      "text": "Let's see."
+    },
+    {
+      "start": 4613.11,
+      "duration": 7.12,
+      "text": "This system of\nequations can be solved"
+    },
+    {
+      "start": 4620.23,
+      "duration": 5.44,
+      "text": "by saying that the determinant\nof A minus lambda i"
+    },
+    {
+      "start": 4625.67,
+      "duration": 2.12,
+      "text": "is equal to 0."
+    },
+    {
+      "start": 4627.79,
+      "duration": 8.84,
+      "text": "And so if lambda equals 1 of\nthe roots of this polynomial,"
+    },
+    {
+      "start": 4636.63,
+      "duration": 8.5,
+      "text": "then that lambda will\nbe an eigenvalue."
+    },
+    {
+      "start": 4645.13,
+      "duration": 4.72,
+      "text": "And one can then, for\nthat fixed eigenvalue,"
+    },
+    {
+      "start": 4649.85,
+      "duration": 4.87,
+      "text": "solve for the eigenvector\nv that satisfies that."
+    },
+    {
+      "start": 4657.85,
+      "duration": 5.2,
+      "text": "Now, there are properties with\neigenvalues and eigenvectors"
+    },
+    {
+      "start": 4663.05,
+      "duration": 4.28,
+      "text": "that are very\nuseful, one of which"
+    },
+    {
+      "start": 4667.33,
+      "duration": 9.32,
+      "text": "is that the maximum eigenvalue\nmagnitude corresponds"
+    },
+    {
+      "start": 4676.65,
+      "duration": 7.55,
+      "text": "to the maximum length of Av for\nvectors v that are of length 1."
+    },
+    {
+      "start": 4686.77,
+      "duration": 10.12,
+      "text": "And when we have a matrix A\nthat has independent eigenvalues"
+    },
+    {
+      "start": 4696.89,
+      "duration": 5.56,
+      "text": "or eigenvectors, then,\nin this special case,"
+    },
+    {
+      "start": 4702.45,
+      "duration": 2.06,
+      "text": "we can consider\ndefining the matrix"
+    },
+    {
+      "start": 4704.51,
+      "duration": 7.8,
+      "text": "S to be the matrix whose columns\nare the different eigenvectors."
+    },
+    {
+      "start": 4712.31,
+      "duration": 4.54,
+      "text": "And if you look at\nthis equation here,"
+    },
+    {
+      "start": 4716.85,
+      "duration": 6.34,
+      "text": "if we multiply the original\nmatrix A by this S matrix,"
+    },
+    {
+      "start": 4723.19,
+      "duration": 6.2,
+      "text": "then each column of the product\nis the corresponding eigenvalue"
+    },
+    {
+      "start": 4729.39,
+      "duration": 2.64,
+      "text": "times the corresponding\neigenvector."
+    },
+    {
+      "start": 4732.03,
+      "duration": 5.96,
+      "text": "This equation here is\nvery straightforward"
+    },
+    {
+      "start": 4737.99,
+      "duration": 3.72,
+      "text": "from the notation above."
+    },
+    {
+      "start": 4741.71,
+      "duration": 6.56,
+      "text": "And if we consider the\ninverse of this S matrix"
+    },
+    {
+      "start": 4748.27,
+      "duration": 6.04,
+      "text": "that exists if the eigenvectors\nare linearly independent,"
+    },
+    {
+      "start": 4754.31,
+      "duration": 6.06,
+      "text": "then we can write A to\nbe S lambda S inverse."
+    },
+    {
+      "start": 4760.37,
+      "duration": 7.14,
+      "text": "And this representation\nof the matrix A"
+    },
+    {
+      "start": 4767.51,
+      "duration": 4.7,
+      "text": "also gives us the way of\ndiagonalizing A by pre"
+    },
+    {
+      "start": 4772.21,
+      "duration": 5.32,
+      "text": "and post-multiplying by S\ninverse and S respectively."
+    },
+    {
+      "start": 4777.53,
+      "duration": 5.04,
+      "text": "And so with powers of a\ndiagonalizable matrix A,"
+    },
+    {
+      "start": 4782.57,
+      "duration": 2.88,
+      "text": "they have a very nice form."
+    },
+    {
+      "start": 4785.45,
+      "duration": 5.6,
+      "text": "We basically get cancellation of\nS And S inverse in the products"
+    },
+    {
+      "start": 4791.05,
+      "duration": 1.92,
+      "text": "of A times itself."
+    },
+    {
+      "start": 4792.97,
+      "duration": 9.24,
+      "text": "And so powers of A simply are\nthe same matrix S times lambda,"
+    },
+    {
+      "start": 4802.21,
+      "duration": 3.2,
+      "text": "the diagonal matrix of\neigenvalues to the k-th power"
+    },
+    {
+      "start": 4805.41,
+      "duration": 1.72,
+      "text": "times S inverse."
+    },
+    {
+      "start": 4807.13,
+      "duration": 8.04,
+      "text": "And so these are very useful\nin defining state equations"
+    },
+    {
+      "start": 4815.17,
+      "duration": 1.13,
+      "text": "and Kalman filters."
+    },
+    {
+      "start": 4819.39,
+      "duration": 1.0,
+      "text": "All right."
+    },
+    {
+      "start": 4820.39,
+      "duration": 2.28,
+      "text": "So let me just--"
+    },
+    {
+      "start": 4822.67,
+      "duration": 2.32,
+      "text": "I guess I'll finish there."
+    },
+    {
+      "start": 4824.99,
+      "duration": 3.04,
+      "text": "There's some\ninteresting key theorems"
+    },
+    {
+      "start": 4828.03,
+      "duration": 1.46,
+      "text": "in the remainder of these notes."
+    },
+    {
+      "start": 4829.49,
+      "duration": 3.34,
+      "text": "I think they're pretty readable."
+    },
+    {
+      "start": 4832.83,
+      "duration": 4.44,
+      "text": "And I'll maybe point out\nthese during our next lecture."
+    },
+    {
+      "start": 4837.27,
+      "duration": 2.76,
+      "text": "But there we are."
+    },
+    {
+      "start": 4840.03,
+      "duration": 9.0,
+      "text": "Also, let's see, I\nposted an RStudio program"
+    },
+    {
+      "start": 4849.03,
+      "duration": 8.04,
+      "text": "that computes portfolios\nof S&P 500 stocks and looks"
+    },
+    {
+      "start": 4857.07,
+      "duration": 2.96,
+      "text": "at the changing value over time."
+    },
+    {
+      "start": 4860.03,
+      "duration": 5.8,
+      "text": "And so I hope people can\nexplore those programs"
+    },
+    {
+      "start": 4865.83,
+      "duration": 4.11,
+      "text": "and try to use those\nin the RStudio Cloud."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: All right. Well, welcome to the first math lecture. The topic today is linear algebra. And what I expect is that, for most of you, the topics will be very familiar. At least we'll be covering basic fundamentals of vector algebra, then dealing with special matrices, matrices that are used in applications, eigenvectors and eigenvalue, decompositions, singular value decompositions, and then, finally, the Perron-Frobenius theorem. And what's really neat about quantitative finance is that linear algebra can really be very useful in understanding different computations we want to do. So it makes our life easier. Well, let's just begin with a discussion of basic linear algebra concepts. I'll use a notation where often I'll have a bold vector notation-- or bold letter for noting a vector. So this bold v is a vector in m-dimensional space. And it just consists of an ordered list of numbers. And we can think of it as a column vector typically. Sometimes, we'll think of it as a row vector. But special cases of vectors will be the vector of all 0's and the vector of all 1's. And we can think of a graphical representation of a vector, where we can think of it as perhaps just a single point in, in this case, two-dimensional space. Or with an origin here, we might think of the vector representing the directed line segment from the origin to that point, where this is v1 and this is v2. Depending on our application, both of these can be useful. And a basic example for us could be the closing prices on a given day for all stocks in the S&P 500 index. So we can think of p boldface being a vector of 500 values corresponding to the closing price of stocks that are in the S&P 500 index. Importantly, the prices are positive. So that's where the R plus comes into play. And if we consider a portfolio holding shares of the S&P 500 stocks, we can represent that with a vector q. And the value of such a portfolio at the end of the day is simply the sum of the quantities, the shares times the price per share. And later on, we'll see that q dot p, the dot product of those two vectors, gives us the value of the portfolio. What we're going to find useful is to actually add to our 500 stocks the value of a cash holding in the portfolio. So we can think of p0 of t just being a fixed $1. And then q0 tells us how many dollars we hold. And so our portfolio value, vt, will be given by this number. And we can think about rebalancing portfolios, computing portfolio and loss on a daily basis. And we can characterize rebalancing the portfolio as shifting from shares held at the end of day t to qj of t plus 1 to be held through day t plus 1 by adjusting the quantity for each stock by a delta j. And if we constrain the sum of the change in shares across the j stocks and cash and the pj, multiplying by the pj of t, we can constrain this sum to be equal to 0. So this would correspond to a rebalancing of the portfolio and basically not taking any of distributions from the account. Now, with the net gain, let's see, this terminology, PnL, it's, in a sense, a misnomer, I think, because it's really profit and loss. But it's referred to as PnL, portfolio net gain. We can just look at the change in value from day t to day t plus 1. And this will have this simple form for the change in portfolio value-- basically, the shares that are held from the end of day t to t plus 1 times the change in price from day t to day t plus 1. And so this is the portfolio net gain. And here, we're talking about portfolio management maybe on a daily basis, where, at the end of the day, we make a decision as how to rebalance our portfolio. And there's a net gain during that period. One could adjust the period of rebalancing to be intraday on a regular or irregular basis. And we'd have to have extra notation to do that. Now, with vector concepts, if we multiply vector v by a scalar c, then we just multiply through each of the components of v by that scalar. And if we add two vectors, we simply comprise the sum of components element by element. And the dot product between two vectors is simply the sum of the product of the two. So this allows us to work with vector algebra associated with portfolios. If we have two portfolios, we can consider, let's see-- we can think of a qt and, in this notation, a wt as two different portfolios. And with each of these portfolios, we can determine what the profit and loss is of each portfolio. So for q, it's the value at the end of day minus the value at the beginning of the day and similarly for portfolio w. And it's useful to include in the notation here this BOD and EOD to represent begining of day, end of day. And what's relevant actually is that the qt portfolio composition, while it's indexed by t, it's actually determined at the end of day t minus 1. And so one needs to be careful in doing computations with portfolio value measurement that you're always using portfolios that are defined using only information up to a given time point. So if we're going to be rebalancing at the end of the day for investment the next day, we can't know what will happen on the next day. All right. Well, with these portfolios that are just simple vectors, we can look at their difference. And so if we look at dt equal to qt minus wt, this defines another portfolio. We often constrain portfolios to be long only, meaning the q's and w's are positive or 0. But there's no reason why we can't allow component weights in portfolios to be negative. And in this case, it's negative shares. And so one can have a long short portfolio that is given by d. And we can calculate the profit and loss of that d portfolio by subtracting the profit and loss of the q and w. Now, let's see, with short selling in markets, let's see-- who in the class might offer a description of what it means to sell short a stock? So suppose that we have dt sub 2 is equal to, say, negative 200. What would that mean? Or can we actually realize a portfolio where we're short one of the stocks by 200 shares? I'm sure someone-- OK. What's your name? STUDENT: Alexander. PETER KEMPTHORNE: OK, thank you, Alexander. STUDENT: I believe it is when you sell someone else's stock, and then you buy it back [INAUDIBLE]. PETER KEMPTHORNE: Yes. You basically sell first, buy back later. And you sell by-- you don't have the stock. So you borrow it from some seller. And brokerage accounts that have margin allow you to engage in this kind of transaction. And so the policy of the brokerage is that if you want to sell short a stock, they need to locate some shares for you to borrow. And what's rather neat about that selling short is that your brokerage account gets credited with the sale of those shares. So your brokerage account will have a positive cash flow due to the short selling. And with such a positive contribution to the brokerage account, you can actually invest long in more than, say, 100% of your wealth that's in the-- or of your bank account or brokerage account. So that's quite advantageous and allows for very interesting trading opportunities. All right. Well, an important special case of a long short portfolio is a zero-cost portfolio. And this would be one where the sum of basically the values of the long and short positions balance each other perfectly. And so we have a portfolio, dt in this case, where the d components are not all 0. But the value, the net value of the portfolio is, in fact, 0. And we can hope for the possibility of an arbitrage portfolio, which could be a portfolio that has zero cost, but has a positive profit and loss over a period. And this kind of opportunity, generally-- well, it doesn't exist in efficient markets. But markets are never completely efficient. And so it can be feasible to identify portfolios that may be close to an arbitrage portfolio. What, in fact, happens is that this profit and loss of a zero-cost portfolio will be random. And depending upon the market model that applies to the market we're trading in, it may be that there are opportunities that yield a positive profit all the time, in which case we would say that's an arbitrage opportunity. What we'll see later today is the question of, under what conditions is there no arbitrage in a given market? And how do we characterize prices of assets in a market with no arbitrage? And ultimately, it turns out that option pricing theory, that was mentioned last time of Black, Scholes, and Merton, is all based upon arbitrage-free markets and the implications of that. And we'll see that, in arbitrage-free markets, there does not exist any arbitrage portfolios. And what will be neat is to understand why that's the case. All right. So we have random prices at the end of day t. And so the profit and loss is going to be random. I guess it's relevant to note that there are strategies of statistical arbitrage. And those are strategies where we have portfolio specifications d-star for which this random profit and loss is a distribution that tends to generate positive returns. And so there's a statistical likelihood of making money. But it's often not a pure arbitrage, but what we might call a statistical arbitrage. All right. Well, let's review just some other concepts of vectors. We have the norm of a vector being the length of a vector. So if we have a vector v here, and the norm of v is basically the length of this vector. And if we consider what the dot product is between two vectors, we have this cosine formula for what the dot product is. It's actually the length of v times the length of w times the cosine of the angle between the two. So if we have another vector w here, then the dot product corresponds to that formula. And what's interesting about that formula is that it actually corresponds to-- the dot product corresponds to the length of the segment along w that is closest to v. And so with this dot product notation, we actually can talk about orthogonality between vectors in m-dimensional space. And those can be very useful. We'll actually see this orthogonality applied when we talk about regression and least squares regression. So you may be familiar with some of these topics from that discussion. All right. Well, with vectors, a really important topic is whether vectors are linearly independent of each other. And so if we have two vectors, v and w, they are linearly independent if the only linear combination of the two which gives us the 0 vector is the linear combination with c1 equals c2 equals 0. So linear independence is essentially the case that we have a v and w that aren't aligned with each other in two dimensions, at least vectors emanating from the origin having that property. And the utility of linear independence is that we can work with a vector space, capital S here. And the definition of a vector space is that any vector can be rescaled by an arbitrary constant c. And it's still in the space. And with any two vectors, v and w, in the space, their sum is in the space. With a vector space, what's very useful is a basis for the space, which corresponds to linearly independent vectors, v1 to vp, such that the only linear combination giving the 0 vector is the linear combination where all the coefficients are equal to 0. All right. Well, let's just go through all of matrix algebra, pretty much. We can extend from vectors to matrices where we have m rows and n columns in a matrix A, a rectangular matrix. And one very useful representation of a matrix is as a collection of column vectors that are stacked one after the other. And so we can denote bold a sub 1 through bold a sub n as the column vectors. And with matrix algebra, let's see, well, we can multiply a matrix, capital A, by a constant. And we end up multiplying each of the components, elements of the table of A values by the same constant c. With a transpose operation, a transpose is simply to flip rows and columns. And so if we have a sub ij being the i-th row j-th column element of A, then Aji corresponds to the j-th row and i-th column. Now, if we think of the transpose of each of the column vectors in A, that's a row vector. And our transpose of the matrix A can be thought of as stacked row vectors corresponding to the same vectors, a1 through an. Now, one of the reasons for thinking of a matrix as being a composition of different column vectors is that, when we multiply a matrix A by a vector v, then this corresponds to the linear combination of the columns of A with coefficients corresponding to v1 through vn. So we have a linear combination of A's columns. And this representation of matrix vector multiplication turns out to be very, very useful. Perhaps less useful is that, if we look at the matrix vector product, it's also a vector of dot products of A's rows with v. And so being comfortable with dot products is potentially useful. But for the moment, thinking of linear combinations of columns of A is very useful. So I guess, if we think of the columns of A corresponding to potentially a basis of vectors, then Av corresponds to another vector in the space spanned by those columns. All right. Now, when we multiply two matrices together, we actually have a matrix A and a matrix B, each with their respective columns, vectors. And we can basically expand the matrix B into b1 through bp, and then do the matrix vector product for each term. This is equivalent, actually, to looking at element Cij, which are just these double sums. When I learned linear algebra decades ago, I used these double sums, which were not very intuitive to interpret, although one with a simple algebra notation can prove everything. But things are much easier to prove with this other notation. Now, what's important when we multiply two matrices together is that the matrices have to be conformal, meaning we need to be able to multiply A times the column vectors of B. So the m by n matrix of A has to be able to multiply the m by p matrix of B. Actually, I think there's a-- all right, let's see. Yeah, sorry. And there are n columns in A and n rows in B. And so the result is an m by p matrix. All right. Well, with different matrix operations, you learn in linear algebra all of these rules, these laws associated with matrix algebra computations. Everything is pretty obvious, except maybe when you transpose a product, you reverse the order of the product of transposes. And if you consider reversing the order of matrix multiplications, if one can reverse the order, if A and B have the same number of rows and columns, it turns out that the commutative law for multiplication doesn't apply to matrices. So you want to be careful with those distinctions. All right. So special matrices, when we have a symmetric matrix, then its transpose equals itself. So the matrix has basically-- well, let's see. The off-diagonal entries are matched one by one with Aij equaling Aji. The identity matrix is a matrix with 1's along the diagonal. And it can be convenient to represent this as the matrix of columns where E sub j is a simple matrix or a simple vector, which is all 0's, but then a single 1, where this is the j-th row. And different computations can be made easy with that sometimes. Now, there's a notation of using the J matrix to be the matrix of all 1's. And the matrix J turns out to be a vector 1 times its transpose. And we have diagonal matrices where the matrix is all 0's except for the diagonal entries, which may or may not be 0, and are given by the list D1 through Dn. All right. OK. Well now, we can turn to some applications that use matrices. And the first one we want to discuss is stochastic matrices. So these are matrices which will consider a stochastic matrix that's square. And the columns of A sum to 1. So we'll have an A with A1, A2 up to Am or An. And basically, the sum of Aij, i equaling 1 to m, is going to equal to 1. This kind of matrix is associated with Markov chains, where we think of there being m possible states. So we basically have m rows and m columns. And we have this notation Aij, or lowercase aij, is equal to the probability that the state, the next state, equals i, given the previous state equals j is given by this Aij. Let's see. For each column j, we have, if the previous state at time t was j, then there's a transition to a state at time t plus 1. And these transition probabilities, in some cases, can be assumed to be stable or stationary over t. And with a Markov chain, we can think of there basically being different states which are indexed from 1 up to m. And we might think of these as being nodes in a graph. And there's a probability of moving from one node to another for each time point. And these probabilities of transitions might be stationary in a stationary Markov chain model. Well, if we have a vector, pi, which is going to be basically pi of t equaling pi 1 of t, pi 2 of t, down to pi m of t, so this m vector, pi, tells us at time t what's the likelihood of being in any of the states. Then, if we want to compute the probabilities of states at time t plus 1, then it turns out to be simply the matrix vector product of A times pi of t. So this formula gives us the model for how the probabilities of states occurring changes from time t to t plus 1. Now, if we consider what is the probability vector at time t plus 2, well, we have the same matrix vector model where the stationary transition probabilities A are multiplied by the vector of probabilities at t plus 1. And we can substitute in what that product is, which is A pi. And so we basically get the square of the transition probability matrix times the pi vector at time t. Now, what's interesting to ask with Markov chains is, if we start out with a pi vector at time 0 and we have the model that the likelihood of different states evolves such that the t period transition probabilities from pi 0 to t is given by this formula, then does this limit exist or not? And so let me just ask that question to the class. Anyone remember from stochastic processes perhaps or linear algebra whether that has a limit? Yes? STUDENT: The stationary distribution. PETER KEMPTHORNE: If it exists, it's the stationary distribution. And so basically, if pi star is the stationary distribution, it is equal to a pi star so that we're at a limiting distribution where there's no change in probabilities, continuing from t equal to infinity to infinity plus 1. Then this would be the formula. Now, are there circumstances where such a stationary distribution doesn't exist? Yes, OK. And when is that? I see some solid nods. Yes? STUDENT: When it's periodic. PETER KEMPTHORNE: When it's periodic, yep. So you could have cycles in the process. And a simplest case would be two states that just alternate even odd being one state or the other as an example. So we need to have acyclic distributions. Or the Markov chain needs to be acyclic. And actually, all these topics are quite interesting when you study them. It turns out that you can prove that a Markov chain is acyclic if all of its components of the A matrix, if every single one, is nonzero, so that there's always a possibility of transitioning from one state to another. That's a bit too restrictive. But it turns out that, if you consider a particular power of A, that for some power, not necessarily very big, but there's at some point of looking at powers of A, the A to that power is a matrix of all positive entries. So it's interesting just how these mathematical features can be shown. Now, let's see. All right. So if it does exist, we have a stationary distribution. And that's nice. Let me just point out that, I guess, in the first problem set for the course that's been posted-- that's due a week from Friday. So this is a healthy amount of time away, I hope, for everybody-- we're asking you to look at some simple Markov chains and explore the stationary distribution of those cases. And the Markov chain model is used for modeling whether, say, trades at the buy or sell side-- weather successive trades in a stock will be at the buy side or sell side, depending on what the previous trade was at All right. Well, let's move on to another class of matrices that's of interest. Actually, before doing that, I'm going to jump ahead just in terms of topics. But this formula for the stationary distribution is a formula that's very specific to eigenvalues and eigenvectors. And so if you think of the matrix A having eigenvalues and eigenvectors, what's the eigenvalue and what's the eigenvector in this case? Does anybody-- yes, go ahead. STUDENT: Eigenvalue value of 1, and the eigenvectors would be all the pi stars [INAUDIBLE]. PETER KEMPTHORNE: So this basically is a case where one of the eigenvalues is 1. Or sorry, one of the eigenvalues is 1. And this is satisfied. We'll see later that, basically, the other eigenvalues may be smaller than 1. And when you multiply the A matrix by itself to many, many powers, then it's only this one eigenvector that doesn't get shrunk to 0 in the limit. All right. Well, let's turn to positive matrices. Positive matrices arise in economics, where we think of there being, say, prices of goods under different states of the market or costs of goods under states of the market. And those are all positive. And we can think of this arising in a single period market model, where we have n assets indexed by i and, let's see, we have two periods-- or sorry, a single period with a beginning and end, t0 and t equals capital T. And if we think of what is the price of assets at time 0, we may know what those are at time 0. And then what are the subsequent prices at the end of the single period? Capital T. And those prices may or may not be known. And so let me just give an example here with two assets. And so we're going to think of the two-period model. And we're going to have n equal to 2. We're going to consider basically a bond, B, which takes on Values. that will be B0 at t equals 0 and BT at time capital T. And we'll consider the case of a bond which basically pays interest at the interest rate RF. So this B0 price of the bond at time 0 grows to B sub capital T, which is basically growing at a simple interest rate of RF. And let's see. We can talk about RB, the return of this, just being BT minus B0. So this is the absolute return. And we can also define the percent return, which would be looking at R sub B equal to the absolute return divided by the initial value. So this would be the percentage return. And let's see. If we subtract this here, we end up getting that this is B0 RF times T. So this turns out to be equal to simply RF T as the percent return. And let's see. We can also talk about the simple rate of return, which would be given by-- well, let's see. Actually, maybe, here I should write R sub B and here R sub B instead of R sub F because I want to define R sub f to be equal to basically 1 over t, the average rate of return. So it's equal to this times BT minus B0 over B0. And so this, simply, in this case, is equal to that RB. And I guess, I'll be using a notation of characterizing an interest rate as being a risk-free interest rate, if this bond is guaranteed to have that final value. And so in quantitative finance, we often talk about risk-free rates. And nothing in the world is risk-free. But when governments can print money to pay off their liabilities, then it essentially is a risk-free rate. And we worry less about it with countries with stronger economies. Now, this is the first asset. Let's also consider a stock, S, which has at time 0 a value of S0. And then at time T, it's going to be random. And so we have S sub T is going to equal different possible outcomes. And we'll consider a special case where it's STu and STd, where we have an underlying state being an up or a down market. So we have a random outcome for ST. We're not yet specifying what probabilities are associated with these different states. And so there are two states at time T, omega equal to-- well, maybe I'll just write u and omega equal to d for that. And so in thinking of a single market model with n assets, not just two, we are defining basically two assets-- I guess I'm using j for the assets instead of i. But we basically have known asset prices at time 0 and potentially random prices at time capital T. And so we can model this by associating different states or scenarios at time capital T that are indexed w1 to wm. And we then can have different prices in that. So here's the framework for this right now, at least the framework with two assets. And we can also characterize portfolios of the n equals 2 assets. And we can define a pi vector being simply equal to a weight in the bond and a weight in the stock, units of the stock, units of the bond, given by this vector. And so what we can then do is deal with modeling the outcomes of this portfolio. If we consider v0, the value of the portfolio at time 0, this would be just pi B times B0 plus pi S times S0. And at time capital T, then our portfolio would have values pi B BT plus pi S times STu for the up case and pi B BT plus pi S times STd when w is equal to d, when the state is down. So this value of the portfolio will be random, depending upon the likelihood of these up and down states. Well, with this setup, it's useful at this point to introduce you to some concepts, which is contingent claims and replicating portfolios. And so suppose that we have a contingent claim C, which has a value C0, is the value at t equal to 0. And Ct will be the value of this contingent claim depending upon whether we have an up or down-- well, actually, I'll reverse it, a down or an up market. What we end up doing in these market models is being able to model the prices of contingent claims when we can replicate the contingent claim with a portfolio of the underlying assets. So we can ask, does there exist a portfolio of B and S such that pi Bv plus pi S STu equals CTd and pi B plus pi S St-- I've got these notations wrong-- equals to CTu. So if this were the case, then-- if so, then we could have C0 equaling pi B B0 plus pi S S0. And we would replicate this contingent claim payoff at time capital T. Now, mathematically, can we solve for portfolio coefficients that satisfy this contingent claim? Any thoughts? Well, let's see. If we look at CTd versus CTu-- and here's the origin. If we had a portfolio that was just the bond, we might have BT here and BT here. And here's the point corresponding to BT, BT. And here's the vector corresponding to the portfolio that's just the bond. And if we look at the stock, the portfolio, that's just the stock, we might have STd here, and then way up here maybe STu, the value of the stock when the market is up. And so this would be our ST vector in the two-dimensional space corresponding to down market state versus up market state. Now, given this figure, if we think of just an arbitrary point in this space of contingent claims, can we construct a portfolio that matches that? Yes? STUDENT: Sorry, can you explain what [INAUDIBLE]? PETER KEMPTHORNE: Yes. OK. The contingent claim is a payoff that is contingent upon the state of the market at that time. And it's either a down market or an up market over the one period. And the payoff, if it's an up market, is CTu. And the payoff, if it's a down market, is CTd. And in this space of contingent claims, we can draw vectors corresponding to the stock and the bond as these vectors. And so what's curious to think about is-- suppose we have a contingent claim that-- well, let's see. Suppose we consider a call option contingent claim. Well, let's see. So there would be a strike price of-- let's see-- A strike price of K to buy the stock at time T. And in order for this to be of interest, we might have K being smaller than STu and greater than STd. So we have a call option with strike price K to buy the stock. And the contingent claim of the call would be 0, if we have the down market. And it would be STu minus K if it's the up market. So we could consider 0 in the down market. And basically, maybe this would be CT minus K here. So this vector here would correspond to the payoff of this call option. So under what circumstances can we take a linear combination of these two vectors and get this vector? Yes? STUDENT: So you've got to short one of the stocks? PETER KEMPTHORNE: Yeah. I mean, basically, we can solve for this here by substituting in for this 0 and P minus K, and then just solve it to get our two equations and two unknowns. So if this system of equations, two equations and two unknowns, has a solution, then we can solve it. And what is interesting is to consider what are the space of all possible contingent claims. And let me just turn to this note. This is on Canvas. But this note that's been posted in Canvas talks about a one-period economy with two assets in section 1. That's what I've just outlined on the chalkboard here. One can generalize that to a single period model with more than two assets. That's chapter section 2. And then one can generalize to-- not generalize, but one can consider visualizing the assets and portfolios in section 3 here. And so what I do in the last section here is looking at the vector of payoffs of the bond and the stock, colored differently. And so this is a bond that may pay off the same amount in the down versus the up market. And the stock pays off more in the up market than the down. And then one can consider collections of portfolios that weight the bond and the stock so that the positive weights sum to 1. And so these vectors correspond to the payoff vectors of those long portfolios. And if we consider-- well, let's see-- looking at those long portfolios, instead of representing vectors as pointed segments from the origin, one could just represent them as points in the space. And that representation is helpful when we want to consider a variety of other portfolios in the mix. And so here's a graph showing the value of the payoff if we consider portfolios that can invest up to 100% in each of the bond or the stock or both. And so if we invest 100% in both, we basically get the payoffs that are really high. And if we don't invest much, close to 0 in both, then we get the 0 vector. But this graph shows the contingent claims that are mapped or equivalent by replicating portfolios of these types. And so if we then allow for shorting, this extends the contingent claims to allow for negative payoffs, which are graphed here, basically with the payoff in the down market versus the up. And what's of interest here, although it's not quite easy to see, is there are portfolios where the initial value of the portfolio is 0. And so that would correspond to a long short portfolio that is implemented with zero cost. So this is the payoff vector at T and looking at the value where we white out those portfolios that have zero cost. Now, what's useful here to see is that, with these kinds of portfolios, we can replicate different contingent claims which correspond to different points in this space. If we were able to invest more than 100% of our portfolio, long or short, then we could actually realize any point in this space, in some cases. And so any contingent claim could be solved for with this equation here. And that's rather neat. But it also is reasonable to consider if we make certain assumptions on the market, such as, as you buy more of an asset, you don't change the price of the asset. There's basically a fixed price is suitable regardless of how much. And there's no constraint on short selling the asset, that you can do that with liberty. So there are these kinds of properties that arise. Now, with the case of extending from the bond and the single stock to m-- sorry, little n assets, then everything generalizes. And we end up having a positive price matrix at time T corresponding to different payoffs of the individual assets at time capital T for different states omega 1 through omega m. And with this kind of setup, one can represent the initial value of a portfolio Q being the sum of the Q weights times the initial prices in the A0 vector. And then the payoff of the portfolio at time capital T is given by the same weights qj times the time capital T prices. But we have different prices depending upon what state occurs. And so in this case, we have basically our matrix A times Q giving us the vector of state-dependent values at time capital T. And so with this model, we can contemplate there being an arbitrage portfolio where the initial value is not positive. I guess one could constrain this to be 0. But it's easier to just say less than or equal to 0. If we have a negative cost, that means we get paid to implement this portfolio. And it will be an arbitrage portfolio if the likelihood of a negative payoff is 0 and there's some likelihood of a positive payoff. Such a portfolio would be risk-free, in terms of downside risk. We never lose money. We either make money all the time in at least one of the states. So this is an arbitrage portfolio. Now, with this model, there can be conditions that ensure that there is no arbitrage in the market. And so that's one issue to think about. What conditions would ensure no arbitrage? And another condition that's of interest is called market completeness, which is, are there portfolios that can realize any payoff vector? So in looking at the contingent claims payoff, can we span this space fully with portfolios of the underlying assets in the market? And so if we can represent any contingent payoff as a portfolio, then we say that the market is complete. And it turns out that the conditions of no arbitrage and market completeness are related to whether a pricing measure exists on scenarios. And so think about Q star being a probability distribution over the underlying states, omega 1 through omega m. And it turns out that if the initial price of the j-th asset is the discounted expected terminal price of that j-th asset across the different states, then Q star is called a pricing measure. So our initial prices equal a discount factor times the expected terminal time t values. If such a pricing measure exists, then there's no arbitrage. So it's no arbitrage if all of the qj stars are positive. So if this pricing measure gives positive weight to each of the underlying states, then there's no arbitrage. And we say that the market is complete with no arbitrage if this pricing measure is unique. So it's an interesting set of properties that actually are quite, well, useful to know about. And these models actually underlie much of option pricing theory and arbitrage relationships in quantitative finance. And in this single period model, note that we have distributed there's this reference of this book by Albanese and Campolieti, where they go through proofs of these. And they can get a bit technical. But the basic ideas, I think, are relatively accessible. Now, let's see. Moving on to other applications of matrices, we can consider systems of linear equations and their solution, where we basically have m equations in n unknowns. And so with these m equations, we have Ax equals B, a B vector. And to solve such a system of equations, well, one case where we can solve these is where our number of unknowns and number of equations are the same and our coefficients matrix A in the system of equations has full rank. So A being square and of full rank has a determinant that's non-zero and its inverse matrix exists. And so we can actually just take our system of equations and multiply both sides by the inverse of A and get our answer. When the number of equations is smaller than the number of unknowns, then we have an undetermined system of equations. When m is greater than n, it's overdetermined and so forth. So these are different cases that you likely are familiar with from your study of linear algebra. All right. The next topic in our remaining few minutes is eigenvalues and eigenvectors. When we have square matrices A, we can consider the existence of an eigenvalue lambda and an eigenvector V such that the matrix A times v is equal to just the scalar lambda times v. So the matrix vector product just rescales v by the factor lambda. And one can solve for eigenvalues and eigenvectors by just re-expressing the eigenvalue-eigenvector relationship as this system of equations. And so this system of equations will correspond to-- Let's see. This system of equations can be solved by saying that the determinant of A minus lambda i is equal to 0. And so if lambda equals 1 of the roots of this polynomial, then that lambda will be an eigenvalue. And one can then, for that fixed eigenvalue, solve for the eigenvector v that satisfies that. Now, there are properties with eigenvalues and eigenvectors that are very useful, one of which is that the maximum eigenvalue magnitude corresponds to the maximum length of Av for vectors v that are of length 1. And when we have a matrix A that has independent eigenvalues or eigenvectors, then, in this special case, we can consider defining the matrix S to be the matrix whose columns are the different eigenvectors. And if you look at this equation here, if we multiply the original matrix A by this S matrix, then each column of the product is the corresponding eigenvalue times the corresponding eigenvector. This equation here is very straightforward from the notation above. And if we consider the inverse of this S matrix that exists if the eigenvectors are linearly independent, then we can write A to be S lambda S inverse. And this representation of the matrix A also gives us the way of diagonalizing A by pre and post-multiplying by S inverse and S respectively. And so with powers of a diagonalizable matrix A, they have a very nice form. We basically get cancellation of S And S inverse in the products of A times itself. And so powers of A simply are the same matrix S times lambda, the diagonal matrix of eigenvalues to the k-th power times S inverse. And so these are very useful in defining state equations and Kalman filters. All right. So let me just-- I guess I'll finish there. There's some interesting key theorems in the remainder of these notes. I think they're pretty readable. And I'll maybe point out these during our next lecture. But there we are. Also, let's see, I posted an RStudio program that computes portfolios of S&P 500 stocks and looks at the changing value over time. And so I hope people can explore those programs and try to use those in the RStudio Cloud."
+}

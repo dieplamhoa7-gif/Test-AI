@@ -1,0 +1,5148 @@
+{
+  "index": 17,
+  "id": "zapp8smQKhg",
+  "title": "Lecture 19: Volatility Modeling",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.476,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 1.476,
+      "duration": 1.968,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.444,
+      "duration": 2.46,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 10.862,
+      "duration": 1.458,
+      "text": "PETER KEMPTHORNE:\nWell, today we're"
+    },
+    {
+      "start": 12.32,
+      "duration": 2.8,
+      "text": "going to talk about\nvolatility modeling."
+    },
+    {
+      "start": 15.12,
+      "duration": 4.68,
+      "text": "And this topic in finance\nis one that has really"
+    },
+    {
+      "start": 19.8,
+      "duration": 3.44,
+      "text": "interested me for decades."
+    },
+    {
+      "start": 23.24,
+      "duration": 2.68,
+      "text": "And there are a lot of\nsubtle details involved"
+    },
+    {
+      "start": 25.92,
+      "duration": 3.42,
+      "text": "with understanding\nvolatility, how to measure it,"
+    },
+    {
+      "start": 29.34,
+      "duration": 2.54,
+      "text": "how to forecast it."
+    },
+    {
+      "start": 31.88,
+      "duration": 6.76,
+      "text": "And we've had some talks\nalready with the group projects"
+    },
+    {
+      "start": 38.64,
+      "duration": 4.04,
+      "text": "about dealing with\nvolatility estimation"
+    },
+    {
+      "start": 42.68,
+      "duration": 4.56,
+      "text": "and measuring volatility, in\nparticular implied volatility."
+    },
+    {
+      "start": 47.24,
+      "duration": 5.52,
+      "text": "Today we'll focus more on\nrealized volatility and modeling"
+    },
+    {
+      "start": 52.76,
+      "duration": 1.16,
+      "text": "that."
+    },
+    {
+      "start": 53.92,
+      "duration": 6.61,
+      "text": "And so to begin, here's just\nan overview of different ways"
+    },
+    {
+      "start": 60.53,
+      "duration": 3.819,
+      "text": "one might define volatility."
+    },
+    {
+      "start": 64.349,
+      "duration": 4.441,
+      "text": "And its basic definition is the\nannualized standard deviation"
+    },
+    {
+      "start": 68.79,
+      "duration": 3.9,
+      "text": "of the change in price or\nvalue of a financial security."
+    },
+    {
+      "start": 72.69,
+      "duration": 3.1,
+      "text": "And of course, this\nconcept is really"
+    },
+    {
+      "start": 75.79,
+      "duration": 8.2,
+      "text": "important for measuring risk and\nevaluating the value of options"
+    },
+    {
+      "start": 83.99,
+      "duration": 1.38,
+      "text": "on underlying assets."
+    },
+    {
+      "start": 85.37,
+      "duration": 0.793,
+      "text": "Yep?"
+    },
+    {
+      "start": 86.163,
+      "duration": 2.064,
+      "text": "AUDIENCE: What do you\nmean by annualized?"
+    },
+    {
+      "start": 88.227,
+      "duration": 1.583,
+      "text": "PETER KEMPTHORNE:\nWhat that means, OK,"
+    },
+    {
+      "start": 89.81,
+      "duration": 14.1,
+      "text": "suppose we have a sigma day\nthat's equal to, say, 0.01%."
+    },
+    {
+      "start": 103.91,
+      "duration": 3.28,
+      "text": "So 1% variability per day."
+    },
+    {
+      "start": 107.19,
+      "duration": 5.44,
+      "text": "If we wanted to measure\nvolatility on an annualized"
+    },
+    {
+      "start": 112.63,
+      "duration": 7.42,
+      "text": "scale, then we could consider\npossibly the square root"
+    },
+    {
+      "start": 120.05,
+      "duration": 4.6,
+      "text": "of 252 times sigma day."
+    },
+    {
+      "start": 124.65,
+      "duration": 3.0,
+      "text": "So it's a matter of\nscaling the volatility up"
+    },
+    {
+      "start": 127.65,
+      "duration": 2.639,
+      "text": "to an annual horizon."
+    },
+    {
+      "start": 130.289,
+      "duration": 5.121,
+      "text": "And the value of\nthat rescaling is"
+    },
+    {
+      "start": 135.41,
+      "duration": 3.2,
+      "text": "that we can talk\nabout volatilities"
+    },
+    {
+      "start": 138.61,
+      "duration": 2.12,
+      "text": "over different maturities."
+    },
+    {
+      "start": 140.73,
+      "duration": 5.24,
+      "text": "And they're measured\non the same scale."
+    },
+    {
+      "start": 145.97,
+      "duration": 4.92,
+      "text": "And with different\nestimation approaches,"
+    },
+    {
+      "start": 150.89,
+      "duration": 3.16,
+      "text": "there's historical sample\nvolatility measures"
+    },
+    {
+      "start": 154.05,
+      "duration": 5.64,
+      "text": "which don't require really any\nprobability models with them."
+    },
+    {
+      "start": 159.69,
+      "duration": 2.9,
+      "text": "Then we have geometric\nBrownian motion."
+    },
+    {
+      "start": 162.59,
+      "duration": 3.54,
+      "text": "That's a very familiar\nmodel to everyone here."
+    },
+    {
+      "start": 166.13,
+      "duration": 3.12,
+      "text": "And we can consider\nextensions of that"
+    },
+    {
+      "start": 169.25,
+      "duration": 3.24,
+      "text": "to the Poisson jump\ndiffusion model."
+    },
+    {
+      "start": 172.49,
+      "duration": 4.71,
+      "text": "A group delivered\na nice lecture note"
+    },
+    {
+      "start": 177.2,
+      "duration": 2.4,
+      "text": "on the Poisson jump diffusions."
+    },
+    {
+      "start": 179.6,
+      "duration": 3.84,
+      "text": "And then following\nthese cases are"
+    },
+    {
+      "start": 183.44,
+      "duration": 6.52,
+      "text": "cases where volatility might\nhave some time dynamics in them."
+    },
+    {
+      "start": 189.96,
+      "duration": 4.44,
+      "text": "With these geometric Brownian\nmotion and Poisson jump"
+    },
+    {
+      "start": 194.4,
+      "duration": 3.88,
+      "text": "diffusion models, we\nthink of volatility"
+    },
+    {
+      "start": 198.28,
+      "duration": 4.36,
+      "text": "being some constant,\nwhich is the same from one"
+    },
+    {
+      "start": 202.64,
+      "duration": 1.84,
+      "text": "period to the next."
+    },
+    {
+      "start": 204.48,
+      "duration": 2.8,
+      "text": "But it turns out\nthat there can be"
+    },
+    {
+      "start": 207.28,
+      "duration": 3.32,
+      "text": "time dependence in volatility."
+    },
+    {
+      "start": 210.6,
+      "duration": 3.64,
+      "text": "And so there are ARCH\nand GARCH models,"
+    },
+    {
+      "start": 214.24,
+      "duration": 4.28,
+      "text": "which stand for Autoregressive\nConditional Heteroskedastic"
+    },
+    {
+      "start": 218.52,
+      "duration": 1.16,
+      "text": "Models."
+    },
+    {
+      "start": 219.68,
+      "duration": 4.52,
+      "text": "And then the GARCH are\ngeneralized versions of those."
+    },
+    {
+      "start": 224.2,
+      "duration": 4.76,
+      "text": "And then there are stochastic\nvolatility models as well."
+    },
+    {
+      "start": 228.96,
+      "duration": 5.3,
+      "text": "I know, let's see, the\nHeston option pricing model"
+    },
+    {
+      "start": 234.26,
+      "duration": 6.78,
+      "text": "uses a stochastic volatility\nterm in its formulation."
+    },
+    {
+      "start": 241.04,
+      "duration": 3.6,
+      "text": "So we have those\nkinds of extensions."
+    },
+    {
+      "start": 244.64,
+      "duration": 2.1,
+      "text": "And then finally, there's\nimplied volatility"
+    },
+    {
+      "start": 246.74,
+      "duration": 2.32,
+      "text": "from options and derivatives."
+    },
+    {
+      "start": 249.06,
+      "duration": 4.8,
+      "text": "So let's just look at\ncomputing volatility"
+    },
+    {
+      "start": 253.86,
+      "duration": 5.96,
+      "text": "from an historical\nseries of actual prices."
+    },
+    {
+      "start": 259.82,
+      "duration": 6.48,
+      "text": "If we have prices PT, then\nwe can define the log returns"
+    },
+    {
+      "start": 266.3,
+      "duration": 5.6,
+      "text": "by looking at the ratio\nof prices from one day"
+    },
+    {
+      "start": 271.9,
+      "duration": 2.92,
+      "text": "to the next, or one\nperiod to the next,"
+    },
+    {
+      "start": 274.82,
+      "duration": 3.4,
+      "text": "and taking the\nlogarithm of that."
+    },
+    {
+      "start": 278.22,
+      "duration": 4.56,
+      "text": "This is a useful way\nof measuring returns"
+    },
+    {
+      "start": 282.78,
+      "duration": 5.2,
+      "text": "as an alternative to simply the\npercentage change in value using"
+    },
+    {
+      "start": 287.98,
+      "duration": 4.23,
+      "text": "the log scale or the\nlog return, if we"
+    },
+    {
+      "start": 292.21,
+      "duration": 5.52,
+      "text": "look at the cumulative change\nover successive periods."
+    },
+    {
+      "start": 297.73,
+      "duration": 3.48,
+      "text": "With log returns, they just add."
+    },
+    {
+      "start": 301.21,
+      "duration": 2.32,
+      "text": "Whereas if we were using\npercentage returns,"
+    },
+    {
+      "start": 303.53,
+      "duration": 4.56,
+      "text": "we'd have to basically multiply\nfactors together representing"
+    },
+    {
+      "start": 308.09,
+      "duration": 0.76,
+      "text": "that."
+    },
+    {
+      "start": 308.85,
+      "duration": 7.96,
+      "text": "Now, in modeling\nvolatility, we consider"
+    },
+    {
+      "start": 316.81,
+      "duration": 5.84,
+      "text": "models that correspond\nto stationary processes"
+    },
+    {
+      "start": 322.65,
+      "duration": 2.12,
+      "text": "for our returns."
+    },
+    {
+      "start": 324.77,
+      "duration": 4.96,
+      "text": "So the log returns\nof price series"
+    },
+    {
+      "start": 329.73,
+      "duration": 6.96,
+      "text": "are often consistent via tests\nwith a stationary distribution"
+    },
+    {
+      "start": 336.69,
+      "duration": 1.56,
+      "text": "of returns."
+    },
+    {
+      "start": 338.25,
+      "duration": 3.68,
+      "text": "And under the assumption\nof covariance stationarity,"
+    },
+    {
+      "start": 341.93,
+      "duration": 6.08,
+      "text": "we can define sigma\nto be the variance of"
+    },
+    {
+      "start": 348.01,
+      "duration": 3.84,
+      "text": "or the standard deviation\nof those returns."
+    },
+    {
+      "start": 351.85,
+      "duration": 5.26,
+      "text": "Now, in this notation here,\nthis sigma for the volatility"
+    },
+    {
+      "start": 357.11,
+      "duration": 4.4,
+      "text": "would be corresponding to a\nfrequency of observation that's"
+    },
+    {
+      "start": 361.51,
+      "duration": 3.04,
+      "text": "daily or weekly or monthly."
+    },
+    {
+      "start": 364.55,
+      "duration": 3.48,
+      "text": "And we'd have sample\nestimates given"
+    },
+    {
+      "start": 368.03,
+      "duration": 7.88,
+      "text": "by the square root of the sample\nvariance where we traditionally"
+    },
+    {
+      "start": 375.91,
+      "duration": 3.52,
+      "text": "use the estimator\nfor variance, which"
+    },
+    {
+      "start": 379.43,
+      "duration": 3.7,
+      "text": "is an unbiased estimate\nof the variance."
+    },
+    {
+      "start": 383.13,
+      "duration": 5.82,
+      "text": "So that factor divisor t\nminus 1 is included there."
+    },
+    {
+      "start": 388.95,
+      "duration": 3.44,
+      "text": "And then if we want to\nannualize these values,"
+    },
+    {
+      "start": 392.39,
+      "duration": 6.04,
+      "text": "it's common practice just\nto treat these returns"
+    },
+    {
+      "start": 398.43,
+      "duration": 5.78,
+      "text": "as independent or\nuncorrelated over time,"
+    },
+    {
+      "start": 404.21,
+      "duration": 5.37,
+      "text": "so that the variance of a sum\nis the sum of the variances."
+    },
+    {
+      "start": 409.58,
+      "duration": 4.66,
+      "text": "So there are roughly\n252 days in a year."
+    },
+    {
+      "start": 414.24,
+      "duration": 7.76,
+      "text": "So we multiply by the square\nroot of 252 for daily returns."
+    },
+    {
+      "start": 422.0,
+      "duration": 4.42,
+      "text": "For weekly returns, we'd\ndo the root 52 times"
+    },
+    {
+      "start": 426.42,
+      "duration": 3.84,
+      "text": "sigma hat and route\n12 for monthly."
+    },
+    {
+      "start": 430.26,
+      "duration": 9.8,
+      "text": "Now, when measuring\nhistorical volatility,"
+    },
+    {
+      "start": 440.06,
+      "duration": 4.6,
+      "text": "we can think of a simple\nhistorical average"
+    },
+    {
+      "start": 444.66,
+      "duration": 3.52,
+      "text": "since the beginning\nof our time series."
+    },
+    {
+      "start": 448.18,
+      "duration": 4.0,
+      "text": "So this historical average\nwould use all available data."
+    },
+    {
+      "start": 452.18,
+      "duration": 5.24,
+      "text": "It's reasonable to think that\nvolatility isn't necessarily"
+    },
+    {
+      "start": 457.42,
+      "duration": 5.4,
+      "text": "stable over the entire time\nrange of a price series."
+    },
+    {
+      "start": 462.82,
+      "duration": 5.53,
+      "text": "And so we could consider\njust using the last m values."
+    },
+    {
+      "start": 468.35,
+      "duration": 3.62,
+      "text": "So take a rolling\naverage of the last m"
+    },
+    {
+      "start": 471.97,
+      "duration": 6.98,
+      "text": "values of this sigma\nhat squared t minus j."
+    },
+    {
+      "start": 478.95,
+      "duration": 7.14,
+      "text": "Now, if we define\nsigma hat squared t"
+    },
+    {
+      "start": 486.09,
+      "duration": 5.14,
+      "text": "to just be a single\nday's volatility,"
+    },
+    {
+      "start": 491.23,
+      "duration": 7.5,
+      "text": "that could be like the square of\nthe daily return on a given day."
+    },
+    {
+      "start": 498.73,
+      "duration": 8.8,
+      "text": "Now, using equal weighted\nvalues over a window of length m"
+    },
+    {
+      "start": 507.53,
+      "duration": 5.96,
+      "text": "might be improved upon by using\nan exponential moving average."
+    },
+    {
+      "start": 513.49,
+      "duration": 2.84,
+      "text": "And so exponential\nmoving averages"
+    },
+    {
+      "start": 516.33,
+      "duration": 5.28,
+      "text": "are averages where we\ntake a weighted average"
+    },
+    {
+      "start": 521.61,
+      "duration": 6.38,
+      "text": "of the previous\nestimate of volatility"
+    },
+    {
+      "start": 527.99,
+      "duration": 3.96,
+      "text": "and the current\nestimate of volatility"
+    },
+    {
+      "start": 531.95,
+      "duration": 3.58,
+      "text": "using the time t value."
+    },
+    {
+      "start": 535.53,
+      "duration": 3.18,
+      "text": "So this 1 minus beta\nbeta weight allows"
+    },
+    {
+      "start": 538.71,
+      "duration": 8.26,
+      "text": "us to weight the past versus the\npresent in an exponential way."
+    },
+    {
+      "start": 546.97,
+      "duration": 4.24,
+      "text": "And with this formula,\nit's recursive over t."
+    },
+    {
+      "start": 551.21,
+      "duration": 3.86,
+      "text": "And so it can actually\napply across an entire range"
+    },
+    {
+      "start": 555.07,
+      "duration": 2.52,
+      "text": "of historical data."
+    },
+    {
+      "start": 557.59,
+      "duration": 4.6,
+      "text": "An alternative to just the\nregular exponential moving"
+    },
+    {
+      "start": 562.19,
+      "duration": 2.12,
+      "text": "averages and exponential\nweighted moving"
+    },
+    {
+      "start": 564.31,
+      "duration": 4.88,
+      "text": "average where we only\ngo back maybe m periods,"
+    },
+    {
+      "start": 569.19,
+      "duration": 7.4,
+      "text": "but we decrease the weights\non past volatility estimates"
+    },
+    {
+      "start": 576.59,
+      "duration": 3.42,
+      "text": "according to the\npower of beta j."
+    },
+    {
+      "start": 580.01,
+      "duration": 7.21,
+      "text": "So beta j or beta\nis a decay factor"
+    },
+    {
+      "start": 587.22,
+      "duration": 1.84,
+      "text": "in estimating volatilities."
+    },
+    {
+      "start": 594.4,
+      "duration": 4.42,
+      "text": "Additionally, one could\nconsider regression models"
+    },
+    {
+      "start": 598.82,
+      "duration": 7.36,
+      "text": "with these volatility\nsigma hats indexed by t."
+    },
+    {
+      "start": 606.18,
+      "duration": 6.68,
+      "text": "And depending on\nthe relationship"
+    },
+    {
+      "start": 612.86,
+      "duration": 5.32,
+      "text": "of volatility to the past,\nwe might use more data"
+    },
+    {
+      "start": 618.18,
+      "duration": 1.94,
+      "text": "to increase precision\nof estimators,"
+    },
+    {
+      "start": 620.12,
+      "duration": 4.58,
+      "text": "but use data closer\nto time t when"
+    },
+    {
+      "start": 624.7,
+      "duration": 4.12,
+      "text": "we believe that the volatility\nmay be changing over time."
+    },
+    {
+      "start": 628.82,
+      "duration": 4.16,
+      "text": "And what's neat about\nthese estimation"
+    },
+    {
+      "start": 632.98,
+      "duration": 6.38,
+      "text": "methods is that we can evaluate,\nsay, the exponential moving"
+    },
+    {
+      "start": 639.36,
+      "duration": 5.64,
+      "text": "average estimates of volatility\nover different assets"
+    },
+    {
+      "start": 645.0,
+      "duration": 2.68,
+      "text": "and different asset classes."
+    },
+    {
+      "start": 647.68,
+      "duration": 8.8,
+      "text": "And this approach was\napplied in RiskMetrics."
+    },
+    {
+      "start": 656.48,
+      "duration": 6.88,
+      "text": "Here there's a web link to the\nRiskMetrics technical document."
+    },
+    {
+      "start": 663.36,
+      "duration": 2.09,
+      "text": "I think I have it listed here."
+    },
+    {
+      "start": 668.4,
+      "duration": 9.2,
+      "text": "So actually this RiskMetrics\nwas created by JP Morgan back"
+    },
+    {
+      "start": 677.6,
+      "duration": 2.24,
+      "text": "in the 1990s."
+    },
+    {
+      "start": 679.84,
+      "duration": 4.56,
+      "text": "Coincidentally, when I was\nat the Sloan School teaching"
+    },
+    {
+      "start": 684.4,
+      "duration": 2.92,
+      "text": "statistics and\nfinancial modeling,"
+    },
+    {
+      "start": 687.32,
+      "duration": 2.8,
+      "text": "I was part of the Financial\nServices Research Center"
+    },
+    {
+      "start": 690.12,
+      "duration": 5.12,
+      "text": "that was sponsored by JP\nMorgan and other groups"
+    },
+    {
+      "start": 695.24,
+      "duration": 5.95,
+      "text": "when this risk metrics\ndocument was created."
+    },
+    {
+      "start": 701.19,
+      "duration": 3.84,
+      "text": "And if we look at,\nlet's see, there's"
+    },
+    {
+      "start": 705.03,
+      "duration": 8.36,
+      "text": "a section here of risk metrics\ndecay factors for volatility."
+    },
+    {
+      "start": 713.39,
+      "duration": 3.4,
+      "text": "Basically, for\ndifferent countries,"
+    },
+    {
+      "start": 716.79,
+      "duration": 7.48,
+      "text": "one can use the exponential\nmoving average of asset returns"
+    },
+    {
+      "start": 724.27,
+      "duration": 4.44,
+      "text": "for foreign exchange\n10 year 0 prices equity"
+    },
+    {
+      "start": 728.71,
+      "duration": 3.04,
+      "text": "indices and other assets."
+    },
+    {
+      "start": 731.75,
+      "duration": 4.64,
+      "text": "And what's interesting to\nsee is that the decay factor"
+    },
+    {
+      "start": 736.39,
+      "duration": 2.9,
+      "text": "is generally well above 0.9."
+    },
+    {
+      "start": 739.29,
+      "duration": 4.82,
+      "text": "It's more like 0.95, which\nsuggests that volatility"
+    },
+    {
+      "start": 744.11,
+      "duration": 3.0,
+      "text": "is changing slowly over time."
+    },
+    {
+      "start": 747.11,
+      "duration": 4.68,
+      "text": "And the way they chose\nthese decay factors was"
+    },
+    {
+      "start": 751.79,
+      "duration": 6.3,
+      "text": "to look at how predictive they\nwere with mean squared error"
+    },
+    {
+      "start": 758.09,
+      "duration": 1.02,
+      "text": "of volatility."
+    },
+    {
+      "start": 759.11,
+      "duration": 5.12,
+      "text": "So these are reasonable\nestimates of volatility."
+    },
+    {
+      "start": 764.23,
+      "duration": 5.22,
+      "text": "And an important aspect\nof these measures"
+    },
+    {
+      "start": 769.45,
+      "duration": 5.84,
+      "text": "is having benchmark values\nthat people can agree upon."
+    },
+    {
+      "start": 775.29,
+      "duration": 4.66,
+      "text": "So we're not arguing that\nthese are the best estimators,"
+    },
+    {
+      "start": 779.95,
+      "duration": 5.42,
+      "text": "but they're a simple objective\nestimator that can be applied."
+    },
+    {
+      "start": 785.37,
+      "duration": 3.28,
+      "text": "And when we communicate\nabout these other people,"
+    },
+    {
+      "start": 788.65,
+      "duration": 2.24,
+      "text": "understand what we're measuring."
+    },
+    {
+      "start": 790.89,
+      "duration": 3.04,
+      "text": "So those are important."
+    },
+    {
+      "start": 793.93,
+      "duration": 3.6,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 797.53,
+      "duration": 3.52,
+      "text": "With geometric Brownian\nmotion, turning now"
+    },
+    {
+      "start": 801.05,
+      "duration": 7.08,
+      "text": "to having a stochastic\nprocess model for the prices."
+    },
+    {
+      "start": 808.13,
+      "duration": 3.2,
+      "text": "If we have this\nstochastic differential"
+    },
+    {
+      "start": 811.33,
+      "duration": 5.91,
+      "text": "equation, the geometric Brownian\nmotion one, we see that,"
+    },
+    {
+      "start": 817.24,
+      "duration": 5.6,
+      "text": "and it's totally obvious, but if\nwe divide both sides by s of t,"
+    },
+    {
+      "start": 822.84,
+      "duration": 12.72,
+      "text": "we get mu dt plus sigma ds of t\nor sigma dw of t, where w of t"
+    },
+    {
+      "start": 835.56,
+      "duration": 4.42,
+      "text": "is a standard Brownian motion."
+    },
+    {
+      "start": 839.98,
+      "duration": 3.98,
+      "text": "So by looking at\nessentially the percentage"
+    },
+    {
+      "start": 843.96,
+      "duration": 4.92,
+      "text": "change on an\ninfinitesimal level,"
+    },
+    {
+      "start": 848.88,
+      "duration": 4.28,
+      "text": "we basically have a linear\ntrend that's deterministic"
+    },
+    {
+      "start": 853.16,
+      "duration": 3.72,
+      "text": "and then a random walk\nwith Brownian motion"
+    },
+    {
+      "start": 856.88,
+      "duration": 3.4,
+      "text": "steps on that scale."
+    },
+    {
+      "start": 860.28,
+      "duration": 5.0,
+      "text": "And with this geometric\nBrownian motion,"
+    },
+    {
+      "start": 865.28,
+      "duration": 7.62,
+      "text": "we have basically independent\nincrements with normally"
+    },
+    {
+      "start": 872.9,
+      "duration": 5.76,
+      "text": "distributed increments on this\nlog scale for the Brownian"
+    },
+    {
+      "start": 878.66,
+      "duration": 1.44,
+      "text": "motion."
+    },
+    {
+      "start": 880.1,
+      "duration": 7.44,
+      "text": "And with our homework exercise\nthis past week, we actually"
+    },
+    {
+      "start": 887.54,
+      "duration": 7.28,
+      "text": "dealt with estimating the drift\nparameter and the volatility"
+    },
+    {
+      "start": 894.82,
+      "duration": 3.48,
+      "text": "parameter in geometric\nBrownian motion."
+    },
+    {
+      "start": 898.3,
+      "duration": 6.8,
+      "text": "And so if our increments of\ntime are unit increments,"
+    },
+    {
+      "start": 905.1,
+      "duration": 6.32,
+      "text": "then we can estimate\na drift term mu star"
+    },
+    {
+      "start": 911.42,
+      "duration": 2.88,
+      "text": "with the average log return."
+    },
+    {
+      "start": 914.3,
+      "duration": 8.0,
+      "text": "And we can estimate the period\nvolatility or period variance"
+    },
+    {
+      "start": 922.3,
+      "duration": 6.0,
+      "text": "with the sample variance\nusing n instead of n minus 1."
+    },
+    {
+      "start": 928.3,
+      "duration": 5.19,
+      "text": "Now, these essentially\ncorrespond to maximum likelihood"
+    },
+    {
+      "start": 933.49,
+      "duration": 2.36,
+      "text": "estimates of these parameters."
+    },
+    {
+      "start": 935.85,
+      "duration": 5.6,
+      "text": "And what's important\nto note here"
+    },
+    {
+      "start": 941.45,
+      "duration": 9.72,
+      "text": "is that the drift term\nmu star per period"
+    },
+    {
+      "start": 951.17,
+      "duration": 4.64,
+      "text": "is actually equal to the mu\nof the geometric Brownian"
+    },
+    {
+      "start": 955.81,
+      "duration": 6.64,
+      "text": "motion minus the square of the\nvolatility term divided by 2."
+    },
+    {
+      "start": 962.45,
+      "duration": 3.28,
+      "text": "And so what's\nimportant is that when"
+    },
+    {
+      "start": 965.73,
+      "duration": 7.56,
+      "text": "we apply this stochastic\ndifferential equation,"
+    },
+    {
+      "start": 973.29,
+      "duration": 5.04,
+      "text": "there basically\ncomes an extra term"
+    },
+    {
+      "start": 978.33,
+      "duration": 4.56,
+      "text": "in the drift that's due\nto the squared variation"
+    },
+    {
+      "start": 982.89,
+      "duration": 1.92,
+      "text": "in the process."
+    },
+    {
+      "start": 984.81,
+      "duration": 4.39,
+      "text": "So in working with these\nthe stochastic differential"
+    },
+    {
+      "start": 989.2,
+      "duration": 5.06,
+      "text": "equations, it's important not to\njust look at first order terms,"
+    },
+    {
+      "start": 994.26,
+      "duration": 3.42,
+      "text": "but to look at second order\nterms in your Taylor series"
+    },
+    {
+      "start": 997.68,
+      "duration": 0.86,
+      "text": "approximation."
+    },
+    {
+      "start": 998.54,
+      "duration": 3.42,
+      "text": "And that's how that\nmu star gets in there"
+    },
+    {
+      "start": 1001.96,
+      "duration": 2.2,
+      "text": "to be different from mu."
+    },
+    {
+      "start": 1004.16,
+      "duration": 6.44,
+      "text": "Now, an interesting exercise,\nwhich hopefully was of interest"
+    },
+    {
+      "start": 1010.6,
+      "duration": 3.32,
+      "text": "to people who worked\non that last week,"
+    },
+    {
+      "start": 1013.92,
+      "duration": 5.48,
+      "text": "if we vary the increments\ndelta j over which we observe"
+    },
+    {
+      "start": 1019.4,
+      "duration": 10.719,
+      "text": "this price process, then we\ncan talk about how accurate"
+    },
+    {
+      "start": 1030.119,
+      "duration": 8.081,
+      "text": "or how precise are our estimates\nof mu star and sigma squared."
+    },
+    {
+      "start": 1038.2,
+      "duration": 7.58,
+      "text": "And it turns out that if\nthe delta j, the increments"
+    },
+    {
+      "start": 1045.78,
+      "duration": 8.48,
+      "text": "between observations varies,\nthen our estimate of mu star"
+    },
+    {
+      "start": 1054.26,
+      "duration": 1.76,
+      "text": "is always the same."
+    },
+    {
+      "start": 1056.02,
+      "duration": 3.56,
+      "text": "It corresponds to just\nthe cumulative return"
+    },
+    {
+      "start": 1059.58,
+      "duration": 3.66,
+      "text": "over the entire period divided\nby the length of the period."
+    },
+    {
+      "start": 1063.24,
+      "duration": 4.58,
+      "text": "So it's the average rate\nof return per period."
+    },
+    {
+      "start": 1067.82,
+      "duration": 5.36,
+      "text": "Interestingly, if we increase\nthe number of increments,"
+    },
+    {
+      "start": 1073.18,
+      "duration": 3.96,
+      "text": "then our precision\non the variance"
+    },
+    {
+      "start": 1077.14,
+      "duration": 5.96,
+      "text": "gets more and more precise,\nand the variability of that"
+    },
+    {
+      "start": 1083.1,
+      "duration": 4.16,
+      "text": "actually goes down\nwith a factor of n."
+    },
+    {
+      "start": 1087.26,
+      "duration": 4.32,
+      "text": "So that was a homework\nexercise that I think"
+    },
+    {
+      "start": 1091.58,
+      "duration": 5.12,
+      "text": "is an important one to realize."
+    },
+    {
+      "start": 1096.7,
+      "duration": 5.68,
+      "text": "Now, a really\ninteresting extension"
+    },
+    {
+      "start": 1102.38,
+      "duration": 4.99,
+      "text": "of maximum likelihood\nestimation with normally"
+    },
+    {
+      "start": 1107.37,
+      "duration": 5.12,
+      "text": "distributed increments coming\nfrom the Brownian motion process"
+    },
+    {
+      "start": 1112.49,
+      "duration": 7.36,
+      "text": "is looking at the problem of\nusing more information than just"
+    },
+    {
+      "start": 1119.85,
+      "duration": 3.28,
+      "text": "the close to close prices."
+    },
+    {
+      "start": 1123.13,
+      "duration": 4.64,
+      "text": "And so what we want\nto do is introduce you"
+    },
+    {
+      "start": 1127.77,
+      "duration": 3.84,
+      "text": "to the Garman-Klass estimator."
+    },
+    {
+      "start": 1131.61,
+      "duration": 7.88,
+      "text": "And let me just turn to\nthe Garman-Klass paper."
+    },
+    {
+      "start": 1139.49,
+      "duration": 4.72,
+      "text": "These papers are distributed in\nCanvas in the volatility notes"
+    },
+    {
+      "start": 1144.21,
+      "duration": 1.28,
+      "text": "section."
+    },
+    {
+      "start": 1145.49,
+      "duration": 6.96,
+      "text": "But if we think of a period\nof time with one day,"
+    },
+    {
+      "start": 1152.45,
+      "duration": 7.2,
+      "text": "going from yesterday's close to\ntoday's open to today's close,"
+    },
+    {
+      "start": 1159.65,
+      "duration": 7.42,
+      "text": "then in thinking about\nmeasuring volatility"
+    },
+    {
+      "start": 1167.07,
+      "duration": 3.64,
+      "text": "using the difference\nbetween today's close"
+    },
+    {
+      "start": 1170.71,
+      "duration": 4.68,
+      "text": "and yesterday's close,\nthat can be very useful,"
+    },
+    {
+      "start": 1175.39,
+      "duration": 3.2,
+      "text": "but it's missing out\non other information"
+    },
+    {
+      "start": 1178.59,
+      "duration": 4.24,
+      "text": "that we may have access\nto, such as what's"
+    },
+    {
+      "start": 1182.83,
+      "duration": 5.08,
+      "text": "the opening price today?"
+    },
+    {
+      "start": 1187.91,
+      "duration": 1.9,
+      "text": "What's the low value today?"
+    },
+    {
+      "start": 1189.81,
+      "duration": 1.9,
+      "text": "What's the high value today?"
+    },
+    {
+      "start": 1191.71,
+      "duration": 3.44,
+      "text": "And how can we use\nthat extra information"
+    },
+    {
+      "start": 1195.15,
+      "duration": 5.76,
+      "text": "to have more precise\nestimates of volatility?"
+    },
+    {
+      "start": 1200.91,
+      "duration": 5.44,
+      "text": "Anecdotally, when I was studying\nfor a doctorate in statistics"
+    },
+    {
+      "start": 1206.35,
+      "duration": 7.36,
+      "text": "at Berkeley, I was a research\nassistant to Michael Klass."
+    },
+    {
+      "start": 1213.71,
+      "duration": 4.6,
+      "text": "And I was getting interested\nin non-statistics topics"
+    },
+    {
+      "start": 1218.31,
+      "duration": 4.27,
+      "text": "like finance, and so I took a\ncourse from Mark Garman, who"
+    },
+    {
+      "start": 1222.58,
+      "duration": 2.26,
+      "text": "co-wrote this paper."
+    },
+    {
+      "start": 1224.84,
+      "duration": 4.32,
+      "text": "So it's rather interesting\nto have had that exposure."
+    },
+    {
+      "start": 1229.16,
+      "duration": 4.34,
+      "text": "Actually, it was a very\ninspiring set of classes"
+    },
+    {
+      "start": 1233.5,
+      "duration": 5.48,
+      "text": "that I took, which motivated\nmy, I guess, lifelong interest"
+    },
+    {
+      "start": 1238.98,
+      "duration": 2.0,
+      "text": "in financial modeling."
+    },
+    {
+      "start": 1240.98,
+      "duration": 4.8,
+      "text": "So let's take a look\nat some notation."
+    },
+    {
+      "start": 1245.78,
+      "duration": 8.24,
+      "text": "Very simply, we'll think of just\na single period, like one day,"
+    },
+    {
+      "start": 1254.02,
+      "duration": 5.24,
+      "text": "and refer to the\nclosing price on day j,"
+    },
+    {
+      "start": 1259.26,
+      "duration": 7.28,
+      "text": "opening price on day j, the\nhigh and low on day j as well."
+    },
+    {
+      "start": 1266.54,
+      "duration": 6.04,
+      "text": "Importantly, the notation\nhere includes this--"
+    },
+    {
+      "start": 1272.58,
+      "duration": 3.0,
+      "text": "well, includes the time\npoints, but it also"
+    },
+    {
+      "start": 1275.58,
+      "duration": 8.38,
+      "text": "includes the parameter f,\nwhich is the length of time"
+    },
+    {
+      "start": 1283.96,
+      "duration": 2.4,
+      "text": "that the market is\nclosed on a given day."
+    },
+    {
+      "start": 1286.36,
+      "duration": 5.64,
+      "text": "So the time between the close\nand open of the next day."
+    },
+    {
+      "start": 1292.0,
+      "duration": 3.2,
+      "text": "So we have this notation."
+    },
+    {
+      "start": 1295.2,
+      "duration": 6.16,
+      "text": "And if we consider just\nfocusing on single periods,"
+    },
+    {
+      "start": 1301.36,
+      "duration": 3.6,
+      "text": "and in this case,\nthe first one, if we"
+    },
+    {
+      "start": 1304.96,
+      "duration": 3.6,
+      "text": "look at the change\nin closing values,"
+    },
+    {
+      "start": 1308.56,
+      "duration": 2.76,
+      "text": "now, perhaps it makes\nsense to think of these"
+    },
+    {
+      "start": 1311.32,
+      "duration": 4.44,
+      "text": "on the log scale of the prices."
+    },
+    {
+      "start": 1315.76,
+      "duration": 6.28,
+      "text": "The close to close\nsquared return"
+    },
+    {
+      "start": 1322.04,
+      "duration": 5.72,
+      "text": "basically will have\nmean sigma squared"
+    },
+    {
+      "start": 1327.76,
+      "duration": 4.08,
+      "text": "and variance equal to\n2 sigma to the fourth."
+    },
+    {
+      "start": 1331.84,
+      "duration": 4.47,
+      "text": "Now, this corresponds\nto the theory"
+    },
+    {
+      "start": 1336.31,
+      "duration": 5.6,
+      "text": "of normal random variables\nfor returns, which"
+    },
+    {
+      "start": 1341.91,
+      "duration": 2.0,
+      "text": "comes from the Brownian motion."
+    },
+    {
+      "start": 1343.91,
+      "duration": 7.4,
+      "text": "And the expected\nsquared value is--"
+    },
+    {
+      "start": 1351.31,
+      "duration": 3.84,
+      "text": "well, actually, we can think\nof maybe the mean return"
+    },
+    {
+      "start": 1355.15,
+      "duration": 6.12,
+      "text": "being 0 or being subtracted\nfrom all the returns."
+    },
+    {
+      "start": 1361.27,
+      "duration": 4.48,
+      "text": "But the variance of\nthis sigma 0 hat squared"
+    },
+    {
+      "start": 1365.75,
+      "duration": 3.28,
+      "text": "is the variance of a chi\nsquared random variable"
+    },
+    {
+      "start": 1369.03,
+      "duration": 1.96,
+      "text": "with 1 degree of freedom."
+    },
+    {
+      "start": 1370.99,
+      "duration": 2.6,
+      "text": "And so in probability\nclasses, we"
+    },
+    {
+      "start": 1373.59,
+      "duration": 5.08,
+      "text": "learn that a chi squared\nrandom variable has expectation"
+    },
+    {
+      "start": 1378.67,
+      "duration": 2.12,
+      "text": "equal to the degrees of freedom."
+    },
+    {
+      "start": 1380.79,
+      "duration": 2.4,
+      "text": "And if it's a\nscaled chi squared,"
+    },
+    {
+      "start": 1383.19,
+      "duration": 3.72,
+      "text": "it's the scale factor\nsigma squared times that."
+    },
+    {
+      "start": 1386.91,
+      "duration": 2.2,
+      "text": "And the variance\nof a chi squared"
+    },
+    {
+      "start": 1389.11,
+      "duration": 2.48,
+      "text": "is equal to twice the\ndegrees of freedom."
+    },
+    {
+      "start": 1391.59,
+      "duration": 3.39,
+      "text": "So that's where that\nformula comes from."
+    },
+    {
+      "start": 1394.98,
+      "duration": 5.72,
+      "text": "Now, if we look at the close\nto open squared return,"
+    },
+    {
+      "start": 1400.7,
+      "duration": 4.84,
+      "text": "the same arguments lead to\nthis sigma 1 hat squared."
+    },
+    {
+      "start": 1405.54,
+      "duration": 5.24,
+      "text": "Looking at the squared\nreturn from closed to open,"
+    },
+    {
+      "start": 1410.78,
+      "duration": 7.04,
+      "text": "normalized by the length of\nthe period between the close"
+    },
+    {
+      "start": 1417.82,
+      "duration": 4.52,
+      "text": "and open, this will\nalso have expectation"
+    },
+    {
+      "start": 1422.34,
+      "duration": 2.16,
+      "text": "equal to sigma squared."
+    },
+    {
+      "start": 1424.5,
+      "duration": 5.0,
+      "text": "And its variance will also\nbe 2 sigma to the fourth."
+    },
+    {
+      "start": 1429.5,
+      "duration": 6.68,
+      "text": "So if the model applies\nthroughout the time"
+    },
+    {
+      "start": 1436.18,
+      "duration": 3.64,
+      "text": "periods of the market\nbeing open as well"
+    },
+    {
+      "start": 1439.82,
+      "duration": 4.84,
+      "text": "as the market being closed,\nthen these formulas apply."
+    },
+    {
+      "start": 1444.66,
+      "duration": 5.64,
+      "text": "Now, we could also do the\nopen to close squared return"
+    },
+    {
+      "start": 1450.3,
+      "duration": 8.58,
+      "text": "and, again, if we normalize the\nsquared change in price or log"
+    },
+    {
+      "start": 1458.88,
+      "duration": 4.52,
+      "text": "price, if we normalize that\nby the length of the period"
+    },
+    {
+      "start": 1463.4,
+      "duration": 4.96,
+      "text": "1 minus f, then we get\nthe same properties"
+    },
+    {
+      "start": 1468.36,
+      "duration": 3.6,
+      "text": "of the moments for these\nestimates of sigma squared."
+    },
+    {
+      "start": 1471.96,
+      "duration": 4.08,
+      "text": "So all of these have\nexpectation equal to sigma"
+    },
+    {
+      "start": 1476.04,
+      "duration": 5.52,
+      "text": "squared, and all of them have\nthe same degree of variation."
+    },
+    {
+      "start": 1481.56,
+      "duration": 9.12,
+      "text": "Well, this second or the\nindex one and two cases"
+    },
+    {
+      "start": 1490.68,
+      "duration": 4.12,
+      "text": "are estimates that\nuse different time"
+    },
+    {
+      "start": 1494.8,
+      "duration": 3.68,
+      "text": "periods, different increments,\ndisjoint increments"
+    },
+    {
+      "start": 1498.48,
+      "duration": 2.24,
+      "text": "of the process."
+    },
+    {
+      "start": 1500.72,
+      "duration": 4.92,
+      "text": "And so these have to be\nindependent if our Brownian"
+    },
+    {
+      "start": 1505.64,
+      "duration": 3.36,
+      "text": "motion model applies."
+    },
+    {
+      "start": 1509.0,
+      "duration": 6.75,
+      "text": "And so if we simply take the\nweighted average of these"
+    },
+    {
+      "start": 1515.75,
+      "duration": 7.64,
+      "text": "or the simple average, then\nthe expectation is unchanged"
+    },
+    {
+      "start": 1523.39,
+      "duration": 6.08,
+      "text": "and the variance is equal to\nbasically 1/2 squared times"
+    },
+    {
+      "start": 1529.47,
+      "duration": 1.84,
+      "text": "the sum of the variances."
+    },
+    {
+      "start": 1531.31,
+      "duration": 3.16,
+      "text": "And that equals actually\nsigma to the fourth."
+    },
+    {
+      "start": 1534.47,
+      "duration": 4.24,
+      "text": "So we're able to get a\nmore precise estimate"
+    },
+    {
+      "start": 1538.71,
+      "duration": 7.0,
+      "text": "of the volatility using these\ntwo increments separately."
+    },
+    {
+      "start": 1545.71,
+      "duration": 7.0,
+      "text": "And so it's common in\nstatistical theory of estimators"
+    },
+    {
+      "start": 1552.71,
+      "duration": 6.0,
+      "text": "to talk about the efficiency of\none estimator versus another."
+    },
+    {
+      "start": 1558.71,
+      "duration": 7.68,
+      "text": "And so if we compare\nthis sigma star,"
+    },
+    {
+      "start": 1566.39,
+      "duration": 4.86,
+      "text": "we can divide its variance into\nthe variance of sigma 0 squared"
+    },
+    {
+      "start": 1571.25,
+      "duration": 2.16,
+      "text": "and get a factor of 2."
+    },
+    {
+      "start": 1573.41,
+      "duration": 2.77,
+      "text": "So we basically have--"
+    },
+    {
+      "start": 1578.89,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 1579.39,
+      "duration": 1.05,
+      "text": "Have I got that correct?"
+    },
+    {
+      "start": 1583.662,
+      "duration": 0.948,
+      "text": "Right."
+    },
+    {
+      "start": 1584.61,
+      "duration": 4.88,
+      "text": "We basically have twice the\nefficiency in this case."
+    },
+    {
+      "start": 1589.49,
+      "duration": 4.6,
+      "text": "So we're thinking of inverse\nrelationships of the variance."
+    },
+    {
+      "start": 1594.09,
+      "duration": 2.6,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 1596.69,
+      "duration": 6.68,
+      "text": "Parkinson came up\nwith considering"
+    },
+    {
+      "start": 1603.37,
+      "duration": 4.52,
+      "text": "the high and low\nvalues over a period"
+    },
+    {
+      "start": 1607.89,
+      "duration": 8.0,
+      "text": "and showed that this\nestimate sigma hat 3 squared"
+    },
+    {
+      "start": 1615.89,
+      "duration": 8.56,
+      "text": "is an unbiased estimate of sigma\nsquared when f is equal to 0"
+    },
+    {
+      "start": 1624.45,
+      "duration": 5.15,
+      "text": "and has efficiency equal to 5.2."
+    },
+    {
+      "start": 1629.6,
+      "duration": 7.8,
+      "text": "So this high and low data really\nhas a lot of information in it"
+    },
+    {
+      "start": 1637.4,
+      "duration": 5.32,
+      "text": "compared with just the\nclose to close returns."
+    },
+    {
+      "start": 1642.72,
+      "duration": 3.28,
+      "text": "Our precision with estimating\nsigma squared basically"
+    },
+    {
+      "start": 1646.0,
+      "duration": 4.6,
+      "text": "can increase by a\nfactor of 5 with using"
+    },
+    {
+      "start": 1650.6,
+      "duration": 3.53,
+      "text": "the high and low values\ninstead of the close to close."
+    },
+    {
+      "start": 1656.84,
+      "duration": 1.32,
+      "text": "And let's see."
+    },
+    {
+      "start": 1658.16,
+      "duration": 4.28,
+      "text": "I just posted today the\nproblem set due next week"
+    },
+    {
+      "start": 1662.44,
+      "duration": 6.32,
+      "text": "where there's an article by\nParkinson discussing issues"
+    },
+    {
+      "start": 1668.76,
+      "duration": 8.64,
+      "text": "of high and low or extreme value\nestimates of the variance, which"
+    },
+    {
+      "start": 1677.4,
+      "duration": 1.66,
+      "text": "I think will be\ninteresting to read."
+    },
+    {
+      "start": 1679.06,
+      "duration": 2.94,
+      "text": "I think it's\nsomewhat fun to read"
+    },
+    {
+      "start": 1682.0,
+      "duration": 2.9,
+      "text": "the classic papers\nin these areas,"
+    },
+    {
+      "start": 1684.9,
+      "duration": 2.02,
+      "text": "especially because\nthe older they are,"
+    },
+    {
+      "start": 1686.92,
+      "duration": 1.92,
+      "text": "the easier they are\nto read, I think,"
+    },
+    {
+      "start": 1688.84,
+      "duration": 3.06,
+      "text": "although sometimes\nthat's not totally true."
+    },
+    {
+      "start": 1691.9,
+      "duration": 5.36,
+      "text": "Anyway, what Garman\nand Klass did was"
+    },
+    {
+      "start": 1697.26,
+      "duration": 4.84,
+      "text": "they considered\nalternatives, which"
+    },
+    {
+      "start": 1702.1,
+      "duration": 5.92,
+      "text": "included the high-low\nvolatility estimate."
+    },
+    {
+      "start": 1708.02,
+      "duration": 6.92,
+      "text": "And a simple average, or\nweighted by a and 1 minus"
+    },
+    {
+      "start": 1714.94,
+      "duration": 7.44,
+      "text": "of this high-low estimate of\nParkinson and the sigma 1,"
+    },
+    {
+      "start": 1722.38,
+      "duration": 3.7,
+      "text": "which is the--"
+    },
+    {
+      "start": 1726.08,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 1726.58,
+      "duration": 0.96,
+      "text": "Let's go back."
+    },
+    {
+      "start": 1727.54,
+      "duration": 6.64,
+      "text": "And the sigma 1, which is\nthe open to close value."
+    },
+    {
+      "start": 1734.18,
+      "duration": 5.48,
+      "text": "This has an even higher\nefficiency of 6.2"
+    },
+    {
+      "start": 1739.66,
+      "duration": 5.13,
+      "text": "and a rather striking\nresult of their paper,"
+    },
+    {
+      "start": 1744.79,
+      "duration": 5.58,
+      "text": "as they were able to derive\nthe best analytic scale"
+    },
+    {
+      "start": 1750.37,
+      "duration": 2.44,
+      "text": "invariant estimator."
+    },
+    {
+      "start": 1752.81,
+      "duration": 3.04,
+      "text": "So, depending on whether\nyou like mathematics or not,"
+    },
+    {
+      "start": 1755.85,
+      "duration": 2.52,
+      "text": "you may like this paper or not."
+    },
+    {
+      "start": 1758.37,
+      "duration": 2.84,
+      "text": "But it's really\ninteresting to see"
+    },
+    {
+      "start": 1761.21,
+      "duration": 5.84,
+      "text": "how a property of\nfinding a scale invariant"
+    },
+    {
+      "start": 1767.05,
+      "duration": 9.24,
+      "text": "estimator that is best among the\nclass of such estimators, that's"
+    },
+    {
+      "start": 1776.29,
+      "duration": 2.7,
+      "text": "actually derived by\nGarman and Klass."
+    },
+    {
+      "start": 1778.99,
+      "duration": 9.42,
+      "text": "So let me just highlight how\nthis section five in their paper"
+    },
+    {
+      "start": 1788.41,
+      "duration": 3.96,
+      "text": "talks about best analytic\nscale invariant estimators."
+    },
+    {
+      "start": 1792.37,
+      "duration": 4.8,
+      "text": "And you may be able to see\nfrom the derivation here"
+    },
+    {
+      "start": 1797.17,
+      "duration": 2.6,
+      "text": "that their arguments\njust are dealing"
+    },
+    {
+      "start": 1799.77,
+      "duration": 4.07,
+      "text": "with some quadratic\nforms and solving"
+    },
+    {
+      "start": 1803.84,
+      "duration": 3.76,
+      "text": "for properties, minimizing\nthese quadratic forms."
+    },
+    {
+      "start": 1807.6,
+      "duration": 2.56,
+      "text": "And so it's rather\nneat that they're"
+    },
+    {
+      "start": 1810.16,
+      "duration": 3.92,
+      "text": "able to achieve\nthis result. Yeah?"
+    },
+    {
+      "start": 1814.08,
+      "duration": 2.792,
+      "text": "AUDIENCE: Why is it\nnecessary [INAUDIBLE]?"
+    },
+    {
+      "start": 1816.872,
+      "duration": 4.414,
+      "text": "Because that's just commenting\nabout the prepared bearings,"
+    },
+    {
+      "start": 1821.286,
+      "duration": 0.5,
+      "text": "right?"
+    },
+    {
+      "start": 1821.786,
+      "duration": 6.894,
+      "text": "PETER KEMPTHORNE: Well, with\na higher efficient estimator,"
+    },
+    {
+      "start": 1828.68,
+      "duration": 5.72,
+      "text": "you can have as precise an\nestimator with a smaller"
+    },
+    {
+      "start": 1834.4,
+      "duration": 3.12,
+      "text": "or shorter time series."
+    },
+    {
+      "start": 1837.52,
+      "duration": 4.52,
+      "text": "So instead of using, say,\n20 days close to close,"
+    },
+    {
+      "start": 1842.04,
+      "duration": 4.88,
+      "text": "you could use a week of\ndata and have estimators"
+    },
+    {
+      "start": 1846.92,
+      "duration": 2.84,
+      "text": "that are comparably precise."
+    },
+    {
+      "start": 1849.76,
+      "duration": 1.88,
+      "text": "AUDIENCE: [INAUDIBLE]"
+    },
+    {
+      "start": 1853.28,
+      "duration": 2.518,
+      "text": "PETER KEMPTHORNE: Yeah, yeah."
+    },
+    {
+      "start": 1855.798,
+      "duration": 0.542,
+      "text": "That's right."
+    },
+    {
+      "start": 1856.34,
+      "duration": 2.88,
+      "text": "And so there are all\nthese extra assumptions"
+    },
+    {
+      "start": 1859.22,
+      "duration": 1.5,
+      "text": "that complicate things."
+    },
+    {
+      "start": 1860.72,
+      "duration": 1.94,
+      "text": "And in many of\nthese developments,"
+    },
+    {
+      "start": 1862.66,
+      "duration": 4.2,
+      "text": "they're simplifying\nassumptions like the mean is 0."
+    },
+    {
+      "start": 1866.86,
+      "duration": 6.28,
+      "text": "But if you were trying to model\ntime varying volatility, then"
+    },
+    {
+      "start": 1873.14,
+      "duration": 3.96,
+      "text": "rather than looking at, say,\nclose to close volatility"
+    },
+    {
+      "start": 1877.1,
+      "duration": 2.56,
+      "text": "and how that changes\nover time, if you"
+    },
+    {
+      "start": 1879.66,
+      "duration": 6.44,
+      "text": "use these other estimators,\nthe Garman-Klass, for example,"
+    },
+    {
+      "start": 1886.1,
+      "duration": 3.04,
+      "text": "you could maybe use a\nmuch shorter time period"
+    },
+    {
+      "start": 1889.14,
+      "duration": 3.96,
+      "text": "and be able to track or model\nchanges in volatility over time"
+    },
+    {
+      "start": 1893.1,
+      "duration": 0.78,
+      "text": "with that."
+    },
+    {
+      "start": 1899.3,
+      "duration": 0.86,
+      "text": "Well, let's see."
+    },
+    {
+      "start": 1906.9,
+      "duration": 3.06,
+      "text": "So then finally, there's\nthis composite estimator,"
+    },
+    {
+      "start": 1909.96,
+      "duration": 3.98,
+      "text": "which has efficiency 8.4."
+    },
+    {
+      "start": 1913.94,
+      "duration": 3.31,
+      "text": "And finally, there are\na number of extensions"
+    },
+    {
+      "start": 1917.25,
+      "duration": 4.76,
+      "text": "of the Garman-Klass\nthat are listed here."
+    },
+    {
+      "start": 1922.01,
+      "duration": 5.56,
+      "text": "And the one that is actually\nrecommended these days"
+    },
+    {
+      "start": 1927.57,
+      "duration": 4.58,
+      "text": "is actually this\nYang Zhang model,"
+    },
+    {
+      "start": 1932.15,
+      "duration": 4.22,
+      "text": "which has a drift independent\nvolatility estimation based"
+    },
+    {
+      "start": 1936.37,
+      "duration": 2.22,
+      "text": "on the high-low close."
+    },
+    {
+      "start": 1938.59,
+      "duration": 4.02,
+      "text": "So the fact that it's\ndrift independent deals"
+    },
+    {
+      "start": 1942.61,
+      "duration": 4.48,
+      "text": "with that assumption\nthat was just mentioned."
+    },
+    {
+      "start": 1947.09,
+      "duration": 2.08,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 1949.17,
+      "duration": 6.36,
+      "text": "There's a case study\nof using R to calculate"
+    },
+    {
+      "start": 1955.53,
+      "duration": 3.52,
+      "text": "these different\nvolatility estimates."
+    },
+    {
+      "start": 1959.05,
+      "duration": 5.2,
+      "text": "And let's see here."
+    },
+    {
+      "start": 1964.25,
+      "duration": 7.96,
+      "text": "So here's the case\nstudy, which goes"
+    },
+    {
+      "start": 1972.21,
+      "duration": 6.32,
+      "text": "through calculating different\nmeasures of volatility,"
+    },
+    {
+      "start": 1978.53,
+      "duration": 3.5,
+      "text": "using close to close\nParkinson's all the way down"
+    },
+    {
+      "start": 1982.03,
+      "duration": 3.68,
+      "text": "to Yang and Zhang in section\n1.6 and then comparing"
+    },
+    {
+      "start": 1985.71,
+      "duration": 4.96,
+      "text": "those for the S&P 500 Index."
+    },
+    {
+      "start": 1990.67,
+      "duration": 4.92,
+      "text": "And we'll go through\nthese in a moment."
+    },
+    {
+      "start": 1995.59,
+      "duration": 4.68,
+      "text": "But following just looking\nat these individually,"
+    },
+    {
+      "start": 2000.27,
+      "duration": 5.0,
+      "text": "we consider time series modeling\nof these different volatility"
+    },
+    {
+      "start": 2005.27,
+      "duration": 2.52,
+      "text": "statistics."
+    },
+    {
+      "start": 2007.79,
+      "duration": 6.08,
+      "text": "And so in terms of understanding\nrealized volatility,"
+    },
+    {
+      "start": 2013.87,
+      "duration": 3.96,
+      "text": "a useful analysis is\nto be able to predict"
+    },
+    {
+      "start": 2017.83,
+      "duration": 4.88,
+      "text": "how our realized volatility is\ngoing to change into the future."
+    },
+    {
+      "start": 2022.71,
+      "duration": 2.68,
+      "text": "So there may be some\npredictability there."
+    },
+    {
+      "start": 2025.39,
+      "duration": 4.48,
+      "text": "And what we'll see is\nthat in the time series"
+    },
+    {
+      "start": 2029.87,
+      "duration": 5.59,
+      "text": "analysis of these volatilities,\ntime series models"
+    },
+    {
+      "start": 2035.46,
+      "duration": 3.4,
+      "text": "such as autoregressive\nintegrated moving average models"
+    },
+    {
+      "start": 2038.86,
+      "duration": 5.04,
+      "text": "can be applied and\ncan be very useful."
+    },
+    {
+      "start": 2043.9,
+      "duration": 3.64,
+      "text": "And in particular,\nthere's a role"
+    },
+    {
+      "start": 2047.54,
+      "duration": 4.76,
+      "text": "to be played with\nseasonal ARIMA models."
+    },
+    {
+      "start": 2052.3,
+      "duration": 3.39,
+      "text": "So let's take a look at that."
+    },
+    {
+      "start": 2058.46,
+      "duration": 3.16,
+      "text": "And just as a\npreview, let's see,"
+    },
+    {
+      "start": 2061.62,
+      "duration": 4.44,
+      "text": "one of the problems in\nthe next problem set"
+    },
+    {
+      "start": 2066.06,
+      "duration": 8.92,
+      "text": "is to look at this same set\nof analysis for the S&P 500,"
+    },
+    {
+      "start": 2074.98,
+      "duration": 5.56,
+      "text": "look at the same analysis\nfor the stock ARKK, which"
+    },
+    {
+      "start": 2080.54,
+      "duration": 4.76,
+      "text": "is Cathie Wood's\nETF, and just see"
+    },
+    {
+      "start": 2085.3,
+      "duration": 3.12,
+      "text": "how different the results are."
+    },
+    {
+      "start": 2088.42,
+      "duration": 6.94,
+      "text": "And what's nice is that\nthe R markdown files"
+    },
+    {
+      "start": 2095.36,
+      "duration": 4.92,
+      "text": "that create this case study can\nbe applied to any other stocks"
+    },
+    {
+      "start": 2100.28,
+      "duration": 3.12,
+      "text": "you want to analyze,\nif you so choose."
+    },
+    {
+      "start": 2103.4,
+      "duration": 6.56,
+      "text": "For the problem set, I posted\nthe two versions of this study"
+    },
+    {
+      "start": 2109.96,
+      "duration": 3.04,
+      "text": "for S&P 500 and ARKK."
+    },
+    {
+      "start": 2113.0,
+      "duration": 2.1,
+      "text": "So you don't need\nto do R at all."
+    },
+    {
+      "start": 2115.1,
+      "duration": 7.96,
+      "text": "But if you set up a Posit Cloud\naccount with RStudio Cloud,"
+    },
+    {
+      "start": 2123.06,
+      "duration": 3.9,
+      "text": "you should be able to just\nupload the file, the R markdown"
+    },
+    {
+      "start": 2126.96,
+      "duration": 4.84,
+      "text": "file, and rerun the programs\nand do so with another stock,"
+    },
+    {
+      "start": 2131.8,
+      "duration": 2.92,
+      "text": "if you so choose."
+    },
+    {
+      "start": 2134.72,
+      "duration": 2.12,
+      "text": "So in this note,\nthe first section"
+    },
+    {
+      "start": 2136.84,
+      "duration": 6.48,
+      "text": "just goes through and\nlooks at the S&P 500 index."
+    },
+    {
+      "start": 2143.32,
+      "duration": 6.23,
+      "text": "It actually is going through\na couple of days ago."
+    },
+    {
+      "start": 2149.55,
+      "duration": 5.68,
+      "text": "It's a good time to\nhave an equity exposure."
+    },
+    {
+      "start": 2155.23,
+      "duration": 5.36,
+      "text": "And if we look at close\nto close volatility,"
+    },
+    {
+      "start": 2160.59,
+      "duration": 6.0,
+      "text": "this is a graph of the\n21 day variance scaled up"
+    },
+    {
+      "start": 2166.59,
+      "duration": 6.72,
+      "text": "to an annualized basis by\nmultiplying by root 252."
+    },
+    {
+      "start": 2173.31,
+      "duration": 7.12,
+      "text": "And what's important is to\nsee that volatility generally"
+    },
+    {
+      "start": 2180.43,
+      "duration": 4.72,
+      "text": "is well below 25%."
+    },
+    {
+      "start": 2185.15,
+      "duration": 7.04,
+      "text": "Often it's around 12%\nto 15% when it's low,"
+    },
+    {
+      "start": 2192.19,
+      "duration": 1.8,
+      "text": "but it does have spikes."
+    },
+    {
+      "start": 2193.99,
+      "duration": 4.8,
+      "text": "And during COVID, there\nwas the huge spike up."
+    },
+    {
+      "start": 2198.79,
+      "duration": 8.18,
+      "text": "And more recently, there\nwas some elevated volatility"
+    },
+    {
+      "start": 2206.97,
+      "duration": 5.56,
+      "text": "that suggests that\nvolatility is not constant."
+    },
+    {
+      "start": 2212.53,
+      "duration": 3.28,
+      "text": "So anyway, this is the\nclose to close volatility."
+    },
+    {
+      "start": 2215.81,
+      "duration": 5.84,
+      "text": "If we look at the high-low\nvolatility of Parkinson,"
+    },
+    {
+      "start": 2221.65,
+      "duration": 3.04,
+      "text": "then we just are\naveraging the log"
+    },
+    {
+      "start": 2224.69,
+      "duration": 5.88,
+      "text": "of the ratio of the high\nto low and scaling it up."
+    },
+    {
+      "start": 2230.57,
+      "duration": 5.12,
+      "text": "And so we get this plot,\nwhich is very, very similar."
+    },
+    {
+      "start": 2235.69,
+      "duration": 5.24,
+      "text": "In principle, this\nestimator is more precise,"
+    },
+    {
+      "start": 2240.93,
+      "duration": 4.08,
+      "text": "at least if our underlying\nBrownian motion model"
+    },
+    {
+      "start": 2245.01,
+      "duration": 4.16,
+      "text": "or geometric Brownian\nmotion model is true,"
+    },
+    {
+      "start": 2249.17,
+      "duration": 2.64,
+      "text": "but it gives us\ndifferent values."
+    },
+    {
+      "start": 2251.81,
+      "duration": 4.96,
+      "text": "And then the Garman-Klass\nmodel is here."
+    },
+    {
+      "start": 2256.77,
+      "duration": 2.76,
+      "text": "So what's useful just\nin this case study"
+    },
+    {
+      "start": 2259.53,
+      "duration": 4.4,
+      "text": "is partly just seeing what the\nformulas are for the volatility"
+    },
+    {
+      "start": 2263.93,
+      "duration": 4.23,
+      "text": "estimates and then being\nable to compare those."
+    },
+    {
+      "start": 2268.16,
+      "duration": 5.08,
+      "text": "And then finally,\nthis Yang-Zhang model"
+    },
+    {
+      "start": 2273.24,
+      "duration": 3.08,
+      "text": "is an extension of Garman-Klass."
+    },
+    {
+      "start": 2276.32,
+      "duration": 4.96,
+      "text": "And as it says here, this is\ncurrently the preferred version"
+    },
+    {
+      "start": 2281.28,
+      "duration": 1.46,
+      "text": "of volatility estimates."
+    },
+    {
+      "start": 2282.74,
+      "duration": 7.22,
+      "text": "Now, in looking at these\ndifferent volatility estimates,"
+    },
+    {
+      "start": 2289.96,
+      "duration": 7.02,
+      "text": "we can create a panel series\nof all the volatility measures."
+    },
+    {
+      "start": 2296.98,
+      "duration": 3.34,
+      "text": "This shows, not\nsurprisingly, there's"
+    },
+    {
+      "start": 2300.32,
+      "duration": 3.72,
+      "text": "peaks at the same times\nwith all of these."
+    },
+    {
+      "start": 2304.04,
+      "duration": 1.8,
+      "text": "What's more\ninteresting is to look"
+    },
+    {
+      "start": 2305.84,
+      "duration": 4.16,
+      "text": "how they move simultaneously."
+    },
+    {
+      "start": 2310.0,
+      "duration": 3.2,
+      "text": "And if you look\nat too much data,"
+    },
+    {
+      "start": 2313.2,
+      "duration": 2.78,
+      "text": "it's hard to see\nexactly what's going on."
+    },
+    {
+      "start": 2315.98,
+      "duration": 2.26,
+      "text": "So there's a graph\nhere of looking"
+    },
+    {
+      "start": 2318.24,
+      "duration": 5.14,
+      "text": "at just the last year,\nalmost two years of data,"
+    },
+    {
+      "start": 2323.38,
+      "duration": 3.57,
+      "text": "and seeing how these different\nvolatility estimates vary."
+    },
+    {
+      "start": 2326.95,
+      "duration": 7.32,
+      "text": "So what this highlights is how\na choice of volatility measure"
+    },
+    {
+      "start": 2334.27,
+      "duration": 1.52,
+      "text": "matters."
+    },
+    {
+      "start": 2335.79,
+      "duration": 3.4,
+      "text": "There can be significant\ndifferences between them."
+    },
+    {
+      "start": 2339.19,
+      "duration": 10.56,
+      "text": "And what would you anticipate is\na good property of a volatility"
+    },
+    {
+      "start": 2349.75,
+      "duration": 0.706,
+      "text": "estimator?"
+    },
+    {
+      "start": 2353.95,
+      "duration": 5.96,
+      "text": "That's a very general\nquestion, but intuitively,"
+    },
+    {
+      "start": 2359.91,
+      "duration": 2.77,
+      "text": "what would make one estimator\nbetter than another?"
+    },
+    {
+      "start": 2370.99,
+      "duration": 4.52,
+      "text": "And there's no right or\nwrong answer to this,"
+    },
+    {
+      "start": 2375.51,
+      "duration": 5.0,
+      "text": "but I think it's useful to\nthink about what you would like"
+    },
+    {
+      "start": 2380.51,
+      "duration": 6.7,
+      "text": "to have in an estimator, and\nwhether these estimators might"
+    },
+    {
+      "start": 2387.21,
+      "duration": 1.67,
+      "text": "be consistent with that or not."
+    },
+    {
+      "start": 2396.33,
+      "duration": 0.94,
+      "text": "Any thoughts?"
+    },
+    {
+      "start": 2403.09,
+      "duration": 4.52,
+      "text": "Well, one of the\nproblems, I guess"
+    },
+    {
+      "start": 2407.61,
+      "duration": 4.76,
+      "text": "I'll call it a problem, with\nthe close to close estimator,"
+    },
+    {
+      "start": 2412.37,
+      "duration": 3.88,
+      "text": "is that if you have a rolling\nwindow of close to close"
+    },
+    {
+      "start": 2416.25,
+      "duration": 5.8,
+      "text": "variance estimates, then if\nyou have a spike in returns,"
+    },
+    {
+      "start": 2422.05,
+      "duration": 2.56,
+      "text": "positive or negative,\nthat spike is"
+    },
+    {
+      "start": 2424.61,
+      "duration": 4.56,
+      "text": "going to remain in that\nwindow until it falls off."
+    },
+    {
+      "start": 2429.17,
+      "duration": 7.04,
+      "text": "And so there can be elevated\nvolatilities due in the close"
+    },
+    {
+      "start": 2436.21,
+      "duration": 4.47,
+      "text": "to close series,\nvolatility series."
+    },
+    {
+      "start": 2440.68,
+      "duration": 6.9,
+      "text": "That may not be as persistent\nwith the other estimators."
+    },
+    {
+      "start": 2447.58,
+      "duration": 3.08,
+      "text": "So when there are\nspikes in volatility,"
+    },
+    {
+      "start": 2450.66,
+      "duration": 3.14,
+      "text": "often those spikes\noccur when there's"
+    },
+    {
+      "start": 2453.8,
+      "duration": 6.76,
+      "text": "some great uncertainty in the\nmarket that gets resolved."
+    },
+    {
+      "start": 2460.56,
+      "duration": 5.72,
+      "text": "And the volatility often drops\na fair amount after that."
+    },
+    {
+      "start": 2466.28,
+      "duration": 5.24,
+      "text": "And so I would think that\nthose volatility estimates"
+    },
+    {
+      "start": 2471.52,
+      "duration": 6.0,
+      "text": "that basically drop faster\nfollowing the spikes"
+    },
+    {
+      "start": 2477.52,
+      "duration": 2.88,
+      "text": "could be better."
+    },
+    {
+      "start": 2480.4,
+      "duration": 4.56,
+      "text": "And certainly if we're trying\nto use these volatility"
+    },
+    {
+      "start": 2484.96,
+      "duration": 5.64,
+      "text": "estimates to predict\nfuture realized volatility,"
+    },
+    {
+      "start": 2490.6,
+      "duration": 4.2,
+      "text": "that property could be useful."
+    },
+    {
+      "start": 2494.8,
+      "duration": 5.7,
+      "text": "Now, what's interesting in\nsection two of this case study"
+    },
+    {
+      "start": 2500.5,
+      "duration": 4.4,
+      "text": "is to just consider some\nreally, really basic time series"
+    },
+    {
+      "start": 2504.9,
+      "duration": 4.58,
+      "text": "modeling of the different\nvolatility measures."
+    },
+    {
+      "start": 2509.48,
+      "duration": 4.74,
+      "text": "So what we are modeling is\ndifferent volatility measures"
+    },
+    {
+      "start": 2514.22,
+      "duration": 4.76,
+      "text": "over a 21 day period that's\nrolling through our time series."
+    },
+    {
+      "start": 2518.98,
+      "duration": 6.12,
+      "text": "And so one of the most\nbasic forecasting models"
+    },
+    {
+      "start": 2525.1,
+      "duration": 3.6,
+      "text": "there is is a model\ncalled the naive model."
+    },
+    {
+      "start": 2528.7,
+      "duration": 11.16,
+      "text": "And with a naive model,\nwe have a time series yt."
+    },
+    {
+      "start": 2539.86,
+      "duration": 10.64,
+      "text": "And we basically have that y\nhat t is equal to yt minus 1."
+    },
+    {
+      "start": 2550.5,
+      "duration": 8.07,
+      "text": "And if we think of yt is equal\nto y hat t plus an error term,"
+    },
+    {
+      "start": 2558.57,
+      "duration": 8.36,
+      "text": "then our errors are equal to\nyt minus y hat t, which is"
+    },
+    {
+      "start": 2566.93,
+      "duration": 3.56,
+      "text": "equal to yt minus yt minus 1."
+    },
+    {
+      "start": 2570.49,
+      "duration": 4.8,
+      "text": "And this specification\ncorresponds to a random walk"
+    },
+    {
+      "start": 2575.29,
+      "duration": 1.4,
+      "text": "model."
+    },
+    {
+      "start": 2576.69,
+      "duration": 3.84,
+      "text": "So there's basically a\nrandom walk model for yt."
+    },
+    {
+      "start": 2587.09,
+      "duration": 4.2,
+      "text": "And the random walk\nmodel is consistent"
+    },
+    {
+      "start": 2591.29,
+      "duration": 3.16,
+      "text": "with efficient\nmarkets where our best"
+    },
+    {
+      "start": 2594.45,
+      "duration": 5.52,
+      "text": "estimate of what's going to\nhappen is where things are now."
+    },
+    {
+      "start": 2599.97,
+      "duration": 8.66,
+      "text": "So this naive model basically\nhas an autocorrelation function,"
+    },
+    {
+      "start": 2608.63,
+      "duration": 2.74,
+      "text": "which has a very high--"
+    },
+    {
+      "start": 2611.37,
+      "duration": 5.02,
+      "text": "or our data has a high\nfirst order autocorrelation."
+    },
+    {
+      "start": 2616.39,
+      "duration": 4.56,
+      "text": "And if we calculate\nfirst differences, which"
+    },
+    {
+      "start": 2620.95,
+      "duration": 2.64,
+      "text": "are the residuals\nfrom this model,"
+    },
+    {
+      "start": 2623.59,
+      "duration": 7.48,
+      "text": "then we get this residual\ndiagnostic information, the time"
+    },
+    {
+      "start": 2631.07,
+      "duration": 4.88,
+      "text": "series of residuals, the\nautocorrelation function"
+    },
+    {
+      "start": 2635.95,
+      "duration": 6.36,
+      "text": "of the residuals, and the\nhistogram of residuals."
+    },
+    {
+      "start": 2642.31,
+      "duration": 3.88,
+      "text": "Now, would you say\nthat these residuals"
+    },
+    {
+      "start": 2646.19,
+      "duration": 6.85,
+      "text": "are consistent with white noise\nthat may be Gaussian or normal?"
+    },
+    {
+      "start": 2658.07,
+      "duration": 2.94,
+      "text": "I see some going mm-hmm\nand others going hmm."
+    },
+    {
+      "start": 2664.11,
+      "duration": 4.36,
+      "text": "Well, one thing that's important\nis that the autocorrelation"
+    },
+    {
+      "start": 2668.47,
+      "duration": 6.19,
+      "text": "function of residuals,\nif the residuals are"
+    },
+    {
+      "start": 2674.66,
+      "duration": 1.72,
+      "text": "consistent with\nwhite noise, there"
+    },
+    {
+      "start": 2676.38,
+      "duration": 3.68,
+      "text": "should be no significant\nautocorrelation at any lag."
+    },
+    {
+      "start": 2680.06,
+      "duration": 3.48,
+      "text": "And so there are some\nspikes of autocorrelation"
+    },
+    {
+      "start": 2683.54,
+      "duration": 2.56,
+      "text": "that break beyond\nthe critical levels."
+    },
+    {
+      "start": 2686.1,
+      "duration": 5.04,
+      "text": "And so those are suggesting\nthat this is not white noise."
+    },
+    {
+      "start": 2691.14,
+      "duration": 5.6,
+      "text": "And if we look at the\ndistribution of the residuals,"
+    },
+    {
+      "start": 2696.74,
+      "duration": 3.96,
+      "text": "they're unimodal, but they\ncertainly aren't well described"
+    },
+    {
+      "start": 2700.7,
+      "duration": 1.546,
+      "text": "by a normal distribution."
+    },
+    {
+      "start": 2706.14,
+      "duration": 5.08,
+      "text": "So let's see."
+    },
+    {
+      "start": 2711.22,
+      "duration": 6.6,
+      "text": "So we can plot forecasts\nof this naive method."
+    },
+    {
+      "start": 2717.82,
+      "duration": 3.22,
+      "text": "And then let's see."
+    },
+    {
+      "start": 2721.04,
+      "duration": 6.66,
+      "text": "We can also fit an ARIMA\nmodel to this close"
+    },
+    {
+      "start": 2727.7,
+      "duration": 3.03,
+      "text": "to close volatility series."
+    },
+    {
+      "start": 2730.73,
+      "duration": 4.92,
+      "text": "And with the ARIMA\nmodel, actually there's"
+    },
+    {
+      "start": 2735.65,
+      "duration": 5.126,
+      "text": "this package in R called FPP2."
+    },
+    {
+      "start": 2745.57,
+      "duration": 5.72,
+      "text": "And this was created by the\nauthors of a book, Forecasting"
+    },
+    {
+      "start": 2751.29,
+      "duration": 4.8,
+      "text": "Principles In Practice, that's\nin the references to this."
+    },
+    {
+      "start": 2756.09,
+      "duration": 5.8,
+      "text": "They have an automated\nARIMA modeling function,"
+    },
+    {
+      "start": 2761.89,
+      "duration": 2.48,
+      "text": "which will take an\ninput, a time series,"
+    },
+    {
+      "start": 2764.37,
+      "duration": 7.12,
+      "text": "as output, what is judged to\nbe a decent autoregressive"
+    },
+    {
+      "start": 2771.49,
+      "duration": 2.28,
+      "text": "integrated moving average model."
+    },
+    {
+      "start": 2773.77,
+      "duration": 14.252,
+      "text": "And so this ARIMA 310\ncorresponds to ARIMA p equals 3,"
+    },
+    {
+      "start": 2788.022,
+      "duration": 6.968,
+      "text": "d equals 1, and\nq equals 0, where"
+    },
+    {
+      "start": 2794.99,
+      "duration": 2.52,
+      "text": "p is the order of\nthe autoregression."
+    },
+    {
+      "start": 2797.51,
+      "duration": 1.48,
+      "text": "d is the order of differencing."
+    },
+    {
+      "start": 2798.99,
+      "duration": 0.96,
+      "text": "Yes?"
+    },
+    {
+      "start": 2799.95,
+      "duration": 3.6,
+      "text": "AUDIENCE: How does\nit [INAUDIBLE]?"
+    },
+    {
+      "start": 2803.55,
+      "duration": 3.68,
+      "text": "PETER KEMPTHORNE: Yes,\nit uses a criterion"
+    },
+    {
+      "start": 2807.23,
+      "duration": 5.32,
+      "text": "that's called the corrected\nAkaike Information Criterion."
+    },
+    {
+      "start": 2812.55,
+      "duration": 9.32,
+      "text": "And so there's this AICC, which\nis equal to the corrected AIC."
+    },
+    {
+      "start": 2821.87,
+      "duration": 4.48,
+      "text": "And the corrected AIC\nis due to the fact"
+    },
+    {
+      "start": 2826.35,
+      "duration": 6.08,
+      "text": "that with shorter series,\nthere's a bias in the AIC"
+    },
+    {
+      "start": 2832.43,
+      "duration": 1.9,
+      "text": "that is systematic."
+    },
+    {
+      "start": 2834.33,
+      "duration": 3.7,
+      "text": "And so this correct\nfor that bias."
+    },
+    {
+      "start": 2838.03,
+      "duration": 6.08,
+      "text": "Now, when we do this with\nany fitted model, what's"
+    },
+    {
+      "start": 2844.11,
+      "duration": 5.87,
+      "text": "really important to check is\nhow our estimated coefficients"
+    },
+    {
+      "start": 2849.98,
+      "duration": 3.36,
+      "text": "compare with their\nstandard errors."
+    },
+    {
+      "start": 2853.34,
+      "duration": 4.88,
+      "text": "When the signal estimate to\nnoise standard error ratio"
+    },
+    {
+      "start": 2858.22,
+      "duration": 3.16,
+      "text": "is bigger than 2, we\nhave some confidence"
+    },
+    {
+      "start": 2861.38,
+      "duration": 3.24,
+      "text": "that that's an important\nfactor in the model."
+    },
+    {
+      "start": 2864.62,
+      "duration": 7.72,
+      "text": "And in this case, the AR3 has a\nsignal to noise ratio of almost"
+    },
+    {
+      "start": 2872.34,
+      "duration": 6.48,
+      "text": "3, and the AR2 has a\nratio that's 1 and 1/2."
+    },
+    {
+      "start": 2878.82,
+      "duration": 7.52,
+      "text": "Now, if we go\nthrough, let's see,"
+    },
+    {
+      "start": 2886.34,
+      "duration": 2.92,
+      "text": "the second section\ndoes the same analysis"
+    },
+    {
+      "start": 2889.26,
+      "duration": 5.04,
+      "text": "of the Yang-Zhang\nvolatility estimate."
+    },
+    {
+      "start": 2894.3,
+      "duration": 14.34,
+      "text": "And I guess importantly here,\nwe have an ARIMA model now"
+    },
+    {
+      "start": 2908.64,
+      "duration": 9.04,
+      "text": "for this Yang-Zhang model,\nwhich is an ARIMA 111."
+    },
+    {
+      "start": 2917.68,
+      "duration": 6.48,
+      "text": "And the coefficient\nestimates are many multiples"
+    },
+    {
+      "start": 2924.16,
+      "duration": 1.22,
+      "text": "of the standard error."
+    },
+    {
+      "start": 2925.38,
+      "duration": 2.54,
+      "text": "So these are highly significant."
+    },
+    {
+      "start": 2927.92,
+      "duration": 5.16,
+      "text": "And this is our\nresidual analysis check,"
+    },
+    {
+      "start": 2933.08,
+      "duration": 2.46,
+      "text": "which suggests that,\nfor the most part,"
+    },
+    {
+      "start": 2935.54,
+      "duration": 3.12,
+      "text": "the residuals are\nconsistent with white noise."
+    },
+    {
+      "start": 2938.66,
+      "duration": 1.96,
+      "text": "The autocorrelations\ntend to be close to 0."
+    },
+    {
+      "start": 2940.62,
+      "duration": 4.74,
+      "text": "However, there's this\nlarge spike at 21."
+    },
+    {
+      "start": 2945.36,
+      "duration": 1.22,
+      "text": "And here the residuals."
+    },
+    {
+      "start": 2946.58,
+      "duration": 3.693,
+      "text": "Now, why do you think\nthere's a large spike at 21?"
+    },
+    {
+      "start": 2955.56,
+      "duration": 4.88,
+      "text": "Well, we're computing\nrolling statistics."
+    },
+    {
+      "start": 2960.44,
+      "duration": 4.57,
+      "text": "And so the window\nis of length 21."
+    },
+    {
+      "start": 2965.01,
+      "duration": 5.3,
+      "text": "So this corresponds to\ncases entering and exiting"
+    },
+    {
+      "start": 2970.31,
+      "duration": 1.48,
+      "text": "the windows."
+    },
+    {
+      "start": 2971.79,
+      "duration": 4.68,
+      "text": "And so interestingly,\nwe can accommodate that"
+    },
+    {
+      "start": 2976.47,
+      "duration": 3.4,
+      "text": "by fitting a\nseasonal ARIMA model."
+    },
+    {
+      "start": 2979.87,
+      "duration": 3.72,
+      "text": "And so with the\nseasonal ARIMA model"
+    },
+    {
+      "start": 2983.59,
+      "duration": 5.96,
+      "text": "I'll jump to the conclusion\nhere at the very end,"
+    },
+    {
+      "start": 2989.55,
+      "duration": 9.44,
+      "text": "which is for the Yang-Zhang\nvolatility estimator."
+    },
+    {
+      "start": 2998.99,
+      "duration": 4.68,
+      "text": "This is its simple\nautocorrelation function"
+    },
+    {
+      "start": 3003.67,
+      "duration": 2.04,
+      "text": "before the model."
+    },
+    {
+      "start": 3005.71,
+      "duration": 5.4,
+      "text": "And then when we fit\nthe seasonal ARIMA model"
+    },
+    {
+      "start": 3011.11,
+      "duration": 6.44,
+      "text": "automatically, it gives\nus a 213 and a 201."
+    },
+    {
+      "start": 3017.55,
+      "duration": 2.2,
+      "text": "And let's see."
+    },
+    {
+      "start": 3019.75,
+      "duration": 9.98,
+      "text": "When we introduced you to time\nseries models before, let's see,"
+    },
+    {
+      "start": 3029.73,
+      "duration": 13.2,
+      "text": "if we have an ARIMA\nmodel, which is p, d, q,"
+    },
+    {
+      "start": 3042.93,
+      "duration": 8.72,
+      "text": "we basically have 1 minus phi\n1 b minus phi 2 b squared minus"
+    },
+    {
+      "start": 3051.65,
+      "duration": 11.24,
+      "text": "phi p b to the p power times yt\nturns out to be equal to 1 minus"
+    },
+    {
+      "start": 3062.89,
+      "duration": 9.56,
+      "text": "theta 1b minus theta 2b\nsquared minus theta, or sorry,"
+    },
+    {
+      "start": 3072.45,
+      "duration": 10.71,
+      "text": "1 plus here, plus theta qb to\nthe q power times our error"
+    },
+    {
+      "start": 3083.16,
+      "duration": 0.66,
+      "text": "term."
+    },
+    {
+      "start": 3083.82,
+      "duration": 4.46,
+      "text": "So we have this kind of\nmathematical equation"
+    },
+    {
+      "start": 3088.28,
+      "duration": 8.88,
+      "text": "for an ARIMA model, where\nwe assume that the epsilon t"
+    },
+    {
+      "start": 3097.16,
+      "duration": 7.76,
+      "text": "series is white noise, which\nmeans that its expectation is"
+    },
+    {
+      "start": 3104.92,
+      "duration": 8.12,
+      "text": "always 0 and the\nvariances are constant,"
+    },
+    {
+      "start": 3113.04,
+      "duration": 6.68,
+      "text": "and the correlation between any\ndifferent epsilons is equal to 0"
+    },
+    {
+      "start": 3119.72,
+      "duration": 4.56,
+      "text": "if t is not equal to t prime."
+    },
+    {
+      "start": 3124.28,
+      "duration": 3.72,
+      "text": "The power of autoregressive\nintegrated moving average models"
+    },
+    {
+      "start": 3128.0,
+      "duration": 6.64,
+      "text": "is that these autoregressive\nterms, as well as moving average"
+    },
+    {
+      "start": 3134.64,
+      "duration": 4.64,
+      "text": "terms, can account for\nall of the correlations,"
+    },
+    {
+      "start": 3139.28,
+      "duration": 2.74,
+      "text": "autocorrelations in\nthe original series."
+    },
+    {
+      "start": 3142.02,
+      "duration": 3.72,
+      "text": "And our residuals,\nwhich are estimates"
+    },
+    {
+      "start": 3145.74,
+      "duration": 4.36,
+      "text": "of this error sequence, should\nbe consistent with white noise."
+    },
+    {
+      "start": 3150.1,
+      "duration": 3.32,
+      "text": "Now, what ends up\nhappening with--"
+    },
+    {
+      "start": 3159.11,
+      "duration": 3.55,
+      "text": "actually, I should\nmaybe put here yt prime,"
+    },
+    {
+      "start": 3162.66,
+      "duration": 6.4,
+      "text": "where y prime is maybe equal\nto 1 minus b to the power d yt."
+    },
+    {
+      "start": 3169.06,
+      "duration": 5.92,
+      "text": "So if we have an\nordered d model,"
+    },
+    {
+      "start": 3174.98,
+      "duration": 2.04,
+      "text": "we take the d-th\norder difference"
+    },
+    {
+      "start": 3177.02,
+      "duration": 3.0,
+      "text": "and put that into an ARMA model."
+    },
+    {
+      "start": 3180.02,
+      "duration": 7.0,
+      "text": "And if we have a\nseasonal ARIMA model,"
+    },
+    {
+      "start": 3187.02,
+      "duration": 8.63,
+      "text": "we actually add a capital\nP, capital D, capital Q."
+    },
+    {
+      "start": 3195.65,
+      "duration": 4.3,
+      "text": "And here we have the\nfrequency of the data."
+    },
+    {
+      "start": 3199.95,
+      "duration": 6.9,
+      "text": "And in this example, I\nconsidered a 21 period frequency"
+    },
+    {
+      "start": 3206.85,
+      "duration": 4.88,
+      "text": "just to correspond\nto the window size."
+    },
+    {
+      "start": 3211.73,
+      "duration": 10.47,
+      "text": "And what this model does is\nit has another polynomial of--"
+    },
+    {
+      "start": 3235.45,
+      "duration": 4.36,
+      "text": "so this is b to the 2 times 21."
+    },
+    {
+      "start": 3239.81,
+      "duration": 7.32,
+      "text": "So we basically end up having\nbackshift operator polynomials"
+    },
+    {
+      "start": 3247.13,
+      "duration": 8.14,
+      "text": "that work with the seasonal\nfrequencies of the time series."
+    },
+    {
+      "start": 3263.18,
+      "duration": 9.34,
+      "text": "So this is a polynomial of order\nq of order p in B to the 12th--"
+    },
+    {
+      "start": 3272.52,
+      "duration": 3.12,
+      "text": "sorry, B to the 21."
+    },
+    {
+      "start": 3275.64,
+      "duration": 4.46,
+      "text": "And then we would also\nmultiply this on this side,"
+    },
+    {
+      "start": 3280.1,
+      "duration": 8.5,
+      "text": "perhaps, by a 1 minus\ncapital theta 1 B to the 21,"
+    },
+    {
+      "start": 3288.6,
+      "duration": 6.84,
+      "text": "or plus, plus theta 2\nB to the 21 squared."
+    },
+    {
+      "start": 3295.44,
+      "duration": 3.84,
+      "text": "So times 2."
+    },
+    {
+      "start": 3299.28,
+      "duration": 5.56,
+      "text": "And so this kind of\nnotation leads us"
+    },
+    {
+      "start": 3304.84,
+      "duration": 2.58,
+      "text": "to these coefficient estimates."
+    },
+    {
+      "start": 3307.42,
+      "duration": 4.48,
+      "text": "So there's the simple\norder autoregressive"
+    },
+    {
+      "start": 3311.9,
+      "duration": 1.57,
+      "text": "terms and moving average terms."
+    },
+    {
+      "start": 3316.18,
+      "duration": 4.48,
+      "text": "Order two, autoregressive,\norder three, moving average."
+    },
+    {
+      "start": 3320.66,
+      "duration": 3.56,
+      "text": "But then for the seasonal\nautoregressive terms,"
+    },
+    {
+      "start": 3324.22,
+      "duration": 3.46,
+      "text": "we have these terms here."
+    },
+    {
+      "start": 3327.68,
+      "duration": 1.88,
+      "text": "And for the seasonal\nmoving average,"
+    },
+    {
+      "start": 3329.56,
+      "duration": 3.04,
+      "text": "we have the last term here."
+    },
+    {
+      "start": 3332.6,
+      "duration": 4.5,
+      "text": "And what's generally\nimportant in fitting models is"
+    },
+    {
+      "start": 3337.1,
+      "duration": 4.86,
+      "text": "when you consider the last\nterms to enter into a model,"
+    },
+    {
+      "start": 3341.96,
+      "duration": 6.04,
+      "text": "such as in this case, the\nseasonal moving average term,"
+    },
+    {
+      "start": 3348.0,
+      "duration": 4.22,
+      "text": "its estimate is many multiples\nof its standard error."
+    },
+    {
+      "start": 3352.22,
+      "duration": 3.59,
+      "text": "So that's a very important\nfactor in the model."
+    },
+    {
+      "start": 3365.82,
+      "duration": 6.79,
+      "text": "As an anecdote,\nlet me just say--"
+    },
+    {
+      "start": 3372.61,
+      "duration": 0.88,
+      "text": "let's see."
+    },
+    {
+      "start": 3373.49,
+      "duration": 9.705,
+      "text": "If we take a series yt and we\nlook at a seasonal difference"
+    },
+    {
+      "start": 3383.195,
+      "duration": 7.215,
+      "text": "operator and a first\norder difference operator,"
+    },
+    {
+      "start": 3390.41,
+      "duration": 3.52,
+      "text": "this turns out to be equal\nto the first difference"
+    },
+    {
+      "start": 3393.93,
+      "duration": 6.16,
+      "text": "operator multiplying the\nseasonal difference operator."
+    },
+    {
+      "start": 3400.09,
+      "duration": 7.84,
+      "text": "And it equals basically 1\nminus B plus B to the 21."
+    },
+    {
+      "start": 3407.93,
+      "duration": 7.2,
+      "text": "Sorry, minus B to the 21\nplus B to the 22 times yt."
+    },
+    {
+      "start": 3415.13,
+      "duration": 7.4,
+      "text": "And so with seasonal differences\nin autoregressive moving"
+    },
+    {
+      "start": 3422.53,
+      "duration": 4.9,
+      "text": "averages, whether we\ntake first differences"
+    },
+    {
+      "start": 3427.43,
+      "duration": 3.88,
+      "text": "non-seasonally and then\nseasonal differences"
+    },
+    {
+      "start": 3431.31,
+      "duration": 2.02,
+      "text": "subsequently, or\nreverse the order,"
+    },
+    {
+      "start": 3433.33,
+      "duration": 2.83,
+      "text": "we end up getting the same\ntransformation of the data."
+    },
+    {
+      "start": 3439.35,
+      "duration": 2.1,
+      "text": "Well, actually with\neconomic time series,"
+    },
+    {
+      "start": 3441.45,
+      "duration": 7.46,
+      "text": "where we have a seasonal\nfrequency of, say, months, then"
+    },
+    {
+      "start": 3448.91,
+      "duration": 2.4,
+      "text": "basically the seasonal\ndifferences correspond"
+    },
+    {
+      "start": 3451.31,
+      "duration": 6.52,
+      "text": "to year over year changes,\nwhereas the simple differences"
+    },
+    {
+      "start": 3457.83,
+      "duration": 3.88,
+      "text": "are just period by\nperiod differences."
+    },
+    {
+      "start": 3461.71,
+      "duration": 4.24,
+      "text": "Anyway, with this final\nexample here, this"
+    },
+    {
+      "start": 3465.95,
+      "duration": 5.28,
+      "text": "is how the residual\nanalysis looks."
+    },
+    {
+      "start": 3471.23,
+      "duration": 4.52,
+      "text": "And it actually\ndoes yield residuals"
+    },
+    {
+      "start": 3475.75,
+      "duration": 2.28,
+      "text": "that do look a lot\nlike white noise,"
+    },
+    {
+      "start": 3478.03,
+      "duration": 5.4,
+      "text": "although there is still\nthis persistent spike just"
+    },
+    {
+      "start": 3483.43,
+      "duration": 3.37,
+      "text": "beyond the window width\nfor the computation."
+    },
+    {
+      "start": 3486.8,
+      "duration": 3.78,
+      "text": "But the distribution\nof the residuals"
+    },
+    {
+      "start": 3490.58,
+      "duration": 3.7,
+      "text": "looks more Gaussian,\nperhaps, than, well,"
+    },
+    {
+      "start": 3494.28,
+      "duration": 3.26,
+      "text": "much more than the cases before."
+    },
+    {
+      "start": 3497.54,
+      "duration": 10.36,
+      "text": "So with that, in analyzing\ndifferent time series models,"
+    },
+    {
+      "start": 3507.9,
+      "duration": 3.2,
+      "text": "there are these\naccuracy statistics"
+    },
+    {
+      "start": 3511.1,
+      "duration": 4.28,
+      "text": "that can be computed for\nany forecasting model."
+    },
+    {
+      "start": 3515.38,
+      "duration": 4.04,
+      "text": "And so you're probably familiar\nwith root mean squared error"
+    },
+    {
+      "start": 3519.42,
+      "duration": 2.8,
+      "text": "or mean squared error."
+    },
+    {
+      "start": 3522.22,
+      "duration": 5.16,
+      "text": "But we also have the MAPE, which\nis the Mean Absolute Percentage"
+    },
+    {
+      "start": 3527.38,
+      "duration": 1.16,
+      "text": "Error."
+    },
+    {
+      "start": 3528.54,
+      "duration": 5.16,
+      "text": "And I actually find that\npretty useful for judging"
+    },
+    {
+      "start": 3533.7,
+      "duration": 2.52,
+      "text": "how effective the models are."
+    },
+    {
+      "start": 3536.22,
+      "duration": 5.32,
+      "text": "And what's really nice\nabout the FPP2 package"
+    },
+    {
+      "start": 3541.54,
+      "duration": 4.54,
+      "text": "is that one can just\nask it to plot the time"
+    },
+    {
+      "start": 3546.08,
+      "duration": 4.88,
+      "text": "series and the forecast, and\nit generates a point forecast"
+    },
+    {
+      "start": 3550.96,
+      "duration": 2.84,
+      "text": "in a solid blue line\nand prediction intervals"
+    },
+    {
+      "start": 3553.8,
+      "duration": 3.16,
+      "text": "about that forecast,\nwhich assume"
+    },
+    {
+      "start": 3556.96,
+      "duration": 3.52,
+      "text": "Gaussian or normal distributions\nfor the error terms."
+    },
+    {
+      "start": 3560.48,
+      "duration": 4.92,
+      "text": "But one can see how those\nevolve into the future."
+    },
+    {
+      "start": 3565.4,
+      "duration": 3.84,
+      "text": "And it's really consistent\nfor prediction intervals"
+    },
+    {
+      "start": 3569.24,
+      "duration": 3.32,
+      "text": "to get wider the\nfurther out we forecast."
+    },
+    {
+      "start": 3572.56,
+      "duration": 1.22,
+      "text": "And that's happening here."
+    },
+    {
+      "start": 3573.78,
+      "duration": 5.18,
+      "text": "What's rather interesting\nabout this forecast"
+    },
+    {
+      "start": 3578.96,
+      "duration": 5.76,
+      "text": "using the Yang-Zhang measure and\nforecasting that into the future"
+    },
+    {
+      "start": 3584.72,
+      "duration": 4.66,
+      "text": "is that it actually, after\nbeing at a lower level,"
+    },
+    {
+      "start": 3589.38,
+      "duration": 2.5,
+      "text": "is predicting that it\nmight go back to more"
+    },
+    {
+      "start": 3591.88,
+      "duration": 2.68,
+      "text": "of a mean level of volatility."
+    },
+    {
+      "start": 3594.56,
+      "duration": 2.25,
+      "text": "So that's an\ninteresting property."
+    },
+    {
+      "start": 3600.36,
+      "duration": 4.79,
+      "text": "Well, let's go back\nto the notes here."
+    },
+    {
+      "start": 3605.15,
+      "duration": 3.08,
+      "text": "And let's see."
+    },
+    {
+      "start": 3608.23,
+      "duration": 5.96,
+      "text": "There are extensions of\ngeometric Brownian motion"
+    },
+    {
+      "start": 3614.19,
+      "duration": 4.68,
+      "text": "that we have seen before."
+    },
+    {
+      "start": 3618.87,
+      "duration": 4.28,
+      "text": "One of them is a Poisson\njump diffusion model,"
+    },
+    {
+      "start": 3623.15,
+      "duration": 3.48,
+      "text": "where the stochastic\ndifferential equation"
+    },
+    {
+      "start": 3626.63,
+      "duration": 4.4,
+      "text": "has the Brownian motion\npart as the first two terms,"
+    },
+    {
+      "start": 3631.03,
+      "duration": 5.52,
+      "text": "but then has a jump\nprocess as a last term"
+    },
+    {
+      "start": 3636.55,
+      "duration": 6.94,
+      "text": "where the jump process can be\nmodeled as a Poisson process."
+    },
+    {
+      "start": 3643.49,
+      "duration": 7.22,
+      "text": "So a jump occurs\nat some rate that"
+    },
+    {
+      "start": 3650.71,
+      "duration": 2.6,
+      "text": "defines the Poisson process."
+    },
+    {
+      "start": 3653.31,
+      "duration": 2.96,
+      "text": "And the rate is lambda."
+    },
+    {
+      "start": 3656.27,
+      "duration": 4.93,
+      "text": "And if an event in the\nPoisson process occurs,"
+    },
+    {
+      "start": 3661.2,
+      "duration": 5.94,
+      "text": "then there's a jump\nin the stock, which"
+    },
+    {
+      "start": 3667.14,
+      "duration": 4.56,
+      "text": "is given by this factor here."
+    },
+    {
+      "start": 3671.7,
+      "duration": 7.51,
+      "text": "So one can actually model data\nwith this Poisson jump diffusion"
+    },
+    {
+      "start": 3679.21,
+      "duration": 0.5,
+      "text": "model."
+    },
+    {
+      "start": 3682.74,
+      "duration": 7.08,
+      "text": "I ended up working with David\nPickard and Arshad Zakaria"
+    },
+    {
+      "start": 3689.82,
+      "duration": 4.72,
+      "text": "on fitting this Poisson\njump diffusion model."
+    },
+    {
+      "start": 3694.54,
+      "duration": 5.32,
+      "text": "And it was an interesting\napplication in statistics"
+    },
+    {
+      "start": 3699.86,
+      "duration": 4.52,
+      "text": "of using the EM algorithm."
+    },
+    {
+      "start": 3704.38,
+      "duration": 5.16,
+      "text": "Basically, the jumps are\ntreated as latent or hidden"
+    },
+    {
+      "start": 3709.54,
+      "duration": 2.2,
+      "text": "values in our data."
+    },
+    {
+      "start": 3711.74,
+      "duration": 4.68,
+      "text": "And those hidden\nvalues occur according"
+    },
+    {
+      "start": 3716.42,
+      "duration": 2.98,
+      "text": "to Poisson probabilities,\nlike the probability"
+    },
+    {
+      "start": 3719.4,
+      "duration": 3.92,
+      "text": "of one jump or two\njumps, can be computed"
+    },
+    {
+      "start": 3723.32,
+      "duration": 2.48,
+      "text": "using the Poisson parameter."
+    },
+    {
+      "start": 3725.8,
+      "duration": 3.64,
+      "text": "And one can apply\nthis EM algorithm"
+    },
+    {
+      "start": 3729.44,
+      "duration": 5.32,
+      "text": "to obtain maximum likelihood\nestimates of all the parameters."
+    },
+    {
+      "start": 3734.76,
+      "duration": 4.2,
+      "text": "And in applying this,\nan interesting property"
+    },
+    {
+      "start": 3738.96,
+      "duration": 9.276,
+      "text": "that occurred was that\nthere were quite frequent--"
+    },
+    {
+      "start": 3748.236,
+      "duration": 5.484,
+      "text": "or the rate of Poisson\nevents was quite high,"
+    },
+    {
+      "start": 3753.72,
+      "duration": 3.4,
+      "text": "like every couple of days."
+    },
+    {
+      "start": 3757.12,
+      "duration": 5.72,
+      "text": "And what the model was\ndoing was capturing"
+    },
+    {
+      "start": 3762.84,
+      "duration": 3.96,
+      "text": "heavier tailed distributions\nthan a normal distribution."
+    },
+    {
+      "start": 3766.8,
+      "duration": 5.14,
+      "text": "So instead of a single\nnormal model for the return,"
+    },
+    {
+      "start": 3771.94,
+      "duration": 4.25,
+      "text": "one has a mixture of a normal\nwith no jumps, a normal with one"
+    },
+    {
+      "start": 3776.19,
+      "duration": 4.24,
+      "text": "jump, two jumps, weighted\naccording to Poisson rates."
+    },
+    {
+      "start": 3780.43,
+      "duration": 3.72,
+      "text": "And so the implication\nof the model fitting"
+    },
+    {
+      "start": 3784.15,
+      "duration": 3.92,
+      "text": "was that one didn't have\nrare events necessarily"
+    },
+    {
+      "start": 3788.07,
+      "duration": 9.0,
+      "text": "that occurred, but there was\nevidence suggesting a jump"
+    },
+    {
+      "start": 3797.07,
+      "duration": 4.44,
+      "text": "process that related\nto trying to capture"
+    },
+    {
+      "start": 3801.51,
+      "duration": 4.64,
+      "text": "the excess variability of\nthe stock price returns."
+    },
+    {
+      "start": 3806.15,
+      "duration": 6.66,
+      "text": "Now, that leads to another\nmodel extending Brownian motion."
+    },
+    {
+      "start": 3812.81,
+      "duration": 6.54,
+      "text": "And this is the Laplace\ndistribution, where if instead"
+    },
+    {
+      "start": 3819.35,
+      "duration": 12.48,
+      "text": "of observing a time series over\nequal increments, so between 0,"
+    },
+    {
+      "start": 3831.83,
+      "duration": 3.7,
+      "text": "and one can think of just\nequal increments of time."
+    },
+    {
+      "start": 3835.53,
+      "duration": 6.48,
+      "text": "So t1, t2, and so forth\nup to tn, say, from time 0"
+    },
+    {
+      "start": 3842.01,
+      "duration": 7.8,
+      "text": "to capital T. It may be that\nwe observe the Brownian motion"
+    },
+    {
+      "start": 3849.81,
+      "duration": 7.4,
+      "text": "process at random times\nt1, and then here's t2,"
+    },
+    {
+      "start": 3857.21,
+      "duration": 5.8,
+      "text": "here's t3, where the\nincrements of time"
+    },
+    {
+      "start": 3863.01,
+      "duration": 2.48,
+      "text": "themselves are also random."
+    },
+    {
+      "start": 3865.49,
+      "duration": 7.44,
+      "text": "And it turns out that if the\ntimes at which we observe"
+    },
+    {
+      "start": 3872.93,
+      "duration": 8.48,
+      "text": "have a time increment that's\nexponentially distributed,"
+    },
+    {
+      "start": 3881.41,
+      "duration": 4.24,
+      "text": "then the increments\nof the Brownian motion"
+    },
+    {
+      "start": 3885.65,
+      "duration": 3.12,
+      "text": "follow a Laplace distribution."
+    },
+    {
+      "start": 3888.77,
+      "duration": 5.75,
+      "text": "So heavier tailed distributions\nthan normal, and this"
+    },
+    {
+      "start": 3894.52,
+      "duration": 7.088,
+      "text": "is the density of a\nLaplace distribution,"
+    },
+    {
+      "start": 3901.608,
+      "duration": 6.952,
+      "text": "it depends on the exponential\nof minus the magnitude"
+    },
+    {
+      "start": 3908.56,
+      "duration": 3.8,
+      "text": "of the deviation of\nx from mu as opposed"
+    },
+    {
+      "start": 3912.36,
+      "duration": 3.2,
+      "text": "to the square of that deviation."
+    },
+    {
+      "start": 3915.56,
+      "duration": 1.76,
+      "text": "A Gaussian or\nnormal distribution"
+    },
+    {
+      "start": 3917.32,
+      "duration": 4.86,
+      "text": "would have a power 2 there\nwith the Laplace distribution"
+    },
+    {
+      "start": 3922.18,
+      "duration": 1.5,
+      "text": "as the absolute."
+    },
+    {
+      "start": 3923.68,
+      "duration": 4.52,
+      "text": "And with this\ndistribution, we have"
+    },
+    {
+      "start": 3928.2,
+      "duration": 5.88,
+      "text": "a mean mu, which is at the\ncenter of the distribution."
+    },
+    {
+      "start": 3934.08,
+      "duration": 4.4,
+      "text": "The variance turns out to\ndepend on this scale factor"
+    },
+    {
+      "start": 3938.48,
+      "duration": 5.24,
+      "text": "B, which is twice B squared."
+    },
+    {
+      "start": 3943.72,
+      "duration": 7.84,
+      "text": "So let's just take a look at\nwhat Laplace models look like."
+    },
+    {
+      "start": 3951.56,
+      "duration": 4.86,
+      "text": "They basically are bilateral\nexponential distributions."
+    },
+    {
+      "start": 3956.42,
+      "duration": 6.8,
+      "text": "And if we consider fitting the\ndaily returns on the S&P 500,"
+    },
+    {
+      "start": 3963.22,
+      "duration": 5.2,
+      "text": "this is data for a\nfour year period."
+    },
+    {
+      "start": 3968.42,
+      "duration": 7.32,
+      "text": "This peaked distribution with\nexponentially decaying density"
+    },
+    {
+      "start": 3975.74,
+      "duration": 3.24,
+      "text": "is fitting the data\nreally quite well."
+    },
+    {
+      "start": 3978.98,
+      "duration": 5.2,
+      "text": "And more importantly, much\nbetter really than a Gaussian"
+    },
+    {
+      "start": 3984.18,
+      "duration": 1.4,
+      "text": "curve does."
+    },
+    {
+      "start": 3985.58,
+      "duration": 6.18,
+      "text": "So here, we have the fit of\nthe Gaussian bell curve in red,"
+    },
+    {
+      "start": 3991.76,
+      "duration": 5.74,
+      "text": "comparing it to the\nLaplace curve in blue."
+    },
+    {
+      "start": 3997.5,
+      "duration": 5.08,
+      "text": "And an interesting\nquestion is, how do we"
+    },
+    {
+      "start": 4002.58,
+      "duration": 5.87,
+      "text": "judge whether one model or\nanother is a good model?"
+    },
+    {
+      "start": 4008.45,
+      "duration": 9.68,
+      "text": "And a useful tool is to\nconstruct a q-q plot, which"
+    },
+    {
+      "start": 4018.13,
+      "duration": 3.48,
+      "text": "is a quantile-quantile plot."
+    },
+    {
+      "start": 4021.61,
+      "duration": 7.32,
+      "text": "So we consider points where\nthe vertical value corresponds"
+    },
+    {
+      "start": 4028.93,
+      "duration": 7.16,
+      "text": "to the magnitude of our data,\nand the horizontal coordinate"
+    },
+    {
+      "start": 4036.09,
+      "duration": 7.52,
+      "text": "corresponds to the theoretical\nvalue for the smallest"
+    },
+    {
+      "start": 4043.61,
+      "duration": 4.4,
+      "text": "from a sample of Laplace, the\nsecond smallest from a given"
+    },
+    {
+      "start": 4048.01,
+      "duration": 1.88,
+      "text": "Laplace distribution."
+    },
+    {
+      "start": 4049.89,
+      "duration": 5.16,
+      "text": "And so we basically\nplot observed"
+    },
+    {
+      "start": 4055.05,
+      "duration": 4.24,
+      "text": "quantiles versus theoretical\nquantiles for the fitted model."
+    },
+    {
+      "start": 4059.29,
+      "duration": 6.0,
+      "text": "So this fits quite close to a\nline, although it's not perfect."
+    },
+    {
+      "start": 4065.29,
+      "duration": 2.55,
+      "text": "At least if it were\nperfect, it would even"
+    },
+    {
+      "start": 4067.84,
+      "duration": 6.48,
+      "text": "snake around the straight line\nwhere the sample quantiles equal"
+    },
+    {
+      "start": 4074.32,
+      "duration": 1.88,
+      "text": "the theoretical quantiles."
+    },
+    {
+      "start": 4076.2,
+      "duration": 7.16,
+      "text": "If we do the same q-q plot for\na Gaussian or normal model,"
+    },
+    {
+      "start": 4083.36,
+      "duration": 2.92,
+      "text": "this is what our\nq-q plot looks like."
+    },
+    {
+      "start": 4086.28,
+      "duration": 5.64,
+      "text": "And so one can see that this\nsecond q-q plot is not fitting"
+    },
+    {
+      "start": 4091.92,
+      "duration": 3.72,
+      "text": "the data very well at all."
+    },
+    {
+      "start": 4095.64,
+      "duration": 9.12,
+      "text": "So this would favor using the\nLaplace instead of the Gaussian"
+    },
+    {
+      "start": 4104.76,
+      "duration": 4.48,
+      "text": "as a model for\nindependent daily returns."
+    },
+    {
+      "start": 4109.24,
+      "duration": 5.4,
+      "text": "Now, the independence of\nour period by period returns"
+    },
+    {
+      "start": 4114.64,
+      "duration": 4.74,
+      "text": "is one that may not be\nsatisfied by the data."
+    },
+    {
+      "start": 4119.38,
+      "duration": 5.479,
+      "text": "And Robert Engle\nproposed looking"
+    },
+    {
+      "start": 4124.859,
+      "duration": 8.04,
+      "text": "at time series of returns and\nconsidering the possibility"
+    },
+    {
+      "start": 4132.899,
+      "duration": 3.161,
+      "text": "that the variability\nof these returns"
+    },
+    {
+      "start": 4136.06,
+      "duration": 4.839,
+      "text": "given by the variability\nof the epsilon t terms,"
+    },
+    {
+      "start": 4140.899,
+      "duration": 7.841,
+      "text": "that these, in fact, have time\nvarying volatility sigma t,"
+    },
+    {
+      "start": 4148.74,
+      "duration": 8.68,
+      "text": "where the sigma t squared\nevolves according to a moving"
+    },
+    {
+      "start": 4157.42,
+      "duration": 4.2,
+      "text": "average of past squared errors."
+    },
+    {
+      "start": 4161.62,
+      "duration": 5.6,
+      "text": "So an autoregressive\nconditionally heteroskedastic"
+    },
+    {
+      "start": 4167.22,
+      "duration": 4.36,
+      "text": "model is what he proposed."
+    },
+    {
+      "start": 4171.58,
+      "duration": 6.04,
+      "text": "And in looking at\nthis model, it's"
+    },
+    {
+      "start": 4177.62,
+      "duration": 9.67,
+      "text": "interesting to note that if\none can re-express the ARCH"
+    },
+    {
+      "start": 4187.29,
+      "duration": 7.72,
+      "text": "model in terms of this\nsquared error term"
+    },
+    {
+      "start": 4195.01,
+      "duration": 6.28,
+      "text": "and have this model in\nthe second equation being"
+    },
+    {
+      "start": 4201.29,
+      "duration": 4.16,
+      "text": "consistent with the first,\nand this second model"
+    },
+    {
+      "start": 4205.45,
+      "duration": 6.52,
+      "text": "corresponds to there being\nan autoregressive model"
+    },
+    {
+      "start": 4211.97,
+      "duration": 3.28,
+      "text": "consistent with the\nsquared returns."
+    },
+    {
+      "start": 4215.25,
+      "duration": 4.4,
+      "text": "And so this Lagrange\nmultiplier test"
+    },
+    {
+      "start": 4219.65,
+      "duration": 4.2,
+      "text": "can fit the autoregressive model\nto these epsilon hat squareds"
+    },
+    {
+      "start": 4223.85,
+      "duration": 4.4,
+      "text": "and test whether there is\nautoregressive structure or not."
+    },
+    {
+      "start": 4228.25,
+      "duration": 4.24,
+      "text": "And if we look at the\nautocorrelations of the S&P 500"
+    },
+    {
+      "start": 4232.49,
+      "duration": 8.9,
+      "text": "returns squared, you can\nsee that the first almost 10"
+    },
+    {
+      "start": 4241.39,
+      "duration": 4.48,
+      "text": "autocorrelations are\nsignificantly different from 0"
+    },
+    {
+      "start": 4245.87,
+      "duration": 1.28,
+      "text": "in magnitude."
+    },
+    {
+      "start": 4247.15,
+      "duration": 5.04,
+      "text": "So there is strong time\ndependence in the log returns."
+    },
+    {
+      "start": 4252.19,
+      "duration": 4.3,
+      "text": "And so how does\none fit this model?"
+    },
+    {
+      "start": 4256.49,
+      "duration": 7.26,
+      "text": "Well, the go to typically\nin statistical modeling"
+    },
+    {
+      "start": 4263.75,
+      "duration": 4.0,
+      "text": "is to consider a\nlikelihood approach"
+    },
+    {
+      "start": 4267.75,
+      "duration": 7.38,
+      "text": "where we consider a density for\nour data specified by the model."
+    },
+    {
+      "start": 4275.13,
+      "duration": 7.98,
+      "text": "So if the error is epsilon\nt are independent Gaussian"
+    },
+    {
+      "start": 4283.11,
+      "duration": 3.0,
+      "text": "distributions with\ndifferent variances,"
+    },
+    {
+      "start": 4286.11,
+      "duration": 7.8,
+      "text": "then this likelihood function\ndefines the joint density"
+    },
+    {
+      "start": 4293.91,
+      "duration": 3.43,
+      "text": "of our data given\nunderlying parameters."
+    },
+    {
+      "start": 4297.34,
+      "duration": 6.72,
+      "text": "And what becomes tricky with\nthis likelihood specification"
+    },
+    {
+      "start": 4304.06,
+      "duration": 5.48,
+      "text": "is that there, in fact, are\nconstraints on our parameters."
+    },
+    {
+      "start": 4309.54,
+      "duration": 5.84,
+      "text": "So with the ARCH model, we\ncan't have a negative alpha,"
+    },
+    {
+      "start": 4315.38,
+      "duration": 4.04,
+      "text": "because with the\nGaussian squared epsilon,"
+    },
+    {
+      "start": 4319.42,
+      "duration": 5.68,
+      "text": "that could be arbitrarily large\nnegative, or epsilon could be--"
+    },
+    {
+      "start": 4325.1,
+      "duration": 1.5,
+      "text": "sorry."
+    },
+    {
+      "start": 4326.6,
+      "duration": 2.98,
+      "text": "If the alphas were\nnegative, then the epsilon"
+    },
+    {
+      "start": 4329.58,
+      "duration": 2.2,
+      "text": "squared could be\narbitrarily large positive"
+    },
+    {
+      "start": 4331.78,
+      "duration": 1.82,
+      "text": "and we'd get a\nnegative variance."
+    },
+    {
+      "start": 4333.6,
+      "duration": 1.74,
+      "text": "So we can't have that."
+    },
+    {
+      "start": 4335.34,
+      "duration": 4.16,
+      "text": "Also we have this property of\nthe sum of the autoregressive"
+    },
+    {
+      "start": 4339.5,
+      "duration": 2.4,
+      "text": "parameters is less than 1."
+    },
+    {
+      "start": 4341.9,
+      "duration": 2.28,
+      "text": "And this corresponds\nto the process"
+    },
+    {
+      "start": 4344.18,
+      "duration": 5.76,
+      "text": "not being explosive\nin its movements."
+    },
+    {
+      "start": 4349.94,
+      "duration": 2.88,
+      "text": "And then let's see."
+    },
+    {
+      "start": 4352.82,
+      "duration": 7.34,
+      "text": "An extension of the ARCH\nmodels was done by Bollerslev."
+    },
+    {
+      "start": 4360.16,
+      "duration": 6.76,
+      "text": "And this basically adds\nto our ARCH model terms,"
+    },
+    {
+      "start": 4366.92,
+      "duration": 2.88,
+      "text": "like an order p ARCH model."
+    },
+    {
+      "start": 4369.8,
+      "duration": 7.76,
+      "text": "It adds an order q set of terms\non lags of the volatility."
+    },
+    {
+      "start": 4377.56,
+      "duration": 5.84,
+      "text": "And if we consider the special\ncase of the GARCH 1, 1 model,"
+    },
+    {
+      "start": 4383.4,
+      "duration": 5.6,
+      "text": "this is its form, which is\nvery simple and parsimonious."
+    },
+    {
+      "start": 4389.0,
+      "duration": 5.08,
+      "text": "What's rather surprising is\nthat the empirical specification"
+    },
+    {
+      "start": 4394.08,
+      "duration": 4.96,
+      "text": "of these models is such\nthat the GARCH 1, 1"
+    },
+    {
+      "start": 4399.04,
+      "duration": 3.48,
+      "text": "model is often\nchosen or identified"
+    },
+    {
+      "start": 4402.52,
+      "duration": 3.8,
+      "text": "as the best GARCH order case."
+    },
+    {
+      "start": 4406.32,
+      "duration": 3.24,
+      "text": "So we end up having\na very simple model"
+    },
+    {
+      "start": 4409.56,
+      "duration": 4.81,
+      "text": "with just a few parameters to\ncharacterize the volatility."
+    },
+    {
+      "start": 4419.33,
+      "duration": 4.18,
+      "text": "These notes talk about how the\nGARCH model induces an ARMA"
+    },
+    {
+      "start": 4423.51,
+      "duration": 0.66,
+      "text": "model."
+    },
+    {
+      "start": 4424.17,
+      "duration": 2.34,
+      "text": "So this is some\ntime series results"
+    },
+    {
+      "start": 4426.51,
+      "duration": 1.88,
+      "text": "that are gone through here."
+    },
+    {
+      "start": 4428.39,
+      "duration": 6.6,
+      "text": "And there's a long run\nvariance of the GARCH model"
+    },
+    {
+      "start": 4434.99,
+      "duration": 2.98,
+      "text": "that is given here."
+    },
+    {
+      "start": 4437.97,
+      "duration": 4.86,
+      "text": "And with a GARCH 1, 1\nmodel, there basically"
+    },
+    {
+      "start": 4442.83,
+      "duration": 10.72,
+      "text": "is a long run volatility\nsigma star, which"
+    },
+    {
+      "start": 4453.55,
+      "duration": 1.69,
+      "text": "has this particular formula."
+    },
+    {
+      "start": 4464.23,
+      "duration": 3.92,
+      "text": "So one can find the long run\nvariance of a GARCH model"
+    },
+    {
+      "start": 4468.15,
+      "duration": 2.48,
+      "text": "with this formula."
+    },
+    {
+      "start": 4470.63,
+      "duration": 3.86,
+      "text": "This formula also leads\nto updates of volatility"
+    },
+    {
+      "start": 4474.49,
+      "duration": 3.62,
+      "text": "being a multiple of\nthe long run variance,"
+    },
+    {
+      "start": 4478.11,
+      "duration": 3.65,
+      "text": "plus a deviation from\nthat long run variance."
+    },
+    {
+      "start": 4488.11,
+      "duration": 4.02,
+      "text": "So we have a maximum likelihood\nestimation for these models."
+    },
+    {
+      "start": 4492.13,
+      "duration": 5.12,
+      "text": "Now, I wanted to\nshare with you a case"
+    },
+    {
+      "start": 4497.25,
+      "duration": 4.48,
+      "text": "study using ARCH and GARCH\nmodels with foreign exchange"
+    },
+    {
+      "start": 4501.73,
+      "duration": 1.64,
+      "text": "returns."
+    },
+    {
+      "start": 4503.37,
+      "duration": 4.56,
+      "text": "And so this note\nuses data collected"
+    },
+    {
+      "start": 4507.93,
+      "duration": 7.56,
+      "text": "from the Federal Reserve\non foreign exchange values."
+    },
+    {
+      "start": 4515.49,
+      "duration": 4.32,
+      "text": "Section 1.2 actually\nfits Brownian motion"
+    },
+    {
+      "start": 4519.81,
+      "duration": 2.18,
+      "text": "using different time scales."
+    },
+    {
+      "start": 4521.99,
+      "duration": 2.3,
+      "text": "So not assuming time dependence."
+    },
+    {
+      "start": 4524.29,
+      "duration": 5.59,
+      "text": "It actually is interesting\nto think about different time"
+    },
+    {
+      "start": 4529.88,
+      "duration": 2.6,
+      "text": "scales."
+    },
+    {
+      "start": 4532.48,
+      "duration": 6.92,
+      "text": "But if we go to\nsection 1.3 and look"
+    },
+    {
+      "start": 4539.4,
+      "duration": 2.5,
+      "text": "at time dependence\nin squared returns,"
+    },
+    {
+      "start": 4541.9,
+      "duration": 6.94,
+      "text": "this is the dollar\npound returns."
+    },
+    {
+      "start": 4548.84,
+      "duration": 5.28,
+      "text": "This shows the autocorrelation\nand partial autocorrelation"
+    },
+    {
+      "start": 4554.12,
+      "duration": 3.0,
+      "text": "of the returns."
+    },
+    {
+      "start": 4557.12,
+      "duration": 4.92,
+      "text": "So there's strong\npartial autocorrelations"
+    },
+    {
+      "start": 4562.04,
+      "duration": 1.68,
+      "text": "of the actual series."
+    },
+    {
+      "start": 4563.72,
+      "duration": 3.96,
+      "text": "And if we look at\nthe squared returns,"
+    },
+    {
+      "start": 4567.68,
+      "duration": 5.1,
+      "text": "the actual series has high\nautocorrelations over time."
+    },
+    {
+      "start": 4572.78,
+      "duration": 4.94,
+      "text": "But the partial autocorrelations\nhave very high spikes"
+    },
+    {
+      "start": 4577.72,
+      "duration": 1.06,
+      "text": "at low lags."
+    },
+    {
+      "start": 4578.78,
+      "duration": 2.54,
+      "text": "So this suggests an\nautoregressive model"
+    },
+    {
+      "start": 4581.32,
+      "duration": 2.36,
+      "text": "in the squared returns."
+    },
+    {
+      "start": 4583.68,
+      "duration": 5.95,
+      "text": "And the note fits an\nARCH 1 and ARCH 2."
+    },
+    {
+      "start": 4589.63,
+      "duration": 4.44,
+      "text": "So one lag, or sorry,\none autoregressive"
+    },
+    {
+      "start": 4594.07,
+      "duration": 3.4,
+      "text": "term, two autoregressive\nterms or 10,"
+    },
+    {
+      "start": 4597.47,
+      "duration": 3.0,
+      "text": "and then fits the GARCH 1, 1."
+    },
+    {
+      "start": 4600.47,
+      "duration": 4.16,
+      "text": "And the results are\nhighlighted here,"
+    },
+    {
+      "start": 4604.63,
+      "duration": 2.24,
+      "text": "just showing you the different\ncoefficient estimates"
+    },
+    {
+      "start": 4606.87,
+      "duration": 1.92,
+      "text": "for these different models."
+    },
+    {
+      "start": 4608.79,
+      "duration": 2.32,
+      "text": "They're all\nstatistically significant"
+    },
+    {
+      "start": 4611.11,
+      "duration": 2.56,
+      "text": "in terms of the parameters."
+    },
+    {
+      "start": 4613.67,
+      "duration": 2.36,
+      "text": "What's of interest,\nthough, is just"
+    },
+    {
+      "start": 4616.03,
+      "duration": 5.2,
+      "text": "to look at the time series plot\nof the fitted volatilities using"
+    },
+    {
+      "start": 4621.23,
+      "duration": 2.1,
+      "text": "ARCH of different orders."
+    },
+    {
+      "start": 4623.33,
+      "duration": 3.66,
+      "text": "So here's the ARCH 1 model."
+    },
+    {
+      "start": 4626.99,
+      "duration": 3.72,
+      "text": "Here's the ARCH 2 model."
+    },
+    {
+      "start": 4630.71,
+      "duration": 4.78,
+      "text": "A property of these ARCH models\nis that it never goes below 0."
+    },
+    {
+      "start": 4635.49,
+      "duration": 2.34,
+      "text": "There's a lower bound."
+    },
+    {
+      "start": 4637.83,
+      "duration": 4.0,
+      "text": "Here's the ARCH 10 model, which\nlooks like it's maybe tracking"
+    },
+    {
+      "start": 4641.83,
+      "duration": 1.54,
+      "text": "time varying volatility well."
+    },
+    {
+      "start": 4643.37,
+      "duration": 7.28,
+      "text": "And then finally, we can compare\nthat with the GARCH 1, 1 model."
+    },
+    {
+      "start": 4650.65,
+      "duration": 3.84,
+      "text": "So instead of having 10\nautoregressive parameters"
+    },
+    {
+      "start": 4654.49,
+      "duration": 4.16,
+      "text": "in ARCH, the\ngeneralized ARCH model"
+    },
+    {
+      "start": 4658.65,
+      "duration": 3.88,
+      "text": "is capturing time varying\nvolatility in an appealing"
+    },
+    {
+      "start": 4662.53,
+      "duration": 5.12,
+      "text": "way, whether that's really\nvalid or not is of interest."
+    },
+    {
+      "start": 4667.65,
+      "duration": 3.12,
+      "text": "But it certainly is an\nalternative to these arch models"
+    },
+    {
+      "start": 4670.77,
+      "duration": 1.71,
+      "text": "that is quite powerful."
+    },
+    {
+      "start": 4676.85,
+      "duration": 4.64,
+      "text": "Well, here's just a graph\nof all three together."
+    },
+    {
+      "start": 4681.49,
+      "duration": 4.12,
+      "text": "This note actually\ndoes a final section"
+    },
+    {
+      "start": 4685.61,
+      "duration": 5.96,
+      "text": "of looking at what happens if\nour error distribution is not"
+    },
+    {
+      "start": 4691.57,
+      "duration": 3.826,
+      "text": "Gaussian, but is\na t distribution."
+    },
+    {
+      "start": 4698.17,
+      "duration": 3.0,
+      "text": "There are packages,\nrugarch, which"
+    },
+    {
+      "start": 4701.17,
+      "duration": 6.79,
+      "text": "allow us to specify parameters\nand fits using t models,"
+    },
+    {
+      "start": 4707.96,
+      "duration": 2.36,
+      "text": "t distribution models\nfor the errors."
+    },
+    {
+      "start": 4710.32,
+      "duration": 6.88,
+      "text": "And what's very\ncurious is in judging"
+    },
+    {
+      "start": 4717.2,
+      "duration": 9.96,
+      "text": "the histogram of\nstandardized residuals,"
+    },
+    {
+      "start": 4727.16,
+      "duration": 4.52,
+      "text": "the t distribution seems\nto do a decent job."
+    },
+    {
+      "start": 4731.68,
+      "duration": 7.36,
+      "text": "And so here's with Gaussian\nresiduals, I guess."
+    },
+    {
+      "start": 4739.04,
+      "duration": 6.96,
+      "text": "And then here's the\nGaussian residuals and q-q"
+    },
+    {
+      "start": 4746.0,
+      "duration": 4.28,
+      "text": "plot associated with the\nstandardized Gaussian"
+    },
+    {
+      "start": 4750.28,
+      "duration": 1.68,
+      "text": "assumption."
+    },
+    {
+      "start": 4751.96,
+      "duration": 6.44,
+      "text": "Then finally, there's the q-q\nplot of standardized residuals"
+    },
+    {
+      "start": 4758.4,
+      "duration": 2.38,
+      "text": "with a t distribution assumed."
+    },
+    {
+      "start": 4760.78,
+      "duration": 4.76,
+      "text": "So what's significant is just\nhow the quantile-quantile plot"
+    },
+    {
+      "start": 4765.54,
+      "duration": 2.04,
+      "text": "suggests that this\nmodel is really fitting"
+    },
+    {
+      "start": 4767.58,
+      "duration": 2.8,
+      "text": "the data much, much better\nin terms of characterizing"
+    },
+    {
+      "start": 4770.38,
+      "duration": 1.52,
+      "text": "the variation."
+    },
+    {
+      "start": 4771.9,
+      "duration": 4.96,
+      "text": "And the choice of\nwhich order model"
+    },
+    {
+      "start": 4776.86,
+      "duration": 9.04,
+      "text": "to use for the\ndegrees of freedom,"
+    },
+    {
+      "start": 4785.9,
+      "duration": 6.4,
+      "text": "there's this negative\nlog likelihood function"
+    },
+    {
+      "start": 4792.3,
+      "duration": 3.7,
+      "text": "of models for different\nt distributions"
+    },
+    {
+      "start": 4796.0,
+      "duration": 3.3,
+      "text": "as we vary the degrees\nof freedom for the t."
+    },
+    {
+      "start": 4799.3,
+      "duration": 3.2,
+      "text": "And the t distribution\nhas a heavier tail"
+    },
+    {
+      "start": 4802.5,
+      "duration": 3.0,
+      "text": "than a Gaussian distribution."
+    },
+    {
+      "start": 4805.5,
+      "duration": 2.46,
+      "text": "At least if the degrees\nof freedom is really high,"
+    },
+    {
+      "start": 4807.96,
+      "duration": 2.74,
+      "text": "it's virtually\nequivalent to a Gaussian."
+    },
+    {
+      "start": 4810.7,
+      "duration": 4.4,
+      "text": "But this is suggesting\nthat there's possibly a 9"
+    },
+    {
+      "start": 4815.1,
+      "duration": 2.92,
+      "text": "degrees of freedom for that."
+    },
+    {
+      "start": 4818.02,
+      "duration": 2.27,
+      "text": "So that's a very\ninteresting finding."
+    },
+    {
+      "start": 4820.29,
+      "duration": 5.6,
+      "text": "And it actually arises with\nsome mathematical analysis"
+    },
+    {
+      "start": 4825.89,
+      "duration": 8.32,
+      "text": "that t distributions are\nappropriate if we think"
+    },
+    {
+      "start": 4834.21,
+      "duration": 5.16,
+      "text": "of spherical symmetry in\nthe number of dimensions"
+    },
+    {
+      "start": 4839.37,
+      "duration": 3.24,
+      "text": "equal to the degree of freedom."
+    },
+    {
+      "start": 4842.61,
+      "duration": 5.64,
+      "text": "And so if you imagine a\njoint distribution that"
+    },
+    {
+      "start": 4848.25,
+      "duration": 3.84,
+      "text": "is spherically symmetric in\nreally high dimensions, when you"
+    },
+    {
+      "start": 4852.09,
+      "duration": 3.5,
+      "text": "project that down\nonto coordinate axes,"
+    },
+    {
+      "start": 4855.59,
+      "duration": 2.66,
+      "text": "you end up getting a\nGaussian distribution."
+    },
+    {
+      "start": 4858.25,
+      "duration": 8.76,
+      "text": "But if their symmetry is just\nof, say, 9 dimensions, then"
+    },
+    {
+      "start": 4867.01,
+      "duration": 2.08,
+      "text": "you end up having\na t distribution"
+    },
+    {
+      "start": 4869.09,
+      "duration": 2.52,
+      "text": "for what those projections are."
+    },
+    {
+      "start": 4871.61,
+      "duration": 7.02,
+      "text": "So this suggests that\nin terms of time periods"
+    },
+    {
+      "start": 4878.63,
+      "duration": 7.26,
+      "text": "over which the distribution\nof volatility is stable,"
+    },
+    {
+      "start": 4885.89,
+      "duration": 5.3,
+      "text": "could be close to 9 dimensions."
+    },
+    {
+      "start": 4891.19,
+      "duration": 4.68,
+      "text": "So perhaps corresponding to\n9 periods of data, I believe."
+    },
+    {
+      "start": 4895.87,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 4896.37,
+      "duration": 1.042,
+      "text": "Well, we'll finish there."
+    },
+    {
+      "start": 4897.412,
+      "duration": 1.938,
+      "text": "There's a lot of\ninteresting material"
+    },
+    {
+      "start": 4899.35,
+      "duration": 3.36,
+      "text": "for you to check\nout, if you like."
+    },
+    {
+      "start": 4902.71,
+      "duration": 5.44,
+      "text": "And I hope you can enjoy reading\nsome of the articles of people"
+    },
+    {
+      "start": 4908.15,
+      "duration": 2.96,
+      "text": "who've studied\nvolatility and see what"
+    },
+    {
+      "start": 4911.11,
+      "duration": 2.66,
+      "text": "their work has contributed."
+    },
+    {
+      "start": 4913.77,
+      "duration": 2.78,
+      "text": "And it's a really\ninteresting area"
+    },
+    {
+      "start": 4916.55,
+      "duration": 5.2,
+      "text": "for final papers,\nmodeling volatility,"
+    },
+    {
+      "start": 4921.75,
+      "duration": 1.3,
+      "text": "predicting volatility."
+    },
+    {
+      "start": 4923.05,
+      "duration": 2.96,
+      "text": "This is really scratching\nthe surface of the topic."
+    },
+    {
+      "start": 4926.01,
+      "duration": 3.76,
+      "text": "So there's a lot of interesting\nproblems you could study."
+    },
+    {
+      "start": 4929.77,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 4930.27,
+      "duration": 1.95,
+      "text": "Thanks a lot."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: Well, today we're going to talk about volatility modeling. And this topic in finance is one that has really interested me for decades. And there are a lot of subtle details involved with understanding volatility, how to measure it, how to forecast it. And we've had some talks already with the group projects about dealing with volatility estimation and measuring volatility, in particular implied volatility. Today we'll focus more on realized volatility and modeling that. And so to begin, here's just an overview of different ways one might define volatility. And its basic definition is the annualized standard deviation of the change in price or value of a financial security. And of course, this concept is really important for measuring risk and evaluating the value of options on underlying assets. Yep? AUDIENCE: What do you mean by annualized? PETER KEMPTHORNE: What that means, OK, suppose we have a sigma day that's equal to, say, 0.01%. So 1% variability per day. If we wanted to measure volatility on an annualized scale, then we could consider possibly the square root of 252 times sigma day. So it's a matter of scaling the volatility up to an annual horizon. And the value of that rescaling is that we can talk about volatilities over different maturities. And they're measured on the same scale. And with different estimation approaches, there's historical sample volatility measures which don't require really any probability models with them. Then we have geometric Brownian motion. That's a very familiar model to everyone here. And we can consider extensions of that to the Poisson jump diffusion model. A group delivered a nice lecture note on the Poisson jump diffusions. And then following these cases are cases where volatility might have some time dynamics in them. With these geometric Brownian motion and Poisson jump diffusion models, we think of volatility being some constant, which is the same from one period to the next. But it turns out that there can be time dependence in volatility. And so there are ARCH and GARCH models, which stand for Autoregressive Conditional Heteroskedastic Models. And then the GARCH are generalized versions of those. And then there are stochastic volatility models as well. I know, let's see, the Heston option pricing model uses a stochastic volatility term in its formulation. So we have those kinds of extensions. And then finally, there's implied volatility from options and derivatives. So let's just look at computing volatility from an historical series of actual prices. If we have prices PT, then we can define the log returns by looking at the ratio of prices from one day to the next, or one period to the next, and taking the logarithm of that. This is a useful way of measuring returns as an alternative to simply the percentage change in value using the log scale or the log return, if we look at the cumulative change over successive periods. With log returns, they just add. Whereas if we were using percentage returns, we'd have to basically multiply factors together representing that. Now, in modeling volatility, we consider models that correspond to stationary processes for our returns. So the log returns of price series are often consistent via tests with a stationary distribution of returns. And under the assumption of covariance stationarity, we can define sigma to be the variance of or the standard deviation of those returns. Now, in this notation here, this sigma for the volatility would be corresponding to a frequency of observation that's daily or weekly or monthly. And we'd have sample estimates given by the square root of the sample variance where we traditionally use the estimator for variance, which is an unbiased estimate of the variance. So that factor divisor t minus 1 is included there. And then if we want to annualize these values, it's common practice just to treat these returns as independent or uncorrelated over time, so that the variance of a sum is the sum of the variances. So there are roughly 252 days in a year. So we multiply by the square root of 252 for daily returns. For weekly returns, we'd do the root 52 times sigma hat and route 12 for monthly. Now, when measuring historical volatility, we can think of a simple historical average since the beginning of our time series. So this historical average would use all available data. It's reasonable to think that volatility isn't necessarily stable over the entire time range of a price series. And so we could consider just using the last m values. So take a rolling average of the last m values of this sigma hat squared t minus j. Now, if we define sigma hat squared t to just be a single day's volatility, that could be like the square of the daily return on a given day. Now, using equal weighted values over a window of length m might be improved upon by using an exponential moving average. And so exponential moving averages are averages where we take a weighted average of the previous estimate of volatility and the current estimate of volatility using the time t value. So this 1 minus beta beta weight allows us to weight the past versus the present in an exponential way. And with this formula, it's recursive over t. And so it can actually apply across an entire range of historical data. An alternative to just the regular exponential moving averages and exponential weighted moving average where we only go back maybe m periods, but we decrease the weights on past volatility estimates according to the power of beta j. So beta j or beta is a decay factor in estimating volatilities. Additionally, one could consider regression models with these volatility sigma hats indexed by t. And depending on the relationship of volatility to the past, we might use more data to increase precision of estimators, but use data closer to time t when we believe that the volatility may be changing over time. And what's neat about these estimation methods is that we can evaluate, say, the exponential moving average estimates of volatility over different assets and different asset classes. And this approach was applied in RiskMetrics. Here there's a web link to the RiskMetrics technical document. I think I have it listed here. So actually this RiskMetrics was created by JP Morgan back in the 1990s. Coincidentally, when I was at the Sloan School teaching statistics and financial modeling, I was part of the Financial Services Research Center that was sponsored by JP Morgan and other groups when this risk metrics document was created. And if we look at, let's see, there's a section here of risk metrics decay factors for volatility. Basically, for different countries, one can use the exponential moving average of asset returns for foreign exchange 10 year 0 prices equity indices and other assets. And what's interesting to see is that the decay factor is generally well above 0.9. It's more like 0.95, which suggests that volatility is changing slowly over time. And the way they chose these decay factors was to look at how predictive they were with mean squared error of volatility. So these are reasonable estimates of volatility. And an important aspect of these measures is having benchmark values that people can agree upon. So we're not arguing that these are the best estimators, but they're a simple objective estimator that can be applied. And when we communicate about these other people, understand what we're measuring. So those are important. Now, let's see. With geometric Brownian motion, turning now to having a stochastic process model for the prices. If we have this stochastic differential equation, the geometric Brownian motion one, we see that, and it's totally obvious, but if we divide both sides by s of t, we get mu dt plus sigma ds of t or sigma dw of t, where w of t is a standard Brownian motion. So by looking at essentially the percentage change on an infinitesimal level, we basically have a linear trend that's deterministic and then a random walk with Brownian motion steps on that scale. And with this geometric Brownian motion, we have basically independent increments with normally distributed increments on this log scale for the Brownian motion. And with our homework exercise this past week, we actually dealt with estimating the drift parameter and the volatility parameter in geometric Brownian motion. And so if our increments of time are unit increments, then we can estimate a drift term mu star with the average log return. And we can estimate the period volatility or period variance with the sample variance using n instead of n minus 1. Now, these essentially correspond to maximum likelihood estimates of these parameters. And what's important to note here is that the drift term mu star per period is actually equal to the mu of the geometric Brownian motion minus the square of the volatility term divided by 2. And so what's important is that when we apply this stochastic differential equation, there basically comes an extra term in the drift that's due to the squared variation in the process. So in working with these the stochastic differential equations, it's important not to just look at first order terms, but to look at second order terms in your Taylor series approximation. And that's how that mu star gets in there to be different from mu. Now, an interesting exercise, which hopefully was of interest to people who worked on that last week, if we vary the increments delta j over which we observe this price process, then we can talk about how accurate or how precise are our estimates of mu star and sigma squared. And it turns out that if the delta j, the increments between observations varies, then our estimate of mu star is always the same. It corresponds to just the cumulative return over the entire period divided by the length of the period. So it's the average rate of return per period. Interestingly, if we increase the number of increments, then our precision on the variance gets more and more precise, and the variability of that actually goes down with a factor of n. So that was a homework exercise that I think is an important one to realize. Now, a really interesting extension of maximum likelihood estimation with normally distributed increments coming from the Brownian motion process is looking at the problem of using more information than just the close to close prices. And so what we want to do is introduce you to the Garman-Klass estimator. And let me just turn to the Garman-Klass paper. These papers are distributed in Canvas in the volatility notes section. But if we think of a period of time with one day, going from yesterday's close to today's open to today's close, then in thinking about measuring volatility using the difference between today's close and yesterday's close, that can be very useful, but it's missing out on other information that we may have access to, such as what's the opening price today? What's the low value today? What's the high value today? And how can we use that extra information to have more precise estimates of volatility? Anecdotally, when I was studying for a doctorate in statistics at Berkeley, I was a research assistant to Michael Klass. And I was getting interested in non-statistics topics like finance, and so I took a course from Mark Garman, who co-wrote this paper. So it's rather interesting to have had that exposure. Actually, it was a very inspiring set of classes that I took, which motivated my, I guess, lifelong interest in financial modeling. So let's take a look at some notation. Very simply, we'll think of just a single period, like one day, and refer to the closing price on day j, opening price on day j, the high and low on day j as well. Importantly, the notation here includes this-- well, includes the time points, but it also includes the parameter f, which is the length of time that the market is closed on a given day. So the time between the close and open of the next day. So we have this notation. And if we consider just focusing on single periods, and in this case, the first one, if we look at the change in closing values, now, perhaps it makes sense to think of these on the log scale of the prices. The close to close squared return basically will have mean sigma squared and variance equal to 2 sigma to the fourth. Now, this corresponds to the theory of normal random variables for returns, which comes from the Brownian motion. And the expected squared value is-- well, actually, we can think of maybe the mean return being 0 or being subtracted from all the returns. But the variance of this sigma 0 hat squared is the variance of a chi squared random variable with 1 degree of freedom. And so in probability classes, we learn that a chi squared random variable has expectation equal to the degrees of freedom. And if it's a scaled chi squared, it's the scale factor sigma squared times that. And the variance of a chi squared is equal to twice the degrees of freedom. So that's where that formula comes from. Now, if we look at the close to open squared return, the same arguments lead to this sigma 1 hat squared. Looking at the squared return from closed to open, normalized by the length of the period between the close and open, this will also have expectation equal to sigma squared. And its variance will also be 2 sigma to the fourth. So if the model applies throughout the time periods of the market being open as well as the market being closed, then these formulas apply. Now, we could also do the open to close squared return and, again, if we normalize the squared change in price or log price, if we normalize that by the length of the period 1 minus f, then we get the same properties of the moments for these estimates of sigma squared. So all of these have expectation equal to sigma squared, and all of them have the same degree of variation. Well, this second or the index one and two cases are estimates that use different time periods, different increments, disjoint increments of the process. And so these have to be independent if our Brownian motion model applies. And so if we simply take the weighted average of these or the simple average, then the expectation is unchanged and the variance is equal to basically 1/2 squared times the sum of the variances. And that equals actually sigma to the fourth. So we're able to get a more precise estimate of the volatility using these two increments separately. And so it's common in statistical theory of estimators to talk about the efficiency of one estimator versus another. And so if we compare this sigma star, we can divide its variance into the variance of sigma 0 squared and get a factor of 2. So we basically have-- let's see. Have I got that correct? Right. We basically have twice the efficiency in this case. So we're thinking of inverse relationships of the variance. Now, let's see. Parkinson came up with considering the high and low values over a period and showed that this estimate sigma hat 3 squared is an unbiased estimate of sigma squared when f is equal to 0 and has efficiency equal to 5.2. So this high and low data really has a lot of information in it compared with just the close to close returns. Our precision with estimating sigma squared basically can increase by a factor of 5 with using the high and low values instead of the close to close. And let's see. I just posted today the problem set due next week where there's an article by Parkinson discussing issues of high and low or extreme value estimates of the variance, which I think will be interesting to read. I think it's somewhat fun to read the classic papers in these areas, especially because the older they are, the easier they are to read, I think, although sometimes that's not totally true. Anyway, what Garman and Klass did was they considered alternatives, which included the high-low volatility estimate. And a simple average, or weighted by a and 1 minus of this high-low estimate of Parkinson and the sigma 1, which is the-- let's see. Let's go back. And the sigma 1, which is the open to close value. This has an even higher efficiency of 6.2 and a rather striking result of their paper, as they were able to derive the best analytic scale invariant estimator. So, depending on whether you like mathematics or not, you may like this paper or not. But it's really interesting to see how a property of finding a scale invariant estimator that is best among the class of such estimators, that's actually derived by Garman and Klass. So let me just highlight how this section five in their paper talks about best analytic scale invariant estimators. And you may be able to see from the derivation here that their arguments just are dealing with some quadratic forms and solving for properties, minimizing these quadratic forms. And so it's rather neat that they're able to achieve this result. Yeah? AUDIENCE: Why is it necessary [INAUDIBLE]? Because that's just commenting about the prepared bearings, right? PETER KEMPTHORNE: Well, with a higher efficient estimator, you can have as precise an estimator with a smaller or shorter time series. So instead of using, say, 20 days close to close, you could use a week of data and have estimators that are comparably precise. AUDIENCE: [INAUDIBLE] PETER KEMPTHORNE: Yeah, yeah. That's right. And so there are all these extra assumptions that complicate things. And in many of these developments, they're simplifying assumptions like the mean is 0. But if you were trying to model time varying volatility, then rather than looking at, say, close to close volatility and how that changes over time, if you use these other estimators, the Garman-Klass, for example, you could maybe use a much shorter time period and be able to track or model changes in volatility over time with that. Well, let's see. So then finally, there's this composite estimator, which has efficiency 8.4. And finally, there are a number of extensions of the Garman-Klass that are listed here. And the one that is actually recommended these days is actually this Yang Zhang model, which has a drift independent volatility estimation based on the high-low close. So the fact that it's drift independent deals with that assumption that was just mentioned. Now, let's see. There's a case study of using R to calculate these different volatility estimates. And let's see here. So here's the case study, which goes through calculating different measures of volatility, using close to close Parkinson's all the way down to Yang and Zhang in section 1.6 and then comparing those for the S&P 500 Index. And we'll go through these in a moment. But following just looking at these individually, we consider time series modeling of these different volatility statistics. And so in terms of understanding realized volatility, a useful analysis is to be able to predict how our realized volatility is going to change into the future. So there may be some predictability there. And what we'll see is that in the time series analysis of these volatilities, time series models such as autoregressive integrated moving average models can be applied and can be very useful. And in particular, there's a role to be played with seasonal ARIMA models. So let's take a look at that. And just as a preview, let's see, one of the problems in the next problem set is to look at this same set of analysis for the S&P 500, look at the same analysis for the stock ARKK, which is Cathie Wood's ETF, and just see how different the results are. And what's nice is that the R markdown files that create this case study can be applied to any other stocks you want to analyze, if you so choose. For the problem set, I posted the two versions of this study for S&P 500 and ARKK. So you don't need to do R at all. But if you set up a Posit Cloud account with RStudio Cloud, you should be able to just upload the file, the R markdown file, and rerun the programs and do so with another stock, if you so choose. So in this note, the first section just goes through and looks at the S&P 500 index. It actually is going through a couple of days ago. It's a good time to have an equity exposure. And if we look at close to close volatility, this is a graph of the 21 day variance scaled up to an annualized basis by multiplying by root 252. And what's important is to see that volatility generally is well below 25%. Often it's around 12% to 15% when it's low, but it does have spikes. And during COVID, there was the huge spike up. And more recently, there was some elevated volatility that suggests that volatility is not constant. So anyway, this is the close to close volatility. If we look at the high-low volatility of Parkinson, then we just are averaging the log of the ratio of the high to low and scaling it up. And so we get this plot, which is very, very similar. In principle, this estimator is more precise, at least if our underlying Brownian motion model or geometric Brownian motion model is true, but it gives us different values. And then the Garman-Klass model is here. So what's useful just in this case study is partly just seeing what the formulas are for the volatility estimates and then being able to compare those. And then finally, this Yang-Zhang model is an extension of Garman-Klass. And as it says here, this is currently the preferred version of volatility estimates. Now, in looking at these different volatility estimates, we can create a panel series of all the volatility measures. This shows, not surprisingly, there's peaks at the same times with all of these. What's more interesting is to look how they move simultaneously. And if you look at too much data, it's hard to see exactly what's going on. So there's a graph here of looking at just the last year, almost two years of data, and seeing how these different volatility estimates vary. So what this highlights is how a choice of volatility measure matters. There can be significant differences between them. And what would you anticipate is a good property of a volatility estimator? That's a very general question, but intuitively, what would make one estimator better than another? And there's no right or wrong answer to this, but I think it's useful to think about what you would like to have in an estimator, and whether these estimators might be consistent with that or not. Any thoughts? Well, one of the problems, I guess I'll call it a problem, with the close to close estimator, is that if you have a rolling window of close to close variance estimates, then if you have a spike in returns, positive or negative, that spike is going to remain in that window until it falls off. And so there can be elevated volatilities due in the close to close series, volatility series. That may not be as persistent with the other estimators. So when there are spikes in volatility, often those spikes occur when there's some great uncertainty in the market that gets resolved. And the volatility often drops a fair amount after that. And so I would think that those volatility estimates that basically drop faster following the spikes could be better. And certainly if we're trying to use these volatility estimates to predict future realized volatility, that property could be useful. Now, what's interesting in section two of this case study is to just consider some really, really basic time series modeling of the different volatility measures. So what we are modeling is different volatility measures over a 21 day period that's rolling through our time series. And so one of the most basic forecasting models there is is a model called the naive model. And with a naive model, we have a time series yt. And we basically have that y hat t is equal to yt minus 1. And if we think of yt is equal to y hat t plus an error term, then our errors are equal to yt minus y hat t, which is equal to yt minus yt minus 1. And this specification corresponds to a random walk model. So there's basically a random walk model for yt. And the random walk model is consistent with efficient markets where our best estimate of what's going to happen is where things are now. So this naive model basically has an autocorrelation function, which has a very high-- or our data has a high first order autocorrelation. And if we calculate first differences, which are the residuals from this model, then we get this residual diagnostic information, the time series of residuals, the autocorrelation function of the residuals, and the histogram of residuals. Now, would you say that these residuals are consistent with white noise that may be Gaussian or normal? I see some going mm-hmm and others going hmm. Well, one thing that's important is that the autocorrelation function of residuals, if the residuals are consistent with white noise, there should be no significant autocorrelation at any lag. And so there are some spikes of autocorrelation that break beyond the critical levels. And so those are suggesting that this is not white noise. And if we look at the distribution of the residuals, they're unimodal, but they certainly aren't well described by a normal distribution. So let's see. So we can plot forecasts of this naive method. And then let's see. We can also fit an ARIMA model to this close to close volatility series. And with the ARIMA model, actually there's this package in R called FPP2. And this was created by the authors of a book, Forecasting Principles In Practice, that's in the references to this. They have an automated ARIMA modeling function, which will take an input, a time series, as output, what is judged to be a decent autoregressive integrated moving average model. And so this ARIMA 310 corresponds to ARIMA p equals 3, d equals 1, and q equals 0, where p is the order of the autoregression. d is the order of differencing. Yes? AUDIENCE: How does it [INAUDIBLE]? PETER KEMPTHORNE: Yes, it uses a criterion that's called the corrected Akaike Information Criterion. And so there's this AICC, which is equal to the corrected AIC. And the corrected AIC is due to the fact that with shorter series, there's a bias in the AIC that is systematic. And so this correct for that bias. Now, when we do this with any fitted model, what's really important to check is how our estimated coefficients compare with their standard errors. When the signal estimate to noise standard error ratio is bigger than 2, we have some confidence that that's an important factor in the model. And in this case, the AR3 has a signal to noise ratio of almost 3, and the AR2 has a ratio that's 1 and 1/2. Now, if we go through, let's see, the second section does the same analysis of the Yang-Zhang volatility estimate. And I guess importantly here, we have an ARIMA model now for this Yang-Zhang model, which is an ARIMA 111. And the coefficient estimates are many multiples of the standard error. So these are highly significant. And this is our residual analysis check, which suggests that, for the most part, the residuals are consistent with white noise. The autocorrelations tend to be close to 0. However, there's this large spike at 21. And here the residuals. Now, why do you think there's a large spike at 21? Well, we're computing rolling statistics. And so the window is of length 21. So this corresponds to cases entering and exiting the windows. And so interestingly, we can accommodate that by fitting a seasonal ARIMA model. And so with the seasonal ARIMA model I'll jump to the conclusion here at the very end, which is for the Yang-Zhang volatility estimator. This is its simple autocorrelation function before the model. And then when we fit the seasonal ARIMA model automatically, it gives us a 213 and a 201. And let's see. When we introduced you to time series models before, let's see, if we have an ARIMA model, which is p, d, q, we basically have 1 minus phi 1 b minus phi 2 b squared minus phi p b to the p power times yt turns out to be equal to 1 minus theta 1b minus theta 2b squared minus theta, or sorry, 1 plus here, plus theta qb to the q power times our error term. So we have this kind of mathematical equation for an ARIMA model, where we assume that the epsilon t series is white noise, which means that its expectation is always 0 and the variances are constant, and the correlation between any different epsilons is equal to 0 if t is not equal to t prime. The power of autoregressive integrated moving average models is that these autoregressive terms, as well as moving average terms, can account for all of the correlations, autocorrelations in the original series. And our residuals, which are estimates of this error sequence, should be consistent with white noise. Now, what ends up happening with-- actually, I should maybe put here yt prime, where y prime is maybe equal to 1 minus b to the power d yt. So if we have an ordered d model, we take the d-th order difference and put that into an ARMA model. And if we have a seasonal ARIMA model, we actually add a capital P, capital D, capital Q. And here we have the frequency of the data. And in this example, I considered a 21 period frequency just to correspond to the window size. And what this model does is it has another polynomial of-- so this is b to the 2 times 21. So we basically end up having backshift operator polynomials that work with the seasonal frequencies of the time series. So this is a polynomial of order q of order p in B to the 12th-- sorry, B to the 21. And then we would also multiply this on this side, perhaps, by a 1 minus capital theta 1 B to the 21, or plus, plus theta 2 B to the 21 squared. So times 2. And so this kind of notation leads us to these coefficient estimates. So there's the simple order autoregressive terms and moving average terms. Order two, autoregressive, order three, moving average. But then for the seasonal autoregressive terms, we have these terms here. And for the seasonal moving average, we have the last term here. And what's generally important in fitting models is when you consider the last terms to enter into a model, such as in this case, the seasonal moving average term, its estimate is many multiples of its standard error. So that's a very important factor in the model. As an anecdote, let me just say-- let's see. If we take a series yt and we look at a seasonal difference operator and a first order difference operator, this turns out to be equal to the first difference operator multiplying the seasonal difference operator. And it equals basically 1 minus B plus B to the 21. Sorry, minus B to the 21 plus B to the 22 times yt. And so with seasonal differences in autoregressive moving averages, whether we take first differences non-seasonally and then seasonal differences subsequently, or reverse the order, we end up getting the same transformation of the data. Well, actually with economic time series, where we have a seasonal frequency of, say, months, then basically the seasonal differences correspond to year over year changes, whereas the simple differences are just period by period differences. Anyway, with this final example here, this is how the residual analysis looks. And it actually does yield residuals that do look a lot like white noise, although there is still this persistent spike just beyond the window width for the computation. But the distribution of the residuals looks more Gaussian, perhaps, than, well, much more than the cases before. So with that, in analyzing different time series models, there are these accuracy statistics that can be computed for any forecasting model. And so you're probably familiar with root mean squared error or mean squared error. But we also have the MAPE, which is the Mean Absolute Percentage Error. And I actually find that pretty useful for judging how effective the models are. And what's really nice about the FPP2 package is that one can just ask it to plot the time series and the forecast, and it generates a point forecast in a solid blue line and prediction intervals about that forecast, which assume Gaussian or normal distributions for the error terms. But one can see how those evolve into the future. And it's really consistent for prediction intervals to get wider the further out we forecast. And that's happening here. What's rather interesting about this forecast using the Yang-Zhang measure and forecasting that into the future is that it actually, after being at a lower level, is predicting that it might go back to more of a mean level of volatility. So that's an interesting property. Well, let's go back to the notes here. And let's see. There are extensions of geometric Brownian motion that we have seen before. One of them is a Poisson jump diffusion model, where the stochastic differential equation has the Brownian motion part as the first two terms, but then has a jump process as a last term where the jump process can be modeled as a Poisson process. So a jump occurs at some rate that defines the Poisson process. And the rate is lambda. And if an event in the Poisson process occurs, then there's a jump in the stock, which is given by this factor here. So one can actually model data with this Poisson jump diffusion model. I ended up working with David Pickard and Arshad Zakaria on fitting this Poisson jump diffusion model. And it was an interesting application in statistics of using the EM algorithm. Basically, the jumps are treated as latent or hidden values in our data. And those hidden values occur according to Poisson probabilities, like the probability of one jump or two jumps, can be computed using the Poisson parameter. And one can apply this EM algorithm to obtain maximum likelihood estimates of all the parameters. And in applying this, an interesting property that occurred was that there were quite frequent-- or the rate of Poisson events was quite high, like every couple of days. And what the model was doing was capturing heavier tailed distributions than a normal distribution. So instead of a single normal model for the return, one has a mixture of a normal with no jumps, a normal with one jump, two jumps, weighted according to Poisson rates. And so the implication of the model fitting was that one didn't have rare events necessarily that occurred, but there was evidence suggesting a jump process that related to trying to capture the excess variability of the stock price returns. Now, that leads to another model extending Brownian motion. And this is the Laplace distribution, where if instead of observing a time series over equal increments, so between 0, and one can think of just equal increments of time. So t1, t2, and so forth up to tn, say, from time 0 to capital T. It may be that we observe the Brownian motion process at random times t1, and then here's t2, here's t3, where the increments of time themselves are also random. And it turns out that if the times at which we observe have a time increment that's exponentially distributed, then the increments of the Brownian motion follow a Laplace distribution. So heavier tailed distributions than normal, and this is the density of a Laplace distribution, it depends on the exponential of minus the magnitude of the deviation of x from mu as opposed to the square of that deviation. A Gaussian or normal distribution would have a power 2 there with the Laplace distribution as the absolute. And with this distribution, we have a mean mu, which is at the center of the distribution. The variance turns out to depend on this scale factor B, which is twice B squared. So let's just take a look at what Laplace models look like. They basically are bilateral exponential distributions. And if we consider fitting the daily returns on the S&P 500, this is data for a four year period. This peaked distribution with exponentially decaying density is fitting the data really quite well. And more importantly, much better really than a Gaussian curve does. So here, we have the fit of the Gaussian bell curve in red, comparing it to the Laplace curve in blue. And an interesting question is, how do we judge whether one model or another is a good model? And a useful tool is to construct a q-q plot, which is a quantile-quantile plot. So we consider points where the vertical value corresponds to the magnitude of our data, and the horizontal coordinate corresponds to the theoretical value for the smallest from a sample of Laplace, the second smallest from a given Laplace distribution. And so we basically plot observed quantiles versus theoretical quantiles for the fitted model. So this fits quite close to a line, although it's not perfect. At least if it were perfect, it would even snake around the straight line where the sample quantiles equal the theoretical quantiles. If we do the same q-q plot for a Gaussian or normal model, this is what our q-q plot looks like. And so one can see that this second q-q plot is not fitting the data very well at all. So this would favor using the Laplace instead of the Gaussian as a model for independent daily returns. Now, the independence of our period by period returns is one that may not be satisfied by the data. And Robert Engle proposed looking at time series of returns and considering the possibility that the variability of these returns given by the variability of the epsilon t terms, that these, in fact, have time varying volatility sigma t, where the sigma t squared evolves according to a moving average of past squared errors. So an autoregressive conditionally heteroskedastic model is what he proposed. And in looking at this model, it's interesting to note that if one can re-express the ARCH model in terms of this squared error term and have this model in the second equation being consistent with the first, and this second model corresponds to there being an autoregressive model consistent with the squared returns. And so this Lagrange multiplier test can fit the autoregressive model to these epsilon hat squareds and test whether there is autoregressive structure or not. And if we look at the autocorrelations of the S&P 500 returns squared, you can see that the first almost 10 autocorrelations are significantly different from 0 in magnitude. So there is strong time dependence in the log returns. And so how does one fit this model? Well, the go to typically in statistical modeling is to consider a likelihood approach where we consider a density for our data specified by the model. So if the error is epsilon t are independent Gaussian distributions with different variances, then this likelihood function defines the joint density of our data given underlying parameters. And what becomes tricky with this likelihood specification is that there, in fact, are constraints on our parameters. So with the ARCH model, we can't have a negative alpha, because with the Gaussian squared epsilon, that could be arbitrarily large negative, or epsilon could be-- sorry. If the alphas were negative, then the epsilon squared could be arbitrarily large positive and we'd get a negative variance. So we can't have that. Also we have this property of the sum of the autoregressive parameters is less than 1. And this corresponds to the process not being explosive in its movements. And then let's see. An extension of the ARCH models was done by Bollerslev. And this basically adds to our ARCH model terms, like an order p ARCH model. It adds an order q set of terms on lags of the volatility. And if we consider the special case of the GARCH 1, 1 model, this is its form, which is very simple and parsimonious. What's rather surprising is that the empirical specification of these models is such that the GARCH 1, 1 model is often chosen or identified as the best GARCH order case. So we end up having a very simple model with just a few parameters to characterize the volatility. These notes talk about how the GARCH model induces an ARMA model. So this is some time series results that are gone through here. And there's a long run variance of the GARCH model that is given here. And with a GARCH 1, 1 model, there basically is a long run volatility sigma star, which has this particular formula. So one can find the long run variance of a GARCH model with this formula. This formula also leads to updates of volatility being a multiple of the long run variance, plus a deviation from that long run variance. So we have a maximum likelihood estimation for these models. Now, I wanted to share with you a case study using ARCH and GARCH models with foreign exchange returns. And so this note uses data collected from the Federal Reserve on foreign exchange values. Section 1.2 actually fits Brownian motion using different time scales. So not assuming time dependence. It actually is interesting to think about different time scales. But if we go to section 1.3 and look at time dependence in squared returns, this is the dollar pound returns. This shows the autocorrelation and partial autocorrelation of the returns. So there's strong partial autocorrelations of the actual series. And if we look at the squared returns, the actual series has high autocorrelations over time. But the partial autocorrelations have very high spikes at low lags. So this suggests an autoregressive model in the squared returns. And the note fits an ARCH 1 and ARCH 2. So one lag, or sorry, one autoregressive term, two autoregressive terms or 10, and then fits the GARCH 1, 1. And the results are highlighted here, just showing you the different coefficient estimates for these different models. They're all statistically significant in terms of the parameters. What's of interest, though, is just to look at the time series plot of the fitted volatilities using ARCH of different orders. So here's the ARCH 1 model. Here's the ARCH 2 model. A property of these ARCH models is that it never goes below 0. There's a lower bound. Here's the ARCH 10 model, which looks like it's maybe tracking time varying volatility well. And then finally, we can compare that with the GARCH 1, 1 model. So instead of having 10 autoregressive parameters in ARCH, the generalized ARCH model is capturing time varying volatility in an appealing way, whether that's really valid or not is of interest. But it certainly is an alternative to these arch models that is quite powerful. Well, here's just a graph of all three together. This note actually does a final section of looking at what happens if our error distribution is not Gaussian, but is a t distribution. There are packages, rugarch, which allow us to specify parameters and fits using t models, t distribution models for the errors. And what's very curious is in judging the histogram of standardized residuals, the t distribution seems to do a decent job. And so here's with Gaussian residuals, I guess. And then here's the Gaussian residuals and q-q plot associated with the standardized Gaussian assumption. Then finally, there's the q-q plot of standardized residuals with a t distribution assumed. So what's significant is just how the quantile-quantile plot suggests that this model is really fitting the data much, much better in terms of characterizing the variation. And the choice of which order model to use for the degrees of freedom, there's this negative log likelihood function of models for different t distributions as we vary the degrees of freedom for the t. And the t distribution has a heavier tail than a Gaussian distribution. At least if the degrees of freedom is really high, it's virtually equivalent to a Gaussian. But this is suggesting that there's possibly a 9 degrees of freedom for that. So that's a very interesting finding. And it actually arises with some mathematical analysis that t distributions are appropriate if we think of spherical symmetry in the number of dimensions equal to the degree of freedom. And so if you imagine a joint distribution that is spherically symmetric in really high dimensions, when you project that down onto coordinate axes, you end up getting a Gaussian distribution. But if their symmetry is just of, say, 9 dimensions, then you end up having a t distribution for what those projections are. So this suggests that in terms of time periods over which the distribution of volatility is stable, could be close to 9 dimensions. So perhaps corresponding to 9 periods of data, I believe. All right. Well, we'll finish there. There's a lot of interesting material for you to check out, if you like. And I hope you can enjoy reading some of the articles of people who've studied volatility and see what their work has contributed. And it's a really interesting area for final papers, modeling volatility, predicting volatility. This is really scratching the surface of the topic. So there's a lot of interesting problems you could study. All right. Thanks a lot."
+}

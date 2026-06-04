@@ -1,0 +1,4743 @@
+{
+  "index": 7,
+  "id": "yIn8Y_CSwPk",
+  "title": "Lecture 6: Stochastic Processes I (cont.); Regression Analysis",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 2.445,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 2.445,
+      "duration": 1.467,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.912,
+      "duration": 1.956,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 16.94,
+      "duration": 2.58,
+      "text": "PETER KEMPTHORNE: All\nright, we'll get started."
+    },
+    {
+      "start": 19.52,
+      "duration": 3.04,
+      "text": "See, last time we introduced\nyou to the definition"
+    },
+    {
+      "start": 22.56,
+      "duration": 1.48,
+      "text": "of martingales."
+    },
+    {
+      "start": 24.04,
+      "duration": 3.64,
+      "text": "And what we're going to\ndo the first part today"
+    },
+    {
+      "start": 27.68,
+      "duration": 5.28,
+      "text": "is to see how useful\nand powerful martingale"
+    },
+    {
+      "start": 32.96,
+      "duration": 4.56,
+      "text": "properties are and solving\ninteresting questions"
+    },
+    {
+      "start": 37.52,
+      "duration": 1.02,
+      "text": "and challenges."
+    },
+    {
+      "start": 38.54,
+      "duration": 5.3,
+      "text": "So just as a reminder, if\nwe have a stochastic process"
+    },
+    {
+      "start": 43.84,
+      "duration": 4.28,
+      "text": "xn, which is just a sequence\nof random variables,"
+    },
+    {
+      "start": 48.12,
+      "duration": 4.56,
+      "text": "generally the index n\ncorresponds to time."
+    },
+    {
+      "start": 52.68,
+      "duration": 5.36,
+      "text": "Then we can consider a\nderived process capital"
+    },
+    {
+      "start": 58.04,
+      "duration": 5.38,
+      "text": "M sub n, which is a function\nof the first n values"
+    },
+    {
+      "start": 63.42,
+      "duration": 2.68,
+      "text": "of the stochastic process x."
+    },
+    {
+      "start": 66.1,
+      "duration": 6.08,
+      "text": "And we say that this second\nprocess, this derived process,"
+    },
+    {
+      "start": 72.18,
+      "duration": 6.32,
+      "text": "is a martingale if the expected\nvalue into the future from time"
+    },
+    {
+      "start": 78.5,
+      "duration": 6.16,
+      "text": "n minus 1 is simply equal\nto the time n minus 1 value."
+    },
+    {
+      "start": 84.66,
+      "duration": 7.36,
+      "text": "So with the process\nevolving over time,"
+    },
+    {
+      "start": 92.02,
+      "duration": 3.46,
+      "text": "we have an M sub n process."
+    },
+    {
+      "start": 95.48,
+      "duration": 4.62,
+      "text": "Basically, at time n\nminus 1 we have a value,"
+    },
+    {
+      "start": 100.1,
+      "duration": 4.32,
+      "text": "our prediction is that\nthe expected value of that"
+    },
+    {
+      "start": 104.42,
+      "duration": 4.68,
+      "text": "in the future is Mn minus 1."
+    },
+    {
+      "start": 109.1,
+      "duration": 2.6,
+      "text": "And so some examples of these."
+    },
+    {
+      "start": 111.7,
+      "duration": 4.24,
+      "text": "We went through last time\na simple random walk."
+    },
+    {
+      "start": 115.94,
+      "duration": 3.65,
+      "text": "And with the simple\nrandom walk, we"
+    },
+    {
+      "start": 119.59,
+      "duration": 5.6,
+      "text": "end up having realizations\nof this martingale"
+    },
+    {
+      "start": 125.19,
+      "duration": 5.36,
+      "text": "that evolve from, say,\na starting point 0."
+    },
+    {
+      "start": 130.55,
+      "duration": 4.32,
+      "text": "And what's critical\nwith these realizations"
+    },
+    {
+      "start": 134.87,
+      "duration": 6.6,
+      "text": "is that the future paths\nthat have yet to be graphed"
+    },
+    {
+      "start": 141.47,
+      "duration": 4.48,
+      "text": "will have average value\nequal to the last point"
+    },
+    {
+      "start": 145.95,
+      "duration": 2.08,
+      "text": "on these realizations."
+    },
+    {
+      "start": 148.03,
+      "duration": 3.76,
+      "text": "So there's a notion of\nthere being flatness"
+    },
+    {
+      "start": 151.79,
+      "duration": 5.712,
+      "text": "in the martingale expectations."
+    },
+    {
+      "start": 157.502,
+      "duration": 5.688,
+      "text": "With the example here\nof a simple random walk"
+    },
+    {
+      "start": 163.19,
+      "duration": 4.28,
+      "text": "with equal probability of\ngoing up or down one step,"
+    },
+    {
+      "start": 167.47,
+      "duration": 4.88,
+      "text": "one can graph the\nstandard deviations up"
+    },
+    {
+      "start": 172.35,
+      "duration": 4.14,
+      "text": "from the average 0\nfor the processes."
+    },
+    {
+      "start": 176.49,
+      "duration": 6.76,
+      "text": "And basically the realizations\nof the random walk"
+    },
+    {
+      "start": 183.25,
+      "duration": 3.08,
+      "text": "will, by the central\nlimit theorem,"
+    },
+    {
+      "start": 186.33,
+      "duration": 3.24,
+      "text": "converge to a\nnormal distribution"
+    },
+    {
+      "start": 189.57,
+      "duration": 3.4,
+      "text": "at any given time point\nfar into the future."
+    },
+    {
+      "start": 192.97,
+      "duration": 6.28,
+      "text": "Now, this second\nexample of a martingale"
+    },
+    {
+      "start": 199.25,
+      "duration": 3.52,
+      "text": "where we have a random\nwalk Sn but then"
+    },
+    {
+      "start": 202.77,
+      "duration": 5.2,
+      "text": "we square it and subtract\nn times the sigma squared,"
+    },
+    {
+      "start": 207.97,
+      "duration": 2.32,
+      "text": "the variance of each\nof the steps, this"
+    },
+    {
+      "start": 210.29,
+      "duration": 2.04,
+      "text": "is also a martingale."
+    },
+    {
+      "start": 212.33,
+      "duration": 5.555,
+      "text": "And so looking at different\nrealizations of this martingale,"
+    },
+    {
+      "start": 217.885,
+      "duration": 2.125,
+      "text": "we can see that it's very,\nvery different from that"
+    },
+    {
+      "start": 220.01,
+      "duration": 2.96,
+      "text": "of a simple random walk."
+    },
+    {
+      "start": 222.97,
+      "duration": 5.32,
+      "text": "And importantly,\nthere's basically"
+    },
+    {
+      "start": 228.29,
+      "duration": 4.36,
+      "text": "of a lower limit\nof the process, it"
+    },
+    {
+      "start": 232.65,
+      "duration": 6.21,
+      "text": "appears, for fixed n and\nan unbounded upper limit."
+    },
+    {
+      "start": 238.86,
+      "duration": 5.84,
+      "text": "But this process as\nwell is a martingale."
+    },
+    {
+      "start": 244.7,
+      "duration": 1.72,
+      "text": "And let's see."
+    },
+    {
+      "start": 246.42,
+      "duration": 2.84,
+      "text": "A different martingale\ncan be defined,"
+    },
+    {
+      "start": 249.26,
+      "duration": 6.16,
+      "text": "not in terms of random\nwalks with steps that add,"
+    },
+    {
+      "start": 255.42,
+      "duration": 7.82,
+      "text": "but with random shifts\nwith factors x1 to xn."
+    },
+    {
+      "start": 263.24,
+      "duration": 5.06,
+      "text": "So if we have Mn being\nthe product of x1 to xn,"
+    },
+    {
+      "start": 268.3,
+      "duration": 5.68,
+      "text": "where the x's are independent\nrandom variables with mean value"
+    },
+    {
+      "start": 273.98,
+      "duration": 6.4,
+      "text": "1, then this particular\nprocess M sub n"
+    },
+    {
+      "start": 280.38,
+      "duration": 3.76,
+      "text": "will be a martingale with\nrespect to the original series."
+    },
+    {
+      "start": 284.14,
+      "duration": 8.4,
+      "text": "So here's an example of\nour Bernoulli factors,"
+    },
+    {
+      "start": 292.54,
+      "duration": 7.9,
+      "text": "which are with 50%\nprobability 1.5 and with 50%"
+    },
+    {
+      "start": 300.44,
+      "duration": 2.88,
+      "text": "probability 0.5."
+    },
+    {
+      "start": 303.32,
+      "duration": 6.08,
+      "text": "This would correspond\nto the change in wealth"
+    },
+    {
+      "start": 309.4,
+      "duration": 4.04,
+      "text": "from betting your wealth\nin a lottery where"
+    },
+    {
+      "start": 313.44,
+      "duration": 6.64,
+      "text": "you either make 50% or lose\n50% with equal probability."
+    },
+    {
+      "start": 320.08,
+      "duration": 7.14,
+      "text": "And here is the graph of a\nrealization over 50 steps."
+    },
+    {
+      "start": 327.22,
+      "duration": 3.18,
+      "text": "Here's other realizations."
+    },
+    {
+      "start": 330.4,
+      "duration": 5.8,
+      "text": "And what's interesting\nto see is that"
+    },
+    {
+      "start": 336.2,
+      "duration": 4.04,
+      "text": "with this particular\nmartingale, there"
+    },
+    {
+      "start": 340.24,
+      "duration": 4.88,
+      "text": "are opportunities to, basically,\nif you're playing this lottery"
+    },
+    {
+      "start": 345.12,
+      "duration": 6.14,
+      "text": "game at each step, to be able\nto grow your wealth to 5 or 10"
+    },
+    {
+      "start": 351.26,
+      "duration": 3.6,
+      "text": "times its initial value."
+    },
+    {
+      "start": 354.86,
+      "duration": 5.92,
+      "text": "But with moderate or\neven high probability,"
+    },
+    {
+      "start": 360.78,
+      "duration": 4.0,
+      "text": "you actually have lost\nalmost all your wealth."
+    },
+    {
+      "start": 364.78,
+      "duration": 3.68,
+      "text": "So yet another\nexample, and this one"
+    },
+    {
+      "start": 368.46,
+      "duration": 5.0,
+      "text": "is really rather\ncurious to introduce,"
+    },
+    {
+      "start": 373.46,
+      "duration": 4.88,
+      "text": "but it shows you how we can\nbe flexible in generating"
+    },
+    {
+      "start": 378.34,
+      "duration": 2.92,
+      "text": "or constructing martingales."
+    },
+    {
+      "start": 381.26,
+      "duration": 6.84,
+      "text": "If we have the yn\nsequence being iid"
+    },
+    {
+      "start": 388.1,
+      "duration": 8.16,
+      "text": "random variables and the\nmoment generating function"
+    },
+    {
+      "start": 396.26,
+      "duration": 11.64,
+      "text": "e to the lambda yn\nor e to the lambda y,"
+    },
+    {
+      "start": 407.9,
+      "duration": 5.01,
+      "text": "yn is equal to the moment\ngenerating function."
+    },
+    {
+      "start": 412.91,
+      "duration": 3.84,
+      "text": "Or that's e to the ty."
+    },
+    {
+      "start": 416.75,
+      "duration": 3.92,
+      "text": "In our notation, we're going\nto use a phi of lambda here"
+    },
+    {
+      "start": 420.67,
+      "duration": 1.14,
+      "text": "or phi of t."
+    },
+    {
+      "start": 424.47,
+      "duration": 10.8,
+      "text": "Then if we consider\ntaking xn equaling e"
+    },
+    {
+      "start": 435.27,
+      "duration": 7.56,
+      "text": "to the lambda yn divided\nby phi of lambda,"
+    },
+    {
+      "start": 442.83,
+      "duration": 7.48,
+      "text": "then this xn will\nbe a martingale."
+    },
+    {
+      "start": 450.31,
+      "duration": 3.92,
+      "text": "Or this xn, rather,\nwill be factors that"
+    },
+    {
+      "start": 454.23,
+      "duration": 4.8,
+      "text": "have expectation equaling 1."
+    },
+    {
+      "start": 459.03,
+      "duration": 6.44,
+      "text": "And if we take the product\nof these x's, we basically"
+    },
+    {
+      "start": 465.47,
+      "duration": 7.7,
+      "text": "have M sub n equaling e to the\nlambda times the sum of the yn's"
+    },
+    {
+      "start": 473.17,
+      "duration": 10.04,
+      "text": "divided by phi of lambda\nto the n-th power."
+    },
+    {
+      "start": 483.21,
+      "duration": 3.08,
+      "text": "This will also be a martingale."
+    },
+    {
+      "start": 486.29,
+      "duration": 4.72,
+      "text": "And what we'll see towards\nthe middle of this lecture"
+    },
+    {
+      "start": 491.01,
+      "duration": 2.96,
+      "text": "is that this\nparticular martingale"
+    },
+    {
+      "start": 493.97,
+      "duration": 2.64,
+      "text": "can be used to\nsolve probabilities"
+    },
+    {
+      "start": 496.61,
+      "duration": 3.88,
+      "text": "of gambler's ruin, when\nyou have gambles that"
+    },
+    {
+      "start": 500.49,
+      "duration": 6.86,
+      "text": "have different probabilities\nof success versus failure,"
+    },
+    {
+      "start": 507.35,
+      "duration": 4.5,
+      "text": "not necessarily equal fair bets."
+    },
+    {
+      "start": 511.85,
+      "duration": 0.62,
+      "text": "All right."
+    },
+    {
+      "start": 512.47,
+      "duration": 3.9,
+      "text": "Well, with martingales,\nit turns out"
+    },
+    {
+      "start": 516.37,
+      "duration": 5.4,
+      "text": "to be very useful\nto consider what"
+    },
+    {
+      "start": 521.77,
+      "duration": 9.57,
+      "text": "we call the information sets on\nthe subsequence of variables x1"
+    },
+    {
+      "start": 531.34,
+      "duration": 1.64,
+      "text": "through xn."
+    },
+    {
+      "start": 532.98,
+      "duration": 6.68,
+      "text": "So if we think of information\nprogressing over time,"
+    },
+    {
+      "start": 539.66,
+      "duration": 4.2,
+      "text": "the information up\nto time little n"
+    },
+    {
+      "start": 543.86,
+      "duration": 4.12,
+      "text": "can be given by the\noutcomes of the x process."
+    },
+    {
+      "start": 547.98,
+      "duration": 7.22,
+      "text": "And we can consider\nexpectations of random variables"
+    },
+    {
+      "start": 555.2,
+      "duration": 2.54,
+      "text": "given this information set."
+    },
+    {
+      "start": 557.74,
+      "duration": 3.62,
+      "text": "And the kinds of\nrandom variables"
+    },
+    {
+      "start": 561.36,
+      "duration": 4.84,
+      "text": "we might be interested in,\nz, can correspond to, say,"
+    },
+    {
+      "start": 566.2,
+      "duration": 5.74,
+      "text": "trading strategies based on\nthe outcomes of asset prices"
+    },
+    {
+      "start": 571.94,
+      "duration": 2.76,
+      "text": "progressing over time."
+    },
+    {
+      "start": 574.7,
+      "duration": 9.72,
+      "text": "And if we have, let's see, if\nthis original information set is"
+    },
+    {
+      "start": 584.42,
+      "duration": 5.9,
+      "text": "represented in terms\nof a martingale,"
+    },
+    {
+      "start": 590.32,
+      "duration": 13.72,
+      "text": "then we can consider functions\nof the first n values given"
+    },
+    {
+      "start": 604.04,
+      "duration": 10.34,
+      "text": "by y, and relating to this\nfunction of the first n values,"
+    },
+    {
+      "start": 614.38,
+      "duration": 5.14,
+      "text": "which could be, say, the trading\ngains from applying a trading"
+    },
+    {
+      "start": 619.52,
+      "duration": 4.84,
+      "text": "strategy with asset\nprices given by the x's."
+    },
+    {
+      "start": 624.36,
+      "duration": 5.28,
+      "text": "It will be very useful to\nuse random variables that"
+    },
+    {
+      "start": 629.64,
+      "duration": 3.2,
+      "text": "are called non-anticipating."
+    },
+    {
+      "start": 632.84,
+      "duration": 4.6,
+      "text": "And so a non-anticipating\nrandom variable"
+    },
+    {
+      "start": 637.44,
+      "duration": 6.2,
+      "text": "is a random variable\nAn that is defined"
+    },
+    {
+      "start": 643.64,
+      "duration": 3.4,
+      "text": "signed by the information set."
+    },
+    {
+      "start": 647.04,
+      "duration": 4.66,
+      "text": "It's non-random given the\ninformation set of the first n"
+    },
+    {
+      "start": 651.7,
+      "duration": 2.32,
+      "text": "minus 1 x's."
+    },
+    {
+      "start": 654.02,
+      "duration": 8.0,
+      "text": "So if we wanted to represent\nthe outcome of making trading"
+    },
+    {
+      "start": 662.02,
+      "duration": 5.48,
+      "text": "decisions using the\nfirst n minus 1 values,"
+    },
+    {
+      "start": 667.5,
+      "duration": 4.0,
+      "text": "this An could characterize\nhow we might invest"
+    },
+    {
+      "start": 671.5,
+      "duration": 3.72,
+      "text": "for the n-th trading period."
+    },
+    {
+      "start": 675.22,
+      "duration": 6.2,
+      "text": "Now, with such a non\nanticipating random variable,"
+    },
+    {
+      "start": 681.42,
+      "duration": 9.0,
+      "text": "we can consider a transformation\nof the original martingale,"
+    },
+    {
+      "start": 690.42,
+      "duration": 7.84,
+      "text": "given by M's with no tildes,\nand consider a transformation"
+    },
+    {
+      "start": 698.26,
+      "duration": 4.65,
+      "text": "of the Mn martingale\nby considering"
+    },
+    {
+      "start": 702.91,
+      "duration": 3.7,
+      "text": "this decomposition of M tilde."
+    },
+    {
+      "start": 706.61,
+      "duration": 3.42,
+      "text": "So we have an initial value M0."
+    },
+    {
+      "start": 710.03,
+      "duration": 6.6,
+      "text": "Then we have the non\nanticipating variable A1 that"
+    },
+    {
+      "start": 716.63,
+      "duration": 3.76,
+      "text": "depends only on\ninformation at time 0 times"
+    },
+    {
+      "start": 720.39,
+      "duration": 5.0,
+      "text": "the increment of the Martingale\nfrom time 0 to time 1."
+    },
+    {
+      "start": 725.39,
+      "duration": 2.18,
+      "text": "And we add successive terms."
+    },
+    {
+      "start": 727.57,
+      "duration": 4.22,
+      "text": "So these A's basically\nare random variables"
+    },
+    {
+      "start": 731.79,
+      "duration": 3.12,
+      "text": "at the beginning of time."
+    },
+    {
+      "start": 734.91,
+      "duration": 12.36,
+      "text": "But after observing, say, j\ntime periods, the Aj, let's see,"
+    },
+    {
+      "start": 747.27,
+      "duration": 1.16,
+      "text": "will be--"
+    },
+    {
+      "start": 748.43,
+      "duration": 3.68,
+      "text": "or j minus 1 time\nperiods, the Aj"
+    },
+    {
+      "start": 752.11,
+      "duration": 5.89,
+      "text": "will be defined and non-random\ngoing from time j to j plus 1."
+    },
+    {
+      "start": 761.65,
+      "duration": 7.32,
+      "text": "And if you were to look at\nthis M tilde sub n definition,"
+    },
+    {
+      "start": 768.97,
+      "duration": 6.0,
+      "text": "we basically have terms\nthat are given by increments"
+    },
+    {
+      "start": 774.97,
+      "duration": 5.88,
+      "text": "of the martingale process,\nwhere each of those increments"
+    },
+    {
+      "start": 780.85,
+      "duration": 4.0,
+      "text": "has expectation equal to 0."
+    },
+    {
+      "start": 784.85,
+      "duration": 6.0,
+      "text": "And so if we take the\nexpectation of those"
+    },
+    {
+      "start": 790.85,
+      "duration": 8.44,
+      "text": "from time 0, then by conditional\nexpectation properties,"
+    },
+    {
+      "start": 799.29,
+      "duration": 8.68,
+      "text": "the A's are fixed given the\ninformation up to time or j"
+    },
+    {
+      "start": 807.97,
+      "duration": 7.4,
+      "text": "minus 1, and then the variation\nof the martingale process"
+    },
+    {
+      "start": 815.37,
+      "duration": 5.69,
+      "text": "from time j minus 1 to\nj has expectation 0."
+    },
+    {
+      "start": 821.06,
+      "duration": 4.72,
+      "text": "Anyway, the martingale\ntransform theorem"
+    },
+    {
+      "start": 825.78,
+      "duration": 5.62,
+      "text": "says that this M tilde n\nprocess is a martingale"
+    },
+    {
+      "start": 831.4,
+      "duration": 5.86,
+      "text": "also with respect to\nthe information sets fn."
+    },
+    {
+      "start": 837.26,
+      "duration": 3.72,
+      "text": "And we often call this\ncollection of information"
+    },
+    {
+      "start": 840.98,
+      "duration": 3.08,
+      "text": "sets a filtration."
+    },
+    {
+      "start": 844.06,
+      "duration": 3.74,
+      "text": "And so when we think\nof different processes,"
+    },
+    {
+      "start": 847.8,
+      "duration": 6.3,
+      "text": "different realizations of\na process up to time n,"
+    },
+    {
+      "start": 854.1,
+      "duration": 4.96,
+      "text": "then whatever the\nhistory is prior"
+    },
+    {
+      "start": 859.06,
+      "duration": 6.32,
+      "text": "to n, that is the information\nset we have available."
+    },
+    {
+      "start": 865.38,
+      "duration": 7.28,
+      "text": "And as we observe successive\nvalues of the original Mn"
+    },
+    {
+      "start": 872.66,
+      "duration": 6.42,
+      "text": "process, we're basically\nadding more information"
+    },
+    {
+      "start": 879.08,
+      "duration": 2.84,
+      "text": "about the realizations."
+    },
+    {
+      "start": 881.92,
+      "duration": 4.0,
+      "text": "And that's how it progresses."
+    },
+    {
+      "start": 885.92,
+      "duration": 5.64,
+      "text": "Now, with martingales, an\nimportant concept for us"
+    },
+    {
+      "start": 891.56,
+      "duration": 6.28,
+      "text": "is a stopping time random\nvariable, which we'll call tau."
+    },
+    {
+      "start": 897.84,
+      "duration": 4.16,
+      "text": "And so what the\nstopping time variable"
+    },
+    {
+      "start": 902.0,
+      "duration": 9.12,
+      "text": "is, is a random variable\nthat characterizes"
+    },
+    {
+      "start": 911.12,
+      "duration": 5.72,
+      "text": "whether, let's see, or\nI guess at any time n,"
+    },
+    {
+      "start": 916.84,
+      "duration": 6.0,
+      "text": "we know whether the stopping\ntime has occurred or not."
+    },
+    {
+      "start": 922.84,
+      "duration": 7.52,
+      "text": "So the event of the stopping\ntime being less than or equal"
+    },
+    {
+      "start": 930.36,
+      "duration": 6.9,
+      "text": "to n steps, that has to be\nknown in the information set up"
+    },
+    {
+      "start": 937.26,
+      "duration": 0.94,
+      "text": "to time n."
+    },
+    {
+      "start": 938.2,
+      "duration": 4.74,
+      "text": "So the notation here\nis a little bit tricky."
+    },
+    {
+      "start": 942.94,
+      "duration": 9.04,
+      "text": "We think of this set or event\nbeing the underlying probability"
+    },
+    {
+      "start": 951.98,
+      "duration": 6.56,
+      "text": "distribution states where\nthe tau variable is less than"
+    },
+    {
+      "start": 958.54,
+      "duration": 2.08,
+      "text": "or equal to n."
+    },
+    {
+      "start": 960.62,
+      "duration": 8.0,
+      "text": "And at any time n, we know\nwhether this set has occurred"
+    },
+    {
+      "start": 968.62,
+      "duration": 1.56,
+      "text": "or not."
+    },
+    {
+      "start": 970.18,
+      "duration": 6.16,
+      "text": "So the stopping time\nis a random variable,"
+    },
+    {
+      "start": 976.34,
+      "duration": 2.78,
+      "text": "and it could be infinite."
+    },
+    {
+      "start": 979.12,
+      "duration": 4.98,
+      "text": "So it takes values on\nthe set S varying from 0"
+    },
+    {
+      "start": 984.1,
+      "duration": 5.88,
+      "text": "up to possibly infinity if\nthe process never stops."
+    },
+    {
+      "start": 989.98,
+      "duration": 4.65,
+      "text": "Now, a way of trying\nto help explain"
+    },
+    {
+      "start": 994.63,
+      "duration": 5.38,
+      "text": "this is with a stopping\ntime random variable,"
+    },
+    {
+      "start": 1000.01,
+      "duration": 6.6,
+      "text": "we have different omegas\nin the probability space,"
+    },
+    {
+      "start": 1006.61,
+      "duration": 5.54,
+      "text": "and the omegas can be thought of\nas indexing all possible paths."
+    },
+    {
+      "start": 1012.15,
+      "duration": 4.6,
+      "text": "So with different realizations,\nwe have a different omega."
+    },
+    {
+      "start": 1016.75,
+      "duration": 10.48,
+      "text": "And so with these paths, our\nexpectation or our event E,"
+    },
+    {
+      "start": 1027.23,
+      "duration": 5.32,
+      "text": "which is the set of paths\nfor which the stopping"
+    },
+    {
+      "start": 1032.55,
+      "duration": 4.96,
+      "text": "time evaluated on that path\nis less than or equal to n,"
+    },
+    {
+      "start": 1037.51,
+      "duration": 6.96,
+      "text": "this event is known to either\nhave occurred or not to occur."
+    },
+    {
+      "start": 1044.47,
+      "duration": 6.44,
+      "text": "So we have the indicator\nof the path being"
+    },
+    {
+      "start": 1050.91,
+      "duration": 4.66,
+      "text": "in this set E is either 0 or 1."
+    },
+    {
+      "start": 1055.57,
+      "duration": 8.36,
+      "text": "And so we can work with\nthis random variable,"
+    },
+    {
+      "start": 1063.93,
+      "duration": 6.2,
+      "text": "the indicator of whether the\nstopping time has occurred"
+    },
+    {
+      "start": 1070.13,
+      "duration": 1.28,
+      "text": "or not."
+    },
+    {
+      "start": 1071.41,
+      "duration": 7.08,
+      "text": "And with this\nsetup, we can think"
+    },
+    {
+      "start": 1078.49,
+      "duration": 7.16,
+      "text": "of the process that is governed\nby a stopping time tau."
+    },
+    {
+      "start": 1085.65,
+      "duration": 4.6,
+      "text": "We can represent the\nprocess at the stopped time"
+    },
+    {
+      "start": 1090.25,
+      "duration": 5.76,
+      "text": "tau as the sum of\nthe realizations xn"
+    },
+    {
+      "start": 1096.01,
+      "duration": 5.64,
+      "text": "times a simple indicator of\nwhether the stopping time equals"
+    },
+    {
+      "start": 1101.65,
+      "duration": 2.2,
+      "text": "n or not."
+    },
+    {
+      "start": 1103.85,
+      "duration": 4.36,
+      "text": "So we basically have\nour stopped process"
+    },
+    {
+      "start": 1108.21,
+      "duration": 8.89,
+      "text": "being a sum of weights times the\nxn's, where those weights are"
+    },
+    {
+      "start": 1117.1,
+      "duration": 1.46,
+      "text": "actually 0 or 1."
+    },
+    {
+      "start": 1121.1,
+      "duration": 4.84,
+      "text": "Now, in the mathematics of\ndealing with stopping times,"
+    },
+    {
+      "start": 1125.94,
+      "duration": 7.84,
+      "text": "the potential for infinite\nvalues of the stopping time"
+    },
+    {
+      "start": 1133.78,
+      "duration": 2.24,
+      "text": "makes things complicated."
+    },
+    {
+      "start": 1136.02,
+      "duration": 5.36,
+      "text": "And what we can do is\nconsider the minimum"
+    },
+    {
+      "start": 1141.38,
+      "duration": 5.36,
+      "text": "of n and the stopping\ntime tau denoting that"
+    },
+    {
+      "start": 1146.74,
+      "duration": 5.48,
+      "text": "by n caret tau, so the\nminimum of n and tau."
+    },
+    {
+      "start": 1152.22,
+      "duration": 5.92,
+      "text": "And so if we have\na finite value n,"
+    },
+    {
+      "start": 1158.14,
+      "duration": 4.24,
+      "text": "this truncated\nstopping time is going"
+    },
+    {
+      "start": 1162.38,
+      "duration": 6.2,
+      "text": "to be a measurable random\nvariable with respect"
+    },
+    {
+      "start": 1168.58,
+      "duration": 7.74,
+      "text": "to the information set script\nFM, information set FM for M"
+    },
+    {
+      "start": 1176.32,
+      "duration": 1.72,
+      "text": "greater than or equal to n."
+    },
+    {
+      "start": 1178.04,
+      "duration": 10.36,
+      "text": "So if we imagine basically\nthis time increasing,"
+    },
+    {
+      "start": 1188.4,
+      "duration": 6.44,
+      "text": "and we think of the\nminimum of n and tau,"
+    },
+    {
+      "start": 1194.84,
+      "duration": 5.92,
+      "text": "then we will be\nconsidering processes"
+    },
+    {
+      "start": 1200.76,
+      "duration": 7.44,
+      "text": "that maybe stop for a given\ntau, for a given realization."
+    },
+    {
+      "start": 1208.2,
+      "duration": 3.48,
+      "text": "Or if they don't really\nstop until later,"
+    },
+    {
+      "start": 1211.68,
+      "duration": 4.24,
+      "text": "we just consider the\nvalue at the n point."
+    },
+    {
+      "start": 1215.92,
+      "duration": 6.96,
+      "text": "Now, this theorem can be\nproven with this argument."
+    },
+    {
+      "start": 1222.88,
+      "duration": 6.98,
+      "text": "And what you can see\nis that we define"
+    },
+    {
+      "start": 1229.86,
+      "duration": 8.88,
+      "text": "our non-anticipating variables\nto be the indicator of tau,"
+    },
+    {
+      "start": 1238.74,
+      "duration": 2.6,
+      "text": "the stopping time being\ngreater than or equal to k."
+    },
+    {
+      "start": 1241.34,
+      "duration": 6.2,
+      "text": "And so substituting\nthat in to the formula"
+    },
+    {
+      "start": 1247.54,
+      "duration": 10.56,
+      "text": "for the decomposition, we end\nup getting that this stopped"
+    },
+    {
+      "start": 1258.1,
+      "duration": 4.44,
+      "text": "martingale at time,\nthe minimum of n or tau"
+    },
+    {
+      "start": 1262.54,
+      "duration": 4.32,
+      "text": "is actually equal to the sum of\nthese non-anticipating variables"
+    },
+    {
+      "start": 1266.86,
+      "duration": 3.44,
+      "text": "times the increments\nof the martingale."
+    },
+    {
+      "start": 1270.3,
+      "duration": 6.96,
+      "text": "So this is easily a\nmartingale transform"
+    },
+    {
+      "start": 1277.26,
+      "duration": 3.64,
+      "text": "and satisfies that\nmartingale transform theorem."
+    },
+    {
+      "start": 1280.9,
+      "duration": 6.73,
+      "text": "So this stopped martingale\nat the minimum of n and tau"
+    },
+    {
+      "start": 1287.63,
+      "duration": 2.04,
+      "text": "is also a martingale."
+    },
+    {
+      "start": 1289.67,
+      "duration": 6.3,
+      "text": "What we then want to\ndo is consider taking--"
+    },
+    {
+      "start": 1295.97,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 1296.47,
+      "duration": 3.02,
+      "text": "I'm not sure if we do\nit here shortly or not,"
+    },
+    {
+      "start": 1299.49,
+      "duration": 5.26,
+      "text": "but we'll basically\nlet little n grow large"
+    },
+    {
+      "start": 1304.75,
+      "duration": 3.5,
+      "text": "and argue that in\nthe limiting case,"
+    },
+    {
+      "start": 1308.25,
+      "duration": 4.9,
+      "text": "we basically have the stopped\nmartingale without the minimum"
+    },
+    {
+      "start": 1313.15,
+      "duration": 1.88,
+      "text": "of n in tau."
+    },
+    {
+      "start": 1315.03,
+      "duration": 3.8,
+      "text": "Well, let's look at\nthe simple random"
+    },
+    {
+      "start": 1318.83,
+      "duration": 6.6,
+      "text": "walk we had before where the\nsteps are plus 1 or negative 1."
+    },
+    {
+      "start": 1325.43,
+      "duration": 6.4,
+      "text": "And we consider Sn being\nthe sum of the steps."
+    },
+    {
+      "start": 1331.83,
+      "duration": 6.8,
+      "text": "This can be used to characterize\nthe problem of playing"
+    },
+    {
+      "start": 1338.63,
+      "duration": 5.4,
+      "text": "against an opponent and\nbetting $1 with each iteration"
+    },
+    {
+      "start": 1344.03,
+      "duration": 1.42,
+      "text": "of the game."
+    },
+    {
+      "start": 1345.45,
+      "duration": 4.12,
+      "text": "And you either win\nor lose that dollar"
+    },
+    {
+      "start": 1349.57,
+      "duration": 3.06,
+      "text": "each iteration of the game."
+    },
+    {
+      "start": 1352.63,
+      "duration": 13.98,
+      "text": "And we can consider having\na hit level for the sum Sn"
+    },
+    {
+      "start": 1366.61,
+      "duration": 3.24,
+      "text": "being equal to\nplus A or minus B."
+    },
+    {
+      "start": 1369.85,
+      "duration": 7.04,
+      "text": "And so basically, this\nreflects whether we"
+    },
+    {
+      "start": 1376.89,
+      "duration": 9.56,
+      "text": "beat our opponent or not,\nwhere our opponent has a,"
+    },
+    {
+      "start": 1386.45,
+      "duration": 5.96,
+      "text": "well, let's see, if\nwe have a bankroll B"
+    },
+    {
+      "start": 1392.41,
+      "duration": 3.8,
+      "text": "and our opponent\nhas a bankroll A,"
+    },
+    {
+      "start": 1396.21,
+      "duration": 6.21,
+      "text": "do we win the entire bankroll\nof our opponent and hit A first?"
+    },
+    {
+      "start": 1405.34,
+      "duration": 3.64,
+      "text": "So we have this\nproblem, and we want"
+    },
+    {
+      "start": 1408.98,
+      "duration": 5.97,
+      "text": "to know what's the likelihood\nof basically player one losing."
+    },
+    {
+      "start": 1417.46,
+      "duration": 3.52,
+      "text": "And the SN is a martingale."
+    },
+    {
+      "start": 1420.98,
+      "duration": 11.52,
+      "text": "And tau, the time at which the\nsum Sn equals plus A or minus B"
+    },
+    {
+      "start": 1432.5,
+      "duration": 2.0,
+      "text": "is a stopping time."
+    },
+    {
+      "start": 1434.5,
+      "duration": 4.64,
+      "text": "And so this is a martingale\nby the stopping time theorem."
+    },
+    {
+      "start": 1439.14,
+      "duration": 3.36,
+      "text": "And with such a\nmartingale we have"
+    },
+    {
+      "start": 1442.5,
+      "duration": 8.2,
+      "text": "that the expected value\nof S at the stopped time"
+    },
+    {
+      "start": 1450.7,
+      "duration": 5.44,
+      "text": "is equal to the expected\nvalue initially."
+    },
+    {
+      "start": 1456.14,
+      "duration": 4.48,
+      "text": "And that is equal to 0."
+    },
+    {
+      "start": 1460.62,
+      "duration": 6.02,
+      "text": "Starting out at time\n0, Sn is equal to 0."
+    },
+    {
+      "start": 1466.64,
+      "duration": 5.52,
+      "text": "And so if we take the limit\nas n goes to infinity,"
+    },
+    {
+      "start": 1472.16,
+      "duration": 5.0,
+      "text": "this converges to\nthe random variable S"
+    },
+    {
+      "start": 1477.16,
+      "duration": 2.84,
+      "text": "tau with probability 1."
+    },
+    {
+      "start": 1480.0,
+      "duration": 7.68,
+      "text": "And this is proven partly\nby showing that the stopping"
+    },
+    {
+      "start": 1487.68,
+      "duration": 1.96,
+      "text": "time can't be infinite."
+    },
+    {
+      "start": 1489.64,
+      "duration": 5.28,
+      "text": "But if we assume that\nthese results are valid,"
+    },
+    {
+      "start": 1494.92,
+      "duration": 5.64,
+      "text": "then we have 0 is equal to\nthe expected value of S tau."
+    },
+    {
+      "start": 1500.56,
+      "duration": 6.16,
+      "text": "And if we write out what S tau\nis, at the stopping time tau,"
+    },
+    {
+      "start": 1506.72,
+      "duration": 4.68,
+      "text": "it's either going to\nequal A times the S tau"
+    },
+    {
+      "start": 1511.4,
+      "duration": 9.38,
+      "text": "hitting A or minus B times the\nstopped value equaling minus B."
+    },
+    {
+      "start": 1520.78,
+      "duration": 4.96,
+      "text": "And if we take expectations\nof this equation,"
+    },
+    {
+      "start": 1525.74,
+      "duration": 6.08,
+      "text": "we basically have 0 is equal\nto A times the probability"
+    },
+    {
+      "start": 1531.82,
+      "duration": 5.32,
+      "text": "that we hit the level plus A\nminus B times the probability"
+    },
+    {
+      "start": 1537.14,
+      "duration": 4.44,
+      "text": "that we hit minus B. And those\nprobabilities are complements"
+    },
+    {
+      "start": 1541.58,
+      "duration": 2.36,
+      "text": "of each other."
+    },
+    {
+      "start": 1543.94,
+      "duration": 5.0,
+      "text": "So the chance that we hit\nminus B at the stop time"
+    },
+    {
+      "start": 1548.94,
+      "duration": 3.12,
+      "text": "is 1 minus the\nprobability that we hit A."
+    },
+    {
+      "start": 1552.06,
+      "duration": 4.44,
+      "text": "So using these\nrelationships, we get"
+    },
+    {
+      "start": 1556.5,
+      "duration": 9.24,
+      "text": "that the probability that we hit\nA first is B over A plus B. Yes?"
+    },
+    {
+      "start": 1565.74,
+      "duration": 2.64,
+      "text": "AUDIENCE: So on the previous\nslide, can I just check,"
+    },
+    {
+      "start": 1568.38,
+      "duration": 1.82,
+      "text": "I don't know if it\nmight be an error"
+    },
+    {
+      "start": 1570.2,
+      "duration": 2.34,
+      "text": "or if I don't\nunderstand something."
+    },
+    {
+      "start": 1572.54,
+      "duration": 3.83,
+      "text": "Is it meant to say\nsolve for S tau plus A"
+    },
+    {
+      "start": 1576.37,
+      "duration": 1.25,
+      "text": "where it says problem in bold?"
+    },
+    {
+      "start": 1580.83,
+      "duration": 1.36,
+      "text": "PETER KEMPTHORNE: Let's see."
+    },
+    {
+      "start": 1582.19,
+      "duration": 1.3,
+      "text": "Can you ask the question again?"
+    },
+    {
+      "start": 1583.49,
+      "duration": 2.26,
+      "text": "AUDIENCE: So where it says\nproblem in bold [INAUDIBLE]"
+    },
+    {
+      "start": 1585.75,
+      "duration": 3.4,
+      "text": "and then problem solved, is it\nmeant to say probability that S"
+    },
+    {
+      "start": 1589.15,
+      "duration": 0.737,
+      "text": "tau--"
+    },
+    {
+      "start": 1589.887,
+      "duration": 1.083,
+      "text": "PETER KEMPTHORNE: Oh, yes."
+    },
+    {
+      "start": 1590.97,
+      "duration": 6.62,
+      "text": "It's probably the S tau equals\nplus A. Yes, definitely."
+    },
+    {
+      "start": 1597.59,
+      "duration": 1.6,
+      "text": "No, no, that's fine."
+    },
+    {
+      "start": 1599.19,
+      "duration": 0.5,
+      "text": "That's fine."
+    },
+    {
+      "start": 1599.69,
+      "duration": 1.78,
+      "text": "There's always typos."
+    },
+    {
+      "start": 1601.47,
+      "duration": 4.6,
+      "text": "Fewer typos on slides than on\nthe Blackboard, I would say."
+    },
+    {
+      "start": 1606.07,
+      "duration": 4.24,
+      "text": "That's the benefit of having\nthe slides, and easier to fix."
+    },
+    {
+      "start": 1610.31,
+      "duration": 0.58,
+      "text": "All right."
+    },
+    {
+      "start": 1610.89,
+      "duration": 1.34,
+      "text": "Thank you for that."
+    },
+    {
+      "start": 1612.23,
+      "duration": 0.58,
+      "text": "All right."
+    },
+    {
+      "start": 1612.81,
+      "duration": 3.98,
+      "text": "So we get this really nice\nformula for the likelihood"
+    },
+    {
+      "start": 1616.79,
+      "duration": 9.04,
+      "text": "of hitting A before hitting\nminus B. And so by symmetry,"
+    },
+    {
+      "start": 1625.83,
+      "duration": 4.44,
+      "text": "if A equals B, then\nthis is simply 1/2."
+    },
+    {
+      "start": 1630.27,
+      "duration": 8.3,
+      "text": "But if the player B\nhas a larger bankroll"
+    },
+    {
+      "start": 1638.57,
+      "duration": 6.678,
+      "text": "than the chance of taking\nall the money from A,"
+    },
+    {
+      "start": 1645.248,
+      "duration": 4.802,
+      "text": "basically goes to 1."
+    },
+    {
+      "start": 1650.05,
+      "duration": 5.44,
+      "text": "So it makes sense that if you're\ngoing to gamble with fair odds,"
+    },
+    {
+      "start": 1655.49,
+      "duration": 2.04,
+      "text": "you have an advantage\nif you have a bigger"
+    },
+    {
+      "start": 1657.53,
+      "duration": 2.92,
+      "text": "bankroll than your opponent."
+    },
+    {
+      "start": 1660.45,
+      "duration": 5.76,
+      "text": "Now, this second\nexample of martingales,"
+    },
+    {
+      "start": 1666.21,
+      "duration": 7.8,
+      "text": "which is the square of the\nrandom walk Sn minus n, this"
+    },
+    {
+      "start": 1674.01,
+      "duration": 3.2,
+      "text": "is a martingale as well."
+    },
+    {
+      "start": 1677.21,
+      "duration": 5.96,
+      "text": "And if we look at\nthis Martingale,"
+    },
+    {
+      "start": 1683.17,
+      "duration": 6.62,
+      "text": "it's bounded by the max of A\nsquared B squared plus tau."
+    },
+    {
+      "start": 1689.79,
+      "duration": 4.26,
+      "text": "So we have a bounded\ntransformation"
+    },
+    {
+      "start": 1694.05,
+      "duration": 2.93,
+      "text": "of the original Sn."
+    },
+    {
+      "start": 1696.98,
+      "duration": 8.48,
+      "text": "And so this martingale has\nexpectation 0 for all n."
+    },
+    {
+      "start": 1705.46,
+      "duration": 4.92,
+      "text": "And so if we look\nat the expectation"
+    },
+    {
+      "start": 1710.38,
+      "duration": 9.68,
+      "text": "of M tau, this transformation\nof the original martingale Sn,"
+    },
+    {
+      "start": 1720.06,
+      "duration": 7.48,
+      "text": "it has 0 expectation, which is\nequal to the expected value of S"
+    },
+    {
+      "start": 1727.54,
+      "duration": 3.96,
+      "text": "tau squared minus the\nexpected value of tau."
+    },
+    {
+      "start": 1731.5,
+      "duration": 9.64,
+      "text": "And if we look at what is the\nexpected value of S tau squared,"
+    },
+    {
+      "start": 1741.14,
+      "duration": 5.48,
+      "text": "so this term here,\nwe have that that's"
+    },
+    {
+      "start": 1746.62,
+      "duration": 6.72,
+      "text": "equal to being stopped\nat plus A times A squared"
+    },
+    {
+      "start": 1753.34,
+      "duration": 2.02,
+      "text": "plus the probability\nof being stopped"
+    },
+    {
+      "start": 1755.36,
+      "duration": 2.88,
+      "text": "at minus B times B squared."
+    },
+    {
+      "start": 1758.24,
+      "duration": 4.1,
+      "text": "And this expectation\nis equal to 0."
+    },
+    {
+      "start": 1762.34,
+      "duration": 5.3,
+      "text": "So we can actually solve for\nthe expected value of tau."
+    },
+    {
+      "start": 1767.64,
+      "duration": 4.28,
+      "text": "It's simply equal to the\nexpected value of S tau squared."
+    },
+    {
+      "start": 1771.92,
+      "duration": 6.32,
+      "text": "So plugging everything in,\nit gets a little tricky"
+    },
+    {
+      "start": 1778.24,
+      "duration": 1.54,
+      "text": "until we simplify."
+    },
+    {
+      "start": 1779.78,
+      "duration": 3.42,
+      "text": "And it's simply the\nproduct of A times B."
+    },
+    {
+      "start": 1783.2,
+      "duration": 8.08,
+      "text": "So the amount of time it\ntakes to defeat the opponent"
+    },
+    {
+      "start": 1791.28,
+      "duration": 4.12,
+      "text": "has an expected time\nequal to A times B."
+    },
+    {
+      "start": 1795.4,
+      "duration": 6.34,
+      "text": "So if you're gambling\nin such a situation,"
+    },
+    {
+      "start": 1801.74,
+      "duration": 3.98,
+      "text": "the size of your bankroll times\nthe size of the other person's"
+    },
+    {
+      "start": 1805.72,
+      "duration": 2.92,
+      "text": "bankroll estimates\nthe approximate time"
+    },
+    {
+      "start": 1808.64,
+      "duration": 7.82,
+      "text": "it will take to finish the game,\nwith one dominating the other."
+    },
+    {
+      "start": 1816.46,
+      "duration": 5.0,
+      "text": "Anyway, what's characteristic\nof these examples is"
+    },
+    {
+      "start": 1821.46,
+      "duration": 5.16,
+      "text": "we have a martingale transform\nof the original series."
+    },
+    {
+      "start": 1826.62,
+      "duration": 6.28,
+      "text": "It has a 0 expectation\nas it's defined."
+    },
+    {
+      "start": 1832.9,
+      "duration": 5.08,
+      "text": "And that 0 expectation applies\nfor all time points as well as"
+    },
+    {
+      "start": 1837.98,
+      "duration": 3.08,
+      "text": "the stopping time."
+    },
+    {
+      "start": 1841.06,
+      "duration": 2.04,
+      "text": "All right."
+    },
+    {
+      "start": 1843.1,
+      "duration": 4.96,
+      "text": "Well, a really\nchallenging problem"
+    },
+    {
+      "start": 1848.06,
+      "duration": 6.0,
+      "text": "is to consider the\nrandom walk with bias."
+    },
+    {
+      "start": 1854.06,
+      "duration": 7.16,
+      "text": "So we consider steps plus 1\nor minus 1 with probability p"
+    },
+    {
+      "start": 1861.22,
+      "duration": 3.04,
+      "text": "and 1 minus p respectively."
+    },
+    {
+      "start": 1864.26,
+      "duration": 7.41,
+      "text": "And then we're\ninterested in what"
+    },
+    {
+      "start": 1871.67,
+      "duration": 5.1,
+      "text": "is the probability of hitting\nplus A, say, in this case."
+    },
+    {
+      "start": 1876.77,
+      "duration": 5.18,
+      "text": "Certainly, as p\nincreases, the probability"
+    },
+    {
+      "start": 1881.95,
+      "duration": 2.986,
+      "text": "of hitting plus A\nfirst increases."
+    },
+    {
+      "start": 1888.07,
+      "duration": 1.34,
+      "text": "But how does it do so?"
+    },
+    {
+      "start": 1889.41,
+      "duration": 5.633,
+      "text": "Now, some of you have taken\nstochastic processes already."
+    },
+    {
+      "start": 1895.043,
+      "duration": 1.667,
+      "text": "Or how many people\nhave taken the course"
+    },
+    {
+      "start": 1896.71,
+      "duration": 1.62,
+      "text": "in stochastic processes?"
+    },
+    {
+      "start": 1898.33,
+      "duration": 3.14,
+      "text": "Maybe just a couple."
+    },
+    {
+      "start": 1901.47,
+      "duration": 6.4,
+      "text": "Do you recall this problem\nbeing covered in your course?"
+    },
+    {
+      "start": 1907.87,
+      "duration": 5.72,
+      "text": "And when I taught the\nstochastic processes course"
+    },
+    {
+      "start": 1913.59,
+      "duration": 5.6,
+      "text": "about five or six years\nago, the way this was solved"
+    },
+    {
+      "start": 1919.19,
+      "duration": 7.84,
+      "text": "was by brute force understanding\nthe dynamics of the process"
+    },
+    {
+      "start": 1927.03,
+      "duration": 7.1,
+      "text": "and doing computations\nwith first step analyses."
+    },
+    {
+      "start": 1934.13,
+      "duration": 5.16,
+      "text": "And the solution was\nreally quite complex,"
+    },
+    {
+      "start": 1939.29,
+      "duration": 2.4,
+      "text": "but it got the right answer."
+    },
+    {
+      "start": 1941.69,
+      "duration": 2.0,
+      "text": "What's really neat\nabout martingales"
+    },
+    {
+      "start": 1943.69,
+      "duration": 5.12,
+      "text": "is that we can actually solve\nthis problem pretty elegantly."
+    },
+    {
+      "start": 1948.81,
+      "duration": 3.52,
+      "text": "And so we're going to use this\nmoment generating function"
+    },
+    {
+      "start": 1952.33,
+      "duration": 2.12,
+      "text": "transformation."
+    },
+    {
+      "start": 1954.45,
+      "duration": 4.66,
+      "text": "So our xn's have a moment\ngenerating function,"
+    },
+    {
+      "start": 1959.11,
+      "duration": 5.3,
+      "text": "which is p, the probability of\nplus 1, times e to the lambda"
+    },
+    {
+      "start": 1964.41,
+      "duration": 5.92,
+      "text": "times plus 1 plus q, the\nprobability of negative 1 times"
+    },
+    {
+      "start": 1970.33,
+      "duration": 3.3,
+      "text": "e to the lambda\ntimes negative 1."
+    },
+    {
+      "start": 1973.63,
+      "duration": 3.38,
+      "text": "So this definition of the\nmoment generating function"
+    },
+    {
+      "start": 1977.01,
+      "duration": 2.96,
+      "text": "is very straightforward."
+    },
+    {
+      "start": 1979.97,
+      "duration": 4.26,
+      "text": "If we take e to the\nlambda xn divided by phi,"
+    },
+    {
+      "start": 1984.23,
+      "duration": 2.9,
+      "text": "these are independent\nrandom variables that"
+    },
+    {
+      "start": 1987.13,
+      "duration": 4.81,
+      "text": "have expectation equal to 1."
+    },
+    {
+      "start": 1991.94,
+      "duration": 7.16,
+      "text": "And we can define n then to be\nthe product of the first n yi's."
+    },
+    {
+      "start": 1999.1,
+      "duration": 5.84,
+      "text": "And this will be a\nmartingale by our example 4."
+    },
+    {
+      "start": 2004.94,
+      "duration": 11.56,
+      "text": "And if we solve for the lambda\nvalue, that makes phi of lambda"
+    },
+    {
+      "start": 2016.5,
+      "duration": 2.92,
+      "text": "equal to 1."
+    },
+    {
+      "start": 2019.42,
+      "duration": 5.16,
+      "text": "Then for that fixed\nvalue of lambda,"
+    },
+    {
+      "start": 2024.58,
+      "duration": 4.38,
+      "text": "this Mn is going\nto be a martingale."
+    },
+    {
+      "start": 2028.96,
+      "duration": 2.42,
+      "text": "It's actually a\nmartingale for any lambda."
+    },
+    {
+      "start": 2031.38,
+      "duration": 4.24,
+      "text": "But in addition, that special\ncase where phi of lambda"
+    },
+    {
+      "start": 2035.62,
+      "duration": 2.0,
+      "text": "equals 1."
+    },
+    {
+      "start": 2037.62,
+      "duration": 4.52,
+      "text": "And so if we graph this\nmoment generating function"
+    },
+    {
+      "start": 2042.14,
+      "duration": 8.38,
+      "text": "as a function of lambda, we\ncan see that it's equal to 1"
+    },
+    {
+      "start": 2050.52,
+      "duration": 2.88,
+      "text": "when e to the lambda\nis equal to q over p."
+    },
+    {
+      "start": 2057.0,
+      "duration": 5.92,
+      "text": "So Mn for this particular\nlambda for which e to the lambda"
+    },
+    {
+      "start": 2062.92,
+      "duration": 7.92,
+      "text": "equals q over p is simply\nq over p to the power Sn."
+    },
+    {
+      "start": 2070.84,
+      "duration": 4.52,
+      "text": "And with that, we basically\nhave the initial value"
+    },
+    {
+      "start": 2075.36,
+      "duration": 5.839,
+      "text": "of M at time 1, basically,\nor at time 0 is 1."
+    },
+    {
+      "start": 2081.199,
+      "duration": 4.841,
+      "text": "And that should equal the\nstopped value of q over p"
+    },
+    {
+      "start": 2086.04,
+      "duration": 3.94,
+      "text": "to the power SN2 at\nthe stopped value."
+    },
+    {
+      "start": 2089.98,
+      "duration": 3.699,
+      "text": "So it's q over p to the\nplus A times the probability"
+    },
+    {
+      "start": 2093.679,
+      "duration": 3.161,
+      "text": "of stopping at A plus\nq over p to the minus"
+    },
+    {
+      "start": 2096.84,
+      "duration": 4.28,
+      "text": "B times the probability\nof stopping at minus B."
+    },
+    {
+      "start": 2101.12,
+      "duration": 5.7,
+      "text": "And again, this equation\nbasically gives us"
+    },
+    {
+      "start": 2106.82,
+      "duration": 3.92,
+      "text": "two terms that are\nrelated to each other"
+    },
+    {
+      "start": 2110.74,
+      "duration": 1.72,
+      "text": "that we can solve for."
+    },
+    {
+      "start": 2112.46,
+      "duration": 7.44,
+      "text": "So we get the probability that\nthis biased random walk stops"
+    },
+    {
+      "start": 2119.9,
+      "duration": 4.72,
+      "text": "or hits plus A first is\nsimply the ratio of q"
+    },
+    {
+      "start": 2124.62,
+      "duration": 6.28,
+      "text": "to p to the power of B minus 1\nover the same ratio to the power"
+    },
+    {
+      "start": 2130.9,
+      "duration": 10.76,
+      "text": "A plus B. So this result\nis very direct and elegant."
+    },
+    {
+      "start": 2141.66,
+      "duration": 4.4,
+      "text": "If you look at stochastic\nprocesses books that"
+    },
+    {
+      "start": 2146.06,
+      "duration": 3.2,
+      "text": "try to solve this\nbiased random walk"
+    },
+    {
+      "start": 2149.26,
+      "duration": 2.52,
+      "text": "problem without\nmartingale theory,"
+    },
+    {
+      "start": 2151.78,
+      "duration": 2.51,
+      "text": "it's a bit more\ninvolved and tricky."
+    },
+    {
+      "start": 2156.9,
+      "duration": 2.64,
+      "text": "All right, so here's\njust some R code that"
+    },
+    {
+      "start": 2159.54,
+      "duration": 4.89,
+      "text": "will graph these probabilities\nas functions of A and B."
+    },
+    {
+      "start": 2164.43,
+      "duration": 3.84,
+      "text": "I think it's useful only just to\nknow that you can do something"
+    },
+    {
+      "start": 2168.27,
+      "duration": 0.5,
+      "text": "like this."
+    },
+    {
+      "start": 2168.77,
+      "duration": 2.38,
+      "text": "You can graph the\nprobability surface"
+    },
+    {
+      "start": 2171.15,
+      "duration": 3.84,
+      "text": "as it varies with the\nhit levels A and B."
+    },
+    {
+      "start": 2174.99,
+      "duration": 6.24,
+      "text": "And here are contours of the\ndifferent probabilities, which"
+    },
+    {
+      "start": 2181.23,
+      "duration": 2.16,
+      "text": "can also be graphed easily."
+    },
+    {
+      "start": 2183.39,
+      "duration": 6.8,
+      "text": "And that finishes this initial\ndiscussion of martingales."
+    },
+    {
+      "start": 2190.19,
+      "duration": 8.0,
+      "text": "Now, a second topic in\nstochastic processes"
+    },
+    {
+      "start": 2198.19,
+      "duration": 7.48,
+      "text": "that is extremely important is\nthe concept of Markov processes."
+    },
+    {
+      "start": 2205.67,
+      "duration": 7.56,
+      "text": "And so if we think of a\ngeneral stochastic process xt,"
+    },
+    {
+      "start": 2213.23,
+      "duration": 4.56,
+      "text": "then we will say that\nthe process is a Markov"
+    },
+    {
+      "start": 2217.79,
+      "duration": 9.62,
+      "text": "process if for any\ntimes of the process S"
+    },
+    {
+      "start": 2227.41,
+      "duration": 10.0,
+      "text": "that's between u and t, that xt\nwill be independent of all xu's"
+    },
+    {
+      "start": 2237.41,
+      "duration": 3.8,
+      "text": "where u is less than s."
+    },
+    {
+      "start": 2241.21,
+      "duration": 8.96,
+      "text": "So when we think of a time\nscale, so we have u less than s"
+    },
+    {
+      "start": 2250.17,
+      "duration": 1.02,
+      "text": "less than t."
+    },
+    {
+      "start": 2256.65,
+      "duration": 5.84,
+      "text": "If we imagine realizations\nof a stochastic process,"
+    },
+    {
+      "start": 2262.49,
+      "duration": 11.6,
+      "text": "and we are interested in\nlooking at the value of xt,"
+    },
+    {
+      "start": 2274.09,
+      "duration": 7.13,
+      "text": "the value of xt given\ninformation on times"
+    },
+    {
+      "start": 2281.22,
+      "duration": 9.0,
+      "text": "s and before will be independent\nof all of the times before."
+    },
+    {
+      "start": 2290.22,
+      "duration": 5.44,
+      "text": "And so the conditional\ndistribution,"
+    },
+    {
+      "start": 2295.66,
+      "duration": 7.12,
+      "text": "so the distribution\nof xt, given all"
+    },
+    {
+      "start": 2302.78,
+      "duration": 7.64,
+      "text": "of the values of x prior to time\nu, is equal in distribution."
+    },
+    {
+      "start": 2310.42,
+      "duration": 3.28,
+      "text": "It has the same\nrandom distribution"
+    },
+    {
+      "start": 2313.7,
+      "duration": 6.56,
+      "text": "as just the conditional\ndistribution given xs."
+    },
+    {
+      "start": 2320.26,
+      "duration": 7.32,
+      "text": "So with a Markov process, the\nfuture depends on the past"
+    },
+    {
+      "start": 2327.58,
+      "duration": 4.24,
+      "text": "only through the last\nvalue of the past."
+    },
+    {
+      "start": 2331.82,
+      "duration": 4.28,
+      "text": "It doesn't matter\nhow one arrived"
+    },
+    {
+      "start": 2336.1,
+      "duration": 4.26,
+      "text": "at a given value at time s."
+    },
+    {
+      "start": 2340.36,
+      "duration": 4.52,
+      "text": "For different realizations\nthat have the same end point,"
+    },
+    {
+      "start": 2344.88,
+      "duration": 5.2,
+      "text": "it's only that point that\nindexes the distributions"
+    },
+    {
+      "start": 2350.08,
+      "duration": 1.18,
+      "text": "into the future."
+    },
+    {
+      "start": 2351.26,
+      "duration": 1.41,
+      "text": "So this is a Markov process."
+    },
+    {
+      "start": 2356.84,
+      "duration": 11.2,
+      "text": "It's a simple model where\nthe past information can"
+    },
+    {
+      "start": 2368.04,
+      "duration": 4.88,
+      "text": "be encapsulated just in\nthe last observed value,"
+    },
+    {
+      "start": 2372.92,
+      "duration": 5.4,
+      "text": "not in the realizations of\nhow that value was achieved."
+    },
+    {
+      "start": 2378.32,
+      "duration": 3.0,
+      "text": "So this is just some\nnotation for trying"
+    },
+    {
+      "start": 2381.32,
+      "duration": 3.04,
+      "text": "to say what I just said."
+    },
+    {
+      "start": 2384.36,
+      "duration": 8.0,
+      "text": "Now, with Markov chains, these\nare interesting stochastic"
+    },
+    {
+      "start": 2392.36,
+      "duration": 9.1,
+      "text": "processes where we consider\nthere being a state space,"
+    },
+    {
+      "start": 2401.46,
+      "duration": 6.56,
+      "text": "capital S, where we can index\npossible states that the process"
+    },
+    {
+      "start": 2408.02,
+      "duration": 4.26,
+      "text": "beginning, say, with\n0 and the integers."
+    },
+    {
+      "start": 2412.28,
+      "duration": 5.5,
+      "text": "And it could be a finite number\nor a countably infinite number."
+    },
+    {
+      "start": 2417.78,
+      "duration": 5.72,
+      "text": "And then we have a time\nindex set with n varying"
+    },
+    {
+      "start": 2423.5,
+      "duration": 4.88,
+      "text": "from 0 through the\npositive integers."
+    },
+    {
+      "start": 2428.38,
+      "duration": 12.24,
+      "text": "And so the Markov property\nwith this stochastic process"
+    },
+    {
+      "start": 2440.62,
+      "duration": 9.68,
+      "text": "would have that the probability\nof the next state being"
+    },
+    {
+      "start": 2450.3,
+      "duration": 9.37,
+      "text": "j from time n, given the values\nof the process x0 through xn,"
+    },
+    {
+      "start": 2459.67,
+      "duration": 4.2,
+      "text": "this conditional\nprobability is equal"
+    },
+    {
+      "start": 2463.87,
+      "duration": 5.52,
+      "text": "to the conditional\nprobability of j state"
+    },
+    {
+      "start": 2469.39,
+      "duration": 6.2,
+      "text": "at time n plus 1, just\ngiven that xn is equal to i."
+    },
+    {
+      "start": 2475.59,
+      "duration": 6.96,
+      "text": "So this is a nice\nproperty for processes"
+    },
+    {
+      "start": 2482.55,
+      "duration": 4.913,
+      "text": "that makes their analysis\na bit less complex."
+    },
+    {
+      "start": 2490.07,
+      "duration": 9.08,
+      "text": "And what's important in this\ndefinition of the Markov process"
+    },
+    {
+      "start": 2499.15,
+      "duration": 6.12,
+      "text": "is that there's a\none step transition"
+    },
+    {
+      "start": 2505.27,
+      "duration": 9.12,
+      "text": "probability from state i\nto state j, from time n"
+    },
+    {
+      "start": 2514.39,
+      "duration": 7.62,
+      "text": "to n plus 1, and these\ntransition probabilities,"
+    },
+    {
+      "start": 2522.01,
+      "duration": 5.04,
+      "text": "together with the probabilities\nof the initial states,"
+    },
+    {
+      "start": 2527.05,
+      "duration": 3.92,
+      "text": "completely specifies\nthe stochastic process."
+    },
+    {
+      "start": 2530.97,
+      "duration": 4.12,
+      "text": "Now, this issue of completely\nspecifying a stochastic process"
+    },
+    {
+      "start": 2535.09,
+      "duration": 3.12,
+      "text": "is an important\none, in that what"
+    },
+    {
+      "start": 2538.21,
+      "duration": 3.88,
+      "text": "we want with a\nstochastic process"
+    },
+    {
+      "start": 2542.09,
+      "duration": 2.68,
+      "text": "is to have a\ncomplete probability"
+    },
+    {
+      "start": 2544.77,
+      "duration": 2.56,
+      "text": "model of that process."
+    },
+    {
+      "start": 2547.33,
+      "duration": 8.08,
+      "text": "And so if we have an initial\nstate x0 and the probabilities"
+    },
+    {
+      "start": 2555.41,
+      "duration": 7.2,
+      "text": "over all states i in S, that\ncharacterizes the probability"
+    },
+    {
+      "start": 2562.61,
+      "duration": 4.44,
+      "text": "model for the state 0 value."
+    },
+    {
+      "start": 2567.05,
+      "duration": 5.44,
+      "text": "Then if we look at the\nconditional probability"
+    },
+    {
+      "start": 2572.49,
+      "duration": 3.09,
+      "text": "from time n equals 0 to n--"
+    },
+    {
+      "start": 2578.38,
+      "duration": 4.52,
+      "text": "or from 0 to 1, we then have\nthe conditional probabilities"
+    },
+    {
+      "start": 2582.9,
+      "duration": 8.36,
+      "text": "of moving from any state\n0 to any state at time 1."
+    },
+    {
+      "start": 2591.26,
+      "duration": 5.2,
+      "text": "And so those conditional\nprobabilities, together"
+    },
+    {
+      "start": 2596.46,
+      "duration": 2.8,
+      "text": "with the marginal\nprobability, specify"
+    },
+    {
+      "start": 2599.26,
+      "duration": 4.88,
+      "text": "the distribution of the\nprocess over state 0 and 1."
+    },
+    {
+      "start": 2604.14,
+      "duration": 5.64,
+      "text": "And we can continue this\ncomputation for successive time"
+    },
+    {
+      "start": 2609.78,
+      "duration": 6.8,
+      "text": "points and completely specify\nour stochastic process."
+    },
+    {
+      "start": 2616.58,
+      "duration": 5.52,
+      "text": "Now, the general Markov\nprocess, as introduced there,"
+    },
+    {
+      "start": 2622.1,
+      "duration": 4.48,
+      "text": "is very complex, because we\nmay have different transition"
+    },
+    {
+      "start": 2626.58,
+      "duration": 4.2,
+      "text": "probabilities depending upon\nhow long the process has"
+    },
+    {
+      "start": 2630.78,
+      "duration": 2.3,
+      "text": "been operating."
+    },
+    {
+      "start": 2633.08,
+      "duration": 5.86,
+      "text": "A simple case is called a\nstationary Markov process,"
+    },
+    {
+      "start": 2638.94,
+      "duration": 5.3,
+      "text": "where these transition\nprobabilities, one step"
+    },
+    {
+      "start": 2644.24,
+      "duration": 5.58,
+      "text": "transition probabilities,\ndo not depend on the time."
+    },
+    {
+      "start": 2649.82,
+      "duration": 1.66,
+      "text": "So we have the\nsame probabilities"
+    },
+    {
+      "start": 2651.48,
+      "duration": 2.48,
+      "text": "of moving from one\nstate to another"
+    },
+    {
+      "start": 2653.96,
+      "duration": 4.48,
+      "text": "regardless of when\nthat is occurring."
+    },
+    {
+      "start": 2658.44,
+      "duration": 4.76,
+      "text": "And so we can define\na matrix P, which"
+    },
+    {
+      "start": 2663.2,
+      "duration": 5.76,
+      "text": "is the collection of all\npairwise probabilities Pij"
+    },
+    {
+      "start": 2668.96,
+      "duration": 5.24,
+      "text": "moving from state i to state j."
+    },
+    {
+      "start": 2674.2,
+      "duration": 6.4,
+      "text": "And we basically require that\nthese transition probabilities"
+    },
+    {
+      "start": 2680.6,
+      "duration": 4.76,
+      "text": "are non-negative, and the\nsum over target states"
+    },
+    {
+      "start": 2685.36,
+      "duration": 3.84,
+      "text": "j from state i that\nthose probabilities"
+    },
+    {
+      "start": 2689.2,
+      "duration": 7.45,
+      "text": "sum to 1 for a stationary\ntransition probability matrix."
+    },
+    {
+      "start": 2696.65,
+      "duration": 7.68,
+      "text": "And to define the\nprobability distribution"
+    },
+    {
+      "start": 2704.33,
+      "duration": 6.2,
+      "text": "of the entire process xn using\nthis stationary transition"
+    },
+    {
+      "start": 2710.53,
+      "duration": 4.44,
+      "text": "probability matrix and\ninitial probabilities,"
+    },
+    {
+      "start": 2714.97,
+      "duration": 7.64,
+      "text": "we can compute any\nprobabilities by computing"
+    },
+    {
+      "start": 2722.61,
+      "duration": 3.08,
+      "text": "the collection of all\nsuch probabilities"
+    },
+    {
+      "start": 2725.69,
+      "duration": 4.94,
+      "text": "where we have n\nsteps of the process,"
+    },
+    {
+      "start": 2730.63,
+      "duration": 5.14,
+      "text": "or n time points of the\nprocess, and states i0 through i"
+    },
+    {
+      "start": 2735.77,
+      "duration": 2.26,
+      "text": "little n there."
+    },
+    {
+      "start": 2738.03,
+      "duration": 3.26,
+      "text": "So if we can calculate\nthese probabilities,"
+    },
+    {
+      "start": 2741.29,
+      "duration": 3.96,
+      "text": "we will have specified\nthe probability model."
+    },
+    {
+      "start": 2745.25,
+      "duration": 5.7,
+      "text": "Now, in calculating\nthe joint probability"
+    },
+    {
+      "start": 2750.95,
+      "duration": 8.56,
+      "text": "of the first little n values\nstates being i0 through in,"
+    },
+    {
+      "start": 2759.51,
+      "duration": 3.44,
+      "text": "we can decompose\nthis probability"
+    },
+    {
+      "start": 2762.95,
+      "duration": 4.24,
+      "text": "into the marginal\nprobability of the first n"
+    },
+    {
+      "start": 2767.19,
+      "duration": 8.56,
+      "text": "minus 1 times the conditional\nprobability of the last given"
+    },
+    {
+      "start": 2775.75,
+      "duration": 0.62,
+      "text": "the others."
+    },
+    {
+      "start": 2776.37,
+      "duration": 10.78,
+      "text": "So if we think of A\nequaling x0 up to xn minus 1"
+    },
+    {
+      "start": 2787.15,
+      "duration": 12.28,
+      "text": "equals i, n minus 1, and B\nis equal to xn equal to in,"
+    },
+    {
+      "start": 2799.43,
+      "duration": 7.486,
+      "text": "then we can look at\nthe probability of A"
+    },
+    {
+      "start": 2806.916,
+      "duration": 5.334,
+      "text": "and B is equal to the\nprobability of A times"
+    },
+    {
+      "start": 2812.25,
+      "duration": 5.0,
+      "text": "the probability of B given A."
+    },
+    {
+      "start": 2817.25,
+      "duration": 4.76,
+      "text": "And this is basically\nwhat's written up there."
+    },
+    {
+      "start": 2822.01,
+      "duration": 3.28,
+      "text": "And this formula\non the Blackboard"
+    },
+    {
+      "start": 2825.29,
+      "duration": 4.28,
+      "text": "is simply Bayes'\nformula relating"
+    },
+    {
+      "start": 2829.57,
+      "duration": 2.16,
+      "text": "the conditional\nprobability of B given"
+    },
+    {
+      "start": 2831.73,
+      "duration": 16.12,
+      "text": "A to the probabilities of A and\nB. So probability of B given A."
+    },
+    {
+      "start": 2847.85,
+      "duration": 4.92,
+      "text": "Now, with this\nsecond equation, we"
+    },
+    {
+      "start": 2852.77,
+      "duration": 5.18,
+      "text": "can simplify that to\nthe red probability,"
+    },
+    {
+      "start": 2857.95,
+      "duration": 6.42,
+      "text": "which is only depending\nupon the n minus 1 value."
+    },
+    {
+      "start": 2864.37,
+      "duration": 6.73,
+      "text": "And so we have that\nthis probability"
+    },
+    {
+      "start": 2871.1,
+      "duration": 3.52,
+      "text": "is equal to the marginal\nprobability of the first n"
+    },
+    {
+      "start": 2874.62,
+      "duration": 7.706,
+      "text": "minus 1 times the transition\nprobability from state"
+    },
+    {
+      "start": 2882.326,
+      "duration": 3.654,
+      "text": "in minus 1 to in."
+    },
+    {
+      "start": 2885.98,
+      "duration": 3.24,
+      "text": "And that won't depend on n."
+    },
+    {
+      "start": 2889.22,
+      "duration": 6.16,
+      "text": "And so we can\nbasically, by induction,"
+    },
+    {
+      "start": 2895.38,
+      "duration": 6.16,
+      "text": "basically replace each of the\nsuccessive state transitions"
+    },
+    {
+      "start": 2901.54,
+      "duration": 3.52,
+      "text": "by the probability of\nmoving from one state"
+    },
+    {
+      "start": 2905.06,
+      "duration": 4.16,
+      "text": "to another and the successive\ntransitions of all those states."
+    },
+    {
+      "start": 2909.22,
+      "duration": 7.4,
+      "text": "So this joint probability can\nbe represented in this form,"
+    },
+    {
+      "start": 2916.62,
+      "duration": 3.36,
+      "text": "exploiting the Markov property\nto simplify the one step"
+    },
+    {
+      "start": 2919.98,
+      "duration": 9.14,
+      "text": "transitions, and using the\nstationery property to define"
+    },
+    {
+      "start": 2929.12,
+      "duration": 0.68,
+      "text": "these Pij's."
+    },
+    {
+      "start": 2932.48,
+      "duration": 7.04,
+      "text": "OK, well, with stationary\ntransition probabilities,"
+    },
+    {
+      "start": 2939.52,
+      "duration": 3.52,
+      "text": "the multi-step\ntransition probabilities"
+    },
+    {
+      "start": 2943.04,
+      "duration": 5.0,
+      "text": "turn out to have a\nreally nice form."
+    },
+    {
+      "start": 2948.04,
+      "duration": 8.56,
+      "text": "And so we can represent the\ntransition probability matrix"
+    },
+    {
+      "start": 2956.6,
+      "duration": 6.16,
+      "text": "over n steps as the n-th power\nof the one step transition"
+    },
+    {
+      "start": 2962.76,
+      "duration": 3.2,
+      "text": "probabilities matrices."
+    },
+    {
+      "start": 2965.96,
+      "duration": 4.72,
+      "text": "So this property\nof Markov chains"
+    },
+    {
+      "start": 2970.68,
+      "duration": 4.72,
+      "text": "with stationary transition\nprobabilities is very nice"
+    },
+    {
+      "start": 2975.4,
+      "duration": 6.85,
+      "text": "and gives us this result."
+    },
+    {
+      "start": 2982.25,
+      "duration": 3.36,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 2985.61,
+      "duration": 2.52,
+      "text": "In terms of proving\nthis, There's"
+    },
+    {
+      "start": 2988.13,
+      "duration": 4.72,
+      "text": "this analysis called\nfirst step analysis"
+    },
+    {
+      "start": 2992.85,
+      "duration": 2.08,
+      "text": "in stochastic processes."
+    },
+    {
+      "start": 2994.93,
+      "duration": 5.44,
+      "text": "That's a really useful tool\nfor proving different results."
+    },
+    {
+      "start": 3000.37,
+      "duration": 11.76,
+      "text": "And this first step\nanalysis basically"
+    },
+    {
+      "start": 3012.13,
+      "duration": 2.64,
+      "text": "says, OK, if we\nwant to calculate"
+    },
+    {
+      "start": 3014.77,
+      "duration": 3.96,
+      "text": "the probability of\ngoing from state 0,"
+    },
+    {
+      "start": 3018.73,
+      "duration": 5.76,
+      "text": "sorry, state i to j\nin n steps, that's"
+    },
+    {
+      "start": 3024.49,
+      "duration": 6.64,
+      "text": "like starting at time 0 in state\ni and transitioning to state j."
+    },
+    {
+      "start": 3031.13,
+      "duration": 7.24,
+      "text": "Then we can decompose\nthis probability"
+    },
+    {
+      "start": 3038.37,
+      "duration": 5.7,
+      "text": "into the sum over all\npossible first steps going"
+    },
+    {
+      "start": 3044.07,
+      "duration": 11.84,
+      "text": "from i to k in state 1 and then\nfrom state k to j by time n."
+    },
+    {
+      "start": 3055.91,
+      "duration": 7.68,
+      "text": "And so this first equation\nhere is a first step equation"
+    },
+    {
+      "start": 3063.59,
+      "duration": 1.3,
+      "text": "of the probabilities."
+    },
+    {
+      "start": 3064.89,
+      "duration": 4.86,
+      "text": "We can basically decompose the\nprocess of going from state i"
+    },
+    {
+      "start": 3069.75,
+      "duration": 3.68,
+      "text": "to j in n steps as\ngoing from state i"
+    },
+    {
+      "start": 3073.43,
+      "duration": 8.04,
+      "text": "to each k state in step one,\nand then going from state k"
+    },
+    {
+      "start": 3081.47,
+      "duration": 4.04,
+      "text": "to n in n minus 1 steps."
+    },
+    {
+      "start": 3085.51,
+      "duration": 7.96,
+      "text": "So this is that formula."
+    },
+    {
+      "start": 3093.47,
+      "duration": 13.66,
+      "text": "And so if we write this out, we\nend up getting the xn equaling--"
+    },
+    {
+      "start": 3107.13,
+      "duration": 5.48,
+      "text": "or this in blue is equal\nto the term above in black"
+    },
+    {
+      "start": 3112.61,
+      "duration": 5.16,
+      "text": "because of the Markov\nnature of the Markov"
+    },
+    {
+      "start": 3117.77,
+      "duration": 2.52,
+      "text": "property of the process."
+    },
+    {
+      "start": 3120.29,
+      "duration": 3.88,
+      "text": "And so we basically\nhave this sum"
+    },
+    {
+      "start": 3124.17,
+      "duration": 9.77,
+      "text": "of Pik times probability of xn\nminus 1 equaling jx0 equals k."
+    },
+    {
+      "start": 3140.09,
+      "duration": 4.92,
+      "text": "So we end up basically getting\nthis matrix equation of the n"
+    },
+    {
+      "start": 3145.01,
+      "duration": 4.84,
+      "text": "step transition probabilities\nis equal to the one step matrix"
+    },
+    {
+      "start": 3149.85,
+      "duration": 3.72,
+      "text": "P times the n minus 1 step\ntransition probability"
+    },
+    {
+      "start": 3153.57,
+      "duration": 2.6,
+      "text": "matrix in green."
+    },
+    {
+      "start": 3156.17,
+      "duration": 0.76,
+      "text": "OK."
+    },
+    {
+      "start": 3156.93,
+      "duration": 4.51,
+      "text": "Well, these transition\nprobabilities,"
+    },
+    {
+      "start": 3161.44,
+      "duration": 3.14,
+      "text": "together with the\nmarginal distribution"
+    },
+    {
+      "start": 3164.58,
+      "duration": 3.36,
+      "text": "of the initial state, gives\nus the marginal distribution"
+    },
+    {
+      "start": 3167.94,
+      "duration": 2.73,
+      "text": "of xn at any time."
+    },
+    {
+      "start": 3173.64,
+      "duration": 4.18,
+      "text": "So these formulas just indicate\nhow we do these computations."
+    },
+    {
+      "start": 3177.82,
+      "duration": 5.08,
+      "text": "Now, where do Markov\nchains arise in finance?"
+    },
+    {
+      "start": 3182.9,
+      "duration": 4.2,
+      "text": "Well, one example to\nthink about is how"
+    },
+    {
+      "start": 3187.1,
+      "duration": 3.96,
+      "text": "companies have credit ratings."
+    },
+    {
+      "start": 3191.06,
+      "duration": 6.88,
+      "text": "And those credit ratings range\nfrom high credit, which is AAA,"
+    },
+    {
+      "start": 3197.94,
+      "duration": 5.84,
+      "text": "and low credit being I\nguess C. D being default"
+    },
+    {
+      "start": 3203.78,
+      "duration": 6.04,
+      "text": "is maybe a terminal state,\nat least in some sense."
+    },
+    {
+      "start": 3209.82,
+      "duration": 4.76,
+      "text": "But companies are\ngraded or rated"
+    },
+    {
+      "start": 3214.58,
+      "duration": 5.98,
+      "text": "by Standard and Poor's and\nFitch and other rating agencies,"
+    },
+    {
+      "start": 3220.56,
+      "duration": 3.88,
+      "text": "and depending upon how good\ntheir credit rating is,"
+    },
+    {
+      "start": 3224.44,
+      "duration": 6.16,
+      "text": "they can borrow money\nat lower interest rates."
+    },
+    {
+      "start": 3230.6,
+      "duration": 3.4,
+      "text": "And the way corporations\nborrow money"
+    },
+    {
+      "start": 3234.0,
+      "duration": 3.6,
+      "text": "is to issue a bond, paying\na certain interest rate"
+    },
+    {
+      "start": 3237.6,
+      "duration": 6.96,
+      "text": "and having that interest rate\nbe attractive to lenders."
+    },
+    {
+      "start": 3244.56,
+      "duration": 5.88,
+      "text": "And the way that\nsuch a loan contract"
+    },
+    {
+      "start": 3250.44,
+      "duration": 4.84,
+      "text": "is attractive to lenders\nis with a high interest"
+    },
+    {
+      "start": 3255.28,
+      "duration": 9.4,
+      "text": "rate to the lender, but a low\nrisk of default by the borrower."
+    },
+    {
+      "start": 3264.68,
+      "duration": 7.68,
+      "text": "And so one can think about\nhow these credit ratings vary"
+    },
+    {
+      "start": 3272.36,
+      "duration": 3.85,
+      "text": "from one period to the next."
+    },
+    {
+      "start": 3276.21,
+      "duration": 6.76,
+      "text": "And here's a table of\nmigration probabilities"
+    },
+    {
+      "start": 3282.97,
+      "duration": 2.96,
+      "text": "from one year to the next."
+    },
+    {
+      "start": 3285.93,
+      "duration": 6.24,
+      "text": "And one can see that\nAAA initial ratings"
+    },
+    {
+      "start": 3292.17,
+      "duration": 7.48,
+      "text": "had only a 43% chance of staying\nAAA at the end of that one year."
+    },
+    {
+      "start": 3299.65,
+      "duration": 2.76,
+      "text": "And there was a\nvery low probability"
+    },
+    {
+      "start": 3302.41,
+      "duration": 6.72,
+      "text": "of downgrades to C, CCC, or B."
+    },
+    {
+      "start": 3309.13,
+      "duration": 7.68,
+      "text": "And with, say, very low credit\nrating companies, the chance"
+    },
+    {
+      "start": 3316.81,
+      "duration": 5.8,
+      "text": "of basically increasing\ntheir credit rating to B"
+    },
+    {
+      "start": 3322.61,
+      "duration": 6.04,
+      "text": "was 41%, staying at\nCCC is 32%, but almost"
+    },
+    {
+      "start": 3328.65,
+      "duration": 3.24,
+      "text": "a 20% chance of\ndefaulting perhaps."
+    },
+    {
+      "start": 3331.89,
+      "duration": 7.14,
+      "text": "So these kinds of\nmetrics basically"
+    },
+    {
+      "start": 3339.03,
+      "duration": 9.16,
+      "text": "can be analyzed with the\ntools of Markov chains."
+    },
+    {
+      "start": 3348.19,
+      "duration": 2.08,
+      "text": "And let's see."
+    },
+    {
+      "start": 3350.27,
+      "duration": 4.24,
+      "text": "Then another example\nthat I put together"
+    },
+    {
+      "start": 3354.51,
+      "duration": 7.66,
+      "text": "is looking at the stock\nprice dynamics of any stock,"
+    },
+    {
+      "start": 3362.17,
+      "duration": 4.98,
+      "text": "but I chose Apple,\nand using daily prices"
+    },
+    {
+      "start": 3367.15,
+      "duration": 7.24,
+      "text": "to consider states of the\nApple stock price, which"
+    },
+    {
+      "start": 3374.39,
+      "duration": 3.72,
+      "text": "is it an up day or a down day?"
+    },
+    {
+      "start": 3378.11,
+      "duration": 4.36,
+      "text": "Is the price at day t\nhigher than t minus 1,"
+    },
+    {
+      "start": 3382.47,
+      "duration": 2.34,
+      "text": "or is it a down day?"
+    },
+    {
+      "start": 3384.81,
+      "duration": 1.5,
+      "text": "I guess one of those\nshould probably"
+    },
+    {
+      "start": 3386.31,
+      "duration": 4.6,
+      "text": "be a less than or equal to\nif we wanted to incorporate"
+    },
+    {
+      "start": 3390.91,
+      "duration": 1.82,
+      "text": "corporate everything."
+    },
+    {
+      "start": 3392.73,
+      "duration": 9.92,
+      "text": "But we can consider defining\na two day state, which,"
+    },
+    {
+      "start": 3402.65,
+      "duration": 2.26,
+      "text": "let's see, the formatting\nhere is a little off,"
+    },
+    {
+      "start": 3404.91,
+      "duration": 4.34,
+      "text": "but we could have\ntwo up days in a row,"
+    },
+    {
+      "start": 3409.25,
+      "duration": 3.36,
+      "text": "an up day followed\nby a down day,"
+    },
+    {
+      "start": 3412.61,
+      "duration": 2.12,
+      "text": "a down day followed\nby an up day,"
+    },
+    {
+      "start": 3414.73,
+      "duration": 3.04,
+      "text": "and a down day\nfollowed by a down day."
+    },
+    {
+      "start": 3417.77,
+      "duration": 7.16,
+      "text": "And look at trying to model\nthe state changes for a two day"
+    },
+    {
+      "start": 3424.93,
+      "duration": 4.76,
+      "text": "state with a Markov chain."
+    },
+    {
+      "start": 3429.69,
+      "duration": 4.44,
+      "text": "And in R, there's\na nice r package"
+    },
+    {
+      "start": 3434.13,
+      "duration": 3.76,
+      "text": "that will do this for us."
+    },
+    {
+      "start": 3437.89,
+      "duration": 5.6,
+      "text": "And this was distributed\nin the Canvas site."
+    },
+    {
+      "start": 3443.49,
+      "duration": 2.16,
+      "text": "And so you should be\nable to replicate this"
+    },
+    {
+      "start": 3445.65,
+      "duration": 5.09,
+      "text": "example with Apple or\nchoose any other stock"
+    },
+    {
+      "start": 3450.74,
+      "duration": 2.04,
+      "text": "you might be interested in."
+    },
+    {
+      "start": 3452.78,
+      "duration": 8.986,
+      "text": "And so importantly, this uses\nthe library quantmod here."
+    },
+    {
+      "start": 3461.766,
+      "duration": 2.654,
+      "text": "Sort of hard to see."
+    },
+    {
+      "start": 3464.42,
+      "duration": 1.12,
+      "text": "Let's see."
+    },
+    {
+      "start": 3465.54,
+      "duration": 2.72,
+      "text": "So there's a library\nquantmod, which"
+    },
+    {
+      "start": 3468.26,
+      "duration": 3.8,
+      "text": "allows us to collect price\ndata from the internet."
+    },
+    {
+      "start": 3472.06,
+      "duration": 5.06,
+      "text": "And then there's this\npackage Markov chain,"
+    },
+    {
+      "start": 3477.12,
+      "duration": 5.94,
+      "text": "which allows us to specify\nMarkov chain models."
+    },
+    {
+      "start": 3483.06,
+      "duration": 6.72,
+      "text": "And so with this, our\ncode, it basically"
+    },
+    {
+      "start": 3489.78,
+      "duration": 6.6,
+      "text": "collects the data\non Apple stock."
+    },
+    {
+      "start": 3496.38,
+      "duration": 4.96,
+      "text": "And I think what I really\nwant to emphasize for everyone"
+    },
+    {
+      "start": 3501.34,
+      "duration": 2.02,
+      "text": "is that these examples--"
+    },
+    {
+      "start": 3503.36,
+      "duration": 2.3,
+      "text": "and so it's a bit tedious\nif you want to go through"
+    },
+    {
+      "start": 3505.66,
+      "duration": 1.42,
+      "text": "these examples yourself."
+    },
+    {
+      "start": 3507.08,
+      "duration": 4.08,
+      "text": "However, the examples\nshould work just"
+    },
+    {
+      "start": 3511.16,
+      "duration": 1.96,
+      "text": "with clicking a\nbutton, saying run,"
+    },
+    {
+      "start": 3513.12,
+      "duration": 2.52,
+      "text": "and you can replicate these."
+    },
+    {
+      "start": 3515.64,
+      "duration": 2.44,
+      "text": "And so for the\nApple stock, we just"
+    },
+    {
+      "start": 3518.08,
+      "duration": 4.84,
+      "text": "needed to substitute\nin the Apple symbol"
+    },
+    {
+      "start": 3522.92,
+      "duration": 2.24,
+      "text": "and collect the data."
+    },
+    {
+      "start": 3525.16,
+      "duration": 6.48,
+      "text": "And so here's the Apple\nstock price from 2014 or 2013"
+    },
+    {
+      "start": 3531.64,
+      "duration": 4.4,
+      "text": "through a week ago."
+    },
+    {
+      "start": 3536.04,
+      "duration": 8.4,
+      "text": "And I considered just fitting a\nMarkov chain model for these up"
+    },
+    {
+      "start": 3544.44,
+      "duration": 4.88,
+      "text": "and down states to the\nlast 4 and 1/2 years."
+    },
+    {
+      "start": 3549.32,
+      "duration": 4.6,
+      "text": "And so the code\nhere goes through."
+    },
+    {
+      "start": 3553.92,
+      "duration": 5.92,
+      "text": "And basically,\nwith Apple prices,"
+    },
+    {
+      "start": 3559.84,
+      "duration": 4.36,
+      "text": "Apple closing prices here,\nwe define differences"
+    },
+    {
+      "start": 3564.2,
+      "duration": 2.97,
+      "text": "in closing prices for two lags."
+    },
+    {
+      "start": 3567.17,
+      "duration": 8.88,
+      "text": "And then talk about defining\nup, up days in this section"
+    },
+    {
+      "start": 3576.05,
+      "duration": 5.56,
+      "text": "here, up down days,\ndown up, and so forth."
+    },
+    {
+      "start": 3581.61,
+      "duration": 5.18,
+      "text": "And then if we graph\nthese states, say,"
+    },
+    {
+      "start": 3586.79,
+      "duration": 3.7,
+      "text": "from May of this year\nto the end of August,"
+    },
+    {
+      "start": 3590.49,
+      "duration": 5.76,
+      "text": "this shows how\nthis 4 state Markov"
+    },
+    {
+      "start": 3596.25,
+      "duration": 5.24,
+      "text": "chain evolved over these dates."
+    },
+    {
+      "start": 3601.49,
+      "duration": 9.326,
+      "text": "And we can just use the\nMarkov chain function."
+    },
+    {
+      "start": 3616.01,
+      "duration": 0.94,
+      "text": "Or let's see."
+    },
+    {
+      "start": 3616.95,
+      "duration": 7.02,
+      "text": "We can plot a Markov chain\nfunction or a Markov chain"
+    },
+    {
+      "start": 3623.97,
+      "duration": 5.2,
+      "text": "transition states\nas this graph here."
+    },
+    {
+      "start": 3629.17,
+      "duration": 3.46,
+      "text": "So what this code does is\nit looks at transitions"
+    },
+    {
+      "start": 3632.63,
+      "duration": 2.96,
+      "text": "from one day to the\nnext and calculates"
+    },
+    {
+      "start": 3635.59,
+      "duration": 3.56,
+      "text": "the probabilities of going\nfrom one state to another."
+    },
+    {
+      "start": 3639.15,
+      "duration": 4.0,
+      "text": "So the sums across\nrows equals 1."
+    },
+    {
+      "start": 3643.15,
+      "duration": 5.92,
+      "text": "And this graph, this\nplot shows basically"
+    },
+    {
+      "start": 3649.07,
+      "duration": 2.22,
+      "text": "what is happening\nwith the Markov chain."
+    },
+    {
+      "start": 3651.29,
+      "duration": 4.82,
+      "text": "We have different states\ngiven by the nodes."
+    },
+    {
+      "start": 3656.11,
+      "duration": 3.96,
+      "text": "And then we can transition\nfrom between nodes"
+    },
+    {
+      "start": 3660.07,
+      "duration": 2.92,
+      "text": "by which arrows are feasible."
+    },
+    {
+      "start": 3662.99,
+      "duration": 4.96,
+      "text": "And this Markov chain\npackage will give us"
+    },
+    {
+      "start": 3667.95,
+      "duration": 2.8,
+      "text": "the probabilities,\nempirical probabilities,"
+    },
+    {
+      "start": 3670.75,
+      "duration": 2.8,
+      "text": "of moving from one\nstate to another."
+    },
+    {
+      "start": 3673.55,
+      "duration": 7.32,
+      "text": "And so one can see that\ntwo up days in Apple"
+    },
+    {
+      "start": 3680.87,
+      "duration": 6.48,
+      "text": "are likely to be followed\nby two up days, again,"
+    },
+    {
+      "start": 3687.35,
+      "duration": 4.94,
+      "text": "so that we'd get a third up day\nwith that one step transition."
+    },
+    {
+      "start": 3692.29,
+      "duration": 5.54,
+      "text": "Two down days are not likely to\nbe followed by a third down day,"
+    },
+    {
+      "start": 3697.83,
+      "duration": 5.46,
+      "text": "because it won't go to\nthat down, down state"
+    },
+    {
+      "start": 3703.29,
+      "duration": 6.12,
+      "text": "with probability\nor more than 0.5."
+    },
+    {
+      "start": 3709.41,
+      "duration": 3.8,
+      "text": "So there tends to perhaps be\nreversals from double down days"
+    },
+    {
+      "start": 3713.21,
+      "duration": 7.88,
+      "text": "and a continuation of up days,\nas suggested by these graphs."
+    },
+    {
+      "start": 3721.09,
+      "duration": 7.16,
+      "text": "Now, with this example, I\nthought, well, maybe there"
+    },
+    {
+      "start": 3728.25,
+      "duration": 1.6,
+      "text": "would be some\ninteresting structure"
+    },
+    {
+      "start": 3729.85,
+      "duration": 4.52,
+      "text": "if we defined three day states."
+    },
+    {
+      "start": 3734.37,
+      "duration": 8.69,
+      "text": "And so the same logic gives\nus 8 states of up or down"
+    },
+    {
+      "start": 3743.06,
+      "duration": 3.0,
+      "text": "on 3 successive days."
+    },
+    {
+      "start": 3746.06,
+      "duration": 5.32,
+      "text": "And so 2 times 2 times 2,\nor 8, is the total number"
+    },
+    {
+      "start": 3751.38,
+      "duration": 2.28,
+      "text": "of possible states."
+    },
+    {
+      "start": 3753.66,
+      "duration": 5.44,
+      "text": "And one can calculate the\nempirical probabilities"
+    },
+    {
+      "start": 3759.1,
+      "duration": 10.92,
+      "text": "of transitioning and then get\nthis display of the Markov chain"
+    },
+    {
+      "start": 3770.02,
+      "duration": 2.64,
+      "text": "with these eight states."
+    },
+    {
+      "start": 3772.66,
+      "duration": 5.04,
+      "text": "And so what's\nrather curious just"
+    },
+    {
+      "start": 3777.7,
+      "duration": 2.96,
+      "text": "to focus on our three\ndown days are not"
+    },
+    {
+      "start": 3780.66,
+      "duration": 2.96,
+      "text": "likely to be\nfollowed by a fourth."
+    },
+    {
+      "start": 3783.62,
+      "duration": 2.72,
+      "text": "And three up days\nmaybe are likely to be"
+    },
+    {
+      "start": 3786.34,
+      "duration": 3.0,
+      "text": "followed by a fourth up day."
+    },
+    {
+      "start": 3789.34,
+      "duration": 3.32,
+      "text": "So you've got some\ninsight perhaps"
+    },
+    {
+      "start": 3792.66,
+      "duration": 2.7,
+      "text": "into the overall dynamics."
+    },
+    {
+      "start": 3795.36,
+      "duration": 7.96,
+      "text": "And what's great to me is that\nwe can visualize the process"
+    },
+    {
+      "start": 3803.32,
+      "duration": 6.84,
+      "text": "and the graphical representation\nof nodes and edges"
+    },
+    {
+      "start": 3810.16,
+      "duration": 4.91,
+      "text": "between the nodes that have\nprobabilities is quite useful."
+    },
+    {
+      "start": 3817.6,
+      "duration": 1.4,
+      "text": "So let's see."
+    },
+    {
+      "start": 3819.0,
+      "duration": 7.44,
+      "text": "If you study Markov\nchains and then"
+    },
+    {
+      "start": 3826.44,
+      "duration": 5.96,
+      "text": "one can classify different\nstates or different nodes"
+    },
+    {
+      "start": 3832.4,
+      "duration": 2.88,
+      "text": "as communicating states."
+    },
+    {
+      "start": 3835.28,
+      "duration": 4.0,
+      "text": "So can you move from one\nstate to another or not?"
+    },
+    {
+      "start": 3839.28,
+      "duration": 5.82,
+      "text": "And in this case, one can move\nfrom one state to another,"
+    },
+    {
+      "start": 3845.1,
+      "duration": 4.4,
+      "text": "possibly not in one time\nperiod, but in multiple ones."
+    },
+    {
+      "start": 3849.5,
+      "duration": 3.78,
+      "text": "And so this happens to be\na strongly connected set"
+    },
+    {
+      "start": 3853.28,
+      "duration": 1.48,
+      "text": "of states."
+    },
+    {
+      "start": 3854.76,
+      "duration": 2.34,
+      "text": "And let's see."
+    },
+    {
+      "start": 3860.43,
+      "duration": 4.3,
+      "text": "This little note ends\nwith printing out"
+    },
+    {
+      "start": 3864.73,
+      "duration": 7.56,
+      "text": "the columns of the\ntransition probability matrix"
+    },
+    {
+      "start": 3872.29,
+      "duration": 6.52,
+      "text": "for up moves and down moves."
+    },
+    {
+      "start": 3878.81,
+      "duration": 7.28,
+      "text": "And so if we wanted\nto move from one state"
+    },
+    {
+      "start": 3886.09,
+      "duration": 6.2,
+      "text": "to an up move in\nthe next period,"
+    },
+    {
+      "start": 3892.29,
+      "duration": 2.92,
+      "text": "then looking at\nthis table, one can"
+    },
+    {
+      "start": 3895.21,
+      "duration": 9.72,
+      "text": "see that the highest probability\nof the three day state being up"
+    },
+    {
+      "start": 3904.93,
+      "duration": 10.92,
+      "text": "in the third day, given the\nprior three day state, then"
+    },
+    {
+      "start": 3915.85,
+      "duration": 2.78,
+      "text": "it corresponds to\nthree down days"
+    },
+    {
+      "start": 3918.63,
+      "duration": 6.2,
+      "text": "lead to an up day the next\nday with almost a 60% chance."
+    },
+    {
+      "start": 3924.83,
+      "duration": 5.64,
+      "text": "And one can also do\nthe same for down moves"
+    },
+    {
+      "start": 3930.47,
+      "duration": 5.48,
+      "text": "and see under what state are we\nmost likely to have a down move."
+    },
+    {
+      "start": 3935.95,
+      "duration": 7.4,
+      "text": "And so I think 0.510\nis the highest,"
+    },
+    {
+      "start": 3943.35,
+      "duration": 2.88,
+      "text": "which isn't much\nhigher than 0.5."
+    },
+    {
+      "start": 3946.23,
+      "duration": 6.52,
+      "text": "But basically, the past\nfew days being a bit mixed,"
+    },
+    {
+      "start": 3952.75,
+      "duration": 4.52,
+      "text": "but with two up days\npreceded by a down day,"
+    },
+    {
+      "start": 3957.27,
+      "duration": 5.64,
+      "text": "give us a higher\nlikelihood of a down day."
+    },
+    {
+      "start": 3962.91,
+      "duration": 3.8,
+      "text": "So let's see."
+    },
+    {
+      "start": 3966.71,
+      "duration": 6.44,
+      "text": "With this note, let's\nsee, there's a--"
+    },
+    {
+      "start": 3973.15,
+      "duration": 5.66,
+      "text": "OK, so here's the reference\nfor this Markov chain package."
+    },
+    {
+      "start": 3978.81,
+      "duration": 3.24,
+      "text": "And what's quite\nconvenient with different R"
+    },
+    {
+      "start": 3982.05,
+      "duration": 4.52,
+      "text": "packages on different\napplication topics"
+    },
+    {
+      "start": 3986.57,
+      "duration": 5.92,
+      "text": "is that these articles often\ngo through the mathematical"
+    },
+    {
+      "start": 3992.49,
+      "duration": 1.62,
+      "text": "background of the models."
+    },
+    {
+      "start": 3994.11,
+      "duration": 5.3,
+      "text": "And so if you check out this\ndiscussion, this article"
+    },
+    {
+      "start": 3999.41,
+      "duration": 3.16,
+      "text": "on the Markov chain\npackage, it actually"
+    },
+    {
+      "start": 4002.57,
+      "duration": 3.76,
+      "text": "will include the\nmathematical issues"
+    },
+    {
+      "start": 4006.33,
+      "duration": 3.6,
+      "text": "of how you might\nclassify different states"
+    },
+    {
+      "start": 4009.93,
+      "duration": 2.1,
+      "text": "and do various computations."
+    },
+    {
+      "start": 4012.03,
+      "duration": 5.09,
+      "text": "So that's quite useful to\nhave as a resource with these."
+    },
+    {
+      "start": 4019.65,
+      "duration": 1.8,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4021.45,
+      "duration": 7.58,
+      "text": "With the RStudio Cloud\nfiles that were distributed,"
+    },
+    {
+      "start": 4029.03,
+      "duration": 6.19,
+      "text": "if you use those programs,\nyou can change the symbols"
+    },
+    {
+      "start": 4035.22,
+      "duration": 3.84,
+      "text": "from Apple to any other and\nuse different time periods"
+    },
+    {
+      "start": 4039.06,
+      "duration": 3.4,
+      "text": "to see whether these\nproperties may be strong or not"
+    },
+    {
+      "start": 4042.46,
+      "duration": 0.9,
+      "text": "with other stocks."
+    },
+    {
+      "start": 4043.36,
+      "duration": 4.14,
+      "text": "And I think that might be an\ninteresting thing to check out."
+    },
+    {
+      "start": 4047.5,
+      "duration": 6.44,
+      "text": "Our next topic, which is\non regression analysis."
+    },
+    {
+      "start": 4053.94,
+      "duration": 7.44,
+      "text": "And with regression,\nwe want to just review"
+    },
+    {
+      "start": 4061.38,
+      "duration": 6.2,
+      "text": "the notation and setup for\nmultiple linear regression."
+    },
+    {
+      "start": 4067.58,
+      "duration": 4.44,
+      "text": "If you've taken any\nstatistics class"
+    },
+    {
+      "start": 4072.02,
+      "duration": 3.08,
+      "text": "prior to this, which\nmost of you have,"
+    },
+    {
+      "start": 4075.1,
+      "duration": 2.72,
+      "text": "you're very familiar with\nsimple linear regression where"
+    },
+    {
+      "start": 4077.82,
+      "duration": 4.04,
+      "text": "you have one dependent\nvariable and one"
+    },
+    {
+      "start": 4081.86,
+      "duration": 3.52,
+      "text": "predictor or\nexplanatory variable."
+    },
+    {
+      "start": 4085.38,
+      "duration": 4.28,
+      "text": "We want to consider the case\nof multiple linear regression,"
+    },
+    {
+      "start": 4089.66,
+      "duration": 7.5,
+      "text": "where we have a single dependent\nvariable and multiple predictor"
+    },
+    {
+      "start": 4097.16,
+      "duration": 4.319,
+      "text": "or explanatory variables\ngiven by x's, and we"
+    },
+    {
+      "start": 4101.479,
+      "duration": 2.521,
+      "text": "want to describe\nthe relationship"
+    },
+    {
+      "start": 4104.0,
+      "duration": 4.22,
+      "text": "between the dependent and\nindependent variables."
+    },
+    {
+      "start": 4108.22,
+      "duration": 3.42,
+      "text": "Now, different\nregression problems"
+    },
+    {
+      "start": 4111.64,
+      "duration": 2.52,
+      "text": "can focus on prediction."
+    },
+    {
+      "start": 4114.16,
+      "duration": 4.159,
+      "text": "This is actually one that I\nfind most engaging, at least"
+    },
+    {
+      "start": 4118.319,
+      "duration": 5.761,
+      "text": "trying to, say, predict stock\nprices over fixed horizons"
+    },
+    {
+      "start": 4124.08,
+      "duration": 2.56,
+      "text": "is of real interest."
+    },
+    {
+      "start": 4126.64,
+      "duration": 2.56,
+      "text": "But regression\nmodels can also be"
+    },
+    {
+      "start": 4129.2,
+      "duration": 6.0,
+      "text": "used to make inferences\nof causality."
+    },
+    {
+      "start": 4135.2,
+      "duration": 7.079,
+      "text": "Regression models arise\nin medical experiments"
+    },
+    {
+      "start": 4142.279,
+      "duration": 2.681,
+      "text": "where one of the\nexplanatory variables"
+    },
+    {
+      "start": 4144.96,
+      "duration": 2.399,
+      "text": "corresponds to a\ntreatment effect."
+    },
+    {
+      "start": 4147.359,
+      "duration": 2.481,
+      "text": "One can also be\ninterested in trying"
+    },
+    {
+      "start": 4149.84,
+      "duration": 5.57,
+      "text": "to approximate the dependent\nvariable by functions"
+    },
+    {
+      "start": 4155.41,
+      "duration": 3.159,
+      "text": "of the independent\nvariables and understand"
+    },
+    {
+      "start": 4158.569,
+      "duration": 2.921,
+      "text": "their functional relationships."
+    },
+    {
+      "start": 4161.49,
+      "duration": 8.68,
+      "text": "So all of these objectives can\nbe achieved with regression."
+    },
+    {
+      "start": 4170.17,
+      "duration": 11.08,
+      "text": "And we define a general linear\nmodel with these equations here."
+    },
+    {
+      "start": 4181.25,
+      "duration": 4.52,
+      "text": "We basically have our\nobserved yi values"
+    },
+    {
+      "start": 4185.77,
+      "duration": 5.64,
+      "text": "being a sum of a fitted\nvalue plus error."
+    },
+    {
+      "start": 4191.41,
+      "duration": 6.8,
+      "text": "And the fitted value y\nhat i is written here"
+    },
+    {
+      "start": 4198.21,
+      "duration": 5.04,
+      "text": "as a linear function of\nthe independent variables"
+    },
+    {
+      "start": 4203.25,
+      "duration": 6.74,
+      "text": "xi with coefficients\nbeta 1 through beta p."
+    },
+    {
+      "start": 4209.99,
+      "duration": 2.78,
+      "text": "And there's actually\na typo there."
+    },
+    {
+      "start": 4212.77,
+      "duration": 3.74,
+      "text": "It shouldn't be beta sub ip,\nit should just be beta p there."
+    },
+    {
+      "start": 4216.51,
+      "duration": 5.4,
+      "text": "And with this setup,\nwell, we could"
+    },
+    {
+      "start": 4221.91,
+      "duration": 4.56,
+      "text": "consider different\nexplanatory variables"
+    },
+    {
+      "start": 4226.47,
+      "duration": 6.16,
+      "text": "that happen to be just\ndifferent powers of one"
+    },
+    {
+      "start": 4232.63,
+      "duration": 2.64,
+      "text": "independent variable x."
+    },
+    {
+      "start": 4235.27,
+      "duration": 10.12,
+      "text": "We could also consider\nFourier series of x variables."
+    },
+    {
+      "start": 4245.39,
+      "duration": 2.6,
+      "text": "We could also have\ntime series regressions"
+    },
+    {
+      "start": 4247.99,
+      "duration": 8.0,
+      "text": "where the independent variables\nx may correspond to prior time"
+    },
+    {
+      "start": 4255.99,
+      "duration": 3.24,
+      "text": "values of the y series."
+    },
+    {
+      "start": 4259.23,
+      "duration": 4.36,
+      "text": "And in all of these cases,\nwhat's really important"
+    },
+    {
+      "start": 4263.59,
+      "duration": 5.54,
+      "text": "is linearity of the\nfitted value y hat."
+    },
+    {
+      "start": 4269.13,
+      "duration": 9.32,
+      "text": "And what's linear\nis not that it's"
+    },
+    {
+      "start": 4278.45,
+      "duration": 5.34,
+      "text": "the sum of x's so much as it\nis the regression parameters"
+    },
+    {
+      "start": 4283.79,
+      "duration": 4.5,
+      "text": "beta are a linear\nfunction of those."
+    },
+    {
+      "start": 4288.29,
+      "duration": 5.32,
+      "text": "So the linearity of y hat\nin the regression parameters"
+    },
+    {
+      "start": 4293.61,
+      "duration": 8.2,
+      "text": "is a key property of this model,\nand that linearity dependence"
+    },
+    {
+      "start": 4301.81,
+      "duration": 4.4,
+      "text": "on the parameters allows us\nto specify the parameters."
+    },
+    {
+      "start": 4306.21,
+      "duration": 8.92,
+      "text": "Now, let me just go to\nanother example here."
+    },
+    {
+      "start": 4315.13,
+      "duration": 0.77,
+      "text": "Let's see here."
+    },
+    {
+      "start": 4319.37,
+      "duration": 0.92,
+      "text": "OK."
+    },
+    {
+      "start": 4320.29,
+      "duration": 3.44,
+      "text": "Here's a time series\nof the high yield"
+    },
+    {
+      "start": 4323.73,
+      "duration": 4.85,
+      "text": "spread in the bond markets."
+    },
+    {
+      "start": 4328.58,
+      "duration": 4.04,
+      "text": "And so this is looking\nat the yield on bonds"
+    },
+    {
+      "start": 4332.62,
+      "duration": 5.72,
+      "text": "with a credit rating of B\nAA minus the yield on a US"
+    },
+    {
+      "start": 4338.34,
+      "duration": 1.56,
+      "text": "Treasury."
+    },
+    {
+      "start": 4339.9,
+      "duration": 6.2,
+      "text": "And so this difference\nin yield tends"
+    },
+    {
+      "start": 4346.1,
+      "duration": 2.28,
+      "text": "to be positive, well above 2."
+    },
+    {
+      "start": 4348.38,
+      "duration": 3.68,
+      "text": "It means that these\nlower credit rated"
+    },
+    {
+      "start": 4352.06,
+      "duration": 5.4,
+      "text": "companies have to pay more\ninterest to lenders when"
+    },
+    {
+      "start": 4357.46,
+      "duration": 1.72,
+      "text": "they borrow money."
+    },
+    {
+      "start": 4359.18,
+      "duration": 5.04,
+      "text": "But that excess rate\nabove the Treasury"
+    },
+    {
+      "start": 4364.22,
+      "duration": 8.16,
+      "text": "evolves over time and\nsometimes drops moderately"
+    },
+    {
+      "start": 4372.38,
+      "duration": 2.0,
+      "text": "or rises moderately."
+    },
+    {
+      "start": 4374.38,
+      "duration": 3.72,
+      "text": "Now, if we were to\nuse just polynomials"
+    },
+    {
+      "start": 4378.1,
+      "duration": 6.54,
+      "text": "to try and fit these, well,\nas we extend to eighth order"
+    },
+    {
+      "start": 4384.64,
+      "duration": 2.88,
+      "text": "polynomials, everyone\nhere probably knows"
+    },
+    {
+      "start": 4387.52,
+      "duration": 1.94,
+      "text": "that with a high enough\norder polynomial,"
+    },
+    {
+      "start": 4389.46,
+      "duration": 2.9,
+      "text": "you can match any smooth curve."
+    },
+    {
+      "start": 4392.36,
+      "duration": 1.92,
+      "text": "No surprise."
+    },
+    {
+      "start": 4394.28,
+      "duration": 4.08,
+      "text": "Do we expect this spread to\nactually follow some high order"
+    },
+    {
+      "start": 4398.36,
+      "duration": 1.36,
+      "text": "polynomial?"
+    },
+    {
+      "start": 4399.72,
+      "duration": 0.95,
+      "text": "Probably not."
+    },
+    {
+      "start": 4404.72,
+      "duration": 4.56,
+      "text": "Here's another example\nof using Fourier series"
+    },
+    {
+      "start": 4409.28,
+      "duration": 5.08,
+      "text": "with the same\nspread time series."
+    },
+    {
+      "start": 4414.36,
+      "duration": 4.44,
+      "text": "And so as we add in more\nterms in the Fourier series,"
+    },
+    {
+      "start": 4418.8,
+      "duration": 5.2,
+      "text": "we're able to model higher\nfrequency variations."
+    },
+    {
+      "start": 4424.0,
+      "duration": 7.12,
+      "text": "And what this shows\nis just how, I guess,"
+    },
+    {
+      "start": 4431.12,
+      "duration": 3.56,
+      "text": "frequency analysis\nin financial series"
+    },
+    {
+      "start": 4434.68,
+      "duration": 1.43,
+      "text": "potentially can be useful."
+    },
+    {
+      "start": 4438.72,
+      "duration": 3.7,
+      "text": "What's really\nsurprising, though,"
+    },
+    {
+      "start": 4442.42,
+      "duration": 8.07,
+      "text": "is if we do a autoregression,\nwhere here is the high yield"
+    },
+    {
+      "start": 4450.49,
+      "duration": 7.52,
+      "text": "spread, and then we basically\nhave an autoregression"
+    },
+    {
+      "start": 4458.01,
+      "duration": 5.68,
+      "text": "saying that the spread tomorrow\nis the same as the spread today"
+    },
+    {
+      "start": 4463.69,
+      "duration": 1.64,
+      "text": "or very, very close."
+    },
+    {
+      "start": 4465.33,
+      "duration": 4.48,
+      "text": "Then we get this\nblue curve fitting"
+    },
+    {
+      "start": 4469.81,
+      "duration": 3.74,
+      "text": "the black curve, which is over,\nunderneath the blue curve."
+    },
+    {
+      "start": 4473.55,
+      "duration": 7.02,
+      "text": "So we get almost a perfect\nfit with this autoregression."
+    },
+    {
+      "start": 4480.57,
+      "duration": 6.88,
+      "text": "So there's a multiple r squared,\nwhich we will introduce you to,"
+    },
+    {
+      "start": 4487.45,
+      "duration": 4.54,
+      "text": "of 0.995 for the autoregression."
+    },
+    {
+      "start": 4491.99,
+      "duration": 6.34,
+      "text": "So the use of historical\nvalues of a time series"
+    },
+    {
+      "start": 4498.33,
+      "duration": 4.18,
+      "text": "can be very powerful in\npredicting future values."
+    },
+    {
+      "start": 4502.51,
+      "duration": 0.62,
+      "text": "All right."
+    },
+    {
+      "start": 4503.13,
+      "duration": 2.88,
+      "text": "So in fitting a multiple\nregression model,"
+    },
+    {
+      "start": 4506.01,
+      "duration": 5.3,
+      "text": "whether it's with time series\nfactors or not, what we do"
+    },
+    {
+      "start": 4511.31,
+      "duration": 5.76,
+      "text": "is go through these steps\nof proposing a model,"
+    },
+    {
+      "start": 4517.07,
+      "duration": 5.8,
+      "text": "step one, and make assumptions\nabout the error term epsilon."
+    },
+    {
+      "start": 4522.87,
+      "duration": 3.68,
+      "text": "And then second, we\ndefine a criterion"
+    },
+    {
+      "start": 4526.55,
+      "duration": 3.56,
+      "text": "for judging\ndifferent estimators."
+    },
+    {
+      "start": 4530.11,
+      "duration": 4.44,
+      "text": "And that criterion can be\nthings like least squares"
+    },
+    {
+      "start": 4534.55,
+      "duration": 5.76,
+      "text": "or minimum mean squared\nprediction error or others."
+    },
+    {
+      "start": 4540.31,
+      "duration": 5.92,
+      "text": "And then characterize the best\nestimator using that criterion."
+    },
+    {
+      "start": 4546.23,
+      "duration": 4.76,
+      "text": "Then we check whether\nthe assumptions we made"
+    },
+    {
+      "start": 4550.99,
+      "duration": 3.24,
+      "text": "are, in fact, satisfied."
+    },
+    {
+      "start": 4554.23,
+      "duration": 5.68,
+      "text": "And very often, we'll discover\nthat certain assumptions we make"
+    },
+    {
+      "start": 4559.91,
+      "duration": 5.18,
+      "text": "are not satisfied and we need\nto revise those and create"
+    },
+    {
+      "start": 4565.09,
+      "duration": 0.65,
+      "text": "a new model."
+    },
+    {
+      "start": 4572.21,
+      "duration": 6.32,
+      "text": "The model assumptions\nwe apply include"
+    },
+    {
+      "start": 4578.53,
+      "duration": 2.88,
+      "text": "what are called Gauss-Markov\nassumptions, which"
+    },
+    {
+      "start": 4581.41,
+      "duration": 5.2,
+      "text": "is where we assume that\nthe errors in the model"
+    },
+    {
+      "start": 4586.61,
+      "duration": 5.54,
+      "text": "have mean 0 and\nconstant variance."
+    },
+    {
+      "start": 4598.61,
+      "duration": 6.08,
+      "text": "And so with this epsilon\nhat corresponding"
+    },
+    {
+      "start": 4604.69,
+      "duration": 7.04,
+      "text": "to the n cases in the\nseries, we basically"
+    },
+    {
+      "start": 4611.73,
+      "duration": 5.76,
+      "text": "can assume these are mean 0 and\nhave standard deviation sigma"
+    },
+    {
+      "start": 4617.49,
+      "duration": 4.39,
+      "text": "that's a constant and that\nthese are uncorrelated."
+    },
+    {
+      "start": 4627.7,
+      "duration": 4.0,
+      "text": "We could additionally assume\nthat these errors are normally"
+    },
+    {
+      "start": 4631.7,
+      "duration": 3.92,
+      "text": "distributed or not."
+    },
+    {
+      "start": 4635.62,
+      "duration": 2.44,
+      "text": "We can generalize\nthe Gauss-Markov"
+    },
+    {
+      "start": 4638.06,
+      "duration": 4.6,
+      "text": "to assume non-constant\nvariances of the errors"
+    },
+    {
+      "start": 4642.66,
+      "duration": 3.48,
+      "text": "and possibly correlations\nof errors over time."
+    },
+    {
+      "start": 4646.14,
+      "duration": 2.6,
+      "text": "We could also consider\nnon-normal non-Gaussian"
+    },
+    {
+      "start": 4648.74,
+      "duration": 1.44,
+      "text": "distributions."
+    },
+    {
+      "start": 4650.18,
+      "duration": 2.2,
+      "text": "And all of these\ncases actually have"
+    },
+    {
+      "start": 4652.38,
+      "duration": 4.68,
+      "text": "a role in different contexts."
+    },
+    {
+      "start": 4657.06,
+      "duration": 3.52,
+      "text": "In particular, I guess\ngeneralized Gauss-Markov methods"
+    },
+    {
+      "start": 4660.58,
+      "duration": 3.12,
+      "text": "apply with time\nseries regressions,"
+    },
+    {
+      "start": 4663.7,
+      "duration": 6.16,
+      "text": "and the non-normal non-Gaussian\ndistributions arise as well,"
+    },
+    {
+      "start": 4669.86,
+      "duration": 3.4,
+      "text": "often with asset returns data."
+    },
+    {
+      "start": 4673.26,
+      "duration": 3.52,
+      "text": "Now, in terms of what\nkind of criterion"
+    },
+    {
+      "start": 4676.78,
+      "duration": 2.78,
+      "text": "we should use for\nspecifying parameters,"
+    },
+    {
+      "start": 4679.56,
+      "duration": 4.34,
+      "text": "we have least squares, maximum\nlikelihood, robust methods,"
+    },
+    {
+      "start": 4683.9,
+      "duration": 2.96,
+      "text": "Bayes' methods, a whole\nvariety of methods."
+    },
+    {
+      "start": 4686.86,
+      "duration": 2.18,
+      "text": "And what's really\nimportant to me"
+    },
+    {
+      "start": 4689.04,
+      "duration": 5.56,
+      "text": "is for people to have\nan understanding of what"
+    },
+    {
+      "start": 4694.6,
+      "duration": 3.36,
+      "text": "these different methods\nare, and when you would"
+    },
+    {
+      "start": 4697.96,
+      "duration": 2.96,
+      "text": "prefer one method over another."
+    },
+    {
+      "start": 4700.92,
+      "duration": 3.4,
+      "text": "And so what I think is a\nreally important question"
+    },
+    {
+      "start": 4704.32,
+      "duration": 5.2,
+      "text": "to ask when doing empirical\nanalyses with different models"
+    },
+    {
+      "start": 4709.52,
+      "duration": 6.68,
+      "text": "is, are your assumptions\nreasonable, if not"
+    },
+    {
+      "start": 4716.2,
+      "duration": 2.56,
+      "text": "satisfied by the\ndata you're modeling?"
+    },
+    {
+      "start": 4718.76,
+      "duration": 5.28,
+      "text": "And with different criteria for\njudging different specifications"
+    },
+    {
+      "start": 4724.04,
+      "duration": 6.4,
+      "text": "of models, are you using an\nappropriate criterion or not?"
+    },
+    {
+      "start": 4730.44,
+      "duration": 2.68,
+      "text": "Are there variations\nin that criterion"
+    },
+    {
+      "start": 4733.12,
+      "duration": 4.73,
+      "text": "that would lead to higher\nperformance levels?"
+    },
+    {
+      "start": 4737.85,
+      "duration": 3.36,
+      "text": "So that for me is\na guiding question"
+    },
+    {
+      "start": 4741.21,
+      "duration": 2.12,
+      "text": "throughout these\ndifferent checks."
+    },
+    {
+      "start": 4743.33,
+      "duration": 3.78,
+      "text": "So with that,\nwe'll finish today."
+    },
+    {
+      "start": 4747.11,
+      "duration": 3.98,
+      "text": "And next time, we'll\nfinish these notes"
+    },
+    {
+      "start": 4751.09,
+      "duration": 5.04,
+      "text": "going through ordinary\nleast squares estimation."
+    },
+    {
+      "start": 4756.13,
+      "duration": 5.48,
+      "text": "And what's useful about this\ndevelopment of least squares"
+    },
+    {
+      "start": 4761.61,
+      "duration": 4.52,
+      "text": "estimation is that it does\nso with linear algebra."
+    },
+    {
+      "start": 4766.13,
+      "duration": 3.6,
+      "text": "And what we'll see is\nthat with linear algebra,"
+    },
+    {
+      "start": 4769.73,
+      "duration": 3.32,
+      "text": "we get very straightforward\nformulas for least squares"
+    },
+    {
+      "start": 4773.05,
+      "duration": 4.12,
+      "text": "estimates, as well as\ninteresting analytical"
+    },
+    {
+      "start": 4777.17,
+      "duration": 2.74,
+      "text": "properties of those\nleast squares estimates."
+    },
+    {
+      "start": 4779.91,
+      "duration": 3.65,
+      "text": "So we'll cover that next time."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: All right, we'll get started. See, last time we introduced you to the definition of martingales. And what we're going to do the first part today is to see how useful and powerful martingale properties are and solving interesting questions and challenges. So just as a reminder, if we have a stochastic process xn, which is just a sequence of random variables, generally the index n corresponds to time. Then we can consider a derived process capital M sub n, which is a function of the first n values of the stochastic process x. And we say that this second process, this derived process, is a martingale if the expected value into the future from time n minus 1 is simply equal to the time n minus 1 value. So with the process evolving over time, we have an M sub n process. Basically, at time n minus 1 we have a value, our prediction is that the expected value of that in the future is Mn minus 1. And so some examples of these. We went through last time a simple random walk. And with the simple random walk, we end up having realizations of this martingale that evolve from, say, a starting point 0. And what's critical with these realizations is that the future paths that have yet to be graphed will have average value equal to the last point on these realizations. So there's a notion of there being flatness in the martingale expectations. With the example here of a simple random walk with equal probability of going up or down one step, one can graph the standard deviations up from the average 0 for the processes. And basically the realizations of the random walk will, by the central limit theorem, converge to a normal distribution at any given time point far into the future. Now, this second example of a martingale where we have a random walk Sn but then we square it and subtract n times the sigma squared, the variance of each of the steps, this is also a martingale. And so looking at different realizations of this martingale, we can see that it's very, very different from that of a simple random walk. And importantly, there's basically of a lower limit of the process, it appears, for fixed n and an unbounded upper limit. But this process as well is a martingale. And let's see. A different martingale can be defined, not in terms of random walks with steps that add, but with random shifts with factors x1 to xn. So if we have Mn being the product of x1 to xn, where the x's are independent random variables with mean value 1, then this particular process M sub n will be a martingale with respect to the original series. So here's an example of our Bernoulli factors, which are with 50% probability 1.5 and with 50% probability 0.5. This would correspond to the change in wealth from betting your wealth in a lottery where you either make 50% or lose 50% with equal probability. And here is the graph of a realization over 50 steps. Here's other realizations. And what's interesting to see is that with this particular martingale, there are opportunities to, basically, if you're playing this lottery game at each step, to be able to grow your wealth to 5 or 10 times its initial value. But with moderate or even high probability, you actually have lost almost all your wealth. So yet another example, and this one is really rather curious to introduce, but it shows you how we can be flexible in generating or constructing martingales. If we have the yn sequence being iid random variables and the moment generating function e to the lambda yn or e to the lambda y, yn is equal to the moment generating function. Or that's e to the ty. In our notation, we're going to use a phi of lambda here or phi of t. Then if we consider taking xn equaling e to the lambda yn divided by phi of lambda, then this xn will be a martingale. Or this xn, rather, will be factors that have expectation equaling 1. And if we take the product of these x's, we basically have M sub n equaling e to the lambda times the sum of the yn's divided by phi of lambda to the n-th power. This will also be a martingale. And what we'll see towards the middle of this lecture is that this particular martingale can be used to solve probabilities of gambler's ruin, when you have gambles that have different probabilities of success versus failure, not necessarily equal fair bets. All right. Well, with martingales, it turns out to be very useful to consider what we call the information sets on the subsequence of variables x1 through xn. So if we think of information progressing over time, the information up to time little n can be given by the outcomes of the x process. And we can consider expectations of random variables given this information set. And the kinds of random variables we might be interested in, z, can correspond to, say, trading strategies based on the outcomes of asset prices progressing over time. And if we have, let's see, if this original information set is represented in terms of a martingale, then we can consider functions of the first n values given by y, and relating to this function of the first n values, which could be, say, the trading gains from applying a trading strategy with asset prices given by the x's. It will be very useful to use random variables that are called non-anticipating. And so a non-anticipating random variable is a random variable An that is defined signed by the information set. It's non-random given the information set of the first n minus 1 x's. So if we wanted to represent the outcome of making trading decisions using the first n minus 1 values, this An could characterize how we might invest for the n-th trading period. Now, with such a non anticipating random variable, we can consider a transformation of the original martingale, given by M's with no tildes, and consider a transformation of the Mn martingale by considering this decomposition of M tilde. So we have an initial value M0. Then we have the non anticipating variable A1 that depends only on information at time 0 times the increment of the Martingale from time 0 to time 1. And we add successive terms. So these A's basically are random variables at the beginning of time. But after observing, say, j time periods, the Aj, let's see, will be-- or j minus 1 time periods, the Aj will be defined and non-random going from time j to j plus 1. And if you were to look at this M tilde sub n definition, we basically have terms that are given by increments of the martingale process, where each of those increments has expectation equal to 0. And so if we take the expectation of those from time 0, then by conditional expectation properties, the A's are fixed given the information up to time or j minus 1, and then the variation of the martingale process from time j minus 1 to j has expectation 0. Anyway, the martingale transform theorem says that this M tilde n process is a martingale also with respect to the information sets fn. And we often call this collection of information sets a filtration. And so when we think of different processes, different realizations of a process up to time n, then whatever the history is prior to n, that is the information set we have available. And as we observe successive values of the original Mn process, we're basically adding more information about the realizations. And that's how it progresses. Now, with martingales, an important concept for us is a stopping time random variable, which we'll call tau. And so what the stopping time variable is, is a random variable that characterizes whether, let's see, or I guess at any time n, we know whether the stopping time has occurred or not. So the event of the stopping time being less than or equal to n steps, that has to be known in the information set up to time n. So the notation here is a little bit tricky. We think of this set or event being the underlying probability distribution states where the tau variable is less than or equal to n. And at any time n, we know whether this set has occurred or not. So the stopping time is a random variable, and it could be infinite. So it takes values on the set S varying from 0 up to possibly infinity if the process never stops. Now, a way of trying to help explain this is with a stopping time random variable, we have different omegas in the probability space, and the omegas can be thought of as indexing all possible paths. So with different realizations, we have a different omega. And so with these paths, our expectation or our event E, which is the set of paths for which the stopping time evaluated on that path is less than or equal to n, this event is known to either have occurred or not to occur. So we have the indicator of the path being in this set E is either 0 or 1. And so we can work with this random variable, the indicator of whether the stopping time has occurred or not. And with this setup, we can think of the process that is governed by a stopping time tau. We can represent the process at the stopped time tau as the sum of the realizations xn times a simple indicator of whether the stopping time equals n or not. So we basically have our stopped process being a sum of weights times the xn's, where those weights are actually 0 or 1. Now, in the mathematics of dealing with stopping times, the potential for infinite values of the stopping time makes things complicated. And what we can do is consider the minimum of n and the stopping time tau denoting that by n caret tau, so the minimum of n and tau. And so if we have a finite value n, this truncated stopping time is going to be a measurable random variable with respect to the information set script FM, information set FM for M greater than or equal to n. So if we imagine basically this time increasing, and we think of the minimum of n and tau, then we will be considering processes that maybe stop for a given tau, for a given realization. Or if they don't really stop until later, we just consider the value at the n point. Now, this theorem can be proven with this argument. And what you can see is that we define our non-anticipating variables to be the indicator of tau, the stopping time being greater than or equal to k. And so substituting that in to the formula for the decomposition, we end up getting that this stopped martingale at time, the minimum of n or tau is actually equal to the sum of these non-anticipating variables times the increments of the martingale. So this is easily a martingale transform and satisfies that martingale transform theorem. So this stopped martingale at the minimum of n and tau is also a martingale. What we then want to do is consider taking-- let's see. I'm not sure if we do it here shortly or not, but we'll basically let little n grow large and argue that in the limiting case, we basically have the stopped martingale without the minimum of n in tau. Well, let's look at the simple random walk we had before where the steps are plus 1 or negative 1. And we consider Sn being the sum of the steps. This can be used to characterize the problem of playing against an opponent and betting $1 with each iteration of the game. And you either win or lose that dollar each iteration of the game. And we can consider having a hit level for the sum Sn being equal to plus A or minus B. And so basically, this reflects whether we beat our opponent or not, where our opponent has a, well, let's see, if we have a bankroll B and our opponent has a bankroll A, do we win the entire bankroll of our opponent and hit A first? So we have this problem, and we want to know what's the likelihood of basically player one losing. And the SN is a martingale. And tau, the time at which the sum Sn equals plus A or minus B is a stopping time. And so this is a martingale by the stopping time theorem. And with such a martingale we have that the expected value of S at the stopped time is equal to the expected value initially. And that is equal to 0. Starting out at time 0, Sn is equal to 0. And so if we take the limit as n goes to infinity, this converges to the random variable S tau with probability 1. And this is proven partly by showing that the stopping time can't be infinite. But if we assume that these results are valid, then we have 0 is equal to the expected value of S tau. And if we write out what S tau is, at the stopping time tau, it's either going to equal A times the S tau hitting A or minus B times the stopped value equaling minus B. And if we take expectations of this equation, we basically have 0 is equal to A times the probability that we hit the level plus A minus B times the probability that we hit minus B. And those probabilities are complements of each other. So the chance that we hit minus B at the stop time is 1 minus the probability that we hit A. So using these relationships, we get that the probability that we hit A first is B over A plus B. Yes? AUDIENCE: So on the previous slide, can I just check, I don't know if it might be an error or if I don't understand something. Is it meant to say solve for S tau plus A where it says problem in bold? PETER KEMPTHORNE: Let's see. Can you ask the question again? AUDIENCE: So where it says problem in bold [INAUDIBLE] and then problem solved, is it meant to say probability that S tau-- PETER KEMPTHORNE: Oh, yes. It's probably the S tau equals plus A. Yes, definitely. No, no, that's fine. That's fine. There's always typos. Fewer typos on slides than on the Blackboard, I would say. That's the benefit of having the slides, and easier to fix. All right. Thank you for that. All right. So we get this really nice formula for the likelihood of hitting A before hitting minus B. And so by symmetry, if A equals B, then this is simply 1/2. But if the player B has a larger bankroll than the chance of taking all the money from A, basically goes to 1. So it makes sense that if you're going to gamble with fair odds, you have an advantage if you have a bigger bankroll than your opponent. Now, this second example of martingales, which is the square of the random walk Sn minus n, this is a martingale as well. And if we look at this Martingale, it's bounded by the max of A squared B squared plus tau. So we have a bounded transformation of the original Sn. And so this martingale has expectation 0 for all n. And so if we look at the expectation of M tau, this transformation of the original martingale Sn, it has 0 expectation, which is equal to the expected value of S tau squared minus the expected value of tau. And if we look at what is the expected value of S tau squared, so this term here, we have that that's equal to being stopped at plus A times A squared plus the probability of being stopped at minus B times B squared. And this expectation is equal to 0. So we can actually solve for the expected value of tau. It's simply equal to the expected value of S tau squared. So plugging everything in, it gets a little tricky until we simplify. And it's simply the product of A times B. So the amount of time it takes to defeat the opponent has an expected time equal to A times B. So if you're gambling in such a situation, the size of your bankroll times the size of the other person's bankroll estimates the approximate time it will take to finish the game, with one dominating the other. Anyway, what's characteristic of these examples is we have a martingale transform of the original series. It has a 0 expectation as it's defined. And that 0 expectation applies for all time points as well as the stopping time. All right. Well, a really challenging problem is to consider the random walk with bias. So we consider steps plus 1 or minus 1 with probability p and 1 minus p respectively. And then we're interested in what is the probability of hitting plus A, say, in this case. Certainly, as p increases, the probability of hitting plus A first increases. But how does it do so? Now, some of you have taken stochastic processes already. Or how many people have taken the course in stochastic processes? Maybe just a couple. Do you recall this problem being covered in your course? And when I taught the stochastic processes course about five or six years ago, the way this was solved was by brute force understanding the dynamics of the process and doing computations with first step analyses. And the solution was really quite complex, but it got the right answer. What's really neat about martingales is that we can actually solve this problem pretty elegantly. And so we're going to use this moment generating function transformation. So our xn's have a moment generating function, which is p, the probability of plus 1, times e to the lambda times plus 1 plus q, the probability of negative 1 times e to the lambda times negative 1. So this definition of the moment generating function is very straightforward. If we take e to the lambda xn divided by phi, these are independent random variables that have expectation equal to 1. And we can define n then to be the product of the first n yi's. And this will be a martingale by our example 4. And if we solve for the lambda value, that makes phi of lambda equal to 1. Then for that fixed value of lambda, this Mn is going to be a martingale. It's actually a martingale for any lambda. But in addition, that special case where phi of lambda equals 1. And so if we graph this moment generating function as a function of lambda, we can see that it's equal to 1 when e to the lambda is equal to q over p. So Mn for this particular lambda for which e to the lambda equals q over p is simply q over p to the power Sn. And with that, we basically have the initial value of M at time 1, basically, or at time 0 is 1. And that should equal the stopped value of q over p to the power SN2 at the stopped value. So it's q over p to the plus A times the probability of stopping at A plus q over p to the minus B times the probability of stopping at minus B. And again, this equation basically gives us two terms that are related to each other that we can solve for. So we get the probability that this biased random walk stops or hits plus A first is simply the ratio of q to p to the power of B minus 1 over the same ratio to the power A plus B. So this result is very direct and elegant. If you look at stochastic processes books that try to solve this biased random walk problem without martingale theory, it's a bit more involved and tricky. All right, so here's just some R code that will graph these probabilities as functions of A and B. I think it's useful only just to know that you can do something like this. You can graph the probability surface as it varies with the hit levels A and B. And here are contours of the different probabilities, which can also be graphed easily. And that finishes this initial discussion of martingales. Now, a second topic in stochastic processes that is extremely important is the concept of Markov processes. And so if we think of a general stochastic process xt, then we will say that the process is a Markov process if for any times of the process S that's between u and t, that xt will be independent of all xu's where u is less than s. So when we think of a time scale, so we have u less than s less than t. If we imagine realizations of a stochastic process, and we are interested in looking at the value of xt, the value of xt given information on times s and before will be independent of all of the times before. And so the conditional distribution, so the distribution of xt, given all of the values of x prior to time u, is equal in distribution. It has the same random distribution as just the conditional distribution given xs. So with a Markov process, the future depends on the past only through the last value of the past. It doesn't matter how one arrived at a given value at time s. For different realizations that have the same end point, it's only that point that indexes the distributions into the future. So this is a Markov process. It's a simple model where the past information can be encapsulated just in the last observed value, not in the realizations of how that value was achieved. So this is just some notation for trying to say what I just said. Now, with Markov chains, these are interesting stochastic processes where we consider there being a state space, capital S, where we can index possible states that the process beginning, say, with 0 and the integers. And it could be a finite number or a countably infinite number. And then we have a time index set with n varying from 0 through the positive integers. And so the Markov property with this stochastic process would have that the probability of the next state being j from time n, given the values of the process x0 through xn, this conditional probability is equal to the conditional probability of j state at time n plus 1, just given that xn is equal to i. So this is a nice property for processes that makes their analysis a bit less complex. And what's important in this definition of the Markov process is that there's a one step transition probability from state i to state j, from time n to n plus 1, and these transition probabilities, together with the probabilities of the initial states, completely specifies the stochastic process. Now, this issue of completely specifying a stochastic process is an important one, in that what we want with a stochastic process is to have a complete probability model of that process. And so if we have an initial state x0 and the probabilities over all states i in S, that characterizes the probability model for the state 0 value. Then if we look at the conditional probability from time n equals 0 to n-- or from 0 to 1, we then have the conditional probabilities of moving from any state 0 to any state at time 1. And so those conditional probabilities, together with the marginal probability, specify the distribution of the process over state 0 and 1. And we can continue this computation for successive time points and completely specify our stochastic process. Now, the general Markov process, as introduced there, is very complex, because we may have different transition probabilities depending upon how long the process has been operating. A simple case is called a stationary Markov process, where these transition probabilities, one step transition probabilities, do not depend on the time. So we have the same probabilities of moving from one state to another regardless of when that is occurring. And so we can define a matrix P, which is the collection of all pairwise probabilities Pij moving from state i to state j. And we basically require that these transition probabilities are non-negative, and the sum over target states j from state i that those probabilities sum to 1 for a stationary transition probability matrix. And to define the probability distribution of the entire process xn using this stationary transition probability matrix and initial probabilities, we can compute any probabilities by computing the collection of all such probabilities where we have n steps of the process, or n time points of the process, and states i0 through i little n there. So if we can calculate these probabilities, we will have specified the probability model. Now, in calculating the joint probability of the first little n values states being i0 through in, we can decompose this probability into the marginal probability of the first n minus 1 times the conditional probability of the last given the others. So if we think of A equaling x0 up to xn minus 1 equals i, n minus 1, and B is equal to xn equal to in, then we can look at the probability of A and B is equal to the probability of A times the probability of B given A. And this is basically what's written up there. And this formula on the Blackboard is simply Bayes' formula relating the conditional probability of B given A to the probabilities of A and B. So probability of B given A. Now, with this second equation, we can simplify that to the red probability, which is only depending upon the n minus 1 value. And so we have that this probability is equal to the marginal probability of the first n minus 1 times the transition probability from state in minus 1 to in. And that won't depend on n. And so we can basically, by induction, basically replace each of the successive state transitions by the probability of moving from one state to another and the successive transitions of all those states. So this joint probability can be represented in this form, exploiting the Markov property to simplify the one step transitions, and using the stationery property to define these Pij's. OK, well, with stationary transition probabilities, the multi-step transition probabilities turn out to have a really nice form. And so we can represent the transition probability matrix over n steps as the n-th power of the one step transition probabilities matrices. So this property of Markov chains with stationary transition probabilities is very nice and gives us this result. Now, let's see. In terms of proving this, There's this analysis called first step analysis in stochastic processes. That's a really useful tool for proving different results. And this first step analysis basically says, OK, if we want to calculate the probability of going from state 0, sorry, state i to j in n steps, that's like starting at time 0 in state i and transitioning to state j. Then we can decompose this probability into the sum over all possible first steps going from i to k in state 1 and then from state k to j by time n. And so this first equation here is a first step equation of the probabilities. We can basically decompose the process of going from state i to j in n steps as going from state i to each k state in step one, and then going from state k to n in n minus 1 steps. So this is that formula. And so if we write this out, we end up getting the xn equaling-- or this in blue is equal to the term above in black because of the Markov nature of the Markov property of the process. And so we basically have this sum of Pik times probability of xn minus 1 equaling jx0 equals k. So we end up basically getting this matrix equation of the n step transition probabilities is equal to the one step matrix P times the n minus 1 step transition probability matrix in green. OK. Well, these transition probabilities, together with the marginal distribution of the initial state, gives us the marginal distribution of xn at any time. So these formulas just indicate how we do these computations. Now, where do Markov chains arise in finance? Well, one example to think about is how companies have credit ratings. And those credit ratings range from high credit, which is AAA, and low credit being I guess C. D being default is maybe a terminal state, at least in some sense. But companies are graded or rated by Standard and Poor's and Fitch and other rating agencies, and depending upon how good their credit rating is, they can borrow money at lower interest rates. And the way corporations borrow money is to issue a bond, paying a certain interest rate and having that interest rate be attractive to lenders. And the way that such a loan contract is attractive to lenders is with a high interest rate to the lender, but a low risk of default by the borrower. And so one can think about how these credit ratings vary from one period to the next. And here's a table of migration probabilities from one year to the next. And one can see that AAA initial ratings had only a 43% chance of staying AAA at the end of that one year. And there was a very low probability of downgrades to C, CCC, or B. And with, say, very low credit rating companies, the chance of basically increasing their credit rating to B was 41%, staying at CCC is 32%, but almost a 20% chance of defaulting perhaps. So these kinds of metrics basically can be analyzed with the tools of Markov chains. And let's see. Then another example that I put together is looking at the stock price dynamics of any stock, but I chose Apple, and using daily prices to consider states of the Apple stock price, which is it an up day or a down day? Is the price at day t higher than t minus 1, or is it a down day? I guess one of those should probably be a less than or equal to if we wanted to incorporate corporate everything. But we can consider defining a two day state, which, let's see, the formatting here is a little off, but we could have two up days in a row, an up day followed by a down day, a down day followed by an up day, and a down day followed by a down day. And look at trying to model the state changes for a two day state with a Markov chain. And in R, there's a nice r package that will do this for us. And this was distributed in the Canvas site. And so you should be able to replicate this example with Apple or choose any other stock you might be interested in. And so importantly, this uses the library quantmod here. Sort of hard to see. Let's see. So there's a library quantmod, which allows us to collect price data from the internet. And then there's this package Markov chain, which allows us to specify Markov chain models. And so with this, our code, it basically collects the data on Apple stock. And I think what I really want to emphasize for everyone is that these examples-- and so it's a bit tedious if you want to go through these examples yourself. However, the examples should work just with clicking a button, saying run, and you can replicate these. And so for the Apple stock, we just needed to substitute in the Apple symbol and collect the data. And so here's the Apple stock price from 2014 or 2013 through a week ago. And I considered just fitting a Markov chain model for these up and down states to the last 4 and 1/2 years. And so the code here goes through. And basically, with Apple prices, Apple closing prices here, we define differences in closing prices for two lags. And then talk about defining up, up days in this section here, up down days, down up, and so forth. And then if we graph these states, say, from May of this year to the end of August, this shows how this 4 state Markov chain evolved over these dates. And we can just use the Markov chain function. Or let's see. We can plot a Markov chain function or a Markov chain transition states as this graph here. So what this code does is it looks at transitions from one day to the next and calculates the probabilities of going from one state to another. So the sums across rows equals 1. And this graph, this plot shows basically what is happening with the Markov chain. We have different states given by the nodes. And then we can transition from between nodes by which arrows are feasible. And this Markov chain package will give us the probabilities, empirical probabilities, of moving from one state to another. And so one can see that two up days in Apple are likely to be followed by two up days, again, so that we'd get a third up day with that one step transition. Two down days are not likely to be followed by a third down day, because it won't go to that down, down state with probability or more than 0.5. So there tends to perhaps be reversals from double down days and a continuation of up days, as suggested by these graphs. Now, with this example, I thought, well, maybe there would be some interesting structure if we defined three day states. And so the same logic gives us 8 states of up or down on 3 successive days. And so 2 times 2 times 2, or 8, is the total number of possible states. And one can calculate the empirical probabilities of transitioning and then get this display of the Markov chain with these eight states. And so what's rather curious just to focus on our three down days are not likely to be followed by a fourth. And three up days maybe are likely to be followed by a fourth up day. So you've got some insight perhaps into the overall dynamics. And what's great to me is that we can visualize the process and the graphical representation of nodes and edges between the nodes that have probabilities is quite useful. So let's see. If you study Markov chains and then one can classify different states or different nodes as communicating states. So can you move from one state to another or not? And in this case, one can move from one state to another, possibly not in one time period, but in multiple ones. And so this happens to be a strongly connected set of states. And let's see. This little note ends with printing out the columns of the transition probability matrix for up moves and down moves. And so if we wanted to move from one state to an up move in the next period, then looking at this table, one can see that the highest probability of the three day state being up in the third day, given the prior three day state, then it corresponds to three down days lead to an up day the next day with almost a 60% chance. And one can also do the same for down moves and see under what state are we most likely to have a down move. And so I think 0.510 is the highest, which isn't much higher than 0.5. But basically, the past few days being a bit mixed, but with two up days preceded by a down day, give us a higher likelihood of a down day. So let's see. With this note, let's see, there's a-- OK, so here's the reference for this Markov chain package. And what's quite convenient with different R packages on different application topics is that these articles often go through the mathematical background of the models. And so if you check out this discussion, this article on the Markov chain package, it actually will include the mathematical issues of how you might classify different states and do various computations. So that's quite useful to have as a resource with these. Now, let's see. With the RStudio Cloud files that were distributed, if you use those programs, you can change the symbols from Apple to any other and use different time periods to see whether these properties may be strong or not with other stocks. And I think that might be an interesting thing to check out. Our next topic, which is on regression analysis. And with regression, we want to just review the notation and setup for multiple linear regression. If you've taken any statistics class prior to this, which most of you have, you're very familiar with simple linear regression where you have one dependent variable and one predictor or explanatory variable. We want to consider the case of multiple linear regression, where we have a single dependent variable and multiple predictor or explanatory variables given by x's, and we want to describe the relationship between the dependent and independent variables. Now, different regression problems can focus on prediction. This is actually one that I find most engaging, at least trying to, say, predict stock prices over fixed horizons is of real interest. But regression models can also be used to make inferences of causality. Regression models arise in medical experiments where one of the explanatory variables corresponds to a treatment effect. One can also be interested in trying to approximate the dependent variable by functions of the independent variables and understand their functional relationships. So all of these objectives can be achieved with regression. And we define a general linear model with these equations here. We basically have our observed yi values being a sum of a fitted value plus error. And the fitted value y hat i is written here as a linear function of the independent variables xi with coefficients beta 1 through beta p. And there's actually a typo there. It shouldn't be beta sub ip, it should just be beta p there. And with this setup, well, we could consider different explanatory variables that happen to be just different powers of one independent variable x. We could also consider Fourier series of x variables. We could also have time series regressions where the independent variables x may correspond to prior time values of the y series. And in all of these cases, what's really important is linearity of the fitted value y hat. And what's linear is not that it's the sum of x's so much as it is the regression parameters beta are a linear function of those. So the linearity of y hat in the regression parameters is a key property of this model, and that linearity dependence on the parameters allows us to specify the parameters. Now, let me just go to another example here. Let's see here. OK. Here's a time series of the high yield spread in the bond markets. And so this is looking at the yield on bonds with a credit rating of B AA minus the yield on a US Treasury. And so this difference in yield tends to be positive, well above 2. It means that these lower credit rated companies have to pay more interest to lenders when they borrow money. But that excess rate above the Treasury evolves over time and sometimes drops moderately or rises moderately. Now, if we were to use just polynomials to try and fit these, well, as we extend to eighth order polynomials, everyone here probably knows that with a high enough order polynomial, you can match any smooth curve. No surprise. Do we expect this spread to actually follow some high order polynomial? Probably not. Here's another example of using Fourier series with the same spread time series. And so as we add in more terms in the Fourier series, we're able to model higher frequency variations. And what this shows is just how, I guess, frequency analysis in financial series potentially can be useful. What's really surprising, though, is if we do a autoregression, where here is the high yield spread, and then we basically have an autoregression saying that the spread tomorrow is the same as the spread today or very, very close. Then we get this blue curve fitting the black curve, which is over, underneath the blue curve. So we get almost a perfect fit with this autoregression. So there's a multiple r squared, which we will introduce you to, of 0.995 for the autoregression. So the use of historical values of a time series can be very powerful in predicting future values. All right. So in fitting a multiple regression model, whether it's with time series factors or not, what we do is go through these steps of proposing a model, step one, and make assumptions about the error term epsilon. And then second, we define a criterion for judging different estimators. And that criterion can be things like least squares or minimum mean squared prediction error or others. And then characterize the best estimator using that criterion. Then we check whether the assumptions we made are, in fact, satisfied. And very often, we'll discover that certain assumptions we make are not satisfied and we need to revise those and create a new model. The model assumptions we apply include what are called Gauss-Markov assumptions, which is where we assume that the errors in the model have mean 0 and constant variance. And so with this epsilon hat corresponding to the n cases in the series, we basically can assume these are mean 0 and have standard deviation sigma that's a constant and that these are uncorrelated. We could additionally assume that these errors are normally distributed or not. We can generalize the Gauss-Markov to assume non-constant variances of the errors and possibly correlations of errors over time. We could also consider non-normal non-Gaussian distributions. And all of these cases actually have a role in different contexts. In particular, I guess generalized Gauss-Markov methods apply with time series regressions, and the non-normal non-Gaussian distributions arise as well, often with asset returns data. Now, in terms of what kind of criterion we should use for specifying parameters, we have least squares, maximum likelihood, robust methods, Bayes' methods, a whole variety of methods. And what's really important to me is for people to have an understanding of what these different methods are, and when you would prefer one method over another. And so what I think is a really important question to ask when doing empirical analyses with different models is, are your assumptions reasonable, if not satisfied by the data you're modeling? And with different criteria for judging different specifications of models, are you using an appropriate criterion or not? Are there variations in that criterion that would lead to higher performance levels? So that for me is a guiding question throughout these different checks. So with that, we'll finish today. And next time, we'll finish these notes going through ordinary least squares estimation. And what's useful about this development of least squares estimation is that it does so with linear algebra. And what we'll see is that with linear algebra, we get very straightforward formulas for least squares estimates, as well as interesting analytical properties of those least squares estimates. So we'll cover that next time."
+}

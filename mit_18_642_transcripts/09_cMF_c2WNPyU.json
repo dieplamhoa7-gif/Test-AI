@@ -1,0 +1,4498 @@
+{
+  "index": 9,
+  "id": "cMF_c2WNPyU",
+  "title": "Lecture 8: Regression Analysis (cont.)",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.455,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 2.425,
+      "duration": 1.94,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 4.365,
+      "duration": 2.425,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 11.94,
+      "duration": 1.18,
+      "text": "PETER KEMPTHORNE: All right."
+    },
+    {
+      "start": 13.12,
+      "duration": 5.64,
+      "text": "Well, let's continue with our\ndiscussion of linear regression"
+    },
+    {
+      "start": 18.76,
+      "duration": 0.86,
+      "text": "modeling."
+    },
+    {
+      "start": 19.62,
+      "duration": 3.14,
+      "text": "And as we introduced\nlast time, there"
+    },
+    {
+      "start": 22.76,
+      "duration": 3.44,
+      "text": "are ways one can\nformalize fitting"
+    },
+    {
+      "start": 26.2,
+      "duration": 3.82,
+      "text": "a model, which is\nto propose a model,"
+    },
+    {
+      "start": 30.02,
+      "duration": 3.3,
+      "text": "specify criteria for\njudging different fits"
+    },
+    {
+      "start": 33.32,
+      "duration": 3.0,
+      "text": "or estimators of\nmodel parameters,"
+    },
+    {
+      "start": 36.32,
+      "duration": 4.92,
+      "text": "then find the best\nestimators, and then check"
+    },
+    {
+      "start": 41.24,
+      "duration": 5.12,
+      "text": "our assumptions underlying the\nspecification of the criterion."
+    },
+    {
+      "start": 46.36,
+      "duration": 5.32,
+      "text": "And possibly, if\nnecessary, modify the model"
+    },
+    {
+      "start": 51.68,
+      "duration": 4.34,
+      "text": "because the assumptions that\nwe made aren't satisfied."
+    },
+    {
+      "start": 56.02,
+      "duration": 4.1,
+      "text": "So we either want to add\nadditional assumptions"
+    },
+    {
+      "start": 60.12,
+      "duration": 6.4,
+      "text": "or consider transformations\nof the model, perhaps."
+    },
+    {
+      "start": 66.52,
+      "duration": 7.28,
+      "text": "So with ordinary least\nsquares regression,"
+    },
+    {
+      "start": 73.8,
+      "duration": 4.92,
+      "text": "we have this criterion\nfor specifying"
+    },
+    {
+      "start": 78.72,
+      "duration": 2.4,
+      "text": "regression parameters."
+    },
+    {
+      "start": 81.12,
+      "duration": 3.51,
+      "text": "And we specify these\nin terms of a y vector."
+    },
+    {
+      "start": 87.32,
+      "duration": 6.88,
+      "text": "And this has values of a\ndependent variable across cases"
+    },
+    {
+      "start": 94.2,
+      "duration": 9.56,
+      "text": "in the data, an x matrix, which\nwill have n rows and p columns."
+    },
+    {
+      "start": 103.76,
+      "duration": 4.36,
+      "text": "And we'll have\ngeneral elements Xij."
+    },
+    {
+      "start": 108.12,
+      "duration": 8.32,
+      "text": "And then our model will be that\ny is equal to x, the matrix,"
+    },
+    {
+      "start": 116.44,
+      "duration": 1.33,
+      "text": "times a beta vector."
+    },
+    {
+      "start": 120.6,
+      "duration": 5.76,
+      "text": "So we can have a beta vector\nthat has p components,"
+    },
+    {
+      "start": 126.36,
+      "duration": 11.2,
+      "text": "and an error vector, which has\nn terms corresponding to the n"
+    },
+    {
+      "start": 137.56,
+      "duration": 1.64,
+      "text": "cases."
+    },
+    {
+      "start": 139.2,
+      "duration": 5.18,
+      "text": "So in specifying the\nregression model,"
+    },
+    {
+      "start": 144.38,
+      "duration": 3.9,
+      "text": "we have that our n\nvector y is going"
+    },
+    {
+      "start": 148.28,
+      "duration": 4.68,
+      "text": "to be a linear combination\nof the columns of x."
+    },
+    {
+      "start": 152.96,
+      "duration": 6.6,
+      "text": "And there will be an error\nvector characterizing"
+    },
+    {
+      "start": 159.56,
+      "duration": 2.44,
+      "text": "the discrepancy from that."
+    },
+    {
+      "start": 162.0,
+      "duration": 9.12,
+      "text": "So how should we\nspecify this beta vector"
+    },
+    {
+      "start": 171.12,
+      "duration": 2.546,
+      "text": "if we have a least\nsquares criterion?"
+    },
+    {
+      "start": 177.04,
+      "duration": 10.64,
+      "text": "We can look at sum 1 to n of\nyi minus y hat i, where, say, y"
+    },
+    {
+      "start": 187.68,
+      "duration": 5.76,
+      "text": "hat is equal to x beta hat."
+    },
+    {
+      "start": 193.44,
+      "duration": 9.4,
+      "text": "And this criterion is basically\na sum-of-squares criterion."
+    },
+    {
+      "start": 202.84,
+      "duration": 3.48,
+      "text": "So it's like a sum\nof squared errors."
+    },
+    {
+      "start": 206.32,
+      "duration": 7.52,
+      "text": "Now minimizing this can be\ndone just with simple calculus."
+    },
+    {
+      "start": 213.84,
+      "duration": 1.39,
+      "text": "We can plug in for--"
+    },
+    {
+      "start": 217.96,
+      "duration": 6.74,
+      "text": "in the formula and have this\nsum-of-squares criterion,"
+    },
+    {
+      "start": 224.7,
+      "duration": 6.94,
+      "text": "which is simply y minus x\nbeta transpose y minus x beta."
+    },
+    {
+      "start": 231.64,
+      "duration": 5.45,
+      "text": "So we have Q of\nbeta is basically"
+    },
+    {
+      "start": 237.09,
+      "duration": 4.6,
+      "text": "y minus x beta squared."
+    },
+    {
+      "start": 241.69,
+      "duration": 10.92,
+      "text": "So it's the distance of our\nn vector from the prediction,"
+    },
+    {
+      "start": 252.61,
+      "duration": 2.4,
+      "text": "or fitted value, I guess."
+    },
+    {
+      "start": 255.01,
+      "duration": 5.079,
+      "text": "Maybe I'll put the beta hat\nhere to make it explicit."
+    },
+    {
+      "start": 260.089,
+      "duration": 3.841,
+      "text": "And we basically want\nour fitted values"
+    },
+    {
+      "start": 263.93,
+      "duration": 4.92,
+      "text": "to be as close as possible\nto the actual values."
+    },
+    {
+      "start": 268.85,
+      "duration": 5.84,
+      "text": "Now because this\ncriterion is a quadratic--"
+    },
+    {
+      "start": 274.69,
+      "duration": 5.14,
+      "text": "it's a quadratic in the\nregression coefficients,"
+    },
+    {
+      "start": 279.83,
+      "duration": 5.42,
+      "text": "we can simply take\nderivatives of Q"
+    },
+    {
+      "start": 285.25,
+      "duration": 4.0,
+      "text": "and solve for those\nderivatives equal to 0."
+    },
+    {
+      "start": 289.25,
+      "duration": 2.6,
+      "text": "So that's the\nfirst-order conditions."
+    },
+    {
+      "start": 291.85,
+      "duration": 2.38,
+      "text": "And let's see."
+    },
+    {
+      "start": 294.23,
+      "duration": 6.38,
+      "text": "How do we know whether the\nsolution to this equation"
+    },
+    {
+      "start": 300.61,
+      "duration": 7.16,
+      "text": "actually minimizes the sum\nof squared errors criterion?"
+    },
+    {
+      "start": 307.77,
+      "duration": 4.72,
+      "text": "A first-order condition is\none where the derivative"
+    },
+    {
+      "start": 312.49,
+      "duration": 3.56,
+      "text": "of the function is equal to 0."
+    },
+    {
+      "start": 316.05,
+      "duration": 3.61,
+      "text": "That could be at a minimum, but\nit also could be at a maximum."
+    },
+    {
+      "start": 325.17,
+      "duration": 1.18,
+      "text": "Yes?"
+    },
+    {
+      "start": 326.35,
+      "duration": 2.5,
+      "text": "AUDIENCE: You also want to check\nthe second order derivative"
+    },
+    {
+      "start": 328.85,
+      "duration": 2.883,
+      "text": "and make sure that\nit's positive."
+    },
+    {
+      "start": 331.733,
+      "duration": 0.917,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 332.65,
+      "duration": 3.68,
+      "text": "We want to take the\nsecond-order derivative."
+    },
+    {
+      "start": 336.33,
+      "duration": 5.9,
+      "text": "And if it's positive,\nthen we have a--"
+    },
+    {
+      "start": 342.23,
+      "duration": 3.22,
+      "text": "I guess it's a concave--"
+    },
+    {
+      "start": 345.45,
+      "duration": 2.2,
+      "text": "or, I'm sorry, a\nconvex function."
+    },
+    {
+      "start": 347.65,
+      "duration": 2.88,
+      "text": "And so the first\nderivative will solve that."
+    },
+    {
+      "start": 350.53,
+      "duration": 7.04,
+      "text": "Now this is the first\nderivative equation."
+    },
+    {
+      "start": 357.57,
+      "duration": 9.66,
+      "text": "If we were to look at\ndQ of beta by d beta j--"
+    },
+    {
+      "start": 371.11,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 371.61,
+      "duration": 1.08,
+      "text": "Is that beta j?"
+    },
+    {
+      "start": 372.69,
+      "duration": 2.68,
+      "text": "Right."
+    },
+    {
+      "start": 375.37,
+      "duration": 10.64,
+      "text": "If we were to look at the second\norder derivative by d beta d"
+    },
+    {
+      "start": 386.01,
+      "duration": 4.36,
+      "text": "beta transpose,\nthen analytically,"
+    },
+    {
+      "start": 390.37,
+      "duration": 7.24,
+      "text": "we'll basically get\nthis term times minus x."
+    },
+    {
+      "start": 397.61,
+      "duration": 3.64,
+      "text": "And so that will end up\nbeing a positive term,"
+    },
+    {
+      "start": 401.25,
+      "duration": 5.36,
+      "text": "in terms of products of columns\nof x and the full x matrix."
+    },
+    {
+      "start": 406.61,
+      "duration": 6.92,
+      "text": "And so with that, we have\nthis set of equations."
+    },
+    {
+      "start": 413.53,
+      "duration": 7.28,
+      "text": "Now if you read up on regression\ntheory, linear model theory,"
+    },
+    {
+      "start": 420.81,
+      "duration": 4.96,
+      "text": "this equation of\nthe derivative of Q"
+    },
+    {
+      "start": 425.77,
+      "duration": 4.92,
+      "text": "with respect to beta equaling 0\nis equivalent to this equation"
+    },
+    {
+      "start": 430.69,
+      "duration": 7.68,
+      "text": "here, which is just obtained by\neliminating the minus 2 factor"
+    },
+    {
+      "start": 438.37,
+      "duration": 3.44,
+      "text": "and solving for beta."
+    },
+    {
+      "start": 441.81,
+      "duration": 3.306,
+      "text": "And this is called\nthe normal equations."
+    },
+    {
+      "start": 447.77,
+      "duration": 5.28,
+      "text": "What is familiar to some people\nis that in statistics theory,"
+    },
+    {
+      "start": 453.05,
+      "duration": 7.34,
+      "text": "the names of important terms is\noften not very sophisticated,"
+    },
+    {
+      "start": 460.39,
+      "duration": 4.02,
+      "text": "in terms of here we have what\nwe call the normal equations."
+    },
+    {
+      "start": 464.41,
+      "duration": 1.86,
+      "text": "There's nothing really\nnormal about it,"
+    },
+    {
+      "start": 466.27,
+      "duration": 3.5,
+      "text": "but it's a way of specifying\na set of equations"
+    },
+    {
+      "start": 469.77,
+      "duration": 2.28,
+      "text": "that we need to solve."
+    },
+    {
+      "start": 472.05,
+      "duration": 7.44,
+      "text": "And if the X transpose\nX matrix is invertible,"
+    },
+    {
+      "start": 479.49,
+      "duration": 3.64,
+      "text": "then we have a\nsolution by multiplying"
+    },
+    {
+      "start": 483.13,
+      "duration": 3.68,
+      "text": "both sides of this\nequation by the inverse."
+    },
+    {
+      "start": 486.81,
+      "duration": 5.54,
+      "text": "And in order for\nthis process to work,"
+    },
+    {
+      "start": 492.35,
+      "duration": 2.71,
+      "text": "we need to have that X\nmust have full column rank."
+    },
+    {
+      "start": 499.77,
+      "duration": 0.7,
+      "text": "All right."
+    },
+    {
+      "start": 500.47,
+      "duration": 9.14,
+      "text": "So here, if we plug in that\nleast squares estimate--"
+    },
+    {
+      "start": 509.61,
+      "duration": 3.72,
+      "text": "so we have beta hat\nequal to x transpose"
+    },
+    {
+      "start": 513.33,
+      "duration": 3.44,
+      "text": "x inverse x transpose y."
+    },
+    {
+      "start": 516.77,
+      "duration": 8.86,
+      "text": "If we plug that into our\nformula for the fitted values,"
+    },
+    {
+      "start": 525.63,
+      "duration": 10.14,
+      "text": "then this becomes\nthis formula times y."
+    },
+    {
+      "start": 535.77,
+      "duration": 2.25,
+      "text": "And I'll put square\nbrackets around that."
+    },
+    {
+      "start": 540.97,
+      "duration": 8.14,
+      "text": "And this is called the hat\nmatrix by some statisticians."
+    },
+    {
+      "start": 549.11,
+      "duration": 8.1,
+      "text": "Now this matrix, H, is\nactually a very special matrix."
+    },
+    {
+      "start": 557.21,
+      "duration": 3.2,
+      "text": "It has special properties."
+    },
+    {
+      "start": 560.41,
+      "duration": 5.22,
+      "text": "Does anyone know what those\nspecial properties might be?"
+    },
+    {
+      "start": 570.45,
+      "duration": 3.32,
+      "text": "Anybody in the back know?"
+    },
+    {
+      "start": 573.77,
+      "duration": 2.68,
+      "text": "Kai."
+    },
+    {
+      "start": 576.45,
+      "duration": 1.88,
+      "text": "AUDIENCE: From memory,\nit's a projection"
+    },
+    {
+      "start": 578.33,
+      "duration": 2.16,
+      "text": "onto the column space of x."
+    },
+    {
+      "start": 580.49,
+      "duration": 2.2,
+      "text": "PETER KEMPTHORNE: Yes, it is."
+    },
+    {
+      "start": 582.69,
+      "duration": 0.68,
+      "text": "Exactly."
+    },
+    {
+      "start": 583.37,
+      "duration": 8.65,
+      "text": "So H is a projection\nmatrix and it's"
+    },
+    {
+      "start": 592.02,
+      "duration": 7.44,
+      "text": "onto the column space\nof the X matrix."
+    },
+    {
+      "start": 599.46,
+      "duration": 6.7,
+      "text": "Now what are properties\nof a projection matrix?"
+    },
+    {
+      "start": 606.16,
+      "duration": 5.94,
+      "text": "If we multiply the\nprojection matrix by itself,"
+    },
+    {
+      "start": 612.1,
+      "duration": 3.92,
+      "text": "we actually get the\nprojection matrix."
+    },
+    {
+      "start": 616.02,
+      "duration": 4.84,
+      "text": "And what's relevant\nis that if we"
+    },
+    {
+      "start": 620.86,
+      "duration": 11.16,
+      "text": "were to take Hy hat, which\nis then equal to H times Hy,"
+    },
+    {
+      "start": 632.02,
+      "duration": 9.0,
+      "text": "if this first term is\nin the column space of x"
+    },
+    {
+      "start": 641.02,
+      "duration": 5.28,
+      "text": "as a projection, then projecting\nit onto that same column space"
+    },
+    {
+      "start": 646.3,
+      "duration": 2.16,
+      "text": "will have no difference."
+    },
+    {
+      "start": 648.46,
+      "duration": 5.66,
+      "text": "So this is logically\nwhat it should be."
+    },
+    {
+      "start": 654.12,
+      "duration": 3.94,
+      "text": "And if we multiply out the\nprojection matrix times itself,"
+    },
+    {
+      "start": 658.06,
+      "duration": 3.57,
+      "text": "we get this property."
+    },
+    {
+      "start": 664.98,
+      "duration": 0.56,
+      "text": "OK."
+    },
+    {
+      "start": 665.54,
+      "duration": 8.74,
+      "text": "Well, Importantly in modeling\nis to look at residuals,"
+    },
+    {
+      "start": 674.28,
+      "duration": 2.74,
+      "text": "which are model errors."
+    },
+    {
+      "start": 677.02,
+      "duration": 8.62,
+      "text": "And so if we have epsilon hat\nis equal to y minus y hat,"
+    },
+    {
+      "start": 685.64,
+      "duration": 3.86,
+      "text": "this is y minus--"
+    },
+    {
+      "start": 689.5,
+      "duration": 3.84,
+      "text": "or y times the identity\nmatrix minus Hy."
+    },
+    {
+      "start": 696.78,
+      "duration": 8.4,
+      "text": "And this matrix\nhere, multiplying"
+    },
+    {
+      "start": 705.18,
+      "duration": 10.72,
+      "text": "y to give us our residuals, it\nis also a projection matrix."
+    },
+    {
+      "start": 715.9,
+      "duration": 3.1,
+      "text": "So this is a projection as well."
+    },
+    {
+      "start": 722.06,
+      "duration": 6.96,
+      "text": "And if we multiply I minus H\ntimes I minus H and expand it"
+    },
+    {
+      "start": 729.02,
+      "duration": 9.56,
+      "text": "out, we get I squared\nminus 2H plus H squared."
+    },
+    {
+      "start": 738.58,
+      "duration": 3.44,
+      "text": "And that equals I minus H.\nSo we can mathematically"
+    },
+    {
+      "start": 742.02,
+      "duration": 3.92,
+      "text": "verify that it's a projection."
+    },
+    {
+      "start": 745.94,
+      "duration": 7.52,
+      "text": "And a very important property\nof this residual vector"
+    },
+    {
+      "start": 753.46,
+      "duration": 7.5,
+      "text": "is that it is orthogonal\nto the fitted values."
+    },
+    {
+      "start": 760.96,
+      "duration": 3.66,
+      "text": "So in the normal\nequations, we have"
+    },
+    {
+      "start": 764.62,
+      "duration": 5.68,
+      "text": "this equation must equal zero."
+    },
+    {
+      "start": 770.3,
+      "duration": 4.32,
+      "text": "This term here is\nthe residual vector."
+    },
+    {
+      "start": 774.62,
+      "duration": 5.56,
+      "text": "And if we multiply that n\nvector by the transpose of x,"
+    },
+    {
+      "start": 780.18,
+      "duration": 1.96,
+      "text": "and it's equal to\n0, then we must"
+    },
+    {
+      "start": 782.14,
+      "duration": 6.27,
+      "text": "have that the error vector,\nepsilon hat, is orthogonal to x."
+    },
+    {
+      "start": 791.46,
+      "duration": 5.1,
+      "text": "Now let's see."
+    },
+    {
+      "start": 796.56,
+      "duration": 3.63,
+      "text": "I'm not sure if it's on\nthe next slide or not."
+    },
+    {
+      "start": 803.66,
+      "duration": 6.0,
+      "text": "I think something to keep in\nmind that's really quite useful"
+    },
+    {
+      "start": 809.66,
+      "duration": 7.52,
+      "text": "when we use linear algebra with\nleast squares is that we have y,"
+    },
+    {
+      "start": 817.18,
+      "duration": 6.71,
+      "text": "being in n-dimensional\nspace, the--"
+    },
+    {
+      "start": 823.89,
+      "duration": 6.61,
+      "text": "we have an X matrix\nn by p, which"
+    },
+    {
+      "start": 830.5,
+      "duration": 5.12,
+      "text": "corresponds to a column\nspace of x, which"
+    },
+    {
+      "start": 835.62,
+      "duration": 5.52,
+      "text": "is a subspace of R to the n."
+    },
+    {
+      "start": 841.14,
+      "duration": 4.04,
+      "text": "And let's see."
+    },
+    {
+      "start": 845.18,
+      "duration": 14.12,
+      "text": "If we have y hat\nand epsilon hat,"
+    },
+    {
+      "start": 859.3,
+      "duration": 3.72,
+      "text": "these are orthogonal\nto each other."
+    },
+    {
+      "start": 863.02,
+      "duration": 7.16,
+      "text": "So if we think in n dimensions\nof having a y vector"
+    },
+    {
+      "start": 870.18,
+      "duration": 16.44,
+      "text": "and have a y hat n\nvector, then y minus y--"
+    },
+    {
+      "start": 886.62,
+      "duration": 0.68,
+      "text": "sorry."
+    },
+    {
+      "start": 887.3,
+      "duration": 2.29,
+      "text": "Not y hat, y minus y hat."
+    },
+    {
+      "start": 894.82,
+      "duration": 5.04,
+      "text": "So if we take the vector\nfrom here to here,"
+    },
+    {
+      "start": 899.86,
+      "duration": 5.4,
+      "text": "that's y minus y hat."
+    },
+    {
+      "start": 905.26,
+      "duration": 4.76,
+      "text": "OK, this is going to\nbe orthogonal to y hat."
+    },
+    {
+      "start": 910.02,
+      "duration": 5.88,
+      "text": "So we actually have right\nangles here in between the y hat"
+    },
+    {
+      "start": 915.9,
+      "duration": 2.88,
+      "text": "vector and the y vector."
+    },
+    {
+      "start": 918.78,
+      "duration": 5.08,
+      "text": "Sorry, we have-- the y hat\nvector and the error vector."
+    },
+    {
+      "start": 923.86,
+      "duration": 14.32,
+      "text": "And so from this, we have\nthat the squared length of y"
+    },
+    {
+      "start": 938.18,
+      "duration": 4.32,
+      "text": "is equal to the squared length\nof y hat plus the squared length"
+    },
+    {
+      "start": 942.5,
+      "duration": 2.36,
+      "text": "of the residual vector."
+    },
+    {
+      "start": 944.86,
+      "duration": 5.64,
+      "text": "And then if we expand\nthis squared length out,"
+    },
+    {
+      "start": 950.5,
+      "duration": 3.28,
+      "text": "we actually get 0 because\nof the orthogonality."
+    },
+    {
+      "start": 953.78,
+      "duration": 3.52,
+      "text": "So with least\nsquares, we basically"
+    },
+    {
+      "start": 957.3,
+      "duration": 7.48,
+      "text": "have a Pythagorean theorem that\ngeneralizes from two dimensions"
+    },
+    {
+      "start": 964.78,
+      "duration": 1.76,
+      "text": "to n dimensions."
+    },
+    {
+      "start": 966.54,
+      "duration": 8.52,
+      "text": "And that generalization is\nquite convenient and useful when"
+    },
+    {
+      "start": 975.06,
+      "duration": 5.2,
+      "text": "we think about not the\nmathematical exercise of least"
+    },
+    {
+      "start": 980.26,
+      "duration": 3.6,
+      "text": "squares, but we think about\nhaving probability distributions"
+    },
+    {
+      "start": 983.86,
+      "duration": 1.75,
+      "text": "on, say, the errors."
+    },
+    {
+      "start": 990.18,
+      "duration": 5.13,
+      "text": "So that leads us\nto trying to extend"
+    },
+    {
+      "start": 995.31,
+      "duration": 6.24,
+      "text": "the mathematical regression\nmodel to a probability model."
+    },
+    {
+      "start": 1001.55,
+      "duration": 6.6,
+      "text": "And so with this, we have\nconstants assumptions"
+    },
+    {
+      "start": 1008.15,
+      "duration": 3.8,
+      "text": "for the independent variables\nin the x matrix, constants"
+    },
+    {
+      "start": 1011.95,
+      "duration": 2.56,
+      "text": "for the regression parameters."
+    },
+    {
+      "start": 1014.51,
+      "duration": 3.64,
+      "text": "But the error\nterms, those will be"
+    },
+    {
+      "start": 1018.15,
+      "duration": 4.48,
+      "text": "assumed to follow some\nprobability model."
+    },
+    {
+      "start": 1022.63,
+      "duration": 2.9,
+      "text": "What's useful to\nthink about is, well,"
+    },
+    {
+      "start": 1025.53,
+      "duration": 2.539,
+      "text": "what would be the simplest\npossible probability"
+    },
+    {
+      "start": 1028.069,
+      "duration": 3.961,
+      "text": "model to apply to a regression?"
+    },
+    {
+      "start": 1032.03,
+      "duration": 3.52,
+      "text": "Well, we could assume\nthat the errors"
+    },
+    {
+      "start": 1035.55,
+      "duration": 7.12,
+      "text": "are iid, which means independent\nand identically distributed."
+    },
+    {
+      "start": 1042.67,
+      "duration": 3.72,
+      "text": "And we could also,\nfor convenience,"
+    },
+    {
+      "start": 1046.39,
+      "duration": 5.0,
+      "text": "assume that they are\nnormally distributed."
+    },
+    {
+      "start": 1051.39,
+      "duration": 6.28,
+      "text": "And so this is a normal\nlinear regression model."
+    },
+    {
+      "start": 1057.67,
+      "duration": 6.68,
+      "text": "And when we write out\nthe model equation here,"
+    },
+    {
+      "start": 1064.35,
+      "duration": 6.02,
+      "text": "the model equation basically is\nconstants plus the error vector."
+    },
+    {
+      "start": 1070.37,
+      "duration": 4.02,
+      "text": "And the error vector,\nepsilon 1 to epsilon n"
+    },
+    {
+      "start": 1074.39,
+      "duration": 4.28,
+      "text": "being iid normal, this,\nin fact, is consistent,"
+    },
+    {
+      "start": 1078.67,
+      "duration": 5.76,
+      "text": "or is equivalent to a\nmultivariate normal distribution"
+    },
+    {
+      "start": 1084.43,
+      "duration": 3.92,
+      "text": "of dimension n with a\n0 vector for the mean"
+    },
+    {
+      "start": 1088.35,
+      "duration": 7.64,
+      "text": "and a covariance matrix that's\ndiagonal with constant variance."
+    },
+    {
+      "start": 1095.99,
+      "duration": 3.2,
+      "text": "So this is going to be a\nconvenient model for us"
+    },
+    {
+      "start": 1099.19,
+      "duration": 1.12,
+      "text": "to work with."
+    },
+    {
+      "start": 1100.31,
+      "duration": 3.8,
+      "text": "And what we'll see is\nthat different inferences"
+    },
+    {
+      "start": 1104.11,
+      "duration": 4.48,
+      "text": "about how important different\nindependent variables are"
+    },
+    {
+      "start": 1108.59,
+      "duration": 3.36,
+      "text": "in a regression\nmodel can be judged"
+    },
+    {
+      "start": 1111.95,
+      "duration": 6.28,
+      "text": "using this model as a baseline\nmodel for that evaluation."
+    },
+    {
+      "start": 1118.23,
+      "duration": 9.12,
+      "text": "So importantly, the\ndistribution of the residuals"
+    },
+    {
+      "start": 1127.35,
+      "duration": 10.12,
+      "text": "leads us to a distribution of\nthe dependent variable vector y."
+    },
+    {
+      "start": 1137.47,
+      "duration": 7.44,
+      "text": "And so in this slide, we use\nthe notation of a mu vector"
+    },
+    {
+      "start": 1144.91,
+      "duration": 3.92,
+      "text": "for the conditional\nexpectation of the y"
+    },
+    {
+      "start": 1148.83,
+      "duration": 3.41,
+      "text": "vector given x and beta."
+    },
+    {
+      "start": 1155.95,
+      "duration": 5.14,
+      "text": "And we'll define this\njust to be a mu vector."
+    },
+    {
+      "start": 1161.09,
+      "duration": 3.18,
+      "text": "That's an n vector."
+    },
+    {
+      "start": 1164.27,
+      "duration": 11.97,
+      "text": "And we'll define the covariance\nmatrix of the y vector,"
+    },
+    {
+      "start": 1176.24,
+      "duration": 2.59,
+      "text": "or the conditional covariance."
+    },
+    {
+      "start": 1178.83,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 1179.33,
+      "duration": 4.38,
+      "text": "This is going to be\nequal to the product of y"
+    },
+    {
+      "start": 1183.71,
+      "duration": 11.97,
+      "text": "minus its mean times the\ntranspose of y minus its mean."
+    },
+    {
+      "start": 1199.79,
+      "duration": 7.4,
+      "text": "And so this is an n\nby 1, 1 by n term."
+    },
+    {
+      "start": 1207.19,
+      "duration": 4.76,
+      "text": "So this is an n by n matrix."
+    },
+    {
+      "start": 1211.95,
+      "duration": 10.56,
+      "text": "And we'll call this capital\nsigma as a covariance matrix."
+    },
+    {
+      "start": 1222.51,
+      "duration": 5.2,
+      "text": "Now for the special\ncase of iid errors,"
+    },
+    {
+      "start": 1227.71,
+      "duration": 5.52,
+      "text": "this covariance matrix will be\ndiagonal with constant sigma"
+    },
+    {
+      "start": 1233.23,
+      "duration": 1.64,
+      "text": "squared."
+    },
+    {
+      "start": 1234.87,
+      "duration": 7.96,
+      "text": "And it will turn out that\nthis conditional distribution"
+    },
+    {
+      "start": 1242.83,
+      "duration": 9.2,
+      "text": "of y given x and beta will\nhave a multinomial distribution"
+    },
+    {
+      "start": 1252.03,
+      "duration": 4.34,
+      "text": "with a mean vector mu and\na covariance matrix sigma."
+    },
+    {
+      "start": 1256.37,
+      "duration": 5.06,
+      "text": "So an n-dimensional multivariate\nnormal distribution."
+    },
+    {
+      "start": 1261.43,
+      "duration": 0.64,
+      "text": "OK."
+    },
+    {
+      "start": 1262.07,
+      "duration": 8.4,
+      "text": "Well, what we're going\nto do is show results"
+    },
+    {
+      "start": 1270.47,
+      "duration": 4.4,
+      "text": "of what distribution\nthe y vector is,"
+    },
+    {
+      "start": 1274.87,
+      "duration": 4.76,
+      "text": "as well as show what\nthe distribution is"
+    },
+    {
+      "start": 1279.63,
+      "duration": 2.84,
+      "text": "of the least squares\nestimate is using"
+    },
+    {
+      "start": 1282.47,
+      "duration": 2.2,
+      "text": "moment-generating functions."
+    },
+    {
+      "start": 1284.67,
+      "duration": 5.76,
+      "text": "So this example\nof the application"
+    },
+    {
+      "start": 1290.43,
+      "duration": 3.2,
+      "text": "of moment-generating\nfunctions is really quite neat"
+    },
+    {
+      "start": 1293.63,
+      "duration": 7.24,
+      "text": "because the arguments are\nvery simple and accessible."
+    },
+    {
+      "start": 1300.87,
+      "duration": 12.0,
+      "text": "So if we have an invariate\nrandom vector y and a constant"
+    },
+    {
+      "start": 1312.87,
+      "duration": 4.84,
+      "text": "vector t, then the\nmoment-generating function"
+    },
+    {
+      "start": 1317.71,
+      "duration": 7.28,
+      "text": "of the Y vector is equal\nto the expected value"
+    },
+    {
+      "start": 1324.99,
+      "duration": 3.84,
+      "text": "of the exponential\nof t transpose Y."
+    },
+    {
+      "start": 1328.83,
+      "duration": 4.64,
+      "text": "So this moment-generating\nfunction has--"
+    },
+    {
+      "start": 1333.47,
+      "duration": 3.04,
+      "text": "is a function of the t vector."
+    },
+    {
+      "start": 1336.51,
+      "duration": 5.56,
+      "text": "And we just plug\ninto this formula."
+    },
+    {
+      "start": 1342.07,
+      "duration": 5.32,
+      "text": "Now because the Y's, in fact,\nare independent of each other,"
+    },
+    {
+      "start": 1347.39,
+      "duration": 5.68,
+      "text": "then we have this\nexpected product of terms"
+    },
+    {
+      "start": 1353.07,
+      "duration": 2.84,
+      "text": "is the product of\nthe expectations."
+    },
+    {
+      "start": 1355.91,
+      "duration": 4.64,
+      "text": "So we're going to use\nthat independence property"
+    },
+    {
+      "start": 1360.55,
+      "duration": 2.6,
+      "text": "where expectations\nof products are"
+    },
+    {
+      "start": 1363.15,
+      "duration": 2.68,
+      "text": "products of the expectations."
+    },
+    {
+      "start": 1365.83,
+      "duration": 4.44,
+      "text": "And then for each\nof the Y's, we can"
+    },
+    {
+      "start": 1370.27,
+      "duration": 6.36,
+      "text": "plug in the moment-generating\nfunction for each Yi."
+    },
+    {
+      "start": 1376.63,
+      "duration": 4.08,
+      "text": "And that's e to the ti\nof mu i plus a half ti"
+    },
+    {
+      "start": 1380.71,
+      "duration": 1.36,
+      "text": "squared sigma squared."
+    },
+    {
+      "start": 1382.07,
+      "duration": 3.2,
+      "text": "We went through this\nmoment-generating function"
+    },
+    {
+      "start": 1385.27,
+      "duration": 4.08,
+      "text": "in our section on\nprobability theory."
+    },
+    {
+      "start": 1389.35,
+      "duration": 6.04,
+      "text": "Now what's important\nfrom this example"
+    },
+    {
+      "start": 1395.39,
+      "duration": 3.34,
+      "text": "is if we take this\nproduct of all"
+    },
+    {
+      "start": 1398.73,
+      "duration": 2.23,
+      "text": "the moment-generating\nfunctions, and then try"
+    },
+    {
+      "start": 1400.96,
+      "duration": 5.2,
+      "text": "to express it in terms\nof the t vector, the mu"
+    },
+    {
+      "start": 1406.16,
+      "duration": 5.92,
+      "text": "vector, and the sigma\nmatrix, we get this formula."
+    },
+    {
+      "start": 1412.08,
+      "duration": 5.42,
+      "text": "And this formula is, in fact,\nthe moment-generating function"
+    },
+    {
+      "start": 1417.5,
+      "duration": 3.98,
+      "text": "for a multivariate normal\nwith a given mean vector, mu,"
+    },
+    {
+      "start": 1421.48,
+      "duration": 3.32,
+      "text": "and a given covariance\nmatrix, sigma."
+    },
+    {
+      "start": 1424.8,
+      "duration": 4.0,
+      "text": "So that result is trivial."
+    },
+    {
+      "start": 1428.8,
+      "duration": 2.04,
+      "text": "Not surprising."
+    },
+    {
+      "start": 1430.84,
+      "duration": 3.0,
+      "text": "What's less\nsurprising is that we"
+    },
+    {
+      "start": 1433.84,
+      "duration": 3.16,
+      "text": "can use moment-generating\nfunctions"
+    },
+    {
+      "start": 1437.0,
+      "duration": 5.48,
+      "text": "to solve for the distribution\nof the least squares estimate."
+    },
+    {
+      "start": 1442.48,
+      "duration": 6.96,
+      "text": "So this first formula here is\nthe moment-generating function"
+    },
+    {
+      "start": 1449.44,
+      "duration": 2.8,
+      "text": "for beta hat."
+    },
+    {
+      "start": 1452.24,
+      "duration": 9.64,
+      "text": "And in writing that\nout, M sum beta hat,"
+    },
+    {
+      "start": 1461.88,
+      "duration": 4.68,
+      "text": "I'm going to use a\ndifferent argument, tau,"
+    },
+    {
+      "start": 1466.56,
+      "duration": 2.43,
+      "text": "which will be a p vector."
+    },
+    {
+      "start": 1472.92,
+      "duration": 4.04,
+      "text": "And this is going to be\nthe expected value of E"
+    },
+    {
+      "start": 1476.96,
+      "duration": 3.28,
+      "text": "to the tau transpose beta hat."
+    },
+    {
+      "start": 1480.24,
+      "duration": 5.56,
+      "text": "So this is the definition of\nthe moment-generating function."
+    },
+    {
+      "start": 1485.8,
+      "duration": 10.2,
+      "text": "And if we define the\nmatrix A to be basically"
+    },
+    {
+      "start": 1496.0,
+      "duration": 8.96,
+      "text": "the premultiple factor of\nA that gives us beta hat,"
+    },
+    {
+      "start": 1504.96,
+      "duration": 4.92,
+      "text": "then our moment-generating\nfunction for beta hat"
+    },
+    {
+      "start": 1509.88,
+      "duration": 4.62,
+      "text": "can be written as\nthis expression,"
+    },
+    {
+      "start": 1514.5,
+      "duration": 4.34,
+      "text": "just plugging in\nAY for beta hat."
+    },
+    {
+      "start": 1518.84,
+      "duration": 8.88,
+      "text": "But then we can express\ntau transpose A equal to t"
+    },
+    {
+      "start": 1527.72,
+      "duration": 2.32,
+      "text": "transposed."
+    },
+    {
+      "start": 1530.04,
+      "duration": 5.4,
+      "text": "So this moment-generating\nfunction of the least squares"
+    },
+    {
+      "start": 1535.44,
+      "duration": 5.24,
+      "text": "estimates beta hat\nis actually the value"
+    },
+    {
+      "start": 1540.68,
+      "duration": 1.96,
+      "text": "of the moment-generating\nfunction"
+    },
+    {
+      "start": 1542.64,
+      "duration": 3.32,
+      "text": "of the multinomial\nvector evaluated"
+    },
+    {
+      "start": 1545.96,
+      "duration": 5.64,
+      "text": "at t equal to A transpose tau."
+    },
+    {
+      "start": 1551.6,
+      "duration": 10.76,
+      "text": "And so we can simply\nplug in this value of t"
+    },
+    {
+      "start": 1562.36,
+      "duration": 7.52,
+      "text": "and get our result."
+    },
+    {
+      "start": 1569.88,
+      "duration": 5.24,
+      "text": "And so t transpose mu ends\nup being tau transpose beta."
+    },
+    {
+      "start": 1575.12,
+      "duration": 6.32,
+      "text": "And t transpose sigma t\nis equal to this product."
+    },
+    {
+      "start": 1581.44,
+      "duration": 3.44,
+      "text": "And if we simplify\nit, we basically"
+    },
+    {
+      "start": 1584.88,
+      "duration": 6.44,
+      "text": "have a mean vector, beta, for\nthe least squares estimate,"
+    },
+    {
+      "start": 1591.32,
+      "duration": 4.04,
+      "text": "and a covariance matrix\nfor the least squares"
+    },
+    {
+      "start": 1595.36,
+      "duration": 7.08,
+      "text": "estimate that's given by sigma\nsquared x transpose x inverse."
+    },
+    {
+      "start": 1602.44,
+      "duration": 4.64,
+      "text": "So this is our moment-generating\nfunction of beta hat."
+    },
+    {
+      "start": 1607.08,
+      "duration": 4.6,
+      "text": "And by the uniqueness of\nmoment-generating functions,"
+    },
+    {
+      "start": 1611.68,
+      "duration": 3.36,
+      "text": "we can recognize\nthis as a multinomial"
+    },
+    {
+      "start": 1615.04,
+      "duration": 4.13,
+      "text": "with the given mean vector and\nthe given covariance matrix."
+    },
+    {
+      "start": 1621.892,
+      "duration": 2.548,
+      "text": "So we have\nmultivariate normality"
+    },
+    {
+      "start": 1624.44,
+      "duration": 2.04,
+      "text": "of the least squares\nestimates, which"
+    },
+    {
+      "start": 1626.48,
+      "duration": 5.0,
+      "text": "is very convenient and useful."
+    },
+    {
+      "start": 1631.48,
+      "duration": 6.44,
+      "text": "Now, from this, we end up\ngetting marginal distributions"
+    },
+    {
+      "start": 1637.92,
+      "duration": 4.64,
+      "text": "that are normal for each of\nthe least squares estimates."
+    },
+    {
+      "start": 1642.56,
+      "duration": 5.8,
+      "text": "So we're just thinking in this\nslide of the j-th component"
+    },
+    {
+      "start": 1648.36,
+      "duration": 1.4,
+      "text": "of beta hat."
+    },
+    {
+      "start": 1649.76,
+      "duration": 7.4,
+      "text": "Well, it's univariate normal\nwith mean beta J and variance"
+    },
+    {
+      "start": 1657.16,
+      "duration": 4.76,
+      "text": "given by sigma squared times\nthe j-th diagonal element of x"
+    },
+    {
+      "start": 1661.92,
+      "duration": 2.88,
+      "text": "transpose x inverse."
+    },
+    {
+      "start": 1664.8,
+      "duration": 9.96,
+      "text": "And so we get this nice\ndistribution result."
+    },
+    {
+      "start": 1674.76,
+      "duration": 4.86,
+      "text": "Now there's more distribution\ntheory here to go through."
+    },
+    {
+      "start": 1679.62,
+      "duration": 3.06,
+      "text": "But let's see."
+    },
+    {
+      "start": 1682.68,
+      "duration": 4.6,
+      "text": "Something just to think about\nthat's, I think, very powerful"
+    },
+    {
+      "start": 1687.28,
+      "duration": 14.36,
+      "text": "is in some examples\nwhere we have this model,"
+    },
+    {
+      "start": 1701.64,
+      "duration": 4.4,
+      "text": "we may have control over what\nour independent variables"
+    },
+    {
+      "start": 1706.04,
+      "duration": 2.04,
+      "text": "matrix is."
+    },
+    {
+      "start": 1708.08,
+      "duration": 2.6,
+      "text": "And in a scientific\nexperiment, we"
+    },
+    {
+      "start": 1710.68,
+      "duration": 5.16,
+      "text": "might vary different\nconditions of the experiment,"
+    },
+    {
+      "start": 1715.84,
+      "duration": 3.88,
+      "text": "yielding y for different\nconditions of x."
+    },
+    {
+      "start": 1719.72,
+      "duration": 6.64,
+      "text": "And with these\nmodels, we might be"
+    },
+    {
+      "start": 1726.36,
+      "duration": 9.12,
+      "text": "interested in a particular\ncolumn of the X matrix"
+    },
+    {
+      "start": 1735.48,
+      "duration": 5.64,
+      "text": "and want to estimate the beta\nj, the regression parameter"
+    },
+    {
+      "start": 1741.12,
+      "duration": 2.56,
+      "text": "relationship for that."
+    },
+    {
+      "start": 1743.68,
+      "duration": 6.77,
+      "text": "And so if we had control over."
+    },
+    {
+      "start": 1750.45,
+      "duration": 7.8,
+      "text": "The X matrix, we might try\nto make the j-th diagonal"
+    },
+    {
+      "start": 1758.25,
+      "duration": 6.32,
+      "text": "the smallest we can so that the\nprecision of that regression"
+    },
+    {
+      "start": 1764.57,
+      "duration": 3.96,
+      "text": "parameter estimate is\nas small as possible."
+    },
+    {
+      "start": 1768.53,
+      "duration": 8.69,
+      "text": "And so suppose, I guess, for\nsimplicity that the X matrix--"
+    },
+    {
+      "start": 1782.25,
+      "duration": 4.61,
+      "text": "suppose that x transpose\nx is a diagonal matrix."
+    },
+    {
+      "start": 1790.85,
+      "duration": 3.6,
+      "text": "And here's Cj."
+    },
+    {
+      "start": 1794.45,
+      "duration": 10.96,
+      "text": "The diagonal values of x\ntranspose x inverse will simply"
+    },
+    {
+      "start": 1805.41,
+      "duration": 1.88,
+      "text": "be--"
+    },
+    {
+      "start": 1807.29,
+      "duration": 4.0,
+      "text": "so if we do a minus 1 there,\nwe can do a minus 1 here."
+    },
+    {
+      "start": 1811.29,
+      "duration": 5.2,
+      "text": "Our diagonal entries\nwill be smallest--"
+    },
+    {
+      "start": 1816.49,
+      "duration": 5.48,
+      "text": "smaller the more large\nthe j-th column is."
+    },
+    {
+      "start": 1821.97,
+      "duration": 6.92,
+      "text": "And so when you think\nof regression models"
+    },
+    {
+      "start": 1828.89,
+      "duration": 5.28,
+      "text": "and experiments, we\nbasically would perhaps"
+    },
+    {
+      "start": 1834.17,
+      "duration": 3.88,
+      "text": "want to have the spread\nin an independent variable"
+    },
+    {
+      "start": 1838.05,
+      "duration": 5.04,
+      "text": "be as big as possible in\norder to specify the line."
+    },
+    {
+      "start": 1843.09,
+      "duration": 12.36,
+      "text": "So if we think of a regression\nmodel of y on X and we have--"
+    },
+    {
+      "start": 1855.45,
+      "duration": 10.88,
+      "text": "if we have points of x\nand y, basically the--"
+    },
+    {
+      "start": 1866.33,
+      "duration": 7.76,
+      "text": "if we look at the sample mean\nof the X's and we consider"
+    },
+    {
+      "start": 1874.09,
+      "duration": 5.96,
+      "text": "concentrating our x values\nas far away as possible,"
+    },
+    {
+      "start": 1880.05,
+      "duration": 3.4,
+      "text": "that, presumably, will yield\nmore accurate estimates"
+    },
+    {
+      "start": 1883.45,
+      "duration": 3.56,
+      "text": "of the slope parameter\nin the relationship."
+    },
+    {
+      "start": 1887.01,
+      "duration": 2.72,
+      "text": "And so you can think of--"
+    },
+    {
+      "start": 1889.73,
+      "duration": 7.72,
+      "text": "basically, if we observe points\nthat are far away from the mean,"
+    },
+    {
+      "start": 1897.45,
+      "duration": 5.48,
+      "text": "then those points will pin\ndown the regression line"
+    },
+    {
+      "start": 1902.93,
+      "duration": 1.44,
+      "text": "the greatest."
+    },
+    {
+      "start": 1904.37,
+      "duration": 8.64,
+      "text": "And this issue arises\nin experimental design."
+    },
+    {
+      "start": 1913.01,
+      "duration": 2.2,
+      "text": "And in experimental\ndesign, one can"
+    },
+    {
+      "start": 1915.21,
+      "duration": 3.88,
+      "text": "think of how one can\nconstruct X matrices that"
+    },
+    {
+      "start": 1919.09,
+      "duration": 2.34,
+      "text": "have these properties."
+    },
+    {
+      "start": 1921.43,
+      "duration": 5.1,
+      "text": "And as you might\nexpect, the properties"
+    },
+    {
+      "start": 1926.53,
+      "duration": 5.16,
+      "text": "relate to the eigenvalues\nof X transpose X"
+    },
+    {
+      "start": 1931.69,
+      "duration": 9.48,
+      "text": "and looking at methods for\nmaximizing those eigenvalues."
+    },
+    {
+      "start": 1941.17,
+      "duration": 0.62,
+      "text": "All right."
+    },
+    {
+      "start": 1941.79,
+      "duration": 5.08,
+      "text": "Well, we can do some\nmore distribution theory,"
+    },
+    {
+      "start": 1946.87,
+      "duration": 6.58,
+      "text": "which is to look at what the\ndistribution is of our error"
+    },
+    {
+      "start": 1953.45,
+      "duration": 2.76,
+      "text": "vector y vector."
+    },
+    {
+      "start": 1956.21,
+      "duration": 6.36,
+      "text": "But we can also look at any\nmatrix A times y and look"
+    },
+    {
+      "start": 1962.57,
+      "duration": 3.72,
+      "text": "at the distribution of\nthat transformation."
+    },
+    {
+      "start": 1966.29,
+      "duration": 8.92,
+      "text": "It'll be a linear combination of\nthe y's for each component of z."
+    },
+    {
+      "start": 1975.21,
+      "duration": 5.48,
+      "text": "And it will actually have\nan m-dimensional multinomial"
+    },
+    {
+      "start": 1980.69,
+      "duration": 4.52,
+      "text": "distribution with mean\nvalue given by A times"
+    },
+    {
+      "start": 1985.21,
+      "duration": 3.92,
+      "text": "the expected value of\ny, and covariance matrix"
+    },
+    {
+      "start": 1989.13,
+      "duration": 5.4,
+      "text": "equal to A times the\ncovariance of yA transposed."
+    },
+    {
+      "start": 1994.53,
+      "duration": 4.48,
+      "text": "And so this matrix, A, will\ngive us the distribution"
+    },
+    {
+      "start": 1999.01,
+      "duration": 2.08,
+      "text": "of beta hat, as we just did."
+    },
+    {
+      "start": 2001.09,
+      "duration": 6.048,
+      "text": "But we can also use different\ndefinitions of and A and z."
+    },
+    {
+      "start": 2007.138,
+      "duration": 4.872,
+      "text": "And the normal\ndistribution theory"
+    },
+    {
+      "start": 2012.01,
+      "duration": 8.46,
+      "text": "leads to these key properties\nof normal linear model terms."
+    },
+    {
+      "start": 2020.47,
+      "duration": 6.38,
+      "text": "We have-- the beta hat least\nsquares estimate is multinomial."
+    },
+    {
+      "start": 2026.85,
+      "duration": 5.6,
+      "text": "We have that the error\nvector, epsilon hat,"
+    },
+    {
+      "start": 2032.45,
+      "duration": 1.6,
+      "text": "is also multinomial."
+    },
+    {
+      "start": 2036.81,
+      "duration": 9.88,
+      "text": "But it's multinomial in n\ndimensions with mean vector 0."
+    },
+    {
+      "start": 2046.69,
+      "duration": 6.84,
+      "text": "So epsilon hat, which\nis equal to I minus H y"
+    },
+    {
+      "start": 2053.53,
+      "duration": 5.28,
+      "text": "is distributed as a\nmultinomial in n dimensions"
+    },
+    {
+      "start": 2058.81,
+      "duration": 4.72,
+      "text": "with a covariance\nmatrix given by sigma"
+    },
+    {
+      "start": 2063.53,
+      "duration": 3.12,
+      "text": "squared times the projection."
+    },
+    {
+      "start": 2066.65,
+      "duration": 8.72,
+      "text": "Now what's significant is that\nthis covariance matrix here"
+    },
+    {
+      "start": 2075.37,
+      "duration": 1.289,
+      "text": "is not a full rank."
+    },
+    {
+      "start": 2079.81,
+      "duration": 2.866,
+      "text": "So this is nonsingular."
+    },
+    {
+      "start": 2089.59,
+      "duration": 1.44,
+      "text": "Actually, is that\nthe right word?"
+    },
+    {
+      "start": 2091.03,
+      "duration": 0.5,
+      "text": "No."
+    },
+    {
+      "start": 2091.53,
+      "duration": 4.0,
+      "text": "It's singular, I guess."
+    },
+    {
+      "start": 2095.53,
+      "duration": 0.899,
+      "text": "But it's singular."
+    },
+    {
+      "start": 2096.429,
+      "duration": 1.321,
+      "text": "It's not invertible."
+    },
+    {
+      "start": 2102.81,
+      "duration": 3.44,
+      "text": "And what does that mean?"
+    },
+    {
+      "start": 2106.25,
+      "duration": 8.28,
+      "text": "Well, that means that there are\nlinear combinations of the error"
+    },
+    {
+      "start": 2114.53,
+      "duration": 5.16,
+      "text": "vector that have zero variance."
+    },
+    {
+      "start": 2119.69,
+      "duration": 3.96,
+      "text": "There's a linear dependence\nin the error vectors."
+    },
+    {
+      "start": 2123.65,
+      "duration": 7.12,
+      "text": "And so if we consider x\nhat and x transpose this,"
+    },
+    {
+      "start": 2130.77,
+      "duration": 1.98,
+      "text": "and this is equal\nto the 0 vector."
+    },
+    {
+      "start": 2132.75,
+      "duration": 1.472,
+      "text": "This is the normal equations."
+    },
+    {
+      "start": 2137.21,
+      "duration": 4.04,
+      "text": "We basically have that\nfixed linear combinations"
+    },
+    {
+      "start": 2141.25,
+      "duration": 2.32,
+      "text": "of these residuals."
+    },
+    {
+      "start": 2143.57,
+      "duration": 3.0,
+      "text": "The residual vectors are\nidentically equal to 0."
+    },
+    {
+      "start": 2146.57,
+      "duration": 6.96,
+      "text": "So we don't have n\nindependent error terms."
+    },
+    {
+      "start": 2153.53,
+      "duration": 9.43,
+      "text": "And so because of that, when\nwe look at, for example,"
+    },
+    {
+      "start": 2162.96,
+      "duration": 1.62,
+      "text": "estimating the\nerror variance sigma"
+    },
+    {
+      "start": 2164.58,
+      "duration": 5.4,
+      "text": "squared, well, if we take the\nsum of the squared residuals,"
+    },
+    {
+      "start": 2169.98,
+      "duration": 3.4,
+      "text": "that's the trace of\nthe covariance matrix"
+    },
+    {
+      "start": 2173.38,
+      "duration": 2.2,
+      "text": "of the residual vector."
+    },
+    {
+      "start": 2175.58,
+      "duration": 7.0,
+      "text": "And that's equal to the trace\nof this projection matrix"
+    },
+    {
+      "start": 2182.58,
+      "duration": 7.96,
+      "text": "I n minus H. And so the trace of\na sum is the sum of the traces."
+    },
+    {
+      "start": 2190.54,
+      "duration": 5.68,
+      "text": "And the trace of A matrix is--"
+    },
+    {
+      "start": 2196.22,
+      "duration": 4.8,
+      "text": "product is also the trace of\nthe product with terms reversed."
+    },
+    {
+      "start": 2201.02,
+      "duration": 4.96,
+      "text": "So this gives us sigma\nsquared n minus trace of H."
+    },
+    {
+      "start": 2205.98,
+      "duration": 3.44,
+      "text": "And we get n minus p sigma\nsquared for the expected"
+    },
+    {
+      "start": 2209.42,
+      "duration": 1.92,
+      "text": "value of sigma squared."
+    },
+    {
+      "start": 2211.34,
+      "duration": 3.68,
+      "text": "And in regression models\nwith normal linear models,"
+    },
+    {
+      "start": 2215.02,
+      "duration": 6.4,
+      "text": "we use this relationship\nto estimate sigma squared."
+    },
+    {
+      "start": 2221.42,
+      "duration": 2.76,
+      "text": "Dividing both\nsides by n minus p,"
+    },
+    {
+      "start": 2224.18,
+      "duration": 6.56,
+      "text": "we get an unbiased estimate\nof the error variance."
+    },
+    {
+      "start": 2230.74,
+      "duration": 3.4,
+      "text": "Now an additional\nproperty that's"
+    },
+    {
+      "start": 2234.14,
+      "duration": 6.6,
+      "text": "from part C of this theorem is\nthat the error vector, epsilon"
+    },
+    {
+      "start": 2240.74,
+      "duration": 4.24,
+      "text": "hat, and the regression\nparameter, beta hat, those"
+    },
+    {
+      "start": 2244.98,
+      "duration": 5.48,
+      "text": "happen to be independent\nof each other."
+    },
+    {
+      "start": 2250.46,
+      "duration": 5.4,
+      "text": "And the independence\nfollows by looking"
+    },
+    {
+      "start": 2255.86,
+      "duration": 6.72,
+      "text": "at the joint distribution, the\njoint moment-generating function"
+    },
+    {
+      "start": 2262.58,
+      "duration": 9.04,
+      "text": "of Ay, and showing that that is\nequal to the moment-generating"
+    },
+    {
+      "start": 2271.62,
+      "duration": 3.48,
+      "text": "function of beta hat times\nthe moment-generating function"
+    },
+    {
+      "start": 2275.1,
+      "duration": 2.2,
+      "text": "of epsilon hat."
+    },
+    {
+      "start": 2277.3,
+      "duration": 3.16,
+      "text": "So the product of\nmoment-generating functions"
+    },
+    {
+      "start": 2280.46,
+      "duration": 5.96,
+      "text": "allows us to determine\nthe independence there."
+    },
+    {
+      "start": 2286.42,
+      "duration": 2.6,
+      "text": "And when we have\nindependence of the error"
+    },
+    {
+      "start": 2289.02,
+      "duration": 3.46,
+      "text": "vector and the regression\nparameter vector,"
+    },
+    {
+      "start": 2292.48,
+      "duration": 9.18,
+      "text": "then we can compute t-statistics\nfor regression parameters."
+    },
+    {
+      "start": 2301.66,
+      "duration": 3.8,
+      "text": "And we end up, as\nstated in the notes"
+    },
+    {
+      "start": 2305.46,
+      "duration": 8.56,
+      "text": "there, that tj equal to beta hat\nj minus the true beta j divided"
+    },
+    {
+      "start": 2314.02,
+      "duration": 6.52,
+      "text": "by sigma hat times Cjj."
+    },
+    {
+      "start": 2326.7,
+      "duration": 4.4,
+      "text": "This distribution will\nhave a t-distribution."
+    },
+    {
+      "start": 2331.1,
+      "duration": 5.32,
+      "text": "Now when you studied statistics,\nif you took a statistics course,"
+    },
+    {
+      "start": 2336.42,
+      "duration": 4.24,
+      "text": "you, I'm sure, came\nacross the t-distribution."
+    },
+    {
+      "start": 2340.66,
+      "duration": 9.2,
+      "text": "And the t-distribution\nis rather remarkable."
+    },
+    {
+      "start": 2349.86,
+      "duration": 4.28,
+      "text": "This turns out to be\nequal in distribution"
+    },
+    {
+      "start": 2354.14,
+      "duration": 12.08,
+      "text": "to a normal 0 distribution,\nmean 0 and some variance divided"
+    },
+    {
+      "start": 2366.22,
+      "duration": 9.48,
+      "text": "by the square root of a chi\nsquared distribution divided"
+    },
+    {
+      "start": 2375.7,
+      "duration": 4.0,
+      "text": "by its degrees of freedom,\nwhere these two things are"
+    },
+    {
+      "start": 2379.7,
+      "duration": 3.08,
+      "text": "independent of each other."
+    },
+    {
+      "start": 2382.78,
+      "duration": 5.68,
+      "text": "And so the t-distribution--"
+    },
+    {
+      "start": 2388.46,
+      "duration": 4.68,
+      "text": "well, who can comment\non what properties"
+    },
+    {
+      "start": 2393.14,
+      "duration": 2.49,
+      "text": "a t-distribution has\ncompared to a normal?"
+    },
+    {
+      "start": 2405.34,
+      "duration": 4.56,
+      "text": "The t-distribution\nis symmetrical."
+    },
+    {
+      "start": 2409.9,
+      "duration": 1.54,
+      "text": "It's somewhat bell-shaped."
+    },
+    {
+      "start": 2421.9,
+      "duration": 6.56,
+      "text": "Well, if this\nnumerator is a normal,"
+    },
+    {
+      "start": 2428.46,
+      "duration": 9.6,
+      "text": "and this denominator is\nrandom, it's random near 1,"
+    },
+    {
+      "start": 2438.06,
+      "duration": 5.1,
+      "text": "then we'll have a heavier-tailed\ndistribution with the t."
+    },
+    {
+      "start": 2443.16,
+      "duration": 0.5,
+      "text": "And"
+    },
+    {
+      "start": 2443.66,
+      "duration": 6.2,
+      "text": "So we need to be\nable to quantify"
+    },
+    {
+      "start": 2449.86,
+      "duration": 8.8,
+      "text": "how significantly different\nfrom 0 the t-statistic is."
+    },
+    {
+      "start": 2458.66,
+      "duration": 5.88,
+      "text": "So if we have an H0 that\nbeta J is equal to 0,"
+    },
+    {
+      "start": 2464.54,
+      "duration": 3.63,
+      "text": "then this distribution\nturns out to be--"
+    },
+    {
+      "start": 2471.66,
+      "duration": 2.72,
+      "text": "basically have a\nt-distribution--"
+    },
+    {
+      "start": 2474.38,
+      "duration": 7.4,
+      "text": "a t-distribution with n\nminus p degrees of freedom."
+    },
+    {
+      "start": 2481.78,
+      "duration": 7.28,
+      "text": "And so we can judge\nwhether our data"
+    },
+    {
+      "start": 2489.06,
+      "duration": 4.4,
+      "text": "provides evidence against\nthis null hypothesis or not."
+    },
+    {
+      "start": 2493.46,
+      "duration": 4.28,
+      "text": "And we can test other\nhypotheses as well, not only"
+    },
+    {
+      "start": 2497.74,
+      "duration": 2.48,
+      "text": "that the beta j is equal to 0."
+    },
+    {
+      "start": 2500.22,
+      "duration": 5.56,
+      "text": "We'll be covering this in a\nlittle more detail with one"
+    },
+    {
+      "start": 2505.78,
+      "duration": 2.96,
+      "text": "of the lecture notes that\nwas passed out for today."
+    },
+    {
+      "start": 2508.74,
+      "duration": 4.94,
+      "text": "But the-- let's see."
+    },
+    {
+      "start": 2513.68,
+      "duration": 3.12,
+      "text": "Does anyone know the history\nof the t-distribution,"
+    },
+    {
+      "start": 2516.8,
+      "duration": 1.84,
+      "text": "how it was discovered?"
+    },
+    {
+      "start": 2522.5,
+      "duration": 2.14,
+      "text": "AUDIENCE: Through Guinness,\nthe Guinness Factory?"
+    },
+    {
+      "start": 2524.64,
+      "duration": 0.917,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 2525.557,
+      "duration": 3.903,
+      "text": "There was a statistician who was\nworking at Guinness with quality"
+    },
+    {
+      "start": 2529.46,
+      "duration": 1.44,
+      "text": "control."
+    },
+    {
+      "start": 2530.9,
+      "duration": 5.16,
+      "text": "And he would look at--"
+    },
+    {
+      "start": 2536.06,
+      "duration": 5.32,
+      "text": "he would look at samples, very\nsmall samples of size four,"
+    },
+    {
+      "start": 2541.38,
+      "duration": 4.12,
+      "text": "from a--"
+    },
+    {
+      "start": 2545.5,
+      "duration": 4.48,
+      "text": "so we'll just write\nhere \"Guinness.\""
+    },
+    {
+      "start": 2549.98,
+      "duration": 9.02,
+      "text": "He would look at sample, say,\nx1, x2, x3, x4 of a measurement."
+    },
+    {
+      "start": 2559.0,
+      "duration": 3.94,
+      "text": "I'm not sure quite what\nthe quality measure was,"
+    },
+    {
+      "start": 2562.94,
+      "duration": 12.65,
+      "text": "but he would calculate x bar\nand the standard deviation of x,"
+    },
+    {
+      "start": 2575.59,
+      "duration": 4.76,
+      "text": "which is the square\nroot of the sum of xi"
+    },
+    {
+      "start": 2580.35,
+      "duration": 5.62,
+      "text": "minus x bar squared over 3."
+    },
+    {
+      "start": 2585.97,
+      "duration": 2.46,
+      "text": "Well, actually, I think\nhe did it-- well I'll"
+    },
+    {
+      "start": 2588.43,
+      "duration": 1.72,
+      "text": "write it in three."
+    },
+    {
+      "start": 2590.15,
+      "duration": 7.0,
+      "text": "And what he discovered\nwas that if we"
+    },
+    {
+      "start": 2597.15,
+      "duration": 9.96,
+      "text": "look at Z equal\nto x bar over sX,"
+    },
+    {
+      "start": 2607.11,
+      "duration": 4.62,
+      "text": "these outcomes of\nthe sample means,"
+    },
+    {
+      "start": 2611.73,
+      "duration": 3.62,
+      "text": "which are suitably\nrescaled, should"
+    },
+    {
+      "start": 2615.35,
+      "duration": 2.08,
+      "text": "follow a normal\ndistribution because we're"
+    },
+    {
+      "start": 2617.43,
+      "duration": 2.66,
+      "text": "looking at a z-score."
+    },
+    {
+      "start": 2620.09,
+      "duration": 9.82,
+      "text": "This was not distributed\nas a normal 0, 1."
+    },
+    {
+      "start": 2629.91,
+      "duration": 2.68,
+      "text": "There was much\ngreater variability."
+    },
+    {
+      "start": 2632.59,
+      "duration": 5.18,
+      "text": "And so the person\nwho did this work,"
+    },
+    {
+      "start": 2637.77,
+      "duration": 3.76,
+      "text": "they wouldn't allow him to\npublish under his real name."
+    },
+    {
+      "start": 2641.53,
+      "duration": 3.34,
+      "text": "And so he published a paper\nunder the pseudonym \"Student.\""
+    },
+    {
+      "start": 2644.87,
+      "duration": 3.8,
+      "text": "And so we call this the\nStudent's t-distribution now."
+    },
+    {
+      "start": 2648.67,
+      "duration": 1.68,
+      "text": "But what was really\nquite remarkable"
+    },
+    {
+      "start": 2650.35,
+      "duration": 3.14,
+      "text": "was to see that\nin small samples,"
+    },
+    {
+      "start": 2653.49,
+      "duration": 7.74,
+      "text": "the variability of these kinds\nof statistics, in theory,"
+    },
+    {
+      "start": 2661.23,
+      "duration": 3.08,
+      "text": "should be close to normal,\nbut in fact are systematically"
+    },
+    {
+      "start": 2664.31,
+      "duration": 2.4,
+      "text": "different."
+    },
+    {
+      "start": 2666.71,
+      "duration": 3.28,
+      "text": "And with-- let's see."
+    },
+    {
+      "start": 2669.99,
+      "duration": 6.08,
+      "text": "With other questions that\ncome up in regression,"
+    },
+    {
+      "start": 2676.07,
+      "duration": 6.36,
+      "text": "one can construct an F test\nof whether all the regression"
+    },
+    {
+      "start": 2682.43,
+      "duration": 6.4,
+      "text": "parameters beyond the first\nP are equal to 0 or not."
+    },
+    {
+      "start": 2688.83,
+      "duration": 4.24,
+      "text": "And one can look\nat the residual sum"
+    },
+    {
+      "start": 2693.07,
+      "duration": 4.2,
+      "text": "of squares from\nfitting the full model,"
+    },
+    {
+      "start": 2697.27,
+      "duration": 2.6,
+      "text": "and then the residual sum\nof squares from fitting"
+    },
+    {
+      "start": 2699.87,
+      "duration": 4.08,
+      "text": "a submodel using\njust the first k."
+    },
+    {
+      "start": 2703.95,
+      "duration": 2.36,
+      "text": "Sorry, the first k."
+    },
+    {
+      "start": 2706.31,
+      "duration": 2.4,
+      "text": "I misspoke."
+    },
+    {
+      "start": 2708.71,
+      "duration": 5.44,
+      "text": "And then this F\nstatistic is a ratio"
+    },
+    {
+      "start": 2714.15,
+      "duration": 4.68,
+      "text": "of normalized sums of squares\nand differences thereof."
+    },
+    {
+      "start": 2718.83,
+      "duration": 4.32,
+      "text": "And this F-test\nstatistic comes up"
+    },
+    {
+      "start": 2723.15,
+      "duration": 6.24,
+      "text": "as an analysis of\nvariance statistic"
+    },
+    {
+      "start": 2729.39,
+      "duration": 3.48,
+      "text": "where one can\nestimate variability"
+    },
+    {
+      "start": 2732.87,
+      "duration": 5.32,
+      "text": "using the residual sum of\nsquares from the full model."
+    },
+    {
+      "start": 2738.19,
+      "duration": 5.16,
+      "text": "And one can then also look at\nthe residual sum of squares"
+    },
+    {
+      "start": 2743.35,
+      "duration": 1.92,
+      "text": "from the submodel."
+    },
+    {
+      "start": 2745.27,
+      "duration": 8.04,
+      "text": "And if both models are true,\nmeaning beta k plus 1 to p"
+    },
+    {
+      "start": 2753.31,
+      "duration": 4.76,
+      "text": "are equal to 0, then\nthese formulas here"
+    },
+    {
+      "start": 2758.07,
+      "duration": 3.48,
+      "text": "are estimating the same\nvariance and they're"
+    },
+    {
+      "start": 2761.55,
+      "duration": 2.12,
+      "text": "independent of each other."
+    },
+    {
+      "start": 2763.67,
+      "duration": 6.6,
+      "text": "And so we get the F distribution\nas the ratio of two chi"
+    },
+    {
+      "start": 2770.27,
+      "duration": 3.69,
+      "text": "squared distributions that have\ndifferent degrees of freedom."
+    },
+    {
+      "start": 2776.75,
+      "duration": 3.96,
+      "text": "Well let's take a look\nat some real data."
+    },
+    {
+      "start": 2780.71,
+      "duration": 4.72,
+      "text": "The example data set\nI want to introduce"
+    },
+    {
+      "start": 2785.43,
+      "duration": 3.42,
+      "text": "is actually not a\nfinancial data set."
+    },
+    {
+      "start": 2788.85,
+      "duration": 2.38,
+      "text": "This is a medical study."
+    },
+    {
+      "start": 2791.23,
+      "duration": 11.72,
+      "text": "But this example\ncomes up in some work"
+    },
+    {
+      "start": 2802.95,
+      "duration": 7.4,
+      "text": "by Efron and Hastie, Brad\nEfron and Trevor Hastie."
+    },
+    {
+      "start": 2810.35,
+      "duration": 3.64,
+      "text": "And they have some books."
+    },
+    {
+      "start": 2813.99,
+      "duration": 4.16,
+      "text": "There's The Elements of\nStatistical Learning."
+    },
+    {
+      "start": 2818.15,
+      "duration": 3.68,
+      "text": "Actually, this is Hastie."
+    },
+    {
+      "start": 2821.83,
+      "duration": 6.04,
+      "text": "And then there's-- with Efron,\nthere's an advanced book"
+    },
+    {
+      "start": 2827.87,
+      "duration": 12.6,
+      "text": "on computational statistics,\na text that I use in 18655."
+    },
+    {
+      "start": 2840.47,
+      "duration": 5.68,
+      "text": "And in this data\nset, one basically"
+    },
+    {
+      "start": 2846.15,
+      "duration": 3.46,
+      "text": "has a response variable\nand independent variables."
+    },
+    {
+      "start": 2849.61,
+      "duration": 4.7,
+      "text": "And what's really key\nto know is experience"
+    },
+    {
+      "start": 2854.31,
+      "duration": 1.88,
+      "text": "we have with one\nregression problem"
+    },
+    {
+      "start": 2856.19,
+      "duration": 2.72,
+      "text": "extends to other\nregression problems."
+    },
+    {
+      "start": 2858.91,
+      "duration": 4.32,
+      "text": "Just the names of\nvariables change,"
+    },
+    {
+      "start": 2863.23,
+      "duration": 2.6,
+      "text": "but the same issues arise."
+    },
+    {
+      "start": 2865.83,
+      "duration": 4.08,
+      "text": "And so with this data\nset, we're trying"
+    },
+    {
+      "start": 2869.91,
+      "duration": 7.64,
+      "text": "to predict the\nlpsa variable as it"
+    },
+    {
+      "start": 2877.55,
+      "duration": 7.08,
+      "text": "varies with other independent\nvariables for subjects in a data"
+    },
+    {
+      "start": 2884.63,
+      "duration": 0.5,
+      "text": "set."
+    },
+    {
+      "start": 2885.13,
+      "duration": 4.34,
+      "text": "This data set happened to\nbe a data set on patients,"
+    },
+    {
+      "start": 2889.47,
+      "duration": 3.16,
+      "text": "or subjects with\nprostate cancer."
+    },
+    {
+      "start": 2892.63,
+      "duration": 7.76,
+      "text": "And so with any data set, one\ncan compute summary statistics,"
+    },
+    {
+      "start": 2900.39,
+      "duration": 4.8,
+      "text": "which help us detect whether\nthere are issues with the data"
+    },
+    {
+      "start": 2905.19,
+      "duration": 1.88,
+      "text": "or not."
+    },
+    {
+      "start": 2907.07,
+      "duration": 3.68,
+      "text": "There's this pairs\nfunction in R,"
+    },
+    {
+      "start": 2910.75,
+      "duration": 4.01,
+      "text": "which is quite convenient for\njust displaying all of the data."
+    },
+    {
+      "start": 2914.76,
+      "duration": 3.78,
+      "text": "And if you look at\nthis Pairs Plot,"
+    },
+    {
+      "start": 2918.54,
+      "duration": 3.5,
+      "text": "every pair of variables\nin the data set"
+    },
+    {
+      "start": 2922.04,
+      "duration": 6.36,
+      "text": "are plotted in a scatter plot\nwith the other variables."
+    },
+    {
+      "start": 2928.4,
+      "duration": 3.42,
+      "text": "And so along the diagonal, we\nhave the names of the variables,"
+    },
+    {
+      "start": 2931.82,
+      "duration": 5.12,
+      "text": "and then we have different\nrelationships of those."
+    },
+    {
+      "start": 2936.94,
+      "duration": 8.34,
+      "text": "Now if lpsa is the dependent\nvariable of interest,"
+    },
+    {
+      "start": 2945.28,
+      "duration": 3.92,
+      "text": "if we look of across\nthis row, we're"
+    },
+    {
+      "start": 2949.2,
+      "duration": 3.2,
+      "text": "looking at the scatter plot of\ndifferent independent variables"
+    },
+    {
+      "start": 2952.4,
+      "duration": 1.28,
+      "text": "with that."
+    },
+    {
+      "start": 2953.68,
+      "duration": 3.32,
+      "text": "And it looks like the\nlca vol is probably"
+    },
+    {
+      "start": 2957.0,
+      "duration": 2.04,
+      "text": "a very strong relationship."
+    },
+    {
+      "start": 2959.04,
+      "duration": 3.36,
+      "text": "Some of the variables,\nin fact, are discrete,"
+    },
+    {
+      "start": 2962.4,
+      "duration": 3.36,
+      "text": "and we're able to\nsee that as well."
+    },
+    {
+      "start": 2965.76,
+      "duration": 4.2,
+      "text": "And if we just fit\na simple regression,"
+    },
+    {
+      "start": 2969.96,
+      "duration": 5.68,
+      "text": "we end up getting output\nfrom the regression, which"
+    },
+    {
+      "start": 2975.64,
+      "duration": 3.4,
+      "text": "consists of an estimate."
+    },
+    {
+      "start": 2979.04,
+      "duration": 7.48,
+      "text": "We have a coefficient table\nwith an estimate column,"
+    },
+    {
+      "start": 2986.52,
+      "duration": 10.32,
+      "text": "a standard error column,\nand then a t value,"
+    },
+    {
+      "start": 2996.84,
+      "duration": 6.96,
+      "text": "and then finally what's\ncalled a p value column."
+    },
+    {
+      "start": 3003.8,
+      "duration": 4.64,
+      "text": "This is the probability\nthat we have"
+    },
+    {
+      "start": 3008.44,
+      "duration": 4.56,
+      "text": "a larger value of the\nt-statistic being observed."
+    },
+    {
+      "start": 3013.0,
+      "duration": 5.16,
+      "text": "And what's being\ntabled here is results"
+    },
+    {
+      "start": 3018.16,
+      "duration": 3.64,
+      "text": "of hypothesis testing for each\nof the regression coefficients"
+    },
+    {
+      "start": 3021.8,
+      "duration": 3.64,
+      "text": "equaling 0 or not\nin the true model."
+    },
+    {
+      "start": 3025.44,
+      "duration": 4.8,
+      "text": "So we have estimates of these\ndifferent regression parameters."
+    },
+    {
+      "start": 3030.24,
+      "duration": 3.4,
+      "text": "We can get standard\nerrors of those."
+    },
+    {
+      "start": 3033.64,
+      "duration": 5.84,
+      "text": "The standard errors\ncorrespond to sigma hat Cjj."
+    },
+    {
+      "start": 3045.04,
+      "duration": 5.54,
+      "text": "Actually, I think it's the\nsquare root of sigma squared"
+    },
+    {
+      "start": 3050.58,
+      "duration": 0.5,
+      "text": "Cjj."
+    },
+    {
+      "start": 3053.6,
+      "duration": 5.36,
+      "text": "And then the t-value is\njust the signal estimate"
+    },
+    {
+      "start": 3058.96,
+      "duration": 9.04,
+      "text": "to noise ratio, which\nscales in magnitude how"
+    },
+    {
+      "start": 3068.0,
+      "duration": 3.6,
+      "text": "important those factors are."
+    },
+    {
+      "start": 3071.6,
+      "duration": 6.36,
+      "text": "And we can calculate\nthe p value."
+    },
+    {
+      "start": 3077.96,
+      "duration": 0.58,
+      "text": "Let's see."
+    },
+    {
+      "start": 3078.54,
+      "duration": 9.62,
+      "text": "So if we have, say,\na beta hat j value,"
+    },
+    {
+      "start": 3088.16,
+      "duration": 6.2,
+      "text": "and it has this t-distribution,\nwhich is centered at the true"
+    },
+    {
+      "start": 3094.36,
+      "duration": 12.0,
+      "text": "beta j, and the spread is\ngiven by C hat Cj square root,"
+    },
+    {
+      "start": 3106.36,
+      "duration": 3.92,
+      "text": "we can calculate--"
+    },
+    {
+      "start": 3115.36,
+      "duration": 6.76,
+      "text": "we can basically test\nwhether beta j is equal to 0."
+    },
+    {
+      "start": 3122.12,
+      "duration": 5.64,
+      "text": "And so if we set\nthis equal to 0,"
+    },
+    {
+      "start": 3127.76,
+      "duration": 5.68,
+      "text": "if we observe a\nvalue of beta hat j,"
+    },
+    {
+      "start": 3133.44,
+      "duration": 4.8,
+      "text": "we can calculate\nhow likely is it"
+    },
+    {
+      "start": 3138.24,
+      "duration": 11.32,
+      "text": "that we get a beta hat j minus\nbeta minus 0 over sigma hat Cjj."
+    },
+    {
+      "start": 3149.56,
+      "duration": 2.36,
+      "text": "This is our t-statistic."
+    },
+    {
+      "start": 3151.92,
+      "duration": 7.48,
+      "text": "We can look at calculating\nthis probability that"
+    },
+    {
+      "start": 3159.4,
+      "duration": 2.24,
+      "text": "the t-statistic--"
+    },
+    {
+      "start": 3161.64,
+      "duration": 3.36,
+      "text": "or of getting a greater than--"
+    },
+    {
+      "start": 3165.0,
+      "duration": 3.88,
+      "text": "a larger value of\nthat t-statistic."
+    },
+    {
+      "start": 3168.88,
+      "duration": 7.08,
+      "text": "And with this, let's see."
+    },
+    {
+      "start": 3175.96,
+      "duration": 6.24,
+      "text": "If we consider\nchanging the scale here"
+    },
+    {
+      "start": 3182.2,
+      "duration": 7.24,
+      "text": "to just be beta hat j divided\nby sigma hat Cjj square root,"
+    },
+    {
+      "start": 3189.44,
+      "duration": 4.52,
+      "text": "this is our t-statistic,\nthen we basically"
+    },
+    {
+      "start": 3193.96,
+      "duration": 7.52,
+      "text": "have a t-distribution for the\noutcome of the least squares"
+    },
+    {
+      "start": 3201.48,
+      "duration": 1.0,
+      "text": "estimate."
+    },
+    {
+      "start": 3202.48,
+      "duration": 2.6,
+      "text": "And we're calculating\nhow likely is"
+    },
+    {
+      "start": 3205.08,
+      "duration": 6.0,
+      "text": "it we would get as large\nor larger a t-statistic"
+    },
+    {
+      "start": 3211.08,
+      "duration": 6.12,
+      "text": "if the true regression\nparameters were 0 or not."
+    },
+    {
+      "start": 3217.2,
+      "duration": 4.98,
+      "text": "Now, in looking at\nthese estimates,"
+    },
+    {
+      "start": 3222.18,
+      "duration": 4.86,
+      "text": "one of the challenges in part is\nthat the scale of the parameter"
+    },
+    {
+      "start": 3227.04,
+      "duration": 4.24,
+      "text": "estimates varies\ndepending on the units"
+    },
+    {
+      "start": 3231.28,
+      "duration": 2.2,
+      "text": "of the independent variables."
+    },
+    {
+      "start": 3233.48,
+      "duration": 3.36,
+      "text": "And so in some problems,\nwe have very diverse"
+    },
+    {
+      "start": 3236.84,
+      "duration": 3.52,
+      "text": "independent variables\nin the data set."
+    },
+    {
+      "start": 3240.36,
+      "duration": 5.18,
+      "text": "And the units are a\nproperty of the data set,"
+    },
+    {
+      "start": 3245.54,
+      "duration": 5.98,
+      "text": "but they're not really an\nimportant part of the problem."
+    },
+    {
+      "start": 3251.52,
+      "duration": 8.48,
+      "text": "And so what we can do is\nstandardize the covariates"
+    },
+    {
+      "start": 3260.0,
+      "duration": 8.2,
+      "text": "by normalizing them to have\nmean 0 and standard deviation 1."
+    },
+    {
+      "start": 3268.2,
+      "duration": 6.94,
+      "text": "So if we have our\nX matrix equaling--"
+    },
+    {
+      "start": 3275.14,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 3275.64,
+      "duration": 1.61,
+      "text": "How do I want to do this?"
+    },
+    {
+      "start": 3285.76,
+      "duration": 5.04,
+      "text": "So if we have P columns\nin our X matrix,"
+    },
+    {
+      "start": 3290.8,
+      "duration": 5.84,
+      "text": "we can basically take\nX1 and transform it"
+    },
+    {
+      "start": 3296.64,
+      "duration": 9.36,
+      "text": "to X1 minus X bar 1\ntimes the vector of ones,"
+    },
+    {
+      "start": 3306.0,
+      "duration": 4.73,
+      "text": "and divide through by the\nstandard deviation of X1."
+    },
+    {
+      "start": 3313.52,
+      "duration": 5.76,
+      "text": "And so we'll call this\na random vector, Z1,"
+    },
+    {
+      "start": 3319.28,
+      "duration": 1.353,
+      "text": "of standardized values."
+    },
+    {
+      "start": 3323.73,
+      "duration": 5.56,
+      "text": "And if we do this,\nwe're basically"
+    },
+    {
+      "start": 3329.29,
+      "duration": 6.24,
+      "text": "shifting the X's and\nrescaling the shifted values,"
+    },
+    {
+      "start": 3335.53,
+      "duration": 3.8,
+      "text": "it turns out that\nour regression model"
+    },
+    {
+      "start": 3339.33,
+      "duration": 2.36,
+      "text": "on the Z-scores or\nstandardized scores"
+    },
+    {
+      "start": 3341.69,
+      "duration": 3.4,
+      "text": "are the same as the\nregression coefficients"
+    },
+    {
+      "start": 3345.09,
+      "duration": 4.16,
+      "text": "in the original units."
+    },
+    {
+      "start": 3349.25,
+      "duration": 5.58,
+      "text": "So it's obvious, I guess."
+    },
+    {
+      "start": 3354.83,
+      "duration": 17.9,
+      "text": "But if we have y is equal to\nbeta 1 X1 plus beta 2 X2 up"
+    },
+    {
+      "start": 3372.73,
+      "duration": 5.48,
+      "text": "to beta PXP plus\nan error vector."
+    },
+    {
+      "start": 3378.21,
+      "duration": 10.64,
+      "text": "And we consider Zj is just\nsimply equal to Xj minus X bar"
+    },
+    {
+      "start": 3388.85,
+      "duration": 1.85,
+      "text": "j times the vector of ones."
+    },
+    {
+      "start": 3393.57,
+      "duration": 7.64,
+      "text": "And 1 over, say, sj, where sj\nis equal to the sample variance"
+    },
+    {
+      "start": 3401.21,
+      "duration": 0.92,
+      "text": "of the Xj's."
+    },
+    {
+      "start": 3412.37,
+      "duration": 11.44,
+      "text": "We basically can substitute in\nfor each of the X's the formula"
+    },
+    {
+      "start": 3423.81,
+      "duration": 1.08,
+      "text": "here."
+    },
+    {
+      "start": 3424.89,
+      "duration": 19.48,
+      "text": "So X bar J is equal to sjzj\nplus X bar J plus X bar J."
+    },
+    {
+      "start": 3444.37,
+      "duration": 5.16,
+      "text": "So this times this is X\nbar minus little x bar."
+    },
+    {
+      "start": 3449.53,
+      "duration": 3.6,
+      "text": "And this is times\nthe vector of ones."
+    },
+    {
+      "start": 3453.13,
+      "duration": 7.52,
+      "text": "So if we plug-in to\nour Xj values here,"
+    },
+    {
+      "start": 3460.65,
+      "duration": 5.76,
+      "text": "this, then we end up\ngetting this equation"
+    },
+    {
+      "start": 3466.41,
+      "duration": 9.1,
+      "text": "with the same regression\nparameters coming into play."
+    },
+    {
+      "start": 3478.21,
+      "duration": 7.8,
+      "text": "Well, when we fit the scaled\nregression independent variables"
+    },
+    {
+      "start": 3486.01,
+      "duration": 4.72,
+      "text": "model, then notice that\nthe t-values and the p"
+    },
+    {
+      "start": 3490.73,
+      "duration": 4.32,
+      "text": "values for these two\nregressions are identical."
+    },
+    {
+      "start": 3495.05,
+      "duration": 6.0,
+      "text": "So if we pick, say, the\nlargest t value, svi--"
+    },
+    {
+      "start": 3501.05,
+      "duration": 2.68,
+      "text": "or that's not quite\nthe largest lca vol."
+    },
+    {
+      "start": 3503.73,
+      "duration": 4.12,
+      "text": "But let's do svi, 2.949."
+    },
+    {
+      "start": 3507.85,
+      "duration": 13.42,
+      "text": "If we scroll back to\nthe original units,"
+    },
+    {
+      "start": 3521.27,
+      "duration": 5.68,
+      "text": "the t-statistics are identical\nacross all the variables."
+    },
+    {
+      "start": 3526.95,
+      "duration": 2.18,
+      "text": "And so are the p-values."
+    },
+    {
+      "start": 3529.13,
+      "duration": 4.48,
+      "text": "So in terms of interpreting how\nimportant different variables"
+    },
+    {
+      "start": 3533.61,
+      "duration": 4.6,
+      "text": "are, we get the same\njudgments of what's"
+    },
+    {
+      "start": 3538.21,
+      "duration": 3.8,
+      "text": "important in terms of\nt-values and p-values."
+    },
+    {
+      "start": 3542.01,
+      "duration": 2.66,
+      "text": "But what's particularly\nuseful though,"
+    },
+    {
+      "start": 3544.67,
+      "duration": 3.62,
+      "text": "when we use the\nstandardized covariates is"
+    },
+    {
+      "start": 3548.29,
+      "duration": 6.4,
+      "text": "that the magnitude\nof the coefficients,"
+    },
+    {
+      "start": 3554.69,
+      "duration": 2.6,
+      "text": "when we have the\nstandardized scale,"
+    },
+    {
+      "start": 3557.29,
+      "duration": 5.88,
+      "text": "that corresponds to the impact\nof one standard deviation move"
+    },
+    {
+      "start": 3563.17,
+      "duration": 2.96,
+      "text": "of the independent variable."
+    },
+    {
+      "start": 3566.13,
+      "duration": 5.68,
+      "text": "So if we have an\nage value that's"
+    },
+    {
+      "start": 3571.81,
+      "duration": 4.08,
+      "text": "one standard deviation\nabove the mean,"
+    },
+    {
+      "start": 3575.89,
+      "duration": 3.12,
+      "text": "it doesn't have\nmuch of an impact"
+    },
+    {
+      "start": 3579.01,
+      "duration": 2.68,
+      "text": "on the dependent variable."
+    },
+    {
+      "start": 3581.69,
+      "duration": 4.16,
+      "text": "If we have the svi, a\none standard deviation"
+    },
+    {
+      "start": 3585.85,
+      "duration": 7.68,
+      "text": "move above a z-score of 1,\nthen it has a larger impact"
+    },
+    {
+      "start": 3593.53,
+      "duration": 2.44,
+      "text": "on the dependent variable."
+    },
+    {
+      "start": 3595.97,
+      "duration": 5.8,
+      "text": "So standard deviation units it\ncan be a very convenient way"
+    },
+    {
+      "start": 3601.77,
+      "duration": 1.59,
+      "text": "to rescale our data."
+    },
+    {
+      "start": 3607.73,
+      "duration": 2.2,
+      "text": "All right."
+    },
+    {
+      "start": 3609.93,
+      "duration": 5.64,
+      "text": "And judging the quality\nof regression models,"
+    },
+    {
+      "start": 3615.57,
+      "duration": 4.72,
+      "text": "we can calculate\nfitted values and pair"
+    },
+    {
+      "start": 3620.29,
+      "duration": 2.56,
+      "text": "those with the observed values."
+    },
+    {
+      "start": 3622.85,
+      "duration": 4.16,
+      "text": "And look at the scatter plot of\nobserved versus fitted values."
+    },
+    {
+      "start": 3627.01,
+      "duration": 4.8,
+      "text": "And this simple\nscatter plot will"
+    },
+    {
+      "start": 3631.81,
+      "duration": 4.16,
+      "text": "have a correlation statistic."
+    },
+    {
+      "start": 3635.97,
+      "duration": 2.32,
+      "text": "And the square of that\ncorrelation statistic"
+    },
+    {
+      "start": 3638.29,
+      "duration": 3.72,
+      "text": "is actually called the multiple\nR-squared, or coefficient"
+    },
+    {
+      "start": 3642.01,
+      "duration": 2.6,
+      "text": "of determination."
+    },
+    {
+      "start": 3644.61,
+      "duration": 3.44,
+      "text": "If you're familiar with\nsimple linear regression where"
+    },
+    {
+      "start": 3648.05,
+      "duration": 4.04,
+      "text": "you calculate\ncorrelation statistics,"
+    },
+    {
+      "start": 3652.09,
+      "duration": 4.32,
+      "text": "you can think of the squared\ncorrelation as being useful."
+    },
+    {
+      "start": 3656.41,
+      "duration": 6.08,
+      "text": "In multiple regression, we\ngeneralize a single correlation"
+    },
+    {
+      "start": 3662.49,
+      "duration": 4.56,
+      "text": "statistic with the multiple\nR-squared coefficient."
+    },
+    {
+      "start": 3667.05,
+      "duration": 5.16,
+      "text": "And so it basically\ntells us how predictable"
+    },
+    {
+      "start": 3672.21,
+      "duration": 3.7,
+      "text": "our dependent variable is,\ngiven the independent variables."
+    },
+    {
+      "start": 3678.65,
+      "duration": 6.48,
+      "text": "Now in terms of evaluating the\nassumptions of our regression"
+    },
+    {
+      "start": 3685.13,
+      "duration": 4.08,
+      "text": "model, there are\nregression diagnostics"
+    },
+    {
+      "start": 3689.21,
+      "duration": 4.72,
+      "text": "that we can apply\nto fitted models"
+    },
+    {
+      "start": 3693.93,
+      "duration": 6.24,
+      "text": "and there are a number of\ndifferent important measures"
+    },
+    {
+      "start": 3700.17,
+      "duration": 3.96,
+      "text": "that we can apply."
+    },
+    {
+      "start": 3704.13,
+      "duration": 3.6,
+      "text": "And in the stats\npackage, there's"
+    },
+    {
+      "start": 3707.73,
+      "duration": 4.34,
+      "text": "this influence measures\ngeneral function,"
+    },
+    {
+      "start": 3712.07,
+      "duration": 4.3,
+      "text": "which gives a table of\ndifferent statistics."
+    },
+    {
+      "start": 3716.37,
+      "duration": 8.0,
+      "text": "There's this R student for\ncomputing studentized residuals."
+    },
+    {
+      "start": 3724.37,
+      "duration": 4.0,
+      "text": "If we have epsilon hat, it is\ndistributed as multivariate"
+    },
+    {
+      "start": 3728.37,
+      "duration": 4.53,
+      "text": "normal with mean 0\nand covariance matrix"
+    },
+    {
+      "start": 3732.9,
+      "duration": 2.09,
+      "text": "I minus H times sigma squared."
+    },
+    {
+      "start": 3738.58,
+      "duration": 5.44,
+      "text": "Our residuals may have\nvery different variances"
+    },
+    {
+      "start": 3744.02,
+      "duration": 7.16,
+      "text": "because of this I minus H\nfactor in the covariance."
+    },
+    {
+      "start": 3751.18,
+      "duration": 5.04,
+      "text": "And so studentized\nresiduals basically"
+    },
+    {
+      "start": 3756.22,
+      "duration": 7.56,
+      "text": "will divide the residuals by\nthe square root of that variance"
+    },
+    {
+      "start": 3763.78,
+      "duration": 2.08,
+      "text": "and an estimate of that."
+    },
+    {
+      "start": 3765.86,
+      "duration": 4.28,
+      "text": "And that estimate of the\nvariance that's in the divisor"
+    },
+    {
+      "start": 3770.14,
+      "duration": 6.76,
+      "text": "leads to non-normal but\nt-distributions for the epsilon"
+    },
+    {
+      "start": 3776.9,
+      "duration": 0.64,
+      "text": "hats."
+    },
+    {
+      "start": 3777.54,
+      "duration": 4.473,
+      "text": "So we'll see that\nplay out in a moment."
+    },
+    {
+      "start": 3782.013,
+      "duration": 1.5,
+      "text": "And then there are\nother statistics,"
+    },
+    {
+      "start": 3783.513,
+      "duration": 5.267,
+      "text": "like how much does the\nregression parameter change"
+    },
+    {
+      "start": 3788.78,
+      "duration": 2.88,
+      "text": "if we include or\nexclude different data"
+    },
+    {
+      "start": 3791.66,
+      "duration": 2.25,
+      "text": "points, different\ncases in the data."
+    },
+    {
+      "start": 3797.017,
+      "duration": 1.583,
+      "text": "So let's just see\nsome of the results."
+    },
+    {
+      "start": 3798.6,
+      "duration": 7.46,
+      "text": "So here's the student residuals\nfor this regression model."
+    },
+    {
+      "start": 3806.06,
+      "duration": 7.32,
+      "text": "And we have a histogram, which\nis unimodal, symmetrical."
+    },
+    {
+      "start": 3813.38,
+      "duration": 10.68,
+      "text": "Here is what's called a quantile\nplot of the residuals that--"
+    },
+    {
+      "start": 3824.06,
+      "duration": 4.5,
+      "text": "where the quantile plot\nwill follow a straight line"
+    },
+    {
+      "start": 3828.56,
+      "duration": 4.14,
+      "text": "if the data are consistent\nwith the normal distribution"
+    },
+    {
+      "start": 3832.7,
+      "duration": 7.68,
+      "text": "model and the t-distribution\nfor normalizing the residuals"
+    },
+    {
+      "start": 3840.38,
+      "duration": 3.0,
+      "text": "by estimates of the variance."
+    },
+    {
+      "start": 3843.38,
+      "duration": 5.68,
+      "text": "What's rather\nuseful when you use"
+    },
+    {
+      "start": 3849.06,
+      "duration": 3.08,
+      "text": "these methods for different\nregression problems"
+    },
+    {
+      "start": 3852.14,
+      "duration": 7.64,
+      "text": "is that you'll see that there's\nsampling variability due to just"
+    },
+    {
+      "start": 3859.78,
+      "duration": 2.1,
+      "text": "the data set we're working with."
+    },
+    {
+      "start": 3861.88,
+      "duration": 1.98,
+      "text": "If you were to\ncollect a new data set"
+    },
+    {
+      "start": 3863.86,
+      "duration": 4.64,
+      "text": "under identical conditions, you\nwould get different results."
+    },
+    {
+      "start": 3868.5,
+      "duration": 4.16,
+      "text": "These red bands\ncorrespond to bands"
+    },
+    {
+      "start": 3872.66,
+      "duration": 2.32,
+      "text": "you might expect to\nsee with variation"
+    },
+    {
+      "start": 3874.98,
+      "duration": 2.92,
+      "text": "from one example to another."
+    },
+    {
+      "start": 3877.9,
+      "duration": 6.32,
+      "text": "Now this here is a plot called\nthe influencePlot in the car"
+    },
+    {
+      "start": 3884.22,
+      "duration": 9.64,
+      "text": "package, and it plots hat values\nversus studentized residuals."
+    },
+    {
+      "start": 3893.86,
+      "duration": 8.75,
+      "text": "The hat values are the\ndiagonals of the H matrix."
+    },
+    {
+      "start": 3907.9,
+      "duration": 6.39,
+      "text": "And what's important about\nthe hat values is that--"
+    },
+    {
+      "start": 3917.16,
+      "duration": 0.5,
+      "text": "let's see."
+    },
+    {
+      "start": 3917.66,
+      "duration": 4.2,
+      "text": "If the hat values\nwere equal to 1,"
+    },
+    {
+      "start": 3921.86,
+      "duration": 12.68,
+      "text": "so if, say, H sub ii equals\n1, then we would have y hat i"
+    },
+    {
+      "start": 3934.54,
+      "duration": 3.76,
+      "text": "is actually equal to yi."
+    },
+    {
+      "start": 3938.3,
+      "duration": 6.28,
+      "text": "And so the i-th case would be\nthe only case in the data set"
+    },
+    {
+      "start": 3944.58,
+      "duration": 5.62,
+      "text": "that allows you to\nestimate that value."
+    },
+    {
+      "start": 3950.2,
+      "duration": 4.42,
+      "text": "So that case would have\nvery high influence."
+    },
+    {
+      "start": 3954.62,
+      "duration": 5.2,
+      "text": "So hat values generally are--"
+    },
+    {
+      "start": 3959.82,
+      "duration": 3.44,
+      "text": "well, are close to p over n."
+    },
+    {
+      "start": 3963.26,
+      "duration": 7.16,
+      "text": "And lower values correspond\nto lower influence."
+    },
+    {
+      "start": 3970.42,
+      "duration": 8.96,
+      "text": "And studentized residuals are\ngiven by these magnitudes."
+    },
+    {
+      "start": 3979.38,
+      "duration": 6.2,
+      "text": "And I believe what is\ndrawn in this slide is--"
+    },
+    {
+      "start": 3985.58,
+      "duration": 4.4,
+      "text": "yeah, it is the circle size is\nproportional to Cook's distance."
+    },
+    {
+      "start": 3989.98,
+      "duration": 2.6,
+      "text": "And so let's see."
+    },
+    {
+      "start": 3992.58,
+      "duration": 11.76,
+      "text": "With Cook's distance, if we have\nbeta hat equal to x transpose"
+    },
+    {
+      "start": 4004.34,
+      "duration": 9.16,
+      "text": "x inverse x transpose y, we can\nthink of beta hat sub minus i,"
+    },
+    {
+      "start": 4013.5,
+      "duration": 3.28,
+      "text": "which is the least\nsquares estimate if we"
+    },
+    {
+      "start": 4016.78,
+      "duration": 4.72,
+      "text": "were to exclude the i-th case."
+    },
+    {
+      "start": 4021.5,
+      "duration": 4.09,
+      "text": "So this corresponds to\nexcluding the i-th case."
+    },
+    {
+      "start": 4028.54,
+      "duration": 6.88,
+      "text": "Then what we have that this beta\nhat is distributed multinomial"
+    },
+    {
+      "start": 4035.42,
+      "duration": 6.32,
+      "text": "with a mean vector, The True\nbeta and covariance matrix given"
+    },
+    {
+      "start": 4041.74,
+      "duration": 0.63,
+      "text": "by this."
+    },
+    {
+      "start": 4045.74,
+      "duration": 4.84,
+      "text": "We can actually look\nat beta hat minus--"
+    },
+    {
+      "start": 4050.58,
+      "duration": 3.33,
+      "text": "or beta hat i minus beta hat."
+    },
+    {
+      "start": 4057.38,
+      "duration": 9.08,
+      "text": "And then consider\nthe distance of this"
+    },
+    {
+      "start": 4066.46,
+      "duration": 10.8,
+      "text": "or the magnitude of\nthe change in the beta."
+    },
+    {
+      "start": 4077.26,
+      "duration": 6.89,
+      "text": "And Cook's distance will\nactually correspond closely"
+    },
+    {
+      "start": 4084.15,
+      "duration": 8.24,
+      "text": "to a Chi squared distribution\nbecause of the relationship."
+    },
+    {
+      "start": 4092.39,
+      "duration": 3.28,
+      "text": "So we're basically looking\nat the distance of beta hat i"
+    },
+    {
+      "start": 4095.67,
+      "duration": 4.519,
+      "text": "from the true beta\nand normalizing that"
+    },
+    {
+      "start": 4100.189,
+      "duration": 4.04,
+      "text": "by the covariance matrix."
+    },
+    {
+      "start": 4104.229,
+      "duration": 2.8,
+      "text": "Now let's see."
+    },
+    {
+      "start": 4107.029,
+      "duration": 3.681,
+      "text": "There's basically a whole\nslew of different diagnostics"
+    },
+    {
+      "start": 4110.71,
+      "duration": 2.56,
+      "text": "that we can graph."
+    },
+    {
+      "start": 4113.27,
+      "duration": 1.759,
+      "text": "And I think it's\nvery useful to have"
+    },
+    {
+      "start": 4115.029,
+      "duration": 5.841,
+      "text": "graphical methods to highlight\nwhat's perhaps important."
+    },
+    {
+      "start": 4120.87,
+      "duration": 10.4,
+      "text": "In looking at this plotting from\nthe car package, or plot.lm,"
+    },
+    {
+      "start": 4131.27,
+      "duration": 5.2,
+      "text": "we can see how the residuals\ncompare with the fitted values."
+    },
+    {
+      "start": 4136.47,
+      "duration": 6.04,
+      "text": "And we don't like to see any\nsystematic pattern in that plot."
+    },
+    {
+      "start": 4142.51,
+      "duration": 2.36,
+      "text": "We'd like that just to be flat."
+    },
+    {
+      "start": 4144.87,
+      "duration": 1.84,
+      "text": "How that will\nchange sometimes is"
+    },
+    {
+      "start": 4146.71,
+      "duration": 2.56,
+      "text": "that as the fitted\nvalues increase,"
+    },
+    {
+      "start": 4149.27,
+      "duration": 3.879,
+      "text": "the residuals might increase\nin magnitude as well."
+    },
+    {
+      "start": 4153.149,
+      "duration": 4.121,
+      "text": "So that would suggest\nthat the residuals"
+    },
+    {
+      "start": 4157.27,
+      "duration": 3.879,
+      "text": "are dependent on the magnitude\nof the fitted values."
+    },
+    {
+      "start": 4161.149,
+      "duration": 3.401,
+      "text": "We can also look at\nthe normal Q-Q plot"
+    },
+    {
+      "start": 4164.55,
+      "duration": 4.12,
+      "text": "to see whether the data are\nconsistent with normal or not."
+    },
+    {
+      "start": 4168.67,
+      "duration": 9.127,
+      "text": "And then one can look\nat the scale of the--"
+    },
+    {
+      "start": 4177.797,
+      "duration": 4.573,
+      "text": "the scale of-- measures of\nthe scale of the residuals."
+    },
+    {
+      "start": 4182.37,
+      "duration": 4.58,
+      "text": "So we can take the square root\nof the standardized residuals,"
+    },
+    {
+      "start": 4186.95,
+      "duration": 6.64,
+      "text": "or the magnitude, and see\nwhether those have variation,"
+    },
+    {
+      "start": 4193.59,
+      "duration": 2.2,
+      "text": "depending upon whether\nthe fitted values are"
+    },
+    {
+      "start": 4195.79,
+      "duration": 1.76,
+      "text": "small or large."
+    },
+    {
+      "start": 4197.55,
+      "duration": 3.6,
+      "text": "Here it looks like there may be\na nonlinear relationship there."
+    },
+    {
+      "start": 4201.15,
+      "duration": 3.96,
+      "text": "When we discover\nrelationships, then that"
+    },
+    {
+      "start": 4205.11,
+      "duration": 7.04,
+      "text": "leads us to refine\nour model assumptions."
+    },
+    {
+      "start": 4212.15,
+      "duration": 0.58,
+      "text": "Let's see."
+    },
+    {
+      "start": 4212.73,
+      "duration": 6.94,
+      "text": "This residual plot's\nfunction is actually"
+    },
+    {
+      "start": 4219.67,
+      "duration": 3.36,
+      "text": "a function that looks\nat the sensitivity"
+    },
+    {
+      "start": 4223.03,
+      "duration": 5.12,
+      "text": "of our linear regression model\nto potential nonlinearity"
+    },
+    {
+      "start": 4228.15,
+      "duration": 5.24,
+      "text": "in the model dependence\non independent factors."
+    },
+    {
+      "start": 4233.39,
+      "duration": 6.64,
+      "text": "And so it actually tries\nto fit curvature terms"
+    },
+    {
+      "start": 4240.03,
+      "duration": 4.0,
+      "text": "into the residuals in the model."
+    },
+    {
+      "start": 4244.03,
+      "duration": 1.8,
+      "text": "And if there's residual--"
+    },
+    {
+      "start": 4245.83,
+      "duration": 3.72,
+      "text": "if there's curvature\npresent in the residuals,"
+    },
+    {
+      "start": 4249.55,
+      "duration": 3.2,
+      "text": "then we might have\na nonlinear model"
+    },
+    {
+      "start": 4252.75,
+      "duration": 3.77,
+      "text": "and need to expand with\nthe nonlinear terms."
+    },
+    {
+      "start": 4260.71,
+      "duration": 0.58,
+      "text": "Let's see."
+    },
+    {
+      "start": 4261.29,
+      "duration": 7.14,
+      "text": "Well, with this\nnormal linear model,"
+    },
+    {
+      "start": 4268.43,
+      "duration": 7.52,
+      "text": "we can consider the assumptions\nunderlying that minus normality."
+    },
+    {
+      "start": 4275.95,
+      "duration": 3.48,
+      "text": "And those are called the\nGauss-Markov assumptions."
+    },
+    {
+      "start": 4279.43,
+      "duration": 5.626,
+      "text": "So if we have our\nregression model"
+    },
+    {
+      "start": 4285.056,
+      "duration": 4.934,
+      "text": "for our y vector\nand X matrix, we"
+    },
+    {
+      "start": 4289.99,
+      "duration": 5.88,
+      "text": "set that up as the conditional\nexpectation is X beta"
+    },
+    {
+      "start": 4295.87,
+      "duration": 3.6,
+      "text": "and the covariance\nmatrix is equal to sigma"
+    },
+    {
+      "start": 4299.47,
+      "duration": 3.04,
+      "text": "squared times the identity."
+    },
+    {
+      "start": 4302.51,
+      "duration": 5.0,
+      "text": "And with these\nGauss-Markov assumptions,"
+    },
+    {
+      "start": 4307.51,
+      "duration": 2.68,
+      "text": "there's a really\nimportant theorem"
+    },
+    {
+      "start": 4310.19,
+      "duration": 7.76,
+      "text": "in linear models, which is that\nthe least squares estimates"
+    },
+    {
+      "start": 4317.95,
+      "duration": 3.8,
+      "text": "of the regression\nparameters give us"
+    },
+    {
+      "start": 4321.75,
+      "duration": 3.76,
+      "text": "the best estimates of\nany linear combination"
+    },
+    {
+      "start": 4325.51,
+      "duration": 2.72,
+      "text": "of the true\nregression parameters."
+    },
+    {
+      "start": 4328.23,
+      "duration": 4.48,
+      "text": "So if we want to estimate\na parameter theta, which"
+    },
+    {
+      "start": 4332.71,
+      "duration": 3.48,
+      "text": "is a linear combination of\nthe regression parameters,"
+    },
+    {
+      "start": 4336.19,
+      "duration": 4.72,
+      "text": "then if the Gauss-Markov\nassumptions are satisfied,"
+    },
+    {
+      "start": 4340.91,
+      "duration": 1.92,
+      "text": "then plugging in\nthe least squares"
+    },
+    {
+      "start": 4342.83,
+      "duration": 5.4,
+      "text": "estimates provides\nan unbiased estimator"
+    },
+    {
+      "start": 4348.23,
+      "duration": 5.88,
+      "text": "that is also the unbiased\nestimator with the smallest"
+    },
+    {
+      "start": 4354.11,
+      "duration": 1.92,
+      "text": "variability."
+    },
+    {
+      "start": 4356.03,
+      "duration": 6.28,
+      "text": "And these are called best\nlinear unbiased estimates."
+    },
+    {
+      "start": 4362.31,
+      "duration": 4.04,
+      "text": "And what's important-- well,\nI mean as it's framed here,"
+    },
+    {
+      "start": 4366.35,
+      "duration": 1.52,
+      "text": "it's quite general."
+    },
+    {
+      "start": 4367.87,
+      "duration": 1.38,
+      "text": "But think about this."
+    },
+    {
+      "start": 4369.25,
+      "duration": 4.02,
+      "text": "If we have the\nconstants c1 through cp"
+    },
+    {
+      "start": 4373.27,
+      "duration": 7.323,
+      "text": "correspond to specific values of\nthe explanatory three variables"
+    },
+    {
+      "start": 4380.593,
+      "duration": 1.417,
+      "text": "corresponding to\na different case,"
+    },
+    {
+      "start": 4382.01,
+      "duration": 5.62,
+      "text": "then we can be estimating the\ntrue mean value for a given"
+    },
+    {
+      "start": 4387.63,
+      "duration": 3.68,
+      "text": "case of the x variables."
+    },
+    {
+      "start": 4391.31,
+      "duration": 6.74,
+      "text": "If we have two x values, x\nvectors for different cases,"
+    },
+    {
+      "start": 4398.05,
+      "duration": 6.78,
+      "text": "and we're interested in what's\nthe difference in mean values"
+    },
+    {
+      "start": 4404.83,
+      "duration": 4.88,
+      "text": "for those two cases, then we\ncan have these c's represent"
+    },
+    {
+      "start": 4409.71,
+      "duration": 1.7,
+      "text": "the difference in the x's."
+    },
+    {
+      "start": 4411.41,
+      "duration": 2.14,
+      "text": "And we're estimating\nthe difference"
+    },
+    {
+      "start": 4413.55,
+      "duration": 4.4,
+      "text": "in y values, the difference in\nmean values for different cases."
+    },
+    {
+      "start": 4417.95,
+      "duration": 4.56,
+      "text": "So it really is a very,\nvery general theorem."
+    },
+    {
+      "start": 4422.51,
+      "duration": 4.6,
+      "text": "And while it's a very\nwonderful theorem,"
+    },
+    {
+      "start": 4427.11,
+      "duration": 3.76,
+      "text": "it depends on the\nGauss-Markov assumptions."
+    },
+    {
+      "start": 4430.87,
+      "duration": 7.16,
+      "text": "So what we can do is consider\ngeneralizing the Gauss-Markov"
+    },
+    {
+      "start": 4438.03,
+      "duration": 7.28,
+      "text": "assumptions to, again,\nhave 0 mean errors,"
+    },
+    {
+      "start": 4445.31,
+      "duration": 3.6,
+      "text": "but have the covariance\nmatrix of the errors"
+    },
+    {
+      "start": 4448.91,
+      "duration": 6.56,
+      "text": "be given by sigma squared\ntimes a capital sigma matrix."
+    },
+    {
+      "start": 4455.47,
+      "duration": 9.28,
+      "text": "And this kind of covariance\nstructure in error terms"
+    },
+    {
+      "start": 4464.75,
+      "duration": 4.44,
+      "text": "actually arises frequently\nin time series modeling,"
+    },
+    {
+      "start": 4469.19,
+      "duration": 5.04,
+      "text": "where we're ordering\nour data by time"
+    },
+    {
+      "start": 4474.23,
+      "duration": 4.96,
+      "text": "and maybe near values\nof the error that"
+    },
+    {
+      "start": 4479.19,
+      "duration": 5.16,
+      "text": "are observed at nearby times\nare more correlated than those"
+    },
+    {
+      "start": 4484.35,
+      "duration": 1.5,
+      "text": "at faraway times."
+    },
+    {
+      "start": 4485.85,
+      "duration": 3.07,
+      "text": "And the covariant\nstructure of those errors"
+    },
+    {
+      "start": 4488.92,
+      "duration": 3.96,
+      "text": "might be systematically\nrepresented"
+    },
+    {
+      "start": 4492.88,
+      "duration": 5.32,
+      "text": "by a multiple of a\nknown sigma matrix."
+    },
+    {
+      "start": 4498.2,
+      "duration": 6.76,
+      "text": "Well, if this is the case, we\ncan transform our original data"
+    },
+    {
+      "start": 4504.96,
+      "duration": 9.4,
+      "text": "by premultiplying by the\ninverse square root of sigma"
+    },
+    {
+      "start": 4514.36,
+      "duration": 4.0,
+      "text": "and do the same\nfor our x matrix."
+    },
+    {
+      "start": 4518.36,
+      "duration": 5.48,
+      "text": "And if we do that, we're\nbasically transforming our model"
+    },
+    {
+      "start": 4523.84,
+      "duration": 6.6,
+      "text": "to the starred case\nwhere the Y star and X"
+    },
+    {
+      "start": 4530.44,
+      "duration": 6.48,
+      "text": "star, as we've represented\nhere, the epsilon star will have"
+    },
+    {
+      "start": 4536.92,
+      "duration": 6.36,
+      "text": "mean 0, and the covariance\nmatrix of the epsilon stars"
+    },
+    {
+      "start": 4543.28,
+      "duration": 5.84,
+      "text": "will actually be diagonal\nwith constant variance."
+    },
+    {
+      "start": 4549.12,
+      "duration": 4.84,
+      "text": "So in this transformed case,\nwe have the same regression"
+    },
+    {
+      "start": 4553.96,
+      "duration": 1.48,
+      "text": "parameters."
+    },
+    {
+      "start": 4555.44,
+      "duration": 8.0,
+      "text": "We have the epsilon stars with\nthe Gauss-Markov assumptions"
+    },
+    {
+      "start": 4563.44,
+      "duration": 1.56,
+      "text": "being satisfied."
+    },
+    {
+      "start": 4565.0,
+      "duration": 3.56,
+      "text": "So by the Gauss-Markov\ntheorem, we just"
+    },
+    {
+      "start": 4568.56,
+      "duration": 3.4,
+      "text": "can write directly our\nleast squares estimate"
+    },
+    {
+      "start": 4571.96,
+      "duration": 3.44,
+      "text": "in terms of the X\nstars and Y stars."
+    },
+    {
+      "start": 4575.4,
+      "duration": 3.24,
+      "text": "And when we write\nthat out, it ends up"
+    },
+    {
+      "start": 4578.64,
+      "duration": 6.04,
+      "text": "giving us this formula for\nthe generalized least squares"
+    },
+    {
+      "start": 4584.68,
+      "duration": 1.44,
+      "text": "estimate."
+    },
+    {
+      "start": 4586.12,
+      "duration": 5.04,
+      "text": "And so if we have\nvariable errors where"
+    },
+    {
+      "start": 4591.16,
+      "duration": 3.24,
+      "text": "we know the relative\nvariation of those errors,"
+    },
+    {
+      "start": 4594.4,
+      "duration": 3.84,
+      "text": "we can accommodate that\nand get best estimates"
+    },
+    {
+      "start": 4598.24,
+      "duration": 4.52,
+      "text": "with this generalized\nleast squares formula."
+    },
+    {
+      "start": 4602.76,
+      "duration": 7.4,
+      "text": "And importantly, the generalized\nleast squares estimate"
+    },
+    {
+      "start": 4610.16,
+      "duration": 3.88,
+      "text": "basically does a\nweighted regression"
+    },
+    {
+      "start": 4614.04,
+      "duration": 6.12,
+      "text": "where we weight cases\nproportional to the inverse"
+    },
+    {
+      "start": 4620.16,
+      "duration": 4.54,
+      "text": "of the variance of\nthe random variable."
+    },
+    {
+      "start": 4624.7,
+      "duration": 3.74,
+      "text": "So if this sigma\nmatrix, in fact,"
+    },
+    {
+      "start": 4628.44,
+      "duration": 3.16,
+      "text": "were diagonal with\ndifferent variances,"
+    },
+    {
+      "start": 4631.6,
+      "duration": 8.0,
+      "text": "we would be downweighting\nthose cases with high variance"
+    },
+    {
+      "start": 4639.6,
+      "duration": 6.68,
+      "text": "and performing the least squares\ncomputations in a weighted way."
+    },
+    {
+      "start": 4646.28,
+      "duration": 3.14,
+      "text": "So that's the generalized\nleast squares estimate."
+    },
+    {
+      "start": 4649.42,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 4649.92,
+      "duration": 3.58,
+      "text": "Well, we'll finish\nthere for today"
+    },
+    {
+      "start": 4653.5,
+      "duration": 5.61,
+      "text": "and cover more\nregression next time."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: All right. Well, let's continue with our discussion of linear regression modeling. And as we introduced last time, there are ways one can formalize fitting a model, which is to propose a model, specify criteria for judging different fits or estimators of model parameters, then find the best estimators, and then check our assumptions underlying the specification of the criterion. And possibly, if necessary, modify the model because the assumptions that we made aren't satisfied. So we either want to add additional assumptions or consider transformations of the model, perhaps. So with ordinary least squares regression, we have this criterion for specifying regression parameters. And we specify these in terms of a y vector. And this has values of a dependent variable across cases in the data, an x matrix, which will have n rows and p columns. And we'll have general elements Xij. And then our model will be that y is equal to x, the matrix, times a beta vector. So we can have a beta vector that has p components, and an error vector, which has n terms corresponding to the n cases. So in specifying the regression model, we have that our n vector y is going to be a linear combination of the columns of x. And there will be an error vector characterizing the discrepancy from that. So how should we specify this beta vector if we have a least squares criterion? We can look at sum 1 to n of yi minus y hat i, where, say, y hat is equal to x beta hat. And this criterion is basically a sum-of-squares criterion. So it's like a sum of squared errors. Now minimizing this can be done just with simple calculus. We can plug in for-- in the formula and have this sum-of-squares criterion, which is simply y minus x beta transpose y minus x beta. So we have Q of beta is basically y minus x beta squared. So it's the distance of our n vector from the prediction, or fitted value, I guess. Maybe I'll put the beta hat here to make it explicit. And we basically want our fitted values to be as close as possible to the actual values. Now because this criterion is a quadratic-- it's a quadratic in the regression coefficients, we can simply take derivatives of Q and solve for those derivatives equal to 0. So that's the first-order conditions. And let's see. How do we know whether the solution to this equation actually minimizes the sum of squared errors criterion? A first-order condition is one where the derivative of the function is equal to 0. That could be at a minimum, but it also could be at a maximum. Yes? AUDIENCE: You also want to check the second order derivative and make sure that it's positive. PETER KEMPTHORNE: Yes. We want to take the second-order derivative. And if it's positive, then we have a-- I guess it's a concave-- or, I'm sorry, a convex function. And so the first derivative will solve that. Now this is the first derivative equation. If we were to look at dQ of beta by d beta j-- let's see. Is that beta j? Right. If we were to look at the second order derivative by d beta d beta transpose, then analytically, we'll basically get this term times minus x. And so that will end up being a positive term, in terms of products of columns of x and the full x matrix. And so with that, we have this set of equations. Now if you read up on regression theory, linear model theory, this equation of the derivative of Q with respect to beta equaling 0 is equivalent to this equation here, which is just obtained by eliminating the minus 2 factor and solving for beta. And this is called the normal equations. What is familiar to some people is that in statistics theory, the names of important terms is often not very sophisticated, in terms of here we have what we call the normal equations. There's nothing really normal about it, but it's a way of specifying a set of equations that we need to solve. And if the X transpose X matrix is invertible, then we have a solution by multiplying both sides of this equation by the inverse. And in order for this process to work, we need to have that X must have full column rank. All right. So here, if we plug in that least squares estimate-- so we have beta hat equal to x transpose x inverse x transpose y. If we plug that into our formula for the fitted values, then this becomes this formula times y. And I'll put square brackets around that. And this is called the hat matrix by some statisticians. Now this matrix, H, is actually a very special matrix. It has special properties. Does anyone know what those special properties might be? Anybody in the back know? Kai. AUDIENCE: From memory, it's a projection onto the column space of x. PETER KEMPTHORNE: Yes, it is. Exactly. So H is a projection matrix and it's onto the column space of the X matrix. Now what are properties of a projection matrix? If we multiply the projection matrix by itself, we actually get the projection matrix. And what's relevant is that if we were to take Hy hat, which is then equal to H times Hy, if this first term is in the column space of x as a projection, then projecting it onto that same column space will have no difference. So this is logically what it should be. And if we multiply out the projection matrix times itself, we get this property. OK. Well, Importantly in modeling is to look at residuals, which are model errors. And so if we have epsilon hat is equal to y minus y hat, this is y minus-- or y times the identity matrix minus Hy. And this matrix here, multiplying y to give us our residuals, it is also a projection matrix. So this is a projection as well. And if we multiply I minus H times I minus H and expand it out, we get I squared minus 2H plus H squared. And that equals I minus H. So we can mathematically verify that it's a projection. And a very important property of this residual vector is that it is orthogonal to the fitted values. So in the normal equations, we have this equation must equal zero. This term here is the residual vector. And if we multiply that n vector by the transpose of x, and it's equal to 0, then we must have that the error vector, epsilon hat, is orthogonal to x. Now let's see. I'm not sure if it's on the next slide or not. I think something to keep in mind that's really quite useful when we use linear algebra with least squares is that we have y, being in n-dimensional space, the-- we have an X matrix n by p, which corresponds to a column space of x, which is a subspace of R to the n. And let's see. If we have y hat and epsilon hat, these are orthogonal to each other. So if we think in n dimensions of having a y vector and have a y hat n vector, then y minus y-- sorry. Not y hat, y minus y hat. So if we take the vector from here to here, that's y minus y hat. OK, this is going to be orthogonal to y hat. So we actually have right angles here in between the y hat vector and the y vector. Sorry, we have-- the y hat vector and the error vector. And so from this, we have that the squared length of y is equal to the squared length of y hat plus the squared length of the residual vector. And then if we expand this squared length out, we actually get 0 because of the orthogonality. So with least squares, we basically have a Pythagorean theorem that generalizes from two dimensions to n dimensions. And that generalization is quite convenient and useful when we think about not the mathematical exercise of least squares, but we think about having probability distributions on, say, the errors. So that leads us to trying to extend the mathematical regression model to a probability model. And so with this, we have constants assumptions for the independent variables in the x matrix, constants for the regression parameters. But the error terms, those will be assumed to follow some probability model. What's useful to think about is, well, what would be the simplest possible probability model to apply to a regression? Well, we could assume that the errors are iid, which means independent and identically distributed. And we could also, for convenience, assume that they are normally distributed. And so this is a normal linear regression model. And when we write out the model equation here, the model equation basically is constants plus the error vector. And the error vector, epsilon 1 to epsilon n being iid normal, this, in fact, is consistent, or is equivalent to a multivariate normal distribution of dimension n with a 0 vector for the mean and a covariance matrix that's diagonal with constant variance. So this is going to be a convenient model for us to work with. And what we'll see is that different inferences about how important different independent variables are in a regression model can be judged using this model as a baseline model for that evaluation. So importantly, the distribution of the residuals leads us to a distribution of the dependent variable vector y. And so in this slide, we use the notation of a mu vector for the conditional expectation of the y vector given x and beta. And we'll define this just to be a mu vector. That's an n vector. And we'll define the covariance matrix of the y vector, or the conditional covariance. OK. This is going to be equal to the product of y minus its mean times the transpose of y minus its mean. And so this is an n by 1, 1 by n term. So this is an n by n matrix. And we'll call this capital sigma as a covariance matrix. Now for the special case of iid errors, this covariance matrix will be diagonal with constant sigma squared. And it will turn out that this conditional distribution of y given x and beta will have a multinomial distribution with a mean vector mu and a covariance matrix sigma. So an n-dimensional multivariate normal distribution. OK. Well, what we're going to do is show results of what distribution the y vector is, as well as show what the distribution is of the least squares estimate is using moment-generating functions. So this example of the application of moment-generating functions is really quite neat because the arguments are very simple and accessible. So if we have an invariate random vector y and a constant vector t, then the moment-generating function of the Y vector is equal to the expected value of the exponential of t transpose Y. So this moment-generating function has-- is a function of the t vector. And we just plug into this formula. Now because the Y's, in fact, are independent of each other, then we have this expected product of terms is the product of the expectations. So we're going to use that independence property where expectations of products are products of the expectations. And then for each of the Y's, we can plug in the moment-generating function for each Yi. And that's e to the ti of mu i plus a half ti squared sigma squared. We went through this moment-generating function in our section on probability theory. Now what's important from this example is if we take this product of all the moment-generating functions, and then try to express it in terms of the t vector, the mu vector, and the sigma matrix, we get this formula. And this formula is, in fact, the moment-generating function for a multivariate normal with a given mean vector, mu, and a given covariance matrix, sigma. So that result is trivial. Not surprising. What's less surprising is that we can use moment-generating functions to solve for the distribution of the least squares estimate. So this first formula here is the moment-generating function for beta hat. And in writing that out, M sum beta hat, I'm going to use a different argument, tau, which will be a p vector. And this is going to be the expected value of E to the tau transpose beta hat. So this is the definition of the moment-generating function. And if we define the matrix A to be basically the premultiple factor of A that gives us beta hat, then our moment-generating function for beta hat can be written as this expression, just plugging in AY for beta hat. But then we can express tau transpose A equal to t transposed. So this moment-generating function of the least squares estimates beta hat is actually the value of the moment-generating function of the multinomial vector evaluated at t equal to A transpose tau. And so we can simply plug in this value of t and get our result. And so t transpose mu ends up being tau transpose beta. And t transpose sigma t is equal to this product. And if we simplify it, we basically have a mean vector, beta, for the least squares estimate, and a covariance matrix for the least squares estimate that's given by sigma squared x transpose x inverse. So this is our moment-generating function of beta hat. And by the uniqueness of moment-generating functions, we can recognize this as a multinomial with the given mean vector and the given covariance matrix. So we have multivariate normality of the least squares estimates, which is very convenient and useful. Now, from this, we end up getting marginal distributions that are normal for each of the least squares estimates. So we're just thinking in this slide of the j-th component of beta hat. Well, it's univariate normal with mean beta J and variance given by sigma squared times the j-th diagonal element of x transpose x inverse. And so we get this nice distribution result. Now there's more distribution theory here to go through. But let's see. Something just to think about that's, I think, very powerful is in some examples where we have this model, we may have control over what our independent variables matrix is. And in a scientific experiment, we might vary different conditions of the experiment, yielding y for different conditions of x. And with these models, we might be interested in a particular column of the X matrix and want to estimate the beta j, the regression parameter relationship for that. And so if we had control over. The X matrix, we might try to make the j-th diagonal the smallest we can so that the precision of that regression parameter estimate is as small as possible. And so suppose, I guess, for simplicity that the X matrix-- suppose that x transpose x is a diagonal matrix. And here's Cj. The diagonal values of x transpose x inverse will simply be-- so if we do a minus 1 there, we can do a minus 1 here. Our diagonal entries will be smallest-- smaller the more large the j-th column is. And so when you think of regression models and experiments, we basically would perhaps want to have the spread in an independent variable be as big as possible in order to specify the line. So if we think of a regression model of y on X and we have-- if we have points of x and y, basically the-- if we look at the sample mean of the X's and we consider concentrating our x values as far away as possible, that, presumably, will yield more accurate estimates of the slope parameter in the relationship. And so you can think of-- basically, if we observe points that are far away from the mean, then those points will pin down the regression line the greatest. And this issue arises in experimental design. And in experimental design, one can think of how one can construct X matrices that have these properties. And as you might expect, the properties relate to the eigenvalues of X transpose X and looking at methods for maximizing those eigenvalues. All right. Well, we can do some more distribution theory, which is to look at what the distribution is of our error vector y vector. But we can also look at any matrix A times y and look at the distribution of that transformation. It'll be a linear combination of the y's for each component of z. And it will actually have an m-dimensional multinomial distribution with mean value given by A times the expected value of y, and covariance matrix equal to A times the covariance of yA transposed. And so this matrix, A, will give us the distribution of beta hat, as we just did. But we can also use different definitions of and A and z. And the normal distribution theory leads to these key properties of normal linear model terms. We have-- the beta hat least squares estimate is multinomial. We have that the error vector, epsilon hat, is also multinomial. But it's multinomial in n dimensions with mean vector 0. So epsilon hat, which is equal to I minus H y is distributed as a multinomial in n dimensions with a covariance matrix given by sigma squared times the projection. Now what's significant is that this covariance matrix here is not a full rank. So this is nonsingular. Actually, is that the right word? No. It's singular, I guess. But it's singular. It's not invertible. And what does that mean? Well, that means that there are linear combinations of the error vector that have zero variance. There's a linear dependence in the error vectors. And so if we consider x hat and x transpose this, and this is equal to the 0 vector. This is the normal equations. We basically have that fixed linear combinations of these residuals. The residual vectors are identically equal to 0. So we don't have n independent error terms. And so because of that, when we look at, for example, estimating the error variance sigma squared, well, if we take the sum of the squared residuals, that's the trace of the covariance matrix of the residual vector. And that's equal to the trace of this projection matrix I n minus H. And so the trace of a sum is the sum of the traces. And the trace of A matrix is-- product is also the trace of the product with terms reversed. So this gives us sigma squared n minus trace of H. And we get n minus p sigma squared for the expected value of sigma squared. And in regression models with normal linear models, we use this relationship to estimate sigma squared. Dividing both sides by n minus p, we get an unbiased estimate of the error variance. Now an additional property that's from part C of this theorem is that the error vector, epsilon hat, and the regression parameter, beta hat, those happen to be independent of each other. And the independence follows by looking at the joint distribution, the joint moment-generating function of Ay, and showing that that is equal to the moment-generating function of beta hat times the moment-generating function of epsilon hat. So the product of moment-generating functions allows us to determine the independence there. And when we have independence of the error vector and the regression parameter vector, then we can compute t-statistics for regression parameters. And we end up, as stated in the notes there, that tj equal to beta hat j minus the true beta j divided by sigma hat times Cjj. This distribution will have a t-distribution. Now when you studied statistics, if you took a statistics course, you, I'm sure, came across the t-distribution. And the t-distribution is rather remarkable. This turns out to be equal in distribution to a normal 0 distribution, mean 0 and some variance divided by the square root of a chi squared distribution divided by its degrees of freedom, where these two things are independent of each other. And so the t-distribution-- well, who can comment on what properties a t-distribution has compared to a normal? The t-distribution is symmetrical. It's somewhat bell-shaped. Well, if this numerator is a normal, and this denominator is random, it's random near 1, then we'll have a heavier-tailed distribution with the t. And So we need to be able to quantify how significantly different from 0 the t-statistic is. So if we have an H0 that beta J is equal to 0, then this distribution turns out to be-- basically have a t-distribution-- a t-distribution with n minus p degrees of freedom. And so we can judge whether our data provides evidence against this null hypothesis or not. And we can test other hypotheses as well, not only that the beta j is equal to 0. We'll be covering this in a little more detail with one of the lecture notes that was passed out for today. But the-- let's see. Does anyone know the history of the t-distribution, how it was discovered? AUDIENCE: Through Guinness, the Guinness Factory? PETER KEMPTHORNE: Yes. There was a statistician who was working at Guinness with quality control. And he would look at-- he would look at samples, very small samples of size four, from a-- so we'll just write here \"Guinness.\" He would look at sample, say, x1, x2, x3, x4 of a measurement. I'm not sure quite what the quality measure was, but he would calculate x bar and the standard deviation of x, which is the square root of the sum of xi minus x bar squared over 3. Well, actually, I think he did it-- well I'll write it in three. And what he discovered was that if we look at Z equal to x bar over sX, these outcomes of the sample means, which are suitably rescaled, should follow a normal distribution because we're looking at a z-score. This was not distributed as a normal 0, 1. There was much greater variability. And so the person who did this work, they wouldn't allow him to publish under his real name. And so he published a paper under the pseudonym \"Student.\" And so we call this the Student's t-distribution now. But what was really quite remarkable was to see that in small samples, the variability of these kinds of statistics, in theory, should be close to normal, but in fact are systematically different. And with-- let's see. With other questions that come up in regression, one can construct an F test of whether all the regression parameters beyond the first P are equal to 0 or not. And one can look at the residual sum of squares from fitting the full model, and then the residual sum of squares from fitting a submodel using just the first k. Sorry, the first k. I misspoke. And then this F statistic is a ratio of normalized sums of squares and differences thereof. And this F-test statistic comes up as an analysis of variance statistic where one can estimate variability using the residual sum of squares from the full model. And one can then also look at the residual sum of squares from the submodel. And if both models are true, meaning beta k plus 1 to p are equal to 0, then these formulas here are estimating the same variance and they're independent of each other. And so we get the F distribution as the ratio of two chi squared distributions that have different degrees of freedom. Well let's take a look at some real data. The example data set I want to introduce is actually not a financial data set. This is a medical study. But this example comes up in some work by Efron and Hastie, Brad Efron and Trevor Hastie. And they have some books. There's The Elements of Statistical Learning. Actually, this is Hastie. And then there's-- with Efron, there's an advanced book on computational statistics, a text that I use in 18655. And in this data set, one basically has a response variable and independent variables. And what's really key to know is experience we have with one regression problem extends to other regression problems. Just the names of variables change, but the same issues arise. And so with this data set, we're trying to predict the lpsa variable as it varies with other independent variables for subjects in a data set. This data set happened to be a data set on patients, or subjects with prostate cancer. And so with any data set, one can compute summary statistics, which help us detect whether there are issues with the data or not. There's this pairs function in R, which is quite convenient for just displaying all of the data. And if you look at this Pairs Plot, every pair of variables in the data set are plotted in a scatter plot with the other variables. And so along the diagonal, we have the names of the variables, and then we have different relationships of those. Now if lpsa is the dependent variable of interest, if we look of across this row, we're looking at the scatter plot of different independent variables with that. And it looks like the lca vol is probably a very strong relationship. Some of the variables, in fact, are discrete, and we're able to see that as well. And if we just fit a simple regression, we end up getting output from the regression, which consists of an estimate. We have a coefficient table with an estimate column, a standard error column, and then a t value, and then finally what's called a p value column. This is the probability that we have a larger value of the t-statistic being observed. And what's being tabled here is results of hypothesis testing for each of the regression coefficients equaling 0 or not in the true model. So we have estimates of these different regression parameters. We can get standard errors of those. The standard errors correspond to sigma hat Cjj. Actually, I think it's the square root of sigma squared Cjj. And then the t-value is just the signal estimate to noise ratio, which scales in magnitude how important those factors are. And we can calculate the p value. Let's see. So if we have, say, a beta hat j value, and it has this t-distribution, which is centered at the true beta j, and the spread is given by C hat Cj square root, we can calculate-- we can basically test whether beta j is equal to 0. And so if we set this equal to 0, if we observe a value of beta hat j, we can calculate how likely is it that we get a beta hat j minus beta minus 0 over sigma hat Cjj. This is our t-statistic. We can look at calculating this probability that the t-statistic-- or of getting a greater than-- a larger value of that t-statistic. And with this, let's see. If we consider changing the scale here to just be beta hat j divided by sigma hat Cjj square root, this is our t-statistic, then we basically have a t-distribution for the outcome of the least squares estimate. And we're calculating how likely is it we would get as large or larger a t-statistic if the true regression parameters were 0 or not. Now, in looking at these estimates, one of the challenges in part is that the scale of the parameter estimates varies depending on the units of the independent variables. And so in some problems, we have very diverse independent variables in the data set. And the units are a property of the data set, but they're not really an important part of the problem. And so what we can do is standardize the covariates by normalizing them to have mean 0 and standard deviation 1. So if we have our X matrix equaling-- let's see. How do I want to do this? So if we have P columns in our X matrix, we can basically take X1 and transform it to X1 minus X bar 1 times the vector of ones, and divide through by the standard deviation of X1. And so we'll call this a random vector, Z1, of standardized values. And if we do this, we're basically shifting the X's and rescaling the shifted values, it turns out that our regression model on the Z-scores or standardized scores are the same as the regression coefficients in the original units. So it's obvious, I guess. But if we have y is equal to beta 1 X1 plus beta 2 X2 up to beta PXP plus an error vector. And we consider Zj is just simply equal to Xj minus X bar j times the vector of ones. And 1 over, say, sj, where sj is equal to the sample variance of the Xj's. We basically can substitute in for each of the X's the formula here. So X bar J is equal to sjzj plus X bar J plus X bar J. So this times this is X bar minus little x bar. And this is times the vector of ones. So if we plug-in to our Xj values here, this, then we end up getting this equation with the same regression parameters coming into play. Well, when we fit the scaled regression independent variables model, then notice that the t-values and the p values for these two regressions are identical. So if we pick, say, the largest t value, svi-- or that's not quite the largest lca vol. But let's do svi, 2.949. If we scroll back to the original units, the t-statistics are identical across all the variables. And so are the p-values. So in terms of interpreting how important different variables are, we get the same judgments of what's important in terms of t-values and p-values. But what's particularly useful though, when we use the standardized covariates is that the magnitude of the coefficients, when we have the standardized scale, that corresponds to the impact of one standard deviation move of the independent variable. So if we have an age value that's one standard deviation above the mean, it doesn't have much of an impact on the dependent variable. If we have the svi, a one standard deviation move above a z-score of 1, then it has a larger impact on the dependent variable. So standard deviation units it can be a very convenient way to rescale our data. All right. And judging the quality of regression models, we can calculate fitted values and pair those with the observed values. And look at the scatter plot of observed versus fitted values. And this simple scatter plot will have a correlation statistic. And the square of that correlation statistic is actually called the multiple R-squared, or coefficient of determination. If you're familiar with simple linear regression where you calculate correlation statistics, you can think of the squared correlation as being useful. In multiple regression, we generalize a single correlation statistic with the multiple R-squared coefficient. And so it basically tells us how predictable our dependent variable is, given the independent variables. Now in terms of evaluating the assumptions of our regression model, there are regression diagnostics that we can apply to fitted models and there are a number of different important measures that we can apply. And in the stats package, there's this influence measures general function, which gives a table of different statistics. There's this R student for computing studentized residuals. If we have epsilon hat, it is distributed as multivariate normal with mean 0 and covariance matrix I minus H times sigma squared. Our residuals may have very different variances because of this I minus H factor in the covariance. And so studentized residuals basically will divide the residuals by the square root of that variance and an estimate of that. And that estimate of the variance that's in the divisor leads to non-normal but t-distributions for the epsilon hats. So we'll see that play out in a moment. And then there are other statistics, like how much does the regression parameter change if we include or exclude different data points, different cases in the data. So let's just see some of the results. So here's the student residuals for this regression model. And we have a histogram, which is unimodal, symmetrical. Here is what's called a quantile plot of the residuals that-- where the quantile plot will follow a straight line if the data are consistent with the normal distribution model and the t-distribution for normalizing the residuals by estimates of the variance. What's rather useful when you use these methods for different regression problems is that you'll see that there's sampling variability due to just the data set we're working with. If you were to collect a new data set under identical conditions, you would get different results. These red bands correspond to bands you might expect to see with variation from one example to another. Now this here is a plot called the influencePlot in the car package, and it plots hat values versus studentized residuals. The hat values are the diagonals of the H matrix. And what's important about the hat values is that-- let's see. If the hat values were equal to 1, so if, say, H sub ii equals 1, then we would have y hat i is actually equal to yi. And so the i-th case would be the only case in the data set that allows you to estimate that value. So that case would have very high influence. So hat values generally are-- well, are close to p over n. And lower values correspond to lower influence. And studentized residuals are given by these magnitudes. And I believe what is drawn in this slide is-- yeah, it is the circle size is proportional to Cook's distance. And so let's see. With Cook's distance, if we have beta hat equal to x transpose x inverse x transpose y, we can think of beta hat sub minus i, which is the least squares estimate if we were to exclude the i-th case. So this corresponds to excluding the i-th case. Then what we have that this beta hat is distributed multinomial with a mean vector, The True beta and covariance matrix given by this. We can actually look at beta hat minus-- or beta hat i minus beta hat. And then consider the distance of this or the magnitude of the change in the beta. And Cook's distance will actually correspond closely to a Chi squared distribution because of the relationship. So we're basically looking at the distance of beta hat i from the true beta and normalizing that by the covariance matrix. Now let's see. There's basically a whole slew of different diagnostics that we can graph. And I think it's very useful to have graphical methods to highlight what's perhaps important. In looking at this plotting from the car package, or plot.lm, we can see how the residuals compare with the fitted values. And we don't like to see any systematic pattern in that plot. We'd like that just to be flat. How that will change sometimes is that as the fitted values increase, the residuals might increase in magnitude as well. So that would suggest that the residuals are dependent on the magnitude of the fitted values. We can also look at the normal Q-Q plot to see whether the data are consistent with normal or not. And then one can look at the scale of the-- the scale of-- measures of the scale of the residuals. So we can take the square root of the standardized residuals, or the magnitude, and see whether those have variation, depending upon whether the fitted values are small or large. Here it looks like there may be a nonlinear relationship there. When we discover relationships, then that leads us to refine our model assumptions. Let's see. This residual plot's function is actually a function that looks at the sensitivity of our linear regression model to potential nonlinearity in the model dependence on independent factors. And so it actually tries to fit curvature terms into the residuals in the model. And if there's residual-- if there's curvature present in the residuals, then we might have a nonlinear model and need to expand with the nonlinear terms. Let's see. Well, with this normal linear model, we can consider the assumptions underlying that minus normality. And those are called the Gauss-Markov assumptions. So if we have our regression model for our y vector and X matrix, we set that up as the conditional expectation is X beta and the covariance matrix is equal to sigma squared times the identity. And with these Gauss-Markov assumptions, there's a really important theorem in linear models, which is that the least squares estimates of the regression parameters give us the best estimates of any linear combination of the true regression parameters. So if we want to estimate a parameter theta, which is a linear combination of the regression parameters, then if the Gauss-Markov assumptions are satisfied, then plugging in the least squares estimates provides an unbiased estimator that is also the unbiased estimator with the smallest variability. And these are called best linear unbiased estimates. And what's important-- well, I mean as it's framed here, it's quite general. But think about this. If we have the constants c1 through cp correspond to specific values of the explanatory three variables corresponding to a different case, then we can be estimating the true mean value for a given case of the x variables. If we have two x values, x vectors for different cases, and we're interested in what's the difference in mean values for those two cases, then we can have these c's represent the difference in the x's. And we're estimating the difference in y values, the difference in mean values for different cases. So it really is a very, very general theorem. And while it's a very wonderful theorem, it depends on the Gauss-Markov assumptions. So what we can do is consider generalizing the Gauss-Markov assumptions to, again, have 0 mean errors, but have the covariance matrix of the errors be given by sigma squared times a capital sigma matrix. And this kind of covariance structure in error terms actually arises frequently in time series modeling, where we're ordering our data by time and maybe near values of the error that are observed at nearby times are more correlated than those at faraway times. And the covariant structure of those errors might be systematically represented by a multiple of a known sigma matrix. Well, if this is the case, we can transform our original data by premultiplying by the inverse square root of sigma and do the same for our x matrix. And if we do that, we're basically transforming our model to the starred case where the Y star and X star, as we've represented here, the epsilon star will have mean 0, and the covariance matrix of the epsilon stars will actually be diagonal with constant variance. So in this transformed case, we have the same regression parameters. We have the epsilon stars with the Gauss-Markov assumptions being satisfied. So by the Gauss-Markov theorem, we just can write directly our least squares estimate in terms of the X stars and Y stars. And when we write that out, it ends up giving us this formula for the generalized least squares estimate. And so if we have variable errors where we know the relative variation of those errors, we can accommodate that and get best estimates with this generalized least squares formula. And importantly, the generalized least squares estimate basically does a weighted regression where we weight cases proportional to the inverse of the variance of the random variable. So if this sigma matrix, in fact, were diagonal with different variances, we would be downweighting those cases with high variance and performing the least squares computations in a weighted way. So that's the generalized least squares estimate. All right. Well, we'll finish there for today and cover more regression next time."
+}

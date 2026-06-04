@@ -1,0 +1,4478 @@
+{
+  "index": 18,
+  "id": "2UCHztlWuZg",
+  "title": "Lecture 21: Black-Scholes Formula, Risk Neutral Valuation",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.968,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 1.968,
+      "duration": 1.968,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.936,
+      "duration": 3.444,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 17.06,
+      "duration": 6.26,
+      "text": "VASILY STRELA: So I'll talk\nmostly about risk-neutral"
+    },
+    {
+      "start": 23.32,
+      "duration": 5.76,
+      "text": "pricing, and then Black-Scholes\nwill be more of an illustration"
+    },
+    {
+      "start": 29.08,
+      "duration": 2.52,
+      "text": "to the method--"
+    },
+    {
+      "start": 31.6,
+      "duration": 2.32,
+      "text": "to more general\nmethod, which I think"
+    },
+    {
+      "start": 33.92,
+      "duration": 2.0,
+      "text": "is very important,\nand very important"
+    },
+    {
+      "start": 35.92,
+      "duration": 3.04,
+      "text": "for pricing derivatives."
+    },
+    {
+      "start": 38.96,
+      "duration": 6.48,
+      "text": "And a few of you did\nlook into Black-Scholes."
+    },
+    {
+      "start": 45.44,
+      "duration": 4.84,
+      "text": "So my hope is to give a little\nbit more depth and a little bit"
+    },
+    {
+      "start": 50.28,
+      "duration": 4.2,
+      "text": "more perspective on\nwhat's the bigger"
+    },
+    {
+      "start": 54.48,
+      "duration": 4.72,
+      "text": "picture of derivative pricing\nthrough risk-neutral valuation."
+    },
+    {
+      "start": 59.2,
+      "duration": 8.58,
+      "text": "But as promised, before, let's\nstart from the interest rates"
+    },
+    {
+      "start": 67.78,
+      "duration": 1.84,
+      "text": "from the slide which--"
+    },
+    {
+      "start": 69.62,
+      "duration": 3.8,
+      "text": "similar slide which I showed\nyou on the first class."
+    },
+    {
+      "start": 73.42,
+      "duration": 2.52,
+      "text": "And Andrew Gunderson\nalready talked about"
+    },
+    {
+      "start": 75.94,
+      "duration": 2.58,
+      "text": "yield curve construction\nand everything."
+    },
+    {
+      "start": 78.52,
+      "duration": 6.46,
+      "text": "But, yeah, so that's what\nhappened since we started."
+    },
+    {
+      "start": 84.98,
+      "duration": 3.16,
+      "text": "That's the yield curve--"
+    },
+    {
+      "start": 88.14,
+      "duration": 4.6,
+      "text": "or it's just a splitting,\nas it was in September"
+    },
+    {
+      "start": 92.74,
+      "duration": 1.66,
+      "text": "just before beginning\nof the class,"
+    },
+    {
+      "start": 94.4,
+      "duration": 2.46,
+      "text": "and that's where we are now."
+    },
+    {
+      "start": 96.86,
+      "duration": 2.76,
+      "text": "So quite predictable,\nin a sense,"
+    },
+    {
+      "start": 99.62,
+      "duration": 6.76,
+      "text": "because Fed moved the\nrates by 75 basis points."
+    },
+    {
+      "start": 106.38,
+      "duration": 6.05,
+      "text": "And that's exactly\nwhat happened here."
+    },
+    {
+      "start": 115.3,
+      "duration": 11.41,
+      "text": "The parallel shift is\nonly at 70 basis points"
+    },
+    {
+      "start": 126.71,
+      "duration": 4.51,
+      "text": "here, but more of a 50 here."
+    },
+    {
+      "start": 134.07,
+      "duration": 3.08,
+      "text": "Now, a little bit of heuristics."
+    },
+    {
+      "start": 137.15,
+      "duration": 1.84,
+      "text": "How does it look like?"
+    },
+    {
+      "start": 138.99,
+      "duration": 3.96,
+      "text": "Well, right now,\nit looks like we"
+    },
+    {
+      "start": 142.95,
+      "duration": 9.04,
+      "text": "are very similar to this\nshape, which was the 19."
+    },
+    {
+      "start": 151.99,
+      "duration": 6.08,
+      "text": "On the other hand,\nthis shape is almost"
+    },
+    {
+      "start": 158.07,
+      "duration": 6.32,
+      "text": "exactly the same, which was, in\nfact, just before the crisis."
+    },
+    {
+      "start": 164.39,
+      "duration": 3.58,
+      "text": "So, in both cases, a recession--"
+    },
+    {
+      "start": 167.97,
+      "duration": 3.08,
+      "text": "I mean, in both cases, there,\nthe curves are inverted,"
+    },
+    {
+      "start": 171.05,
+      "duration": 4.12,
+      "text": "and in both cases, a recession\nfollowed shortly after."
+    },
+    {
+      "start": 175.17,
+      "duration": 5.2,
+      "text": "I certainly think-- hope that it\nis closer to this because just--"
+    },
+    {
+      "start": 180.37,
+      "duration": 5.16,
+      "text": "this is basically the next\nsnapshot in '21, and the curve"
+    },
+    {
+      "start": 185.53,
+      "duration": 4.92,
+      "text": "is completely normal shape,\nand the economy was--"
+    },
+    {
+      "start": 190.45,
+      "duration": 2.92,
+      "text": "the recession was very\nshort and the economy"
+    },
+    {
+      "start": 193.37,
+      "duration": 3.12,
+      "text": "was on a very solid\ntrack by then."
+    },
+    {
+      "start": 196.49,
+      "duration": 2.4,
+      "text": "And hopefully we are\nnot in this situation"
+    },
+    {
+      "start": 198.89,
+      "duration": 2.58,
+      "text": "because this is just\nbefore the crisis."
+    },
+    {
+      "start": 201.47,
+      "duration": 3.48,
+      "text": "It's before Bear\nStearns collapsed,"
+    },
+    {
+      "start": 204.95,
+      "duration": 3.1,
+      "text": "before Lehman collapsed,\nso a lot of bad things"
+    },
+    {
+      "start": 208.05,
+      "duration": 2.36,
+      "text": "happened after that."
+    },
+    {
+      "start": 210.41,
+      "duration": 6.18,
+      "text": "In any case, this is all\nnon-scientific prediction,"
+    },
+    {
+      "start": 216.59,
+      "duration": 6.3,
+      "text": "and the real question here would\nbe to do some thorough data"
+    },
+    {
+      "start": 222.89,
+      "duration": 2.32,
+      "text": "analysis, something like--"
+    },
+    {
+      "start": 225.21,
+      "duration": 3.44,
+      "text": "Stefan Andreev talked\nabout analyzing"
+    },
+    {
+      "start": 228.65,
+      "duration": 2.84,
+      "text": "the shape of the\ncurves and bond markets"
+    },
+    {
+      "start": 231.49,
+      "duration": 6.69,
+      "text": "using a PCA, Principal\nComponent Analysis."
+    },
+    {
+      "start": 238.18,
+      "duration": 3.08,
+      "text": "But always fascinating\nto look at the data"
+    },
+    {
+      "start": 241.26,
+      "duration": 3.04,
+      "text": "and always fascinating to\nlook at the curves, which,"
+    },
+    {
+      "start": 244.3,
+      "duration": 3.48,
+      "text": "in my opinion, are\nin the middle--"
+    },
+    {
+      "start": 247.78,
+      "duration": 3.52,
+      "text": "in the center of finance."
+    },
+    {
+      "start": 251.3,
+      "duration": 9.8,
+      "text": "OK, let's move on to\nthe topic of our class."
+    },
+    {
+      "start": 261.1,
+      "duration": 7.04,
+      "text": "And the idea is to see\nhow replicating the payoff"
+    },
+    {
+      "start": 268.14,
+      "duration": 4.36,
+      "text": "can help us to\nprice derivatives."
+    },
+    {
+      "start": 272.5,
+      "duration": 5.56,
+      "text": "And how to learn\nthat actually, if we"
+    },
+    {
+      "start": 278.06,
+      "duration": 5.92,
+      "text": "can follow market dynamics,\nhow it can help us"
+    },
+    {
+      "start": 283.98,
+      "duration": 2.4,
+      "text": "to price derivatives."
+    },
+    {
+      "start": 286.38,
+      "duration": 2.92,
+      "text": "And actually, that the\nreal-world dynamics"
+    },
+    {
+      "start": 289.3,
+      "duration": 1.38,
+      "text": "is not that important."
+    },
+    {
+      "start": 290.68,
+      "duration": 3.64,
+      "text": "It's what market implies."
+    },
+    {
+      "start": 294.32,
+      "duration": 1.12,
+      "text": "That's what important."
+    },
+    {
+      "start": 295.44,
+      "duration": 3.64,
+      "text": "And how it is connected\nto martingales"
+    },
+    {
+      "start": 299.08,
+      "duration": 4.46,
+      "text": "and to mathematical apparatus,\nto stochastic calculus"
+    },
+    {
+      "start": 303.54,
+      "duration": 0.68,
+      "text": "connecting that."
+    },
+    {
+      "start": 304.22,
+      "duration": 3.26,
+      "text": "But here is a simple example."
+    },
+    {
+      "start": 307.48,
+      "duration": 0.75,
+      "text": "Horse betting."
+    },
+    {
+      "start": 310.76,
+      "duration": 6.52,
+      "text": "So let's assume-- it is clear--"
+    },
+    {
+      "start": 317.28,
+      "duration": 4.26,
+      "text": "that we have two horses,\nHorse 1 and Horse 2."
+    },
+    {
+      "start": 324.6,
+      "duration": 2.88,
+      "text": "And we-- I mean,\nyou're a bookie,"
+    },
+    {
+      "start": 327.48,
+      "duration": 1.74,
+      "text": "and you know the horse as well."
+    },
+    {
+      "start": 329.22,
+      "duration": 4.82,
+      "text": "You know that this horse\nhas 20% to chance to win"
+    },
+    {
+      "start": 334.04,
+      "duration": 4.04,
+      "text": "and this horse has\n80% chance of winning."
+    },
+    {
+      "start": 338.08,
+      "duration": 3.68,
+      "text": "But people bet,\nbet on the market,"
+    },
+    {
+      "start": 341.76,
+      "duration": 7.94,
+      "text": "and 10,000 is bet on this horse."
+    },
+    {
+      "start": 349.7,
+      "duration": 2.98,
+      "text": "People don't know exactly\nthese probabilities."
+    },
+    {
+      "start": 352.68,
+      "duration": 3.1,
+      "text": "They know that this horse\nis better than this."
+    },
+    {
+      "start": 355.78,
+      "duration": 8.6,
+      "text": "So they bet-- rather, the public\nbets 50,000 on this and 10,000"
+    },
+    {
+      "start": 364.38,
+      "duration": 3.355,
+      "text": "on this."
+    },
+    {
+      "start": 367.735,
+      "duration": 4.965,
+      "text": "And what you do, you\njust take a commission."
+    },
+    {
+      "start": 372.7,
+      "duration": 2.44,
+      "text": "Say 1%."
+    },
+    {
+      "start": 375.14,
+      "duration": 5.68,
+      "text": "And you have 6,000 in your--"
+    },
+    {
+      "start": 380.82,
+      "duration": 3.36,
+      "text": "600 in your pocket\nof the commission."
+    },
+    {
+      "start": 384.18,
+      "duration": 4.16,
+      "text": "So now the question is, you need\nto set the odds for this race."
+    },
+    {
+      "start": 388.34,
+      "duration": 4.2,
+      "text": "So, well, one way\nto set the odds"
+    },
+    {
+      "start": 392.54,
+      "duration": 4.02,
+      "text": "is knowing the real\nexact probabilities."
+    },
+    {
+      "start": 396.56,
+      "duration": 3.88,
+      "text": "One, it's reasonable to\nsay, let's make it 4 to 1."
+    },
+    {
+      "start": 406.86,
+      "duration": 2.87,
+      "text": "So what outcomes are possible?"
+    },
+    {
+      "start": 409.73,
+      "duration": 4.74,
+      "text": "Then horse starts, horses race."
+    },
+    {
+      "start": 414.47,
+      "duration": 4.67,
+      "text": "So, H1 wins, H2 wins."
+    },
+    {
+      "start": 423.71,
+      "duration": 1.92,
+      "text": "So if a horse--"
+    },
+    {
+      "start": 425.63,
+      "duration": 9.14,
+      "text": "the first horse wins, you\nwill get 50,000, this amount,"
+    },
+    {
+      "start": 434.77,
+      "duration": 6.3,
+      "text": "and you will pay out 4 times\nthis amount because you set"
+    },
+    {
+      "start": 441.07,
+      "duration": 1.54,
+      "text": "the odds 4 to 1."
+    },
+    {
+      "start": 448.35,
+      "duration": 8.08,
+      "text": "So, this will mean that you\nwill be left with 10,000 profit."
+    },
+    {
+      "start": 456.43,
+      "duration": 2.12,
+      "text": "This is low-probability outcome."
+    },
+    {
+      "start": 458.55,
+      "duration": 2.46,
+      "text": "You know that second\nhorse is better."
+    },
+    {
+      "start": 461.01,
+      "duration": 3.34,
+      "text": "So what happens if\nsecond horse wins?"
+    },
+    {
+      "start": 464.35,
+      "duration": 3.04,
+      "text": "Well, you will keep this money."
+    },
+    {
+      "start": 467.39,
+      "duration": 5.5,
+      "text": "So it will be 10,000."
+    },
+    {
+      "start": 472.89,
+      "duration": 2.24,
+      "text": "And you will pay\na quarter of this."
+    },
+    {
+      "start": 483.17,
+      "duration": 11.14,
+      "text": "And this will be, on my\nbooks, minus 2,500 at the end."
+    },
+    {
+      "start": 494.31,
+      "duration": 3.34,
+      "text": "So you will lose,\nyou will have to pay."
+    },
+    {
+      "start": 497.65,
+      "duration": 4.24,
+      "text": "Of course, if you compute\nthe expected value,"
+    },
+    {
+      "start": 501.89,
+      "duration": 5.76,
+      "text": "if horses run many, many\ntimes, it will be 0."
+    },
+    {
+      "start": 507.65,
+      "duration": 4.12,
+      "text": "10 times 20.2 plus--"
+    },
+    {
+      "start": 511.77,
+      "duration": 5.38,
+      "text": "minus 2, 2 and 1/2\ntimes 0.8 is 0."
+    },
+    {
+      "start": 517.15,
+      "duration": 7.685,
+      "text": "But for this, on average,\nthe horses have to run a lot."
+    },
+    {
+      "start": 524.835,
+      "duration": 6.385,
+      "text": "Now, let's consider a\ndifferent way of setting odds."
+    },
+    {
+      "start": 531.22,
+      "duration": 2.7,
+      "text": "You forget about these numbers."
+    },
+    {
+      "start": 533.92,
+      "duration": 3.78,
+      "text": "You just look at what was bad."
+    },
+    {
+      "start": 537.7,
+      "duration": 3.62,
+      "text": "And you rather set\nthe odds 5 to 1."
+    },
+    {
+      "start": 545.78,
+      "duration": 3.28,
+      "text": "OK, let's see what happens."
+    },
+    {
+      "start": 549.06,
+      "duration": 7.636,
+      "text": "Well, if the first horse\nwins, you will get 500--"
+    },
+    {
+      "start": 556.696,
+      "duration": 10.404,
+      "text": "or 50,000, and\nyou'll pay 50,000."
+    },
+    {
+      "start": 567.1,
+      "duration": 7.75,
+      "text": "Well, if second horse\nwins, you'll get 10,000,"
+    },
+    {
+      "start": 574.85,
+      "duration": 8.11,
+      "text": "and one-fifth of this,\nso you pay out 10,000."
+    },
+    {
+      "start": 582.96,
+      "duration": 7.04,
+      "text": "So no matter which horse\nwins, you break even for sure"
+    },
+    {
+      "start": 590.0,
+      "duration": 2.64,
+      "text": "in this particular outcome."
+    },
+    {
+      "start": 592.64,
+      "duration": 3.52,
+      "text": "And if you were collecting some\nfee, you just keep the fee,"
+    },
+    {
+      "start": 596.16,
+      "duration": 3.2,
+      "text": "you would do it next time."
+    },
+    {
+      "start": 599.36,
+      "duration": 9.12,
+      "text": "So, basically what you did\nby setting the odds according"
+    },
+    {
+      "start": 608.48,
+      "duration": 2.48,
+      "text": "to the market, you\nhedge yourself."
+    },
+    {
+      "start": 610.96,
+      "duration": 7.2,
+      "text": "You eliminated every\nuncertainty, which is probably"
+    },
+    {
+      "start": 618.16,
+      "duration": 3.44,
+      "text": "the outcome which you want."
+    },
+    {
+      "start": 621.6,
+      "duration": 3.22,
+      "text": "All right, so this\nis all about betting,"
+    },
+    {
+      "start": 624.82,
+      "duration": 2.66,
+      "text": "and we are not betting people."
+    },
+    {
+      "start": 627.48,
+      "duration": 4.08,
+      "text": "In fact, we are scientists."
+    },
+    {
+      "start": 631.56,
+      "duration": 7.16,
+      "text": "And we'll be talking today\nabout pricing derivatives."
+    },
+    {
+      "start": 638.72,
+      "duration": 2.72,
+      "text": "Again, some simple\nexamples and derivatives"
+    },
+    {
+      "start": 641.44,
+      "duration": 6.02,
+      "text": "which we will be looking\nat will be call/put options"
+    },
+    {
+      "start": 647.46,
+      "duration": 1.38,
+      "text": "and forward contracts."
+    },
+    {
+      "start": 648.84,
+      "duration": 3.28,
+      "text": "Just to refresh,\nso what are those?"
+    },
+    {
+      "start": 652.12,
+      "duration": 5.38,
+      "text": "So the simplest\npossible derivative"
+    },
+    {
+      "start": 657.5,
+      "duration": 3.12,
+      "text": "is a forward contract,\nwhich is an agreement"
+    },
+    {
+      "start": 660.62,
+      "duration": 2.88,
+      "text": "to buy a security--\nin our case, a stock,"
+    },
+    {
+      "start": 663.5,
+      "duration": 3.17,
+      "text": "in the future for a\nprice which is set today."
+    },
+    {
+      "start": 669.22,
+      "duration": 5.12,
+      "text": "Generally speaking-- so\nthe payout of a forward"
+    },
+    {
+      "start": 674.34,
+      "duration": 10.4,
+      "text": "is just the difference\nof the strike"
+    },
+    {
+      "start": 684.74,
+      "duration": 8.48,
+      "text": "and the price at the\nexpiration-- at the expiry."
+    },
+    {
+      "start": 693.22,
+      "duration": 6.93,
+      "text": "So the payout is S minus\nK, where K is a strike."
+    },
+    {
+      "start": 700.15,
+      "duration": 1.34,
+      "text": "Agreed price."
+    },
+    {
+      "start": 701.49,
+      "duration": 4.34,
+      "text": "And for forwards,\nthe agreement is"
+    },
+    {
+      "start": 705.83,
+      "duration": 3.72,
+      "text": "that the strike is\nset in such a way"
+    },
+    {
+      "start": 709.55,
+      "duration": 4.52,
+      "text": "that it costs you nothing\nto enter it today."
+    },
+    {
+      "start": 714.07,
+      "duration": 4.76,
+      "text": "You basically say, we agree\nwith you today for a zero price"
+    },
+    {
+      "start": 718.83,
+      "duration": 8.36,
+      "text": "that I'll buy the\nstock at the price K."
+    },
+    {
+      "start": 727.19,
+      "duration": 4.92,
+      "text": "So quite a useful\ndiagram is the payout."
+    },
+    {
+      "start": 732.11,
+      "duration": 5.6,
+      "text": "That's-- sorry, that's\nthe blue line, so it's--"
+    },
+    {
+      "start": 737.71,
+      "duration": 3.49,
+      "text": "in our case, it's S minus\nK. So that's forward."
+    },
+    {
+      "start": 743.99,
+      "duration": 2.24,
+      "text": "Now, call option."
+    },
+    {
+      "start": 746.23,
+      "duration": 8.36,
+      "text": "Call option is an option to\nbuy a stock at price K. So"
+    },
+    {
+      "start": 754.59,
+      "duration": 6.06,
+      "text": "basically, at expiry,\nyou will decide,"
+    },
+    {
+      "start": 760.65,
+      "duration": 3.75,
+      "text": "are you buying the\nstock at price K?"
+    },
+    {
+      "start": 767.37,
+      "duration": 4.08,
+      "text": "Or if you don't\nwant to, you won't."
+    },
+    {
+      "start": 771.45,
+      "duration": 4.0,
+      "text": "And generally speaking, if\nthe stock ends at the money,"
+    },
+    {
+      "start": 775.45,
+      "duration": 2.62,
+      "text": "higher than the strike,\nyou will buy it,"
+    },
+    {
+      "start": 778.07,
+      "duration": 1.26,
+      "text": "because it will be cheaper."
+    },
+    {
+      "start": 779.33,
+      "duration": 7.4,
+      "text": "and if the stock ends\nbelow the strike price,"
+    },
+    {
+      "start": 786.73,
+      "duration": 2.88,
+      "text": "you'll say, thank you very\nmuch, and the contract"
+    },
+    {
+      "start": 789.61,
+      "duration": 2.52,
+      "text": "will expire worthless."
+    },
+    {
+      "start": 792.13,
+      "duration": 3.2,
+      "text": "So this is the\npayout at the end."
+    },
+    {
+      "start": 795.33,
+      "duration": 3.82,
+      "text": "And this is the price of\nthe call option today."
+    },
+    {
+      "start": 799.15,
+      "duration": 3.0,
+      "text": "Obviously, it is not\nzero-price contract."
+    },
+    {
+      "start": 802.15,
+      "duration": 4.99,
+      "text": "It is-- you will pay some money\nto enter into this contract."
+    },
+    {
+      "start": 812.33,
+      "duration": 3.94,
+      "text": "Another usual and\nsimple contract"
+    },
+    {
+      "start": 816.27,
+      "duration": 9.72,
+      "text": "would be a put option, which\nis an agreement to sell the--"
+    },
+    {
+      "start": 825.99,
+      "duration": 1.6,
+      "text": "it's kind of opposite right."
+    },
+    {
+      "start": 827.59,
+      "duration": 7.64,
+      "text": "It's basically prevents--\nif the option--"
+    },
+    {
+      "start": 835.23,
+      "duration": 4.82,
+      "text": "the stock is too high,\nyou won't sell it."
+    },
+    {
+      "start": 840.05,
+      "duration": 5.42,
+      "text": "If the stock ends low, you will\nsell it for a higher price."
+    },
+    {
+      "start": 845.47,
+      "duration": 8.8,
+      "text": "So it is basically insurance,\ninsurance against stock"
+    },
+    {
+      "start": 854.27,
+      "duration": 3.84,
+      "text": "falling below the strike price."
+    },
+    {
+      "start": 858.11,
+      "duration": 3.8,
+      "text": "And here is the current price."
+    },
+    {
+      "start": 861.91,
+      "duration": 4.42,
+      "text": "And what we'll be doing today\nis deriving these curves,"
+    },
+    {
+      "start": 866.33,
+      "duration": 2.5,
+      "text": "deriving the current\nprice, the price today,"
+    },
+    {
+      "start": 868.83,
+      "duration": 3.24,
+      "text": "for the options\nand the forwards."
+    },
+    {
+      "start": 872.07,
+      "duration": 13.17,
+      "text": "And what we'll see is a few\nobservations that the only--"
+    },
+    {
+      "start": 885.24,
+      "duration": 3.2,
+      "text": "what will matter,\nit is assumptions"
+    },
+    {
+      "start": 888.44,
+      "duration": 6.52,
+      "text": "on the dynamics of the stock\nprice, some assumptions on how"
+    },
+    {
+      "start": 894.96,
+      "duration": 3.27,
+      "text": "the stock behaves, some\nassumptions on interest rates."
+    },
+    {
+      "start": 901.84,
+      "duration": 5.2,
+      "text": "And given that, there\nwill be no uncertainty"
+    },
+    {
+      "start": 907.04,
+      "duration": 1.54,
+      "text": "in the price of the derivative."
+    },
+    {
+      "start": 908.58,
+      "duration": 2.26,
+      "text": "And this was-- believe\nme, this wasn't"
+    },
+    {
+      "start": 910.84,
+      "duration": 3.45,
+      "text": "clear to market participants\nbefore Black and Scholes."
+    },
+    {
+      "start": 921.56,
+      "duration": 9.98,
+      "text": "And the other\nimportant observation"
+    },
+    {
+      "start": 931.54,
+      "duration": 4.16,
+      "text": "which we'll see, that\nthe preferences of market"
+    },
+    {
+      "start": 935.7,
+      "duration": 1.7,
+      "text": "participants will not matter."
+    },
+    {
+      "start": 937.4,
+      "duration": 4.5,
+      "text": "It's in a similarly to\nour horse-racing example,"
+    },
+    {
+      "start": 941.9,
+      "duration": 7.96,
+      "text": "we'll be able to find the\nriskless ways to replicate"
+    },
+    {
+      "start": 949.86,
+      "duration": 4.0,
+      "text": "the price of the option."
+    },
+    {
+      "start": 953.86,
+      "duration": 1.12,
+      "text": "All right."
+    },
+    {
+      "start": 954.98,
+      "duration": 9.32,
+      "text": "So, let's start with a simple\nexample of the forward."
+    },
+    {
+      "start": 964.3,
+      "duration": 7.4,
+      "text": "And let's start from a\ndiscrete time and stock prices"
+    },
+    {
+      "start": 971.7,
+      "duration": 4.6,
+      "text": "because it's simpler\nto understand."
+    },
+    {
+      "start": 976.3,
+      "duration": 3.42,
+      "text": "And so what does it mean?"
+    },
+    {
+      "start": 979.72,
+      "duration": 8.91,
+      "text": "Is that right now, we have\nsome price of our stock as 0."
+    },
+    {
+      "start": 991.55,
+      "duration": 5.82,
+      "text": "We have price of\nour contract, F0."
+    },
+    {
+      "start": 997.37,
+      "duration": 3.14,
+      "text": "In the case of the\nforward, we assume"
+    },
+    {
+      "start": 1000.51,
+      "duration": 5.44,
+      "text": "that it's 0 because\nwe assume that we"
+    },
+    {
+      "start": 1005.95,
+      "duration": 3.48,
+      "text": "are entering at the forward\ncontract at 0 price."
+    },
+    {
+      "start": 1009.43,
+      "duration": 6.44,
+      "text": "And there are two outcomes\nthat we are only one step away."
+    },
+    {
+      "start": 1015.87,
+      "duration": 3.76,
+      "text": "So some time dt to the future."
+    },
+    {
+      "start": 1019.63,
+      "duration": 6.12,
+      "text": "And at the outcomes, either\nS1 or S2, so the stock"
+    },
+    {
+      "start": 1025.75,
+      "duration": 2.8,
+      "text": "can go either here and here."
+    },
+    {
+      "start": 1028.55,
+      "duration": 4.559,
+      "text": "And our derivative,\naccording to our formula,"
+    },
+    {
+      "start": 1033.109,
+      "duration": 14.845,
+      "text": "will go to S1 minus\nK or S2 minus K."
+    },
+    {
+      "start": 1047.954,
+      "duration": 3.376,
+      "text": "So, again, from\nnaive perspective,"
+    },
+    {
+      "start": 1051.33,
+      "duration": 5.68,
+      "text": "one can say, well, there is some\nprobability for stock to go up"
+    },
+    {
+      "start": 1057.01,
+      "duration": 7.24,
+      "text": "to S1 and some probability of\n1 minus P for stock to go down."
+    },
+    {
+      "start": 1064.25,
+      "duration": 5.96,
+      "text": "And one would say that we\ncan assume that our price now"
+    },
+    {
+      "start": 1070.21,
+      "duration": 12.12,
+      "text": "is actually expected value with\nthis probability of the value"
+    },
+    {
+      "start": 1082.33,
+      "duration": 2.27,
+      "text": "of our derivative at the end."
+    },
+    {
+      "start": 1088.01,
+      "duration": 11.71,
+      "text": "And so it will be P times\nF1 minus 1 minus P times F2."
+    },
+    {
+      "start": 1103.85,
+      "duration": 18.7,
+      "text": "And-- well, P times S1 minus K\nplus 1 minus P times S2 minus K."
+    },
+    {
+      "start": 1122.55,
+      "duration": 4.04,
+      "text": "And from here, we can actually--"
+    },
+    {
+      "start": 1126.59,
+      "duration": 4.26,
+      "text": "what we are looking for is the\nagreed price on our forward."
+    },
+    {
+      "start": 1130.85,
+      "duration": 4.14,
+      "text": "So we can say that our\nstrike price should"
+    },
+    {
+      "start": 1134.99,
+      "duration": 13.68,
+      "text": "be PS1 plus 1 minus P times S2."
+    },
+    {
+      "start": 1148.67,
+      "duration": 3.0,
+      "text": "But we don't know\nthe probability,"
+    },
+    {
+      "start": 1151.67,
+      "duration": 3.06,
+      "text": "and in fact, that's, as\nwe'll see in a second,"
+    },
+    {
+      "start": 1154.73,
+      "duration": 5.9,
+      "text": "it's not a good\nway to approach it."
+    },
+    {
+      "start": 1160.63,
+      "duration": 0.72,
+      "text": "And why?"
+    },
+    {
+      "start": 1161.35,
+      "duration": 1.96,
+      "text": "Here is why."
+    },
+    {
+      "start": 1163.31,
+      "duration": 3.17,
+      "text": "Because here is a suggestion\nwhat we should do."
+    },
+    {
+      "start": 1166.48,
+      "duration": 3.92,
+      "text": "Here is a suggestion\nhow we can construct"
+    },
+    {
+      "start": 1170.4,
+      "duration": 3.04,
+      "text": "a risk-neutral portfolio here."
+    },
+    {
+      "start": 1173.44,
+      "duration": 4.96,
+      "text": "So, that's what we\nare going to do."
+    },
+    {
+      "start": 1178.4,
+      "duration": 8.38,
+      "text": "So at time 0, we enter into\nforward contract with strike K,"
+    },
+    {
+      "start": 1186.78,
+      "duration": 5.41,
+      "text": "and in a second, we'll see what\nthe strike K will be, at 0 cost."
+    },
+    {
+      "start": 1195.72,
+      "duration": 7.29,
+      "text": "Enter forward at 0 cost."
+    },
+    {
+      "start": 1206.08,
+      "duration": 5.16,
+      "text": "And we will borrow\nmoney to buy the stock."
+    },
+    {
+      "start": 1211.24,
+      "duration": 7.86,
+      "text": "So we're borrow F0."
+    },
+    {
+      "start": 1219.1,
+      "duration": 8.44,
+      "text": "So we'll borrow money in\na bank and buy the stock."
+    },
+    {
+      "start": 1227.54,
+      "duration": 2.68,
+      "text": "For a minute, let's assume\nthat our interest rates"
+    },
+    {
+      "start": 1230.22,
+      "duration": 2.73,
+      "text": "are 0 for simplicity."
+    },
+    {
+      "start": 1232.95,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 1233.45,
+      "duration": 1.63,
+      "text": "So what happens at expiry?"
+    },
+    {
+      "start": 1235.08,
+      "duration": 1.06,
+      "text": "What happens?"
+    },
+    {
+      "start": 1236.14,
+      "duration": 4.77,
+      "text": "It's time equals\n0, time equal dt."
+    },
+    {
+      "start": 1244.1,
+      "duration": 8.76,
+      "text": "So at expiry, what we'll do,\nwe will deliver the stock"
+    },
+    {
+      "start": 1252.86,
+      "duration": 3.24,
+      "text": "because we have it."
+    },
+    {
+      "start": 1256.1,
+      "duration": 8.01,
+      "text": "Deliver S. And we will\nreceive our strike price."
+    },
+    {
+      "start": 1274.26,
+      "duration": 1.54,
+      "text": "And repay the loan."
+    },
+    {
+      "start": 1280.83,
+      "duration": 2.76,
+      "text": "So basically, what happens here?"
+    },
+    {
+      "start": 1283.59,
+      "duration": 3.18,
+      "text": "We borrow here, we had a stock."
+    },
+    {
+      "start": 1286.77,
+      "duration": 2.64,
+      "text": "We came here, we delivered\nthe stock, this costs nothing."
+    },
+    {
+      "start": 1289.41,
+      "duration": 4.9,
+      "text": "So we receive K.\nThat's agreed strike."
+    },
+    {
+      "start": 1294.31,
+      "duration": 3.8,
+      "text": "And we repay the loan,\nwhich we started here."
+    },
+    {
+      "start": 1298.11,
+      "duration": 4.46,
+      "text": "Because interest rate\nis 0, It didn't change."
+    },
+    {
+      "start": 1302.57,
+      "duration": 4.22,
+      "text": "If it changed, it will\nbe some e to the minus--"
+    },
+    {
+      "start": 1306.79,
+      "duration": 3.72,
+      "text": "e to the rt times F0."
+    },
+    {
+      "start": 1310.51,
+      "duration": 5.72,
+      "text": "So, now, that's\nwhat we'll get here."
+    },
+    {
+      "start": 1316.23,
+      "duration": 5.56,
+      "text": "And here, we started with 0\nbecause we paid 0 to enter."
+    },
+    {
+      "start": 1321.79,
+      "duration": 3.36,
+      "text": "What can we say about this?"
+    },
+    {
+      "start": 1325.15,
+      "duration": 8.04,
+      "text": "Well, if this was greater than\n0, we for sure receive money."
+    },
+    {
+      "start": 1333.19,
+      "duration": 2.96,
+      "text": "There is no other outcome."
+    },
+    {
+      "start": 1336.15,
+      "duration": 4.02,
+      "text": "If it's less than 0,\nfor sure lost money."
+    },
+    {
+      "start": 1340.17,
+      "duration": 6.08,
+      "text": "No arbitrage, assume will tell\nus that neither is possible."
+    },
+    {
+      "start": 1346.25,
+      "duration": 3.44,
+      "text": "So because the price\nwas-- initial price was 0,"
+    },
+    {
+      "start": 1349.69,
+      "duration": 2.36,
+      "text": "this has to be 0."
+    },
+    {
+      "start": 1352.05,
+      "duration": 3.2,
+      "text": "Because this\nreplicates our payoff."
+    },
+    {
+      "start": 1355.25,
+      "duration": 5.68,
+      "text": "So our strike has to be 0."
+    },
+    {
+      "start": 1360.93,
+      "duration": 2.64,
+      "text": "So if there are\nno interest rates,"
+    },
+    {
+      "start": 1363.57,
+      "duration": 2.92,
+      "text": "the forward contract\nwould just--"
+    },
+    {
+      "start": 1366.49,
+      "duration": 4.88,
+      "text": "we would agree to buy\nor sell the price--"
+    },
+    {
+      "start": 1371.37,
+      "duration": 3.16,
+      "text": "the stock in the future\nat the current price"
+    },
+    {
+      "start": 1374.53,
+      "duration": 1.27,
+      "text": "if interest rates are 0."
+    },
+    {
+      "start": 1379.65,
+      "duration": 6.16,
+      "text": "So no choice, and we don't care\nabout real-world probabilities,"
+    },
+    {
+      "start": 1385.81,
+      "duration": 9.8,
+      "text": "and we don't care about how\nthe stock behaves in real life."
+    },
+    {
+      "start": 1395.61,
+      "duration": 2.14,
+      "text": "We just replicated everything."
+    },
+    {
+      "start": 1397.75,
+      "duration": 2.28,
+      "text": "What's interesting,\nthough, what's interesting,"
+    },
+    {
+      "start": 1400.03,
+      "duration": 5.12,
+      "text": "though, we can find\nthe probability, which"
+    },
+    {
+      "start": 1405.15,
+      "duration": 6.84,
+      "text": "will give us our strike-- or\nwhich will give us this formula."
+    },
+    {
+      "start": 1411.99,
+      "duration": 2.54,
+      "text": "So what will it be?"
+    },
+    {
+      "start": 1414.53,
+      "duration": 3.06,
+      "text": "Well, well K is equal F0."
+    },
+    {
+      "start": 1422.35,
+      "duration": 6.4,
+      "text": "And so our P-- and\nI'll call it neutral"
+    },
+    {
+      "start": 1428.75,
+      "duration": 11.34,
+      "text": "risk-- neutral probability,\nS1 plus 1 minus Pn S2."
+    },
+    {
+      "start": 1444.83,
+      "duration": 6.29,
+      "text": "And we can find\nour Pn from here."
+    },
+    {
+      "start": 1455.84,
+      "duration": 5.57,
+      "text": "S0 minus S2 divided\nby S1 minus S2."
+    },
+    {
+      "start": 1467.56,
+      "duration": 2.44,
+      "text": "What's interesting observation\nhere, well, first of all,"
+    },
+    {
+      "start": 1470.0,
+      "duration": 3.24,
+      "text": "that we can find this\nrisk-neutral probabilities."
+    },
+    {
+      "start": 1473.24,
+      "duration": 6.08,
+      "text": "And we actually could\nprice our forward contract"
+    },
+    {
+      "start": 1479.32,
+      "duration": 5.0,
+      "text": "using these probabilities,\nusing this expected payoff."
+    },
+    {
+      "start": 1484.32,
+      "duration": 2.4,
+      "text": "The interesting-- the\nmost interesting part"
+    },
+    {
+      "start": 1486.72,
+      "duration": 6.52,
+      "text": "is that our current stock\nprice our underlying"
+    },
+    {
+      "start": 1493.24,
+      "duration": 2.32,
+      "text": "under this risk-neutral\nprobability"
+    },
+    {
+      "start": 1495.56,
+      "duration": 4.84,
+      "text": "is expected value of the\nfuture move of the stock."
+    },
+    {
+      "start": 1500.4,
+      "duration": 1.42,
+      "text": "And that's what we will see."
+    },
+    {
+      "start": 1501.82,
+      "duration": 3.26,
+      "text": "So that's basically our\nrisk-neutral measure."
+    },
+    {
+      "start": 1505.08,
+      "duration": 1.4,
+      "text": "And that's how we\nwill be looking"
+    },
+    {
+      "start": 1506.48,
+      "duration": 4.88,
+      "text": "for our risk-neutral measure\nbecause we can always"
+    },
+    {
+      "start": 1511.36,
+      "duration": 7.1,
+      "text": "find a measure which implies\nthat our current underlying"
+    },
+    {
+      "start": 1518.46,
+      "duration": 5.9,
+      "text": "value, asset value, is expected\nvalue of the future payoff."
+    },
+    {
+      "start": 1524.36,
+      "duration": 1.62,
+      "text": "And that's a\nmeasure which we can"
+    },
+    {
+      "start": 1525.98,
+      "duration": 4.4,
+      "text": "use to price the derivatives."
+    },
+    {
+      "start": 1530.38,
+      "duration": 0.76,
+      "text": "OK."
+    },
+    {
+      "start": 1531.14,
+      "duration": 4.48,
+      "text": "So let's move to something\nmore interesting."
+    },
+    {
+      "start": 1535.62,
+      "duration": 10.32,
+      "text": "And let's do a call option,\nbut still in discrete time."
+    },
+    {
+      "start": 1556.7,
+      "duration": 6.0,
+      "text": "So, our call option\npayoff would be"
+    },
+    {
+      "start": 1562.7,
+      "duration": 10.42,
+      "text": "maximum of the value at\nexpiration minus K and 0."
+    },
+    {
+      "start": 1578.55,
+      "duration": 0.9,
+      "text": "That's here."
+    },
+    {
+      "start": 1579.45,
+      "duration": 2.4,
+      "text": "That's our payoff."
+    },
+    {
+      "start": 1581.85,
+      "duration": 2.18,
+      "text": "That's the hockey stick."
+    },
+    {
+      "start": 1584.03,
+      "duration": 4.78,
+      "text": "But we still assume,\nfor this exercise,"
+    },
+    {
+      "start": 1588.81,
+      "duration": 3.74,
+      "text": "let's still assume\ninterest rates are 0."
+    },
+    {
+      "start": 1592.55,
+      "duration": 6.16,
+      "text": "So our diagram will be our value\nof call option, which we'll"
+    },
+    {
+      "start": 1598.71,
+      "duration": 6.88,
+      "text": "be looking for at time 0,\nour stock is 0-- at S0,"
+    },
+    {
+      "start": 1605.59,
+      "duration": 2.65,
+      "text": "stock goes to S1 or to S2."
+    },
+    {
+      "start": 1611.07,
+      "duration": 7.24,
+      "text": "And our value of\nour call will go--"
+    },
+    {
+      "start": 1618.31,
+      "duration": 4.66,
+      "text": "we assume that S1 is greater\nthan S0, S2 is less than 0,"
+    },
+    {
+      "start": 1622.97,
+      "duration": 7.24,
+      "text": "so here, value of our\noption will be what?"
+    },
+    {
+      "start": 1630.21,
+      "duration": 8.68,
+      "text": "ST minus K. And value\nof our call option"
+    },
+    {
+      "start": 1638.89,
+      "duration": 6.48,
+      "text": "here will be 0, because\nit will be this thing."
+    },
+    {
+      "start": 1645.37,
+      "duration": 1.28,
+      "text": "OK."
+    },
+    {
+      "start": 1646.65,
+      "duration": 1.36,
+      "text": "Good."
+    },
+    {
+      "start": 1648.01,
+      "duration": 5.84,
+      "text": "So, now, what we\nwant to do, we want"
+    },
+    {
+      "start": 1653.85,
+      "duration": 3.06,
+      "text": "to find the\nreplicating portfolio."
+    },
+    {
+      "start": 1661.21,
+      "duration": 3.68,
+      "text": "And here is suggestion how--\nso replicating portfolio"
+    },
+    {
+      "start": 1664.89,
+      "duration": 4.68,
+      "text": "in the case of forward\nwas stock itself."
+    },
+    {
+      "start": 1669.57,
+      "duration": 3.76,
+      "text": "It was replicating the payout."
+    },
+    {
+      "start": 1673.33,
+      "duration": 3.16,
+      "text": "Now, my suggestion is\nto do the following."
+    },
+    {
+      "start": 1676.49,
+      "duration": 5.16,
+      "text": "Our replicating portfolio\nwould be some amount of cash"
+    },
+    {
+      "start": 1681.65,
+      "duration": 1.49,
+      "text": "and some amount of stock."
+    },
+    {
+      "start": 1692.246,
+      "duration": 6.984,
+      "text": "And we want to find\nthese values of cash"
+    },
+    {
+      "start": 1699.23,
+      "duration": 9.04,
+      "text": "and how much stock we\nneed such that our option"
+    },
+    {
+      "start": 1708.27,
+      "duration": 2.65,
+      "text": "payoff is replicated here."
+    },
+    {
+      "start": 1713.774,
+      "duration": 6.076,
+      "text": "Well, we certainly can\ndo it in this simple case"
+    },
+    {
+      "start": 1719.85,
+      "duration": 7.14,
+      "text": "because, well, in the\nbeginning, our portfolio"
+    },
+    {
+      "start": 1726.99,
+      "duration": 3.92,
+      "text": "will be B0 plus aS0."
+    },
+    {
+      "start": 1733.59,
+      "duration": 11.24,
+      "text": "At the end, it will be B1\nplus S1 or B2 plus aS2."
+    },
+    {
+      "start": 1744.83,
+      "duration": 3.81,
+      "text": "And, our condition\nof replication"
+    },
+    {
+      "start": 1748.64,
+      "duration": 3.22,
+      "text": "is that in this state, it\nshould be equal to this."
+    },
+    {
+      "start": 1756.88,
+      "duration": 2.88,
+      "text": "And in this state, it\nshould be equal to this"
+    },
+    {
+      "start": 1759.76,
+      "duration": 2.03,
+      "text": "because we are\nreplicating our payoff."
+    },
+    {
+      "start": 1766.6,
+      "duration": 5.72,
+      "text": "And let's notice that because\nour interest rate is 0, again,"
+    },
+    {
+      "start": 1772.32,
+      "duration": 2.55,
+      "text": "this thing doesn't change\nbecause it's just cash."
+    },
+    {
+      "start": 1782.08,
+      "duration": 4.12,
+      "text": "Well, nice and easy."
+    },
+    {
+      "start": 1786.2,
+      "duration": 3.06,
+      "text": "From here, we can find\nthat our a-- well,"
+    },
+    {
+      "start": 1789.26,
+      "duration": 3.3,
+      "text": "if we subtract this equation\nfrom this equation--"
+    },
+    {
+      "start": 1792.56,
+      "duration": 2.96,
+      "text": "I mean, we have two\nequations with two unknowns."
+    },
+    {
+      "start": 1795.52,
+      "duration": 3.84,
+      "text": "So B0 is one unknown, and\nthe second unknown is a."
+    },
+    {
+      "start": 1799.36,
+      "duration": 3.2,
+      "text": "So from here, we can\neasily find that a"
+    },
+    {
+      "start": 1802.56,
+      "duration": 5.11,
+      "text": "is equal S1 minus K\ndivided by S1 minus S2."
+    },
+    {
+      "start": 1811.94,
+      "duration": 17.4,
+      "text": "And B0 is equal S2 times K\nminus S1 divided by S1 minus S2."
+    },
+    {
+      "start": 1829.34,
+      "duration": 5.24,
+      "text": "And, knowing that,\nif we replicate it"
+    },
+    {
+      "start": 1834.58,
+      "duration": 3.74,
+      "text": "the same as before, if\nwe replicated the part--"
+    },
+    {
+      "start": 1838.32,
+      "duration": 8.7,
+      "text": "we have a replication portfolio,\nthat's where it should be here,"
+    },
+    {
+      "start": 1847.02,
+      "duration": 2.4,
+      "text": "and this is our C0."
+    },
+    {
+      "start": 1849.42,
+      "duration": 1.46,
+      "text": "And that's what we are looking."
+    },
+    {
+      "start": 1850.88,
+      "duration": 5.02,
+      "text": "We are looking for the value\nof our option at time 0."
+    },
+    {
+      "start": 1855.9,
+      "duration": 11.31,
+      "text": "So our C0 is equal\nto aS0 minus S2."
+    },
+    {
+      "start": 1870.4,
+      "duration": 20.24,
+      "text": "Or it is S1 minus K divided by\nS1 minus S2 times S0 minus S2."
+    },
+    {
+      "start": 1893.48,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 1893.98,
+      "duration": 3.7,
+      "text": "So basically, by the same\nreplication argument,"
+    },
+    {
+      "start": 1897.68,
+      "duration": 6.48,
+      "text": "we're able to find our value."
+    },
+    {
+      "start": 1904.16,
+      "duration": 7.64,
+      "text": "Now, coming back to\nour risk-neutral,"
+    },
+    {
+      "start": 1911.8,
+      "duration": 6.04,
+      "text": "sure enough, if we use this\nsame probability, which"
+    },
+    {
+      "start": 1917.84,
+      "duration": 4.21,
+      "text": "is derived from expected\nvalue of the stock,"
+    },
+    {
+      "start": 1922.05,
+      "duration": 12.52,
+      "text": "the price of our C0 is actually\nP neutral times ST minus K"
+    },
+    {
+      "start": 1934.57,
+      "duration": 14.12,
+      "text": "plus 1 minus P neutral times 0."
+    },
+    {
+      "start": 1948.69,
+      "duration": 4.82,
+      "text": "So, if we know this probability,\nand we can derive it from here."
+    },
+    {
+      "start": 1953.51,
+      "duration": 3.56,
+      "text": "Instead of doing all\nthis difficult machinery,"
+    },
+    {
+      "start": 1957.07,
+      "duration": 3.62,
+      "text": "we can just take\nthe payoff and take"
+    },
+    {
+      "start": 1960.69,
+      "duration": 4.72,
+      "text": "expected value of our payoff\nusing this probability"
+    },
+    {
+      "start": 1965.41,
+      "duration": 3.42,
+      "text": "and get the value of\nour derivative now."
+    },
+    {
+      "start": 1972.21,
+      "duration": 0.66,
+      "text": "All right."
+    },
+    {
+      "start": 1975.53,
+      "duration": 1.83,
+      "text": "So that's discrete world."
+    },
+    {
+      "start": 1985.35,
+      "duration": 6.08,
+      "text": "And, yeah, so just\nfor your reference,"
+    },
+    {
+      "start": 1991.43,
+      "duration": 8.48,
+      "text": "here, it is the same set\nof formulas for any payout."
+    },
+    {
+      "start": 1999.91,
+      "duration": 7.2,
+      "text": "And one other interesting,\nuseful comment here"
+    },
+    {
+      "start": 2007.11,
+      "duration": 4.18,
+      "text": "is that we started with\nreplicating portfolios."
+    },
+    {
+      "start": 2011.29,
+      "duration": 4.62,
+      "text": "So we started with some\ncash and some stock"
+    },
+    {
+      "start": 2015.91,
+      "duration": 6.126,
+      "text": "in order to replicate the value\nof our option on the next step."
+    },
+    {
+      "start": 2022.036,
+      "duration": 4.834,
+      "text": "On the other hand,\none can rewrite it"
+    },
+    {
+      "start": 2026.87,
+      "duration": 9.72,
+      "text": "and say that this portfolio\nis because this is just cash."
+    },
+    {
+      "start": 2036.59,
+      "duration": 4.37,
+      "text": "This is riskless portfolio."
+    },
+    {
+      "start": 2040.96,
+      "duration": 3.68,
+      "text": "And we'll see just in a\nsecond that sometimes it's"
+    },
+    {
+      "start": 2044.64,
+      "duration": 1.88,
+      "text": "more convenient,\ninstead of talking"
+    },
+    {
+      "start": 2046.52,
+      "duration": 2.24,
+      "text": "about replicating\nportfolios, it's"
+    },
+    {
+      "start": 2048.76,
+      "duration": 3.26,
+      "text": "about talking the\nportfolios without risk."
+    },
+    {
+      "start": 2052.02,
+      "duration": 4.26,
+      "text": "So we basically form\na portfolio of option,"
+    },
+    {
+      "start": 2056.28,
+      "duration": 4.72,
+      "text": "of full value of option, and\nsome stock such the combination"
+    },
+    {
+      "start": 2061.0,
+      "duration": 0.569,
+      "text": "is riskless."
+    },
+    {
+      "start": 2064.96,
+      "duration": 0.932,
+      "text": "OK."
+    },
+    {
+      "start": 2065.892,
+      "duration": 3.428,
+      "text": "So that's our discrete world."
+    },
+    {
+      "start": 2069.32,
+      "duration": 6.669,
+      "text": "With that, let's move\non to continuous world."
+    },
+    {
+      "start": 2082.12,
+      "duration": 6.519,
+      "text": "So, in continuous world, for\ntoday, we'll be looking--"
+    },
+    {
+      "start": 2088.639,
+      "duration": 6.04,
+      "text": "we'll be working with\nlognormal dynamics,"
+    },
+    {
+      "start": 2094.679,
+      "duration": 4.081,
+      "text": "but we'll see that it's\nnot absolutely crucial."
+    },
+    {
+      "start": 2098.76,
+      "duration": 2.7,
+      "text": "It's just a nice\nexample, once again."
+    },
+    {
+      "start": 2101.46,
+      "duration": 8.88,
+      "text": "And lognormal dynamic\nis basically dynamic"
+    },
+    {
+      "start": 2110.34,
+      "duration": 5.86,
+      "text": "which implies that\nthere is some growth."
+    },
+    {
+      "start": 2116.2,
+      "duration": 2.16,
+      "text": "And there is some\nrandom component."
+    },
+    {
+      "start": 2122.34,
+      "duration": 5.95,
+      "text": "Well, one can also\nwrite it in this form."
+    },
+    {
+      "start": 2138.42,
+      "duration": 5.08,
+      "text": "And let's talk a little\nbit about dW, what it is."
+    },
+    {
+      "start": 2143.5,
+      "duration": 7.64,
+      "text": "So dW is a random\nwalk linear process."
+    },
+    {
+      "start": 2151.14,
+      "duration": 6.74,
+      "text": "So expected value\nof dW is equal to 0,"
+    },
+    {
+      "start": 2157.88,
+      "duration": 9.56,
+      "text": "and standard deviation of dW\nis equal to square root of dt."
+    },
+    {
+      "start": 2167.44,
+      "duration": 5.04,
+      "text": "And that's what\nalways bothers me."
+    },
+    {
+      "start": 2172.48,
+      "duration": 4.36,
+      "text": "Why standard deviation has\nto be square root of dt?"
+    },
+    {
+      "start": 2176.84,
+      "duration": 2.24,
+      "text": "Why do we know that?"
+    },
+    {
+      "start": 2179.08,
+      "duration": 5.4,
+      "text": "Well, and here is a hand-wavy\nreason without any matter theory"
+    },
+    {
+      "start": 2184.48,
+      "duration": 4.44,
+      "text": "or anything else\nis the following."
+    },
+    {
+      "start": 2188.92,
+      "duration": 7.84,
+      "text": "So suppose we have dt steps."
+    },
+    {
+      "start": 2196.76,
+      "duration": 7.0,
+      "text": "Our random walk had n steps."
+    },
+    {
+      "start": 2203.76,
+      "duration": 12.575,
+      "text": "So, the collection of those\nwill be dW0 dW1, so on, and dWn."
+    },
+    {
+      "start": 2220.29,
+      "duration": 2.9,
+      "text": "And the-- not equal."
+    },
+    {
+      "start": 2223.19,
+      "duration": 4.58,
+      "text": "So our dWn, the final\nvalue after n steps,"
+    },
+    {
+      "start": 2227.77,
+      "duration": 2.65,
+      "text": "it will be sum of all\nthe smaller steps."
+    },
+    {
+      "start": 2236.77,
+      "duration": 11.2,
+      "text": "So, what's expected value of Wn?"
+    },
+    {
+      "start": 2247.97,
+      "duration": 10.64,
+      "text": "Well, it is sum of the\nexpected values of all dWs,"
+    },
+    {
+      "start": 2258.61,
+      "duration": 2.8,
+      "text": "and each of them\nis 0, so it is 0."
+    },
+    {
+      "start": 2261.41,
+      "duration": 3.24,
+      "text": "It's, in fact,\nmartingale, it stays 0."
+    },
+    {
+      "start": 2264.65,
+      "duration": 8.984,
+      "text": "Well, what is the standard\ndeviation, or variance,"
+    },
+    {
+      "start": 2273.634,
+      "duration": 4.276,
+      "text": "of our dWn?"
+    },
+    {
+      "start": 2277.91,
+      "duration": 7.43,
+      "text": "Well, it will be sum of\nsquared of each step."
+    },
+    {
+      "start": 2288.59,
+      "duration": 6.28,
+      "text": "Yeah, and what I forgot\nto say-- to tell here,"
+    },
+    {
+      "start": 2294.87,
+      "duration": 10.2,
+      "text": "is that probability\nof us going up--"
+    },
+    {
+      "start": 2307.99,
+      "duration": 3.19,
+      "text": "we are going by 1,\neither up or down."
+    },
+    {
+      "start": 2318.07,
+      "duration": 5.6,
+      "text": "And on each step, it is 1/2."
+    },
+    {
+      "start": 2323.67,
+      "duration": 3.48,
+      "text": "With probability 1/2,\nwe go up or down."
+    },
+    {
+      "start": 2327.15,
+      "duration": 18.55,
+      "text": "And correlation, our\nsteps are not correlated."
+    },
+    {
+      "start": 2345.7,
+      "duration": 1.98,
+      "text": "That's important."
+    },
+    {
+      "start": 2347.68,
+      "duration": 13.92,
+      "text": "So then the variance here will\nbe sum of expected values of dWi"
+    },
+    {
+      "start": 2361.6,
+      "duration": 8.28,
+      "text": "squared, each of them will\nbe 1 with probability 1/2."
+    },
+    {
+      "start": 2369.88,
+      "duration": 10.8,
+      "text": "So it will be n."
+    },
+    {
+      "start": 2380.68,
+      "duration": 3.0,
+      "text": "So with probability\n1/2, it is 1."
+    },
+    {
+      "start": 2383.68,
+      "duration": 2.54,
+      "text": "With probability\n1/2, it's minus 1."
+    },
+    {
+      "start": 2386.22,
+      "duration": 8.76,
+      "text": "So sum of squares will be, well,\n1, so n steps, it will be n."
+    },
+    {
+      "start": 2394.98,
+      "duration": 1.36,
+      "text": "OK, fine."
+    },
+    {
+      "start": 2396.34,
+      "duration": 8.72,
+      "text": "Now, let's put our n steps\non a finite period of time."
+    },
+    {
+      "start": 2405.06,
+      "duration": 21.74,
+      "text": "Let's assume that we have\na finite period of time"
+    },
+    {
+      "start": 2426.8,
+      "duration": 8.22,
+      "text": "and we split it at n equal\nperiods of small delta t."
+    },
+    {
+      "start": 2435.02,
+      "duration": 5.36,
+      "text": "And we also-- let's assume that\ninstead of doing the steps of 1"
+    },
+    {
+      "start": 2440.38,
+      "duration": 11.98,
+      "text": "and minus 1, let's assume\nthat there are some number d."
+    },
+    {
+      "start": 2452.36,
+      "duration": 6.34,
+      "text": "Plus or minus d\nwith probability--"
+    },
+    {
+      "start": 2462.26,
+      "duration": 0.5,
+      "text": "sorry."
+    },
+    {
+      "start": 2469.2,
+      "duration": 0.72,
+      "text": "OK."
+    },
+    {
+      "start": 2469.92,
+      "duration": 6.48,
+      "text": "So expected value of our\nrandom walk still stays 0."
+    },
+    {
+      "start": 2476.4,
+      "duration": 3.61,
+      "text": "And our variance\nnow becomes what?"
+    },
+    {
+      "start": 2487.24,
+      "duration": 6.45,
+      "text": "Sum of 1/2 d squared\nplus 1/2 d squared."
+    },
+    {
+      "start": 2496.32,
+      "duration": 3.53,
+      "text": "So nd squared."
+    },
+    {
+      "start": 2503.05,
+      "duration": 10.56,
+      "text": "And our n, we assume that it\nis just split period of time."
+    },
+    {
+      "start": 2513.61,
+      "duration": 4.96,
+      "text": "So Td squared divided\nby delta t right."
+    },
+    {
+      "start": 2518.57,
+      "duration": 1.8,
+      "text": "So basically, what\nI'm trying to say"
+    },
+    {
+      "start": 2520.37,
+      "duration": 4.92,
+      "text": "is that, if we put our\nsteps on a period of time,"
+    },
+    {
+      "start": 2525.29,
+      "duration": 1.94,
+      "text": "that's what's our variance."
+    },
+    {
+      "start": 2527.23,
+      "duration": 6.38,
+      "text": "And now, if we make the steps\nsmaller, the time steps smaller,"
+    },
+    {
+      "start": 2533.61,
+      "duration": 3.7,
+      "text": "and the space steps\nsmaller as well,"
+    },
+    {
+      "start": 2537.31,
+      "duration": 1.88,
+      "text": "we're kind of taking\ninto infinity."
+    },
+    {
+      "start": 2539.19,
+      "duration": 6.34,
+      "text": "We make-- we are taking a limit\nover the finite period of time,"
+    },
+    {
+      "start": 2545.53,
+      "duration": 6.2,
+      "text": "and the only way for this\nto stay finite and not 0"
+    },
+    {
+      "start": 2551.73,
+      "duration": 8.44,
+      "text": "is for this to be of order of\nmagnitude of square root of t."
+    },
+    {
+      "start": 2560.17,
+      "duration": 6.82,
+      "text": "So a long-winded question--"
+    },
+    {
+      "start": 2570.59,
+      "duration": 10.36,
+      "text": "a long-winded answer is,\nfor why standard deviation"
+    },
+    {
+      "start": 2580.95,
+      "duration": 3.1,
+      "text": "of our Brownian motion has\nto be square root of t."
+    },
+    {
+      "start": 2584.05,
+      "duration": 4.82,
+      "text": "Because otherwise, we either\nwill have zero variance"
+    },
+    {
+      "start": 2588.87,
+      "duration": 1.72,
+      "text": "or exploding process."
+    },
+    {
+      "start": 2590.59,
+      "duration": 6.6,
+      "text": "So for this process not to\nexplode, this has to be true."
+    },
+    {
+      "start": 2597.19,
+      "duration": 2.08,
+      "text": "All right."
+    },
+    {
+      "start": 2599.27,
+      "duration": 6.48,
+      "text": "Now, another observation\nbefore we go to option pricing"
+    },
+    {
+      "start": 2605.75,
+      "duration": 9.96,
+      "text": "is to talk about Taylor formula\nand Ito formula as the follow-up"
+    },
+    {
+      "start": 2615.71,
+      "duration": 0.66,
+      "text": "to it."
+    },
+    {
+      "start": 2622.272,
+      "duration": 5.568,
+      "text": "So, if our life\nwas deterministic"
+    },
+    {
+      "start": 2627.84,
+      "duration": 10.36,
+      "text": "and there was a function\nof two variables, S and t,"
+    },
+    {
+      "start": 2638.2,
+      "duration": 3.92,
+      "text": "then our Taylor formula\nto the first degree--"
+    },
+    {
+      "start": 2642.12,
+      "duration": 15.0,
+      "text": "or to the second degree,\nlet's write it down,"
+    },
+    {
+      "start": 2657.12,
+      "duration": 3.56,
+      "text": "we'll take the\npartial derivatives"
+    },
+    {
+      "start": 2660.68,
+      "duration": 5.42,
+      "text": "with respect of both, and then\nwe'll have second derivatives."
+    },
+    {
+      "start": 2666.1,
+      "duration": 19.21,
+      "text": "So 1/2 of d 2 f by dt squared\ndt squared plus 1/2 d 2 f by ds"
+    },
+    {
+      "start": 2685.31,
+      "duration": 0.5,
+      "text": "squared."
+    },
+    {
+      "start": 2689.62,
+      "duration": 3.46,
+      "text": "Plus mixed derivative."
+    },
+    {
+      "start": 2706.1,
+      "duration": 5.6,
+      "text": "So this is to second\ndegree plus delta."
+    },
+    {
+      "start": 2711.7,
+      "duration": 1.26,
+      "text": "This is to the second degree."
+    },
+    {
+      "start": 2712.96,
+      "duration": 6.78,
+      "text": "Now, in our stochastic\nworld, these two terms"
+    },
+    {
+      "start": 2719.74,
+      "duration": 2.88,
+      "text": "have different magnitude."
+    },
+    {
+      "start": 2722.62,
+      "duration": 4.84,
+      "text": "So the deterministic\nterm is of magnitude dt,"
+    },
+    {
+      "start": 2727.46,
+      "duration": 6.28,
+      "text": "and stochastic term is of\nmagnitude of square root."
+    },
+    {
+      "start": 2733.74,
+      "duration": 6.1,
+      "text": "So, if we go back to\nour Taylor formula"
+    },
+    {
+      "start": 2739.84,
+      "duration": 5.42,
+      "text": "and would like to have\nexpansion to the first degree,"
+    },
+    {
+      "start": 2745.26,
+      "duration": 3.1,
+      "text": "what will have to do?"
+    },
+    {
+      "start": 2748.36,
+      "duration": 1.67,
+      "text": "So in our stochastic world--"
+    },
+    {
+      "start": 2760.08,
+      "duration": 2.02,
+      "text": "so this is the first degree."
+    },
+    {
+      "start": 2762.1,
+      "duration": 1.12,
+      "text": "So this we keep."
+    },
+    {
+      "start": 2767.72,
+      "duration": 8.02,
+      "text": "This is first degree, or\nfirst degree or less right"
+    },
+    {
+      "start": 2775.74,
+      "duration": 3.22,
+      "text": "because our dS is dt plus--"
+    },
+    {
+      "start": 2778.96,
+      "duration": 3.8,
+      "text": "this is of order of\nmagnitude of square root dt."
+    },
+    {
+      "start": 2782.76,
+      "duration": 3.466,
+      "text": "So this we'll keep completely."
+    },
+    {
+      "start": 2790.4,
+      "duration": 6.89,
+      "text": "And now if we go to mixed terms,\nthis is second degree squarely."
+    },
+    {
+      "start": 2797.29,
+      "duration": 1.48,
+      "text": "Get rid of it."
+    },
+    {
+      "start": 2798.77,
+      "duration": 7.5,
+      "text": "Now, this is certainly more than\nfirst degree, so get rid of it."
+    },
+    {
+      "start": 2806.27,
+      "duration": 2.74,
+      "text": "But here, something is left."
+    },
+    {
+      "start": 2809.01,
+      "duration": 4.62,
+      "text": "And what is left is square\nof this, roughly speaking."
+    },
+    {
+      "start": 2813.63,
+      "duration": 9.82,
+      "text": "So we'll have to have a term\nwhich is coming from dS squared,"
+    },
+    {
+      "start": 2823.45,
+      "duration": 7.55,
+      "text": "which will be 1/2 of\nd 2 f by ds squared."
+    },
+    {
+      "start": 2833.73,
+      "duration": 3.44,
+      "text": "And from ds squared,\nthe first term"
+    },
+    {
+      "start": 2837.17,
+      "duration": 3.06,
+      "text": "will be dt squared,\nnot interesting."
+    },
+    {
+      "start": 2840.23,
+      "duration": 7.46,
+      "text": "The mixed term will be dt\ntimes dW will be less than dt,"
+    },
+    {
+      "start": 2847.69,
+      "duration": 4.02,
+      "text": "but the square of\ndW will be exactly"
+    },
+    {
+      "start": 2851.71,
+      "duration": 2.42,
+      "text": "of the order of magnitude of dt."
+    },
+    {
+      "start": 2854.13,
+      "duration": 6.25,
+      "text": "So here will be sigma\nsquared S squared dt--"
+    },
+    {
+      "start": 2860.38,
+      "duration": 1.53,
+      "text": "dS squared, sorry."
+    },
+    {
+      "start": 2866.79,
+      "duration": 3.56,
+      "text": "And this is called\nIto's formula."
+    },
+    {
+      "start": 2870.35,
+      "duration": 4.52,
+      "text": "Very important for\nstochastic calculus."
+    },
+    {
+      "start": 2874.87,
+      "duration": 6.88,
+      "text": "And this is quick and\ndirty derivation of it."
+    },
+    {
+      "start": 2881.75,
+      "duration": 0.88,
+      "text": "OK."
+    },
+    {
+      "start": 2882.63,
+      "duration": 11.76,
+      "text": "Now, let's move on to our--"
+    },
+    {
+      "start": 2894.39,
+      "duration": 2.87,
+      "text": "now this will leave probably."
+    },
+    {
+      "start": 2900.19,
+      "duration": 4.86,
+      "text": "So we'll need this, this,\nbut this we don't need."
+    },
+    {
+      "start": 2909.28,
+      "duration": 2.43,
+      "text": "So let's move to pricing."
+    },
+    {
+      "start": 2918.32,
+      "duration": 11.24,
+      "text": "So we still want to price\nsome claim, derivative claim."
+    },
+    {
+      "start": 2929.56,
+      "duration": 4.68,
+      "text": "And we'll call it f in our case."
+    },
+    {
+      "start": 2934.24,
+      "duration": 2.74,
+      "text": "And we'll form a\nreplicating portfolio."
+    },
+    {
+      "start": 2949.68,
+      "duration": 2.84,
+      "text": "And as before, our\nreplicating portfolio"
+    },
+    {
+      "start": 2952.52,
+      "duration": 4.37,
+      "text": "will consist of some\nstock, some cash."
+    },
+    {
+      "start": 2959.92,
+      "duration": 5.36,
+      "text": "And what we want to do is to\nreplicate our value of our claim"
+    },
+    {
+      "start": 2965.28,
+      "duration": 2.24,
+      "text": "on each step, on each step dt."
+    },
+    {
+      "start": 2972.9,
+      "duration": 4.4,
+      "text": "Now, let's do the trick\nwhich we did before."
+    },
+    {
+      "start": 2977.3,
+      "duration": 1.3,
+      "text": "Let's rearrange this."
+    },
+    {
+      "start": 2978.6,
+      "duration": 13.7,
+      "text": "So let's notice that aSt minus\nf of t-- so the combination--"
+    },
+    {
+      "start": 2992.3,
+      "duration": 1.58,
+      "text": "or f minus a--"
+    },
+    {
+      "start": 2993.88,
+      "duration": 0.5,
+      "text": "sorry."
+    },
+    {
+      "start": 2999.564,
+      "duration": 5.776,
+      "text": "That this combination of\nour derivative and stock"
+    },
+    {
+      "start": 3005.34,
+      "duration": 0.59,
+      "text": "is riskless."
+    },
+    {
+      "start": 3009.3,
+      "duration": 2.12,
+      "text": "And what does it mean?"
+    },
+    {
+      "start": 3011.42,
+      "duration": 8.84,
+      "text": "That-- well, now, we'll assume\nthat interest rates are not 0,"
+    },
+    {
+      "start": 3020.26,
+      "duration": 0.86,
+      "text": "what does it mean?"
+    },
+    {
+      "start": 3021.12,
+      "duration": 3.8,
+      "text": "It means that this\nthing, if it's riskless,"
+    },
+    {
+      "start": 3024.92,
+      "duration": 7.28,
+      "text": "it has to grow with\ntime as e to the rt."
+    },
+    {
+      "start": 3032.2,
+      "duration": 1.14,
+      "text": "By definition."
+    },
+    {
+      "start": 3033.34,
+      "duration": 11.66,
+      "text": "So Bt is equal e\nto the rt times B0."
+    },
+    {
+      "start": 3045.0,
+      "duration": 3.28,
+      "text": "So we started our\nstrategy at time 0."
+    },
+    {
+      "start": 3048.28,
+      "duration": 8.08,
+      "text": "And since then, our cash is\ngrowing with interest rate t."
+    },
+    {
+      "start": 3056.36,
+      "duration": 1.56,
+      "text": "And what does this mean?"
+    },
+    {
+      "start": 3057.92,
+      "duration": 7.42,
+      "text": "Well, this means that our dB\nis deterministic function."
+    },
+    {
+      "start": 3065.34,
+      "duration": 4.66,
+      "text": "No need for Ito or\nanything like this."
+    },
+    {
+      "start": 3070.0,
+      "duration": 6.56,
+      "text": "And we all can\ndifferentiate exponentials."
+    },
+    {
+      "start": 3081.32,
+      "duration": 1.76,
+      "text": "So trivial mass."
+    },
+    {
+      "start": 3083.08,
+      "duration": 2.33,
+      "text": "That's how rB works."
+    },
+    {
+      "start": 3085.41,
+      "duration": 4.88,
+      "text": "So, now, that's-- so let's\ntry to differentiate the whole"
+    },
+    {
+      "start": 3090.29,
+      "duration": 0.5,
+      "text": "thing."
+    },
+    {
+      "start": 3090.79,
+      "duration": 3.28,
+      "text": "We know the right side,\nbecause it's deterministic."
+    },
+    {
+      "start": 3094.07,
+      "duration": 2.54,
+      "text": "It will be this."
+    },
+    {
+      "start": 3096.61,
+      "duration": 14.44,
+      "text": "So, the derivative of\nour riskless portfolio"
+    },
+    {
+      "start": 3111.05,
+      "duration": 8.8,
+      "text": "will be r times our\nriskless portfolio times dt."
+    },
+    {
+      "start": 3123.89,
+      "duration": 0.8,
+      "text": "Good."
+    },
+    {
+      "start": 3124.69,
+      "duration": 5.8,
+      "text": "Now, we'll keep it as a\nright-hand side, and for this,"
+    },
+    {
+      "start": 3130.49,
+      "duration": 1.425,
+      "text": "we'll use our--"
+    },
+    {
+      "start": 3135.33,
+      "duration": 2.24,
+      "text": "either Ito's formula."
+    },
+    {
+      "start": 3137.57,
+      "duration": 6.02,
+      "text": "Well, let's do that."
+    },
+    {
+      "start": 3143.59,
+      "duration": 11.92,
+      "text": "So we continue to differentiate\nthat, and we get df minus a dS."
+    },
+    {
+      "start": 3155.51,
+      "duration": 5.32,
+      "text": "And our f is stochastic,\nwe use our Ito's formula,"
+    },
+    {
+      "start": 3160.83,
+      "duration": 17.8,
+      "text": "would be d of dt times dt\nplus df dS times dS plus"
+    },
+    {
+      "start": 3178.63,
+      "duration": 11.49,
+      "text": "our stochastic term, plus 1/2\nd 2 f by dS squared dS squared."
+    },
+    {
+      "start": 3194.71,
+      "duration": 4.53,
+      "text": "And we don't forget\nto subtract this."
+    },
+    {
+      "start": 3202.09,
+      "duration": 7.96,
+      "text": "And if we just continue further\nand start collecting terms--"
+    },
+    {
+      "start": 3210.05,
+      "duration": 5.78,
+      "text": "so we'll expand our dS\naccording to our formula."
+    },
+    {
+      "start": 3215.83,
+      "duration": 4.14,
+      "text": "And we'll collect terms\nwith the certain terms"
+    },
+    {
+      "start": 3219.97,
+      "duration": 4.26,
+      "text": "with dt and uncertain\nterms with our dW."
+    },
+    {
+      "start": 3224.23,
+      "duration": 3.62,
+      "text": "So, if we collecting\nour terms with dt here,"
+    },
+    {
+      "start": 3227.85,
+      "duration": 18.32,
+      "text": "it will be df by dt plus\n1/2 coming from dS squared,"
+    },
+    {
+      "start": 3246.17,
+      "duration": 5.72,
+      "text": "and dS squared, remember, it\nwill be sigma squared S squared"
+    },
+    {
+      "start": 3251.89,
+      "duration": 0.88,
+      "text": "dt."
+    },
+    {
+      "start": 3252.77,
+      "duration": 3.2,
+      "text": "It comes from this only."
+    },
+    {
+      "start": 3255.97,
+      "duration": 3.49,
+      "text": "So it will be--"
+    },
+    {
+      "start": 3259.46,
+      "duration": 2.16,
+      "text": "oh, sorry, sorry,\nsorry, sorry, sorry."
+    },
+    {
+      "start": 3261.62,
+      "duration": 1.9,
+      "text": "Well, yeah, not--\nOK, that's fine."
+    },
+    {
+      "start": 3263.52,
+      "duration": 10.64,
+      "text": "Plus 1/2 d 2 f by dS squared\nsigma squared S squared."
+    },
+    {
+      "start": 3274.16,
+      "duration": 2.1,
+      "text": "And I missed this one."
+    },
+    {
+      "start": 3276.26,
+      "duration": 4.32,
+      "text": "And if we are collecting the\ndt terms, it has to be that."
+    },
+    {
+      "start": 3283.42,
+      "duration": 10.68,
+      "text": "Plus df by dS times mu\nS. And we should not"
+    },
+    {
+      "start": 3294.1,
+      "duration": 10.4,
+      "text": "forget dt term from\nhere minus a mu S,"
+    },
+    {
+      "start": 3304.5,
+      "duration": 4.12,
+      "text": "and that completes our dt term."
+    },
+    {
+      "start": 3308.62,
+      "duration": 7.96,
+      "text": "Now let's see what\nhappens with our dW term."
+    },
+    {
+      "start": 3316.58,
+      "duration": 4.432,
+      "text": "Well, dW term will be\npartially from here."
+    },
+    {
+      "start": 3321.012,
+      "duration": 6.948,
+      "text": "df by dS sigma S from here."
+    },
+    {
+      "start": 3330.96,
+      "duration": 9.4,
+      "text": "Minus part from here, a sigma\nS. And this is equal dW--"
+    },
+    {
+      "start": 3340.36,
+      "duration": 0.9,
+      "text": "times dW."
+    },
+    {
+      "start": 3341.26,
+      "duration": 2.6,
+      "text": "And what it is equal to?"
+    },
+    {
+      "start": 3343.86,
+      "duration": 2.94,
+      "text": "Well, it is equal to this."
+    },
+    {
+      "start": 3346.8,
+      "duration": 1.64,
+      "text": "Yeah?"
+    },
+    {
+      "start": 3348.44,
+      "duration": 3.065,
+      "text": "STUDENT: How come we can say\nthat dW squared equals dt?"
+    },
+    {
+      "start": 3351.505,
+      "duration": 2.375,
+      "text": "Because I thought we just knew\nthat standard deviation is"
+    },
+    {
+      "start": 3353.88,
+      "duration": 2.08,
+      "text": "the square root\nof dt, but, like--"
+    },
+    {
+      "start": 3355.96,
+      "duration": 3.424,
+      "text": "VASILY STRELA: So\ndW squared is dt."
+    },
+    {
+      "start": 3359.384,
+      "duration": 1.756,
+      "text": "STUDENT: But I\nthought W was random."
+    },
+    {
+      "start": 3361.14,
+      "duration": 1.24,
+      "text": "I thought dW was random."
+    },
+    {
+      "start": 3362.38,
+      "duration": 1.792,
+      "text": "So how can you say that\nwhen you square it,"
+    },
+    {
+      "start": 3364.172,
+      "duration": 2.548,
+      "text": "you get something deterministic?"
+    },
+    {
+      "start": 3366.72,
+      "duration": 6.08,
+      "text": "VASILY STRELA: Well, this\nis more of a notation,"
+    },
+    {
+      "start": 3372.8,
+      "duration": 8.57,
+      "text": "but yeah, we kind of-- yeah, it\nis not very rigorous notation."
+    },
+    {
+      "start": 3381.37,
+      "duration": 8.74,
+      "text": "But that's basically what\nIto's formula tells you."
+    },
+    {
+      "start": 3390.11,
+      "duration": 4.66,
+      "text": "So if you go into\nthe strict proof,"
+    },
+    {
+      "start": 3394.77,
+      "duration": 3.52,
+      "text": "that's what you will get,\nbasically, for the second--"
+    },
+    {
+      "start": 3398.29,
+      "duration": 1.52,
+      "text": "for the squared term."
+    },
+    {
+      "start": 3399.81,
+      "duration": 1.62,
+      "text": "But--"
+    },
+    {
+      "start": 3401.43,
+      "duration": 3.5,
+      "text": "PROFESSOR: --add to that, when\nwe talked about Brownian motion,"
+    },
+    {
+      "start": 3404.93,
+      "duration": 3.72,
+      "text": "the quadratic variation\nof Brownian motion"
+    },
+    {
+      "start": 3408.65,
+      "duration": 3.875,
+      "text": "is constant over time."
+    },
+    {
+      "start": 3412.525,
+      "duration": 0.625,
+      "text": "STUDENT: I see."
+    },
+    {
+      "start": 3413.15,
+      "duration": 2.98,
+      "text": "PROFESSOR: And so over the\ninfinitesimal integrals--"
+    },
+    {
+      "start": 3416.13,
+      "duration": 1.84,
+      "text": "STUDENT: That makes\nsense, thanks."
+    },
+    {
+      "start": 3417.97,
+      "duration": 2.08,
+      "text": "VASILY STRELA: A combination\nof infinitesimal,"
+    },
+    {
+      "start": 3420.05,
+      "duration": 4.96,
+      "text": "and the fact that the-- yeah,\nthat the standard deviation is"
+    },
+    {
+      "start": 3425.01,
+      "duration": 1.38,
+      "text": "of order of magnitude."
+    },
+    {
+      "start": 3426.39,
+      "duration": 3.35,
+      "text": "But yes, you are right, it\nis kind of sloppy notation."
+    },
+    {
+      "start": 3432.69,
+      "duration": 1.0,
+      "text": "OK."
+    },
+    {
+      "start": 3433.69,
+      "duration": 13.48,
+      "text": "And this is equal\nto rf minus raS dt."
+    },
+    {
+      "start": 3450.59,
+      "duration": 4.4,
+      "text": "Because we knew that this\npart is deterministic."
+    },
+    {
+      "start": 3454.99,
+      "duration": 4.32,
+      "text": "So there are no dW\nterms on this side."
+    },
+    {
+      "start": 3459.31,
+      "duration": 2.0,
+      "text": "So what does it mean?"
+    },
+    {
+      "start": 3461.31,
+      "duration": 5.24,
+      "text": "That this has to\nbe equal to this,"
+    },
+    {
+      "start": 3466.55,
+      "duration": 9.04,
+      "text": "and this has to be equal to 0\nbecause right-hand side here"
+    },
+    {
+      "start": 3475.59,
+      "duration": 3.32,
+      "text": "is completely deterministic."
+    },
+    {
+      "start": 3478.91,
+      "duration": 4.16,
+      "text": "So uncertainty has to disappear."
+    },
+    {
+      "start": 3483.07,
+      "duration": 2.3,
+      "text": "Why it disappears,\nit's by construction."
+    },
+    {
+      "start": 3485.37,
+      "duration": 3.1,
+      "text": "Because from the\nvery beginning, we"
+    },
+    {
+      "start": 3488.47,
+      "duration": 2.28,
+      "text": "said that we want\nto find such an a,"
+    },
+    {
+      "start": 3490.75,
+      "duration": 3.14,
+      "text": "and that's what we'll\nget just in a second,"
+    },
+    {
+      "start": 3493.89,
+      "duration": 1.55,
+      "text": "that this portfolio is riskless."
+    },
+    {
+      "start": 3498.17,
+      "duration": 5.5,
+      "text": "Or another way that we can\nreplicate our derivative."
+    },
+    {
+      "start": 3503.67,
+      "duration": 9.79,
+      "text": "So, if this is equal to 0, then\nour a is equal to df by dS."
+    },
+    {
+      "start": 3522.04,
+      "duration": 1.29,
+      "text": "And we are done."
+    },
+    {
+      "start": 3523.33,
+      "duration": 7.72,
+      "text": "So what we are done\nin a sense, that we"
+    },
+    {
+      "start": 3531.05,
+      "duration": 7.24,
+      "text": "arrive at the following\nequation, basically."
+    },
+    {
+      "start": 3538.29,
+      "duration": 1.34,
+      "text": "Where should I write?"
+    },
+    {
+      "start": 3539.63,
+      "duration": 0.84,
+      "text": "How about this?"
+    },
+    {
+      "start": 3549.42,
+      "duration": 5.14,
+      "text": "So our main equation will\nbe this equal to this,"
+    },
+    {
+      "start": 3554.56,
+      "duration": 1.52,
+      "text": "but we will substitute a."
+    },
+    {
+      "start": 3559.06,
+      "duration": 6.64,
+      "text": "And let me write it here, the\nequation which we arrive at."
+    },
+    {
+      "start": 3565.7,
+      "duration": 13.52,
+      "text": "df by dt plus 1/2 d 2 f by dS\nsquared sigma squared S squared"
+    },
+    {
+      "start": 3579.22,
+      "duration": 11.52,
+      "text": "is equal to rf minus\nrdf by dS times S."
+    },
+    {
+      "start": 3590.74,
+      "duration": 4.32,
+      "text": "And this is the\nBlack-Scholes equation."
+    },
+    {
+      "start": 3595.06,
+      "duration": 2.26,
+      "text": "So that's what we\nare looking for,"
+    },
+    {
+      "start": 3597.32,
+      "duration": 3.94,
+      "text": "and that's what we\nwill be solving."
+    },
+    {
+      "start": 3601.26,
+      "duration": 6.88,
+      "text": "So just to give--"
+    },
+    {
+      "start": 3608.14,
+      "duration": 0.5,
+      "text": "yeah."
+    },
+    {
+      "start": 3608.64,
+      "duration": 5.76,
+      "text": "So in the slides, there are\nnicer and more cleaner write-up."
+    },
+    {
+      "start": 3617.16,
+      "duration": 0.52,
+      "text": "Yeah."
+    },
+    {
+      "start": 3617.68,
+      "duration": 8.92,
+      "text": "So basically, what we found\nout, that any derivative claim,"
+    },
+    {
+      "start": 3626.6,
+      "duration": 6.68,
+      "text": "any payoff has to\nsatisfy this equation."
+    },
+    {
+      "start": 3633.28,
+      "duration": 4.92,
+      "text": "Well, under assumptions of our\nlognormal motion, if we assume"
+    },
+    {
+      "start": 3638.2,
+      "duration": 1.48,
+      "text": "some other dynamics\nof the stock,"
+    },
+    {
+      "start": 3639.68,
+      "duration": 2.68,
+      "text": "the equation will be different,\nbut we still can derive it"
+    },
+    {
+      "start": 3642.36,
+      "duration": 1.87,
+      "text": "in a similar manner."
+    },
+    {
+      "start": 3647.87,
+      "duration": 3.21,
+      "text": "But the beauty of it that\nany derivative claim,"
+    },
+    {
+      "start": 3651.08,
+      "duration": 5.32,
+      "text": "any payout at any\ntime before expiry"
+    },
+    {
+      "start": 3656.4,
+      "duration": 3.86,
+      "text": "has to satisfy this equation."
+    },
+    {
+      "start": 3660.26,
+      "duration": 5.42,
+      "text": "Moreover, this equation\ndoesn't depend on our drift."
+    },
+    {
+      "start": 3665.68,
+      "duration": 4.05,
+      "text": "On our real-world drift."
+    },
+    {
+      "start": 3669.73,
+      "duration": 3.11,
+      "text": "And we will come back to this--"
+    },
+    {
+      "start": 3672.84,
+      "duration": 0.5,
+      "text": "shortly."
+    },
+    {
+      "start": 3676.69,
+      "duration": 0.98,
+      "text": "So it doesn't matter."
+    },
+    {
+      "start": 3677.67,
+      "duration": 3.744,
+      "text": "What matters is volatility."
+    },
+    {
+      "start": 3681.414,
+      "duration": 3.396,
+      "text": "And we will touch upon--"
+    },
+    {
+      "start": 3684.81,
+      "duration": 2.92,
+      "text": "hopefully we'll have time\nto touch upon it further"
+    },
+    {
+      "start": 3687.73,
+      "duration": 3.52,
+      "text": "in Black-Scholes theory,\nit is assumed constant,"
+    },
+    {
+      "start": 3691.25,
+      "duration": 2.24,
+      "text": "but it doesn't have to be."
+    },
+    {
+      "start": 3693.49,
+      "duration": 2.52,
+      "text": "You can assume some\nfunction or you"
+    },
+    {
+      "start": 3696.01,
+      "duration": 2.82,
+      "text": "can assume this to\nbe stochastic itself,"
+    },
+    {
+      "start": 3698.83,
+      "duration": 4.96,
+      "text": "which will make the equations\nmore complicated to solve,"
+    },
+    {
+      "start": 3703.79,
+      "duration": 3.5,
+      "text": "but once again."
+    },
+    {
+      "start": 3707.29,
+      "duration": 6.24,
+      "text": "And that's what Fisher Black,\nMyron Scholes, and Robert Merton"
+    },
+    {
+      "start": 3713.53,
+      "duration": 1.2,
+      "text": "discovered--"
+    },
+    {
+      "start": 3714.73,
+      "duration": 3.26,
+      "text": "or published in\ntheir 1973 paper."
+    },
+    {
+      "start": 3717.99,
+      "duration": 3.7,
+      "text": "Believe it or not, it was\nquite controversial because--"
+    },
+    {
+      "start": 3721.69,
+      "duration": 3.78,
+      "text": "and actually wasn't very\nmuch applauded at the time,"
+    },
+    {
+      "start": 3725.47,
+      "duration": 5.16,
+      "text": "but was recognized by\na Nobel Prize in '97."
+    },
+    {
+      "start": 3730.63,
+      "duration": 7.36,
+      "text": "And the always fun fact to\nsay that all three of them"
+    },
+    {
+      "start": 3737.99,
+      "duration": 3.08,
+      "text": "are associated with MIT."
+    },
+    {
+      "start": 3741.07,
+      "duration": 4.04,
+      "text": "And Bob Merton is still,\nI think, a professor"
+    },
+    {
+      "start": 3745.11,
+      "duration": 8.36,
+      "text": "at MIT, which is obviously\nquite nice to talk about"
+    },
+    {
+      "start": 3753.47,
+      "duration": 2.24,
+      "text": "in these walls."
+    },
+    {
+      "start": 3755.71,
+      "duration": 6.806,
+      "text": "So now, coming-- well,\nmaybe a couple of remarks."
+    },
+    {
+      "start": 3765.91,
+      "duration": 1.29,
+      "text": "Yeah."
+    },
+    {
+      "start": 3767.2,
+      "duration": 3.99,
+      "text": "Yeah, so which I said that--\nso any derivative satisfies"
+    },
+    {
+      "start": 3771.19,
+      "duration": 5.26,
+      "text": "this equation, it doesn't\ndepend on real-world drift."
+    },
+    {
+      "start": 3776.45,
+      "duration": 4.08,
+      "text": "We obtained this equation\nby replicating strategy,"
+    },
+    {
+      "start": 3780.53,
+      "duration": 3.08,
+      "text": "and that's the most important."
+    },
+    {
+      "start": 3783.61,
+      "duration": 4.34,
+      "text": "The other beauty of it is, it's\nnot only replicating strategy,"
+    },
+    {
+      "start": 3787.95,
+      "duration": 1.56,
+      "text": "it's also hedging strategy."
+    },
+    {
+      "start": 3789.51,
+      "duration": 5.78,
+      "text": "So if we know our a, which\nis actually derivative"
+    },
+    {
+      "start": 3795.29,
+      "duration": 3.16,
+      "text": "of our current price\nwith respect to stock,"
+    },
+    {
+      "start": 3798.45,
+      "duration": 3.96,
+      "text": "we can hedge out all the risk."
+    },
+    {
+      "start": 3802.41,
+      "duration": 2.64,
+      "text": "So basically, by holding\noption and some amount"
+    },
+    {
+      "start": 3805.05,
+      "duration": 3.68,
+      "text": "of stock, this amount\nof stock, our portfolio"
+    },
+    {
+      "start": 3808.73,
+      "duration": 5.4,
+      "text": "becomes riskless, which is very\nimportant practical conclusion."
+    },
+    {
+      "start": 3814.13,
+      "duration": 3.92,
+      "text": "The more mathematical\ntechnical observations"
+    },
+    {
+      "start": 3818.05,
+      "duration": 3.46,
+      "text": "are that this is actually\na form of heat equation,"
+    },
+    {
+      "start": 3821.51,
+      "duration": 3.18,
+      "text": "and a good technical\nexercise would"
+    },
+    {
+      "start": 3824.69,
+      "duration": 5.4,
+      "text": "be to figure out what\nchange of variables"
+    },
+    {
+      "start": 3830.09,
+      "duration": 2.6,
+      "text": "gives you the heat\nequation, and this"
+    },
+    {
+      "start": 3832.69,
+      "duration": 2.78,
+      "text": "is very well-studied\nand solved problem,"
+    },
+    {
+      "start": 3835.47,
+      "duration": 5.03,
+      "text": "even though it has\nto be numerical."
+    },
+    {
+      "start": 3840.5,
+      "duration": 5.08,
+      "text": "So as any partial differential\nequation, to solve it,"
+    },
+    {
+      "start": 3845.58,
+      "duration": 5.36,
+      "text": "it will require the initial--"
+    },
+    {
+      "start": 3850.94,
+      "duration": 3.48,
+      "text": "or actually, in this\ncase, final conditions"
+    },
+    {
+      "start": 3854.42,
+      "duration": 1.84,
+      "text": "and boundary conditions."
+    },
+    {
+      "start": 3856.26,
+      "duration": 1.98,
+      "text": "And what is our final condition?"
+    },
+    {
+      "start": 3858.24,
+      "duration": 5.82,
+      "text": "Well, our final condition is\nactually our final payoff,"
+    },
+    {
+      "start": 3864.06,
+      "duration": 1.14,
+      "text": "which will be this."
+    },
+    {
+      "start": 3865.2,
+      "duration": 1.9,
+      "text": "This is our final condition."
+    },
+    {
+      "start": 3867.1,
+      "duration": 1.68,
+      "text": "This we know."
+    },
+    {
+      "start": 3868.78,
+      "duration": 4.6,
+      "text": "And what will be our\nboundary condition for call?"
+    },
+    {
+      "start": 3873.38,
+      "duration": 5.72,
+      "text": "Will be that at 0, the\nvalue of the call is 0."
+    },
+    {
+      "start": 3879.1,
+      "duration": 8.12,
+      "text": "And the other boundary condition\nwould be that at infinity, it"
+    },
+    {
+      "start": 3887.22,
+      "duration": 2.72,
+      "text": "is actually the--"
+    },
+    {
+      "start": 3889.94,
+      "duration": 6.92,
+      "text": "approaches S minus K."
+    },
+    {
+      "start": 3896.86,
+      "duration": 12.58,
+      "text": "And if we imply these\nboundary conditions and final"
+    },
+    {
+      "start": 3909.44,
+      "duration": 4.24,
+      "text": "conditions-- and this is\nthe conditions for a put,"
+    },
+    {
+      "start": 3913.68,
+      "duration": 3.2,
+      "text": "we can derive--"
+    },
+    {
+      "start": 3916.88,
+      "duration": 3.36,
+      "text": "arrive to analytical or\nsemi-analytical formulas"
+    },
+    {
+      "start": 3920.24,
+      "duration": 2.32,
+      "text": "for the prices."
+    },
+    {
+      "start": 3922.56,
+      "duration": 5.32,
+      "text": "Of course, it's expressed in the\nterms of error function, which"
+    },
+    {
+      "start": 3927.88,
+      "duration": 1.34,
+      "text": "has to be tabulated."
+    },
+    {
+      "start": 3932.4,
+      "duration": 1.28,
+      "text": "Yeah."
+    },
+    {
+      "start": 3933.68,
+      "duration": 3.24,
+      "text": "In more complicated\ncases, in the cases"
+    },
+    {
+      "start": 3936.92,
+      "duration": 4.46,
+      "text": "of more complicated\ndynamics, of course,"
+    },
+    {
+      "start": 3941.38,
+      "duration": 2.86,
+      "text": "the formulas are not so\nnice, and most probably, it"
+    },
+    {
+      "start": 3944.24,
+      "duration": 3.04,
+      "text": "will require some\nnumerical integration"
+    },
+    {
+      "start": 3947.28,
+      "duration": 4.6,
+      "text": "and numerical procedures,\nwhich is a big part"
+    },
+    {
+      "start": 3951.88,
+      "duration": 2.28,
+      "text": "of numerical finance, in fact."
+    },
+    {
+      "start": 3954.16,
+      "duration": 3.85,
+      "text": "What I wanted to talk\nabout is coming back"
+    },
+    {
+      "start": 3958.01,
+      "duration": 3.0,
+      "text": "to risk-neutral pricing."
+    },
+    {
+      "start": 3961.01,
+      "duration": 9.41,
+      "text": "And let me do it here."
+    },
+    {
+      "start": 3973.49,
+      "duration": 5.08,
+      "text": "Basically, how do we find\nour risk-neutral measure?"
+    },
+    {
+      "start": 3978.57,
+      "duration": 3.84,
+      "text": "And how do we find\nour risk-neutral PDF?"
+    },
+    {
+      "start": 3982.41,
+      "duration": 7.68,
+      "text": "Well actually-- we're fine."
+    },
+    {
+      "start": 3990.09,
+      "duration": 3.44,
+      "text": "In the case of lognormal,\nit is pretty simple"
+    },
+    {
+      "start": 3993.53,
+      "duration": 20.36,
+      "text": "because, well, our dS is equal\nto mu S dt plus sigma S dW."
+    },
+    {
+      "start": 4013.89,
+      "duration": 2.7,
+      "text": "So, here is a nice trick."
+    },
+    {
+      "start": 4016.59,
+      "duration": 5.12,
+      "text": "If we take expectation\nvalue of both sides,"
+    },
+    {
+      "start": 4021.71,
+      "duration": 2.79,
+      "text": "then we'll get a\ndifferential equation for--"
+    },
+    {
+      "start": 4027.87,
+      "duration": 4.82,
+      "text": "well, for expected\nvalue of this is 0"
+    },
+    {
+      "start": 4032.69,
+      "duration": 5.6,
+      "text": "because expected value\nof dW is equal 0."
+    },
+    {
+      "start": 4038.29,
+      "duration": 7.9,
+      "text": "So an expected value\nof this will be mu dt."
+    },
+    {
+      "start": 4050.47,
+      "duration": 4.44,
+      "text": "So, nice differential equation\nfor our expected value."
+    },
+    {
+      "start": 4054.91,
+      "duration": 8.24,
+      "text": "So our-- the expected\nvalue of the stock"
+    },
+    {
+      "start": 4063.15,
+      "duration": 8.16,
+      "text": "should be equal to initial\nvalue of the stock times e"
+    },
+    {
+      "start": 4071.31,
+      "duration": 2.42,
+      "text": "to the mu t."
+    },
+    {
+      "start": 4073.73,
+      "duration": 5.72,
+      "text": "But for our risk-neutral\nassumptions, remember--"
+    },
+    {
+      "start": 4079.45,
+      "duration": 3.32,
+      "text": "so we said that\nin discrete case,"
+    },
+    {
+      "start": 4082.77,
+      "duration": 7.2,
+      "text": "the whole point of risk-neutral\nprobability was that expected"
+    },
+    {
+      "start": 4089.97,
+      "duration": 5.24,
+      "text": "value of our stock should be--"
+    },
+    {
+      "start": 4095.21,
+      "duration": 4.479,
+      "text": "our stock may be compounded\nby interest rate."
+    },
+    {
+      "start": 4099.689,
+      "duration": 4.96,
+      "text": "Well, when interest rate\nwas 0, it was constant."
+    },
+    {
+      "start": 4104.649,
+      "duration": 6.801,
+      "text": "It was-- so in lognormal\ndynamics, dS over S"
+    },
+    {
+      "start": 4111.45,
+      "duration": 2.14,
+      "text": "will be martingale."
+    },
+    {
+      "start": 4113.59,
+      "duration": 5.22,
+      "text": "So this has to be\nequal to Se to the rt"
+    },
+    {
+      "start": 4118.81,
+      "duration": 3.32,
+      "text": "because under\nrisk-neutral dynamics,"
+    },
+    {
+      "start": 4122.13,
+      "duration": 4.36,
+      "text": "our stock has to grow with r."
+    },
+    {
+      "start": 4126.49,
+      "duration": 2.88,
+      "text": "So basically, it\ntells us that mu"
+    },
+    {
+      "start": 4129.37,
+      "duration": 7.08,
+      "text": "has to be equal to r under\nour risk-neutral measure."
+    },
+    {
+      "start": 4138.979,
+      "duration": 8.241,
+      "text": "So, now, OK, mu is equal\nto r, but we can easily"
+    },
+    {
+      "start": 4147.22,
+      "duration": 7.84,
+      "text": "find a PDF of this\nprocess at time t,"
+    },
+    {
+      "start": 4155.06,
+      "duration": 3.0,
+      "text": "and that's what it is, of\nlognormal process, basically."
+    },
+    {
+      "start": 4161.231,
+      "duration": 3.929,
+      "text": "With mu substituted by r."
+    },
+    {
+      "start": 4168.42,
+      "duration": 2.899,
+      "text": "So, yeah."
+    },
+    {
+      "start": 4171.319,
+      "duration": 3.5,
+      "text": "So mu substituted by r."
+    },
+    {
+      "start": 4174.819,
+      "duration": 7.841,
+      "text": "And what I'm saying, that\nnow instead of solving"
+    },
+    {
+      "start": 4182.66,
+      "duration": 5.159,
+      "text": "our Black-Scholes\nequation for any claim"
+    },
+    {
+      "start": 4187.819,
+      "duration": 8.381,
+      "text": "under lognormal dynamics, we\ncould just take our payoff"
+    },
+    {
+      "start": 4196.2,
+      "duration": 3.64,
+      "text": "and integrate it against\nthis PDF, the final PDF,"
+    },
+    {
+      "start": 4199.84,
+      "duration": 1.84,
+      "text": "and get the value\nof the function"
+    },
+    {
+      "start": 4201.68,
+      "duration": 6.56,
+      "text": "now as the expected payoff\nunder risk-neutral measure."
+    },
+    {
+      "start": 4208.24,
+      "duration": 1.64,
+      "text": "And that's our\nrisk-neutral measure."
+    },
+    {
+      "start": 4213.36,
+      "duration": 2.22,
+      "text": "So that's a nice benefit."
+    },
+    {
+      "start": 4215.58,
+      "duration": 7.34,
+      "text": "Of course, it is easier for\nlognormal, for other processes."
+    },
+    {
+      "start": 4222.92,
+      "duration": 7.64,
+      "text": "It is not that easy, but it's\ncertainly an added benefit."
+    },
+    {
+      "start": 4230.56,
+      "duration": 7.92,
+      "text": "Another example which I want\nto give you in the past--"
+    },
+    {
+      "start": 4238.48,
+      "duration": 3.97,
+      "text": "in the last 10 minutes is\nanother application example."
+    },
+    {
+      "start": 4248.78,
+      "duration": 4.22,
+      "text": "So let's form such a portfolio."
+    },
+    {
+      "start": 4259.82,
+      "duration": 3.82,
+      "text": "Let's buy a call and sell a put."
+    },
+    {
+      "start": 4270.58,
+      "duration": 3.32,
+      "text": "So what is it?"
+    },
+    {
+      "start": 4273.9,
+      "duration": 4.06,
+      "text": "Well, let's draw a diagram."
+    },
+    {
+      "start": 4277.96,
+      "duration": 3.74,
+      "text": "And let's draw a diagram\nat time maturity t."
+    },
+    {
+      "start": 4281.7,
+      "duration": 4.28,
+      "text": "So we long a call\nso with some strike"
+    },
+    {
+      "start": 4285.98,
+      "duration": 6.52,
+      "text": "K. So this is our strike K.\nSo our call looks like this."
+    },
+    {
+      "start": 4292.5,
+      "duration": 2.36,
+      "text": "We short a put."
+    },
+    {
+      "start": 4294.86,
+      "duration": 4.36,
+      "text": "So put would be like this, and\nshort put, it we'll flip it,"
+    },
+    {
+      "start": 4299.22,
+      "duration": 3.0,
+      "text": "so it's like this."
+    },
+    {
+      "start": 4302.22,
+      "duration": 3.28,
+      "text": "How does it look?"
+    },
+    {
+      "start": 4305.5,
+      "duration": 4.85,
+      "text": "It looks like just\nlike a forward."
+    },
+    {
+      "start": 4310.35,
+      "duration": 7.98,
+      "text": "So, at maturity, this\nportfolio has zero uncertainty,"
+    },
+    {
+      "start": 4318.33,
+      "duration": 2.82,
+      "text": "it's forward."
+    },
+    {
+      "start": 4321.15,
+      "duration": 4.28,
+      "text": "So at any time\nbefore maturity, it"
+    },
+    {
+      "start": 4325.43,
+      "duration": 4.6,
+      "text": "has to be the forward\nvalue of the stock."
+    },
+    {
+      "start": 4330.03,
+      "duration": 2.76,
+      "text": "So it always has to be."
+    },
+    {
+      "start": 4332.79,
+      "duration": 8.0,
+      "text": "So at maturity, it\nis St minus K. So--"
+    },
+    {
+      "start": 4340.79,
+      "duration": 2.04,
+      "text": "at maturity."
+    },
+    {
+      "start": 4342.83,
+      "duration": 8.96,
+      "text": "So at any point of time, the\ndifference of call and put"
+    },
+    {
+      "start": 4351.79,
+      "duration": 5.32,
+      "text": "has to be the\ndifference of value"
+    },
+    {
+      "start": 4357.11,
+      "duration": 2.32,
+      "text": "of the current\nvalue of the stock"
+    },
+    {
+      "start": 4359.43,
+      "duration": 3.79,
+      "text": "and, to tell the truth,\ndiscounted value of the strike."
+    },
+    {
+      "start": 4366.9,
+      "duration": 1.25,
+      "text": "T minus t."
+    },
+    {
+      "start": 4372.33,
+      "duration": 3.76,
+      "text": "And the beauty of it that\nwe made zero assumptions"
+    },
+    {
+      "start": 4376.09,
+      "duration": 4.88,
+      "text": "about dynamics of\nthe stock here."
+    },
+    {
+      "start": 4380.97,
+      "duration": 1.5,
+      "text": "This has to be true always."
+    },
+    {
+      "start": 4382.47,
+      "duration": 4.46,
+      "text": "It's just how the\npayoffs look like."
+    },
+    {
+      "start": 4386.93,
+      "duration": 1.88,
+      "text": "Because we always\nknow forward, it"
+    },
+    {
+      "start": 4388.81,
+      "duration": 3.98,
+      "text": "is only dependent\non interest rate."
+    },
+    {
+      "start": 4392.79,
+      "duration": 3.58,
+      "text": "It doesn't depend on\ndynamics of the stock."
+    },
+    {
+      "start": 4396.37,
+      "duration": 2.28,
+      "text": "And this portfolio\ndoesn't depend"
+    },
+    {
+      "start": 4398.65,
+      "duration": 2.0,
+      "text": "on the dynamics of the stock."
+    },
+    {
+      "start": 4400.65,
+      "duration": 3.6,
+      "text": "And it's quite powerful\nbecause it basically tells you"
+    },
+    {
+      "start": 4404.25,
+      "duration": 3.1,
+      "text": "that if this is different\nat any point of time,"
+    },
+    {
+      "start": 4407.35,
+      "duration": 2.06,
+      "text": "you have an arbitrage."
+    },
+    {
+      "start": 4409.41,
+      "duration": 3.42,
+      "text": "And to illustrate\nthat, I actually--"
+    },
+    {
+      "start": 4416.37,
+      "duration": 3.2,
+      "text": "when-- sorry."
+    },
+    {
+      "start": 4419.57,
+      "duration": 6.77,
+      "text": "Went to Bloomberg, took real\nprizes of calls and puts--"
+    },
+    {
+      "start": 4426.34,
+      "duration": 5.84,
+      "text": "this is Apple stock a\nwhile ago, admittedly."
+    },
+    {
+      "start": 4432.18,
+      "duration": 7.2,
+      "text": "And here, I literally plotted\nthe data from here for a call"
+    },
+    {
+      "start": 4439.38,
+      "duration": 2.5,
+      "text": "and for put and\nliterally summed it up."
+    },
+    {
+      "start": 4441.88,
+      "duration": 4.3,
+      "text": "And you see that it\nis a straight line."
+    },
+    {
+      "start": 4446.18,
+      "duration": 3.92,
+      "text": "And no surprise, because\nif it wouldn't be,"
+    },
+    {
+      "start": 4450.1,
+      "duration": 3.48,
+      "text": "it would be an arbitrage, people\nwill jump on it immediately."
+    },
+    {
+      "start": 4453.58,
+      "duration": 3.2,
+      "text": "People check for\nit all the time."
+    },
+    {
+      "start": 4456.78,
+      "duration": 3.96,
+      "text": "The beauty of it, that\nthe dynamics of the stock"
+    },
+    {
+      "start": 4460.74,
+      "duration": 3.34,
+      "text": "is not lognormal, and\nhow can we see it?"
+    },
+    {
+      "start": 4464.08,
+      "duration": 4.22,
+      "text": "Well, I also plotted here\nimplied volatility for--"
+    },
+    {
+      "start": 4468.3,
+      "duration": 3.18,
+      "text": "I think I did it for call here."
+    },
+    {
+      "start": 4471.48,
+      "duration": 2.1,
+      "text": "And if it would be\nlognormal, the volatility"
+    },
+    {
+      "start": 4473.58,
+      "duration": 4.2,
+      "text": "should be straight\nline, and it is not."
+    },
+    {
+      "start": 4477.78,
+      "duration": 2.94,
+      "text": "That's why we need\nmore complicated models"
+    },
+    {
+      "start": 4480.72,
+      "duration": 1.9,
+      "text": "for stock dynamics."
+    },
+    {
+      "start": 4482.62,
+      "duration": 3.1,
+      "text": "That's why Black-Scholes\nis a nice example,"
+    },
+    {
+      "start": 4485.72,
+      "duration": 5.7,
+      "text": "but we need stochastic\nvolatility or others."
+    },
+    {
+      "start": 4491.42,
+      "duration": 3.94,
+      "text": "Jump diffusion is, by\nthe way, a tricky thing"
+    },
+    {
+      "start": 4495.36,
+      "duration": 5.1,
+      "text": "because the martingales with\njumps don't really work,"
+    },
+    {
+      "start": 4500.46,
+      "duration": 5.42,
+      "text": "so life becomes\nmore complicated."
+    },
+    {
+      "start": 4505.88,
+      "duration": 2.82,
+      "text": "So, yeah."
+    },
+    {
+      "start": 4508.7,
+      "duration": 2.46,
+      "text": "So that's a nice--"
+    },
+    {
+      "start": 4511.16,
+      "duration": 3.04,
+      "text": "another nice example\nof replication."
+    },
+    {
+      "start": 4514.2,
+      "duration": 5.2,
+      "text": "And in general, that's how\na lot of things function."
+    },
+    {
+      "start": 4519.4,
+      "duration": 3.92,
+      "text": "What you try to do, you look\nat the payout of a portfolio"
+    },
+    {
+      "start": 4523.32,
+      "duration": 3.24,
+      "text": "and you try to replicate the\npayout with the instruments"
+    },
+    {
+      "start": 4526.56,
+      "duration": 2.76,
+      "text": "which you have at hand,\nor at least approximate"
+    },
+    {
+      "start": 4529.32,
+      "duration": 5.0,
+      "text": "the payout, because if you did\nit, you know the price now."
+    },
+    {
+      "start": 4534.32,
+      "duration": 2.08,
+      "text": "Or you know arbitrage."
+    },
+    {
+      "start": 4536.4,
+      "duration": 7.06,
+      "text": "The other way to do it is form\nsome complicated portfolio"
+    },
+    {
+      "start": 4543.46,
+      "duration": 2.36,
+      "text": "and find misplacement."
+    },
+    {
+      "start": 4545.82,
+      "duration": 3.56,
+      "text": "And then it becomes arbitrage."
+    },
+    {
+      "start": 4549.38,
+      "duration": 2.5,
+      "text": "Nowadays, it's\npractically impossible,"
+    },
+    {
+      "start": 4551.88,
+      "duration": 6.78,
+      "text": "but people did a lot of things\nwith more complicated options"
+    },
+    {
+      "start": 4558.66,
+      "duration": 4.52,
+      "text": "even 15, 20 years--\nwell, 25 years ago."
+    },
+    {
+      "start": 4563.18,
+      "duration": 5.44,
+      "text": "I think Jake has a good\nstory about that, how"
+    },
+    {
+      "start": 4568.62,
+      "duration": 2.94,
+      "text": "he was starting in FX, options."
+    },
+    {
+      "start": 4571.56,
+      "duration": 1.92,
+      "text": "Yeah, just another illustration."
+    },
+    {
+      "start": 4573.48,
+      "duration": 3.3,
+      "text": "I did the same for IBM stock\nand, yeah, sure enough,"
+    },
+    {
+      "start": 4576.78,
+      "duration": 1.62,
+      "text": "it's the same straight line."
+    },
+    {
+      "start": 4578.4,
+      "duration": 3.39,
+      "text": "I didn't plot the implied vol,\nbut it's probably even uglier"
+    },
+    {
+      "start": 4581.79,
+      "duration": 0.5,
+      "text": "here."
+    },
+    {
+      "start": 4585.9,
+      "duration": 6.24,
+      "text": "Yeah, we're about at time,\nbut I would leave you"
+    },
+    {
+      "start": 4592.14,
+      "duration": 5.45,
+      "text": "with a little bit of\nfood for thought here."
+    },
+    {
+      "start": 4597.59,
+      "duration": 3.1,
+      "text": "So this is called\ndigital option."
+    },
+    {
+      "start": 4600.69,
+      "duration": 4.2,
+      "text": "The payout of digital option,\nor all-or-nothing option."
+    },
+    {
+      "start": 4604.89,
+      "duration": 5.66,
+      "text": "It's basically either pays you\n0 if you end up out of the money"
+    },
+    {
+      "start": 4610.55,
+      "duration": 3.51,
+      "text": "or it pays you 1 if you\nend up in the money."
+    },
+    {
+      "start": 4620.25,
+      "duration": 2.92,
+      "text": "This is how Black-Scholes\nwould price it."
+    },
+    {
+      "start": 4623.17,
+      "duration": 5.7,
+      "text": "This is actually how call spread\nlooks from the data which I just"
+    },
+    {
+      "start": 4628.87,
+      "duration": 2.04,
+      "text": "showed you."
+    },
+    {
+      "start": 4630.91,
+      "duration": 1.9,
+      "text": "Pretty close to this."
+    },
+    {
+      "start": 4632.81,
+      "duration": 5.62,
+      "text": "So my challenge to you is\nfind a replicating portfolio"
+    },
+    {
+      "start": 4638.43,
+      "duration": 3.72,
+      "text": "which prices a digital\nbecause I claim"
+    },
+    {
+      "start": 4642.15,
+      "duration": 2.96,
+      "text": "that you don't need to\nhave a dynamic of the stock"
+    },
+    {
+      "start": 4645.11,
+      "duration": 2.96,
+      "text": "or do any complicated\nthings here."
+    },
+    {
+      "start": 4648.07,
+      "duration": 5.76,
+      "text": "You can replicate this\npayout practically exactly,"
+    },
+    {
+      "start": 4653.83,
+      "duration": 3.38,
+      "text": "actually approximate the payout."
+    },
+    {
+      "start": 4657.21,
+      "duration": 4.43,
+      "text": "And that's actually how\npeople hedge digital options."
+    },
+    {
+      "start": 4665.09,
+      "duration": 4.04,
+      "text": "Yeah, so think about it."
+    },
+    {
+      "start": 4669.13,
+      "duration": 5.4,
+      "text": "For with this, let me stop\nhere, and any questions?"
+    },
+    {
+      "start": 4674.53,
+      "duration": 1.01,
+      "text": "Happy to answer."
+    },
+    {
+      "start": 4684.09,
+      "duration": 6.8,
+      "text": "Looking forward a little\nbit, so we have two classes,"
+    },
+    {
+      "start": 4690.89,
+      "duration": 1.61,
+      "text": "two invited lectures."
+    },
+    {
+      "start": 4696.49,
+      "duration": 7.08,
+      "text": "And one of them, the one in a\nweek time will be by John Hull."
+    },
+    {
+      "start": 4703.57,
+      "duration": 5.96,
+      "text": "It will be by Zoom,\nand he will be"
+    },
+    {
+      "start": 4709.53,
+      "duration": 3.91,
+      "text": "talking about machine learning."
+    },
+    {
+      "start": 4713.44,
+      "duration": 2.92,
+      "text": "And I think it will be\nan interesting lecture--"
+    },
+    {
+      "start": 4716.36,
+      "duration": 2.68,
+      "text": "well, at least interesting\nbecause for me,"
+    },
+    {
+      "start": 4719.04,
+      "duration": 2.34,
+      "text": "John Hull is an icon."
+    },
+    {
+      "start": 4721.38,
+      "duration": 4.72,
+      "text": "I mean, not only he wrote the\nmost famous derivatives pricing"
+    },
+    {
+      "start": 4726.1,
+      "duration": 5.48,
+      "text": "book, he also created\nHull-White formulas"
+    },
+    {
+      "start": 4731.58,
+      "duration": 4.606,
+      "text": "and made a lot of contribution\nto quantitative finance."
+    },
+    {
+      "start": 4736.186,
+      "duration": 5.734,
+      "text": "And we are working on a couple\nof collaboration projects."
+    },
+    {
+      "start": 4741.92,
+      "duration": 1.72,
+      "text": "He is in the\nUniversity of Toronto,"
+    },
+    {
+      "start": 4743.64,
+      "duration": 2.62,
+      "text": "he is a professor of\nUniversity of Toronto."
+    },
+    {
+      "start": 4746.26,
+      "duration": 3.6,
+      "text": "So yeah, a little\nbit of advertisement."
+    },
+    {
+      "start": 4749.86,
+      "duration": 2.47,
+      "text": "All right, thank you very much."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] VASILY STRELA: So I'll talk mostly about risk-neutral pricing, and then Black-Scholes will be more of an illustration to the method-- to more general method, which I think is very important, and very important for pricing derivatives. And a few of you did look into Black-Scholes. So my hope is to give a little bit more depth and a little bit more perspective on what's the bigger picture of derivative pricing through risk-neutral valuation. But as promised, before, let's start from the interest rates from the slide which-- similar slide which I showed you on the first class. And Andrew Gunderson already talked about yield curve construction and everything. But, yeah, so that's what happened since we started. That's the yield curve-- or it's just a splitting, as it was in September just before beginning of the class, and that's where we are now. So quite predictable, in a sense, because Fed moved the rates by 75 basis points. And that's exactly what happened here. The parallel shift is only at 70 basis points here, but more of a 50 here. Now, a little bit of heuristics. How does it look like? Well, right now, it looks like we are very similar to this shape, which was the 19. On the other hand, this shape is almost exactly the same, which was, in fact, just before the crisis. So, in both cases, a recession-- I mean, in both cases, there, the curves are inverted, and in both cases, a recession followed shortly after. I certainly think-- hope that it is closer to this because just-- this is basically the next snapshot in '21, and the curve is completely normal shape, and the economy was-- the recession was very short and the economy was on a very solid track by then. And hopefully we are not in this situation because this is just before the crisis. It's before Bear Stearns collapsed, before Lehman collapsed, so a lot of bad things happened after that. In any case, this is all non-scientific prediction, and the real question here would be to do some thorough data analysis, something like-- Stefan Andreev talked about analyzing the shape of the curves and bond markets using a PCA, Principal Component Analysis. But always fascinating to look at the data and always fascinating to look at the curves, which, in my opinion, are in the middle-- in the center of finance. OK, let's move on to the topic of our class. And the idea is to see how replicating the payoff can help us to price derivatives. And how to learn that actually, if we can follow market dynamics, how it can help us to price derivatives. And actually, that the real-world dynamics is not that important. It's what market implies. That's what important. And how it is connected to martingales and to mathematical apparatus, to stochastic calculus connecting that. But here is a simple example. Horse betting. So let's assume-- it is clear-- that we have two horses, Horse 1 and Horse 2. And we-- I mean, you're a bookie, and you know the horse as well. You know that this horse has 20% to chance to win and this horse has 80% chance of winning. But people bet, bet on the market, and 10,000 is bet on this horse. People don't know exactly these probabilities. They know that this horse is better than this. So they bet-- rather, the public bets 50,000 on this and 10,000 on this. And what you do, you just take a commission. Say 1%. And you have 6,000 in your-- 600 in your pocket of the commission. So now the question is, you need to set the odds for this race. So, well, one way to set the odds is knowing the real exact probabilities. One, it's reasonable to say, let's make it 4 to 1. So what outcomes are possible? Then horse starts, horses race. So, H1 wins, H2 wins. So if a horse-- the first horse wins, you will get 50,000, this amount, and you will pay out 4 times this amount because you set the odds 4 to 1. So, this will mean that you will be left with 10,000 profit. This is low-probability outcome. You know that second horse is better. So what happens if second horse wins? Well, you will keep this money. So it will be 10,000. And you will pay a quarter of this. And this will be, on my books, minus 2,500 at the end. So you will lose, you will have to pay. Of course, if you compute the expected value, if horses run many, many times, it will be 0. 10 times 20.2 plus-- minus 2, 2 and 1/2 times 0.8 is 0. But for this, on average, the horses have to run a lot. Now, let's consider a different way of setting odds. You forget about these numbers. You just look at what was bad. And you rather set the odds 5 to 1. OK, let's see what happens. Well, if the first horse wins, you will get 500-- or 50,000, and you'll pay 50,000. Well, if second horse wins, you'll get 10,000, and one-fifth of this, so you pay out 10,000. So no matter which horse wins, you break even for sure in this particular outcome. And if you were collecting some fee, you just keep the fee, you would do it next time. So, basically what you did by setting the odds according to the market, you hedge yourself. You eliminated every uncertainty, which is probably the outcome which you want. All right, so this is all about betting, and we are not betting people. In fact, we are scientists. And we'll be talking today about pricing derivatives. Again, some simple examples and derivatives which we will be looking at will be call/put options and forward contracts. Just to refresh, so what are those? So the simplest possible derivative is a forward contract, which is an agreement to buy a security-- in our case, a stock, in the future for a price which is set today. Generally speaking-- so the payout of a forward is just the difference of the strike and the price at the expiration-- at the expiry. So the payout is S minus K, where K is a strike. Agreed price. And for forwards, the agreement is that the strike is set in such a way that it costs you nothing to enter it today. You basically say, we agree with you today for a zero price that I'll buy the stock at the price K. So quite a useful diagram is the payout. That's-- sorry, that's the blue line, so it's-- in our case, it's S minus K. So that's forward. Now, call option. Call option is an option to buy a stock at price K. So basically, at expiry, you will decide, are you buying the stock at price K? Or if you don't want to, you won't. And generally speaking, if the stock ends at the money, higher than the strike, you will buy it, because it will be cheaper. and if the stock ends below the strike price, you'll say, thank you very much, and the contract will expire worthless. So this is the payout at the end. And this is the price of the call option today. Obviously, it is not zero-price contract. It is-- you will pay some money to enter into this contract. Another usual and simple contract would be a put option, which is an agreement to sell the-- it's kind of opposite right. It's basically prevents-- if the option-- the stock is too high, you won't sell it. If the stock ends low, you will sell it for a higher price. So it is basically insurance, insurance against stock falling below the strike price. And here is the current price. And what we'll be doing today is deriving these curves, deriving the current price, the price today, for the options and the forwards. And what we'll see is a few observations that the only-- what will matter, it is assumptions on the dynamics of the stock price, some assumptions on how the stock behaves, some assumptions on interest rates. And given that, there will be no uncertainty in the price of the derivative. And this was-- believe me, this wasn't clear to market participants before Black and Scholes. And the other important observation which we'll see, that the preferences of market participants will not matter. It's in a similarly to our horse-racing example, we'll be able to find the riskless ways to replicate the price of the option. All right. So, let's start with a simple example of the forward. And let's start from a discrete time and stock prices because it's simpler to understand. And so what does it mean? Is that right now, we have some price of our stock as 0. We have price of our contract, F0. In the case of the forward, we assume that it's 0 because we assume that we are entering at the forward contract at 0 price. And there are two outcomes that we are only one step away. So some time dt to the future. And at the outcomes, either S1 or S2, so the stock can go either here and here. And our derivative, according to our formula, will go to S1 minus K or S2 minus K. So, again, from naive perspective, one can say, well, there is some probability for stock to go up to S1 and some probability of 1 minus P for stock to go down. And one would say that we can assume that our price now is actually expected value with this probability of the value of our derivative at the end. And so it will be P times F1 minus 1 minus P times F2. And-- well, P times S1 minus K plus 1 minus P times S2 minus K. And from here, we can actually-- what we are looking for is the agreed price on our forward. So we can say that our strike price should be PS1 plus 1 minus P times S2. But we don't know the probability, and in fact, that's, as we'll see in a second, it's not a good way to approach it. And why? Here is why. Because here is a suggestion what we should do. Here is a suggestion how we can construct a risk-neutral portfolio here. So, that's what we are going to do. So at time 0, we enter into forward contract with strike K, and in a second, we'll see what the strike K will be, at 0 cost. Enter forward at 0 cost. And we will borrow money to buy the stock. So we're borrow F0. So we'll borrow money in a bank and buy the stock. For a minute, let's assume that our interest rates are 0 for simplicity. OK. So what happens at expiry? What happens? It's time equals 0, time equal dt. So at expiry, what we'll do, we will deliver the stock because we have it. Deliver S. And we will receive our strike price. And repay the loan. So basically, what happens here? We borrow here, we had a stock. We came here, we delivered the stock, this costs nothing. So we receive K. That's agreed strike. And we repay the loan, which we started here. Because interest rate is 0, It didn't change. If it changed, it will be some e to the minus-- e to the rt times F0. So, now, that's what we'll get here. And here, we started with 0 because we paid 0 to enter. What can we say about this? Well, if this was greater than 0, we for sure receive money. There is no other outcome. If it's less than 0, for sure lost money. No arbitrage, assume will tell us that neither is possible. So because the price was-- initial price was 0, this has to be 0. Because this replicates our payoff. So our strike has to be 0. So if there are no interest rates, the forward contract would just-- we would agree to buy or sell the price-- the stock in the future at the current price if interest rates are 0. So no choice, and we don't care about real-world probabilities, and we don't care about how the stock behaves in real life. We just replicated everything. What's interesting, though, what's interesting, though, we can find the probability, which will give us our strike-- or which will give us this formula. So what will it be? Well, well K is equal F0. And so our P-- and I'll call it neutral risk-- neutral probability, S1 plus 1 minus Pn S2. And we can find our Pn from here. S0 minus S2 divided by S1 minus S2. What's interesting observation here, well, first of all, that we can find this risk-neutral probabilities. And we actually could price our forward contract using these probabilities, using this expected payoff. The interesting-- the most interesting part is that our current stock price our underlying under this risk-neutral probability is expected value of the future move of the stock. And that's what we will see. So that's basically our risk-neutral measure. And that's how we will be looking for our risk-neutral measure because we can always find a measure which implies that our current underlying value, asset value, is expected value of the future payoff. And that's a measure which we can use to price the derivatives. OK. So let's move to something more interesting. And let's do a call option, but still in discrete time. So, our call option payoff would be maximum of the value at expiration minus K and 0. That's here. That's our payoff. That's the hockey stick. But we still assume, for this exercise, let's still assume interest rates are 0. So our diagram will be our value of call option, which we'll be looking for at time 0, our stock is 0-- at S0, stock goes to S1 or to S2. And our value of our call will go-- we assume that S1 is greater than S0, S2 is less than 0, so here, value of our option will be what? ST minus K. And value of our call option here will be 0, because it will be this thing. OK. Good. So, now, what we want to do, we want to find the replicating portfolio. And here is suggestion how-- so replicating portfolio in the case of forward was stock itself. It was replicating the payout. Now, my suggestion is to do the following. Our replicating portfolio would be some amount of cash and some amount of stock. And we want to find these values of cash and how much stock we need such that our option payoff is replicated here. Well, we certainly can do it in this simple case because, well, in the beginning, our portfolio will be B0 plus aS0. At the end, it will be B1 plus S1 or B2 plus aS2. And, our condition of replication is that in this state, it should be equal to this. And in this state, it should be equal to this because we are replicating our payoff. And let's notice that because our interest rate is 0, again, this thing doesn't change because it's just cash. Well, nice and easy. From here, we can find that our a-- well, if we subtract this equation from this equation-- I mean, we have two equations with two unknowns. So B0 is one unknown, and the second unknown is a. So from here, we can easily find that a is equal S1 minus K divided by S1 minus S2. And B0 is equal S2 times K minus S1 divided by S1 minus S2. And, knowing that, if we replicate it the same as before, if we replicated the part-- we have a replication portfolio, that's where it should be here, and this is our C0. And that's what we are looking. We are looking for the value of our option at time 0. So our C0 is equal to aS0 minus S2. Or it is S1 minus K divided by S1 minus S2 times S0 minus S2. OK. So basically, by the same replication argument, we're able to find our value. Now, coming back to our risk-neutral, sure enough, if we use this same probability, which is derived from expected value of the stock, the price of our C0 is actually P neutral times ST minus K plus 1 minus P neutral times 0. So, if we know this probability, and we can derive it from here. Instead of doing all this difficult machinery, we can just take the payoff and take expected value of our payoff using this probability and get the value of our derivative now. All right. So that's discrete world. And, yeah, so just for your reference, here, it is the same set of formulas for any payout. And one other interesting, useful comment here is that we started with replicating portfolios. So we started with some cash and some stock in order to replicate the value of our option on the next step. On the other hand, one can rewrite it and say that this portfolio is because this is just cash. This is riskless portfolio. And we'll see just in a second that sometimes it's more convenient, instead of talking about replicating portfolios, it's about talking the portfolios without risk. So we basically form a portfolio of option, of full value of option, and some stock such the combination is riskless. OK. So that's our discrete world. With that, let's move on to continuous world. So, in continuous world, for today, we'll be looking-- we'll be working with lognormal dynamics, but we'll see that it's not absolutely crucial. It's just a nice example, once again. And lognormal dynamic is basically dynamic which implies that there is some growth. And there is some random component. Well, one can also write it in this form. And let's talk a little bit about dW, what it is. So dW is a random walk linear process. So expected value of dW is equal to 0, and standard deviation of dW is equal to square root of dt. And that's what always bothers me. Why standard deviation has to be square root of dt? Why do we know that? Well, and here is a hand-wavy reason without any matter theory or anything else is the following. So suppose we have dt steps. Our random walk had n steps. So, the collection of those will be dW0 dW1, so on, and dWn. And the-- not equal. So our dWn, the final value after n steps, it will be sum of all the smaller steps. So, what's expected value of Wn? Well, it is sum of the expected values of all dWs, and each of them is 0, so it is 0. It's, in fact, martingale, it stays 0. Well, what is the standard deviation, or variance, of our dWn? Well, it will be sum of squared of each step. Yeah, and what I forgot to say-- to tell here, is that probability of us going up-- we are going by 1, either up or down. And on each step, it is 1/2. With probability 1/2, we go up or down. And correlation, our steps are not correlated. That's important. So then the variance here will be sum of expected values of dWi squared, each of them will be 1 with probability 1/2. So it will be n. So with probability 1/2, it is 1. With probability 1/2, it's minus 1. So sum of squares will be, well, 1, so n steps, it will be n. OK, fine. Now, let's put our n steps on a finite period of time. Let's assume that we have a finite period of time and we split it at n equal periods of small delta t. And we also-- let's assume that instead of doing the steps of 1 and minus 1, let's assume that there are some number d. Plus or minus d with probability-- sorry. OK. So expected value of our random walk still stays 0. And our variance now becomes what? Sum of 1/2 d squared plus 1/2 d squared. So nd squared. And our n, we assume that it is just split period of time. So Td squared divided by delta t right. So basically, what I'm trying to say is that, if we put our steps on a period of time, that's what's our variance. And now, if we make the steps smaller, the time steps smaller, and the space steps smaller as well, we're kind of taking into infinity. We make-- we are taking a limit over the finite period of time, and the only way for this to stay finite and not 0 is for this to be of order of magnitude of square root of t. So a long-winded question-- a long-winded answer is, for why standard deviation of our Brownian motion has to be square root of t. Because otherwise, we either will have zero variance or exploding process. So for this process not to explode, this has to be true. All right. Now, another observation before we go to option pricing is to talk about Taylor formula and Ito formula as the follow-up to it. So, if our life was deterministic and there was a function of two variables, S and t, then our Taylor formula to the first degree-- or to the second degree, let's write it down, we'll take the partial derivatives with respect of both, and then we'll have second derivatives. So 1/2 of d 2 f by dt squared dt squared plus 1/2 d 2 f by ds squared. Plus mixed derivative. So this is to second degree plus delta. This is to the second degree. Now, in our stochastic world, these two terms have different magnitude. So the deterministic term is of magnitude dt, and stochastic term is of magnitude of square root. So, if we go back to our Taylor formula and would like to have expansion to the first degree, what will have to do? So in our stochastic world-- so this is the first degree. So this we keep. This is first degree, or first degree or less right because our dS is dt plus-- this is of order of magnitude of square root dt. So this we'll keep completely. And now if we go to mixed terms, this is second degree squarely. Get rid of it. Now, this is certainly more than first degree, so get rid of it. But here, something is left. And what is left is square of this, roughly speaking. So we'll have to have a term which is coming from dS squared, which will be 1/2 of d 2 f by ds squared. And from ds squared, the first term will be dt squared, not interesting. The mixed term will be dt times dW will be less than dt, but the square of dW will be exactly of the order of magnitude of dt. So here will be sigma squared S squared dt-- dS squared, sorry. And this is called Ito's formula. Very important for stochastic calculus. And this is quick and dirty derivation of it. OK. Now, let's move on to our-- now this will leave probably. So we'll need this, this, but this we don't need. So let's move to pricing. So we still want to price some claim, derivative claim. And we'll call it f in our case. And we'll form a replicating portfolio. And as before, our replicating portfolio will consist of some stock, some cash. And what we want to do is to replicate our value of our claim on each step, on each step dt. Now, let's do the trick which we did before. Let's rearrange this. So let's notice that aSt minus f of t-- so the combination-- or f minus a-- sorry. That this combination of our derivative and stock is riskless. And what does it mean? That-- well, now, we'll assume that interest rates are not 0, what does it mean? It means that this thing, if it's riskless, it has to grow with time as e to the rt. By definition. So Bt is equal e to the rt times B0. So we started our strategy at time 0. And since then, our cash is growing with interest rate t. And what does this mean? Well, this means that our dB is deterministic function. No need for Ito or anything like this. And we all can differentiate exponentials. So trivial mass. That's how rB works. So, now, that's-- so let's try to differentiate the whole thing. We know the right side, because it's deterministic. It will be this. So, the derivative of our riskless portfolio will be r times our riskless portfolio times dt. Good. Now, we'll keep it as a right-hand side, and for this, we'll use our-- either Ito's formula. Well, let's do that. So we continue to differentiate that, and we get df minus a dS. And our f is stochastic, we use our Ito's formula, would be d of dt times dt plus df dS times dS plus our stochastic term, plus 1/2 d 2 f by dS squared dS squared. And we don't forget to subtract this. And if we just continue further and start collecting terms-- so we'll expand our dS according to our formula. And we'll collect terms with the certain terms with dt and uncertain terms with our dW. So, if we collecting our terms with dt here, it will be df by dt plus 1/2 coming from dS squared, and dS squared, remember, it will be sigma squared S squared dt. It comes from this only. So it will be-- oh, sorry, sorry, sorry, sorry, sorry. Well, yeah, not-- OK, that's fine. Plus 1/2 d 2 f by dS squared sigma squared S squared. And I missed this one. And if we are collecting the dt terms, it has to be that. Plus df by dS times mu S. And we should not forget dt term from here minus a mu S, and that completes our dt term. Now let's see what happens with our dW term. Well, dW term will be partially from here. df by dS sigma S from here. Minus part from here, a sigma S. And this is equal dW-- times dW. And what it is equal to? Well, it is equal to this. Yeah? STUDENT: How come we can say that dW squared equals dt? Because I thought we just knew that standard deviation is the square root of dt, but, like-- VASILY STRELA: So dW squared is dt. STUDENT: But I thought W was random. I thought dW was random. So how can you say that when you square it, you get something deterministic? VASILY STRELA: Well, this is more of a notation, but yeah, we kind of-- yeah, it is not very rigorous notation. But that's basically what Ito's formula tells you. So if you go into the strict proof, that's what you will get, basically, for the second-- for the squared term. But-- PROFESSOR: --add to that, when we talked about Brownian motion, the quadratic variation of Brownian motion is constant over time. STUDENT: I see. PROFESSOR: And so over the infinitesimal integrals-- STUDENT: That makes sense, thanks. VASILY STRELA: A combination of infinitesimal, and the fact that the-- yeah, that the standard deviation is of order of magnitude. But yes, you are right, it is kind of sloppy notation. OK. And this is equal to rf minus raS dt. Because we knew that this part is deterministic. So there are no dW terms on this side. So what does it mean? That this has to be equal to this, and this has to be equal to 0 because right-hand side here is completely deterministic. So uncertainty has to disappear. Why it disappears, it's by construction. Because from the very beginning, we said that we want to find such an a, and that's what we'll get just in a second, that this portfolio is riskless. Or another way that we can replicate our derivative. So, if this is equal to 0, then our a is equal to df by dS. And we are done. So what we are done in a sense, that we arrive at the following equation, basically. Where should I write? How about this? So our main equation will be this equal to this, but we will substitute a. And let me write it here, the equation which we arrive at. df by dt plus 1/2 d 2 f by dS squared sigma squared S squared is equal to rf minus rdf by dS times S. And this is the Black-Scholes equation. So that's what we are looking for, and that's what we will be solving. So just to give-- yeah. So in the slides, there are nicer and more cleaner write-up. Yeah. So basically, what we found out, that any derivative claim, any payoff has to satisfy this equation. Well, under assumptions of our lognormal motion, if we assume some other dynamics of the stock, the equation will be different, but we still can derive it in a similar manner. But the beauty of it that any derivative claim, any payout at any time before expiry has to satisfy this equation. Moreover, this equation doesn't depend on our drift. On our real-world drift. And we will come back to this-- shortly. So it doesn't matter. What matters is volatility. And we will touch upon-- hopefully we'll have time to touch upon it further in Black-Scholes theory, it is assumed constant, but it doesn't have to be. You can assume some function or you can assume this to be stochastic itself, which will make the equations more complicated to solve, but once again. And that's what Fisher Black, Myron Scholes, and Robert Merton discovered-- or published in their 1973 paper. Believe it or not, it was quite controversial because-- and actually wasn't very much applauded at the time, but was recognized by a Nobel Prize in '97. And the always fun fact to say that all three of them are associated with MIT. And Bob Merton is still, I think, a professor at MIT, which is obviously quite nice to talk about in these walls. So now, coming-- well, maybe a couple of remarks. Yeah. Yeah, so which I said that-- so any derivative satisfies this equation, it doesn't depend on real-world drift. We obtained this equation by replicating strategy, and that's the most important. The other beauty of it is, it's not only replicating strategy, it's also hedging strategy. So if we know our a, which is actually derivative of our current price with respect to stock, we can hedge out all the risk. So basically, by holding option and some amount of stock, this amount of stock, our portfolio becomes riskless, which is very important practical conclusion. The more mathematical technical observations are that this is actually a form of heat equation, and a good technical exercise would be to figure out what change of variables gives you the heat equation, and this is very well-studied and solved problem, even though it has to be numerical. So as any partial differential equation, to solve it, it will require the initial-- or actually, in this case, final conditions and boundary conditions. And what is our final condition? Well, our final condition is actually our final payoff, which will be this. This is our final condition. This we know. And what will be our boundary condition for call? Will be that at 0, the value of the call is 0. And the other boundary condition would be that at infinity, it is actually the-- approaches S minus K. And if we imply these boundary conditions and final conditions-- and this is the conditions for a put, we can derive-- arrive to analytical or semi-analytical formulas for the prices. Of course, it's expressed in the terms of error function, which has to be tabulated. Yeah. In more complicated cases, in the cases of more complicated dynamics, of course, the formulas are not so nice, and most probably, it will require some numerical integration and numerical procedures, which is a big part of numerical finance, in fact. What I wanted to talk about is coming back to risk-neutral pricing. And let me do it here. Basically, how do we find our risk-neutral measure? And how do we find our risk-neutral PDF? Well actually-- we're fine. In the case of lognormal, it is pretty simple because, well, our dS is equal to mu S dt plus sigma S dW. So, here is a nice trick. If we take expectation value of both sides, then we'll get a differential equation for-- well, for expected value of this is 0 because expected value of dW is equal 0. So an expected value of this will be mu dt. So, nice differential equation for our expected value. So our-- the expected value of the stock should be equal to initial value of the stock times e to the mu t. But for our risk-neutral assumptions, remember-- so we said that in discrete case, the whole point of risk-neutral probability was that expected value of our stock should be-- our stock may be compounded by interest rate. Well, when interest rate was 0, it was constant. It was-- so in lognormal dynamics, dS over S will be martingale. So this has to be equal to Se to the rt because under risk-neutral dynamics, our stock has to grow with r. So basically, it tells us that mu has to be equal to r under our risk-neutral measure. So, now, OK, mu is equal to r, but we can easily find a PDF of this process at time t, and that's what it is, of lognormal process, basically. With mu substituted by r. So, yeah. So mu substituted by r. And what I'm saying, that now instead of solving our Black-Scholes equation for any claim under lognormal dynamics, we could just take our payoff and integrate it against this PDF, the final PDF, and get the value of the function now as the expected payoff under risk-neutral measure. And that's our risk-neutral measure. So that's a nice benefit. Of course, it is easier for lognormal, for other processes. It is not that easy, but it's certainly an added benefit. Another example which I want to give you in the past-- in the last 10 minutes is another application example. So let's form such a portfolio. Let's buy a call and sell a put. So what is it? Well, let's draw a diagram. And let's draw a diagram at time maturity t. So we long a call so with some strike K. So this is our strike K. So our call looks like this. We short a put. So put would be like this, and short put, it we'll flip it, so it's like this. How does it look? It looks like just like a forward. So, at maturity, this portfolio has zero uncertainty, it's forward. So at any time before maturity, it has to be the forward value of the stock. So it always has to be. So at maturity, it is St minus K. So-- at maturity. So at any point of time, the difference of call and put has to be the difference of value of the current value of the stock and, to tell the truth, discounted value of the strike. T minus t. And the beauty of it that we made zero assumptions about dynamics of the stock here. This has to be true always. It's just how the payoffs look like. Because we always know forward, it is only dependent on interest rate. It doesn't depend on dynamics of the stock. And this portfolio doesn't depend on the dynamics of the stock. And it's quite powerful because it basically tells you that if this is different at any point of time, you have an arbitrage. And to illustrate that, I actually-- when-- sorry. Went to Bloomberg, took real prizes of calls and puts-- this is Apple stock a while ago, admittedly. And here, I literally plotted the data from here for a call and for put and literally summed it up. And you see that it is a straight line. And no surprise, because if it wouldn't be, it would be an arbitrage, people will jump on it immediately. People check for it all the time. The beauty of it, that the dynamics of the stock is not lognormal, and how can we see it? Well, I also plotted here implied volatility for-- I think I did it for call here. And if it would be lognormal, the volatility should be straight line, and it is not. That's why we need more complicated models for stock dynamics. That's why Black-Scholes is a nice example, but we need stochastic volatility or others. Jump diffusion is, by the way, a tricky thing because the martingales with jumps don't really work, so life becomes more complicated. So, yeah. So that's a nice-- another nice example of replication. And in general, that's how a lot of things function. What you try to do, you look at the payout of a portfolio and you try to replicate the payout with the instruments which you have at hand, or at least approximate the payout, because if you did it, you know the price now. Or you know arbitrage. The other way to do it is form some complicated portfolio and find misplacement. And then it becomes arbitrage. Nowadays, it's practically impossible, but people did a lot of things with more complicated options even 15, 20 years-- well, 25 years ago. I think Jake has a good story about that, how he was starting in FX, options. Yeah, just another illustration. I did the same for IBM stock and, yeah, sure enough, it's the same straight line. I didn't plot the implied vol, but it's probably even uglier here. Yeah, we're about at time, but I would leave you with a little bit of food for thought here. So this is called digital option. The payout of digital option, or all-or-nothing option. It's basically either pays you 0 if you end up out of the money or it pays you 1 if you end up in the money. This is how Black-Scholes would price it. This is actually how call spread looks from the data which I just showed you. Pretty close to this. So my challenge to you is find a replicating portfolio which prices a digital because I claim that you don't need to have a dynamic of the stock or do any complicated things here. You can replicate this payout practically exactly, actually approximate the payout. And that's actually how people hedge digital options. Yeah, so think about it. For with this, let me stop here, and any questions? Happy to answer. Looking forward a little bit, so we have two classes, two invited lectures. And one of them, the one in a week time will be by John Hull. It will be by Zoom, and he will be talking about machine learning. And I think it will be an interesting lecture-- well, at least interesting because for me, John Hull is an icon. I mean, not only he wrote the most famous derivatives pricing book, he also created Hull-White formulas and made a lot of contribution to quantitative finance. And we are working on a couple of collaboration projects. He is in the University of Toronto, he is a professor of University of Toronto. So yeah, a little bit of advertisement. All right, thank you very much."
+}

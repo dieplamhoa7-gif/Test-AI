@@ -1,0 +1,4793 @@
+{
+  "index": 15,
+  "id": "qlytPllimpQ",
+  "title": "Lecture 12: Time Series Analysis",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.932,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 1.932,
+      "duration": 1.449,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.381,
+      "duration": 2.415,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 11.42,
+      "duration": 3.22,
+      "text": "PETER KEMPTHORNE: So today we're\ngoing to cover an introduction"
+    },
+    {
+      "start": 14.64,
+      "duration": 2.0,
+      "text": "to time series analysis."
+    },
+    {
+      "start": 16.64,
+      "duration": 2.28,
+      "text": "And time series\nanalysis is really"
+    },
+    {
+      "start": 18.92,
+      "duration": 5.96,
+      "text": "a very powerful\nmethodology in statistics,"
+    },
+    {
+      "start": 24.88,
+      "duration": 3.84,
+      "text": "and especially powerful\nwhen it comes to modeling"
+    },
+    {
+      "start": 28.72,
+      "duration": 1.26,
+      "text": "financial markets."
+    },
+    {
+      "start": 29.98,
+      "duration": 3.7,
+      "text": "So I hope you'll find\nthis introduction"
+    },
+    {
+      "start": 33.68,
+      "duration": 3.64,
+      "text": "engaging and motivating."
+    },
+    {
+      "start": 37.32,
+      "duration": 4.04,
+      "text": "So let's talk about time series."
+    },
+    {
+      "start": 41.36,
+      "duration": 5.56,
+      "text": "We basically have notation\nindicating a stochastic process"
+    },
+    {
+      "start": 46.92,
+      "duration": 5.76,
+      "text": "where X corresponds to the\nvalue of the process at time T,"
+    },
+    {
+      "start": 52.68,
+      "duration": 7.11,
+      "text": "and the time periods\nT can be discrete."
+    },
+    {
+      "start": 59.79,
+      "duration": 3.32,
+      "text": "This is most commonly\nwhat we'll work with."
+    },
+    {
+      "start": 63.11,
+      "duration": 6.56,
+      "text": "But it can also correspond to\na continuous time interval."
+    },
+    {
+      "start": 69.67,
+      "duration": 6.96,
+      "text": "And so we can imagine basically\ntime periods, time indexed"
+    },
+    {
+      "start": 76.63,
+      "duration": 3.28,
+      "text": "by positive numbers from zero."
+    },
+    {
+      "start": 79.91,
+      "duration": 7.04,
+      "text": "And in terms of modeling\nsuch a time series,"
+    },
+    {
+      "start": 86.95,
+      "duration": 4.88,
+      "text": "we want to be able to\nspecify the probability"
+    },
+    {
+      "start": 91.83,
+      "duration": 6.68,
+      "text": "model for any collection\nof time point values."
+    },
+    {
+      "start": 98.51,
+      "duration": 4.96,
+      "text": "So when we say, let's specify\na probability model for a time"
+    },
+    {
+      "start": 103.47,
+      "duration": 3.16,
+      "text": "series, then that\ncorresponds to being"
+    },
+    {
+      "start": 106.63,
+      "duration": 5.9,
+      "text": "able to specify the joint\ndensity of any set of points--"
+    },
+    {
+      "start": 112.53,
+      "duration": 3.22,
+      "text": "here we have m\ndifferent time points."
+    },
+    {
+      "start": 115.75,
+      "duration": 3.52,
+      "text": "This generalizes\nto all cases of m."
+    },
+    {
+      "start": 119.27,
+      "duration": 5.52,
+      "text": "And such a subset of the\nvalues of the process"
+    },
+    {
+      "start": 124.79,
+      "duration": 5.92,
+      "text": "are a finite dimensional\nset of values,"
+    },
+    {
+      "start": 130.71,
+      "duration": 2.92,
+      "text": "and so we'll have finite\ndimensional distributions"
+    },
+    {
+      "start": 133.63,
+      "duration": 3.2,
+      "text": "for xt."
+    },
+    {
+      "start": 136.83,
+      "duration": 6.84,
+      "text": "Now importantly, we'll want\nto consider time series that"
+    },
+    {
+      "start": 143.67,
+      "duration": 3.32,
+      "text": "are strictly stationary."
+    },
+    {
+      "start": 146.99,
+      "duration": 3.12,
+      "text": "And a strictly\nstationary time series"
+    },
+    {
+      "start": 150.11,
+      "duration": 5.48,
+      "text": "is one for which the\ndistribution of any set of time"
+    },
+    {
+      "start": 155.59,
+      "duration": 7.92,
+      "text": "points is equal to the\ndistribution at the same time"
+    },
+    {
+      "start": 163.51,
+      "duration": 2.8,
+      "text": "points shifted by a constant."
+    },
+    {
+      "start": 166.31,
+      "duration": 5.84,
+      "text": "So if we're looking\nat the index of time"
+    },
+    {
+      "start": 172.15,
+      "duration": 6.27,
+      "text": "and we have xt, if we look\nat, say, four points here,"
+    },
+    {
+      "start": 178.42,
+      "duration": 5.52,
+      "text": "T1, T2, T3, T4, then\nthe distribution"
+    },
+    {
+      "start": 183.94,
+      "duration": 4.84,
+      "text": "of the values at\nthese time points"
+    },
+    {
+      "start": 188.78,
+      "duration": 3.56,
+      "text": "will be the same\nas the distribution"
+    },
+    {
+      "start": 192.34,
+      "duration": 4.44,
+      "text": "if we shift these time points\nall by the same amount tau."
+    },
+    {
+      "start": 196.78,
+      "duration": 3.34,
+      "text": "So T2 plus tau and so forth."
+    },
+    {
+      "start": 200.12,
+      "duration": 8.38,
+      "text": "So we basically have that in\nthis window and in this window,"
+    },
+    {
+      "start": 208.5,
+      "duration": 3.6,
+      "text": "the distribution of\noutcomes is the same."
+    },
+    {
+      "start": 212.1,
+      "duration": 1.72,
+      "text": "So what does that mean?"
+    },
+    {
+      "start": 213.82,
+      "duration": 6.98,
+      "text": "Well, that means that if there's\na mean value in this period,"
+    },
+    {
+      "start": 220.8,
+      "duration": 4.94,
+      "text": "then it's the same mean value\nin this other period, as well"
+    },
+    {
+      "start": 225.74,
+      "duration": 1.5,
+      "text": "as all possible periods."
+    },
+    {
+      "start": 227.24,
+      "duration": 6.02,
+      "text": "So we basically have\na probability model"
+    },
+    {
+      "start": 233.26,
+      "duration": 7.75,
+      "text": "that is constrained in terms\nof the level being horizontal"
+    },
+    {
+      "start": 241.01,
+      "duration": 5.28,
+      "text": "and the amount of spread\nabout that level is constant."
+    },
+    {
+      "start": 246.29,
+      "duration": 7.8,
+      "text": "Now with statistics, we\nlike to estimate parameters."
+    },
+    {
+      "start": 254.09,
+      "duration": 3.38,
+      "text": "Parameters, like a sample mean,\nare very easy to estimate."
+    },
+    {
+      "start": 257.47,
+      "duration": 4.78,
+      "text": "We get a sample of values\nand estimate the population"
+    },
+    {
+      "start": 262.25,
+      "duration": 2.64,
+      "text": "mean with the sample mean."
+    },
+    {
+      "start": 264.89,
+      "duration": 5.36,
+      "text": "And so we're maybe familiar\nwith estimating constants"
+    },
+    {
+      "start": 270.25,
+      "duration": 3.14,
+      "text": "and estimating\nmeans of populations"
+    },
+    {
+      "start": 273.39,
+      "duration": 3.34,
+      "text": "is a trivial example or\na simple example of that."
+    },
+    {
+      "start": 276.73,
+      "duration": 4.76,
+      "text": "With stationary\ntime series, we want"
+    },
+    {
+      "start": 281.49,
+      "duration": 5.32,
+      "text": "to consider perhaps a\ntransform of our time series"
+    },
+    {
+      "start": 286.81,
+      "duration": 2.68,
+      "text": "to a stationary scale."
+    },
+    {
+      "start": 289.49,
+      "duration": 4.51,
+      "text": "And then there will be\nparameters of that distribution"
+    },
+    {
+      "start": 294.0,
+      "duration": 1.9,
+      "text": "that we can estimate."
+    },
+    {
+      "start": 295.9,
+      "duration": 4.94,
+      "text": "And we can estimate them\nbecause the distribution"
+    },
+    {
+      "start": 300.84,
+      "duration": 3.26,
+      "text": "is the same, basically\nacross the whole range."
+    },
+    {
+      "start": 304.1,
+      "duration": 1.5,
+      "text": "So there's some\nhope that we'll be"
+    },
+    {
+      "start": 305.6,
+      "duration": 5.2,
+      "text": "able to specify\nparameters consistently"
+    },
+    {
+      "start": 310.8,
+      "duration": 3.04,
+      "text": "and with high precision."
+    },
+    {
+      "start": 313.84,
+      "duration": 10.4,
+      "text": "Now a less strict\nstationarity condition"
+    },
+    {
+      "start": 324.24,
+      "duration": 3.04,
+      "text": "is called covariance\nstationarity."
+    },
+    {
+      "start": 327.28,
+      "duration": 2.96,
+      "text": "And with covariance\nstationarity,"
+    },
+    {
+      "start": 330.24,
+      "duration": 6.2,
+      "text": "we're looking just at the first\nand second order expectations"
+    },
+    {
+      "start": 336.44,
+      "duration": 3.0,
+      "text": "of the time series values."
+    },
+    {
+      "start": 339.44,
+      "duration": 8.04,
+      "text": "So the mean value of Xt will\nbe a constant mu for all t"
+    },
+    {
+      "start": 347.48,
+      "duration": 7.86,
+      "text": "and the variance of Xt will\nalso not depend on the time t."
+    },
+    {
+      "start": 355.34,
+      "duration": 4.18,
+      "text": "It will be stationary or\nconstant over the time range."
+    },
+    {
+      "start": 359.52,
+      "duration": 8.4,
+      "text": "And the covariance of values\nthat are tau units apart"
+    },
+    {
+      "start": 367.92,
+      "duration": 5.52,
+      "text": "will have a covariance that\nsimply is a function of how"
+    },
+    {
+      "start": 373.44,
+      "duration": 3.28,
+      "text": "far apart the time points are."
+    },
+    {
+      "start": 376.72,
+      "duration": 7.8,
+      "text": "So here, we're looking basically\nat a mean level mu and maybe"
+    },
+    {
+      "start": 384.52,
+      "duration": 5.64,
+      "text": "plus or minus the square\nroot of the variance of Xt"
+    },
+    {
+      "start": 390.16,
+      "duration": 6.26,
+      "text": "being the lower and\nupper levels here."
+    },
+    {
+      "start": 396.42,
+      "duration": 3.18,
+      "text": "And then if we're\ninterested in looking"
+    },
+    {
+      "start": 399.6,
+      "duration": 4.36,
+      "text": "at how correlated\ndifferent time values are,"
+    },
+    {
+      "start": 403.96,
+      "duration": 8.63,
+      "text": "then if we consider,\nsay, t and t plus tau,"
+    },
+    {
+      "start": 412.59,
+      "duration": 9.32,
+      "text": "I guess, and we also consider\nanother t prime and t prime plus"
+    },
+    {
+      "start": 421.91,
+      "duration": 7.32,
+      "text": "tau over here, then when we have\nrealizations of the process,"
+    },
+    {
+      "start": 429.23,
+      "duration": 4.2,
+      "text": "they're going to be staying\nwithin a few standard deviations"
+    },
+    {
+      "start": 433.43,
+      "duration": 1.4,
+      "text": "of the mean."
+    },
+    {
+      "start": 434.83,
+      "duration": 6.48,
+      "text": "And the correlation between\nvalues at different time points"
+    },
+    {
+      "start": 441.31,
+      "duration": 6.68,
+      "text": "will be the same if the time\nperiod between those time points"
+    },
+    {
+      "start": 447.99,
+      "duration": 1.6,
+      "text": "are the same."
+    },
+    {
+      "start": 449.59,
+      "duration": 5.0,
+      "text": "So that's covariance\nstationarity."
+    },
+    {
+      "start": 454.59,
+      "duration": 6.92,
+      "text": "Now with such time series that\nare covariance stationary, then"
+    },
+    {
+      "start": 461.51,
+      "duration": 4.51,
+      "text": "we can look at the\nautocorrelation function."
+    },
+    {
+      "start": 466.02,
+      "duration": 6.32,
+      "text": "And the correlation\nbetween Xt and Xt plus tau"
+    },
+    {
+      "start": 472.34,
+      "duration": 3.16,
+      "text": "is the covariance\nbetween the two"
+    },
+    {
+      "start": 475.5,
+      "duration": 3.9,
+      "text": "divided by the square root of\nthe product of the variances."
+    },
+    {
+      "start": 479.4,
+      "duration": 4.14,
+      "text": "So these are familiar formulas,\ngenerally, for correlations."
+    },
+    {
+      "start": 483.54,
+      "duration": 2.28,
+      "text": "And we call them\nautocorrelations"
+    },
+    {
+      "start": 485.82,
+      "duration": 3.36,
+      "text": "because we're looking at the\ncorrelation of a time series"
+    },
+    {
+      "start": 489.18,
+      "duration": 2.44,
+      "text": "with itself."
+    },
+    {
+      "start": 491.62,
+      "duration": 6.88,
+      "text": "And so we have rho of t\nis the autocorrelation."
+    },
+    {
+      "start": 498.5,
+      "duration": 5.8,
+      "text": "Now let's take a look at\nsome financial time series."
+    },
+    {
+      "start": 504.3,
+      "duration": 5.24,
+      "text": "Let's begin with just\nlooking at the S&P 500 index."
+    },
+    {
+      "start": 509.54,
+      "duration": 8.999,
+      "text": "So this is the value of the 500\nmajor stocks in the US equity"
+    },
+    {
+      "start": 518.539,
+      "duration": 2.681,
+      "text": "market."
+    },
+    {
+      "start": 521.22,
+      "duration": 4.19,
+      "text": "This is from, I think,\n2011 to 2020 plus."
+    },
+    {
+      "start": 525.41,
+      "duration": 3.56,
+      "text": "And you can see how this,\nover that period of time,"
+    },
+    {
+      "start": 528.97,
+      "duration": 5.64,
+      "text": "trended up with some\ndramatic drops due to COVID."
+    },
+    {
+      "start": 534.61,
+      "duration": 5.16,
+      "text": "And with such a\ntime series, it's"
+    },
+    {
+      "start": 539.77,
+      "duration": 6.02,
+      "text": "clearly not stationary because\nit's trending over time."
+    },
+    {
+      "start": 545.79,
+      "duration": 2.74,
+      "text": "If we looked at\ndifferent bands of years,"
+    },
+    {
+      "start": 548.53,
+      "duration": 5.36,
+      "text": "they have different means, and\nso we really cannot consider"
+    },
+    {
+      "start": 553.89,
+      "duration": 4.68,
+      "text": "this scaling of the index to\nbe stationary or covariance"
+    },
+    {
+      "start": 558.57,
+      "duration": 1.6,
+      "text": "stationary."
+    },
+    {
+      "start": 560.17,
+      "duration": 5.88,
+      "text": "And what ends up happening with\nmany, many financial time series"
+    },
+    {
+      "start": 566.05,
+      "duration": 7.4,
+      "text": "is that we consider the\ntime series Yt, say,"
+    },
+    {
+      "start": 573.45,
+      "duration": 7.92,
+      "text": "to correspond to a random\nwalk model on the log scale."
+    },
+    {
+      "start": 581.37,
+      "duration": 9.16,
+      "text": "So if we were to look at\ntaking the log of the series"
+    },
+    {
+      "start": 590.53,
+      "duration": 18.6,
+      "text": "and look at the\nincrements of that,"
+    },
+    {
+      "start": 609.13,
+      "duration": 10.0,
+      "text": "this is the log return of Yt."
+    },
+    {
+      "start": 619.13,
+      "duration": 7.56,
+      "text": "Then the value of Yt is\ngoing to be an initial value"
+    },
+    {
+      "start": 626.69,
+      "duration": 6.96,
+      "text": "Y0 times the exponential of\nthe sum of these log returns."
+    },
+    {
+      "start": 633.65,
+      "duration": 4.8,
+      "text": "And we can relate\nthese log returns"
+    },
+    {
+      "start": 638.45,
+      "duration": 7.07,
+      "text": "to the percent returns\non a fractional scale."
+    },
+    {
+      "start": 645.52,
+      "duration": 5.12,
+      "text": "This is log of 1\nplus Rt, where Rt"
+    },
+    {
+      "start": 650.64,
+      "duration": 8.85,
+      "text": "is equal to Yt minus Yt\nminus 1 over Yt minus 1."
+    },
+    {
+      "start": 664.12,
+      "duration": 3.96,
+      "text": "So what will\ncommonly be the case"
+    },
+    {
+      "start": 668.08,
+      "duration": 5.04,
+      "text": "is that this sequence\nof log returns"
+    },
+    {
+      "start": 673.12,
+      "duration": 2.8,
+      "text": "is covariance stationary."
+    },
+    {
+      "start": 675.92,
+      "duration": 2.12,
+      "text": "And so what I'd\nlike to do next is"
+    },
+    {
+      "start": 678.04,
+      "duration": 3.24,
+      "text": "to look at some\ntime series plots"
+    },
+    {
+      "start": 681.28,
+      "duration": 4.32,
+      "text": "of different\nfinancial time series,"
+    },
+    {
+      "start": 685.6,
+      "duration": 6.76,
+      "text": "and see whether this\ntransformation to log returns"
+    },
+    {
+      "start": 692.36,
+      "duration": 3.92,
+      "text": "seems to make the series\nappear stationary."
+    },
+    {
+      "start": 696.28,
+      "duration": 5.79,
+      "text": "So here's the S&P 500 index."
+    },
+    {
+      "start": 702.07,
+      "duration": 1.88,
+      "text": "These graphs here\nactually update"
+    },
+    {
+      "start": 703.95,
+      "duration": 6.28,
+      "text": "the graph from before\nto the end of September."
+    },
+    {
+      "start": 710.23,
+      "duration": 7.84,
+      "text": "And if we change initially\nthe absolute price"
+    },
+    {
+      "start": 718.07,
+      "duration": 3.76,
+      "text": "to the log of the\nprice, you'll notice"
+    },
+    {
+      "start": 721.83,
+      "duration": 7.68,
+      "text": "that an exponential growth tends\nto transform to a linear growth"
+    },
+    {
+      "start": 729.51,
+      "duration": 1.01,
+      "text": "on the log scale."
+    },
+    {
+      "start": 734.63,
+      "duration": 3.48,
+      "text": "That comment is\nrepresenting the fact"
+    },
+    {
+      "start": 738.11,
+      "duration": 3.6,
+      "text": "that the lower panel follows\nmore of a straight line"
+    },
+    {
+      "start": 741.71,
+      "duration": 2.48,
+      "text": "path than the upper\npanel, which has"
+    },
+    {
+      "start": 744.19,
+      "duration": 3.68,
+      "text": "perhaps some exponential\ncurvature to it."
+    },
+    {
+      "start": 747.87,
+      "duration": 6.64,
+      "text": "Now, if we look at the\nmonthly log returns,"
+    },
+    {
+      "start": 754.51,
+      "duration": 9.71,
+      "text": "we can see that those monthly\nincrements on the log scale"
+    },
+    {
+      "start": 764.22,
+      "duration": 4.4,
+      "text": "have basically a flat\ntime series process."
+    },
+    {
+      "start": 768.62,
+      "duration": 4.68,
+      "text": "And so it's rather\nconsistent with this movement"
+    },
+    {
+      "start": 773.3,
+      "duration": 3.56,
+      "text": "across a level\nthat, in this case,"
+    },
+    {
+      "start": 776.86,
+      "duration": 6.04,
+      "text": "is close to zero with\nconstant variance."
+    },
+    {
+      "start": 782.9,
+      "duration": 5.2,
+      "text": "Now, with this data,\nwe might consider"
+    },
+    {
+      "start": 788.1,
+      "duration": 6.2,
+      "text": "looking at the distribution\nof these log returns"
+    },
+    {
+      "start": 794.3,
+      "duration": 4.22,
+      "text": "and see whether they're\nconsistent with a normal model,"
+    },
+    {
+      "start": 798.52,
+      "duration": 3.9,
+      "text": "just as a benchmark\nexample that we might use."
+    },
+    {
+      "start": 802.42,
+      "duration": 7.64,
+      "text": "And here's the fitted\nnormal curve to the data."
+    },
+    {
+      "start": 810.06,
+      "duration": 2.37,
+      "text": "Would you say that this\nis a good fit to the data?"
+    },
+    {
+      "start": 815.82,
+      "duration": 3.68,
+      "text": "Do I see any nods or shakes?"
+    },
+    {
+      "start": 819.5,
+      "duration": 3.022,
+      "text": "I think you had a shake."
+    },
+    {
+      "start": 822.522,
+      "duration": 1.458,
+      "text": "AUDIENCE: It looks\nlike relatively,"
+    },
+    {
+      "start": 823.98,
+      "duration": 4.36,
+      "text": "but it follows like the up\nand down, but [INAUDIBLE]."
+    },
+    {
+      "start": 828.34,
+      "duration": 1.0,
+      "text": "PETER KEMPTHORNE: Right."
+    },
+    {
+      "start": 829.34,
+      "duration": 0.5,
+      "text": "Yeah."
+    },
+    {
+      "start": 829.84,
+      "duration": 7.74,
+      "text": "And so the true height is\nbasically the realized values"
+    },
+    {
+      "start": 837.58,
+      "duration": 4.0,
+      "text": "that are close to the\nmean, and the normal fit"
+    },
+    {
+      "start": 841.58,
+      "duration": 3.68,
+      "text": "is underestimating those\nvalues that are close."
+    },
+    {
+      "start": 845.26,
+      "duration": 4.92,
+      "text": "And complimenting that, the\ntails of the distribution"
+    },
+    {
+      "start": 850.18,
+      "duration": 4.0,
+      "text": "maybe are underestimating the\nmagnitude of the tails as well."
+    },
+    {
+      "start": 854.18,
+      "duration": 3.16,
+      "text": "And so this property\nis a property"
+    },
+    {
+      "start": 857.34,
+      "duration": 6.76,
+      "text": "that is called lepto\nkurtosis, which means slender."
+    },
+    {
+      "start": 864.1,
+      "duration": 4.64,
+      "text": "Lepto is Greek for slender."
+    },
+    {
+      "start": 868.74,
+      "duration": 1.6,
+      "text": "So let's take a\nlook at what happens"
+    },
+    {
+      "start": 870.34,
+      "duration": 6.55,
+      "text": "if we look at weekly returns\nOK, with weekly returns,"
+    },
+    {
+      "start": 876.89,
+      "duration": 4.6,
+      "text": "we get, again, a series that\nappears to be fairly flat."
+    },
+    {
+      "start": 881.49,
+      "duration": 3.92,
+      "text": "The volatility, though, looks\nlike it maybe isn't stable."
+    },
+    {
+      "start": 885.41,
+      "duration": 6.88,
+      "text": "So the variation of the time\nseries at different time points"
+    },
+    {
+      "start": 892.29,
+      "duration": 3.16,
+      "text": "may not be constant."
+    },
+    {
+      "start": 895.45,
+      "duration": 4.6,
+      "text": "It certainly was extreme\nduring the COVID crisis,"
+    },
+    {
+      "start": 900.05,
+      "duration": 1.44,
+      "text": "as evident here."
+    },
+    {
+      "start": 901.49,
+      "duration": 2.26,
+      "text": "And here's, again,\nthe normal curve,"
+    },
+    {
+      "start": 903.75,
+      "duration": 3.54,
+      "text": "which has the same\nproperties noted before."
+    },
+    {
+      "start": 907.29,
+      "duration": 3.88,
+      "text": "And then here's the\ndaily log returns."
+    },
+    {
+      "start": 911.17,
+      "duration": 3.24,
+      "text": "So looking at higher\nfrequency measurements,"
+    },
+    {
+      "start": 914.41,
+      "duration": 6.0,
+      "text": "we, again, get this property\nof stability in the mean"
+    },
+    {
+      "start": 920.41,
+      "duration": 5.44,
+      "text": "but maybe not a stability or\nstationarity in the variance."
+    },
+    {
+      "start": 925.85,
+      "duration": 3.6,
+      "text": "And again, the\nnormal model doesn't"
+    },
+    {
+      "start": 929.45,
+      "duration": 2.99,
+      "text": "look like it's appropriate."
+    },
+    {
+      "start": 932.44,
+      "duration": 2.54,
+      "text": "It captures a\ncenter and a spread,"
+    },
+    {
+      "start": 934.98,
+      "duration": 6.14,
+      "text": "but seems to be far off\nnear the mean and far away."
+    },
+    {
+      "start": 941.12,
+      "duration": 4.0,
+      "text": "OK, let's take a\nlook at Amazon stock."
+    },
+    {
+      "start": 945.12,
+      "duration": 5.2,
+      "text": "So we're just going to look\nat the same plots here."
+    },
+    {
+      "start": 950.32,
+      "duration": 6.32,
+      "text": "You'll notice that the absolute\nprice has a rather notable"
+    },
+    {
+      "start": 956.64,
+      "duration": 3.16,
+      "text": "exponential growth in it."
+    },
+    {
+      "start": 959.8,
+      "duration": 5.28,
+      "text": "When we take the log\nscale, we have this plot."
+    },
+    {
+      "start": 965.08,
+      "duration": 3.24,
+      "text": "And what's really\nimportant to see"
+    },
+    {
+      "start": 968.32,
+      "duration": 8.48,
+      "text": "is whether the variability in\nthe time series is constant"
+    },
+    {
+      "start": 976.8,
+      "duration": 1.48,
+      "text": "or not."
+    },
+    {
+      "start": 978.28,
+      "duration": 5.8,
+      "text": "And before taking the logs, we\nhave a really narrow variation"
+    },
+    {
+      "start": 984.08,
+      "duration": 4.44,
+      "text": "of the price series at the\nbeginning compared with the end."
+    },
+    {
+      "start": 988.52,
+      "duration": 5.83,
+      "text": "But on the log scale, the\nvariation is more comparable."
+    },
+    {
+      "start": 994.35,
+      "duration": 4.56,
+      "text": "So that's actually a\ngood thing to have."
+    },
+    {
+      "start": 998.91,
+      "duration": 3.04,
+      "text": "We still have a\ntrend in the series,"
+    },
+    {
+      "start": 1001.95,
+      "duration": 8.16,
+      "text": "and taking the differences\nin the log values"
+    },
+    {
+      "start": 1010.11,
+      "duration": 6.34,
+      "text": "makes this series stationary,\nor at least appear stationary."
+    },
+    {
+      "start": 1016.45,
+      "duration": 6.3,
+      "text": "And here's the log returns\non a monthly frequency."
+    },
+    {
+      "start": 1022.75,
+      "duration": 6.0,
+      "text": "And here's the\nhistogram of those log"
+    },
+    {
+      "start": 1028.75,
+      "duration": 3.119,
+      "text": "returns and the normal fit."
+    },
+    {
+      "start": 1031.869,
+      "duration": 6.181,
+      "text": "It's perhaps doing a slightly\nbetter job than for the S&P 500."
+    },
+    {
+      "start": 1038.05,
+      "duration": 2.7,
+      "text": "It's not clear."
+    },
+    {
+      "start": 1040.75,
+      "duration": 3.24,
+      "text": "Here is the weekly\nfrequency time series."
+    },
+    {
+      "start": 1043.99,
+      "duration": 4.48,
+      "text": "Again, the top panel\ndoes look like it's"
+    },
+    {
+      "start": 1048.47,
+      "duration": 3.36,
+      "text": "consistent with a\nstationary series in terms"
+    },
+    {
+      "start": 1051.83,
+      "duration": 3.2,
+      "text": "of the properties we've\nhighlighted so far."
+    },
+    {
+      "start": 1055.03,
+      "duration": 3.24,
+      "text": "And the Gaussian\ndistribution seems"
+    },
+    {
+      "start": 1058.27,
+      "duration": 2.96,
+      "text": "to be fitting a bit better."
+    },
+    {
+      "start": 1061.23,
+      "duration": 2.18,
+      "text": "If we look at the\ndaily log returns,"
+    },
+    {
+      "start": 1063.41,
+      "duration": 9.62,
+      "text": "then we have this lepto kurtosis\nappearing in this histogram"
+    },
+    {
+      "start": 1073.03,
+      "duration": 1.56,
+      "text": "of daily returns."
+    },
+    {
+      "start": 1074.59,
+      "duration": 5.505,
+      "text": "And in looking at the time\nseries of the daily returns,"
+    },
+    {
+      "start": 1080.095,
+      "duration": 4.895,
+      "text": "it looks like there are\nsome significant spikes that"
+    },
+    {
+      "start": 1084.99,
+      "duration": 4.46,
+      "text": "are not really consistent\nwith the rest of the series."
+    },
+    {
+      "start": 1089.45,
+      "duration": 4.38,
+      "text": "So maybe that\nfeature is something"
+    },
+    {
+      "start": 1093.83,
+      "duration": 4.6,
+      "text": "that we would want to\nincorporate into our models."
+    },
+    {
+      "start": 1098.43,
+      "duration": 5.12,
+      "text": "Well here's, getting away\nfrom the equity markets,"
+    },
+    {
+      "start": 1103.55,
+      "duration": 4.67,
+      "text": "this is looking at the\ncrude oil futures contract."
+    },
+    {
+      "start": 1108.22,
+      "duration": 6.44,
+      "text": "And with the crude\noil futures contract,"
+    },
+    {
+      "start": 1114.66,
+      "duration": 6.24,
+      "text": "this future, it trades, I\nthink, at the Chicago Mercantile"
+    },
+    {
+      "start": 1120.9,
+      "duration": 2.48,
+      "text": "Exchange."
+    },
+    {
+      "start": 1123.38,
+      "duration": 4.4,
+      "text": "It actually has a\ndramatic feature"
+    },
+    {
+      "start": 1127.78,
+      "duration": 4.84,
+      "text": "that the value of the\ncontract went negative"
+    },
+    {
+      "start": 1132.62,
+      "duration": 5.56,
+      "text": "in 2020, which was a shock\nto financial markets,"
+    },
+    {
+      "start": 1138.18,
+      "duration": 5.56,
+      "text": "especially brokers and\ntraders in those contracts."
+    },
+    {
+      "start": 1143.74,
+      "duration": 6.32,
+      "text": "You can imagine if you had a\nhundred contracts of crude oil,"
+    },
+    {
+      "start": 1150.06,
+      "duration": 3.02,
+      "text": "on the day you woke up and\nthe price was negative,"
+    },
+    {
+      "start": 1153.08,
+      "duration": 5.3,
+      "text": "you basically owed your broker\n100 times that negative value."
+    },
+    {
+      "start": 1158.38,
+      "duration": 3.72,
+      "text": "And brokers actually\nsometimes were"
+    },
+    {
+      "start": 1162.1,
+      "duration": 2.71,
+      "text": "unable to tell you\nwhat your position was"
+    },
+    {
+      "start": 1164.81,
+      "duration": 4.2,
+      "text": "because their systems didn't\nallow for negative prices."
+    },
+    {
+      "start": 1169.01,
+      "duration": 4.16,
+      "text": "If we tried to take\nthe log of the series"
+    },
+    {
+      "start": 1173.17,
+      "duration": 3.46,
+      "text": "and look at the differences,\nwith these negative values,"
+    },
+    {
+      "start": 1176.63,
+      "duration": 3.18,
+      "text": "that's actually a huge problem."
+    },
+    {
+      "start": 1179.81,
+      "duration": 2.88,
+      "text": "But nonetheless, let's see."
+    },
+    {
+      "start": 1182.69,
+      "duration": 4.8,
+      "text": "I did graph these,\nwhich essentially"
+    },
+    {
+      "start": 1187.49,
+      "duration": 4.2,
+      "text": "will exclude those days when\nthere were negative values"
+    },
+    {
+      "start": 1191.69,
+      "duration": 1.56,
+      "text": "for the contract."
+    },
+    {
+      "start": 1193.25,
+      "duration": 5.44,
+      "text": "And looking at this, here's\nthe monthly log returns."
+    },
+    {
+      "start": 1198.69,
+      "duration": 7.0,
+      "text": "So this is excluding the\nnegative price periods"
+    },
+    {
+      "start": 1205.69,
+      "duration": 6.06,
+      "text": "on a monthly basis, on a weekly\nbasis, and on a daily basis."
+    },
+    {
+      "start": 1211.75,
+      "duration": 3.3,
+      "text": "And so what's really\nimportant here"
+    },
+    {
+      "start": 1215.05,
+      "duration": 4.92,
+      "text": "is just how looking at\ndifferent financial time"
+    },
+    {
+      "start": 1219.97,
+      "duration": 7.07,
+      "text": "series with the same\nframework of logging"
+    },
+    {
+      "start": 1227.04,
+      "duration": 4.48,
+      "text": "the series if it's positive and\nlooking at increments on the log"
+    },
+    {
+      "start": 1231.52,
+      "duration": 5.12,
+      "text": "scale, which correspond\nto percentage changes,"
+    },
+    {
+      "start": 1236.64,
+      "duration": 4.48,
+      "text": "the data generally is\ntransformed or often"
+    },
+    {
+      "start": 1241.12,
+      "duration": 2.95,
+      "text": "is transformed to\na stationary scale."
+    },
+    {
+      "start": 1246.8,
+      "duration": 9.16,
+      "text": "Yet another example is looking\nat the yields of the 10 year US"
+    },
+    {
+      "start": 1255.96,
+      "duration": 2.48,
+      "text": "Treasury."
+    },
+    {
+      "start": 1258.44,
+      "duration": 4.24,
+      "text": "And so the top panel shows--"
+    },
+    {
+      "start": 1262.68,
+      "duration": 3.16,
+      "text": "it's called price,\nbut it's really"
+    },
+    {
+      "start": 1265.84,
+      "duration": 7.0,
+      "text": "the yield in percentage terms\nof 10 year government bonds."
+    },
+    {
+      "start": 1272.84,
+      "duration": 3.8,
+      "text": "And so you can see\nit started above 3%,"
+    },
+    {
+      "start": 1276.64,
+      "duration": 5.16,
+      "text": "dropped down to less than 1%\nfollowing the COVID crisis,"
+    },
+    {
+      "start": 1281.8,
+      "duration": 3.44,
+      "text": "and then was rising ever since."
+    },
+    {
+      "start": 1285.24,
+      "duration": 6.52,
+      "text": "And if we look at the\nprice or the yield changes"
+    },
+    {
+      "start": 1291.76,
+      "duration": 2.7,
+      "text": "on the log scale,\nwe get this plot,"
+    },
+    {
+      "start": 1294.46,
+      "duration": 5.3,
+      "text": "which isn't too different\nin its appearance."
+    },
+    {
+      "start": 1299.76,
+      "duration": 10.84,
+      "text": "But then if we look at the\nchanges in log, the increments"
+    },
+    {
+      "start": 1310.6,
+      "duration": 2.92,
+      "text": "in log, which are log returns--"
+    },
+    {
+      "start": 1313.52,
+      "duration": 3.12,
+      "text": "in mathematical\ndefinition, log returns"
+    },
+    {
+      "start": 1316.64,
+      "duration": 4.76,
+      "text": "are not really the right\nterminology for the percentage"
+    },
+    {
+      "start": 1321.4,
+      "duration": 1.48,
+      "text": "changes in yield."
+    },
+    {
+      "start": 1322.88,
+      "duration": 4.28,
+      "text": "But we'll basically be using\nthe same terminology as before."
+    },
+    {
+      "start": 1327.16,
+      "duration": 3.04,
+      "text": "One can see that\nwe basically get"
+    },
+    {
+      "start": 1330.2,
+      "duration": 3.84,
+      "text": "a distribution of\nincrements, steps"
+    },
+    {
+      "start": 1334.04,
+      "duration": 2.16,
+      "text": "in the random walk\non the log scale"
+    },
+    {
+      "start": 1336.2,
+      "duration": 5.47,
+      "text": "that are unimodal and symmetric."
+    },
+    {
+      "start": 1341.67,
+      "duration": 4.34,
+      "text": "And as we consider\nhigher frequency--"
+    },
+    {
+      "start": 1346.01,
+      "duration": 2.16,
+      "text": "here's weekly and here's daily--"
+    },
+    {
+      "start": 1348.17,
+      "duration": 3.38,
+      "text": "it's actually doing a\nbetter job, perhaps,"
+    },
+    {
+      "start": 1351.55,
+      "duration": 4.16,
+      "text": "using a normal model for\nthis transformed series"
+    },
+    {
+      "start": 1355.71,
+      "duration": 3.12,
+      "text": "than for the equity\nmarket series."
+    },
+    {
+      "start": 1358.83,
+      "duration": 8.8,
+      "text": "So with these cases, the same\nmanipulations of the data,"
+    },
+    {
+      "start": 1367.63,
+      "duration": 2.8,
+      "text": "taking logs, looking\nat log returns,"
+    },
+    {
+      "start": 1370.43,
+      "duration": 7.6,
+      "text": "corresponds to transforming the\nseries to a random walk process."
+    },
+    {
+      "start": 1378.03,
+      "duration": 8.24,
+      "text": "And with random walk processes,\nwe can think of the sum from 0"
+    },
+    {
+      "start": 1386.27,
+      "duration": 2.44,
+      "text": "to t of--"
+    },
+    {
+      "start": 1388.71,
+      "duration": 9.43,
+      "text": "or the capital TC of X sub t\nand call this maybe S sub t."
+    },
+    {
+      "start": 1398.14,
+      "duration": 6.64,
+      "text": "In modeling the random\nwalk by this sum,"
+    },
+    {
+      "start": 1404.78,
+      "duration": 6.08,
+      "text": "there will be many different\nmodels we can consider for this."
+    },
+    {
+      "start": 1410.86,
+      "duration": 5.68,
+      "text": "The simplest model would be\none where these X's, the steps,"
+    },
+    {
+      "start": 1416.54,
+      "duration": 5.4,
+      "text": "are identically distributed\nand independent."
+    },
+    {
+      "start": 1421.94,
+      "duration": 4.64,
+      "text": "So it's like a pure random walk."
+    },
+    {
+      "start": 1426.58,
+      "duration": 9.68,
+      "text": "And more complicated models will\nconsider St or the Xt's to be"
+    },
+    {
+      "start": 1436.26,
+      "duration": 2.56,
+      "text": "dependent upon each other."
+    },
+    {
+      "start": 1438.82,
+      "duration": 4.28,
+      "text": "So what we'd like\nto do, then, is--"
+    },
+    {
+      "start": 1443.1,
+      "duration": 0.52,
+      "text": "let's see."
+    },
+    {
+      "start": 1448.38,
+      "duration": 2.4,
+      "text": "Let's see here."
+    },
+    {
+      "start": 1450.78,
+      "duration": 4.4,
+      "text": "If we think of this\nautocorrelation function,"
+    },
+    {
+      "start": 1455.18,
+      "duration": 10.51,
+      "text": "the correlation between X's that\nare tau units of time apart,"
+    },
+    {
+      "start": 1465.69,
+      "duration": 5.04,
+      "text": "we can actually calculate\nautocorrelations"
+    },
+    {
+      "start": 1470.73,
+      "duration": 3.9,
+      "text": "for each of the series\nwe just looked at."
+    },
+    {
+      "start": 1474.63,
+      "duration": 4.54,
+      "text": "And so here is the\nautocorrelation function"
+    },
+    {
+      "start": 1479.17,
+      "duration": 5.44,
+      "text": "of the monthly log\nreturns on the S&P 500."
+    },
+    {
+      "start": 1484.61,
+      "duration": 4.52,
+      "text": "And one can see\nthat there actually"
+    },
+    {
+      "start": 1489.13,
+      "duration": 4.88,
+      "text": "was a large negative\nautocorrelation"
+    },
+    {
+      "start": 1494.01,
+      "duration": 2.88,
+      "text": "for one month apart."
+    },
+    {
+      "start": 1496.89,
+      "duration": 6.68,
+      "text": "And the other autocorrelations\nvaried around this blue range."
+    },
+    {
+      "start": 1503.57,
+      "duration": 6.32,
+      "text": "And what's important\nwith autocorrelations,"
+    },
+    {
+      "start": 1509.89,
+      "duration": 10.4,
+      "text": "if we have a time series Xt, t\nequaling 1, 2, up to capital T,"
+    },
+    {
+      "start": 1520.29,
+      "duration": 15.36,
+      "text": "and then we consider the sample\nautocorrelation at lag K,"
+    },
+    {
+      "start": 1535.65,
+      "duration": 4.88,
+      "text": "then this is an estimate of\nthe correlation between Xt"
+    },
+    {
+      "start": 1540.53,
+      "duration": 3.96,
+      "text": "and Xt plus K."
+    },
+    {
+      "start": 1544.49,
+      "duration": 2.8,
+      "text": "And we call this RK."
+    },
+    {
+      "start": 1547.29,
+      "duration": 2.56,
+      "text": "And I'll maybe put a hat\non it to indicate that this"
+    },
+    {
+      "start": 1549.85,
+      "duration": 2.96,
+      "text": "is estimated from the sample."
+    },
+    {
+      "start": 1552.81,
+      "duration": 10.48,
+      "text": "It turns out that this is\napproximately distributed"
+    },
+    {
+      "start": 1563.29,
+      "duration": 5.72,
+      "text": "as a normal with a mean--"
+    },
+    {
+      "start": 1569.01,
+      "duration": 5.39,
+      "text": "or I guess, OK, a\nnormal with the rho K,"
+    },
+    {
+      "start": 1574.4,
+      "duration": 6.24,
+      "text": "the true autocorrelation,\nand a variance that's"
+    },
+    {
+      "start": 1580.64,
+      "duration": 12.28,
+      "text": "1 over T minus K. So if\nwe look at these bands,"
+    },
+    {
+      "start": 1592.92,
+      "duration": 4.6,
+      "text": "these bands correspond\nto the region"
+    },
+    {
+      "start": 1597.52,
+      "duration": 4.73,
+      "text": "of sample autocorrelations that\nare consistent with a zero."
+    },
+    {
+      "start": 1605.08,
+      "duration": 4.136,
+      "text": "True autocorrelation."
+    },
+    {
+      "start": 1609.216,
+      "duration": 6.184,
+      "text": "If we want to test a null\nhypothesis that rho K is"
+    },
+    {
+      "start": 1615.4,
+      "duration": 13.4,
+      "text": "equal to zero, we can say reject\nif R hat K is greater than 1.96"
+    },
+    {
+      "start": 1628.8,
+      "duration": 3.11,
+      "text": "times the square root\nof 1 over T minus K,"
+    },
+    {
+      "start": 1631.91,
+      "duration": 5.94,
+      "text": "applying a normal model for\nthat return distribution."
+    },
+    {
+      "start": 1637.85,
+      "duration": 4.14,
+      "text": "So we basically\nhave, for the R hat"
+    },
+    {
+      "start": 1641.99,
+      "duration": 5.2,
+      "text": "K where we have a rho K\nhere, we have a bell shaped"
+    },
+    {
+      "start": 1647.19,
+      "duration": 6.48,
+      "text": "curve with a standard deviation\nsquare root of 1 over T minus K."
+    },
+    {
+      "start": 1653.67,
+      "duration": 4.56,
+      "text": "And if we consider\nrho K equal to zero,"
+    },
+    {
+      "start": 1658.23,
+      "duration": 3.88,
+      "text": "then we do the rejection if\nit's outside these bands."
+    },
+    {
+      "start": 1667.39,
+      "duration": 3.12,
+      "text": "Let's take a look at how\nthese autocorrelations"
+    },
+    {
+      "start": 1670.51,
+      "duration": 3.2,
+      "text": "vary as we vary the frequency."
+    },
+    {
+      "start": 1673.71,
+      "duration": 8.48,
+      "text": "Here's the weekly frequency for\nthe computation of log returns."
+    },
+    {
+      "start": 1682.19,
+      "duration": 5.12,
+      "text": "And we have this pattern\nwhere perhaps there"
+    },
+    {
+      "start": 1687.31,
+      "duration": 7.79,
+      "text": "are some significant negative\nautocorrelations at, say,"
+    },
+    {
+      "start": 1695.1,
+      "duration": 3.16,
+      "text": "five weeks apart."
+    },
+    {
+      "start": 1698.26,
+      "duration": 8.8,
+      "text": "And what would you say is\na property of a time series"
+    },
+    {
+      "start": 1707.06,
+      "duration": 3.96,
+      "text": "that has negative\nautocorrelations?"
+    },
+    {
+      "start": 1711.02,
+      "duration": 3.84,
+      "text": "Say, of order at lag 5?"
+    },
+    {
+      "start": 1714.86,
+      "duration": 4.18,
+      "text": "What does that really mean in\nterms of what you would expect?"
+    },
+    {
+      "start": 1719.04,
+      "duration": 0.833,
+      "text": "Yes?"
+    },
+    {
+      "start": 1719.873,
+      "duration": 1.167,
+      "text": "AUDIENCE: So mean reversion."
+    },
+    {
+      "start": 1721.04,
+      "duration": 0.8,
+      "text": "Mean reverting."
+    },
+    {
+      "start": 1721.84,
+      "duration": 0.917,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 1722.757,
+      "duration": 0.983,
+      "text": "Exactly."
+    },
+    {
+      "start": 1723.74,
+      "duration": 5.56,
+      "text": "So the negative autocorrelations\nare consistent, perhaps,"
+    },
+    {
+      "start": 1729.3,
+      "duration": 1.62,
+      "text": "with mean reversion."
+    },
+    {
+      "start": 1730.92,
+      "duration": 7.7,
+      "text": "So that means that if the\nprice changes are too high,"
+    },
+    {
+      "start": 1738.62,
+      "duration": 2.02,
+      "text": "they'll revert back,\nor if they're too low,"
+    },
+    {
+      "start": 1740.64,
+      "duration": 0.91,
+      "text": "they'll revert back."
+    },
+    {
+      "start": 1744.62,
+      "duration": 0.64,
+      "text": "Let's see."
+    },
+    {
+      "start": 1745.26,
+      "duration": 5.38,
+      "text": "Also on these graphs are\npartial autocorrelations,"
+    },
+    {
+      "start": 1750.64,
+      "duration": 4.14,
+      "text": "which we'll discuss later."
+    },
+    {
+      "start": 1754.78,
+      "duration": 6.36,
+      "text": "But partial autocorrelations\nare correlations at a given"
+    },
+    {
+      "start": 1761.14,
+      "duration": 7.76,
+      "text": "lag after accommodating the\ndependence on lower order lags."
+    },
+    {
+      "start": 1768.9,
+      "duration": 4.64,
+      "text": "We'll see how that works\nout in the case study later."
+    },
+    {
+      "start": 1773.54,
+      "duration": 3.96,
+      "text": "But let's take a look at\njust these other series."
+    },
+    {
+      "start": 1777.5,
+      "duration": 5.28,
+      "text": "So here's the daily\nseries with the S&P 500."
+    },
+    {
+      "start": 1782.78,
+      "duration": 2.24,
+      "text": "And so you can see,\noh, there's actually"
+    },
+    {
+      "start": 1785.02,
+      "duration": 5.4,
+      "text": "some reasonable strong\nautocorrelations."
+    },
+    {
+      "start": 1790.42,
+      "duration": 2.72,
+      "text": "Here's Amazon stock."
+    },
+    {
+      "start": 1793.14,
+      "duration": 3.33,
+      "text": "I'm not sure why it doesn't\nhave the band on the lower side."
+    },
+    {
+      "start": 1799.02,
+      "duration": 4.76,
+      "text": "But it basically is\nsymmetrical with that blue band"
+    },
+    {
+      "start": 1803.78,
+      "duration": 5.47,
+      "text": "where the correlation\nis consistent with zero"
+    },
+    {
+      "start": 1809.25,
+      "duration": 2.04,
+      "text": "autocorrelation."
+    },
+    {
+      "start": 1811.29,
+      "duration": 1.88,
+      "text": "Here's the weekly."
+    },
+    {
+      "start": 1813.17,
+      "duration": 1.84,
+      "text": "Here's the daily."
+    },
+    {
+      "start": 1815.01,
+      "duration": 2.76,
+      "text": "So interestingly,\nAmazon stock doesn't"
+    },
+    {
+      "start": 1817.77,
+      "duration": 3.96,
+      "text": "seem to have any significant\nautocorrelations, regardless"
+    },
+    {
+      "start": 1821.73,
+      "duration": 1.52,
+      "text": "of the frequency."
+    },
+    {
+      "start": 1823.25,
+      "duration": 4.56,
+      "text": "Here's the crude oil future."
+    },
+    {
+      "start": 1827.81,
+      "duration": 4.9,
+      "text": "You can see that with the crude\noil future, on a weekly basis,"
+    },
+    {
+      "start": 1832.71,
+      "duration": 4.58,
+      "text": "we have a negative\nautocorrelation at two weeks"
+    },
+    {
+      "start": 1837.29,
+      "duration": 3.04,
+      "text": "and then a positive\nautocorrelation at three weeks."
+    },
+    {
+      "start": 1840.33,
+      "duration": 3.84,
+      "text": "So there's some\ninteresting patterns"
+    },
+    {
+      "start": 1844.17,
+      "duration": 3.68,
+      "text": "that perhaps can be exploited."
+    },
+    {
+      "start": 1847.85,
+      "duration": 1.92,
+      "text": "And here's daily."
+    },
+    {
+      "start": 1849.77,
+      "duration": 4.84,
+      "text": "Again, one can see the rather\nsignificant autocorrelations"
+    },
+    {
+      "start": 1854.61,
+      "duration": 4.24,
+      "text": "at the low lag values."
+    },
+    {
+      "start": 1858.85,
+      "duration": 5.83,
+      "text": "And let's see with\nthe Treasury yields."
+    },
+    {
+      "start": 1864.68,
+      "duration": 5.48,
+      "text": "Looking at the autocorrelations\nand how the log yield changes,"
+    },
+    {
+      "start": 1870.16,
+      "duration": 2.76,
+      "text": "one can see that there\nis some strong time"
+    },
+    {
+      "start": 1872.92,
+      "duration": 6.44,
+      "text": "dependence at the weekly basis,\nas well as the daily basis."
+    },
+    {
+      "start": 1879.36,
+      "duration": 2.7,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 1882.06,
+      "duration": 3.34,
+      "text": "This discussion of\nautocorrelations"
+    },
+    {
+      "start": 1885.4,
+      "duration": 8.32,
+      "text": "is a very important one\nin time series modeling."
+    },
+    {
+      "start": 1893.72,
+      "duration": 10.08,
+      "text": "And I just want to highlight\nhow, if we have a time series"
+    },
+    {
+      "start": 1903.8,
+      "duration": 4.37,
+      "text": "and we fit a time series model."
+    },
+    {
+      "start": 1912.4,
+      "duration": 6.74,
+      "text": "And so we compute, say,\nY hat t, t equals 1 to T,"
+    },
+    {
+      "start": 1919.14,
+      "duration": 10.85,
+      "text": "then the residual series from\nthis fit of the time series"
+    },
+    {
+      "start": 1929.99,
+      "duration": 8.14,
+      "text": "model is the set of errors\nwhich are Yt minus Y hat t."
+    },
+    {
+      "start": 1943.47,
+      "duration": 5.6,
+      "text": "And we can just write\nYt is equal to Y"
+    },
+    {
+      "start": 1949.07,
+      "duration": 6.16,
+      "text": "hat t plus epsilon or error t."
+    },
+    {
+      "start": 1955.23,
+      "duration": 1.03,
+      "text": "A good model."
+    },
+    {
+      "start": 1958.79,
+      "duration": 13.24,
+      "text": "So the model is good\nif the et's basically"
+    },
+    {
+      "start": 1972.03,
+      "duration": 11.8,
+      "text": "have mean zero,\nconstant variance,"
+    },
+    {
+      "start": 1983.83,
+      "duration": 7.72,
+      "text": "are uncorrelated\nwith each other."
+    },
+    {
+      "start": 1991.55,
+      "duration": 5.56,
+      "text": "And so these assumptions\nare basically"
+    },
+    {
+      "start": 1997.11,
+      "duration": 2.46,
+      "text": "assumptions of a\nwhite noise process."
+    },
+    {
+      "start": 2004.75,
+      "duration": 7.12,
+      "text": "So if our model\nbasically predicts up"
+    },
+    {
+      "start": 2011.87,
+      "duration": 8.24,
+      "text": "to this residual process,\nwhich is unpredictable,"
+    },
+    {
+      "start": 2020.11,
+      "duration": 2.94,
+      "text": "has mean zero, constant\nvariance, is uncorrelated,"
+    },
+    {
+      "start": 2023.05,
+      "duration": 3.58,
+      "text": "there's no information left\nin the residual series."
+    },
+    {
+      "start": 2026.63,
+      "duration": 4.88,
+      "text": "And so we can use\nthe autocorrelation"
+    },
+    {
+      "start": 2031.51,
+      "duration": 4.32,
+      "text": "of the residual series."
+    },
+    {
+      "start": 2035.83,
+      "duration": 7.87,
+      "text": "We can use the autocorrelation\nfunction of the error series"
+    },
+    {
+      "start": 2043.7,
+      "duration": 9.439,
+      "text": "to test if the model\nis good, basically."
+    },
+    {
+      "start": 2053.139,
+      "duration": 4.6,
+      "text": "And a good model\nwill be a model that"
+    },
+    {
+      "start": 2057.739,
+      "duration": 5.081,
+      "text": "has captured all of the time\ndependent information in it,"
+    },
+    {
+      "start": 2062.82,
+      "duration": 8.64,
+      "text": "and the predictions from these\nor forecasts from this model"
+    },
+    {
+      "start": 2071.46,
+      "duration": 3.04,
+      "text": "are ones we have confidence in."
+    },
+    {
+      "start": 2074.5,
+      "duration": 4.15,
+      "text": "And so there's actually another\nassumption here, which is that--"
+    },
+    {
+      "start": 2082.46,
+      "duration": 1.472,
+      "text": "let's see."
+    },
+    {
+      "start": 2083.932,
+      "duration": 8.528,
+      "text": "If the epsilon t are\nnormal or Gaussian,"
+    },
+    {
+      "start": 2092.46,
+      "duration": 2.9,
+      "text": "then this gives\ngood predictions."
+    },
+    {
+      "start": 2098.25,
+      "duration": 5.28,
+      "text": "And by predictions, I'm\nthinking of not point forecasts"
+    },
+    {
+      "start": 2103.53,
+      "duration": 3.84,
+      "text": "of a series, but a prediction\ninterval and how wide should"
+    },
+    {
+      "start": 2107.37,
+      "duration": 3.18,
+      "text": "that prediction interval be\ndepending upon the variability."
+    },
+    {
+      "start": 2114.33,
+      "duration": 1.88,
+      "text": "When we work with\ntime series, we're"
+    },
+    {
+      "start": 2116.21,
+      "duration": 6.36,
+      "text": "actually are going to work\noften with autocorrelations"
+    },
+    {
+      "start": 2122.57,
+      "duration": 5.6,
+      "text": "of residuals to see\nwhether there's any time"
+    },
+    {
+      "start": 2128.17,
+      "duration": 1.35,
+      "text": "dependence in the series."
+    },
+    {
+      "start": 2135.53,
+      "duration": 2.28,
+      "text": "What's rather\ninteresting to note"
+    },
+    {
+      "start": 2137.81,
+      "duration": 8.08,
+      "text": "is that one can fix\na single correlation,"
+    },
+    {
+      "start": 2145.89,
+      "duration": 5.44,
+      "text": "lag, and use that to\ntest whether the data are"
+    },
+    {
+      "start": 2151.33,
+      "duration": 4.27,
+      "text": "consistent with a zero\nautocorrelation of a fixed lag."
+    },
+    {
+      "start": 2155.6,
+      "duration": 6.44,
+      "text": "We can also use sets\nof lags and test"
+    },
+    {
+      "start": 2162.04,
+      "duration": 3.91,
+      "text": "whether the whole set\nis equal to zero or not."
+    },
+    {
+      "start": 2170.36,
+      "duration": 1.56,
+      "text": "Let's see."
+    },
+    {
+      "start": 2171.92,
+      "duration": 2.64,
+      "text": "Let me just write it over here."
+    },
+    {
+      "start": 2174.56,
+      "duration": 13.2,
+      "text": "So if, say, rho 1 equals rho 2\nequals rho k is equal to zero,"
+    },
+    {
+      "start": 2187.76,
+      "duration": 7.24,
+      "text": "then R hat J, which is\ndistributed as normal zero,"
+    },
+    {
+      "start": 2195.0,
+      "duration": 14.96,
+      "text": "roughly 1 over t for J equaling\n1 to K. R hat J squared times t"
+    },
+    {
+      "start": 2209.96,
+      "duration": 5.08,
+      "text": "is approximately the\nsquare of a normal 0,"
+    },
+    {
+      "start": 2215.04,
+      "duration": 4.92,
+      "text": "1, which is a chi squared\n1 random variable."
+    },
+    {
+      "start": 2219.96,
+      "duration": 9.48,
+      "text": "And if we look at the sum of\nTR hat J squared from 1 to K,"
+    },
+    {
+      "start": 2229.44,
+      "duration": 3.52,
+      "text": "this will be approximately\na chi squared distribution"
+    },
+    {
+      "start": 2232.96,
+      "duration": 1.31,
+      "text": "with K degrees of freedom."
+    },
+    {
+      "start": 2238.28,
+      "duration": 11.72,
+      "text": "We can reject the null\nhypothesis if this test"
+    },
+    {
+      "start": 2250.0,
+      "duration": 2.88,
+      "text": "statistic, I'll call it--"
+    },
+    {
+      "start": 2252.88,
+      "duration": 3.32,
+      "text": "well, actually, I'll call\nit BP because it's actually"
+    },
+    {
+      "start": 2256.2,
+      "duration": 2.16,
+      "text": "called the Box-Pierce test."
+    },
+    {
+      "start": 2258.36,
+      "duration": 2.63,
+      "text": "If BP is large."
+    },
+    {
+      "start": 2263.595,
+      "duration": 5.245,
+      "text": "We'll say larger than\na critical value C"
+    },
+    {
+      "start": 2268.84,
+      "duration": 6.33,
+      "text": "star, where this is determined\nby the chi squared distribution."
+    },
+    {
+      "start": 2278.91,
+      "duration": 3.35,
+      "text": "And so this is actually\ncalled the Box-Pierce test."
+    },
+    {
+      "start": 2287.43,
+      "duration": 8.36,
+      "text": "And so we'll actually be very\ninterested in autocorrelations"
+    },
+    {
+      "start": 2295.79,
+      "duration": 2.52,
+      "text": "of the original series\nbut then autocorrelations"
+    },
+    {
+      "start": 2298.31,
+      "duration": 2.08,
+      "text": "of the residual series."
+    },
+    {
+      "start": 2300.39,
+      "duration": 4.0,
+      "text": "And whenever we have a model\nwhere the residual series still"
+    },
+    {
+      "start": 2304.39,
+      "duration": 2.9,
+      "text": "has significant\nautocorrelations in it,"
+    },
+    {
+      "start": 2307.29,
+      "duration": 1.96,
+      "text": "then we're really not done yet."
+    },
+    {
+      "start": 2309.25,
+      "duration": 1.39,
+      "text": "We really need to continue."
+    },
+    {
+      "start": 2316.51,
+      "duration": 2.2,
+      "text": "OK."
+    },
+    {
+      "start": 2318.71,
+      "duration": 7.88,
+      "text": "So we have-- now, the next\ntopic is a really extraordinary"
+    },
+    {
+      "start": 2326.59,
+      "duration": 1.84,
+      "text": "theorem."
+    },
+    {
+      "start": 2328.43,
+      "duration": 3.23,
+      "text": "The Wold representation theorem."
+    },
+    {
+      "start": 2331.66,
+      "duration": 10.52,
+      "text": "And with stationary processes\nthat are covariance stationary,"
+    },
+    {
+      "start": 2342.18,
+      "duration": 5.48,
+      "text": "then it turns out that any\ncovariance stationary process"
+    },
+    {
+      "start": 2347.66,
+      "duration": 5.2,
+      "text": "can be decomposed into\na Vt process which"
+    },
+    {
+      "start": 2352.86,
+      "duration": 3.64,
+      "text": "is linearly deterministic."
+    },
+    {
+      "start": 2356.5,
+      "duration": 5.68,
+      "text": "So that means that\nbasically the current value"
+    },
+    {
+      "start": 2362.18,
+      "duration": 5.44,
+      "text": "Vt as a linear combination\nof past values."
+    },
+    {
+      "start": 2367.62,
+      "duration": 5.92,
+      "text": "And St is a moving\naverage process"
+    },
+    {
+      "start": 2373.54,
+      "duration": 6.73,
+      "text": "where we have these eta\nt's which are white noise."
+    },
+    {
+      "start": 2383.1,
+      "duration": 5.43,
+      "text": "And our St process is\njust a weighted sum"
+    },
+    {
+      "start": 2388.53,
+      "duration": 2.17,
+      "text": "of those white noise terms."
+    },
+    {
+      "start": 2393.25,
+      "duration": 3.96,
+      "text": "And the white noise\nterms are also"
+    },
+    {
+      "start": 2397.21,
+      "duration": 6.48,
+      "text": "uncorrelated with the linearly\ndeterministic process."
+    },
+    {
+      "start": 2403.69,
+      "duration": 3.96,
+      "text": "So let's see."
+    },
+    {
+      "start": 2407.65,
+      "duration": 3.08,
+      "text": "When I first learned\nof this theorem,"
+    },
+    {
+      "start": 2410.73,
+      "duration": 7.16,
+      "text": "I had an issue with, well, what\nis a linearly deterministic"
+    },
+    {
+      "start": 2417.89,
+      "duration": 1.56,
+      "text": "process?"
+    },
+    {
+      "start": 2419.45,
+      "duration": 4.23,
+      "text": "So can anyone suggest what a\nlinearly deterministic process"
+    },
+    {
+      "start": 2423.68,
+      "duration": 0.5,
+      "text": "is?"
+    },
+    {
+      "start": 2427.97,
+      "duration": 2.79,
+      "text": "Or could be, or\nan example of one?"
+    },
+    {
+      "start": 2443.89,
+      "duration": 7.22,
+      "text": "So we have Vt is\nlinearly deterministic."
+    },
+    {
+      "start": 2461.33,
+      "duration": 2.0,
+      "text": "So if we have Vt--"
+    },
+    {
+      "start": 2463.33,
+      "duration": 10.32,
+      "text": "so if we observe Vt over a\nsequence of time points, well,"
+    },
+    {
+      "start": 2473.65,
+      "duration": 7.32,
+      "text": "for what patterns of Vt that\ndetermine the Vt process"
+    },
+    {
+      "start": 2480.97,
+      "duration": 0.75,
+      "text": "into the future?"
+    },
+    {
+      "start": 2484.73,
+      "duration": 0.95,
+      "text": "Can you think of any?"
+    },
+    {
+      "start": 2492.65,
+      "duration": 12.43,
+      "text": "So if Vt is equal to mu\nplus, say, cosine of theta t,"
+    },
+    {
+      "start": 2505.08,
+      "duration": 3.44,
+      "text": "then this thing will\njust move up and down,"
+    },
+    {
+      "start": 2508.52,
+      "duration": 4.96,
+      "text": "and we can actually determine\nthat cosine function"
+    },
+    {
+      "start": 2513.48,
+      "duration": 2.72,
+      "text": "from enough values of Vt."
+    },
+    {
+      "start": 2516.2,
+      "duration": 1.08,
+      "text": "Yes?"
+    },
+    {
+      "start": 2517.28,
+      "duration": 3.44,
+      "text": "AUDIENCE: So does that mean\nlike any periodic process"
+    },
+    {
+      "start": 2520.72,
+      "duration": 2.04,
+      "text": "would be linearly determined?"
+    },
+    {
+      "start": 2522.76,
+      "duration": 1.12,
+      "text": "PETER KEMPTHORNE: Yes."
+    },
+    {
+      "start": 2523.88,
+      "duration": 1.24,
+      "text": "Yeah."
+    },
+    {
+      "start": 2525.12,
+      "duration": 6.44,
+      "text": "And it's interesting\nto know that."
+    },
+    {
+      "start": 2531.56,
+      "duration": 7.32,
+      "text": "I mean, those of you who may\nhave studied harmonic analysis"
+    },
+    {
+      "start": 2538.88,
+      "duration": 5.64,
+      "text": "could come across\nthe result that if we"
+    },
+    {
+      "start": 2544.52,
+      "duration": 7.72,
+      "text": "have, say, different\ncosine or sine functions"
+    },
+    {
+      "start": 2552.24,
+      "duration": 4.16,
+      "text": "and take sums of those,\nthen that will also"
+    },
+    {
+      "start": 2556.4,
+      "duration": 3.72,
+      "text": "be a linearly\npredictable process."
+    },
+    {
+      "start": 2560.12,
+      "duration": 6.93,
+      "text": "And so if you look at summing\nsigns of different frequencies,"
+    },
+    {
+      "start": 2567.05,
+      "duration": 5.62,
+      "text": "which basically corresponds to\nFourier series that are flat,"
+    },
+    {
+      "start": 2572.67,
+      "duration": 5.96,
+      "text": "then those are\nlinearly predictable."
+    },
+    {
+      "start": 2578.63,
+      "duration": 7.52,
+      "text": "So that's the Vt process\nthat we should be aware of."
+    },
+    {
+      "start": 2586.15,
+      "duration": 2.92,
+      "text": "But what's really interesting\nis that the variation"
+    },
+    {
+      "start": 2589.07,
+      "duration": 5.76,
+      "text": "about that deterministic\nprocess, the St process,"
+    },
+    {
+      "start": 2594.83,
+      "duration": 6.24,
+      "text": "can be expressed as a\nmoving average process."
+    },
+    {
+      "start": 2601.07,
+      "duration": 7.28,
+      "text": "And this representation holds\nfor any covariance stationary"
+    },
+    {
+      "start": 2608.35,
+      "duration": 1.36,
+      "text": "time series."
+    },
+    {
+      "start": 2609.71,
+      "duration": 2.59,
+      "text": "Now for any covariance\nstationary time series--"
+    },
+    {
+      "start": 2615.67,
+      "duration": 2.89,
+      "text": "let's see."
+    },
+    {
+      "start": 2618.56,
+      "duration": 10.62,
+      "text": "With the covariance\nstationary process St,"
+    },
+    {
+      "start": 2629.18,
+      "duration": 3.28,
+      "text": "we have basically that mu is\nequal to the expected value"
+    },
+    {
+      "start": 2632.46,
+      "duration": 6.84,
+      "text": "of St. Sigma squared, which\nis the variance of St. This"
+    },
+    {
+      "start": 2639.3,
+      "duration": 2.12,
+      "text": "is constant over time."
+    },
+    {
+      "start": 2641.42,
+      "duration": 2.28,
+      "text": "This is constant over time."
+    },
+    {
+      "start": 2643.7,
+      "duration": 5.4,
+      "text": "And the covariance\nof Xt, Xt plus tau,"
+    },
+    {
+      "start": 2649.1,
+      "duration": 9.08,
+      "text": "is equal to gamma\nof tau for all t."
+    },
+    {
+      "start": 2658.18,
+      "duration": 7.04,
+      "text": "So any covariance\nstationary process"
+    },
+    {
+      "start": 2665.22,
+      "duration": 5.84,
+      "text": "can be represented as this\nmoving average of white noise"
+    },
+    {
+      "start": 2671.06,
+      "duration": 0.5,
+      "text": "process."
+    },
+    {
+      "start": 2675.26,
+      "duration": 6.08,
+      "text": "And so, well, how would we\nuse this Wold representation"
+    },
+    {
+      "start": 2681.34,
+      "duration": 1.24,
+      "text": "theorem?"
+    },
+    {
+      "start": 2682.58,
+      "duration": 3.36,
+      "text": "Well, if we have\na time series Xt"
+    },
+    {
+      "start": 2685.94,
+      "duration": 4.84,
+      "text": "that we want to specify a\ncovariance stationary time"
+    },
+    {
+      "start": 2690.78,
+      "duration": 4.32,
+      "text": "series model to it, well, the\nfirst thing we would do perhaps"
+    },
+    {
+      "start": 2695.1,
+      "duration": 5.4,
+      "text": "is de-trend the\nseries Xt so that it"
+    },
+    {
+      "start": 2700.5,
+      "duration": 3.68,
+      "text": "has a constant mean level."
+    },
+    {
+      "start": 2704.18,
+      "duration": 5.96,
+      "text": "So if we had a linear\ntrend or a quadratic trend,"
+    },
+    {
+      "start": 2710.14,
+      "duration": 2.22,
+      "text": "we would subtract that out."
+    },
+    {
+      "start": 2712.36,
+      "duration": 7.22,
+      "text": "So Xt is a series that looks\nlike it has a flat path."
+    },
+    {
+      "start": 2719.58,
+      "duration": 4.96,
+      "text": "And then we could initialize\na parameter p indicating"
+    },
+    {
+      "start": 2724.54,
+      "duration": 6.96,
+      "text": "the past number of observations\nthat explain the linearly"
+    },
+    {
+      "start": 2731.5,
+      "duration": 3.04,
+      "text": "deterministic term."
+    },
+    {
+      "start": 2734.54,
+      "duration": 6.87,
+      "text": "And we can then project\nour time series Xt"
+    },
+    {
+      "start": 2741.41,
+      "duration": 4.08,
+      "text": "onto the space\nspanned by the lags,"
+    },
+    {
+      "start": 2745.49,
+      "duration": 10.0,
+      "text": "the p lags, and then look at the\nerrors about that projection."
+    },
+    {
+      "start": 2755.49,
+      "duration": 8.8,
+      "text": "So here we can think of having\nthe time series values Y1 to Yn,"
+    },
+    {
+      "start": 2764.29,
+      "duration": 6.56,
+      "text": "and we can project those onto\nthe lags of the Y values."
+    },
+    {
+      "start": 2770.85,
+      "duration": 3.88,
+      "text": "So for the first p\nrows, we actually"
+    },
+    {
+      "start": 2774.73,
+      "duration": 1.96,
+      "text": "need to go back in time."
+    },
+    {
+      "start": 2776.69,
+      "duration": 2.84,
+      "text": "So that means we\nhave to start not"
+    },
+    {
+      "start": 2779.53,
+      "duration": 4.08,
+      "text": "from the beginning of our time\nseries, but maybe p units ahead."
+    },
+    {
+      "start": 2783.61,
+      "duration": 2.76,
+      "text": "And then we can apply\nordinary least squares"
+    },
+    {
+      "start": 2786.37,
+      "duration": 7.64,
+      "text": "to define the projection matrix\nonto those lagged values use."
+    },
+    {
+      "start": 2794.01,
+      "duration": 4.71,
+      "text": "And then we have this\nprojected residual."
+    },
+    {
+      "start": 2798.72,
+      "duration": 6.36,
+      "text": "And what we would want is\nthat this projected residual,"
+    },
+    {
+      "start": 2805.08,
+      "duration": 4.08,
+      "text": "if it's a stationary\ntime series,"
+    },
+    {
+      "start": 2809.16,
+      "duration": 2.92,
+      "text": "we could use time\nseries methods we'll"
+    },
+    {
+      "start": 2812.08,
+      "duration": 3.0,
+      "text": "learn about how to\nspecify a moving"
+    },
+    {
+      "start": 2815.08,
+      "duration": 6.56,
+      "text": "average model to these series\nand get estimates of the size"
+    },
+    {
+      "start": 2821.64,
+      "duration": 5.0,
+      "text": "and also estimates of\nthe white noise terms."
+    },
+    {
+      "start": 2826.64,
+      "duration": 8.04,
+      "text": "And with this step,\nwe then can evaluate"
+    },
+    {
+      "start": 2834.68,
+      "duration": 8.16,
+      "text": "whether our residuals are\northogonal to lagged values"
+    },
+    {
+      "start": 2842.84,
+      "duration": 3.28,
+      "text": "for lags greater than p back."
+    },
+    {
+      "start": 2846.12,
+      "duration": 10.19,
+      "text": "So these residuals should not\nhave any dependence on lags of y"
+    },
+    {
+      "start": 2856.31,
+      "duration": 2.48,
+      "text": "that are further back than p."
+    },
+    {
+      "start": 2862.55,
+      "duration": 4.36,
+      "text": "If those are not orthogonal,\nthen we should increase p."
+    },
+    {
+      "start": 2866.91,
+      "duration": 3.64,
+      "text": "And then we want to\nlook at whether the eta"
+    },
+    {
+      "start": 2870.55,
+      "duration": 2.76,
+      "text": "t's in our moving average\nmodel, whether those"
+    },
+    {
+      "start": 2873.31,
+      "duration": 4.04,
+      "text": "are consistent with\nwhite noise or not."
+    },
+    {
+      "start": 2877.35,
+      "duration": 2.88,
+      "text": "And so if they are, we're good."
+    },
+    {
+      "start": 2880.23,
+      "duration": 4.04,
+      "text": "But if not, then\nwe need to consider"
+    },
+    {
+      "start": 2884.27,
+      "duration": 4.16,
+      "text": "changing the specification\nof the moving average model"
+    },
+    {
+      "start": 2888.43,
+      "duration": 3.04,
+      "text": "and perhaps adding\nother variables"
+    },
+    {
+      "start": 2891.47,
+      "duration": 2.12,
+      "text": "such as deterministic\nvariables that could"
+    },
+    {
+      "start": 2893.59,
+      "duration": 2.64,
+      "text": "be useful in the projections."
+    },
+    {
+      "start": 2896.23,
+      "duration": 2.8,
+      "text": "But what this\ndemonstrates is how"
+    },
+    {
+      "start": 2899.03,
+      "duration": 5.7,
+      "text": "this theory can,\nin the abstract,"
+    },
+    {
+      "start": 2904.73,
+      "duration": 2.91,
+      "text": "be applied to real world data."
+    },
+    {
+      "start": 2911.99,
+      "duration": 7.76,
+      "text": "So as we increase p, the\nnumber of lags we use"
+    },
+    {
+      "start": 2919.75,
+      "duration": 8.2,
+      "text": "for the projection, we end up\ngetting a limiting value as p"
+    },
+    {
+      "start": 2927.95,
+      "duration": 7.68,
+      "text": "gets large, that this is\ncapturing the linearly"
+    },
+    {
+      "start": 2935.63,
+      "duration": 4.564,
+      "text": "predictable part of\nthe series, the Vt's."
+    },
+    {
+      "start": 2940.194,
+      "duration": 4.836,
+      "text": "But this assumption\nbasically requires"
+    },
+    {
+      "start": 2945.03,
+      "duration": 3.64,
+      "text": "if we let p grow\narbitrarily large,"
+    },
+    {
+      "start": 2948.67,
+      "duration": 8.66,
+      "text": "we probably want to make sure\nthat p over n goes to zero,"
+    },
+    {
+      "start": 2957.33,
+      "duration": 3.98,
+      "text": "so that we're\nestimating p parameters"
+    },
+    {
+      "start": 2961.31,
+      "duration": 7.07,
+      "text": "with a number of points\nthat is large relative to p."
+    },
+    {
+      "start": 2972.14,
+      "duration": 2.52,
+      "text": "So this is just\na way of thinking"
+    },
+    {
+      "start": 2974.66,
+      "duration": 5.9,
+      "text": "about how we might approach\nour modeling effort,"
+    },
+    {
+      "start": 2980.56,
+      "duration": 3.46,
+      "text": "exploiting the\nWold decomposition."
+    },
+    {
+      "start": 2984.02,
+      "duration": 3.48,
+      "text": "But what's really\nimportant here is"
+    },
+    {
+      "start": 2987.5,
+      "duration": 5.84,
+      "text": "that any covariant\nstationary model"
+    },
+    {
+      "start": 2993.34,
+      "duration": 2.76,
+      "text": "has a representation\nas this moving"
+    },
+    {
+      "start": 2996.1,
+      "duration": 3.72,
+      "text": "average process of white noise."
+    },
+    {
+      "start": 2999.82,
+      "duration": 3.6,
+      "text": "So that's a fairly\npowerful result."
+    },
+    {
+      "start": 3003.42,
+      "duration": 3.6,
+      "text": "It says that once we\nhave transformed our data"
+    },
+    {
+      "start": 3007.02,
+      "duration": 4.12,
+      "text": "to a scale where covariant\nstationarity is appropriate,"
+    },
+    {
+      "start": 3011.14,
+      "duration": 6.48,
+      "text": "then we can restrict ourselves\nto the class of moving"
+    },
+    {
+      "start": 3017.62,
+      "duration": 1.92,
+      "text": "average processes."
+    },
+    {
+      "start": 3019.54,
+      "duration": 3.88,
+      "text": "And what we'll see is that\nthere are alternatives"
+    },
+    {
+      "start": 3023.42,
+      "duration": 3.71,
+      "text": "to moving average processes\ncalled autoregressions"
+    },
+    {
+      "start": 3027.13,
+      "duration": 6.76,
+      "text": "that are very closely related\nto moving average processes."
+    },
+    {
+      "start": 3033.89,
+      "duration": 1.96,
+      "text": "Yes?"
+    },
+    {
+      "start": 3035.85,
+      "duration": 3.36,
+      "text": "AUDIENCE: So I guess my\nquestion is, why do you"
+    },
+    {
+      "start": 3039.21,
+      "duration": 3.92,
+      "text": "need to specify\ncovariance stationarity"
+    },
+    {
+      "start": 3043.13,
+      "duration": 4.72,
+      "text": "for the representation theorem?"
+    },
+    {
+      "start": 3047.85,
+      "duration": 2.982,
+      "text": "PETER KEMPTHORNE: OK."
+    },
+    {
+      "start": 3050.832,
+      "duration": 1.758,
+      "text": "Well, with the representation--"
+    },
+    {
+      "start": 3052.59,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 3056.81,
+      "duration": 2.1,
+      "text": "OK."
+    },
+    {
+      "start": 3058.91,
+      "duration": 0.5,
+      "text": "Let's see."
+    },
+    {
+      "start": 3059.41,
+      "duration": 0.9,
+      "text": "Where is it here?"
+    },
+    {
+      "start": 3060.31,
+      "duration": 0.84,
+      "text": "No, it's fine."
+    },
+    {
+      "start": 3061.15,
+      "duration": 0.78,
+      "text": "Here it is."
+    },
+    {
+      "start": 3061.93,
+      "duration": 5.36,
+      "text": "Basically, if we\nconsider this process"
+    },
+    {
+      "start": 3067.29,
+      "duration": 5.16,
+      "text": "St, which has some set\nof weights psi i times"
+    },
+    {
+      "start": 3072.45,
+      "duration": 4.84,
+      "text": "white noise eta t's,\nthen if these conditions"
+    },
+    {
+      "start": 3077.29,
+      "duration": 3.68,
+      "text": "are satisfied for the psis--"
+    },
+    {
+      "start": 3080.97,
+      "duration": 5.87,
+      "text": "so the sum, they're\nsquare summable, finite."
+    },
+    {
+      "start": 3086.84,
+      "duration": 8.28,
+      "text": "Then this process St is going\nto be covariant stationary."
+    },
+    {
+      "start": 3095.12,
+      "duration": 3.66,
+      "text": "It'll have finite mean and\nvariance that's constant,"
+    },
+    {
+      "start": 3098.78,
+      "duration": 4.46,
+      "text": "and the covariances will also\nbe constant over increments"
+    },
+    {
+      "start": 3103.24,
+      "duration": 2.6,
+      "text": "of any lag."
+    },
+    {
+      "start": 3105.84,
+      "duration": 5.96,
+      "text": "What's powerful is that\nthis representation"
+    },
+    {
+      "start": 3111.8,
+      "duration": 5.24,
+      "text": "can be used for any\ncovariant stationary model."
+    },
+    {
+      "start": 3117.04,
+      "duration": 2.92,
+      "text": "So this is covariant stationary."
+    },
+    {
+      "start": 3119.96,
+      "duration": 2.8,
+      "text": "But any covariant\nstationary model"
+    },
+    {
+      "start": 3122.76,
+      "duration": 3.64,
+      "text": "has this kind of representation."
+    },
+    {
+      "start": 3126.4,
+      "duration": 0.8,
+      "text": "Yeah."
+    },
+    {
+      "start": 3127.2,
+      "duration": 2.28,
+      "text": "Sure."
+    },
+    {
+      "start": 3129.48,
+      "duration": 5.64,
+      "text": "And of course, you know,\ncovariant stationarity"
+    },
+    {
+      "start": 3135.12,
+      "duration": 1.06,
+      "text": "is a nice assumption."
+    },
+    {
+      "start": 3136.18,
+      "duration": 2.1,
+      "text": "It may not be satisfied."
+    },
+    {
+      "start": 3138.28,
+      "duration": 2.9,
+      "text": "So you need to have\nmore complex models."
+    },
+    {
+      "start": 3141.18,
+      "duration": 4.54,
+      "text": "But it's good to know when you\nhave these assumptions satisfied"
+    },
+    {
+      "start": 3145.72,
+      "duration": 2.68,
+      "text": "that this is the representation."
+    },
+    {
+      "start": 3148.4,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 3148.9,
+      "duration": 4.74,
+      "text": "So we next want to introduce you\nto this operator called a lag"
+    },
+    {
+      "start": 3153.64,
+      "duration": 3.92,
+      "text": "operator or backshift operator."
+    },
+    {
+      "start": 3157.56,
+      "duration": 5.72,
+      "text": "And because I call it a\nlag operator, I label it L."
+    },
+    {
+      "start": 3163.28,
+      "duration": 5.4,
+      "text": "And so L operates\non a time series Xt"
+    },
+    {
+      "start": 3168.68,
+      "duration": 5.04,
+      "text": "and just shifts the time\nindex back one period."
+    },
+    {
+      "start": 3173.72,
+      "duration": 3.72,
+      "text": "So we're thinking of\ndiscrete time series"
+    },
+    {
+      "start": 3177.44,
+      "duration": 8.92,
+      "text": "with integer values of t\nand the lag operating on Xt"
+    },
+    {
+      "start": 3186.36,
+      "duration": 4.44,
+      "text": "shifts the time units\nback one period."
+    },
+    {
+      "start": 3190.8,
+      "duration": 8.744,
+      "text": "And we can think of L to the\n0 power doing the identity."
+    },
+    {
+      "start": 3199.544,
+      "duration": 4.786,
+      "text": "L1, 1 power of L,\nshifts back once."
+    },
+    {
+      "start": 3204.33,
+      "duration": 2.96,
+      "text": "If we apply L\ntwice or L squared,"
+    },
+    {
+      "start": 3207.29,
+      "duration": 2.0,
+      "text": "this shifts back two periods."
+    },
+    {
+      "start": 3209.29,
+      "duration": 4.22,
+      "text": "And of course, if we\napply it n times then"
+    },
+    {
+      "start": 3213.51,
+      "duration": 2.48,
+      "text": "we shift back n periods."
+    },
+    {
+      "start": 3215.99,
+      "duration": 4.32,
+      "text": "And so with these\nlag operators, we"
+    },
+    {
+      "start": 3220.31,
+      "duration": 3.8,
+      "text": "can think of inverses of\nthose operators as well"
+    },
+    {
+      "start": 3224.11,
+      "duration": 3.84,
+      "text": "and consider shifting\nthe time series forward"
+    },
+    {
+      "start": 3227.95,
+      "duration": 3.0,
+      "text": "if that were useful."
+    },
+    {
+      "start": 3230.95,
+      "duration": 7.32,
+      "text": "And so when we think of\nthe Wold representation,"
+    },
+    {
+      "start": 3238.27,
+      "duration": 4.28,
+      "text": "we can express it as\nthe sum of the moving"
+    },
+    {
+      "start": 3242.55,
+      "duration": 6.64,
+      "text": "average process and the linearly\ndeterministic process Vt."
+    },
+    {
+      "start": 3249.19,
+      "duration": 6.44,
+      "text": "And we can represent the\nmoving average process"
+    },
+    {
+      "start": 3255.63,
+      "duration": 5.31,
+      "text": "as a polynomial of the\nlag operators, possibly"
+    },
+    {
+      "start": 3260.94,
+      "duration": 1.56,
+      "text": "of infinite order."
+    },
+    {
+      "start": 3262.5,
+      "duration": 4.59,
+      "text": "That is, multiplying\nthe eta t's."
+    },
+    {
+      "start": 3270.58,
+      "duration": 8.32,
+      "text": "Now, a useful application\nof this moving average"
+    },
+    {
+      "start": 3278.9,
+      "duration": 3.4,
+      "text": "representation is\nthat if we think"
+    },
+    {
+      "start": 3282.3,
+      "duration": 10.96,
+      "text": "about how was the value of\nthe process at time t affected"
+    },
+    {
+      "start": 3293.26,
+      "duration": 6.72,
+      "text": "by the white noise\nprocess eta j lags ago,"
+    },
+    {
+      "start": 3299.98,
+      "duration": 5.64,
+      "text": "then the partial\nderivative of Xt"
+    },
+    {
+      "start": 3305.62,
+      "duration": 5.36,
+      "text": "with respect to that j\nlag back white noise term"
+    },
+    {
+      "start": 3310.98,
+      "duration": 2.08,
+      "text": "is given by psi j."
+    },
+    {
+      "start": 3313.06,
+      "duration": 3.32,
+      "text": "So when psi j is\nlarge in magnitude,"
+    },
+    {
+      "start": 3316.38,
+      "duration": 4.03,
+      "text": "that means that the\ncurrent value of X"
+    },
+    {
+      "start": 3320.41,
+      "duration": 4.44,
+      "text": "is dependent on the j-th\nlag of the white noise."
+    },
+    {
+      "start": 3324.85,
+      "duration": 9.56,
+      "text": "And with a representation of the\nXt series by this psi function,"
+    },
+    {
+      "start": 3334.41,
+      "duration": 4.55,
+      "text": "if one graphs the psi\nfunction over lags."
+    },
+    {
+      "start": 3342.05,
+      "duration": 2.72,
+      "text": "So let me do it over here."
+    },
+    {
+      "start": 3344.77,
+      "duration": 6.37,
+      "text": "So if we look at psi j as\na function of j and have--"
+    },
+    {
+      "start": 3354.69,
+      "duration": 6.76,
+      "text": "we might have weights psi j\nthat vary positive and negative."
+    },
+    {
+      "start": 3361.45,
+      "duration": 7.36,
+      "text": "And so if this were the case,\nit would indicate in this graph"
+    },
+    {
+      "start": 3368.81,
+      "duration": 5.72,
+      "text": "that the impact\nof the white noise"
+    },
+    {
+      "start": 3374.53,
+      "duration": 6.8,
+      "text": "three periods ago has a\nsignificant impact on X now."
+    },
+    {
+      "start": 3381.33,
+      "duration": 7.48,
+      "text": "So it can capture delayed\nresponses of the time series Xt"
+    },
+    {
+      "start": 3388.81,
+      "duration": 3.36,
+      "text": "to the white noise terms."
+    },
+    {
+      "start": 3392.17,
+      "duration": 9.12,
+      "text": "And if we look at the long\nrange impact of eta j--"
+    },
+    {
+      "start": 3401.29,
+      "duration": 8.6,
+      "text": "or sorry, the long\nrange impact of the--"
+    },
+    {
+      "start": 3409.89,
+      "duration": 2.28,
+      "text": "or the cumulative\nresponse of Xt,"
+    },
+    {
+      "start": 3412.17,
+      "duration": 11.2,
+      "text": "basically, corresponds\nto the sum of the size."
+    },
+    {
+      "start": 3423.37,
+      "duration": 3.28,
+      "text": "And so there's basically a\nlong run cumulative response"
+    },
+    {
+      "start": 3426.65,
+      "duration": 8.99,
+      "text": "of Xt to a given eta t."
+    },
+    {
+      "start": 3435.64,
+      "duration": 2.88,
+      "text": "So this is the long\nrun cumulative response"
+    },
+    {
+      "start": 3438.52,
+      "duration": 3.28,
+      "text": "to the white noise terms."
+    },
+    {
+      "start": 3441.8,
+      "duration": 10.16,
+      "text": "Now, what's interesting\nabout the psi of L process."
+    },
+    {
+      "start": 3451.96,
+      "duration": 8.68,
+      "text": "So if we have psi of L is\nequal to the sum from 0"
+    },
+    {
+      "start": 3460.64,
+      "duration": 7.24,
+      "text": "to infinity of\npsi j, L to the j,"
+    },
+    {
+      "start": 3467.88,
+      "duration": 6.04,
+      "text": "it's possible that this\noperator is invertible."
+    },
+    {
+      "start": 3473.92,
+      "duration": 9.4,
+      "text": "And if it's invertible, there\nexists an inverse operator"
+    },
+    {
+      "start": 3483.32,
+      "duration": 4.8,
+      "text": "with coefficients psi\ni star, and the product"
+    },
+    {
+      "start": 3488.12,
+      "duration": 6.71,
+      "text": "of these two polynomials is\nsimply equal to the identity."
+    },
+    {
+      "start": 3494.83,
+      "duration": 9.6,
+      "text": "And if that's the case that an\ninverse of the psi of L operator"
+    },
+    {
+      "start": 3504.43,
+      "duration": 10.92,
+      "text": "exists, then we can write our\nmodel for the stationary process"
+    },
+    {
+      "start": 3515.35,
+      "duration": 4.76,
+      "text": "as being equivalent to\napplying the inverse operator"
+    },
+    {
+      "start": 3520.11,
+      "duration": 1.64,
+      "text": "to both sides."
+    },
+    {
+      "start": 3521.75,
+      "duration": 4.4,
+      "text": "And so we get an\ninverse operator, which"
+    },
+    {
+      "start": 3526.15,
+      "duration": 5.5,
+      "text": "is a polynomial lags operating\non Xt is equal to the eta t."
+    },
+    {
+      "start": 3531.65,
+      "duration": 6.1,
+      "text": "So this corresponds to actually\nan autoregression model"
+    },
+    {
+      "start": 3537.75,
+      "duration": 4.12,
+      "text": "that has white noise terms."
+    },
+    {
+      "start": 3541.87,
+      "duration": 5.56,
+      "text": "And so when this exists,\nthis is the format of that."
+    },
+    {
+      "start": 3547.43,
+      "duration": 4.99,
+      "text": "And what we'd like\nto do is show you"
+    },
+    {
+      "start": 3552.42,
+      "duration": 3.04,
+      "text": "how this works with\nsome different examples."
+    },
+    {
+      "start": 3555.46,
+      "duration": 2.42,
+      "text": "Right now it's perhaps\na bit abstract,"
+    },
+    {
+      "start": 3557.88,
+      "duration": 4.18,
+      "text": "but when we look at the special\ncases of an autoregressive order"
+    },
+    {
+      "start": 3562.06,
+      "duration": 4.64,
+      "text": "one model, many of these\nterms will become clear."
+    },
+    {
+      "start": 3566.7,
+      "duration": 8.32,
+      "text": "Now, we can introduce with this\nnotation of lags and polynomial"
+    },
+    {
+      "start": 3575.02,
+      "duration": 7.4,
+      "text": "lag operators the\nARMA p,q, models,"
+    },
+    {
+      "start": 3582.42,
+      "duration": 4.84,
+      "text": "where ARMA stands for\nautoregressive and M-A stands"
+    },
+    {
+      "start": 3587.26,
+      "duration": 5.6,
+      "text": "for moving average models, and\nthe p corresponds to the order"
+    },
+    {
+      "start": 3592.86,
+      "duration": 4.04,
+      "text": "of the autoregressive, and\nthe q corresponds to the order"
+    },
+    {
+      "start": 3596.9,
+      "duration": 1.8,
+      "text": "of the moving average."
+    },
+    {
+      "start": 3598.7,
+      "duration": 2.84,
+      "text": "We can think of\nour time series Xt"
+    },
+    {
+      "start": 3601.54,
+      "duration": 3.44,
+      "text": "being a sum of terms,\nautoregressive terms"
+    },
+    {
+      "start": 3604.98,
+      "duration": 4.2,
+      "text": "on the top row, and\nthen the second row"
+    },
+    {
+      "start": 3609.18,
+      "duration": 6.48,
+      "text": "corresponds to moving average\nterms of the white noise."
+    },
+    {
+      "start": 3615.66,
+      "duration": 3.97,
+      "text": "So notice in the\ntop row, we have Xt."
+    },
+    {
+      "start": 3623.1,
+      "duration": 3.12,
+      "text": "And actually, if you\nlook at that equation,"
+    },
+    {
+      "start": 3626.22,
+      "duration": 5.28,
+      "text": "if we take Xt minus\nmu, this turns out"
+    },
+    {
+      "start": 3631.5,
+      "duration": 7.64,
+      "text": "to be equal to phi 1 Xt\nminus 1 minus mu plus phi 2,"
+    },
+    {
+      "start": 3639.14,
+      "duration": 1.2,
+      "text": "and so forth."
+    },
+    {
+      "start": 3640.34,
+      "duration": 4.16,
+      "text": "So these are lag terms\nof the mean adjusted X's."
+    },
+    {
+      "start": 3644.5,
+      "duration": 6.2,
+      "text": "And then we have the next row is\nthe sum of the white noise terms"
+    },
+    {
+      "start": 3650.7,
+      "duration": 4.24,
+      "text": "at time t, t minus\n1 up to t minus q."
+    },
+    {
+      "start": 3654.94,
+      "duration": 7.76,
+      "text": "So ARMA p,q models are a\nparsimonious case of time series"
+    },
+    {
+      "start": 3662.7,
+      "duration": 4.99,
+      "text": "models where we just have p\nautoregressive parameters,"
+    },
+    {
+      "start": 3667.69,
+      "duration": 5.0,
+      "text": "phi 1 to phi p, and q\nmoving average parameters,"
+    },
+    {
+      "start": 3672.69,
+      "duration": 1.37,
+      "text": "theta 1 to theta q."
+    },
+    {
+      "start": 3681.61,
+      "duration": 5.12,
+      "text": "If we group all the terms\nwith X's on the left-hand side"
+    },
+    {
+      "start": 3686.73,
+      "duration": 3.68,
+      "text": "and all the terms with the\netas on the right-hand side,"
+    },
+    {
+      "start": 3690.41,
+      "duration": 3.8,
+      "text": "we then get this phi\nof L operator times"
+    },
+    {
+      "start": 3694.21,
+      "duration": 4.76,
+      "text": "Xt mu view is equal\nto theta of L eta t."
+    },
+    {
+      "start": 3698.97,
+      "duration": 8.48,
+      "text": "And the Wold decomposition\nof this ARMA model"
+    },
+    {
+      "start": 3707.45,
+      "duration": 6.12,
+      "text": "is to multiply this ARMA\nequation on both sides"
+    },
+    {
+      "start": 3713.57,
+      "duration": 8.64,
+      "text": "by the inverse of phi of L.\nAnd so mu plus psi of L eta t"
+    },
+    {
+      "start": 3722.21,
+      "duration": 9.19,
+      "text": "is the Wold decomposition\nrepresentation of the process."
+    },
+    {
+      "start": 3731.4,
+      "duration": 7.6,
+      "text": "So let's look at\nautoregressive models."
+    },
+    {
+      "start": 3739.0,
+      "duration": 4.0,
+      "text": "So we'll assume that there's\nno moving average term."
+    },
+    {
+      "start": 3743.0,
+      "duration": 7.84,
+      "text": "So we have the phi of L operator\noperating on Xt minus mu"
+    },
+    {
+      "start": 3750.84,
+      "duration": 3.4,
+      "text": "is equal to the white noise."
+    },
+    {
+      "start": 3754.24,
+      "duration": 6.28,
+      "text": "And so that model\nbasically says that Xt"
+    },
+    {
+      "start": 3760.52,
+      "duration": 8.96,
+      "text": "is a linear combination of the\np lags of Xt plus white noise."
+    },
+    {
+      "start": 3769.48,
+      "duration": 4.96,
+      "text": "So this is a regression\nmodel for our time"
+    },
+    {
+      "start": 3774.44,
+      "duration": 5.08,
+      "text": "series Xt using predictor\nvariables the lags of this time"
+    },
+    {
+      "start": 3779.52,
+      "duration": 1.36,
+      "text": "series."
+    },
+    {
+      "start": 3780.88,
+      "duration": 11.55,
+      "text": "And if we take expectations of\nboth sides, we basically get mu."
+    },
+    {
+      "start": 3792.43,
+      "duration": 5.96,
+      "text": "The constant expectation of the\ncovariance stationary process"
+    },
+    {
+      "start": 3798.39,
+      "duration": 5.84,
+      "text": "is equal to C plus the sum of\nphi j times mu, the expectation"
+    },
+    {
+      "start": 3804.23,
+      "duration": 3.76,
+      "text": "of each of the lags, plus 0."
+    },
+    {
+      "start": 3807.99,
+      "duration": 5.48,
+      "text": "And so C turns out to\nequal mu times phi of 1."
+    },
+    {
+      "start": 3813.47,
+      "duration": 7.59,
+      "text": "So we have that representation\nof the constant term."
+    },
+    {
+      "start": 3824.47,
+      "duration": 7.52,
+      "text": "Now, what's important\nwith time series models"
+    },
+    {
+      "start": 3831.99,
+      "duration": 7.92,
+      "text": "is whether the time series\nmodel is stationary or not."
+    },
+    {
+      "start": 3839.91,
+      "duration": 7.28,
+      "text": "And it turns out that for\nan autoregressive model with"
+    },
+    {
+      "start": 3847.19,
+      "duration": 8.04,
+      "text": "parameters phi 1 to phi p, that\nif we look at what's called this"
+    },
+    {
+      "start": 3855.23,
+      "duration": 9.4,
+      "text": "characteristic equation, 1 minus\nphi 1z minus phi 2z squared up"
+    },
+    {
+      "start": 3864.63,
+      "duration": 3.4,
+      "text": "to phi pz to the p power."
+    },
+    {
+      "start": 3868.03,
+      "duration": 7.56,
+      "text": "If we consider the roots\nof that polynomial,"
+    },
+    {
+      "start": 3875.59,
+      "duration": 6.64,
+      "text": "then, well, if we have\nroots lambda 1 to lambda p,"
+    },
+    {
+      "start": 3882.23,
+      "duration": 6.54,
+      "text": "then phi of L has to be\nthe product of these terms."
+    },
+    {
+      "start": 3888.77,
+      "duration": 3.9,
+      "text": "Each of these terms,\neach of these factors"
+    },
+    {
+      "start": 3892.67,
+      "duration": 7.64,
+      "text": "are equal to zero when\nz equals lambda 1."
+    },
+    {
+      "start": 3903.14,
+      "duration": 4.78,
+      "text": "So if z equals lambda 1,\nthen the first term is zero."
+    },
+    {
+      "start": 3907.92,
+      "duration": 6.14,
+      "text": "If z equals the p-th root,\nlambda p, then this last factor"
+    },
+    {
+      "start": 3914.06,
+      "duration": 0.7,
+      "text": "is zero."
+    },
+    {
+      "start": 3914.76,
+      "duration": 5.22,
+      "text": "So this is a representation\nof this p-th order polynomial"
+    },
+    {
+      "start": 3919.98,
+      "duration": 1.37,
+      "text": "in terms of its roots."
+    },
+    {
+      "start": 3924.62,
+      "duration": 2.8,
+      "text": "And the condition\nfor stationarity"
+    },
+    {
+      "start": 3927.42,
+      "duration": 4.28,
+      "text": "is that all of these roots\nhave to lie outside the unit"
+    },
+    {
+      "start": 3931.7,
+      "duration": 5.12,
+      "text": "circle in the complex plane."
+    },
+    {
+      "start": 3936.82,
+      "duration": 8.28,
+      "text": "And so if we look at\none of these roots,"
+    },
+    {
+      "start": 3945.1,
+      "duration": 5.28,
+      "text": "fix just lambda as\na root, then if we"
+    },
+    {
+      "start": 3950.38,
+      "duration": 5.84,
+      "text": "take the inverse\nof this factor, it"
+    },
+    {
+      "start": 3956.22,
+      "duration": 6.07,
+      "text": "has this geometric metric\nsum expression of 1"
+    },
+    {
+      "start": 3962.29,
+      "duration": 3.02,
+      "text": "plus 1 over lambda L plus\n1 over lambda squared,"
+    },
+    {
+      "start": 3965.31,
+      "duration": 2.34,
+      "text": "L squared, and so forth."
+    },
+    {
+      "start": 3967.65,
+      "duration": 5.72,
+      "text": "And so it's basically an\ninfinite order polynomial"
+    },
+    {
+      "start": 3973.37,
+      "duration": 3.88,
+      "text": "in lags."
+    },
+    {
+      "start": 3977.25,
+      "duration": 5.44,
+      "text": "And the coefficients are 1\nover lambda to the I th power."
+    },
+    {
+      "start": 3982.69,
+      "duration": 7.4,
+      "text": "So if these lambdas are\nbigger than 1 inch magnitude,"
+    },
+    {
+      "start": 3990.09,
+      "duration": 6.36,
+      "text": "then the inverse of those,\nthe reciprocal of those,"
+    },
+    {
+      "start": 3996.45,
+      "duration": 3.64,
+      "text": "is smaller than 1 in magnitude."
+    },
+    {
+      "start": 4000.09,
+      "duration": 7.36,
+      "text": "So these terms will die down\nwith a limiting value of zero."
+    },
+    {
+      "start": 4007.45,
+      "duration": 5.04,
+      "text": "And that's necessary\nfor this representation"
+    },
+    {
+      "start": 4012.49,
+      "duration": 4.15,
+      "text": "to be appropriate."
+    },
+    {
+      "start": 4016.64,
+      "duration": 4.52,
+      "text": "So we get a covariance\nstationary sum"
+    },
+    {
+      "start": 4021.16,
+      "duration": 4.72,
+      "text": "of lagged errors,\nlagged white noise"
+    },
+    {
+      "start": 4025.88,
+      "duration": 3.9,
+      "text": "terms with this representation."
+    },
+    {
+      "start": 4029.78,
+      "duration": 5.06,
+      "text": "So the phi inverse of L\nis actually the product"
+    },
+    {
+      "start": 4034.84,
+      "duration": 6.28,
+      "text": "of p of these reciprocals."
+    },
+    {
+      "start": 4041.12,
+      "duration": 4.8,
+      "text": "And so the condition that\neach of those reciprocals"
+    },
+    {
+      "start": 4045.92,
+      "duration": 6.2,
+      "text": "or each of those terms\nis defined by lambda j's"
+    },
+    {
+      "start": 4052.12,
+      "duration": 3.32,
+      "text": "that are bigger\nthan 1 in magnitude"
+    },
+    {
+      "start": 4055.44,
+      "duration": 5.44,
+      "text": "makes their geometric\nseries expression converge."
+    },
+    {
+      "start": 4060.88,
+      "duration": 5.84,
+      "text": "If the lambdas were inside the\nunit circle, the magnitude,"
+    },
+    {
+      "start": 4066.72,
+      "duration": 4.14,
+      "text": "then when we multiply them\ntogether, square them,"
+    },
+    {
+      "start": 4070.86,
+      "duration": 2.78,
+      "text": "they get bigger and bigger."
+    },
+    {
+      "start": 4073.64,
+      "duration": 2.465,
+      "text": "OK."
+    },
+    {
+      "start": 4076.105,
+      "duration": 4.095,
+      "text": "So let's take a look\nat what this works out"
+    },
+    {
+      "start": 4080.2,
+      "duration": 3.52,
+      "text": "to be, just for an\nautoregressive process with p"
+    },
+    {
+      "start": 4083.72,
+      "duration": 1.52,
+      "text": "equal to 1."
+    },
+    {
+      "start": 4085.24,
+      "duration": 3.4,
+      "text": "With p equal to 1, our\ncharacteristic equation"
+    },
+    {
+      "start": 4088.64,
+      "duration": 3.92,
+      "text": "is simply 1 minus\nphi z equals 0."
+    },
+    {
+      "start": 4092.56,
+      "duration": 6.839,
+      "text": "And so the root of that\nis clearly 1 over phi."
+    },
+    {
+      "start": 4099.399,
+      "duration": 5.08,
+      "text": "And so the p equals 1\nautoregressive model"
+    },
+    {
+      "start": 4104.479,
+      "duration": 2.321,
+      "text": "is going to be covariance\nstationary if and only"
+    },
+    {
+      "start": 4106.8,
+      "duration": 4.08,
+      "text": "if the magnitude of phi\nis smaller than one,"
+    },
+    {
+      "start": 4110.88,
+      "duration": 5.479,
+      "text": "or equivalently, its inverse\nmagnitude is greater than 1."
+    },
+    {
+      "start": 4116.359,
+      "duration": 6.761,
+      "text": "And so we end up having these\nfirst and second moments"
+    },
+    {
+      "start": 4123.12,
+      "duration": 6.12,
+      "text": "and these covariances which\nare very easy to compute."
+    },
+    {
+      "start": 4129.24,
+      "duration": 5.13,
+      "text": "And this will probably be a\nhomework exercise problem."
+    },
+    {
+      "start": 4134.37,
+      "duration": 3.3,
+      "text": "But with the first order\nautoregression model,"
+    },
+    {
+      "start": 4137.67,
+      "duration": 3.38,
+      "text": "we have a constant mean,\na constant variance,"
+    },
+    {
+      "start": 4141.05,
+      "duration": 6.019,
+      "text": "which is sigma squared over 1\nminus phi times sigma squared."
+    },
+    {
+      "start": 4147.069,
+      "duration": 8.401,
+      "text": "And the covariances basically\nare the variance times phi"
+    },
+    {
+      "start": 4155.47,
+      "duration": 2.04,
+      "text": "to the j-th power."
+    },
+    {
+      "start": 4157.51,
+      "duration": 7.559,
+      "text": "So with an autocorrelation,\nthe phi is the first order"
+    },
+    {
+      "start": 4165.069,
+      "duration": 2.681,
+      "text": "autocorrelation,\nand phi to the j-th"
+    },
+    {
+      "start": 4167.75,
+      "duration": 3.84,
+      "text": "is the j-th order\nautocorrelation."
+    },
+    {
+      "start": 4171.59,
+      "duration": 0.986,
+      "text": "OK."
+    },
+    {
+      "start": 4172.576,
+      "duration": 10.094,
+      "text": "Now, if phi is between\nminus 1 and 1--"
+    },
+    {
+      "start": 4182.67,
+      "duration": 4.2,
+      "text": "for phi between 0\nand 1, the process"
+    },
+    {
+      "start": 4186.87,
+      "duration": 3.47,
+      "text": "exhibits exponential\nmean reversion."
+    },
+    {
+      "start": 4190.34,
+      "duration": 6.74,
+      "text": "And when phi is negative but\nno larger than negative 1"
+    },
+    {
+      "start": 4197.08,
+      "duration": 5.1,
+      "text": "in magnitude, then it exhibits\nsome oscillating exponential"
+    },
+    {
+      "start": 4202.18,
+      "duration": 1.92,
+      "text": "mean reversion."
+    },
+    {
+      "start": 4204.1,
+      "duration": 4.72,
+      "text": "But when phi equals 1,\nthen the Wold decomposition"
+    },
+    {
+      "start": 4208.82,
+      "duration": 7.16,
+      "text": "does not exist and the process\nis a simple random walk"
+    },
+    {
+      "start": 4215.98,
+      "duration": 2.88,
+      "text": "which is non-stationary."
+    },
+    {
+      "start": 4218.86,
+      "duration": 7.72,
+      "text": "And when phi is greater than 1,\nthen the process is explosive."
+    },
+    {
+      "start": 4226.58,
+      "duration": 5.8,
+      "text": "So in financial markets, these\nfirst order autoregressive"
+    },
+    {
+      "start": 4232.38,
+      "duration": 4.6,
+      "text": "models actually are\nused quite frequently."
+    },
+    {
+      "start": 4236.98,
+      "duration": 3.2,
+      "text": "With interest rates\nwhere there's maybe"
+    },
+    {
+      "start": 4240.18,
+      "duration": 3.24,
+      "text": "a constant long term\ninterest rate level"
+    },
+    {
+      "start": 4243.42,
+      "duration": 2.32,
+      "text": "and there's\nvariation about that,"
+    },
+    {
+      "start": 4245.74,
+      "duration": 4.31,
+      "text": "this Ornstein-Uhlenbeck process\ncorresponds to the first order"
+    },
+    {
+      "start": 4250.05,
+      "duration": 1.3,
+      "text": "autoregressive process."
+    },
+    {
+      "start": 4254.574,
+      "duration": 8.476,
+      "text": "With these other series, these\nare financial or time series"
+    },
+    {
+      "start": 4263.05,
+      "duration": 5.48,
+      "text": "in financial markets where\nthe level of the series"
+    },
+    {
+      "start": 4268.53,
+      "duration": 3.16,
+      "text": "is expected to be\nstable over time."
+    },
+    {
+      "start": 4271.69,
+      "duration": 4.48,
+      "text": "So perhaps interest rate\nspreads would be modeled"
+    },
+    {
+      "start": 4276.17,
+      "duration": 3.28,
+      "text": "as being stable or stationary."
+    },
+    {
+      "start": 4279.45,
+      "duration": 4.926,
+      "text": "Real exchange rates,\nperhaps, or valuation ratios."
+    },
+    {
+      "start": 4287.01,
+      "duration": 4.76,
+      "text": "So these models arise in\nthese application areas."
+    },
+    {
+      "start": 4291.77,
+      "duration": 8.68,
+      "text": "Now to fit an\nautoregressive process,"
+    },
+    {
+      "start": 4300.45,
+      "duration": 5.64,
+      "text": "we could simply just fit\na linear regression model"
+    },
+    {
+      "start": 4306.09,
+      "duration": 5.6,
+      "text": "with p lags of the series\nas explanatory variables."
+    },
+    {
+      "start": 4311.69,
+      "duration": 4.4,
+      "text": "But what's rather\ninteresting to know"
+    },
+    {
+      "start": 4316.09,
+      "duration": 7.76,
+      "text": "is this approach called\nsolving Yule-Walker equations."
+    },
+    {
+      "start": 4323.85,
+      "duration": 6.78,
+      "text": "If we take our model equation,\nthat first equation line,"
+    },
+    {
+      "start": 4330.63,
+      "duration": 5.62,
+      "text": "we have the mean\ndeviation of Xt is"
+    },
+    {
+      "start": 4336.25,
+      "duration": 3.8,
+      "text": "equal to a linear\ncombination of phi j times"
+    },
+    {
+      "start": 4340.05,
+      "duration": 4.56,
+      "text": "the j-th lag deviation from mu."
+    },
+    {
+      "start": 4344.61,
+      "duration": 4.08,
+      "text": "There's a typo there,\nthat second phi 2"
+    },
+    {
+      "start": 4348.69,
+      "duration": 3.32,
+      "text": "should have an Xt minus 2."
+    },
+    {
+      "start": 4352.01,
+      "duration": 5.48,
+      "text": "Then if we multiply both\nsides of this model equation"
+    },
+    {
+      "start": 4357.49,
+      "duration": 6.56,
+      "text": "by Xt minus j minus mu, then\nwe basically, for each term,"
+    },
+    {
+      "start": 4364.05,
+      "duration": 5.11,
+      "text": "we're adding Xt minus\nj minus mu as a factor,"
+    },
+    {
+      "start": 4369.16,
+      "duration": 2.96,
+      "text": "and then take\nexpectations of that."
+    },
+    {
+      "start": 4372.12,
+      "duration": 7.2,
+      "text": "We have our j-th\nlag autocovariance,"
+    },
+    {
+      "start": 4379.32,
+      "duration": 6.24,
+      "text": "and it's equal to the\nphi 1 times the j minus 1"
+    },
+    {
+      "start": 4385.56,
+      "duration": 5.32,
+      "text": "lag autocovariance plus phi\n2 times the j minus 2 lag,"
+    },
+    {
+      "start": 4390.88,
+      "duration": 1.92,
+      "text": "and so forth."
+    },
+    {
+      "start": 4392.8,
+      "duration": 8.0,
+      "text": "And if the j is equal\nto zero, then we also"
+    },
+    {
+      "start": 4400.8,
+      "duration": 8.12,
+      "text": "have a sigma squared term where\nwe're looking at basically that."
+    },
+    {
+      "start": 4408.92,
+      "duration": 2.24,
+      "text": "Well, that term comes in."
+    },
+    {
+      "start": 4411.16,
+      "duration": 9.56,
+      "text": "So we basically have equations,\na system of equations"
+    },
+    {
+      "start": 4420.72,
+      "duration": 2.48,
+      "text": "if we vary j."
+    },
+    {
+      "start": 4423.2,
+      "duration": 2.89,
+      "text": "And so if we consider\nj equal to 1 to p,"
+    },
+    {
+      "start": 4426.09,
+      "duration": 4.86,
+      "text": "we get a system of p linear\nequations in the phi j's."
+    },
+    {
+      "start": 4430.95,
+      "duration": 4.52,
+      "text": "And this is our\nYule-Walker equations."
+    },
+    {
+      "start": 4435.47,
+      "duration": 3.6,
+      "text": "Gamma 1 is equal\nto the first row"
+    },
+    {
+      "start": 4439.07,
+      "duration": 5.2,
+      "text": "of the matrix times the\nvector of phis, and so forth."
+    },
+    {
+      "start": 4444.27,
+      "duration": 4.48,
+      "text": "And with the properties\nof the autocovariances,"
+    },
+    {
+      "start": 4448.75,
+      "duration": 2.28,
+      "text": "they are symmetrical."
+    },
+    {
+      "start": 4451.03,
+      "duration": 6.84,
+      "text": "So we can actually use these\nto make the computations"
+    },
+    {
+      "start": 4457.87,
+      "duration": 1.92,
+      "text": "of the matrices."
+    },
+    {
+      "start": 4459.79,
+      "duration": 4.48,
+      "text": "And when we use this\nYule-Walker approach"
+    },
+    {
+      "start": 4464.27,
+      "duration": 2.92,
+      "text": "to estimate the\nparameters, we're"
+    },
+    {
+      "start": 4467.19,
+      "duration": 4.8,
+      "text": "actually using a method\nof moments principle"
+    },
+    {
+      "start": 4471.99,
+      "duration": 7.16,
+      "text": "for estimating the\nautoregressive model parameters."
+    },
+    {
+      "start": 4479.15,
+      "duration": 5.59,
+      "text": "Method of moments is a principle\nin statistical estimation, where"
+    },
+    {
+      "start": 4484.74,
+      "duration": 5.32,
+      "text": "we basically equate sample\nmoments and the population"
+    },
+    {
+      "start": 4490.06,
+      "duration": 4.6,
+      "text": "moments and solve for what\npopulation parameter values"
+    },
+    {
+      "start": 4494.66,
+      "duration": 3.68,
+      "text": "match the sample moments."
+    },
+    {
+      "start": 4498.34,
+      "duration": 3.84,
+      "text": "Now, we can do a\nsimilar analysis"
+    },
+    {
+      "start": 4502.18,
+      "duration": 2.4,
+      "text": "of moving average models."
+    },
+    {
+      "start": 4504.58,
+      "duration": 4.96,
+      "text": "So here, we have a q-th order\nmoving average model represented"
+    },
+    {
+      "start": 4509.54,
+      "duration": 8.28,
+      "text": "by a polynomial theta of L of\norder q in terms of powers of L."
+    },
+    {
+      "start": 4517.82,
+      "duration": 7.04,
+      "text": "And the properties of this\nprocess can be studied."
+    },
+    {
+      "start": 4524.86,
+      "duration": 3.52,
+      "text": "And one thing we\nmight want to do"
+    },
+    {
+      "start": 4528.38,
+      "duration": 5.72,
+      "text": "is invert this\nmoving average model"
+    },
+    {
+      "start": 4534.1,
+      "duration": 8.88,
+      "text": "into an autoregressive model by\nbasically multiplying the model"
+    },
+    {
+      "start": 4542.98,
+      "duration": 2.8,
+      "text": "equation on both\nsides by the inverse"
+    },
+    {
+      "start": 4545.78,
+      "duration": 4.2,
+      "text": "of the theta of L operator."
+    },
+    {
+      "start": 4549.98,
+      "duration": 4.24,
+      "text": "And so if we do that,\nthen we basically"
+    },
+    {
+      "start": 4554.22,
+      "duration": 5.2,
+      "text": "have an autoregressive\nrepresentation of the moving"
+    },
+    {
+      "start": 4559.42,
+      "duration": 3.12,
+      "text": "average order q model."
+    },
+    {
+      "start": 4562.54,
+      "duration": 5.12,
+      "text": "And if you calculate simple\nsecond order properties"
+    },
+    {
+      "start": 4567.66,
+      "duration": 5.92,
+      "text": "of this moving average process,\nwell, the mean is simply mu."
+    },
+    {
+      "start": 4573.58,
+      "duration": 2.44,
+      "text": "The right-hand side\nof the equation"
+    },
+    {
+      "start": 4576.02,
+      "duration": 5.68,
+      "text": "is just weighted sums of\netas which have mean zero."
+    },
+    {
+      "start": 4581.7,
+      "duration": 3.44,
+      "text": "And so the expectation\nof the left-hand side"
+    },
+    {
+      "start": 4585.14,
+      "duration": 1.8,
+      "text": "is simply equal to mu."
+    },
+    {
+      "start": 4586.94,
+      "duration": 3.84,
+      "text": "And if we look at\nthe variance of Xt,"
+    },
+    {
+      "start": 4590.78,
+      "duration": 5.8,
+      "text": "it basically is the variance of\nthe weighted sum of the etas."
+    },
+    {
+      "start": 4596.58,
+      "duration": 6.47,
+      "text": "And it turns out to have this\nsimple form with covariances"
+    },
+    {
+      "start": 4603.05,
+      "duration": 2.52,
+      "text": "of the series."
+    },
+    {
+      "start": 4605.57,
+      "duration": 6.44,
+      "text": "With moving average processes,\nif we look at time increments"
+    },
+    {
+      "start": 4612.01,
+      "duration": 6.28,
+      "text": "j that are longer\nthan the q order,"
+    },
+    {
+      "start": 4618.29,
+      "duration": 7.62,
+      "text": "then there's no overlap of white\nnoise terms in Xt and Xt plus j,"
+    },
+    {
+      "start": 4625.91,
+      "duration": 2.62,
+      "text": "and so their covariance\nis going to be zero."
+    },
+    {
+      "start": 4628.53,
+      "duration": 4.6,
+      "text": "When there is overlap,\nthen we get this formula."
+    },
+    {
+      "start": 4633.13,
+      "duration": 1.5,
+      "text": "OK."
+    },
+    {
+      "start": 4634.63,
+      "duration": 8.06,
+      "text": "So next, we want\nto deal with how"
+    },
+    {
+      "start": 4642.69,
+      "duration": 5.38,
+      "text": "we can accommodate\nnon-stationarity in time series."
+    },
+    {
+      "start": 4648.07,
+      "duration": 4.1,
+      "text": "So far we've just assumed\nexamples and models,"
+    },
+    {
+      "start": 4652.17,
+      "duration": 3.16,
+      "text": "like autoregressive and\nmoving average models, where"
+    },
+    {
+      "start": 4655.33,
+      "duration": 3.63,
+      "text": "this series is stationary."
+    },
+    {
+      "start": 4658.96,
+      "duration": 3.0,
+      "text": "There will be cases when\nour time series is not"
+    },
+    {
+      "start": 4661.96,
+      "duration": 7.72,
+      "text": "stationary and differencing\nthe series will generally"
+    },
+    {
+      "start": 4669.68,
+      "duration": 5.04,
+      "text": "render a series to a\nstationary transformation."
+    },
+    {
+      "start": 4674.72,
+      "duration": 9.21,
+      "text": "And so if we consider first\norder differencing, we have--"
+    },
+    {
+      "start": 4686.8,
+      "duration": 1.48,
+      "text": "let's see here."
+    },
+    {
+      "start": 4688.28,
+      "duration": 5.68,
+      "text": "If we do delta Yt\nequaling 1 minus L Yt"
+    },
+    {
+      "start": 4693.96,
+      "duration": 8.12,
+      "text": "equals Yt minus L Yt, which\nis Yt minus Yt minus 1."
+    },
+    {
+      "start": 4702.08,
+      "duration": 0.54,
+      "text": "OK."
+    },
+    {
+      "start": 4702.62,
+      "duration": 2.46,
+      "text": "This is first order differences."
+    },
+    {
+      "start": 4705.08,
+      "duration": 5.78,
+      "text": "If we apply the first\ndifference of this,"
+    },
+    {
+      "start": 4710.86,
+      "duration": 6.77,
+      "text": "we end up getting Yt minus\nYt minus 1 minus Yt minus 1"
+    },
+    {
+      "start": 4717.63,
+      "duration": 3.52,
+      "text": "minus Yt minus 2."
+    },
+    {
+      "start": 4721.15,
+      "duration": 5.72,
+      "text": "And this turns out to be equal\nto Yt minus 2, Yt minus 1"
+    },
+    {
+      "start": 4726.87,
+      "duration": 4.2,
+      "text": "plus Yt minus 2."
+    },
+    {
+      "start": 4731.07,
+      "duration": 2.86,
+      "text": "And there could be k-th\norder differencing,"
+    },
+    {
+      "start": 4733.93,
+      "duration": 3.14,
+      "text": "but in practice, we'll\nonly generally use"
+    },
+    {
+      "start": 4737.07,
+      "duration": 2.68,
+      "text": "first or second\norder differencing."
+    },
+    {
+      "start": 4739.75,
+      "duration": 3.12,
+      "text": "And what's really neat\nabout differencing"
+    },
+    {
+      "start": 4742.87,
+      "duration": 7.32,
+      "text": "is that first order differencing\nwill eliminate a linear trend"
+    },
+    {
+      "start": 4750.19,
+      "duration": 2.04,
+      "text": "in the series."
+    },
+    {
+      "start": 4752.23,
+      "duration": 2.26,
+      "text": "Basically, if we\nhave a linear trend,"
+    },
+    {
+      "start": 4754.49,
+      "duration": 5.62,
+      "text": "then the difference will just\nbe a constant difference."
+    },
+    {
+      "start": 4760.11,
+      "duration": 4.52,
+      "text": "And the second order\ndifference is appropriate"
+    },
+    {
+      "start": 4764.63,
+      "duration": 7.92,
+      "text": "if there is a quadratic\ntrend in the series"
+    },
+    {
+      "start": 4772.55,
+      "duration": 1.84,
+      "text": "and second order\ndifferencing will"
+    },
+    {
+      "start": 4774.39,
+      "duration": 2.4,
+      "text": "eliminate that quadratic trend."
+    },
+    {
+      "start": 4776.79,
+      "duration": 2.54,
+      "text": "So we'll finish there for today."
+    },
+    {
+      "start": 4779.33,
+      "duration": 6.22,
+      "text": "But this issue of modeling\ndifferences of the series"
+    },
+    {
+      "start": 4785.55,
+      "duration": 3.58,
+      "text": "or second differences of\nthe series as stationary,"
+    },
+    {
+      "start": 4789.13,
+      "duration": 4.06,
+      "text": "corresponds to having\ntime series models that"
+    },
+    {
+      "start": 4793.19,
+      "duration": 5.56,
+      "text": "are looking at the dynamics\nof the slope of the time"
+    },
+    {
+      "start": 4798.75,
+      "duration": 4.52,
+      "text": "series, which is like\nthe first derivative"
+    },
+    {
+      "start": 4803.27,
+      "duration": 3.8,
+      "text": "or the second\nderivative, and assuming"
+    },
+    {
+      "start": 4807.07,
+      "duration": 7.04,
+      "text": "that those are perhaps constant\nlevel and constant variability."
+    },
+    {
+      "start": 4814.11,
+      "duration": 6.2,
+      "text": "So those mathematical features\nend up being very intuitively"
+    },
+    {
+      "start": 4820.31,
+      "duration": 2.84,
+      "text": "applied actually\nwith different cases."
+    },
+    {
+      "start": 4823.15,
+      "duration": 0.64,
+      "text": "OK."
+    },
+    {
+      "start": 4823.79,
+      "duration": 2.79,
+      "text": "We'll finish there for today."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: So today we're going to cover an introduction to time series analysis. And time series analysis is really a very powerful methodology in statistics, and especially powerful when it comes to modeling financial markets. So I hope you'll find this introduction engaging and motivating. So let's talk about time series. We basically have notation indicating a stochastic process where X corresponds to the value of the process at time T, and the time periods T can be discrete. This is most commonly what we'll work with. But it can also correspond to a continuous time interval. And so we can imagine basically time periods, time indexed by positive numbers from zero. And in terms of modeling such a time series, we want to be able to specify the probability model for any collection of time point values. So when we say, let's specify a probability model for a time series, then that corresponds to being able to specify the joint density of any set of points-- here we have m different time points. This generalizes to all cases of m. And such a subset of the values of the process are a finite dimensional set of values, and so we'll have finite dimensional distributions for xt. Now importantly, we'll want to consider time series that are strictly stationary. And a strictly stationary time series is one for which the distribution of any set of time points is equal to the distribution at the same time points shifted by a constant. So if we're looking at the index of time and we have xt, if we look at, say, four points here, T1, T2, T3, T4, then the distribution of the values at these time points will be the same as the distribution if we shift these time points all by the same amount tau. So T2 plus tau and so forth. So we basically have that in this window and in this window, the distribution of outcomes is the same. So what does that mean? Well, that means that if there's a mean value in this period, then it's the same mean value in this other period, as well as all possible periods. So we basically have a probability model that is constrained in terms of the level being horizontal and the amount of spread about that level is constant. Now with statistics, we like to estimate parameters. Parameters, like a sample mean, are very easy to estimate. We get a sample of values and estimate the population mean with the sample mean. And so we're maybe familiar with estimating constants and estimating means of populations is a trivial example or a simple example of that. With stationary time series, we want to consider perhaps a transform of our time series to a stationary scale. And then there will be parameters of that distribution that we can estimate. And we can estimate them because the distribution is the same, basically across the whole range. So there's some hope that we'll be able to specify parameters consistently and with high precision. Now a less strict stationarity condition is called covariance stationarity. And with covariance stationarity, we're looking just at the first and second order expectations of the time series values. So the mean value of Xt will be a constant mu for all t and the variance of Xt will also not depend on the time t. It will be stationary or constant over the time range. And the covariance of values that are tau units apart will have a covariance that simply is a function of how far apart the time points are. So here, we're looking basically at a mean level mu and maybe plus or minus the square root of the variance of Xt being the lower and upper levels here. And then if we're interested in looking at how correlated different time values are, then if we consider, say, t and t plus tau, I guess, and we also consider another t prime and t prime plus tau over here, then when we have realizations of the process, they're going to be staying within a few standard deviations of the mean. And the correlation between values at different time points will be the same if the time period between those time points are the same. So that's covariance stationarity. Now with such time series that are covariance stationary, then we can look at the autocorrelation function. And the correlation between Xt and Xt plus tau is the covariance between the two divided by the square root of the product of the variances. So these are familiar formulas, generally, for correlations. And we call them autocorrelations because we're looking at the correlation of a time series with itself. And so we have rho of t is the autocorrelation. Now let's take a look at some financial time series. Let's begin with just looking at the S&P 500 index. So this is the value of the 500 major stocks in the US equity market. This is from, I think, 2011 to 2020 plus. And you can see how this, over that period of time, trended up with some dramatic drops due to COVID. And with such a time series, it's clearly not stationary because it's trending over time. If we looked at different bands of years, they have different means, and so we really cannot consider this scaling of the index to be stationary or covariance stationary. And what ends up happening with many, many financial time series is that we consider the time series Yt, say, to correspond to a random walk model on the log scale. So if we were to look at taking the log of the series and look at the increments of that, this is the log return of Yt. Then the value of Yt is going to be an initial value Y0 times the exponential of the sum of these log returns. And we can relate these log returns to the percent returns on a fractional scale. This is log of 1 plus Rt, where Rt is equal to Yt minus Yt minus 1 over Yt minus 1. So what will commonly be the case is that this sequence of log returns is covariance stationary. And so what I'd like to do next is to look at some time series plots of different financial time series, and see whether this transformation to log returns seems to make the series appear stationary. So here's the S&P 500 index. These graphs here actually update the graph from before to the end of September. And if we change initially the absolute price to the log of the price, you'll notice that an exponential growth tends to transform to a linear growth on the log scale. That comment is representing the fact that the lower panel follows more of a straight line path than the upper panel, which has perhaps some exponential curvature to it. Now, if we look at the monthly log returns, we can see that those monthly increments on the log scale have basically a flat time series process. And so it's rather consistent with this movement across a level that, in this case, is close to zero with constant variance. Now, with this data, we might consider looking at the distribution of these log returns and see whether they're consistent with a normal model, just as a benchmark example that we might use. And here's the fitted normal curve to the data. Would you say that this is a good fit to the data? Do I see any nods or shakes? I think you had a shake. AUDIENCE: It looks like relatively, but it follows like the up and down, but [INAUDIBLE]. PETER KEMPTHORNE: Right. Yeah. And so the true height is basically the realized values that are close to the mean, and the normal fit is underestimating those values that are close. And complimenting that, the tails of the distribution maybe are underestimating the magnitude of the tails as well. And so this property is a property that is called lepto kurtosis, which means slender. Lepto is Greek for slender. So let's take a look at what happens if we look at weekly returns OK, with weekly returns, we get, again, a series that appears to be fairly flat. The volatility, though, looks like it maybe isn't stable. So the variation of the time series at different time points may not be constant. It certainly was extreme during the COVID crisis, as evident here. And here's, again, the normal curve, which has the same properties noted before. And then here's the daily log returns. So looking at higher frequency measurements, we, again, get this property of stability in the mean but maybe not a stability or stationarity in the variance. And again, the normal model doesn't look like it's appropriate. It captures a center and a spread, but seems to be far off near the mean and far away. OK, let's take a look at Amazon stock. So we're just going to look at the same plots here. You'll notice that the absolute price has a rather notable exponential growth in it. When we take the log scale, we have this plot. And what's really important to see is whether the variability in the time series is constant or not. And before taking the logs, we have a really narrow variation of the price series at the beginning compared with the end. But on the log scale, the variation is more comparable. So that's actually a good thing to have. We still have a trend in the series, and taking the differences in the log values makes this series stationary, or at least appear stationary. And here's the log returns on a monthly frequency. And here's the histogram of those log returns and the normal fit. It's perhaps doing a slightly better job than for the S&P 500. It's not clear. Here is the weekly frequency time series. Again, the top panel does look like it's consistent with a stationary series in terms of the properties we've highlighted so far. And the Gaussian distribution seems to be fitting a bit better. If we look at the daily log returns, then we have this lepto kurtosis appearing in this histogram of daily returns. And in looking at the time series of the daily returns, it looks like there are some significant spikes that are not really consistent with the rest of the series. So maybe that feature is something that we would want to incorporate into our models. Well here's, getting away from the equity markets, this is looking at the crude oil futures contract. And with the crude oil futures contract, this future, it trades, I think, at the Chicago Mercantile Exchange. It actually has a dramatic feature that the value of the contract went negative in 2020, which was a shock to financial markets, especially brokers and traders in those contracts. You can imagine if you had a hundred contracts of crude oil, on the day you woke up and the price was negative, you basically owed your broker 100 times that negative value. And brokers actually sometimes were unable to tell you what your position was because their systems didn't allow for negative prices. If we tried to take the log of the series and look at the differences, with these negative values, that's actually a huge problem. But nonetheless, let's see. I did graph these, which essentially will exclude those days when there were negative values for the contract. And looking at this, here's the monthly log returns. So this is excluding the negative price periods on a monthly basis, on a weekly basis, and on a daily basis. And so what's really important here is just how looking at different financial time series with the same framework of logging the series if it's positive and looking at increments on the log scale, which correspond to percentage changes, the data generally is transformed or often is transformed to a stationary scale. Yet another example is looking at the yields of the 10 year US Treasury. And so the top panel shows-- it's called price, but it's really the yield in percentage terms of 10 year government bonds. And so you can see it started above 3%, dropped down to less than 1% following the COVID crisis, and then was rising ever since. And if we look at the price or the yield changes on the log scale, we get this plot, which isn't too different in its appearance. But then if we look at the changes in log, the increments in log, which are log returns-- in mathematical definition, log returns are not really the right terminology for the percentage changes in yield. But we'll basically be using the same terminology as before. One can see that we basically get a distribution of increments, steps in the random walk on the log scale that are unimodal and symmetric. And as we consider higher frequency-- here's weekly and here's daily-- it's actually doing a better job, perhaps, using a normal model for this transformed series than for the equity market series. So with these cases, the same manipulations of the data, taking logs, looking at log returns, corresponds to transforming the series to a random walk process. And with random walk processes, we can think of the sum from 0 to t of-- or the capital TC of X sub t and call this maybe S sub t. In modeling the random walk by this sum, there will be many different models we can consider for this. The simplest model would be one where these X's, the steps, are identically distributed and independent. So it's like a pure random walk. And more complicated models will consider St or the Xt's to be dependent upon each other. So what we'd like to do, then, is-- let's see. Let's see here. If we think of this autocorrelation function, the correlation between X's that are tau units of time apart, we can actually calculate autocorrelations for each of the series we just looked at. And so here is the autocorrelation function of the monthly log returns on the S&P 500. And one can see that there actually was a large negative autocorrelation for one month apart. And the other autocorrelations varied around this blue range. And what's important with autocorrelations, if we have a time series Xt, t equaling 1, 2, up to capital T, and then we consider the sample autocorrelation at lag K, then this is an estimate of the correlation between Xt and Xt plus K. And we call this RK. And I'll maybe put a hat on it to indicate that this is estimated from the sample. It turns out that this is approximately distributed as a normal with a mean-- or I guess, OK, a normal with the rho K, the true autocorrelation, and a variance that's 1 over T minus K. So if we look at these bands, these bands correspond to the region of sample autocorrelations that are consistent with a zero. True autocorrelation. If we want to test a null hypothesis that rho K is equal to zero, we can say reject if R hat K is greater than 1.96 times the square root of 1 over T minus K, applying a normal model for that return distribution. So we basically have, for the R hat K where we have a rho K here, we have a bell shaped curve with a standard deviation square root of 1 over T minus K. And if we consider rho K equal to zero, then we do the rejection if it's outside these bands. Let's take a look at how these autocorrelations vary as we vary the frequency. Here's the weekly frequency for the computation of log returns. And we have this pattern where perhaps there are some significant negative autocorrelations at, say, five weeks apart. And what would you say is a property of a time series that has negative autocorrelations? Say, of order at lag 5? What does that really mean in terms of what you would expect? Yes? AUDIENCE: So mean reversion. Mean reverting. PETER KEMPTHORNE: Yes. Exactly. So the negative autocorrelations are consistent, perhaps, with mean reversion. So that means that if the price changes are too high, they'll revert back, or if they're too low, they'll revert back. Let's see. Also on these graphs are partial autocorrelations, which we'll discuss later. But partial autocorrelations are correlations at a given lag after accommodating the dependence on lower order lags. We'll see how that works out in the case study later. But let's take a look at just these other series. So here's the daily series with the S&P 500. And so you can see, oh, there's actually some reasonable strong autocorrelations. Here's Amazon stock. I'm not sure why it doesn't have the band on the lower side. But it basically is symmetrical with that blue band where the correlation is consistent with zero autocorrelation. Here's the weekly. Here's the daily. So interestingly, Amazon stock doesn't seem to have any significant autocorrelations, regardless of the frequency. Here's the crude oil future. You can see that with the crude oil future, on a weekly basis, we have a negative autocorrelation at two weeks and then a positive autocorrelation at three weeks. So there's some interesting patterns that perhaps can be exploited. And here's daily. Again, one can see the rather significant autocorrelations at the low lag values. And let's see with the Treasury yields. Looking at the autocorrelations and how the log yield changes, one can see that there is some strong time dependence at the weekly basis, as well as the daily basis. Now, let's see. This discussion of autocorrelations is a very important one in time series modeling. And I just want to highlight how, if we have a time series and we fit a time series model. And so we compute, say, Y hat t, t equals 1 to T, then the residual series from this fit of the time series model is the set of errors which are Yt minus Y hat t. And we can just write Yt is equal to Y hat t plus epsilon or error t. A good model. So the model is good if the et's basically have mean zero, constant variance, are uncorrelated with each other. And so these assumptions are basically assumptions of a white noise process. So if our model basically predicts up to this residual process, which is unpredictable, has mean zero, constant variance, is uncorrelated, there's no information left in the residual series. And so we can use the autocorrelation of the residual series. We can use the autocorrelation function of the error series to test if the model is good, basically. And a good model will be a model that has captured all of the time dependent information in it, and the predictions from these or forecasts from this model are ones we have confidence in. And so there's actually another assumption here, which is that-- let's see. If the epsilon t are normal or Gaussian, then this gives good predictions. And by predictions, I'm thinking of not point forecasts of a series, but a prediction interval and how wide should that prediction interval be depending upon the variability. When we work with time series, we're actually are going to work often with autocorrelations of residuals to see whether there's any time dependence in the series. What's rather interesting to note is that one can fix a single correlation, lag, and use that to test whether the data are consistent with a zero autocorrelation of a fixed lag. We can also use sets of lags and test whether the whole set is equal to zero or not. Let's see. Let me just write it over here. So if, say, rho 1 equals rho 2 equals rho k is equal to zero, then R hat J, which is distributed as normal zero, roughly 1 over t for J equaling 1 to K. R hat J squared times t is approximately the square of a normal 0, 1, which is a chi squared 1 random variable. And if we look at the sum of TR hat J squared from 1 to K, this will be approximately a chi squared distribution with K degrees of freedom. We can reject the null hypothesis if this test statistic, I'll call it-- well, actually, I'll call it BP because it's actually called the Box-Pierce test. If BP is large. We'll say larger than a critical value C star, where this is determined by the chi squared distribution. And so this is actually called the Box-Pierce test. And so we'll actually be very interested in autocorrelations of the original series but then autocorrelations of the residual series. And whenever we have a model where the residual series still has significant autocorrelations in it, then we're really not done yet. We really need to continue. OK. So we have-- now, the next topic is a really extraordinary theorem. The Wold representation theorem. And with stationary processes that are covariance stationary, then it turns out that any covariance stationary process can be decomposed into a Vt process which is linearly deterministic. So that means that basically the current value Vt as a linear combination of past values. And St is a moving average process where we have these eta t's which are white noise. And our St process is just a weighted sum of those white noise terms. And the white noise terms are also uncorrelated with the linearly deterministic process. So let's see. When I first learned of this theorem, I had an issue with, well, what is a linearly deterministic process? So can anyone suggest what a linearly deterministic process is? Or could be, or an example of one? So we have Vt is linearly deterministic. So if we have Vt-- so if we observe Vt over a sequence of time points, well, for what patterns of Vt that determine the Vt process into the future? Can you think of any? So if Vt is equal to mu plus, say, cosine of theta t, then this thing will just move up and down, and we can actually determine that cosine function from enough values of Vt. Yes? AUDIENCE: So does that mean like any periodic process would be linearly determined? PETER KEMPTHORNE: Yes. Yeah. And it's interesting to know that. I mean, those of you who may have studied harmonic analysis could come across the result that if we have, say, different cosine or sine functions and take sums of those, then that will also be a linearly predictable process. And so if you look at summing signs of different frequencies, which basically corresponds to Fourier series that are flat, then those are linearly predictable. So that's the Vt process that we should be aware of. But what's really interesting is that the variation about that deterministic process, the St process, can be expressed as a moving average process. And this representation holds for any covariance stationary time series. Now for any covariance stationary time series-- let's see. With the covariance stationary process St, we have basically that mu is equal to the expected value of St. Sigma squared, which is the variance of St. This is constant over time. This is constant over time. And the covariance of Xt, Xt plus tau, is equal to gamma of tau for all t. So any covariance stationary process can be represented as this moving average of white noise process. And so, well, how would we use this Wold representation theorem? Well, if we have a time series Xt that we want to specify a covariance stationary time series model to it, well, the first thing we would do perhaps is de-trend the series Xt so that it has a constant mean level. So if we had a linear trend or a quadratic trend, we would subtract that out. So Xt is a series that looks like it has a flat path. And then we could initialize a parameter p indicating the past number of observations that explain the linearly deterministic term. And we can then project our time series Xt onto the space spanned by the lags, the p lags, and then look at the errors about that projection. So here we can think of having the time series values Y1 to Yn, and we can project those onto the lags of the Y values. So for the first p rows, we actually need to go back in time. So that means we have to start not from the beginning of our time series, but maybe p units ahead. And then we can apply ordinary least squares to define the projection matrix onto those lagged values use. And then we have this projected residual. And what we would want is that this projected residual, if it's a stationary time series, we could use time series methods we'll learn about how to specify a moving average model to these series and get estimates of the size and also estimates of the white noise terms. And with this step, we then can evaluate whether our residuals are orthogonal to lagged values for lags greater than p back. So these residuals should not have any dependence on lags of y that are further back than p. If those are not orthogonal, then we should increase p. And then we want to look at whether the eta t's in our moving average model, whether those are consistent with white noise or not. And so if they are, we're good. But if not, then we need to consider changing the specification of the moving average model and perhaps adding other variables such as deterministic variables that could be useful in the projections. But what this demonstrates is how this theory can, in the abstract, be applied to real world data. So as we increase p, the number of lags we use for the projection, we end up getting a limiting value as p gets large, that this is capturing the linearly predictable part of the series, the Vt's. But this assumption basically requires if we let p grow arbitrarily large, we probably want to make sure that p over n goes to zero, so that we're estimating p parameters with a number of points that is large relative to p. So this is just a way of thinking about how we might approach our modeling effort, exploiting the Wold decomposition. But what's really important here is that any covariant stationary model has a representation as this moving average process of white noise. So that's a fairly powerful result. It says that once we have transformed our data to a scale where covariant stationarity is appropriate, then we can restrict ourselves to the class of moving average processes. And what we'll see is that there are alternatives to moving average processes called autoregressions that are very closely related to moving average processes. Yes? AUDIENCE: So I guess my question is, why do you need to specify covariance stationarity for the representation theorem? PETER KEMPTHORNE: OK. Well, with the representation-- OK. OK. Let's see. Where is it here? No, it's fine. Here it is. Basically, if we consider this process St, which has some set of weights psi i times white noise eta t's, then if these conditions are satisfied for the psis-- so the sum, they're square summable, finite. Then this process St is going to be covariant stationary. It'll have finite mean and variance that's constant, and the covariances will also be constant over increments of any lag. What's powerful is that this representation can be used for any covariant stationary model. So this is covariant stationary. But any covariant stationary model has this kind of representation. Yeah. Sure. And of course, you know, covariant stationarity is a nice assumption. It may not be satisfied. So you need to have more complex models. But it's good to know when you have these assumptions satisfied that this is the representation. All right. So we next want to introduce you to this operator called a lag operator or backshift operator. And because I call it a lag operator, I label it L. And so L operates on a time series Xt and just shifts the time index back one period. So we're thinking of discrete time series with integer values of t and the lag operating on Xt shifts the time units back one period. And we can think of L to the 0 power doing the identity. L1, 1 power of L, shifts back once. If we apply L twice or L squared, this shifts back two periods. And of course, if we apply it n times then we shift back n periods. And so with these lag operators, we can think of inverses of those operators as well and consider shifting the time series forward if that were useful. And so when we think of the Wold representation, we can express it as the sum of the moving average process and the linearly deterministic process Vt. And we can represent the moving average process as a polynomial of the lag operators, possibly of infinite order. That is, multiplying the eta t's. Now, a useful application of this moving average representation is that if we think about how was the value of the process at time t affected by the white noise process eta j lags ago, then the partial derivative of Xt with respect to that j lag back white noise term is given by psi j. So when psi j is large in magnitude, that means that the current value of X is dependent on the j-th lag of the white noise. And with a representation of the Xt series by this psi function, if one graphs the psi function over lags. So let me do it over here. So if we look at psi j as a function of j and have-- we might have weights psi j that vary positive and negative. And so if this were the case, it would indicate in this graph that the impact of the white noise three periods ago has a significant impact on X now. So it can capture delayed responses of the time series Xt to the white noise terms. And if we look at the long range impact of eta j-- or sorry, the long range impact of the-- or the cumulative response of Xt, basically, corresponds to the sum of the size. And so there's basically a long run cumulative response of Xt to a given eta t. So this is the long run cumulative response to the white noise terms. Now, what's interesting about the psi of L process. So if we have psi of L is equal to the sum from 0 to infinity of psi j, L to the j, it's possible that this operator is invertible. And if it's invertible, there exists an inverse operator with coefficients psi i star, and the product of these two polynomials is simply equal to the identity. And if that's the case that an inverse of the psi of L operator exists, then we can write our model for the stationary process as being equivalent to applying the inverse operator to both sides. And so we get an inverse operator, which is a polynomial lags operating on Xt is equal to the eta t. So this corresponds to actually an autoregression model that has white noise terms. And so when this exists, this is the format of that. And what we'd like to do is show you how this works with some different examples. Right now it's perhaps a bit abstract, but when we look at the special cases of an autoregressive order one model, many of these terms will become clear. Now, we can introduce with this notation of lags and polynomial lag operators the ARMA p,q, models, where ARMA stands for autoregressive and M-A stands for moving average models, and the p corresponds to the order of the autoregressive, and the q corresponds to the order of the moving average. We can think of our time series Xt being a sum of terms, autoregressive terms on the top row, and then the second row corresponds to moving average terms of the white noise. So notice in the top row, we have Xt. And actually, if you look at that equation, if we take Xt minus mu, this turns out to be equal to phi 1 Xt minus 1 minus mu plus phi 2, and so forth. So these are lag terms of the mean adjusted X's. And then we have the next row is the sum of the white noise terms at time t, t minus 1 up to t minus q. So ARMA p,q models are a parsimonious case of time series models where we just have p autoregressive parameters, phi 1 to phi p, and q moving average parameters, theta 1 to theta q. If we group all the terms with X's on the left-hand side and all the terms with the etas on the right-hand side, we then get this phi of L operator times Xt mu view is equal to theta of L eta t. And the Wold decomposition of this ARMA model is to multiply this ARMA equation on both sides by the inverse of phi of L. And so mu plus psi of L eta t is the Wold decomposition representation of the process. So let's look at autoregressive models. So we'll assume that there's no moving average term. So we have the phi of L operator operating on Xt minus mu is equal to the white noise. And so that model basically says that Xt is a linear combination of the p lags of Xt plus white noise. So this is a regression model for our time series Xt using predictor variables the lags of this time series. And if we take expectations of both sides, we basically get mu. The constant expectation of the covariance stationary process is equal to C plus the sum of phi j times mu, the expectation of each of the lags, plus 0. And so C turns out to equal mu times phi of 1. So we have that representation of the constant term. Now, what's important with time series models is whether the time series model is stationary or not. And it turns out that for an autoregressive model with parameters phi 1 to phi p, that if we look at what's called this characteristic equation, 1 minus phi 1z minus phi 2z squared up to phi pz to the p power. If we consider the roots of that polynomial, then, well, if we have roots lambda 1 to lambda p, then phi of L has to be the product of these terms. Each of these terms, each of these factors are equal to zero when z equals lambda 1. So if z equals lambda 1, then the first term is zero. If z equals the p-th root, lambda p, then this last factor is zero. So this is a representation of this p-th order polynomial in terms of its roots. And the condition for stationarity is that all of these roots have to lie outside the unit circle in the complex plane. And so if we look at one of these roots, fix just lambda as a root, then if we take the inverse of this factor, it has this geometric metric sum expression of 1 plus 1 over lambda L plus 1 over lambda squared, L squared, and so forth. And so it's basically an infinite order polynomial in lags. And the coefficients are 1 over lambda to the I th power. So if these lambdas are bigger than 1 inch magnitude, then the inverse of those, the reciprocal of those, is smaller than 1 in magnitude. So these terms will die down with a limiting value of zero. And that's necessary for this representation to be appropriate. So we get a covariance stationary sum of lagged errors, lagged white noise terms with this representation. So the phi inverse of L is actually the product of p of these reciprocals. And so the condition that each of those reciprocals or each of those terms is defined by lambda j's that are bigger than 1 in magnitude makes their geometric series expression converge. If the lambdas were inside the unit circle, the magnitude, then when we multiply them together, square them, they get bigger and bigger. OK. So let's take a look at what this works out to be, just for an autoregressive process with p equal to 1. With p equal to 1, our characteristic equation is simply 1 minus phi z equals 0. And so the root of that is clearly 1 over phi. And so the p equals 1 autoregressive model is going to be covariance stationary if and only if the magnitude of phi is smaller than one, or equivalently, its inverse magnitude is greater than 1. And so we end up having these first and second moments and these covariances which are very easy to compute. And this will probably be a homework exercise problem. But with the first order autoregression model, we have a constant mean, a constant variance, which is sigma squared over 1 minus phi times sigma squared. And the covariances basically are the variance times phi to the j-th power. So with an autocorrelation, the phi is the first order autocorrelation, and phi to the j-th is the j-th order autocorrelation. OK. Now, if phi is between minus 1 and 1-- for phi between 0 and 1, the process exhibits exponential mean reversion. And when phi is negative but no larger than negative 1 in magnitude, then it exhibits some oscillating exponential mean reversion. But when phi equals 1, then the Wold decomposition does not exist and the process is a simple random walk which is non-stationary. And when phi is greater than 1, then the process is explosive. So in financial markets, these first order autoregressive models actually are used quite frequently. With interest rates where there's maybe a constant long term interest rate level and there's variation about that, this Ornstein-Uhlenbeck process corresponds to the first order autoregressive process. With these other series, these are financial or time series in financial markets where the level of the series is expected to be stable over time. So perhaps interest rate spreads would be modeled as being stable or stationary. Real exchange rates, perhaps, or valuation ratios. So these models arise in these application areas. Now to fit an autoregressive process, we could simply just fit a linear regression model with p lags of the series as explanatory variables. But what's rather interesting to know is this approach called solving Yule-Walker equations. If we take our model equation, that first equation line, we have the mean deviation of Xt is equal to a linear combination of phi j times the j-th lag deviation from mu. There's a typo there, that second phi 2 should have an Xt minus 2. Then if we multiply both sides of this model equation by Xt minus j minus mu, then we basically, for each term, we're adding Xt minus j minus mu as a factor, and then take expectations of that. We have our j-th lag autocovariance, and it's equal to the phi 1 times the j minus 1 lag autocovariance plus phi 2 times the j minus 2 lag, and so forth. And if the j is equal to zero, then we also have a sigma squared term where we're looking at basically that. Well, that term comes in. So we basically have equations, a system of equations if we vary j. And so if we consider j equal to 1 to p, we get a system of p linear equations in the phi j's. And this is our Yule-Walker equations. Gamma 1 is equal to the first row of the matrix times the vector of phis, and so forth. And with the properties of the autocovariances, they are symmetrical. So we can actually use these to make the computations of the matrices. And when we use this Yule-Walker approach to estimate the parameters, we're actually using a method of moments principle for estimating the autoregressive model parameters. Method of moments is a principle in statistical estimation, where we basically equate sample moments and the population moments and solve for what population parameter values match the sample moments. Now, we can do a similar analysis of moving average models. So here, we have a q-th order moving average model represented by a polynomial theta of L of order q in terms of powers of L. And the properties of this process can be studied. And one thing we might want to do is invert this moving average model into an autoregressive model by basically multiplying the model equation on both sides by the inverse of the theta of L operator. And so if we do that, then we basically have an autoregressive representation of the moving average order q model. And if you calculate simple second order properties of this moving average process, well, the mean is simply mu. The right-hand side of the equation is just weighted sums of etas which have mean zero. And so the expectation of the left-hand side is simply equal to mu. And if we look at the variance of Xt, it basically is the variance of the weighted sum of the etas. And it turns out to have this simple form with covariances of the series. With moving average processes, if we look at time increments j that are longer than the q order, then there's no overlap of white noise terms in Xt and Xt plus j, and so their covariance is going to be zero. When there is overlap, then we get this formula. OK. So next, we want to deal with how we can accommodate non-stationarity in time series. So far we've just assumed examples and models, like autoregressive and moving average models, where this series is stationary. There will be cases when our time series is not stationary and differencing the series will generally render a series to a stationary transformation. And so if we consider first order differencing, we have-- let's see here. If we do delta Yt equaling 1 minus L Yt equals Yt minus L Yt, which is Yt minus Yt minus 1. OK. This is first order differences. If we apply the first difference of this, we end up getting Yt minus Yt minus 1 minus Yt minus 1 minus Yt minus 2. And this turns out to be equal to Yt minus 2, Yt minus 1 plus Yt minus 2. And there could be k-th order differencing, but in practice, we'll only generally use first or second order differencing. And what's really neat about differencing is that first order differencing will eliminate a linear trend in the series. Basically, if we have a linear trend, then the difference will just be a constant difference. And the second order difference is appropriate if there is a quadratic trend in the series and second order differencing will eliminate that quadratic trend. So we'll finish there for today. But this issue of modeling differences of the series or second differences of the series as stationary, corresponds to having time series models that are looking at the dynamics of the slope of the time series, which is like the first derivative or the second derivative, and assuming that those are perhaps constant level and constant variability. So those mathematical features end up being very intuitively applied actually with different cases. OK. We'll finish there for today."
+}

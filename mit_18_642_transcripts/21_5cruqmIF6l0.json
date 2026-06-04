@@ -1,0 +1,4578 @@
+{
+  "index": 21,
+  "id": "5cruqmIF6l0",
+  "title": "Lecture 24: Stochastic Calculus",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 1.98,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 1.98,
+      "duration": 1.485,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 3.465,
+      "duration": 1.98,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 10.973,
+      "duration": 1.167,
+      "text": "PETER KEMPTHORNE: All right."
+    },
+    {
+      "start": 12.14,
+      "duration": 4.82,
+      "text": "So today's topic is\nstochastic calculus."
+    },
+    {
+      "start": 16.96,
+      "duration": 4.6,
+      "text": "And this topic is\nreally an engaging one"
+    },
+    {
+      "start": 21.56,
+      "duration": 7.4,
+      "text": "in quantitative finance because\nit extends ordinary calculus"
+    },
+    {
+      "start": 28.96,
+      "duration": 3.799,
+      "text": "with real variables\nto calculus that"
+    },
+    {
+      "start": 32.759,
+      "duration": 3.361,
+      "text": "depends upon\nstochastic processes,"
+    },
+    {
+      "start": 36.12,
+      "duration": 4.0,
+      "text": "and in particular,\nBrownian motion processes."
+    },
+    {
+      "start": 40.12,
+      "duration": 2.04,
+      "text": "And so when we are\nthinking about how"
+    },
+    {
+      "start": 42.16,
+      "duration": 6.68,
+      "text": "to model the value of a\nstock or of a derivative,"
+    },
+    {
+      "start": 48.84,
+      "duration": 4.64,
+      "text": "such as a simple option\nor a more complex option,"
+    },
+    {
+      "start": 53.48,
+      "duration": 5.84,
+      "text": "we can model the\ndynamics of these assets"
+    },
+    {
+      "start": 59.32,
+      "duration": 5.999,
+      "text": "or derivative\ncontracts as integrals"
+    },
+    {
+      "start": 65.319,
+      "duration": 4.001,
+      "text": "of functions with respect\nto Brownian motion,"
+    },
+    {
+      "start": 69.32,
+      "duration": 2.64,
+      "text": "where Brownian motion\ncharacterizes the underlying"
+    },
+    {
+      "start": 71.96,
+      "duration": 2.76,
+      "text": "dynamics of the asset."
+    },
+    {
+      "start": 74.72,
+      "duration": 3.48,
+      "text": "And so it's really\nneat to see how"
+    },
+    {
+      "start": 78.2,
+      "duration": 2.76,
+      "text": "we can develop\nstochastic calculus"
+    },
+    {
+      "start": 80.96,
+      "duration": 3.8,
+      "text": "and relate it to\nwhat's familiar to us"
+    },
+    {
+      "start": 84.76,
+      "duration": 4.52,
+      "text": "with ordinary real calculus,\nbut see how there are extensions"
+    },
+    {
+      "start": 89.28,
+      "duration": 7.72,
+      "text": "of the formulas that accommodate\nthe randomness in the increments"
+    },
+    {
+      "start": 97.0,
+      "duration": 2.34,
+      "text": "with which we're integrating."
+    },
+    {
+      "start": 99.34,
+      "duration": 4.82,
+      "text": "So let's consider\njust reviewing,"
+    },
+    {
+      "start": 104.16,
+      "duration": 4.36,
+      "text": "first, Brownian\nmotion with drift."
+    },
+    {
+      "start": 108.52,
+      "duration": 2.8,
+      "text": "We discussed this\nearlier in our discussion"
+    },
+    {
+      "start": 111.32,
+      "duration": 3.08,
+      "text": "of stochastic processes."
+    },
+    {
+      "start": 114.4,
+      "duration": 4.59,
+      "text": "And a standard\nBrownian motion model"
+    },
+    {
+      "start": 118.99,
+      "duration": 8.8,
+      "text": "is one where we have our process\nX, depending upon the underlying"
+    },
+    {
+      "start": 127.79,
+      "duration": 1.719,
+      "text": "Brownian motion--"
+    },
+    {
+      "start": 129.509,
+      "duration": 7.761,
+      "text": "standardized Brownian motion B\nof t, with a drift parameter mu,"
+    },
+    {
+      "start": 137.27,
+      "duration": 5.4,
+      "text": "and a volatility parameter\nsigma, or variance parameter"
+    },
+    {
+      "start": 142.67,
+      "duration": 1.76,
+      "text": "sigma squared."
+    },
+    {
+      "start": 144.43,
+      "duration": 4.976,
+      "text": "And the key property\nof Brownian motion"
+    },
+    {
+      "start": 149.406,
+      "duration": 6.144,
+      "text": "includes independent\nincrements and the variation"
+    },
+    {
+      "start": 155.55,
+      "duration": 3.4,
+      "text": "of increments of the\nprocess being proportional"
+    },
+    {
+      "start": 158.95,
+      "duration": 3.56,
+      "text": "to the length of the increment."
+    },
+    {
+      "start": 162.51,
+      "duration": 3.3,
+      "text": "So with standard\nBrownian motion,"
+    },
+    {
+      "start": 165.81,
+      "duration": 3.86,
+      "text": "where we have a\ndrift parameter of 0"
+    },
+    {
+      "start": 169.67,
+      "duration": 8.08,
+      "text": "and a sigma volatility of 1, the\nextension of these properties"
+    },
+    {
+      "start": 177.75,
+      "duration": 4.84,
+      "text": "to have essentially mean\n0 and standard deviation"
+    },
+    {
+      "start": 182.59,
+      "duration": 4.64,
+      "text": "equal to sigma\ntimes t is to have"
+    },
+    {
+      "start": 187.23,
+      "duration": 3.52,
+      "text": "the mean depend upon\ntime, with the drift"
+    },
+    {
+      "start": 190.75,
+      "duration": 4.68,
+      "text": "parameter and the\nvolatility or variance"
+    },
+    {
+      "start": 195.43,
+      "duration": 2.48,
+      "text": "to be proportional\nto sigma squared"
+    },
+    {
+      "start": 197.91,
+      "duration": 3.16,
+      "text": "times the length\nof the interval."
+    },
+    {
+      "start": 201.07,
+      "duration": 7.48,
+      "text": "Now, in terms of\nunderstanding Brownian motion,"
+    },
+    {
+      "start": 208.55,
+      "duration": 3.16,
+      "text": "it's going to be\nuseful for us to focus"
+    },
+    {
+      "start": 211.71,
+      "duration": 7.24,
+      "text": "on the conditional distribution\nof the value at time"
+    },
+    {
+      "start": 218.95,
+      "duration": 14.72,
+      "text": "t plus delta as a function\nof the value at time X of t."
+    },
+    {
+      "start": 233.67,
+      "duration": 5.42,
+      "text": "And so when we think of a\ngraph of Brownian motion,"
+    },
+    {
+      "start": 239.09,
+      "duration": 10.02,
+      "text": "which is some path, if we\nfix, at a given value t,"
+    },
+    {
+      "start": 249.11,
+      "duration": 5.6,
+      "text": "the value of X of t--"
+    },
+    {
+      "start": 254.71,
+      "duration": 2.63,
+      "text": "or maybe I should\nwrite this as s--"
+    },
+    {
+      "start": 260.99,
+      "duration": 8.48,
+      "text": "the value of X at time little\nt, then if we know the value"
+    },
+    {
+      "start": 269.47,
+      "duration": 4.1,
+      "text": "at time little t, what\nis the distribution,"
+    },
+    {
+      "start": 273.57,
+      "duration": 2.74,
+      "text": "the conditional distribution\ninto the future?"
+    },
+    {
+      "start": 276.31,
+      "duration": 7.72,
+      "text": "Well, this increment t plus\ndelta t, delta t in red,"
+    },
+    {
+      "start": 284.03,
+      "duration": 5.84,
+      "text": "we can just expand that out to\nmu t plus delta t plus sigma"
+    },
+    {
+      "start": 289.87,
+      "duration": 2.88,
+      "text": "B of t plus delta t."
+    },
+    {
+      "start": 292.75,
+      "duration": 7.853,
+      "text": "And then we can group the known\nterms on the left-hand side,"
+    },
+    {
+      "start": 300.603,
+      "duration": 5.427,
+      "text": "or the left-hand terms of the\nsecond equation, mu t plus sigma"
+    },
+    {
+      "start": 306.03,
+      "duration": 1.28,
+      "text": "B of t."
+    },
+    {
+      "start": 307.31,
+      "duration": 7.96,
+      "text": "Then we have a term mu delta t,\nwhich is a constant, not random."
+    },
+    {
+      "start": 315.27,
+      "duration": 5.2,
+      "text": "But then we have the increment\nof the Brownian motion"
+    },
+    {
+      "start": 320.47,
+      "duration": 7.92,
+      "text": "process from time t to time\ndelta t, t plus delta t."
+    },
+    {
+      "start": 328.39,
+      "duration": 1.9,
+      "text": "So actually,\nthere's a typo here."
+    },
+    {
+      "start": 330.29,
+      "duration": 5.22,
+      "text": "That should be B of t\nplus delta t minus B of t."
+    },
+    {
+      "start": 335.51,
+      "duration": 7.6,
+      "text": "And so we have that our\ndelta X increment is mu delta"
+    },
+    {
+      "start": 343.11,
+      "duration": 2.48,
+      "text": "t plus sigma delta B of t."
+    },
+    {
+      "start": 345.59,
+      "duration": 4.88,
+      "text": "Now, this increment\nhas mean mu delta t,"
+    },
+    {
+      "start": 350.47,
+      "duration": 1.87,
+      "text": "variance sigma squared delta t."
+    },
+    {
+      "start": 352.34,
+      "duration": 4.88,
+      "text": "And for Brownian\nmotion with drift,"
+    },
+    {
+      "start": 357.22,
+      "duration": 3.88,
+      "text": "this increment is\nexactly distributed"
+    },
+    {
+      "start": 361.1,
+      "duration": 5.44,
+      "text": "as a normal random variable,\nwith that mean and variance."
+    },
+    {
+      "start": 366.54,
+      "duration": 5.64,
+      "text": "And what's useful\nto think about is,"
+    },
+    {
+      "start": 372.18,
+      "duration": 7.76,
+      "text": "what happens as the increment\ndelta t gets infinitesimal?"
+    },
+    {
+      "start": 379.94,
+      "duration": 6.68,
+      "text": "And so if we look at the\ninfinitesimal increment"
+    },
+    {
+      "start": 386.62,
+      "duration": 6.28,
+      "text": "for delta t, then the\nexpected squared value"
+    },
+    {
+      "start": 392.9,
+      "duration": 4.48,
+      "text": "of the Brownian\nmotion increment is"
+    },
+    {
+      "start": 397.38,
+      "duration": 5.82,
+      "text": "equal to sigma squared delta\nt plus mu delta t squared."
+    },
+    {
+      "start": 403.2,
+      "duration": 2.58,
+      "text": "This is actually\nan exact formula."
+    },
+    {
+      "start": 405.78,
+      "duration": 4.32,
+      "text": "But what's important for\nus is that, as delta t goes"
+    },
+    {
+      "start": 410.1,
+      "duration": 3.16,
+      "text": "to 0, as it becomes\ninfinitesimal,"
+    },
+    {
+      "start": 413.26,
+      "duration": 6.36,
+      "text": "then this squared\nincrement has expectation"
+    },
+    {
+      "start": 419.62,
+      "duration": 4.2,
+      "text": "that's of order delta t."
+    },
+    {
+      "start": 423.82,
+      "duration": 2.8,
+      "text": "And it actually equals sigma\nsquared delta t plus little"
+    },
+    {
+      "start": 426.62,
+      "duration": 2.6,
+      "text": "o of delta t."
+    },
+    {
+      "start": 429.22,
+      "duration": 5.08,
+      "text": "So this little o notation means\nthat as delta t goes to 0,"
+    },
+    {
+      "start": 434.3,
+      "duration": 4.68,
+      "text": "this remainder part\ngoes to 0 as well."
+    },
+    {
+      "start": 438.98,
+      "duration": 5.92,
+      "text": "And if we consider powers\nof our increment of delta"
+    },
+    {
+      "start": 444.9,
+      "duration": 5.76,
+      "text": "X, where the power\nc is greater than 2,"
+    },
+    {
+      "start": 450.66,
+      "duration": 5.24,
+      "text": "then this will also\nbe small o of delta t."
+    },
+    {
+      "start": 455.9,
+      "duration": 8.44,
+      "text": "So expressions that depend\nupon second or higher order"
+    },
+    {
+      "start": 464.34,
+      "duration": 4.32,
+      "text": "of delta X will actually\nbe comparable to sigma"
+    },
+    {
+      "start": 468.66,
+      "duration": 1.14,
+      "text": "squared delta t."
+    },
+    {
+      "start": 472.66,
+      "duration": 4.56,
+      "text": "So with Brownian\nmotion and drift,"
+    },
+    {
+      "start": 477.22,
+      "duration": 3.8,
+      "text": "we have the notation for\na stochastic differential"
+    },
+    {
+      "start": 481.02,
+      "duration": 4.68,
+      "text": "equation, which is\nsimply the increment"
+    },
+    {
+      "start": 485.7,
+      "duration": 10.7,
+      "text": "of X is equal to mu delta t, or\ndt rather, plus sigma dB of t."
+    },
+    {
+      "start": 500.86,
+      "duration": 7.48,
+      "text": "And with this\nnotation, the solution"
+    },
+    {
+      "start": 508.34,
+      "duration": 7.0,
+      "text": "turns out to be X of t is equal\nto the value of X at time 0"
+    },
+    {
+      "start": 515.34,
+      "duration": 5.6,
+      "text": "plus the integral from 0 to t\nmu dt plus the integral from 0"
+    },
+    {
+      "start": 520.94,
+      "duration": 2.569,
+      "text": "to t of sigma dBs."
+    },
+    {
+      "start": 526.37,
+      "duration": 7.88,
+      "text": "And this solution\nseems obvious when"
+    },
+    {
+      "start": 534.25,
+      "duration": 6.36,
+      "text": "we think about how we understand\ndifferential equations"
+    },
+    {
+      "start": 540.61,
+      "duration": 4.56,
+      "text": "with real functions, but it\ndoes extend to this solution"
+    },
+    {
+      "start": 545.17,
+      "duration": 2.68,
+      "text": "when we have Brownian motion."
+    },
+    {
+      "start": 547.85,
+      "duration": 6.88,
+      "text": "And so as noted there,\nthis is equal to X0 plus t"
+    },
+    {
+      "start": 554.73,
+      "duration": 9.76,
+      "text": "minus 0 times mu plus sigma\ntimes B of t minus B of 0."
+    },
+    {
+      "start": 564.49,
+      "duration": 7.64,
+      "text": "So our integration of\nfunctions of Brownian motion"
+    },
+    {
+      "start": 572.13,
+      "duration": 4.68,
+      "text": "have this nominal solution,\nwhich seems very reasonable."
+    },
+    {
+      "start": 576.81,
+      "duration": 6.92,
+      "text": "And we'll, in fact, show\nthat this solution is useful"
+    },
+    {
+      "start": 583.73,
+      "duration": 6.32,
+      "text": "and it actually extends\nto more complex equations."
+    },
+    {
+      "start": 590.05,
+      "duration": 4.48,
+      "text": "Now, the more complex\ndifferential equations"
+    },
+    {
+      "start": 594.53,
+      "duration": 4.98,
+      "text": "are one where we consider\na drift term, mu,"
+    },
+    {
+      "start": 599.51,
+      "duration": 2.34,
+      "text": "that's not a constant."
+    },
+    {
+      "start": 601.85,
+      "duration": 3.88,
+      "text": "It may vary over\ntime, and it may also"
+    },
+    {
+      "start": 605.73,
+      "duration": 5.76,
+      "text": "vary depending upon the\nmagnitude of the process."
+    },
+    {
+      "start": 611.49,
+      "duration": 5.88,
+      "text": "So this kind of an\nextension is quite general."
+    },
+    {
+      "start": 617.37,
+      "duration": 5.0,
+      "text": "And we can think about the same\nextension to the volatility."
+    },
+    {
+      "start": 622.37,
+      "duration": 2.92,
+      "text": "Rather than being a constant,\nit might vary with t,"
+    },
+    {
+      "start": 625.29,
+      "duration": 3.0,
+      "text": "and it might vary with Xt."
+    },
+    {
+      "start": 628.29,
+      "duration": 8.04,
+      "text": "And with derivative\ncontracts, we"
+    },
+    {
+      "start": 636.33,
+      "duration": 8.12,
+      "text": "have values of contracts\nwhich, at any given time,"
+    },
+    {
+      "start": 644.45,
+      "duration": 4.68,
+      "text": "depend on time, maybe\ntime to maturity,"
+    },
+    {
+      "start": 649.13,
+      "duration": 3.4,
+      "text": "and the level of the process."
+    },
+    {
+      "start": 652.53,
+      "duration": 4.44,
+      "text": "And apart from\nthose two features"
+    },
+    {
+      "start": 656.97,
+      "duration": 4.84,
+      "text": "or properties of the\nderivative at time little t,"
+    },
+    {
+      "start": 661.81,
+      "duration": 4.84,
+      "text": "we have a valuation\nmodel that applies,"
+    },
+    {
+      "start": 666.65,
+      "duration": 2.0,
+      "text": "according to some function."
+    },
+    {
+      "start": 668.65,
+      "duration": 2.12,
+      "text": "So it will be very\nuseful to have"
+    },
+    {
+      "start": 670.77,
+      "duration": 4.08,
+      "text": "these generalized drift\nand generalized volatility"
+    },
+    {
+      "start": 674.85,
+      "duration": 0.84,
+      "text": "parameters."
+    },
+    {
+      "start": 675.69,
+      "duration": 1.52,
+      "text": "Yes."
+    },
+    {
+      "start": 677.21,
+      "duration": 2.92,
+      "text": "AUDIENCE: How is the\nsecond integral defined?"
+    },
+    {
+      "start": 680.13,
+      "duration": 4.96,
+      "text": "Because, obviously, the first\none is like a Riemann integral."
+    },
+    {
+      "start": 685.09,
+      "duration": 2.0,
+      "text": "What about the second one?"
+    },
+    {
+      "start": 687.09,
+      "duration": 2.22,
+      "text": "Is there an actual\nformal definition of--"
+    },
+    {
+      "start": 689.31,
+      "duration": 1.36,
+      "text": "I guess it's an Ito integral."
+    },
+    {
+      "start": 690.67,
+      "duration": 1.0,
+      "text": "PETER KEMPTHORNE: Right."
+    },
+    {
+      "start": 691.67,
+      "duration": 2.76,
+      "text": "And we will get\nthere in a moment."
+    },
+    {
+      "start": 694.43,
+      "duration": 4.14,
+      "text": "But if we're integrating from--"
+    },
+    {
+      "start": 698.57,
+      "duration": 3.24,
+      "text": "well, here it's from 0 to t."
+    },
+    {
+      "start": 701.81,
+      "duration": 5.16,
+      "text": "If we're integrating the\nprocess over increments,"
+    },
+    {
+      "start": 706.97,
+      "duration": 3.56,
+      "text": "we're basically going to be\nsumming over the increments,"
+    },
+    {
+      "start": 710.53,
+      "duration": 3.88,
+      "text": "although summing on the\ninfinitesimal timescale"
+    },
+    {
+      "start": 714.41,
+      "duration": 3.64,
+      "text": "over the entire period\nbetween 0 and t."
+    },
+    {
+      "start": 718.05,
+      "duration": 5.24,
+      "text": "And so if we break that sum\nof infinitesimal increments,"
+    },
+    {
+      "start": 723.29,
+      "duration": 2.98,
+      "text": "we basically get the last\nvalue minus the first."
+    },
+    {
+      "start": 726.27,
+      "duration": 3.06,
+      "text": "And so we'll see\nthat come into play."
+    },
+    {
+      "start": 729.33,
+      "duration": 5.4,
+      "text": "So what we will determine\nwith this general setup,"
+    },
+    {
+      "start": 734.73,
+      "duration": 5.44,
+      "text": "though, is that when we have\nextended drift and volatility,"
+    },
+    {
+      "start": 740.17,
+      "duration": 4.04,
+      "text": "we then will have a solution\nto this Brownian motion"
+    },
+    {
+      "start": 744.21,
+      "duration": 5.16,
+      "text": "with drift, with generalized\ndrift and volatility, satisfying"
+    },
+    {
+      "start": 749.37,
+      "duration": 1.6,
+      "text": "this equation."
+    },
+    {
+      "start": 750.97,
+      "duration": 6.44,
+      "text": "So we're going to want to be\nable to compute these integrals"
+    },
+    {
+      "start": 757.41,
+      "duration": 1.62,
+      "text": "in a consistent way."
+    },
+    {
+      "start": 759.03,
+      "duration": 3.41,
+      "text": "And the Ito calculus\nprovides us with that."
+    },
+    {
+      "start": 762.44,
+      "duration": 4.6,
+      "text": "So we have to define\nIto integrals."
+    },
+    {
+      "start": 767.04,
+      "duration": 6.12,
+      "text": "Well, in defining\nIto integrals, we"
+    },
+    {
+      "start": 773.16,
+      "duration": 5.48,
+      "text": "have this notation that we\nneed to be comfortable with."
+    },
+    {
+      "start": 778.64,
+      "duration": 9.16,
+      "text": "We are going to, first of all,\nconsider a probability process"
+    },
+    {
+      "start": 787.8,
+      "duration": 5.2,
+      "text": "that is defined by this triple."
+    },
+    {
+      "start": 793.0,
+      "duration": 1.26,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 794.26,
+      "duration": 8.98,
+      "text": "Have any people here taken\nadvanced probability or measure"
+    },
+    {
+      "start": 803.24,
+      "duration": 2.52,
+      "text": "theory?"
+    },
+    {
+      "start": 805.76,
+      "duration": 7.2,
+      "text": "Well, we basically have,\nhere, a sample space."
+    },
+    {
+      "start": 812.96,
+      "duration": 7.92,
+      "text": "And here, we have what's\ncalled a sigma field of sets,"
+    },
+    {
+      "start": 820.88,
+      "duration": 3.0,
+      "text": "which are a subset of omega."
+    },
+    {
+      "start": 823.88,
+      "duration": 5.76,
+      "text": "And then here, we have\na probability model,"
+    },
+    {
+      "start": 829.64,
+      "duration": 6.24,
+      "text": "where if we have A,\na subset of omega,"
+    },
+    {
+      "start": 835.88,
+      "duration": 4.36,
+      "text": "and it's an element\nof this sigma field,"
+    },
+    {
+      "start": 840.24,
+      "duration": 6.01,
+      "text": "we have this probability of\nthat set is well defined."
+    },
+    {
+      "start": 848.76,
+      "duration": 8.0,
+      "text": "So this notation encompasses the\ngenerality of probability models"
+    },
+    {
+      "start": 856.76,
+      "duration": 6.76,
+      "text": "that are important to specify\nand be comfortable with."
+    },
+    {
+      "start": 863.52,
+      "duration": 9.28,
+      "text": "Well, with the omega\nset here, these"
+    },
+    {
+      "start": 872.8,
+      "duration": 3.64,
+      "text": "are a collection\nof little omegas,"
+    },
+    {
+      "start": 876.44,
+      "duration": 13.44,
+      "text": "which are possible sample\npaths of this Brownian motion."
+    },
+    {
+      "start": 889.88,
+      "duration": 11.08,
+      "text": "And we can think of, OK, here's\none path, one possible path."
+    },
+    {
+      "start": 900.96,
+      "duration": 6.0,
+      "text": "Another possible path actually\nmatches the first path up"
+    },
+    {
+      "start": 906.96,
+      "duration": 6.36,
+      "text": "to time t, but then\ncontinues on somewhere else."
+    },
+    {
+      "start": 913.32,
+      "duration": 5.62,
+      "text": "Another path could\nbe one that is"
+    },
+    {
+      "start": 918.94,
+      "duration": 3.52,
+      "text": "reflected about a given level."
+    },
+    {
+      "start": 922.46,
+      "duration": 1.94,
+      "text": "We went through this a\nbit in our discussion"
+    },
+    {
+      "start": 924.4,
+      "duration": 2.88,
+      "text": "of Brownian motion processes."
+    },
+    {
+      "start": 927.28,
+      "duration": 2.92,
+      "text": "And so we can think\nof just the collection"
+    },
+    {
+      "start": 930.2,
+      "duration": 2.32,
+      "text": "of all possible paths."
+    },
+    {
+      "start": 932.52,
+      "duration": 5.31,
+      "text": "Now, the filtration, Ft--"
+    },
+    {
+      "start": 937.83,
+      "duration": 4.96,
+      "text": "we think of script\nFt, this is going"
+    },
+    {
+      "start": 942.79,
+      "duration": 10.52,
+      "text": "to be the sigma field of\nevents or paths, which"
+    },
+    {
+      "start": 953.31,
+      "duration": 13.32,
+      "text": "are fixed or known at times\ns less than or equal to t."
+    },
+    {
+      "start": 966.63,
+      "duration": 6.6,
+      "text": "So with script Ft, the\ninformation up to time t--"
+    },
+    {
+      "start": 973.23,
+      "duration": 8.8,
+      "text": "if this is our\npath up to time t,"
+    },
+    {
+      "start": 982.03,
+      "duration": 6.24,
+      "text": "the event of following\nthis path up to time t"
+    },
+    {
+      "start": 988.27,
+      "duration": 5.88,
+      "text": "is deterministic\nif we look back--"
+    },
+    {
+      "start": 994.15,
+      "duration": 4.32,
+      "text": "deterministic for\ns less than t--"
+    },
+    {
+      "start": 998.47,
+      "duration": 3.325,
+      "text": "but then it's random--"
+    },
+    {
+      "start": 1001.795,
+      "duration": 4.595,
+      "text": "random-- for s greater than t."
+    },
+    {
+      "start": 1006.39,
+      "duration": 5.16,
+      "text": "So we have a value--"
+    },
+    {
+      "start": 1011.55,
+      "duration": 2.42,
+      "text": "or in script Ft,\nit basically says,"
+    },
+    {
+      "start": 1013.97,
+      "duration": 7.9,
+      "text": "OK, we can work with paths that\nare deterministic before time t"
+    },
+    {
+      "start": 1021.87,
+      "duration": 3.6,
+      "text": "but then are random\nafter time t."
+    },
+    {
+      "start": 1025.47,
+      "duration": 7.639,
+      "text": "And so that relates to the\nconcept of being measurable."
+    },
+    {
+      "start": 1033.109,
+      "duration": 4.321,
+      "text": "So we say that events in Ft\nare measurable with respect"
+    },
+    {
+      "start": 1037.43,
+      "duration": 4.36,
+      "text": "to Bs, with the information\nset up to time t."
+    },
+    {
+      "start": 1041.79,
+      "duration": 5.68,
+      "text": "So if we consider\ntimes before t,"
+    },
+    {
+      "start": 1047.47,
+      "duration": 4.68,
+      "text": "the path is actually\njust a constant--"
+    },
+    {
+      "start": 1052.15,
+      "duration": 5.32,
+      "text": "or as a function, a path-valued\nfunction that's constant."
+    },
+    {
+      "start": 1057.47,
+      "duration": 5.8,
+      "text": "Now, if we have this\nprobability measure"
+    },
+    {
+      "start": 1063.27,
+      "duration": 5.44,
+      "text": "on omega, the space of\nall possible paths--"
+    },
+    {
+      "start": 1068.71,
+      "duration": 6.68,
+      "text": "if we consider these a\nconditional distribution given"
+    },
+    {
+      "start": 1075.39,
+      "duration": 4.76,
+      "text": "X at time t, then\nwe're trying to specify"
+    },
+    {
+      "start": 1080.15,
+      "duration": 7.08,
+      "text": "the model for all future paths\nthat start at the level X"
+    },
+    {
+      "start": 1087.23,
+      "duration": 1.6,
+      "text": "at time t."
+    },
+    {
+      "start": 1088.83,
+      "duration": 12.68,
+      "text": "And that probability measure\nover the entire space of paths"
+    },
+    {
+      "start": 1101.51,
+      "duration": 5.4,
+      "text": "can also be restricted to the\npaths up to time little t."
+    },
+    {
+      "start": 1106.91,
+      "duration": 8.0,
+      "text": "So we can basically focus\non probability measures that"
+    },
+    {
+      "start": 1114.91,
+      "duration": 6.12,
+      "text": "are unconditional but restricted\nto the information set up"
+    },
+    {
+      "start": 1121.03,
+      "duration": 1.64,
+      "text": "to time t."
+    },
+    {
+      "start": 1122.67,
+      "duration": 6.2,
+      "text": "Now, we'll want to refer to the\nvalue of the Brownian motion"
+    },
+    {
+      "start": 1128.87,
+      "duration": 1.88,
+      "text": "at time t."
+    },
+    {
+      "start": 1130.75,
+      "duration": 8.24,
+      "text": "And it's important to know that\noften this notation, Bt, is"
+    },
+    {
+      "start": 1138.99,
+      "duration": 4.72,
+      "text": "implicitly the value\nof a specific path."
+    },
+    {
+      "start": 1143.71,
+      "duration": 3.28,
+      "text": "So to emphasize\nthat, we'll indicate"
+    },
+    {
+      "start": 1146.99,
+      "duration": 8.04,
+      "text": "that it's the Brownian motion\npath indexed by little omega."
+    },
+    {
+      "start": 1155.03,
+      "duration": 8.48,
+      "text": "And so we then want to consider\nthe Ito integrals with respect"
+    },
+    {
+      "start": 1163.51,
+      "duration": 4.52,
+      "text": "to Brownian motion,\nfirst where we consider"
+    },
+    {
+      "start": 1168.03,
+      "duration": 8.11,
+      "text": "simple functions, real\nfunctions, where f of Bs"
+    },
+    {
+      "start": 1176.14,
+      "duration": 6.0,
+      "text": "is the value of little f\nevaluated at the position"
+    },
+    {
+      "start": 1182.14,
+      "duration": 3.52,
+      "text": "value of the Brownian motion."
+    },
+    {
+      "start": 1185.66,
+      "duration": 3.56,
+      "text": "And we'll want to\nconsider integrating"
+    },
+    {
+      "start": 1189.22,
+      "duration": 11.1,
+      "text": "that function from 0 to T.\nAnd so this is our notation."
+    },
+    {
+      "start": 1200.32,
+      "duration": 15.14,
+      "text": "So with a companion graph,\nwith the same x-axis"
+    },
+    {
+      "start": 1215.46,
+      "duration": 5.48,
+      "text": "as our Brownian motion,\nwe could have f being"
+    },
+    {
+      "start": 1220.94,
+      "duration": 6.58,
+      "text": "some function which varies."
+    },
+    {
+      "start": 1227.52,
+      "duration": 3.74,
+      "text": "And we want to\nbasically integrate"
+    },
+    {
+      "start": 1231.26,
+      "duration": 5.3,
+      "text": "this function f evaluated\nat the Brownian motion."
+    },
+    {
+      "start": 1236.56,
+      "duration": 6.8,
+      "text": "So actually, this is\nactually a wrong graph."
+    },
+    {
+      "start": 1243.36,
+      "duration": 2.74,
+      "text": "I thought we had\nhad the same graph."
+    },
+    {
+      "start": 1246.1,
+      "duration": 12.6,
+      "text": "We basically want for, let's\nsay, x equals Bs of omega,"
+    },
+    {
+      "start": 1258.7,
+      "duration": 2.2,
+      "text": "some function."
+    },
+    {
+      "start": 1260.9,
+      "duration": 1.96,
+      "text": "All right."
+    },
+    {
+      "start": 1262.86,
+      "duration": 8.28,
+      "text": "Well, if we consider this\nnotation to represent our Ito"
+    },
+    {
+      "start": 1271.14,
+      "duration": 5.92,
+      "text": "integral, we're going to develop\nthe formulas for these Ito"
+    },
+    {
+      "start": 1277.06,
+      "duration": 2.24,
+      "text": "integrals."
+    },
+    {
+      "start": 1279.3,
+      "duration": 12.2,
+      "text": "And importantly, this Ito\nintegral is going to have,"
+    },
+    {
+      "start": 1291.5,
+      "duration": 6.56,
+      "text": "basically, a deterministic,\nsimple, real integration"
+    },
+    {
+      "start": 1298.06,
+      "duration": 3.68,
+      "text": "term for each path."
+    },
+    {
+      "start": 1301.74,
+      "duration": 5.88,
+      "text": "But the paths indexed\nby omega are random."
+    },
+    {
+      "start": 1307.62,
+      "duration": 2.72,
+      "text": "And so this Ito\nintegral is actually"
+    },
+    {
+      "start": 1310.34,
+      "duration": 2.44,
+      "text": "going to be a random variable."
+    },
+    {
+      "start": 1312.78,
+      "duration": 2.84,
+      "text": "And as a random\nvariable, if it exists,"
+    },
+    {
+      "start": 1315.62,
+      "duration": 3.033,
+      "text": "it'll have an expectation\nand a variance."
+    },
+    {
+      "start": 1322.14,
+      "duration": 3.56,
+      "text": "So let's consider a\nnumber of special cases"
+    },
+    {
+      "start": 1325.7,
+      "duration": 4.44,
+      "text": "that will define Ito integrals."
+    },
+    {
+      "start": 1330.14,
+      "duration": 7.92,
+      "text": "The first case is the simple\none, where f of x is equal to 1."
+    },
+    {
+      "start": 1338.06,
+      "duration": 8.2,
+      "text": "So let me just erase this\nand have the level 1."
+    },
+    {
+      "start": 1346.26,
+      "duration": 3.97,
+      "text": "So we consider f\nof x equaling 1."
+    },
+    {
+      "start": 1352.9,
+      "duration": 5.2,
+      "text": "So if we integrate the\nincrements of Brownian motion"
+    },
+    {
+      "start": 1358.1,
+      "duration": 7.08,
+      "text": "over from 0 to capital\nT, let's propose"
+    },
+    {
+      "start": 1365.18,
+      "duration": 9.24,
+      "text": "that that's equal to the\nincrement from 0 to--"
+    },
+    {
+      "start": 1374.42,
+      "duration": 3.92,
+      "text": "from 0 to t for each path."
+    },
+    {
+      "start": 1378.34,
+      "duration": 6.08,
+      "text": "So the right-hand side\ncorresponds to the simple"
+    },
+    {
+      "start": 1384.42,
+      "duration": 10.24,
+      "text": "integral of this path,\nBs of omega, between Bt--"
+    },
+    {
+      "start": 1394.66,
+      "duration": 4.2,
+      "text": "between time 0 and capital T."
+    },
+    {
+      "start": 1398.86,
+      "duration": 6.17,
+      "text": "And, I guess, it's\nnot in the notes."
+    },
+    {
+      "start": 1405.03,
+      "duration": 12.3,
+      "text": "But if we were to consider the\nintegral of 0 to t dBs of omega,"
+    },
+    {
+      "start": 1417.33,
+      "duration": 16.38,
+      "text": "we could think of this as the\nsum from 0 to n of iT over n."
+    },
+    {
+      "start": 1436.73,
+      "duration": 0.86,
+      "text": "Let's see."
+    },
+    {
+      "start": 1440.69,
+      "duration": 3.412,
+      "text": "Let me do this, if\ni equals 1 to n,"
+    },
+    {
+      "start": 1444.102,
+      "duration": 4.348,
+      "text": "i minus 1 T over\nn-- the integral"
+    },
+    {
+      "start": 1448.45,
+      "duration": 9.473,
+      "text": "from i minus 1 T over n\nto i times T over n dBs."
+    },
+    {
+      "start": 1461.13,
+      "duration": 4.32,
+      "text": "So here, I'm thinking\nof basically dividing"
+    },
+    {
+      "start": 1465.45,
+      "duration": 6.32,
+      "text": "this increment from 0 to T\ninto different increments"
+    },
+    {
+      "start": 1471.77,
+      "duration": 3.0,
+      "text": "of width capital T over n."
+    },
+    {
+      "start": 1474.77,
+      "duration": 6.44,
+      "text": "And if we approximate--"
+    },
+    {
+      "start": 1481.21,
+      "duration": 3.68,
+      "text": "or each of these integrals\nhere are basically"
+    },
+    {
+      "start": 1484.89,
+      "duration": 6.72,
+      "text": "looking at the integral\nof or the change in Bs"
+    },
+    {
+      "start": 1491.61,
+      "duration": 4.64,
+      "text": "from these lower limits\nto the upper limits."
+    },
+    {
+      "start": 1496.25,
+      "duration": 6.968,
+      "text": "And so the integral\nof dBs of omega,"
+    },
+    {
+      "start": 1503.218,
+      "duration": 4.172,
+      "text": "in a consistent way\nor well-defined way,"
+    },
+    {
+      "start": 1507.39,
+      "duration": 3.46,
+      "text": "is defined by this increment\nof the whole process."
+    },
+    {
+      "start": 1510.85,
+      "duration": 4.32,
+      "text": "Now, if that's true,\nthen when we consider"
+    },
+    {
+      "start": 1515.17,
+      "duration": 7.04,
+      "text": "the randomness in omega, the\nexpectation of this integral"
+    },
+    {
+      "start": 1522.21,
+      "duration": 4.24,
+      "text": "is 0, where B is the\nstandard Brownian motion."
+    },
+    {
+      "start": 1526.45,
+      "duration": 2.72,
+      "text": "And its variance is\nequal to the length"
+    },
+    {
+      "start": 1529.17,
+      "duration": 4.11,
+      "text": "of the interval times the sigma\nof standard Brownian motion."
+    },
+    {
+      "start": 1535.85,
+      "duration": 6.68,
+      "text": "Well, if we change\nour function f"
+    },
+    {
+      "start": 1542.53,
+      "duration": 4.08,
+      "text": "to be not the constant\n1 over the whole"
+    },
+    {
+      "start": 1546.61,
+      "duration": 4.28,
+      "text": "real line but just the\nindicator of an interval,"
+    },
+    {
+      "start": 1550.89,
+      "duration": 5.36,
+      "text": "there's just one\nbetween a and b."
+    },
+    {
+      "start": 1556.25,
+      "duration": 2.76,
+      "text": "So we have a and b here."
+    },
+    {
+      "start": 1559.01,
+      "duration": 3.28,
+      "text": "And we have basically 0 up to a."
+    },
+    {
+      "start": 1562.29,
+      "duration": 8.77,
+      "text": "And then it equals 1 up to\nb, and then it's 0 beyond."
+    },
+    {
+      "start": 1573.81,
+      "duration": 5.15,
+      "text": "Then this Ito integral\nis essentially"
+    },
+    {
+      "start": 1578.96,
+      "duration": 4.2,
+      "text": "looking at the change in\nBrownian motion from time"
+    },
+    {
+      "start": 1583.16,
+      "duration": 2.56,
+      "text": "a to time b."
+    },
+    {
+      "start": 1585.72,
+      "duration": 7.4,
+      "text": "So no surprise that that's\na reasonable definition."
+    },
+    {
+      "start": 1593.12,
+      "duration": 4.68,
+      "text": "Now, from these\nreasonable definitions,"
+    },
+    {
+      "start": 1597.8,
+      "duration": 7.82,
+      "text": "we can consider a second case,\nwhere our function f is, again,"
+    },
+    {
+      "start": 1605.62,
+      "duration": 9.06,
+      "text": "a function only of time s, but\nit's given by a step function"
+    },
+    {
+      "start": 1614.68,
+      "duration": 3.92,
+      "text": "over time, with steps--"
+    },
+    {
+      "start": 1618.6,
+      "duration": 3.56,
+      "text": "or levels given by the\nai's that are constant."
+    },
+    {
+      "start": 1622.16,
+      "duration": 7.546,
+      "text": "So we go from this single-step\nfunction here to considering."
+    },
+    {
+      "start": 1633.04,
+      "duration": 8.0,
+      "text": "basically, different step\nfunctions for our function f."
+    },
+    {
+      "start": 1641.04,
+      "duration": 6.6,
+      "text": "Now, these step functions could\ncorrespond to, like, the number"
+    },
+    {
+      "start": 1647.64,
+      "duration": 3.44,
+      "text": "of shares held of an asset."
+    },
+    {
+      "start": 1651.08,
+      "duration": 6.64,
+      "text": "And so this integral could\ncorrespond to the gain or loss"
+    },
+    {
+      "start": 1657.72,
+      "duration": 5.68,
+      "text": "if the underlying asset\nfollowed Brownian motion."
+    },
+    {
+      "start": 1663.4,
+      "duration": 4.2,
+      "text": "But here, with this\nparticular step function,"
+    },
+    {
+      "start": 1667.6,
+      "duration": 3.56,
+      "text": "we can define the\nIto integral to just"
+    },
+    {
+      "start": 1671.16,
+      "duration": 4.64,
+      "text": "be the sum over the\nincrements of the step"
+    },
+    {
+      "start": 1675.8,
+      "duration": 3.44,
+      "text": "levels times the\nincrement of the process."
+    },
+    {
+      "start": 1679.24,
+      "duration": 5.94,
+      "text": "And so, that's a pretty sensible\ndefinition of the integral."
+    },
+    {
+      "start": 1685.18,
+      "duration": 4.58,
+      "text": "And it would apply if we\nhad assets traveling--"
+    },
+    {
+      "start": 1689.76,
+      "duration": 2.4,
+      "text": "values going by\na Brownian motion"
+    },
+    {
+      "start": 1692.16,
+      "duration": 5.12,
+      "text": "process and, say, shares\ngiven by the a constants that"
+    },
+    {
+      "start": 1697.28,
+      "duration": 4.24,
+      "text": "were maybe deterministic."
+    },
+    {
+      "start": 1701.52,
+      "duration": 4.0,
+      "text": "Now, at this point,\nwe're using functions"
+    },
+    {
+      "start": 1705.52,
+      "duration": 6.2,
+      "text": "f, which are deterministic\nfunctions of time."
+    },
+    {
+      "start": 1711.72,
+      "duration": 8.44,
+      "text": "We can then extend this\nto random functions."
+    },
+    {
+      "start": 1720.16,
+      "duration": 2.52,
+      "text": "And actually,\nbefore I do so, just"
+    },
+    {
+      "start": 1722.68,
+      "duration": 6.84,
+      "text": "notice in red, the mean 0\nand the variance of this Ito"
+    },
+    {
+      "start": 1729.52,
+      "duration": 3.92,
+      "text": "integral of the step function--"
+    },
+    {
+      "start": 1733.44,
+      "duration": 4.64,
+      "text": "the variance is simply\nthe sum of the squares"
+    },
+    {
+      "start": 1738.08,
+      "duration": 6.16,
+      "text": "of the levels times the\nlength of the increment"
+    },
+    {
+      "start": 1744.24,
+      "duration": 3.96,
+      "text": "over which that level applies."
+    },
+    {
+      "start": 1748.2,
+      "duration": 4.4,
+      "text": "So now, case 3, things\nget more interesting."
+    },
+    {
+      "start": 1752.6,
+      "duration": 7.2,
+      "text": "We can allow our levels,\nai, to be random variables."
+    },
+    {
+      "start": 1759.8,
+      "duration": 3.65,
+      "text": "And these variables,\nrandom variables ai--"
+    },
+    {
+      "start": 1768.2,
+      "duration": 8.6,
+      "text": "so ai equal to ai\nomega, this is a path."
+    },
+    {
+      "start": 1776.8,
+      "duration": 3.88,
+      "text": "And so we can have the\nlevels vary depending"
+    },
+    {
+      "start": 1780.68,
+      "duration": 6.56,
+      "text": "upon what the path value is."
+    },
+    {
+      "start": 1787.24,
+      "duration": 8.94,
+      "text": "And so we want the\nai to depend on--"
+    },
+    {
+      "start": 1801.68,
+      "duration": 3.54,
+      "text": "and, I guess, by depend,\nI'll say be deterministic--"
+    },
+    {
+      "start": 1808.16,
+      "duration": 3.87,
+      "text": "on script Ft sub i."
+    },
+    {
+      "start": 1812.03,
+      "duration": 9.68,
+      "text": "So if we define our\nlevels to be functions"
+    },
+    {
+      "start": 1821.71,
+      "duration": 5.28,
+      "text": "that are measurable in\nthis information set,"
+    },
+    {
+      "start": 1826.99,
+      "duration": 3.36,
+      "text": "then that's what\nwe're doing here."
+    },
+    {
+      "start": 1830.35,
+      "duration": 8.36,
+      "text": "Now earlier, we talked about\nnonanticipatory variables."
+    },
+    {
+      "start": 1838.71,
+      "duration": 2.78,
+      "text": "And so this is a\nnonanticipatory variable."
+    },
+    {
+      "start": 1841.49,
+      "duration": 5.1,
+      "text": "It basically says that\nthe level from ti on,"
+    },
+    {
+      "start": 1846.59,
+      "duration": 3.24,
+      "text": "for whatever that\nincrement is, is"
+    },
+    {
+      "start": 1849.83,
+      "duration": 3.92,
+      "text": "going to be a function of\nwhat's happened in the past."
+    },
+    {
+      "start": 1853.75,
+      "duration": 5.6,
+      "text": "So this is like a\nrealizable function f,"
+    },
+    {
+      "start": 1859.35,
+      "duration": 7.84,
+      "text": "where when we apply the f\nfunction to the Brownian motion"
+    },
+    {
+      "start": 1867.19,
+      "duration": 6.44,
+      "text": "increments, we're applying\nknown increments at all times."
+    },
+    {
+      "start": 1873.63,
+      "duration": 4.08,
+      "text": "And so with this\ncase, we actually"
+    },
+    {
+      "start": 1877.71,
+      "duration": 4.88,
+      "text": "want to make an assumption\nof measurability"
+    },
+    {
+      "start": 1882.59,
+      "duration": 4.0,
+      "text": "on that i-th information set."
+    },
+    {
+      "start": 1886.59,
+      "duration": 6.36,
+      "text": "And we want a bounded squared\nexpectation of the level."
+    },
+    {
+      "start": 1892.95,
+      "duration": 4.0,
+      "text": "So if we have those\ntwo properties then,"
+    },
+    {
+      "start": 1896.95,
+      "duration": 6.48,
+      "text": "we can write out the Ito\nintegral as this formula."
+    },
+    {
+      "start": 1903.43,
+      "duration": 4.2,
+      "text": "And it will have\nexpectation equal to 0"
+    },
+    {
+      "start": 1907.63,
+      "duration": 6.96,
+      "text": "and variance equal to the sum of\nthe expected squared ai's times"
+    },
+    {
+      "start": 1914.59,
+      "duration": 2.48,
+      "text": "ti plus 1 minus ti."
+    },
+    {
+      "start": 1920.67,
+      "duration": 9.12,
+      "text": "So, I guess, rather importantly\nwith these developments so far,"
+    },
+    {
+      "start": 1929.79,
+      "duration": 6.2,
+      "text": "we're thinking of the\ntime s ranging from 0 up"
+    },
+    {
+      "start": 1935.99,
+      "duration": 10.08,
+      "text": "to time capital T. And we have\nincrements ti, ti plus 1, where"
+    },
+    {
+      "start": 1946.07,
+      "duration": 5.08,
+      "text": "this increment is something."
+    },
+    {
+      "start": 1951.15,
+      "duration": 3.58,
+      "text": "For simplicity, we could define\nthis increment to have length,"
+    },
+    {
+      "start": 1954.73,
+      "duration": 4.68,
+      "text": "say, t over n, for n increments\nand have equal increments."
+    },
+    {
+      "start": 1962.23,
+      "duration": 5.76,
+      "text": "But this formula\nfor the Ito integral"
+    },
+    {
+      "start": 1967.99,
+      "duration": 7.2,
+      "text": "is considering integrating\nthe Brownian motion"
+    },
+    {
+      "start": 1975.19,
+      "duration": 9.68,
+      "text": "over the interval from 0 to T.\nSo integral from 0 to T, f of s,"
+    },
+    {
+      "start": 1984.87,
+      "duration": 1.25,
+      "text": "Bs dBs."
+    },
+    {
+      "start": 1989.06,
+      "duration": 6.04,
+      "text": "This is our integral,\nour Ito process, I of f."
+    },
+    {
+      "start": 1995.1,
+      "duration": 11.24,
+      "text": "And we can write I of f\nevaluated at a particular path"
+    },
+    {
+      "start": 2006.34,
+      "duration": 1.63,
+      "text": "given by this formula."
+    },
+    {
+      "start": 2011.26,
+      "duration": 1.92,
+      "text": "All right."
+    },
+    {
+      "start": 2013.18,
+      "duration": 6.8,
+      "text": "Well, an interesting example\njust from a mathematician's"
+    },
+    {
+      "start": 2019.98,
+      "duration": 7.32,
+      "text": "standpoint is, what if\nwe define our levels"
+    },
+    {
+      "start": 2027.3,
+      "duration": 5.0,
+      "text": "to be equal to the value of\nthe Brownian motion itself?"
+    },
+    {
+      "start": 2032.3,
+      "duration": 6.12,
+      "text": "So we're integrating B, dB."
+    },
+    {
+      "start": 2038.42,
+      "duration": 4.25,
+      "text": "So we're thinking of\nthis example, so case 3--"
+    },
+    {
+      "start": 2046.42,
+      "duration": 7.279,
+      "text": "special case 3-- integral\nfrom 0 to T of B sub s dBs."
+    },
+    {
+      "start": 2058.86,
+      "duration": 13.24,
+      "text": "Well, if we consider\ndiscretizing this Ito integral"
+    },
+    {
+      "start": 2072.1,
+      "duration": 5.0,
+      "text": "with these random levels ai--"
+    },
+    {
+      "start": 2077.1,
+      "duration": 2.32,
+      "text": "actually, I'm getting\nahead of myself."
+    },
+    {
+      "start": 2079.42,
+      "duration": 2.009,
+      "text": "This integral will\nbe a limit of these."
+    },
+    {
+      "start": 2084.179,
+      "duration": 12.04,
+      "text": "For any fixed set of increments\nthat we apply this random level."
+    },
+    {
+      "start": 2096.219,
+      "duration": 2.121,
+      "text": "given by the value of\nthe Brownian motion"
+    },
+    {
+      "start": 2098.34,
+      "duration": 6.4,
+      "text": "on those increments, then\nfor each of these cases"
+    },
+    {
+      "start": 2104.74,
+      "duration": 5.44,
+      "text": "with n increments, we\nget that we have mean 0."
+    },
+    {
+      "start": 2110.18,
+      "duration": 6.08,
+      "text": "And the variance is equal to\nthe sum of the variances of each"
+    },
+    {
+      "start": 2116.26,
+      "duration": 1.64,
+      "text": "of the terms."
+    },
+    {
+      "start": 2117.9,
+      "duration": 3.24,
+      "text": "And that turns out to be equal\nto the sum over the increments"
+    },
+    {
+      "start": 2121.14,
+      "duration": 7.08,
+      "text": "of the time Increment t,\nlevel ti, times the increment"
+    },
+    {
+      "start": 2128.22,
+      "duration": 5.08,
+      "text": "to the next time value."
+    },
+    {
+      "start": 2133.3,
+      "duration": 9.0,
+      "text": "And this sum of ti times ti plus\n1 minus ti is essentially equal"
+    },
+    {
+      "start": 2142.3,
+      "duration": 7.64,
+      "text": "or close to the integral\nfrom 0 to capital T of sds,"
+    },
+    {
+      "start": 2149.94,
+      "duration": 3.52,
+      "text": "which should be 1/2 t squared."
+    },
+    {
+      "start": 2153.46,
+      "duration": 1.92,
+      "text": "Yeah."
+    },
+    {
+      "start": 2155.38,
+      "duration": 3.205,
+      "text": "AUDIENCE: How do you conclude\nthat the expectation is 0?"
+    },
+    {
+      "start": 2158.585,
+      "duration": 0.875,
+      "text": "PETER KEMPTHORNE: OK."
+    },
+    {
+      "start": 2159.46,
+      "duration": 7.84,
+      "text": "The expectation is 0 because\neach of these increments"
+    },
+    {
+      "start": 2167.3,
+      "duration": 4.9,
+      "text": "here have expectation 0."
+    },
+    {
+      "start": 2172.2,
+      "duration": 2.26,
+      "text": "So we're assuming B of 0 is 0."
+    },
+    {
+      "start": 2174.46,
+      "duration": 1.68,
+      "text": "AUDIENCE: Yeah."
+    },
+    {
+      "start": 2176.14,
+      "duration": 0.9,
+      "text": "Oh, yeah."
+    },
+    {
+      "start": 2177.04,
+      "duration": 3.6,
+      "text": "But what if ai is\nnot independent?"
+    },
+    {
+      "start": 2180.64,
+      "duration": 3.745,
+      "text": "Because when you take the\nexpectations [INAUDIBLE]."
+    },
+    {
+      "start": 2184.385,
+      "duration": 0.875,
+      "text": "PETER KEMPTHORNE: OK."
+    },
+    {
+      "start": 2185.26,
+      "duration": 0.28,
+      "text": "Yep."
+    },
+    {
+      "start": 2185.54,
+      "duration": 0.5,
+      "text": "Yep."
+    },
+    {
+      "start": 2189.06,
+      "duration": 0.58,
+      "text": "Let's see."
+    },
+    {
+      "start": 2189.64,
+      "duration": 7.18,
+      "text": "OK, ai omega is an\nelement of F sub ti."
+    },
+    {
+      "start": 2196.82,
+      "duration": 14.68,
+      "text": "So it's constant on F sub ti."
+    },
+    {
+      "start": 2211.5,
+      "duration": 5.02,
+      "text": "So let's see."
+    },
+    {
+      "start": 2220.38,
+      "duration": 10.52,
+      "text": "So ai of omega and Bti plus 1."
+    },
+    {
+      "start": 2240.81,
+      "duration": 6.72,
+      "text": "This increment into\nthe future from time ti"
+    },
+    {
+      "start": 2247.53,
+      "duration": 4.26,
+      "text": "is independent of the past."
+    },
+    {
+      "start": 2251.79,
+      "duration": 8.06,
+      "text": "And so its expectation, if we\ntake the product of these two"
+    },
+    {
+      "start": 2259.85,
+      "duration": 13.3,
+      "text": "and take expectations, we can\ntake the expectation given--"
+    },
+    {
+      "start": 2275.69,
+      "duration": 8.68,
+      "text": "or the expectation over ti\ntimes the expectation given--"
+    },
+    {
+      "start": 2284.37,
+      "duration": 10.52,
+      "text": "let's see-- over\nti plus 1 given ti."
+    },
+    {
+      "start": 2294.89,
+      "duration": 2.12,
+      "text": "So we can break down\nthis expectation"
+    },
+    {
+      "start": 2297.01,
+      "duration": 2.82,
+      "text": "into its decomposition."
+    },
+    {
+      "start": 2299.83,
+      "duration": 2.9,
+      "text": "And the expectation\nof this factor,"
+    },
+    {
+      "start": 2302.73,
+      "duration": 1.665,
+      "text": "conditionally, will be 0."
+    },
+    {
+      "start": 2304.395,
+      "duration": 1.375,
+      "text": "AUDIENCE: Yeah,\nthat makes sense."
+    },
+    {
+      "start": 2305.77,
+      "duration": 4.32,
+      "text": "PETER KEMPTHORNE: So, yep."
+    },
+    {
+      "start": 2310.09,
+      "duration": 2.28,
+      "text": "All right."
+    },
+    {
+      "start": 2312.37,
+      "duration": 10.16,
+      "text": "Well, this case 4 is the\ncase that essentially defines"
+    },
+    {
+      "start": 2322.53,
+      "duration": 6.56,
+      "text": "Ito integrals in general,\nwhich is, if we consider taking"
+    },
+    {
+      "start": 2329.09,
+      "duration": 5.44,
+      "text": "the limit of\nintegrals with respect"
+    },
+    {
+      "start": 2334.53,
+      "duration": 3.4,
+      "text": "to step functions\nwith random levels"
+    },
+    {
+      "start": 2337.93,
+      "duration": 5.34,
+      "text": "ai, but then allow\nthe increments--"
+    },
+    {
+      "start": 2343.27,
+      "duration": 5.62,
+      "text": "the time steps to get closer\nand closer to each other,"
+    },
+    {
+      "start": 2348.89,
+      "duration": 8.44,
+      "text": "then the limiting value of\nthis Ito integral of the step"
+    },
+    {
+      "start": 2357.33,
+      "duration": 4.96,
+      "text": "functions is equal to\nthe Ito integral of f."
+    },
+    {
+      "start": 2362.29,
+      "duration": 13.36,
+      "text": "So in our special case where f\nof x equals x, f of the Brownian"
+    },
+    {
+      "start": 2375.65,
+      "duration": 4.04,
+      "text": "motion is the Brownian\nmotion itself,"
+    },
+    {
+      "start": 2379.69,
+      "duration": 3.2,
+      "text": "we end up getting this formula."
+    },
+    {
+      "start": 2382.89,
+      "duration": 7.0,
+      "text": "And here, we have basically\nthe discretized value"
+    },
+    {
+      "start": 2389.89,
+      "duration": 2.36,
+      "text": "of the integral."
+    },
+    {
+      "start": 2392.25,
+      "duration": 5.15,
+      "text": "And then what's of interest is\nto see how the limit of that"
+    },
+    {
+      "start": 2397.4,
+      "duration": 3.8,
+      "text": "equals this formula."
+    },
+    {
+      "start": 2401.2,
+      "duration": 7.12,
+      "text": "And so to prove this, there's\na nice mathematical trick."
+    },
+    {
+      "start": 2408.32,
+      "duration": 8.24,
+      "text": "And so if we look at this term\non the right-hand side here,"
+    },
+    {
+      "start": 2416.56,
+      "duration": 5.2,
+      "text": "which is an element of the sum,\nit turns out to be equal to 1/2"
+    },
+    {
+      "start": 2421.76,
+      "duration": 3.2,
+      "text": "the difference in the squared\nvalues at the endpoints"
+    },
+    {
+      "start": 2424.96,
+      "duration": 7.4,
+      "text": "of the interval minus 1/2 times\nthe difference between ti and ti"
+    },
+    {
+      "start": 2432.36,
+      "duration": 1.84,
+      "text": "plus 1 squared."
+    },
+    {
+      "start": 2434.2,
+      "duration": 3.92,
+      "text": "So this is simple to verify."
+    },
+    {
+      "start": 2438.12,
+      "duration": 4.88,
+      "text": "It's trivial but\nincredibly useful."
+    },
+    {
+      "start": 2443.0,
+      "duration": 7.44,
+      "text": "And so if we sum over all the\ntime points from 0 to n minus 1,"
+    },
+    {
+      "start": 2450.44,
+      "duration": 8.24,
+      "text": "we get the sum of the\nfirst terms minus the sum"
+    },
+    {
+      "start": 2458.68,
+      "duration": 3.0,
+      "text": "of the second terms."
+    },
+    {
+      "start": 2461.68,
+      "duration": 9.52,
+      "text": "And so this first term is\nactually a telescoping sum."
+    },
+    {
+      "start": 2471.2,
+      "duration": 8.28,
+      "text": "When you sum the terms, there's\ncancelation of the middle value"
+    },
+    {
+      "start": 2479.48,
+      "duration": 1.92,
+      "text": "in successive terms."
+    },
+    {
+      "start": 2481.4,
+      "duration": 9.44,
+      "text": "And so we're left at the end\nwith 1/2 the square of the last"
+    },
+    {
+      "start": 2490.84,
+      "duration": 4.56,
+      "text": "term here minus the square\nof the very first term,"
+    },
+    {
+      "start": 2495.4,
+      "duration": 4.5,
+      "text": "with i equals 0\nhere, which is 0."
+    },
+    {
+      "start": 2499.9,
+      "duration": 4.5,
+      "text": "So this is 1/2 Bt squared\nminus B0 squared, which is 0."
+    },
+    {
+      "start": 2504.4,
+      "duration": 1.8,
+      "text": "That's the first term."
+    },
+    {
+      "start": 2506.2,
+      "duration": 6.92,
+      "text": "And then for the other, we have\nminus 1/2 the sum of the squared"
+    },
+    {
+      "start": 2513.12,
+      "duration": 1.48,
+      "text": "increments."
+    },
+    {
+      "start": 2514.6,
+      "duration": 13.08,
+      "text": "And so if we know what the\nlast time interval term is, tn,"
+    },
+    {
+      "start": 2527.68,
+      "duration": 4.0,
+      "text": "that's capital T.\nAnd then we have"
+    },
+    {
+      "start": 2531.68,
+      "duration": 2.4,
+      "text": "the same terms on the right."
+    },
+    {
+      "start": 2534.08,
+      "duration": 6.72,
+      "text": "And what's important to\nknow is that the limit"
+    },
+    {
+      "start": 2540.8,
+      "duration": 7.64,
+      "text": "of the sums of these increments\nconverges to T-- capital T."
+    },
+    {
+      "start": 2548.44,
+      "duration": 5.08,
+      "text": "And this was the property\nof the total variation"
+    },
+    {
+      "start": 2553.52,
+      "duration": 2.92,
+      "text": "of Brownian motion\nover any increment."
+    },
+    {
+      "start": 2556.44,
+      "duration": 5.0,
+      "text": "If we look at the sum of\nsquared values of increments"
+    },
+    {
+      "start": 2561.44,
+      "duration": 4.16,
+      "text": "and take the limit as the\nnumber of increments grows large"
+    },
+    {
+      "start": 2565.6,
+      "duration": 6.08,
+      "text": "and the partition\ngets finer and finer,"
+    },
+    {
+      "start": 2571.68,
+      "duration": 4.36,
+      "text": "then the limiting value of\nthese sums of increments"
+    },
+    {
+      "start": 2576.04,
+      "duration": 4.2,
+      "text": "is equal to capital T.\nSo this is our formula"
+    },
+    {
+      "start": 2580.24,
+      "duration": 7.64,
+      "text": "now for the Ito\nintegral of B dBs."
+    },
+    {
+      "start": 2587.88,
+      "duration": 4.28,
+      "text": "And let's see."
+    },
+    {
+      "start": 2592.16,
+      "duration": 4.84,
+      "text": "So what's really\nimportant to highlight"
+    },
+    {
+      "start": 2597.0,
+      "duration": 7.16,
+      "text": "is that this is not equivalent\nto thinking of the Brownian"
+    },
+    {
+      "start": 2604.16,
+      "duration": 4.2,
+      "text": "motion process like\na real function,"
+    },
+    {
+      "start": 2608.36,
+      "duration": 7.28,
+      "text": "where we're integrating BdB or\nxdx, which is x squared over 2."
+    },
+    {
+      "start": 2615.64,
+      "duration": 3.12,
+      "text": "We actually have this\ndrag on the integral"
+    },
+    {
+      "start": 2618.76,
+      "duration": 4.96,
+      "text": "that depends on the\nvariation of the process."
+    },
+    {
+      "start": 2623.72,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 2624.22,
+      "duration": 7.37,
+      "text": "Now, we want to generalize\nto the general case of Ito"
+    },
+    {
+      "start": 2631.59,
+      "duration": 1.92,
+      "text": "integrals."
+    },
+    {
+      "start": 2633.51,
+      "duration": 12.08,
+      "text": "And so what we do is we consider\ndefining the Ito integrals"
+    },
+    {
+      "start": 2645.59,
+      "duration": 6.29,
+      "text": "from 0 to T f of omega s dBs."
+    },
+    {
+      "start": 2655.27,
+      "duration": 7.84,
+      "text": "But then we want to\nbasically consider this"
+    },
+    {
+      "start": 2663.11,
+      "duration": 3.49,
+      "text": "to be a process Xt of omega."
+    },
+    {
+      "start": 2669.31,
+      "duration": 7.8,
+      "text": "And we want to generalize\nthis to an Xt of omega,"
+    },
+    {
+      "start": 2677.11,
+      "duration": 9.4,
+      "text": "where we're integrating\njust up to time little t."
+    },
+    {
+      "start": 2686.51,
+      "duration": 7.96,
+      "text": "So what we want\nto do is, once we"
+    },
+    {
+      "start": 2694.47,
+      "duration": 7.08,
+      "text": "have this definition\nfor the Ito integral"
+    },
+    {
+      "start": 2701.55,
+      "duration": 10.16,
+      "text": "over a fixed\ninterval from 0 to T,"
+    },
+    {
+      "start": 2711.71,
+      "duration": 7.24,
+      "text": "we want to be able to define\nthe Ito integral where"
+    },
+    {
+      "start": 2718.95,
+      "duration": 3.24,
+      "text": "we're integrating only\nup to time little t"
+    },
+    {
+      "start": 2722.19,
+      "duration": 3.2,
+      "text": "less than capital T."
+    },
+    {
+      "start": 2725.39,
+      "duration": 15.04,
+      "text": "And so in order for this kind\nof function to be well defined,"
+    },
+    {
+      "start": 2740.43,
+      "duration": 4.68,
+      "text": "it will turn out that\nwe need some very strong"
+    },
+    {
+      "start": 2745.11,
+      "duration": 1.96,
+      "text": "mathematical arguments."
+    },
+    {
+      "start": 2747.07,
+      "duration": 3.84,
+      "text": "And there's a book\nby Steele, chapter 6,"
+    },
+    {
+      "start": 2750.91,
+      "duration": 6.8,
+      "text": "on quantitative finance, where\nhe does go into all the details."
+    },
+    {
+      "start": 2757.71,
+      "duration": 3.72,
+      "text": "And I have to admit, it's\nnot really a fun read."
+    },
+    {
+      "start": 2761.43,
+      "duration": 1.92,
+      "text": "It's interesting to\nlook and see what's"
+    },
+    {
+      "start": 2763.35,
+      "duration": 2.56,
+      "text": "involved so you know\nhow important it"
+    },
+    {
+      "start": 2765.91,
+      "duration": 3.72,
+      "text": "is to be a good mathematician,\nif you want to prove things."
+    },
+    {
+      "start": 2769.63,
+      "duration": 2.84,
+      "text": "But fortunate for us,\nthey're proven well,"
+    },
+    {
+      "start": 2772.47,
+      "duration": 2.12,
+      "text": "and we can apply them."
+    },
+    {
+      "start": 2774.59,
+      "duration": 1.02,
+      "text": "So what do we need?"
+    },
+    {
+      "start": 2775.61,
+      "duration": 6.34,
+      "text": "We need that the function\nlittle f needs to be measurable,"
+    },
+    {
+      "start": 2781.95,
+      "duration": 2.64,
+      "text": "script Fs, the\ninformation set up to time"
+    },
+    {
+      "start": 2784.59,
+      "duration": 3.4,
+      "text": "s measurable for every time s."
+    },
+    {
+      "start": 2787.99,
+      "duration": 11.8,
+      "text": "And we want the integral\nof the squared f over time,"
+    },
+    {
+      "start": 2799.79,
+      "duration": 3.3,
+      "text": "where that's for\neach fixed omega,"
+    },
+    {
+      "start": 2803.09,
+      "duration": 3.41,
+      "text": "we can integrate the\nsquare of f and then take"
+    },
+    {
+      "start": 2806.5,
+      "duration": 3.12,
+      "text": "the expectation of that."
+    },
+    {
+      "start": 2809.62,
+      "duration": 4.04,
+      "text": "We want that to be finite."
+    },
+    {
+      "start": 2813.66,
+      "duration": 6.88,
+      "text": "So this term here,\nthis expectation,"
+    },
+    {
+      "start": 2820.54,
+      "duration": 5.44,
+      "text": "is taking the expectation\nover the probability model"
+    },
+    {
+      "start": 2825.98,
+      "duration": 6.36,
+      "text": "given by capital P.\nAnd for each omega,"
+    },
+    {
+      "start": 2832.34,
+      "duration": 6.84,
+      "text": "we're integrating the squared\nf over time from 0 to T."
+    },
+    {
+      "start": 2839.18,
+      "duration": 5.6,
+      "text": "And we want that to be finite."
+    },
+    {
+      "start": 2844.78,
+      "duration": 5.48,
+      "text": "So with this\nnotation, we basically"
+    },
+    {
+      "start": 2850.26,
+      "duration": 8.08,
+      "text": "are extending our Ito\nintegral over 0 to capital T,"
+    },
+    {
+      "start": 2858.34,
+      "duration": 4.4,
+      "text": "with the Ito integral\nfrom 0 to little t."
+    },
+    {
+      "start": 2862.74,
+      "duration": 8.64,
+      "text": "And we can define this by\njust replacing our f function"
+    },
+    {
+      "start": 2871.38,
+      "duration": 8.68,
+      "text": "in the Ito integral I of\nf by simply the function"
+    },
+    {
+      "start": 2880.06,
+      "duration": 4.4,
+      "text": "f times this\nindicator from 0 to T."
+    },
+    {
+      "start": 2884.46,
+      "duration": 9.0,
+      "text": "So that step basically chops off\nthe integration at time little t"
+    },
+    {
+      "start": 2893.46,
+      "duration": 2.52,
+      "text": "and gives us our definition."
+    },
+    {
+      "start": 2895.98,
+      "duration": 4.8,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 2900.78,
+      "duration": 0.82,
+      "text": "OK."
+    },
+    {
+      "start": 2901.6,
+      "duration": 8.5,
+      "text": "The definition of this extension\nof our Ito integral over 0"
+    },
+    {
+      "start": 2910.1,
+      "duration": 6.36,
+      "text": "to T to integrating it over 0\nto little t's for any little t,"
+    },
+    {
+      "start": 2916.46,
+      "duration": 6.64,
+      "text": "less than t, that's relatively\nstraightforward and intuitively"
+    },
+    {
+      "start": 2923.1,
+      "duration": 1.24,
+      "text": "obvious."
+    },
+    {
+      "start": 2924.34,
+      "duration": 2.58,
+      "text": "What's not necessarily\nobvious, though,"
+    },
+    {
+      "start": 2926.92,
+      "duration": 10.42,
+      "text": "is that our process Xt is\na martingale with respect"
+    },
+    {
+      "start": 2937.34,
+      "duration": 5.92,
+      "text": "to this stochastic process model\ngiven by the Brownian motions."
+    },
+    {
+      "start": 2943.26,
+      "duration": 7.88,
+      "text": "So if we look at what\nit means for a process"
+    },
+    {
+      "start": 2951.14,
+      "duration": 4.88,
+      "text": "to be a martingale, if we look\nat the conditional expectation"
+    },
+    {
+      "start": 2956.02,
+      "duration": 6.4,
+      "text": "of the time t plus k\nvalue given time t,"
+    },
+    {
+      "start": 2962.42,
+      "duration": 5.24,
+      "text": "then it equals the value\nof the process at time t,"
+    },
+    {
+      "start": 2967.66,
+      "duration": 6.56,
+      "text": "little t, plus the integral\nof the process from time t"
+    },
+    {
+      "start": 2974.22,
+      "duration": 2.56,
+      "text": "to t plus k."
+    },
+    {
+      "start": 2976.78,
+      "duration": 3.08,
+      "text": "And we're taking expectations,\nconditional expectations"
+    },
+    {
+      "start": 2979.86,
+      "duration": 3.2,
+      "text": "of that given Xt."
+    },
+    {
+      "start": 2983.06,
+      "duration": 6.84,
+      "text": "And so the expectation\nof this future increment"
+    },
+    {
+      "start": 2989.9,
+      "duration": 5.2,
+      "text": "from t to t plus k is basically\nintegrating a function times"
+    },
+    {
+      "start": 2995.1,
+      "duration": 1.58,
+      "text": "increments of the\nBrownian motion,"
+    },
+    {
+      "start": 2996.68,
+      "duration": 3.62,
+      "text": "where our function values\ndepend on the past,"
+    },
+    {
+      "start": 3000.3,
+      "duration": 5.92,
+      "text": "and the increments are\nindependent in the future,"
+    },
+    {
+      "start": 3006.22,
+      "duration": 1.14,
+      "text": "with mean 0."
+    },
+    {
+      "start": 3007.36,
+      "duration": 3.58,
+      "text": "So this expectation turns\nout to be satisfied."
+    },
+    {
+      "start": 3010.94,
+      "duration": 3.08,
+      "text": "And if we look at the\nconditional variance"
+    },
+    {
+      "start": 3014.02,
+      "duration": 4.68,
+      "text": "of the t plus k value\ngiven Xt, then it's"
+    },
+    {
+      "start": 3018.7,
+      "duration": 9.0,
+      "text": "equal to the expected\nsquare of this f ds."
+    },
+    {
+      "start": 3027.7,
+      "duration": 5.52,
+      "text": "And so when you look at the\nvariance of the discretized sum"
+    },
+    {
+      "start": 3033.22,
+      "duration": 3.96,
+      "text": "of increments, you get\nthe discretized sum"
+    },
+    {
+      "start": 3037.18,
+      "duration": 5.43,
+      "text": "of variances of those\nincrements, which are f squared."
+    },
+    {
+      "start": 3042.61,
+      "duration": 6.0,
+      "text": "And then the dBs\nsquareds are dt."
+    },
+    {
+      "start": 3048.61,
+      "duration": 4.53,
+      "text": "So this simplifies for\nthe variance to that term."
+    },
+    {
+      "start": 3056.25,
+      "duration": 0.5,
+      "text": "OK."
+    },
+    {
+      "start": 3056.75,
+      "duration": 1.13,
+      "text": "All of this is fairly--"
+    },
+    {
+      "start": 3060.61,
+      "duration": 1.94,
+      "text": "I know, it's like\nmathematical results."
+    },
+    {
+      "start": 3062.55,
+      "duration": 1.73,
+      "text": "And it's sort of\nlike, who cares?"
+    },
+    {
+      "start": 3066.85,
+      "duration": 9.08,
+      "text": "Well, it turns out that\nthis variance turns out"
+    },
+    {
+      "start": 3075.93,
+      "duration": 4.6,
+      "text": "to be a squared norm\nof our function little"
+    },
+    {
+      "start": 3080.53,
+      "duration": 8.14,
+      "text": "f on the space of the\nprobability space of paths"
+    },
+    {
+      "start": 3088.67,
+      "duration": 2.86,
+      "text": "cross the time increments."
+    },
+    {
+      "start": 3091.53,
+      "duration": 5.96,
+      "text": "And so what's-- well, OK."
+    },
+    {
+      "start": 3097.49,
+      "duration": 3.4,
+      "text": "Actually, I'm going to\nget ahead of myself."
+    },
+    {
+      "start": 3100.89,
+      "duration": 10.04,
+      "text": "But let me get ahead of\nmyself and basically comment"
+    },
+    {
+      "start": 3110.93,
+      "duration": 8.64,
+      "text": "that this norm of\nour function f is"
+    },
+    {
+      "start": 3119.57,
+      "duration": 5.52,
+      "text": "going to be a squared norm\non the space of Ito-process"
+    },
+    {
+      "start": 3125.09,
+      "duration": 2.4,
+      "text": "integrands."
+    },
+    {
+      "start": 3127.49,
+      "duration": 2.5,
+      "text": "And, let's see."
+    },
+    {
+      "start": 3129.99,
+      "duration": 3.72,
+      "text": "Those of you who\nhave taken, I guess,"
+    },
+    {
+      "start": 3133.71,
+      "duration": 5.7,
+      "text": "real analysis or\nmetric spaces, what's"
+    },
+    {
+      "start": 3139.41,
+      "duration": 4.96,
+      "text": "an important value of norms?"
+    },
+    {
+      "start": 3144.37,
+      "duration": 1.51,
+      "text": "What do we do with norms?"
+    },
+    {
+      "start": 3148.57,
+      "duration": 1.11,
+      "text": "Or squared norms?"
+    },
+    {
+      "start": 3154.49,
+      "duration": 5.16,
+      "text": "Well, with norms, we\ncan talk about limits"
+    },
+    {
+      "start": 3159.65,
+      "duration": 8.24,
+      "text": "of elements of the space and\ntalk about whether limits exist."
+    },
+    {
+      "start": 3167.89,
+      "duration": 3.6,
+      "text": "And so with this\nsetup, we actually"
+    },
+    {
+      "start": 3171.49,
+      "duration": 5.24,
+      "text": "will have the space\nof Ito processes."
+    },
+    {
+      "start": 3176.73,
+      "duration": 8.04,
+      "text": "And we can calculate the squared\nnorm between different Ito"
+    },
+    {
+      "start": 3184.77,
+      "duration": 2.44,
+      "text": "integrals."
+    },
+    {
+      "start": 3187.21,
+      "duration": 6.6,
+      "text": "And so we can characterize\nlimits in those spaces"
+    },
+    {
+      "start": 3193.81,
+      "duration": 4.8,
+      "text": "and be guaranteed that\nthose limits exist."
+    },
+    {
+      "start": 3198.61,
+      "duration": 6.52,
+      "text": "So with this motivation\nof defining useful norms"
+    },
+    {
+      "start": 3205.13,
+      "duration": 6.12,
+      "text": "on different spaces, we\nhave this Ito isometry,"
+    },
+    {
+      "start": 3211.25,
+      "duration": 7.39,
+      "text": "which is, if we look\nat the variance of Ito"
+    },
+    {
+      "start": 3218.64,
+      "duration": 5.4,
+      "text": "integrals defined by\nintegrand little f,"
+    },
+    {
+      "start": 3224.04,
+      "duration": 6.36,
+      "text": "then those squared norms or the\nvariances, basically, of the Ito"
+    },
+    {
+      "start": 3230.4,
+      "duration": 8.64,
+      "text": "processes is equal to the L2\nnorm of the integrand little f."
+    },
+    {
+      "start": 3239.04,
+      "duration": 4.76,
+      "text": "And if we write\nout the definitions"
+    },
+    {
+      "start": 3243.8,
+      "duration": 7.28,
+      "text": "of these squared norms,\nwe get these equations."
+    },
+    {
+      "start": 3251.08,
+      "duration": 7.88,
+      "text": "And what's relevant\nhere is being"
+    },
+    {
+      "start": 3258.96,
+      "duration": 7.12,
+      "text": "able to express our\nvariance of the Ito integral"
+    },
+    {
+      "start": 3266.08,
+      "duration": 5.1,
+      "text": "as the squared norm\nof the integrand f."
+    },
+    {
+      "start": 3274.24,
+      "duration": 2.04,
+      "text": "So we have limits\nand convergences"
+    },
+    {
+      "start": 3276.28,
+      "duration": 2.6,
+      "text": "of sequences of Ito integrals."
+    },
+    {
+      "start": 3278.88,
+      "duration": 4.24,
+      "text": "And something that's\nimportant mathematically"
+    },
+    {
+      "start": 3283.12,
+      "duration": 6.28,
+      "text": "is, if we take the limits\nof these Ito integrals"
+    },
+    {
+      "start": 3289.4,
+      "duration": 2.32,
+      "text": "over increments\nthat are getting--"
+    },
+    {
+      "start": 3291.72,
+      "duration": 2.8,
+      "text": "a grid of increments that's\ngetting finer and finer,"
+    },
+    {
+      "start": 3294.52,
+      "duration": 3.8,
+      "text": "do we have a unique\nlimit or not?"
+    },
+    {
+      "start": 3298.32,
+      "duration": 4.12,
+      "text": "And so that's what's important."
+    },
+    {
+      "start": 3302.44,
+      "duration": 6.16,
+      "text": "And the squared norms and\nconvergence properties"
+    },
+    {
+      "start": 3308.6,
+      "duration": 2.68,
+      "text": "are used to prove that."
+    },
+    {
+      "start": 3311.28,
+      "duration": 5.72,
+      "text": "So we basically can talk\nabout closed linear subspaces"
+    },
+    {
+      "start": 3317.0,
+      "duration": 6.96,
+      "text": "with these norms on the space."
+    },
+    {
+      "start": 3323.96,
+      "duration": 2.88,
+      "text": "So what this does\nis it allows us"
+    },
+    {
+      "start": 3326.84,
+      "duration": 5.72,
+      "text": "to define the distance\nbetween different integrands"
+    },
+    {
+      "start": 3332.56,
+      "duration": 15.48,
+      "text": "f and the existence of\na limiting Ito integral,"
+    },
+    {
+      "start": 3348.04,
+      "duration": 5.6,
+      "text": "as we consider increments\ngetting infinitesimal."
+    },
+    {
+      "start": 3353.64,
+      "duration": 2.08,
+      "text": "All right."
+    },
+    {
+      "start": 3355.72,
+      "duration": 4.96,
+      "text": "Well, we can think\nof this Ito integral"
+    },
+    {
+      "start": 3360.68,
+      "duration": 5.04,
+      "text": "as a Riemann sum, a\nlimiting Riemann sum."
+    },
+    {
+      "start": 3365.72,
+      "duration": 9.52,
+      "text": "And if we have time steps ti,\nfor simplicity, equal to iT"
+    },
+    {
+      "start": 3375.24,
+      "duration": 7.44,
+      "text": "over n, we can consider\nthe limiting sum"
+    },
+    {
+      "start": 3382.68,
+      "duration": 4.12,
+      "text": "of f of the Brownian\nmotion times the increment"
+    },
+    {
+      "start": 3386.8,
+      "duration": 1.96,
+      "text": "of the Brownian motion."
+    },
+    {
+      "start": 3388.76,
+      "duration": 8.48,
+      "text": "And this sum actually\nconverges in probability,"
+    },
+    {
+      "start": 3397.24,
+      "duration": 6.24,
+      "text": "as n goes to infinity,\nto the integral."
+    },
+    {
+      "start": 3403.48,
+      "duration": 5.8,
+      "text": "So we have a limiting\nvalue that exists."
+    },
+    {
+      "start": 3409.28,
+      "duration": 2.16,
+      "text": "Convergence is in probability."
+    },
+    {
+      "start": 3411.44,
+      "duration": 10.28,
+      "text": "And if we consider, I guess,\nthe covariances of the X process"
+    },
+    {
+      "start": 3421.72,
+      "duration": 7.44,
+      "text": "given by these Ito integrals\nfrom 0 to little t,"
+    },
+    {
+      "start": 3429.16,
+      "duration": 3.48,
+      "text": "then these will--"
+    },
+    {
+      "start": 3432.64,
+      "duration": 3.56,
+      "text": "or this Xt will be a\nmean 0 Gaussian process"
+    },
+    {
+      "start": 3436.2,
+      "duration": 2.28,
+      "text": "with independent increments."
+    },
+    {
+      "start": 3438.48,
+      "duration": 6.24,
+      "text": "And the covariance between the\nprocess at time s and time t"
+    },
+    {
+      "start": 3444.72,
+      "duration": 5.43,
+      "text": "will simply be equal to\nthe integral of the squared"
+    },
+    {
+      "start": 3450.15,
+      "duration": 5.1,
+      "text": "f over the times where\nthey both are non-zero."
+    },
+    {
+      "start": 3460.35,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 3460.85,
+      "duration": 2.74,
+      "text": "So we take a\npartition from 0 to t."
+    },
+    {
+      "start": 3463.59,
+      "duration": 7.88,
+      "text": "We get this result. And we can\nprove that the limit equals"
+    },
+    {
+      "start": 3471.47,
+      "duration": 2.28,
+      "text": "this integral notation."
+    },
+    {
+      "start": 3473.75,
+      "duration": 2.22,
+      "text": "So basically, there's\na limit that exists,"
+    },
+    {
+      "start": 3475.97,
+      "duration": 3.54,
+      "text": "and this is a notation\nfor that limit."
+    },
+    {
+      "start": 3479.51,
+      "duration": 3.6,
+      "text": "And Steele goes into a lot\nof the details for that."
+    },
+    {
+      "start": 3488.59,
+      "duration": 4.68,
+      "text": "Now, what's of interest\nis that we can now"
+    },
+    {
+      "start": 3493.27,
+      "duration": 5.32,
+      "text": "consider some general\nIto cases, which"
+    },
+    {
+      "start": 3498.59,
+      "duration": 3.72,
+      "text": "will be referred to as Ito's\nformula, for different kinds"
+    },
+    {
+      "start": 3502.31,
+      "duration": 3.16,
+      "text": "of functions f."
+    },
+    {
+      "start": 3505.47,
+      "duration": 4.04,
+      "text": "And so if we consider\nfirst the case"
+    },
+    {
+      "start": 3509.51,
+      "duration": 6.96,
+      "text": "where f, little f, is a real\nfunction mapping reals to reals,"
+    },
+    {
+      "start": 3516.47,
+      "duration": 6.88,
+      "text": "then if it has a continuous\nsecond derivative,"
+    },
+    {
+      "start": 3523.35,
+      "duration": 10.56,
+      "text": "then we can express the function\nf of Bt in terms of its Taylor"
+    },
+    {
+      "start": 3533.91,
+      "duration": 5.52,
+      "text": "approximation, and we\nget this formula, which"
+    },
+    {
+      "start": 3539.43,
+      "duration": 4.04,
+      "text": "is Ito's formula for f of Bt."
+    },
+    {
+      "start": 3543.47,
+      "duration": 6.44,
+      "text": "And in looking at this\nexpression, what's relevant"
+    },
+    {
+      "start": 3549.91,
+      "duration": 4.64,
+      "text": "is that, OK, the first\nterm, f0, is a constant."
+    },
+    {
+      "start": 3554.55,
+      "duration": 6.5,
+      "text": "The second term is a\nGaussian process integral."
+    },
+    {
+      "start": 3561.05,
+      "duration": 2.14,
+      "text": "It's an integral\nof Brownian motion."
+    },
+    {
+      "start": 3563.19,
+      "duration": 3.72,
+      "text": "And then the third\nterm is the integral"
+    },
+    {
+      "start": 3566.91,
+      "duration": 8.48,
+      "text": "of the second derivative of\nf evaluated at the Bs value."
+    },
+    {
+      "start": 3575.39,
+      "duration": 4.08,
+      "text": "And so we have an\nadaptive drift term."
+    },
+    {
+      "start": 3579.47,
+      "duration": 6.38,
+      "text": "And we can prove this formula,\nor outline the proof by saying,"
+    },
+    {
+      "start": 3585.85,
+      "duration": 3.86,
+      "text": "OK, let's consider the\nTaylor approximation of f"
+    },
+    {
+      "start": 3589.71,
+      "duration": 6.64,
+      "text": "at x plus delta x and expand\nit to second-order terms"
+    },
+    {
+      "start": 3596.35,
+      "duration": 2.44,
+      "text": "plus a remainder."
+    },
+    {
+      "start": 3598.79,
+      "duration": 10.36,
+      "text": "And then if we take the\ndifference of f at time t with B"
+    },
+    {
+      "start": 3609.15,
+      "duration": 4.44,
+      "text": "minus f at time 0\nwith B, then we're"
+    },
+    {
+      "start": 3613.59,
+      "duration": 9.95,
+      "text": "looking at the sum of the\nincrements from time t1 to tn."
+    },
+    {
+      "start": 3623.54,
+      "duration": 8.16,
+      "text": "And those increments are equal\nto the sums of the derivative"
+    },
+    {
+      "start": 3631.7,
+      "duration": 6.08,
+      "text": "of f times the increment of time\nplus 1/2 the second derivative"
+    },
+    {
+      "start": 3637.78,
+      "duration": 5.48,
+      "text": "of f times the squared increment\nplus the remainder terms."
+    },
+    {
+      "start": 3643.26,
+      "duration": 2.84,
+      "text": "And if we take the\nlimits of those,"
+    },
+    {
+      "start": 3646.1,
+      "duration": 7.24,
+      "text": "we get the integral of f prime\ndBs plus 1/2 the integral"
+    },
+    {
+      "start": 3653.34,
+      "duration": 1.72,
+      "text": "of the second derivative."
+    },
+    {
+      "start": 3655.06,
+      "duration": 3.68,
+      "text": "So Taylor series\ngives us this formula."
+    },
+    {
+      "start": 3658.74,
+      "duration": 7.42,
+      "text": "And we can think of developing\na notation with Ito calculus,"
+    },
+    {
+      "start": 3666.16,
+      "duration": 11.14,
+      "text": "which is that our differential\nof f at Bs is equal to f prime"
+    },
+    {
+      "start": 3677.3,
+      "duration": 8.88,
+      "text": "of Bs dBs plus 1/2 f double\nprime times Bs times the squared"
+    },
+    {
+      "start": 3686.18,
+      "duration": 7.68,
+      "text": "of dB, which is equal to\nds, the increment of time."
+    },
+    {
+      "start": 3693.86,
+      "duration": 4.44,
+      "text": "So this is our Ito's\nformula shorthand."
+    },
+    {
+      "start": 3698.3,
+      "duration": 7.48,
+      "text": "And this shorthand\ncorresponds in a similar way"
+    },
+    {
+      "start": 3705.78,
+      "duration": 5.64,
+      "text": "to derivatives and\nantiderivatives, where here's"
+    },
+    {
+      "start": 3711.42,
+      "duration": 3.24,
+      "text": "the stochastic\ndifferential equation,"
+    },
+    {
+      "start": 3714.66,
+      "duration": 4.32,
+      "text": "and here's the solution to\nthat stochastic differential"
+    },
+    {
+      "start": 3718.98,
+      "duration": 3.84,
+      "text": "equation on the top."
+    },
+    {
+      "start": 3722.82,
+      "duration": 7.44,
+      "text": "Now, what's really neat\nand very powerful is"
+    },
+    {
+      "start": 3730.26,
+      "duration": 8.52,
+      "text": "that if we want to solve for\nthe integral of a function--"
+    },
+    {
+      "start": 3738.78,
+      "duration": 4.96,
+      "text": "so suppose our objective is to\nsolve for the integral from 0"
+    },
+    {
+      "start": 3743.74,
+      "duration": 4.41,
+      "text": "to T f of Bs dBs."
+    },
+    {
+      "start": 3751.18,
+      "duration": 9.2,
+      "text": "Well, if we have the\nantiderivative of little f--"
+    },
+    {
+      "start": 3760.38,
+      "duration": 4.6,
+      "text": "so that means that the first\nderivative of capital F"
+    },
+    {
+      "start": 3764.98,
+      "duration": 9.42,
+      "text": "is equal to such that\nF prime is equal to f--"
+    },
+    {
+      "start": 3777.42,
+      "duration": 7.36,
+      "text": "then, if we choose the\nantiderivative with f of 0 equal"
+    },
+    {
+      "start": 3784.78,
+      "duration": 10.16,
+      "text": "to 0, then we get F of Bt\nminus F of B0 is equal to this"
+    },
+    {
+      "start": 3794.94,
+      "duration": 6.44,
+      "text": "integral of the derivative of\nf dBs plus 1/2 the integral"
+    },
+    {
+      "start": 3801.38,
+      "duration": 2.5,
+      "text": "of the second\nderivative of capital F,"
+    },
+    {
+      "start": 3803.88,
+      "duration": 2.14,
+      "text": "which is simply f prime."
+    },
+    {
+      "start": 3806.02,
+      "duration": 8.64,
+      "text": "So this formula is what we\njust derived for Ito's formula."
+    },
+    {
+      "start": 3814.66,
+      "duration": 9.36,
+      "text": "And if we solve for this\nfirst term on the right,"
+    },
+    {
+      "start": 3824.02,
+      "duration": 4.72,
+      "text": "then that's equal to F of\nBt minus 1/2 the integral"
+    },
+    {
+      "start": 3828.74,
+      "duration": 4.76,
+      "text": "of the first derivative\nof f prime of Bs ds."
+    },
+    {
+      "start": 3833.5,
+      "duration": 7.24,
+      "text": "So what's neat as a technique\nin stochastic calculus is that"
+    },
+    {
+      "start": 3840.74,
+      "duration": 10.48,
+      "text": "if we want to integrate a\nfunction little f of Bs dBs,"
+    },
+    {
+      "start": 3851.22,
+      "duration": 7.87,
+      "text": "then we can just apply\nIto's formula in reverse"
+    },
+    {
+      "start": 3859.09,
+      "duration": 5.28,
+      "text": "and characterize it as the\nantiderivative of little f at Bt"
+    },
+    {
+      "start": 3864.37,
+      "duration": 4.04,
+      "text": "minus 1/2 that, defining the\nantiderivative to have f of 0"
+    },
+    {
+      "start": 3868.41,
+      "duration": 2.24,
+      "text": "equal to 0."
+    },
+    {
+      "start": 3870.65,
+      "duration": 6.36,
+      "text": "Now, let's apply this just for\nthe case where capital F of x"
+    },
+    {
+      "start": 3877.01,
+      "duration": 4.32,
+      "text": "equals x, capital F prime,\nthe derivative is 1,"
+    },
+    {
+      "start": 3881.33,
+      "duration": 8.0,
+      "text": "and the second derivative is\n0, then the integral of dBs"
+    },
+    {
+      "start": 3889.33,
+      "duration": 2.56,
+      "text": "is equal to Bt."
+    },
+    {
+      "start": 3891.89,
+      "duration": 4.36,
+      "text": "And let's see."
+    },
+    {
+      "start": 3896.25,
+      "duration": 10.76,
+      "text": "So basically, the integral of Bs\ndBs is equal to capital F of Bt,"
+    },
+    {
+      "start": 3907.01,
+      "duration": 6.48,
+      "text": "which is Bt, and then minus\n1/2 the second derivative--"
+    },
+    {
+      "start": 3913.49,
+      "duration": 4.48,
+      "text": "or the second derivative\nof f, which is 0."
+    },
+    {
+      "start": 3917.97,
+      "duration": 4.0,
+      "text": "So this gives us this result."
+    },
+    {
+      "start": 3921.97,
+      "duration": 6.8,
+      "text": "And if we consider capital\nF equaling 1/2 x squared,"
+    },
+    {
+      "start": 3928.77,
+      "duration": 8.08,
+      "text": "then little f is equal to x, and\nlittle f prime is equal to 1."
+    },
+    {
+      "start": 3936.85,
+      "duration": 5.1,
+      "text": "And so we get the integral of\nBs dBs is f of Bt minus that,"
+    },
+    {
+      "start": 3941.95,
+      "duration": 3.02,
+      "text": "which is 1/2 Bt\nsquared minus 1/2 t."
+    },
+    {
+      "start": 3944.97,
+      "duration": 4.24,
+      "text": "So this gives us of a\nverification of the limiting"
+    },
+    {
+      "start": 3949.21,
+      "duration": 5.92,
+      "text": "results we went through before\nwith these Ito integrals."
+    },
+    {
+      "start": 3955.13,
+      "duration": 6.2,
+      "text": "The next step is to extend\nIto's formula to functions"
+    },
+    {
+      "start": 3961.33,
+      "duration": 2.36,
+      "text": "of more than one variable."
+    },
+    {
+      "start": 3963.69,
+      "duration": 11.72,
+      "text": "So we basically want to go\nfrom f of x, so one variable s."
+    },
+    {
+      "start": 3975.41,
+      "duration": 5.76,
+      "text": "We want to go to two\nvariables functions, f."
+    },
+    {
+      "start": 3981.17,
+      "duration": 3.64,
+      "text": "And we'll write the\nnotation of s comma"
+    },
+    {
+      "start": 3984.81,
+      "duration": 12.88,
+      "text": "x, which maps, basically, let's\nsee, the time space cross--"
+    },
+    {
+      "start": 3997.69,
+      "duration": 7.48,
+      "text": "or time range, R plus, cross the\nreal line of x into the reals."
+    },
+    {
+      "start": 4005.17,
+      "duration": 2.96,
+      "text": "And we're going to\nconsider functions little"
+    },
+    {
+      "start": 4008.13,
+      "duration": 8.08,
+      "text": "f that are continuous to\ndifferent orders in terms"
+    },
+    {
+      "start": 4016.21,
+      "duration": 4.64,
+      "text": "of the time variable\nand the space variable."
+    },
+    {
+      "start": 4020.85,
+      "duration": 7.96,
+      "text": "So we have this notation,\nC super 1 comma 2,"
+    },
+    {
+      "start": 4028.81,
+      "duration": 7.72,
+      "text": "meaning that it's continuous\nwith a first-order derivative,"
+    },
+    {
+      "start": 4036.53,
+      "duration": 4.44,
+      "text": "existing and continuous\nand second-order derivative"
+    },
+    {
+      "start": 4040.97,
+      "duration": 3.64,
+      "text": "with respect to\nx and continuous."
+    },
+    {
+      "start": 4044.61,
+      "duration": 4.84,
+      "text": "And so we have a Taylor\nseries for increments"
+    },
+    {
+      "start": 4049.45,
+      "duration": 4.8,
+      "text": "of this function little f,\nnow, of two variables, which"
+    },
+    {
+      "start": 4054.25,
+      "duration": 4.48,
+      "text": "has the multidimensional\nd equals"
+    },
+    {
+      "start": 4058.73,
+      "duration": 3.4,
+      "text": "2 Taylor series formulation."
+    },
+    {
+      "start": 4062.13,
+      "duration": 7.76,
+      "text": "And it equals the f\nwithout the increments on t"
+    },
+    {
+      "start": 4069.89,
+      "duration": 4.68,
+      "text": "and x plus delta t times the\npartial of f with respect"
+    },
+    {
+      "start": 4074.57,
+      "duration": 4.56,
+      "text": "to t plus delta x times the\npartial of f with respect to x."
+    },
+    {
+      "start": 4079.13,
+      "duration": 4.24,
+      "text": "And then we have the\nsecond-order partial"
+    },
+    {
+      "start": 4083.37,
+      "duration": 2.18,
+      "text": "differential terms."
+    },
+    {
+      "start": 4085.55,
+      "duration": 4.74,
+      "text": "And the only ones that are\ngoing to be of interest"
+    },
+    {
+      "start": 4090.29,
+      "duration": 4.19,
+      "text": "are the second-order\npartial of f"
+    },
+    {
+      "start": 4094.48,
+      "duration": 5.64,
+      "text": "with respect to x, which will be\nmultiplied by delta x squared."
+    },
+    {
+      "start": 4100.12,
+      "duration": 2.64,
+      "text": "The other second-order\nterms will actually"
+    },
+    {
+      "start": 4102.76,
+      "duration": 4.629,
+      "text": "be of small order delta t."
+    },
+    {
+      "start": 4107.389,
+      "duration": 7.291,
+      "text": "And with this second-order\nTaylor approximation,"
+    },
+    {
+      "start": 4114.68,
+      "duration": 4.719,
+      "text": "we're able to derive\nthat the function f of t,"
+    },
+    {
+      "start": 4119.399,
+      "duration": 8.721,
+      "text": "Bt is equal to the initial\nvalue plus an integral over time"
+    },
+    {
+      "start": 4128.12,
+      "duration": 6.56,
+      "text": "of a function of the Brownian\nmotion ds plus an integral over"
+    },
+    {
+      "start": 4134.68,
+      "duration": 6.44,
+      "text": "increments of the Brownian\nmotion plus 1/2 this integral"
+    },
+    {
+      "start": 4141.12,
+      "duration": 3.4,
+      "text": "of the second partial of f\nwith respect to dx squared."
+    },
+    {
+      "start": 4144.52,
+      "duration": 7.44,
+      "text": "And this integral here ends\nup being multiplied-- or being"
+    },
+    {
+      "start": 4151.96,
+      "duration": 2.42,
+      "text": "integrated with respect\nto the increments of time,"
+    },
+    {
+      "start": 4154.38,
+      "duration": 7.26,
+      "text": "because the delta x-squared\nterms are infinitesimally"
+    },
+    {
+      "start": 4161.64,
+      "duration": 2.029,
+      "text": "equivalent to increments ds."
+    },
+    {
+      "start": 4167.359,
+      "duration": 7.941,
+      "text": "So for this formula,\nwe have here,"
+    },
+    {
+      "start": 4175.3,
+      "duration": 3.54,
+      "text": "if we look at the difference in\nthe little f function from time"
+    },
+    {
+      "start": 4178.84,
+      "duration": 3.939,
+      "text": "0 to T, it equals\nthe right-hand side."
+    },
+    {
+      "start": 4182.779,
+      "duration": 2.861,
+      "text": "So this top formula\nhere is simply"
+    },
+    {
+      "start": 4185.64,
+      "duration": 4.4,
+      "text": "taking this second-order\nTaylor series"
+    },
+    {
+      "start": 4190.04,
+      "duration": 3.76,
+      "text": "and looking at the\nincrement from 0"
+    },
+    {
+      "start": 4193.8,
+      "duration": 4.2,
+      "text": "to T and what that equals."
+    },
+    {
+      "start": 4198.0,
+      "duration": 2.7,
+      "text": "And what we get is\na sum of two terms,"
+    },
+    {
+      "start": 4200.7,
+      "duration": 5.46,
+      "text": "an integral with respect to\ntime of the partial with respect"
+    },
+    {
+      "start": 4206.16,
+      "duration": 4.48,
+      "text": "to time plus 1/2 the second\nderivative of f with respect"
+    },
+    {
+      "start": 4210.64,
+      "duration": 0.92,
+      "text": "to x."
+    },
+    {
+      "start": 4211.56,
+      "duration": 8.88,
+      "text": "And with this notation\nfor the value of little"
+    },
+    {
+      "start": 4220.44,
+      "duration": 6.52,
+      "text": "f, what's important\nto notice is that,"
+    },
+    {
+      "start": 4226.96,
+      "duration": 6.12,
+      "text": "if the argument in\nthe time integral--"
+    },
+    {
+      "start": 4233.08,
+      "duration": 10.88,
+      "text": "if that's equal to 0, then\nthis will be a martingale"
+    },
+    {
+      "start": 4243.96,
+      "duration": 7.68,
+      "text": "because the second term\nis an integral of terms"
+    },
+    {
+      "start": 4251.64,
+      "duration": 2.92,
+      "text": "times increments of\nthe Brownian motion."
+    },
+    {
+      "start": 4254.56,
+      "duration": 2.0,
+      "text": "And the increments of\nthe Brownian motion"
+    },
+    {
+      "start": 4256.56,
+      "duration": 3.04,
+      "text": "all have expectation equal to 0."
+    },
+    {
+      "start": 4259.6,
+      "duration": 4.16,
+      "text": "So we'll have the\npossibility of this function"
+    },
+    {
+      "start": 4263.76,
+      "duration": 2.59,
+      "text": "being a martingale,\nif that's true."
+    },
+    {
+      "start": 4266.35,
+      "duration": 5.72,
+      "text": "And this integrand\nequaling 0 is equivalent"
+    },
+    {
+      "start": 4272.07,
+      "duration": 5.88,
+      "text": "to this partial differential\nequation on the little f."
+    },
+    {
+      "start": 4277.95,
+      "duration": 6.8,
+      "text": "So there's this connection\nbetween martingales"
+    },
+    {
+      "start": 4284.75,
+      "duration": 6.96,
+      "text": "and partial differential\nequations for f when we're"
+    },
+    {
+      "start": 4291.71,
+      "duration": 3.36,
+      "text": "thinking of a process f of t."
+    },
+    {
+      "start": 4295.07,
+      "duration": 7.36,
+      "text": "So if little f is a martingale,\nit will turn out that"
+    },
+    {
+      "start": 4302.43,
+      "duration": 6.24,
+      "text": "the partial of f with respect to\nt will equal minus 1/2 d squared"
+    },
+    {
+      "start": 4308.67,
+      "duration": 2.92,
+      "text": "f dx squared, which\nis a PDE condition."
+    },
+    {
+      "start": 4311.59,
+      "duration": 5.36,
+      "text": "Now the other thing we want\nactually for this to exist"
+    },
+    {
+      "start": 4316.95,
+      "duration": 9.96,
+      "text": "is that the variance of\nthe function, f of T, BT,"
+    },
+    {
+      "start": 4326.91,
+      "duration": 9.36,
+      "text": "which is bounded by the\nsquared expectation, is finite."
+    },
+    {
+      "start": 4336.27,
+      "duration": 6.08,
+      "text": "And so this will be\nfinite, the variance,"
+    },
+    {
+      "start": 4342.35,
+      "duration": 6.76,
+      "text": "if that second term\nhas finite variance."
+    },
+    {
+      "start": 4349.11,
+      "duration": 3.6,
+      "text": "And so for that to\nhave finite variance,"
+    },
+    {
+      "start": 4352.71,
+      "duration": 3.99,
+      "text": "the variance is the integral of\nthe square of that argument df"
+    },
+    {
+      "start": 4356.7,
+      "duration": 2.46,
+      "text": "dx, with respect to time."
+    },
+    {
+      "start": 4365.19,
+      "duration": 6.68,
+      "text": "Now, what's interesting\nwith this Ito formula is"
+    },
+    {
+      "start": 4371.87,
+      "duration": 5.36,
+      "text": "we can apply it to a\nfunction little f, which"
+    },
+    {
+      "start": 4377.23,
+      "duration": 6.64,
+      "text": "is the exponential of sigma x\nminus sigma squared t over 2."
+    },
+    {
+      "start": 4383.87,
+      "duration": 6.08,
+      "text": "And importantly--\nwell, let's see."
+    },
+    {
+      "start": 4389.95,
+      "duration": 4.12,
+      "text": "This partial of f with respect\nto t does equal minus 1/2 sigma"
+    },
+    {
+      "start": 4394.07,
+      "duration": 2.0,
+      "text": "squared f."
+    },
+    {
+      "start": 4396.07,
+      "duration": 7.0,
+      "text": "And so this is actually a\npartial differential equation"
+    },
+    {
+      "start": 4403.07,
+      "duration": 3.46,
+      "text": "for little f."
+    },
+    {
+      "start": 4406.53,
+      "duration": 4.02,
+      "text": "But df dx is equal to sigma f."
+    },
+    {
+      "start": 4410.55,
+      "duration": 4.16,
+      "text": "The second partial of f with\nrespect to x is sigma-squared f."
+    },
+    {
+      "start": 4414.71,
+      "duration": 5.2,
+      "text": "And Ito's formula,\nif we expand it out,"
+    },
+    {
+      "start": 4419.91,
+      "duration": 3.832,
+      "text": "gives us this\nexpression for little f."
+    },
+    {
+      "start": 4423.742,
+      "duration": 9.448,
+      "text": "And this function little f\nis, in fact, a martingale."
+    },
+    {
+      "start": 4433.19,
+      "duration": 10.64,
+      "text": "If we look at the expected\nvalue of f given f of 0, 0,"
+    },
+    {
+      "start": 4443.83,
+      "duration": 1.88,
+      "text": "it equals 1."
+    },
+    {
+      "start": 4445.71,
+      "duration": 6.8,
+      "text": "Now, f of 0, 0 is the\nexponential of, basically,"
+    },
+    {
+      "start": 4452.51,
+      "duration": 1.86,
+      "text": "0, which is 1."
+    },
+    {
+      "start": 4456.95,
+      "duration": 8.04,
+      "text": "But this function f, little\nf, if we plug in Bt for x,"
+    },
+    {
+      "start": 4464.99,
+      "duration": 5.16,
+      "text": "it's a scaled lognormal\nrandom variable."
+    },
+    {
+      "start": 4470.15,
+      "duration": 6.06,
+      "text": "So this little f evaluated\nat x equal to Bt--"
+    },
+    {
+      "start": 4476.21,
+      "duration": 4.7,
+      "text": "so it's a transformation of\nthe Brownian motion process"
+    },
+    {
+      "start": 4480.91,
+      "duration": 4.16,
+      "text": "paths, Bt by this function--"
+    },
+    {
+      "start": 4485.07,
+      "duration": 5.24,
+      "text": "is actually a scaled\nlognormal random variable."
+    },
+    {
+      "start": 4490.31,
+      "duration": 4.92,
+      "text": "And so e to the sigma Bt minus\n1/2 sigma-squared t is a scaled"
+    },
+    {
+      "start": 4495.23,
+      "duration": 1.44,
+      "text": "lognormal."
+    },
+    {
+      "start": 4496.67,
+      "duration": 5.19,
+      "text": "And the expected value of this\ne to the sigma Bt is actually"
+    },
+    {
+      "start": 4501.86,
+      "duration": 2.56,
+      "text": "equal to e to the\n1/2 sigma-squared t."
+    },
+    {
+      "start": 4504.42,
+      "duration": 3.24,
+      "text": "We proved that, I believe,\nin the problem set."
+    },
+    {
+      "start": 4507.66,
+      "duration": 2.28,
+      "text": "And so the\nexpectation of f of t,"
+    },
+    {
+      "start": 4509.94,
+      "duration": 3.82,
+      "text": "Bt is going to actually\nequal 1 for all t."
+    },
+    {
+      "start": 4513.76,
+      "duration": 7.82,
+      "text": "So this little f is,\nin fact, a martingale."
+    },
+    {
+      "start": 4521.58,
+      "duration": 2.8,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4524.38,
+      "duration": 6.76,
+      "text": "With Brownian motion with\ndrift, the ruin problem,"
+    },
+    {
+      "start": 4531.14,
+      "duration": 9.88,
+      "text": "we can actually use\nsome Ito-process ideas"
+    },
+    {
+      "start": 4541.02,
+      "duration": 5.88,
+      "text": "to deal with this\nproblem, where we assume"
+    },
+    {
+      "start": 4546.9,
+      "duration": 4.8,
+      "text": "that Xt is a Brownian\nmotion with drift mu"
+    },
+    {
+      "start": 4551.7,
+      "duration": 3.08,
+      "text": "and variance parameter\nsigma squared."
+    },
+    {
+      "start": 4554.78,
+      "duration": 5.52,
+      "text": "So here's its formula,\nstochastic differential equation"
+    },
+    {
+      "start": 4560.3,
+      "duration": 2.0,
+      "text": "for Xt."
+    },
+    {
+      "start": 4562.3,
+      "duration": 5.92,
+      "text": "And we're interested in, what's\nthe probability of stopping"
+    },
+    {
+      "start": 4568.22,
+      "duration": 6.36,
+      "text": "at A before B, where\nthe stopping time"
+    },
+    {
+      "start": 4574.58,
+      "duration": 7.24,
+      "text": "tau is the first time t\nthat hits A or minus B."
+    },
+    {
+      "start": 4581.82,
+      "duration": 6.52,
+      "text": "And this argument is\none that's very typical"
+    },
+    {
+      "start": 4588.34,
+      "duration": 5.8,
+      "text": "of quantitative finance\ndevelopments, I guess,"
+    },
+    {
+      "start": 4594.14,
+      "duration": 3.0,
+      "text": "by mathematicians."
+    },
+    {
+      "start": 4597.14,
+      "duration": 3.92,
+      "text": "And it's actually a\nvery neat argument,"
+    },
+    {
+      "start": 4601.06,
+      "duration": 4.24,
+      "text": "where I don't think I could\never have derived this,"
+    },
+    {
+      "start": 4605.3,
+      "duration": 3.2,
+      "text": "but the derivation\nusing martingale theory"
+    },
+    {
+      "start": 4608.5,
+      "duration": 2.26,
+      "text": "is really very elegant."
+    },
+    {
+      "start": 4610.76,
+      "duration": 7.78,
+      "text": "And so let's consider trying\nto solve for this probability"
+    },
+    {
+      "start": 4618.54,
+      "duration": 3.42,
+      "text": "by using martingale theory."
+    },
+    {
+      "start": 4621.96,
+      "duration": 5.58,
+      "text": "So let's consider a martingale."
+    },
+    {
+      "start": 4627.54,
+      "duration": 8.56,
+      "text": "Let's try to define a martingale\nwith value h of Xt defining"
+    },
+    {
+      "start": 4636.1,
+      "duration": 10.4,
+      "text": "Mt, where the tau is\nthe same stopping time,"
+    },
+    {
+      "start": 4646.5,
+      "duration": 5.0,
+      "text": "and the condition\non h is going to be"
+    },
+    {
+      "start": 4651.5,
+      "duration": 6.56,
+      "text": "that if we are at the\nvalue Xt equals A,"
+    },
+    {
+      "start": 4658.06,
+      "duration": 3.56,
+      "text": "then the probability is 1."
+    },
+    {
+      "start": 4661.62,
+      "duration": 4.44,
+      "text": "And if we start at minus\nB, the probability is 0."
+    },
+    {
+      "start": 4666.06,
+      "duration": 3.4,
+      "text": "So this is fixing the\nterminal conditions"
+    },
+    {
+      "start": 4669.46,
+      "duration": 7.83,
+      "text": "of the function h, when it\nhits the limits A or minus B."
+    },
+    {
+      "start": 4677.29,
+      "duration": 9.4,
+      "text": "Well, if we have a martingale\nthat satisfies this function"
+    },
+    {
+      "start": 4686.69,
+      "duration": 6.36,
+      "text": "h of Xt, then the expectation\nof the stopped martingale"
+    },
+    {
+      "start": 4693.05,
+      "duration": 7.36,
+      "text": "is simply equal to the\nprobability that X tau equals A."
+    },
+    {
+      "start": 4700.41,
+      "duration": 11.4,
+      "text": "And by the martingale\nproperty, the expectation"
+    },
+    {
+      "start": 4711.81,
+      "duration": 8.52,
+      "text": "of the stopped time is equal to\nM0, the initial value of the h"
+    },
+    {
+      "start": 4720.33,
+      "duration": 0.5,
+      "text": "function."
+    },
+    {
+      "start": 4720.83,
+      "duration": 5.68,
+      "text": "Now, the initial value is the\nvalue when X is equal to 0."
+    },
+    {
+      "start": 4726.51,
+      "duration": 2.9,
+      "text": "So we're starting at\n0 with the X process,"
+    },
+    {
+      "start": 4729.41,
+      "duration": 6.8,
+      "text": "and it either moves and\nhits A or hits minus B."
+    },
+    {
+      "start": 4736.21,
+      "duration": 8.76,
+      "text": "So in order for this h\nfunction to be a martingale,"
+    },
+    {
+      "start": 4744.97,
+      "duration": 5.92,
+      "text": "we have to have the PDE\ncondition satisfied on h."
+    },
+    {
+      "start": 4750.89,
+      "duration": 3.42,
+      "text": "So the partial of h with respect\nto t is equal to minus 1/2"
+    },
+    {
+      "start": 4754.31,
+      "duration": 3.7,
+      "text": "the second partial of\nh with respect to dx."
+    },
+    {
+      "start": 4758.01,
+      "duration": 5.32,
+      "text": "And so if this h function, which\nis the probability of hitting"
+    },
+    {
+      "start": 4763.33,
+      "duration": 8.64,
+      "text": "A first, depends just\non the value of Xt,"
+    },
+    {
+      "start": 4771.97,
+      "duration": 5.28,
+      "text": "then it equals h of\nmu t plus sigma Bt,"
+    },
+    {
+      "start": 4777.25,
+      "duration": 2.84,
+      "text": "substituting in for what Xt is."
+    },
+    {
+      "start": 4780.09,
+      "duration": 6.28,
+      "text": "So we can work with\nthe function little f"
+    },
+    {
+      "start": 4786.37,
+      "duration": 4.48,
+      "text": "equal to h of mu t plus sigma x."
+    },
+    {
+      "start": 4790.85,
+      "duration": 5.4,
+      "text": "And if the partial of\nf with respect to t,"
+    },
+    {
+      "start": 4796.25,
+      "duration": 6.12,
+      "text": "which is, by chain rule, mu h\nprime of mu t plus sigma x--"
+    },
+    {
+      "start": 4802.37,
+      "duration": 2.56,
+      "text": "if that equals the second\npartial of f with respect"
+    },
+    {
+      "start": 4804.93,
+      "duration": 4.64,
+      "text": "to x, the second partial\nderivative of h with respect"
+    },
+    {
+      "start": 4809.57,
+      "duration": 3.44,
+      "text": "to x is sigma squared\nh double prime,"
+    },
+    {
+      "start": 4813.01,
+      "duration": 4.04,
+      "text": "then this PDE\ncondition says we have"
+    },
+    {
+      "start": 4817.05,
+      "duration": 5.24,
+      "text": "this relationship, this\ndifferential equation, for h."
+    },
+    {
+      "start": 4822.29,
+      "duration": 4.36,
+      "text": "Although, it's in the\nfirst derivative of h."
+    },
+    {
+      "start": 4826.65,
+      "duration": 5.68,
+      "text": "But we can then rewrite this\nas the second derivative"
+    },
+    {
+      "start": 4832.33,
+      "duration": 5.84,
+      "text": "of h evaluated at argument\ny is minus a constant times"
+    },
+    {
+      "start": 4838.17,
+      "duration": 4.04,
+      "text": "the first derivative of h."
+    },
+    {
+      "start": 4842.21,
+      "duration": 5.2,
+      "text": "And so we can\nsolve that equation"
+    },
+    {
+      "start": 4847.41,
+      "duration": 8.56,
+      "text": "by noting that h double\nprime over h prime"
+    },
+    {
+      "start": 4855.97,
+      "duration": 6.53,
+      "text": "is equal to d by dx\nof log of h prime."
+    },
+    {
+      "start": 4867.17,
+      "duration": 4.64,
+      "text": "So the derivative of the log\nof h prime is a constant."
+    },
+    {
+      "start": 4871.81,
+      "duration": 3.01,
+      "text": "The solution to that\nis a linear function."
+    },
+    {
+      "start": 4877.41,
+      "duration": 4.8,
+      "text": "And so we then end up being\nable to solve for little h of y"
+    },
+    {
+      "start": 4882.21,
+      "duration": 1.84,
+      "text": "equaling this formula."
+    },
+    {
+      "start": 4884.05,
+      "duration": 4.5,
+      "text": "So this is the solution\nto this problem."
+    },
+    {
+      "start": 4888.55,
+      "duration": 0.5,
+      "text": "All right."
+    },
+    {
+      "start": 4889.05,
+      "duration": 0.54,
+      "text": "Let's see."
+    },
+    {
+      "start": 4889.59,
+      "duration": 2.68,
+      "text": "We're at the end of\nour lecture today."
+    },
+    {
+      "start": 4892.27,
+      "duration": 4.54,
+      "text": "So next time, we'll\nfinish up these notes"
+    },
+    {
+      "start": 4896.81,
+      "duration": 7.56,
+      "text": "talking about standard\nprocesses, where"
+    },
+    {
+      "start": 4904.37,
+      "duration": 5.19,
+      "text": "our a function for the\ndrift and our b function"
+    },
+    {
+      "start": 4909.56,
+      "duration": 4.96,
+      "text": "for the volatilities have to\nsatisfy certain properties."
+    },
+    {
+      "start": 4914.52,
+      "duration": 3.36,
+      "text": "And if you read\nahead in these notes,"
+    },
+    {
+      "start": 4917.88,
+      "duration": 4.56,
+      "text": "you'll see that we need the\nprobability of integrating"
+    },
+    {
+      "start": 4922.44,
+      "duration": 5.76,
+      "text": "the drift over time has to be\nfinite and absolute integral."
+    },
+    {
+      "start": 4928.2,
+      "duration": 6.44,
+      "text": "And the integral of the squared\nb's have to also be finite."
+    },
+    {
+      "start": 4934.64,
+      "duration": 2.16,
+      "text": "If those were not\nfinite, then you"
+    },
+    {
+      "start": 4936.8,
+      "duration": 5.96,
+      "text": "would, say, have explosive\nbehavior of these integrals,"
+    },
+    {
+      "start": 4942.76,
+      "duration": 1.72,
+      "text": "where they won't exist."
+    },
+    {
+      "start": 4944.48,
+      "duration": 3.84,
+      "text": "So these are reasonable\nproperties to assume for those."
+    },
+    {
+      "start": 4948.32,
+      "duration": 3.72,
+      "text": "And anyway, we'll go through\nsome interesting results"
+    },
+    {
+      "start": 4952.04,
+      "duration": 3.04,
+      "text": "here with this\nparticular problem"
+    },
+    {
+      "start": 4955.08,
+      "duration": 3.08,
+      "text": "and then turn on to stochastic\ndifferential equations"
+    },
+    {
+      "start": 4958.16,
+      "duration": 1.6,
+      "text": "next time."
+    },
+    {
+      "start": 4959.76,
+      "duration": 1.64,
+      "text": "All right."
+    },
+    {
+      "start": 4961.4,
+      "duration": 1.87,
+      "text": "Thank you."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: All right. So today's topic is stochastic calculus. And this topic is really an engaging one in quantitative finance because it extends ordinary calculus with real variables to calculus that depends upon stochastic processes, and in particular, Brownian motion processes. And so when we are thinking about how to model the value of a stock or of a derivative, such as a simple option or a more complex option, we can model the dynamics of these assets or derivative contracts as integrals of functions with respect to Brownian motion, where Brownian motion characterizes the underlying dynamics of the asset. And so it's really neat to see how we can develop stochastic calculus and relate it to what's familiar to us with ordinary real calculus, but see how there are extensions of the formulas that accommodate the randomness in the increments with which we're integrating. So let's consider just reviewing, first, Brownian motion with drift. We discussed this earlier in our discussion of stochastic processes. And a standard Brownian motion model is one where we have our process X, depending upon the underlying Brownian motion-- standardized Brownian motion B of t, with a drift parameter mu, and a volatility parameter sigma, or variance parameter sigma squared. And the key property of Brownian motion includes independent increments and the variation of increments of the process being proportional to the length of the increment. So with standard Brownian motion, where we have a drift parameter of 0 and a sigma volatility of 1, the extension of these properties to have essentially mean 0 and standard deviation equal to sigma times t is to have the mean depend upon time, with the drift parameter and the volatility or variance to be proportional to sigma squared times the length of the interval. Now, in terms of understanding Brownian motion, it's going to be useful for us to focus on the conditional distribution of the value at time t plus delta as a function of the value at time X of t. And so when we think of a graph of Brownian motion, which is some path, if we fix, at a given value t, the value of X of t-- or maybe I should write this as s-- the value of X at time little t, then if we know the value at time little t, what is the distribution, the conditional distribution into the future? Well, this increment t plus delta t, delta t in red, we can just expand that out to mu t plus delta t plus sigma B of t plus delta t. And then we can group the known terms on the left-hand side, or the left-hand terms of the second equation, mu t plus sigma B of t. Then we have a term mu delta t, which is a constant, not random. But then we have the increment of the Brownian motion process from time t to time delta t, t plus delta t. So actually, there's a typo here. That should be B of t plus delta t minus B of t. And so we have that our delta X increment is mu delta t plus sigma delta B of t. Now, this increment has mean mu delta t, variance sigma squared delta t. And for Brownian motion with drift, this increment is exactly distributed as a normal random variable, with that mean and variance. And what's useful to think about is, what happens as the increment delta t gets infinitesimal? And so if we look at the infinitesimal increment for delta t, then the expected squared value of the Brownian motion increment is equal to sigma squared delta t plus mu delta t squared. This is actually an exact formula. But what's important for us is that, as delta t goes to 0, as it becomes infinitesimal, then this squared increment has expectation that's of order delta t. And it actually equals sigma squared delta t plus little o of delta t. So this little o notation means that as delta t goes to 0, this remainder part goes to 0 as well. And if we consider powers of our increment of delta X, where the power c is greater than 2, then this will also be small o of delta t. So expressions that depend upon second or higher order of delta X will actually be comparable to sigma squared delta t. So with Brownian motion and drift, we have the notation for a stochastic differential equation, which is simply the increment of X is equal to mu delta t, or dt rather, plus sigma dB of t. And with this notation, the solution turns out to be X of t is equal to the value of X at time 0 plus the integral from 0 to t mu dt plus the integral from 0 to t of sigma dBs. And this solution seems obvious when we think about how we understand differential equations with real functions, but it does extend to this solution when we have Brownian motion. And so as noted there, this is equal to X0 plus t minus 0 times mu plus sigma times B of t minus B of 0. So our integration of functions of Brownian motion have this nominal solution, which seems very reasonable. And we'll, in fact, show that this solution is useful and it actually extends to more complex equations. Now, the more complex differential equations are one where we consider a drift term, mu, that's not a constant. It may vary over time, and it may also vary depending upon the magnitude of the process. So this kind of an extension is quite general. And we can think about the same extension to the volatility. Rather than being a constant, it might vary with t, and it might vary with Xt. And with derivative contracts, we have values of contracts which, at any given time, depend on time, maybe time to maturity, and the level of the process. And apart from those two features or properties of the derivative at time little t, we have a valuation model that applies, according to some function. So it will be very useful to have these generalized drift and generalized volatility parameters. Yes. AUDIENCE: How is the second integral defined? Because, obviously, the first one is like a Riemann integral. What about the second one? Is there an actual formal definition of-- I guess it's an Ito integral. PETER KEMPTHORNE: Right. And we will get there in a moment. But if we're integrating from-- well, here it's from 0 to t. If we're integrating the process over increments, we're basically going to be summing over the increments, although summing on the infinitesimal timescale over the entire period between 0 and t. And so if we break that sum of infinitesimal increments, we basically get the last value minus the first. And so we'll see that come into play. So what we will determine with this general setup, though, is that when we have extended drift and volatility, we then will have a solution to this Brownian motion with drift, with generalized drift and volatility, satisfying this equation. So we're going to want to be able to compute these integrals in a consistent way. And the Ito calculus provides us with that. So we have to define Ito integrals. Well, in defining Ito integrals, we have this notation that we need to be comfortable with. We are going to, first of all, consider a probability process that is defined by this triple. Now, let's see. Have any people here taken advanced probability or measure theory? Well, we basically have, here, a sample space. And here, we have what's called a sigma field of sets, which are a subset of omega. And then here, we have a probability model, where if we have A, a subset of omega, and it's an element of this sigma field, we have this probability of that set is well defined. So this notation encompasses the generality of probability models that are important to specify and be comfortable with. Well, with the omega set here, these are a collection of little omegas, which are possible sample paths of this Brownian motion. And we can think of, OK, here's one path, one possible path. Another possible path actually matches the first path up to time t, but then continues on somewhere else. Another path could be one that is reflected about a given level. We went through this a bit in our discussion of Brownian motion processes. And so we can think of just the collection of all possible paths. Now, the filtration, Ft-- we think of script Ft, this is going to be the sigma field of events or paths, which are fixed or known at times s less than or equal to t. So with script Ft, the information up to time t-- if this is our path up to time t, the event of following this path up to time t is deterministic if we look back-- deterministic for s less than t-- but then it's random-- random-- for s greater than t. So we have a value-- or in script Ft, it basically says, OK, we can work with paths that are deterministic before time t but then are random after time t. And so that relates to the concept of being measurable. So we say that events in Ft are measurable with respect to Bs, with the information set up to time t. So if we consider times before t, the path is actually just a constant-- or as a function, a path-valued function that's constant. Now, if we have this probability measure on omega, the space of all possible paths-- if we consider these a conditional distribution given X at time t, then we're trying to specify the model for all future paths that start at the level X at time t. And that probability measure over the entire space of paths can also be restricted to the paths up to time little t. So we can basically focus on probability measures that are unconditional but restricted to the information set up to time t. Now, we'll want to refer to the value of the Brownian motion at time t. And it's important to know that often this notation, Bt, is implicitly the value of a specific path. So to emphasize that, we'll indicate that it's the Brownian motion path indexed by little omega. And so we then want to consider the Ito integrals with respect to Brownian motion, first where we consider simple functions, real functions, where f of Bs is the value of little f evaluated at the position value of the Brownian motion. And we'll want to consider integrating that function from 0 to T. And so this is our notation. So with a companion graph, with the same x-axis as our Brownian motion, we could have f being some function which varies. And we want to basically integrate this function f evaluated at the Brownian motion. So actually, this is actually a wrong graph. I thought we had had the same graph. We basically want for, let's say, x equals Bs of omega, some function. All right. Well, if we consider this notation to represent our Ito integral, we're going to develop the formulas for these Ito integrals. And importantly, this Ito integral is going to have, basically, a deterministic, simple, real integration term for each path. But the paths indexed by omega are random. And so this Ito integral is actually going to be a random variable. And as a random variable, if it exists, it'll have an expectation and a variance. So let's consider a number of special cases that will define Ito integrals. The first case is the simple one, where f of x is equal to 1. So let me just erase this and have the level 1. So we consider f of x equaling 1. So if we integrate the increments of Brownian motion over from 0 to capital T, let's propose that that's equal to the increment from 0 to-- from 0 to t for each path. So the right-hand side corresponds to the simple integral of this path, Bs of omega, between Bt-- between time 0 and capital T. And, I guess, it's not in the notes. But if we were to consider the integral of 0 to t dBs of omega, we could think of this as the sum from 0 to n of iT over n. Let's see. Let me do this, if i equals 1 to n, i minus 1 T over n-- the integral from i minus 1 T over n to i times T over n dBs. So here, I'm thinking of basically dividing this increment from 0 to T into different increments of width capital T over n. And if we approximate-- or each of these integrals here are basically looking at the integral of or the change in Bs from these lower limits to the upper limits. And so the integral of dBs of omega, in a consistent way or well-defined way, is defined by this increment of the whole process. Now, if that's true, then when we consider the randomness in omega, the expectation of this integral is 0, where B is the standard Brownian motion. And its variance is equal to the length of the interval times the sigma of standard Brownian motion. Well, if we change our function f to be not the constant 1 over the whole real line but just the indicator of an interval, there's just one between a and b. So we have a and b here. And we have basically 0 up to a. And then it equals 1 up to b, and then it's 0 beyond. Then this Ito integral is essentially looking at the change in Brownian motion from time a to time b. So no surprise that that's a reasonable definition. Now, from these reasonable definitions, we can consider a second case, where our function f is, again, a function only of time s, but it's given by a step function over time, with steps-- or levels given by the ai's that are constant. So we go from this single-step function here to considering. basically, different step functions for our function f. Now, these step functions could correspond to, like, the number of shares held of an asset. And so this integral could correspond to the gain or loss if the underlying asset followed Brownian motion. But here, with this particular step function, we can define the Ito integral to just be the sum over the increments of the step levels times the increment of the process. And so, that's a pretty sensible definition of the integral. And it would apply if we had assets traveling-- values going by a Brownian motion process and, say, shares given by the a constants that were maybe deterministic. Now, at this point, we're using functions f, which are deterministic functions of time. We can then extend this to random functions. And actually, before I do so, just notice in red, the mean 0 and the variance of this Ito integral of the step function-- the variance is simply the sum of the squares of the levels times the length of the increment over which that level applies. So now, case 3, things get more interesting. We can allow our levels, ai, to be random variables. And these variables, random variables ai-- so ai equal to ai omega, this is a path. And so we can have the levels vary depending upon what the path value is. And so we want the ai to depend on-- and, I guess, by depend, I'll say be deterministic-- on script Ft sub i. So if we define our levels to be functions that are measurable in this information set, then that's what we're doing here. Now earlier, we talked about nonanticipatory variables. And so this is a nonanticipatory variable. It basically says that the level from ti on, for whatever that increment is, is going to be a function of what's happened in the past. So this is like a realizable function f, where when we apply the f function to the Brownian motion increments, we're applying known increments at all times. And so with this case, we actually want to make an assumption of measurability on that i-th information set. And we want a bounded squared expectation of the level. So if we have those two properties then, we can write out the Ito integral as this formula. And it will have expectation equal to 0 and variance equal to the sum of the expected squared ai's times ti plus 1 minus ti. So, I guess, rather importantly with these developments so far, we're thinking of the time s ranging from 0 up to time capital T. And we have increments ti, ti plus 1, where this increment is something. For simplicity, we could define this increment to have length, say, t over n, for n increments and have equal increments. But this formula for the Ito integral is considering integrating the Brownian motion over the interval from 0 to T. So integral from 0 to T, f of s, Bs dBs. This is our integral, our Ito process, I of f. And we can write I of f evaluated at a particular path given by this formula. All right. Well, an interesting example just from a mathematician's standpoint is, what if we define our levels to be equal to the value of the Brownian motion itself? So we're integrating B, dB. So we're thinking of this example, so case 3-- special case 3-- integral from 0 to T of B sub s dBs. Well, if we consider discretizing this Ito integral with these random levels ai-- actually, I'm getting ahead of myself. This integral will be a limit of these. For any fixed set of increments that we apply this random level. given by the value of the Brownian motion on those increments, then for each of these cases with n increments, we get that we have mean 0. And the variance is equal to the sum of the variances of each of the terms. And that turns out to be equal to the sum over the increments of the time Increment t, level ti, times the increment to the next time value. And this sum of ti times ti plus 1 minus ti is essentially equal or close to the integral from 0 to capital T of sds, which should be 1/2 t squared. Yeah. AUDIENCE: How do you conclude that the expectation is 0? PETER KEMPTHORNE: OK. The expectation is 0 because each of these increments here have expectation 0. So we're assuming B of 0 is 0. AUDIENCE: Yeah. Oh, yeah. But what if ai is not independent? Because when you take the expectations [INAUDIBLE]. PETER KEMPTHORNE: OK. Yep. Yep. Let's see. OK, ai omega is an element of F sub ti. So it's constant on F sub ti. So let's see. So ai of omega and Bti plus 1. This increment into the future from time ti is independent of the past. And so its expectation, if we take the product of these two and take expectations, we can take the expectation given-- or the expectation over ti times the expectation given-- let's see-- over ti plus 1 given ti. So we can break down this expectation into its decomposition. And the expectation of this factor, conditionally, will be 0. AUDIENCE: Yeah, that makes sense. PETER KEMPTHORNE: So, yep. All right. Well, this case 4 is the case that essentially defines Ito integrals in general, which is, if we consider taking the limit of integrals with respect to step functions with random levels ai, but then allow the increments-- the time steps to get closer and closer to each other, then the limiting value of this Ito integral of the step functions is equal to the Ito integral of f. So in our special case where f of x equals x, f of the Brownian motion is the Brownian motion itself, we end up getting this formula. And here, we have basically the discretized value of the integral. And then what's of interest is to see how the limit of that equals this formula. And so to prove this, there's a nice mathematical trick. And so if we look at this term on the right-hand side here, which is an element of the sum, it turns out to be equal to 1/2 the difference in the squared values at the endpoints of the interval minus 1/2 times the difference between ti and ti plus 1 squared. So this is simple to verify. It's trivial but incredibly useful. And so if we sum over all the time points from 0 to n minus 1, we get the sum of the first terms minus the sum of the second terms. And so this first term is actually a telescoping sum. When you sum the terms, there's cancelation of the middle value in successive terms. And so we're left at the end with 1/2 the square of the last term here minus the square of the very first term, with i equals 0 here, which is 0. So this is 1/2 Bt squared minus B0 squared, which is 0. That's the first term. And then for the other, we have minus 1/2 the sum of the squared increments. And so if we know what the last time interval term is, tn, that's capital T. And then we have the same terms on the right. And what's important to know is that the limit of the sums of these increments converges to T-- capital T. And this was the property of the total variation of Brownian motion over any increment. If we look at the sum of squared values of increments and take the limit as the number of increments grows large and the partition gets finer and finer, then the limiting value of these sums of increments is equal to capital T. So this is our formula now for the Ito integral of B dBs. And let's see. So what's really important to highlight is that this is not equivalent to thinking of the Brownian motion process like a real function, where we're integrating BdB or xdx, which is x squared over 2. We actually have this drag on the integral that depends on the variation of the process. OK. Now, we want to generalize to the general case of Ito integrals. And so what we do is we consider defining the Ito integrals from 0 to T f of omega s dBs. But then we want to basically consider this to be a process Xt of omega. And we want to generalize this to an Xt of omega, where we're integrating just up to time little t. So what we want to do is, once we have this definition for the Ito integral over a fixed interval from 0 to T, we want to be able to define the Ito integral where we're integrating only up to time little t less than capital T. And so in order for this kind of function to be well defined, it will turn out that we need some very strong mathematical arguments. And there's a book by Steele, chapter 6, on quantitative finance, where he does go into all the details. And I have to admit, it's not really a fun read. It's interesting to look and see what's involved so you know how important it is to be a good mathematician, if you want to prove things. But fortunate for us, they're proven well, and we can apply them. So what do we need? We need that the function little f needs to be measurable, script Fs, the information set up to time s measurable for every time s. And we want the integral of the squared f over time, where that's for each fixed omega, we can integrate the square of f and then take the expectation of that. We want that to be finite. So this term here, this expectation, is taking the expectation over the probability model given by capital P. And for each omega, we're integrating the squared f over time from 0 to T. And we want that to be finite. So with this notation, we basically are extending our Ito integral over 0 to capital T, with the Ito integral from 0 to little t. And we can define this by just replacing our f function in the Ito integral I of f by simply the function f times this indicator from 0 to T. So that step basically chops off the integration at time little t and gives us our definition. Now, let's see. OK. The definition of this extension of our Ito integral over 0 to T to integrating it over 0 to little t's for any little t, less than t, that's relatively straightforward and intuitively obvious. What's not necessarily obvious, though, is that our process Xt is a martingale with respect to this stochastic process model given by the Brownian motions. So if we look at what it means for a process to be a martingale, if we look at the conditional expectation of the time t plus k value given time t, then it equals the value of the process at time t, little t, plus the integral of the process from time t to t plus k. And we're taking expectations, conditional expectations of that given Xt. And so the expectation of this future increment from t to t plus k is basically integrating a function times increments of the Brownian motion, where our function values depend on the past, and the increments are independent in the future, with mean 0. So this expectation turns out to be satisfied. And if we look at the conditional variance of the t plus k value given Xt, then it's equal to the expected square of this f ds. And so when you look at the variance of the discretized sum of increments, you get the discretized sum of variances of those increments, which are f squared. And then the dBs squareds are dt. So this simplifies for the variance to that term. OK. All of this is fairly-- I know, it's like mathematical results. And it's sort of like, who cares? Well, it turns out that this variance turns out to be a squared norm of our function little f on the space of the probability space of paths cross the time increments. And so what's-- well, OK. Actually, I'm going to get ahead of myself. But let me get ahead of myself and basically comment that this norm of our function f is going to be a squared norm on the space of Ito-process integrands. And, let's see. Those of you who have taken, I guess, real analysis or metric spaces, what's an important value of norms? What do we do with norms? Or squared norms? Well, with norms, we can talk about limits of elements of the space and talk about whether limits exist. And so with this setup, we actually will have the space of Ito processes. And we can calculate the squared norm between different Ito integrals. And so we can characterize limits in those spaces and be guaranteed that those limits exist. So with this motivation of defining useful norms on different spaces, we have this Ito isometry, which is, if we look at the variance of Ito integrals defined by integrand little f, then those squared norms or the variances, basically, of the Ito processes is equal to the L2 norm of the integrand little f. And if we write out the definitions of these squared norms, we get these equations. And what's relevant here is being able to express our variance of the Ito integral as the squared norm of the integrand f. So we have limits and convergences of sequences of Ito integrals. And something that's important mathematically is, if we take the limits of these Ito integrals over increments that are getting-- a grid of increments that's getting finer and finer, do we have a unique limit or not? And so that's what's important. And the squared norms and convergence properties are used to prove that. So we basically can talk about closed linear subspaces with these norms on the space. So what this does is it allows us to define the distance between different integrands f and the existence of a limiting Ito integral, as we consider increments getting infinitesimal. All right. Well, we can think of this Ito integral as a Riemann sum, a limiting Riemann sum. And if we have time steps ti, for simplicity, equal to iT over n, we can consider the limiting sum of f of the Brownian motion times the increment of the Brownian motion. And this sum actually converges in probability, as n goes to infinity, to the integral. So we have a limiting value that exists. Convergence is in probability. And if we consider, I guess, the covariances of the X process given by these Ito integrals from 0 to little t, then these will-- or this Xt will be a mean 0 Gaussian process with independent increments. And the covariance between the process at time s and time t will simply be equal to the integral of the squared f over the times where they both are non-zero. All right. So we take a partition from 0 to t. We get this result. And we can prove that the limit equals this integral notation. So basically, there's a limit that exists, and this is a notation for that limit. And Steele goes into a lot of the details for that. Now, what's of interest is that we can now consider some general Ito cases, which will be referred to as Ito's formula, for different kinds of functions f. And so if we consider first the case where f, little f, is a real function mapping reals to reals, then if it has a continuous second derivative, then we can express the function f of Bt in terms of its Taylor approximation, and we get this formula, which is Ito's formula for f of Bt. And in looking at this expression, what's relevant is that, OK, the first term, f0, is a constant. The second term is a Gaussian process integral. It's an integral of Brownian motion. And then the third term is the integral of the second derivative of f evaluated at the Bs value. And so we have an adaptive drift term. And we can prove this formula, or outline the proof by saying, OK, let's consider the Taylor approximation of f at x plus delta x and expand it to second-order terms plus a remainder. And then if we take the difference of f at time t with B minus f at time 0 with B, then we're looking at the sum of the increments from time t1 to tn. And those increments are equal to the sums of the derivative of f times the increment of time plus 1/2 the second derivative of f times the squared increment plus the remainder terms. And if we take the limits of those, we get the integral of f prime dBs plus 1/2 the integral of the second derivative. So Taylor series gives us this formula. And we can think of developing a notation with Ito calculus, which is that our differential of f at Bs is equal to f prime of Bs dBs plus 1/2 f double prime times Bs times the squared of dB, which is equal to ds, the increment of time. So this is our Ito's formula shorthand. And this shorthand corresponds in a similar way to derivatives and antiderivatives, where here's the stochastic differential equation, and here's the solution to that stochastic differential equation on the top. Now, what's really neat and very powerful is that if we want to solve for the integral of a function-- so suppose our objective is to solve for the integral from 0 to T f of Bs dBs. Well, if we have the antiderivative of little f-- so that means that the first derivative of capital F is equal to such that F prime is equal to f-- then, if we choose the antiderivative with f of 0 equal to 0, then we get F of Bt minus F of B0 is equal to this integral of the derivative of f dBs plus 1/2 the integral of the second derivative of capital F, which is simply f prime. So this formula is what we just derived for Ito's formula. And if we solve for this first term on the right, then that's equal to F of Bt minus 1/2 the integral of the first derivative of f prime of Bs ds. So what's neat as a technique in stochastic calculus is that if we want to integrate a function little f of Bs dBs, then we can just apply Ito's formula in reverse and characterize it as the antiderivative of little f at Bt minus 1/2 that, defining the antiderivative to have f of 0 equal to 0. Now, let's apply this just for the case where capital F of x equals x, capital F prime, the derivative is 1, and the second derivative is 0, then the integral of dBs is equal to Bt. And let's see. So basically, the integral of Bs dBs is equal to capital F of Bt, which is Bt, and then minus 1/2 the second derivative-- or the second derivative of f, which is 0. So this gives us this result. And if we consider capital F equaling 1/2 x squared, then little f is equal to x, and little f prime is equal to 1. And so we get the integral of Bs dBs is f of Bt minus that, which is 1/2 Bt squared minus 1/2 t. So this gives us of a verification of the limiting results we went through before with these Ito integrals. The next step is to extend Ito's formula to functions of more than one variable. So we basically want to go from f of x, so one variable s. We want to go to two variables functions, f. And we'll write the notation of s comma x, which maps, basically, let's see, the time space cross-- or time range, R plus, cross the real line of x into the reals. And we're going to consider functions little f that are continuous to different orders in terms of the time variable and the space variable. So we have this notation, C super 1 comma 2, meaning that it's continuous with a first-order derivative, existing and continuous and second-order derivative with respect to x and continuous. And so we have a Taylor series for increments of this function little f, now, of two variables, which has the multidimensional d equals 2 Taylor series formulation. And it equals the f without the increments on t and x plus delta t times the partial of f with respect to t plus delta x times the partial of f with respect to x. And then we have the second-order partial differential terms. And the only ones that are going to be of interest are the second-order partial of f with respect to x, which will be multiplied by delta x squared. The other second-order terms will actually be of small order delta t. And with this second-order Taylor approximation, we're able to derive that the function f of t, Bt is equal to the initial value plus an integral over time of a function of the Brownian motion ds plus an integral over increments of the Brownian motion plus 1/2 this integral of the second partial of f with respect to dx squared. And this integral here ends up being multiplied-- or being integrated with respect to the increments of time, because the delta x-squared terms are infinitesimally equivalent to increments ds. So for this formula, we have here, if we look at the difference in the little f function from time 0 to T, it equals the right-hand side. So this top formula here is simply taking this second-order Taylor series and looking at the increment from 0 to T and what that equals. And what we get is a sum of two terms, an integral with respect to time of the partial with respect to time plus 1/2 the second derivative of f with respect to x. And with this notation for the value of little f, what's important to notice is that, if the argument in the time integral-- if that's equal to 0, then this will be a martingale because the second term is an integral of terms times increments of the Brownian motion. And the increments of the Brownian motion all have expectation equal to 0. So we'll have the possibility of this function being a martingale, if that's true. And this integrand equaling 0 is equivalent to this partial differential equation on the little f. So there's this connection between martingales and partial differential equations for f when we're thinking of a process f of t. So if little f is a martingale, it will turn out that the partial of f with respect to t will equal minus 1/2 d squared f dx squared, which is a PDE condition. Now the other thing we want actually for this to exist is that the variance of the function, f of T, BT, which is bounded by the squared expectation, is finite. And so this will be finite, the variance, if that second term has finite variance. And so for that to have finite variance, the variance is the integral of the square of that argument df dx, with respect to time. Now, what's interesting with this Ito formula is we can apply it to a function little f, which is the exponential of sigma x minus sigma squared t over 2. And importantly-- well, let's see. This partial of f with respect to t does equal minus 1/2 sigma squared f. And so this is actually a partial differential equation for little f. But df dx is equal to sigma f. The second partial of f with respect to x is sigma-squared f. And Ito's formula, if we expand it out, gives us this expression for little f. And this function little f is, in fact, a martingale. If we look at the expected value of f given f of 0, 0, it equals 1. Now, f of 0, 0 is the exponential of, basically, 0, which is 1. But this function f, little f, if we plug in Bt for x, it's a scaled lognormal random variable. So this little f evaluated at x equal to Bt-- so it's a transformation of the Brownian motion process paths, Bt by this function-- is actually a scaled lognormal random variable. And so e to the sigma Bt minus 1/2 sigma-squared t is a scaled lognormal. And the expected value of this e to the sigma Bt is actually equal to e to the 1/2 sigma-squared t. We proved that, I believe, in the problem set. And so the expectation of f of t, Bt is going to actually equal 1 for all t. So this little f is, in fact, a martingale. Now, let's see. With Brownian motion with drift, the ruin problem, we can actually use some Ito-process ideas to deal with this problem, where we assume that Xt is a Brownian motion with drift mu and variance parameter sigma squared. So here's its formula, stochastic differential equation for Xt. And we're interested in, what's the probability of stopping at A before B, where the stopping time tau is the first time t that hits A or minus B. And this argument is one that's very typical of quantitative finance developments, I guess, by mathematicians. And it's actually a very neat argument, where I don't think I could ever have derived this, but the derivation using martingale theory is really very elegant. And so let's consider trying to solve for this probability by using martingale theory. So let's consider a martingale. Let's try to define a martingale with value h of Xt defining Mt, where the tau is the same stopping time, and the condition on h is going to be that if we are at the value Xt equals A, then the probability is 1. And if we start at minus B, the probability is 0. So this is fixing the terminal conditions of the function h, when it hits the limits A or minus B. Well, if we have a martingale that satisfies this function h of Xt, then the expectation of the stopped martingale is simply equal to the probability that X tau equals A. And by the martingale property, the expectation of the stopped time is equal to M0, the initial value of the h function. Now, the initial value is the value when X is equal to 0. So we're starting at 0 with the X process, and it either moves and hits A or hits minus B. So in order for this h function to be a martingale, we have to have the PDE condition satisfied on h. So the partial of h with respect to t is equal to minus 1/2 the second partial of h with respect to dx. And so if this h function, which is the probability of hitting A first, depends just on the value of Xt, then it equals h of mu t plus sigma Bt, substituting in for what Xt is. So we can work with the function little f equal to h of mu t plus sigma x. And if the partial of f with respect to t, which is, by chain rule, mu h prime of mu t plus sigma x-- if that equals the second partial of f with respect to x, the second partial derivative of h with respect to x is sigma squared h double prime, then this PDE condition says we have this relationship, this differential equation, for h. Although, it's in the first derivative of h. But we can then rewrite this as the second derivative of h evaluated at argument y is minus a constant times the first derivative of h. And so we can solve that equation by noting that h double prime over h prime is equal to d by dx of log of h prime. So the derivative of the log of h prime is a constant. The solution to that is a linear function. And so we then end up being able to solve for little h of y equaling this formula. So this is the solution to this problem. All right. Let's see. We're at the end of our lecture today. So next time, we'll finish up these notes talking about standard processes, where our a function for the drift and our b function for the volatilities have to satisfy certain properties. And if you read ahead in these notes, you'll see that we need the probability of integrating the drift over time has to be finite and absolute integral. And the integral of the squared b's have to also be finite. If those were not finite, then you would, say, have explosive behavior of these integrals, where they won't exist. So these are reasonable properties to assume for those. And anyway, we'll go through some interesting results here with this particular problem and then turn on to stochastic differential equations next time. All right. Thank you."
+}

@@ -1,0 +1,4773 @@
+{
+  "index": 6,
+  "id": "wMGEKMHsOKE",
+  "title": "Lecture 5: Probability Theory (cont.); Stochastic Processes I",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 0.49,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 0.49,
+      "duration": 0.5,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 0.99,
+      "duration": 3.42,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 12.56,
+      "duration": 2.34,
+      "text": "PROFESSOR: All right,\nwe'll get started."
+    },
+    {
+      "start": 14.9,
+      "duration": 2.04,
+      "text": "We're going to\ncontinue our discussion"
+    },
+    {
+      "start": 16.94,
+      "duration": 2.5,
+      "text": "of principal\ncomponents analysis."
+    },
+    {
+      "start": 19.44,
+      "duration": 5.12,
+      "text": "And what I want to emphasize\nwith principal components"
+    },
+    {
+      "start": 24.56,
+      "duration": 6.99,
+      "text": "is that we're dealing with\na random vector X that's"
+    },
+    {
+      "start": 31.55,
+      "duration": 3.57,
+      "text": "in m dimensional space."
+    },
+    {
+      "start": 35.12,
+      "duration": 7.6,
+      "text": "And it has an expected\nvalue of alpha, say."
+    },
+    {
+      "start": 42.72,
+      "duration": 10.4,
+      "text": "And it has a covariance matrix\ngiven by sigma, which is m by m."
+    },
+    {
+      "start": 53.12,
+      "duration": 8.0,
+      "text": "This kind of setup can be used\nfor modeling returns on stocks"
+    },
+    {
+      "start": 61.12,
+      "duration": 4.29,
+      "text": "or assets that may have a\nmean return over some holding"
+    },
+    {
+      "start": 65.41,
+      "duration": 4.11,
+      "text": "period and a\nvariance-covariance matrix."
+    },
+    {
+      "start": 69.52,
+      "duration": 6.16,
+      "text": "And so in working\nwith financial data,"
+    },
+    {
+      "start": 75.68,
+      "duration": 4.52,
+      "text": "principal components\nanalysis can be quite useful."
+    },
+    {
+      "start": 80.2,
+      "duration": 3.75,
+      "text": "Essentially, what\nprincipal components does"
+    },
+    {
+      "start": 83.95,
+      "duration": 8.19,
+      "text": "is it transforms\nour X vector to a p"
+    },
+    {
+      "start": 92.14,
+      "duration": 2.98,
+      "text": "vector of principal\ncomponent variables."
+    },
+    {
+      "start": 95.12,
+      "duration": 5.81,
+      "text": "And the definitions of\nthese is we subtract"
+    },
+    {
+      "start": 100.93,
+      "duration": 4.17,
+      "text": "from X the mean vector."
+    },
+    {
+      "start": 105.1,
+      "duration": 7.71,
+      "text": "And then we rotate the\ncoordinate axes of this m vector"
+    },
+    {
+      "start": 112.81,
+      "duration": 9.72,
+      "text": "by this gamma transpose matrix."
+    },
+    {
+      "start": 122.53,
+      "duration": 8.359,
+      "text": "And so this gamma\ntranspose can equal gamma"
+    },
+    {
+      "start": 130.889,
+      "duration": 5.821,
+      "text": "1 transpose, gamma 2 transpose,\ndown to gamma M transpose."
+    },
+    {
+      "start": 136.71,
+      "duration": 4.65,
+      "text": "And so the first component--"
+    },
+    {
+      "start": 141.36,
+      "duration": 2.86,
+      "text": "p1 down to pm."
+    },
+    {
+      "start": 144.22,
+      "duration": 7.47,
+      "text": "The first component corresponds\nto using this gamma vector,"
+    },
+    {
+      "start": 151.69,
+      "duration": 4.1,
+      "text": "which happens to\nbe an eigenvector"
+    },
+    {
+      "start": 155.79,
+      "duration": 5.88,
+      "text": "of the covariance matrix\ncorresponding to where"
+    },
+    {
+      "start": 161.67,
+      "duration": 3.42,
+      "text": "with associated\neigenvalue lambda i."
+    },
+    {
+      "start": 165.09,
+      "duration": 10.05,
+      "text": "And in this representation, we\nbasically have sigma gamma i"
+    },
+    {
+      "start": 175.14,
+      "duration": 4.99,
+      "text": "is equal to lambda i gamma i."
+    },
+    {
+      "start": 180.13,
+      "duration": 12.39,
+      "text": "And we can order our eigenvalues\nfrom largest to smallest."
+    },
+    {
+      "start": 192.52,
+      "duration": 4.92,
+      "text": "And the first principal\ncomponent variable"
+    },
+    {
+      "start": 197.44,
+      "duration": 4.41,
+      "text": "corresponds to lining up--"
+    },
+    {
+      "start": 201.85,
+      "duration": 1.98,
+      "text": "or looking at a\ncoordinate system where"
+    },
+    {
+      "start": 203.83,
+      "duration": 2.61,
+      "text": "we're looking along the\ndimension of greatest"
+    },
+    {
+      "start": 206.44,
+      "duration": 2.26,
+      "text": "variability in the data."
+    },
+    {
+      "start": 208.7,
+      "duration": 6.92,
+      "text": "So this covariance\nstructure it's"
+    },
+    {
+      "start": 215.62,
+      "duration": 5.67,
+      "text": "actually useful to think\nof a special example, which"
+    },
+    {
+      "start": 221.29,
+      "duration": 3.84,
+      "text": "is the multivariate\nnormal distribution in m"
+    },
+    {
+      "start": 225.13,
+      "duration": 4.86,
+      "text": "dimensions with mean vector\nalpha and covariance matrix"
+    },
+    {
+      "start": 229.99,
+      "duration": 1.86,
+      "text": "sigma."
+    },
+    {
+      "start": 231.85,
+      "duration": 5.85,
+      "text": "And so if we think\nof X1 and x2--"
+    },
+    {
+      "start": 237.7,
+      "duration": 3.14,
+      "text": "we'll just consider a\ntwo-dimensional case"
+    },
+    {
+      "start": 240.84,
+      "duration": 1.6,
+      "text": "as an example."
+    },
+    {
+      "start": 242.44,
+      "duration": 7.68,
+      "text": "There could be an alpha 1,\nalpha 2 here for the mean of X1,"
+    },
+    {
+      "start": 250.12,
+      "duration": 2.66,
+      "text": "first component mean of X2."
+    },
+    {
+      "start": 252.78,
+      "duration": 7.65,
+      "text": "And with a bivariate\nnormal distribution,"
+    },
+    {
+      "start": 260.43,
+      "duration": 5.73,
+      "text": "we basically will have\ncontours of the density,"
+    },
+    {
+      "start": 266.16,
+      "duration": 5.37,
+      "text": "the joint density,\nof X1 and X2 that"
+    },
+    {
+      "start": 271.53,
+      "duration": 6.34,
+      "text": "are given by ellipses\ncentered at the mean vector."
+    },
+    {
+      "start": 277.87,
+      "duration": 4.67,
+      "text": "And the degree to which\nthe components are highly"
+    },
+    {
+      "start": 282.54,
+      "duration": 1.18,
+      "text": "correlated--"
+    },
+    {
+      "start": 283.72,
+      "duration": 2.21,
+      "text": "if it's a positive\ncorrelation, then we"
+    },
+    {
+      "start": 285.93,
+      "duration": 4.06,
+      "text": "have ellipses that\nare tilted up."
+    },
+    {
+      "start": 289.99,
+      "duration": 3.09,
+      "text": "If it's a negative correlation,\nit would be tilted down."
+    },
+    {
+      "start": 293.08,
+      "duration": 8.32,
+      "text": "Now, what principal components\nanalysis does is it basically--"
+    },
+    {
+      "start": 301.4,
+      "duration": 4.74,
+      "text": "this step here\ncorresponds to shifting"
+    },
+    {
+      "start": 306.14,
+      "duration": 5.59,
+      "text": "the coordinate axes to,\nsay, x1 star and x2 star."
+    },
+    {
+      "start": 311.73,
+      "duration": 6.17,
+      "text": "So we recenter our space at\nthe point with the origin"
+    },
+    {
+      "start": 317.9,
+      "duration": 3.28,
+      "text": "being at the mean\npoint of the outcomes."
+    },
+    {
+      "start": 321.18,
+      "duration": 8.21,
+      "text": "And then we consider rotating\nthese axes in such a way"
+    },
+    {
+      "start": 329.39,
+      "duration": 7.35,
+      "text": "that the first principal\ncomponent axis corresponding"
+    },
+    {
+      "start": 336.74,
+      "duration": 6.27,
+      "text": "to the largest eigenvalue,\nit will orient along"
+    },
+    {
+      "start": 343.01,
+      "duration": 4.53,
+      "text": "the principal axis\nof the ellipse."
+    },
+    {
+      "start": 347.54,
+      "duration": 5.69,
+      "text": "And the second\nprincipal component axis"
+    },
+    {
+      "start": 353.23,
+      "duration": 4.86,
+      "text": "will be orthogonal to the first."
+    },
+    {
+      "start": 358.09,
+      "duration": 4.74,
+      "text": "And it will-- well,\nin two dimensions"
+    },
+    {
+      "start": 362.83,
+      "duration": 3.87,
+      "text": "it will have variability\nalong that dimension that's"
+    },
+    {
+      "start": 366.7,
+      "duration": 1.99,
+      "text": "smaller than P1."
+    },
+    {
+      "start": 368.69,
+      "duration": 3.95,
+      "text": "When we extend from a\ntwo-dimensional case"
+    },
+    {
+      "start": 372.64,
+      "duration": 2.79,
+      "text": "to an m-dimensional case--"
+    },
+    {
+      "start": 375.43,
+      "duration": 5.25,
+      "text": "so suppose we have\n500 stocks or 1,000,"
+    },
+    {
+      "start": 380.68,
+      "duration": 5.44,
+      "text": "then if we apply a multinomial\nmodel to that case,"
+    },
+    {
+      "start": 386.12,
+      "duration": 5.63,
+      "text": "then our principal components\nwill be identifying"
+    },
+    {
+      "start": 391.75,
+      "duration": 2.1,
+      "text": "coordinates--"
+    },
+    {
+      "start": 393.85,
+      "duration": 3.66,
+      "text": "basically coordinate\nsystem variables"
+    },
+    {
+      "start": 397.51,
+      "duration": 5.79,
+      "text": "that line up with different\northogonal dimensions"
+    },
+    {
+      "start": 403.3,
+      "duration": 1.96,
+      "text": "of variability."
+    },
+    {
+      "start": 405.26,
+      "duration": 6.94,
+      "text": "And so what ends up being very\nuseful is that, at least when we"
+    },
+    {
+      "start": 412.2,
+      "duration": 6.54,
+      "text": "look at a market of stocks or\nasset returns, some of those"
+    },
+    {
+      "start": 418.74,
+      "duration": 2.94,
+      "text": "may be highly correlated\nwith each other."
+    },
+    {
+      "start": 421.68,
+      "duration": 3.96,
+      "text": "Others may be, in a sense,\northogonal or uncorrelated"
+    },
+    {
+      "start": 425.64,
+      "duration": 1.32,
+      "text": "with each other."
+    },
+    {
+      "start": 426.96,
+      "duration": 2.83,
+      "text": "And with principal\ncomponents analysis,"
+    },
+    {
+      "start": 429.79,
+      "duration": 7.25,
+      "text": "we can actually identify\ndifferent directions"
+    },
+    {
+      "start": 437.04,
+      "duration": 4.59,
+      "text": "in the space, which\nbasically have"
+    },
+    {
+      "start": 441.63,
+      "duration": 2.98,
+      "text": "decreasing levels\nof variability,"
+    },
+    {
+      "start": 444.61,
+      "duration": 4.34,
+      "text": "but that are also orthogonal\nto each other or uncorrelated"
+    },
+    {
+      "start": 448.95,
+      "duration": 1.27,
+      "text": "with each other."
+    },
+    {
+      "start": 450.22,
+      "duration": 6.57,
+      "text": "So when we want to specify\nfactors, underlying factors,"
+    },
+    {
+      "start": 456.79,
+      "duration": 4.08,
+      "text": "say, in joint distributions\nof returns and markets,"
+    },
+    {
+      "start": 460.87,
+      "duration": 2.78,
+      "text": "principal components can\nbe very helpful in trying"
+    },
+    {
+      "start": 463.65,
+      "duration": 2.35,
+      "text": "to identify those."
+    },
+    {
+      "start": 466.0,
+      "duration": 3.5,
+      "text": "And later on, we'll talk\nabout factor modeling"
+    },
+    {
+      "start": 469.5,
+      "duration": 5.3,
+      "text": "and see how close or how\neffective principal components"
+    },
+    {
+      "start": 474.8,
+      "duration": 1.47,
+      "text": "can be."
+    },
+    {
+      "start": 476.27,
+      "duration": 4.26,
+      "text": "But there are also\ngeneral factor models"
+    },
+    {
+      "start": 480.53,
+      "duration": 2.88,
+      "text": "that we'll introduce later."
+    },
+    {
+      "start": 483.41,
+      "duration": 5.91,
+      "text": "So with these transformations,\nas noted here,"
+    },
+    {
+      "start": 489.32,
+      "duration": 2.76,
+      "text": "these principal\ncomponent variables"
+    },
+    {
+      "start": 492.08,
+      "duration": 6.87,
+      "text": "have basically a mean that's\nzero and a covariance matrix"
+    },
+    {
+      "start": 498.95,
+      "duration": 2.58,
+      "text": "that's diagonal."
+    },
+    {
+      "start": 501.53,
+      "duration": 2.76,
+      "text": "So these principal\ncomponent variables"
+    },
+    {
+      "start": 504.29,
+      "duration": 2.35,
+      "text": "are uncorrelated\nwith each other."
+    },
+    {
+      "start": 506.64,
+      "duration": 5.01,
+      "text": "And if we order the eigenvalues\nfrom largest to smallest,"
+    },
+    {
+      "start": 511.65,
+      "duration": 2.87,
+      "text": "the first principal\ncomponent variable"
+    },
+    {
+      "start": 514.52,
+      "duration": 5.019,
+      "text": "will be the axis with\nthe greatest variability."
+    },
+    {
+      "start": 519.539,
+      "duration": 3.201,
+      "text": "Now, what's interesting\nto highlight"
+    },
+    {
+      "start": 522.74,
+      "duration": 5.28,
+      "text": "is that in the transformation\nfrom the original X's"
+    },
+    {
+      "start": 528.02,
+      "duration": 2.51,
+      "text": "to the principal\ncomponent variables,"
+    },
+    {
+      "start": 530.53,
+      "duration": 4.49,
+      "text": "the only thing we've\ndone is shift the origin"
+    },
+    {
+      "start": 535.02,
+      "duration": 7.57,
+      "text": "and then rotated the coordinate\naxes in an orthogonal way."
+    },
+    {
+      "start": 542.59,
+      "duration": 5.48,
+      "text": "So we're maintaining right\nangles between coordinate axes."
+    },
+    {
+      "start": 548.07,
+      "duration": 1.72,
+      "text": "And that's all we've done."
+    },
+    {
+      "start": 549.79,
+      "duration": 7.1,
+      "text": "So if we have outcomes of X--"
+    },
+    {
+      "start": 556.89,
+      "duration": 4.24,
+      "text": "so if we have X is\na random variable,"
+    },
+    {
+      "start": 561.13,
+      "duration": 3.5,
+      "text": "but then we may\nhave realizations--"
+    },
+    {
+      "start": 564.63,
+      "duration": 3.84,
+      "text": "realizations, say, X--"
+    },
+    {
+      "start": 568.47,
+      "duration": 2.67,
+      "text": "I don't know-- a, Xb."
+    },
+    {
+      "start": 571.14,
+      "duration": 3.9,
+      "text": "I don't want to have\nintegers referring"
+    },
+    {
+      "start": 575.04,
+      "duration": 3.25,
+      "text": "to these because I don't want\nto confuse the components."
+    },
+    {
+      "start": 578.29,
+      "duration": 5.33,
+      "text": "But we could have different\nrealizations for different days"
+    },
+    {
+      "start": 583.62,
+      "duration": 3.03,
+      "text": "or different analysis\nperiods, and we"
+    },
+    {
+      "start": 586.65,
+      "duration": 3.98,
+      "text": "would get different\npoints of realizations"
+    },
+    {
+      "start": 590.63,
+      "duration": 2.83,
+      "text": "of the outcomes of this vector."
+    },
+    {
+      "start": 593.46,
+      "duration": 4.7,
+      "text": "And so principal\ncomponents allows us just"
+    },
+    {
+      "start": 598.16,
+      "duration": 7.08,
+      "text": "to view the data in a way\nthat hasn't transformed"
+    },
+    {
+      "start": 605.24,
+      "duration": 2.74,
+      "text": "the data in an unusual way."
+    },
+    {
+      "start": 607.98,
+      "duration": 2.27,
+      "text": "Basically, the\nconfiguration of points"
+    },
+    {
+      "start": 610.25,
+      "duration": 6.42,
+      "text": "is the same before and after\nthe construction of these PC"
+    },
+    {
+      "start": 616.67,
+      "duration": 1.09,
+      "text": "variables."
+    },
+    {
+      "start": 617.76,
+      "duration": 3.56,
+      "text": "So let's see."
+    },
+    {
+      "start": 621.32,
+      "duration": 5.43,
+      "text": "OK, there's this version\nof principal components"
+    },
+    {
+      "start": 626.75,
+      "duration": 5.64,
+      "text": "where we consider splitting the\nfirst k principal components"
+    },
+    {
+      "start": 632.39,
+      "duration": 7.62,
+      "text": "into a gamma 1 matrix and the\nremaining ones into a gamma 2"
+    },
+    {
+      "start": 640.01,
+      "duration": 1.21,
+      "text": "portion."
+    },
+    {
+      "start": 641.22,
+      "duration": 3.17,
+      "text": "And so one can\nthen think of there"
+    },
+    {
+      "start": 644.39,
+      "duration": 3.98,
+      "text": "being a linear model\nfor our outcome"
+    },
+    {
+      "start": 648.37,
+      "duration": 7.86,
+      "text": "x variable, which might be\nsimplified to just a mean vector"
+    },
+    {
+      "start": 656.23,
+      "duration": 8.64,
+      "text": "plus a matrix times the\nfirst k principal component"
+    },
+    {
+      "start": 664.87,
+      "duration": 2.85,
+      "text": "variables plus error."
+    },
+    {
+      "start": 667.72,
+      "duration": 6.66,
+      "text": "If this, in fact, were\nan effective model,"
+    },
+    {
+      "start": 674.38,
+      "duration": 5.82,
+      "text": "it might be the case that\nthe last m minus k principal"
+    },
+    {
+      "start": 680.2,
+      "duration": 4.17,
+      "text": "component variables essentially\nhave no important information"
+    },
+    {
+      "start": 684.37,
+      "duration": 1.11,
+      "text": "in them."
+    },
+    {
+      "start": 685.48,
+      "duration": 8.08,
+      "text": "And so this could be a very\nsimple model for our x variable."
+    },
+    {
+      "start": 693.56,
+      "duration": 7.28,
+      "text": "And importantly, if this\nwere an appropriate model"
+    },
+    {
+      "start": 700.84,
+      "duration": 8.0,
+      "text": "for an m vector x, then the\ncovariance matrix of the--"
+    },
+    {
+      "start": 708.84,
+      "duration": 8.82,
+      "text": "the covariance matrix\nof X is just given by--"
+    },
+    {
+      "start": 717.66,
+      "duration": 1.56,
+      "text": "or let's see."
+    },
+    {
+      "start": 719.22,
+      "duration": 4.74,
+      "text": "Or the-- yeah, the\ncovariance matrix of X,"
+    },
+    {
+      "start": 723.96,
+      "duration": 2.67,
+      "text": "in terms of the\ndiagonal entries which"
+    },
+    {
+      "start": 726.63,
+      "duration": 4.95,
+      "text": "represent the correlations,\nare all due to common loadings"
+    },
+    {
+      "start": 731.58,
+      "duration": 3.9,
+      "text": "on these different principal\ncomponent variables in p1."
+    },
+    {
+      "start": 735.48,
+      "duration": 6.45,
+      "text": "So the interesting\nquestion to think about is,"
+    },
+    {
+      "start": 741.93,
+      "duration": 8.92,
+      "text": "how can we model random vectors\nwith some covariance matrix?"
+    },
+    {
+      "start": 750.85,
+      "duration": 3.68,
+      "text": "And are there simple structures\nto the covariance matrix"
+    },
+    {
+      "start": 754.53,
+      "duration": 5.07,
+      "text": "that explain all of\nthe intercorrelations?"
+    },
+    {
+      "start": 759.6,
+      "duration": 8.58,
+      "text": "Now, when we perform empirical\nprincipal components analysis,"
+    },
+    {
+      "start": 768.18,
+      "duration": 3.92,
+      "text": "then what we do is we--"
+    },
+    {
+      "start": 772.1,
+      "duration": 5.52,
+      "text": "say, we have an X\nmatrix, which has"
+    },
+    {
+      "start": 777.62,
+      "duration": 6.34,
+      "text": "columns X1 through X sub capital\nT that are all m vectors."
+    },
+    {
+      "start": 783.96,
+      "duration": 3.1,
+      "text": "Then we compute the row means--"
+    },
+    {
+      "start": 789.65,
+      "duration": 8.47,
+      "text": "we subtract those row means\nfrom the matrix row by row."
+    },
+    {
+      "start": 798.12,
+      "duration": 7.73,
+      "text": "And then with this X star matrix\nthat's the demeaned matrix,"
+    },
+    {
+      "start": 805.85,
+      "duration": 8.04,
+      "text": "that matrix times its transpose\ndivided by the number of columns"
+    },
+    {
+      "start": 813.89,
+      "duration": 3.78,
+      "text": "in X capital T,\nthat is an estimate"
+    },
+    {
+      "start": 817.67,
+      "duration": 2.73,
+      "text": "of the covariance\nmatrix, essentially"
+    },
+    {
+      "start": 820.4,
+      "duration": 2.52,
+      "text": "the sample covariance matrix."
+    },
+    {
+      "start": 822.92,
+      "duration": 5.54,
+      "text": "And we then can perform\nan eigenvalue eigenvector"
+    },
+    {
+      "start": 828.46,
+      "duration": 3.04,
+      "text": "decomposition of this\ncovariance matrix,"
+    },
+    {
+      "start": 831.5,
+      "duration": 4.94,
+      "text": "and then use these\nresults to define"
+    },
+    {
+      "start": 836.44,
+      "duration": 3.36,
+      "text": "the empirical\nprincipal component"
+    },
+    {
+      "start": 839.8,
+      "duration": 2.62,
+      "text": "coordinates of our data."
+    },
+    {
+      "start": 842.42,
+      "duration": 2.09,
+      "text": "And it corresponds\nto just taking"
+    },
+    {
+      "start": 844.51,
+      "duration": 4.78,
+      "text": "our estimate of the gamma matrix\ntranspose the demeaned matrix."
+    },
+    {
+      "start": 849.29,
+      "duration": 3.534,
+      "text": "So this is very\nsimple to implement."
+    },
+    {
+      "start": 856.27,
+      "duration": 1.99,
+      "text": "And let's see."
+    },
+    {
+      "start": 858.26,
+      "duration": 5.69,
+      "text": "The singular value\ndecomposition is also"
+    },
+    {
+      "start": 863.95,
+      "duration": 4.53,
+      "text": "a way of obtaining these\nprincipal component"
+    },
+    {
+      "start": 868.48,
+      "duration": 1.69,
+      "text": "transformations."
+    },
+    {
+      "start": 870.17,
+      "duration": 6.05,
+      "text": "If we look at VDU transpose\nbeing the singular value"
+    },
+    {
+      "start": 876.22,
+      "duration": 4.55,
+      "text": "decomposition of our X\nstar demeaned matrix,"
+    },
+    {
+      "start": 880.77,
+      "duration": 8.75,
+      "text": "then we have our\nlambda estimate just"
+    },
+    {
+      "start": 889.52,
+      "duration": 3.84,
+      "text": "being the square of the\nD diagonal matrix divided"
+    },
+    {
+      "start": 893.36,
+      "duration": 3.87,
+      "text": "by T. The estimate\nof the gamma matrix"
+    },
+    {
+      "start": 897.23,
+      "duration": 6.59,
+      "text": "is simply the V. And our\nprincipal component variables--"
+    },
+    {
+      "start": 903.82,
+      "duration": 3.79,
+      "text": "or our data transformed to\nprincipal component coordinates"
+    },
+    {
+      "start": 907.61,
+      "duration": 4.03,
+      "text": "is simply given by DU prime."
+    },
+    {
+      "start": 911.64,
+      "duration": 6.27,
+      "text": "So principal components analysis\nis very easy to implement."
+    },
+    {
+      "start": 917.91,
+      "duration": 3.14,
+      "text": "And the lecture\nthat was originally"
+    },
+    {
+      "start": 921.05,
+      "duration": 3.42,
+      "text": "scheduled for today,\nStefan Andreev,"
+    },
+    {
+      "start": 924.47,
+      "duration": 2.97,
+      "text": "he's going to go through\na number of examples"
+    },
+    {
+      "start": 927.44,
+      "duration": 4.41,
+      "text": "of applying principal\ncomponents in equity markets"
+    },
+    {
+      "start": 931.85,
+      "duration": 3.46,
+      "text": "and in bond markets."
+    },
+    {
+      "start": 935.31,
+      "duration": 7.15,
+      "text": "What's really useful\nto anticipate is that--"
+    },
+    {
+      "start": 942.46,
+      "duration": 3.36,
+      "text": "well, one of the examples\nthat he's used in the past"
+    },
+    {
+      "start": 945.82,
+      "duration": 5.34,
+      "text": "is where the X vector\ncorresponds to index returns"
+    },
+    {
+      "start": 951.16,
+      "duration": 4.98,
+      "text": "in different European\nmarkets on a daily basis,"
+    },
+    {
+      "start": 956.14,
+      "duration": 8.55,
+      "text": "and attempting to understand\nthe joint variability across all"
+    },
+    {
+      "start": 964.69,
+      "duration": 4.26,
+      "text": "of the markets, but also\nto understand where there"
+    },
+    {
+      "start": 968.95,
+      "duration": 6.75,
+      "text": "are different geographical\nclusters of countries"
+    },
+    {
+      "start": 975.7,
+      "duration": 3.55,
+      "text": "like Northern European\nversus Southern European."
+    },
+    {
+      "start": 979.25,
+      "duration": 3.65,
+      "text": "Those tend to be\nseparately highly"
+    },
+    {
+      "start": 982.9,
+      "duration": 2.85,
+      "text": "correlated with each other."
+    },
+    {
+      "start": 985.75,
+      "duration": 3.33,
+      "text": "Another example of principal\ncomponents analysis"
+    },
+    {
+      "start": 989.08,
+      "duration": 7.14,
+      "text": "is looking at interest rates\nin the fixed income market."
+    },
+    {
+      "start": 996.22,
+      "duration": 6.11,
+      "text": "It turns out that for different\nmaturities of bonds ranging"
+    },
+    {
+      "start": 1002.33,
+      "duration": 3.51,
+      "text": "from, say, one month,\nthree month, a year,"
+    },
+    {
+      "start": 1005.84,
+      "duration": 6.27,
+      "text": "to five years, 10 years, 20\nyears, 30 years, the interest"
+    },
+    {
+      "start": 1012.11,
+      "duration": 8.05,
+      "text": "rates can be measured in\nterms of their yields."
+    },
+    {
+      "start": 1020.16,
+      "duration": 5.34,
+      "text": "And the yield curve\nwill vary day by day."
+    },
+    {
+      "start": 1025.5,
+      "duration": 3.41,
+      "text": "And it turns out that\nthe principal components"
+    },
+    {
+      "start": 1028.91,
+      "duration": 8.165,
+      "text": "analysis of yields has a\nvery strong structure to it."
+    },
+    {
+      "start": 1040.016,
+      "duration": 4.343,
+      "text": "So I'll let him\nintroduce those when"
+    },
+    {
+      "start": 1044.359,
+      "duration": 3.131,
+      "text": "he comes in a couple of weeks."
+    },
+    {
+      "start": 1047.49,
+      "duration": 3.86,
+      "text": "Well, with principal\ncomponent variables,"
+    },
+    {
+      "start": 1051.35,
+      "duration": 5.33,
+      "text": "it's important to\nunderstand that there"
+    },
+    {
+      "start": 1056.68,
+      "duration": 4.8,
+      "text": "are alternative ways of deriving\nor defining principal component"
+    },
+    {
+      "start": 1061.48,
+      "duration": 1.12,
+      "text": "variables."
+    },
+    {
+      "start": 1062.6,
+      "duration": 4.43,
+      "text": "One is to define the first\nprincipal component variable"
+    },
+    {
+      "start": 1067.03,
+      "duration": 6.03,
+      "text": "to be the linear combination,\ndefined by weights w1"
+    },
+    {
+      "start": 1073.06,
+      "duration": 7.08,
+      "text": "through wm, that maximize the\nvariance of that weighted sum"
+    },
+    {
+      "start": 1080.14,
+      "duration": 4.87,
+      "text": "subject to the sum of squares\nof the weights equaling 1."
+    },
+    {
+      "start": 1085.01,
+      "duration": 5.42,
+      "text": "So we're looking\nat a unit vector w"
+    },
+    {
+      "start": 1090.43,
+      "duration": 6.36,
+      "text": "and trying to find\nthe vector w that"
+    },
+    {
+      "start": 1096.79,
+      "duration": 7.2,
+      "text": "maximizes the variance\nof the linear combination"
+    },
+    {
+      "start": 1103.99,
+      "duration": 1.33,
+      "text": "in that direction."
+    },
+    {
+      "start": 1105.32,
+      "duration": 8.03,
+      "text": "So when we get to the\ntransformation of the data--"
+    },
+    {
+      "start": 1113.35,
+      "duration": 3.33,
+      "text": "or the random variable\nby demeaning it,"
+    },
+    {
+      "start": 1116.68,
+      "duration": 5.84,
+      "text": "then if we look\nat w vectors that"
+    },
+    {
+      "start": 1122.52,
+      "duration": 5.31,
+      "text": "are unit vectors in\nthis space, then we're"
+    },
+    {
+      "start": 1127.83,
+      "duration": 4.59,
+      "text": "looking at which w\nvector is pointing"
+    },
+    {
+      "start": 1132.42,
+      "duration": 3.49,
+      "text": "in the direction of\nmaximum variability."
+    },
+    {
+      "start": 1135.91,
+      "duration": 2.9,
+      "text": "Then the second principal\ncomponent variable"
+    },
+    {
+      "start": 1138.81,
+      "duration": 6.39,
+      "text": "is defined as the\nnext w vector, now"
+    },
+    {
+      "start": 1145.2,
+      "duration": 4.89,
+      "text": "v, which maximizes the variance\nsubject to having length one"
+    },
+    {
+      "start": 1150.09,
+      "duration": 2.64,
+      "text": "but being orthogonal\nto the first."
+    },
+    {
+      "start": 1152.73,
+      "duration": 5.67,
+      "text": "So it's a rather nice\nway of characterizing"
+    },
+    {
+      "start": 1158.4,
+      "duration": 2.05,
+      "text": "principal component variables."
+    },
+    {
+      "start": 1160.45,
+      "duration": 4.35,
+      "text": "Now, with principal\ncomponents analysis,"
+    },
+    {
+      "start": 1164.8,
+      "duration": 4.55,
+      "text": "one of the really\nneat things is that--"
+    },
+    {
+      "start": 1169.35,
+      "duration": 0.73,
+      "text": "let's see."
+    },
+    {
+      "start": 1170.08,
+      "duration": 4.06,
+      "text": "We often focus on the first few\nprincipal component variables"
+    },
+    {
+      "start": 1174.14,
+      "duration": 2.55,
+      "text": "because they explain\nmost of the variability."
+    },
+    {
+      "start": 1176.69,
+      "duration": 4.26,
+      "text": "But the last principal\ncomponent variable"
+    },
+    {
+      "start": 1180.95,
+      "duration": 5.16,
+      "text": "defines the linear\ncombination of the components"
+    },
+    {
+      "start": 1186.11,
+      "duration": 2.41,
+      "text": "that has the smallest variance."
+    },
+    {
+      "start": 1188.52,
+      "duration": 2.54,
+      "text": "And sometimes that\nsmallest variance"
+    },
+    {
+      "start": 1191.06,
+      "duration": 2.97,
+      "text": "can be zero, in\nwhich case, we're"
+    },
+    {
+      "start": 1194.03,
+      "duration": 5.59,
+      "text": "identifying a linear\ndependence in the returns."
+    },
+    {
+      "start": 1199.62,
+      "duration": 3.36,
+      "text": "So let's see."
+    },
+    {
+      "start": 1202.98,
+      "duration": 8.52,
+      "text": "My first example of this case\nwas before the euro existed."
+    },
+    {
+      "start": 1211.5,
+      "duration": 2.69,
+      "text": "So I'm really dating myself."
+    },
+    {
+      "start": 1214.19,
+      "duration": 5.19,
+      "text": "But the German deutschmark\nand the French franc"
+    },
+    {
+      "start": 1219.38,
+      "duration": 2.73,
+      "text": "were very, very\nhighly correlated"
+    },
+    {
+      "start": 1222.11,
+      "duration": 2.29,
+      "text": "before the euro came out."
+    },
+    {
+      "start": 1224.4,
+      "duration": 3.8,
+      "text": "And in looking at\ncurrency returns,"
+    },
+    {
+      "start": 1228.2,
+      "duration": 1.8,
+      "text": "the principal\ncomponents analysis"
+    },
+    {
+      "start": 1230.0,
+      "duration": 3.96,
+      "text": "actually identified that\nempirically in a nice way."
+    },
+    {
+      "start": 1237.9,
+      "duration": 0.91,
+      "text": "Let's see."
+    },
+    {
+      "start": 1238.81,
+      "duration": 6.48,
+      "text": "OK, mathematically with\nprincipal components analysis,"
+    },
+    {
+      "start": 1245.29,
+      "duration": 2.36,
+      "text": "we can talk about\na decomposition"
+    },
+    {
+      "start": 1247.65,
+      "duration": 2.26,
+      "text": "of the total variance."
+    },
+    {
+      "start": 1249.91,
+      "duration": 5.24,
+      "text": "So if we have this\ncovariance matrix sigma,"
+    },
+    {
+      "start": 1255.15,
+      "duration": 4.83,
+      "text": "we could talk about the total\nvariance is equal to the sum"
+    },
+    {
+      "start": 1259.98,
+      "duration": 4.41,
+      "text": "1 to m of sigma jj."
+    },
+    {
+      "start": 1264.39,
+      "duration": 5.25,
+      "text": "So the j-th diagonal entry\nof the covariance matrix"
+    },
+    {
+      "start": 1269.64,
+      "duration": 2.94,
+      "text": "is the variance of\nthe j-th component."
+    },
+    {
+      "start": 1272.58,
+      "duration": 7.355,
+      "text": "And the sum of that\nis the trace of sigma."
+    },
+    {
+      "start": 1282.69,
+      "duration": 4.53,
+      "text": "We can decompose\nthat total variance"
+    },
+    {
+      "start": 1287.22,
+      "duration": 3.96,
+      "text": "as the sum of the eigenvalues."
+    },
+    {
+      "start": 1291.18,
+      "duration": 3.98,
+      "text": "And so principal\ncomponents analysis"
+    },
+    {
+      "start": 1295.16,
+      "duration": 6.03,
+      "text": "provides a decomposition\nof variability."
+    },
+    {
+      "start": 1301.19,
+      "duration": 3.66,
+      "text": "And we can see what\nproportion of variability"
+    },
+    {
+      "start": 1304.85,
+      "duration": 4.83,
+      "text": "is explained by the first or the\nfirst few principal component"
+    },
+    {
+      "start": 1309.68,
+      "duration": 2.88,
+      "text": "variables."
+    },
+    {
+      "start": 1312.56,
+      "duration": 4.14,
+      "text": "These lecture notes finish\nwith just reminding you"
+    },
+    {
+      "start": 1316.7,
+      "duration": 3.99,
+      "text": "of some important statistic--"
+    },
+    {
+      "start": 1320.69,
+      "duration": 5.49,
+      "text": "important probability\ndistributions in statistics."
+    },
+    {
+      "start": 1326.18,
+      "duration": 4.24,
+      "text": "The chi-squared distribution\narises again and again."
+    },
+    {
+      "start": 1330.42,
+      "duration": 4.61,
+      "text": "And the chi-squared distribution\nwith one degree of freedom"
+    },
+    {
+      "start": 1335.03,
+      "duration": 4.38,
+      "text": "is equal in distribution\nto the square"
+    },
+    {
+      "start": 1339.41,
+      "duration": 2.88,
+      "text": "of a standard\nnormal distribution."
+    },
+    {
+      "start": 1342.29,
+      "duration": 7.91,
+      "text": "So this is a useful thing to\nremember in different cases."
+    },
+    {
+      "start": 1350.2,
+      "duration": 2.01,
+      "text": "And let's see."
+    },
+    {
+      "start": 1352.21,
+      "duration": 5.7,
+      "text": "If we-- well, here's\nits density function."
+    },
+    {
+      "start": 1357.91,
+      "duration": 4.06,
+      "text": "It turns out to be a special\ncase of the gamma distribution."
+    },
+    {
+      "start": 1361.97,
+      "duration": 4.44,
+      "text": "And here's this\nmoment-generating function."
+    },
+    {
+      "start": 1366.41,
+      "duration": 7.85,
+      "text": "It turns out that if we\ntake independent normal 0, 1"
+    },
+    {
+      "start": 1374.26,
+      "duration": 2.8,
+      "text": "random variables, square\nthem and sum them,"
+    },
+    {
+      "start": 1377.06,
+      "duration": 3.35,
+      "text": "then the sum of n independent\nones is a chi-squared with N"
+    },
+    {
+      "start": 1380.41,
+      "duration": 2.16,
+      "text": "degrees of freedom."
+    },
+    {
+      "start": 1382.57,
+      "duration": 3.39,
+      "text": "And we can prove\nthese results using"
+    },
+    {
+      "start": 1385.96,
+      "duration": 5.04,
+      "text": "moment-generating functions\nand get densities for those."
+    },
+    {
+      "start": 1391.0,
+      "duration": 4.715,
+      "text": "Importantly, t\ndistributions often are--"
+    },
+    {
+      "start": 1398.98,
+      "duration": 6.96,
+      "text": "let's see-- arise, especially in\nthe study of regression models"
+    },
+    {
+      "start": 1405.94,
+      "duration": 3.98,
+      "text": "and the significance of\nregression parameter estimates."
+    },
+    {
+      "start": 1409.92,
+      "duration": 5.55,
+      "text": "But basically, with\na t distribution,"
+    },
+    {
+      "start": 1415.47,
+      "duration": 3.96,
+      "text": "if we take a standard\nnormal and then"
+    },
+    {
+      "start": 1419.43,
+      "duration": 4.98,
+      "text": "divide it by the square root\nof a chi-squared divided"
+    },
+    {
+      "start": 1424.41,
+      "duration": 5.67,
+      "text": "by its degrees of freedom, where\nthe chi-squared variable U is"
+    },
+    {
+      "start": 1430.08,
+      "duration": 3.54,
+      "text": "independent, then this will\ngive us a t distribution"
+    },
+    {
+      "start": 1433.62,
+      "duration": 1.92,
+      "text": "with r degrees of freedom."
+    },
+    {
+      "start": 1435.54,
+      "duration": 4.74,
+      "text": "And so, let's see."
+    },
+    {
+      "start": 1440.28,
+      "duration": 5.55,
+      "text": "With t distributions,\nt distributions"
+    },
+    {
+      "start": 1445.83,
+      "duration": 4.71,
+      "text": "are examples of distributions\nthat are heavier tailed"
+    },
+    {
+      "start": 1450.54,
+      "duration": 2.94,
+      "text": "than a normal distribution."
+    },
+    {
+      "start": 1453.48,
+      "duration": 6.75,
+      "text": "And so if you think of\ntaking a normal z variable"
+    },
+    {
+      "start": 1460.23,
+      "duration": 4.8,
+      "text": "and dividing by this\nchi-squared distribution divided"
+    },
+    {
+      "start": 1465.03,
+      "duration": 4.02,
+      "text": "by this degree of\nfreedom and square root,"
+    },
+    {
+      "start": 1469.05,
+      "duration": 4.82,
+      "text": "we're basically dividing a\nrandom normal by something"
+    },
+    {
+      "start": 1473.87,
+      "duration": 3.9,
+      "text": "that's random, but around 1."
+    },
+    {
+      "start": 1477.77,
+      "duration": 4.56,
+      "text": "And the randomness\nof that factor"
+    },
+    {
+      "start": 1482.33,
+      "duration": 3.37,
+      "text": "leads to greater\nvariability than the normal."
+    },
+    {
+      "start": 1485.7,
+      "duration": 3.51,
+      "text": "So it's obvious that\nthat could be the case."
+    },
+    {
+      "start": 1489.21,
+      "duration": 5.36,
+      "text": "And it's indeed true."
+    },
+    {
+      "start": 1494.57,
+      "duration": 3.54,
+      "text": "And let's see."
+    },
+    {
+      "start": 1498.11,
+      "duration": 3.6,
+      "text": "The F distribution\nturns out to be"
+    },
+    {
+      "start": 1501.71,
+      "duration": 5.98,
+      "text": "the ratio of two\nchi-squared distributions,"
+    },
+    {
+      "start": 1507.69,
+      "duration": 3.3,
+      "text": "each divided by their\nrespective degrees of freedom."
+    },
+    {
+      "start": 1510.99,
+      "duration": 5.63,
+      "text": "And in classical\nstatistics, we often"
+    },
+    {
+      "start": 1516.62,
+      "duration": 5.43,
+      "text": "are interested in measuring\nvariability of data"
+    },
+    {
+      "start": 1522.05,
+      "duration": 5.1,
+      "text": "and variability due to\ndifferent driving factors."
+    },
+    {
+      "start": 1527.15,
+      "duration": 4.04,
+      "text": "And so F distributions\narise commonly"
+    },
+    {
+      "start": 1531.19,
+      "duration": 4.29,
+      "text": "when we have\nestimates of variance"
+    },
+    {
+      "start": 1535.48,
+      "duration": 3.85,
+      "text": "given by a chi-squared divided\nby a degree of freedom."
+    },
+    {
+      "start": 1539.33,
+      "duration": 5.06,
+      "text": "And if we have two different\nestimates of variability,"
+    },
+    {
+      "start": 1544.39,
+      "duration": 7.06,
+      "text": "then if those distributions\nhave common variances,"
+    },
+    {
+      "start": 1551.45,
+      "duration": 5.24,
+      "text": "then the F distribution applies."
+    },
+    {
+      "start": 1556.69,
+      "duration": 4.29,
+      "text": "Some of you may have heard\nof analysis of variance"
+    },
+    {
+      "start": 1560.98,
+      "duration": 1.81,
+      "text": "in statistics."
+    },
+    {
+      "start": 1562.79,
+      "duration": 2.33,
+      "text": "Anyway, the analysis\nof variance methods"
+    },
+    {
+      "start": 1565.12,
+      "duration": 5.22,
+      "text": "work with studying F\nstatistic distributions."
+    },
+    {
+      "start": 1570.34,
+      "duration": 1.477,
+      "text": "Yeah?"
+    },
+    {
+      "start": 1571.817,
+      "duration": 1.583,
+      "text": "AUDIENCE: Are\nnoncentral distributions"
+    },
+    {
+      "start": 1573.4,
+      "duration": 2.86,
+      "text": "used a lot where there's\na noncentrality parameter?"
+    },
+    {
+      "start": 1576.26,
+      "duration": 2.87,
+      "text": "Or are they mainly just\nlike the centered ones?"
+    },
+    {
+      "start": 1579.13,
+      "duration": 3.18,
+      "text": "PROFESSOR: Well,\nthe noncentrality--"
+    },
+    {
+      "start": 1582.31,
+      "duration": 5.83,
+      "text": "or when you have null hypotheses\nin analysis of variance"
+    },
+    {
+      "start": 1588.14,
+      "duration": 4.2,
+      "text": "that are true, then\nthe F statistics"
+    },
+    {
+      "start": 1592.34,
+      "duration": 4.92,
+      "text": "will be F's with\nzero noncentrality."
+    },
+    {
+      "start": 1597.26,
+      "duration": 2.98,
+      "text": "And if the null\nhypothesis is false,"
+    },
+    {
+      "start": 1600.24,
+      "duration": 4.13,
+      "text": "then you'll have\na F distribution"
+    },
+    {
+      "start": 1604.37,
+      "duration": 2.38,
+      "text": "with a noncentrality parameter."
+    },
+    {
+      "start": 1606.75,
+      "duration": 3.98,
+      "text": "So the noncentrality\nparameter comes"
+    },
+    {
+      "start": 1610.73,
+      "duration": 4.38,
+      "text": "into specifying the distribution\nof the test statistic"
+    },
+    {
+      "start": 1615.11,
+      "duration": 4.782,
+      "text": "when the null\nhypothesis is false."
+    },
+    {
+      "start": 1619.892,
+      "duration": 1.708,
+      "text": "AUDIENCE: So it's not\nused sometimes then"
+    },
+    {
+      "start": 1621.6,
+      "duration": 1.89,
+      "text": "like when [INAUDIBLE] is false."
+    },
+    {
+      "start": 1623.49,
+      "duration": 1.62,
+      "text": "PROFESSOR: Yes."
+    },
+    {
+      "start": 1625.11,
+      "duration": 4.34,
+      "text": "Actually, the next two\nlectures after today"
+    },
+    {
+      "start": 1629.45,
+      "duration": 4.93,
+      "text": "will be on regression analysis\nand testing and regression."
+    },
+    {
+      "start": 1634.38,
+      "duration": 3.0,
+      "text": "And so we'll see those\ncome into play there."
+    },
+    {
+      "start": 1637.38,
+      "duration": 0.5,
+      "text": "Yep."
+    },
+    {
+      "start": 1640.7,
+      "duration": 1.29,
+      "text": "All right."
+    },
+    {
+      "start": 1641.99,
+      "duration": 0.76,
+      "text": "What else?"
+    },
+    {
+      "start": 1642.75,
+      "duration": 0.77,
+      "text": "Oh, OK."
+    },
+    {
+      "start": 1643.52,
+      "duration": 2.6,
+      "text": "Just the weak law of large\nnumbers and the central limit"
+    },
+    {
+      "start": 1646.12,
+      "duration": 2.045,
+      "text": "theorem are the\nremaining topics here."
+    },
+    {
+      "start": 1650.92,
+      "duration": 7.64,
+      "text": "If we have sample data\nrealizations of, say, N--"
+    },
+    {
+      "start": 1661.33,
+      "duration": 3.84,
+      "text": "or N realizations of\na random variable--"
+    },
+    {
+      "start": 1665.17,
+      "duration": 4.59,
+      "text": "and here, we say IID for\nIndependent and Identically"
+    },
+    {
+      "start": 1669.76,
+      "duration": 2.85,
+      "text": "Distributed."
+    },
+    {
+      "start": 1672.61,
+      "duration": 4.68,
+      "text": "If those random variables\nhave mean mu and variance"
+    },
+    {
+      "start": 1677.29,
+      "duration": 6.6,
+      "text": "sigma squared, then the\nsample mean, X bar n,"
+    },
+    {
+      "start": 1683.89,
+      "duration": 4.24,
+      "text": "will converge in\nprobability to that mean."
+    },
+    {
+      "start": 1688.13,
+      "duration": 4.56,
+      "text": "So the larger the\nsample size in the mean,"
+    },
+    {
+      "start": 1692.69,
+      "duration": 7.02,
+      "text": "the closer the sample mean will\nbe to the true mu parameter."
+    },
+    {
+      "start": 1699.71,
+      "duration": 4.06,
+      "text": "But what we-- what's important\nfrom probability theory"
+    },
+    {
+      "start": 1703.77,
+      "duration": 4.54,
+      "text": "is how do we characterize\nconvergence of random variables?"
+    },
+    {
+      "start": 1708.31,
+      "duration": 4.88,
+      "text": "And so the convergence in\nprobability to a constant"
+    },
+    {
+      "start": 1713.19,
+      "duration": 5.44,
+      "text": "means that the probability\nthat the deviation,"
+    },
+    {
+      "start": 1718.63,
+      "duration": 3.23,
+      "text": "the absolute deviation\nfrom mu exceeding epsilon,"
+    },
+    {
+      "start": 1721.86,
+      "duration": 2.28,
+      "text": "that that goes to zero."
+    },
+    {
+      "start": 1724.14,
+      "duration": 5.43,
+      "text": "And this theorem--\nor this result"
+    },
+    {
+      "start": 1729.57,
+      "duration": 3.84,
+      "text": "can be proven with\nChebyshev's inequality."
+    },
+    {
+      "start": 1733.41,
+      "duration": 7.38,
+      "text": "And it's sort of a\nneat example where"
+    },
+    {
+      "start": 1740.79,
+      "duration": 7.02,
+      "text": "if we want to look at\nthe variance of X bar n,"
+    },
+    {
+      "start": 1747.81,
+      "duration": 5.057,
+      "text": "which is equal to, what, the\nexpected value of X bar minus mu"
+    },
+    {
+      "start": 1752.867,
+      "duration": 0.5,
+      "text": "squared."
+    },
+    {
+      "start": 1759.23,
+      "duration": 9.9,
+      "text": "Then if we were to draw\nX bar n, and here's mu,"
+    },
+    {
+      "start": 1769.13,
+      "duration": 7.53,
+      "text": "and then have the graph of\nX bar n minus mu squared,"
+    },
+    {
+      "start": 1776.66,
+      "duration": 7.71,
+      "text": "if we were to transform our\nscale to X bar n minus mu,"
+    },
+    {
+      "start": 1784.37,
+      "duration": 5.01,
+      "text": "then this mu value goes to zero."
+    },
+    {
+      "start": 1789.38,
+      "duration": 8.4,
+      "text": "And if we were to look at\nthe epsilon value for X bar n"
+    },
+    {
+      "start": 1797.78,
+      "duration": 8.61,
+      "text": "minus mu, we can\nconsider a function"
+    },
+    {
+      "start": 1806.39,
+      "duration": 5.28,
+      "text": "other than this\nparabola, which is zero,"
+    },
+    {
+      "start": 1811.67,
+      "duration": 5.61,
+      "text": "up to this epsilon\naway from mu point,"
+    },
+    {
+      "start": 1817.28,
+      "duration": 7.49,
+      "text": "and then is simply equal\nto epsilon squared beyond,"
+    },
+    {
+      "start": 1824.77,
+      "duration": 3.13,
+      "text": "and do the same\nat minus epsilon."
+    },
+    {
+      "start": 1827.9,
+      "duration": 2.69,
+      "text": "So zero up to there."
+    },
+    {
+      "start": 1830.59,
+      "duration": 5.91,
+      "text": "And the variance, which is the\nprobability weighted average"
+    },
+    {
+      "start": 1836.5,
+      "duration": 3.78,
+      "text": "of the parabola over\nthe distribution,"
+    },
+    {
+      "start": 1840.28,
+      "duration": 7.08,
+      "text": "has to be greater than epsilon\nsquared times the probability"
+    },
+    {
+      "start": 1847.36,
+      "duration": 2.94,
+      "text": "of exceeding--"
+    },
+    {
+      "start": 1850.3,
+      "duration": 3.66,
+      "text": "of being further away\nfrom you than epsilon."
+    },
+    {
+      "start": 1853.96,
+      "duration": 4.95,
+      "text": "So the fact that\nthis function is"
+    },
+    {
+      "start": 1858.91,
+      "duration": 3.15,
+      "text": "greater than or equal to epsilon\nsquared times the probability"
+    },
+    {
+      "start": 1862.06,
+      "duration": 5.7,
+      "text": "that X bar n minus mu\nis greater than epsilon."
+    },
+    {
+      "start": 1867.76,
+      "duration": 10.43,
+      "text": "This gives us the result.\nAnd we basically have that--"
+    },
+    {
+      "start": 1878.19,
+      "duration": 10.41,
+      "text": "we're basically giving a\npositive bound for this."
+    },
+    {
+      "start": 1888.6,
+      "duration": 2.25,
+      "text": "Or we have an upper\nbound that decreases"
+    },
+    {
+      "start": 1890.85,
+      "duration": 2.26,
+      "text": "with n for this probability."
+    },
+    {
+      "start": 1893.11,
+      "duration": 5.57,
+      "text": "So that gives us\nour nice result."
+    },
+    {
+      "start": 1898.68,
+      "duration": 0.57,
+      "text": "Let's see."
+    },
+    {
+      "start": 1899.25,
+      "duration": 4.05,
+      "text": "If you really like\nprobability theory,"
+    },
+    {
+      "start": 1903.3,
+      "duration": 4.05,
+      "text": "one can actually extend\nthis result to the case"
+    },
+    {
+      "start": 1907.35,
+      "duration": 4.45,
+      "text": "where we don't have\na variance existing."
+    },
+    {
+      "start": 1911.8,
+      "duration": 2.33,
+      "text": "We just have a mean existing."
+    },
+    {
+      "start": 1914.13,
+      "duration": 5.97,
+      "text": "And that's a rather\nstrong result that's neat."
+    },
+    {
+      "start": 1920.1,
+      "duration": 3.72,
+      "text": "At least it's neat in terms\nof how the mathematics can"
+    },
+    {
+      "start": 1923.82,
+      "duration": 4.45,
+      "text": "handle more complex cases."
+    },
+    {
+      "start": 1928.27,
+      "duration": 4.47,
+      "text": "Now, finally, we have the\ncentral limit theorem,"
+    },
+    {
+      "start": 1932.74,
+      "duration": 6.12,
+      "text": "which tells us what the\nasymptotic distribution"
+    },
+    {
+      "start": 1938.86,
+      "duration": 8.13,
+      "text": "is of a sum of independent\nand identically distributed"
+    },
+    {
+      "start": 1946.99,
+      "duration": 2.04,
+      "text": "random variables is."
+    },
+    {
+      "start": 1949.03,
+      "duration": 7.65,
+      "text": "And so if we have\nvariables X1 to Xn"
+    },
+    {
+      "start": 1956.68,
+      "duration": 3.9,
+      "text": "that are mean 0\nvariance sigma squared,"
+    },
+    {
+      "start": 1960.58,
+      "duration": 6.78,
+      "text": "it turns out that the\nsum of the excise divided"
+    },
+    {
+      "start": 1967.36,
+      "duration": 4.2,
+      "text": "by the square root\nof the sample size"
+    },
+    {
+      "start": 1971.56,
+      "duration": 3.93,
+      "text": "converges to a normal\ndistribution with mean zero"
+    },
+    {
+      "start": 1975.49,
+      "duration": 1.74,
+      "text": "and variance sigma squared."
+    },
+    {
+      "start": 1977.23,
+      "duration": 8.82,
+      "text": "So we have, what, Zn equaling\n1 over root n sum 1 to n"
+    },
+    {
+      "start": 1986.05,
+      "duration": 4.68,
+      "text": "of the Xi's converges to\na normal with mean zero"
+    },
+    {
+      "start": 1990.73,
+      "duration": 1.87,
+      "text": "and variance sigma squared."
+    },
+    {
+      "start": 1992.6,
+      "duration": 8.35,
+      "text": "And if we were to\nthink of X bar, which"
+    },
+    {
+      "start": 2000.95,
+      "duration": 4.71,
+      "text": "is equal to 1 over\nroot n times Zn,"
+    },
+    {
+      "start": 2005.66,
+      "duration": 3.03,
+      "text": "this basically is\nconverging, in some sense,"
+    },
+    {
+      "start": 2008.69,
+      "duration": 6.25,
+      "text": "to a normal with mean zero and\nvariance sigma squared over n."
+    },
+    {
+      "start": 2014.94,
+      "duration": 4.04,
+      "text": "Now, I put quotes\naround this arrow"
+    },
+    {
+      "start": 2018.98,
+      "duration": 4.32,
+      "text": "here because it's not\nreally legitimate to talk"
+    },
+    {
+      "start": 2023.3,
+      "duration": 5.62,
+      "text": "about a limiting distribution\nthat depends on n."
+    },
+    {
+      "start": 2028.92,
+      "duration": 7.85,
+      "text": "But this is the way we\napproximate the distributions"
+    },
+    {
+      "start": 2036.77,
+      "duration": 1.3,
+      "text": "of sample means."
+    },
+    {
+      "start": 2038.07,
+      "duration": 4.61,
+      "text": "Basically, they converge to\nthe mean of the distribution,"
+    },
+    {
+      "start": 2042.68,
+      "duration": 1.3,
+      "text": "in this case, zero."
+    },
+    {
+      "start": 2043.98,
+      "duration": 2.82,
+      "text": "And the variance is\nsigma squared over n."
+    },
+    {
+      "start": 2046.8,
+      "duration": 4.49,
+      "text": "Now, what's neat in\nthis proof is just"
+    },
+    {
+      "start": 2051.29,
+      "duration": 5.96,
+      "text": "to highlight the use of\nmoment-generating functions."
+    },
+    {
+      "start": 2057.25,
+      "duration": 1.86,
+      "text": "And so if we--"
+    },
+    {
+      "start": 2059.11,
+      "duration": 2.819,
+      "text": "say, let's calculate the\nmoment-generating function"
+    },
+    {
+      "start": 2061.929,
+      "duration": 6.121,
+      "text": "of Zn, we're going to show that\nthe moment-generating function"
+    },
+    {
+      "start": 2068.05,
+      "duration": 4.21,
+      "text": "of Zn converges to this\nmoment-generating function,"
+    },
+    {
+      "start": 2072.26,
+      "duration": 3.59,
+      "text": "which in fact is the\nnormal with mean zero"
+    },
+    {
+      "start": 2075.85,
+      "duration": 1.539,
+      "text": "and variance sigma squared."
+    },
+    {
+      "start": 2077.389,
+      "duration": 3.621,
+      "text": "So the theorem that says\nmoment-generating functions"
+    },
+    {
+      "start": 2081.01,
+      "duration": 5.729,
+      "text": "are of unique, and if the limit\nof moment-generating functions"
+    },
+    {
+      "start": 2086.739,
+      "duration": 5.161,
+      "text": "exists and equals\nsome function, we"
+    },
+    {
+      "start": 2091.9,
+      "duration": 3.029,
+      "text": "can identify the\ndistribution by that limiting"
+    },
+    {
+      "start": 2094.929,
+      "duration": 1.781,
+      "text": "moment-generating function."
+    },
+    {
+      "start": 2096.71,
+      "duration": 4.28,
+      "text": "Well, if we calculate just\nthe moment-generating function"
+    },
+    {
+      "start": 2100.99,
+      "duration": 6.99,
+      "text": "of Zn, if we just plug-in\nZn within the expectation,"
+    },
+    {
+      "start": 2107.98,
+      "duration": 6.29,
+      "text": "then noting that the X's are\nindependent of each other,"
+    },
+    {
+      "start": 2114.27,
+      "duration": 4.62,
+      "text": "we basically are taking the\nexpectation of a product"
+    },
+    {
+      "start": 2118.89,
+      "duration": 2.5,
+      "text": "of independent terms."
+    },
+    {
+      "start": 2121.39,
+      "duration": 3.17,
+      "text": "And so that expectation\nof a product"
+    },
+    {
+      "start": 2124.56,
+      "duration": 2.79,
+      "text": "is the product of\nthe expectations."
+    },
+    {
+      "start": 2127.35,
+      "duration": 4.98,
+      "text": "So we have the product\nof the expected value"
+    },
+    {
+      "start": 2132.33,
+      "duration": 2.88,
+      "text": "of Xi times t over root n."
+    },
+    {
+      "start": 2135.21,
+      "duration": 3.69,
+      "text": "And this expectation\nhere is actually"
+    },
+    {
+      "start": 2138.9,
+      "duration": 9.66,
+      "text": "the moment-generating function\nof X evaluated at t over root n."
+    },
+    {
+      "start": 2148.56,
+      "duration": 3.57,
+      "text": "So it's the n-th power\nof that when we take"
+    },
+    {
+      "start": 2152.13,
+      "duration": 2.49,
+      "text": "the product of all n of those."
+    },
+    {
+      "start": 2154.62,
+      "duration": 4.17,
+      "text": "Now, this is where\nit gets interesting."
+    },
+    {
+      "start": 2158.79,
+      "duration": 3.75,
+      "text": "If we look at our\nmoment-generating function of t"
+    },
+    {
+      "start": 2162.54,
+      "duration": 5.25,
+      "text": "over root n, well, we don't\nreally know much about"
+    },
+    {
+      "start": 2167.79,
+      "duration": 1.93,
+      "text": "the distribution of the X's."
+    },
+    {
+      "start": 2169.72,
+      "duration": 1.46,
+      "text": "We know it has a mean."
+    },
+    {
+      "start": 2171.18,
+      "duration": 2.09,
+      "text": "We know it has a variance."
+    },
+    {
+      "start": 2173.27,
+      "duration": 1.39,
+      "text": "The mean is zero."
+    },
+    {
+      "start": 2174.66,
+      "duration": 2.21,
+      "text": "The variance is sigma squared."
+    },
+    {
+      "start": 2176.87,
+      "duration": 3.72,
+      "text": "If we expand the\nmoment-generating function"
+    },
+    {
+      "start": 2180.59,
+      "duration": 5.28,
+      "text": "into a Taylor\nseries, then we get"
+    },
+    {
+      "start": 2185.87,
+      "duration": 5.19,
+      "text": "1 plus the expected value\nof X times t over root n"
+    },
+    {
+      "start": 2191.06,
+      "duration": 5.07,
+      "text": "plus the expected value\nof X squared divided"
+    },
+    {
+      "start": 2196.13,
+      "duration": 3.09,
+      "text": "by 2 times t over\nroot n squared plus,"
+    },
+    {
+      "start": 2199.22,
+      "duration": 7.51,
+      "text": "an order term that is given by\nthe third power of the argument."
+    },
+    {
+      "start": 2206.73,
+      "duration": 6.89,
+      "text": "And so as n gets large,\nthese higher order terms"
+    },
+    {
+      "start": 2213.62,
+      "duration": 2.56,
+      "text": "are of smaller order."
+    },
+    {
+      "start": 2216.18,
+      "duration": 5.27,
+      "text": "And so we finally have\nthat this in the limit"
+    },
+    {
+      "start": 2221.45,
+      "duration": 5.16,
+      "text": "is 1 plus this multiple\nover n plus a small o of t"
+    },
+    {
+      "start": 2226.61,
+      "duration": 1.65,
+      "text": "squared over n."
+    },
+    {
+      "start": 2228.26,
+      "duration": 7.07,
+      "text": "And if we take this\nexpression to the n-th power,"
+    },
+    {
+      "start": 2235.33,
+      "duration": 6.72,
+      "text": "then it converges to the\nexponent of the argument"
+    },
+    {
+      "start": 2242.05,
+      "duration": 3.93,
+      "text": "sigma squared t squared over 2."
+    },
+    {
+      "start": 2245.98,
+      "duration": 8.94,
+      "text": "So let's see if\nwe have 1 plus r--"
+    },
+    {
+      "start": 2254.92,
+      "duration": 8.91,
+      "text": "let's -- 1 plus r over\nn to the n-th power,"
+    },
+    {
+      "start": 2263.83,
+      "duration": 2.615,
+      "text": "this converges to e to the r."
+    },
+    {
+      "start": 2269.08,
+      "duration": 6.39,
+      "text": "And Vasiliy used this\nargument in the first lecture"
+    },
+    {
+      "start": 2275.47,
+      "duration": 3.66,
+      "text": "to talk about\ncontinuous compounding"
+    },
+    {
+      "start": 2279.13,
+      "duration": 5.58,
+      "text": "and what the limiting value\nis of continuous compounding"
+    },
+    {
+      "start": 2284.71,
+      "duration": 1.48,
+      "text": "at some interest rate."
+    },
+    {
+      "start": 2286.19,
+      "duration": 6.82,
+      "text": "Anyway, that same exponential\nresult is true here."
+    },
+    {
+      "start": 2293.01,
+      "duration": 4.61,
+      "text": "So this actually proves the\ncentral limit theorem using"
+    },
+    {
+      "start": 2297.62,
+      "duration": 2.95,
+      "text": "the identity theorem for MGFs."
+    },
+    {
+      "start": 2300.57,
+      "duration": 0.56,
+      "text": "Yeah?"
+    },
+    {
+      "start": 2301.13,
+      "duration": 3.09,
+      "text": "AUDIENCE: Is CLT actually\nused in practice?"
+    },
+    {
+      "start": 2304.22,
+      "duration": 2.76,
+      "text": "Because obviously,\nlike in finance nothing"
+    },
+    {
+      "start": 2306.98,
+      "duration": 2.533,
+      "text": "is going to be IID,\nor at least they're"
+    },
+    {
+      "start": 2309.513,
+      "duration": 1.167,
+      "text": "not going to be independent."
+    },
+    {
+      "start": 2310.68,
+      "duration": 4.01,
+      "text": "So is it actually still\nuseful in a practical setting?"
+    },
+    {
+      "start": 2314.69,
+      "duration": 3.61,
+      "text": "PROFESSOR: It can be very\nuseful in a practical setting."
+    },
+    {
+      "start": 2318.3,
+      "duration": 6.95,
+      "text": "And right now, it's specified in\nterms of identically distributed"
+    },
+    {
+      "start": 2325.25,
+      "duration": 1.62,
+      "text": "X's."
+    },
+    {
+      "start": 2326.87,
+      "duration": 5.28,
+      "text": "It actually generalizes\nto X's that are"
+    },
+    {
+      "start": 2332.15,
+      "duration": 7.06,
+      "text": "independent but with different\ndistributions as well."
+    },
+    {
+      "start": 2339.21,
+      "duration": 10.42,
+      "text": "So also what's I guess really\nimportant is that if a variable"
+    },
+    {
+      "start": 2349.63,
+      "duration": 5.31,
+      "text": "we're working with\ncorresponds to the sum"
+    },
+    {
+      "start": 2354.94,
+      "duration": 6.13,
+      "text": "of independent or\nuncorrelated terms,"
+    },
+    {
+      "start": 2361.07,
+      "duration": 5.28,
+      "text": "the sum can approach a\nnormal distribution well."
+    },
+    {
+      "start": 2366.35,
+      "duration": 10.1,
+      "text": "And if one looks at, I\nguess, linear projections"
+    },
+    {
+      "start": 2376.45,
+      "duration": 7.62,
+      "text": "of multidimensional\nvectors, X's,"
+    },
+    {
+      "start": 2384.07,
+      "duration": 7.56,
+      "text": "if you had a random direction\nin the n dimensional space,"
+    },
+    {
+      "start": 2391.63,
+      "duration": 3.69,
+      "text": "the projection onto\nthat random direction"
+    },
+    {
+      "start": 2395.32,
+      "duration": 7.47,
+      "text": "will correspond to sums of\nclose to identically distributed"
+    },
+    {
+      "start": 2402.79,
+      "duration": 5.6,
+      "text": "random variables, but will\nvery likely have a Gaussian"
+    },
+    {
+      "start": 2408.39,
+      "duration": 3.51,
+      "text": "distribution as well."
+    },
+    {
+      "start": 2411.9,
+      "duration": 5.64,
+      "text": "This will come up when we talk\nabout regression modeling."
+    },
+    {
+      "start": 2417.54,
+      "duration": 5.55,
+      "text": "But when we look at the error\nvector from a regression,"
+    },
+    {
+      "start": 2423.09,
+      "duration": 8.28,
+      "text": "the feasibility of the error\nvector being close to Gaussian"
+    },
+    {
+      "start": 2431.37,
+      "duration": 4.68,
+      "text": "is plausible and\nreasonable given the way"
+    },
+    {
+      "start": 2436.05,
+      "duration": 2.49,
+      "text": "it's constructed sometimes."
+    },
+    {
+      "start": 2438.54,
+      "duration": 1.09,
+      "text": "OK."
+    },
+    {
+      "start": 2439.63,
+      "duration": 7.64,
+      "text": "Well, let's move on then\nto this note on probability"
+    },
+    {
+      "start": 2447.27,
+      "duration": 1.93,
+      "text": "theory for asset pricing."
+    },
+    {
+      "start": 2449.2,
+      "duration": 3.47,
+      "text": "What's really neat\nabout this note"
+    },
+    {
+      "start": 2452.67,
+      "duration": 5.7,
+      "text": "is that we're going to introduce\nyou just with basic probability"
+    },
+    {
+      "start": 2458.37,
+      "duration": 3.66,
+      "text": "theory to one of the\nmore important models"
+    },
+    {
+      "start": 2462.03,
+      "duration": 4.34,
+      "text": "in quantitative\nfinance, or at least"
+    },
+    {
+      "start": 2466.37,
+      "duration": 2.79,
+      "text": "in early quantitative finance,\nwhich is the capital asset"
+    },
+    {
+      "start": 2469.16,
+      "duration": 1.74,
+      "text": "pricing model."
+    },
+    {
+      "start": 2470.9,
+      "duration": 10.68,
+      "text": "And so let's consider a\nsimple context where we have"
+    },
+    {
+      "start": 2481.58,
+      "duration": 4.36,
+      "text": "one risky asset, like a stock."
+    },
+    {
+      "start": 2485.94,
+      "duration": 8.27,
+      "text": "And we have a one period\nmodel where we have--"
+    },
+    {
+      "start": 2494.21,
+      "duration": 8.34,
+      "text": "the beginning of the period is\nt0, and the end of the period"
+    },
+    {
+      "start": 2502.55,
+      "duration": 1.97,
+      "text": "is t1, I guess."
+    },
+    {
+      "start": 2513.05,
+      "duration": 5.28,
+      "text": "And there's this\nrisky asset, a--"
+    },
+    {
+      "start": 2518.33,
+      "duration": 4.69,
+      "text": "so there's a risky asset, a."
+    },
+    {
+      "start": 2526.085,
+      "duration": 7.445,
+      "text": "And we'll consider\na market agent"
+    },
+    {
+      "start": 2533.53,
+      "duration": 13.44,
+      "text": "having Qa shares of\nthe asset, and just"
+    },
+    {
+      "start": 2546.97,
+      "duration": 2.133,
+      "text": "Q units of a risk-free asset."
+    },
+    {
+      "start": 2553.63,
+      "duration": 6.12,
+      "text": "Now, the risk-free asset is\nlike putting money in the bank"
+    },
+    {
+      "start": 2559.75,
+      "duration": 5.34,
+      "text": "and being confident that you'll\nget it back with interest."
+    },
+    {
+      "start": 2565.09,
+      "duration": 10.59,
+      "text": "And we'll assume that the\nrisk-free asset costs $1--"
+    },
+    {
+      "start": 2575.68,
+      "duration": 4.05,
+      "text": "so $1 per unit."
+    },
+    {
+      "start": 2579.73,
+      "duration": 7.665,
+      "text": "And the risky asset will\nbe of price Pa per share."
+    },
+    {
+      "start": 2591.89,
+      "duration": 7.18,
+      "text": "So this market agent\nhas a wealth at time 0."
+    },
+    {
+      "start": 2599.07,
+      "duration": 9.795,
+      "text": "So W0 is going to be equal\nto qa pa plus q times $1."
+    },
+    {
+      "start": 2611.45,
+      "duration": 2.22,
+      "text": "And X-- OK, so\nmaybe we'll put an f"
+    },
+    {
+      "start": 2613.67,
+      "duration": 5.4,
+      "text": "here just to indicate that\nit's the risk-free asset."
+    },
+    {
+      "start": 2619.07,
+      "duration": 1.487,
+      "text": "Now, at time T1--"
+    },
+    {
+      "start": 2625.04,
+      "duration": 8.1,
+      "text": "so this is the t0\nprices are given here."
+    },
+    {
+      "start": 2633.14,
+      "duration": 7.025,
+      "text": "At T1, the risk-free asset is\ngoing to be worth 1 plus rf."
+    },
+    {
+      "start": 2647.05,
+      "duration": 5.91,
+      "text": "And the price of the\nrisky asset, we'll"
+    },
+    {
+      "start": 2652.96,
+      "duration": 5.76,
+      "text": "assume that it's a random\nvariable given by f tilde."
+    },
+    {
+      "start": 2658.72,
+      "duration": 9.51,
+      "text": "And for simplicity, we'll assume\nthat it has some mean, mu,"
+    },
+    {
+      "start": 2668.23,
+      "duration": 1.57,
+      "text": "and variance sigma squared."
+    },
+    {
+      "start": 2669.8,
+      "duration": 4.25,
+      "text": "Now, right away this is\nmaybe a bad assumption"
+    },
+    {
+      "start": 2674.05,
+      "duration": 3.48,
+      "text": "to make because Gaussian\nor normal distributions"
+    },
+    {
+      "start": 2677.53,
+      "duration": 3.49,
+      "text": "can be arbitrarily\nlarge negative."
+    },
+    {
+      "start": 2681.02,
+      "duration": 5.42,
+      "text": "But we'll assume that the\nlikelihood of impossible values"
+    },
+    {
+      "start": 2686.44,
+      "duration": 5.47,
+      "text": "is very close to 0, so that\nthis is a useful model."
+    },
+    {
+      "start": 2691.91,
+      "duration": 9.82,
+      "text": "So this is the time T1\nstate of the market, which"
+    },
+    {
+      "start": 2701.73,
+      "duration": 7.95,
+      "text": "has certainty for the\nrisk-free investment"
+    },
+    {
+      "start": 2709.68,
+      "duration": 5.67,
+      "text": "but uncertain outcome\nfor the risky asset."
+    },
+    {
+      "start": 2715.35,
+      "duration": 8.82,
+      "text": "Well, one could\nconsider the agent"
+    },
+    {
+      "start": 2724.17,
+      "duration": 7.08,
+      "text": "being able to buy x\nunits of the risky asset"
+    },
+    {
+      "start": 2731.25,
+      "duration": 5.7,
+      "text": "at the initial time\npoint, t0, and then"
+    },
+    {
+      "start": 2736.95,
+      "duration": 6.69,
+      "text": "have end of period wealth that\nreflects that trade of buying"
+    },
+    {
+      "start": 2743.64,
+      "duration": 2.44,
+      "text": "X units at t0."
+    },
+    {
+      "start": 2746.08,
+      "duration": 9.86,
+      "text": "So at the end of the\nperiod t1, time, there"
+    },
+    {
+      "start": 2755.94,
+      "duration": 5.78,
+      "text": "will be Qa plus X shares\nwith value f tilde."
+    },
+    {
+      "start": 2761.72,
+      "duration": 8.7,
+      "text": "And the x shares will\nhave been bought by paying"
+    },
+    {
+      "start": 2770.42,
+      "duration": 4.11,
+      "text": "Pa, the t0 price at time 0."
+    },
+    {
+      "start": 2774.53,
+      "duration": 2.67,
+      "text": "And so there will\nbe money invested"
+    },
+    {
+      "start": 2777.2,
+      "duration": 4.41,
+      "text": "in the risk-free asset\nearning the interest rate,"
+    },
+    {
+      "start": 2781.61,
+      "duration": 3.63,
+      "text": "or the absolute\nreturn of 1 plus rf."
+    },
+    {
+      "start": 2785.24,
+      "duration": 5.1,
+      "text": "Now, what we want to\ndo is consider what"
+    },
+    {
+      "start": 2790.34,
+      "duration": 3.15,
+      "text": "is the optimal choice of X--"
+    },
+    {
+      "start": 2793.49,
+      "duration": 3.64,
+      "text": "the number of shares\nto buy for this agent?"
+    },
+    {
+      "start": 2797.13,
+      "duration": 5.16,
+      "text": "And in order to\nmake that choice,"
+    },
+    {
+      "start": 2802.29,
+      "duration": 9.62,
+      "text": "one can apply the decision\ntheory under uncertainty"
+    },
+    {
+      "start": 2811.91,
+      "duration": 6.14,
+      "text": "and associate a utility of\nthe end period wealth given"
+    },
+    {
+      "start": 2818.05,
+      "duration": 4.05,
+      "text": "by some utility function, u."
+    },
+    {
+      "start": 2822.1,
+      "duration": 4.83,
+      "text": "And we can choose the\nX value to maximize"
+    },
+    {
+      "start": 2826.93,
+      "duration": 3.37,
+      "text": "the expected utility of wealth."
+    },
+    {
+      "start": 2830.3,
+      "duration": 10.94,
+      "text": "So importantly, If we have\nu of w as a function of w,"
+    },
+    {
+      "start": 2841.24,
+      "duration": 6.965,
+      "text": "and there's basically\na w0 value here--"
+    },
+    {
+      "start": 2851.29,
+      "duration": 5.94,
+      "text": "utility of w0-- there are\nsome standard assumptions"
+    },
+    {
+      "start": 2857.23,
+      "duration": 6.78,
+      "text": "one makes as to what the\nutility function is like."
+    },
+    {
+      "start": 2864.01,
+      "duration": 4.05,
+      "text": "And we might assume that\nthe first derivative"
+    },
+    {
+      "start": 2868.06,
+      "duration": 1.843,
+      "text": "and second derivative exist."
+    },
+    {
+      "start": 2872.92,
+      "duration": 4.62,
+      "text": "So we'll assume\nthat these exist."
+    },
+    {
+      "start": 2877.54,
+      "duration": 5.63,
+      "text": "And so-- well, the\nfirst derivative"
+    },
+    {
+      "start": 2883.17,
+      "duration": 3.21,
+      "text": "is likely to be positive."
+    },
+    {
+      "start": 2886.38,
+      "duration": 3.36,
+      "text": "More wealth is\npreferred to less."
+    },
+    {
+      "start": 2889.74,
+      "duration": 6.4,
+      "text": "So we have a better direction\nbeing up and to the right."
+    },
+    {
+      "start": 2896.14,
+      "duration": 7.28,
+      "text": "And the second derivative, this\nactually could be less than 0"
+    },
+    {
+      "start": 2903.42,
+      "duration": 5.74,
+      "text": "if there's a decreasing\nmarginal utility to more wealth."
+    },
+    {
+      "start": 2909.16,
+      "duration": 4.94,
+      "text": "So this function\nmight go and look"
+    },
+    {
+      "start": 2914.1,
+      "duration": 5.19,
+      "text": "like this with a U prime greater\nthan 0 and U double prime less"
+    },
+    {
+      "start": 2919.29,
+      "duration": 0.635,
+      "text": "than 0."
+    },
+    {
+      "start": 2923.28,
+      "duration": 4.12,
+      "text": "So these kinds of assumptions\nare reasonable to assume."
+    },
+    {
+      "start": 2927.4,
+      "duration": 6.15,
+      "text": "And the theory of\nrational decision-making"
+    },
+    {
+      "start": 2933.55,
+      "duration": 4.8,
+      "text": "under uncertainty, if this is\nindeed your utility function,"
+    },
+    {
+      "start": 2938.35,
+      "duration": 6.31,
+      "text": "is to find the action\nX that maximizes this."
+    },
+    {
+      "start": 2944.66,
+      "duration": 5.75,
+      "text": "And if we are lucky, we\nmight be able to solve"
+    },
+    {
+      "start": 2950.41,
+      "duration": 3.48,
+      "text": "for X by satisfying\nthe first order"
+    },
+    {
+      "start": 2953.89,
+      "duration": 7.14,
+      "text": "condition, the derivative of\nthe expected utility equaling 0"
+    },
+    {
+      "start": 2961.03,
+      "duration": 3.03,
+      "text": "at the maximum value."
+    },
+    {
+      "start": 2964.06,
+      "duration": 2.85,
+      "text": "And-- yeah?"
+    },
+    {
+      "start": 2966.91,
+      "duration": 4.11,
+      "text": "AUDIENCE: Why would you use\nanything other than the identity"
+    },
+    {
+      "start": 2971.02,
+      "duration": 0.88,
+      "text": "function for U?"
+    },
+    {
+      "start": 2971.9,
+      "duration": 1.37,
+      "text": "Because surely you\njust want to maximize"
+    },
+    {
+      "start": 2973.27,
+      "duration": 1.083,
+      "text": "your end of period wealth?"
+    },
+    {
+      "start": 2978.525,
+      "duration": 0.875,
+      "text": "PROFESSOR: Let's see."
+    },
+    {
+      "start": 2979.4,
+      "duration": 7.79,
+      "text": "If you use the\nidentity, then there's--"
+    },
+    {
+      "start": 2987.19,
+      "duration": 4.65,
+      "text": "well, it will turn out\nthere's no penalty for a risk"
+    },
+    {
+      "start": 2991.84,
+      "duration": 2.31,
+      "text": "that you're undertaking."
+    },
+    {
+      "start": 2994.15,
+      "duration": 6.73,
+      "text": "And so with this decreasing\nmarginal utility of wealth,"
+    },
+    {
+      "start": 3000.88,
+      "duration": 4.46,
+      "text": "you end up having a\npenalty for taking risks."
+    },
+    {
+      "start": 3005.34,
+      "duration": 14.1,
+      "text": "And so the-- yeah."
+    },
+    {
+      "start": 3019.44,
+      "duration": 5.04,
+      "text": "So I'll leave it there, but\nit's a very good question."
+    },
+    {
+      "start": 3024.48,
+      "duration": 3.06,
+      "text": "And let's see."
+    },
+    {
+      "start": 3027.54,
+      "duration": 4.89,
+      "text": "There's actually\nsome-- well, there's"
+    },
+    {
+      "start": 3032.43,
+      "duration": 4.32,
+      "text": "some really interesting\ndiscussions and about"
+    },
+    {
+      "start": 3036.75,
+      "duration": 6.34,
+      "text": "how to optimally\ninvest, as this case."
+    },
+    {
+      "start": 3043.09,
+      "duration": 4.61,
+      "text": "And there was a controversy\nbetween Claude Shannon"
+    },
+    {
+      "start": 3047.7,
+      "duration": 10.66,
+      "text": "and I think it was Milton\nFriedman about maximizing"
+    },
+    {
+      "start": 3058.36,
+      "duration": 5.67,
+      "text": "the exponential--\nor the expected log"
+    },
+    {
+      "start": 3064.03,
+      "duration": 5.89,
+      "text": "return of investments just\nperiod and that being optimal."
+    },
+    {
+      "start": 3069.92,
+      "duration": 5.22,
+      "text": "So anyway, we'll return to\nthat discussion later as well."
+    },
+    {
+      "start": 3075.14,
+      "duration": 2.6,
+      "text": "But for now, let's assume that\nthis is a reasonable thing"
+    },
+    {
+      "start": 3077.74,
+      "duration": 0.97,
+      "text": "to do."
+    },
+    {
+      "start": 3078.71,
+      "duration": 5.04,
+      "text": "And in order to\nsolve this problem,"
+    },
+    {
+      "start": 3083.75,
+      "duration": 2.54,
+      "text": "we're actually going\nto use a lemma called"
+    },
+    {
+      "start": 3086.29,
+      "duration": 7.26,
+      "text": "Stein's Lemma, which is a\ncurious mathematical result"
+    },
+    {
+      "start": 3093.55,
+      "duration": 7.5,
+      "text": "dealing with normally\ndistributed y variable and y"
+    },
+    {
+      "start": 3101.05,
+      "duration": 0.61,
+      "text": "star."
+    },
+    {
+      "start": 3101.66,
+      "duration": 5.49,
+      "text": "They're jointly distributed\nwith each other and Gaussian."
+    },
+    {
+      "start": 3107.15,
+      "duration": 8.53,
+      "text": "If we look at the expected value\nof g of Y times Y minus mu,"
+    },
+    {
+      "start": 3115.68,
+      "duration": 5.79,
+      "text": "and the expected value of g\nprime of Y, if both of those"
+    },
+    {
+      "start": 3121.47,
+      "duration": 3.27,
+      "text": "exist, then we get\nthese simple formulas"
+    },
+    {
+      "start": 3124.74,
+      "duration": 5.64,
+      "text": "for essentially the covariance\nbetween g of Y and Y,"
+    },
+    {
+      "start": 3130.38,
+      "duration": 3.34,
+      "text": "and the covariance of\ng and Y and Y star."
+    },
+    {
+      "start": 3133.72,
+      "duration": 6.98,
+      "text": "So this is a mathematical\ntheorem that is abstract"
+    },
+    {
+      "start": 3140.7,
+      "duration": 6.93,
+      "text": "as it's stated, but it ends up\nbeing applicable in our problem."
+    },
+    {
+      "start": 3147.63,
+      "duration": 5.79,
+      "text": "So if we define our wealth at\nthe end of the period at time t1"
+    },
+    {
+      "start": 3153.42,
+      "duration": 6.18,
+      "text": "to be given by this\nw tilde vector, then"
+    },
+    {
+      "start": 3159.6,
+      "duration": 7.7,
+      "text": "if the outcome of the\nasset price, f tilde,"
+    },
+    {
+      "start": 3167.3,
+      "duration": 9.09,
+      "text": "if this is Gaussian, then\nthis wealth at time t1"
+    },
+    {
+      "start": 3176.39,
+      "duration": 2.19,
+      "text": "will also be Gaussian\nbecause we're just"
+    },
+    {
+      "start": 3178.58,
+      "duration": 4.44,
+      "text": "taking a multiple of\nthat plus a constant."
+    },
+    {
+      "start": 3183.02,
+      "duration": 5.04,
+      "text": "So that note is simple."
+    },
+    {
+      "start": 3188.06,
+      "duration": 6.12,
+      "text": "Then if we look at\nthe expected utility"
+    },
+    {
+      "start": 3194.18,
+      "duration": 6.51,
+      "text": "and try to take the derivative\nof that with respect to X,"
+    },
+    {
+      "start": 3200.69,
+      "duration": 6.39,
+      "text": "then under certain conditions\nwe can take the expectation"
+    },
+    {
+      "start": 3207.08,
+      "duration": 5.97,
+      "text": "of the derivative with\nrespect to X of the integrand"
+    },
+    {
+      "start": 3213.05,
+      "duration": 2.26,
+      "text": "with the expectation."
+    },
+    {
+      "start": 3215.31,
+      "duration": 6.11,
+      "text": "Now, under what conditions is\nit feasible to differentiate"
+    },
+    {
+      "start": 3221.42,
+      "duration": 3.96,
+      "text": "underneath the integral\nsign when you're"
+    },
+    {
+      "start": 3225.38,
+      "duration": 2.693,
+      "text": "doing computations in calculus?"
+    },
+    {
+      "start": 3241.99,
+      "duration": 2.46,
+      "text": "I mean, basically\nwhat we want to do"
+    },
+    {
+      "start": 3244.45,
+      "duration": 12.09,
+      "text": "is take the expected value\nof U of w tilde plus delta"
+    },
+    {
+      "start": 3256.54,
+      "duration": 8.25,
+      "text": "and subtract the expectation\nof U of w tilde and divide"
+    },
+    {
+      "start": 3264.79,
+      "duration": 7.83,
+      "text": "by delta, and take the\nlimit as this goes to 0."
+    },
+    {
+      "start": 3272.62,
+      "duration": 3.456,
+      "text": "So that's the formula for\ncomputing the derivative."
+    },
+    {
+      "start": 3279.52,
+      "duration": 6.97,
+      "text": "It turns out we can do that\nif the first derivative of U"
+    },
+    {
+      "start": 3286.49,
+      "duration": 4.56,
+      "text": "is bounded or has\nbounded expectation."
+    },
+    {
+      "start": 3291.05,
+      "duration": 4.68,
+      "text": "And so if that's\npossible to do, then we"
+    },
+    {
+      "start": 3295.73,
+      "duration": 3.01,
+      "text": "can take the derivative\nunderneath the integral sign."
+    },
+    {
+      "start": 3298.74,
+      "duration": 2.69,
+      "text": "And we have basically\nthe derivative"
+    },
+    {
+      "start": 3301.43,
+      "duration": 7.65,
+      "text": "of U multiplied by the chain\nrule, the derivative of w tilde"
+    },
+    {
+      "start": 3309.08,
+      "duration": 5.1,
+      "text": "with respect to X. So if\nwe take the derivative"
+    },
+    {
+      "start": 3314.18,
+      "duration": 5.61,
+      "text": "of w tilde with respect to\nX, we get f tilde minus Pa"
+    },
+    {
+      "start": 3319.79,
+      "duration": 1.66,
+      "text": "times 1 plus rf."
+    },
+    {
+      "start": 3321.45,
+      "duration": 3.92,
+      "text": "So this is just the chain\nrule of differentiation there."
+    },
+    {
+      "start": 3325.37,
+      "duration": 11.67,
+      "text": "Now with this expression\nin black, we can use the--"
+    },
+    {
+      "start": 3337.04,
+      "duration": 1.24,
+      "text": "well, let's see."
+    },
+    {
+      "start": 3338.28,
+      "duration": 7.72,
+      "text": "We can express this as the\nexpected product of two"
+    },
+    {
+      "start": 3346.0,
+      "duration": 4.68,
+      "text": "random variables is equal to\nthe covariance plus the product"
+    },
+    {
+      "start": 3350.68,
+      "duration": 1.86,
+      "text": "of the expectations."
+    },
+    {
+      "start": 3352.54,
+      "duration": 7.12,
+      "text": "So here, we have U prime and\nf tilde minus Pa1 plus rf."
+    },
+    {
+      "start": 3359.66,
+      "duration": 3.74,
+      "text": "The covariance between\nthose two plus the product"
+    },
+    {
+      "start": 3363.4,
+      "duration": 5.43,
+      "text": "of their expectations is equal\nto that expected product."
+    },
+    {
+      "start": 3368.83,
+      "duration": 7.53,
+      "text": "Then, by Stein's Lemma,\none actually can simplify"
+    },
+    {
+      "start": 3376.36,
+      "duration": 6.57,
+      "text": "or re-express this covariance as\nthe expected second derivative"
+    },
+    {
+      "start": 3382.93,
+      "duration": 8.28,
+      "text": "of U times the\ncovariance of w and f."
+    },
+    {
+      "start": 3391.21,
+      "duration": 6.69,
+      "text": "And so we can then\nsubstitute this expression"
+    },
+    {
+      "start": 3397.9,
+      "duration": 5.15,
+      "text": "into this last\nexpression here and get 0"
+    },
+    {
+      "start": 3403.05,
+      "duration": 4.59,
+      "text": "equals that covariance\nplus the product"
+    },
+    {
+      "start": 3407.64,
+      "duration": 4.56,
+      "text": "of the first expectations there."
+    },
+    {
+      "start": 3412.2,
+      "duration": 7.32,
+      "text": "And so we're substituting in\nthis expected second derivative"
+    },
+    {
+      "start": 3419.52,
+      "duration": 4.75,
+      "text": "of U times the covariance\nin that formula."
+    },
+    {
+      "start": 3424.27,
+      "duration": 8.24,
+      "text": "Now, with this\nexpression here, we"
+    },
+    {
+      "start": 3432.51,
+      "duration": 3.36,
+      "text": "have this covariance of w and f."
+    },
+    {
+      "start": 3435.87,
+      "duration": 3.42,
+      "text": "Well, the covariance\nbetween w and f"
+    },
+    {
+      "start": 3439.29,
+      "duration": 8.92,
+      "text": "is simply the covariance\nof f with a multiple of f."
+    },
+    {
+      "start": 3448.21,
+      "duration": 4.87,
+      "text": "So it equals that multiple\ntimes the variance of f."
+    },
+    {
+      "start": 3455.61,
+      "duration": 5.27,
+      "text": "And so we plug that in\nto this covariance term."
+    },
+    {
+      "start": 3460.88,
+      "duration": 5.62,
+      "text": "And what's curious,\nand is the punch line,"
+    },
+    {
+      "start": 3466.5,
+      "duration": 4.22,
+      "text": "is that this final\nequation gives us"
+    },
+    {
+      "start": 3470.72,
+      "duration": 16.14,
+      "text": "a formula for how\nwe solve for X."
+    },
+    {
+      "start": 3486.86,
+      "duration": 7.2,
+      "text": "And so the value of X\nthat we should choose"
+    },
+    {
+      "start": 3494.06,
+      "duration": 6.0,
+      "text": "will basically\nsatisfy this equation."
+    },
+    {
+      "start": 3500.06,
+      "duration": 9.42,
+      "text": "And so our X value will depend\nupon what the price of the asset"
+    },
+    {
+      "start": 3509.48,
+      "duration": 0.91,
+      "text": "is."
+    },
+    {
+      "start": 3510.39,
+      "duration": 8.06,
+      "text": "And it actually is equal\nto a discounted value"
+    },
+    {
+      "start": 3518.45,
+      "duration": 9.47,
+      "text": "of the expected price\nplus this other term here."
+    },
+    {
+      "start": 3527.92,
+      "duration": 2.56,
+      "text": "And this other term here--"
+    },
+    {
+      "start": 3530.48,
+      "duration": 3.23,
+      "text": "the second derivative\nis negative."
+    },
+    {
+      "start": 3533.71,
+      "duration": 1.87,
+      "text": "First derivative is positive."
+    },
+    {
+      "start": 3535.58,
+      "duration": 3.47,
+      "text": "So this is actually a\nnegative factor here."
+    },
+    {
+      "start": 3539.05,
+      "duration": 2.763,
+      "text": "And so we end up getting that--"
+    },
+    {
+      "start": 3545.23,
+      "duration": 8.73,
+      "text": "we have a formula that\ndepends upon that ratio"
+    },
+    {
+      "start": 3553.96,
+      "duration": 4.23,
+      "text": "of second derivative expectation\nto first derivative expectation"
+    },
+    {
+      "start": 3558.19,
+      "duration": 2.71,
+      "text": "of the utility function."
+    },
+    {
+      "start": 3560.9,
+      "duration": 4.43,
+      "text": "Now, in economics\nclasses, maybe some of you"
+    },
+    {
+      "start": 3565.33,
+      "duration": 5.49,
+      "text": "have come across the constant\nabsolute risk aversion utility"
+    },
+    {
+      "start": 3570.82,
+      "duration": 1.08,
+      "text": "function."
+    },
+    {
+      "start": 3571.9,
+      "duration": 3.72,
+      "text": "Has anybody come across\nthat in an economics class?"
+    },
+    {
+      "start": 3575.62,
+      "duration": 0.5,
+      "text": "Maybe."
+    },
+    {
+      "start": 3576.12,
+      "duration": 2.25,
+      "text": "Maybe not."
+    },
+    {
+      "start": 3578.37,
+      "duration": 9.69,
+      "text": "But that function, which\nis a constant minus"
+    },
+    {
+      "start": 3588.06,
+      "duration": 13.44,
+      "text": "e to the minus Aw, this is the\nconstant absolute risk aversion"
+    },
+    {
+      "start": 3601.5,
+      "duration": 1.72,
+      "text": "utility function."
+    },
+    {
+      "start": 3603.22,
+      "duration": 13.61,
+      "text": "And so it basically\nhas the right shape"
+    },
+    {
+      "start": 3616.83,
+      "duration": 3.93,
+      "text": "in terms of marginal\nutilities decreasing"
+    },
+    {
+      "start": 3620.76,
+      "duration": 4.81,
+      "text": "and utilities always increasing."
+    },
+    {
+      "start": 3625.57,
+      "duration": 4.79,
+      "text": "And so with this particular\nutility function,"
+    },
+    {
+      "start": 3630.36,
+      "duration": 6.19,
+      "text": "we have the U double\nprime divided by U prime,"
+    },
+    {
+      "start": 3636.55,
+      "duration": 5.8,
+      "text": "those actually giving us\njust the factor A here."
+    },
+    {
+      "start": 3642.35,
+      "duration": 4.73,
+      "text": "So we have our\nprice of the asset"
+    },
+    {
+      "start": 3647.08,
+      "duration": 4.02,
+      "text": "should equal the\ndiscounted expected cash"
+    },
+    {
+      "start": 3651.1,
+      "duration": 2.206,
+      "text": "flow minus a risk adjustment."
+    },
+    {
+      "start": 3656.08,
+      "duration": 5.7,
+      "text": "And the risk adjustment\nin the price,"
+    },
+    {
+      "start": 3661.78,
+      "duration": 4.08,
+      "text": "that's like the fair\nprice for the asset,"
+    },
+    {
+      "start": 3665.86,
+      "duration": 4.17,
+      "text": "varies depending upon\nwhat the risk aversion"
+    },
+    {
+      "start": 3670.03,
+      "duration": 2.32,
+      "text": "coefficient is of the agent."
+    },
+    {
+      "start": 3672.35,
+      "duration": 4.07,
+      "text": "And also the magnitude\nof the shares"
+    },
+    {
+      "start": 3676.42,
+      "duration": 4.41,
+      "text": "of the risky asset\nthat are obtained"
+    },
+    {
+      "start": 3680.83,
+      "duration": 4.93,
+      "text": "and the variance of\nthe price outcome."
+    },
+    {
+      "start": 3685.76,
+      "duration": 6.95,
+      "text": "So the fair price\nfor the market agent"
+    },
+    {
+      "start": 3692.71,
+      "duration": 3.75,
+      "text": "basically is balancing\nall of these factors."
+    },
+    {
+      "start": 3696.46,
+      "duration": 3.19,
+      "text": "And let's see if--"
+    },
+    {
+      "start": 3702.99,
+      "duration": 1.53,
+      "text": "OK."
+    },
+    {
+      "start": 3704.52,
+      "duration": 4.92,
+      "text": "Well, with this result for a\nsingle asset, what's really neat"
+    },
+    {
+      "start": 3709.44,
+      "duration": 11.4,
+      "text": "is that we can generalize\nfrom one asset to many"
+    },
+    {
+      "start": 3720.84,
+      "duration": 5.4,
+      "text": "and set up the whole problem\nwith almost the same notation."
+    },
+    {
+      "start": 3726.24,
+      "duration": 6.33,
+      "text": "So we consider defining\na Q vector of shares"
+    },
+    {
+      "start": 3732.57,
+      "duration": 4.23,
+      "text": "of assets 1 through n--"
+    },
+    {
+      "start": 3736.8,
+      "duration": 6.57,
+      "text": "a1 through an-- and Qf units\nof the risk-free asset."
+    },
+    {
+      "start": 3743.37,
+      "duration": 7.8,
+      "text": "And we can go through the same\nlogic of the initial wealth"
+    },
+    {
+      "start": 3751.17,
+      "duration": 7.19,
+      "text": "being the Q shares per asset\ntimes the price at time 0,"
+    },
+    {
+      "start": 3758.36,
+      "duration": 6.87,
+      "text": "t0, of the assets plus the value\nof the risk-free investment."
+    },
+    {
+      "start": 3765.23,
+      "duration": 7.29,
+      "text": "And we can assume that the\nrandom prices at time t1"
+    },
+    {
+      "start": 3772.52,
+      "duration": 2.946,
+      "text": "are jointly normally\ndistributed."
+    },
+    {
+      "start": 3779.33,
+      "duration": 8.04,
+      "text": "And so we then can think of\nthe market agent basically"
+    },
+    {
+      "start": 3787.37,
+      "duration": 6.45,
+      "text": "adjusting the initial\nshares Q by the X vector"
+    },
+    {
+      "start": 3793.82,
+      "duration": 5.67,
+      "text": "and choosing the X vector to\nmaximize expected utility."
+    },
+    {
+      "start": 3799.49,
+      "duration": 8.37,
+      "text": "And we can just plug\neverything in now"
+    },
+    {
+      "start": 3807.86,
+      "duration": 8.66,
+      "text": "with vectors instead of scalars,\nand the same arguments apply."
+    },
+    {
+      "start": 3816.52,
+      "duration": 2.37,
+      "text": "And we end up\ngetting, at the end"
+    },
+    {
+      "start": 3818.89,
+      "duration": 4.44,
+      "text": "of the day, different\nequilibrium prices"
+    },
+    {
+      "start": 3823.33,
+      "duration": 5.13,
+      "text": "for the different assets\nthat are discounted"
+    },
+    {
+      "start": 3828.46,
+      "duration": 7.41,
+      "text": "expected values of the\nprice plus a penalty"
+    },
+    {
+      "start": 3835.87,
+      "duration": 8.07,
+      "text": "depending upon the risk\naversion of the agent."
+    },
+    {
+      "start": 3843.94,
+      "duration": 8.64,
+      "text": "And so we end up getting\nthis final result here."
+    },
+    {
+      "start": 3852.58,
+      "duration": 12.09,
+      "text": "Now, what's particularly\ninteresting from this setup"
+    },
+    {
+      "start": 3864.67,
+      "duration": 6.26,
+      "text": "is to then say,\nwell, what prices"
+    },
+    {
+      "start": 3870.93,
+      "duration": 8.58,
+      "text": "should be holding if this\nmarket model is in equilibrium?"
+    },
+    {
+      "start": 3879.51,
+      "duration": 6.52,
+      "text": "And so if the market\nis in equilibrium,"
+    },
+    {
+      "start": 3886.03,
+      "duration": 7.01,
+      "text": "then we should have expected\nreturns of risky assets"
+    },
+    {
+      "start": 3893.04,
+      "duration": 7.11,
+      "text": "that satisfy this formula here."
+    },
+    {
+      "start": 3900.15,
+      "duration": 11.62,
+      "text": "And if we look at an initial\nendowment of no shares at all,"
+    },
+    {
+      "start": 3911.77,
+      "duration": 7.31,
+      "text": "and define the X allocation\nto be an equilibrium"
+    },
+    {
+      "start": 3919.08,
+      "duration": 6.27,
+      "text": "investment in the\nmarket portfolio,"
+    },
+    {
+      "start": 3925.35,
+      "duration": 6.75,
+      "text": "then our market\nportfolio defined by X"
+    },
+    {
+      "start": 3932.1,
+      "duration": 8.25,
+      "text": "will have a market value of f\ntilde m, the sum of the Xi's"
+    },
+    {
+      "start": 3940.35,
+      "duration": 3.06,
+      "text": "shares times f tilde i."
+    },
+    {
+      "start": 3943.41,
+      "duration": 4.53,
+      "text": "The price initially of\nthe market portfolio"
+    },
+    {
+      "start": 3947.94,
+      "duration": 4.05,
+      "text": "will be just the\nsum of the Xi shares"
+    },
+    {
+      "start": 3951.99,
+      "duration": 4.08,
+      "text": "times the initial price as Pai."
+    },
+    {
+      "start": 3956.07,
+      "duration": 5.67,
+      "text": "And the return of\nthe market portfolio"
+    },
+    {
+      "start": 3961.74,
+      "duration": 3.57,
+      "text": "will just be the\nchange in value divided"
+    },
+    {
+      "start": 3965.31,
+      "duration": 3.93,
+      "text": "by the initial value,\nwhich corresponds"
+    },
+    {
+      "start": 3969.24,
+      "duration": 8.68,
+      "text": "to a weighted sum of the asset\nchanges or percentage returns."
+    },
+    {
+      "start": 3977.92,
+      "duration": 5.87,
+      "text": "So the percentage return r tilde\nm is simply the weighted returns"
+    },
+    {
+      "start": 3983.79,
+      "duration": 2.52,
+      "text": "of the individual assets."
+    },
+    {
+      "start": 3986.31,
+      "duration": 7.14,
+      "text": "And this is our expected\nreturn of the market portfolio"
+    },
+    {
+      "start": 3993.45,
+      "duration": 5.52,
+      "text": "when the underlying assets\nsatisfy these pricing"
+    },
+    {
+      "start": 3998.97,
+      "duration": 1.71,
+      "text": "conditions."
+    },
+    {
+      "start": 4000.68,
+      "duration": 12.25,
+      "text": "Now, if we expand this expected\nmarket return expression,"
+    },
+    {
+      "start": 4012.93,
+      "duration": 11.33,
+      "text": "we can successively derive that\nit equals the risk-free rate,"
+    },
+    {
+      "start": 4024.26,
+      "duration": 9.84,
+      "text": "plus this blue factor times\nthe covariance of the initial w"
+    },
+    {
+      "start": 4034.1,
+      "duration": 3.33,
+      "text": "vector with rm."
+    },
+    {
+      "start": 4037.43,
+      "duration": 16.37,
+      "text": "And this blue expression can be\nsolved for as the excess return"
+    },
+    {
+      "start": 4053.8,
+      "duration": 6.03,
+      "text": "of the market portfolio divided\nby the covariance term here."
+    },
+    {
+      "start": 4059.83,
+      "duration": 11.1,
+      "text": "And so we end up getting that\nthis covariance of w and rm"
+    },
+    {
+      "start": 4070.93,
+      "duration": 6.78,
+      "text": "end up being simply pm\ntimes the covariance of rm,"
+    },
+    {
+      "start": 4077.71,
+      "duration": 2.16,
+      "text": "or the variance of rm."
+    },
+    {
+      "start": 4079.87,
+      "duration": 3.75,
+      "text": "And plugging this\nin, we finally get"
+    },
+    {
+      "start": 4083.62,
+      "duration": 6.39,
+      "text": "that the expected returns\nof different assets"
+    },
+    {
+      "start": 4090.01,
+      "duration": 6.69,
+      "text": "are simply a beta factor\ntimes the excess return--"
+    },
+    {
+      "start": 4096.7,
+      "duration": 3.6,
+      "text": "expected return of\nthe market portfolio"
+    },
+    {
+      "start": 4100.3,
+      "duration": 2.04,
+      "text": "over the risk-free rate."
+    },
+    {
+      "start": 4102.34,
+      "duration": 5.15,
+      "text": "And so this\nexpression is actually"
+    },
+    {
+      "start": 4107.49,
+      "duration": 5.64,
+      "text": "the expression for what's called\nthe security market line, where"
+    },
+    {
+      "start": 4113.13,
+      "duration": 5.64,
+      "text": "we have the expected\nreturn of asset i"
+    },
+    {
+      "start": 4118.77,
+      "duration": 3.24,
+      "text": "is the risk-free rate,\nplus a beta factor"
+    },
+    {
+      "start": 4122.01,
+      "duration": 5.559,
+      "text": "times the excess return of the\nmarket over the risk-free rate."
+    },
+    {
+      "start": 4127.569,
+      "duration": 5.511,
+      "text": "And this beta\nfactor is the ratio"
+    },
+    {
+      "start": 4133.08,
+      "duration": 9.239,
+      "text": "of the covariance of asset i\nand the market portfolio divided"
+    },
+    {
+      "start": 4142.319,
+      "duration": 4.591,
+      "text": "by the variance of\nthe market portfolio."
+    },
+    {
+      "start": 4146.91,
+      "duration": 7.86,
+      "text": "And so this beta i is equivalent\nto the regression coefficient"
+    },
+    {
+      "start": 4154.77,
+      "duration": 4.51,
+      "text": "of the excess return of stocks\nregressed on the excess return"
+    },
+    {
+      "start": 4159.28,
+      "duration": 0.583,
+      "text": "of the market."
+    },
+    {
+      "start": 4164.06,
+      "duration": 7.23,
+      "text": "So in this model, we end up\nhaving that different assets"
+    },
+    {
+      "start": 4171.29,
+      "duration": 3.689,
+      "text": "will have different returns."
+    },
+    {
+      "start": 4174.979,
+      "duration": 8.411,
+      "text": "And those returns are\nbounded below by rf,"
+    },
+    {
+      "start": 4183.39,
+      "duration": 9.29,
+      "text": "but then are increased by having\na higher beta factor multiplying"
+    },
+    {
+      "start": 4192.68,
+      "duration": 2.2,
+      "text": "the excess return of the market."
+    },
+    {
+      "start": 4194.88,
+      "duration": 4.04,
+      "text": "So you may be\nfamiliar with issues"
+    },
+    {
+      "start": 4198.92,
+      "duration": 5.55,
+      "text": "of betas in equity markets\nand their being low betas"
+    },
+    {
+      "start": 4204.47,
+      "duration": 4.53,
+      "text": "or high beta stocks."
+    },
+    {
+      "start": 4209.0,
+      "duration": 4.23,
+      "text": "In this model, we\nhave that the way"
+    },
+    {
+      "start": 4213.23,
+      "duration": 5.76,
+      "text": "you get higher expected return\nis to have a higher beta."
+    },
+    {
+      "start": 4218.99,
+      "duration": 11.42,
+      "text": "And so this also just\nleads to understanding"
+    },
+    {
+      "start": 4230.41,
+      "duration": 5.86,
+      "text": "what the equilibrium prices\nare of individual assets."
+    },
+    {
+      "start": 4236.27,
+      "duration": 3.23,
+      "text": "If we take those\nexpressions for returns"
+    },
+    {
+      "start": 4239.5,
+      "duration": 5.16,
+      "text": "and then reverse them into\nexpressions for the equilibrium"
+    },
+    {
+      "start": 4244.66,
+      "duration": 4.86,
+      "text": "prices, we have that the\nequilibrium prices are"
+    },
+    {
+      "start": 4249.52,
+      "duration": 9.03,
+      "text": "the expected terminal\nprice divided by a discount"
+    },
+    {
+      "start": 4258.55,
+      "duration": 4.95,
+      "text": "factor that discounts\nby the discount"
+    },
+    {
+      "start": 4263.5,
+      "duration": 2.83,
+      "text": "rate of the\nrisk-free investment,"
+    },
+    {
+      "start": 4266.33,
+      "duration": 5.93,
+      "text": "but adding to that a penalty\nbased on the level of risk"
+    },
+    {
+      "start": 4272.26,
+      "duration": 1.01,
+      "text": "that's being taken."
+    },
+    {
+      "start": 4276.64,
+      "duration": 5.48,
+      "text": "And here are just some\nreferences on this topic"
+    },
+    {
+      "start": 4282.12,
+      "duration": 5.64,
+      "text": "that you may want to check out."
+    },
+    {
+      "start": 4287.76,
+      "duration": 4.83,
+      "text": "The development\nhere was actually"
+    },
+    {
+      "start": 4292.59,
+      "duration": 4.71,
+      "text": "taken from the first reference\nby Frank de Jong and Barbara"
+    },
+    {
+      "start": 4297.3,
+      "duration": 1.77,
+      "text": "Rindi."
+    },
+    {
+      "start": 4299.07,
+      "duration": 4.06,
+      "text": "There are other\nimportant citations."
+    },
+    {
+      "start": 4303.13,
+      "duration": 4.11,
+      "text": "One of them that's of\ninterest is John Lintner,"
+    },
+    {
+      "start": 4307.24,
+      "duration": 1.733,
+      "text": "\"The Valuation of Risky Assets.\""
+    },
+    {
+      "start": 4311.52,
+      "duration": 7.17,
+      "text": "The capital asset pricing model\nwas actually formulated by John"
+    },
+    {
+      "start": 4318.69,
+      "duration": 5.17,
+      "text": "Lintner and William Sharpe\nback in the early '60s."
+    },
+    {
+      "start": 4323.86,
+      "duration": 5.45,
+      "text": "And I distributed one of\nthe articles of Lintner"
+    },
+    {
+      "start": 4329.31,
+      "duration": 1.87,
+      "text": "in the Canvas site."
+    },
+    {
+      "start": 4331.18,
+      "duration": 5.72,
+      "text": "And it's actually nice to be\nable to read a very technical"
+    },
+    {
+      "start": 4336.9,
+      "duration": 4.73,
+      "text": "paper in an accessible way."
+    },
+    {
+      "start": 4341.63,
+      "duration": 3.94,
+      "text": "And so I think that you'll\nenjoy checking that paper out."
+    },
+    {
+      "start": 4348.46,
+      "duration": 2.22,
+      "text": "OK."
+    },
+    {
+      "start": 4350.68,
+      "duration": 7.14,
+      "text": "Well, let me turn then to the\nmain topic in our syllabus"
+    },
+    {
+      "start": 4357.82,
+      "duration": 4.92,
+      "text": "for today, but it's\nthe tail end of today,"
+    },
+    {
+      "start": 4362.74,
+      "duration": 5.11,
+      "text": "to talk about stochastic\nprocesses, concepts."
+    },
+    {
+      "start": 4367.85,
+      "duration": 5.6,
+      "text": "And one of the most important\nconcepts in stochastic processes"
+    },
+    {
+      "start": 4373.45,
+      "duration": 5.83,
+      "text": "is the concept of a\nMartingale process."
+    },
+    {
+      "start": 4379.28,
+      "duration": 7.43,
+      "text": "And so if we have a\nstochastic process given"
+    },
+    {
+      "start": 4386.71,
+      "duration": 5.7,
+      "text": "by a sequence of\nrandom variables Xn,"
+    },
+    {
+      "start": 4392.41,
+      "duration": 7.04,
+      "text": "we can define a\nrelated process Mn,"
+    },
+    {
+      "start": 4399.45,
+      "duration": 9.03,
+      "text": "which is defined as functions\nof the first n X's for each n."
+    },
+    {
+      "start": 4408.48,
+      "duration": 8.31,
+      "text": "So if we have Mn depending\nonly on the first nX's"
+    },
+    {
+      "start": 4416.79,
+      "duration": 4.54,
+      "text": "in some well-defined way\ngiven by a function fn,"
+    },
+    {
+      "start": 4421.33,
+      "duration": 6.93,
+      "text": "then we will say that this\nMn sequence, which is random,"
+    },
+    {
+      "start": 4428.26,
+      "duration": 2.37,
+      "text": "because of its\ndependence on the X's,"
+    },
+    {
+      "start": 4430.63,
+      "duration": 9.47,
+      "text": "it will be a Martingale if the\nexpected value of the n-th M,"
+    },
+    {
+      "start": 4440.1,
+      "duration": 5.52,
+      "text": "given the first n\nminus 1 X's, is simply"
+    },
+    {
+      "start": 4445.62,
+      "duration": 5.16,
+      "text": "equal to the n minus\nfirst value of M."
+    },
+    {
+      "start": 4450.78,
+      "duration": 5.19,
+      "text": "And we also are going to require\nthat the magnitude of the Mn's"
+    },
+    {
+      "start": 4455.97,
+      "duration": 4.31,
+      "text": "as a finite expectation\nfor all n too."
+    },
+    {
+      "start": 4460.28,
+      "duration": 5.55,
+      "text": "Now, let's consider perhaps\nthe simplest example"
+    },
+    {
+      "start": 4465.83,
+      "duration": 4.81,
+      "text": "of a Martingale, which is\nbasically a random walk."
+    },
+    {
+      "start": 4470.64,
+      "duration": 5.75,
+      "text": "Suppose the Xn sequence is just\nindependent random variables"
+    },
+    {
+      "start": 4476.39,
+      "duration": 10.89,
+      "text": "that each has mean 0, and Sn\nis the sum of the first nX's."
+    },
+    {
+      "start": 4487.28,
+      "duration": 6.66,
+      "text": "Then this Sn is a random\nwalk with steps given by X."
+    },
+    {
+      "start": 4493.94,
+      "duration": 3.0,
+      "text": "And it's going to be a\nMartingale with respect"
+    },
+    {
+      "start": 4496.94,
+      "duration": 4.74,
+      "text": "to the original process of Xn's."
+    },
+    {
+      "start": 4501.68,
+      "duration": 3.09,
+      "text": "Now, we can make this\nexample, even simpler"
+    },
+    {
+      "start": 4504.77,
+      "duration": 4.98,
+      "text": "by assuming that the X's are\nindependent and identically"
+    },
+    {
+      "start": 4509.75,
+      "duration": 3.87,
+      "text": "distributed, and\nmaybe that they're"
+    },
+    {
+      "start": 4513.62,
+      "duration": 4.97,
+      "text": "discrete with just a plus\n1 or minus 1 step increment"
+    },
+    {
+      "start": 4518.59,
+      "duration": 2.73,
+      "text": "with equal probability."
+    },
+    {
+      "start": 4521.32,
+      "duration": 8.55,
+      "text": "So these X's have expectation\nequal to 0 and variance equal"
+    },
+    {
+      "start": 4529.87,
+      "duration": 1.35,
+      "text": "to 1."
+    },
+    {
+      "start": 4531.22,
+      "duration": 4.96,
+      "text": "And the process Sn\nhas expectation 0,"
+    },
+    {
+      "start": 4536.18,
+      "duration": 1.73,
+      "text": "the sum of the expectations."
+    },
+    {
+      "start": 4537.91,
+      "duration": 3.63,
+      "text": "And the variance of\nSn is the variance"
+    },
+    {
+      "start": 4541.54,
+      "duration": 4.72,
+      "text": "of a sum of independent\nsteps, increments."
+    },
+    {
+      "start": 4546.26,
+      "duration": 2.58,
+      "text": "And so it's just the\nsum of the variances."
+    },
+    {
+      "start": 4548.84,
+      "duration": 2.0,
+      "text": "So that's n."
+    },
+    {
+      "start": 4550.84,
+      "duration": 5.13,
+      "text": "Well, here's a random\nwalk realization"
+    },
+    {
+      "start": 4555.97,
+      "duration": 4.41,
+      "text": "of this model with 100 steps."
+    },
+    {
+      "start": 4560.38,
+      "duration": 5.5,
+      "text": "And so it basically\nstarts at time 0,"
+    },
+    {
+      "start": 4565.88,
+      "duration": 2.75,
+      "text": "and then as steps\noccur, increments"
+    },
+    {
+      "start": 4568.63,
+      "duration": 3.33,
+      "text": "up or down plus or minus 1."
+    },
+    {
+      "start": 4571.96,
+      "duration": 4.92,
+      "text": "If we increase from\n100 steps to 1,000,"
+    },
+    {
+      "start": 4576.88,
+      "duration": 5.73,
+      "text": "this is what a\nrealization looks like."
+    },
+    {
+      "start": 4582.61,
+      "duration": 4.49,
+      "text": "And then here's an extension\nfrom 1,000 steps to 10,000"
+    },
+    {
+      "start": 4587.1,
+      "duration": 1.06,
+      "text": "steps."
+    },
+    {
+      "start": 4588.16,
+      "duration": 5.45,
+      "text": "And what's rather significant\nis the general shape"
+    },
+    {
+      "start": 4593.61,
+      "duration": 4.27,
+      "text": "of this random walk process as\nwe increase the number of steps."
+    },
+    {
+      "start": 4597.88,
+      "duration": 5.21,
+      "text": "It becomes this\nvery jagged path."
+    },
+    {
+      "start": 4603.09,
+      "duration": 5.76,
+      "text": "And it actually corresponds\nto Brownian motion models"
+    },
+    {
+      "start": 4608.85,
+      "duration": 1.81,
+      "text": "that we'll come across."
+    },
+    {
+      "start": 4610.66,
+      "duration": 5.9,
+      "text": "Now, if we were to realize\n10 different paths of length"
+    },
+    {
+      "start": 4616.56,
+      "duration": 5.83,
+      "text": "10,000, here are\nexamples of that."
+    },
+    {
+      "start": 4622.39,
+      "duration": 5.61,
+      "text": "And so one can see that\nfor low number of steps"
+    },
+    {
+      "start": 4628.0,
+      "duration": 3.32,
+      "text": "there's not very much\nvariability that increases as we"
+    },
+    {
+      "start": 4631.32,
+      "duration": 2.28,
+      "text": "increase the number of steps."
+    },
+    {
+      "start": 4633.6,
+      "duration": 4.94,
+      "text": "And here, we're\njust drawing bands"
+    },
+    {
+      "start": 4638.54,
+      "duration": 3.87,
+      "text": "at plus or minus multiples\nof the standard deviation"
+    },
+    {
+      "start": 4642.41,
+      "duration": 3.42,
+      "text": "of the random walk value."
+    },
+    {
+      "start": 4645.83,
+      "duration": 8.28,
+      "text": "And so these standard\ndeviation levels basically"
+    },
+    {
+      "start": 4654.11,
+      "duration": 3.57,
+      "text": "apply just through\nthe mathematics"
+    },
+    {
+      "start": 4657.68,
+      "duration": 6.33,
+      "text": "of calculating one or two\nstandard deviations of the sum."
+    },
+    {
+      "start": 4664.01,
+      "duration": 8.22,
+      "text": "And what we know from\nour central limit theorem"
+    },
+    {
+      "start": 4672.23,
+      "duration": 4.59,
+      "text": "is that the distribution of\npossible values at any given"
+    },
+    {
+      "start": 4676.82,
+      "duration": 3.24,
+      "text": "time step will be\nclosely modeled"
+    },
+    {
+      "start": 4680.06,
+      "duration": 3.765,
+      "text": "by a Gaussian distribution\nbecause of the central limit"
+    },
+    {
+      "start": 4683.825,
+      "duration": 0.5,
+      "text": "theorem."
+    },
+    {
+      "start": 4684.325,
+      "duration": 1.915,
+      "text": "[BELL RINGING]"
+    },
+    {
+      "start": 4686.24,
+      "duration": 1.0,
+      "text": "We have a stop."
+    },
+    {
+      "start": 4687.24,
+      "duration": 2.3,
+      "text": "OK, I'm going to take\ntwo more minutes just"
+    },
+    {
+      "start": 4689.54,
+      "duration": 2.81,
+      "text": "to show you a more--\nnot a more interesting,"
+    },
+    {
+      "start": 4692.35,
+      "duration": 3.74,
+      "text": "but a related but very\ninteresting Martingale."
+    },
+    {
+      "start": 4696.09,
+      "duration": 7.62,
+      "text": "Suppose that once we've\ncalculated this random walk Sn,"
+    },
+    {
+      "start": 4703.71,
+      "duration": 7.05,
+      "text": "we look at the square of Sn\nand subtract n sigma squared."
+    },
+    {
+      "start": 4710.76,
+      "duration": 5.13,
+      "text": "It turns out that this\nis a martingale as well."
+    },
+    {
+      "start": 4715.89,
+      "duration": 6.6,
+      "text": "And here's one realization\nover 10,000 steps,"
+    },
+    {
+      "start": 4722.49,
+      "duration": 3.96,
+      "text": "and here are 10 realizations."
+    },
+    {
+      "start": 4726.45,
+      "duration": 2.76,
+      "text": "And so these look\nvery, very different"
+    },
+    {
+      "start": 4729.21,
+      "duration": 2.98,
+      "text": "from the simple random walk."
+    },
+    {
+      "start": 4732.19,
+      "duration": 3.11,
+      "text": "But these, as well,\nare martingales."
+    },
+    {
+      "start": 4735.3,
+      "duration": 4.23,
+      "text": "And so one of the--\nwhat we'll see next time"
+    },
+    {
+      "start": 4739.53,
+      "duration": 7.95,
+      "text": "is how martingales have very\nspecial properties which"
+    },
+    {
+      "start": 4747.48,
+      "duration": 5.67,
+      "text": "can be used to solve challenging\nprobability problems."
+    },
+    {
+      "start": 4753.15,
+      "duration": 6.35,
+      "text": "And just as a closing remark,\ndoes anyone here know where"
+    },
+    {
+      "start": 4759.5,
+      "duration": 1.925,
+      "text": "the term \"martingale\"\ncomes from?"
+    },
+    {
+      "start": 4764.75,
+      "duration": 3.12,
+      "text": "Do we have any equestrians?"
+    },
+    {
+      "start": 4767.87,
+      "duration": 3.72,
+      "text": "There's a bridle and a horse\ncalled a martingale bridle"
+    },
+    {
+      "start": 4771.59,
+      "duration": 4.66,
+      "text": "that keeps the horse\nstraight, looking straight."
+    },
+    {
+      "start": 4776.25,
+      "duration": 4.76,
+      "text": "So it is a bridle\nthat has pressure"
+    },
+    {
+      "start": 4781.01,
+      "duration": 3.04,
+      "text": "on both sides of the mouth to\nkeep the horse looking straight."
+    },
+    {
+      "start": 4784.05,
+      "duration": 1.67,
+      "text": "And what's true\nabout a martingale"
+    },
+    {
+      "start": 4785.72,
+      "duration": 3.0,
+      "text": "is that the expected\nvalue in the future"
+    },
+    {
+      "start": 4788.72,
+      "duration": 6.19,
+      "text": "is always a constant level equal\nto the last level of the series."
+    },
+    {
+      "start": 4794.91,
+      "duration": 5.64,
+      "text": "So that property will end up\nbeing very, very convenient,"
+    },
+    {
+      "start": 4800.55,
+      "duration": 4.06,
+      "text": "and we'll see examples\nof that next time."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PROFESSOR: All right, we'll get started. We're going to continue our discussion of principal components analysis. And what I want to emphasize with principal components is that we're dealing with a random vector X that's in m dimensional space. And it has an expected value of alpha, say. And it has a covariance matrix given by sigma, which is m by m. This kind of setup can be used for modeling returns on stocks or assets that may have a mean return over some holding period and a variance-covariance matrix. And so in working with financial data, principal components analysis can be quite useful. Essentially, what principal components does is it transforms our X vector to a p vector of principal component variables. And the definitions of these is we subtract from X the mean vector. And then we rotate the coordinate axes of this m vector by this gamma transpose matrix. And so this gamma transpose can equal gamma 1 transpose, gamma 2 transpose, down to gamma M transpose. And so the first component-- p1 down to pm. The first component corresponds to using this gamma vector, which happens to be an eigenvector of the covariance matrix corresponding to where with associated eigenvalue lambda i. And in this representation, we basically have sigma gamma i is equal to lambda i gamma i. And we can order our eigenvalues from largest to smallest. And the first principal component variable corresponds to lining up-- or looking at a coordinate system where we're looking along the dimension of greatest variability in the data. So this covariance structure it's actually useful to think of a special example, which is the multivariate normal distribution in m dimensions with mean vector alpha and covariance matrix sigma. And so if we think of X1 and x2-- we'll just consider a two-dimensional case as an example. There could be an alpha 1, alpha 2 here for the mean of X1, first component mean of X2. And with a bivariate normal distribution, we basically will have contours of the density, the joint density, of X1 and X2 that are given by ellipses centered at the mean vector. And the degree to which the components are highly correlated-- if it's a positive correlation, then we have ellipses that are tilted up. If it's a negative correlation, it would be tilted down. Now, what principal components analysis does is it basically-- this step here corresponds to shifting the coordinate axes to, say, x1 star and x2 star. So we recenter our space at the point with the origin being at the mean point of the outcomes. And then we consider rotating these axes in such a way that the first principal component axis corresponding to the largest eigenvalue, it will orient along the principal axis of the ellipse. And the second principal component axis will be orthogonal to the first. And it will-- well, in two dimensions it will have variability along that dimension that's smaller than P1. When we extend from a two-dimensional case to an m-dimensional case-- so suppose we have 500 stocks or 1,000, then if we apply a multinomial model to that case, then our principal components will be identifying coordinates-- basically coordinate system variables that line up with different orthogonal dimensions of variability. And so what ends up being very useful is that, at least when we look at a market of stocks or asset returns, some of those may be highly correlated with each other. Others may be, in a sense, orthogonal or uncorrelated with each other. And with principal components analysis, we can actually identify different directions in the space, which basically have decreasing levels of variability, but that are also orthogonal to each other or uncorrelated with each other. So when we want to specify factors, underlying factors, say, in joint distributions of returns and markets, principal components can be very helpful in trying to identify those. And later on, we'll talk about factor modeling and see how close or how effective principal components can be. But there are also general factor models that we'll introduce later. So with these transformations, as noted here, these principal component variables have basically a mean that's zero and a covariance matrix that's diagonal. So these principal component variables are uncorrelated with each other. And if we order the eigenvalues from largest to smallest, the first principal component variable will be the axis with the greatest variability. Now, what's interesting to highlight is that in the transformation from the original X's to the principal component variables, the only thing we've done is shift the origin and then rotated the coordinate axes in an orthogonal way. So we're maintaining right angles between coordinate axes. And that's all we've done. So if we have outcomes of X-- so if we have X is a random variable, but then we may have realizations-- realizations, say, X-- I don't know-- a, Xb. I don't want to have integers referring to these because I don't want to confuse the components. But we could have different realizations for different days or different analysis periods, and we would get different points of realizations of the outcomes of this vector. And so principal components allows us just to view the data in a way that hasn't transformed the data in an unusual way. Basically, the configuration of points is the same before and after the construction of these PC variables. So let's see. OK, there's this version of principal components where we consider splitting the first k principal components into a gamma 1 matrix and the remaining ones into a gamma 2 portion. And so one can then think of there being a linear model for our outcome x variable, which might be simplified to just a mean vector plus a matrix times the first k principal component variables plus error. If this, in fact, were an effective model, it might be the case that the last m minus k principal component variables essentially have no important information in them. And so this could be a very simple model for our x variable. And importantly, if this were an appropriate model for an m vector x, then the covariance matrix of the-- the covariance matrix of X is just given by-- or let's see. Or the-- yeah, the covariance matrix of X, in terms of the diagonal entries which represent the correlations, are all due to common loadings on these different principal component variables in p1. So the interesting question to think about is, how can we model random vectors with some covariance matrix? And are there simple structures to the covariance matrix that explain all of the intercorrelations? Now, when we perform empirical principal components analysis, then what we do is we-- say, we have an X matrix, which has columns X1 through X sub capital T that are all m vectors. Then we compute the row means-- we subtract those row means from the matrix row by row. And then with this X star matrix that's the demeaned matrix, that matrix times its transpose divided by the number of columns in X capital T, that is an estimate of the covariance matrix, essentially the sample covariance matrix. And we then can perform an eigenvalue eigenvector decomposition of this covariance matrix, and then use these results to define the empirical principal component coordinates of our data. And it corresponds to just taking our estimate of the gamma matrix transpose the demeaned matrix. So this is very simple to implement. And let's see. The singular value decomposition is also a way of obtaining these principal component transformations. If we look at VDU transpose being the singular value decomposition of our X star demeaned matrix, then we have our lambda estimate just being the square of the D diagonal matrix divided by T. The estimate of the gamma matrix is simply the V. And our principal component variables-- or our data transformed to principal component coordinates is simply given by DU prime. So principal components analysis is very easy to implement. And the lecture that was originally scheduled for today, Stefan Andreev, he's going to go through a number of examples of applying principal components in equity markets and in bond markets. What's really useful to anticipate is that-- well, one of the examples that he's used in the past is where the X vector corresponds to index returns in different European markets on a daily basis, and attempting to understand the joint variability across all of the markets, but also to understand where there are different geographical clusters of countries like Northern European versus Southern European. Those tend to be separately highly correlated with each other. Another example of principal components analysis is looking at interest rates in the fixed income market. It turns out that for different maturities of bonds ranging from, say, one month, three month, a year, to five years, 10 years, 20 years, 30 years, the interest rates can be measured in terms of their yields. And the yield curve will vary day by day. And it turns out that the principal components analysis of yields has a very strong structure to it. So I'll let him introduce those when he comes in a couple of weeks. Well, with principal component variables, it's important to understand that there are alternative ways of deriving or defining principal component variables. One is to define the first principal component variable to be the linear combination, defined by weights w1 through wm, that maximize the variance of that weighted sum subject to the sum of squares of the weights equaling 1. So we're looking at a unit vector w and trying to find the vector w that maximizes the variance of the linear combination in that direction. So when we get to the transformation of the data-- or the random variable by demeaning it, then if we look at w vectors that are unit vectors in this space, then we're looking at which w vector is pointing in the direction of maximum variability. Then the second principal component variable is defined as the next w vector, now v, which maximizes the variance subject to having length one but being orthogonal to the first. So it's a rather nice way of characterizing principal component variables. Now, with principal components analysis, one of the really neat things is that-- let's see. We often focus on the first few principal component variables because they explain most of the variability. But the last principal component variable defines the linear combination of the components that has the smallest variance. And sometimes that smallest variance can be zero, in which case, we're identifying a linear dependence in the returns. So let's see. My first example of this case was before the euro existed. So I'm really dating myself. But the German deutschmark and the French franc were very, very highly correlated before the euro came out. And in looking at currency returns, the principal components analysis actually identified that empirically in a nice way. Let's see. OK, mathematically with principal components analysis, we can talk about a decomposition of the total variance. So if we have this covariance matrix sigma, we could talk about the total variance is equal to the sum 1 to m of sigma jj. So the j-th diagonal entry of the covariance matrix is the variance of the j-th component. And the sum of that is the trace of sigma. We can decompose that total variance as the sum of the eigenvalues. And so principal components analysis provides a decomposition of variability. And we can see what proportion of variability is explained by the first or the first few principal component variables. These lecture notes finish with just reminding you of some important statistic-- important probability distributions in statistics. The chi-squared distribution arises again and again. And the chi-squared distribution with one degree of freedom is equal in distribution to the square of a standard normal distribution. So this is a useful thing to remember in different cases. And let's see. If we-- well, here's its density function. It turns out to be a special case of the gamma distribution. And here's this moment-generating function. It turns out that if we take independent normal 0, 1 random variables, square them and sum them, then the sum of n independent ones is a chi-squared with N degrees of freedom. And we can prove these results using moment-generating functions and get densities for those. Importantly, t distributions often are-- let's see-- arise, especially in the study of regression models and the significance of regression parameter estimates. But basically, with a t distribution, if we take a standard normal and then divide it by the square root of a chi-squared divided by its degrees of freedom, where the chi-squared variable U is independent, then this will give us a t distribution with r degrees of freedom. And so, let's see. With t distributions, t distributions are examples of distributions that are heavier tailed than a normal distribution. And so if you think of taking a normal z variable and dividing by this chi-squared distribution divided by this degree of freedom and square root, we're basically dividing a random normal by something that's random, but around 1. And the randomness of that factor leads to greater variability than the normal. So it's obvious that that could be the case. And it's indeed true. And let's see. The F distribution turns out to be the ratio of two chi-squared distributions, each divided by their respective degrees of freedom. And in classical statistics, we often are interested in measuring variability of data and variability due to different driving factors. And so F distributions arise commonly when we have estimates of variance given by a chi-squared divided by a degree of freedom. And if we have two different estimates of variability, then if those distributions have common variances, then the F distribution applies. Some of you may have heard of analysis of variance in statistics. Anyway, the analysis of variance methods work with studying F statistic distributions. Yeah? AUDIENCE: Are noncentral distributions used a lot where there's a noncentrality parameter? Or are they mainly just like the centered ones? PROFESSOR: Well, the noncentrality-- or when you have null hypotheses in analysis of variance that are true, then the F statistics will be F's with zero noncentrality. And if the null hypothesis is false, then you'll have a F distribution with a noncentrality parameter. So the noncentrality parameter comes into specifying the distribution of the test statistic when the null hypothesis is false. AUDIENCE: So it's not used sometimes then like when [INAUDIBLE] is false. PROFESSOR: Yes. Actually, the next two lectures after today will be on regression analysis and testing and regression. And so we'll see those come into play there. Yep. All right. What else? Oh, OK. Just the weak law of large numbers and the central limit theorem are the remaining topics here. If we have sample data realizations of, say, N-- or N realizations of a random variable-- and here, we say IID for Independent and Identically Distributed. If those random variables have mean mu and variance sigma squared, then the sample mean, X bar n, will converge in probability to that mean. So the larger the sample size in the mean, the closer the sample mean will be to the true mu parameter. But what we-- what's important from probability theory is how do we characterize convergence of random variables? And so the convergence in probability to a constant means that the probability that the deviation, the absolute deviation from mu exceeding epsilon, that that goes to zero. And this theorem-- or this result can be proven with Chebyshev's inequality. And it's sort of a neat example where if we want to look at the variance of X bar n, which is equal to, what, the expected value of X bar minus mu squared. Then if we were to draw X bar n, and here's mu, and then have the graph of X bar n minus mu squared, if we were to transform our scale to X bar n minus mu, then this mu value goes to zero. And if we were to look at the epsilon value for X bar n minus mu, we can consider a function other than this parabola, which is zero, up to this epsilon away from mu point, and then is simply equal to epsilon squared beyond, and do the same at minus epsilon. So zero up to there. And the variance, which is the probability weighted average of the parabola over the distribution, has to be greater than epsilon squared times the probability of exceeding-- of being further away from you than epsilon. So the fact that this function is greater than or equal to epsilon squared times the probability that X bar n minus mu is greater than epsilon. This gives us the result. And we basically have that-- we're basically giving a positive bound for this. Or we have an upper bound that decreases with n for this probability. So that gives us our nice result. Let's see. If you really like probability theory, one can actually extend this result to the case where we don't have a variance existing. We just have a mean existing. And that's a rather strong result that's neat. At least it's neat in terms of how the mathematics can handle more complex cases. Now, finally, we have the central limit theorem, which tells us what the asymptotic distribution is of a sum of independent and identically distributed random variables is. And so if we have variables X1 to Xn that are mean 0 variance sigma squared, it turns out that the sum of the excise divided by the square root of the sample size converges to a normal distribution with mean zero and variance sigma squared. So we have, what, Zn equaling 1 over root n sum 1 to n of the Xi's converges to a normal with mean zero and variance sigma squared. And if we were to think of X bar, which is equal to 1 over root n times Zn, this basically is converging, in some sense, to a normal with mean zero and variance sigma squared over n. Now, I put quotes around this arrow here because it's not really legitimate to talk about a limiting distribution that depends on n. But this is the way we approximate the distributions of sample means. Basically, they converge to the mean of the distribution, in this case, zero. And the variance is sigma squared over n. Now, what's neat in this proof is just to highlight the use of moment-generating functions. And so if we-- say, let's calculate the moment-generating function of Zn, we're going to show that the moment-generating function of Zn converges to this moment-generating function, which in fact is the normal with mean zero and variance sigma squared. So the theorem that says moment-generating functions are of unique, and if the limit of moment-generating functions exists and equals some function, we can identify the distribution by that limiting moment-generating function. Well, if we calculate just the moment-generating function of Zn, if we just plug-in Zn within the expectation, then noting that the X's are independent of each other, we basically are taking the expectation of a product of independent terms. And so that expectation of a product is the product of the expectations. So we have the product of the expected value of Xi times t over root n. And this expectation here is actually the moment-generating function of X evaluated at t over root n. So it's the n-th power of that when we take the product of all n of those. Now, this is where it gets interesting. If we look at our moment-generating function of t over root n, well, we don't really know much about the distribution of the X's. We know it has a mean. We know it has a variance. The mean is zero. The variance is sigma squared. If we expand the moment-generating function into a Taylor series, then we get 1 plus the expected value of X times t over root n plus the expected value of X squared divided by 2 times t over root n squared plus, an order term that is given by the third power of the argument. And so as n gets large, these higher order terms are of smaller order. And so we finally have that this in the limit is 1 plus this multiple over n plus a small o of t squared over n. And if we take this expression to the n-th power, then it converges to the exponent of the argument sigma squared t squared over 2. So let's see if we have 1 plus r-- let's -- 1 plus r over n to the n-th power, this converges to e to the r. And Vasiliy used this argument in the first lecture to talk about continuous compounding and what the limiting value is of continuous compounding at some interest rate. Anyway, that same exponential result is true here. So this actually proves the central limit theorem using the identity theorem for MGFs. Yeah? AUDIENCE: Is CLT actually used in practice? Because obviously, like in finance nothing is going to be IID, or at least they're not going to be independent. So is it actually still useful in a practical setting? PROFESSOR: It can be very useful in a practical setting. And right now, it's specified in terms of identically distributed X's. It actually generalizes to X's that are independent but with different distributions as well. So also what's I guess really important is that if a variable we're working with corresponds to the sum of independent or uncorrelated terms, the sum can approach a normal distribution well. And if one looks at, I guess, linear projections of multidimensional vectors, X's, if you had a random direction in the n dimensional space, the projection onto that random direction will correspond to sums of close to identically distributed random variables, but will very likely have a Gaussian distribution as well. This will come up when we talk about regression modeling. But when we look at the error vector from a regression, the feasibility of the error vector being close to Gaussian is plausible and reasonable given the way it's constructed sometimes. OK. Well, let's move on then to this note on probability theory for asset pricing. What's really neat about this note is that we're going to introduce you just with basic probability theory to one of the more important models in quantitative finance, or at least in early quantitative finance, which is the capital asset pricing model. And so let's consider a simple context where we have one risky asset, like a stock. And we have a one period model where we have-- the beginning of the period is t0, and the end of the period is t1, I guess. And there's this risky asset, a-- so there's a risky asset, a. And we'll consider a market agent having Qa shares of the asset, and just Q units of a risk-free asset. Now, the risk-free asset is like putting money in the bank and being confident that you'll get it back with interest. And we'll assume that the risk-free asset costs $1-- so $1 per unit. And the risky asset will be of price Pa per share. So this market agent has a wealth at time 0. So W0 is going to be equal to qa pa plus q times $1. And X-- OK, so maybe we'll put an f here just to indicate that it's the risk-free asset. Now, at time T1-- so this is the t0 prices are given here. At T1, the risk-free asset is going to be worth 1 plus rf. And the price of the risky asset, we'll assume that it's a random variable given by f tilde. And for simplicity, we'll assume that it has some mean, mu, and variance sigma squared. Now, right away this is maybe a bad assumption to make because Gaussian or normal distributions can be arbitrarily large negative. But we'll assume that the likelihood of impossible values is very close to 0, so that this is a useful model. So this is the time T1 state of the market, which has certainty for the risk-free investment but uncertain outcome for the risky asset. Well, one could consider the agent being able to buy x units of the risky asset at the initial time point, t0, and then have end of period wealth that reflects that trade of buying X units at t0. So at the end of the period t1, time, there will be Qa plus X shares with value f tilde. And the x shares will have been bought by paying Pa, the t0 price at time 0. And so there will be money invested in the risk-free asset earning the interest rate, or the absolute return of 1 plus rf. Now, what we want to do is consider what is the optimal choice of X-- the number of shares to buy for this agent? And in order to make that choice, one can apply the decision theory under uncertainty and associate a utility of the end period wealth given by some utility function, u. And we can choose the X value to maximize the expected utility of wealth. So importantly, If we have u of w as a function of w, and there's basically a w0 value here-- utility of w0-- there are some standard assumptions one makes as to what the utility function is like. And we might assume that the first derivative and second derivative exist. So we'll assume that these exist. And so-- well, the first derivative is likely to be positive. More wealth is preferred to less. So we have a better direction being up and to the right. And the second derivative, this actually could be less than 0 if there's a decreasing marginal utility to more wealth. So this function might go and look like this with a U prime greater than 0 and U double prime less than 0. So these kinds of assumptions are reasonable to assume. And the theory of rational decision-making under uncertainty, if this is indeed your utility function, is to find the action X that maximizes this. And if we are lucky, we might be able to solve for X by satisfying the first order condition, the derivative of the expected utility equaling 0 at the maximum value. And-- yeah? AUDIENCE: Why would you use anything other than the identity function for U? Because surely you just want to maximize your end of period wealth? PROFESSOR: Let's see. If you use the identity, then there's-- well, it will turn out there's no penalty for a risk that you're undertaking. And so with this decreasing marginal utility of wealth, you end up having a penalty for taking risks. And so the-- yeah. So I'll leave it there, but it's a very good question. And let's see. There's actually some-- well, there's some really interesting discussions and about how to optimally invest, as this case. And there was a controversy between Claude Shannon and I think it was Milton Friedman about maximizing the exponential-- or the expected log return of investments just period and that being optimal. So anyway, we'll return to that discussion later as well. But for now, let's assume that this is a reasonable thing to do. And in order to solve this problem, we're actually going to use a lemma called Stein's Lemma, which is a curious mathematical result dealing with normally distributed y variable and y star. They're jointly distributed with each other and Gaussian. If we look at the expected value of g of Y times Y minus mu, and the expected value of g prime of Y, if both of those exist, then we get these simple formulas for essentially the covariance between g of Y and Y, and the covariance of g and Y and Y star. So this is a mathematical theorem that is abstract as it's stated, but it ends up being applicable in our problem. So if we define our wealth at the end of the period at time t1 to be given by this w tilde vector, then if the outcome of the asset price, f tilde, if this is Gaussian, then this wealth at time t1 will also be Gaussian because we're just taking a multiple of that plus a constant. So that note is simple. Then if we look at the expected utility and try to take the derivative of that with respect to X, then under certain conditions we can take the expectation of the derivative with respect to X of the integrand with the expectation. Now, under what conditions is it feasible to differentiate underneath the integral sign when you're doing computations in calculus? I mean, basically what we want to do is take the expected value of U of w tilde plus delta and subtract the expectation of U of w tilde and divide by delta, and take the limit as this goes to 0. So that's the formula for computing the derivative. It turns out we can do that if the first derivative of U is bounded or has bounded expectation. And so if that's possible to do, then we can take the derivative underneath the integral sign. And we have basically the derivative of U multiplied by the chain rule, the derivative of w tilde with respect to X. So if we take the derivative of w tilde with respect to X, we get f tilde minus Pa times 1 plus rf. So this is just the chain rule of differentiation there. Now with this expression in black, we can use the-- well, let's see. We can express this as the expected product of two random variables is equal to the covariance plus the product of the expectations. So here, we have U prime and f tilde minus Pa1 plus rf. The covariance between those two plus the product of their expectations is equal to that expected product. Then, by Stein's Lemma, one actually can simplify or re-express this covariance as the expected second derivative of U times the covariance of w and f. And so we can then substitute this expression into this last expression here and get 0 equals that covariance plus the product of the first expectations there. And so we're substituting in this expected second derivative of U times the covariance in that formula. Now, with this expression here, we have this covariance of w and f. Well, the covariance between w and f is simply the covariance of f with a multiple of f. So it equals that multiple times the variance of f. And so we plug that in to this covariance term. And what's curious, and is the punch line, is that this final equation gives us a formula for how we solve for X. And so the value of X that we should choose will basically satisfy this equation. And so our X value will depend upon what the price of the asset is. And it actually is equal to a discounted value of the expected price plus this other term here. And this other term here-- the second derivative is negative. First derivative is positive. So this is actually a negative factor here. And so we end up getting that-- we have a formula that depends upon that ratio of second derivative expectation to first derivative expectation of the utility function. Now, in economics classes, maybe some of you have come across the constant absolute risk aversion utility function. Has anybody come across that in an economics class? Maybe. Maybe not. But that function, which is a constant minus e to the minus Aw, this is the constant absolute risk aversion utility function. And so it basically has the right shape in terms of marginal utilities decreasing and utilities always increasing. And so with this particular utility function, we have the U double prime divided by U prime, those actually giving us just the factor A here. So we have our price of the asset should equal the discounted expected cash flow minus a risk adjustment. And the risk adjustment in the price, that's like the fair price for the asset, varies depending upon what the risk aversion coefficient is of the agent. And also the magnitude of the shares of the risky asset that are obtained and the variance of the price outcome. So the fair price for the market agent basically is balancing all of these factors. And let's see if-- OK. Well, with this result for a single asset, what's really neat is that we can generalize from one asset to many and set up the whole problem with almost the same notation. So we consider defining a Q vector of shares of assets 1 through n-- a1 through an-- and Qf units of the risk-free asset. And we can go through the same logic of the initial wealth being the Q shares per asset times the price at time 0, t0, of the assets plus the value of the risk-free investment. And we can assume that the random prices at time t1 are jointly normally distributed. And so we then can think of the market agent basically adjusting the initial shares Q by the X vector and choosing the X vector to maximize expected utility. And we can just plug everything in now with vectors instead of scalars, and the same arguments apply. And we end up getting, at the end of the day, different equilibrium prices for the different assets that are discounted expected values of the price plus a penalty depending upon the risk aversion of the agent. And so we end up getting this final result here. Now, what's particularly interesting from this setup is to then say, well, what prices should be holding if this market model is in equilibrium? And so if the market is in equilibrium, then we should have expected returns of risky assets that satisfy this formula here. And if we look at an initial endowment of no shares at all, and define the X allocation to be an equilibrium investment in the market portfolio, then our market portfolio defined by X will have a market value of f tilde m, the sum of the Xi's shares times f tilde i. The price initially of the market portfolio will be just the sum of the Xi shares times the initial price as Pai. And the return of the market portfolio will just be the change in value divided by the initial value, which corresponds to a weighted sum of the asset changes or percentage returns. So the percentage return r tilde m is simply the weighted returns of the individual assets. And this is our expected return of the market portfolio when the underlying assets satisfy these pricing conditions. Now, if we expand this expected market return expression, we can successively derive that it equals the risk-free rate, plus this blue factor times the covariance of the initial w vector with rm. And this blue expression can be solved for as the excess return of the market portfolio divided by the covariance term here. And so we end up getting that this covariance of w and rm end up being simply pm times the covariance of rm, or the variance of rm. And plugging this in, we finally get that the expected returns of different assets are simply a beta factor times the excess return-- expected return of the market portfolio over the risk-free rate. And so this expression is actually the expression for what's called the security market line, where we have the expected return of asset i is the risk-free rate, plus a beta factor times the excess return of the market over the risk-free rate. And this beta factor is the ratio of the covariance of asset i and the market portfolio divided by the variance of the market portfolio. And so this beta i is equivalent to the regression coefficient of the excess return of stocks regressed on the excess return of the market. So in this model, we end up having that different assets will have different returns. And those returns are bounded below by rf, but then are increased by having a higher beta factor multiplying the excess return of the market. So you may be familiar with issues of betas in equity markets and their being low betas or high beta stocks. In this model, we have that the way you get higher expected return is to have a higher beta. And so this also just leads to understanding what the equilibrium prices are of individual assets. If we take those expressions for returns and then reverse them into expressions for the equilibrium prices, we have that the equilibrium prices are the expected terminal price divided by a discount factor that discounts by the discount rate of the risk-free investment, but adding to that a penalty based on the level of risk that's being taken. And here are just some references on this topic that you may want to check out. The development here was actually taken from the first reference by Frank de Jong and Barbara Rindi. There are other important citations. One of them that's of interest is John Lintner, \"The Valuation of Risky Assets.\" The capital asset pricing model was actually formulated by John Lintner and William Sharpe back in the early '60s. And I distributed one of the articles of Lintner in the Canvas site. And it's actually nice to be able to read a very technical paper in an accessible way. And so I think that you'll enjoy checking that paper out. OK. Well, let me turn then to the main topic in our syllabus for today, but it's the tail end of today, to talk about stochastic processes, concepts. And one of the most important concepts in stochastic processes is the concept of a Martingale process. And so if we have a stochastic process given by a sequence of random variables Xn, we can define a related process Mn, which is defined as functions of the first n X's for each n. So if we have Mn depending only on the first nX's in some well-defined way given by a function fn, then we will say that this Mn sequence, which is random, because of its dependence on the X's, it will be a Martingale if the expected value of the n-th M, given the first n minus 1 X's, is simply equal to the n minus first value of M. And we also are going to require that the magnitude of the Mn's as a finite expectation for all n too. Now, let's consider perhaps the simplest example of a Martingale, which is basically a random walk. Suppose the Xn sequence is just independent random variables that each has mean 0, and Sn is the sum of the first nX's. Then this Sn is a random walk with steps given by X. And it's going to be a Martingale with respect to the original process of Xn's. Now, we can make this example, even simpler by assuming that the X's are independent and identically distributed, and maybe that they're discrete with just a plus 1 or minus 1 step increment with equal probability. So these X's have expectation equal to 0 and variance equal to 1. And the process Sn has expectation 0, the sum of the expectations. And the variance of Sn is the variance of a sum of independent steps, increments. And so it's just the sum of the variances. So that's n. Well, here's a random walk realization of this model with 100 steps. And so it basically starts at time 0, and then as steps occur, increments up or down plus or minus 1. If we increase from 100 steps to 1,000, this is what a realization looks like. And then here's an extension from 1,000 steps to 10,000 steps. And what's rather significant is the general shape of this random walk process as we increase the number of steps. It becomes this very jagged path. And it actually corresponds to Brownian motion models that we'll come across. Now, if we were to realize 10 different paths of length 10,000, here are examples of that. And so one can see that for low number of steps there's not very much variability that increases as we increase the number of steps. And here, we're just drawing bands at plus or minus multiples of the standard deviation of the random walk value. And so these standard deviation levels basically apply just through the mathematics of calculating one or two standard deviations of the sum. And what we know from our central limit theorem is that the distribution of possible values at any given time step will be closely modeled by a Gaussian distribution because of the central limit theorem. [BELL RINGING] We have a stop. OK, I'm going to take two more minutes just to show you a more-- not a more interesting, but a related but very interesting Martingale. Suppose that once we've calculated this random walk Sn, we look at the square of Sn and subtract n sigma squared. It turns out that this is a martingale as well. And here's one realization over 10,000 steps, and here are 10 realizations. And so these look very, very different from the simple random walk. But these, as well, are martingales. And so one of the-- what we'll see next time is how martingales have very special properties which can be used to solve challenging probability problems. And just as a closing remark, does anyone here know where the term \"martingale\" comes from? Do we have any equestrians? There's a bridle and a horse called a martingale bridle that keeps the horse straight, looking straight. So it is a bridle that has pressure on both sides of the mouth to keep the horse looking straight. And what's true about a martingale is that the expected value in the future is always a constant level equal to the last level of the series. So that property will end up being very, very convenient, and we'll see examples of that next time."
+}

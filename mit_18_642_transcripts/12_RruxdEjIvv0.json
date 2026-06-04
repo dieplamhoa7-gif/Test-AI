@@ -1,0 +1,5008 @@
+{
+  "index": 12,
+  "id": "RruxdEjIvv0",
+  "title": "Lecture 11: Regression Analysis (cont.)",
+  "rows": [
+    {
+      "start": 0.0,
+      "duration": 2.41,
+      "text": "[SQUEAKING]"
+    },
+    {
+      "start": 2.41,
+      "duration": 1.928,
+      "text": "[RUSTLING]"
+    },
+    {
+      "start": 4.338,
+      "duration": 1.446,
+      "text": "[CLICKING]"
+    },
+    {
+      "start": 13.293,
+      "duration": 1.167,
+      "text": "PETER KEMPTHORNE: All right."
+    },
+    {
+      "start": 14.46,
+      "duration": 2.06,
+      "text": "We'll get started."
+    },
+    {
+      "start": 16.52,
+      "duration": 2.2,
+      "text": "What I wanted to do\ntoday was to make"
+    },
+    {
+      "start": 18.72,
+      "duration": 4.52,
+      "text": "sure we thoroughly cover\nthe theory and application"
+    },
+    {
+      "start": 23.24,
+      "duration": 1.92,
+      "text": "of regression modeling."
+    },
+    {
+      "start": 25.16,
+      "duration": 5.2,
+      "text": "And so to begin,\nthere's a recap,"
+    },
+    {
+      "start": 30.36,
+      "duration": 11.6,
+      "text": "which is the theory for, if\nwe have linear regression,"
+    },
+    {
+      "start": 41.96,
+      "duration": 7.6,
+      "text": "and we have, in particular, a\nnormal linear regression model,"
+    },
+    {
+      "start": 49.56,
+      "duration": 8.76,
+      "text": "then we have these properties\nof beta hat being distributed"
+    },
+    {
+      "start": 58.32,
+      "duration": 9.24,
+      "text": "as a multinormal random variable\nwith mean the true regression"
+    },
+    {
+      "start": 67.56,
+      "duration": 6.96,
+      "text": "parameter and covariance matrix\ngiven by the X transpose X"
+    },
+    {
+      "start": 74.52,
+      "duration": 3.4,
+      "text": "inverse multiplied\nby sigma squared."
+    },
+    {
+      "start": 77.92,
+      "duration": 3.48,
+      "text": "And we also have\nthat epsilon hat"
+    },
+    {
+      "start": 81.4,
+      "duration": 2.88,
+      "text": "is a multinormal distribution--"
+    },
+    {
+      "start": 84.28,
+      "duration": 4.72,
+      "text": "it's actually not of full rank,\nbut it's in n dimensions--"
+    },
+    {
+      "start": 89.0,
+      "duration": 5.52,
+      "text": "with mean 0, a 0 vector,\nand the covariance matrix"
+    },
+    {
+      "start": 94.52,
+      "duration": 6.16,
+      "text": "is sigma squared times the\nidentity minus the hat matrix."
+    },
+    {
+      "start": 100.68,
+      "duration": 5.88,
+      "text": "And with these\nproperties, we can"
+    },
+    {
+      "start": 106.56,
+      "duration": 4.88,
+      "text": "show that they are independent\nrandom variables, if we have"
+    },
+    {
+      "start": 111.44,
+      "duration": 2.2,
+      "text": "the normal model assumption."
+    },
+    {
+      "start": 113.64,
+      "duration": 8.3,
+      "text": "So these are independent if the\nerror vector is multinormal."
+    },
+    {
+      "start": 125.0,
+      "duration": 7.32,
+      "text": "And with that, we're able to\nget an estimate of the error"
+    },
+    {
+      "start": 132.32,
+      "duration": 6.36,
+      "text": "variance very easily\nfrom the residual vector."
+    },
+    {
+      "start": 138.68,
+      "duration": 3.92,
+      "text": "The sum of squares of\nthe residual vector"
+    },
+    {
+      "start": 142.6,
+      "duration": 4.16,
+      "text": "can be solved for having\nexpectation equal to n minus p"
+    },
+    {
+      "start": 146.76,
+      "duration": 4.48,
+      "text": "sigma squared, and\nthat leads to dividing"
+    },
+    {
+      "start": 151.24,
+      "duration": 2.52,
+      "text": "the sum of squared\nresiduals by n minus p"
+    },
+    {
+      "start": 153.76,
+      "duration": 2.2,
+      "text": "to get an unbiased estimate."
+    },
+    {
+      "start": 155.96,
+      "duration": 5.12,
+      "text": "Now, what's interesting\nmathematically"
+    },
+    {
+      "start": 161.08,
+      "duration": 6.28,
+      "text": "is that because this estimate\nof the error variance"
+    },
+    {
+      "start": 167.36,
+      "duration": 5.32,
+      "text": "depends on the residuals, which\nare independent of beta hat,"
+    },
+    {
+      "start": 172.68,
+      "duration": 5.04,
+      "text": "we can then use this information\nto construct t-statistics"
+    },
+    {
+      "start": 177.72,
+      "duration": 4.52,
+      "text": "for the least squares estimates."
+    },
+    {
+      "start": 182.24,
+      "duration": 14.42,
+      "text": "So we have t-statistics for\nthe j-th component of the least"
+    },
+    {
+      "start": 196.66,
+      "duration": 6.5,
+      "text": "squares estimate, so beta hat\nsub j minus beta j divided"
+    },
+    {
+      "start": 203.16,
+      "duration": 13.4,
+      "text": "by sigma hat Cjj where Cjj\nis the j-th diagonal entry"
+    },
+    {
+      "start": 216.56,
+      "duration": 4.52,
+      "text": "of the variance--\ninverse variance."
+    },
+    {
+      "start": 221.08,
+      "duration": 7.08,
+      "text": "And actually, the Cjj should be\nequal to the square root of X"
+    },
+    {
+      "start": 228.16,
+      "duration": 4.28,
+      "text": "transpose X inverse sub jj."
+    },
+    {
+      "start": 232.44,
+      "duration": 4.2,
+      "text": "So there's a square\nroot missing there."
+    },
+    {
+      "start": 236.64,
+      "duration": 7.68,
+      "text": "And this distribution, under\nthe normal linear model, has--"
+    },
+    {
+      "start": 244.32,
+      "duration": 5.2,
+      "text": "or this formula has\na t-distribution."
+    },
+    {
+      "start": 249.52,
+      "duration": 5.04,
+      "text": "So this is distributed\nas a t-distribution"
+    },
+    {
+      "start": 254.56,
+      "duration": 4.88,
+      "text": "with n-minus-p degrees\nof freedom, degrees"
+    },
+    {
+      "start": 259.44,
+      "duration": 3.12,
+      "text": "of freedom equal to n minus p."
+    },
+    {
+      "start": 262.56,
+      "duration": 7.96,
+      "text": "And this is true if we\nplug in the true beta j."
+    },
+    {
+      "start": 270.52,
+      "duration": 5.72,
+      "text": "So centering our least\nsquares estimate at beta j"
+    },
+    {
+      "start": 276.24,
+      "duration": 2.28,
+      "text": "allows us to write that out."
+    },
+    {
+      "start": 278.52,
+      "duration": 6.32,
+      "text": "So if we look at\nour beta hat value"
+    },
+    {
+      "start": 284.84,
+      "duration": 5.0,
+      "text": "and consider it around\nthe true beta j,"
+    },
+    {
+      "start": 289.84,
+      "duration": 5.0,
+      "text": "we basically have a\nt-distribution for the outcome."
+    },
+    {
+      "start": 294.84,
+      "duration": 3.44,
+      "text": "And why this becomes\nvery useful is"
+    },
+    {
+      "start": 298.28,
+      "duration": 4.04,
+      "text": "that if we want to test the\nhypothesis that beta j is"
+    },
+    {
+      "start": 302.32,
+      "duration": 8.88,
+      "text": "equal to 0, then\nif this is 0, we"
+    },
+    {
+      "start": 311.2,
+      "duration": 8.92,
+      "text": "can basically define\nan interval around 0"
+    },
+    {
+      "start": 320.12,
+      "duration": 6.58,
+      "text": "and consider rejecting\nthe null hypothesis"
+    },
+    {
+      "start": 326.7,
+      "duration": 6.14,
+      "text": "if our t hat with beta j\nequaling 0 in magnitude"
+    },
+    {
+      "start": 332.84,
+      "duration": 2.76,
+      "text": "is greater than some\ncritical value--"
+    },
+    {
+      "start": 335.6,
+      "duration": 2.44,
+      "text": "say, some constant C."
+    },
+    {
+      "start": 338.04,
+      "duration": 6.92,
+      "text": "And so this\nt-statistic is commonly"
+    },
+    {
+      "start": 344.96,
+      "duration": 5.12,
+      "text": "applied in judging\ndifferent regression models."
+    },
+    {
+      "start": 350.08,
+      "duration": 3.51,
+      "text": "Of particular interest\nis whether factors can be"
+    },
+    {
+      "start": 353.59,
+      "duration": 3.16,
+      "text": "excluded from the regression."
+    },
+    {
+      "start": 356.75,
+      "duration": 3.74,
+      "text": "So if a beta j\ncomponent is equal to 0,"
+    },
+    {
+      "start": 360.49,
+      "duration": 3.3,
+      "text": "that means we can just\nexclude the variable."
+    },
+    {
+      "start": 363.79,
+      "duration": 4.64,
+      "text": "Now, interestingly,\nif we want to test"
+    },
+    {
+      "start": 368.43,
+      "duration": 6.12,
+      "text": "whether multiple beta\nj's are equal to 0,"
+    },
+    {
+      "start": 374.55,
+      "duration": 3.74,
+      "text": "a special case of\nthat is just to say,"
+    },
+    {
+      "start": 378.29,
+      "duration": 7.14,
+      "text": "let's assume that the first\nk beta j's are nonzero."
+    },
+    {
+      "start": 385.43,
+      "duration": 2.4,
+      "text": "We'll just assume\nthat that's true."
+    },
+    {
+      "start": 387.83,
+      "duration": 5.48,
+      "text": "But let's test whether\nthe beta j's for j above k"
+    },
+    {
+      "start": 393.31,
+      "duration": 1.84,
+      "text": "are equal to 0."
+    },
+    {
+      "start": 395.15,
+      "duration": 6.36,
+      "text": "And what we can do is\ncalculate residuals"
+    },
+    {
+      "start": 401.51,
+      "duration": 5.0,
+      "text": "under the two hypotheses."
+    },
+    {
+      "start": 406.51,
+      "duration": 7.24,
+      "text": "First, assuming that they're\nall nonzero, we get an RSS 1."
+    },
+    {
+      "start": 413.75,
+      "duration": 3.3,
+      "text": "But if we assume the\nsubmodel is true,"
+    },
+    {
+      "start": 417.05,
+      "duration": 3.14,
+      "text": "we can get a second\nset of residuals."
+    },
+    {
+      "start": 420.19,
+      "duration": 7.36,
+      "text": "And because the\nfull model is more--"
+    },
+    {
+      "start": 427.55,
+      "duration": 4.68,
+      "text": "sort of, it minimizes the\nsum of squares further, we"
+    },
+    {
+      "start": 432.23,
+      "duration": 4.48,
+      "text": "can look at the difference\nin residual sum of squares,"
+    },
+    {
+      "start": 436.71,
+      "duration": 3.72,
+      "text": "normalize that by p\nminus k, and compare"
+    },
+    {
+      "start": 440.43,
+      "duration": 2.68,
+      "text": "that with the residual\nsum of the squares"
+    },
+    {
+      "start": 443.11,
+      "duration": 2.98,
+      "text": "under the full model\ndivided by n minus p."
+    },
+    {
+      "start": 446.09,
+      "duration": 4.62,
+      "text": "So this is an estimate of sigma\nsquared using the full model."
+    },
+    {
+      "start": 450.71,
+      "duration": 2.2,
+      "text": "This numerator is\nalso an estimate"
+    },
+    {
+      "start": 452.91,
+      "duration": 6.48,
+      "text": "of sigma squared based on the\nnull hypothesis being true."
+    },
+    {
+      "start": 459.39,
+      "duration": 4.36,
+      "text": "Now, what's interesting\nto highlight"
+    },
+    {
+      "start": 463.75,
+      "duration": 9.6,
+      "text": "is that the F-test when k, the\nnumber of nonzero coefficients,"
+    },
+    {
+      "start": 473.35,
+      "duration": 4.28,
+      "text": "is p minus 1, then this\nF-test corresponds to testing"
+    },
+    {
+      "start": 477.63,
+      "duration": 4.4,
+      "text": "whether the p-th\nbeta j is equal to 0."
+    },
+    {
+      "start": 482.03,
+      "duration": 8.52,
+      "text": "And so it turns out that\nif we have t hat p--"
+    },
+    {
+      "start": 490.55,
+      "duration": 5.52,
+      "text": "sorry-- t hat,\nyeah, p, of beta--"
+    },
+    {
+      "start": 496.07,
+      "duration": 4.88,
+      "text": "of the true beta,\nthe beta with beta p"
+    },
+    {
+      "start": 500.95,
+      "duration": 5.88,
+      "text": "equal to 0- this\nsquared is actually"
+    },
+    {
+      "start": 506.83,
+      "duration": 2.086,
+      "text": "equal to this F-statistic."
+    },
+    {
+      "start": 513.817,
+      "duration": 1.813,
+      "text": "[LAUGHS] I'm just going to--"
+    },
+    {
+      "start": 515.63,
+      "duration": 4.52,
+      "text": "[LAUGHS] there's a huge\nrumbling in the room right now."
+    },
+    {
+      "start": 520.15,
+      "duration": 3.8,
+      "text": "And if anyone\nfinds out that it's"
+    },
+    {
+      "start": 523.95,
+      "duration": 2.18,
+      "text": "something serious we\nshould be thinking about,"
+    },
+    {
+      "start": 526.13,
+      "duration": 4.78,
+      "text": "please let me know, [LAUGHS]\nor let the whole class know."
+    },
+    {
+      "start": 530.91,
+      "duration": 4.32,
+      "text": "It sort of sounds like an\nearthquake, which I experienced"
+    },
+    {
+      "start": 535.23,
+      "duration": 2.305,
+      "text": "when I was at UC Berkeley."
+    },
+    {
+      "start": 537.535,
+      "duration": 3.615,
+      "text": "[LAUGHS] Anyway, all\nright, well, we'll"
+    },
+    {
+      "start": 541.15,
+      "duration": 2.88,
+      "text": "continue, unless I get\nwarnings from you all."
+    },
+    {
+      "start": 544.03,
+      "duration": 3.68,
+      "text": "Anyway, it turns out that this\nt-squared statistic is actually"
+    },
+    {
+      "start": 547.71,
+      "duration": 2.9,
+      "text": "equal to the F-test\nformalized here."
+    },
+    {
+      "start": 550.61,
+      "duration": 3.24,
+      "text": "So F-tests are very useful."
+    },
+    {
+      "start": 553.85,
+      "duration": 3.98,
+      "text": "In special cases, they're\nequivalent to the square"
+    },
+    {
+      "start": 557.83,
+      "duration": 4.04,
+      "text": "of a t-test statistic."
+    },
+    {
+      "start": 561.87,
+      "duration": 7.04,
+      "text": "Now, let's see, with the\nnotes from last time,"
+    },
+    {
+      "start": 568.91,
+      "duration": 2.04,
+      "text": "we went through these."
+    },
+    {
+      "start": 570.95,
+      "duration": 9.0,
+      "text": "We highlighted how, with\ngeneralized least squares--"
+    },
+    {
+      "start": 579.95,
+      "duration": 3.67,
+      "text": "this is another key takeaway\nin regression modeling."
+    },
+    {
+      "start": 586.43,
+      "duration": 7.28,
+      "text": "So, so generalized\nleast squares,"
+    },
+    {
+      "start": 593.71,
+      "duration": 2.64,
+      "text": "with generalized\nleast squares, we"
+    },
+    {
+      "start": 596.35,
+      "duration": 6.16,
+      "text": "have an error\nvector, which is not"
+    },
+    {
+      "start": 602.51,
+      "duration": 5.16,
+      "text": "a diagonal identity\ntimes sigma squared,"
+    },
+    {
+      "start": 607.67,
+      "duration": 9.36,
+      "text": "but it's some base matrix sigma\ntimes little sigma squared."
+    },
+    {
+      "start": 617.03,
+      "duration": 3.72,
+      "text": "And with this setup,\nwe can actually"
+    },
+    {
+      "start": 620.75,
+      "duration": 6.8,
+      "text": "transform this regression\nmodel into one which satisfies"
+    },
+    {
+      "start": 627.55,
+      "duration": 2.64,
+      "text": "our Gauss-Markov assumptions."
+    },
+    {
+      "start": 630.19,
+      "duration": 6.76,
+      "text": "And then, so with x star and y\nstar being the model equation"
+    },
+    {
+      "start": 636.95,
+      "duration": 7.2,
+      "text": "multiplied by the inverse\nsquare root of sigma, then"
+    },
+    {
+      "start": 644.15,
+      "duration": 3.56,
+      "text": "this model satisfies the\nGauss-Markov assumptions,"
+    },
+    {
+      "start": 647.71,
+      "duration": 5.92,
+      "text": "zero-mean constant variance,\nand so this estimator,"
+    },
+    {
+      "start": 653.63,
+      "duration": 3.2,
+      "text": "with the X stars and Y\nstars but the same beta,"
+    },
+    {
+      "start": 656.83,
+      "duration": 3.62,
+      "text": "gives us our best\nestimate of the beta hat--"
+    },
+    {
+      "start": 660.45,
+      "duration": 3.94,
+      "text": "best in terms of minimum\nbeing unbiased and having"
+    },
+    {
+      "start": 664.39,
+      "duration": 2.96,
+      "text": "smallest variance."
+    },
+    {
+      "start": 667.35,
+      "duration": 0.84,
+      "text": "OK."
+    },
+    {
+      "start": 668.19,
+      "duration": 8.72,
+      "text": "Well, a next important\naspect of regression modeling"
+    },
+    {
+      "start": 676.91,
+      "duration": 11.36,
+      "text": "is looking at Maximum\nLikelihood Estimation, MLE."
+    },
+    {
+      "start": 688.27,
+      "duration": 4.44,
+      "text": "And for maximum\nlikelihood estimation,"
+    },
+    {
+      "start": 692.71,
+      "duration": 7.6,
+      "text": "we use the probability model\nof the regression-- which,"
+    },
+    {
+      "start": 700.31,
+      "duration": 5.84,
+      "text": "in this case, is normal linear\nregression models, so if we"
+    },
+    {
+      "start": 706.15,
+      "duration": 5.92,
+      "text": "have normal epsilon vector."
+    },
+    {
+      "start": 712.07,
+      "duration": 6.72,
+      "text": "Then we compute the\ndensity of our data Y,"
+    },
+    {
+      "start": 718.79,
+      "duration": 4.08,
+      "text": "given the explanatory\nvariables in X,"
+    },
+    {
+      "start": 722.87,
+      "duration": 6.44,
+      "text": "and the beta, regression\nparameter beta."
+    },
+    {
+      "start": 729.31,
+      "duration": 1.8,
+      "text": "That should be a beta there."
+    },
+    {
+      "start": 731.11,
+      "duration": 5.76,
+      "text": "And we simply identify\nthose parameter values"
+    },
+    {
+      "start": 736.87,
+      "duration": 4.08,
+      "text": "that maximize this probability."
+    },
+    {
+      "start": 740.95,
+      "duration": 1.48,
+      "text": "So we're looking\nat the parameter"
+    },
+    {
+      "start": 742.43,
+      "duration": 5.92,
+      "text": "values that make the data\nwe observed the most likely."
+    },
+    {
+      "start": 748.35,
+      "duration": 4.96,
+      "text": "And intuitively, that's\nmaybe a reasonable thing."
+    },
+    {
+      "start": 753.31,
+      "duration": 4.5,
+      "text": "If you take Mathematical\nStatistics next term,"
+    },
+    {
+      "start": 757.81,
+      "duration": 3.1,
+      "text": "you'll learn that\nthat, in fact, is"
+    },
+    {
+      "start": 760.91,
+      "duration": 7.28,
+      "text": "an optimal estimator, in terms\nof having smallest variance"
+    },
+    {
+      "start": 768.19,
+      "duration": 1.16,
+      "text": "in large samples."
+    },
+    {
+      "start": 769.35,
+      "duration": 5.28,
+      "text": "As the sample size, the\nnumber of cases n increases,"
+    },
+    {
+      "start": 774.63,
+      "duration": 3.28,
+      "text": "this will lead to\nthe best estimator."
+    },
+    {
+      "start": 777.91,
+      "duration": 4.16,
+      "text": "And this MLE for the best--"
+    },
+    {
+      "start": 782.07,
+      "duration": 2.92,
+      "text": "or the best estimator\nbeing the MLE"
+    },
+    {
+      "start": 784.99,
+      "duration": 4.24,
+      "text": "will be true for different\ndistributions as well."
+    },
+    {
+      "start": 789.23,
+      "duration": 5.52,
+      "text": "We're going to show what it is\nfor the Gaussian distribution."
+    },
+    {
+      "start": 794.75,
+      "duration": 4.84,
+      "text": "And what we can\nsee on this slide"
+    },
+    {
+      "start": 799.59,
+      "duration": 3.72,
+      "text": "is that the log\nof the likelihood"
+    },
+    {
+      "start": 803.31,
+      "duration": 4.2,
+      "text": "is the log of this\ndensity on the top line."
+    },
+    {
+      "start": 807.51,
+      "duration": 7.24,
+      "text": "It can be equal to minus n over\n2 log sigma squared minus 1/2"
+    },
+    {
+      "start": 814.75,
+      "duration": 4.56,
+      "text": "sigma squared q of beta, where\nq of beta is our least squares"
+    },
+    {
+      "start": 819.31,
+      "duration": 1.48,
+      "text": "criterion."
+    },
+    {
+      "start": 820.79,
+      "duration": 4.36,
+      "text": "So maximum likelihood estimation\nfor normal linear regression"
+    },
+    {
+      "start": 825.15,
+      "duration": 5.08,
+      "text": "models can proceed in two steps."
+    },
+    {
+      "start": 830.23,
+      "duration": 7.72,
+      "text": "First, we can see that the beta\nregression coefficient enters in"
+    },
+    {
+      "start": 837.95,
+      "duration": 3.68,
+      "text": "only through a\nfactor of Q of beta."
+    },
+    {
+      "start": 841.63,
+      "duration": 6.64,
+      "text": "So minimizing Q of beta\ngives us the MLE for beta."
+    },
+    {
+      "start": 848.27,
+      "duration": 3.44,
+      "text": "And then once we have\nthe MLE for beta,"
+    },
+    {
+      "start": 851.71,
+      "duration": 5.92,
+      "text": "we can plug that in to the\nlikelihood, the log likelihood--"
+    },
+    {
+      "start": 857.63,
+      "duration": 5.36,
+      "text": "or the likelihood, for\nvarying sigma squared."
+    },
+    {
+      "start": 862.99,
+      "duration": 4.64,
+      "text": "And when we do this,\nwe actually can just"
+    },
+    {
+      "start": 867.63,
+      "duration": 5.96,
+      "text": "maximize this sort\nof partial likelihood"
+    },
+    {
+      "start": 873.59,
+      "duration": 3.44,
+      "text": "with beta fixed at beta hat."
+    },
+    {
+      "start": 877.03,
+      "duration": 2.2,
+      "text": "Maximize that over\nsigma squared,"
+    },
+    {
+      "start": 879.23,
+      "duration": 4.08,
+      "text": "and that turns out to be a very\neasy computation, calculating"
+    },
+    {
+      "start": 883.31,
+      "duration": 6.36,
+      "text": "the first-order equation\nfor the log likelihood."
+    },
+    {
+      "start": 889.67,
+      "duration": 3.44,
+      "text": "And we get the maximum\nlikelihood estimate is simply"
+    },
+    {
+      "start": 893.11,
+      "duration": 4.64,
+      "text": "the sum of squared\nresiduals divided by n."
+    },
+    {
+      "start": 897.75,
+      "duration": 4.72,
+      "text": "Now, with maximum\nlikelihood, in this case,"
+    },
+    {
+      "start": 902.47,
+      "duration": 4.72,
+      "text": "we have, actually, a biased\nestimate of the error variance."
+    },
+    {
+      "start": 907.19,
+      "duration": 7.08,
+      "text": "And it's important just to\nnote that that's the case."
+    },
+    {
+      "start": 914.27,
+      "duration": 1.84,
+      "text": "All right."
+    },
+    {
+      "start": 916.11,
+      "duration": 4.6,
+      "text": "Well, what's interesting\nto generalize"
+    },
+    {
+      "start": 920.71,
+      "duration": 7.28,
+      "text": "is to find estimators,\nwhich minimize"
+    },
+    {
+      "start": 927.99,
+      "duration": 3.88,
+      "text": "a Q function, which may be\ndifferent from least squares--"
+    },
+    {
+      "start": 931.87,
+      "duration": 1.64,
+      "text": "or sum of squares."
+    },
+    {
+      "start": 933.51,
+      "duration": 4.83,
+      "text": "And so we can\nconsider a Q function"
+    },
+    {
+      "start": 938.34,
+      "duration": 9.44,
+      "text": "which minimizes the sum of a\nfunction h evaluated at case i."
+    },
+    {
+      "start": 947.78,
+      "duration": 2.96,
+      "text": "So let's see here."
+    },
+    {
+      "start": 950.74,
+      "duration": 4.0,
+      "text": "Let's pull this down."
+    },
+    {
+      "start": 954.74,
+      "duration": 15.08,
+      "text": "So, so with generalized\nM-estimators,"
+    },
+    {
+      "start": 969.82,
+      "duration": 4.48,
+      "text": "we think of Q of beta\nbeing the sum 1 to n"
+    },
+    {
+      "start": 974.3,
+      "duration": 7.93,
+      "text": "of h of y i, the x i beta,\nand sigma squared, I guess."
+    },
+    {
+      "start": 984.74,
+      "duration": 3.12,
+      "text": "And the choice of h,\nwell, if we choose h"
+    },
+    {
+      "start": 987.86,
+      "duration": 7.8,
+      "text": "to just be the square of the\nlinear estimate of y given x i,"
+    },
+    {
+      "start": 995.66,
+      "duration": 1.84,
+      "text": "that's least squares."
+    },
+    {
+      "start": 997.5,
+      "duration": 5.2,
+      "text": "There's no reason, in principle,\nwhy we should use squares."
+    },
+    {
+      "start": 1002.7,
+      "duration": 4.76,
+      "text": "We could use absolute\ndeviations and sum those."
+    },
+    {
+      "start": 1007.46,
+      "duration": 6.2,
+      "text": "And if we wanted maximum\nlikelihood estimates,"
+    },
+    {
+      "start": 1013.66,
+      "duration": 5.2,
+      "text": "we could choose h to be\nminus the log of the density."
+    },
+    {
+      "start": 1018.86,
+      "duration": 5.92,
+      "text": "And there are robust\nestimators in statistics."
+    },
+    {
+      "start": 1024.78,
+      "duration": 8.76,
+      "text": "And these robust estimators\nconsider variations, basically,"
+    },
+    {
+      "start": 1033.54,
+      "duration": 6.96,
+      "text": "of least squares and\nmean absolute deviations"
+    },
+    {
+      "start": 1040.5,
+      "duration": 4.839,
+      "text": "as special cases, that yield\nestimators that are robust."
+    },
+    {
+      "start": 1045.339,
+      "duration": 4.721,
+      "text": "Now, what's, to me, very\ninteresting is that if we were"
+    },
+    {
+      "start": 1050.06,
+      "duration": 6.0,
+      "text": "to know what the density\nis of the errors,"
+    },
+    {
+      "start": 1056.06,
+      "duration": 4.52,
+      "text": "then maximum likelihood\nestimation would say use that."
+    },
+    {
+      "start": 1060.58,
+      "duration": 3.44,
+      "text": "When we don't know\nthe distribution,"
+    },
+    {
+      "start": 1064.02,
+      "duration": 6.0,
+      "text": "then these others may be\nvery useful as alternatives."
+    },
+    {
+      "start": 1070.02,
+      "duration": 5.8,
+      "text": "And robust estimators\nwere originally"
+    },
+    {
+      "start": 1075.82,
+      "duration": 5.36,
+      "text": "proposed for models where we\nmay have a normal distribution"
+    },
+    {
+      "start": 1081.18,
+      "duration": 3.0,
+      "text": "most of the time, but\nsome contamination"
+    },
+    {
+      "start": 1084.18,
+      "duration": 7.48,
+      "text": "distribution with large errors\na small percentage of the time."
+    },
+    {
+      "start": 1091.66,
+      "duration": 4.16,
+      "text": "Now, and another\ninteresting example"
+    },
+    {
+      "start": 1095.82,
+      "duration": 7.2,
+      "text": "of this generalized M-estimator\nis the quantile estimator,"
+    },
+    {
+      "start": 1103.02,
+      "duration": 5.2,
+      "text": "where we consider sort of\nmean absolute deviation,"
+    },
+    {
+      "start": 1108.22,
+      "duration": 8.8,
+      "text": "but we scale that for positive\nresiduals by a factor tau."
+    },
+    {
+      "start": 1117.02,
+      "duration": 4.7,
+      "text": "And for negative\nvalues of the residual,"
+    },
+    {
+      "start": 1121.72,
+      "duration": 4.48,
+      "text": "we scale the absolute\ndeviation by 1 minus tau."
+    },
+    {
+      "start": 1130.06,
+      "duration": 5.76,
+      "text": "This h function\nbasically is equivalent"
+    },
+    {
+      "start": 1135.82,
+      "duration": 10.0,
+      "text": "to the mean absolute deviation\nwhen tau is equal to 0.5."
+    },
+    {
+      "start": 1145.82,
+      "duration": 4.84,
+      "text": "But when tau is--"
+    },
+    {
+      "start": 1150.66,
+      "duration": 3.64,
+      "text": "if we have h--"
+    },
+    {
+      "start": 1154.3,
+      "duration": 2.84,
+      "text": "let's see."
+    },
+    {
+      "start": 1157.14,
+      "duration": 8.32,
+      "text": "So h of y, x, when this is\nequal to tau y i minus x i"
+    },
+    {
+      "start": 1165.46,
+      "duration": 9.08,
+      "text": "beta when this is positive."
+    },
+    {
+      "start": 1174.54,
+      "duration": 4.3,
+      "text": "And it's equal to 1\nminus tau when this is--"
+    },
+    {
+      "start": 1181.62,
+      "duration": 7.2,
+      "text": "actually, it's equal to minus\nthis when this is less than 0."
+    },
+    {
+      "start": 1188.82,
+      "duration": 5.58,
+      "text": "Then, for example, when\ntau is equal to 0.9,"
+    },
+    {
+      "start": 1194.4,
+      "duration": 7.34,
+      "text": "this turns out to be a quantile\nestimate that is working"
+    },
+    {
+      "start": 1201.74,
+      "duration": 5.64,
+      "text": "to estimate the 90th\npercentile of outcomes."
+    },
+    {
+      "start": 1207.38,
+      "duration": 9.4,
+      "text": "So when we have a regression\nmodel and we are sort of just--"
+    },
+    {
+      "start": 1216.78,
+      "duration": 3.64,
+      "text": "if we have a bunch\nof points, and we"
+    },
+    {
+      "start": 1220.42,
+      "duration": 2.58,
+      "text": "consider a linear\nregression model,"
+    },
+    {
+      "start": 1223.0,
+      "duration": 5.98,
+      "text": "this would be y equal to--"
+    },
+    {
+      "start": 1228.98,
+      "duration": 3.76,
+      "text": "or y hat equal to sort of\nthe mean absolute deviation"
+    },
+    {
+      "start": 1232.74,
+      "duration": 8.68,
+      "text": "estimate, we actually can get\nestimates of the 90th percentile"
+    },
+    {
+      "start": 1241.42,
+      "duration": 4.32,
+      "text": "of outcomes of the\nregression model."
+    },
+    {
+      "start": 1245.74,
+      "duration": 7.32,
+      "text": "Now, what's interesting\nmathematically"
+    },
+    {
+      "start": 1253.06,
+      "duration": 6.6,
+      "text": "is, How would one calculate sort\nof the mean absolute deviation"
+    },
+    {
+      "start": 1259.66,
+      "duration": 3.64,
+      "text": "estimate, or this\nquantile estimator?"
+    },
+    {
+      "start": 1263.3,
+      "duration": 7.92,
+      "text": "Well, we would want to minimize\nthe sum of these h functions."
+    },
+    {
+      "start": 1271.22,
+      "duration": 4.486,
+      "text": "And these h functions\nactually are convex."
+    },
+    {
+      "start": 1278.22,
+      "duration": 4.48,
+      "text": "So as James Sheppard said, this\nis, like, a bowl-shaped problem."
+    },
+    {
+      "start": 1282.7,
+      "duration": 2.88,
+      "text": "But it's a bowl with\nsort of square--"
+    },
+    {
+      "start": 1285.58,
+      "duration": 4.1,
+      "text": "or with straight\nedges around it."
+    },
+    {
+      "start": 1289.68,
+      "duration": 6.86,
+      "text": "And so if we take this\nQ function with this h,"
+    },
+    {
+      "start": 1296.54,
+      "duration": 5.92,
+      "text": "we can't minimize it by solving\nthe first-order equations."
+    },
+    {
+      "start": 1302.46,
+      "duration": 7.68,
+      "text": "So if we have Q equal to the sum\n1 to n of h of the arguments,"
+    },
+    {
+      "start": 1310.14,
+      "duration": 1.51,
+      "text": "we can't solve this--"
+    },
+    {
+      "start": 1315.14,
+      "duration": 3.2,
+      "text": "we can't solve for\nthis equaling 0."
+    },
+    {
+      "start": 1318.34,
+      "duration": 6.04,
+      "text": "But we can solve for what the\nderivative is at any guesses,"
+    },
+    {
+      "start": 1324.38,
+      "duration": 8.2,
+      "text": "and we can move our guess to a\nlower value of the Q function"
+    },
+    {
+      "start": 1332.58,
+      "duration": 0.58,
+      "text": "with that."
+    },
+    {
+      "start": 1333.16,
+      "duration": 2.62,
+      "text": "And that's, in\nfact, how we learn"
+    },
+    {
+      "start": 1335.78,
+      "duration": 7.28,
+      "text": "that the median of\na sample is the best"
+    },
+    {
+      "start": 1343.06,
+      "duration": 3.52,
+      "text": "estimate of the\ncenter of the data"
+    },
+    {
+      "start": 1346.58,
+      "duration": 4.64,
+      "text": "if we consider mean\nabsolute deviations."
+    },
+    {
+      "start": 1351.22,
+      "duration": 2.56,
+      "text": "OK."
+    },
+    {
+      "start": 1353.78,
+      "duration": 7.2,
+      "text": "Well, let's consider another\nextension of regression."
+    },
+    {
+      "start": 1360.98,
+      "duration": 5.08,
+      "text": "It's famous enough to have its\nown name, ridge regression."
+    },
+    {
+      "start": 1366.06,
+      "duration": 6.8,
+      "text": "And so with ridge regression,\nwe are estimating the regression"
+    },
+    {
+      "start": 1372.86,
+      "duration": 7.44,
+      "text": "parameters where we have--"
+    },
+    {
+      "start": 1380.3,
+      "duration": 3.04,
+      "text": "basically, it's sort\nof least squares"
+    },
+    {
+      "start": 1383.34,
+      "duration": 7.36,
+      "text": "plus a penalty,\nfor our criterion."
+    },
+    {
+      "start": 1390.7,
+      "duration": 7.76,
+      "text": "So the left argument\nof this expression"
+    },
+    {
+      "start": 1398.46,
+      "duration": 3.32,
+      "text": "is simply the sum of\nsquared residuals,"
+    },
+    {
+      "start": 1401.78,
+      "duration": 3.2,
+      "text": "but then we're adding\nto that a penalty"
+    },
+    {
+      "start": 1404.98,
+      "duration": 5.16,
+      "text": "depending upon the squared\nlength of the beta vector."
+    },
+    {
+      "start": 1410.14,
+      "duration": 10.66,
+      "text": "And so in order for this to\nbe a reasonable thing to do,"
+    },
+    {
+      "start": 1420.8,
+      "duration": 3.18,
+      "text": "we actually need to--"
+    },
+    {
+      "start": 1423.98,
+      "duration": 3.72,
+      "text": "or, we don't need\nto, but it's useful,"
+    },
+    {
+      "start": 1427.7,
+      "duration": 7.36,
+      "text": "to consider standardizing\nour independent variables x,"
+    },
+    {
+      "start": 1435.06,
+      "duration": 8.28,
+      "text": "making them have mean\n0, and also centering y,"
+    },
+    {
+      "start": 1443.34,
+      "duration": 4.04,
+      "text": "and then consider\nthe regression where"
+    },
+    {
+      "start": 1447.38,
+      "duration": 8.48,
+      "text": "we rescale the columns of the\npredictor matrix as centered"
+    },
+    {
+      "start": 1455.86,
+      "duration": 5.04,
+      "text": "with the inverse of the\ncovariance matrix between those."
+    },
+    {
+      "start": 1460.9,
+      "duration": 9.16,
+      "text": "So in this formulation,\nthis is the statement"
+    },
+    {
+      "start": 1470.06,
+      "duration": 5.82,
+      "text": "of how the ridge regression\nparameter estimate is specified."
+    },
+    {
+      "start": 1475.88,
+      "duration": 5.78,
+      "text": "Now, the centering of\nthe independent variables"
+    },
+    {
+      "start": 1481.66,
+      "duration": 3.6,
+      "text": "and scaling them to\nhave unit variance"
+    },
+    {
+      "start": 1485.26,
+      "duration": 3.88,
+      "text": "is important because\nit places all"
+    },
+    {
+      "start": 1489.14,
+      "duration": 2.88,
+      "text": "of the variables, all of\nthe predictor variables,"
+    },
+    {
+      "start": 1492.02,
+      "duration": 2.68,
+      "text": "on an equal footing."
+    },
+    {
+      "start": 1494.7,
+      "duration": 7.76,
+      "text": "If we are looking at the sum\nof squared beta j's, then"
+    },
+    {
+      "start": 1502.46,
+      "duration": 2.24,
+      "text": "if we just use\ndifferent units, we"
+    },
+    {
+      "start": 1504.7,
+      "duration": 6.96,
+      "text": "could make any j beta, beta\nj, as large as we want."
+    },
+    {
+      "start": 1511.66,
+      "duration": 4.84,
+      "text": "But with this\nstandardization, we basically"
+    },
+    {
+      "start": 1516.5,
+      "duration": 4.6,
+      "text": "eliminate that aspect,\nso there's no dependence"
+    },
+    {
+      "start": 1521.1,
+      "duration": 3.44,
+      "text": "on the original units of X."
+    },
+    {
+      "start": 1524.54,
+      "duration": 3.28,
+      "text": "And let's see."
+    },
+    {
+      "start": 1527.82,
+      "duration": 2.72,
+      "text": "With this ridge\nregression, the notes"
+    },
+    {
+      "start": 1530.54,
+      "duration": 4.12,
+      "text": "go through how we compute these."
+    },
+    {
+      "start": 1534.66,
+      "duration": 7.72,
+      "text": "I want to highlight, though,\nhow this ridge regression is"
+    },
+    {
+      "start": 1542.38,
+      "duration": 4.48,
+      "text": "actually related to\nBayesian models, where"
+    },
+    {
+      "start": 1546.86,
+      "duration": 5.52,
+      "text": "we would assume a prior\ndistribution on our regression"
+    },
+    {
+      "start": 1552.38,
+      "duration": 1.64,
+      "text": "parameters."
+    },
+    {
+      "start": 1554.02,
+      "duration": 12.08,
+      "text": "And so the-- if we consider\na Bayes prior on beta,"
+    },
+    {
+      "start": 1566.1,
+      "duration": 10.91,
+      "text": "and that Bayes prior is\nbasically multinormal in p"
+    },
+    {
+      "start": 1577.01,
+      "duration": 7.12,
+      "text": "dimensions, with a\nmean vector of 0,"
+    },
+    {
+      "start": 1584.13,
+      "duration": 5.39,
+      "text": "and a covariance\nmatrix that is--"
+    },
+    {
+      "start": 1592.09,
+      "duration": 3.24,
+      "text": "let's see, I'll call\nit omega, and omega"
+    },
+    {
+      "start": 1595.33,
+      "duration": 7.44,
+      "text": "is proportional to the identity\nmatrix in p dimensions."
+    },
+    {
+      "start": 1602.77,
+      "duration": 7.44,
+      "text": "Then what we've done is\nwe have a criterion that"
+    },
+    {
+      "start": 1610.21,
+      "duration": 8.72,
+      "text": "corresponds to the exponential\npart of the log likelihood for--"
+    },
+    {
+      "start": 1618.93,
+      "duration": 3.92,
+      "text": "plus the log likelihood\nof the prior density."
+    },
+    {
+      "start": 1622.85,
+      "duration": 6.84,
+      "text": "So this ridge regression\nis interpretable as putting"
+    },
+    {
+      "start": 1629.69,
+      "duration": 7.68,
+      "text": "a prior distribution on the\nbetas that have this form,"
+    },
+    {
+      "start": 1637.37,
+      "duration": 4.36,
+      "text": "mean 0, and covariance\nproportional"
+    },
+    {
+      "start": 1641.73,
+      "duration": 2.32,
+      "text": "to the identity matrix."
+    },
+    {
+      "start": 1644.05,
+      "duration": 2.84,
+      "text": "And what that\nsuggests a priori is"
+    },
+    {
+      "start": 1646.89,
+      "duration": 5.64,
+      "text": "that any direction in\nthat p-dimensional space"
+    },
+    {
+      "start": 1652.53,
+      "duration": 5.04,
+      "text": "is equally likely as any\nother for characterizing"
+    },
+    {
+      "start": 1657.57,
+      "duration": 2.76,
+      "text": "the regression parameters."
+    },
+    {
+      "start": 1660.33,
+      "duration": 4.48,
+      "text": "And this beta hat, which\nminimizes this argument,"
+    },
+    {
+      "start": 1664.81,
+      "duration": 5.04,
+      "text": "ends up being the mode of\nthe posterior distribution."
+    },
+    {
+      "start": 1669.85,
+      "duration": 5.92,
+      "text": "So that's a neat\nconnection to be aware of."
+    },
+    {
+      "start": 1675.77,
+      "duration": 4.6,
+      "text": "The notes here go through,\nwith ridge regression,"
+    },
+    {
+      "start": 1680.37,
+      "duration": 4.0,
+      "text": "how we compute them."
+    },
+    {
+      "start": 1684.37,
+      "duration": 5.48,
+      "text": "The minimization basically\nleads to formulas"
+    },
+    {
+      "start": 1689.85,
+      "duration": 3.24,
+      "text": "for the ridge regression\nestimate that look almost"
+    },
+    {
+      "start": 1693.09,
+      "duration": 1.96,
+      "text": "like least squares,\nexcept we have"
+    },
+    {
+      "start": 1695.05,
+      "duration": 3.36,
+      "text": "this additional factor,\nlambda times the identity,"
+    },
+    {
+      "start": 1698.41,
+      "duration": 4.36,
+      "text": "inside that braces, before\nwe take the inverse."
+    },
+    {
+      "start": 1702.77,
+      "duration": 6.92,
+      "text": "And with ridge regression, we\ncan look at the singular value"
+    },
+    {
+      "start": 1709.69,
+      "duration": 5.24,
+      "text": "decomposition of our\nindependent variables"
+    },
+    {
+      "start": 1714.93,
+      "duration": 5.72,
+      "text": "that have been centered\nand standardized."
+    },
+    {
+      "start": 1720.65,
+      "duration": 7.88,
+      "text": "And when we do that we basically\nhave this final formula"
+    },
+    {
+      "start": 1728.53,
+      "duration": 5.36,
+      "text": "for the ridge regression."
+    },
+    {
+      "start": 1733.89,
+      "duration": 10.16,
+      "text": "And we end up basically having\nthe fitted values y hat just"
+    },
+    {
+      "start": 1744.05,
+      "duration": 8.0,
+      "text": "being equal to a sum\nof factors times cj uj,"
+    },
+    {
+      "start": 1752.05,
+      "duration": 8.38,
+      "text": "where these factors\nare 1 when lambda is 0."
+    },
+    {
+      "start": 1760.43,
+      "duration": 4.58,
+      "text": "So when lambda is 0, ridge\nis equal to least squares."
+    },
+    {
+      "start": 1765.01,
+      "duration": 4.64,
+      "text": "And so the least squares\nfitted values are given here."
+    },
+    {
+      "start": 1769.65,
+      "duration": 5.64,
+      "text": "But with ridge regression,\nwe have shrinkage."
+    },
+    {
+      "start": 1775.29,
+      "duration": 3.72,
+      "text": "And what's curious\nis that there's"
+    },
+    {
+      "start": 1779.01,
+      "duration": 7.2,
+      "text": "less shrinkage for the larger\nsquared singular values,"
+    },
+    {
+      "start": 1786.21,
+      "duration": 4.28,
+      "text": "and there's more shrinkage\nfor the smaller ones."
+    },
+    {
+      "start": 1790.49,
+      "duration": 3.2,
+      "text": "So if we think of the\nindependent variables,"
+    },
+    {
+      "start": 1793.69,
+      "duration": 5.28,
+      "text": "or predictor variables,\nbeing in p-dimensional space,"
+    },
+    {
+      "start": 1798.97,
+      "duration": 6.88,
+      "text": "then ridge regression\nwill not shrink"
+    },
+    {
+      "start": 1805.85,
+      "duration": 3.52,
+      "text": "much those regression\ncoefficients"
+    },
+    {
+      "start": 1809.37,
+      "duration": 5.84,
+      "text": "that correspond to\nregressor variables"
+    },
+    {
+      "start": 1815.21,
+      "duration": 4.68,
+      "text": "that are along sort of the\nfirst principal component axis."
+    },
+    {
+      "start": 1819.89,
+      "duration": 4.32,
+      "text": "And there's much more\nshrinkage in those dimensions"
+    },
+    {
+      "start": 1824.21,
+      "duration": 2.94,
+      "text": "where there's very\nlittle variation."
+    },
+    {
+      "start": 1827.15,
+      "duration": 5.9,
+      "text": "So these are actually connected\nto principal components"
+    },
+    {
+      "start": 1833.05,
+      "duration": 2.86,
+      "text": "variables, which\nis actually covered"
+    },
+    {
+      "start": 1835.91,
+      "duration": 5.02,
+      "text": "sort of in the next section."
+    },
+    {
+      "start": 1840.93,
+      "duration": 2.92,
+      "text": "So, yeah, it was--"
+    },
+    {
+      "start": 1843.85,
+      "duration": 3.0,
+      "text": "we introduced ridge regression\nusing the singular value"
+    },
+    {
+      "start": 1846.85,
+      "duration": 6.8,
+      "text": "decomposition of X. But we can\nmotivate principal components"
+    },
+    {
+      "start": 1853.65,
+      "duration": 5.24,
+      "text": "regression using the same\nsingular value decomposition."
+    },
+    {
+      "start": 1858.89,
+      "duration": 6.92,
+      "text": "So with our data\npredictor matrix X,"
+    },
+    {
+      "start": 1865.81,
+      "duration": 3.36,
+      "text": "we consider the sample\ncovariance matrix"
+    },
+    {
+      "start": 1869.17,
+      "duration": 3.52,
+      "text": "of those row vectors."
+    },
+    {
+      "start": 1872.69,
+      "duration": 5.68,
+      "text": "And we can compute the\neigenvalue eigenvector"
+    },
+    {
+      "start": 1878.37,
+      "duration": 3.0,
+      "text": "decomposition of that."
+    },
+    {
+      "start": 1881.37,
+      "duration": 3.64,
+      "text": "And with these\neigenvectors, which"
+    },
+    {
+      "start": 1885.01,
+      "duration": 9.64,
+      "text": "are normalized to have length 1,\nwe simply multiply our matrix X"
+    },
+    {
+      "start": 1894.65,
+      "duration": 4.92,
+      "text": "by the j-th eigenvector, and we\nget our j-th principal component"
+    },
+    {
+      "start": 1899.57,
+      "duration": 2.24,
+      "text": "variable."
+    },
+    {
+      "start": 1901.81,
+      "duration": 4.44,
+      "text": "So this is familiar to us\nin, terms of how principal"
+    },
+    {
+      "start": 1906.25,
+      "duration": 4.44,
+      "text": "components sort of\ncomputations work."
+    },
+    {
+      "start": 1910.69,
+      "duration": 6.36,
+      "text": "And with principal\ncomponents regression,"
+    },
+    {
+      "start": 1917.05,
+      "duration": 5.02,
+      "text": "one has principal\ncomponent variables"
+    },
+    {
+      "start": 1922.07,
+      "duration": 3.82,
+      "text": "which are orthogonal\nto each other,"
+    },
+    {
+      "start": 1925.89,
+      "duration": 8.0,
+      "text": "and so the computation of their\ncoefficients is very simple."
+    },
+    {
+      "start": 1933.89,
+      "duration": 3.08,
+      "text": "We can calculate\nthem separately,"
+    },
+    {
+      "start": 1936.97,
+      "duration": 3.36,
+      "text": "and we can consider\nusing maybe just"
+    },
+    {
+      "start": 1940.33,
+      "duration": 5.6,
+      "text": "the first m principal component\nvariables in our regression."
+    },
+    {
+      "start": 1945.93,
+      "duration": 7.64,
+      "text": "And so if we do this, we\ncan see some easy formulas"
+    },
+    {
+      "start": 1953.57,
+      "duration": 4.48,
+      "text": "for the estimates."
+    },
+    {
+      "start": 1958.05,
+      "duration": 7.12,
+      "text": "Ultimately, we get\nfitted values of y,"
+    },
+    {
+      "start": 1965.17,
+      "duration": 1.66,
+      "text": "from principal\ncomponents regression,"
+    },
+    {
+      "start": 1966.83,
+      "duration": 6.46,
+      "text": "which are a projection of the\nY vector onto the space spanned"
+    },
+    {
+      "start": 1973.29,
+      "duration": 0.73,
+      "text": "by the first--"
+    },
+    {
+      "start": 1976.61,
+      "duration": 6.68,
+      "text": "in this case, the first m\nprincipal component directions."
+    },
+    {
+      "start": 1983.29,
+      "duration": 6.1,
+      "text": "And what's curious is just\nhow these three methods--"
+    },
+    {
+      "start": 1989.39,
+      "duration": 2.02,
+      "text": "least squares, ridge,\nand principal components"
+    },
+    {
+      "start": 1991.41,
+      "duration": 1.36,
+      "text": "regression--"
+    },
+    {
+      "start": 1992.77,
+      "duration": 6.24,
+      "text": "are estimating the response\nvariable, or dependent variable,"
+    },
+    {
+      "start": 1999.01,
+      "duration": 4.36,
+      "text": "using essentially the\nsame fundamental pieces,"
+    },
+    {
+      "start": 2003.37,
+      "duration": 7.6,
+      "text": "the cj and uj's, but\nare either skipping"
+    },
+    {
+      "start": 2010.97,
+      "duration": 3.6,
+      "text": "the last p minus m for\nprincipal components,"
+    },
+    {
+      "start": 2014.57,
+      "duration": 2.72,
+      "text": "shrinking those\nbased on the size"
+    },
+    {
+      "start": 2017.29,
+      "duration": 5.14,
+      "text": "of the eigenvalues for\nridge, or using all of them."
+    },
+    {
+      "start": 2025.85,
+      "duration": 6.56,
+      "text": "Now, as you might\nexpect, researchers"
+    },
+    {
+      "start": 2032.41,
+      "duration": 6.24,
+      "text": "have extended estimation\nmethods beyond these."
+    },
+    {
+      "start": 2038.65,
+      "duration": 5.72,
+      "text": "The LASSO regression model,\nor regression estimate,"
+    },
+    {
+      "start": 2044.37,
+      "duration": 6.4,
+      "text": "is one where, instead\nof having the penalty be"
+    },
+    {
+      "start": 2050.77,
+      "duration": 5.88,
+      "text": "the sum of squared beta j's\nor the length of the beta j,"
+    },
+    {
+      "start": 2056.65,
+      "duration": 3.329,
+      "text": "it's the sum of the\nabsolute values."
+    },
+    {
+      "start": 2062.69,
+      "duration": 5.759,
+      "text": "And this penalty is a\nreally interesting one."
+    },
+    {
+      "start": 2068.449,
+      "duration": 1.54,
+      "text": "And some of-- let's see."
+    },
+    {
+      "start": 2069.989,
+      "duration": 4.761,
+      "text": "I'm sure some people here have\nperhaps used lasso regression."
+    },
+    {
+      "start": 2074.75,
+      "duration": 3.62,
+      "text": "Has anyone here used\nlasso regression?"
+    },
+    {
+      "start": 2078.37,
+      "duration": 1.28,
+      "text": "Nobody?"
+    },
+    {
+      "start": 2079.65,
+      "duration": 1.759,
+      "text": "That's fine."
+    },
+    {
+      "start": 2081.409,
+      "duration": 4.08,
+      "text": "That means this isn't sort\nof repeat information."
+    },
+    {
+      "start": 2085.489,
+      "duration": 2.491,
+      "text": "But it turns out that--"
+    },
+    {
+      "start": 2090.85,
+      "duration": 2.48,
+      "text": "well, let me just draw this."
+    },
+    {
+      "start": 2093.33,
+      "duration": 4.92,
+      "text": "Suppose we have beta\n1 versus beta 2,"
+    },
+    {
+      "start": 2098.25,
+      "duration": 4.892,
+      "text": "and we're considering penalties."
+    },
+    {
+      "start": 2106.05,
+      "duration": 4.52,
+      "text": "So the sum of the beta j\nsquareds equal to a constant,"
+    },
+    {
+      "start": 2110.57,
+      "duration": 2.03,
+      "text": "this is the sort\nof ridge penalty."
+    },
+    {
+      "start": 2117.49,
+      "duration": 10.7,
+      "text": "So, so if we have a beta\nhat, say, a beta hat here,"
+    },
+    {
+      "start": 2128.19,
+      "duration": 3.42,
+      "text": "a point that we\nobserve, it basically"
+    },
+    {
+      "start": 2131.61,
+      "duration": 3.24,
+      "text": "is sort of shrunk towards zero."
+    },
+    {
+      "start": 2134.85,
+      "duration": 5.12,
+      "text": "Or we have beta hat,\nand the beta-hat ridge"
+    },
+    {
+      "start": 2139.97,
+      "duration": 9.12,
+      "text": "will be shrunk towards this\nprior mean some amount."
+    },
+    {
+      "start": 2149.09,
+      "duration": 7.96,
+      "text": "With the lasso penalty,\nwe have the sum"
+    },
+    {
+      "start": 2157.05,
+      "duration": 5.6,
+      "text": "of the magnitudes of the beta\nj's is equal to a constant."
+    },
+    {
+      "start": 2162.65,
+      "duration": 7.8,
+      "text": "Then we basically\nhave diamonds where,"
+    },
+    {
+      "start": 2170.45,
+      "duration": 3.64,
+      "text": "along each of these\ndiamond edges,"
+    },
+    {
+      "start": 2174.09,
+      "duration": 3.56,
+      "text": "the penalty is the\nsame magnitude."
+    },
+    {
+      "start": 2177.65,
+      "duration": 4.72,
+      "text": "And so with lasso\nregression, we basically"
+    },
+    {
+      "start": 2182.37,
+      "duration": 9.52,
+      "text": "consider finding an estimate\nthat minimizes the least squares"
+    },
+    {
+      "start": 2191.89,
+      "duration": 5.45,
+      "text": "but also is constrained\nto have sort"
+    },
+    {
+      "start": 2197.34,
+      "duration": 5.17,
+      "text": "of sum of absolute\nmagnitudes that's smaller."
+    },
+    {
+      "start": 2202.51,
+      "duration": 6.42,
+      "text": "And so this kind of\npenalty ends up actually"
+    },
+    {
+      "start": 2208.93,
+      "duration": 5.88,
+      "text": "leading to shrinkage,\nwhich tends"
+    },
+    {
+      "start": 2214.81,
+      "duration": 6.95,
+      "text": "to concentrate at the vertices\nof this penalty function."
+    },
+    {
+      "start": 2221.76,
+      "duration": 3.24,
+      "text": "So what we end up\ngetting, often,"
+    },
+    {
+      "start": 2225.0,
+      "duration": 5.58,
+      "text": "is a lasso estimate that\nhas some null parameters,"
+    },
+    {
+      "start": 2230.58,
+      "duration": 1.48,
+      "text": "zero-value parameters."
+    },
+    {
+      "start": 2232.06,
+      "duration": 4.78,
+      "text": "So it's a way of excluding\nvariables from the regression,"
+    },
+    {
+      "start": 2236.84,
+      "duration": 1.87,
+      "text": "depending on what lambda is."
+    },
+    {
+      "start": 2242.04,
+      "duration": 2.08,
+      "text": "All right."
+    },
+    {
+      "start": 2244.12,
+      "duration": 1.22,
+      "text": "Well, let's see."
+    },
+    {
+      "start": 2245.34,
+      "duration": 7.5,
+      "text": "There's this ETF case\nstudy that I posted which--"
+    },
+    {
+      "start": 2255.64,
+      "duration": 4.36,
+      "text": "and it's sort of a long\ndocument to sift through,"
+    },
+    {
+      "start": 2260.0,
+      "duration": 4.4,
+      "text": "but I guess what's\nimportant is just"
+    },
+    {
+      "start": 2264.4,
+      "duration": 2.08,
+      "text": "to look at the table\nof contents to see"
+    },
+    {
+      "start": 2266.48,
+      "duration": 2.88,
+      "text": "what's of interest\nto check out in this."
+    },
+    {
+      "start": 2269.36,
+      "duration": 4.68,
+      "text": "And what I set up\nas a problem was"
+    },
+    {
+      "start": 2274.04,
+      "duration": 8.64,
+      "text": "to consider collecting prices\non exchange-traded funds"
+    },
+    {
+      "start": 2282.68,
+      "duration": 4.4,
+      "text": "that correspond to different\nsectors in the US market."
+    },
+    {
+      "start": 2287.08,
+      "duration": 5.64,
+      "text": "And so in the US market,\nthere are about 10 sectors--"
+    },
+    {
+      "start": 2292.72,
+      "duration": 3.34,
+      "text": "consumer staples,\nenergy, financials,"
+    },
+    {
+      "start": 2296.06,
+      "duration": 1.58,
+      "text": "health, and so forth."
+    },
+    {
+      "start": 2297.64,
+      "duration": 5.68,
+      "text": "And then there are also\nexchange-traded funds"
+    },
+    {
+      "start": 2303.32,
+      "duration": 5.96,
+      "text": "that correspond to market\nindexes, like the S&P 500"
+    },
+    {
+      "start": 2309.28,
+      "duration": 6.16,
+      "text": "or the Dow Jones Industrial\nor the NASDAQ market."
+    },
+    {
+      "start": 2315.44,
+      "duration": 10.52,
+      "text": "And I consider regressing a\nsector ETF on the index ETFs."
+    },
+    {
+      "start": 2325.96,
+      "duration": 8.6,
+      "text": "Now, why would we be interested\nin regressing a sector index"
+    },
+    {
+      "start": 2334.56,
+      "duration": 6.37,
+      "text": "on these market-index ETFs?"
+    },
+    {
+      "start": 2352.17,
+      "duration": 3.99,
+      "text": "Well, let me just\ngo through here."
+    },
+    {
+      "start": 2356.16,
+      "duration": 0.692,
+      "text": "OK."
+    },
+    {
+      "start": 2356.852,
+      "duration": 3.788,
+      "text": "Or, this document goes\nthrough, listing the symbols"
+    },
+    {
+      "start": 2360.64,
+      "duration": 12.12,
+      "text": "for all of these different ETFs,\nplotting them, and actually"
+    },
+    {
+      "start": 2372.76,
+      "duration": 6.8,
+      "text": "then converting the\nprices to weekly returns,"
+    },
+    {
+      "start": 2379.56,
+      "duration": 3.88,
+      "text": "and then looking at how they're\ncorrelated with each other."
+    },
+    {
+      "start": 2383.44,
+      "duration": 7.44,
+      "text": "So in this example, I believe it\nwas the Consumer Staples Sector"
+    },
+    {
+      "start": 2390.88,
+      "duration": 6.4,
+      "text": "Fund, that I'm thinking of\nregressing on the SPY, which"
+    },
+    {
+      "start": 2397.28,
+      "duration": 6.0,
+      "text": "corresponds to the S&P 500;\nMDY, which is a mid-cap index;"
+    },
+    {
+      "start": 2403.28,
+      "duration": 3.88,
+      "text": "QQQ; and the Diamonds."
+    },
+    {
+      "start": 2407.16,
+      "duration": 3.64,
+      "text": "And if we look at these sort\nof cumulative returns of these"
+    },
+    {
+      "start": 2410.8,
+      "duration": 7.52,
+      "text": "different ETFs, here's the\ncumulative return over a 14-year"
+    },
+    {
+      "start": 2418.32,
+      "duration": 2.6,
+      "text": "period or something."
+    },
+    {
+      "start": 2420.92,
+      "duration": 4.24,
+      "text": "Well, any other--\nany more thoughts"
+    },
+    {
+      "start": 2425.16,
+      "duration": 6.6,
+      "text": "on why we might want to\nregress this, on these indexes?"
+    },
+    {
+      "start": 2431.76,
+      "duration": 1.4,
+      "text": "AJ?"
+    },
+    {
+      "start": 2433.16,
+      "duration": 2.26,
+      "text": "AUDIENCE: The index\nreturn should be--"
+    },
+    {
+      "start": 2435.42,
+      "duration": 4.18,
+      "text": "the entire variance should be\nexplained by their sectors."
+    },
+    {
+      "start": 2439.6,
+      "duration": 2.28,
+      "text": "Assuming everything\nin each index"
+    },
+    {
+      "start": 2441.88,
+      "duration": 4.94,
+      "text": "is contained within\nthe market index,"
+    },
+    {
+      "start": 2446.82,
+      "duration": 3.54,
+      "text": "it should explain perfectly\nthe variance in returns."
+    },
+    {
+      "start": 2450.36,
+      "duration": 1.0,
+      "text": "PETER KEMPTHORNE: Right."
+    },
+    {
+      "start": 2451.36,
+      "duration": 2.46,
+      "text": "OK, so that's looking at it\nalmost the other way around."
+    },
+    {
+      "start": 2453.82,
+      "duration": 4.46,
+      "text": "If we were looking\nat the index ETF"
+    },
+    {
+      "start": 2458.28,
+      "duration": 2.96,
+      "text": "as a function of the\nsectors, we should"
+    },
+    {
+      "start": 2461.24,
+      "duration": 3.12,
+      "text": "have almost a\nperfect explanation"
+    },
+    {
+      "start": 2464.36,
+      "duration": 2.68,
+      "text": "of that in a regression model."
+    },
+    {
+      "start": 2467.04,
+      "duration": 3.0,
+      "text": "What can be useful\nwith this regression"
+    },
+    {
+      "start": 2470.04,
+      "duration": 5.32,
+      "text": "is if we wanted to invest\nin consumer staples"
+    },
+    {
+      "start": 2475.36,
+      "duration": 4.4,
+      "text": "but we wanted to have\nour investment be"
+    },
+    {
+      "start": 2479.76,
+      "duration": 6.9,
+      "text": "hedged against the market\nrisk, that is large."
+    },
+    {
+      "start": 2486.66,
+      "duration": 7.46,
+      "text": "And so if we could eliminate\nthe dependence on the S&P 500,"
+    },
+    {
+      "start": 2494.12,
+      "duration": 5.56,
+      "text": "eliminate the dependence on\nthe mid-cap and the QQQs,"
+    },
+    {
+      "start": 2499.68,
+      "duration": 5.44,
+      "text": "then our hedged\ninvestment, we'd be"
+    },
+    {
+      "start": 2505.12,
+      "duration": 4.56,
+      "text": "less concerned about\nmajor drops in the market."
+    },
+    {
+      "start": 2509.68,
+      "duration": 2.14,
+      "text": "So we'd be reducing\nthe market risk."
+    },
+    {
+      "start": 2511.82,
+      "duration": 4.14,
+      "text": "So this is where it\ncan be very useful."
+    },
+    {
+      "start": 2515.96,
+      "duration": 5.12,
+      "text": "Now, this kind of\napproach has also"
+    },
+    {
+      "start": 2521.08,
+      "duration": 5.08,
+      "text": "been used to try and mimic\nhedge fund strategies."
+    },
+    {
+      "start": 2526.16,
+      "duration": 4.04,
+      "text": "And so there's some\npapers out there"
+    },
+    {
+      "start": 2530.2,
+      "duration": 6.84,
+      "text": "on hedge fund replication, where\nhedge funds basically maybe"
+    },
+    {
+      "start": 2537.04,
+      "duration": 6.24,
+      "text": "have most of their returns\nattributable to liquid market"
+    },
+    {
+      "start": 2543.28,
+      "duration": 5.72,
+      "text": "instruments that one can\ntrade in a portfolio."
+    },
+    {
+      "start": 2549.0,
+      "duration": 5.0,
+      "text": "And so hedge fund\nreplication methods"
+    },
+    {
+      "start": 2554.0,
+      "duration": 3.68,
+      "text": "have actually done that\nkind of regression as well."
+    },
+    {
+      "start": 2557.68,
+      "duration": 5.02,
+      "text": "Anyway, with this,\nwith this setup,"
+    },
+    {
+      "start": 2562.7,
+      "duration": 7.3,
+      "text": "we can just regress this\nXLP on the index ETFs,"
+    },
+    {
+      "start": 2570.0,
+      "duration": 7.52,
+      "text": "and we get this regression\ncoefficient table here."
+    },
+    {
+      "start": 2577.52,
+      "duration": 7.2,
+      "text": "What's important to see\nis whether the regression"
+    },
+    {
+      "start": 2584.72,
+      "duration": 4.44,
+      "text": "coefficients are significantly\ndifferent from zero or not."
+    },
+    {
+      "start": 2589.16,
+      "duration": 6.96,
+      "text": "And the t-value and\np-value columns basically"
+    },
+    {
+      "start": 2596.12,
+      "duration": 4.0,
+      "text": "tell us that all of\nthese explanatory factors"
+    },
+    {
+      "start": 2600.12,
+      "duration": 3.0,
+      "text": "are useful here."
+    },
+    {
+      "start": 2603.12,
+      "duration": 9.88,
+      "text": "And let's see,\nwhen we study the--"
+    },
+    {
+      "start": 2613.0,
+      "duration": 0.68,
+      "text": "let's see."
+    },
+    {
+      "start": 2613.68,
+      "duration": 3.72,
+      "text": "When we study the\nregression model--"
+    },
+    {
+      "start": 2617.4,
+      "duration": 5.12,
+      "text": "OK, we have the R-squared\nof this multiple regression."
+    },
+    {
+      "start": 2622.52,
+      "duration": 4.8,
+      "text": "The correlation of the fitted\nand actual values is given by--"
+    },
+    {
+      "start": 2627.32,
+      "duration": 4.68,
+      "text": "or the square of that is\ngiven by the R-squared."
+    },
+    {
+      "start": 2632.0,
+      "duration": 6.0,
+      "text": "And we can do various regression\ndiagnostics which are used here."
+    },
+    {
+      "start": 2638.0,
+      "duration": 3.02,
+      "text": "What-- I'll let you go\nthrough these details."
+    },
+    {
+      "start": 2641.02,
+      "duration": 2.18,
+      "text": "It's a bit repetitive\nfrom what we talked about"
+    },
+    {
+      "start": 2643.2,
+      "duration": 1.64,
+      "text": "in the last lecture."
+    },
+    {
+      "start": 2644.84,
+      "duration": 2.92,
+      "text": "But let's see."
+    },
+    {
+      "start": 2647.76,
+      "duration": 8.72,
+      "text": "We can also model the\nindependent variables,"
+    },
+    {
+      "start": 2656.48,
+      "duration": 4.24,
+      "text": "or do a principal components\nanalysis of those."
+    },
+    {
+      "start": 2660.72,
+      "duration": 4.0,
+      "text": "And if we compute a\nprincipal component analysis"
+    },
+    {
+      "start": 2664.72,
+      "duration": 2.42,
+      "text": "of our independent\nvariables-- in this case,"
+    },
+    {
+      "start": 2667.14,
+      "duration": 5.34,
+      "text": "the index sector\nexchange-traded funds--"
+    },
+    {
+      "start": 2672.48,
+      "duration": 8.22,
+      "text": "we then have a sort of\ndecomposition of variability,"
+    },
+    {
+      "start": 2680.7,
+      "duration": 2.74,
+      "text": "which indicates that the\nfirst principal component"
+    },
+    {
+      "start": 2683.44,
+      "duration": 4.92,
+      "text": "variable explains 90% of the\nvariability in these data,"
+    },
+    {
+      "start": 2688.36,
+      "duration": 3.0,
+      "text": "the first two, 97%."
+    },
+    {
+      "start": 2691.36,
+      "duration": 2.8,
+      "text": "So we're actually explaining\na lot of variability"
+    },
+    {
+      "start": 2694.16,
+      "duration": 2.12,
+      "text": "with just the first two."
+    },
+    {
+      "start": 2696.28,
+      "duration": 11.28,
+      "text": "Now, in looking at the\nregression on the PC variables,"
+    },
+    {
+      "start": 2707.56,
+      "duration": 10.76,
+      "text": "let's see, we can\nconsider the-- well,"
+    },
+    {
+      "start": 2718.32,
+      "duration": 2.92,
+      "text": "each of these PC variables,\nPrincipal Component variables,"
+    },
+    {
+      "start": 2721.24,
+      "duration": 2.24,
+      "text": "are orthogonal to each other."
+    },
+    {
+      "start": 2723.48,
+      "duration": 5.42,
+      "text": "So in estimating the\nregression coefficients,"
+    },
+    {
+      "start": 2728.9,
+      "duration": 12.9,
+      "text": "we can do so with simple linear\nregressions of the ETF fund, y"
+    },
+    {
+      "start": 2741.8,
+      "duration": 2.54,
+      "text": "on that, on each variable."
+    },
+    {
+      "start": 2744.34,
+      "duration": 4.22,
+      "text": "And so the first principal\ncomponent variable"
+    },
+    {
+      "start": 2748.56,
+      "duration": 6.36,
+      "text": "has an R-squared of 0.545."
+    },
+    {
+      "start": 2754.92,
+      "duration": 3.92,
+      "text": "And the second principal\ncomponent variable"
+    },
+    {
+      "start": 2758.84,
+      "duration": 2.96,
+      "text": "has almost no correlation."
+    },
+    {
+      "start": 2761.8,
+      "duration": 5.46,
+      "text": "And so it's-- well,\nit's almost none."
+    },
+    {
+      "start": 2767.26,
+      "duration": 4.38,
+      "text": "Its p-value is still 0.0518,\nwhich is almost statistically"
+    },
+    {
+      "start": 2771.64,
+      "duration": 0.88,
+      "text": "significant."
+    },
+    {
+      "start": 2772.52,
+      "duration": 5.8,
+      "text": "With very large samples, we're\nable to judge small correlations"
+    },
+    {
+      "start": 2778.32,
+      "duration": 2.16,
+      "text": "as being statistically\nsignificant,"
+    },
+    {
+      "start": 2780.48,
+      "duration": 3.08,
+      "text": "but maybe it's not\npractically significant."
+    },
+    {
+      "start": 2783.56,
+      "duration": 7.0,
+      "text": "And then the third has a\nsmall R-squared as well,"
+    },
+    {
+      "start": 2790.56,
+      "duration": 4.04,
+      "text": "and the fourth,\nagain, rather small."
+    },
+    {
+      "start": 2794.6,
+      "duration": 10.23,
+      "text": "But what's of interest\nis whether the--"
+    },
+    {
+      "start": 2804.83,
+      "duration": 2.68,
+      "text": "or, it's basically just, How\nstatistically significant"
+    },
+    {
+      "start": 2807.51,
+      "duration": 2.64,
+      "text": "are the principal\ncomponent variables?"
+    },
+    {
+      "start": 2810.15,
+      "duration": 6.74,
+      "text": "And in the sort of\nupdated example, the--"
+    },
+    {
+      "start": 2821.39,
+      "duration": 2.48,
+      "text": "let's see here."
+    },
+    {
+      "start": 2823.87,
+      "duration": 2.4,
+      "text": "Well, if we consider\nthe regression parameter"
+    },
+    {
+      "start": 2826.27,
+      "duration": 4.48,
+      "text": "based on only the\nfirst three variables,"
+    },
+    {
+      "start": 2830.75,
+      "duration": 3.22,
+      "text": "we basically get these results."
+    },
+    {
+      "start": 2833.97,
+      "duration": 5.94,
+      "text": "Now, when I did this\na few years ago,"
+    },
+    {
+      "start": 2839.91,
+      "duration": 8.08,
+      "text": "it ended up being the case\nthat the p-values for--"
+    },
+    {
+      "start": 2847.99,
+      "duration": 3.6,
+      "text": "I think it was the second\nprincipal component variable,"
+    },
+    {
+      "start": 2851.59,
+      "duration": 2.76,
+      "text": "was not significant at all."
+    },
+    {
+      "start": 2854.35,
+      "duration": 8.6,
+      "text": "And so in choosing\nwhat factors to include"
+    },
+    {
+      "start": 2862.95,
+      "duration": 3.84,
+      "text": "in the model, the principal\ncomponents regression"
+    },
+    {
+      "start": 2866.79,
+      "duration": 8.6,
+      "text": "approach of basically including\nsuccessive high-eigenvalue"
+    },
+    {
+      "start": 2875.39,
+      "duration": 4.36,
+      "text": "principal component\nvariables in successively"
+    },
+    {
+      "start": 2879.75,
+      "duration": 8.92,
+      "text": "so long as they're significant,\nthat actually sort of doesn't"
+    },
+    {
+      "start": 2888.67,
+      "duration": 3.24,
+      "text": "include, really,\nnecessarily, the important"
+    },
+    {
+      "start": 2891.91,
+      "duration": 2.6,
+      "text": "regressors in the model."
+    },
+    {
+      "start": 2894.51,
+      "duration": 3.64,
+      "text": "So we can have\nstatistically significant"
+    },
+    {
+      "start": 2898.15,
+      "duration": 4.68,
+      "text": "high-order principal\ncomponent variables that"
+    },
+    {
+      "start": 2902.83,
+      "duration": 2.58,
+      "text": "don't have much\nvariability in them,"
+    },
+    {
+      "start": 2905.41,
+      "duration": 5.1,
+      "text": "but they actually are explaining\nsignificant factors affecting"
+    },
+    {
+      "start": 2910.51,
+      "duration": 2.44,
+      "text": "the response variable."
+    },
+    {
+      "start": 2912.95,
+      "duration": 4.52,
+      "text": "So anyway, this\nnote goes through"
+    },
+    {
+      "start": 2917.47,
+      "duration": 9.16,
+      "text": "and additionally considers ridge\nregression and lasso regression."
+    },
+    {
+      "start": 2926.63,
+      "duration": 7.2,
+      "text": "And so with the ridge\nregression results,"
+    },
+    {
+      "start": 2933.83,
+      "duration": 5.2,
+      "text": "the display of\nregression parameters"
+    },
+    {
+      "start": 2939.03,
+      "duration": 6.64,
+      "text": "is traced out as we consider\ndifferent constraints"
+    },
+    {
+      "start": 2945.67,
+      "duration": 4.52,
+      "text": "on the L1--"
+    },
+    {
+      "start": 2950.19,
+      "duration": 3.96,
+      "text": "or on the-- well,\non the L2 norm."
+    },
+    {
+      "start": 2954.15,
+      "duration": 6.12,
+      "text": "And if we look at the L1\nnorm of these estimates,"
+    },
+    {
+      "start": 2960.27,
+      "duration": 5.32,
+      "text": "one can see, basically, how\nas one sort of decreases"
+    },
+    {
+      "start": 2965.59,
+      "duration": 6.8,
+      "text": "the penalty for the complexity\nof the regression parameters,"
+    },
+    {
+      "start": 2972.39,
+      "duration": 6.64,
+      "text": "we get final estimates given\nby these ending values."
+    },
+    {
+      "start": 2979.03,
+      "duration": 3.58,
+      "text": "But if we increase\nthe penalty on those,"
+    },
+    {
+      "start": 2982.61,
+      "duration": 4.22,
+      "text": "then they basically are\nshrinking towards zero."
+    },
+    {
+      "start": 2986.83,
+      "duration": 3.4,
+      "text": "Although, the shrinkage isn't\nnecessarily in a monotone"
+    },
+    {
+      "start": 2990.23,
+      "duration": 1.84,
+      "text": "manner."
+    },
+    {
+      "start": 2992.07,
+      "duration": 4.68,
+      "text": "And then if we look at\nthe lasso regression,"
+    },
+    {
+      "start": 2996.75,
+      "duration": 4.88,
+      "text": "with a same L1-norm\nsort of scaling,"
+    },
+    {
+      "start": 3001.63,
+      "duration": 5.0,
+      "text": "one can see how, as that\nlambda parameter associated"
+    },
+    {
+      "start": 3006.63,
+      "duration": 6.88,
+      "text": "with the penalty is\nincreased, we basically"
+    },
+    {
+      "start": 3013.51,
+      "duration": 6.12,
+      "text": "have the L1 norm getting\nsmaller, of the resulting"
+    },
+    {
+      "start": 3019.63,
+      "duration": 1.16,
+      "text": "estimates."
+    },
+    {
+      "start": 3020.79,
+      "duration": 3.48,
+      "text": "And this shows you how--"
+    },
+    {
+      "start": 3024.27,
+      "duration": 3.56,
+      "text": "I guess the third\nvariable is the first"
+    },
+    {
+      "start": 3027.83,
+      "duration": 8.88,
+      "text": "to be excluded, then the second,\nand then, finally, the fourth."
+    },
+    {
+      "start": 3036.71,
+      "duration": 3.22,
+      "text": "So, all right."
+    },
+    {
+      "start": 3039.93,
+      "duration": 4.1,
+      "text": "So anyway, so this note\ngoes through an illustration"
+    },
+    {
+      "start": 3044.03,
+      "duration": 4.44,
+      "text": "of lasso and principal\ncomponents regression."
+    },
+    {
+      "start": 3048.47,
+      "duration": 3.68,
+      "text": "And it also provided\na comparison"
+    },
+    {
+      "start": 3052.15,
+      "duration": 4.24,
+      "text": "of different\ncoefficients by method."
+    },
+    {
+      "start": 3056.39,
+      "duration": 7.56,
+      "text": "And what this final chart\nshows is the comparison"
+    },
+    {
+      "start": 3063.95,
+      "duration": 5.2,
+      "text": "of beta estimates by method."
+    },
+    {
+      "start": 3069.15,
+      "duration": 5.04,
+      "text": "And one can see that most of the\nmethods give similar results,"
+    },
+    {
+      "start": 3074.19,
+      "duration": 4.08,
+      "text": "but using just the first three\nprincipal component variables"
+    },
+    {
+      "start": 3078.27,
+      "duration": 3.48,
+      "text": "gives us very\ndifferent estimates"
+    },
+    {
+      "start": 3081.75,
+      "duration": 1.58,
+      "text": "of regression parameters."
+    },
+    {
+      "start": 3083.33,
+      "duration": 10.82,
+      "text": "So there's sensitivity of\nthe estimators to the data."
+    },
+    {
+      "start": 3094.15,
+      "duration": 5.69,
+      "text": "And it's perhaps useful to--"
+    },
+    {
+      "start": 3102.55,
+      "duration": 1.6,
+      "text": "let's see."
+    },
+    {
+      "start": 3104.15,
+      "duration": 2.68,
+      "text": "Well, it's useful to\nconsider these alternatives."
+    },
+    {
+      "start": 3106.83,
+      "duration": 2.56,
+      "text": "With very large sample\nsizes, you generally"
+    },
+    {
+      "start": 3109.39,
+      "duration": 4.24,
+      "text": "don't get much difference in\nthe ridge or the Lasso results."
+    },
+    {
+      "start": 3113.63,
+      "duration": 5.12,
+      "text": "It's usually in smaller sample\nsizes that you get differences."
+    },
+    {
+      "start": 3118.75,
+      "duration": 5.78,
+      "text": "With the principal components\nregression, in this example,"
+    },
+    {
+      "start": 3124.53,
+      "duration": 4.18,
+      "text": "the first three principal\ncomponent variables"
+    },
+    {
+      "start": 3128.71,
+      "duration": 4.48,
+      "text": "end up giving estimates,\nthat are in the yellow."
+    },
+    {
+      "start": 3133.19,
+      "duration": 3.96,
+      "text": "But if we chose which principal\ncomponent variables to include"
+    },
+    {
+      "start": 3137.15,
+      "duration": 4.68,
+      "text": "based on their\nstatistical significance,"
+    },
+    {
+      "start": 3141.83,
+      "duration": 6.84,
+      "text": "then the more significant\nprincipal component variables"
+    },
+    {
+      "start": 3148.67,
+      "duration": 6.56,
+      "text": "ended up leading to\nthis green values, which"
+    },
+    {
+      "start": 3155.23,
+      "duration": 2.36,
+      "text": "are comparable to the others."
+    },
+    {
+      "start": 3157.59,
+      "duration": 5.6,
+      "text": "So this suggests that--"
+    },
+    {
+      "start": 3163.19,
+      "duration": 4.24,
+      "text": "well, actually in this\ncase, the green values"
+    },
+    {
+      "start": 3167.43,
+      "duration": 3.82,
+      "text": "are equal to least\nsquares, just because all"
+    },
+    {
+      "start": 3171.25,
+      "duration": 1.5,
+      "text": "of the principal\ncomponent variables"
+    },
+    {
+      "start": 3172.75,
+      "duration": 3.6,
+      "text": "were statistically significant."
+    },
+    {
+      "start": 3176.35,
+      "duration": 2.52,
+      "text": "All right."
+    },
+    {
+      "start": 3178.87,
+      "duration": 9.56,
+      "text": "Well, the next thing\nI wanted to go through"
+    },
+    {
+      "start": 3188.43,
+      "duration": 6.04,
+      "text": "is this linear regression\nmodeling for the capital asset"
+    },
+    {
+      "start": 3194.47,
+      "duration": 1.88,
+      "text": "pricing model."
+    },
+    {
+      "start": 3196.35,
+      "duration": 7.36,
+      "text": "And in this note, we first\nreview what the capital asset"
+    },
+    {
+      "start": 3203.71,
+      "duration": 5.0,
+      "text": "pricing model is, how it relates\nto returns on stocks and returns"
+    },
+    {
+      "start": 3208.71,
+      "duration": 2.64,
+      "text": "on market index."
+    },
+    {
+      "start": 3211.35,
+      "duration": 8.0,
+      "text": "And what we're going to do is\ngo through the computation,"
+    },
+    {
+      "start": 3219.35,
+      "duration": 3.6,
+      "text": "computations, involved\nwith an empirical analysis"
+    },
+    {
+      "start": 3222.95,
+      "duration": 3.6,
+      "text": "of this capital\nasset pricing model,"
+    },
+    {
+      "start": 3226.55,
+      "duration": 3.56,
+      "text": "and then consider\ntesting hypotheses"
+    },
+    {
+      "start": 3230.11,
+      "duration": 4.6,
+      "text": "about individual\ncoefficients, and then"
+    },
+    {
+      "start": 3234.71,
+      "duration": 4.88,
+      "text": "conclude with actually fitting\nthis capital asset pricing"
+    },
+    {
+      "start": 3239.59,
+      "duration": 5.88,
+      "text": "model to all stocks\nin the S&P 500 index,"
+    },
+    {
+      "start": 3245.47,
+      "duration": 4.16,
+      "text": "and comparing the results\nof the capital asset pricing"
+    },
+    {
+      "start": 3249.63,
+      "duration": 3.12,
+      "text": "model parameters for that."
+    },
+    {
+      "start": 3252.75,
+      "duration": 7.04,
+      "text": "So with this, we begin with\nbasically a description"
+    },
+    {
+      "start": 3259.79,
+      "duration": 3.52,
+      "text": "of what the capital\nasset pricing model is."
+    },
+    {
+      "start": 3263.31,
+      "duration": 3.26,
+      "text": "We went through this, I\nthink, in our third lecture,"
+    },
+    {
+      "start": 3266.57,
+      "duration": 4.82,
+      "text": "which says that in\nan efficient market,"
+    },
+    {
+      "start": 3271.39,
+      "duration": 6.32,
+      "text": "the expected return\nof a stock, asset j,"
+    },
+    {
+      "start": 3277.71,
+      "duration": 4.12,
+      "text": "should equal the\nrisk-free return"
+    },
+    {
+      "start": 3281.83,
+      "duration": 8.4,
+      "text": "plus a beta factor times the\nexcess return of the market."
+    },
+    {
+      "start": 3290.23,
+      "duration": 10.04,
+      "text": "And so beta j is sort of\nthe market risk factor."
+    },
+    {
+      "start": 3300.27,
+      "duration": 5.48,
+      "text": "And the excess return\nof the market portfolio"
+    },
+    {
+      "start": 3305.75,
+      "duration": 5.04,
+      "text": "is simply how much bigger\nthat market return is compared"
+    },
+    {
+      "start": 3310.79,
+      "duration": 1.96,
+      "text": "with the risk-free rate."
+    },
+    {
+      "start": 3312.75,
+      "duration": 5.8,
+      "text": "Now, with these\nparameters, if we"
+    },
+    {
+      "start": 3318.55,
+      "duration": 7.52,
+      "text": "have data consisting of\nempirical returns R for stocks"
+    },
+    {
+      "start": 3326.07,
+      "duration": 3.56,
+      "text": "j at different times\nt, different values"
+    },
+    {
+      "start": 3329.63,
+      "duration": 3.88,
+      "text": "over t of the\nrisk-free rate, and we"
+    },
+    {
+      "start": 3333.51,
+      "duration": 5.4,
+      "text": "consider the excess\nreturn of each asset"
+    },
+    {
+      "start": 3338.91,
+      "duration": 3.12,
+      "text": "and the excess\nreturn of the market,"
+    },
+    {
+      "start": 3342.03,
+      "duration": 9.0,
+      "text": "then this data can be used to\nspecify a linear regression"
+    },
+    {
+      "start": 3351.03,
+      "duration": 8.04,
+      "text": "model where we have an intercept\nalpha j and a slope beta"
+    },
+    {
+      "start": 3359.07,
+      "duration": 4.1,
+      "text": "j for the regression."
+    },
+    {
+      "start": 3363.17,
+      "duration": 9.93,
+      "text": "So we're looking here at R star\nmarket, and this is R star j."
+    },
+    {
+      "start": 3375.75,
+      "duration": 12.08,
+      "text": "And we'll plot values over\ntime t of these excess returns."
+    },
+    {
+      "start": 3387.83,
+      "duration": 4.92,
+      "text": "And we can basically\nfit a regression model"
+    },
+    {
+      "start": 3392.75,
+      "duration": 2.12,
+      "text": "where we have y hat--"
+    },
+    {
+      "start": 3394.87,
+      "duration": 10.36,
+      "text": "or R star jt is equal to\nalpha j plus beta j R star mt."
+    },
+    {
+      "start": 3405.23,
+      "duration": 6.2,
+      "text": "And if the capital asset\npricing model holds,"
+    },
+    {
+      "start": 3411.43,
+      "duration": 8.68,
+      "text": "then the alpha j's should be\n0, because the alpha j's--"
+    },
+    {
+      "start": 3420.11,
+      "duration": 3.88,
+      "text": "if we take the expectation\nin this equation"
+    },
+    {
+      "start": 3423.99,
+      "duration": 6.48,
+      "text": "with residuals that are\nmean 0 constant variance,"
+    },
+    {
+      "start": 3430.47,
+      "duration": 4.56,
+      "text": "then we get the capital\nasset pricing model equation"
+    },
+    {
+      "start": 3435.03,
+      "duration": 4.48,
+      "text": "when the alpha j is equal to 0."
+    },
+    {
+      "start": 3439.51,
+      "duration": 5.63,
+      "text": "So what we can do with\nreal data is fit this model"
+    },
+    {
+      "start": 3445.14,
+      "duration": 4.12,
+      "text": "and then test whether\nalpha j is 0 or not."
+    },
+    {
+      "start": 3449.26,
+      "duration": 6.18,
+      "text": "And if it is consistent\nwith a 0 value,"
+    },
+    {
+      "start": 3455.44,
+      "duration": 4.5,
+      "text": "then the pricing\nof the asset can"
+    },
+    {
+      "start": 3459.94,
+      "duration": 4.52,
+      "text": "be judged to be sort\nof in an equilibrium"
+    },
+    {
+      "start": 3464.46,
+      "duration": 3.84,
+      "text": "described by the capital\nasset pricing model."
+    },
+    {
+      "start": 3468.3,
+      "duration": 4.0,
+      "text": "And so let's take a look."
+    },
+    {
+      "start": 3472.3,
+      "duration": 3.36,
+      "text": "I think what's\nperhaps useful is just"
+    },
+    {
+      "start": 3475.66,
+      "duration": 5.42,
+      "text": "to see the code for\ndoing these computations."
+    },
+    {
+      "start": 3481.08,
+      "duration": 4.66,
+      "text": "It's included in the note here."
+    },
+    {
+      "start": 3485.74,
+      "duration": 5.76,
+      "text": "But if we pick a\nparticular stock, GE stock,"
+    },
+    {
+      "start": 3491.5,
+      "duration": 6.36,
+      "text": "and fit the regression model,\nwe basically-- in this code,"
+    },
+    {
+      "start": 3497.86,
+      "duration": 2.96,
+      "text": "the only thing we\nneed to do is specify"
+    },
+    {
+      "start": 3500.82,
+      "duration": 8.68,
+      "text": "the symbol for the stock, and\nthen extract from our data"
+    },
+    {
+      "start": 3509.5,
+      "duration": 9.76,
+      "text": "object the excess market return\nand the excess asset return."
+    },
+    {
+      "start": 3519.26,
+      "duration": 2.04,
+      "text": "And then fit that\nregression, and we get"
+    },
+    {
+      "start": 3521.3,
+      "duration": 2.72,
+      "text": "these coefficients table here."
+    },
+    {
+      "start": 3524.02,
+      "duration": 6.64,
+      "text": "Now, in this example,\nthe intercept coefficient"
+    },
+    {
+      "start": 3530.66,
+      "duration": 2.92,
+      "text": "is the estimate of alpha."
+    },
+    {
+      "start": 3533.58,
+      "duration": 5.36,
+      "text": "And if GE is being priced\nconsistent with the capital"
+    },
+    {
+      "start": 3538.94,
+      "duration": 4.2,
+      "text": "asset pricing model,\nthen that estimate"
+    },
+    {
+      "start": 3543.14,
+      "duration": 2.32,
+      "text": "should be consistent\nwith the null value."
+    },
+    {
+      "start": 3545.46,
+      "duration": 4.6,
+      "text": "And the p-value for testing\nwhether that intercept is 0"
+    },
+    {
+      "start": 3550.06,
+      "duration": 4.0,
+      "text": "or not gives us evidence\nsupporting the capital asset"
+    },
+    {
+      "start": 3554.06,
+      "duration": 2.28,
+      "text": "pricing model."
+    },
+    {
+      "start": 3556.34,
+      "duration": 5.24,
+      "text": "Now, the market, the\nexcess return of the market"
+    },
+    {
+      "start": 3561.58,
+      "duration": 4.78,
+      "text": "has an estimate that's about\n1, with some standard error."
+    },
+    {
+      "start": 3566.36,
+      "duration": 3.22,
+      "text": "It has a huge t-value\nand a huge p-value."
+    },
+    {
+      "start": 3569.58,
+      "duration": 5.52,
+      "text": "Those values being\nlarge, or a huge t-value"
+    },
+    {
+      "start": 3575.1,
+      "duration": 2.64,
+      "text": "and very small p-value,\nare not surprising at all,"
+    },
+    {
+      "start": 3577.74,
+      "duration": 2.32,
+      "text": "just because they're correlated."
+    },
+    {
+      "start": 3580.06,
+      "duration": 5.52,
+      "text": "And a 0 value for the slope\nis sort of meaningless here."
+    },
+    {
+      "start": 3585.58,
+      "duration": 6.32,
+      "text": "What could be useful is testing\nwhether our beta coefficient"
+    },
+    {
+      "start": 3591.9,
+      "duration": 5.76,
+      "text": "is consistent with sort of the\naverage market risk of beta"
+    },
+    {
+      "start": 3597.66,
+      "duration": 3.68,
+      "text": "equal to 1, or not."
+    },
+    {
+      "start": 3601.34,
+      "duration": 4.2,
+      "text": "But here's basically a plot\nof the linear regression"
+    },
+    {
+      "start": 3605.54,
+      "duration": 4.6,
+      "text": "model for GE, and\na discussion just"
+    },
+    {
+      "start": 3610.14,
+      "duration": 6.08,
+      "text": "of getting comfortable\nwith R-squared values"
+    },
+    {
+      "start": 3616.22,
+      "duration": 5.39,
+      "text": "and calibrating our views of\nscatter plots to those values."
+    },
+    {
+      "start": 3624.86,
+      "duration": 2.78,
+      "text": "And then there's\nresiduals analysis,"
+    },
+    {
+      "start": 3627.64,
+      "duration": 1.78,
+      "text": "that is very important."
+    },
+    {
+      "start": 3629.42,
+      "duration": 5.4,
+      "text": "As I introduced at the beginning\nof our regression study,"
+    },
+    {
+      "start": 3634.82,
+      "duration": 3.52,
+      "text": "we make assumptions\nabout our model."
+    },
+    {
+      "start": 3638.34,
+      "duration": 3.0,
+      "text": "And we then, once\nwe fit the model,"
+    },
+    {
+      "start": 3641.34,
+      "duration": 3.12,
+      "text": "we check our assumptions to\nsee whether those are satisfied"
+    },
+    {
+      "start": 3644.46,
+      "duration": 1.08,
+      "text": "or not."
+    },
+    {
+      "start": 3645.54,
+      "duration": 7.6,
+      "text": "And in this case, we might\nassume that the residuals"
+    },
+    {
+      "start": 3653.14,
+      "duration": 2.48,
+      "text": "are normally distributed."
+    },
+    {
+      "start": 3655.62,
+      "duration": 6.64,
+      "text": "And here's a histogram of\nthe residuals from this GE"
+    },
+    {
+      "start": 3662.26,
+      "duration": 1.32,
+      "text": "regression."
+    },
+    {
+      "start": 3663.58,
+      "duration": 4.44,
+      "text": "And there actually are two\nbell-shaped curves here."
+    },
+    {
+      "start": 3668.02,
+      "duration": 4.0,
+      "text": "There's one, that's in\ngreen, that corresponds"
+    },
+    {
+      "start": 3672.02,
+      "duration": 3.6,
+      "text": "to the maximum likelihood\nestimate of the mean"
+    },
+    {
+      "start": 3675.62,
+      "duration": 3.96,
+      "text": "and variance of that normal."
+    },
+    {
+      "start": 3679.58,
+      "duration": 4.12,
+      "text": "But there's also a\nblue curve, which"
+    },
+    {
+      "start": 3683.7,
+      "duration": 4.28,
+      "text": "corresponds to a\nrobust estimator"
+    },
+    {
+      "start": 3687.98,
+      "duration": 2.96,
+      "text": "of the normal\ndistribution parameters."
+    },
+    {
+      "start": 3690.94,
+      "duration": 4.74,
+      "text": "So, and we just talked a bit\nabout normal linear regressions"
+    },
+    {
+      "start": 3695.68,
+      "duration": 1.22,
+      "text": "and their being optimal."
+    },
+    {
+      "start": 3696.9,
+      "duration": 3.36,
+      "text": "Well, they're optimal so long\nas the normal distribution"
+    },
+    {
+      "start": 3700.26,
+      "duration": 1.64,
+      "text": "is applied."
+    },
+    {
+      "start": 3701.9,
+      "duration": 4.88,
+      "text": "And one can calculate\nwhat's called"
+    },
+    {
+      "start": 3706.78,
+      "duration": 5.04,
+      "text": "a QQ plot, of the residuals."
+    },
+    {
+      "start": 3711.82,
+      "duration": 5.32,
+      "text": "Where the theoretical\ndistribution is normal,"
+    },
+    {
+      "start": 3717.14,
+      "duration": 6.0,
+      "text": "we can think of ordered\nsamples of normals,"
+    },
+    {
+      "start": 3723.14,
+      "duration": 2.2,
+      "text": "from smallest to\nlargest, and pair"
+    },
+    {
+      "start": 3725.34,
+      "duration": 1.96,
+      "text": "those with our\nordered residuals,"
+    },
+    {
+      "start": 3727.3,
+      "duration": 2.28,
+      "text": "from smallest to largest."
+    },
+    {
+      "start": 3729.58,
+      "duration": 2.5,
+      "text": "And this plot will look\nlike a straight line"
+    },
+    {
+      "start": 3732.08,
+      "duration": 4.58,
+      "text": "if the residuals are Gaussian."
+    },
+    {
+      "start": 3736.66,
+      "duration": 8.96,
+      "text": "And the green line corresponds\nto the MLE fit of the Gaussian."
+    },
+    {
+      "start": 3745.62,
+      "duration": 4.64,
+      "text": "Basically, the slope will\nequal the standard deviation"
+    },
+    {
+      "start": 3750.26,
+      "duration": 3.56,
+      "text": "of the distribution,\nand the median roughly"
+    },
+    {
+      "start": 3753.82,
+      "duration": 4.24,
+      "text": "will correspond\nto the mean value."
+    },
+    {
+      "start": 3758.06,
+      "duration": 4.96,
+      "text": "But what we have is\na robust estimate"
+    },
+    {
+      "start": 3763.02,
+      "duration": 6.36,
+      "text": "of the standard deviation\nof the residuals,"
+    },
+    {
+      "start": 3769.38,
+      "duration": 2.12,
+      "text": "gives us this blue line."
+    },
+    {
+      "start": 3771.5,
+      "duration": 5.0,
+      "text": "And the robust estimate\nof the residual variance"
+    },
+    {
+      "start": 3776.5,
+      "duration": 4.28,
+      "text": "is based on the interquartile\nrange of the residuals."
+    },
+    {
+      "start": 3780.78,
+      "duration": 4.44,
+      "text": "So the middle 50%, what\nkind of standard deviation"
+    },
+    {
+      "start": 3785.22,
+      "duration": 6.08,
+      "text": "would match the middle 50%\nrange of the residuals?"
+    },
+    {
+      "start": 3791.3,
+      "duration": 6.72,
+      "text": "And there's an argument\nthat this robust estimate"
+    },
+    {
+      "start": 3798.02,
+      "duration": 2.52,
+      "text": "might in fact be better."
+    },
+    {
+      "start": 3800.54,
+      "duration": 4.08,
+      "text": "And another way of\nevaluating the residuals"
+    },
+    {
+      "start": 3804.62,
+      "duration": 7.96,
+      "text": "is to compute fitted percentiles\nunder the residual model."
+    },
+    {
+      "start": 3812.58,
+      "duration": 5.88,
+      "text": "So if we observe an\nepsilon hat with mean mu"
+    },
+    {
+      "start": 3818.46,
+      "duration": 4.44,
+      "text": "hat and standard\ndeviation sigma hat,"
+    },
+    {
+      "start": 3822.9,
+      "duration": 6.6,
+      "text": "we can do the inverse of the\nprobability integral transform"
+    },
+    {
+      "start": 3829.5,
+      "duration": 7.84,
+      "text": "and get the percentile\nof that outcome."
+    },
+    {
+      "start": 3837.34,
+      "duration": 6.0,
+      "text": "And so it turns out\nthat these percentiles"
+    },
+    {
+      "start": 3843.34,
+      "duration": 6.04,
+      "text": "should be uniformly distributed,\nfrom, like, 1 to 99,"
+    },
+    {
+      "start": 3849.38,
+      "duration": 4.4,
+      "text": "if this normal model is correct."
+    },
+    {
+      "start": 3853.78,
+      "duration": 5.28,
+      "text": "And so we can actually consider\ndifferent estimates of sigma"
+    },
+    {
+      "start": 3859.06,
+      "duration": 5.44,
+      "text": "hat, from robust to MLE."
+    },
+    {
+      "start": 3864.5,
+      "duration": 3.44,
+      "text": "And with the MLE,\nhere's the histogram"
+    },
+    {
+      "start": 3867.94,
+      "duration": 5.52,
+      "text": "of the fitted percentiles."
+    },
+    {
+      "start": 3873.46,
+      "duration": 5.76,
+      "text": "It's basically\nunderestimating percentiles"
+    },
+    {
+      "start": 3879.22,
+      "duration": 1.96,
+      "text": "that are close to the mean--"
+    },
+    {
+      "start": 3881.18,
+      "duration": 1.84,
+      "text": "or the median."
+    },
+    {
+      "start": 3883.02,
+      "duration": 6.28,
+      "text": "And so it really isn't fitting\nthe residuals very well"
+    },
+    {
+      "start": 3889.3,
+      "duration": 2.32,
+      "text": "across the whole range."
+    },
+    {
+      "start": 3891.62,
+      "duration": 3.72,
+      "text": "And if instead we consider\nfitted percentiles"
+    },
+    {
+      "start": 3895.34,
+      "duration": 5.0,
+      "text": "from the robust estimate\nof the variance,"
+    },
+    {
+      "start": 3900.34,
+      "duration": 6.2,
+      "text": "then the fitted percentiles\nof the residuals"
+    },
+    {
+      "start": 3906.54,
+      "duration": 5.32,
+      "text": "is consistent with uniform\nin the middle of the data,"
+    },
+    {
+      "start": 3911.86,
+      "duration": 4.84,
+      "text": "except in the top 1%\nand the bottom 1%."
+    },
+    {
+      "start": 3916.7,
+      "duration": 3.84,
+      "text": "So it's very possible\nthat our data"
+    },
+    {
+      "start": 3920.54,
+      "duration": 3.6,
+      "text": "has a non-normal residual\ndistribution or error"
+    },
+    {
+      "start": 3924.14,
+      "duration": 2.72,
+      "text": "distribution."
+    },
+    {
+      "start": 3926.86,
+      "duration": 2.84,
+      "text": "And perhaps that\nnon-normal distribution"
+    },
+    {
+      "start": 3929.7,
+      "duration": 4.88,
+      "text": "could be well modeled\nwith a mixture model."
+    },
+    {
+      "start": 3934.58,
+      "duration": 4.96,
+      "text": "Now, OK, there's regression\ndiagnostics, which"
+    },
+    {
+      "start": 3939.54,
+      "duration": 1.17,
+      "text": "I'll let you read through."
+    },
+    {
+      "start": 3945.86,
+      "duration": 2.76,
+      "text": "And then there's this\nsection on testing hypotheses"
+    },
+    {
+      "start": 3948.62,
+      "duration": 3.76,
+      "text": "about individual\nmodel coefficients."
+    },
+    {
+      "start": 3952.38,
+      "duration": 0.76,
+      "text": "Let's see."
+    },
+    {
+      "start": 3953.14,
+      "duration": 3.34,
+      "text": "If you have this\non your computer,"
+    },
+    {
+      "start": 3956.48,
+      "duration": 1.66,
+      "text": "you can probably see\nit a little better"
+    },
+    {
+      "start": 3958.14,
+      "duration": 2.06,
+      "text": "than seeing this screen here."
+    },
+    {
+      "start": 3960.2,
+      "duration": 2.7,
+      "text": "But with the normal--"
+    },
+    {
+      "start": 3962.9,
+      "duration": 5.52,
+      "text": "or with our testing of\nindividual coefficients,"
+    },
+    {
+      "start": 3968.42,
+      "duration": 6.04,
+      "text": "we basically use the fact that\nour least squares estimator"
+    },
+    {
+      "start": 3974.46,
+      "duration": 5.36,
+      "text": "is multivariate normal with\nmean equal to the true beta"
+    },
+    {
+      "start": 3979.82,
+      "duration": 4.52,
+      "text": "vector and covariance\nmatrix, given here."
+    },
+    {
+      "start": 3984.34,
+      "duration": 7.0,
+      "text": "So, so we can make various\ntests of different regression"
+    },
+    {
+      "start": 3991.34,
+      "duration": 1.08,
+      "text": "parameters."
+    },
+    {
+      "start": 3992.42,
+      "duration": 4.04,
+      "text": "So we have the t-statistics\nfor testing whether a parameter"
+    },
+    {
+      "start": 3996.46,
+      "duration": 6.36,
+      "text": "value is 0 or not, and\nuse the t-distribution"
+    },
+    {
+      "start": 4002.82,
+      "duration": 3.12,
+      "text": "to judge how statistically\nsignificant that is."
+    },
+    {
+      "start": 4005.94,
+      "duration": 2.42,
+      "text": "In our capital asset\npricing model case,"
+    },
+    {
+      "start": 4008.36,
+      "duration": 3.54,
+      "text": "we actually are interested in\ntesting whether the alphas are"
+    },
+    {
+      "start": 4011.9,
+      "duration": 2.96,
+      "text": "zero or not."
+    },
+    {
+      "start": 4014.86,
+      "duration": 3.84,
+      "text": "And one could also\nconsider testing for"
+    },
+    {
+      "start": 4018.7,
+      "duration": 2.82,
+      "text": "whether the beta factor\nis equal to 1 or not."
+    },
+    {
+      "start": 4021.52,
+      "duration": 2.14,
+      "text": "1, for the beta,\nis actually what"
+    },
+    {
+      "start": 4023.66,
+      "duration": 3.64,
+      "text": "the average beta is across\nall stocks in the market."
+    },
+    {
+      "start": 4027.3,
+      "duration": 6.52,
+      "text": "And so one can consider judging\nwhether assets sort of have"
+    },
+    {
+      "start": 4033.82,
+      "duration": 4.88,
+      "text": "significantly high risk,\nhigh betas, or low betas,"
+    },
+    {
+      "start": 4038.7,
+      "duration": 7.0,
+      "text": "using a test of whether\nthe estimated regression"
+    },
+    {
+      "start": 4045.7,
+      "duration": 4.16,
+      "text": "coefficient is significantly\ndifferent from 1 or not."
+    },
+    {
+      "start": 4049.86,
+      "duration": 8.48,
+      "text": "And so with this, I've\nbasically computed this for GE."
+    },
+    {
+      "start": 4058.34,
+      "duration": 13.64,
+      "text": "And it turns out that, I\nguess, the t-stat for GE,"
+    },
+    {
+      "start": 4071.98,
+      "duration": 5.6,
+      "text": "which corresponds to a beta of\n1.083, that's fairly close to 1,"
+    },
+    {
+      "start": 4077.58,
+      "duration": 4.04,
+      "text": "in terms of absolute magnitude,\nbut it's actually a bit--"
+    },
+    {
+      "start": 4081.62,
+      "duration": 2.52,
+      "text": "it's statistically\nsignificant, according"
+    },
+    {
+      "start": 4084.14,
+      "duration": 3.35,
+      "text": "to the arguments given here."
+    },
+    {
+      "start": 4087.49,
+      "duration": 6.6,
+      "text": "Now, there are many packages\nin R, but one of them"
+    },
+    {
+      "start": 4094.09,
+      "duration": 3.0,
+      "text": "is the CAR package,\nwhich allows one"
+    },
+    {
+      "start": 4097.09,
+      "duration": 3.96,
+      "text": "to conduct tests of linear\nhypotheses like these."
+    },
+    {
+      "start": 4101.05,
+      "duration": 4.639,
+      "text": "And so it goes\nthrough and performs"
+    },
+    {
+      "start": 4105.689,
+      "duration": 4.241,
+      "text": "the same kinds of tests for\nwhether the intercept is 0"
+    },
+    {
+      "start": 4109.93,
+      "duration": 1.52,
+      "text": "or not."
+    },
+    {
+      "start": 4111.45,
+      "duration": 3.76,
+      "text": "And in implementing\nthese hypothesis tests,"
+    },
+    {
+      "start": 4115.21,
+      "duration": 5.64,
+      "text": "this CAR package uses the\nsort of F-test approach."
+    },
+    {
+      "start": 4120.85,
+      "duration": 5.4,
+      "text": "So one has results that give\nus different residual sum"
+    },
+    {
+      "start": 4126.25,
+      "duration": 7.12,
+      "text": "of squares and F-statistics, and\np-values for the F-statistics"
+    },
+    {
+      "start": 4133.37,
+      "duration": 2.4,
+      "text": "corresponding to these."
+    },
+    {
+      "start": 4135.77,
+      "duration": 2.52,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4138.29,
+      "duration": 3.16,
+      "text": "With-- let's see."
+    },
+    {
+      "start": 4141.45,
+      "duration": 5.64,
+      "text": "Before showing the results for\nall the stocks in the S&P 500,"
+    },
+    {
+      "start": 4147.09,
+      "duration": 7.2,
+      "text": "there's another note on\nregression analysis hypothesis"
+    },
+    {
+      "start": 4154.29,
+      "duration": 2.319,
+      "text": "testing."
+    },
+    {
+      "start": 4156.609,
+      "duration": 5.04,
+      "text": "And what's interesting\nto think about"
+    },
+    {
+      "start": 4161.649,
+      "duration": 6.441,
+      "text": "is we can consider testing\nwhether a submodel,"
+    },
+    {
+      "start": 4168.09,
+      "duration": 5.519,
+      "text": "a model without as many\nfactors in it, is suitable."
+    },
+    {
+      "start": 4173.609,
+      "duration": 3.361,
+      "text": "But one can also test\nfor whether there's"
+    },
+    {
+      "start": 4176.97,
+      "duration": 5.9,
+      "text": "a change in model\nparameters with a regime,"
+    },
+    {
+      "start": 4182.87,
+      "duration": 5.699,
+      "text": "so that maybe there's an initial\nperiod with a given set of model"
+    },
+    {
+      "start": 4188.569,
+      "duration": 4.441,
+      "text": "parameters, and then a\nregime shift following"
+    },
+    {
+      "start": 4193.01,
+      "duration": 3.52,
+      "text": "that, where the parameter\nvalues have changed."
+    },
+    {
+      "start": 4196.53,
+      "duration": 4.32,
+      "text": "And so the mathematical\ntheory for this"
+    },
+    {
+      "start": 4200.85,
+      "duration": 6.88,
+      "text": "is covered in section 3, and\none can consider testing--"
+    },
+    {
+      "start": 4207.73,
+      "duration": 1.82,
+      "text": "with the capital\nasset pricing model,"
+    },
+    {
+      "start": 4209.55,
+      "duration": 3.42,
+      "text": "maybe-- whether there's a\nchange in regression parameters"
+    },
+    {
+      "start": 4212.97,
+      "duration": 2.56,
+      "text": "over an entire period."
+    },
+    {
+      "start": 4215.53,
+      "duration": 7.7,
+      "text": "And so what I want to\njust go to is the results."
+    },
+    {
+      "start": 4223.23,
+      "duration": 6.94,
+      "text": "Actually, the linear algebra for\nthese hypothesis testing methods"
+    },
+    {
+      "start": 4230.17,
+      "duration": 3.92,
+      "text": "is very straightforward."
+    },
+    {
+      "start": 4234.09,
+      "duration": 3.04,
+      "text": "And I encourage you\nto read through these,"
+    },
+    {
+      "start": 4237.13,
+      "duration": 4.04,
+      "text": "just to see how they play out."
+    },
+    {
+      "start": 4241.17,
+      "duration": 3.94,
+      "text": "But let's see."
+    },
+    {
+      "start": 4245.11,
+      "duration": 5.3,
+      "text": "What's interesting, I guess,\nis, with this change between two"
+    },
+    {
+      "start": 4250.41,
+      "duration": 5.58,
+      "text": "periods, if we consider sort of\nan original regression model,"
+    },
+    {
+      "start": 4255.99,
+      "duration": 5.26,
+      "text": "y equals X beta plus epsilon\nfor a very long period,"
+    },
+    {
+      "start": 4261.25,
+      "duration": 2.16,
+      "text": "we might consider\nsplitting it up"
+    },
+    {
+      "start": 4263.41,
+      "duration": 4.8,
+      "text": "into the first part, period A,\nand the second part, period B,"
+    },
+    {
+      "start": 4268.21,
+      "duration": 5.8,
+      "text": "and have two equations for\nthe respective sets of data."
+    },
+    {
+      "start": 4274.01,
+      "duration": 7.76,
+      "text": "And in thinking about\nthe two periods,"
+    },
+    {
+      "start": 4281.77,
+      "duration": 5.44,
+      "text": "we basically can test whether\nthe regression parameters"
+    },
+    {
+      "start": 4287.21,
+      "duration": 2.52,
+      "text": "for the second period are\nthe same as the regression"
+    },
+    {
+      "start": 4289.73,
+      "duration": 3.96,
+      "text": "parameters for the first period."
+    },
+    {
+      "start": 4293.69,
+      "duration": 5.52,
+      "text": "And we can write out\nthe model equations"
+    },
+    {
+      "start": 4299.21,
+      "duration": 1.206,
+      "text": "with appropriate matrices."
+    },
+    {
+      "start": 4303.77,
+      "duration": 5.0,
+      "text": "And then we basically\nhave an F-test statistic"
+    },
+    {
+      "start": 4308.77,
+      "duration": 5.36,
+      "text": "for seeing whether these\nregression parameters are"
+    },
+    {
+      "start": 4314.13,
+      "duration": 2.4,
+      "text": "different or not."
+    },
+    {
+      "start": 4316.53,
+      "duration": 5.44,
+      "text": "And one can also--"
+    },
+    {
+      "start": 4321.97,
+      "duration": 6.48,
+      "text": "instead of considering separate\nparameters for each period,"
+    },
+    {
+      "start": 4328.45,
+      "duration": 10.82,
+      "text": "one can consider a beta value\nhere for the entire period,"
+    },
+    {
+      "start": 4339.27,
+      "duration": 4.66,
+      "text": "and then use that\nbeta value together"
+    },
+    {
+      "start": 4343.93,
+      "duration": 5.96,
+      "text": "with the change in\nparameter values in period B"
+    },
+    {
+      "start": 4349.89,
+      "duration": 3.84,
+      "text": "from period A. And\nso one can set up"
+    },
+    {
+      "start": 4353.73,
+      "duration": 3.92,
+      "text": "the regression\nmodel where one is"
+    },
+    {
+      "start": 4357.65,
+      "duration": 3.16,
+      "text": "interested in whether\nthis change parameter"
+    },
+    {
+      "start": 4360.81,
+      "duration": 3.96,
+      "text": "delta is equal to 0 or not."
+    },
+    {
+      "start": 4364.77,
+      "duration": 4.96,
+      "text": "And so, mathematically,\nwe get F-test from that."
+    },
+    {
+      "start": 4369.73,
+      "duration": 6.0,
+      "text": "Now, with the GE stock\nI subjectively chose"
+    },
+    {
+      "start": 4375.73,
+      "duration": 5.56,
+      "text": "this period split\nfor A from B. If we"
+    },
+    {
+      "start": 4381.29,
+      "duration": 6.48,
+      "text": "look at the cumulative sum\nof standardized residuals"
+    },
+    {
+      "start": 4387.77,
+      "duration": 4.2,
+      "text": "from the regression\nmodel, then we basically"
+    },
+    {
+      "start": 4391.97,
+      "duration": 4.96,
+      "text": "have residuals that are\nconsistently negative,"
+    },
+    {
+      "start": 4396.93,
+      "duration": 4.52,
+      "text": "cumulating to a lower\nvalue around 2019,"
+    },
+    {
+      "start": 4401.45,
+      "duration": 3.48,
+      "text": "and then later\nexpanding beyond that."
+    },
+    {
+      "start": 4404.93,
+      "duration": 7.026,
+      "text": "So this sort of time series\nof accumulated residuals"
+    },
+    {
+      "start": 4411.956,
+      "duration": 2.854,
+      "text": "sort of highlights that\nthere's strong time"
+    },
+    {
+      "start": 4414.81,
+      "duration": 3.64,
+      "text": "dependence in the residuals."
+    },
+    {
+      "start": 4418.45,
+      "duration": 3.36,
+      "text": "But if we fit the\nregression models to these--"
+    },
+    {
+      "start": 4421.81,
+      "duration": 2.84,
+      "text": "separate regression models\nto these two periods,"
+    },
+    {
+      "start": 4424.65,
+      "duration": 4.44,
+      "text": "we end up getting highly\nsignificant results"
+    },
+    {
+      "start": 4429.09,
+      "duration": 3.9,
+      "text": "for the change in\nthe two periods."
+    },
+    {
+      "start": 4432.99,
+      "duration": 2.14,
+      "text": "There's basically\nan intercept, which"
+    },
+    {
+      "start": 4435.13,
+      "duration": 4.32,
+      "text": "is the alpha, which changes\nfrom negative to positive,"
+    },
+    {
+      "start": 4439.45,
+      "duration": 5.88,
+      "text": "and the market risk\nbasically changes"
+    },
+    {
+      "start": 4445.33,
+      "duration": 7.68,
+      "text": "from 0.773 beta in\nthe first period,"
+    },
+    {
+      "start": 4453.01,
+      "duration": 6.18,
+      "text": "to 0.773 plus 0.3537\nin the second period."
+    },
+    {
+      "start": 4459.19,
+      "duration": 4.78,
+      "text": "So these capital\nasset pricing models"
+    },
+    {
+      "start": 4463.97,
+      "duration": 3.24,
+      "text": "are not expected, perhaps,\nto hold over really, really"
+    },
+    {
+      "start": 4467.21,
+      "duration": 1.64,
+      "text": "long periods of time."
+    },
+    {
+      "start": 4468.85,
+      "duration": 4.72,
+      "text": "And if we wanted\nto apply them, we'd"
+    },
+    {
+      "start": 4473.57,
+      "duration": 4.36,
+      "text": "likely sort of choose a rolling\nwindow approach perhaps,"
+    },
+    {
+      "start": 4477.93,
+      "duration": 1.44,
+      "text": "which then leads\nto questions of,"
+    },
+    {
+      "start": 4479.37,
+      "duration": 2.9,
+      "text": "how do we decide on what\nrolling window is appropriate,"
+    },
+    {
+      "start": 4482.27,
+      "duration": 3.34,
+      "text": "and opens up other\nissues to study."
+    },
+    {
+      "start": 4485.61,
+      "duration": 6.2,
+      "text": "So anyway, so with\nthat background"
+    },
+    {
+      "start": 4491.81,
+      "duration": 2.88,
+      "text": "for hypothesis\ntesting, let's go back"
+    },
+    {
+      "start": 4494.69,
+      "duration": 5.0,
+      "text": "to fitting the capital\nasset pricing model"
+    },
+    {
+      "start": 4499.69,
+      "duration": 5.48,
+      "text": "to all stocks in the S&P 500."
+    },
+    {
+      "start": 4505.17,
+      "duration": 0.96,
+      "text": "Let's see."
+    },
+    {
+      "start": 4506.13,
+      "duration": 4.2,
+      "text": "The code here basically fits\nthis capital asset pricing model"
+    },
+    {
+      "start": 4510.33,
+      "duration": 7.92,
+      "text": "regression for all the stocks\nthat have data going back"
+    },
+    {
+      "start": 4518.25,
+      "duration": 1.44,
+      "text": "several years."
+    },
+    {
+      "start": 4519.69,
+      "duration": 5.32,
+      "text": "So there were, I think,\naround 380 or 400 stocks."
+    },
+    {
+      "start": 4525.01,
+      "duration": 4.28,
+      "text": "And they're grouped by sector."
+    },
+    {
+      "start": 4529.29,
+      "duration": 5.8,
+      "text": "And we can see how the\nR-squareds of the regressions"
+    },
+    {
+      "start": 4535.09,
+      "duration": 4.16,
+      "text": "vary from 0 to 1."
+    },
+    {
+      "start": 4539.25,
+      "duration": 3.28,
+      "text": "They typically are above 0.2."
+    },
+    {
+      "start": 4542.53,
+      "duration": 5.36,
+      "text": "So there's some reasonable\nR-squared relationships"
+    },
+    {
+      "start": 4547.89,
+      "duration": 3.08,
+      "text": "that are being explained."
+    },
+    {
+      "start": 4550.97,
+      "duration": 7.28,
+      "text": "And if we look at the\nalphas by sector--"
+    },
+    {
+      "start": 4558.25,
+      "duration": 5.48,
+      "text": "here's sort of parallel\nbox plots of the alphas,"
+    },
+    {
+      "start": 4563.73,
+      "duration": 3.64,
+      "text": "the alpha estimates within\neach of the sectors."
+    },
+    {
+      "start": 4567.37,
+      "duration": 5.67,
+      "text": "And so this\nhighlights how some--"
+    },
+    {
+      "start": 4576.89,
+      "duration": 5.16,
+      "text": "let's see-- some sectors,\nlike, I guess, construction,"
+    },
+    {
+      "start": 4582.05,
+      "duration": 5.84,
+      "text": "sort of had positive alphas,\nas did computer technology."
+    },
+    {
+      "start": 4590.57,
+      "duration": 0.54,
+      "text": "Let's see."
+    },
+    {
+      "start": 4591.11,
+      "duration": 5.78,
+      "text": "The conglomerates tended to\nhave negative alphas there."
+    },
+    {
+      "start": 4596.89,
+      "duration": 5.96,
+      "text": "And we can calculate\nthe p-values"
+    },
+    {
+      "start": 4602.85,
+      "duration": 5.12,
+      "text": "for testing whether the alphas\nare consistent with 0 or not."
+    },
+    {
+      "start": 4607.97,
+      "duration": 7.72,
+      "text": "And this graph here\nshows how the p-values"
+    },
+    {
+      "start": 4615.69,
+      "duration": 8.92,
+      "text": "for almost all the stocks exceed\nthe p-value threshold of 0.05."
+    },
+    {
+      "start": 4624.61,
+      "duration": 10.24,
+      "text": "So if we can't reject the null\nhypothesis of alpha equaling 0,"
+    },
+    {
+      "start": 4634.85,
+      "duration": 3.36,
+      "text": "the p-value is above 0.05."
+    },
+    {
+      "start": 4638.21,
+      "duration": 4.08,
+      "text": "And one can see that\nthere's basically"
+    },
+    {
+      "start": 4642.29,
+      "duration": 3.12,
+      "text": "sort of a handful, or\na couple of handful,"
+    },
+    {
+      "start": 4645.41,
+      "duration": 4.56,
+      "text": "of stocks that have\na significant alpha."
+    },
+    {
+      "start": 4649.97,
+      "duration": 3.76,
+      "text": "And if we use a 5%\nthreshold, well, we'd"
+    },
+    {
+      "start": 4653.73,
+      "duration": 4.96,
+      "text": "expect 5% of the results to\nbe statistically significant,"
+    },
+    {
+      "start": 4658.69,
+      "duration": 2.88,
+      "text": "when there's no\nstatistical significance."
+    },
+    {
+      "start": 4661.57,
+      "duration": 4.68,
+      "text": "And so maybe these, in fact,\nare consistent with the capital"
+    },
+    {
+      "start": 4666.25,
+      "duration": 2.95,
+      "text": "asset pricing model pretty well."
+    },
+    {
+      "start": 4669.2,
+      "duration": 4.52,
+      "text": "Now, let's see."
+    },
+    {
+      "start": 4673.72,
+      "duration": 5.28,
+      "text": "One can plot the alpha versus\nthe beta across all the stocks"
+    },
+    {
+      "start": 4679.0,
+      "duration": 3.0,
+      "text": "and get this result,\nwhich suggests"
+    },
+    {
+      "start": 4682.0,
+      "duration": 2.8,
+      "text": "that when you have\nhigher beta, you"
+    },
+    {
+      "start": 4684.8,
+      "duration": 3.88,
+      "text": "may get higher alpha as well."
+    },
+    {
+      "start": 4688.68,
+      "duration": 4.12,
+      "text": "And when you have very low\nbeta, maybe the low beta"
+    },
+    {
+      "start": 4692.8,
+      "duration": 5.84,
+      "text": "is partly due to a\nlower alpha potential."
+    },
+    {
+      "start": 4698.64,
+      "duration": 7.76,
+      "text": "But this chart doesn't show\nhow alpha varies by sector."
+    },
+    {
+      "start": 4706.4,
+      "duration": 5.24,
+      "text": "And so if we try to\nlook at alpha by sector"
+    },
+    {
+      "start": 4711.64,
+      "duration": 4.72,
+      "text": "we get different fits\nfor different sectors,"
+    },
+    {
+      "start": 4716.36,
+      "duration": 4.18,
+      "text": "which is too complex, really,\nto interpret as graphed here."
+    },
+    {
+      "start": 4720.54,
+      "duration": 2.9,
+      "text": "But it serves as a\nfirst step at trying"
+    },
+    {
+      "start": 4723.44,
+      "duration": 4.65,
+      "text": "to understand how alphas might\nvary within different sectors."
+    },
+    {
+      "start": 4731.56,
+      "duration": 7.8,
+      "text": "Perhaps interestingly, here's\nthe beta coefficient by sector."
+    },
+    {
+      "start": 4739.36,
+      "duration": 3.66,
+      "text": "And here, one can see\nthat certain sectors,"
+    },
+    {
+      "start": 4743.02,
+      "duration": 7.26,
+      "text": "like consumer staples, have\nmuch lower beta values."
+    },
+    {
+      "start": 4750.28,
+      "duration": 3.76,
+      "text": "And other sectors, like\ncomputer and technology,"
+    },
+    {
+      "start": 4754.04,
+      "duration": 2.0,
+      "text": "have very high betas."
+    },
+    {
+      "start": 4756.04,
+      "duration": 2.88,
+      "text": "So in terms of identifying\nthose sectors that"
+    },
+    {
+      "start": 4758.92,
+      "duration": 4.14,
+      "text": "will have low market\nrisk or high market risk,"
+    },
+    {
+      "start": 4763.06,
+      "duration": 5.86,
+      "text": "these properties\nplay out quite well."
+    },
+    {
+      "start": 4768.92,
+      "duration": 2.24,
+      "text": "And let's see."
+    },
+    {
+      "start": 4771.16,
+      "duration": 7.32,
+      "text": "In terms of looking at the\ntop and bottom stocks by beta,"
+    },
+    {
+      "start": 4778.48,
+      "duration": 2.76,
+      "text": "well, we have consumer\ndiscretionary, computer"
+    },
+    {
+      "start": 4781.24,
+      "duration": 7.32,
+      "text": "technology sector stocks are\nthe sectors where the top 10"
+    },
+    {
+      "start": 4788.56,
+      "duration": 1.06,
+      "text": "betas are."
+    },
+    {
+      "start": 4789.62,
+      "duration": 5.22,
+      "text": "And if we look at the lowest\nbetas, ranging from 0.37 down"
+    },
+    {
+      "start": 4794.84,
+      "duration": 3.59,
+      "text": "to 0.18, most of these\nare in consumer staples."
+    },
+    {
+      "start": 4801.68,
+      "duration": 4.32,
+      "text": "Finally, if we look\nat the top 10 stocks"
+    },
+    {
+      "start": 4806.0,
+      "duration": 3.76,
+      "text": "with significant\nalphas, OK, here"
+    },
+    {
+      "start": 4809.76,
+      "duration": 4.72,
+      "text": "is the table of alpha\nvalues that were highest,"
+    },
+    {
+      "start": 4814.48,
+      "duration": 6.6,
+      "text": "and one was in oils\nand energy sector ENPH,"
+    },
+    {
+      "start": 4821.08,
+      "duration": 6.22,
+      "text": "with the alpha value of 0.003."
+    },
+    {
+      "start": 4827.3,
+      "duration": 0.5,
+      "text": "Let's see."
+    },
+    {
+      "start": 4827.8,
+      "duration": 11.06,
+      "text": "Here's-- so if we have an alpha\nvalue of 0.003, it's actually--"
+    },
+    {
+      "start": 4838.86,
+      "duration": 3.58,
+      "text": "yeah, so 3-- whatever."
+    },
+    {
+      "start": 4842.44,
+      "duration": 1.5,
+      "text": "I won't have the extra."
+    },
+    {
+      "start": 4843.94,
+      "duration": 2.07,
+      "text": "But this is a daily alpha."
+    },
+    {
+      "start": 4852.4,
+      "duration": 7.54,
+      "text": "If we wanted to annualize this\ndaily alpha, what would that--"
+    },
+    {
+      "start": 4859.94,
+      "duration": 2.79,
+      "text": "how would we compute\nthat annualized alpha?"
+    },
+    {
+      "start": 4870.6,
+      "duration": 4.24,
+      "text": "If you're earning\nthis alpha every day,"
+    },
+    {
+      "start": 4874.84,
+      "duration": 2.44,
+      "text": "it sort of is an\nincrement of return"
+    },
+    {
+      "start": 4877.28,
+      "duration": 5.08,
+      "text": "that you're expecting\nto get every day."
+    },
+    {
+      "start": 4882.36,
+      "duration": 7.64,
+      "text": "And so if we have 1 plus alpha\nhat to the number of days--"
+    },
+    {
+      "start": 4890.0,
+      "duration": 5.0,
+      "text": "there's roughly\n252 days per year--"
+    },
+    {
+      "start": 4895.0,
+      "duration": 4.71,
+      "text": "and then subtract 1,\nthen we end up getting--"
+    },
+    {
+      "start": 4902.32,
+      "duration": 2.24,
+      "text": "let's see."
+    },
+    {
+      "start": 4904.56,
+      "duration": 1.22,
+      "text": "I computed this."
+    },
+    {
+      "start": 4907.79,
+      "duration": 5.07,
+      "text": "It's 2.12 minus 1, basically."
+    },
+    {
+      "start": 4912.86,
+      "duration": 2.14,
+      "text": "So this is, like,\na hundred percent."
+    },
+    {
+      "start": 4915.0,
+      "duration": 3.12,
+      "text": "So this stock happened\nto just deliver"
+    },
+    {
+      "start": 4918.12,
+      "duration": 3.44,
+      "text": "a huge amount of returns."
+    },
+    {
+      "start": 4921.56,
+      "duration": 2.22,
+      "text": "But what's interesting\nto see, though,"
+    },
+    {
+      "start": 4923.78,
+      "duration": 3.74,
+      "text": "is that this relatively simple\nmodel, the capital asset pricing"
+    },
+    {
+      "start": 4927.52,
+      "duration": 3.72,
+      "text": "model, appears to be\nconsistent with the stocks"
+    },
+    {
+      "start": 4931.24,
+      "duration": 2.12,
+      "text": "over a long period of time."
+    },
+    {
+      "start": 4933.36,
+      "duration": 6.88,
+      "text": "That being said, the more\ncomplex models are warranted."
+    },
+    {
+      "start": 4940.24,
+      "duration": 6.32,
+      "text": "And the data collection\nphase of this, our project,"
+    },
+    {
+      "start": 4946.56,
+      "duration": 4.12,
+      "text": "included importing\nFama-French factors that"
+    },
+    {
+      "start": 4950.68,
+      "duration": 3.0,
+      "text": "are extensions of sort\nof the market risk"
+    },
+    {
+      "start": 4953.68,
+      "duration": 3.33,
+      "text": "that can be used in\nthese models, so."
+    }
+  ],
+  "text": "[SQUEAKING] [RUSTLING] [CLICKING] PETER KEMPTHORNE: All right. We'll get started. What I wanted to do today was to make sure we thoroughly cover the theory and application of regression modeling. And so to begin, there's a recap, which is the theory for, if we have linear regression, and we have, in particular, a normal linear regression model, then we have these properties of beta hat being distributed as a multinormal random variable with mean the true regression parameter and covariance matrix given by the X transpose X inverse multiplied by sigma squared. And we also have that epsilon hat is a multinormal distribution-- it's actually not of full rank, but it's in n dimensions-- with mean 0, a 0 vector, and the covariance matrix is sigma squared times the identity minus the hat matrix. And with these properties, we can show that they are independent random variables, if we have the normal model assumption. So these are independent if the error vector is multinormal. And with that, we're able to get an estimate of the error variance very easily from the residual vector. The sum of squares of the residual vector can be solved for having expectation equal to n minus p sigma squared, and that leads to dividing the sum of squared residuals by n minus p to get an unbiased estimate. Now, what's interesting mathematically is that because this estimate of the error variance depends on the residuals, which are independent of beta hat, we can then use this information to construct t-statistics for the least squares estimates. So we have t-statistics for the j-th component of the least squares estimate, so beta hat sub j minus beta j divided by sigma hat Cjj where Cjj is the j-th diagonal entry of the variance-- inverse variance. And actually, the Cjj should be equal to the square root of X transpose X inverse sub jj. So there's a square root missing there. And this distribution, under the normal linear model, has-- or this formula has a t-distribution. So this is distributed as a t-distribution with n-minus-p degrees of freedom, degrees of freedom equal to n minus p. And this is true if we plug in the true beta j. So centering our least squares estimate at beta j allows us to write that out. So if we look at our beta hat value and consider it around the true beta j, we basically have a t-distribution for the outcome. And why this becomes very useful is that if we want to test the hypothesis that beta j is equal to 0, then if this is 0, we can basically define an interval around 0 and consider rejecting the null hypothesis if our t hat with beta j equaling 0 in magnitude is greater than some critical value-- say, some constant C. And so this t-statistic is commonly applied in judging different regression models. Of particular interest is whether factors can be excluded from the regression. So if a beta j component is equal to 0, that means we can just exclude the variable. Now, interestingly, if we want to test whether multiple beta j's are equal to 0, a special case of that is just to say, let's assume that the first k beta j's are nonzero. We'll just assume that that's true. But let's test whether the beta j's for j above k are equal to 0. And what we can do is calculate residuals under the two hypotheses. First, assuming that they're all nonzero, we get an RSS 1. But if we assume the submodel is true, we can get a second set of residuals. And because the full model is more-- sort of, it minimizes the sum of squares further, we can look at the difference in residual sum of squares, normalize that by p minus k, and compare that with the residual sum of the squares under the full model divided by n minus p. So this is an estimate of sigma squared using the full model. This numerator is also an estimate of sigma squared based on the null hypothesis being true. Now, what's interesting to highlight is that the F-test when k, the number of nonzero coefficients, is p minus 1, then this F-test corresponds to testing whether the p-th beta j is equal to 0. And so it turns out that if we have t hat p-- sorry-- t hat, yeah, p, of beta-- of the true beta, the beta with beta p equal to 0- this squared is actually equal to this F-statistic. [LAUGHS] I'm just going to-- [LAUGHS] there's a huge rumbling in the room right now. And if anyone finds out that it's something serious we should be thinking about, please let me know, [LAUGHS] or let the whole class know. It sort of sounds like an earthquake, which I experienced when I was at UC Berkeley. [LAUGHS] Anyway, all right, well, we'll continue, unless I get warnings from you all. Anyway, it turns out that this t-squared statistic is actually equal to the F-test formalized here. So F-tests are very useful. In special cases, they're equivalent to the square of a t-test statistic. Now, let's see, with the notes from last time, we went through these. We highlighted how, with generalized least squares-- this is another key takeaway in regression modeling. So, so generalized least squares, with generalized least squares, we have an error vector, which is not a diagonal identity times sigma squared, but it's some base matrix sigma times little sigma squared. And with this setup, we can actually transform this regression model into one which satisfies our Gauss-Markov assumptions. And then, so with x star and y star being the model equation multiplied by the inverse square root of sigma, then this model satisfies the Gauss-Markov assumptions, zero-mean constant variance, and so this estimator, with the X stars and Y stars but the same beta, gives us our best estimate of the beta hat-- best in terms of minimum being unbiased and having smallest variance. OK. Well, a next important aspect of regression modeling is looking at Maximum Likelihood Estimation, MLE. And for maximum likelihood estimation, we use the probability model of the regression-- which, in this case, is normal linear regression models, so if we have normal epsilon vector. Then we compute the density of our data Y, given the explanatory variables in X, and the beta, regression parameter beta. That should be a beta there. And we simply identify those parameter values that maximize this probability. So we're looking at the parameter values that make the data we observed the most likely. And intuitively, that's maybe a reasonable thing. If you take Mathematical Statistics next term, you'll learn that that, in fact, is an optimal estimator, in terms of having smallest variance in large samples. As the sample size, the number of cases n increases, this will lead to the best estimator. And this MLE for the best-- or the best estimator being the MLE will be true for different distributions as well. We're going to show what it is for the Gaussian distribution. And what we can see on this slide is that the log of the likelihood is the log of this density on the top line. It can be equal to minus n over 2 log sigma squared minus 1/2 sigma squared q of beta, where q of beta is our least squares criterion. So maximum likelihood estimation for normal linear regression models can proceed in two steps. First, we can see that the beta regression coefficient enters in only through a factor of Q of beta. So minimizing Q of beta gives us the MLE for beta. And then once we have the MLE for beta, we can plug that in to the likelihood, the log likelihood-- or the likelihood, for varying sigma squared. And when we do this, we actually can just maximize this sort of partial likelihood with beta fixed at beta hat. Maximize that over sigma squared, and that turns out to be a very easy computation, calculating the first-order equation for the log likelihood. And we get the maximum likelihood estimate is simply the sum of squared residuals divided by n. Now, with maximum likelihood, in this case, we have, actually, a biased estimate of the error variance. And it's important just to note that that's the case. All right. Well, what's interesting to generalize is to find estimators, which minimize a Q function, which may be different from least squares-- or sum of squares. And so we can consider a Q function which minimizes the sum of a function h evaluated at case i. So let's see here. Let's pull this down. So, so with generalized M-estimators, we think of Q of beta being the sum 1 to n of h of y i, the x i beta, and sigma squared, I guess. And the choice of h, well, if we choose h to just be the square of the linear estimate of y given x i, that's least squares. There's no reason, in principle, why we should use squares. We could use absolute deviations and sum those. And if we wanted maximum likelihood estimates, we could choose h to be minus the log of the density. And there are robust estimators in statistics. And these robust estimators consider variations, basically, of least squares and mean absolute deviations as special cases, that yield estimators that are robust. Now, what's, to me, very interesting is that if we were to know what the density is of the errors, then maximum likelihood estimation would say use that. When we don't know the distribution, then these others may be very useful as alternatives. And robust estimators were originally proposed for models where we may have a normal distribution most of the time, but some contamination distribution with large errors a small percentage of the time. Now, and another interesting example of this generalized M-estimator is the quantile estimator, where we consider sort of mean absolute deviation, but we scale that for positive residuals by a factor tau. And for negative values of the residual, we scale the absolute deviation by 1 minus tau. This h function basically is equivalent to the mean absolute deviation when tau is equal to 0.5. But when tau is-- if we have h-- let's see. So h of y, x, when this is equal to tau y i minus x i beta when this is positive. And it's equal to 1 minus tau when this is-- actually, it's equal to minus this when this is less than 0. Then, for example, when tau is equal to 0.9, this turns out to be a quantile estimate that is working to estimate the 90th percentile of outcomes. So when we have a regression model and we are sort of just-- if we have a bunch of points, and we consider a linear regression model, this would be y equal to-- or y hat equal to sort of the mean absolute deviation estimate, we actually can get estimates of the 90th percentile of outcomes of the regression model. Now, what's interesting mathematically is, How would one calculate sort of the mean absolute deviation estimate, or this quantile estimator? Well, we would want to minimize the sum of these h functions. And these h functions actually are convex. So as James Sheppard said, this is, like, a bowl-shaped problem. But it's a bowl with sort of square-- or with straight edges around it. And so if we take this Q function with this h, we can't minimize it by solving the first-order equations. So if we have Q equal to the sum 1 to n of h of the arguments, we can't solve this-- we can't solve for this equaling 0. But we can solve for what the derivative is at any guesses, and we can move our guess to a lower value of the Q function with that. And that's, in fact, how we learn that the median of a sample is the best estimate of the center of the data if we consider mean absolute deviations. OK. Well, let's consider another extension of regression. It's famous enough to have its own name, ridge regression. And so with ridge regression, we are estimating the regression parameters where we have-- basically, it's sort of least squares plus a penalty, for our criterion. So the left argument of this expression is simply the sum of squared residuals, but then we're adding to that a penalty depending upon the squared length of the beta vector. And so in order for this to be a reasonable thing to do, we actually need to-- or, we don't need to, but it's useful, to consider standardizing our independent variables x, making them have mean 0, and also centering y, and then consider the regression where we rescale the columns of the predictor matrix as centered with the inverse of the covariance matrix between those. So in this formulation, this is the statement of how the ridge regression parameter estimate is specified. Now, the centering of the independent variables and scaling them to have unit variance is important because it places all of the variables, all of the predictor variables, on an equal footing. If we are looking at the sum of squared beta j's, then if we just use different units, we could make any j beta, beta j, as large as we want. But with this standardization, we basically eliminate that aspect, so there's no dependence on the original units of X. And let's see. With this ridge regression, the notes go through how we compute these. I want to highlight, though, how this ridge regression is actually related to Bayesian models, where we would assume a prior distribution on our regression parameters. And so the-- if we consider a Bayes prior on beta, and that Bayes prior is basically multinormal in p dimensions, with a mean vector of 0, and a covariance matrix that is-- let's see, I'll call it omega, and omega is proportional to the identity matrix in p dimensions. Then what we've done is we have a criterion that corresponds to the exponential part of the log likelihood for-- plus the log likelihood of the prior density. So this ridge regression is interpretable as putting a prior distribution on the betas that have this form, mean 0, and covariance proportional to the identity matrix. And what that suggests a priori is that any direction in that p-dimensional space is equally likely as any other for characterizing the regression parameters. And this beta hat, which minimizes this argument, ends up being the mode of the posterior distribution. So that's a neat connection to be aware of. The notes here go through, with ridge regression, how we compute them. The minimization basically leads to formulas for the ridge regression estimate that look almost like least squares, except we have this additional factor, lambda times the identity, inside that braces, before we take the inverse. And with ridge regression, we can look at the singular value decomposition of our independent variables that have been centered and standardized. And when we do that we basically have this final formula for the ridge regression. And we end up basically having the fitted values y hat just being equal to a sum of factors times cj uj, where these factors are 1 when lambda is 0. So when lambda is 0, ridge is equal to least squares. And so the least squares fitted values are given here. But with ridge regression, we have shrinkage. And what's curious is that there's less shrinkage for the larger squared singular values, and there's more shrinkage for the smaller ones. So if we think of the independent variables, or predictor variables, being in p-dimensional space, then ridge regression will not shrink much those regression coefficients that correspond to regressor variables that are along sort of the first principal component axis. And there's much more shrinkage in those dimensions where there's very little variation. So these are actually connected to principal components variables, which is actually covered sort of in the next section. So, yeah, it was-- we introduced ridge regression using the singular value decomposition of X. But we can motivate principal components regression using the same singular value decomposition. So with our data predictor matrix X, we consider the sample covariance matrix of those row vectors. And we can compute the eigenvalue eigenvector decomposition of that. And with these eigenvectors, which are normalized to have length 1, we simply multiply our matrix X by the j-th eigenvector, and we get our j-th principal component variable. So this is familiar to us in, terms of how principal components sort of computations work. And with principal components regression, one has principal component variables which are orthogonal to each other, and so the computation of their coefficients is very simple. We can calculate them separately, and we can consider using maybe just the first m principal component variables in our regression. And so if we do this, we can see some easy formulas for the estimates. Ultimately, we get fitted values of y, from principal components regression, which are a projection of the Y vector onto the space spanned by the first-- in this case, the first m principal component directions. And what's curious is just how these three methods-- least squares, ridge, and principal components regression-- are estimating the response variable, or dependent variable, using essentially the same fundamental pieces, the cj and uj's, but are either skipping the last p minus m for principal components, shrinking those based on the size of the eigenvalues for ridge, or using all of them. Now, as you might expect, researchers have extended estimation methods beyond these. The LASSO regression model, or regression estimate, is one where, instead of having the penalty be the sum of squared beta j's or the length of the beta j, it's the sum of the absolute values. And this penalty is a really interesting one. And some of-- let's see. I'm sure some people here have perhaps used lasso regression. Has anyone here used lasso regression? Nobody? That's fine. That means this isn't sort of repeat information. But it turns out that-- well, let me just draw this. Suppose we have beta 1 versus beta 2, and we're considering penalties. So the sum of the beta j squareds equal to a constant, this is the sort of ridge penalty. So, so if we have a beta hat, say, a beta hat here, a point that we observe, it basically is sort of shrunk towards zero. Or we have beta hat, and the beta-hat ridge will be shrunk towards this prior mean some amount. With the lasso penalty, we have the sum of the magnitudes of the beta j's is equal to a constant. Then we basically have diamonds where, along each of these diamond edges, the penalty is the same magnitude. And so with lasso regression, we basically consider finding an estimate that minimizes the least squares but also is constrained to have sort of sum of absolute magnitudes that's smaller. And so this kind of penalty ends up actually leading to shrinkage, which tends to concentrate at the vertices of this penalty function. So what we end up getting, often, is a lasso estimate that has some null parameters, zero-value parameters. So it's a way of excluding variables from the regression, depending on what lambda is. All right. Well, let's see. There's this ETF case study that I posted which-- and it's sort of a long document to sift through, but I guess what's important is just to look at the table of contents to see what's of interest to check out in this. And what I set up as a problem was to consider collecting prices on exchange-traded funds that correspond to different sectors in the US market. And so in the US market, there are about 10 sectors-- consumer staples, energy, financials, health, and so forth. And then there are also exchange-traded funds that correspond to market indexes, like the S&P 500 or the Dow Jones Industrial or the NASDAQ market. And I consider regressing a sector ETF on the index ETFs. Now, why would we be interested in regressing a sector index on these market-index ETFs? Well, let me just go through here. OK. Or, this document goes through, listing the symbols for all of these different ETFs, plotting them, and actually then converting the prices to weekly returns, and then looking at how they're correlated with each other. So in this example, I believe it was the Consumer Staples Sector Fund, that I'm thinking of regressing on the SPY, which corresponds to the S&P 500; MDY, which is a mid-cap index; QQQ; and the Diamonds. And if we look at these sort of cumulative returns of these different ETFs, here's the cumulative return over a 14-year period or something. Well, any other-- any more thoughts on why we might want to regress this, on these indexes? AJ? AUDIENCE: The index return should be-- the entire variance should be explained by their sectors. Assuming everything in each index is contained within the market index, it should explain perfectly the variance in returns. PETER KEMPTHORNE: Right. OK, so that's looking at it almost the other way around. If we were looking at the index ETF as a function of the sectors, we should have almost a perfect explanation of that in a regression model. What can be useful with this regression is if we wanted to invest in consumer staples but we wanted to have our investment be hedged against the market risk, that is large. And so if we could eliminate the dependence on the S&P 500, eliminate the dependence on the mid-cap and the QQQs, then our hedged investment, we'd be less concerned about major drops in the market. So we'd be reducing the market risk. So this is where it can be very useful. Now, this kind of approach has also been used to try and mimic hedge fund strategies. And so there's some papers out there on hedge fund replication, where hedge funds basically maybe have most of their returns attributable to liquid market instruments that one can trade in a portfolio. And so hedge fund replication methods have actually done that kind of regression as well. Anyway, with this, with this setup, we can just regress this XLP on the index ETFs, and we get this regression coefficient table here. What's important to see is whether the regression coefficients are significantly different from zero or not. And the t-value and p-value columns basically tell us that all of these explanatory factors are useful here. And let's see, when we study the-- let's see. When we study the regression model-- OK, we have the R-squared of this multiple regression. The correlation of the fitted and actual values is given by-- or the square of that is given by the R-squared. And we can do various regression diagnostics which are used here. What-- I'll let you go through these details. It's a bit repetitive from what we talked about in the last lecture. But let's see. We can also model the independent variables, or do a principal components analysis of those. And if we compute a principal component analysis of our independent variables-- in this case, the index sector exchange-traded funds-- we then have a sort of decomposition of variability, which indicates that the first principal component variable explains 90% of the variability in these data, the first two, 97%. So we're actually explaining a lot of variability with just the first two. Now, in looking at the regression on the PC variables, let's see, we can consider the-- well, each of these PC variables, Principal Component variables, are orthogonal to each other. So in estimating the regression coefficients, we can do so with simple linear regressions of the ETF fund, y on that, on each variable. And so the first principal component variable has an R-squared of 0.545. And the second principal component variable has almost no correlation. And so it's-- well, it's almost none. Its p-value is still 0.0518, which is almost statistically significant. With very large samples, we're able to judge small correlations as being statistically significant, but maybe it's not practically significant. And then the third has a small R-squared as well, and the fourth, again, rather small. But what's of interest is whether the-- or, it's basically just, How statistically significant are the principal component variables? And in the sort of updated example, the-- let's see here. Well, if we consider the regression parameter based on only the first three variables, we basically get these results. Now, when I did this a few years ago, it ended up being the case that the p-values for-- I think it was the second principal component variable, was not significant at all. And so in choosing what factors to include in the model, the principal components regression approach of basically including successive high-eigenvalue principal component variables in successively so long as they're significant, that actually sort of doesn't include, really, necessarily, the important regressors in the model. So we can have statistically significant high-order principal component variables that don't have much variability in them, but they actually are explaining significant factors affecting the response variable. So anyway, this note goes through and additionally considers ridge regression and lasso regression. And so with the ridge regression results, the display of regression parameters is traced out as we consider different constraints on the L1-- or on the-- well, on the L2 norm. And if we look at the L1 norm of these estimates, one can see, basically, how as one sort of decreases the penalty for the complexity of the regression parameters, we get final estimates given by these ending values. But if we increase the penalty on those, then they basically are shrinking towards zero. Although, the shrinkage isn't necessarily in a monotone manner. And then if we look at the lasso regression, with a same L1-norm sort of scaling, one can see how, as that lambda parameter associated with the penalty is increased, we basically have the L1 norm getting smaller, of the resulting estimates. And this shows you how-- I guess the third variable is the first to be excluded, then the second, and then, finally, the fourth. So, all right. So anyway, so this note goes through an illustration of lasso and principal components regression. And it also provided a comparison of different coefficients by method. And what this final chart shows is the comparison of beta estimates by method. And one can see that most of the methods give similar results, but using just the first three principal component variables gives us very different estimates of regression parameters. So there's sensitivity of the estimators to the data. And it's perhaps useful to-- let's see. Well, it's useful to consider these alternatives. With very large sample sizes, you generally don't get much difference in the ridge or the Lasso results. It's usually in smaller sample sizes that you get differences. With the principal components regression, in this example, the first three principal component variables end up giving estimates, that are in the yellow. But if we chose which principal component variables to include based on their statistical significance, then the more significant principal component variables ended up leading to this green values, which are comparable to the others. So this suggests that-- well, actually in this case, the green values are equal to least squares, just because all of the principal component variables were statistically significant. All right. Well, the next thing I wanted to go through is this linear regression modeling for the capital asset pricing model. And in this note, we first review what the capital asset pricing model is, how it relates to returns on stocks and returns on market index. And what we're going to do is go through the computation, computations, involved with an empirical analysis of this capital asset pricing model, and then consider testing hypotheses about individual coefficients, and then conclude with actually fitting this capital asset pricing model to all stocks in the S&P 500 index, and comparing the results of the capital asset pricing model parameters for that. So with this, we begin with basically a description of what the capital asset pricing model is. We went through this, I think, in our third lecture, which says that in an efficient market, the expected return of a stock, asset j, should equal the risk-free return plus a beta factor times the excess return of the market. And so beta j is sort of the market risk factor. And the excess return of the market portfolio is simply how much bigger that market return is compared with the risk-free rate. Now, with these parameters, if we have data consisting of empirical returns R for stocks j at different times t, different values over t of the risk-free rate, and we consider the excess return of each asset and the excess return of the market, then this data can be used to specify a linear regression model where we have an intercept alpha j and a slope beta j for the regression. So we're looking here at R star market, and this is R star j. And we'll plot values over time t of these excess returns. And we can basically fit a regression model where we have y hat-- or R star jt is equal to alpha j plus beta j R star mt. And if the capital asset pricing model holds, then the alpha j's should be 0, because the alpha j's-- if we take the expectation in this equation with residuals that are mean 0 constant variance, then we get the capital asset pricing model equation when the alpha j is equal to 0. So what we can do with real data is fit this model and then test whether alpha j is 0 or not. And if it is consistent with a 0 value, then the pricing of the asset can be judged to be sort of in an equilibrium described by the capital asset pricing model. And so let's take a look. I think what's perhaps useful is just to see the code for doing these computations. It's included in the note here. But if we pick a particular stock, GE stock, and fit the regression model, we basically-- in this code, the only thing we need to do is specify the symbol for the stock, and then extract from our data object the excess market return and the excess asset return. And then fit that regression, and we get these coefficients table here. Now, in this example, the intercept coefficient is the estimate of alpha. And if GE is being priced consistent with the capital asset pricing model, then that estimate should be consistent with the null value. And the p-value for testing whether that intercept is 0 or not gives us evidence supporting the capital asset pricing model. Now, the market, the excess return of the market has an estimate that's about 1, with some standard error. It has a huge t-value and a huge p-value. Those values being large, or a huge t-value and very small p-value, are not surprising at all, just because they're correlated. And a 0 value for the slope is sort of meaningless here. What could be useful is testing whether our beta coefficient is consistent with sort of the average market risk of beta equal to 1, or not. But here's basically a plot of the linear regression model for GE, and a discussion just of getting comfortable with R-squared values and calibrating our views of scatter plots to those values. And then there's residuals analysis, that is very important. As I introduced at the beginning of our regression study, we make assumptions about our model. And we then, once we fit the model, we check our assumptions to see whether those are satisfied or not. And in this case, we might assume that the residuals are normally distributed. And here's a histogram of the residuals from this GE regression. And there actually are two bell-shaped curves here. There's one, that's in green, that corresponds to the maximum likelihood estimate of the mean and variance of that normal. But there's also a blue curve, which corresponds to a robust estimator of the normal distribution parameters. So, and we just talked a bit about normal linear regressions and their being optimal. Well, they're optimal so long as the normal distribution is applied. And one can calculate what's called a QQ plot, of the residuals. Where the theoretical distribution is normal, we can think of ordered samples of normals, from smallest to largest, and pair those with our ordered residuals, from smallest to largest. And this plot will look like a straight line if the residuals are Gaussian. And the green line corresponds to the MLE fit of the Gaussian. Basically, the slope will equal the standard deviation of the distribution, and the median roughly will correspond to the mean value. But what we have is a robust estimate of the standard deviation of the residuals, gives us this blue line. And the robust estimate of the residual variance is based on the interquartile range of the residuals. So the middle 50%, what kind of standard deviation would match the middle 50% range of the residuals? And there's an argument that this robust estimate might in fact be better. And another way of evaluating the residuals is to compute fitted percentiles under the residual model. So if we observe an epsilon hat with mean mu hat and standard deviation sigma hat, we can do the inverse of the probability integral transform and get the percentile of that outcome. And so it turns out that these percentiles should be uniformly distributed, from, like, 1 to 99, if this normal model is correct. And so we can actually consider different estimates of sigma hat, from robust to MLE. And with the MLE, here's the histogram of the fitted percentiles. It's basically underestimating percentiles that are close to the mean-- or the median. And so it really isn't fitting the residuals very well across the whole range. And if instead we consider fitted percentiles from the robust estimate of the variance, then the fitted percentiles of the residuals is consistent with uniform in the middle of the data, except in the top 1% and the bottom 1%. So it's very possible that our data has a non-normal residual distribution or error distribution. And perhaps that non-normal distribution could be well modeled with a mixture model. Now, OK, there's regression diagnostics, which I'll let you read through. And then there's this section on testing hypotheses about individual model coefficients. Let's see. If you have this on your computer, you can probably see it a little better than seeing this screen here. But with the normal-- or with our testing of individual coefficients, we basically use the fact that our least squares estimator is multivariate normal with mean equal to the true beta vector and covariance matrix, given here. So, so we can make various tests of different regression parameters. So we have the t-statistics for testing whether a parameter value is 0 or not, and use the t-distribution to judge how statistically significant that is. In our capital asset pricing model case, we actually are interested in testing whether the alphas are zero or not. And one could also consider testing for whether the beta factor is equal to 1 or not. 1, for the beta, is actually what the average beta is across all stocks in the market. And so one can consider judging whether assets sort of have significantly high risk, high betas, or low betas, using a test of whether the estimated regression coefficient is significantly different from 1 or not. And so with this, I've basically computed this for GE. And it turns out that, I guess, the t-stat for GE, which corresponds to a beta of 1.083, that's fairly close to 1, in terms of absolute magnitude, but it's actually a bit-- it's statistically significant, according to the arguments given here. Now, there are many packages in R, but one of them is the CAR package, which allows one to conduct tests of linear hypotheses like these. And so it goes through and performs the same kinds of tests for whether the intercept is 0 or not. And in implementing these hypothesis tests, this CAR package uses the sort of F-test approach. So one has results that give us different residual sum of squares and F-statistics, and p-values for the F-statistics corresponding to these. Now, let's see. With-- let's see. Before showing the results for all the stocks in the S&P 500, there's another note on regression analysis hypothesis testing. And what's interesting to think about is we can consider testing whether a submodel, a model without as many factors in it, is suitable. But one can also test for whether there's a change in model parameters with a regime, so that maybe there's an initial period with a given set of model parameters, and then a regime shift following that, where the parameter values have changed. And so the mathematical theory for this is covered in section 3, and one can consider testing-- with the capital asset pricing model, maybe-- whether there's a change in regression parameters over an entire period. And so what I want to just go to is the results. Actually, the linear algebra for these hypothesis testing methods is very straightforward. And I encourage you to read through these, just to see how they play out. But let's see. What's interesting, I guess, is, with this change between two periods, if we consider sort of an original regression model, y equals X beta plus epsilon for a very long period, we might consider splitting it up into the first part, period A, and the second part, period B, and have two equations for the respective sets of data. And in thinking about the two periods, we basically can test whether the regression parameters for the second period are the same as the regression parameters for the first period. And we can write out the model equations with appropriate matrices. And then we basically have an F-test statistic for seeing whether these regression parameters are different or not. And one can also-- instead of considering separate parameters for each period, one can consider a beta value here for the entire period, and then use that beta value together with the change in parameter values in period B from period A. And so one can set up the regression model where one is interested in whether this change parameter delta is equal to 0 or not. And so, mathematically, we get F-test from that. Now, with the GE stock I subjectively chose this period split for A from B. If we look at the cumulative sum of standardized residuals from the regression model, then we basically have residuals that are consistently negative, cumulating to a lower value around 2019, and then later expanding beyond that. So this sort of time series of accumulated residuals sort of highlights that there's strong time dependence in the residuals. But if we fit the regression models to these-- separate regression models to these two periods, we end up getting highly significant results for the change in the two periods. There's basically an intercept, which is the alpha, which changes from negative to positive, and the market risk basically changes from 0.773 beta in the first period, to 0.773 plus 0.3537 in the second period. So these capital asset pricing models are not expected, perhaps, to hold over really, really long periods of time. And if we wanted to apply them, we'd likely sort of choose a rolling window approach perhaps, which then leads to questions of, how do we decide on what rolling window is appropriate, and opens up other issues to study. So anyway, so with that background for hypothesis testing, let's go back to fitting the capital asset pricing model to all stocks in the S&P 500. Let's see. The code here basically fits this capital asset pricing model regression for all the stocks that have data going back several years. So there were, I think, around 380 or 400 stocks. And they're grouped by sector. And we can see how the R-squareds of the regressions vary from 0 to 1. They typically are above 0.2. So there's some reasonable R-squared relationships that are being explained. And if we look at the alphas by sector-- here's sort of parallel box plots of the alphas, the alpha estimates within each of the sectors. And so this highlights how some-- let's see-- some sectors, like, I guess, construction, sort of had positive alphas, as did computer technology. Let's see. The conglomerates tended to have negative alphas there. And we can calculate the p-values for testing whether the alphas are consistent with 0 or not. And this graph here shows how the p-values for almost all the stocks exceed the p-value threshold of 0.05. So if we can't reject the null hypothesis of alpha equaling 0, the p-value is above 0.05. And one can see that there's basically sort of a handful, or a couple of handful, of stocks that have a significant alpha. And if we use a 5% threshold, well, we'd expect 5% of the results to be statistically significant, when there's no statistical significance. And so maybe these, in fact, are consistent with the capital asset pricing model pretty well. Now, let's see. One can plot the alpha versus the beta across all the stocks and get this result, which suggests that when you have higher beta, you may get higher alpha as well. And when you have very low beta, maybe the low beta is partly due to a lower alpha potential. But this chart doesn't show how alpha varies by sector. And so if we try to look at alpha by sector we get different fits for different sectors, which is too complex, really, to interpret as graphed here. But it serves as a first step at trying to understand how alphas might vary within different sectors. Perhaps interestingly, here's the beta coefficient by sector. And here, one can see that certain sectors, like consumer staples, have much lower beta values. And other sectors, like computer and technology, have very high betas. So in terms of identifying those sectors that will have low market risk or high market risk, these properties play out quite well. And let's see. In terms of looking at the top and bottom stocks by beta, well, we have consumer discretionary, computer technology sector stocks are the sectors where the top 10 betas are. And if we look at the lowest betas, ranging from 0.37 down to 0.18, most of these are in consumer staples. Finally, if we look at the top 10 stocks with significant alphas, OK, here is the table of alpha values that were highest, and one was in oils and energy sector ENPH, with the alpha value of 0.003. Let's see. Here's-- so if we have an alpha value of 0.003, it's actually-- yeah, so 3-- whatever. I won't have the extra. But this is a daily alpha. If we wanted to annualize this daily alpha, what would that-- how would we compute that annualized alpha? If you're earning this alpha every day, it sort of is an increment of return that you're expecting to get every day. And so if we have 1 plus alpha hat to the number of days-- there's roughly 252 days per year-- and then subtract 1, then we end up getting-- let's see. I computed this. It's 2.12 minus 1, basically. So this is, like, a hundred percent. So this stock happened to just deliver a huge amount of returns. But what's interesting to see, though, is that this relatively simple model, the capital asset pricing model, appears to be consistent with the stocks over a long period of time. That being said, the more complex models are warranted. And the data collection phase of this, our project, included importing Fama-French factors that are extensions of sort of the market risk that can be used in these models, so."
+}
