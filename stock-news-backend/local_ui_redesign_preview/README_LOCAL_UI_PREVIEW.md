@@ -54,3 +54,11 @@ A stronger redesign prototype was added at:
 http://127.0.0.1:8787/stocks-redesign-v2.html`n
 This version is intentionally different from the classic UI: left sidebar, hero cockpit, KPI cards, watchlist table, chart focus area, strategy cards, and news panel.
 
+
+## V3 prototype
+
+Premium light fintech direction:
+
+http://127.0.0.1:8787/stocks-redesign-v3.html`n
+This version is intentionally calmer than V2: light theme, Apple/Stripe-like spacing, clean watchlist table, fewer neon effects, and daily-use readability.
+
