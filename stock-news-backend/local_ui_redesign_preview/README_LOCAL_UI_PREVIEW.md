@@ -46,3 +46,11 @@ Inspired by the added skills:
 - Better modal/chart spacing.
 - Mobile responsive refinement.
 - Reduced-motion accessibility guard.
+
+## V2 prototype
+
+A stronger redesign prototype was added at:
+
+http://127.0.0.1:8787/stocks-redesign-v2.html`n
+This version is intentionally different from the classic UI: left sidebar, hero cockpit, KPI cards, watchlist table, chart focus area, strategy cards, and news panel.
+
