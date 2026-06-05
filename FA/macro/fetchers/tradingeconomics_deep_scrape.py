@@ -148,7 +148,7 @@ def scrape_one(page, key: str, slug: str) -> dict[str, Any]:
     }
 
 
-def fetch(headless: bool = True, pages: dict[str, str] | None = None) -> dict[str, Any]:
+def fetch(headless: bool = False, pages: dict[str, str] | None = None) -> dict[str, Any]:
     pages = pages or PAGES
     try:
         from playwright.sync_api import sync_playwright
@@ -184,7 +184,7 @@ def save(result: dict[str, Any], out_path: str | Path | None = None) -> str:
     return str(out)
 
 if __name__ == '__main__':
-    res = fetch(headless=True)
+    res = fetch(headless=False)
     out = save(res)
     series_counts = {k: len(v.get('embedded', {}).get('seriesCandidates', [])) for k, v in res.get('data', {}).items()}
     print(json.dumps({'status': res.get('status'), 'pages': len(res.get('data', {})), 'seriesCounts': series_counts, 'errors': res.get('errors'), 'out': out}, ensure_ascii=False, indent=2))
