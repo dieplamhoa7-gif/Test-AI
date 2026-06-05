@@ -12,11 +12,27 @@
       "access": "public HTML",
       "reliability": "medium-high",
       "data_fields": [
-        "interbankOvernight", "deposit12m", "govBond5y", "govBond10y",
-        "usdVnd", "eurVnd", "cnyVnd",
-        "djia", "sp500", "nasdaq", "ftse", "dax", "vix", "brent", "gold",
-        "vnindex", "hnx", "vn30", "upcom",
-        "foreignNetBuyBn", "marketTurnoverBn",
+        "interbankOvernight",
+        "deposit12m",
+        "govBond5y",
+        "govBond10y",
+        "usdVnd",
+        "eurVnd",
+        "cnyVnd",
+        "djia",
+        "sp500",
+        "nasdaq",
+        "ftse",
+        "dax",
+        "vix",
+        "brent",
+        "gold",
+        "vnindex",
+        "hnx",
+        "vn30",
+        "upcom",
+        "foreignNetBuyBn",
+        "marketTurnoverBn",
         "newsHeadlines"
       ],
       "notes": "Primary daily source. Layout có thể thay đổi. Có 1D/YTD change. Tắt cuối tuần/lễ."
@@ -30,7 +46,14 @@
       "cost": "free",
       "access": "public XML API",
       "reliability": "high",
-      "data_fields": ["USD/VND buy/sell", "EUR/VND", "CNY/VND", "JPY/VND", "GBP/VND", "KRW/VND"],
+      "data_fields": [
+        "USD/VND buy/sell",
+        "EUR/VND",
+        "CNY/VND",
+        "JPY/VND",
+        "GBP/VND",
+        "KRW/VND"
+      ],
       "notes": "Most accurate official FX source. XML format stable."
     },
     {
@@ -44,11 +67,24 @@
       "access": "Yahoo Finance (unofficial API)",
       "reliability": "high",
       "data_fields": [
-        "VIX (^VIX)", "S&P500 (^GSPC)", "NASDAQ (^IXIC)", "DJIA (^DJI)",
-        "US10Y (^TNX)", "US2Y (^IRX)", "DXY (DX-Y.NYB)",
-        "Brent (BZ=F)", "WTI (CL=F)", "Gold (GC=F)", "Silver (SI=F)", "Copper (HG=F)",
-        "Nikkei (^N225)", "Hang Seng (^HSI)", "SSE (000001.SS)", "KOSPI (^KS11)",
-        "MSCI EM ETF (EEM)", "BTC-USD"
+        "VIX (^VIX)",
+        "S&P500 (^GSPC)",
+        "NASDAQ (^IXIC)",
+        "DJIA (^DJI)",
+        "US10Y (^TNX)",
+        "US2Y (^IRX)",
+        "DXY (DX-Y.NYB)",
+        "Brent (BZ=F)",
+        "WTI (CL=F)",
+        "Gold (GC=F)",
+        "Silver (SI=F)",
+        "Copper (HG=F)",
+        "Nikkei (^N225)",
+        "Hang Seng (^HSI)",
+        "SSE (000001.SS)",
+        "KOSPI (^KS11)",
+        "MSCI EM ETF (EEM)",
+        "BTC-USD"
       ],
       "notes": "Best source for global risk indicators. Requires local Python install."
     },
@@ -62,8 +98,12 @@
       "access": "multiple fallback APIs",
       "reliability": "high",
       "data_fields": [
-        "VNINDEX OHLCV", "HNX-INDEX", "VN30", "UPCOM-INDEX",
-        "Foreign buy/sell volume", "Market breadth"
+        "VNINDEX OHLCV",
+        "HNX-INDEX",
+        "VN30",
+        "UPCOM-INDEX",
+        "Foreign buy/sell volume",
+        "Market breadth"
       ],
       "fallback_apis": [
         "vnstock library (TCBS/VCI/SSI)",
@@ -83,7 +123,8 @@
       "reliability": "low-medium",
       "data_fields": [
         "Lãi suất liên NH overnight/1W/1M/3M",
-        "Lãi suất tái cấp vốn", "Lãi suất tái chiết khấu"
+        "Lãi suất tái cấp vốn",
+        "Lãi suất tái chiết khấu"
       ],
       "notes": "SBV website khó crawl tự động. Dùng Pinetree (đã có liên NH overnight) hoặc manual_override.json làm fallback."
     },
@@ -97,10 +138,13 @@
       "access": "World Bank Data API (public)",
       "reliability": "high",
       "data_fields": [
-        "GDP growth %", "CPI inflation %",
-        "FDI net inflows USD", "Current account USD",
+        "GDP growth %",
+        "CPI inflation %",
+        "FDI net inflows USD",
+        "Current account USD",
         "Domestic credit to private sector % GDP",
-        "Exports/Imports % GDP", "Remittances USD"
+        "Exports/Imports % GDP",
+        "Remittances USD"
       ],
       "notes": "Annual data. Dùng cho context dài hạn, không cho daily signal. Cached 7 ngày."
     },
@@ -113,13 +157,19 @@
       "access": "FiinProX platform export",
       "reliability": "high (official data)",
       "data_fields": [
-        "Tổng dư nợ tín dụng (monthly)", "M2 (monthly)",
+        "Tổng dư nợ tín dụng (monthly)",
+        "M2 (monthly)",
         "IIP - Chỉ số sản xuất công nghiệp (monthly)",
-        "Tổng XK/NK (monthly)", "FDI thực hiện/đăng ký (monthly)",
-        "Lãi suất huy động ngân hàng (monthly)", "Cán cân thương mại (quarterly)",
-        "Vàng SJC daily", "Lãi suất liên NH daily + FX daily"
+        "Tổng XK/NK (monthly)",
+        "FDI thực hiện/đăng ký (monthly)",
+        "Lãi suất huy động ngân hàng (monthly)",
+        "Cán cân thương mại (quarterly)",
+        "Vàng SJC daily",
+        "Lãi suất liên NH daily + FX daily"
       ],
-      "notes": "Source chất lượng cao nhất cho VN macro. Cập nhật thủ công khi có dữ liệu mới. Files: vn_macro_research_pack_2026-06-05/"
+      "notes": "Manual/premium source. Use for rich historical backfill and fields not covered by public sources; do not depend on it for daily automation.",
+      "role": "manual_backfill_crosscheck",
+      "priority": "fallback_not_primary"
     },
     {
       "id": "paid_placeholder_widata",
@@ -145,9 +195,23 @@
       "cost": "paid",
       "data_fields": [
         "Vietnam interbank rate history",
-        "CPI monthly", "Unemployment", "Trade balance monthly"
+        "CPI monthly",
+        "Unemployment",
+        "Trade balance monthly"
       ],
       "notes": "Historical database tốt. Paid tier mới có structured data đầy đủ."
     }
+  ],
+  "publicReplacementPlan": "FA/PUBLIC_MACRO_SOURCE_REPLACEMENT_PLAN.md",
+  "sourcePriority": [
+    "vcb_fx_xml",
+    "yfinance_global",
+    "vnstock_market",
+    "sbv_interbank",
+    "pinetree_morning_brief",
+    "worldbank_macro",
+    "fiinprox_manual",
+    "paid_placeholder_widata",
+    "paid_placeholder_tradingeconomics"
   ]
 }
