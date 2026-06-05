@@ -35,6 +35,7 @@ from macro.fetchers import vcb_fx
 from macro.fetchers import vnstock_market
 from macro.fetchers import sbv_rates
 from macro.fetchers import sbv_omo
+from macro.fetchers import sbv_liquidity
 from macro.fetchers import fiinprox_excel
 from macro.fetchers import tradingeconomics_browser
 from macro.fetchers import pinetree_archive
@@ -171,7 +172,19 @@ def run(
         print(f"  ✗ OMO failed: {e}")
     snapshot["omoData"] = omo_data
 
-    # ── 5c. Pinetree archive crawl/update (public morning brief history) ─
+    # ── 5c. SBV liquidity full pack: OMO + tín phiếu + policy + interbank ─
+    print(f"[{ts()}] Fetching SBV liquidity full pack ...")
+    try:
+        liq = sbv_liquidity.fetch(headless=False)
+        sbv_liquidity.save(liq)
+        snapshot["sbvLiquidity"] = liq
+        s = liq.get("summary", {})
+        print(f"  ✓ SBV liquidity: RR issue={s.get('reverseRepoIssueBn')} tỷ, T-bill issue={s.get('tbillIssueBn')}, total net={s.get('totalLiquidityNetBn')} tỷ")
+    except Exception as e:
+        snapshot["sbvLiquidity"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ✗ SBV liquidity full pack failed: {e}")
+
+    # ── 5d. Pinetree archive crawl/update (public morning brief history) ─
     print(f"[{ts()}] Updating Pinetree Morning Brief archive ...")
     try:
         # Initial full crawl is stored under data/pinetree_archive. Daily job only checks newest pages.
@@ -182,7 +195,7 @@ def run(
         snapshot["pinetreeArchive"] = {"status": "error", "error": str(e)[:200]}
         print(f"  ✗ Pinetree archive failed: {e}")
 
-    # ── 5d. FiinProX manual Excel import (paid/manual source fallback) ───
+    # ── 5e. FiinProX manual Excel import (paid/manual source fallback) ───
     print(f"[{ts()}] Importing FiinProX Excel macro timeline ...")
     try:
         fiin = fiinprox_excel.fetch()

@@ -1,0 +1,98 @@
+{
+  "source": "SBV liquidity: OMO + tín phiếu + liên ngân hàng",
+  "parserVersion": "sbv_liquidity_v1",
+  "fetchedAt": "2026-06-05T16:11:04.871019",
+  "status": "ok",
+  "omo": {
+    "status": "ok",
+    "url": "https://www.sbv.gov.vn/vi/web/sbv_portal/nghi%E1%BB%87p-v%E1%BB%A5-th%E1%BB%8B-tr%C6%B0%E1%BB%9Dng-m%E1%BB%9F",
+    "date": "2026-06-04",
+    "transactions": [
+      {
+        "type": "reverse_repo_issue",
+        "tenorDays": 7,
+        "volumeBn": 1000.0,
+        "rate": 4.5,
+        "members": "4/4"
+      },
+      {
+        "type": "reverse_repo_issue",
+        "tenorDays": 35,
+        "volumeBn": 1000.0,
+        "rate": 4.5,
+        "members": "5/5"
+      },
+      {
+        "type": "reverse_repo_issue",
+        "tenorDays": 56,
+        "volumeBn": 1000.0,
+        "rate": 4.5,
+        "members": "8/8"
+      }
+    ],
+    "reverseRepoIssueBn": 3000.0,
+    "reverseRepoDrainBn": 0,
+    "reverseRepoNetBn": 3000.0,
+    "omoRate": 4.5
+  },
+  "tbill": {
+    "status": "no_tbill_rows_parsed",
+    "url": "https://www.sbv.gov.vn/vi/web/sbv_portal/thong-tin-chao-ban-tin-phieu-nhnn",
+    "date": "2026-06-05",
+    "offers": [],
+    "tbillIssueBn": null,
+    "tbillMaturityBn": null,
+    "tbillOutstandingBn": null,
+    "tbillNetBn": null,
+    "note": "SBV page currently exposes tender offer fields; issued volume may be blank. Actual issued/maturity/outstanding requires result page or rolling history/backfill."
+  },
+  "policyRates": {
+    "status": "not_visible_on_home",
+    "url": "https://www.sbv.gov.vn/",
+    "discountRate": null,
+    "refinancingRate": null
+  },
+  "interbankRates": {
+    "source": "SBV/NHNN Interbank Rates",
+    "parserVersion": "sbv_v2_pdf",
+    "status": "all_failed",
+    "lastError": "empty",
+    "note": "Nếu sbv_weekly_pdf fail: cài 'pip install pypdf'. Hoặc điền tay vào data/manual_override.json.",
+    "browserFallback": {
+      "status": "browser_pdf_failed",
+      "error": "APIRequestContext.get: connect ETIMEDOUT 202.58.245.151:443\nCall log:\n  - → GET https://www.sbv.gov.vn/documents/20117/0/25-29.5.2026.pdf/3b4c3a06-501d-4082-f83d-246e4949fdbe?t=1780476384602\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+  },
+  "summary": {
+    "date": "2026-06-04",
+    "reverseRepoIssueBn": 3000.0,
+    "reverseRepoMaturityBn": null,
+    "reverseRepoOutstandingBn": null,
+    "reverseRepoNetBn": 3000.0,
+    "tbillIssueBn": null,
+    "tbillMaturityBn": null,
+    "tbillOutstandingBn": null,
+    "tbillNetBn": null,
+    "totalLiquidityNetBn": 3000.0,
+    "omoRate": 4.5,
+    "discountRate": null,
+    "refinancingRate": null
+  },
+  "sourcePages": {
+    "omo": {
+      "url": "https://www.sbv.gov.vn/vi/web/sbv_portal/nghi%E1%BB%87p-v%E1%BB%A5-th%E1%BB%8B-tr%C6%B0%E1%BB%9Dng-m%E1%BB%9F",
+      "status": "ok",
+      "title": "Nghiệp vụ thị trường mở - Ngân hàng Nhà nước Việt Nam"
+    },
+    "tbill": {
+      "url": "https://www.sbv.gov.vn/vi/web/sbv_portal/thong-tin-chao-ban-tin-phieu-nhnn",
+      "status": "ok",
+      "title": "Thông tin chào bán tín phiếu NHNN - Ngân hàng Nhà nước Việt Nam"
+    },
+    "home": {
+      "url": "https://www.sbv.gov.vn/",
+      "status": "ok",
+      "title": "Trang Chủ - Ngân hàng Nhà nước Việt Nam"
+    }
+  }
+}
