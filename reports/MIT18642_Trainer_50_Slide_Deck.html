@@ -1,0 +1,202 @@
+<!doctype html><html><head><meta charset="utf-8"><title>MIT18642 50 Slide Deck</title><style>@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;font-family:Arial,Segoe UI,sans-serif;color:#111827}.slide{width:210mm;height:297mm;padding:17mm 18mm;page-break-after:always;position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f4f6fa)}.cover{background:radial-gradient(circle at 18% 12%,#60a5fa,transparent 25%),linear-gradient(135deg,#020617,#1B2B4B 50%,#111827);color:white}.badge{display:inline-block;background:#C49A1B;color:#111827;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:800;letter-spacing:.06em}.top{border-top:8px solid #A31F34;padding-top:12px}.kicker{font-size:11px;color:#C49A1B;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.title{font-size:30px;line-height:1.08;font-weight:900;color:#1B2B4B;margin:8px 0 14px}.cover .title{color:white;font-size:42px}.body{font-size:18px;line-height:1.5;background:white;border:1px solid #d8dee9;border-radius:18px;padding:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}.formula{white-space:pre-wrap;margin-top:14px;background:#1B2B4B;color:#bbf7d0;border-radius:14px;padding:14px;font-family:Consolas,monospace;font-size:16px;line-height:1.45}.app{margin-top:14px;background:#F0FFF4;border:2px solid #1B5E20;border-left:8px solid #1B5E20;border-radius:14px;padding:14px;color:#123b18;font-size:16px;line-height:1.45}.take{position:absolute;left:18mm;right:18mm;bottom:22mm;background:#FFFDE7;border:2px solid #C49A1B;border-left:8px solid #C49A1B;border-radius:14px;padding:12px;color:#5b3a00;font-size:15px}.footer{position:absolute;bottom:8mm;left:18mm;right:18mm;display:flex;justify-content:space-between;color:#8A8B8C;font-size:10px}.cover .footer{color:#d4e1f7}</style></head><body>
+<section class="slide cover"><div class="top"><div class="badge">Cover</div><div class="title">MIT 18.642 Finance Trainer</div></div><div class="body">Slide deck 50 trang dành cho nhà đầu tư chứng khoán Việt Nam. Mục tiêu: học có hệ thống các khái niệm toán tài chính MIT 18.642 và biết cách áp dụng vào HOSE/HNX/VN30.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Học để xây hệ thống quyết định đầu tư dựa trên dữ liệu, không dựa vào cảm tính.</div>
+<div class="take"><b>Takeaway:</b> Lý thuyết phải đi kèm ví dụ số và ứng dụng đầu tư.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 1/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Learning Protocol</div><div class="title">Cách học theo skill</div></div><div class="body">Mỗi topic được học theo 6 bước: tại sao cần biết, khái niệm, công thức, ví dụ số, ứng dụng đầu tư, câu hỏi kiểm tra.</div>
+<div class="take"><b>Takeaway:</b> Không học công thức rời rạc; học để ra quyết định tốt hơn.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 2/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Course Map</div><div class="title">Bản đồ 12 modules</div></div><div class="body">12 modules bao phủ toàn bộ 22 video: markets, bond math, linear algebra, probability, regression/PCA, rates, time series, portfolio risk, stochastic calculus, Black-Scholes, volatility/ML, systematic trading.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 3/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 01</div><div class="title">Module 01 — Giới thiệu & thị trường tài chính: Tại sao cần biết?</div></div><div class="body">Tư duy tài chính định lượng, cấu trúc thị trường, buy-side/sell-side, sản phẩm cơ bản. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Nhà đầu tư VN cần phân biệt payoff của cổ phiếu, trái phiếu và CW trước khi dùng model.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 4/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 01</div><div class="title">Module 01 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Tư duy tài chính định lượng, cấu trúc thị trường, buy-side/sell-side, sản phẩm cơ bản. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">Equity · Fixed Income · Derivatives · FX · Commodities</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 5/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 01</div><div class="title">Module 01 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Nhà đầu tư VN cần phân biệt payoff của cổ phiếu, trái phiếu và CW trước khi dùng model. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Nhà đầu tư VN cần phân biệt payoff của cổ phiếu, trái phiếu và CW trước khi dùng model.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 6/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 02</div><div class="title">Module 02 — Bond Math — Toán học trái phiếu: Tại sao cần biết?</div></div><div class="body">Time value of money, present value, YTM, duration, DV01, convexity, yield curve. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Dùng yield curve/WACC để hiểu định giá cổ phiếu, nhất là ngân hàng, BĐS, cổ phiếu growth.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 7/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 02</div><div class="title">Module 02 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Time value of money, present value, YTM, duration, DV01, convexity, yield curve. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">P=Σ C/(1+y)^t + M/(1+y)^n
+D_mod=D_mac/(1+y)
+DV01=D_mod*P*0.0001</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 8/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 02</div><div class="title">Module 02 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Dùng yield curve/WACC để hiểu định giá cổ phiếu, nhất là ngân hàng, BĐS, cổ phiếu growth. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Dùng yield curve/WACC để hiểu định giá cổ phiếu, nhất là ngân hàng, BĐS, cổ phiếu growth.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 9/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 03</div><div class="title">Module 03 — Đại số tuyến tính trong tài chính: Tại sao cần biết?</div></div><div class="body">Vector trọng số, covariance matrix, eigenvalues, SVD, no-arbitrage, risk-neutral measure. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Danh mục VN30 là vector trọng số; covariance cho biết mua nhiều mã có thật sự giảm rủi ro không.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 10/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 03</div><div class="title">Module 03 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Vector trọng số, covariance matrix, eigenvalues, SVD, no-arbitrage, risk-neutral measure. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">R_p=w^T R
+σ_p²=w^T Σ w
+Σv=λv</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 11/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 03</div><div class="title">Module 03 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Danh mục VN30 là vector trọng số; covariance cho biết mua nhiều mã có thật sự giảm rủi ro không. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Danh mục VN30 là vector trọng số; covariance cho biết mua nhiều mã có thật sự giảm rủi ro không.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 12/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 04</div><div class="title">Module 04 — Xác suất & quá trình ngẫu nhiên I: Tại sao cần biết?</div></div><div class="body">Không gian xác suất, moments, fat tails, martingale, gambler’s ruin, Markov chains. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Một setup cổ phiếu chỉ làm thay đổi xác suất, không tạo chắc chắn. Quản trị vốn tránh gambler’s ruin.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 13/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 04</div><div class="title">Module 04 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Không gian xác suất, moments, fat tails, martingale, gambler’s ruin, Markov chains. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">E[X], Var(X), Skewness, Kurtosis
+E[X_{t+1}|F_t]=X_t</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 14/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 04</div><div class="title">Module 04 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Một setup cổ phiếu chỉ làm thay đổi xác suất, không tạo chắc chắn. Quản trị vốn tránh gambler’s ruin. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Một setup cổ phiếu chỉ làm thay đổi xác suất, không tạo chắc chắn. Quản trị vốn tránh gambler’s ruin.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 15/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 05</div><div class="title">Module 05 — Regression Analysis & PCA: Tại sao cần biết?</div></div><div class="body">OLS, Gauss-Markov, CAPM, Fama-French, Ridge/Lasso, PCA, factor loading. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Kiểm indicator bằng OOS, IC, alpha, không chỉ nhìn chart đẹp. PCA giúp gom indicator trùng.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 16/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 05</div><div class="title">Module 05 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: OLS, Gauss-Markov, CAPM, Fama-French, Ridge/Lasso, PCA, factor loading. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">β_hat=(X^T X)^-1 X^T Y
+R_i-R_f=α+β(R_m-R_f)+ε</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 17/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 05</div><div class="title">Module 05 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Kiểm indicator bằng OOS, IC, alpha, không chỉ nhìn chart đẹp. PCA giúp gom indicator trùng. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Kiểm indicator bằng OOS, IC, alpha, không chỉ nhìn chart đẹp. PCA giúp gom indicator trùng.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 18/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 06</div><div class="title">Module 06 — Lãi suất tuyến tính & fixed income: Tại sao cần biết?</div></div><div class="body">LIBOR→SOFR, FRA, IRS, bootstrapping yield curve, DV01 hedge, electronic trading. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Rate regime ảnh hưởng mạnh đến bank, BĐS, chứng khoán, cổ phiếu vay nợ cao.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 19/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 06</div><div class="title">Module 06 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: LIBOR→SOFR, FRA, IRS, bootstrapping yield curve, DV01 hedge, electronic trading. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">N_hedge=-DV01_portfolio/DV01_instrument</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 20/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 06</div><div class="title">Module 06 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Rate regime ảnh hưởng mạnh đến bank, BĐS, chứng khoán, cổ phiếu vay nợ cao. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Rate regime ảnh hưởng mạnh đến bank, BĐS, chứng khoán, cổ phiếu vay nợ cao.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 21/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 07</div><div class="title">Module 07 — Time Series Analysis: Tại sao cần biết?</div></div><div class="body">Stationarity, unit root, AR/MA/ARMA/ARIMA, ACF/PACF, cointegration, pairs trading. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Không random split dữ liệu cổ phiếu. Mọi tín hiệu phải ghi horizon 5/10/20/60 phiên.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 22/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 07</div><div class="title">Module 07 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Stationarity, unit root, AR/MA/ARMA/ARIMA, ACF/PACF, cointegration, pairs trading. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">AR(1): X_t=φX_{t-1}+ε_t
+Half-life=ln(2)/|ln(1+φ)|</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 23/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 07</div><div class="title">Module 07 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Không random split dữ liệu cổ phiếu. Mọi tín hiệu phải ghi horizon 5/10/20/60 phiên. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Không random split dữ liệu cổ phiếu. Mọi tín hiệu phải ghi horizon 5/10/20/60 phiên.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 24/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 08</div><div class="title">Module 08 — Portfolio & Risk Management: Tại sao cần biết?</div></div><div class="body">Markowitz, efficient frontier, VaR, CVaR, Kelly, Black-Litterman, counterparty risk. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Không all-in nhiều mã cùng ngành. Cần sector cap, correlation cap, position sizing.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 25/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 08</div><div class="title">Module 08 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Markowitz, efficient frontier, VaR, CVaR, Kelly, Black-Litterman, counterparty risk. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">IR=IC*sqrt(N)
+Kelly f*=μ/σ²
+CVaR=E[Loss|Loss>VaR]</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 26/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 08</div><div class="title">Module 08 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Không all-in nhiều mã cùng ngành. Cần sector cap, correlation cap, position sizing. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Không all-in nhiều mã cùng ngành. Cần sector cap, correlation cap, position sizing.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 27/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 09</div><div class="title">Module 09 — Stochastic Calculus: Tại sao cần biết?</div></div><div class="body">Wiener process, quadratic variation, Itô integral, Itô lemma, GBM, SDE, Monte Carlo. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Dùng scenario distribution cho CW/options; không tin một đường forecast duy nhất.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 28/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 09</div><div class="title">Module 09 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Wiener process, quadratic variation, Itô integral, Itô lemma, GBM, SDE, Monte Carlo. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">dS=μSdt+σSdW
+S_T=S_0 exp[(μ-σ²/2)T+σW_T]</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 29/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 09</div><div class="title">Module 09 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Dùng scenario distribution cho CW/options; không tin một đường forecast duy nhất. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Dùng scenario distribution cho CW/options; không tin một đường forecast duy nhất.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 30/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 10</div><div class="title">Module 10 — Black-Scholes & Option/CW: Tại sao cần biết?</div></div><div class="body">BS PDE, risk-neutral valuation, Greeks, put-call parity, implied vol, smile/skew. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Chọn CW phải xét maturity, break-even, spread, liquidity, theta, IV — không chỉ leverage.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 31/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 10</div><div class="title">Module 10 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: BS PDE, risk-neutral valuation, Greeks, put-call parity, implied vol, smile/skew. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">C=S*N(d1)-K*e^{-rT}*N(d2)
+C-P=S-Ke^{-rT}</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 32/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 10</div><div class="title">Module 10 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Chọn CW phải xét maturity, break-even, spread, liquidity, theta, IV — không chỉ leverage. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Chọn CW phải xét maturity, break-even, spread, liquidity, theta, IV — không chỉ leverage.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 33/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 11</div><div class="title">Module 11 — Volatility Modeling, ML & AI: Tại sao cần biết?</div></div><div class="body">GARCH, volatility clustering, ML pipeline, walk-forward, lookahead bias, AMH. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> ML trong finance phải OOS/walk-forward, calibration, kiểm phí giao dịch và regime shift.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 34/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 11</div><div class="title">Module 11 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: GARCH, volatility clustering, ML pipeline, walk-forward, lookahead bias, AMH. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">σ_t²=ω+αε_{t-1}²+βσ_{t-1}²
+IC=Corr(signal,return)</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 35/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 11</div><div class="title">Module 11 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: ML trong finance phải OOS/walk-forward, calibration, kiểm phí giao dịch và regime shift. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> ML trong finance phải OOS/walk-forward, calibration, kiểm phí giao dịch và regime shift.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 36/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 12</div><div class="title">Module 12 — Systematic Trading & Prediction Markets: Tại sao cần biết?</div></div><div class="body">Factor investing, momentum/value/quality/low-vol, prediction markets, breadth, risk limits. Đây là mảnh ghép giúp nhà đầu tư chuyển từ nhận định cảm tính sang mô hình có dữ liệu, giả định và kiểm định.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Xây hệ thống đầu tư: signal → validation → sizing → risk limits → review định kỳ.</div>
+<div class="take"><b>Takeaway:</b> Trước khi dùng vào đầu tư, phải hiểu vấn đề tài chính mà module này giải quyết.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 37/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 12</div><div class="title">Module 12 — Khái niệm cốt lõi</div></div><div class="body">Khái niệm chính của module: Factor investing, momentum/value/quality/low-vol, prediction markets, breadth, risk limits. Khi học, hãy ghi rõ từng biến đại diện cho điều gì, giả định nào đang dùng, và lỗi phổ biến khi áp dụng.</div>
+<div class="formula">Information Ratio = IC * sqrt(Breadth)</div>
+<div class="take"><b>Takeaway:</b> Công thức chỉ hữu ích khi hiểu ý nghĩa kinh tế của từng ký hiệu.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 38/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Module 12</div><div class="title">Module 12 — Ví dụ đầu tư Việt Nam</div></div><div class="body">Ví dụ áp dụng: Xây hệ thống đầu tư: signal → validation → sizing → risk limits → review định kỳ. Nếu chuyển thành hệ thống, cần định nghĩa dữ liệu đầu vào, cách tính, horizon, và cách kiểm định ngoài mẫu.</div>
+<div class="app"><b>Ứng dụng đầu tư:</b> Xây hệ thống đầu tư: signal → validation → sizing → risk limits → review định kỳ.</div>
+<div class="take"><b>Takeaway:</b> Ứng dụng tốt phải đo được và backtest được.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 39/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Formula Summary</div><div class="title">Bảng công thức phải thuộc — phần 1</div></div><div class="body">Nhóm định giá và lãi suất: present value, bond price, duration, DV01, convexity, yield curve. Đây là nền để hiểu WACC, DCF, lãi suất và định giá tài sản.</div>
+<div class="formula">PV=CF/(1+r)^t
+P=Σ C/(1+y)^t + M/(1+y)^n
+DV01=D_mod*P*0.0001</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 40/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Formula Summary</div><div class="title">Bảng công thức phải thuộc — phần 2</div></div><div class="body">Nhóm xác suất, regression và portfolio: expectation, variance, covariance, OLS, CAPM, portfolio variance.</div>
+<div class="formula">E[X]=Σp_i x_i
+β_hat=(X^T X)^-1X^TY
+σ_p²=w^TΣw</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 41/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Formula Summary</div><div class="title">Bảng công thức phải thuộc — phần 3</div></div><div class="body">Nhóm time series, volatility, option và stochastic calculus: AR(1), GARCH, Black-Scholes, GBM.</div>
+<div class="formula">X_t=φX_{t-1}+ε_t
+σ_t²=ω+αε²_{t-1}+βσ²_{t-1}
+C=S*N(d1)-K*e^{-rT}*N(d2)
+dS=μSdt+σSdW</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 42/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">VN Application</div><div class="title">Checklist dùng cho cổ phiếu VN</div></div><div class="body">Khi áp dụng vào HOSE/HNX: xác định horizon, tính liquidity/slippage, kiểm market regime, tránh lookahead bias, đo EV, kiểm drawdown, sau đó mới sizing.</div>
+<div class="take"><b>Takeaway:</b> Một signal tốt phải có xác suất, payoff, rủi ro và điều kiện sai.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 43/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">CW Application</div><div class="title">Checklist dùng cho CW/chứng quyền</div></div><div class="body">Với CW: không chỉ nhìn underlying tăng. Cần days to maturity, moneyness, break-even, spread, liquidity, implied volatility, theta/time decay.</div>
+<div class="take"><b>Takeaway:</b> Đúng hướng cổ phiếu cơ sở chưa đủ để lời CW.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 44/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Exercise</div><div class="title">Bài tập thực hành 1 — Bond Math</div></div><div class="body">Tính giá trái phiếu coupon 7%, face 1,000,000 VND, maturity 5 năm, yield 7.5%. Sau đó tính duration và tác động khi yield tăng 50 bps.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 45/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Exercise</div><div class="title">Bài tập thực hành 2 — Portfolio</div></div><div class="body">Với VCB/HPG/FPT, hãy lập expected return vector, volatility, correlation matrix, tính variance equal-weight và tìm danh mục Sharpe tốt hơn.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 46/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Exercise</div><div class="title">Bài tập thực hành 3 — Regression/PCA</div></div><div class="body">Chạy CAPM regression cho HPG với VN-Index. Sau đó lấy 20 indicator kỹ thuật, tính correlation/PCA để xem indicator nào trùng thông tin.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 47/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Exercise</div><div class="title">Bài tập thực hành 4 — Time Series</div></div><div class="body">Chọn một cặp cổ phiếu cùng ngành, kiểm cointegration, tính spread z-score và backtest pairs trading với rule ±2σ.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 48/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Study Plan</div><div class="title">Roadmap học 4 tuần</div></div><div class="body">Tuần 1: markets, bond math, linear algebra. Tuần 2: probability, stochastic process, regression. Tuần 3: PCA, rates, time series, portfolio. Tuần 4: volatility, Black-Scholes, ML, systematic trading.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 49/50</span></div></section>
+<section class="slide"><div class="top"><div class="badge">Final</div><div class="title">Kết luận</div></div><div class="body">MIT 18.642 không cho một công thức thần kỳ. Giá trị của khóa học là khung tư duy: xác suất, định giá, kiểm định, rủi ro, danh mục và kỷ luật hệ thống.</div>
+<div class="take"><b>Takeaway:</b> Đầu tư tốt = hiểu payoff + đo xác suất + quản trị downside + kiểm định liên tục.</div>
+<div class="footer"><span>MIT 18.642 Finance Trainer</span><span>Trang 50/50</span></div></section>
+</body></html>
