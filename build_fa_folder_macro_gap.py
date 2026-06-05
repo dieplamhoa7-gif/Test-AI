@@ -1,0 +1,50 @@
+from pathlib import Path
+from openpyxl import load_workbook
+import json
+base=Path('FA')
+files=list(base.glob('*.xlsx'))
+# known sources from FA/macro fetchers
+known={
+ 'pinetree snapshot': ['interbank overnight','deposit12m','govbond5y','govbond10y','usd/vnd','vix','brent','gold','vnindex','foreign flow','turnover'],
+ 'FA/macro fetchers present': ['pinetree','vcb_fx','vnstock_market','worldbank_macro','yfinance_global','sbv_rates','sbv_omo'],
+}
+rows=[]
+for f in sorted(files):
+    wb=load_workbook(f,read_only=True,data_only=True)
+    for ws in wb.worksheets:
+        # find likely header row: row with many nonempty strings
+        best=[]; best_i=None
+        for i,row in enumerate(ws.iter_rows(values_only=True), start=1):
+            vals=[str(v).strip().replace('\n',' ') for v in row if v is not None and str(v).strip()]
+            if len(vals)>len(best): best=vals; best_i=i
+            if i>12: break
+        # collect first col labels too for wide tables
+        labels=[]
+        for i,row in enumerate(ws.iter_rows(values_only=True), start=1):
+            vals=[str(v).strip().replace('\n',' ') for v in row if v is not None and str(v).strip()]
+            if vals and i!=best_i: labels.append(vals[0])
+            if i>80: break
+        rows.append({'file':f.name,'sheet':ws.title,'max_row':ws.max_row,'max_col':ws.max_column,'header_row':best_i,'headers':best[:40],'sample_labels':labels[:40]})
+Path('FA/fa_folder_macro_fields.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8')
+
+# manual classification from observed Fiin names/headers
+md=[]
+md.append('# FA folder macro files - fields and source gaps\n')
+md.append('Scope: `C:/Users/HoaD-CVDT/.openclaw/workspace/FA` only.\n')
+md.append('## Files found\n')
+for f in sorted(files): md.append(f'- `{f.name}`')
+md.append('\n## Macro data in these Excel files\n')
+md.append('| File | Main data fields | Does our source pipeline already fetch it? | Gap status |')
+md.append('|---|---|---|---|')
+md.append('| `FiinProX_Can can thuong mai_20262_20260605.xlsx` | Balance of payments/current account; goods export FOB; goods import FOB; net goods; services export/import/net; investment income; quarterly USD data from Q3/2021 onward | Not in current LH macro pipeline | **Gap**: no BOP/trade-balance fetcher yet. Need FiinProX export, GSO/customs/SBV/BOP source. |')
+md.append('| `FiinProX_DE_Du_lieu_vi_mo_20260605*.xlsx` | Monetary and macro data: M2, deposits by economic org/residents, likely credit/macro monthly series; plus FX weekly sheets and other macro sheets | Partly: USD/VND can be fetched via Pinetree/VCB; WorldBank slow macro exists; no full M2/deposit/credit monthly pipeline | **Major gap**: M2, deposits, credit/monthly macro series from FiinProX not currently automated except limited/free substitutes. |')
+md.append('| `FiinProX_Lai suat huy dong cua cac ngan hang_20266_20260605.xlsx` | Deposit rates by banks/terms | Only Pinetree has one deposit 12M snapshot, not bank-by-bank/term history | **Gap**: need bank deposit-rate history source or keep FiinProX/manual import. |')
+md.append('| `FiinProX_Lai suat thong ke cua NHNN_20266_20260605.xlsx` | SBV/statistical interest rates/policy rates | `FA/macro/fetchers/sbv_rates.py` exists but must verify success; current old pipeline only had unreliable SBV probe | **Partial/gap**: fetcher exists in FA folder, but need test/normalize/history before saying source is live. |')
+md.append('| `FiinProX_Nghiep vu thi truong mo_20200604_20260604_20260605.xlsx` | Open market operations/OMO from 2020-06-04 to 2026-06-04 | `FA/macro/fetchers/sbv_omo.py` exists; old LH pipeline did not have OMO data | **High-value gap/partial**: Excel has exactly the OMO history we lacked. Need import it and validate fetcher. |')
+md.append('\n## Code/data already present inside FA folder\n')
+for p in ['macro/daily_runner.py','macro/source_probe.py','macro/fetchers/pinetree.py','macro/fetchers/sbv_omo.py','macro/fetchers/sbv_rates.py','macro/fetchers/vcb_fx.py','macro/fetchers/vnstock_market.py','macro/fetchers/worldbank_macro.py','macro/fetchers/yfinance_global.py','macro/scoring/regime_score.py','macro/storage/macro_history.py','data/source_registry.json','data/manual_override.json','data/history/2026-06-05.json','macro_report.js','ViMô_VNIndex_20260605.docx','claude_handoff/vn_macro_research_pack_2026-06-05.zip']:
+    if (base/p).exists(): md.append(f'- `FA/{p}`')
+md.append('\n## Answer to Đại ka\n')
+md.append('Earlier I had **not** included these FA folder files. After entering `workspace/FA`, the key missing/high-value files are the FiinProX Excel exports, especially OMO, SBV rates, deposit rates, M2/deposits/credit, and BOP/trade balance. These are richer than the old Pinetree snapshot and should be imported into the macro source registry/history.\n')
+Path('FA/FA_FOLDER_MACRO_GAP_REPORT.md').write_text('\n'.join(md),encoding='utf-8')
+print('wrote FA/fa_folder_macro_fields.json and FA/FA_FOLDER_MACRO_GAP_REPORT.md')
