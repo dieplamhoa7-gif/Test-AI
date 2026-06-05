@@ -36,6 +36,7 @@ from macro.fetchers import vnstock_market
 from macro.fetchers import sbv_rates
 from macro.fetchers import sbv_omo
 from macro.fetchers import fiinprox_excel
+from macro.fetchers import tradingeconomics_browser
 from macro.scoring import regime_score as scorer
 from macro.storage import macro_history as history
 
@@ -202,6 +203,23 @@ def run(
         print(f"[{ts()}] World Bank: skipped")
     else:
         print(f"[{ts()}] World Bank: using cached data (< {_WORLDBANK_CACHE_DAYS} days old)")
+
+    # ── 6b. TradingEconomics visible browser scrape (no login/sub bypass) ─
+    print(f"[{ts()}] Fetching TradingEconomics visible macro pages ...")
+    try:
+        te_data = tradingeconomics_browser.fetch(headless=True)
+        te_path = tradingeconomics_browser.save(te_data)
+        snapshot["tradingEconomicsVisible"] = {
+            "status": te_data.get("status"),
+            "count": len(te_data.get("data", {})),
+            "out": te_path,
+            "errors": te_data.get("errors"),
+            "note": te_data.get("note"),
+        }
+        print(f"  ✓ TradingEconomics visible: {len(te_data.get('data',{}))} pages")
+    except Exception as e:
+        snapshot["tradingEconomicsVisible"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ✗ TradingEconomics visible failed: {e}")
 
     # ── 7. Merge best FX & global into scoring input ──────────────────
     # Priority: Pinetree > VCB (FX) > yfinance (global)
