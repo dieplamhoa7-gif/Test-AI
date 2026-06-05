@@ -1,0 +1,153 @@
+{
+  "_lastUpdated": "2026-06-05",
+  "_description": "Registry tất cả nguồn dữ liệu macro cho LH Investment system.",
+  "sources": [
+    {
+      "id": "pinetree_morning_brief",
+      "name": "Pinetree Morning Brief",
+      "url_pattern": "https://pinetree.vn/post/{YYYYMMDD}/ban-tin-sang-{DD-MM-YYYY}/",
+      "fetcher": "macro/fetchers/pinetree.py",
+      "frequency": "daily (trading days)",
+      "cost": "free",
+      "access": "public HTML",
+      "reliability": "medium-high",
+      "data_fields": [
+        "interbankOvernight", "deposit12m", "govBond5y", "govBond10y",
+        "usdVnd", "eurVnd", "cnyVnd",
+        "djia", "sp500", "nasdaq", "ftse", "dax", "vix", "brent", "gold",
+        "vnindex", "hnx", "vn30", "upcom",
+        "foreignNetBuyBn", "marketTurnoverBn",
+        "newsHeadlines"
+      ],
+      "notes": "Primary daily source. Layout có thể thay đổi. Có 1D/YTD change. Tắt cuối tuần/lễ."
+    },
+    {
+      "id": "vcb_fx_xml",
+      "name": "Vietcombank Exchange Rates XML",
+      "url": "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10",
+      "fetcher": "macro/fetchers/vcb_fx.py",
+      "frequency": "daily (multiple updates/day)",
+      "cost": "free",
+      "access": "public XML API",
+      "reliability": "high",
+      "data_fields": ["USD/VND buy/sell", "EUR/VND", "CNY/VND", "JPY/VND", "GBP/VND", "KRW/VND"],
+      "notes": "Most accurate official FX source. XML format stable."
+    },
+    {
+      "id": "yfinance_global",
+      "name": "yfinance Global Markets",
+      "url": "Yahoo Finance API via yfinance Python library",
+      "fetcher": "macro/fetchers/yfinance_global.py",
+      "install": "pip install yfinance",
+      "frequency": "daily (end-of-day) / intraday available",
+      "cost": "free",
+      "access": "Yahoo Finance (unofficial API)",
+      "reliability": "high",
+      "data_fields": [
+        "VIX (^VIX)", "S&P500 (^GSPC)", "NASDAQ (^IXIC)", "DJIA (^DJI)",
+        "US10Y (^TNX)", "US2Y (^IRX)", "DXY (DX-Y.NYB)",
+        "Brent (BZ=F)", "WTI (CL=F)", "Gold (GC=F)", "Silver (SI=F)", "Copper (HG=F)",
+        "Nikkei (^N225)", "Hang Seng (^HSI)", "SSE (000001.SS)", "KOSPI (^KS11)",
+        "MSCI EM ETF (EEM)", "BTC-USD"
+      ],
+      "notes": "Best source for global risk indicators. Requires local Python install."
+    },
+    {
+      "id": "vnstock_market",
+      "name": "Vietnam Market Data (vnstock/SSI/DNSE/VnDirect)",
+      "fetcher": "macro/fetchers/vnstock_market.py",
+      "install": "pip install vnstock",
+      "frequency": "daily / real-time",
+      "cost": "free",
+      "access": "multiple fallback APIs",
+      "reliability": "high",
+      "data_fields": [
+        "VNINDEX OHLCV", "HNX-INDEX", "VN30", "UPCOM-INDEX",
+        "Foreign buy/sell volume", "Market breadth"
+      ],
+      "fallback_apis": [
+        "vnstock library (TCBS/VCI/SSI)",
+        "VnDirect finfo-api (https://finfo-api.vndirect.com.vn/v4/)",
+        "SSI iBoard (https://iboard-query.ssi.com.vn/v2/)",
+        "DNSE/Entrade (https://quote.dnse.com.vn/api/)"
+      ],
+      "notes": "4 fallback sources. vnstock library is most complete."
+    },
+    {
+      "id": "sbv_interbank",
+      "name": "SBV/NHNN Interest Rates",
+      "fetcher": "macro/fetchers/sbv_rates.py",
+      "frequency": "daily",
+      "cost": "free (official)",
+      "access": "HTML scrape (unreliable) + Pinetree cross-ref + manual override",
+      "reliability": "low-medium",
+      "data_fields": [
+        "Lãi suất liên NH overnight/1W/1M/3M",
+        "Lãi suất tái cấp vốn", "Lãi suất tái chiết khấu"
+      ],
+      "notes": "SBV website khó crawl tự động. Dùng Pinetree (đã có liên NH overnight) hoặc manual_override.json làm fallback."
+    },
+    {
+      "id": "worldbank_macro",
+      "name": "World Bank Annual Indicators",
+      "fetcher": "macro/fetchers/worldbank_macro.py",
+      "install": "pip install wbgapi",
+      "frequency": "annual (1-12 month lag)",
+      "cost": "free",
+      "access": "World Bank Data API (public)",
+      "reliability": "high",
+      "data_fields": [
+        "GDP growth %", "CPI inflation %",
+        "FDI net inflows USD", "Current account USD",
+        "Domestic credit to private sector % GDP",
+        "Exports/Imports % GDP", "Remittances USD"
+      ],
+      "notes": "Annual data. Dùng cho context dài hạn, không cho daily signal. Cached 7 ngày."
+    },
+    {
+      "id": "fiinprox_manual",
+      "name": "FiinProX Excel Export (Manual)",
+      "fetcher": "N/A — manual download + openpyxl parse",
+      "frequency": "manual (khi anh download)",
+      "cost": "paid subscription (FiinGroup)",
+      "access": "FiinProX platform export",
+      "reliability": "high (official data)",
+      "data_fields": [
+        "Tổng dư nợ tín dụng (monthly)", "M2 (monthly)",
+        "IIP - Chỉ số sản xuất công nghiệp (monthly)",
+        "Tổng XK/NK (monthly)", "FDI thực hiện/đăng ký (monthly)",
+        "Lãi suất huy động ngân hàng (monthly)", "Cán cân thương mại (quarterly)",
+        "Vàng SJC daily", "Lãi suất liên NH daily + FX daily"
+      ],
+      "notes": "Source chất lượng cao nhất cho VN macro. Cập nhật thủ công khi có dữ liệu mới. Files: vn_macro_research_pack_2026-06-05/"
+    },
+    {
+      "id": "paid_placeholder_widata",
+      "name": "WiData / WiFeed (Paid)",
+      "url_pattern": "https://widata.vn/vi-mo/vn/*",
+      "fetcher": "N/A (cần paid API key)",
+      "frequency": "daily",
+      "cost": "paid",
+      "data_fields": [
+        "OMO bơm/hút ròng NHNN daily",
+        "Tín phiếu NHNN",
+        "Lãi suất liên NH đầy đủ kỳ hạn",
+        "Money market data"
+      ],
+      "notes": "Best VN monetary data. Triển khai khi có subscription."
+    },
+    {
+      "id": "paid_placeholder_tradingeconomics",
+      "name": "TradingEconomics API (Paid)",
+      "url": "https://tradingeconomics.com/vietnam/*",
+      "fetcher": "N/A (cần API key)",
+      "frequency": "daily/historical",
+      "cost": "paid",
+      "data_fields": [
+        "Vietnam interbank rate history",
+        "CPI monthly", "Unemployment", "Trade balance monthly"
+      ],
+      "notes": "Historical database tốt. Paid tier mới có structured data đầy đủ."
+    }
+  ]
+}
