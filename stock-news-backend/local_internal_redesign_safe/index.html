@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LH Investment — Internal Preview</title>
+  <style>
+    :root{
+      --bg:#f4f6fa;--panel:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#dbe3ef;
+      --navy:#1B2B4B;--blue:#2E5FA3;--red:#A31F34;--gold:#C49A1B;--green:#1B5E20;
+      --soft-blue:#eef5ff;--soft-green:#f0fff4;--soft-red:#fff1f2;--soft-gold:#fffde7;
+      --shadow:0 14px 38px rgba(15,23,42,.08);
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;font-size:14px}
+    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    aside{background:linear-gradient(180deg,#10213d,#1B2B4B);color:white;padding:22px 18px;position:sticky;top:0;height:100vh}
+    .brand{font-weight:900;font-size:21px;letter-spacing:-.4px;margin-bottom:4px}.sub{color:#b6c7e6;font-size:12px;margin-bottom:24px}
+    .nav a{display:flex;align-items:center;gap:10px;color:#dbeafe;text-decoration:none;padding:11px 12px;border-radius:12px;margin:4px 0;font-weight:700}
+    .nav a.active,.nav a:hover{background:rgba(255,255,255,.12);color:white}.dot{width:9px;height:9px;border-radius:99px;background:var(--gold)}
+    .side-card{margin-top:22px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:14px}.side-card b{display:block;color:#fde68a;margin-bottom:8px}.side-card p{margin:0;color:#cbd5e1;line-height:1.45;font-size:12px}
+    main{padding:22px 26px 40px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.topbar h1{margin:0;font-size:24px;letter-spacing:-.5px}.topbar .time{color:var(--muted);font-size:12px}
+    .actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:white;border-radius:12px;padding:9px 12px;font-weight:800;color:var(--navy);box-shadow:0 4px 14px rgba(15,23,42,.04)}.btn.primary{background:var(--navy);color:white;border-color:var(--navy)}
+    .grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(5,1fr)}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:var(--shadow)}
+    .kpi .label{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.kpi .value{font-size:24px;font-weight:900;margin:7px 0 3px}.kpi .delta{font-size:12px;font-weight:800}.up{color:var(--green)}.down{color:var(--red)}.neutral{color:var(--gold)}
+    .layout{display:grid;grid-template-columns:1.35fr .75fr;gap:14px;margin-top:14px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section-title h2{font-size:16px;margin:0}.tag{font-size:11px;font-weight:900;border-radius:99px;padding:5px 8px;background:var(--soft-blue);color:var(--blue)}
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:0 8px}td{background:#f8fafc;border-top:1px solid #e6edf5;border-bottom:1px solid #e6edf5;padding:10px 8px;vertical-align:middle}td:first-child{border-left:1px solid #e6edf5;border-radius:12px 0 0 12px}td:last-child{border-right:1px solid #e6edf5;border-radius:0 12px 12px 0}.symbol{font-weight:900}.small{font-size:12px;color:var(--muted)}
+    .score{font-weight:900;border-radius:10px;padding:6px 8px;display:inline-block}.score.good{background:var(--soft-green);color:var(--green)}.score.mid{background:var(--soft-gold);color:#8a5a00}.score.bad{background:var(--soft-red);color:var(--red)}
+    .risk-list{display:grid;gap:10px}.risk{border:1px solid var(--line);border-radius:14px;padding:11px;background:#fbfdff}.risk b{display:flex;justify-content:space-between;margin-bottom:5px}.bar{height:7px;border-radius:99px;background:#e5e7eb;overflow:hidden}.bar span{display:block;height:100%;background:var(--blue)}
+    .chart{height:310px;border-radius:16px;background:linear-gradient(180deg,#f8fafc,#eef4fb);border:1px dashed #b9c7d8;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800}.tabs{display:flex;gap:8px;margin:10px 0}.tab{padding:8px 10px;border-radius:999px;border:1px solid var(--line);font-weight:800;background:white}.tab.active{background:var(--navy);color:white;border-color:var(--navy)}
+    .three{grid-template-columns:repeat(3,1fr);margin-top:14px}.note{background:var(--soft-gold);border:1px solid #fde68a;border-left:5px solid var(--gold);border-radius:16px;padding:13px;line-height:1.5}.footer-note{margin-top:14px;color:var(--muted);font-size:12px;text-align:right}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">LH Investment</div><div class="sub">Internal UI Preview · Safe redesign</div>
+    <nav class="nav">
+      <a class="active"><span class="dot"></span>Market Dashboard</a><a><span class="dot"></span>Stock Screener</a><a><span class="dot"></span>Technical Signals</a><a><span class="dot"></span>Fundamental Reports</a><a><span class="dot"></span>CW / Warrants</a><a><span class="dot"></span>Portfolio Risk</a>
+    </nav>
+    <div class="side-card"><b>Design rule</b><p>Dense enough for finance users, clean enough to scan. Risk and invalidation must be visible before action.</p></div>
+    <div class="side-card"><b>Safe preview</b><p>Local-only mockup. Does not touch Firebase production or canonical static HTML.</p></div>
+  </aside>
+  <main>
+    <div class="topbar"><div><h1>Market Intelligence Dashboard</h1><div class="time">Data preview · VN market · Technical + Fundamental + Risk</div></div><div class="actions"><button class="btn">Export PDF</button><button class="btn">Refresh cache</button><button class="btn primary">Run OOS Check</button></div></div>
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">VNINDEX Regime</div><div class="value">Sideway+</div><div class="delta neutral">risk-on có điều kiện</div></div>
+      <div class="card kpi"><div class="label">Watchlist Edge</div><div class="value">62%</div><div class="delta up">+8 điểm vs tuần trước</div></div>
+      <div class="card kpi"><div class="label">Volatility</div><div class="value">Normal</div><div class="delta neutral">ATR market ổn định</div></div>
+      <div class="card kpi"><div class="label">Sector Lead</div><div class="value">Bank</div><div class="delta up">RS cải thiện</div></div>
+      <div class="card kpi"><div class="label">Risk Alerts</div><div class="value">3</div><div class="delta down">cao: BĐS/CW</div></div>
+    </div>
+    <div class="layout">
+      <section class="card">
+        <div class="section-title"><h2>Ranked Opportunities</h2><span class="tag">EV + technical + risk adjusted</span></div>
+        <table><thead><tr><th>Mã</th><th>Setup</th><th>Score</th><th>EV 20d</th><th>Hỗ trợ</th><th>Kháng cự</th><th>Rủi ro</th></tr></thead><tbody>
+          <tr><td><div class="symbol">MWG</div><div class="small">Retail</div></td><td>Near support + room</td><td><span class="score good">78</span></td><td class="up">+3.2%</td><td>74.2</td><td>84.1</td><td><span class="score mid">Medium</span></td></tr>
+          <tr><td><div class="symbol">VCB</div><div class="small">Bank</div></td><td>Trend pullback</td><td><span class="score good">75</span></td><td class="up">+2.8%</td><td>86.0</td><td>94.5</td><td><span class="score good">Low</span></td></tr>
+          <tr><td><div class="symbol">HPG</div><div class="small">Steel</div></td><td>Breakout retest</td><td><span class="score mid">64</span></td><td class="up">+1.6%</td><td>27.8</td><td>31.2</td><td><span class="score mid">Medium</span></td></tr>
+          <tr><td><div class="symbol">VHM</div><div class="small">Real estate</div></td><td>Base recovery</td><td><span class="score bad">48</span></td><td class="down">-0.4%</td><td>38.5</td><td>45.0</td><td><span class="score bad">High</span></td></tr>
+        </tbody></table>
+      </section>
+      <aside class="card">
+        <div class="section-title"><h2>Portfolio Risk</h2><span class="tag">live guardrails</span></div>
+        <div class="risk-list">
+          <div class="risk"><b>Sector concentration <span>68%</span></b><div class="bar"><span style="width:68%"></span></div><div class="small">Ngân hàng + chứng khoán đang chiếm tỷ trọng cao.</div></div>
+          <div class="risk"><b>Correlation cluster <span>74%</span></b><div class="bar"><span style="width:74%;background:#A31F34"></span></div><div class="small">Nhiều mã cùng phụ thuộc thanh khoản thị trường.</div></div>
+          <div class="risk"><b>Vol-adjusted exposure <span>52%</span></b><div class="bar"><span style="width:52%;background:#1B5E20"></span></div><div class="small">Trong ngưỡng kiểm soát.</div></div>
+        </div>
+      </aside>
+    </div>
+    <div class="layout">
+      <section class="card"><div class="section-title"><h2>Stock Detail Workspace</h2><span class="tag">MWG · daily</span></div><div class="tabs"><span class="tab active">Technical</span><span class="tab">Fundamental</span><span class="tab">Pattern</span><span class="tab">Backtest</span><span class="tab">CW</span></div><div class="chart">Chart area — lightweight chart + S/R zones + pattern overlay</div></section>
+      <aside class="card"><div class="section-title"><h2>Decision Box</h2><span class="tag">not advice</span></div><div class="note"><b>Why:</b> Gần hỗ trợ 74.2, còn room lên kháng cự 84.1, market regime không xấu.</div><br><div class="note"><b>Wrong if:</b> Gãy 74.2 với volume cao hoặc VNINDEX quay về bearish regime.</div><br><div class="note"><b>Need OOS:</b> Pattern score chỉ dùng làm confluence, chưa là tín hiệu chính.</div></aside>
+    </div>
+    <div class="grid three">
+      <div class="card"><div class="section-title"><h2>Fundamental Snapshot</h2></div><p><b>Revenue:</b> recovering · <b>Margin:</b> stable · <b>Cashflow:</b> watch working capital.</p><p class="small">DCF/P/E sensitivity shown only when reported numbers are verified.</p></div>
+      <div class="card"><div class="section-title"><h2>Technical Checklist</h2></div><p>Trend: neutral+ · Momentum: improving · Volume: confirmation pending · ATR: normal.</p><p class="small">Separate observations from recommendation.</p></div>
+      <div class="card"><div class="section-title"><h2>Report Quality</h2></div><p>Every export includes cover, TOC, formula boxes, investment boxes, key takeaways and data limitations.</p><p class="small">No half-empty pages.</p></div>
+    </div>
+    <div class="footer-note">Internal preview generated from safe-finance-investing-skill-pack · no production deploy</div>
+  </main>
+</div>
+</body>
+</html>
