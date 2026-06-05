@@ -145,10 +145,46 @@ def fetch(pages: dict[str, str] | None = None, headless: bool = True) -> dict[st
     }
 
 
+def _append_visible_history_csv(result: dict[str, Any], root: Path) -> None:
+    import csv
+    csv_path = root / "data" / "tradingeconomics_visible_history.csv"
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    fields = ["fetchedDate", "key", "indicator", "value", "previous", "unit", "reference", "frequency", "url"]
+    fetched_date = (result.get("fetchedAt") or "")[:10]
+    existing = set()
+    if csv_path.exists():
+        with csv_path.open("r", encoding="utf-8-sig", newline="") as f:
+            for r in csv.DictReader(f):
+                existing.add((r.get("fetchedDate"), r.get("key"), r.get("indicator")))
+    rows = []
+    for key, item in (result.get("data") or {}).items():
+        if item.get("actual") is not None:
+            rows.append({"fetchedDate": fetched_date, "key": key, "indicator": item.get("title") or key, "value": item.get("actual"), "previous": item.get("previous"), "unit": item.get("unit"), "reference": item.get("reference"), "frequency": item.get("frequency"), "url": item.get("url")})
+        for rel in item.get("related") or []:
+            if rel.get("last") is not None:
+                rows.append({"fetchedDate": fetched_date, "key": key + ".related", "indicator": rel.get("indicator"), "value": rel.get("last"), "previous": rel.get("previous"), "unit": rel.get("unit"), "reference": rel.get("reference"), "frequency": "related_visible", "url": item.get("url")})
+    write_header = not csv_path.exists()
+    with csv_path.open("a", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        if write_header:
+            w.writeheader()
+        for r in rows:
+            ident = (str(r.get("fetchedDate")), str(r.get("key")), str(r.get("indicator")))
+            if ident not in existing:
+                w.writerow(r)
+
+
 def save(result: dict[str, Any], out_path: str | Path | None = None) -> str:
-    out = Path(out_path) if out_path else Path(__file__).resolve().parents[2] / "data" / "tradingeconomics_visible_latest.json"
+    root = Path(__file__).resolve().parents[2]
+    out = Path(out_path) if out_path else root / "data" / "tradingeconomics_visible_latest.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Also keep dated snapshot + append-only visible history CSV for daily accumulation.
+    d = (result.get("fetchedAt") or "")[:10] or "unknown-date"
+    hist = root / "data" / "tradingeconomics_history" / f"{d}.json"
+    hist.parent.mkdir(parents=True, exist_ok=True)
+    hist.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    _append_visible_history_csv(result, root)
     return str(out)
 
 
