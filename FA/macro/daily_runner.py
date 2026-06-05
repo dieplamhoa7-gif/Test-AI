@@ -37,6 +37,7 @@ from macro.fetchers import sbv_rates
 from macro.fetchers import sbv_omo
 from macro.fetchers import fiinprox_excel
 from macro.fetchers import tradingeconomics_browser
+from macro.fetchers import pinetree_archive
 from macro.scoring import regime_score as scorer
 from macro.storage import macro_history as history
 
@@ -170,7 +171,18 @@ def run(
         print(f"  ✗ OMO failed: {e}")
     snapshot["omoData"] = omo_data
 
-    # ── 5c. FiinProX manual Excel import (paid/manual source fallback) ───
+    # ── 5c. Pinetree archive crawl/update (public morning brief history) ─
+    print(f"[{ts()}] Updating Pinetree Morning Brief archive ...")
+    try:
+        # Initial full crawl is stored under data/pinetree_archive. Daily job only checks newest pages.
+        pa = pinetree_archive.crawl(max_pages=3, sleep_s=0.05, incremental=True)
+        snapshot["pinetreeArchive"] = pa
+        print(f"  ✓ Pinetree archive: {pa.get('postsFetched',0)} posts, {pa.get('rowCount',0)} rows")
+    except Exception as e:
+        snapshot["pinetreeArchive"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ✗ Pinetree archive failed: {e}")
+
+    # ── 5d. FiinProX manual Excel import (paid/manual source fallback) ───
     print(f"[{ts()}] Importing FiinProX Excel macro timeline ...")
     try:
         fiin = fiinprox_excel.fetch()
