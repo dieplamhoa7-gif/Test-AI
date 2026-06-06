@@ -1,28 +1,27 @@
 {
-  "updatedAt": "2026-06-06T01:16:22.736Z",
+  "updatedAt": "2026-06-06T01:59:26.493Z",
   "title": "Ma trận chiến lược PTKT",
-  "note": "Web chỉ đọc output/cache đã tính sẵn. Không hiển thị công thức, không chạy R/S hay chiến lược khi render. | Added LH2 Final (v6 BALANCED) on 2026-06-06.",
+  "note": "Web strategy mapping restored: LH1 = b4_trend_pullback / Pullback; LH2 = shakeout_breakdown_rebound / Shakeout Rebound. No new LH2 breakout strategy column.",
   "displayMode": "output_only",
   "columns": [
     {
       "id": "b4_trend_pullback",
-      "name": "Trend Pullback Pro",
-      "shortName": "Trend Pullback",
+      "name": "LH1 Pullback",
+      "shortName": "LH1",
       "priority": 1,
       "style": "primary",
-      "summary": "Mua cổ phiếu đang nằm trong xu hướng tăng, chờ nhịp điều chỉnh về vùng hỗ trợ rồi vào khi lực hồi phục xuất hiện. Chiến lược ưu tiên cổ phiếu còn khỏe, không bắt dao rơi và tránh mã đã gãy xu hướng.",
-      "indicators": "R/S, RSI, MACD, Bollinger Bands, Volume, ROC, Ichimoku Cloud, ADX, MA20/50/200, bullish/bearish divergence, support/resistance zones",
+      "summary": "LH1 Pullback / B4 precision: mua cổ phiếu trong xu hướng tăng, chờ nhịp điều chỉnh về gần hỗ trợ rồi vào khi lực hồi phục xuất hiện. Đây là LH1 lịch sử trên web, không phải chiến lược mới.",
+      "indicators": "RSI, khoảng cách tới hỗ trợ, volumeRatio, ROC20, Bollinger position, core positive/negative score, R/S support/resistance, MA/Ichimoku/MACD tham chiếu",
       "tooltipMetrics": {
-        "winRate": "63.64%",
-        "averageReturn": "+1.59%/lệnh",
-        "totalReturn": "+17.51%"
+        "winRate": "74.19%",
+        "averageReturn": "+2.90%/lệnh",
+        "totalReturn": "+90.0%"
       },
       "validation": {
-        "status": "Đang dùng làm chiến lược chính",
-        "current180": "11 lệnh · win rate 63.64% · tổng PnL +17.51%",
-        "oosPrev3m": "32 lệnh · win rate 56.25% · tổng PnL +16.27%",
-        "combined": "43 lệnh · 25 win / 18 loss · win rate ~58.14% · tổng PnL +33.78%",
-        "source": "data/b4_trend_pullback_locked_backtest.json"
+        "status": "LH1 lịch sử / Pullback chính",
+        "all": "Audit 2025-2026: 31 lệnh · WR 74.19% · avg +2.90% · tổng +90.0%",
+        "oos2026": "OOS 2026: 6 lệnh · WR 50% · avg 0.0%",
+        "source": "data/lh1_lh2_walkforward_audit.json"
       },
       "matrix": {
         "buy": "Hiện mã đạt tín hiệu mua theo cache.",
@@ -32,23 +31,22 @@
     },
     {
       "id": "shakeout_breakdown_rebound",
-      "name": "Shakeout Rebound",
-      "shortName": "Shakeout",
+      "name": "LH2 Shakeout Rebound",
+      "shortName": "LH2",
       "priority": 2,
       "style": "danger",
-      "summary": "Bắt nhịp hồi sau pha rũ hàng: giá thủng hỗ trợ ngắn hạn để loại bỏ lực yếu, sau đó kéo ngược lại vùng hỗ trợ cũ. Setup này biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.",
-      "indicators": "R/S, prior support breakdown/rebound, Volume, RSI, MACD, Bollinger Bands, MA20/50/200, ROC, ADX, Ichimoku state, support/resistance zones",
+      "summary": "LH2 Shakeout Rebound / false-break: bắt nhịp hồi sau pha rũ hàng, giá thủng hỗ trợ ngắn hạn 2-4% để loại lực yếu rồi kéo ngược lại. Đây là LH2 lịch sử trên web, không phải breakout v6.",
+      "indicators": "False-break support 2-4%, core positive/negative score, ROC, market breadth, trend score, R/S support/resistance, volume, RSI/MACD/Bollinger tham chiếu",
       "tooltipMetrics": {
-        "winRate": "69.23%",
-        "averageReturn": "+2.55%/lệnh",
-        "totalReturn": "+66.24%"
+        "winRate": "86.36%",
+        "averageReturn": "+4.67%/lệnh",
+        "totalReturn": "+102.66%"
       },
       "validation": {
-        "status": "Có tiềm năng, cần kiểm soát rủi ro",
-        "train": "Midcap train: 11 lệnh · win rate 36.36% · tổng PnL -9.50%",
-        "oos": "Midcap OOS: 26 lệnh · win rate 69.23% · tổng PnL +66.24%",
-        "multiWindow": "4 cửa sổ: 46 lệnh · 24 win / 20 loss / 2 timeout · win rate 52.17% · tổng PnL +39.38%",
-        "source": "data/breakdown_rebound_midcap50_target6.json; data/midcap_shakeout_strategy_analysis.json"
+        "status": "LH2 lịch sử / Shakeout false-break",
+        "all": "Audit 2025-2026: 22 lệnh · WR 86.36% · avg +4.67% · tổng +102.66%",
+        "oos2026": "OOS 2026: 4 lệnh · WR 75% · avg +3.38%",
+        "source": "data/lh1_lh2_walkforward_audit.json"
       },
       "matrix": {
         "buy": "Hiện mã đạt tín hiệu mua rũ theo cache.",
@@ -86,32 +84,6 @@
         "buy": "Hiện mã đạt tín hiệu mua theo cache.",
         "watch": "Hiện mã gần đạt, chưa mua.",
         "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
-      }
-    },
-    {
-      "id": "lh2_final",
-      "name": "LH2 Final",
-      "shortName": "LH2 Final",
-      "priority": 4,
-      "style": "success",
-      "summary": "Leader Momentum Breakout v6 BALANCED: breakout qua high20/high50 kết hợp RS-rank, volume/OBV/VWAP, ADX, breadth và vị trí gần đỉnh 52 tuần. Dùng làm tín hiệu breakout bổ sung/confirmation, không thay LH1 sniper.",
-      "indicators": "Breakout high20/high50, RS-rank percentile, VolumeRatio, OBV slope, VWAP slope, ADX14, RSI14, RangePos60, nearHigh252, market breadth, MA20/MA50, ATR, Bollinger width, MACD histogram",
-      "tooltipMetrics": {
-        "winRate": "58.33%",
-        "averageReturn": "+4.02%/lệnh",
-        "totalReturn": "+96.38%"
-      },
-      "validation": {
-        "status": "LH2 final / research breakout confirmation",
-        "full": "FULL 2023-nay: 24 lệnh · WR 58.33% · avg +4.02% · tổng +96.38%",
-        "oos": "OOS 2025-2026: 13 lệnh · WR 53.85% · avg +3.85% · tổng +50.02%",
-        "yearly": "2025: 10 lệnh · WR 50% · avg +3.55%; 2026 YTD: 3 lệnh · WR 66.67% · avg +4.83%",
-        "source": "data/lh2_final_backtest.json; data/lh2_final_today_scan.json"
-      },
-      "matrix": {
-        "buy": "Hiện mã đạt tín hiệu LH2 Final breakout theo scan mới nhất.",
-        "watch": "Theo dõi mã tiệm cận điều kiện breakout/leader momentum.",
-        "avoid": "Không đạt điều kiện LH2 Final hoặc thị trường/breadth chưa thuận."
       }
     }
   ],
