@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-01T20:36:00+07:00",
+  "updatedAt": "2026-06-06T01:16:22.736Z",
   "title": "Ma trận chiến lược PTKT",
-  "note": "Web chỉ đọc output/cache đã tính sẵn. Không hiển thị công thức, không chạy R/S hay chiến lược khi render.",
+  "note": "Web chỉ đọc output/cache đã tính sẵn. Không hiển thị công thức, không chạy R/S hay chiến lược khi render. | Added LH2 Final (v6 BALANCED) on 2026-06-06.",
   "displayMode": "output_only",
   "columns": [
     {
@@ -27,33 +27,6 @@
       "matrix": {
         "buy": "Hiện mã đạt tín hiệu mua theo cache.",
         "watch": "Hiện mã gần đạt, cần chờ thêm tín hiệu xác nhận.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
-      }
-    },
-    {
-      "id": "clean_split_a_bottom",
-      "name": "Support Rebound Hunter",
-      "shortName": "Support Rebound",
-      "priority": 3,
-      "style": "warning",
-      "summary": "Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.",
-      "indicators": "R/S, support zones, RSI, MACD, Bollinger Bands, Volume, MA20/50/200, ADX, ROC, Ichimoku state, bullish divergence",
-      "tooltipMetrics": {
-        "winRate": "88.89%",
-        "averageReturn": "+4.42%/lệnh",
-        "totalReturn": "+39.75%"
-      },
-      "validation": {
-        "status": "Setup phụ, tín hiệu hiếm",
-        "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
-        "altCurrent180": "Target +10 full: 9 lệnh · win rate 77.78% · tổng PnL +52.57%",
-        "oosPrev3m": "0 lệnh",
-        "combined": "Mẫu ít, chưa đủ làm chiến lược chính",
-        "source": "data/v3_clean_split_rs_action_backtest.json; data/v3_clean_split_baseline_locked.json"
-      },
-      "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
-        "watch": "Hiện mã gần đạt, chưa mua.",
         "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
       }
     },
@@ -87,11 +60,73 @@
         "matchesExistingWebOutput": true,
         "note": "Đã đối chiếu bản web cũ: cùng nhóm Mua rũ Target +6%, stop -4%, target +6%. UI mới không hiển thị công thức chi tiết."
       }
+    },
+    {
+      "id": "clean_split_a_bottom",
+      "name": "Support Rebound Hunter",
+      "shortName": "Support Rebound",
+      "priority": 3,
+      "style": "warning",
+      "summary": "Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.",
+      "indicators": "R/S, support zones, RSI, MACD, Bollinger Bands, Volume, MA20/50/200, ADX, ROC, Ichimoku state, bullish divergence",
+      "tooltipMetrics": {
+        "winRate": "88.89%",
+        "averageReturn": "+4.42%/lệnh",
+        "totalReturn": "+39.75%"
+      },
+      "validation": {
+        "status": "Setup phụ, tín hiệu hiếm",
+        "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
+        "altCurrent180": "Target +10 full: 9 lệnh · win rate 77.78% · tổng PnL +52.57%",
+        "oosPrev3m": "0 lệnh",
+        "combined": "Mẫu ít, chưa đủ làm chiến lược chính",
+        "source": "data/v3_clean_split_rs_action_backtest.json; data/v3_clean_split_baseline_locked.json"
+      },
+      "matrix": {
+        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
+        "watch": "Hiện mã gần đạt, chưa mua.",
+        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
+      }
+    },
+    {
+      "id": "lh2_final",
+      "name": "LH2 Final",
+      "shortName": "LH2 Final",
+      "priority": 4,
+      "style": "success",
+      "summary": "Leader Momentum Breakout v6 BALANCED: breakout qua high20/high50 kết hợp RS-rank, volume/OBV/VWAP, ADX, breadth và vị trí gần đỉnh 52 tuần. Dùng làm tín hiệu breakout bổ sung/confirmation, không thay LH1 sniper.",
+      "indicators": "Breakout high20/high50, RS-rank percentile, VolumeRatio, OBV slope, VWAP slope, ADX14, RSI14, RangePos60, nearHigh252, market breadth, MA20/MA50, ATR, Bollinger width, MACD histogram",
+      "tooltipMetrics": {
+        "winRate": "58.33%",
+        "averageReturn": "+4.02%/lệnh",
+        "totalReturn": "+96.38%"
+      },
+      "validation": {
+        "status": "LH2 final / research breakout confirmation",
+        "full": "FULL 2023-nay: 24 lệnh · WR 58.33% · avg +4.02% · tổng +96.38%",
+        "oos": "OOS 2025-2026: 13 lệnh · WR 53.85% · avg +3.85% · tổng +50.02%",
+        "yearly": "2025: 10 lệnh · WR 50% · avg +3.55%; 2026 YTD: 3 lệnh · WR 66.67% · avg +4.83%",
+        "source": "data/lh2_final_backtest.json; data/lh2_final_today_scan.json"
+      },
+      "matrix": {
+        "buy": "Hiện mã đạt tín hiệu LH2 Final breakout theo scan mới nhất.",
+        "watch": "Theo dõi mã tiệm cận điều kiện breakout/leader momentum.",
+        "avoid": "Không đạt điều kiện LH2 Final hoặc thị trường/breadth chưa thuận."
+      }
     }
   ],
   "rows": [
-    {"id": "buy", "label": "MUA"},
-    {"id": "watch", "label": "XEM XÉT"},
-    {"id": "avoid", "label": "TRÁNH XA"}
+    {
+      "id": "buy",
+      "label": "MUA"
+    },
+    {
+      "id": "watch",
+      "label": "XEM XÉT"
+    },
+    {
+      "id": "avoid",
+      "label": "TRÁNH XA"
+    }
   ]
 }
