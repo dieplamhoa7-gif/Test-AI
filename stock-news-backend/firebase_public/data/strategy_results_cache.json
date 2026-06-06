@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-06T02:05:21.705Z",
+  "updatedAt": "2026-06-06T09:10:59.761621",
   "note": "Web strategy results restored: LH1 uses b4_trend_pullback; LH2 uses shakeout_breakdown_rebound.",
   "canonical": true,
   "sourceFiles": [
@@ -13,31 +13,67 @@
   "strategies": [
     {
       "id": "b4_trend_pullback",
-      "name": "LH1 Pullback",
+      "name": "LH1 Final",
       "buy": [],
       "watchlist": [
         {
           "symbol": "VND",
-          "strategy": "LH1 Pullback",
-          "strategyId": "b4_trend_pullback",
+          "date": "2026-05-29",
+          "close": 16.85,
           "action": "WATCH",
-          "rankScore": 0,
+          "rankScore": 76.5,
           "entryPrice": 16.85,
-          "lastClose": 16.85,
-          "support": 16.4,
-          "takeProfit": 18.87,
-          "targetPrice": 18.87,
-          "stopLoss": 16.15,
-          "targetPct": 11.99,
-          "stopPct": 4.15,
-          "distSupportPct": 2.67,
-          "missingReasons": [
-            "Ret5 thấp"
-          ],
-          "missingDetails": [
-            "Ret5 thấp: chưa đạt ngưỡng LH1 premium"
-          ],
-          "hoverNote": "LH1 chưa mua: còn thiếu Ret5 thấp",
+          "buyPrice": 16.85,
+          "targetPrice": 17.88,
+          "takeProfit": 17.88,
+          "stopLoss": 15.8,
+          "targetPct": 6.11,
+          "stopPct": 6.23,
+          "scores": {
+            "trend": 100.0,
+            "momentum": 65.0,
+            "volumeMoneyflow": 80.0,
+            "relativeMarket": 55.0,
+            "total": 76.5,
+            "distSupportPct": 2.67,
+            "rel20Pct": 9.93,
+            "marketBreadth20": 19.33,
+            "marketLiquidity20vs60": 0.904,
+            "marketRet20": -2.26,
+            "moneyflow": {
+              "cmf20": -0.2185,
+              "mfi14": 71.93,
+              "obvSlope20": 0.1288,
+              "vwap20": 16.63,
+              "vwapSlope5": 2.81
+            },
+            "reasons": {
+              "trend": [
+                "above_cloud",
+                "near_support<=3",
+                "bb_zone",
+                "ma_structure",
+                "no_bear_div"
+              ],
+              "momentum": [
+                "rsi_53_64",
+                "roc20>=2",
+                "macd_hist_near_zero",
+                "not_overheat"
+              ],
+              "volumeMoneyflow": [
+                "volume_ratio_ok",
+                "mfi_45_75",
+                "obv_slope>0",
+                "above_vwap20_slope_up"
+              ],
+              "relativeMarket": [
+                "rs20>=market",
+                "rs20>=market+2",
+                "liquidity_ok"
+              ]
+            }
+          },
           "entryIndicators": {
             "rsi": 56.1,
             "macd": 0.31,
@@ -75,8 +111,35 @@
             },
             "bearishDivergence": false
           },
-          "asOfDate": "2026-05-29",
-          "source": "lh1_current_scan.json"
+          "missingDetails": [
+            "momentum: hiện 65.0 / cần >= 70",
+            "total: hiện 76.5 / cần >= 84",
+            "rel20Pct: hiện 9.93 / cần -1..2"
+          ],
+          "missingReasons": [
+            "momentum",
+            "total",
+            "rel20Pct"
+          ],
+          "hoverNote": "LH1 Final chưa mua: còn thiếu momentum: hiện 65.0 / cần >= 70; total: hiện 76.5 / cần >= 84; rel20Pct: hiện 9.93 / cần -1..2",
+          "levelMeta": {
+            "targetSource": "nearest_resistance_from_chart",
+            "resistanceCandidates": [
+              17.88,
+              18.25,
+              18.37,
+              18.61,
+              18.66
+            ],
+            "supportCandidates": [
+              16.04,
+              15.94,
+              15.84,
+              15.7,
+              15.6
+            ]
+          },
+          "source": "lh1_final_current_scan.json"
         }
       ],
       "rejectTop": [
@@ -1395,9 +1458,9 @@
         }
       ],
       "rejectCount": 394,
-      "source": "data/lh1_current_scan.json",
+      "source": "data/lh1_final_current_scan.json",
       "canonical": true,
-      "method": "Current LH1 Pullback/Premium scan from scan_lh1_premium_vn100_today.py. BUY are full pass; WATCH are near-pass."
+      "method": "LH1 Final 2025-2026 Priority / Sniper only."
     },
     {
       "id": "shakeout_breakdown_rebound",

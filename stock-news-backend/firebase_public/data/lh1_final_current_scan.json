@@ -1,0 +1,193 @@
+{
+  "status": "completed",
+  "strategy": "LH1 Final 2025-2026 Priority / Sniper",
+  "createdAt": "2026-06-06T09:10:59.710445",
+  "latestDates": [
+    "2025-10-08",
+    "2026-05-29"
+  ],
+  "config": {
+    "status": "finalized",
+    "name": "LH1 Final 2025-2026 Priority / Sniper",
+    "strategyType": "Pullback Optimized / Premium quality sniper filter",
+    "createdAt": "2026-06-06",
+    "sourceBacktest": "data/lh1_premium_v2_four_groups_backtest.json",
+    "sourceOptimizer": "data/lh1_2025_2026_priority_v1_backtest.json",
+    "gate": {
+      "trend": ">=65",
+      "momentum": ">=70",
+      "volumeMoneyflow": ">=70",
+      "relativeMarket": ">=45",
+      "total": ">=84",
+      "rel20Pct": "-1..2",
+      "vwapSlope5": ">=0",
+      "obvSlope5": ">=-0.2"
+    },
+    "summary": {
+      "all_2023_now": {
+        "trades": 21,
+        "wins": 20,
+        "losses": 1,
+        "winRatePct": 95.24,
+        "avgNetPnlPct": 10.69,
+        "sumNetPnlPct": 224.5,
+        "stopRatePct": 4.76
+      },
+      "priority_2025": {
+        "trades": 5,
+        "wins": 5,
+        "losses": 0,
+        "winRatePct": 100.0,
+        "avgNetPnlPct": 11.5,
+        "sumNetPnlPct": 57.5,
+        "stopRatePct": 0.0
+      },
+      "priority_2026_ytd": {
+        "trades": 1,
+        "wins": 1,
+        "losses": 0,
+        "winRatePct": 100.0,
+        "avgNetPnlPct": 11.5,
+        "sumNetPnlPct": 11.5,
+        "stopRatePct": 0.0
+      }
+    },
+    "notes": [
+      "Finalized by user request on 2026-06-06.",
+      "This is the preferred LH1 final/sniper sample for 2025-2026 priority research.",
+      "Use as quality filter / high-conviction signal because sample size is small but quality is materially better than raw LH1 universe.",
+      "Keep previous data/lh1_final_config.json as the broader LH1 pullback final reference. This file is the 2025-2026 priority final."
+    ]
+  },
+  "buyCount": 0,
+  "watchCount": 1,
+  "buy": [],
+  "watchlist": [
+    {
+      "symbol": "VND",
+      "date": "2026-05-29",
+      "close": 16.85,
+      "action": "WATCH",
+      "rankScore": 76.5,
+      "entryPrice": 16.85,
+      "buyPrice": 16.85,
+      "targetPrice": 17.88,
+      "takeProfit": 17.88,
+      "stopLoss": 15.8,
+      "targetPct": 6.11,
+      "stopPct": 6.23,
+      "scores": {
+        "trend": 100.0,
+        "momentum": 65.0,
+        "volumeMoneyflow": 80.0,
+        "relativeMarket": 55.0,
+        "total": 76.5,
+        "distSupportPct": 2.67,
+        "rel20Pct": 9.93,
+        "marketBreadth20": 19.33,
+        "marketLiquidity20vs60": 0.904,
+        "marketRet20": -2.26,
+        "moneyflow": {
+          "cmf20": -0.2185,
+          "mfi14": 71.93,
+          "obvSlope20": 0.1288,
+          "vwap20": 16.63,
+          "vwapSlope5": 2.81
+        },
+        "reasons": {
+          "trend": [
+            "above_cloud",
+            "near_support<=3",
+            "bb_zone",
+            "ma_structure",
+            "no_bear_div"
+          ],
+          "momentum": [
+            "rsi_53_64",
+            "roc20>=2",
+            "macd_hist_near_zero",
+            "not_overheat"
+          ],
+          "volumeMoneyflow": [
+            "volume_ratio_ok",
+            "mfi_45_75",
+            "obv_slope>0",
+            "above_vwap20_slope_up"
+          ],
+          "relativeMarket": [
+            "rs20>=market",
+            "rs20>=market+2",
+            "liquidity_ok"
+          ]
+        }
+      },
+      "entryIndicators": {
+        "rsi": 56.1,
+        "macd": 0.31,
+        "macdSignal": 0.1952,
+        "macdHist": 0.1149,
+        "macdHistSeq": [
+          0.1645,
+          0.1643,
+          0.1576,
+          0.1149
+        ],
+        "macdHistRecovering": false,
+        "bbPercent": 0.709,
+        "volumeRatio": 0.96,
+        "roc20": 7.67,
+        "ret5": -0.65,
+        "ichimoku": {
+          "state": "above_cloud",
+          "bullishTkCross": true,
+          "tenkan": 16.74,
+          "kijun": 16.66,
+          "cloudTop": 16.62,
+          "cloudBottom": 15.82
+        },
+        "bullishDivergence": true,
+        "bullishDivergenceDetail": {
+          "rsiBullish": false,
+          "macdBullish": false,
+          "priceLow1": 15.84,
+          "priceLow2": 15.89,
+          "rsiLow1": 47.46,
+          "rsiLow2": 47.76,
+          "macdHistLow1": 0.017,
+          "macdHistLow2": 0.0202
+        },
+        "bearishDivergence": false
+      },
+      "missingDetails": [
+        "momentum: hiện 65.0 / cần >= 70",
+        "total: hiện 76.5 / cần >= 84",
+        "rel20Pct: hiện 9.93 / cần -1..2"
+      ],
+      "missingReasons": [
+        "momentum",
+        "total",
+        "rel20Pct"
+      ],
+      "hoverNote": "LH1 Final chưa mua: còn thiếu momentum: hiện 65.0 / cần >= 70; total: hiện 76.5 / cần >= 84; rel20Pct: hiện 9.93 / cần -1..2",
+      "levelMeta": {
+        "targetSource": "nearest_resistance_from_chart",
+        "resistanceCandidates": [
+          17.88,
+          18.25,
+          18.37,
+          18.61,
+          18.66
+        ],
+        "supportCandidates": [
+          16.04,
+          15.94,
+          15.84,
+          15.7,
+          15.6
+        ]
+      },
+      "source": "lh1_final_current_scan.json"
+    }
+  ],
+  "note": "Only LH1 final output. Older LH1 variants should not be used for web signal."
+}
