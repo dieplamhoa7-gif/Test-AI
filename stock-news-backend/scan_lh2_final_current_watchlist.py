@@ -11,6 +11,37 @@ def rr(v,n=2):
     try: return round(float(v),n)
     except Exception: return None
 
+def resistance_support_from_chart(sym, entry):
+    p=PUB/'charts'/f'{sym}.json'
+    levels=[]; supports=[]
+    try:
+        data=json.loads(p.read_text(encoding='utf-8'))
+        rows=data.get('rows') or []
+        highs=[float(x.get('high')) for x in rows[-180:] if x.get('high') is not None]
+        lows=[float(x.get('low')) for x in rows[-180:] if x.get('low') is not None]
+        closes=[float(x.get('close')) for x in rows[-180:] if x.get('close') is not None]
+        for win in [20,50,120,180]:
+            if len(highs)>=win: levels.append(max(highs[-win:]))
+            if len(lows)>=win: supports.append(min(lows[-win:]))
+        # add simple local pivot highs/lows from last 120 bars
+        rr=rows[-140:]
+        for i in range(2,len(rr)-2):
+            h=float(rr[i].get('high') or 0); l=float(rr[i].get('low') or 0)
+            if h and all(h>=float(rr[j].get('high') or 0) for j in [i-2,i-1,i+1,i+2]): levels.append(h)
+            if l and all(l<=float(rr[j].get('low') or 10**9) for j in [i-2,i-1,i+1,i+2]): supports.append(l)
+    except Exception:
+        pass
+    # choose nearest resistance above entry with at least ~2% upside; fallback 12%
+    resistances=sorted({round(x,2) for x in levels if x>entry*1.02})
+    target=resistances[0] if resistances else entry*1.12
+    # choose nearest support below entry but not too tight; fallback 5%
+    below=sorted({round(x,2) for x in supports if entry*0.88<=x<entry*0.99}, reverse=True)
+    support=below[0] if below else entry*0.95
+    # stop slightly below support, but cap max risk around 7% unless support is very close
+    stop=min(entry*0.95, support*0.985) if support<entry else entry*0.95
+    if stop<entry*0.93: stop=entry*0.95
+    return round(target,2), round(stop,2), {'targetSource':'nearest_resistance_from_chart' if resistances else 'fallback_12pct','stopSource':'support_or_5pct_risk','resistanceCandidates':resistances[:5],'supportCandidates':below[:5]}
+
 def score_candidate(row, rs_rank, br, regime, e):
     checks=[]
     def add(name, ok, value, need, weight=1):
@@ -47,11 +78,12 @@ def main():
         score,checks,missing=score_candidate(row,rs,br,regime,e)
         close=lh2.f(row.close)
         entry=close
-        stop=entry*lh2.PRESETS['BALANCED']['exit']['stop']
-        target=entry*lh2.PRESETS['BALANCED']['exit']['target']
+        target,stop,level_meta=resistance_support_from_chart(sym, entry)
         missing_details=[f"{m['name']}: hiện {m['value']} / cần {m['need']}" for m in missing]
+        target_pct=(target/entry-1)*100 if entry else 0
+        stop_pct=(1-stop/entry)*100 if entry else 0
         item={'symbol':sym,'date':str(pd.Timestamp(date).date()),'close':rr(close),'action':'BUY' if full else 'WATCH','rankScore':score,
-              'entryPrice':rr(entry),'buyPrice':rr(entry),'targetPrice':rr(target),'takeProfit':rr(target),'stopLoss':rr(stop),'targetPct':12,'stopPct':5,
+              'entryPrice':rr(entry),'buyPrice':rr(entry),'targetPrice':rr(target),'takeProfit':rr(target),'stopLoss':rr(stop),'targetPct':rr(target_pct),'stopPct':rr(stop_pct),'levelMeta':level_meta,
               'missingCount':len(missing),'missingReasons':[m['name'] for m in missing[:8]],'missingDetails':missing_details[:12],
               'hoverNote':('Đạt đủ LH2 Final — có thể mua theo hệ thống.' if full else 'Chưa mua: còn thiếu ' + '; '.join(missing_details[:8])),
               'scores':{'rsRank':rr(rs),'volumeRatio':rr(row.volRatio),'obvSlope20':rr(row.obvSlope20,4),'vwapSlope5':rr(row.vwapSlope5),'breadth':rr(br),'rangePos60':rr(row.rangePos60),'adx14':rr(row.adx14),'rsi14':rr(row.rsi14),'nearHigh252':rr(row.nearHigh252),'breakout20':bool(lh2.f(row.close)>lh2.f(row.high20_prev)),'breakout50':bool(lh2.f(row.close)>lh2.f(row.high50_prev))},'checks':checks}
