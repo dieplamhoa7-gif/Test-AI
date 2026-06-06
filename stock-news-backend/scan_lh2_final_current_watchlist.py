@@ -45,7 +45,16 @@ def main():
         br=lh2.f(mkt.loc[date].breadth); regime=int(lh2.f(mkt.loc[date].regime))
         full=lh2.passes(row, rs, br, regime, e)
         score,checks,missing=score_candidate(row,rs,br,regime,e)
-        item={'symbol':sym,'date':str(pd.Timestamp(date).date()),'close':rr(row.close),'action':'BUY' if full else 'WATCH','rankScore':score,'missingCount':len(missing),'missingReasons':[m['name'] for m in missing[:5]],'scores':{'rsRank':rr(rs),'volumeRatio':rr(row.volRatio),'obvSlope20':rr(row.obvSlope20,4),'vwapSlope5':rr(row.vwapSlope5),'breadth':rr(br),'rangePos60':rr(row.rangePos60),'adx14':rr(row.adx14),'rsi14':rr(row.rsi14),'nearHigh252':rr(row.nearHigh252),'breakout20':bool(lh2.f(row.close)>lh2.f(row.high20_prev)),'breakout50':bool(lh2.f(row.close)>lh2.f(row.high50_prev))},'checks':checks}
+        close=lh2.f(row.close)
+        entry=close
+        stop=entry*lh2.PRESETS['BALANCED']['exit']['stop']
+        target=entry*lh2.PRESETS['BALANCED']['exit']['target']
+        missing_details=[f"{m['name']}: hiện {m['value']} / cần {m['need']}" for m in missing]
+        item={'symbol':sym,'date':str(pd.Timestamp(date).date()),'close':rr(close),'action':'BUY' if full else 'WATCH','rankScore':score,
+              'entryPrice':rr(entry),'buyPrice':rr(entry),'targetPrice':rr(target),'takeProfit':rr(target),'stopLoss':rr(stop),'targetPct':12,'stopPct':5,
+              'missingCount':len(missing),'missingReasons':[m['name'] for m in missing[:8]],'missingDetails':missing_details[:12],
+              'hoverNote':('Đạt đủ LH2 Final — có thể mua theo hệ thống.' if full else 'Chưa mua: còn thiếu ' + '; '.join(missing_details[:8])),
+              'scores':{'rsRank':rr(rs),'volumeRatio':rr(row.volRatio),'obvSlope20':rr(row.obvSlope20,4),'vwapSlope5':rr(row.vwapSlope5),'breadth':rr(br),'rangePos60':rr(row.rangePos60),'adx14':rr(row.adx14),'rsi14':rr(row.rsi14),'nearHigh252':rr(row.nearHigh252),'breakout20':bool(lh2.f(row.close)>lh2.f(row.high20_prev)),'breakout50':bool(lh2.f(row.close)>lh2.f(row.high50_prev))},'checks':checks}
         if full: buy.append(item)
         else: candidates.append(item)
     candidates.sort(key=lambda x:(x['rankScore'],-x['missingCount']), reverse=True)

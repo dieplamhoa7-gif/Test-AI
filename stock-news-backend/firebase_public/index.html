@@ -839,7 +839,8 @@
         const gap = Number(x.gapToEntryPct ?? x.distSupportPct);
         const gapText = Number.isFinite(gap) ? `${gap >= 0 ? '+' : ''}${gap.toFixed(1)}%` : '';
         const rank = x.rankScore ?? x.rank ?? '';
-        const title = escapeHtml([translateStrategyText(x.reason || ''), current !== '-' ? `${L('currentPriceLabel')}: ${current}` : '', entry !== '-' ? `${L('entryPoint')}: ${entry}` : '', zone ? `${L('faBuyRange')}: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `${L('resistanceZone')}: ${resistanceZone}` : '', stop !== '-' ? `${L('faStopLoss')}: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
+        const missingText = Array.isArray(x.missingDetails) && x.missingDetails.length ? x.missingDetails.join(' | ') : (Array.isArray(x.missingReasons) && x.missingReasons.length ? `Thiếu: ${x.missingReasons.join(', ')}` : '');
+        const title = escapeHtml([translateStrategyText(x.reason || ''), x.hoverNote || '', missingText, current !== '-' ? `${L('currentPriceLabel')}: ${current}` : '', entry !== '-' ? `${L('entryPoint')}: ${entry}` : '', zone ? `${L('faBuyRange')}: ${zone}` : '', target !== '-' ? `Target: ${target}` : '', resistanceZone ? `${L('resistanceZone')}: ${resistanceZone}` : '', stop !== '-' ? `${L('faStopLoss')}: ${stop}` : '', rank !== '' ? `Rank: ${rank}` : ''].filter(Boolean).join(' | '));
         return `<button class="strategy-symbol-chip" data-filter-symbol="${escapeHtml(rawSymbol)}" title="${title}"><span class="sym">${symbol}</span><span class="mini-levels">${currentLang === 'en' ? 'Buy' : 'Mua'} <b>${escapeHtml(entry)}</b></span><span class="mini-levels"><span class="mini-target">T ${escapeHtml(target)}</span> · <span class="mini-stop">SL ${escapeHtml(stop)}</span></span></button>`;
       }).join('') + (rows.length > max ? `<span class="strategy-more">+${rows.length-max}</span>` : '');
     }
