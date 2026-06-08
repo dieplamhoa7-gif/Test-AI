@@ -1,0 +1,99 @@
+name: LH Final Web Auto Refresh
+
+on:
+  schedule:
+    # Stock chart intraday cache: 09:20-15:20 ICT, weekdays.
+    - cron: '20 2-8 * * 1-5'
+    # EOD stock/warrant full refresh: 15:30 ICT, weekdays.
+    - cron: '30 8 * * 1-5'
+    # Warrants realtime cache: hourly in VN market hours.
+    - cron: '0 2-8 * * 1-5'
+    # News cache: every 2 hours from 08:10 to 22:10 ICT.
+    - cron: '10 1-15/2 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Refresh mode'
+        required: true
+        default: 'intraday'
+        type: choice
+        options:
+          - intraday
+          - eod
+          - warrants
+          - news
+          - all
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lh-final-web-auto-refresh-${{ github.event.inputs.mode || github.event.schedule }}
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-news-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Resolve refresh mode
+        id: mode
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MODE="${{ github.event.inputs.mode }}"
+          else
+            case "${{ github.event.schedule }}" in
+              '20 2-8 * * 1-5') MODE='intraday' ;;
+              '30 8 * * 1-5') MODE='eod' ;;
+              '0 2-8 * * 1-5') MODE='warrants' ;;
+              '10 1-15/2 * * *') MODE='news' ;;
+              *) MODE='intraday' ;;
+            esac
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Resolved mode: $MODE"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run FINAL refresh runner
+        run: python final_web_auto_refresh/final_refresh.py --mode "${{ steps.mode.outputs.mode }}"
+
+      - name: Commit updated cache/output
+        shell: bash
+        run: |
+          git config user.name "LH Investment Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data firebase_public/data
+          git diff --cached --quiet || git commit -m "Auto refresh LH final web cache (${{ steps.mode.outputs.mode }})"
+          git push
+
+      - name: Deploy LHInvestment hosting
+        env:
+          FIREBASE_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}
+        run: |
+          python - <<'PY'
+          import base64, os, pathlib
+          raw = os.environ.get('FIREBASE_SERVICE_ACCOUNT_B64', '').strip()
+          if not raw:
+              raise SystemExit('Missing FIREBASE_SERVICE_ACCOUNT_B64 secret')
+          path = pathlib.Path('firebase-service-account.json')
+          path.write_bytes(base64.b64decode(raw))
+          PY
+          npm install -g firebase-tools
+          GOOGLE_APPLICATION_CREDENTIALS=firebase-service-account.json firebase deploy --only hosting --project lhinvestment
