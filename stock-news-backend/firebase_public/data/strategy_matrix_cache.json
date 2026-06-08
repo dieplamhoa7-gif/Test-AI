@@ -1,104 +1,176 @@
 {
-  "updatedAt": "2026-06-06T01:59:26.493Z",
-  "title": "Ma trận chiến lược PTKT",
-  "note": "Web strategy mapping restored: LH1 = b4_trend_pullback / Pullback; LH2 = shakeout_breakdown_rebound / Shakeout Rebound. No new LH2 breakout strategy column.",
+  "updatedAt": "2026-06-08T10:57:37.618777",
+  "title": "Ma tráº­n chiáº¿n lÆ°á»£c PTKT - LH Final",
+  "note": "Replaced web strategy outputs with LH1/LH2/LH3 Final TA Strategy on 2026-06-08. BUY strict; WATCH is monitoring, not buy.",
   "displayMode": "output_only",
   "columns": [
     {
       "id": "b4_trend_pullback",
-      "name": "LH1 Pullback",
+      "name": "LH1 - Final Trend Pullback",
       "shortName": "LH1",
       "priority": 1,
-      "style": "primary",
-      "summary": "LH1 Pullback / B4 precision: mua cổ phiếu trong xu hướng tăng, chờ nhịp điều chỉnh về gần hỗ trợ rồi vào khi lực hồi phục xuất hiện. Đây là LH1 lịch sử trên web, không phải chiến lược mới.",
-      "indicators": "RSI, khoảng cách tới hỗ trợ, volumeRatio, ROC20, Bollinger position, core positive/negative score, R/S support/resistance, MA/Ichimoku/MACD tham chiếu",
+      "lhCode": "LH1",
+      "summary": "LH1 Final: trend pullback/premium setup. Mua khi cá»• phiáº¿u cÃ²n xu hÆ°á»›ng, Ä‘iá»u chá»‰nh vá» há»— trá»£ vÃ  cÃ³ tÃ­n hiá»‡u há»“i; hiá»‡n Æ°u tiÃªn BUY nghiÃªm ngáº·t, gáº§n Ä‘áº¡t Ä‘Æ°a vÃ o watchlist.",
       "tooltipMetrics": {
-        "winRate": "74.19%",
-        "averageReturn": "+2.90%/lệnh",
-        "totalReturn": "+90.0%"
+        "winRate": "~58-64% vÃ¹ng kiá»ƒm Ä‘á»‹nh cÅ©",
+        "averageReturn": "+1.6%/lá»‡nh báº£n locked",
+        "totalReturn": "+33.78% combined"
       },
       "validation": {
-        "status": "LH1 lịch sử / Pullback chính",
-        "all": "Audit 2025-2026: 31 lệnh · WR 74.19% · avg +2.90% · tổng +90.0%",
-        "oos2026": "OOS 2026: 6 lệnh · WR 50% · avg 0.0%",
-        "source": "data/lh1_lh2_walkforward_audit.json"
+        "status": "Final TA Strategy",
+        "currentScan": "0 BUY Â· 1 WATCH/near",
+        "source": "data/lh1_premium_vn100_today_scan.json"
       },
       "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
-        "watch": "Hiện mã gần đạt, cần chờ thêm tín hiệu xác nhận.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
+        "buy": "MÃ£ Ä‘áº¡t BUY hiá»‡n táº¡i theo chiáº¿n lÆ°á»£c final.",
+        "watch": "MÃ£ gáº§n Ä‘áº¡t hoáº·c historical edge Ä‘á»ƒ theo dÃµi, chÆ°a pháº£i mua.",
+        "avoid": "KhÃ´ng Ä‘áº¡t Ä‘iá»u kiá»‡n final."
       }
     },
     {
       "id": "shakeout_breakdown_rebound",
-      "name": "LH2 Shakeout Rebound",
+      "name": "LH2 - Final SR Shakeout / Retest",
       "shortName": "LH2",
       "priority": 2,
-      "style": "danger",
-      "summary": "LH2 Shakeout Rebound / false-break: bắt nhịp hồi sau pha rũ hàng, giá thủng hỗ trợ ngắn hạn 2-4% để loại lực yếu rồi kéo ngược lại. Đây là LH2 lịch sử trên web, không phải breakout v6.",
-      "indicators": "False-break support 2-4%, core positive/negative score, ROC, market breadth, trend score, R/S support/resistance, volume, RSI/MACD/Bollinger tham chiếu",
+      "lhCode": "LH2",
+      "summary": "LH2 Final: shakeout/reclaim support hoáº·c breakout retest. KhÃ´ng mua breakout láº§n Ä‘áº§u náº¿u volume/setup chÆ°a rÃµ; chá» retest hoáº·c xÃ¡c nháº­n láº§n 2/3.",
       "tooltipMetrics": {
-        "winRate": "86.36%",
-        "averageReturn": "+4.67%/lệnh",
-        "totalReturn": "+102.66%"
+        "winRate": "65.00% full Â· 72.73% OOS",
+        "averageReturn": "+5.00% full Â· +7.34% OOS",
+        "totalReturn": "+100.10% full"
       },
       "validation": {
-        "status": "LH2 lịch sử / Shakeout false-break",
-        "all": "Audit 2025-2026: 22 lệnh · WR 86.36% · avg +4.67% · tổng +102.66%",
-        "oos2026": "OOS 2026: 4 lệnh · WR 75% · avg +3.38%",
-        "source": "data/lh1_lh2_walkforward_audit.json"
+        "status": "Final TA Strategy",
+        "currentScan": "0 BUY Â· 8 WATCH/research monitor",
+        "source": "lh2_sr_shakeout_backtest.json + lh2_sr_shakeout_today_scan.json",
+        "breakoutGuardrail": "First breakout = WATCH only; BUY requires retest/2nd-3rd confirmation."
       },
       "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua rũ theo cache.",
-        "watch": "Hiện mã cần theo dõi thêm, chưa mua.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
-      },
-      "webParityCheck": {
-        "checkedAt": "2026-05-01T20:36:00+07:00",
-        "matchesExistingWebOutput": true,
-        "note": "Đã đối chiếu bản web cũ: cùng nhóm Mua rũ Target +6%, stop -4%, target +6%. UI mới không hiển thị công thức chi tiết."
+        "buy": "MÃ£ Ä‘áº¡t BUY hiá»‡n táº¡i theo chiáº¿n lÆ°á»£c final.",
+        "watch": "MÃ£ gáº§n Ä‘áº¡t hoáº·c historical edge Ä‘á»ƒ theo dÃµi, chÆ°a pháº£i mua.",
+        "avoid": "KhÃ´ng Ä‘áº¡t Ä‘iá»u kiá»‡n final."
       }
     },
     {
       "id": "clean_split_a_bottom",
-      "name": "Support Rebound Hunter",
-      "shortName": "Support Rebound",
+      "name": "LH3 - Final R/S Rebound ML v2",
+      "shortName": "LH3",
       "priority": 3,
-      "style": "warning",
-      "summary": "Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.",
-      "indicators": "R/S, support zones, RSI, MACD, Bollinger Bands, Volume, MA20/50/200, ADX, ROC, Ichimoku state, bullish divergence",
+      "lhCode": "LH3",
+      "summary": "LH3 Final: R/S support rebound + ruleScore >= 7; ML probability dÃ¹ng Ä‘á»ƒ xáº¿p háº¡ng/confidence. Chá»‰ mua khi cÃ³ current signal riÃªng, historical qualified dÃ¹ng lÃ m watchlist.",
       "tooltipMetrics": {
-        "winRate": "88.89%",
-        "averageReturn": "+4.42%/lệnh",
-        "totalReturn": "+39.75%"
+        "winRate": "66.67% full Â· 80.00% OOS Â· 100% 2026 YTD",
+        "averageReturn": "+3.46% full Â· +4.16% OOS Â· +6.60% 2026 YTD",
+        "totalReturn": "+83.10% full"
       },
       "validation": {
-        "status": "Setup phụ, tín hiệu hiếm",
-        "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
-        "altCurrent180": "Target +10 full: 9 lệnh · win rate 77.78% · tổng PnL +52.57%",
-        "oosPrev3m": "0 lệnh",
-        "combined": "Mẫu ít, chưa đủ làm chiến lược chính",
-        "source": "data/v3_clean_split_rs_action_backtest.json; data/v3_clean_split_baseline_locked.json"
+        "status": "Final TA Strategy approved 2026-06-08",
+        "currentScan": "0 BUY Â· 7 WATCH/historical qualified",
+        "source": "data/lh3_rebound_ml_v2_research.json"
       },
       "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
-        "watch": "Hiện mã gần đạt, chưa mua.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
+        "buy": "MÃ£ Ä‘áº¡t BUY hiá»‡n táº¡i theo chiáº¿n lÆ°á»£c final.",
+        "watch": "MÃ£ gáº§n Ä‘áº¡t hoáº·c historical edge Ä‘á»ƒ theo dÃµi, chÆ°a pháº£i mua.",
+        "avoid": "KhÃ´ng Ä‘áº¡t Ä‘iá»u kiá»‡n final."
       }
     }
   ],
   "rows": [
     {
-      "id": "buy",
-      "label": "MUA"
+      "symbol": "PET",
+      "rankScore": 7.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
     },
     {
-      "id": "watch",
-      "label": "XEM XÉT"
+      "symbol": "MIG",
+      "rankScore": 6.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
     },
     {
-      "id": "avoid",
-      "label": "TRÁNH XA"
+      "symbol": "BIC",
+      "rankScore": 5.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "NLG",
+      "rankScore": 5.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "SHB",
+      "rankScore": 5.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "PVD",
+      "rankScore": 5.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "SKG",
+      "rankScore": 5.0,
+      "clean_split_a_bottom": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "VND",
+      "rankScore": 0,
+      "b4_trend_pullback": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "BCG",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "BSR",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "DIG",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "FTS",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "HAH",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "HHS",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "IDI",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
+    },
+    {
+      "symbol": "NVL",
+      "rankScore": 0,
+      "shakeout_breakdown_rebound": "WATCH",
+      "strategyCount": 1
     }
   ]
 }
