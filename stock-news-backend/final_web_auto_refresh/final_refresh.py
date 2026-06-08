@@ -97,7 +97,11 @@ def mode_news() -> list[dict]:
     steps=[]
     steps.append(py('refresh_news_cache_lh.py', timeout=900))
     steps.append(py('build_news_translate_cache.py', '--limit', '120', timeout=1200))
+    # Restore multi-line investment-focused summaries after raw news refresh.
+    steps.append(py('build_news_ai_summary_cache.py', timeout=600))
     steps.append(py('build_firebase_cache_site.py', timeout=600))
+    # build_firebase_cache_site copies news into firebase_public, but may also rebuild market_data;
+    # keep live price refresh last.
     steps.append(py('refresh_market_prices_lh.py', timeout=600))
     return steps
 
