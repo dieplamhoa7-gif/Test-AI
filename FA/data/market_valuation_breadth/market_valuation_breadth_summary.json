@@ -1,0 +1,31 @@
+{
+  "fetchedAt": "2026-06-08T09:01:14.127760+00:00",
+  "sectorRows": 4400,
+  "sectorSeries": {
+    "banking_index": "VNFIN",
+    "banking_lead_index": "VNFINLEAD",
+    "realty_index": "VNREAL",
+    "industrial_index": "VNIND"
+  },
+  "sectorDateMin": "2022-01-04",
+  "sectorDateMax": "2026-06-08",
+  "breadthRows": 6,
+  "breadthDateMin": "2022-04-14",
+  "breadthDateMax": "2026-01-23",
+  "vnindexPeMonthly": {
+    "status": "missing_public_source_not_confirmed",
+    "needed": true,
+    "targetFields": [
+      "date",
+      "vnindex_pe",
+      "vnindex_pb",
+      "source",
+      "frequency"
+    ],
+    "notes": "No reliable free public historical VNIndex P/E API confirmed yet. Add FiinProX export parser or vetted public endpoint when found."
+  },
+  "outputs": {
+    "sectorIndices": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\sector_indices_vndirect_daily.csv",
+    "marketBreadth": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\market_breadth_pinetree_daily.csv"
+  }
+}
