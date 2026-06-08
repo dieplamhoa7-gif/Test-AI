@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-08T09:01:14.127760+00:00",
+  "fetchedAt": "2026-06-08T10:12:16.864898+00:00",
   "sectorRows": 4400,
   "sectorSeries": {
     "banking_index": "VNFIN",
@@ -10,22 +10,29 @@
   "sectorDateMin": "2022-01-04",
   "sectorDateMax": "2026-06-08",
   "breadthRows": 6,
-  "breadthDateMin": "2022-04-14",
-  "breadthDateMax": "2026-01-23",
+  "breadthDateMin": "2026-06-01",
+  "breadthDateMax": "2026-06-08",
+  "pinetreeBreadthRows": 6,
   "vnindexPeMonthly": {
-    "status": "missing_public_source_not_confirmed",
-    "needed": true,
+    "status": "ok_public_vietstock",
+    "rows": 54,
+    "dateMin": "2022-01-27",
+    "dateMax": "2026-06-07",
     "targetFields": [
       "date",
+      "month",
       "vnindex_pe",
       "vnindex_pb",
       "source",
       "frequency"
     ],
-    "notes": "No reliable free public historical VNIndex P/E API confirmed yet. Add FiinProX export parser or vetted public endpoint when found."
+    "notes": "Monthly value is last available trading day of each month from Vietstock valuation chart endpoint."
   },
   "outputs": {
     "sectorIndices": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\sector_indices_vndirect_daily.csv",
-    "marketBreadth": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\market_breadth_pinetree_daily.csv"
+    "vnindexValuationDaily": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\vnindex_valuation_vietstock_daily.csv",
+    "vnindexPePbMonthly": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\vnindex_pe_pb_vietstock_monthly.csv",
+    "marketBreadth": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\market_breadth_vietstock_daily.csv",
+    "marketBreadthPinetreeFallback": "C:\\Users\\HoaD-CVDT\\.openclaw\\workspace\\FA\\data\\market_valuation_breadth\\market_breadth_pinetree_daily.csv"
   }
 }
