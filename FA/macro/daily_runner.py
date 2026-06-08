@@ -23,7 +23,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -39,6 +39,7 @@ from macro.fetchers import sbv_liquidity
 from macro.fetchers import fiinprox_excel
 from macro.fetchers import tradingeconomics_browser
 from macro.fetchers import pinetree_archive
+from macro.fetchers import market_valuation_breadth
 from macro.scoring import regime_score as scorer
 from macro.storage import macro_history as history
 
@@ -142,6 +143,23 @@ def run(
         vn_market = {"error": str(e)}
         print(f"  ✗ VN market failed: {e}")
     snapshot["vnMarket"] = vn_market
+
+    # 4b. Market valuation / sector indices / breadth
+    print(f"[{ts()}] Fetching VN valuation, sector indices and breadth ...")
+    try:
+        market_pack = market_valuation_breadth.run(breadth_start=str(d - timedelta(days=10)))
+        snapshot["marketValuationBreadth"] = market_pack
+        pe = market_pack.get("vnindexPeMonthly", {})
+        print(
+            f"  OK Market pack: sectors={market_pack.get('sectorRows', 0)} rows, "
+            f"PE monthly={pe.get('rows', 0)} rows, "
+            f"breadth={market_pack.get('breadthRows', 0)} rows"
+        )
+        if market_pack.get("breadthRows", 0):
+            print("  WARN Breadth Vietstock is page-1/public sample, not full-market breadth yet")
+    except Exception as e:
+        snapshot["marketValuationBreadth"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ERROR Market valuation/breadth failed: {e}")
 
     # ── 5. SBV rates ──────────────────────────────────────────────────
     print(f"[{ts()}] Fetching SBV/interbank rates ...")

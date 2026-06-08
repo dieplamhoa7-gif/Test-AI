@@ -309,13 +309,13 @@ def write_csv(path: Path, rows: List[dict]) -> None:
         w.writeheader(); w.writerows(rows)
 
 
-def main() -> None:
+def run(breadth_start: Optional[str] = None) -> dict:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     sector_rows = build_sector_indices("2022-01-01")
     valuation_daily_rows, valuation_monthly_rows = fetch_vietstock_vnindex_valuation("2022-01-01")
     # Use VNFIN dates as a trading-day calendar for public Vietstock breadth backfill.
     calendar_dates = sorted({r["date"] for r in sector_rows if r.get("series") == "banking_index"})
-    start_filter = os.environ.get("MARKET_BREADTH_START")
+    start_filter = breadth_start or os.environ.get("MARKET_BREADTH_START")
     if start_filter:
         calendar_dates = [d for d in calendar_dates if d >= start_filter]
     vietstock_breadth_rows = fetch_vietstock_breadth_history(calendar_dates)
@@ -352,7 +352,11 @@ def main() -> None:
         },
     }
     (DATA_DIR / "market_valuation_breadth_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps(summary, ensure_ascii=False, indent=2))
+    return summary
+
+
+def main() -> None:
+    print(json.dumps(run(), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
