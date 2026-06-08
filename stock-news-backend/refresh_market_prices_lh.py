@@ -33,6 +33,10 @@ def update_item(item, quote):
     if price is None:
         return False
     changed = False
+    # Keep item['date'] as technical/R-S computation date for backward compatibility.
+    # Add explicit priceDate/priceUpdatedAt so the UI can distinguish live price freshness
+    # from slower precomputed technical cache freshness.
+    today = datetime.now(TZ).strftime('%Y-%m-%d')
     for key, val in {
         'price': quote.get('price'),
         'refPrice': quote.get('refPrice'),
@@ -42,12 +46,13 @@ def update_item(item, quote):
         'highPrice': quote.get('highPrice'),
         'openPrice': quote.get('openPrice'),
         'avgPrice': quote.get('avgPrice'),
+        'priceDate': quote.get('date') or today,
     }.items():
         if val is not None and item.get(key) != val:
             item[key] = val
             changed = True
     tech = item.setdefault('technical', {})
-    for key in ['price', 'changePct', 'volume']:
+    for key in ['price', 'changePct', 'volume', 'priceDate']:
         if item.get(key) is not None:
             tech[key] = item.get(key)
     return changed

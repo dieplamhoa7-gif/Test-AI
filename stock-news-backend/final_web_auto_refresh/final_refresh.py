@@ -67,7 +67,11 @@ def mode_intraday() -> list[dict]:
     # touchzone is optional in some branches; run if present.
     if (ROOT/'export_touchzone_all_day.py').exists():
         steps.append(py('export_touchzone_all_day.py', timeout=900))
+    # Build static first, then refresh live/light market prices LAST.
+    # build_firebase_cache_site.py rebuilds market_data from precomputed R/S cache,
+    # so running refresh_market_prices_lh.py before it would be overwritten.
     steps.append(py('build_firebase_cache_site.py', timeout=600))
+    steps.append(py('refresh_market_prices_lh.py', timeout=600))
     return steps
 
 
@@ -80,11 +84,13 @@ def mode_eod() -> list[dict]:
         steps.append(py('export_touchzone_all_day.py', timeout=900))
     steps.append(py('refresh_warrants_cache_lh.py', timeout=900))
     steps.append(py('build_firebase_cache_site.py', timeout=600))
+    steps.append(py('refresh_market_prices_lh.py', timeout=600))
     return steps
 
 
 def mode_warrants() -> list[dict]:
-    return [py('refresh_warrants_cache_lh.py', timeout=900), py('build_firebase_cache_site.py', timeout=600)]
+    # Warrants build can also touch app_version/static data; keep market price refresh last.
+    return [py('refresh_warrants_cache_lh.py', timeout=900), py('build_firebase_cache_site.py', timeout=600), py('refresh_market_prices_lh.py', timeout=600)]
 
 
 def mode_news() -> list[dict]:
@@ -92,6 +98,7 @@ def mode_news() -> list[dict]:
     steps.append(py('refresh_news_cache_lh.py', timeout=900))
     steps.append(py('build_news_translate_cache.py', '--limit', '120', timeout=1200))
     steps.append(py('build_firebase_cache_site.py', timeout=600))
+    steps.append(py('refresh_market_prices_lh.py', timeout=600))
     return steps
 
 
