@@ -11,17 +11,19 @@ TZ = timezone(timedelta(hours=7))
 
 def run(cmd: list[str], timeout: int = 1800) -> dict:
     print('[final-refresh] RUN', ' '.join(cmd), flush=True)
-    p = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, timeout=timeout)
+    p = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, timeout=timeout, encoding='utf-8', errors='replace')
+    stdout = p.stdout or ''
+    stderr = p.stderr or ''
     out = {
         'cmd': cmd,
         'returncode': p.returncode,
-        'stdoutTail': p.stdout[-8000:],
-        'stderrTail': p.stderr[-8000:],
+        'stdoutTail': stdout[-8000:],
+        'stderrTail': stderr[-8000:],
     }
-    if p.stdout:
-        print(p.stdout[-4000:], flush=True)
-    if p.stderr:
-        print(p.stderr[-4000:], file=sys.stderr, flush=True)
+    if stdout:
+        print(stdout[-4000:], flush=True)
+    if stderr:
+        print(stderr[-4000:], file=sys.stderr, flush=True)
     if p.returncode != 0:
         raise RuntimeError(f"Command failed {p.returncode}: {' '.join(cmd)}\n{p.stderr[-2000:]}")
     return out
