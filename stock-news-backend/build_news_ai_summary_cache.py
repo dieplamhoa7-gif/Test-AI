@@ -35,13 +35,14 @@ def classify(text):
 def make_summary(item):
     title=clean(item.get('title'))
     snippet=clean(item.get('snippet') or item.get('summary') or item.get('description'))
-    content=clean(item.get('content') or item.get('body') or item.get('text'))
-    source_text=' '.join(x for x in [snippet,content] if x)
+    content=clean(item.get('fullText') or item.get('content') or item.get('body') or item.get('text'))
+    source_text=' '.join(x for x in [content, snippet] if x)
     sents=split_sent(source_text)
     cat=classify((title+' '+source_text).lower())
     bullets=[]
     if sents:
-        bullets.append(sents[0])
+        # Use actual article body when available, not just RSS teaser.
+        bullets.extend(sents[:3])
     elif snippet:
         bullets.append(snippet)
     # second line: infer impact/focus from title/category
@@ -66,7 +67,7 @@ def make_summary(item):
     for b in bullets:
         b=clean(b)
         if b and b not in uniq: uniq.append(b[:260])
-    return '\n'.join('• '+b for b in uniq[:3])
+    return '\n'.join('• '+b for b in uniq[:5])
 
 def process_obj(obj):
     arr=obj if isinstance(obj,list) else obj.get('items') if isinstance(obj,dict) else []
@@ -74,12 +75,15 @@ def process_obj(obj):
     if isinstance(arr,list):
         for item in arr:
             if not isinstance(item,dict): continue
+            original = clean(item.get('snippet') or item.get('description') or item.get('summary') or '')
             ai=make_summary(item)
             item['ai_summary']=ai
             item['summary_full']=ai
-            # Keep summary compact but multi-line for frontend if it reads summary.
-            item['summary']=ai
-            item.setdefault('snippet', clean(item.get('description') or item.get('summary') or ''))
+            # Web should show the richer article-based summary when available.
+            item['summary']=ai or original
+            if original:
+                item['snippet']=original
+                item['description']=original
             changed+=1
     if isinstance(obj,dict):
         obj['aiSummaryUpdatedAt']=datetime.now(TZ).isoformat(timespec='seconds')

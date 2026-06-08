@@ -125,8 +125,11 @@ def _parse_rss_items(xml_text: str, source: str, limit: int) -> list[dict]:
                 "title": title,
                 "url": link,
                 "published_at": pub_date,
-                "snippet": desc[:300],
-                "fullText": desc,
+                # RSS description is only a teaser/snippet, not the article body.
+                # Keep fullText empty so enrich_item_content fetches the full article page.
+                "snippet": desc[:500],
+                "fullText": "",
+                "rssDescription": desc,
                 "fetched_at": _now_iso(),
             }
         )
