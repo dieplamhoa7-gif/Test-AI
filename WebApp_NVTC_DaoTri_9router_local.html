@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xác định Nghĩa vụ Tài chính Dự án — Đào Trí, Phú Thuận</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{--navy:#1f3864;--navy2:#2e4a7d;--accent:#c0392b;--bg:#f4f6fa;--card:#fff;--line:#dde3ee;--ok:#1e7e34;--warn:#856404;--warnbg:#fff8e1;--ink:#1a2233;--muted:#6b7280}
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:20px 26px}
+header h1{margin:0;font-size:20px}
+header p{margin:4px 0 0;opacity:.85;font-size:13px}
+.wrap{max-width:1180px;margin:0 auto;padding:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(20,40,80,.05)}
+.card h2{margin:0 0 14px;font-size:15px;color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:8px;display:flex;align-items:center;gap:8px}
+label{display:block;font-weight:600;font-size:12.5px;margin:10px 0 4px;color:#374151}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:7px;font-size:13.5px;font-family:inherit;background:#fff}
+input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(31,56,100,.12)}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.muted{color:var(--muted);font-size:12px}
+.btn{background:var(--navy);color:#fff;border:none;padding:10px 16px;border-radius:7px;font-weight:600;cursor:pointer;font-size:13.5px}
+.btn:hover{background:var(--navy2)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn.sm{padding:6px 10px;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:right}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:center;font-size:12px}
+td.l,th.l{text-align:left}td.c{text-align:center}
+tr.tot td{background:#eef2fb;font-weight:700}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0}
+.kpi .b{flex:1;min-width:150px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:12px}
+.kpi .b .v{font-size:20px;font-weight:700;color:var(--navy)}
+.kpi .b.red .v{color:var(--accent)}
+.kpi .b .k{font-size:11.5px;color:var(--muted)}
+.note{background:var(--warnbg);border:1px solid #ffe082;border-radius:8px;padding:11px 13px;font-size:12.5px;color:var(--warn);margin-top:12px}
+.collapse summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:13px;padding:6px 0}
+.pill{display:inline-block;background:#eef2fb;color:var(--navy);border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600}
+.delrow{color:var(--accent);cursor:pointer;font-weight:700;border:none;background:none;font-size:15px}
+.aibox{border:2px dashed #b9c4dc;border-radius:9px;padding:16px;text-align:center;background:#fafbff}
+.status{font-size:12.5px;padding:8px 10px;border-radius:7px;margin-top:8px;display:none}
+.status.show{display:block}
+.status.ok{background:#e8f5e9;color:var(--ok)}.status.err{background:#fdecea;color:var(--accent)}.status.run{background:#e3f2fd;color:#1565c0}
+small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.legend{font-size:11.5px;color:var(--muted)}
+.tag{font-size:11px;background:#eef2fb;color:var(--navy);padding:1px 7px;border-radius:5px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Xác định Nghĩa vụ Tài chính Dự án</h1>
+  <p>Khung 2026 · Bảng giá đất NQ 87/2025/NQ-HĐND · Hệ số điều chỉnh (Tờ trình 16378/TTr-SNNMT, từ 01/7/2026) · Đường Đào Trí, P. Phú Thuận (Q7 cũ)</p>
+</header>
+<div class="wrap">
+
+<!-- AI PANEL -->
+<div class="card">
+  <h2>🤖 Trợ lý AI — Đọc bản vẽ hiện trạng & suy luận đường/đoạn từ tọa độ</h2>
+  <div class="grid">
+    <div>
+      <div class="aibox">
+        <input type="file" id="aiFile" accept="image/*,application/pdf" style="display:none">
+        <button class="btn ghost" onclick="document.getElementById('aiFile').click()">📎 Chọn bản vẽ (ảnh / PDF)</button>
+        <div class="muted" id="aiFileName" style="margin-top:8px">Chưa chọn tệp</div>
+      </div>
+      <label>Tọa độ (lat, lng)</label>
+      <input id="aiCoord" value="10.727914, 106.742532" placeholder="vd: 10.727914, 106.742532">
+      <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">⚡ Phân tích & tự điền thông số</button>
+      <div class="status" id="aiStatus"></div>
+    </div>
+    <div>
+      <details class="collapse">
+        <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
+        <label>Nhà cung cấp</label>
+        <select id="apiProvider">
+          <option value="openai" selected>9Router BĐS local proxy — Chat Completions</option>
+          <option value="anthropic">Anthropic (Claude) — Messages API</option>
+        </select>
+        <label>API Base URL</label>
+        <input id="apiBase" value="http://127.0.0.1:8787" placeholder="http://127.0.0.1:8787">
+        <label>API Key <span class="muted">(lưu cục bộ trên máy bạn)</span></label>
+        <input id="apiKey" type="password" placeholder="Để trống khi dùng 9Router local proxy; proxy tự đọc key BĐS trong máy">
+        <label>Model</label>
+        <input id="apiModel" value="APIBDS" placeholder="APIBDS / APIFREE / model khác trong 9Router">
+        <small class="src">Khuyến nghị: chạy <code>node nvtc_9router_proxy.js</code>, app gọi <code>http://127.0.0.1:8787/v1/chat/completions</code>. API key BĐS nằm ở file private/proxy, không nhúng vào HTML.</small>
+      </details>
+      <div class="note" style="margin-top:10px">AI sẽ đọc bản vẽ để trích: <b>phường, tên đường giáp ranh, diện tích công nhận, bảng diện tích theo loại đất</b>; và dựa trên <b>tọa độ + các đường cắt</b> để suy ra <b>đoạn đường</b>. Kết quả tự điền vào form bên dưới — bạn kiểm tra lại trước khi dùng.</div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- INPUTS -->
+  <div class="card">
+    <h2>① Thông số đầu vào</h2>
+    <div class="row">
+      <div>
+        <label>Đoạn đường Đào Trí</label>
+        <select id="seg" onchange="calc()"></select>
+      </div>
+      <div>
+        <label>Vị trí (1–4)</label>
+        <select id="vt" onchange="calc()">
+          <option value="1">Vị trí 1 (mặt tiền)</option>
+          <option value="2">Vị trí 2</option>
+          <option value="3">Vị trí 3</option>
+          <option value="4">Vị trí 4</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Cách lề đường ≥ 100m?</label>
+        <select id="far100" onchange="calc()"><option value="0">Không</option><option value="1">Có (giảm 10%/vị trí)</option></select>
+      </div>
+      <div>
+        <label>Mục đích chuyển sang</label>
+        <select id="target" onchange="calc()">
+          <option value="ODT">Đất ở</option>
+          <option value="TMDV">Đất thương mại, dịch vụ</option>
+          <option value="SXKD">Đất SXKD phi NN</option>
+        </select>
+      </div>
+    </div>
+    <label style="margin-top:14px">Diện tích theo nguồn gốc đất (bản vẽ hiện trạng)</label>
+    <table id="srcTbl">
+      <thead><tr><th class="l">Nguồn gốc / thửa</th><th>Loại đất</th><th>Diện tích (m²)</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <button class="btn sm ghost" style="margin-top:8px" onclick="addRow()">+ Thêm dòng</button>
+    <span class="muted" id="sumArea"></span>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card">
+    <h2>② Đơn giá vốn của đất <span class="tag" id="ctx"></span></h2>
+    <table id="unitTbl">
+      <thead><tr><th class="l">Loại đất</th><th>Bảng giá<br>(ngđ/m²)</th><th>Hệ số K</th><th>Đơn giá vốn<br>(ngđ/m²)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="kpi" style="margin-top:14px">
+      <div class="b"><div class="k">Giá trị đất (mục đích mới)</div><div class="v" id="kpiGross">–</div><div class="k">triệu đồng</div></div>
+      <div class="b"><div class="k">(–) Chiết khấu đất hiện trạng</div><div class="v" id="kpiDed">–</div><div class="k">triệu đồng</div></div>
+      <div class="b red"><div class="k">NGHĨA VỤ TÀI CHÍNH</div><div class="v" id="kpiNVTC">–</div><div class="k">triệu đồng</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BREAKDOWN -->
+<div class="card">
+  <h2>③ Chi tiết nghĩa vụ tài chính theo nguồn gốc đất</h2>
+  <table id="calcTbl">
+    <thead><tr>
+      <th class="l">Nguồn gốc đất</th><th>Loại</th><th>Diện tích<br>(m²)</th>
+      <th>Đơn giá vốn<br>mục đích MỚI</th><th>Đơn giá vốn<br>HIỆN TRẠNG</th>
+      <th>Chênh lệch<br>(ngđ/m²)</th><th>NVTC dòng<br>(triệu đ)</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="note">NVTC = Σ (Đơn giá vốn mục đích mới − Đơn giá vốn hiện trạng) × Diện tích, không âm. Đơn giá vốn = Bảng giá đất × Hệ số điều chỉnh giá đất. Đất đã là đất ở → chênh lệch 0; đất nông nghiệp/chuyên dùng được chiết khấu theo giá gốc.</div>
+</div>
+
+<!-- SENSITIVITY -->
+<div class="card">
+  <h2>④ Bảng độ nhạy — Đơn giá vốn đất ở (ngđ/m²)</h2>
+  <table id="sensTbl"><thead><tr><th class="l">Đoạn \ Vị trí</th><th>VT1</th><th>VT2</th><th>VT3</th><th>VT4</th></tr></thead><tbody></tbody></table>
+  <div class="muted" style="margin-top:6px">Đơn giá vốn = Bảng giá VT1 × hệ số vị trí giá × K (K×1,35 nếu VT≥2).</div>
+</div>
+
+<!-- SOURCES -->
+<div class="card">
+  <h2>⑤ Nguồn dữ liệu & căn cứ pháp lý</h2>
+  <div style="font-size:12.5px;line-height:1.7">
+    <b>Bảng giá đất:</b> Nghị quyết 87/2025/NQ-HĐND (26/12/2025), áp dụng từ 01/01/2026.<br>
+    <b>Hệ số điều chỉnh giá đất:</b> Tờ trình 16378/TTr-SNNMT-KTĐ (01/6/2026) → QĐ /2026/QĐ-UBND, áp dụng từ 01/07/2026, Phụ lục I.<br>
+    <b>Đào Trí (P. Phú Thuận, STT 2):</b> 3 đoạn — đất ở 43.700 / 40.500 / 36.500 ngđ/m² (VT1); K đất phi NN 1,51; K đất NN 2,70 / 2,91 / 3,23.<br>
+    <b>Giá đất nông nghiệp (Khu vực II — Phú Thuận):</b> cây hàng năm/lúa 1.000 / 800 / 640 (VT1/2/3); cây lâu năm 1.200 / 960 / 770 ngđ/m².<br>
+    <b>Quy tắc vị trí:</b> VT2=50%×VT1, VT3=80%×VT2, VT4=80%×VT3; ≥100m giảm 10%/vị trí. K của VT2-4 (phi NN) = K(VT1)×1,35.<br>
+    <b>Căn cứ NVTC:</b> Luật Đất đai 2024; NQ 254/2025/QH15; NĐ 71/2024/NĐ-CP; NĐ 50/2026/NĐ-CP.<br>
+    <span class="muted">Dự án có hệ số sử dụng đất (FAR) cao → NVTC có thể phải xác định bằng giá đất cụ thể (phương pháp thặng dư). Đây là công cụ tham chiếu, không phải tư vấn pháp lý.</span>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ===================== DỮ LIỆU NHÚNG =====================
+const DAOTRI=[
+ {id:1,name:"Đoạn 1: Nguyễn Văn Quỳ → Gò Ô Môi", datO:43700,tmdv:26200,sxkd:21900,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.70},
+ {id:2,name:"Đoạn 2: Gò Ô Môi → Hoàng Quốc Việt", datO:40500,tmdv:24300,sxkd:20300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.91},
+ {id:3,name:"Đoạn 3: Hoàng Quốc Việt → Trường Hàng Giang", datO:36500,tmdv:21900,sxkd:18300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:3.23},
+];
+// Khu vực II (Phú Thuận) — ngđ/m², theo [VT1,VT2,VT3]
+const AGRI={hangNam:[1000,800,640], lauNam:[1200,960,770]};
+const VTGIA=[1,0.5,0.4,0.32];           // hệ số giá đất theo vị trí 1..4
+const LOAI={
+  ODT:"Đất ở", LUA:"Đất lúa / cây hàng năm", CLN:"Đất trồng cây lâu năm",
+  CDK:"Đất chuyên dùng / SXKD phi NN", TMDV:"Đất thương mại, dịch vụ", NONE:"Rạch / không thu tiền"
+};
+const DEFAULT_ROWS=[
+ {ten:"Đất trồng lúa (thửa 75-1, 75-3)", loai:"LUA", dt:5620.1},
+ {ten:"Đất ở / thổ (thửa 75-2)", loai:"ODT", dt:876.0},
+ {ten:"Đất thửa 75-4", loai:"LUA", dt:548.4},
+ {ten:"Đất chuyên dùng CDK (thửa 512)", loai:"CDK", dt:3217.8},
+ {ten:"Đất thửa 80-1, 80-2", loai:"CLN", dt:311.7},
+ {ten:"Rạch (r1)", loai:"NONE", dt:97.9},
+];
+const CONGNHAN=9611.8;
+
+// ===================== TIỆN ÍCH =====================
+const fmt=(n,d=0)=>isFinite(n)?n.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}):'–';
+let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
+
+function seg(){return DAOTRI[+document.getElementById('seg').value];}
+function vt(){return +document.getElementById('vt').value;}
+function vtIdx(){return Math.min(vt(),3)-1;}          // đất NN chỉ có 3 vị trí
+function hsGia(){return VTGIA[vt()-1]*(1-0.1*+document.getElementById('far100').value);}
+function kMult(){return vt()===1?1:1.35;}
+
+// đơn giá vốn (ngđ/m²) theo loại đất
+function donGiaVon(loai){
+  const s=seg();
+  switch(loai){
+    case 'ODT': return s.datO*hsGia()*s.kO*kMult();
+    case 'TMDV':return s.tmdv*hsGia()*s.kTMDV*kMult();
+    case 'CDK':
+    case 'SXKD':return s.sxkd*hsGia()*s.kSXKD*kMult();
+    case 'LUA': return AGRI.hangNam[vtIdx()]*s.kNN;
+    case 'CLN': return AGRI.lauNam[vtIdx()]*s.kNN;
+    default: return 0;
+  }
+}
+function bangGia(loai){
+  const s=seg();
+  switch(loai){
+    case 'ODT':return s.datO*hsGia(); case 'TMDV':return s.tmdv*hsGia();
+    case 'CDK':case 'SXKD':return s.sxkd*hsGia();
+    case 'LUA':return AGRI.hangNam[vtIdx()]; case 'CLN':return AGRI.lauNam[vtIdx()];
+    default:return 0;
+  }
+}
+
+// ===================== RENDER =====================
+function initSeg(){
+  const sel=document.getElementById('seg');
+  sel.innerHTML=DAOTRI.map((d,i)=>`<option value="${i}" ${i===1?'selected':''}>${d.name}</option>`).join('');
+}
+function loaiOptions(v){return Object.keys(LOAI).map(k=>`<option value="${k}" ${k===v?'selected':''}>${LOAI[k]}</option>`).join('');}
+function renderRows(){
+  const tb=document.querySelector('#srcTbl tbody');
+  tb.innerHTML=rows.map((r,i)=>`<tr>
+    <td class="l"><input value="${r.ten}" onchange="rows[${i}].ten=this.value"></td>
+    <td><select onchange="rows[${i}].loai=this.value;calc()">${loaiOptions(r.loai)}</select></td>
+    <td><input type="number" step="0.1" value="${r.dt}" onchange="rows[${i}].dt=parseFloat(this.value)||0;calc()" style="text-align:right"></td>
+    <td class="c"><button class="delrow" onclick="rows.splice(${i},1);renderRows();calc()">✕</button></td>
+  </tr>`).join('');
+}
+function addRow(){rows.push({ten:"Dòng mới",loai:"LUA",dt:0});renderRows();calc();}
+
+function calc(){
+  const tgt=document.getElementById('target').value;
+  const giaMoi=donGiaVon(tgt);
+  document.getElementById('ctx').textContent=`${seg().name.split(':')[0]} · Vị trí ${vt()}`;
+  // unit price table
+  const ut=document.querySelector('#unitTbl tbody');
+  const showLoai=['ODT','TMDV','CDK','LUA','CLN'];
+  ut.innerHTML=showLoai.map(k=>`<tr>
+     <td class="l">${LOAI[k]}${k===tgt?' <span class="tag">mục đích mới</span>':''}</td>
+     <td>${fmt(bangGia(k))}</td>
+     <td>${fmt(k==='LUA'||k==='CLN'?seg().kNN:(k==='ODT'?seg().kO:(k==='TMDV'?seg().kTMDV:seg().kSXKD))*kMult(),2)}</td>
+     <td><b>${fmt(donGiaVon(k))}</b></td></tr>`).join('');
+  // breakdown
+  let gross=0,ded=0,nvtc=0,area=0;
+  const cb=document.querySelector('#calcTbl tbody');
+  cb.innerHTML=rows.map(r=>{
+    const ght=donGiaVon(r.loai);
+    const chuyen=(r.loai==='NONE')?0:r.dt;
+    const cl=Math.max(0,giaMoi-ght);
+    const dong=cl*chuyen/1000;
+    gross+=giaMoi*chuyen/1000; ded+=ght*chuyen/1000; nvtc+=dong; area+=r.dt;
+    return `<tr><td class="l">${r.ten}</td><td class="c">${r.loai}</td><td>${fmt(r.dt,1)}</td>
+      <td>${fmt(giaMoi)}</td><td>${fmt(ght)}</td><td>${fmt(cl)}</td><td>${fmt(dong)}</td></tr>`;
+  }).join('')+`<tr class="tot"><td class="l">TỔNG CỘNG</td><td></td><td>${fmt(area,1)}</td><td></td><td></td><td></td><td>${fmt(nvtc)}</td></tr>`;
+  document.getElementById('kpiGross').textContent=fmt(gross);
+  document.getElementById('kpiDed').textContent=fmt(ded);
+  document.getElementById('kpiNVTC').textContent=fmt(nvtc);
+  document.getElementById('sumArea').textContent=`  Tổng diện tích: ${fmt(area,1)} m² (DT công nhận tham chiếu: ${fmt(CONGNHAN,1)} m²)`;
+  renderSens();
+  saveState();
+}
+function renderSens(){
+  const sb=document.querySelector('#sensTbl tbody');
+  sb.innerHTML=DAOTRI.map(d=>{
+    const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1];const km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km)}</td>`}).join('');
+    return `<tr><td class="l">${d.name.split(':')[0]}</td>${cells}</tr>`;
+  }).join('');
+}
+
+// ===================== LƯU TRẠNG THÁI =====================
+function saveState(){try{localStorage.setItem('nvtc_state',JSON.stringify({rows,
+  seg:document.getElementById('seg').value,vt:document.getElementById('vt').value,
+  far:document.getElementById('far100').value,target:document.getElementById('target').value,
+  api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc_state'));if(!s)return;
+  if(s.rows)rows=s.rows;
+  if(s.api){apiProvider.value=s.api.p||'openai';apiBase.value=s.api.b||apiBase.value;apiKey.value='';apiModel.value=s.api.m||apiModel.value;}
+  setTimeout(()=>{document.getElementById('seg').value=s.seg??1;document.getElementById('vt').value=s.vt??1;
+    document.getElementById('far100').value=s.far??0;document.getElementById('target').value=s.target??'ODT';calc();},0);
+}catch(e){}}
+
+// ===================== AI =====================
+let aiBase64=null,aiMime=null;
+document.getElementById('aiFile').addEventListener('change',async e=>{
+  const f=e.target.files[0]; if(!f)return;
+  document.getElementById('aiFileName').textContent=f.name;
+  if(f.type==='application/pdf'){ aiMime='image/png'; aiBase64=await pdfFirstPageB64(f); }
+  else { aiMime=f.type; aiBase64=await fileB64(f); }
+});
+function fileB64(f){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(f)});}
+async function pdfFirstPageB64(f){
+  const buf=await f.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+  const page=await pdf.getPage(1);
+  const vp=page.getViewport({scale:2});
+  const cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;
+  await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+  return cv.toDataURL('image/png').split(',')[1];
+}
+function setStatus(msg,cls){const s=document.getElementById('aiStatus');s.className='status show '+cls;s.innerHTML=msg;}
+
+const AI_PROMPT=`Bạn là chuyên gia thẩm định đất tại TP.HCM. Phân tích bản đồ HIỆN TRẠNG VỊ TRÍ đính kèm và tọa độ được cung cấp.
+Trả về DUY NHẤT một JSON (không kèm văn bản khác) theo schema:
+{"phuong":"", "duong":"", "doan":1, "lyDoDoan":"", "dienTichCongNhan":0,
+ "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}
+Trong đó "doan" là 1/2/3 ứng với đoạn đường Đào Trí:
+1=Nguyễn Văn Quỳ→Gò Ô Môi, 2=Gò Ô Môi→Hoàng Quốc Việt, 3=Hoàng Quốc Việt→Trường Hàng Giang.
+Suy ra "doan" dựa trên tọa độ và các đường cắt gần thửa đất. "loai" map: lúa/cây hàng năm=LUA, cây lâu năm=CLN, đất ở/thổ=ODT, chuyên dùng=CDK, thương mại dịch vụ=TMDV, rạch/kênh=NONE.`;
+
+async function runAI(){
+  const key=document.getElementById('apiKey').value.trim();
+  if(!aiBase64){setStatus('⚠️ Hãy chọn tệp bản vẽ trước.','err');return;}
+  if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err');return;}
+  const coord=document.getElementById('aiCoord').value;
+  const prov=document.getElementById('apiProvider').value;
+  const base=document.getElementById('apiBase').value.replace(/\/$/,'');
+  const model=document.getElementById('apiModel').value;
+  const userText=AI_PROMPT+`\nTọa độ: ${coord}`;
+  document.getElementById('aiRun').disabled=true;
+  setStatus('⏳ Đang gửi bản vẽ tới mô hình AI...','run');
+  try{
+    let txt;
+    if(prov==='anthropic'){
+      const res=await fetch(base+'/v1/messages',{method:'POST',headers:{
+        'content-type':'application/json','x-api-key':key,
+        'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content:[
+          {type:'image',source:{type:'base64',media_type:aiMime,data:aiBase64}},
+          {type:'text',text:userText}]}]})});
+      const j=await res.json(); if(!res.ok)throw new Error(JSON.stringify(j));
+      txt=j.content.map(c=>c.text||'').join('');
+    }else{
+      const res=await fetch(base+'/v1/chat/completions',{method:'POST',headers:{
+        'content-type':'application/json','authorization':'Bearer '+key},
+        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content:[
+          {type:'text',text:userText},
+          {type:'image_url',image_url:{url:`data:${aiMime};base64,${aiBase64}`}}]}]})});
+      const j=await res.json(); if(!res.ok)throw new Error(JSON.stringify(j));
+      txt=j.choices[0].message.content;
+    }
+    const m=txt.match(/\{[\s\S]*\}/); if(!m)throw new Error('Không tìm thấy JSON trong phản hồi.');
+    applyAI(JSON.parse(m[0]));
+  }catch(err){setStatus('❌ Lỗi: '+err.message+'<br><span class="muted">Nếu lỗi CORS, hãy trỏ Base URL tới proxy của bạn.</span>','err');}
+  document.getElementById('aiRun').disabled=false;
+}
+function applyAI(d){
+  if(d.doan&&[1,2,3].includes(+d.doan))document.getElementById('seg').value=(+d.doan)-1;
+  if(Array.isArray(d.items)&&d.items.length){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));renderRows();}
+  calc();
+  setStatus(`✅ Đã đọc xong. Phường: <b>${d.phuong||'?'}</b> · Đường: <b>${d.duong||'?'}</b> · Đoạn <b>${d.doan||'?'}</b>. ${d.lyDoDoan?'<br>Lý do đoạn: '+d.lyDoDoan:''}<br><span class="muted">Vui lòng kiểm tra lại các giá trị tự điền.</span>`,'ok');
+}
+
+// ===================== KHỞI TẠO =====================
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+initSeg();renderRows();loadState();calc();
+['seg','vt','far100','target'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
+</script>
+</body>
+</html>
