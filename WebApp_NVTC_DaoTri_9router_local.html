@@ -431,12 +431,33 @@ Trong đó "doan" là 1/2/3 ứng với đoạn đường Đào Trí:
 1=Nguyễn Văn Quỳ→Gò Ô Môi, 2=Gò Ô Môi→Hoàng Quốc Việt, 3=Hoàng Quốc Việt→Trường Hàng Giang.
 Suy ra "doan" dựa trên tọa độ và các đường cắt gần thửa đất. "loai" map: lúa/cây hàng năm=LUA, cây lâu năm=CLN, đất ở/thổ=ODT, chuyên dùng=CDK, thương mại dịch vụ=TMDV, rạch/kênh=NONE.`;
 
+function parseCoord(){
+  const nums=String(document.getElementById('aiCoord').value||'').match(/-?\d+(?:\.\d+)?/g)||[];
+  if(nums.length<2)return null;
+  return {lat:parseFloat(nums[0]),lng:parseFloat(nums[1])};
+}
+function inferDaoTriSegmentByCoord(){
+  const c=parseCoord();
+  if(!c||!isFinite(c.lat)||!isFinite(c.lng))return null;
+  // Rule nội bộ cho trục Đào Trí: Bắc -> Nam.
+  // Nguyễn Văn Quỳ nằm phía Bắc; Gò Ô Môi quanh vùng ~10.7286; Hoàng Quốc Việt thấp hơn; Trường Hàng Giang thấp nhất.
+  let doan=2, reason='Tọa độ nằm trên vùng Đào Trí giữa Gò Ô Môi và Hoàng Quốc Việt.';
+  if(c.lat>=10.72865){doan=1; reason='Tọa độ nằm phía Bắc điểm giao Gò Ô Môi, thuộc đoạn Nguyễn Văn Quỳ → Gò Ô Môi.';}
+  else if(c.lat>=10.7245){doan=2; reason='Tọa độ nằm giữa điểm giao Gò Ô Môi và Hoàng Quốc Việt, thuộc đoạn Gò Ô Môi → Hoàng Quốc Việt.';}
+  else {doan=3; reason='Tọa độ nằm phía Nam Hoàng Quốc Việt, thuộc đoạn Hoàng Quốc Việt → Trường Hàng Giang.';}
+  document.getElementById('seg').value=doan-1;
+  calc();
+  return {doan, reason, coord:c};
+}
+
 async function runAI(){
+  const local=inferDaoTriSegmentByCoord();
+  if(local) setStatus(`✅ Đã suy đoạn nội bộ: <b>Đoạn ${local.doan}</b>. ${local.reason}<br><span class="muted">Đang gọi AI để kiểm tra/bổ sung nếu cần...</span>`,'run');
   const key=document.getElementById('apiKey').value.trim();
   // Bản vẽ là tùy chọn: nếu không có file, chỉ gửi tọa độ + prompt text cho AI.
-  if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err');return;}
   const coord=document.getElementById('aiCoord').value;
   const prov=document.getElementById('apiProvider').value;
+  if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err');return;}
   const base=document.getElementById('apiBase').value.replace(/\/$/,'');
   const model=document.getElementById('apiModel').value;
   const userText=AI_PROMPT+`\nTọa độ: ${coord}`;
@@ -471,7 +492,8 @@ async function runAI(){
 }
 function applyAI(d){
   if(d.doan&&[1,2,3].includes(+d.doan))document.getElementById('seg').value=(+d.doan)-1;
-  if(Array.isArray(d.items)&&d.items.length){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));renderRows();}
+  const hasUsefulItems=Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0);
+  if(hasUsefulItems){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));renderRows();}
   calc();
   setStatus(`✅ Đã đọc xong. Phường: <b>${d.phuong||'?'}</b> · Đường: <b>${d.duong||'?'}</b> · Đoạn <b>${d.doan||'?'}</b>. ${d.lyDoDoan?'<br>Lý do đoạn: '+d.lyDoDoan:''}<br><span class="muted">Vui lòng kiểm tra lại các giá trị tự điền.</span>`,'ok');
 }
