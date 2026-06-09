@@ -397,11 +397,14 @@ function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc_state'));
   apiBase.value='http://10.101.12.174:8787';
   apiKey.value='';
   apiModel.value='APIBDS';
-  setTimeout(()=>{document.getElementById('seg').value=s.seg??1;document.getElementById('vt').value=s.vt??1;
-    document.getElementById('far100').value=s.far??0;document.getElementById('target').value=s.target??'ODT';
-    if(s.farRatio)document.getElementById('farRatio').value=s.farRatio;
-    ['kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>{if(s[id]!=null)document.getElementById(id).value=s[id];});
-    calc();},0);
+  // Không restore `seg` từ localStorage vì đoạn/đường phải nhảy theo tọa độ mới.
+  document.getElementById('vt').value=s.vt??1;
+  document.getElementById('far100').value=s.far??0;
+  document.getElementById('target').value=s.target??'ODT';
+  if(s.farRatio)document.getElementById('farRatio').value=s.farRatio;
+  ['kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>{if(s[id]!=null)document.getElementById(id).value=s[id];});
+  inferDaoTriSegmentByCoord(false);
+  calc();
 }catch(e){}}
 
 // ===================== AI =====================
@@ -514,8 +517,11 @@ apiProvider.value='openai'; apiBase.value='http://10.101.12.174:8787'; apiKey.va
 inferDaoTriSegmentByCoord(false);
 calc();
 ['seg','vt','far100','target','farRatio','kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
-document.getElementById('aiCoord').addEventListener('input',()=>inferDaoTriSegmentByCoord(true));
-document.getElementById('aiCoord').addEventListener('change',()=>inferDaoTriSegmentByCoord(true));
+function coordChanged(){ inferDaoTriSegmentByCoord(true); }
+document.getElementById('aiCoord').addEventListener('input',coordChanged);
+document.getElementById('aiCoord').addEventListener('change',coordChanged);
+document.getElementById('aiCoord').addEventListener('keyup',coordChanged);
+document.getElementById('aiCoord').addEventListener('paste',()=>setTimeout(coordChanged,50));
 </script>
 </body>
 </html>
