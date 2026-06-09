@@ -70,7 +70,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
       <label>Tọa độ (lat, lng)</label>
       <input id="aiCoord" value="10.727914, 106.742532">
       <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">⚡ AI xác định đường/đoạn & nạp bảng giá + hệ số</button>
-      <label class="chk" style="margin-top:8px"><input type="checkbox" id="aiReplace" checked> Thay thế TOÀN BỘ dữ liệu nguồn (đường/đoạn + diện tích) bằng kết quả AI</label>
+      <label class="chk" style="margin-top:8px"><input type="checkbox" id="aiReplace" checked> Cập nhật diện tích theo bản vẽ/kết quả AI; đường/đoạn sẽ xổ theo tên đường AI xác định</label>
       <button class="btn ghost sm" style="margin-top:4px" onclick="resetAll()">🔄 Xóa dữ liệu mẫu (Đào Trí) — bắt đầu trống</button>
       <div class="status" id="aiStatus"></div>
     </div>
@@ -193,7 +193,9 @@ const DEFAULT_ROWS=[
 ];
 const fmt=(n,d=0)=>isFinite(n)?n.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}):'–';
 let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
+let roadFilter="";
 const $=id=>document.getElementById(id);
+function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
 function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:0;}
 function seg(){return SEGMENTS[selIdx()]||{datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
@@ -233,11 +235,14 @@ function renderRows(){$('srcTbl').querySelector('tbody').innerHTML=rows.map((r,i
 function addRow(){rows.push({ten:"Dòng mới",loai:"LUA",dt:0});renderRows();calc();}
 
 function renderSeg(){const sel=selIdx();
-  $('segTbl').querySelector('tbody').innerHTML=SEGMENTS.map((s,i)=>`<tr class="${i===sel?'active':''}">
+  const nf=norm(roadFilter);
+  const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>!nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong)));
+  $('segTbl').querySelector('tbody').innerHTML=list.map(({s,i})=>`<tr class="${i===sel?'active':''}">
     <td class="l"><input class="txt" value="${s.duong}" onchange="SEGMENTS[${i}].duong=this.value;initSeg(true);renderSens()"></td>
     <td class="l"><input class="txt" value="${s.doan}" onchange="SEGMENTS[${i}].doan=this.value;initSeg(true);renderSens()"></td>
     ${['datO','tmdv','sxkd','kO','kTMDV','kSXKD','kNN'].map(f=>`<td><input type="number" step="${f[0]==='k'?0.01:100}" value="${s[f]}" onchange="SEGMENTS[${i}].${f}=parseFloat(this.value)||0;calc()"></td>`).join('')}
-    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">✕</button></td></tr>`).join('');}
+    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">?</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Ch?a c? data ??n gi? cho ???ng: <b>${roadFilter}</b>. AI s? n?p m?t d?ng n?u tr? ?? b?ng gi?/K, ho?c anh nh?p tay.</td></tr>`;
+}
 function renderAgri(){const i=selIdx(),s=seg();
   $('agriTitle').textContent=`Bảng giá đất nông nghiệp — ${s.duong||''} ${s.doan?'('+s.doan+')':''} (ngđ/m² theo vị trí):`;
   $('agriTbl').querySelector('tbody').innerHTML=[['hnam','Đất lúa / cây hàng năm'],['lnam','Đất trồng cây lâu năm']].map(([k,nm])=>`<tr>
@@ -324,16 +329,26 @@ async function runAI(){
 function applyAI(d){
   const g=d.giaDat||{},k=d.heSoThiTruong||{},nn=d.giaDatNN||{};
   const arr3=a=>(Array.isArray(a)&&a.length>=3)?a.slice(0,3).map(Number):[0,0,0];
-  const rec={duong:d.duong||'(AI)',doan:d.doan||(d.khuVuc?('KV '+d.khuVuc):'Trọn đường'),
+  const rec={duong:d.duong||'(AI)',doan:d.doan||(d.khuVuc?('KV '+d.khuVuc):'Tr?n ???ng'),
     datO:+g.datO||0,tmdv:+g.tmdv||0,sxkd:+g.sxkd||0,
     kO:+k.kO||1,kTMDV:+k.kTMDV||1,kSXKD:+k.kSXKD||1,kNN:+k.kNN||1,
     hnam:arr3(nn.hangNam),lnam:arr3(nn.lauNam)};
-  let i;
-  if($('aiReplace').checked){SEGMENTS=[rec];i=0;}
-  else{i=SEGMENTS.findIndex(s=>s.duong===rec.duong&&s.doan===rec.doan); if(i<0){SEGMENTS.push(rec);i=SEGMENTS.length-1;}else{SEGMENTS[i]=rec;}}
+  roadFilter=rec.duong||'';
+  // Khi AI x?c ??nh t?n ???ng, m?c ? ch? x? c?c ?o?n li?n quan ??n ???ng ??.
+  // N?u app ?? c? nhi?u ?o?n c?ng t?n ???ng (vd ??o Tr?), gi? to?n b? ?? anh ch?n/??i chi?u.
+  const sameRoad=SEGMENTS.map((s,i)=>({s,i})).filter(x=>norm(x.s.duong)===norm(rec.duong));
+  let i=-1;
+  if(sameRoad.length){
+    i=sameRoad.find(x=>norm(x.s.doan)===norm(rec.doan))?.i ?? sameRoad[0].i;
+    // N?u AI tr? ?? s? li?u v? c? ??ng ?o?n th? c?p nh?t ?o?n ??; kh?ng xo? c?c ?o?n kh?c c?ng ???ng.
+    if((rec.datO||rec.tmdv||rec.sxkd) && norm(SEGMENTS[i].doan)===norm(rec.doan)) SEGMENTS[i]=rec;
+  }else{
+    SEGMENTS.push(rec); i=SEGMENTS.length-1;
+  }
   if(Array.isArray(d.items)&&d.items.length){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));}
   initSeg();$('seg').value=i;renderSeg();renderAgri();renderRows();calc();
-  setStatus(`✅ Đường <b>${rec.duong}</b> · Đoạn <b>${rec.doan}</b>${d.khuVuc?' · Khu vực '+d.khuVuc:''}.<br>Đã nạp bảng giá (đất ở ${fmt(rec.datO)}) & hệ số K (${fmt(rec.kO,2)}).${d.lyDo?'<br>Lý do: '+d.lyDo:''}<br><span class="muted">Kiểm tra & chỉnh lại ở mục ④ nếu cần.</span>`,'ok');
+  const related=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong)).length;
+  setStatus(`? AI x?c ??nh ???ng <b>${rec.duong}</b>${d.khuVuc?' ? Khu v?c '+d.khuVuc:''}.<br>M?c ? ?ang x? <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y. ?o?n ?ang ch?n: <b>${seg().doan}</b>.<br>Data ??n gi?: <b>${(seg().datO||seg().tmdv||seg().sxkd)?'C?':'CH?A C?'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">Anh c? th? ch?n ?o?n kh?c c?ng ???ng trong m?c ? ho?c ch?nh chi ti?t ? m?c ?.</span>`,'ok');
 }
 
 function resetAll(){
