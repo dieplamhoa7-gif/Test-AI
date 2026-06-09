@@ -326,12 +326,22 @@ async function runK1LookupFirst(){
   const j=await res.json(); if(!res.ok||!j.ok)throw new Error(j.error||'K1 lookup failed');
   return j;
 }
+function segmentFromAlt(a){
+  const raw=String(a.raw||'');
+  const nums=raw.match(/\d{1,3}\.\d{3}|\d+,\d+/g)||[];
+  const prices=nums.filter(x=>/\d{1,3}\.\d{3}/.test(x)).slice(0,3).map(x=>+x.replace(/\./g,''));
+  const ks=nums.filter(x=>/\d+,\d+/.test(x)).slice(0,4).map(x=>+x.replace(',','.'));
+  return {duong:a.road||'',doan:a.segment||'',datO:prices[0]||0,tmdv:prices[1]||0,sxkd:prices[2]||0,kO:ks[0]||1,kTMDV:ks[1]||ks[0]||1,kSXKD:ks[2]||ks[0]||1,kNN:ks[3]||ks[0]||1,hnam:[0,0,0],lnam:[0,0,0],page:a.page,confidence:'alternative',sourceRaw:raw};
+}
 function applyK1Lookup(j){
   const rec=segmentFromK1(j.k1); roadFilter=rec.duong;
   const idx=upsertK1Segment(rec);
+  const altRecs=(j.k1?.match?.alternatives||[]).map(segmentFromAlt).filter(a=>a.duong&&a.datO);
+  for(const a of altRecs) upsertK1Segment(a);
   initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
-  const alts=(j.k1?.match?.alternatives||[]).map(a=>`${a.road} | ${a.segment} | trang ${a.page}`).join('<br>');
-  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/K1.<br>???ng: <b>${rec.duong}</b><br>?o?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">V? tr? v?n c?n anh ch?n/ki?m tra theo th?c t? VT1/VT2/VT3/VT4; app kh?ng ?? AI t? ch?t v? tr? n?a.</span>${alts?'<br><br>?ng vi?n kh?c:<br>'+alts:''}`,'ok');
+  const related=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong));
+  const altHtml=related.map((s,i)=>`<button class="btn ghost sm" style="margin:3px" onclick="roadFilter='${rec.duong.replace(/'/g,"\'")}';initSeg();$('seg').value=${SEGMENTS.indexOf(s)};renderSeg();renderAgri();calc();saveState()">${i+1}. ${s.doan} ? ??t ? ${fmt(s.datO)} | K ${fmt(s.kO,2)}</button>`).join('');
+  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/K1.<br>???ng: <b>${rec.duong}</b><br>?o?n ?ang ch?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? ?? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? TMDV: <b>${fmt(rec.tmdv)}</b> ? SXKD: <b>${fmt(rec.sxkd)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">?? n?p ${related.length} option c?ng ???ng v?o dropdown ????ng/?o?n ?p gi??. Anh ch?n l?i n?u ?o?n ch?a ??ng. V? tr? 1/2/3/4 v?n c?n ki?m tra th?c t?, AI kh?ng t? ch?t.</span>${altHtml?'<br><br><b>C?c option c?ng ???ng:</b><br>'+altHtml:''}`,'ok');
   saveState();
 }
 
