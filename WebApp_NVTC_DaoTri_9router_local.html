@@ -427,13 +427,15 @@ async function pdfFirstPageB64(f){
 }
 function setStatus(msg,cls){const s=document.getElementById('aiStatus');s.className='status show '+cls;s.innerHTML=msg;}
 
-const AI_PROMPT=`Bạn là chuyên gia thẩm định đất tại TP.HCM. Phân tích tọa độ được cung cấp. Nếu có bản đồ/bản vẽ hiện trạng đính kèm thì đọc thêm bản vẽ; nếu không có bản vẽ thì dùng dữ liệu mặc định hiện có và chỉ suy luận đường/đoạn từ tọa độ.
+const AI_PROMPT=`Bạn là chuyên gia thẩm định đất tại TP.HCM. Phân tích tọa độ được cung cấp. Nếu có bản đồ/bản vẽ hiện trạng đính kèm thì đọc thêm bản vẽ; nếu không có bản vẽ thì dùng dữ liệu mặc định hiện có và chỉ suy luận đường/đoạn/vị trí từ tọa độ.
 Trả về DUY NHẤT một JSON (không kèm văn bản khác) theo schema:
-{"phuong":"", "duong":"", "doan":1, "lyDoDoan":"", "dienTichCongNhan":0,
+{"phuong":"", "duong":"", "doan":1, "viTri":1, "lyDoDoan":"", "coDataDonGia":true, "dienTichCongNhan":0,
  "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}
-Trong đó "doan" là 1/2/3 ứng với đoạn đường Đào Trí:
-1=Nguyễn Văn Quỳ→Gò Ô Môi, 2=Gò Ô Môi→Hoàng Quốc Việt, 3=Hoàng Quốc Việt→Trường Hàng Giang.
-Suy ra "doan" dựa trên tọa độ và các đường cắt gần thửa đất. "loai" map: lúa/cây hàng năm=LUA, cây lâu năm=CLN, đất ở/thổ=ODT, chuyên dùng=CDK, thương mại dịch vụ=TMDV, rạch/kênh=NONE.`;
+Data đơn giá hiện app đang có:
+- ĐÀO TRÍ: doan 1=Nguyễn Văn Quỳ→Gò Ô Môi, doan 2=Gò Ô Môi→Hoàng Quốc Việt, doan 3=Hoàng Quốc Việt→Trường Hàng Giang.
+- GÒ Ô MÔI: doan 4=Trọn đường.
+Nếu tọa độ thuộc đường khác ngoài Đào Trí/Gò Ô Môi thì trả coDataDonGia=false, duong=tên đường suy ra, doan=null.
+Suy ra "viTri" 1/2/3/4 dựa trên mặt tiền/hẻm nếu có thể; nếu không chắc thì trả 1 khi tọa độ sát trục đường lớn, hoặc 2 nếu có dấu hiệu hẻm. "loai" map: lúa/cây hàng năm=LUA, cây lâu năm=CLN, đất ở/thổ=ODT, chuyên dùng=CDK, thương mại dịch vụ=TMDV, rạch/kênh=NONE.`;
 
 function parseCoord(){
   const nums=String(document.getElementById('aiCoord').value||'').match(/-?\d+(?:\.\d+)?/g)||[];
@@ -441,6 +443,26 @@ function parseCoord(){
   return {lat:parseFloat(nums[0]),lng:parseFloat(nums[1])};
 }
 let lastLocalDoan=null;
+let aiBusy=false, aiAutoTimer=null;
+function normVi(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đĐ]/g,'d').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
+function applyRoadSegmentFromAI(d){
+  const road=normVi(d.duong||'');
+  let idx=null;
+  if(road.includes('go o moi')) idx=3;
+  else if(road.includes('dao tri') && [1,2,3].includes(+d.doan)) idx=(+d.doan)-1;
+  if(idx==null){
+    setStatus(`⚠️ AI xác định đường <b>${d.duong||'?'}</b> nhưng data đơn giá nhúng hiện chưa có đường này. Cần bổ sung bảng giá/K trước khi tính tự động.`,'err');
+    return false;
+  }
+  document.getElementById('seg').value=idx;
+  if([1,2,3,4].includes(+d.viTri)) document.getElementById('vt').value=+d.viTri;
+  calc();
+  return true;
+}
+function autoRunAI(){
+  clearTimeout(aiAutoTimer);
+  aiAutoTimer=setTimeout(()=>{ if(!aiBusy) runAI(true); },900);
+}
 function inferDaoTriSegmentByCoord(updateStatus=false){
   const c=parseCoord();
   if(!c||!isFinite(c.lat)||!isFinite(c.lng))return null;
@@ -458,19 +480,21 @@ function inferDaoTriSegmentByCoord(updateStatus=false){
   return {doan, reason, coord:c};
 }
 
-async function runAI(){
+async function runAI(auto=false){
+  if(aiBusy)return;
+  aiBusy=true;
   const local=inferDaoTriSegmentByCoord();
-  if(local) setStatus(`✅ Đã suy đoạn nội bộ: <b>Đoạn ${local.doan}</b>. ${local.reason}<br><span class="muted">Đang gọi AI để kiểm tra/bổ sung nếu cần...</span>`,'run');
+  if(local) setStatus(`✅ Đã suy đoạn nội bộ: <b>Đoạn ${local.doan}</b>. ${local.reason}<br><span class="muted">Đang gọi AI để xác định tên đường/đoạn/vị trí và kiểm tra data đơn giá...</span>`,'run');
   const key=document.getElementById('apiKey').value.trim();
   // Bản vẽ là tùy chọn: nếu không có file, chỉ gửi tọa độ + prompt text cho AI.
   const coord=document.getElementById('aiCoord').value;
   const prov=document.getElementById('apiProvider').value;
-  if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err');return;}
+  if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err'); aiBusy=false; return;}
   const base=document.getElementById('apiBase').value.replace(/\/$/,'');
   const model=document.getElementById('apiModel').value;
   const userText=AI_PROMPT+`\nTọa độ: ${coord}`;
   document.getElementById('aiRun').disabled=true;
-  setStatus('⏳ Đang gửi bản vẽ tới mô hình AI...','run');
+  setStatus(aiBase64?'⏳ Đang gửi tọa độ + bản vẽ tới AI...':'⏳ Đang gửi tọa độ tới AI...','run');
   try{
     let txt;
     if(prov==='anthropic'){
@@ -497,15 +521,19 @@ async function runAI(){
     applyAI(JSON.parse(m[0]));
   }catch(err){setStatus('❌ Lỗi: '+err.message+'<br><span class="muted">Nếu lỗi CORS, hãy trỏ Base URL tới proxy của bạn.</span>','err');}
   document.getElementById('aiRun').disabled=false;
+  aiBusy=false;
 }
 function applyAI(d){
-  // Ưu tiên đoạn suy ra từ tọa độ nội bộ, không để AI ghi đè về đoạn cũ.
-  if(lastLocalDoan&&[1,2,3,4].includes(+lastLocalDoan))document.getElementById('seg').value=(+lastLocalDoan)-1;
-  else if(d.doan&&[1,2,3,4].includes(+d.doan))document.getElementById('seg').value=(+d.doan)-1;
+  const hasData=applyRoadSegmentFromAI(d);
+  if(!hasData){
+    calc();
+    return;
+  }
   const hasUsefulItems=Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0);
   if(hasUsefulItems){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));renderRows();}
   calc();
-  setStatus(`✅ Đã đọc xong. Phường: <b>${d.phuong||'?'}</b> · Đường: <b>${d.duong||'?'}</b> · Đoạn <b>${d.doan||'?'}</b>. ${d.lyDoDoan?'<br>Lý do đoạn: '+d.lyDoDoan:''}<br><span class="muted">Vui lòng kiểm tra lại các giá trị tự điền.</span>`,'ok');
+  const selected=seg();
+  setStatus(`✅ AI đã xác định: Phường <b>${d.phuong||'?'}</b> · Đường <b>${d.duong||selected.name}</b> · Đoạn <b>${d.doan||selected.id}</b> · Vị trí <b>${document.getElementById('vt').value}</b>.<br>Data đơn giá: <b>CÓ</b> — ${selected.name}. ${d.lyDoDoan?'<br>Lý do: '+d.lyDoDoan:''}<br><span class="muted">Thông số đầu vào đã cập nhật theo kết quả AI.</span>`,'ok');
 }
 
 // ===================== KHỞI TẠO =====================
@@ -517,7 +545,7 @@ apiProvider.value='openai'; apiBase.value='http://10.101.12.174:8787'; apiKey.va
 inferDaoTriSegmentByCoord(false);
 calc();
 ['seg','vt','far100','target','farRatio','kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
-function coordChanged(){ inferDaoTriSegmentByCoord(true); }
+function coordChanged(){ inferDaoTriSegmentByCoord(true); autoRunAI(); }
 document.getElementById('aiCoord').addEventListener('input',coordChanged);
 document.getElementById('aiCoord').addEventListener('change',coordChanged);
 document.getElementById('aiCoord').addEventListener('keyup',coordChanged);
