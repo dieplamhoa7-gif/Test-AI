@@ -270,7 +270,7 @@ function renderSens(){$('sensTbl').querySelector('tbody').innerHTML=SEGMENTS.map
 function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({rows,SEGMENTS,sel:$('seg').value,
   vt:$('vt').value,far100:$('far100').value,target:$('target').value,far:$('far').value,dongbo:$('dongbo').value,
   f1:$('f1').checked,f2:$('f2').checked,f4:$('f4').checked,f5:$('f5').checked,g1:$('g1').checked,
-  api:{p:apiProvider.value,b:apiBase.value,k:apiKey.value,m:apiModel.value}}));}catch(e){}}
+  api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
 function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s)return;
   if(s.rows)rows=s.rows; if(s.SEGMENTS&&s.SEGMENTS.length)SEGMENTS=s.SEGMENTS;
   // Lu?n ?p d?ng 9Router B?S local proxy, kh?ng restore API/key c? t? localStorage.
@@ -301,8 +301,8 @@ Trả về DUY NHẤT một JSON theo schema (đơn giá: nghìn đồng/m²):
 giaDat/giaDatNN = đơn giá theo bảng giá đất tại VỊ TRÍ 1 (riêng giaDatNN theo [VT1,VT2,VT3]). heSoThiTruong = hệ số K điều chỉnh mức biến động thị trường của VT1 (Phụ lục I). Nếu không chắc, điền số ước tính và nêu rõ trong "lyDo". items = bảng diện tích theo loại đất trên bản vẽ.`;
 async function runAI(){
   const key=$('apiKey').value.trim();
-  if(!key){setStatus('⚠️ Chưa có API key — mở "Cấu hình API" để nhập.','err');return;}
   const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;
+  if(!key && prov==='anthropic'){setStatus('?? Ch?a c? API key Anthropic. V?i 9Router local proxy th? ?? tr?ng key ???c.','err');return;}
   const userText=AI_PROMPT+`\nTọa độ: ${$('aiCoord').value}`+(aiBase64?'':'\n(Không có bản vẽ đính kèm — chỉ dùng tọa độ.)');
   $('aiRun').disabled=true;setStatus('⏳ AI đang xác định đường/đoạn & tra bảng giá...','run');
   try{let txt;
