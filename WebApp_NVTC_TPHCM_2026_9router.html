@@ -180,7 +180,11 @@ let SEGMENTS=[
  {duong:"Đào Trí",doan:"Nguyễn Văn Quỳ → Gò Ô Môi",datO:43700,tmdv:26200,sxkd:21900,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.70,hnam:[1000,800,640],lnam:[1200,960,770]},
  {duong:"Đào Trí",doan:"Gò Ô Môi → Hoàng Quốc Việt",datO:40500,tmdv:24300,sxkd:20300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.91,hnam:[1000,800,640],lnam:[1200,960,770]},
  {duong:"Đào Trí",doan:"Hoàng Quốc Việt → Trường Hàng Giang",datO:36500,tmdv:21900,sxkd:18300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:3.23,hnam:[1000,800,640],lnam:[1200,960,770]},
+ {duong:"G? ? M?i",doan:"Tr?n ???ng",datO:52600,tmdv:31600,sxkd:26300,kO:1.67,kTMDV:1.67,kSXKD:1.67,kNN:2.24,hnam:[1000,800,640],lnam:[1200,960,770]},
+ {duong:"B? Huy?n Thanh Quan",doan:"L? Ch?nh Th?ng ? Nguy?n Th? Minh Khai",datO:197000,tmdv:137900,sxkd:118200,kO:1.67,kTMDV:1.67,kSXKD:1.67,kNN:1.67,hnam:[0,0,0],lnam:[0,0,0]},
+ {duong:"C?ch M?ng Th?ng 8",doan:"Ng? 6 D?n Ch? ? Nguy?n Th? Minh Khai",datO:215000,tmdv:150500,sxkd:129000,kO:1.36,kTMDV:1.36,kSXKD:1.36,kNN:1.36,hnam:[0,0,0],lnam:[0,0,0]},
 ];
+const VERIFIED_SEGMENTS=JSON.parse(JSON.stringify(SEGMENTS));
 const VTGIA=[1,0.5,0.4,0.32];
 const LOAI={ODT:"Đất ở",LUA:"Đất lúa / cây hàng năm",CLN:"Đất trồng cây lâu năm",CDK:"Đất chuyên dùng / SXKD phi NN",TMDV:"Đất thương mại, dịch vụ",NONE:"Rạch / không thu tiền"};
 const DEFAULT_ROWS=[
@@ -278,6 +282,8 @@ function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({rows,SEGME
   api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
 function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s)return;
   if(s.rows)rows=s.rows; if(s.SEGMENTS&&s.SEGMENTS.length)SEGMENTS=s.SEGMENTS;
+ // Merge l?i source verified ?? cache c? kh?ng l?m m?t s? ??ng.
+ for(const v of VERIFIED_SEGMENTS){if(!SEGMENTS.some(x=>norm(x.duong)===norm(v.duong)&&norm(x.doan)===norm(v.doan)))SEGMENTS.push(v);}
   // Lu?n ?p d?ng 9Router B?S local proxy, kh?ng restore API/key c? t? localStorage.
  if(s.api){apiProvider.value='openai';apiBase.value='http://10.101.12.174:8787';apiKey.value='';apiModel.value='APIBDS';}
   setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
