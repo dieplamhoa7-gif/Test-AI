@@ -201,8 +201,8 @@ let roadFilter="";
 const $=id=>document.getElementById(id);
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
-function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
-function seg(){return SEGMENTS[selIdx()]||{duong:roadFilter||'(ch?a c? data)',doan:'Ch?a c? trong NQ87/K1 local',datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
+function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:0;}
+function seg(){return SEGMENTS[selIdx()]||{datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
 function vt(){return +$('vt').value;}
 function vtIdx(){return Math.min(vt(),3)-1;}
 function hsGia(){return VTGIA[vt()-1]*(1-0.1*+$('far100').value);}
@@ -229,13 +229,8 @@ function isNN(l){return l==='LUA'||l==='CLN';}
 // ===================== RENDER =====================
 function initSeg(keep){const cur=keep?$('seg').value:null;
   const nf=norm(roadFilter);
-  const all=SEGMENTS.map((s,i)=>({s,i}));
-  const list=all.filter(x=>!nf||norm(x.s.duong)===nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong)));
-  if(nf && !list.length){
-    $('seg').innerHTML=`<option value="-1">Ch?a c? data NQ87/K1 cho ???ng: ${roadFilter}</option>`;
-    return;
-  }
-  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('');
+  const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>!nf||norm(x.s.duong)===nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong)));
+  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('') || SEGMENTS.map((s,i)=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('');
   if(cur!=null && [...$('seg').options].some(o=>o.value==cur)) $('seg').value=cur;
   else if(list.length) $('seg').value=list[0].i;
   else $('seg').value=0;
@@ -255,7 +250,7 @@ function renderSeg(){const sel=selIdx();
     <td class="l"><input class="txt" value="${s.duong}" onchange="SEGMENTS[${i}].duong=this.value;initSeg(true);renderSens()"></td>
     <td class="l"><input class="txt" value="${s.doan}" onchange="SEGMENTS[${i}].doan=this.value;initSeg(true);renderSens()"></td>
     ${['datO','tmdv','sxkd','kO','kTMDV','kSXKD','kNN'].map(f=>`<td><input type="number" step="${f[0]==='k'?0.01:100}" value="${s[f]}" onchange="SEGMENTS[${i}].${f}=parseFloat(this.value)||0;calc()"></td>`).join('')}
-    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">?</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Ch?a c? data ??n gi? NQ87/K1 cho ???ng: <b>${roadFilter}</b>. H?y ki?m tra l?i t?a ??/t?n ???ng ho?c nh?p tay source ch?nh th?c. App kh?ng l?y ?o?n/??n gi? t? ngu?n th? tr??ng.</td></tr>`;
+    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">?</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Ch?a c? data ??n gi? cho ???ng: <b>${roadFilter}</b>. H?y ki?m tra l?i t?a ??/t?n ???ng ho?c nh?p tay source ch?nh th?c.</td></tr>`;
 }
 function renderAgri(){const i=selIdx(),s=seg();
   $('agriTitle').textContent=`Bảng giá đất nông nghiệp — ${s.duong||''} ${s.doan?'('+s.doan+')':''} (ngđ/m² theo vị trí):`;
@@ -344,28 +339,28 @@ function segmentFromAlt(a){
 }
 function applyK1Lookup(j){
   const rec=segmentFromK1(j.k1);
-  // M?i l?n tra t?a ?? m?i: l?y t?n ???ng t? NQ87/K1 l?m filter, kh?ng x? d? li?u c? kh?c ???ng.
+  // M?i l?n tra t?a ?? m?i: l?y t?n ???ng m?i l?m filter, kh?ng x? d? li?u c? kh?c ???ng.
   roadFilter=rec.duong;
   const idx=upsertK1Segment(rec);
   const altRecs=(j.k1?.match?.alternatives||[]).map(segmentFromAlt).filter(a=>a.duong&&a.datO&&norm(a.duong)===norm(rec.duong));
   for(const a of altRecs) upsertK1Segment(a);
   initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
   const related=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong));
-  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/NQ87-K1.<br>???ng theo t?a ??: <b>${rec.duong}</b><br>?o?n ?ang ch?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? ?? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? TMDV: <b>${fmt(rec.tmdv)}</b> ? SXKD: <b>${fmt(rec.sxkd)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">Dropdown ????ng/?o?n ?p gi?? ch? l?c c?c ?o?n c?a ???ng <b>${rec.duong}</b> theo t?a ?? m?i. N?u ?o?n ch?a ??ng, anh ch?n l?i trong dropdown; app kh?ng t? x? d? li?u ???ng kh?c ho?c ngu?n th? tr??ng.</span>`,'ok');
+  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/K1.<br>???ng theo t?a ??: <b>${rec.duong}</b><br>?o?n ?ang ch?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? ?? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? TMDV: <b>${fmt(rec.tmdv)}</b> ? SXKD: <b>${fmt(rec.sxkd)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">Dropdown ????ng/?o?n ?p gi?? ch? ?ang l?c c?c ?o?n c?a ???ng <b>${rec.duong}</b> theo t?a ?? m?i. N?u ?o?n ch?a ??ng, anh ch?n l?i trong dropdown; kh?ng t? x? d? li?u ???ng kh?c.</span>`,'ok');
   saveState();
 }
 
 async function runAI(){
   const key=$('apiKey').value.trim();
   const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;
-  if(!key && prov==='anthropic'){setStatus('Ch?a c? API key Anthropic. V?i 9Router local proxy th? ???c ?? tr?ng key.','err');return;}
+  if(!key && prov==='anthropic'){setStatus('?? Ch?a c? API key Anthropic. V?i 9Router local proxy th? ?? tr?ng key ???c.','err');return;}
   const userText=AI_PROMPT+`\nT?a ??: ${$('aiCoord').value}`+(aiBase64?'':'\n(Kh?ng c? b?n v? ??nh k?m ? ch? d?ng t?a ??.)');
-  $('aiRun').disabled=true;setStatus('?ang tra t?n ???ng/?o?n theo t?a ?? b?ng rule bot quy ho?ch/NQ87-K1...','run');
+  $('aiRun').disabled=true;setStatus('? ?ang tra t?n ???ng/?o?n theo t?a ?? b?ng rule bot quy ho?ch/K1...','run');
   let k1Linked=false;
   try{
     const k1j=await runK1LookupFirst();
     if(k1j?.k1?.match){applyK1Lookup(k1j); k1Linked=true;}
-  }catch(e){setStatus('Ch?a link ???c K1 b?ng rule bot: '+e.message+'<br>Ti?p t?c d?ng AI ?? x?c ??nh t?n ???ng/?o?n nh?ng kh?ng l?y s? ??n gi?/K t? AI.','err');}
+  }catch(e){setStatus('?? Ch?a link ???c K1 b?ng rule bot: '+e.message+'<br>Ti?p t?c d?ng AI ?? x?c ??nh t?n ???ng/?o?n nh?ng kh?ng l?y s? AI.','err');}
   // Kh?ng c? b?n v? th? d?ng t?i K1: kh?ng cho AI ghi ?? th?nh ???ng/?o?n sai.
   if(k1Linked && !aiBase64){$('aiRun').disabled=false; return;}
   try{let txt;
@@ -386,10 +381,10 @@ async function runAI(){
       if(Array.isArray(parsed.items)&&parsed.items.some(x=>(parseFloat(x.dt)||0)>0)){
         rows=parsed.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
         renderRows();calc();saveState();
-        setStatus($('aiStatus').innerHTML+'<br>? ?? ??c th?m di?n t?ch t? b?n v?; ???ng/??n gi? v?n gi? theo NQ87/K1.', 'ok');
+        setStatus($('aiStatus').innerHTML+'<br>? ?? ??c th?m di?n t?ch t? b?n v?; ???ng/??n gi? v?n gi? theo K1.', 'ok');
       }
     }else applyAI(parsed);
-  }catch(err){setStatus('L?i: '+err.message+'<br><span class="muted">N?u CORS, tr? Base URL t?i proxy local.</span>','err');}
+  }catch(err){setStatus('? L?i: '+err.message+'<br><span class="muted">N?u CORS, tr? Base URL t?i proxy c?a b?n.</span>','err');}
   $('aiRun').disabled=false;
 }
 
@@ -414,7 +409,7 @@ function applyAI(d){
   const selected=seg();
   const related=SEGMENTS.filter(s=>norm(s.duong)===norm(aiRoad)).length;
   const hasSource=!!(selected.datO||selected.tmdv||selected.sxkd);
-  setStatus(`${hasSource?'?':'??'} AI x?c ??nh ???ng <b>${aiRoad||'?'}</b> ? ?o?n <b>${aiSeg||selected.doan||'?'}</b> ? v? tr? <b>${$('vt').value}</b>.<br>?ang l?c <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y.<br>Source ??n gi?/K: <b>${hasSource?'C? DATA LOCAL/NQ87-K1':'CH?A C? - KH?NG T?NH B?A'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">S? ??n gi?/K ch? l?y t? data local/NQ87-K1; AI kh?ng ???c ghi s? v?o b?ng.</span>`, hasSource?'ok':'err');
+  setStatus(`${hasSource?'?':'??'} AI x?c ??nh ???ng <b>${aiRoad||'?'}</b> ? ?o?n <b>${aiSeg||selected.doan||'?'}</b> ? v? tr? <b>${$('vt').value}</b>.<br>M?c ? ?ang l?c <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y.<br>Source ??n gi?/K: <b>${hasSource?'C? DATA LOCAL':'CH?A C? - KH?NG T?NH B?A'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">S? ??n gi?/K ch? l?y t? data local/K1; AI kh?ng ???c ghi s? v?o b?ng.</span>`, hasSource?'ok':'err');
 }
 
 function resetAll(){
