@@ -197,6 +197,7 @@ const DEFAULT_ROWS=[
 ];
 const fmt=(n,d=0)=>isFinite(n)?n.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}):'–';
 let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
+const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="";
 const $=id=>document.getElementById(id);
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
@@ -280,19 +281,22 @@ function calc(){
   $('sumArea').textContent=`  Tổng diện tích: ${fmt(area,1)} m²`;
   renderSens();saveState();
 }
-function renderSens(){$('sensTbl').querySelector('tbody').innerHTML=SEGMENTS.map(d=>{
+function renderSens(){const nf=norm(roadFilter);const list=SEGMENTS.filter(d=>!nf||norm(d.duong)===nf||norm(d.duong).includes(nf)||nf.includes(norm(d.duong)));
+  $('sensTbl').querySelector('tbody').innerHTML=list.map(d=>{
     const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1],km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km*KQH()*KytPhiNN())}</td>`}).join('');
-    return `<tr><td class="l">${d.duong} — ${d.doan}</td>${cells}</tr>`;}).join('');}
+    return `<tr><td class="l">${d.duong} - ${d.doan}</td>${cells}</tr>`;}).join('') || `<tr><td colspan="5" class="l">Ch?a c? ?o?n PDF NQ87/K1 cho ???ng: <b>${roadFilter||'ch?a ch?n'}</b></td></tr>`;}
 
 // ===================== LƯU =====================
-function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({rows,SEGMENTS,sel:$('seg').value,
+function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({version:APP_DATA_VERSION,rows,sel:$('seg').value,
   vt:$('vt').value,far100:$('far100').value,target:$('target').value,far:$('far').value,dongbo:$('dongbo').value,
   f1:$('f1').checked,f2:$('f2').checked,f4:$('f4').checked,f5:$('f5').checked,g1:$('g1').checked,
   api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
 function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s)return;
-  if(s.rows)rows=s.rows; if(s.SEGMENTS&&s.SEGMENTS.length)SEGMENTS=s.SEGMENTS;
- // Merge l?i source verified ?? cache c? kh?ng l?m m?t s? ??ng.
- for(const v of VERIFIED_SEGMENTS){if(!SEGMENTS.some(x=>norm(x.duong)===norm(v.duong)&&norm(x.doan)===norm(v.doan)))SEGMENTS.push(v);}
+  // Kh?ng restore SEGMENTS t? localStorage n?a v? cache c? c? th? ch?a ???ng/?o?n do AI search t?o ra.
+  // Source ???ng/?o?n/??n gi?/K ch? ??n t? VERIFIED_SEGMENTS ho?c K1 lookup m?i.
+  SEGMENTS=JSON.parse(JSON.stringify(VERIFIED_SEGMENTS));
+  if(s.version!==APP_DATA_VERSION){try{localStorage.removeItem('nvtc3');}catch(e){}; return;}
+  if(s.rows)rows=s.rows;
   // Lu?n ?p d?ng 9Router B?S local proxy, kh?ng restore API/key c? t? localStorage.
  if(s.api){apiProvider.value='openai';apiBase.value='http://10.101.12.174:8787';apiKey.value='';apiModel.value='APIBDS';}
   setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
