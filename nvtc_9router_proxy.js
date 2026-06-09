@@ -36,18 +36,23 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, {'content-type':'application/json'});
     return res.end(JSON.stringify({ok:true, base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey()}));
   }
-  if (req.method === 'POST' && req.url === '/nvtc/k1-lookup') {
+  if (req.method === 'POST' && (req.url === '/nvtc/k1-lookup' || req.url === '/planning/lookup')) {
     let body = '';
     req.on('data', chunk => body += chunk);
     return req.on('end', async () => {
       try {
-        if (!lookupHcmPlanning || !summarize || !lookupK1LandFee) throw new Error('BDS K1 modules are not available');
+        if (!lookupHcmPlanning || !summarize) throw new Error('BDS planning modules are not available');
         const payload = JSON.parse(body || '{}');
         const lat = Number(payload.lat), lon = Number(payload.lon);
         if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('lat/lon required');
         const raw = await lookupHcmPlanning(lat, lon);
         const sum = summarize(raw);
         const geo = sum.location || {};
+        if (req.url === '/planning/lookup') {
+          res.writeHead(200, {'content-type':'application/json'});
+          return res.end(JSON.stringify({ ok:true, location: geo, planning: sum, raw }));
+        }
+        if (!lookupK1LandFee) throw new Error('BDS K1 modules are not available');
         const landUse = payload.landUse || 'ODT';
         const position = payload.position || 'VT1';
         const k1 = await lookupK1LandFee({ lat, lon, geoLocation: geo, text: payload.text || '', landUse, position, planningMultiplier: 1 });
