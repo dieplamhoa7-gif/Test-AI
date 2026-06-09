@@ -339,8 +339,15 @@ async function runAI(){
   const key=$('apiKey').value.trim();
   const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;
   if(!key && prov==='anthropic'){setStatus('?? Ch?a c? API key Anthropic. V?i 9Router local proxy th? ?? tr?ng key ???c.','err');return;}
-  const userText=AI_PROMPT+`\nTọa độ: ${$('aiCoord').value}`+(aiBase64?'':'\n(Không có bản vẽ đính kèm — chỉ dùng tọa độ.)');
-  $('aiRun').disabled=true;setStatus('⏳ AI đang xác định đường/đoạn & tra bảng giá...','run');
+  const userText=AI_PROMPT+`\nT?a ??: ${$('aiCoord').value}`+(aiBase64?'':'\n(Kh?ng c? b?n v? ??nh k?m ? ch? d?ng t?a ??.)');
+  $('aiRun').disabled=true;setStatus('? ?ang tra K1 b?ng rule bot quy ho?ch tr??c...','run');
+  let k1Linked=false;
+  try{
+    const k1j=await runK1LookupFirst();
+    if(k1j?.k1?.match){applyK1Lookup(k1j); k1Linked=true;}
+  }catch(e){setStatus('?? Ch?a link ???c K1 b?ng rule bot: '+e.message+'<br>Ti?p t?c d?ng AI ?? x?c ??nh t?n ???ng/?o?n nh?ng kh?ng l?y s? AI.','err');}
+  // Kh?ng c? b?n v? th? d?ng t?i K1: kh?ng cho AI ghi ?? th?nh ???ng/?o?n sai.
+  if(k1Linked && !aiBase64){$('aiRun').disabled=false; return;}
   try{let txt;
     const content=[]; if(aiBase64) content.push(prov==='anthropic'?{type:'image',source:{type:'base64',media_type:aiMime,data:aiBase64}}:{type:'image_url',image_url:{url:`data:${aiMime};base64,${aiBase64}`}});
     if(prov==='anthropic'){
@@ -353,10 +360,19 @@ async function runAI(){
       const res=await fetch(base+'/v1/chat/completions',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+key},
         body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content}]})});
       const j=await res.json();if(!res.ok)throw new Error(JSON.stringify(j));txt=j.choices[0].message.content;}
-    const m=txt.match(/\{[\s\S]*\}/);if(!m)throw new Error('Không thấy JSON trong phản hồi.');applyAI(JSON.parse(m[0]));
-  }catch(err){setStatus('❌ Lỗi: '+err.message+'<br><span class="muted">Nếu CORS, trỏ Base URL tới proxy của bạn.</span>','err');}
+    const m=txt.match(/\{[\s\S]*\}/);if(!m)throw new Error('Kh?ng th?y JSON trong ph?n h?i.');
+    const parsed=JSON.parse(m[0]);
+    if(k1Linked){
+      if(Array.isArray(parsed.items)&&parsed.items.some(x=>(parseFloat(x.dt)||0)>0)){
+        rows=parsed.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
+        renderRows();calc();saveState();
+        setStatus($('aiStatus').innerHTML+'<br>? ?? ??c th?m di?n t?ch t? b?n v?; ???ng/??n gi? v?n gi? theo K1.', 'ok');
+      }
+    }else applyAI(parsed);
+  }catch(err){setStatus('? L?i: '+err.message+'<br><span class="muted">N?u CORS, tr? Base URL t?i proxy c?a b?n.</span>','err');}
   $('aiRun').disabled=false;
 }
+
 function applyAI(d){
   const aiRoad=d.duong||'';
   const aiSeg=d.doan||'';
