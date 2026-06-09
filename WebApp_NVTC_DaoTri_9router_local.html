@@ -236,6 +236,7 @@ const DAOTRI=[
  {id:1,name:"Đoạn 1: Nguyễn Văn Quỳ → Gò Ô Môi", datO:43700,tmdv:26200,sxkd:21900,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.70},
  {id:2,name:"Đoạn 2: Gò Ô Môi → Hoàng Quốc Việt", datO:40500,tmdv:24300,sxkd:20300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.91},
  {id:3,name:"Đoạn 3: Hoàng Quốc Việt → Trường Hàng Giang", datO:36500,tmdv:21900,sxkd:18300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:3.23},
+ {id:4,name:"Gò Ô Môi: Trọn đường", datO:52600,tmdv:31600,sxkd:26300,kO:1.67,kTMDV:1.67,kSXKD:1.67,kNN:2.24},
 ];
 // Khu vực II (Phú Thuận) — ngđ/m², theo [VT1,VT2,VT3]
 const AGRI={hangNam:[1000,800,640], lauNam:[1200,960,770]};
@@ -436,17 +437,21 @@ function parseCoord(){
   if(nums.length<2)return null;
   return {lat:parseFloat(nums[0]),lng:parseFloat(nums[1])};
 }
-function inferDaoTriSegmentByCoord(){
+let lastLocalDoan=null;
+function inferDaoTriSegmentByCoord(updateStatus=false){
   const c=parseCoord();
   if(!c||!isFinite(c.lat)||!isFinite(c.lng))return null;
-  // Rule nội bộ cho trục Đào Trí: Bắc -> Nam.
-  // Nguyễn Văn Quỳ nằm phía Bắc; Gò Ô Môi quanh vùng ~10.7286; Hoàng Quốc Việt thấp hơn; Trường Hàng Giang thấp nhất.
+  // Rule nội bộ: nếu tọa độ lệch về phía Tây trục Đào Trí thì chọn Gò Ô Môi trọn đường.
+  // Nếu nằm trên/giáp trục Đào Trí thì suy đoạn Bắc -> Nam.
   let doan=2, reason='Tọa độ nằm trên vùng Đào Trí giữa Gò Ô Môi và Hoàng Quốc Việt.';
-  if(c.lat>=10.72865){doan=1; reason='Tọa độ nằm phía Bắc điểm giao Gò Ô Môi, thuộc đoạn Nguyễn Văn Quỳ → Gò Ô Môi.';}
+  if(c.lng<106.7415 && c.lat>=10.7270 && c.lat<=10.7300){doan=4; reason='Tọa độ nằm về phía Tây trục Đào Trí, khớp tuyến Gò Ô Môi trọn đường.';}
+  else if(c.lat>=10.72865){doan=1; reason='Tọa độ nằm phía Bắc điểm giao Gò Ô Môi, thuộc đoạn Nguyễn Văn Quỳ → Gò Ô Môi.';}
   else if(c.lat>=10.7245){doan=2; reason='Tọa độ nằm giữa điểm giao Gò Ô Môi và Hoàng Quốc Việt, thuộc đoạn Gò Ô Môi → Hoàng Quốc Việt.';}
   else {doan=3; reason='Tọa độ nằm phía Nam Hoàng Quốc Việt, thuộc đoạn Hoàng Quốc Việt → Trường Hàng Giang.';}
+  lastLocalDoan=doan;
   document.getElementById('seg').value=doan-1;
   calc();
+  if(updateStatus) setStatus(`✅ Tọa độ mới → tự chọn <b>Đoạn ${doan}</b>. ${reason}`,'ok');
   return {doan, reason, coord:c};
 }
 
@@ -491,7 +496,9 @@ async function runAI(){
   document.getElementById('aiRun').disabled=false;
 }
 function applyAI(d){
-  if(d.doan&&[1,2,3].includes(+d.doan))document.getElementById('seg').value=(+d.doan)-1;
+  // Ưu tiên đoạn suy ra từ tọa độ nội bộ, không để AI ghi đè về đoạn cũ.
+  if(lastLocalDoan&&[1,2,3,4].includes(+lastLocalDoan))document.getElementById('seg').value=(+lastLocalDoan)-1;
+  else if(d.doan&&[1,2,3,4].includes(+d.doan))document.getElementById('seg').value=(+d.doan)-1;
   const hasUsefulItems=Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0);
   if(hasUsefulItems){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));renderRows();}
   calc();
@@ -503,8 +510,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/p
 initSeg();renderRows();loadState();
 // Force lại cấu hình proxy sau khi loadState để tránh trình duyệt giữ cache cấu hình cũ.
 apiProvider.value='openai'; apiBase.value='http://10.101.12.174:8787'; apiKey.value=''; apiModel.value='APIBDS';
+// Tọa độ là nguồn quyết định đoạn: mở trang hoặc sửa tọa độ là tự nhảy đoạn ngay.
+inferDaoTriSegmentByCoord(false);
 calc();
 ['seg','vt','far100','target','farRatio','kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
+document.getElementById('aiCoord').addEventListener('input',()=>inferDaoTriSegmentByCoord(true));
+document.getElementById('aiCoord').addEventListener('change',()=>inferDaoTriSegmentByCoord(true));
 </script>
 </body>
 </html>
