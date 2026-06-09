@@ -307,6 +307,34 @@ TUY?T ??I KH?NG t? b?a ho?c t? tra s? ??n gi?/K. App s? t? l?y s? t? DATA LOCAL 
 Data local hi?n c?: ??o Tr? (3 ?o?n), G? ? M?i (tr?n ???ng). N?u t?a ?? thu?c ???ng kh?c, tr? ??ng t?n ???ng v? coDataLocal=false.
 Tr? v? DUY NH?T m?t JSON:
 {"duong":"", "doan":"", "viTri":1, "coDataLocal":true, "lyDo":"", "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}`;
+
+function parseCoord(v){const m=String(v||'').match(/(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)/);return m?{lat:+m[1],lon:+m[2]}:null;}
+function segmentFromK1(k1){
+  const m=k1?.match||{}, c=k1?.calc||{};
+  return {duong:m.road||'',doan:m.segment||'',datO:m.priceResidentialThousand||c.baseThousandPerM2||0,tmdv:m.priceCommercialThousand||0,sxkd:m.priceBusinessThousand||0,kO:m.kResidential||c.marketK||1,kTMDV:m.kCommercial||c.marketK||1,kSXKD:m.kBusiness||c.marketK||1,kNN:m.kAgricultural||m.kResidential||c.marketK||1,hnam:[0,0,0],lnam:[0,0,0],page:m.page,confidence:m.confidence,sourceRaw:m.raw};
+}
+function upsertK1Segment(rec){
+  if(!rec.duong)return -1;
+  const i=SEGMENTS.findIndex(x=>norm(x.duong)===norm(rec.duong)&&norm(x.doan)===norm(rec.doan));
+  if(i>=0){SEGMENTS[i]={...SEGMENTS[i],...rec};return i;}
+  SEGMENTS.push(rec);return SEGMENTS.length-1;
+}
+async function runK1LookupFirst(){
+  const coord=parseCoord($('aiCoord').value); if(!coord)return null;
+  const base=$('apiBase').value.replace(/\/$/,'');
+  const res=await fetch(base+'/nvtc/k1-lookup',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({lat:coord.lat,lon:coord.lon,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
+  const j=await res.json(); if(!res.ok||!j.ok)throw new Error(j.error||'K1 lookup failed');
+  return j;
+}
+function applyK1Lookup(j){
+  const rec=segmentFromK1(j.k1); roadFilter=rec.duong;
+  const idx=upsertK1Segment(rec);
+  initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
+  const alts=(j.k1?.match?.alternatives||[]).map(a=>`${a.road} | ${a.segment} | trang ${a.page}`).join('<br>');
+  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/K1.<br>???ng: <b>${rec.duong}</b><br>?o?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">V? tr? v?n c?n anh ch?n/ki?m tra theo th?c t? VT1/VT2/VT3/VT4; app kh?ng ?? AI t? ch?t v? tr? n?a.</span>${alts?'<br><br>?ng vi?n kh?c:<br>'+alts:''}`,'ok');
+  saveState();
+}
+
 async function runAI(){
   const key=$('apiKey').value.trim();
   const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;

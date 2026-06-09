@@ -9,6 +9,9 @@ const PORT = Number(process.env.NVTC_PROXY_PORT || 8787);
 const LOCAL_9ROUTER_BASE = process.env.NINEROUTER_BASE_URL || 'http://localhost:20128/v1';
 const FALLBACK_MODEL = process.env.NINEROUTER_BDS_MODEL || process.env.NINEROUTER_MODEL || 'APIBDS';
 const PRIVATE_KEY_FILE = path.join(__dirname, '9router_private_keys', '9router_split_keys_private.txt');
+let lookupHcmPlanning = null, summarize = null, lookupK1LandFee = null;
+try { ({ lookupHcmPlanning, summarize } = require('./bds_planning_checker')); } catch (_) {}
+try { ({ lookupK1LandFee } = require('./k1_land_fee_lookup')); } catch (_) {}
 
 function readBdsKey() {
   const envKey = process.env.BDS_9ROUTER_API_KEY || process.env.NINEROUTER_API_KEY || process.env.OPENAI_API_KEY;
@@ -32,6 +35,29 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && req.url === '/health') {
     res.writeHead(200, {'content-type':'application/json'});
     return res.end(JSON.stringify({ok:true, base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey()}));
+  }
+  if (req.method === 'POST' && req.url === '/nvtc/k1-lookup') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    return req.on('end', async () => {
+      try {
+        if (!lookupHcmPlanning || !summarize || !lookupK1LandFee) throw new Error('BDS K1 modules are not available');
+        const payload = JSON.parse(body || '{}');
+        const lat = Number(payload.lat), lon = Number(payload.lon);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('lat/lon required');
+        const raw = await lookupHcmPlanning(lat, lon);
+        const sum = summarize(raw);
+        const geo = sum.location || {};
+        const landUse = payload.landUse || 'ODT';
+        const position = payload.position || 'VT1';
+        const k1 = await lookupK1LandFee({ lat, lon, geoLocation: geo, text: payload.text || '', landUse, position, planningMultiplier: 1 });
+        res.writeHead(200, {'content-type':'application/json'});
+        res.end(JSON.stringify({ ok:true, location: geo, k1 }));
+      } catch (e) {
+        res.writeHead(500, {'content-type':'application/json'});
+        res.end(JSON.stringify({ ok:false, error: String(e && e.message || e) }));
+      }
+    });
   }
   if (req.method !== 'POST' || req.url !== '/v1/chat/completions') {
     res.writeHead(404, {'content-type':'application/json'});
