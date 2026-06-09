@@ -391,7 +391,11 @@ function saveState(){try{localStorage.setItem('nvtc_state',JSON.stringify({rows,
   api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
 function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc_state'));if(!s)return;
   if(s.rows)rows=s.rows;
-  if(s.api){apiProvider.value=s.api.p||'openai';apiBase.value=s.api.b||apiBase.value;apiKey.value='';apiModel.value=s.api.m||apiModel.value;}
+  // Luôn dùng 9Router BĐS local proxy. Không restore API cũ từ localStorage để tránh cache làm nút AI không chạy.
+  apiProvider.value='openai';
+  apiBase.value='http://10.101.12.174:8787';
+  apiKey.value='';
+  apiModel.value='APIBDS';
   setTimeout(()=>{document.getElementById('seg').value=s.seg??1;document.getElementById('vt').value=s.vt??1;
     document.getElementById('far100').value=s.far??0;document.getElementById('target').value=s.target??'ODT';
     if(s.farRatio)document.getElementById('farRatio').value=s.farRatio;
@@ -474,7 +478,10 @@ function applyAI(d){
 
 // ===================== KHỞI TẠO =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-initSeg();renderRows();loadState();calc();
+initSeg();renderRows();loadState();
+// Force lại cấu hình proxy sau khi loadState để tránh trình duyệt giữ cache cấu hình cũ.
+apiProvider.value='openai'; apiBase.value='http://10.101.12.174:8787'; apiKey.value=''; apiModel.value='APIBDS';
+calc();
 ['seg','vt','far100','target','farRatio','kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
 </script>
 </body>
