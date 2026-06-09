@@ -68,7 +68,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
       </div>
       <label>Tọa độ (lat, lng)</label>
       <input id="aiCoord" value="10.727914, 106.742532" placeholder="vd: 10.727914, 106.742532">
-      <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">⚡ Phân tích & tự điền thông số</button>
+      <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">⚡ Phân tích tọa độ & tự điền thông số</button>
       <div class="status" id="aiStatus"></div>
     </div>
     <div>
@@ -80,14 +80,14 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
           <option value="anthropic">Anthropic (Claude) — Messages API</option>
         </select>
         <label>API Base URL</label>
-        <input id="apiBase" value="http://127.0.0.1:8787" placeholder="http://127.0.0.1:8787">
+        <input id="apiBase" value="http://10.101.12.174:8787" placeholder="http://10.101.12.174:8787">
         <label>API Key <span class="muted">(lưu cục bộ trên máy bạn)</span></label>
         <input id="apiKey" type="password" placeholder="Để trống khi dùng 9Router local proxy; proxy tự đọc key BĐS trong máy">
         <label>Model</label>
         <input id="apiModel" value="APIBDS" placeholder="APIBDS / APIFREE / model khác trong 9Router">
-        <small class="src">Khuyến nghị: chạy <code>node nvtc_9router_proxy.js</code>, app gọi <code>http://127.0.0.1:8787/v1/chat/completions</code>. API key BĐS nằm ở file private/proxy, không nhúng vào HTML.</small>
+        <small class="src">Khuyến nghị: chạy <code>node nvtc_9router_proxy.js</code>, app gọi proxy LAN <code>http://10.101.12.174:8787/v1/chat/completions</code>. API key BĐS nằm ở file private/proxy, không nhúng vào HTML.</small>
       </details>
-      <div class="note" style="margin-top:10px">AI sẽ đọc bản vẽ để trích: <b>phường, tên đường giáp ranh, diện tích công nhận, bảng diện tích theo loại đất</b>; và dựa trên <b>tọa độ + các đường cắt</b> để suy ra <b>đoạn đường</b>. Kết quả tự điền vào form bên dưới — bạn kiểm tra lại trước khi dùng.</div>
+      <div class="note" style="margin-top:10px">Bản vẽ là <b>tuỳ chọn</b>. Nếu không upload, AI vẫn dùng <b>tọa độ + dữ liệu mặc định</b> để suy ra đường/đoạn và tính NVTC. Nếu có bản vẽ, AI sẽ đọc thêm để trích phường, tên đường giáp ranh, diện tích công nhận và bảng diện tích theo loại đất. Kết quả tự điền vào form bên dưới — bạn kiểm tra lại trước khi dùng.</div>
     </div>
   </div>
 </div>
@@ -331,7 +331,7 @@ async function pdfFirstPageB64(f){
 }
 function setStatus(msg,cls){const s=document.getElementById('aiStatus');s.className='status show '+cls;s.innerHTML=msg;}
 
-const AI_PROMPT=`Bạn là chuyên gia thẩm định đất tại TP.HCM. Phân tích bản đồ HIỆN TRẠNG VỊ TRÍ đính kèm và tọa độ được cung cấp.
+const AI_PROMPT=`Bạn là chuyên gia thẩm định đất tại TP.HCM. Phân tích tọa độ được cung cấp. Nếu có bản đồ/bản vẽ hiện trạng đính kèm thì đọc thêm bản vẽ; nếu không có bản vẽ thì dùng dữ liệu mặc định hiện có và chỉ suy luận đường/đoạn từ tọa độ.
 Trả về DUY NHẤT một JSON (không kèm văn bản khác) theo schema:
 {"phuong":"", "duong":"", "doan":1, "lyDoDoan":"", "dienTichCongNhan":0,
  "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}
@@ -341,7 +341,7 @@ Suy ra "doan" dựa trên tọa độ và các đường cắt gần thửa đ�
 
 async function runAI(){
   const key=document.getElementById('apiKey').value.trim();
-  if(!aiBase64){setStatus('⚠️ Hãy chọn tệp bản vẽ trước.','err');return;}
+  // Bản vẽ là tùy chọn: nếu không có file, chỉ gửi tọa độ + prompt text cho AI.
   if(!key && prov==='anthropic'){setStatus('⚠️ Chưa có API key Anthropic. Với 9Router local proxy thì để trống key được.','err');return;}
   const coord=document.getElementById('aiCoord').value;
   const prov=document.getElementById('apiProvider').value;
@@ -353,20 +353,22 @@ async function runAI(){
   try{
     let txt;
     if(prov==='anthropic'){
+      const content = aiBase64
+        ? [{type:'image',source:{type:'base64',media_type:aiMime,data:aiBase64}}, {type:'text',text:userText}]
+        : [{type:'text',text:userText}];
       const res=await fetch(base+'/v1/messages',{method:'POST',headers:{
         'content-type':'application/json','x-api-key':key,
         'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content:[
-          {type:'image',source:{type:'base64',media_type:aiMime,data:aiBase64}},
-          {type:'text',text:userText}]}]})});
+        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content}]})});
       const j=await res.json(); if(!res.ok)throw new Error(JSON.stringify(j));
       txt=j.content.map(c=>c.text||'').join('');
     }else{
+      const content = aiBase64
+        ? [{type:'text',text:userText}, {type:'image_url',image_url:{url:`data:${aiMime};base64,${aiBase64}`}}]
+        : userText;
       const res=await fetch(base+'/v1/chat/completions',{method:'POST',headers:{
         'content-type':'application/json','authorization':'Bearer '+key},
-        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content:[
-          {type:'text',text:userText},
-          {type:'image_url',image_url:{url:`data:${aiMime};base64,${aiBase64}`}}]}]})});
+        body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content}]})});
       const j=await res.json(); if(!res.ok)throw new Error(JSON.stringify(j));
       txt=j.choices[0].message.content;
     }

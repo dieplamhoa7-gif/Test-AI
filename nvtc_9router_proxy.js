@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`NVTC 9Router proxy listening on http://127.0.0.1:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`NVTC 9Router proxy listening on http://0.0.0.0:${PORT}`);
   console.log(`Forwarding to ${LOCAL_9ROUTER_BASE} with model ${FALLBACK_MODEL}`);
 });
