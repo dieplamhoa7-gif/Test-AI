@@ -125,6 +125,50 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
         </select>
       </div>
     </div>
+    <div class="row">
+      <div>
+        <label>HS SDĐ / FAR</label>
+        <input id="farRatio" type="number" step="0.1" value="7.5" onchange="calc()" oninput="calc()">
+      </div>
+      <div>
+        <label>Hệ số quy hoạch KQH</label>
+        <input id="kqhView" readonly>
+      </div>
+    </div>
+    <details class="collapse" open>
+      <summary>➕ Hệ số bổ sung theo 2 ảnh mới</summary>
+      <div class="row">
+        <div>
+          <label>Gần tiện ích ≤500m</label>
+          <select id="kAmenity" onchange="calc()"><option value="1">Không / chưa áp</option><option value="1.05">Có ×1,05</option></select>
+        </div>
+        <div>
+          <label>Gần khu ô nhiễm/rác ≤1km</label>
+          <select id="kPollution" onchange="calc()"><option value="1">Không / chưa áp</option><option value="0.95">Có ×0,95</option></select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Quy mô thửa/khu đất nếu không thuộc dự án đồng bộ</label>
+          <select id="kAreaMode" onchange="calc()"><option value="1">Không áp / dự án đồng bộ</option><option value="auto">Tự theo tổng DT</option><option value="0.95">500–&lt;1.000m² ×0,95</option><option value="0.90">≥1.000m² ×0,90</option></select>
+        </div>
+        <div>
+          <label>Đường/hẻm đâm thẳng</label>
+          <select id="kDeadEnd" onchange="calc()"><option value="1">Không / chưa áp</option><option value="0.95">Có ×0,95</option></select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Gần nghĩa trang/chùa/miếu ≤1km</label>
+          <select id="kTemple" onchange="calc()"><option value="1">Không / chưa áp</option><option value="0.95">Có ×0,95</option></select>
+        </div>
+        <div>
+          <label>Đất NN tiếp giáp đường chưa có tên trong bảng giá</label>
+          <select id="kAgriRoad" onchange="calc()"><option value="1">Không / chưa áp</option><option value="1.10">Có ×1,10</option></select>
+        </div>
+      </div>
+      <div class="muted">KQH: FAR &lt;4 → 1,00; 4–&lt;5 → 1,10; 5–&lt;6 → 1,20; 6–&lt;7 → 1,30; mỗi 1 FAR tăng thêm +0,10. Các hệ số khác nhân nối tiếp vào đơn giá.</div>
+    </details>
     <label style="margin-top:14px">Diện tích theo nguồn gốc đất (bản vẽ hiện trạng)</label>
     <table id="srcTbl">
       <thead><tr><th class="l">Nguồn gốc / thửa</th><th>Loại đất</th><th>Diện tích (m²)</th><th></th></tr></thead>
@@ -138,7 +182,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
   <div class="card">
     <h2>② Đơn giá vốn của đất <span class="tag" id="ctx"></span></h2>
     <table id="unitTbl">
-      <thead><tr><th class="l">Loại đất</th><th>Bảng giá<br>(ngđ/m²)</th><th>Hệ số K</th><th>Đơn giá vốn<br>(ngđ/m²)</th></tr></thead>
+      <thead><tr><th class="l">Loại đất</th><th>Bảng giá<br>(ngđ/m²)</th><th>K gốc</th><th>K bổ sung</th><th>Đơn giá vốn<br>(ngđ/m²)</th></tr></thead>
       <tbody></tbody>
     </table>
     <div class="kpi" style="margin-top:14px">
@@ -167,7 +211,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 <div class="card">
   <h2>④ Bảng độ nhạy — Đơn giá vốn đất ở (ngđ/m²)</h2>
   <table id="sensTbl"><thead><tr><th class="l">Đoạn \ Vị trí</th><th>VT1</th><th>VT2</th><th>VT3</th><th>VT4</th></tr></thead><tbody></tbody></table>
-  <div class="muted" style="margin-top:6px">Đơn giá vốn = Bảng giá VT1 × hệ số vị trí giá × K (K×1,35 nếu VT≥2).</div>
+  <div class="muted" style="margin-top:6px">Đơn giá vốn = Bảng giá VT1 × hệ số vị trí giá × K gốc × K bổ sung. K bổ sung gồm KQH theo FAR và các hệ số yếu tố khác nếu chọn áp dụng.</div>
 </div>
 
 <!-- SOURCES -->
@@ -219,17 +263,52 @@ function vt(){return +document.getElementById('vt').value;}
 function vtIdx(){return Math.min(vt(),3)-1;}          // đất NN chỉ có 3 vị trí
 function hsGia(){return VTGIA[vt()-1]*(1-0.1*+document.getElementById('far100').value);}
 function kMult(){return vt()===1?1:1.35;}
+function totalArea(){return rows.reduce((a,r)=>a+(parseFloat(r.dt)||0),0);}
+function farRatio(){return parseFloat(document.getElementById('farRatio')?.value)||0;}
+function kQH(){
+  const f=farRatio();
+  if(f<4)return 1;
+  return 1+0.1*Math.floor(f-3);
+}
+function kAreaOther(){
+  const v=document.getElementById('kAreaMode')?.value||'1';
+  if(v==='auto'){
+    const a=totalArea();
+    if(a>=1000)return 0.90;
+    if(a>=500)return 0.95;
+    return 1;
+  }
+  return parseFloat(v)||1;
+}
+function kOtherFor(loai){
+  const isAgri=(loai==='LUA'||loai==='CLN');
+  if(isAgri) return parseFloat(document.getElementById('kAgriRoad')?.value||1)||1;
+  return kQH()
+    *(parseFloat(document.getElementById('kAmenity')?.value||1)||1)
+    *(parseFloat(document.getElementById('kPollution')?.value||1)||1)
+    *kAreaOther()
+    *(parseFloat(document.getElementById('kDeadEnd')?.value||1)||1)
+    *(parseFloat(document.getElementById('kTemple')?.value||1)||1);
+}
+function baseK(loai){
+  const s=seg();
+  if(loai==='ODT')return s.kO*kMult();
+  if(loai==='TMDV')return s.kTMDV*kMult();
+  if(loai==='CDK'||loai==='SXKD')return s.kSXKD*kMult();
+  if(loai==='LUA'||loai==='CLN')return s.kNN;
+  return 0;
+}
 
 // đơn giá vốn (ngđ/m²) theo loại đất
 function donGiaVon(loai){
   const s=seg();
   switch(loai){
-    case 'ODT': return s.datO*hsGia()*s.kO*kMult();
-    case 'TMDV':return s.tmdv*hsGia()*s.kTMDV*kMult();
+    case 'ODT': return s.datO*hsGia()*s.kO*kMult()*kOtherFor(loai);
+    case 'TMDV':return s.tmdv*hsGia()*s.kTMDV*kMult()*kOtherFor(loai);
     case 'CDK':
-    case 'SXKD':return s.sxkd*hsGia()*s.kSXKD*kMult();
-    case 'LUA': return AGRI.hangNam[vtIdx()]*s.kNN;
-    case 'CLN': return AGRI.lauNam[vtIdx()]*s.kNN;
+    case 'SXKD':return s.sxkd*hsGia()*s.kSXKD*kMult()*kOtherFor(loai);
+    case 'LUA': return AGRI.hangNam[vtIdx()]*s.kNN*kOtherFor(loai);
+    case 'CLN': return AGRI.lauNam[vtIdx()]*s.kNN*kOtherFor(loai);
     default: return 0;
   }
 }
@@ -262,6 +341,7 @@ function addRow(){rows.push({ten:"Dòng mới",loai:"LUA",dt:0});renderRows();ca
 
 function calc(){
   const tgt=document.getElementById('target').value;
+  document.getElementById('kqhView').value=fmt(kQH(),2);
   const giaMoi=donGiaVon(tgt);
   document.getElementById('ctx').textContent=`${seg().name.split(':')[0]} · Vị trí ${vt()}`;
   // unit price table
@@ -270,7 +350,8 @@ function calc(){
   ut.innerHTML=showLoai.map(k=>`<tr>
      <td class="l">${LOAI[k]}${k===tgt?' <span class="tag">mục đích mới</span>':''}</td>
      <td>${fmt(bangGia(k))}</td>
-     <td>${fmt(k==='LUA'||k==='CLN'?seg().kNN:(k==='ODT'?seg().kO:(k==='TMDV'?seg().kTMDV:seg().kSXKD))*kMult(),2)}</td>
+     <td>${fmt(baseK(k),2)}</td>
+     <td>${fmt(kOtherFor(k),3)}</td>
      <td><b>${fmt(donGiaVon(k))}</b></td></tr>`).join('');
   // breakdown
   let gross=0,ded=0,nvtc=0,area=0;
@@ -294,7 +375,7 @@ function calc(){
 function renderSens(){
   const sb=document.querySelector('#sensTbl tbody');
   sb.innerHTML=DAOTRI.map(d=>{
-    const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1];const km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km)}</td>`}).join('');
+    const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1];const km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km*kOtherFor('ODT'))}</td>`}).join('');
     return `<tr><td class="l">${d.name.split(':')[0]}</td>${cells}</tr>`;
   }).join('');
 }
@@ -303,12 +384,19 @@ function renderSens(){
 function saveState(){try{localStorage.setItem('nvtc_state',JSON.stringify({rows,
   seg:document.getElementById('seg').value,vt:document.getElementById('vt').value,
   far:document.getElementById('far100').value,target:document.getElementById('target').value,
+  farRatio:document.getElementById('farRatio').value,
+  kAmenity:document.getElementById('kAmenity').value,kPollution:document.getElementById('kPollution').value,
+  kAreaMode:document.getElementById('kAreaMode').value,kDeadEnd:document.getElementById('kDeadEnd').value,
+  kTemple:document.getElementById('kTemple').value,kAgriRoad:document.getElementById('kAgriRoad').value,
   api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
 function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc_state'));if(!s)return;
   if(s.rows)rows=s.rows;
   if(s.api){apiProvider.value=s.api.p||'openai';apiBase.value=s.api.b||apiBase.value;apiKey.value='';apiModel.value=s.api.m||apiModel.value;}
   setTimeout(()=>{document.getElementById('seg').value=s.seg??1;document.getElementById('vt').value=s.vt??1;
-    document.getElementById('far100').value=s.far??0;document.getElementById('target').value=s.target??'ODT';calc();},0);
+    document.getElementById('far100').value=s.far??0;document.getElementById('target').value=s.target??'ODT';
+    if(s.farRatio)document.getElementById('farRatio').value=s.farRatio;
+    ['kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>{if(s[id]!=null)document.getElementById(id).value=s[id];});
+    calc();},0);
 }catch(e){}}
 
 // ===================== AI =====================
@@ -387,7 +475,7 @@ function applyAI(d){
 // ===================== KHỞI TẠO =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 initSeg();renderRows();loadState();calc();
-['seg','vt','far100','target'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
+['seg','vt','far100','target','farRatio','kAmenity','kPollution','kAreaMode','kDeadEnd','kTemple','kAgriRoad'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
 </script>
 </body>
 </html>
