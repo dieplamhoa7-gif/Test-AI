@@ -201,8 +201,8 @@ let roadFilter="";
 const $=id=>document.getElementById(id);
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
-function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:0;}
-function seg(){return SEGMENTS[selIdx()]||{datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
+function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
+function seg(){return SEGMENTS[selIdx()]||{duong:roadFilter||'(ch?a c? data NQ87/K1)',doan:'Ch?a c? trong PDF NQ87/K1',datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
 function vt(){return +$('vt').value;}
 function vtIdx(){return Math.min(vt(),3)-1;}
 function hsGia(){return VTGIA[vt()-1]*(1-0.1*+$('far100').value);}
@@ -230,7 +230,11 @@ function isNN(l){return l==='LUA'||l==='CLN';}
 function initSeg(keep){const cur=keep?$('seg').value:null;
   const nf=norm(roadFilter);
   const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>!nf||norm(x.s.duong)===nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong)));
-  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('') || SEGMENTS.map((s,i)=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('');
+  if(nf && !list.length){
+    $('seg').innerHTML=`<option value="-1">Ch?a c? data PDF NQ87/K1 cho ???ng: ${roadFilter}</option>`;
+    return;
+  }
+  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('');
   if(cur!=null && [...$('seg').options].some(o=>o.value==cur)) $('seg').value=cur;
   else if(list.length) $('seg').value=list[0].i;
   else $('seg').value=0;
@@ -250,7 +254,7 @@ function renderSeg(){const sel=selIdx();
     <td class="l"><input class="txt" value="${s.duong}" onchange="SEGMENTS[${i}].duong=this.value;initSeg(true);renderSens()"></td>
     <td class="l"><input class="txt" value="${s.doan}" onchange="SEGMENTS[${i}].doan=this.value;initSeg(true);renderSens()"></td>
     ${['datO','tmdv','sxkd','kO','kTMDV','kSXKD','kNN'].map(f=>`<td><input type="number" step="${f[0]==='k'?0.01:100}" value="${s[f]}" onchange="SEGMENTS[${i}].${f}=parseFloat(this.value)||0;calc()"></td>`).join('')}
-    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">?</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Ch?a c? data ??n gi? cho ???ng: <b>${roadFilter}</b>. H?y ki?m tra l?i t?a ??/t?n ???ng ho?c nh?p tay source ch?nh th?c.</td></tr>`;
+    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">?</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Ch?a c? data ??n gi? PDF NQ87/K1 cho ???ng: <b>${roadFilter}</b>. Kh?ng d?ng ?o?n/??n gi? do AI search. H?y ki?m tra l?i t?a ??/t?n ???ng ho?c nh?p tay source ch?nh th?c.</td></tr>`;
 }
 function renderAgri(){const i=selIdx(),s=seg();
   $('agriTitle').textContent=`Bảng giá đất nông nghiệp — ${s.duong||''} ${s.doan?'('+s.doan+')':''} (ngđ/m² theo vị trí):`;
@@ -346,7 +350,7 @@ function applyK1Lookup(j){
   for(const a of altRecs) upsertK1Segment(a);
   initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
   const related=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong));
-  setStatus(`? ?? link ??n gi? b?ng rule bot quy ho?ch/K1.<br>???ng theo t?a ??: <b>${rec.duong}</b><br>?o?n ?ang ch?n: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? ?? tin c?y: <b>${rec.confidence||'medium'}</b><br>??n gi? ??t ?: <b>${fmt(rec.datO)}</b> ? TMDV: <b>${fmt(rec.tmdv)}</b> ? SXKD: <b>${fmt(rec.sxkd)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">Dropdown ????ng/?o?n ?p gi?? ch? ?ang l?c c?c ?o?n c?a ???ng <b>${rec.duong}</b> theo t?a ?? m?i. N?u ?o?n ch?a ??ng, anh ch?n l?i trong dropdown; kh?ng t? x? d? li?u ???ng kh?c.</span>`,'ok');
+  setStatus(`? ?? l?y ???ng/?o?n/??n gi? t? PDF NQ87/K1.<br>???ng theo t?a ??: <b>${rec.duong}</b><br>?o?n ?p gi?: <b>${rec.doan}</b><br>Trang ngu?n: <b>${rec.page||'?'}</b> ? ?? tin c?y: <b>${rec.confidence||'medium'}</b><br>??t ?: <b>${fmt(rec.datO)}</b> ? TMDV: <b>${fmt(rec.tmdv)}</b> ? SXKD: <b>${fmt(rec.sxkd)}</b> ? K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">AI/search kh?ng ???c ghi ?? ???ng, ?o?n, ??n gi? ho?c K. N?u ?o?n ch?a ??ng, ch?n l?i trong dropdown c?c ?o?n t? PDF NQ87/K1.</span>`,'ok');
   saveState();
 }
 
@@ -389,28 +393,17 @@ async function runAI(){
 }
 
 function applyAI(d){
+  // AI ch? ???c h? tr? nh?n di?n v? tr?/di?n t?ch. AI KH?NG ???c t?o ho?c ghi ?? ???ng/?o?n/??n gi?/K.
   const aiRoad=d.duong||'';
   const aiSeg=d.doan||'';
-  roadFilter=aiRoad;
-  const sameRoad=SEGMENTS.map((s,i)=>({s,i})).filter(x=>norm(x.s.duong)===norm(aiRoad));
-  let i=-1;
-  if(sameRoad.length){
-    const exact=sameRoad.find(x=>norm(x.s.doan)===norm(aiSeg));
-    i=exact?.i ?? sameRoad[0].i;
-  } else {
-    SEGMENTS.push({duong:aiRoad||'(AI ch?a x?c ??nh)',doan:aiSeg||'Ch?a c? trong data local',datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]});
-    i=SEGMENTS.length-1;
-  }
   if([1,2,3,4].includes(+d.viTri)) $('vt').value=+d.viTri;
   if(Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0)){
     rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
   }
-  initSeg();$('seg').value=i;renderSeg();renderAgri();renderRows();calc();
-  const selected=seg();
-  const related=SEGMENTS.filter(s=>norm(s.duong)===norm(aiRoad)).length;
-  const hasSource=!!(selected.datO||selected.tmdv||selected.sxkd);
-  setStatus(`${hasSource?'?':'??'} AI x?c ??nh ???ng <b>${aiRoad||'?'}</b> ? ?o?n <b>${aiSeg||selected.doan||'?'}</b> ? v? tr? <b>${$('vt').value}</b>.<br>M?c ? ?ang l?c <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y.<br>Source ??n gi?/K: <b>${hasSource?'C? DATA LOCAL':'CH?A C? - KH?NG T?NH B?A'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">S? ??n gi?/K ch? l?y t? data local/K1; AI kh?ng ???c ghi s? v?o b?ng.</span>`, hasSource?'ok':'err');
+  renderRows();calc();saveState();
+  setStatus(`?? AI g?i ? ???ng <b>${aiRoad||'?'}</b> ? ?o?n <b>${aiSeg||'?'}</b>, nh?ng app KH?NG d?ng k?t qu? AI search ?? ?p gi?.<br>???ng/?o?n/??n gi?/K ph?i l?y t? PDF NQ87/K1. N?u K1 lookup ch?a match, b?ng gi? s? gi? nguy?n ho?c b?o thi?u data; anh ch?n tay t? source ch?nh th?c.`, 'err');
 }
+
 
 function resetAll(){
   if(!confirm("X?a to?n b? d? li?u m?u (???ng/?o?n + di?n t?ch) v? b?t ??u tr?ng?"))return;
