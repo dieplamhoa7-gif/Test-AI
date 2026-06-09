@@ -295,15 +295,12 @@ async function pdfFirstPageB64(f){const buf=await f.arrayBuffer();const pdf=awai
   const p=await pdf.getPage(1);const vp=p.getViewport({scale:2});const cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;
   await p.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;return cv.toDataURL('image/png').split(',')[1];}
 function setStatus(m,c){const s=$('aiStatus');s.className='status show '+c;s.innerHTML=m;}
-const AI_PROMPT=`Bạn là chuyên gia thẩm định đất TP.HCM, nắm Bảng giá đất NQ 87/2025/NQ-HĐND và Hệ số điều chỉnh (Tờ trình 16378/TTr-SNNMT, áp dụng 01/07/2026).
-Dựa trên TỌA ĐỘ (và bản vẽ hiện trạng nếu có), xác định thửa đất nằm ở ĐƯỜNG nào, ĐOẠN nào, KHU VỰC mấy; rồi tra cứu và trả về bảng giá đất + hệ số K tương ứng.
-Trả về DUY NHẤT một JSON theo schema (đơn giá: nghìn đồng/m²):
-{"duong":"","doan":"","khuVuc":"","lyDo":"",
- "giaDat":{"datO":0,"tmdv":0,"sxkd":0},
- "heSoThiTruong":{"kO":0,"kTMDV":0,"kSXKD":0,"kNN":0},
- "giaDatNN":{"hangNam":[0,0,0],"lauNam":[0,0,0]},
- "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}
-giaDat/giaDatNN = đơn giá theo bảng giá đất tại VỊ TRÍ 1 (riêng giaDatNN theo [VT1,VT2,VT3]). heSoThiTruong = hệ số K điều chỉnh mức biến động thị trường của VT1 (Phụ lục I). Nếu không chắc, điền số ước tính và nêu rõ trong "lyDo". items = bảng diện tích theo loại đất trên bản vẽ.`;
+const AI_PROMPT=`B?n l? chuy?n gia th?m ??nh ??t TP.HCM.
+Nhi?m v? CH? l? x?c ??nh t? T?A ??/b?n v?: t?n ???ng, ?o?n ???ng, v? tr? 1/2/3/4, v? di?n t?ch theo lo?i ??t n?u c? b?n v?.
+TUY?T ??I KH?NG t? b?a ho?c t? tra s? ??n gi?/K. App s? t? l?y s? t? DATA LOCAL ?? ki?m ch?ng.
+Data local hi?n c?: ??o Tr? (3 ?o?n), G? ? M?i (tr?n ???ng). N?u t?a ?? thu?c ???ng kh?c, tr? ??ng t?n ???ng v? coDataLocal=false.
+Tr? v? DUY NH?T m?t JSON:
+{"duong":"", "doan":"", "viTri":1, "coDataLocal":true, "lyDo":"", "items":[{"ten":"","loai":"LUA|CLN|ODT|CDK|TMDV|NONE","dt":0}]}`;
 async function runAI(){
   const key=$('apiKey').value.trim();
   const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;
@@ -327,28 +324,28 @@ async function runAI(){
   $('aiRun').disabled=false;
 }
 function applyAI(d){
-  const g=d.giaDat||{},k=d.heSoThiTruong||{},nn=d.giaDatNN||{};
-  const arr3=a=>(Array.isArray(a)&&a.length>=3)?a.slice(0,3).map(Number):[0,0,0];
-  const rec={duong:d.duong||'(AI)',doan:d.doan||(d.khuVuc?('KV '+d.khuVuc):'Tr?n ???ng'),
-    datO:+g.datO||0,tmdv:+g.tmdv||0,sxkd:+g.sxkd||0,
-    kO:+k.kO||1,kTMDV:+k.kTMDV||1,kSXKD:+k.kSXKD||1,kNN:+k.kNN||1,
-    hnam:arr3(nn.hangNam),lnam:arr3(nn.lauNam)};
-  roadFilter=rec.duong||'';
-  // Khi AI x?c ??nh t?n ???ng, m?c ? ch? x? c?c ?o?n li?n quan ??n ???ng ??.
-  // N?u app ?? c? nhi?u ?o?n c?ng t?n ???ng (vd ??o Tr?), gi? to?n b? ?? anh ch?n/??i chi?u.
-  const sameRoad=SEGMENTS.map((s,i)=>({s,i})).filter(x=>norm(x.s.duong)===norm(rec.duong));
+  const aiRoad=d.duong||'';
+  const aiSeg=d.doan||'';
+  roadFilter=aiRoad;
+  const sameRoad=SEGMENTS.map((s,i)=>({s,i})).filter(x=>norm(x.s.duong)===norm(aiRoad));
   let i=-1;
   if(sameRoad.length){
-    i=sameRoad.find(x=>norm(x.s.doan)===norm(rec.doan))?.i ?? sameRoad[0].i;
-    // N?u AI tr? ?? s? li?u v? c? ??ng ?o?n th? c?p nh?t ?o?n ??; kh?ng xo? c?c ?o?n kh?c c?ng ???ng.
-    if((rec.datO||rec.tmdv||rec.sxkd) && norm(SEGMENTS[i].doan)===norm(rec.doan)) SEGMENTS[i]=rec;
-  }else{
-    SEGMENTS.push(rec); i=SEGMENTS.length-1;
+    const exact=sameRoad.find(x=>norm(x.s.doan)===norm(aiSeg));
+    i=exact?.i ?? sameRoad[0].i;
+  } else {
+    // Kh?ng l?y s? t? AI cho ???ng ch?a c? data local; t?o placeholder 0 ?? b?o thi?u ngu?n.
+    SEGMENTS.push({duong:aiRoad||'(AI ch?a x?c ??nh)',doan:aiSeg||'Ch?a c? trong data local',datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]});
+    i=SEGMENTS.length-1;
   }
-  if(Array.isArray(d.items)&&d.items.length){rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));}
+  if([1,2,3,4].includes(+d.viTri)) $('vt').value=+d.viTri;
+  if(Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0)){
+    rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
+  }
   initSeg();$('seg').value=i;renderSeg();renderAgri();renderRows();calc();
-  const related=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong)).length;
-  setStatus(`? AI x?c ??nh ???ng <b>${rec.duong}</b>${d.khuVuc?' ? Khu v?c '+d.khuVuc:''}.<br>M?c ? ?ang x? <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y. ?o?n ?ang ch?n: <b>${seg().doan}</b>.<br>Data ??n gi?: <b>${(seg().datO||seg().tmdv||seg().sxkd)?'C?':'CH?A C?'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">Anh c? th? ch?n ?o?n kh?c c?ng ???ng trong m?c ? ho?c ch?nh chi ti?t ? m?c ?.</span>`,'ok');
+  const selected=seg();
+  const related=SEGMENTS.filter(s=>norm(s.duong)===norm(aiRoad)).length;
+  const hasSource=!!(selected.datO||selected.tmdv||selected.sxkd);
+  setStatus(`${hasSource?'?':'??'} AI x?c ??nh ???ng <b>${aiRoad||'?'}</b> ? ?o?n <b>${aiSeg||selected.doan||'?'}</b> ? v? tr? <b>${$('vt').value}</b>.<br>M?c ? ?ang x? <b>${related}</b> ?o?n li?n quan ??n t?n ???ng n?y.<br>Source ??n gi?/K: <b>${hasSource?'C? DATA LOCAL ?? NH?NG':'CH?A C? - KH?NG T?NH B?A'}</b>.${d.lyDo?'<br>L? do: '+d.lyDo:''}<br><span class="muted">S? ??n gi?/K ch? l?y t? data local, AI kh?ng ???c ghi s? v?o b?ng.</span>`, hasSource?'ok':'err');
 }
 
 function resetAll(){
