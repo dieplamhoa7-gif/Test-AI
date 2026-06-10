@@ -133,9 +133,34 @@ async function readGulandPopupText(lat, lon) {
 }
 
 async function readQhVietPopupText(lat, lon) {
-  const url = `https://qhviet.com/`; // minimal fallback only
-  const text = await readVisibleText(url, false);
-  return summarizeText(text, 'QH Việt browser');
+  const url = `https://qhviet.com/`;
+  const tab = await openTab(url);
+  if (!tab.webSocketDebuggerUrl) throw new Error('Không có browser websocket');
+  const cdp = await connectWs(tab.webSocketDebuggerUrl);
+  try {
+    await cdp.send('Page.enable');
+    await cdp.send('Runtime.enable');
+    await cdp.send('Page.navigate', { url });
+    await wait(8000);
+    const expr = `async () => {
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      const app = document.querySelector('#app') && document.querySelector('#app').__vue__;
+      const picker = app && app.$refs && app.$refs.checkparcel;
+      if (picker) {
+        try { picker.activeTab = 3; } catch(e) {}
+        try { picker.gpoint = '${lat}, ${lon}'; } catch(e) {}
+        try { if (typeof picker.gapply === 'function') await picker.gapply(); } catch(e) { return 'QH Việt gapply error: '+(e.message||e); }
+        await sleep(7000);
+      }
+      return (document.body && document.body.innerText ? document.body.innerText : '').slice(0, 12000);
+    }`;
+    const res = await cdp.send('Runtime.evaluate', { expression: `(${expr})()`, awaitPromise: true, returnByValue: true });
+    const text = String(res.result?.value || '');
+    return summarizeText(text, 'QH Việt browser');
+  } finally {
+    cdp.close();
+    await closeTab(tab.id).catch(() => null);
+  }
 }
 
 module.exports = { readGulandPopupText, readQhVietPopupText };

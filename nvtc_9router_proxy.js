@@ -10,8 +10,11 @@ const LOCAL_9ROUTER_BASE = process.env.NINEROUTER_BASE_URL || 'http://localhost:
 const FALLBACK_MODEL = process.env.NINEROUTER_BDS_MODEL || process.env.NINEROUTER_MODEL || 'APIBDS';
 const PRIVATE_KEY_FILE = path.join(__dirname, '9router_private_keys', '9router_split_keys_private.txt');
 let lookupHcmPlanning = null, summarize = null, lookupK1LandFee = null;
+let readQhVietPopupText = null, parseQhVietPopupText = null;
 try { ({ lookupHcmPlanning, summarize } = require('./bds_planning_checker')); } catch (_) {}
 try { ({ lookupK1LandFee } = require('./k1_land_fee_lookup')); } catch (_) {}
+try { ({ readQhVietPopupText } = require('./planning_browser_popups')); } catch (_) {}
+try { ({ parseQhVietPopupText } = require('./qhviet_popup_parser')); } catch (_) {}
 
 function readBdsKey() {
   const envKey = process.env.BDS_9ROUTER_API_KEY || process.env.NINEROUTER_API_KEY || process.env.OPENAI_API_KEY;
@@ -49,8 +52,22 @@ const server = http.createServer(async (req, res) => {
         const sum = summarize(raw);
         const geo = sum.location || {};
         if (req.url === '/planning/lookup') {
+          let qhviet = null;
+          if (payload.includeQhViet !== false && readQhVietPopupText && parseQhVietPopupText) {
+            try {
+              const got = await Promise.race([
+                readQhVietPopupText(lat, lon),
+                new Promise((_, rej) => setTimeout(() => rej(new Error('QH Việt timeout')), 35000)),
+              ]);
+              const parsed = parseQhVietPopupText(got?.text || '');
+              const hasParsed = !!(parsed?.parcel?.map_sheet || parsed?.parcel?.land_code || (parsed?.planning || []).length);
+              qhviet = { ok: !got?.degraded && hasParsed, text: got?.text || '', parsed, degraded: !hasParsed };
+            } catch (e) {
+              qhviet = { ok:false, error:String(e && e.message || e) };
+            }
+          }
           res.writeHead(200, {'content-type':'application/json'});
-          return res.end(JSON.stringify({ ok:true, location: geo, planning: sum, raw }));
+          return res.end(JSON.stringify({ ok:true, location: geo, planning: sum, raw, qhviet }));
         }
         if (!lookupK1LandFee) throw new Error('BDS K1 modules are not available');
         const landUse = payload.landUse || 'ODT';
