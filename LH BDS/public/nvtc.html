@@ -242,7 +242,7 @@ function initSeg(keep){const cur=keep?$('seg').value:null;
     $('seg').innerHTML=`<option value="-1">Chưa có data PDF NQ87/K1 cho đường: ${roadFilter}</option>`;
     return;
   }
-  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.duong} - ${s.doan}</option>`).join('');
+  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.wardHeader?('['+s.wardHeader+'] '):''}${s.duong} - ${s.doan}</option>`).join('');
   if(cur!=null && [...$('seg').options].some(o=>o.value==cur)) $('seg').value=cur;
   else if(list.length) $('seg').value=list[0].i;
   else $('seg').value=0;
@@ -259,7 +259,7 @@ function renderSeg(){const sel=selIdx();
   const nf=norm(roadFilter), wf=norm(wardFilter);
   const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>(!wf||!x.s.wardHeader||norm(x.s.wardHeader)===wf||norm(x.s.wardHeader).includes(wf)||wf.includes(norm(x.s.wardHeader)))&&(!nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong))));
   $('segTbl').querySelector('tbody').innerHTML=list.map(({s,i})=>`<tr class="${i===sel?'active':''}">
-    <td class="l"><input class="txt" value="${s.duong}" onchange="SEGMENTS[${i}].duong=this.value;initSeg(true);renderSens()"></td>
+    <td class="l"><input class="txt" value="${s.wardHeader?('['+s.wardHeader+'] '):''}${s.duong}" onchange="SEGMENTS[${i}].duong=this.value.replace(/^\[[^\]]+\]\s*/, '');initSeg(true);renderSens()"></td>
     <td class="l"><input class="txt" value="${s.doan}" onchange="SEGMENTS[${i}].doan=this.value;initSeg(true);renderSens()"></td>
     ${['datO','tmdv','sxkd','kO','kTMDV','kSXKD','kNN'].map(f=>`<td><input type="number" step="${f[0]==='k'?0.01:100}" value="${s[f]}" onchange="SEGMENTS[${i}].${f}=parseFloat(this.value)||0;calc()"></td>`).join('')}
     <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">×</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Chưa có data đơn giá PDF NQ87/K1 cho đường: <b>${roadFilter}</b>. Không dùng đoạn/đơn giá do AI search. Hãy kiểm tra lại tọa độ/tên đường hoặc nhập tay từ nguồn chính thức.</td></tr>`;
@@ -291,7 +291,8 @@ function calc(){
 function renderSens(){const nf=norm(roadFilter), wf=norm(wardFilter);const list=SEGMENTS.filter(d=>(!wf||!d.wardHeader||norm(d.wardHeader)===wf||norm(d.wardHeader).includes(wf)||wf.includes(norm(d.wardHeader)))&&(!nf||norm(d.duong)===nf||norm(d.duong).includes(nf)||nf.includes(norm(d.duong))));
   $('sensTbl').querySelector('tbody').innerHTML=list.map(d=>{
     const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1],km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km*KQH()*KytPhiNN())}</td>`}).join('');
-    return `<tr><td class="l">${d.duong} - ${d.doan}</td>${cells}</tr>`;}).join('') || `<tr><td colspan="5" class="l">Chưa có đoạn PDF NQ87/K1 cho đường: <b>${roadFilter||'chưa chọn'}</b></td></tr>`;}
+    return `<tr><td class="l">${d.wardHeader?('['+d.wardHeader+'] '):''}${d.duong} - ${d.doan}</td>${cells}</tr>`;}).join('') || `<tr><td colspan="5" class="l">Chưa có đoạn PDF NQ87/K1 cho đường: <b>${roadFilter||'chưa chọn'}</b></td></tr>`;
+}
 
 // ===================== LƯU =====================
 function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({version:APP_DATA_VERSION,rows,sel:$('seg').value,
@@ -360,7 +361,9 @@ function applyK1Lookup(j){
   const altRecs=(j.k1?.match?.alternatives||[]).map(segmentFromAlt).filter(a=>a.duong&&a.datO&&norm(a.duong)===norm(rec.duong)&&(!wardFilter||!a.wardHeader||norm(a.wardHeader)===norm(wardFilter)));
   for(const a of altRecs) upsertK1Segment(a);
   initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
-  setStatus(`✅ Đã lấy đường/đoạn/đơn giá từ PDF NQ87/K1.<br>Phường/phụ lục: <b>${rec.wardHeader||'?'}</b><br>Đường theo tọa độ: <b>${rec.duong}</b><br>Đoạn áp giá: <b>${rec.doan}</b><br>Trang nguồn: <b>${rec.page||'?'}</b> · độ tin cậy: <b>${rec.confidence||'medium'}</b><br>Đất ở: <b>${fmt(rec.datO)}</b> · TMDV: <b>${fmt(rec.tmdv)}</b> · SXKD: <b>${fmt(rec.sxkd)}</b> · K: <b>${fmt(rec.kO,2)}</b><br><span class="muted">Thứ tự match: phường/phụ lục → đường → đoạn. AI/search không được ghi đè đường, đoạn, đơn giá hoặc K.</span>`,'ok');
+  const sameWardRoad=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong)&&(!wardFilter||!s.wardHeader||norm(s.wardHeader)===norm(wardFilter)));
+  const segList=sameWardRoad.map(s=>`• ${s.doan} — Đất ở ${fmt(s.datO)}, K ${fmt(s.kO,2)}${s.page?(' · trang '+s.page):''}`).join('<br>');
+  setStatus(`✅ Đã lấy đường/đoạn/đơn giá từ PDF NQ87/K1.<br>Phường/phụ lục: <b>${rec.wardHeader||'?'}</b><br>Đường theo tọa độ: <b>${rec.duong}</b><br>Đoạn áp giá: <b>${rec.doan}</b><br>Trang nguồn: <b>${rec.page||'?'}</b> · độ tin cậy: <b>${rec.confidence||'medium'}</b><br>Đất ở: <b>${fmt(rec.datO)}</b> · TMDV: <b>${fmt(rec.tmdv)}</b> · SXKD: <b>${fmt(rec.sxkd)}</b> · K: <b>${fmt(rec.kO,2)}</b><br><br><b>Các đoạn cùng phường + cùng đường để kiểm tra:</b><br>${segList||'Chỉ thấy 1 đoạn trong source K1.'}<br><span class="muted">Thứ tự match: phường/phụ lục → đường → đoạn. Có thể chọn lại đoạn trong dropdown nếu cần kiểm tra.</span>`,'ok');
   saveState();
 }
 
