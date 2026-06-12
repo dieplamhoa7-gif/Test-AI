@@ -18,6 +18,24 @@ try { ({ readQhVietPopupText, readGulandPopupText } = require('./planning_browse
 try { ({ parseQhVietPopupText } = require('./qhviet_popup_parser')); } catch (_) { try { ({ parseQhVietPopupText } = require('../../qhviet_popup_parser')); } catch (__) {} }
 try { ({ parseGulandPopupText } = require('./guland_popup_parser')); } catch (_) { try { ({ parseGulandPopupText } = require('../../guland_popup_parser')); } catch (__) {} }
 
+function findExistingPath(...paths) {
+  for (const p of paths) { try { if (p && fs.existsSync(p)) return p; } catch (_) {} }
+  return paths.find(Boolean) || '';
+}
+
+function k1SourcePage(page) {
+  const n = Number(page || 0);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  const jsonPath = findExistingPath(
+    path.join(__dirname, 'exports', 'k1_pdf_relevant_extract.json'),
+    path.join(__dirname, '..', 'exports', 'k1_pdf_relevant_extract.json'),
+    path.join(__dirname, '..', '..', 'exports', 'k1_pdf_relevant_extract.json')
+  );
+  const rows = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+  const hits = rows.filter(r => Number(r.page) === n || Number(r.pageNo) === n || Number(r.page_index) === n);
+  return { page: n, count: hits.length, rows: hits.slice(0, 25), text: hits.map(r => r.text || r.raw || r.content || '').filter(Boolean).join('\n\n') };
+}
+
 function readBdsKey() {
   const envKey = process.env.BDS_9ROUTER_API_KEY || process.env.NINEROUTER_API_KEY || process.env.OPENAI_API_KEY;
   if (envKey) return envKey.trim();
@@ -72,7 +90,10 @@ function cors(res) {
   res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization');
 }
 
-function findExistingPath(candidates){ return candidates.find(p => { try { return fs.existsSync(p); } catch { return false; } }) || candidates[0]; }
+function findExistingPath(candidates){
+  const list = Array.isArray(candidates) ? candidates : Array.from(arguments);
+  return list.find(p => { try { return p && fs.existsSync(p); } catch { return false; } }) || list[0];
+}
 function pythonExe(){ return process.env.PYTHON || findExistingPath([path.join(process.env.LOCALAPPDATA || '', 'Python', 'bin', 'python.exe'), path.join(process.env.LOCALAPPDATA || '', 'Microsoft', 'WindowsApps', 'py.exe'), 'py']); }
 
 function runBdsWebValuation(payload, timeoutMs = 720000, jobId = '') {
@@ -415,6 +436,18 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && req.url === '/health') {
     res.writeHead(200, {'content-type':'application/json'});
     return res.end(JSON.stringify({ok:true, base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey()}));
+  }
+  if (req.method === 'GET' && req.url.startsWith('/nvtc/k1-source')) {
+    try {
+      const u = new URL(req.url, 'http://localhost');
+      const data = k1SourcePage(u.searchParams.get('page'));
+      if (!data) { res.writeHead(400, {'content-type':'application/json'}); return res.end(JSON.stringify({ok:false,error:'page_required'})); }
+      res.writeHead(200, {'content-type':'application/json'});
+      return res.end(JSON.stringify({ok:true, ...data}));
+    } catch (e) {
+      res.writeHead(500, {'content-type':'application/json'});
+      return res.end(JSON.stringify({ok:false,error:String(e && e.message || e)}));
+    }
   }
   if (req.method === 'POST' && req.url === '/notebooklm/report/start') {
     try {

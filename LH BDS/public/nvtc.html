@@ -364,6 +364,16 @@ async function manualK1Search(){await ensureApiBase();
   const j=await res.json(); if(!res.ok||!j.ok){setStatus('Không tra được K1: '+(j.error||res.status), 'err');return}
   applyK1Lookup(j);
 }
+async function openK1Source(page){await ensureApiBase();
+  if(!page){setStatus('Chưa có số trang nguồn K1 để xem.', 'err');return}
+  const base=$('apiBase').value.replace(/\/$/,'');
+  const res=await fetch(base+'/nvtc/k1-source?page='+encodeURIComponent(page));
+  const j=await res.json();
+  if(!res.ok||!j.ok){setStatus('Không đọc được nguồn K1: '+(j.error||res.status), 'err');return}
+  const w=window.open('', '_blank');
+  w.document.write('<!doctype html><meta charset="utf-8"><title>K1 source page '+page+'</title><style>body{font-family:Arial,sans-serif;line-height:1.5;padding:18px}pre{white-space:pre-wrap;background:#f6f8fb;border:1px solid #ddd;border-radius:12px;padding:14px}.hit{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:10px;margin:8px 0}</style><h2>Nguồn K1 - trang '+page+'</h2><p>Tổng dòng/khối nguồn: '+(j.count||0)+'</p>'+((j.rows||[]).map((r,i)=>'<div class="hit"><b>#'+(i+1)+'</b><pre>'+String(r.text||r.raw||r.content||'').replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]))+'</pre></div>').join('')||'<pre>Không có text nguồn.</pre>'));
+  w.document.close();
+}
 function segmentFromAlt(a){
   const raw=String(a.raw||'');
   const nums=raw.match(/\d{1,3}\.\d{3}|\d+,\d+/g)||[];
@@ -381,7 +391,7 @@ function applyK1Lookup(j){
   initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
   const sameWardRoad=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong)&&(!wardFilter||!s.wardHeader||norm(s.wardHeader)===norm(wardFilter)));
   const segList=sameWardRoad.map(s=>`• ${s.doan} — Đất ở ${fmt(s.datO)}, K ${fmt(s.kO,2)}${s.page?(' · trang '+s.page):''}`).join('<br>');
-  setStatus(`✅ Đã lấy đường/đoạn/đơn giá từ PDF NQ87/K1.<br>Phường/phụ lục: <b>${rec.wardHeader||'?'}</b><br>Đường theo tọa độ: <b>${rec.duong}</b><br>Đoạn áp giá: <b>${rec.doan}</b><br>Trang nguồn: <b>${rec.page||'?'}</b> · độ tin cậy: <b>${rec.confidence||'medium'}</b><br>Đất ở: <b>${fmt(rec.datO)}</b> · TMDV: <b>${fmt(rec.tmdv)}</b> · SXKD: <b>${fmt(rec.sxkd)}</b> · K: <b>${fmt(rec.kO,2)}</b><br><br><b>Các đoạn cùng phường + cùng đường để kiểm tra:</b><br>${segList||'Chỉ thấy 1 đoạn trong source K1.'}<br><span class="muted">Thứ tự match: phường/phụ lục → đường → đoạn. Có thể chọn lại đoạn trong dropdown nếu cần kiểm tra.</span>`,'ok');
+  setStatus(`✅ Đã lấy đường/đoạn/đơn giá từ PDF NQ87/K1.<br>Phường/phụ lục: <b>${rec.wardHeader||'?'}</b><br>Đường theo tọa độ: <b>${rec.duong}</b><br>Đoạn áp giá: <b>${rec.doan}</b><br>Trang nguồn: <b>${rec.page||'?'}</b> <button class="btn ghost sm" onclick="openK1Source('${rec.page||''}')">Xem nguồn K1</button> · độ tin cậy: <b>${rec.confidence||'medium'}</b><br>Đất ở: <b>${fmt(rec.datO)}</b> · TMDV: <b>${fmt(rec.tmdv)}</b> · SXKD: <b>${fmt(rec.sxkd)}</b> · K: <b>${fmt(rec.kO,2)}</b><br><br><b>Các đoạn cùng phường + cùng đường để kiểm tra:</b><br>${segList||'Chỉ thấy 1 đoạn trong source K1.'}<br><span class="muted">Thứ tự match: phường/phụ lục → đường → đoạn. Có thể chọn lại đoạn trong dropdown nếu cần kiểm tra.</span>`,'ok');
   saveState();
 }
 
