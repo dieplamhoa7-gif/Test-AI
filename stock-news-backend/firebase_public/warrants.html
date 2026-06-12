@@ -994,14 +994,32 @@
     }
 
     function resizeChartWhenVisible(chart, box) { setTimeout(() => { try { chart.applyOptions({ width: box.clientWidth, height: box.clientHeight || 360 }); chart.timeScale().fitContent(); } catch (_) {} }, 80); }
+    function inferWarrantUnderlying(symbol) {
+      const text = String(symbol || '').toUpperCase().trim();
+      if (text.startsWith('C') && text.length >= 4) return text.slice(1, 4);
+      return '';
+    }
+    async function fetchChartPayload(symbol) {
+      const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}.json?ts=${Date.now()}`, { cache:'no-store' });
+      if (!res.ok) return null;
+      return await res.json();
+    }
     async function renderStockChart(symbol) {
       const box = document.getElementById('stockChartBox'); if (!box) return; box.innerHTML = '<div class="empty">Đang tải biểu đồ...</div>';
       if (!window.LightweightCharts) { box.innerHTML = '<div class="empty error">Không tải được thư viện biểu đồ.</div>'; return; }
       try {
-        const res = await fetch(`/data/charts/${encodeURIComponent(symbol)}.json?ts=${Date.now()}`, { cache:'no-store' });
-        if (!res.ok) throw new Error('chart missing');
-        const data = await res.json(); const rows = data.rows || [];
-        box.innerHTML = '';
+        const requestedSymbol = String(symbol || '').toUpperCase().trim();
+        let chartSymbol = requestedSymbol;
+        let data = await fetchChartPayload(chartSymbol);
+        const underlying = inferWarrantUnderlying(requestedSymbol);
+        if ((!data || !(data.rows || []).length) && underlying && underlying !== requestedSymbol) {
+          chartSymbol = underlying;
+          data = await fetchChartPayload(chartSymbol);
+        }
+        if (!data) throw new Error('chart missing');
+        const rows = data.rows || [];
+        if (!rows.length) throw new Error('chart empty');
+        box.innerHTML = chartSymbol !== requestedSymbol ? `<div class="muted" style="margin-bottom:8px;">Đang hiển thị biểu đồ mã cơ sở ${escapeHtml(chartSymbol)} cho chứng quyền ${escapeHtml(requestedSymbol)}.</div>` : '';
         const chart = LightweightCharts.createChart(box, { width: box.clientWidth, height: box.clientHeight || 360, layout: { background: { color: 'transparent' }, textColor: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#edf2ff' }, grid: { vertLines: { color: 'rgba(120,140,180,.12)' }, horzLines: { color: 'rgba(120,140,180,.12)' } }, rightPriceScale: { borderColor: 'rgba(120,140,180,.22)' }, timeScale: { borderColor: 'rgba(120,140,180,.22)' } });
         chart.addCandlestickSeries({ upColor:'#26a69a', downColor:'#ef5350', borderUpColor:'#26a69a', borderDownColor:'#ef5350', wickUpColor:'#26a69a', wickDownColor:'#ef5350' }).setData(rows.map(r => ({ time:r.time, open:r.open, high:r.high, low:r.low, close:r.close })));
         chart.addLineSeries({ color:'#f5c542', lineWidth:1 }).setData(data.ma20 || []);
