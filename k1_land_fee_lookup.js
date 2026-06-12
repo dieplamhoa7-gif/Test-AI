@@ -264,13 +264,16 @@ function findBestK1ByGeo(location = {}) {
   const geo = compactGeo(location);
   const geoWard = normalize(geo.ward);
   const nroad = normalize(geo.road || '');
+  // K1/NVTC must be scoped by administrative appendix first.
+  // Same road names exist in multiple wards/cities with very different prices.
+  if (!geoWard) return null;
   const direct = rows.flatMap(row => {
     const hits = roadVariants(geo.road || '').flatMap(rv => extractRoadDirectCandidatesFromPage(row, rv, geo));
     return hits.map(hit => {
       const headerNorm = normalize(hit.areaHeader);
       let score = 10 + (hit.segmentScore || 0);
       if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 30;
-      else if (geoWard && headerNorm) score -= 20;
+      else if (geoWard && headerNorm) score -= 100;
       if (normalize(row.text).includes(nroad) || roadVariants(geo.road || '').some(rv => normalize(row.text).includes(normalize(rv)))) score += 2;
       return { ...hit, score };
     });
@@ -299,7 +302,8 @@ function findBestK1ByGeo(location = {}) {
     let score = 0;
     if (normalize(e.road) === normalize(geo.road)) score += 10;
     else if (normalize(e.road).includes(nroad) || nroad.includes(normalize(e.road))) score += 6;
-    if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 5;
+    if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 50;
+    else if (geoWard && headerNorm) score -= 100;
     return { ...e, areaHeader: header, score };
   }).sort((a,b) => b.score - a.score || a.page - b.page || a.stt - b.stt);
   return enriched[0] || null;
@@ -333,7 +337,7 @@ function renderEvidencePage(page) {
 
 async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT', position='VT1', planningMultiplier=1 }) {
   const best = findBestK1ByGeo(geoLocation || {});
-  if (!best) return { error: 'Chưa match được đường/phụ lục K1 từ tọa độ này.' };
+  if (!best) return { error: 'Chưa match được phụ lục K1 vì thiếu hoặc không khớp phường/xã từ tọa độ. Cần xác định phường trước, rồi mới tới đường và đoạn đường.' };
   const positionMultiplier = String(position || 'VT1').toUpperCase() === 'VT1' ? 1 : 1.35;
   const calc = calcAdjusted(best, landUse, { positionMultiplier, planningMultiplier });
   const area = parseAreaFromText(text);

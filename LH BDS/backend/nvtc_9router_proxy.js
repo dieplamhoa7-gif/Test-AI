@@ -12,11 +12,11 @@ const FALLBACK_MODEL = process.env.NINEROUTER_BDS_MODEL || process.env.NINEROUTE
 const PRIVATE_KEY_FILE = path.join(__dirname, '9router_private_keys', '9router_split_keys_private.txt');
 let lookupHcmPlanning = null, summarize = null, lookupK1LandFee = null;
 let readQhVietPopupText = null, parseQhVietPopupText = null, readGulandPopupText = null, parseGulandPopupText = null;
-try { ({ lookupHcmPlanning, summarize } = require('./bds_planning_checker')); } catch (_) {}
-try { ({ lookupK1LandFee } = require('./k1_land_fee_lookup')); } catch (_) {}
-try { ({ readQhVietPopupText, readGulandPopupText } = require('./planning_browser_popups')); } catch (_) {}
-try { ({ parseQhVietPopupText } = require('./qhviet_popup_parser')); } catch (_) {}
-try { ({ parseGulandPopupText } = require('./guland_popup_parser')); } catch (_) {}
+try { ({ lookupHcmPlanning, summarize } = require('./bds_planning_checker')); } catch (_) { try { ({ lookupHcmPlanning, summarize } = require('../../bds_planning_checker')); } catch (__) {} }
+try { ({ lookupK1LandFee } = require('./k1_land_fee_lookup')); } catch (_) { try { ({ lookupK1LandFee } = require('../../k1_land_fee_lookup')); } catch (__) {} }
+try { ({ readQhVietPopupText, readGulandPopupText } = require('./planning_browser_popups')); } catch (_) { try { ({ readQhVietPopupText, readGulandPopupText } = require('../../planning_browser_popups')); } catch (__) {} }
+try { ({ parseQhVietPopupText } = require('./qhviet_popup_parser')); } catch (_) { try { ({ parseQhVietPopupText } = require('../../qhviet_popup_parser')); } catch (__) {} }
+try { ({ parseGulandPopupText } = require('./guland_popup_parser')); } catch (_) { try { ({ parseGulandPopupText } = require('../../guland_popup_parser')); } catch (__) {} }
 
 function readBdsKey() {
   const envKey = process.env.BDS_9ROUTER_API_KEY || process.env.NINEROUTER_API_KEY || process.env.OPENAI_API_KEY;
