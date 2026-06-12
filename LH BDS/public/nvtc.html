@@ -86,10 +86,10 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
         <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
         <label>Nhà cung cấp</label>
         <select id="apiProvider"><option value="openai" selected>9Router BĐS local proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
-        <label>API Base URL</label><input id="apiBase" value="https://showed-inspection-direct-horizon.trycloudflare.com">
+        <label>API Base URL</label><input id="apiBase" value="https://auto-rugs-researcher-love.trycloudflare.com">
         <label>API Key <span class="muted">(để trống khi dùng proxy local)</span></label><input id="apiKey" type="password" placeholder="Để trống — proxy tự đọc key BĐS trong máy">
         <label>Model</label><input id="apiModel" value="APIBDS">
-        <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://showed-inspection-direct-horizon.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
+        <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://auto-rugs-researcher-love.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
       </details>
       <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
     </div>
@@ -305,7 +305,7 @@ function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s
   if(s.version!==APP_DATA_VERSION){try{localStorage.removeItem('nvtc3');}catch(e){}; return;}
   if(s.rows)rows=s.rows;
   // Luôn áp dụng 9Router BĐS local proxy, không restore API/key cũ từ localStorage.
- if(s.api){apiProvider.value='openai';apiBase.value='https://showed-inspection-direct-horizon.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';}
+ if(s.api){apiProvider.value='openai';apiBase.value='https://auto-rugs-researcher-love.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';}
   setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
     $('vt').value=s.vt??1;$('far100').value=s.far100??0;$('target').value=s.target??'ODT';$('far').value=s.far??7;$('dongbo').value=s.dongbo??1;
     ['f1','f2','f4','f5','g1'].forEach(k=>{if(s[k]!==undefined)$(k).checked=s[k];});
@@ -420,13 +420,14 @@ function resetAll(){
 }
 // ===================== INIT =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://showed-inspection-direct-horizon.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';calc();
+initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://auto-rugs-researcher-love.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';calc();
 ['seg','vt','far100','target','far','dongbo','f1','f2','f4','f5','g1'].forEach(id=>$(id).addEventListener('change',calc));
 $('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
 $('far').addEventListener('input',calc);
 </script>
 </body>
 </html>
+
 
 
 

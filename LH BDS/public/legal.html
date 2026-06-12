@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LH Real Estate - Pháp lý & Đầu tư</title>
+<link rel="stylesheet" href="app.css">
+<style>
+:root{--deep:#071526;--navy:#102542;--cyan:#38bdf8;--gold:#d5ad55;--line:#dbe4f0;--muted:#667085}
+body{background:linear-gradient(135deg,#f6f8fb,#eef4ff);color:#102542}.wrap{max-width:1280px}.hero{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}.hero-card{background:linear-gradient(135deg,#071526,#17345f 68%,#0e5f8f);color:white;border-radius:26px;padding:28px;box-shadow:0 22px 60px rgba(16,37,66,.18)}.hero-card h1{font-size:42px;line-height:1.08;margin:8px 0 10px}.hero-card p{color:#dbeafe;font-size:17px;max-width:920px}.eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);border-radius:999px;padding:7px 11px;color:#d9ecff;font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.layout{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:16px;margin-top:16px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 12px 32px rgba(16,37,66,.07)}textarea{min-height:150px;font-size:16px}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.answer{white-space:pre-wrap;line-height:1.68;font-size:16px}.law-table{width:100%;border-collapse:separate;border-spacing:0 8px}.law-table th{font-size:12px;text-align:left;color:#667085;padding:0 6px}.law-table td{vertical-align:top;background:#fbfdff;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:9px 6px;font-size:13px;line-height:1.4}.law-table td:first-child{border-left:1px solid #e5e7eb;border-radius:12px 0 0 12px}.law-table td:last-child{border-right:1px solid #e5e7eb;border-radius:0 12px 12px 0}.law-doc{font-weight:800;color:#17345f}.law-evi{max-height:88px;overflow:auto;color:#344054}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800}.badge.warn{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}.badge.ok{background:#ecfdf3;color:#166534;border:1px solid #bbf7d0}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.chip{border:1px solid #dbe4f0;border-radius:999px;padding:8px 10px;background:#fff;cursor:pointer;color:#17345f;font-weight:700;font-size:13px}.small{font-size:13px;color:#667085}.kb-status{border:1px solid #bbf7d0;background:#ecfdf3;color:#14532d;border-radius:16px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.5}.kb-status code{background:white;border:1px solid #bbf7d0;border-radius:6px;padding:1px 5px}.status{display:none}.status.show{display:block}.status.run{background:#eef4ff;color:#194185}.status.ok{background:#ecfdf3;color:#166534}.status.err{background:#fdecec;color:#b42318}.list{margin:8px 0 0;padding-left:20px;line-height:1.55}@media(max-width:960px){.layout,.result-grid{grid-template-columns:1fr}.hero-card h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a class="active" href="legal.html">Pháp lý & Đầu tư</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><div class="hero-card"><span class="eyebrow">LH AI Luôn</span><h1>AI Luôn</h1></div></section>
+<section class="panel"><h2>Câu hỏi</h2><textarea id="q" placeholder="Ví dụ: Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?"></textarea><div class="chips"><button class="chip" onclick="setQ('Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?')">Điều kiện mở bán</button><button class="chip" onclick="setQ('Điều kiện giao đất, cho thuê đất, chuyển mục đích sử dụng đất cho dự án BĐS là gì?')">Đất dự án</button><button class="chip" onclick="setQ('Thủ tục chấp thuận chủ trương đầu tư và lựa chọn nhà đầu tư dự án có sử dụng đất là gì?')">Đầu tư dự án</button><button class="chip" onclick="setQ('Tiền sử dụng đất, tiền thuê đất của dự án được xác định theo căn cứ nào?')">Tiền đất</button></div><div class="toolbar"><button class="btn" onclick="askLegal()">Hỏi AI pháp lý</button><button class="btn secondary" onclick="clearAll()">Xóa</button></div><div id="status" class="status"></div></section>
+<section class="result-grid">
+  <div class="panel"><h2>AI tóm tắt</h2><div id="answer" class="answer small">Chưa có câu hỏi.</div><div id="risks"></div><div id="next"></div></div>
+  <div class="panel"><h2>Chi tiết thông tin luật</h2><p class="small">Nội dung điều/khoản chi tiết, đầy đủ để đối chiếu hồ sơ.</p><div id="basisDetail" class="answer small">Chưa có căn cứ.</div></div>
+</section>
+<div id="cites" style="display:none"></div><div id="sources" style="display:none"></div>
+</main>
+<script>
+const API_BASE='https://auto-rugs-researcher-love.trycloudflare.com';
+const $ = id => document.getElementById(id);
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function setQ(x){$('q').value=x}
+function clearAll(){
+  $('q').value=''; $('basisDetail').textContent='Chưa có căn cứ.'; $('answer').textContent='Chưa có câu hỏi.';
+  $('risks').innerHTML=''; $('next').innerHTML=''; $('status').className='status'; $('status').textContent='';
+}
+function listHtml(title, arr){if(!arr||!arr.length)return '';return '<h3>'+esc(title)+'</h3><ul class="list">'+arr.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'}
+function formatSummary(items, fallback){
+  if(!items||!items.length) return fallback||'';
+  const lines=items.map((c,i)=>{
+    const vb=c.title||c.sourcePath||'Văn bản';
+    const date=c.date||c.issueDate||c.effectiveDate||'chưa rõ ngày trong nguồn nạp';
+    const art=c.article?('Điều '+c.article):'Điều chưa xác định';
+    const cl=c.clause?('khoản/điểm '+c.clause):'khoản/điểm chưa xác định';
+    const nd=c.evidence||c.fullContent||c.content||'';
+    return `${i+1}. ${art}, ${cl}, của ${vb}, ngày ${date}: ${nd}`;
+  });
+  return lines.join('\n\n') + (fallback?'\n\nKết luận tóm tắt:\n'+fallback:'');
+}
+function renderBasisDetail(items){
+  if(!items||!items.length){$('basisDetail').textContent='Chưa có căn cứ.';return}
+  $('basisDetail').textContent=items.map((c,i)=>{
+    const vb=c.title||c.sourcePath||'Văn bản';
+    const date=c.date||c.issueDate||c.effectiveDate||'';
+    const art=c.article?('Điều '+c.article):'Điều: chưa xác định';
+    const cl=c.clause?('Khoản/điểm '+c.clause):'Khoản/điểm: chưa xác định';
+    const year=c.year?('Năm '+c.year):'';
+    const body=c.fullContent||c.content||c.evidence||'';
+    return `${i+1}. ${vb}${date?' - ngày '+date:''}${year?' - '+year:''}\n- ${art}\n- ${cl}\n- Nội dung căn cứ: ${body}\n- Nguồn: ${c.sourcePath||''}`;
+  }).join('\n\n');
+}
+async function askLegal(){
+  const question=$('q').value.trim();
+  if(!question){$('status').className='status show err';$('status').textContent='Anh nhập câu hỏi trước.';return}
+  $('status').className='status show run';
+  $('status').textContent='AI đã nhận lệnh. Đang phân tích kỹ để trả lời chất lượng, ngắn gọn và có dẫn chứng điều/khoản...';
+  $('answer').textContent='Đang xử lý...'; $('basisDetail').textContent='Đang tra chi tiết luật...';
+  try{
+    const r=await fetch(API_BASE+'/legal/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question,limit:8})});
+    const j=await r.json(); if(!r.ok||!j.ok)throw new Error(j.error||('HTTP '+r.status));
+    $('status').className='status show ok'; $('status').textContent='Đã trả lời theo format điều/khoản/văn bản/ngày/nội dung.';
+    const items=j.citations||j.detailedBasis||[];
+    renderBasisDetail(items); $('answer').textContent=(j.answer||j.summary||formatSummary(items,''));
+    $('risks').innerHTML=listHtml('Rủi ro / lưu ý',j.risks||[]); $('next').innerHTML=listHtml('Việc nên làm tiếp',j.nextSteps||[]);
+  }catch(e){$('status').className='status show err';$('status').textContent='Lỗi: '+e.message;$('answer').textContent='Không gọi được AI pháp lý.'}
+}
+window.setQ=setQ; window.clearAll=clearAll; window.askLegal=askLegal;
+</script>
+</body>
+</html>
+
