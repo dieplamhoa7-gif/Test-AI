@@ -72,14 +72,18 @@ function cors(res) {
   res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization');
 }
 
+function findExistingPath(candidates){ return candidates.find(p => { try { return fs.existsSync(p); } catch { return false; } }) || candidates[0]; }
+function pythonExe(){ return process.env.PYTHON || findExistingPath([path.join(process.env.LOCALAPPDATA || '', 'Python', 'bin', 'python.exe'), path.join(process.env.LOCALAPPDATA || '', 'Microsoft', 'WindowsApps', 'py.exe'), 'py']); }
+
 function runBdsWebValuation(payload, timeoutMs = 720000, jobId = '') {
   return new Promise((resolve, reject) => {
-    const script = path.join(__dirname, 'BDS_Ver2_9router_test', 'web_valuation_api.py');
-    const py = spawn(process.env.PYTHON || 'py', [script], {
-      cwd: path.join(__dirname, 'BDS_Ver2_9router_test'),
+    const bdsDir = findExistingPath([path.join(__dirname, 'BDS_Ver2_9router_test'), path.join(__dirname, '..', '..', 'BDS_Ver2_9router_test')]);
+    const script = path.join(bdsDir, 'web_valuation_api.py');
+    const py = spawn(pythonExe(), [script], {
+      cwd: bdsDir,
       windowsHide: true,
       stdio: ['pipe', 'pipe', 'pipe'],
-      env: { ...process.env, BDS_JOB_ID: jobId, BDS_CHROME_PROFILE: path.join(__dirname, 'BDS_Ver2_9router_test', 'logs', `chrome_profile_${jobId}`), BDS_GMAPS_PROFILE: path.join(__dirname, 'BDS_Ver2_9router_test', 'logs', `gmaps_profile_${jobId}`) },
+      env: { ...process.env, BDS_JOB_ID: jobId, BDS_CHROME_PROFILE: path.join(bdsDir, 'logs', `chrome_profile_${jobId}`), BDS_GMAPS_PROFILE: path.join(bdsDir, 'logs', `gmaps_profile_${jobId}`) },
     });
     let out = '', err = '';
     const t = setTimeout(() => { try { py.kill(); } catch {} reject(new Error('BDS valuation timeout')); }, timeoutMs);
