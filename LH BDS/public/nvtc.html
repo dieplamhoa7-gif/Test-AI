@@ -86,10 +86,10 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
         <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
         <label>Nhà cung cấp</label>
         <select id="apiProvider"><option value="openai" selected>9Router BĐS local proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
-        <label>API Base URL</label><input id="apiBase" value="https://engines-manufacturer-moving-chelsea.trycloudflare.com">
+        <label>API Base URL</label><input id="apiBase" value="https://flags-cancer-engaging-continuous.trycloudflare.com">
         <label>API Key <span class="muted">(để trống khi dùng proxy local)</span></label><input id="apiKey" type="password" placeholder="Để trống — proxy tự đọc key BĐS trong máy">
         <label>Model</label><input id="apiModel" value="APIBDS">
-        <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://engines-manufacturer-moving-chelsea.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
+        <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://flags-cancer-engaging-continuous.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
       </details>
       <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
       <details class="collapse" style="margin-top:10px">
@@ -214,8 +214,8 @@ let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
 const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="", wardFilter="";
 const $=id=>document.getElementById(id);
-const API_CANDIDATES=['https://engines-manufacturer-moving-chelsea.trycloudflare.com','http://localhost:8787'];
-async function ensureApiBase(){for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}return ($('apiBase')?.value||'https://engines-manufacturer-moving-chelsea.trycloudflare.com').replace(/\/$/,'')}
+const API_CANDIDATES=['https://flags-cancer-engaging-continuous.trycloudflare.com','http://localhost:8787'];
+async function ensureApiBase(){for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}return ($('apiBase')?.value||'https://flags-cancer-engaging-continuous.trycloudflare.com').replace(/\/$/,'')}
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
 function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
@@ -315,7 +315,7 @@ function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s
   if(s.version!==APP_DATA_VERSION){try{localStorage.removeItem('nvtc3');}catch(e){}; return;}
   if(s.rows)rows=s.rows;
   // Luôn áp dụng 9Router BĐS local proxy, không restore API/key cũ từ localStorage.
- if(s.api){apiProvider.value='openai';apiBase.value='https://engines-manufacturer-moving-chelsea.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';}
+ if(s.api){apiProvider.value='openai';apiBase.value='https://flags-cancer-engaging-continuous.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';}
   setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
     $('vt').value=s.vt??1;$('far100').value=s.far100??0;$('target').value=s.target??'ODT';$('far').value=s.far??7;$('dongbo').value=s.dongbo??1;
     ['f1','f2','f4','f5','g1'].forEach(k=>{if(s[k]!==undefined)$(k).checked=s[k];});
@@ -451,13 +451,14 @@ function resetAll(){
 }
 // ===================== INIT =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://engines-manufacturer-moving-chelsea.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';ensureApiBase();calc();
+initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://flags-cancer-engaging-continuous.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';ensureApiBase();calc();
 ['seg','vt','far100','target','far','dongbo','f1','f2','f4','f5','g1'].forEach(id=>$(id).addEventListener('change',calc));
 $('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
 $('far').addEventListener('input',calc);
 </script>
 </body>
 </html>
+
 
 
 
