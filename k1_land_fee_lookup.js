@@ -47,15 +47,19 @@ function parseAreaFromText(text) {
   return Number(String(m[1]).replace(',', '.'));
 }
 
+function canonicalVi(s) {
+  return String(s || '').replace(/Ð/g, 'Đ').replace(/ð/g, 'đ');
+}
+
 function compactGeo(loc = {}) {
   return {
-    ward: loc.ward || loc.suburb || loc.neighbourhood || '',
-    district: loc.district || loc.city || '',
-    city: loc.city || loc.state || '',
-    road: loc.road || loc.nearest_road?.name || '',
-    display: loc.display_name || '',
-    nearestRoad: loc.nearest_road?.name || '',
-    pois: (loc.nearest_pois || []).map(p => p.name).filter(Boolean),
+    ward: canonicalVi(loc.ward || loc.suburb || loc.neighbourhood || ''),
+    district: canonicalVi(loc.district || loc.city || ''),
+    city: canonicalVi(loc.city || loc.state || ''),
+    road: canonicalVi(loc.road || loc.nearest_road?.name || ''),
+    display: canonicalVi(loc.display_name || ''),
+    nearestRoad: canonicalVi(loc.nearest_road?.name || ''),
+    pois: (loc.nearest_pois || []).map(p => canonicalVi(p.name)).filter(Boolean),
   };
 }
 
@@ -175,6 +179,7 @@ function extractRoadDirectCandidatesFromPage(row, road, geo = {}) {
     while ((m2 = rowRe.exec(body)) && matched < 8) {
       let segment = titleCaseVi(m2[1]).replace(/\s+/g, ' ').trim();
       if (/^\d+,\d+\b/.test(segment)) break;
+      if (/^\d+\s+\d+\b/.test(segment)) break;
       if (/^\d+\s+[A-ZÀ-Ỵ]/.test(segment)) break;
       if (/\b\d{1,3}\s+[A-ZÀ-Ỵ].*\bĐIỆN\s+BIÊN\s+PHỦ\b/i.test(segment)) break;
       if (!segment || /^(STT|TÊN ĐƯỜNG|ĐOẠN ĐƯỜNG|Phụ lục|Ban hành)$/i.test(segment)) continue;
