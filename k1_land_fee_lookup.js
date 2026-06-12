@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 const { execFile } = require('child_process');
 
@@ -168,29 +168,58 @@ function extractRoadDirectCandidatesFromPage(row, road, geo = {}) {
     let slice = sliceRaw.replace(/\s+/g, ' ');
     const sliceNorm = normalize(slice);
     if (!roadVariants(road).some(rv => sliceNorm.startsWith(normalize(rv)))) continue;
-    const nums = slice.match(/\d{1,3}\.\d{3}|\d+,\d+/g) || [];
-    const priceNums = nums.filter(x => /\d{1,3}\.\d{3}/.test(x)).slice(0, 3);
-    const kNums = nums.filter(x => /\d+,\d+/.test(x)).slice(0, 4);
-    if (priceNums.length < 3 || kNums.length < 3) continue;
-    const segMatch = slice.match(new RegExp(roadUpper.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s+(.{0,120}?)\\s+' + priceNums[0].replace('.', '\\.'), 'i'));
-    const segment = titleCaseVi(segMatch?.[1] || 'TRỌN ĐƯỜNG/đoạn gần nhất trong phụ lục');
-    candidates.push({
-      page: row.page,
-      stt: null,
-      road: titleCaseVi(road),
-      segment,
-      priceResidentialThousand: parseNumeric(priceNums[0]),
-      priceCommercialThousand: parseNumeric(priceNums[1]),
-      priceBusinessThousand: parseNumeric(priceNums[2]),
-      kResidential: parseNumeric(kNums[0]),
-      kCommercial: parseNumeric(kNums[1]),
-      kBusiness: parseNumeric(kNums[2]),
-      kAgricultural: parseNumeric(kNums[3] || kNums[0]),
-      raw: slice.slice(0, 650),
-      areaHeader: header,
-      segmentScore: scoreSegmentByContext(segment, geo),
-    });
-  }
+    const escapedRoad = roadUpper.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const body = slice.replace(new RegExp('^' + escapedRoad + '\\s+', 'i'), '');
+    const rowRe = /(.{2,140}?)\s+(\d{1,3}(?:\.\d{3})+)\s+(\d{1,3}(?:\.\d{3})+)\s+(\d{1,3}(?:\.\d{3})+)\s+(\d+,\d+)\s+(\d+,\d+)\s+(\d+,\d+)(?:\s+(\d+,\d+))?/g;
+    let m2, matched = 0;
+    while ((m2 = rowRe.exec(body)) && matched < 8) {
+      let segment = titleCaseVi(m2[1]).replace(/\s+/g, ' ').trim();
+      if (/^\d+,\d+\b/.test(segment)) break;
+      if (/^\d+\s+[A-ZÀ-Ỵ]/.test(segment)) break;
+      if (/\b\d{1,3}\s+[A-ZÀ-Ỵ].*\bĐIỆN\s+BIÊN\s+PHỦ\b/i.test(segment)) break;
+      if (!segment || /^(STT|TÊN ĐƯỜNG|ĐOẠN ĐƯỜNG|Phụ lục|Ban hành)$/i.test(segment)) continue;
+      matched++;
+      candidates.push({
+        page: row.page,
+        stt: null,
+        road: titleCaseVi(road),
+        segment,
+        priceResidentialThousand: parseNumeric(m2[2]),
+        priceCommercialThousand: parseNumeric(m2[3]),
+        priceBusinessThousand: parseNumeric(m2[4]),
+        kResidential: parseNumeric(m2[5]),
+        kCommercial: parseNumeric(m2[6]),
+        kBusiness: parseNumeric(m2[7]),
+        kAgricultural: parseNumeric(m2[8] || m2[5]),
+        raw: (road + ' ' + m2[0]).slice(0, 650),
+        areaHeader: header,
+        segmentScore: scoreSegmentByContext(segment, geo),
+      });
+    }
+    if (!matched) {
+      const nums = slice.match(/\d{1,3}\.\d{3}|\d+,\d+/g) || [];
+      const priceNums = nums.filter(x => /\d{1,3}\.\d{3}/.test(x)).slice(0, 3);
+      const kNums = nums.filter(x => /\d+,\d+/.test(x)).slice(0, 4);
+      if (priceNums.length < 3 || kNums.length < 3) continue;
+      const segMatch = slice.match(new RegExp(escapedRoad + '\\s+(.{0,120}?)\\s+' + priceNums[0].replace('.', '\\.'), 'i'));
+      const segment = titleCaseVi(segMatch?.[1] || 'TRỌN ĐƯỜNG/đoạn gần nhất trong phụ lục');
+      candidates.push({
+        page: row.page,
+        stt: null,
+        road: titleCaseVi(road),
+        segment,
+        priceResidentialThousand: parseNumeric(priceNums[0]),
+        priceCommercialThousand: parseNumeric(priceNums[1]),
+        priceBusinessThousand: parseNumeric(priceNums[2]),
+        kResidential: parseNumeric(kNums[0]),
+        kCommercial: parseNumeric(kNums[1]),
+        kBusiness: parseNumeric(kNums[2]),
+        kAgricultural: parseNumeric(kNums[3] || kNums[0]),
+        raw: slice.slice(0, 650),
+        areaHeader: header,
+        segmentScore: scoreSegmentByContext(segment, geo),
+      });
+    }  }
   return candidates;
 }
 
@@ -339,3 +368,4 @@ async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT', pos
 }
 
 module.exports = { lookupK1LandFee };
+
