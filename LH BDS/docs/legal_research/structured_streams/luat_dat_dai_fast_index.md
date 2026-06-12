@@ -396,17 +396,22 @@ status: fast_search_index
 - Score: 9
 - Keyword hits: bồi thường, hỗ trợ tái định cư
 
-### 73. Luật số: 58/2024/QH15
+### 73. luat_thue_gtgt_tndn_tncn_le_phi_truoc_ba_bds
+- Path: `official_texts_md_full/luat_thue_gtgt_tndn_tncn_le_phi_truoc_ba_bds.md`
+- Score: 7
+- Keyword hits: đất đai, giá đất, tiền sử dụng đất, tiền thuê đất
+
+### 74. Luật số: 58/2024/QH15
 - Path: `official_texts_md_full/tvpl_uploaded_bds/58_2024_qh15_m_621645_full.md`
 - Score: 7
 - Keyword hits: quyền sử dụng đất, chuyển mục đích sử dụng đất, bồi thường
 
-### 74. Luật Đấu thầu 2023
+### 75. Luật Đấu thầu 2023
 - Path: `official_texts_md_full/luat_dau_thau_2023_22_2023_qh15_full.md`
 - Score: 6
 - Keyword hits: đất đai, Giấy chứng nhận
 
-### 75. nghi_quyet_201_2025_QH15_co_che_nha_o_xa_hoi
+### 76. nghi_quyet_201_2025_QH15_co_che_nha_o_xa_hoi
 - Path: `official_texts_md_full/nghi_quyet_201_2025_QH15_co_che_nha_o_xa_hoi.md`
 - Score: 6
 - Keyword hits: đất đai, giao đất, cho thuê đất, chuyển mục đích sử dụng đất, tiền sử dụng đất, tiền thuê đất
