@@ -277,8 +277,17 @@ function findBestK1ByGeo(location = {}) {
   }).filter(Boolean).sort((a,b) => b.score - a.score || b.segmentScore - a.segmentScore || a.page - b.page);
   if (direct.length) {
     const best = direct[0];
-    best.alternatives = direct.slice(1, 5).map(x => ({ road: x.road, segment: x.segment, page: x.page, score: x.score, raw: x.raw }));
-    best.confidence = direct.length === 1 || (best.score - direct[1].score >= 3) ? 'high' : 'medium';
+    const bestHeaderNorm = normalize(best.areaHeader);
+    const sameWardDirect = direct.filter(x => {
+      const h = normalize(x.areaHeader);
+      if (!bestHeaderNorm || !h) return x.page === best.page;
+      return h === bestHeaderNorm || h.includes(bestHeaderNorm) || bestHeaderNorm.includes(h);
+    });
+    best.alternatives = sameWardDirect
+      .filter(x => x !== best)
+      .slice(0, 8)
+      .map(x => ({ road: x.road, segment: x.segment, page: x.page, score: x.score, raw: x.raw, wardHeader: x.areaHeader }));
+    best.confidence = sameWardDirect.length === 1 || (best.score - sameWardDirect[1].score >= 3) ? 'high' : 'medium';
     return best;
   }
 
