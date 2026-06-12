@@ -597,7 +597,10 @@ def _dist_km(a_lat, a_lng, b_lat, b_lng):
 
 
 async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
-    write_progress('init', 'Đang nhận yêu cầu R&D và khởi tạo BDS_bot stack...')
+    mode = str(payload.get('mode') or 'standard').lower().strip()
+    if mode not in {'fast', 'standard', 'deep'}:
+        mode = 'standard'
+    write_progress('init', f'Đang nhận yêu cầu R&D chế độ {mode} và khởi tạo BDS_bot stack...')
     ai, ai_fast, ai_bds, ai_report = _make_clients()
     criteria = SearchCriteria(
         lat=float(payload['lat']),
@@ -648,31 +651,39 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         )
 
     project_names = [p.get('name', '') for p in projects.projects if p.get('name')]
-    write_progress('discover_links', 'Đang search link nguồn thật Batdongsan/Guland/Alonhadat...', warnings)
-    try:
-        search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=60)
-        source_hits = await asyncio.wait_for(discover_real_source_links(search_targets, per_source_limit=6), timeout=90)
-        evidence_buckets = listings_from_search_hits(source_hits)
-    except Exception as e:
-        note = await ai_support_agent(ai_report, 'discover_links', payload, e, 'fallback_source_links')
-        warnings.append(f"discover links lỗi/timeout, dùng fallback links: {type(e).__name__}. {note}")
-        log_error('discover_links', payload, e, 'fallback_source_links', note)
+    if mode == 'fast':
+        warnings.append('Đang chạy chế độ nhanh: bỏ qua browser crawl sâu, dùng nguồn link/fallback và dữ liệu vị trí để ra báo cáo sơ bộ.')
+        write_progress('fast_sources', 'Chế độ nhanh: lấy nguồn sơ bộ/fallback, bỏ qua crawl browser sâu...', warnings)
         evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
-    if not any(evidence_buckets.values()):
-        evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
+        buckets = evidence_buckets
+    else:
+        write_progress('discover_links', 'Đang search link nguồn thật Batdongsan/Guland/Alonhadat...', warnings)
+        try:
+            search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=60 if mode == 'standard' else 90)
+            source_hits = await asyncio.wait_for(discover_real_source_links(search_targets, per_source_limit=6 if mode == 'standard' else 10), timeout=90 if mode == 'standard' else 140)
+            evidence_buckets = listings_from_search_hits(source_hits)
+        except Exception as e:
+            note = await ai_support_agent(ai_report, 'discover_links', payload, e, 'fallback_source_links')
+            warnings.append(f"discover links lỗi/timeout, dùng fallback links: {type(e).__name__}. {note}")
+            log_error('discover_links', payload, e, 'fallback_source_links', note)
+            evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
+        if not any(evidence_buckets.values()):
+            evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
 
-    write_progress('scrape_sources', 'Đang scrape Batdongsan/Guland/Alonhadat...', warnings)
-    try:
-        buckets = await asyncio.wait_for(scrape_all_sources(ai_bds, criteria, projects, max_concurrent=1), timeout=180)
-    except Exception as e:
-        note = await ai_support_agent(ai_report, 'scrape_sources', payload, e, 'continue with evidence/browser buckets')
-        warnings.append(f"scrape_all_sources lỗi/timeout: {type(e).__name__}. {note}")
-        log_error('scrape_sources', payload, e, 'continue with evidence/browser buckets', note)
-        buckets = {}
-    buckets = merge_listing_buckets(buckets, evidence_buckets)
+        write_progress('scrape_sources', 'Đang scrape Batdongsan/Guland/Alonhadat...', warnings)
+        try:
+            buckets = await asyncio.wait_for(scrape_all_sources(ai_bds, criteria, projects, max_concurrent=1), timeout=180 if mode == 'standard' else 260)
+        except Exception as e:
+            note = await ai_support_agent(ai_report, 'scrape_sources', payload, e, 'continue with evidence/browser buckets')
+            warnings.append(f"scrape_all_sources lỗi/timeout: {type(e).__name__}. {note}")
+            log_error('scrape_sources', payload, e, 'continue with evidence/browser buckets', note)
+            buckets = {}
+        buckets = merge_listing_buckets(buckets, evidence_buckets)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
-    if criteria.property_type != 'chungcu':
+    if mode == 'fast':
+        write_progress('fast_report', 'Chế độ nhanh: bỏ qua Chrome/browser search sâu, chuyển sang tổng hợp báo cáo sơ bộ...', warnings)
+    elif criteria.property_type != 'chungcu':
         write_progress('browser_street_search', 'Sản phẩm không phải chung cư: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
         try:
             land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=220)
@@ -709,6 +720,13 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 log_error('browser_price_buckets', payload, e, 'AI estimate if still no price', note)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
+    total_samples = sum(len(v or []) for v in buckets.values()) if isinstance(buckets, dict) else 0
+    price_samples = sum(1 for listings in buckets.values() for l in listings if (getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None))) if isinstance(buckets, dict) else 0
+    confidence_level = 'Cao' if price_samples >= 8 else ('Trung bình' if price_samples >= 3 else ('Thấp' if total_samples else 'Chưa đủ mẫu'))
+    for p in projects.projects:
+        p['confidence'] = confidence_level
+        p['sample_count'] = total_samples
+        p['price_sample_count'] = price_samples
     if not has_price:
         if criteria.property_type != 'chungcu':
             warnings.append('Không có mẫu giá real parse được; không dùng AI estimate cho sản phẩm không phải chung cư.')
@@ -824,6 +842,10 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     write_progress('done', 'Hoàn tất báo cáo R&D thị trường.', warnings)
     return {
         'ok': True,
+        'mode': mode,
+        'confidence': confidence_level,
+        'sample_count': total_samples,
+        'price_sample_count': price_samples,
         'criteria': payload,
         'area': projects.area_description,
         'intro': intro,
