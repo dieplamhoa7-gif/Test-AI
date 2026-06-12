@@ -39,8 +39,8 @@
   </section>
 </main>
 <script>
-let API_BASE='https://flags-cancer-engaging-continuous.trycloudflare.com';
-const API_CANDIDATES=['https://flags-cancer-engaging-continuous.trycloudflare.com','http://localhost:8787'];
+let API_BASE='https://journalists-regional-library-batch.trycloudflare.com';
+const API_CANDIDATES=['https://journalists-regional-library-batch.trycloudflare.com','http://localhost:8787'];
 async function ensureApiBase(){
   for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
   return API_BASE;
@@ -49,5 +49,6 @@ async function checkApi(){await ensureApiBase();const box=document.getElementByI
 </script>
 </body>
 </html>
+
 
 
