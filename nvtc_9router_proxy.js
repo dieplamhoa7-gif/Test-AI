@@ -442,6 +442,31 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, {'content-type':'application/pdf', 'content-disposition':'attachment; filename="LH-RD-NotebookLM-report.pdf"'});
     return fs.createReadStream(job.pdfPath).pipe(res);
   }
+  if (req.method === 'POST' && req.url === '/nvtc/k1-search') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    return req.on('end', async () => {
+      try {
+        if (!lookupK1LandFee) throw new Error('BDS K1 modules are not available');
+        const payload = JSON.parse(body || '{}');
+        const ward = String(payload.ward || payload.phuong || '').trim();
+        const road = String(payload.road || payload.duong || '').trim();
+        if (!ward || !road) throw new Error('ward_and_road_required');
+        const geo = { ward, suburb: ward, road, display_name: [road, ward, payload.district || '', payload.city || 'TP.HCM'].filter(Boolean).join(', ') };
+        const k1 = await lookupK1LandFee({ lat: null, lon: null, geoLocation: geo, text: payload.text || '', landUse: payload.landUse || 'ODT', position: payload.position || 'VT1', planningMultiplier: 1 });
+        if (k1 && k1.error) {
+          res.writeHead(422, {'content-type':'application/json'});
+          return res.end(JSON.stringify({ ok:false, location: geo, error: k1.error, k1 }));
+        }
+        res.writeHead(200, {'content-type':'application/json'});
+        return res.end(JSON.stringify({ ok:true, location: geo, k1 }));
+      } catch (e) {
+        res.writeHead(500, {'content-type':'application/json'});
+        return res.end(JSON.stringify({ok:false, error:String(e && e.message || e)}));
+      }
+    });
+  }
+
   if (req.method === 'POST' && (req.url === '/nvtc/k1-lookup' || req.url === '/planning/lookup')) {
     let body = '';
     req.on('data', chunk => body += chunk);

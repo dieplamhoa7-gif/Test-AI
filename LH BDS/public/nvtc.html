@@ -92,6 +92,13 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
         <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://engines-manufacturer-moving-chelsea.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
       </details>
       <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
+      <details class="collapse" style="margin-top:10px">
+        <summary>🔎 Tra tay K1 theo phường + đường</summary>
+        <label>Phường/phụ lục</label><input id="k1Ward" placeholder="VD: Tân Định / Vườn Lài / Gia Định">
+        <label>Đường</label><input id="k1Road" placeholder="VD: Điện Biên Phủ">
+        <button class="btn sm" onclick="manualK1Search()">Tra K1</button>
+        <small class="src">Dùng khi cần kiểm chứng: hệ thống khóa theo <b>phường → đường → đoạn</b>, không trộn đường cùng tên ở phường khác.</small>
+      </details>
     </div>
   </div>
 </div>
@@ -345,6 +352,15 @@ async function runK1LookupFirst(){
   const res=await fetch(base+'/nvtc/k1-lookup',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({lat:coord.lat,lon:coord.lon,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
   const j=await res.json(); if(!res.ok||!j.ok)throw new Error(j.error||'K1 lookup failed');
   return j;
+}
+async function manualK1Search(){
+  const ward=($('k1Ward')?.value||'').trim(), road=($('k1Road')?.value||'').trim();
+  if(!ward||!road){setStatus('Nhập đủ phường và đường để tra K1.', 'err');return}
+  const base=$('apiBase').value.replace(/\/$/,'');
+  setStatus('Đang tra K1 theo phường → đường → đoạn...', 'run');
+  const res=await fetch(base+'/nvtc/k1-search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({ward,road,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
+  const j=await res.json(); if(!res.ok||!j.ok){setStatus('Không tra được K1: '+(j.error||res.status), 'err');return}
+  applyK1Lookup(j);
 }
 function segmentFromAlt(a){
   const raw=String(a.raw||'');
