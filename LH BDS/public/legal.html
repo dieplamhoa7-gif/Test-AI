@@ -17,7 +17,7 @@ body{background:linear-gradient(135deg,#f6f8fb,#eef4ff);color:#102542}.wrap{max-
 <section class="panel"><h2>Câu hỏi</h2><textarea id="q" placeholder="Ví dụ: Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?"></textarea><div class="chips"><button class="chip" onclick="setQ('Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?')">Điều kiện mở bán</button><button class="chip" onclick="setQ('Điều kiện giao đất, cho thuê đất, chuyển mục đích sử dụng đất cho dự án BĐS là gì?')">Đất dự án</button><button class="chip" onclick="setQ('Thủ tục chấp thuận chủ trương đầu tư và lựa chọn nhà đầu tư dự án có sử dụng đất là gì?')">Đầu tư dự án</button><button class="chip" onclick="setQ('Tiền sử dụng đất, tiền thuê đất của dự án được xác định theo căn cứ nào?')">Tiền đất</button></div><div class="toolbar"><button class="btn" onclick="askLegal()">Hỏi AI pháp lý</button><button class="btn secondary" onclick="clearAll()">Xóa</button></div><div id="status" class="status"></div></section>
 <section class="result-grid">
   <div class="panel"><h2>AI tóm tắt</h2><div id="answer" class="answer small">Chưa có câu hỏi.</div><div id="risks"></div><div id="next"></div></div>
-  <div class="panel"><h2>Chi tiết thông tin luật</h2><p class="small">Nội dung điều/khoản chi tiết, đầy đủ để đối chiếu hồ sơ.</p><div id="basisDetail" class="answer small">Chưa có căn cứ.</div></div>
+  <div class="panel"><h2>Chi tiết thông tin luật</h2><p class="small">Nội dung điều/khoản chi tiết, đầy đủ để đối chiếu hồ sơ.</p><div class="basis-actions" style="margin-bottom:10px"><button class="mini-btn" onclick="filterBasis('all')">Tất cả</button><button class="mini-btn" onclick="filterBasis('law')">Luật</button><button class="mini-btn" onclick="filterBasis('decree')">Nghị định</button><button class="mini-btn" onclick="filterBasis('circular')">Thông tư</button><button class="mini-btn" onclick="filterBasis('resolution')">Nghị quyết</button><button class="mini-btn" onclick="filterBasis('local')">VB địa phương</button><button class="mini-btn" onclick="filterBasis('full')">Full-text</button><button class="mini-btn" onclick="filterBasis('note')">Notes cần kiểm chứng</button></div><div id="basisFilterInfo" class="small"></div><div id="basisDetail" class="answer small">Chưa có căn cứ.</div></div>
 </section>
 <div id="cites" style="display:none"></div><div id="sources" style="display:none"></div>
 </main>
@@ -50,11 +50,18 @@ function formatSummary(items, fallback){
   });
   return lines.join('\n\n') + (fallback?'\n\nKết luận tóm tắt:\n'+fallback:'');
 }
-function sourceBadge(c){const p=String(c.sourcePath||c.title||'');const full=p.includes('official_texts_md_full')||p.includes('legal-ai-advisor:');return '<span class="source-badge '+(full?'full':'note')+'">'+(full?'Full-text/official':'Notes cần kiểm chứng')+'</span>'}
+function isFullSource(c){const p=String(c.sourcePath||c.title||'');return p.includes('official_texts_md_full')||p.includes('legal-ai-advisor:')}
+function sourceBadge(c){return '<span class="source-badge '+(isFullSource(c)?'full':'note')+'">'+(isFullSource(c)?'Full-text/official':'Notes cần kiểm chứng')+'</span>'}
+function docKind(c){const s=(String(c.title||'')+' '+String(c.sourcePath||'')).toLowerCase(); if(/nghi[_\s-]*quyet|nq[_\s-]*|hdnd|qh15/.test(s))return 'resolution'; if(/nghi[_\s-]*dinh|nd[_\s-]*|nd-cp/.test(s))return 'decree'; if(/thong[_\s-]*tu|tt[_\s-]/.test(s))return 'circular'; if(/ubnd|hdnd|bang[_\s-]*gia[_\s-]*dat|tp\.hcm|tphcm/.test(s))return 'local'; if(/luat|bo[_\s-]*luat/.test(s))return 'law'; return 'other'}
+function kindLabel(k){return {law:'Luật',decree:'Nghị định',circular:'Thông tư',resolution:'Nghị quyết',local:'VB địa phương',other:'Khác'}[k]||k}
+function filterBasis(kind){window.__basisFilter=kind||'all';renderBasisDetail(window.__legalCitations||[])}
 function followBasis(kind, idx){const c=(window.__legalCitations||[])[idx];if(!c)return;const ref=[c.article?('Điều '+c.article):'',c.clause?('khoản '+c.clause):'',c.title||c.sourcePath||''].filter(Boolean).join(', ');const prompt={analyze:'Phân tích kỹ căn cứ này và áp dụng vào tình huống BĐS thực tế: ',compare:'So sánh căn cứ này với luật/nghị định/nghị quyết mới nhất liên quan: ',apply:'Áp dụng căn cứ này vào một dự án bất động sản cụ thể, nêu điều kiện, hồ sơ, rủi ro: '}[kind]||'Phân tích căn cứ này: ';$('q').value=prompt+ref;askLegal()}
 function renderBasisDetail(items){
   window.__legalCitations=items||[];
-  if(!items||!items.length){$('basisDetail').textContent='Chưa có căn cứ.';return}
+  const all=items||[]; const kind=window.__basisFilter||'all';
+  items=all.filter(c=>kind==='all'||(kind==='full'?isFullSource(c):(kind==='note'?!isFullSource(c):docKind(c)===kind)));
+  if($('basisFilterInfo')) $('basisFilterInfo').innerHTML='Đang hiển thị <b>'+items.length+'</b>/<b>'+all.length+'</b> căn cứ' + (kind==='all'?'':' · bộ lọc: <b>'+esc(kindLabel(kind))+'</b>');
+  if(!items||!items.length){$('basisDetail').textContent='Chưa có căn cứ phù hợp bộ lọc.';return}
   $('basisDetail').innerHTML=items.map((c,i)=>{
     const vb=c.title||c.sourcePath||'Văn bản';
     const date=c.date||c.issueDate||c.effectiveDate||'';
@@ -62,7 +69,8 @@ function renderBasisDetail(items){
     const cl=c.clause?('Khoản/điểm '+c.clause):'Khoản/điểm: chưa xác định';
     const year=c.year?('Năm '+c.year):'';
     const body=c.fullContent||c.content||c.evidence||'';
-    return '<div class="law-card" style="border:1px solid #e5e7eb;border-radius:14px;padding:10px;margin:8px 0;background:#fbfdff"><div class="law-doc">'+esc(i+1+'. '+vb)+(date?' - ngày '+esc(date):'')+(year?' - '+esc(year):'')+sourceBadge(c)+'</div><div>- '+esc(art)+'</div><div>- '+esc(cl)+'</div><div class="law-evi">'+mdBlock(body)+'</div><div class="small">Nguồn: '+esc(c.sourcePath||'')+'</div><div class="basis-actions"><button class="mini-btn" onclick="followBasis(\'analyze\','+i+')">Phân tích điều này</button><button class="mini-btn" onclick="followBasis(\'compare\','+i+')">So sánh luật mới</button><button class="mini-btn" onclick="followBasis(\'apply\','+i+')">Áp dụng vào dự án</button></div></div>';
+    const originalIndex=all.indexOf(c);
+    return '<div class="law-card" style="border:1px solid #e5e7eb;border-radius:14px;padding:10px;margin:8px 0;background:#fbfdff"><div class="law-doc">'+esc(i+1+'. '+vb)+(date?' - ngày '+esc(date):'')+(year?' - '+esc(year):'')+' <span class="badge ok">'+esc(kindLabel(docKind(c)))+'</span>'+sourceBadge(c)+'</div><div>- '+esc(art)+'</div><div>- '+esc(cl)+'</div><div class="law-evi">'+mdBlock(body)+'</div><div class="small">Nguồn: '+esc(c.sourcePath||'')+'</div><div class="basis-actions"><button class="mini-btn" onclick="followBasis(\'analyze\','+originalIndex+')">Phân tích điều này</button><button class="mini-btn" onclick="followBasis(\'compare\','+originalIndex+')">So sánh luật mới</button><button class="mini-btn" onclick="followBasis(\'apply\','+originalIndex+')">Áp dụng vào dự án</button></div></div>';
   }).join('');
 }
 async function askLegal(){await ensureApiBase();
@@ -80,7 +88,7 @@ async function askLegal(){await ensureApiBase();
     $('risks').innerHTML=listHtml('Rủi ro / lưu ý',j.risks||[]); $('next').innerHTML=listHtml('Việc nên làm tiếp',j.nextSteps||[]);
   }catch(e){$('status').className='status show err';$('status').textContent='Lỗi: '+e.message;$('answer').innerHTML='Không gọi được AI pháp lý.'}
 }
-window.setQ=setQ; window.clearAll=clearAll; window.askLegal=askLegal; window.followBasis=followBasis;
+window.setQ=setQ; window.clearAll=clearAll; window.askLegal=askLegal; window.followBasis=followBasis; window.filterBasis=filterBasis;
 </script>
 </body>
 </html>
