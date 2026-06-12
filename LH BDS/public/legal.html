@@ -11,7 +11,7 @@ body{background:linear-gradient(135deg,#f6f8fb,#eef4ff);color:#102542}.wrap{max-
 </style>
 </head>
 <body>
-<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a class="active" href="legal.html">Pháp lý & Đầu tư</a></nav></div></header>
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a class="active" href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header>
 <main class="wrap">
 <section class="hero"><div class="hero-card"><span class="eyebrow">LH AI Luôn</span><h1>AI Luôn</h1></div></section>
 <section class="panel"><h2>Câu hỏi</h2><textarea id="q" placeholder="Ví dụ: Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?"></textarea><div class="chips"><button class="chip" onclick="setQ('Dự án nhà ở hình thành trong tương lai cần điều kiện gì để mở bán?')">Điều kiện mở bán</button><button class="chip" onclick="setQ('Điều kiện giao đất, cho thuê đất, chuyển mục đích sử dụng đất cho dự án BĐS là gì?')">Đất dự án</button><button class="chip" onclick="setQ('Thủ tục chấp thuận chủ trương đầu tư và lựa chọn nhà đầu tư dự án có sử dụng đất là gì?')">Đầu tư dự án</button><button class="chip" onclick="setQ('Tiền sử dụng đất, tiền thuê đất của dự án được xác định theo căn cứ nào?')">Tiền đất</button></div><div class="toolbar"><button class="btn" onclick="askLegal()">Hỏi AI pháp lý</button><button class="btn secondary" onclick="clearAll()">Xóa</button></div><div id="status" class="status"></div></section>
@@ -22,7 +22,12 @@ body{background:linear-gradient(135deg,#f6f8fb,#eef4ff);color:#102542}.wrap{max-
 <div id="cites" style="display:none"></div><div id="sources" style="display:none"></div>
 </main>
 <script>
-const API_BASE='https://engines-manufacturer-moving-chelsea.trycloudflare.com';
+let API_BASE='https://engines-manufacturer-moving-chelsea.trycloudflare.com';
+const API_CANDIDATES=['https://engines-manufacturer-moving-chelsea.trycloudflare.com','http://localhost:8787'];
+async function ensureApiBase(){
+  for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
+  return API_BASE;
+}
 const $ = id => document.getElementById(id);
 function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function mdInline(x){return esc(x).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')}
@@ -60,7 +65,7 @@ function renderBasisDetail(items){
     return '<div class="law-card" style="border:1px solid #e5e7eb;border-radius:14px;padding:10px;margin:8px 0;background:#fbfdff"><div class="law-doc">'+esc(i+1+'. '+vb)+(date?' - ngày '+esc(date):'')+(year?' - '+esc(year):'')+sourceBadge(c)+'</div><div>- '+esc(art)+'</div><div>- '+esc(cl)+'</div><div class="law-evi">'+mdBlock(body)+'</div><div class="small">Nguồn: '+esc(c.sourcePath||'')+'</div><div class="basis-actions"><button class="mini-btn" onclick="followBasis(\'analyze\','+i+')">Phân tích điều này</button><button class="mini-btn" onclick="followBasis(\'compare\','+i+')">So sánh luật mới</button><button class="mini-btn" onclick="followBasis(\'apply\','+i+')">Áp dụng vào dự án</button></div></div>';
   }).join('');
 }
-async function askLegal(){
+async function askLegal(){await ensureApiBase();
   const question=$('q').value.trim();
   if(!question){$('status').className='status show err';$('status').textContent='Anh nhập câu hỏi trước.';return}
   $('status').className='status show run';

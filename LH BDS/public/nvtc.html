@@ -61,7 +61,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 </style>
 </head>
 <body>
-<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a class="active" href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a></nav></div></header>
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a class="active" href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header>
 <div class="wrap">
 
 <!-- AI -->
@@ -214,6 +214,8 @@ let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
 const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="", wardFilter="";
 const $=id=>document.getElementById(id);
+const API_CANDIDATES=['https://engines-manufacturer-moving-chelsea.trycloudflare.com','http://localhost:8787'];
+async function ensureApiBase(){for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}return ($('apiBase')?.value||'https://engines-manufacturer-moving-chelsea.trycloudflare.com').replace(/\/$/,'')}
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
 function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
@@ -346,14 +348,14 @@ function upsertK1Segment(rec){
   if(i>=0){SEGMENTS[i]={...SEGMENTS[i],...rec};return i;}
   SEGMENTS.push(rec);return SEGMENTS.length-1;
 }
-async function runK1LookupFirst(){
+async function runK1LookupFirst(){await ensureApiBase();
   const coord=parseCoord($('aiCoord').value); if(!coord)return null;
   const base=$('apiBase').value.replace(/\/$/,'');
   const res=await fetch(base+'/nvtc/k1-lookup',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({lat:coord.lat,lon:coord.lon,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
   const j=await res.json(); if(!res.ok||!j.ok)throw new Error(j.error||'K1 lookup failed');
   return j;
 }
-async function manualK1Search(){
+async function manualK1Search(){await ensureApiBase();
   const ward=($('k1Ward')?.value||'').trim(), road=($('k1Road')?.value||'').trim();
   if(!ward||!road){setStatus('Nhập đủ phường và đường để tra K1.', 'err');return}
   const base=$('apiBase').value.replace(/\/$/,'');
@@ -439,7 +441,7 @@ function resetAll(){
 }
 // ===================== INIT =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://engines-manufacturer-moving-chelsea.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';calc();
+initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://engines-manufacturer-moving-chelsea.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';ensureApiBase();calc();
 ['seg','vt','far100','target','far','dongbo','f1','f2','f4','f5','g1'].forEach(id=>$(id).addEventListener('change',calc));
 $('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
 $('far').addEventListener('input',calc);

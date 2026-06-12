@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="page-bg"></div><div class="grid-lines"></div>
-<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate<div class="muted">Phân tích dự án BĐS</div></div></div><nav class="nav"><a class="active" href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a></nav></div></header>
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate<div class="muted">Phân tích dự án BĐS</div></div></div><nav class="nav"><a class="active" href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header>
 <main class="wrap">
   <section class="hero">
     <div class="hero-main"><span class="eyebrow">Real Estate Intelligence</span><h1>Sàng lọc dự án nhanh, có dữ liệu để kiểm chứng</h1><p>Tra quy hoạch, ước tính nghĩa vụ tài chính, so thị trường và kiểm hiệu quả FS trên cùng một cổng làm việc.</p><div class="hero-actions"><a class="btn-hero" href="quyhoach.html">Bắt đầu từ tọa độ</a><a class="btn-hero secondary" href="fs.html">Mở FS</a><a class="btn-hero secondary" href="rd.html">R&D thị trường</a></div></div>
@@ -39,8 +39,13 @@
   </section>
 </main>
 <script>
-const API_BASE='https://engines-manufacturer-moving-chelsea.trycloudflare.com';
-async function checkApi(){const box=document.getElementById('apiStatus'),dot=document.getElementById('apiDot'),title=document.getElementById('apiTitle'),sub=document.getElementById('apiSub');box.className='status show run';box.textContent='Đang kiểm tra...';dot.className='dot';title.textContent='Đang kiểm tra';try{const r=await fetch(API_BASE+'/health');const j=await r.json();dot.className='dot ok';title.textContent='API hoạt động';sub.textContent='Model: '+(j.model||'-')+' · Key: '+(j.hasKey?'OK':'Thiếu');box.className='status show ok';box.innerHTML='Kết nối OK<br><pre>'+JSON.stringify(j,null,2)+'</pre>'}catch(e){dot.className='dot err';title.textContent='API lỗi';sub.textContent='Kiểm tra proxy/tunnel.';box.className='status show err';box.textContent='Lỗi: '+e.message}}
+let API_BASE='https://engines-manufacturer-moving-chelsea.trycloudflare.com';
+const API_CANDIDATES=['https://engines-manufacturer-moving-chelsea.trycloudflare.com','http://localhost:8787'];
+async function ensureApiBase(){
+  for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
+  return API_BASE;
+}
+async function checkApi(){await ensureApiBase();const box=document.getElementById('apiStatus'),dot=document.getElementById('apiDot'),title=document.getElementById('apiTitle'),sub=document.getElementById('apiSub');box.className='status show run';box.textContent='Đang kiểm tra...';dot.className='dot';title.textContent='Đang kiểm tra';try{const r=await fetch(API_BASE+'/health');const j=await r.json();dot.className='dot ok';title.textContent='API hoạt động';sub.textContent='Model: '+(j.model||'-')+' · Key: '+(j.hasKey?'OK':'Thiếu');box.className='status show ok';box.innerHTML='Kết nối OK<br><pre>'+JSON.stringify(j,null,2)+'</pre>'}catch(e){dot.className='dot err';title.textContent='API lỗi';sub.textContent='Kiểm tra proxy/tunnel.';box.className='status show err';box.textContent='Lỗi: '+e.message}}
 </script>
 </body>
 </html>
