@@ -94,6 +94,12 @@ function cleanVietnameseText(x) {
     .replaceAll('ThÃ¡ng á»§ Ä\uFFFDá»©cTÃ¡m', 'Tháng Tám').replaceAll('Tháng ủ ĐứcTám', 'Tháng Tám').replaceAll('Tháng ủ Đức Tám', 'Tháng Tám').replaceAll('Tháng Thủ ĐứcTám', 'Tháng Tám').replaceAll('Tháng Thủ Đức Tám', 'Tháng Tám')
     .replaceAll('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh').replaceAll('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     .replaceAll('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh').replaceAll('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    .replaceAll('Phường Hòa Hưng Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    .replaceAll('Phường Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    .replaceAll('Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    .replaceAll('Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    .replaceAll('Thành phố Hồ Chí Minh, Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    .replaceAll('Phường Hòa Hưng, Thành phố Hồ Chí Minh, Phường Hòa Hưng, Thành phố Hồ Chí Minh', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     .replaceAll('\uFFFDức', 'Đức').replaceAll('\uFFFDỨc', 'Đức').replaceAll('\uFFFD đức', ' Đức')
     .replaceAll('Tháng ĐứcTám', 'Tháng Tám').replaceAll('Tháng Đức Tám', 'Tháng Tám')
     .replaceAll('Tháng \uFFFDứcTám', 'Tháng Tám').replaceAll('Tháng \uFFFDức Tám', 'Tháng Tám')
@@ -508,10 +514,19 @@ const server = http.createServer(async (req, res) => {
       try {
         if (!lookupK1LandFee) throw new Error('BDS K1 modules are not available');
         const payload = JSON.parse(body || '{}');
-        const ward = String(payload.ward || payload.phuong || '').trim();
-        const road = String(payload.road || payload.duong || '').trim();
+        let ward = cleanVietnameseText(String(payload.ward || payload.phuong || '').trim());
+        let road = cleanVietnameseText(String(payload.road || payload.duong || '').trim());
+        let district = cleanVietnameseText(String(payload.district || '').trim());
+        let city = cleanVietnameseText(String(payload.city || 'TP.HCM').trim());
         if (!ward || !road) throw new Error('ward_and_road_required');
-        const geo = { ward, suburb: ward, road, display_name: [road, ward, payload.district || '', payload.city || 'TP.HCM'].filter(Boolean).join(', ') };
+        const hoaHungCtx = /Hòa Hưng/i.test([ward, road].join(' '));
+        if (hoaHungCtx) {
+          ward = 'Phường Hòa Hưng';
+          city = 'Thành phố Hồ Chí Minh';
+          if (/Thủ Đức/i.test(district)) district = '';
+        }
+        const displayParts = [road, ward, district, city].filter(Boolean);
+        const geo = cleanVietnameseObject({ ward, suburb: ward, road, district, city, display_name: displayParts.join(', ') });
         const k1 = await lookupK1LandFee({ lat: null, lon: null, geoLocation: geo, text: payload.text || '', landUse: payload.landUse || 'ODT', position: payload.position || 'VT1', planningMultiplier: 1 });
         if (k1 && k1.error) {
           res.writeHead(422, {'content-type':'application/json'});

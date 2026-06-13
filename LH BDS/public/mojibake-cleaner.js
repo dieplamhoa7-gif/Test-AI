@@ -40,7 +40,13 @@
       .split('Tháng ĐứcTám').join('Tháng Tám')
       .split('Tháng Đức Tám').join('Tháng Tám')
       .split('Tháng ủ ĐứcTám').join('Tháng Tám')
-      .split('Tháng ủ Đức Tám').join('Tháng Tám');
+      .split('Tháng ủ Đức Tám').join('Tháng Tám')
+      .split('Phường Hòa Hưng Thành phố Hồ Chí Minh Thành phố Thủ Đức').join('Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+      .split('Phường Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức').join('Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+      .split('Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức').join('Hòa Hưng, Thành phố Hồ Chí Minh')
+      .split('Thành phố Hồ Chí Minh Thành phố Thủ Đức').join('Thành phố Hồ Chí Minh')
+      .split('Thành phố Hồ Chí Minh, Thành phố Thủ Đức').join('Thành phố Hồ Chí Minh')
+      .split('Phường Hòa Hưng, Thành phố Hồ Chí Minh, Phường Hòa Hưng, Thành phố Hồ Chí Minh').join('Phường Hòa Hưng, Thành phố Hồ Chí Minh');
     return out;
   }
   function cleanNodeText(node){

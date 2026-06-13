@@ -59,6 +59,12 @@ def fix_vn_text(x):
     x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    x = x.replace('Thành phố Hồ Chí Minh, Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Hồ Chí Minh, Phường Hòa Hưng, Thành phố Hồ Chí Minh', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('\uFFFDức', 'Đức').replace('\uFFFDỨc', 'Đức').replace('\uFFFD đức', ' Đức')
     x = x.replace('Tháng \uFFFDứcTám', 'Tháng Tám').replace('Tháng \uFFFDức Tám', 'Tháng Tám')
     x = x.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
@@ -105,6 +111,12 @@ def fix_vn_text(x):
     x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng, Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Thành phố Hồ Chí Minh Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    x = x.replace('Thành phố Hồ Chí Minh, Thành phố Thủ Đức', 'Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Hồ Chí Minh, Phường Hòa Hưng, Thành phố Hồ Chí Minh', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     return x
 
 try:
