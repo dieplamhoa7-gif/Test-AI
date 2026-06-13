@@ -174,7 +174,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 </div>
 
 <!-- SOURCE DATA -->
-<div class="card compact-card">
+<div class="card compact-card source-card">
   <h2>④ Dữ liệu nguồn — đường/đoạn, bảng giá & hệ số K</h2>
   <details class="compact-detail">
     <summary>Danh sách đường/đoạn áp giá — bấm để xem/sửa</summary>
@@ -187,7 +187,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 </div>
 
 <!-- SENSITIVITY -->
-<div class="card compact-card">
+<div class="card compact-card sensitivity-card">
   <h2>⑤ Bảng độ nhạy — đơn giá vốn đất ở</h2>
   <details class="compact-detail">
     <summary>Bảng độ nhạy theo vị trí — bấm để xem</summary>
@@ -482,7 +482,7 @@ $('far').addEventListener('input',calc);
 <script>
 (function forceNvtcResultNavy(){
   function apply(){
-    const cards=document.querySelectorAll('.result-card,.breakdown-card');
+    const cards=document.querySelectorAll('.result-card,.breakdown-card,.source-card,.sensitivity-card');
     if(!cards.length)return;
     cards.forEach(card=>{
       card.style.setProperty('background','linear-gradient(135deg,#102542,#1f3864)','important');
