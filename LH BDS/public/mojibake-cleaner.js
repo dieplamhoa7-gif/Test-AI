@@ -1,4 +1,4 @@
-// LH Real Estate Vietnamese mojibake cleaner.
+﻿// LH Real Estate Vietnamese mojibake cleaner.
 // Presentation-only: cleans visible DOM text/labels without touching app logic.
 (function(){
   const pairs = [
