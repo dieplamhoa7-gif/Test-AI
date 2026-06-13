@@ -1362,8 +1362,6 @@ function renderKPI(R){
     ['NPV CĐT @'+fN(P.r_ck)+'%',fB2(R.NPV),'tỷ đ',R.NPV],
     ['IRR dự án',fP(R.IRRprj),'',(R.IRRprj||0)-P.r_ck/100],
     ['IRR chủ đầu tư',fP(R.IRReq),'',(R.IRReq||0)-P.r_ck/100],
-    ['LNTT / TMĐT',fP(R.lnttTmdt),'',0],
-    ['Hoàn vốn',R.payback===null?'—':R.payback+' năm',R.payback===null?'':'('+(Y0+R.payback)+')',0],
   ];
   k.innerHTML=items.map(([lb,vl,un,sg])=>`<div class="kpi"><div class="lb">${lb}</div><div class="vl ${sg>0?'pos':sg<0?'neg':''}">${vl}</div><div class="un">${un}</div></div>`).join('');
 }
