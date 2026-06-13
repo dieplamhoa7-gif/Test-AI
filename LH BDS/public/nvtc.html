@@ -101,11 +101,11 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
       <details class="collapse">
         <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
         <label>Nhà cung cấp</label>
-        <select id="apiProvider"><option value="openai" selected>9Router BĐS local proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
+        <select id="apiProvider"><option value="openai" selected>9Router BĐS server proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
         <label>API Base URL</label><input id="apiBase" value="https://appreciated-wagner-product-arabia.trycloudflare.com">
-        <label>API Key <span class="muted">(để trống khi dùng proxy local)</span></label><input id="apiKey" type="password" placeholder="Để trống — proxy tự đọc key BĐS trong máy">
+        <label>API Key <span class="muted">(để trống — key nằm ở server)</span></label><input id="apiKey" type="password" placeholder="Để trống — server proxy giữ key riêng">
         <label>Model</label><input id="apiModel" value="APIBDS">
-        <small class="src">Đang dùng 9Router BĐS local proxy: <code>https://appreciated-wagner-product-arabia.trycloudflare.com</code>. API key nằm trong proxy/file private, không nhúng vào HTML. Nếu mở từ điện thoại, máy tính phải đang chạy proxy và cùng mạng LAN.</small>
+        <small class="src">Đang dùng server proxy 9Router BĐS: <code>https://appreciated-wagner-product-arabia.trycloudflare.com</code>. API key nằm ở server/secret, không nhúng vào HTML. Bản cloud cố định đang chuẩn bị để thay quick tunnel.</small>
       </details>
       <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
       <details class="collapse" style="margin-top:10px">
@@ -451,7 +451,7 @@ async function runAI(){
         setStatus($('aiStatus').innerHTML+'<br>✅ Đã đọc thêm diện tích từ bản vẽ; đường/đoạn/đơn giá vẫn giữ theo PDF NQ87/K1.', 'ok');
       }
     }else applyAI(parsed);
-  }catch(err){setStatus('Lỗi: '+err.message+'<br><span class="muted">Nếu CORS, trỏ Base URL tới proxy local.</span>','err');}
+  }catch(err){setStatus('Lỗi: '+err.message+'<br><span class="muted">API server đang không phản hồi. Vui lòng thử lại sau hoặc liên hệ quản trị để kiểm tra backend.</span>','err');}
   $('aiRun').disabled=false;
 }
 
