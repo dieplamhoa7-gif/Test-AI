@@ -439,5 +439,39 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects) -
         finally:
             await ctx.close()
 
+async def scrape_batdongsan_queries_reuse(queries: list[str], mode: str = "buy", limit_per_query: int = 8) -> dict[str, list[Listing]]:
+    """Open Batdongsan once, then run many queries on the same page/tab."""
+    from playwright.async_api import async_playwright
+    buckets: dict[str, list[Listing]] = {}
+    queries = [clean_bds_text(q or '').strip() for q in (queries or []) if (q or '').strip()]
+    if not queries:
+        return buckets
+    async with async_playwright() as p:
+        ctx = await p.chromium.launch_persistent_context(
+            user_data_dir=profile_dir(), executable_path=chrome_path(), headless=False,
+            viewport={"width":1365,"height":1600},
+            args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check"],
+        )
+        page = ctx.pages[0] if ctx.pages else await ctx.new_page()
+        try:
+            await page.goto("https://batdongsan.com.vn", wait_until="domcontentloaded", timeout=60000)
+            await page.wait_for_timeout(4000)
+            tab_text = "Nhà đất cho thuê" if mode == "rent" else "Nhà đất bán"
+            try:
+                await page.get_by_text(tab_text, exact=False).first.click(timeout=8000)
+                await page.wait_for_timeout(1500)
+            except Exception:
+                pass
+            for q in queries:
+                try:
+                    rows = await _search_on_existing_page(page, q, mode=mode, limit=limit_per_query)
+                except Exception:
+                    rows = []
+                if rows:
+                    buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
+            return buckets
+        finally:
+            await ctx.close()
+
 # Preferred optimized implementation
 browser_true_buckets_async = browser_true_buckets_async_reuse

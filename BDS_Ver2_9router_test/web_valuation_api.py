@@ -194,7 +194,7 @@ from ai_client import NineRouterClient, make_role_client
 from ai_search_planner import build_search_targets
 from browser_search import discover_real_source_links, listings_from_search_hits, merge_listing_buckets
 from browser_crawler import browser_price_buckets
-from playwright_bds_scraper import browser_true_buckets_async, scrape_batdongsan_playwright
+from playwright_bds_scraper import browser_true_buckets_async, scrape_batdongsan_playwright, scrape_batdongsan_queries_reuse
 from search_fallback import fallback_source_links
 from config import load_settings
 from map_snapshot import build_map_snapshot
@@ -321,15 +321,22 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
         queries += [f"bán nhà đất {ward} {district} Hồ Chí Minh", f"bán đất {ward} {district} Hồ Chí Minh"]
     queries.append(f"bán nhà đất {area}")
     buckets = {}
-    write_progress('browser_street_queries', 'Chrome search theo tên đường: ' + ' | '.join(queries[:5]))
-    for q in queries[:5]:
-        try:
-            rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode='buy')
-            if rows:
-                buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
-        except Exception:
-            continue
-    return buckets
+    mode = getattr(criteria, 'transaction', 'buy') or 'buy'
+    if mode == 'rent':
+        queries = [q.replace('bán nhà đất', 'thuê nhà đất').replace('bán đất', 'thuê đất').replace('Bất động sản', 'Cho thuê bất động sản') for q in queries]
+    write_progress('browser_street_queries', 'Chrome mở 1 lần và search tiếp nhiều keyword: ' + ' | '.join(queries[:5]))
+    try:
+        return await scrape_batdongsan_queries_reuse(queries[:5], mode=mode, limit_per_query=8)
+    except Exception:
+        # Fallback old behavior only if reuse flow fails.
+        for q in queries[:5]:
+            try:
+                rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode=mode)
+                if rows:
+                    buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
+            except Exception:
+                continue
+        return buckets
 
 
 def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
