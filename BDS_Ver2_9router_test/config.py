@@ -47,11 +47,22 @@ def _optional(name: str) -> str | None:
 
 
 def load_settings() -> Settings:
+    web_mode = os.getenv("BDS_WEB_MODE", "").strip().lower() in {"1", "true", "yes"}
+    if web_mode:
+        telegram_token = _optional("TELEGRAM_BOT_TOKEN") or "unused-render-web-token"
+        nineouter_api_key = _optional("NINEROUTER_API_KEY") or _optional("NINEROUTER_BDS_API_KEY") or "missing-render-ai-key"
+        nineouter_base_url = (_optional("NINEROUTER_BASE_URL") or _optional("NINEROUTER_BDS_BASE_URL") or "http://localhost:20128/v1").rstrip("/")
+        nineouter_model = _optional("NINEROUTER_MODEL") or _optional("NINEROUTER_BDS_MODEL") or "APIBDS"
+    else:
+        telegram_token = _required("TELEGRAM_BOT_TOKEN")
+        nineouter_api_key = _required("NINEROUTER_API_KEY")
+        nineouter_base_url = _required("NINEROUTER_BASE_URL").rstrip("/")
+        nineouter_model = _required("NINEROUTER_MODEL")
     return Settings(
-        telegram_token=_required("TELEGRAM_BOT_TOKEN"),
-        nineouter_api_key=_required("NINEROUTER_API_KEY"),
-        nineouter_base_url=_required("NINEROUTER_BASE_URL").rstrip("/"),
-        nineouter_model=_required("NINEROUTER_MODEL"),
+        telegram_token=telegram_token,
+        nineouter_api_key=nineouter_api_key,
+        nineouter_base_url=nineouter_base_url,
+        nineouter_model=nineouter_model,
         bds_api_key=_optional("NINEROUTER_BDS_API_KEY"),
         bds_base_url=(_optional("NINEROUTER_BDS_BASE_URL") or "").rstrip("/") or None,
         bds_model=_optional("NINEROUTER_BDS_MODEL"),
