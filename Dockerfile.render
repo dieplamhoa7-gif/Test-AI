@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/playwright:v1.49.1-jammy
+
+WORKDIR /app
+
+COPY package.json ./
+RUN npm install --omit=dev
+
+COPY . .
+
+RUN python -m pip install --no-cache-dir -r BDS_Ver2_9router_test/requirements.txt || true
+
+ENV NODE_ENV=production
+ENV NVTC_PROXY_PORT=10000
+ENV PORT=10000
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+EXPOSE 10000
+
+CMD ["npm", "run", "render-start"]
