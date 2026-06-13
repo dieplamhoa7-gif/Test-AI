@@ -466,8 +466,22 @@ const server = http.createServer(async (req, res) => {
     }
   }
   if (req.method === 'GET' && req.url === '/health') {
-    res.writeHead(200, {'content-type':'application/json'});
-    return res.end(JSON.stringify({ok:true, base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey()}));
+    const bdsDir = findExistingPath([path.join(__dirname, 'BDS_Ver2_9router_test'), path.join(__dirname, '..', '..', 'BDS_Ver2_9router_test')]);
+    const diag = {
+      ok: true,
+      base: LOCAL_9ROUTER_BASE,
+      model: FALLBACK_MODEL,
+      hasKey: !!readBdsKey(),
+      renderCommit: process.env.RENDER_GIT_COMMIT || process.env.RENDER_COMMIT || null,
+      python: process.env.PYTHON || null,
+      cwd: process.cwd(),
+      backendDir: __dirname,
+      bdsDir,
+      hasBdsAiClient: !!(bdsDir && fs.existsSync(path.join(bdsDir, 'ai_client.py'))),
+      hasBdsWebApi: !!(bdsDir && fs.existsSync(path.join(bdsDir, 'web_valuation_api.py')))
+    };
+    res.writeHead(200, {'content-type':'application/json; charset=utf-8'});
+    return res.end(JSON.stringify(diag));
   }
   if (req.method === 'GET' && req.url.startsWith('/nvtc/k1-source')) {
     try {
