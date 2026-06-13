@@ -148,10 +148,30 @@ async function handleBdsStatus(request, path) {
 async function proxyChat(request, env) {
   const base = String(env.NINEROUTER_BASE_URL || '').replace(/\/$/, '');
   const key = env.NINEROUTER_API_KEY;
-  if (!base) return json({ ok:false, error:'ninerouter_public_base_url_not_configured', note:'9Router hiện đang chạy local trên máy chủ cũ; cần endpoint public để Worker proxy trực tiếp.' }, 501);
-  if (!key) return json({ ok:false, error:'server_missing_ninerouter_secret' }, 500);
   const payload = await request.json().catch(() => ({}));
   payload.model = payload.model || env.NINEROUTER_MODEL || 'APIBDS';
+  if (!base) {
+    const fallbackContent = JSON.stringify({
+      ok: false,
+      cloudFallback: true,
+      warning: 'AI/OCR chưa chạy trên Worker vì chưa có 9Router public base URL. NVTC/K1 vẫn dùng nguồn PDF/K1 cloud-free; nếu có bản vẽ cần đọc diện tích tự động thì cần bật backend local hoặc cấu hình endpoint AI public.',
+      items: [],
+      duong: '',
+      doan: '',
+      viTri: 1
+    });
+    return json({
+      id: 'chatcmpl-cloudfallback',
+      object: 'chat.completion',
+      created: Math.floor(Date.now() / 1000),
+      model: payload.model,
+      choices: [{ index: 0, message: { role: 'assistant', content: fallbackContent }, finish_reason: 'stop' }],
+      usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+      cloudFallback: true,
+      note: 'NINEROUTER_BASE_URL chưa được cấu hình; trả fallback OpenAI-compatible để frontend không gãy.'
+    }, 200);
+  }
+  if (!key) return json({ ok:false, error:'server_missing_ninerouter_secret' }, 500);
   if (!payload.model || /^claude/i.test(String(payload.model))) payload.model = env.NINEROUTER_MODEL || 'APIBDS';
   try {
     const upstream = await fetch(base + '/chat/completions', {
