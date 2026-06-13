@@ -699,7 +699,13 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         )
 
     project_names = [p.get('name', '') for p in projects.projects if p.get('name')]
-    if mode == 'fast':
+    non_project_asset = criteria.property_type in {'dat', 'nha', 'shophouse', 'khoxuong'}
+    if non_project_asset:
+        # Hòa Đại ka yêu cầu: đất/nhà phố/SH-MB/kho xưởng không qua AI tìm mẫu/comparable.
+        # Chỉ search thẳng theo tên đường + phường + thành phố bằng browser Batdongsan reuse flow bên dưới.
+        write_progress('direct_street_search', 'Bỏ AI tìm mẫu; search thẳng Batdongsan theo tên đường, phường, thành phố...', warnings)
+        buckets = {}
+    elif mode == 'fast':
         warnings.append('Đang chạy chế độ nhanh: bỏ qua browser crawl sâu, dùng nguồn link/fallback và dữ liệu vị trí để ra báo cáo sơ bộ.')
         write_progress('fast_sources', 'Chế độ nhanh: lấy nguồn sơ bộ/fallback, bỏ qua crawl browser sâu...', warnings)
         evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
@@ -729,24 +735,17 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         buckets = merge_listing_buckets(buckets, evidence_buckets)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
-    if mode == 'fast':
+    if mode == 'fast' and not non_project_asset:
         write_progress('fast_report', 'Chế độ nhanh: bỏ qua Chrome/browser search sâu, chuyển sang tổng hợp báo cáo sơ bộ...', warnings)
-    elif criteria.property_type != 'chungcu':
-        write_progress('browser_street_search', 'Sản phẩm không phải chung cư: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
+    elif non_project_asset:
+        write_progress('browser_street_search', 'Chrome search trực tiếp Batdongsan theo tên đường + phường + thành phố, không qua AI tìm mẫu...', warnings)
         try:
             land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=220)
             buckets = merge_listing_buckets(buckets, land_true)
         except Exception as e:
-            note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
-            warnings.append(f"browser direct land lỗi/timeout: {type(e).__name__}. {note}")
-            log_error('browser_direct_land', payload, e, 'try Google snippet browser price search', note)
-        try:
-            land_browser = await asyncio.wait_for(browser_price_buckets(criteria, projects, max_projects=5), timeout=120)
-            buckets = merge_listing_buckets(buckets, land_browser)
-        except Exception as e:
-            note = await ai_support_agent(ai_report, 'browser_land_search', payload, e, 'continue with scraped/direct source buckets only')
-            warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
-            log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
+            note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'continue without AI estimate')
+            warnings.append(f"browser direct street search lỗi/timeout: {type(e).__name__}. {note}")
+            log_error('browser_direct_land', payload, e, 'direct street search only', note)
     else:
         write_progress('browser_buckets', 'Đang chạy browser bucket để kiểm tra nguồn thật theo dự án...', warnings)
         try:
