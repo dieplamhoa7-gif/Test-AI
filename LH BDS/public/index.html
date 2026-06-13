@@ -47,7 +47,7 @@ async function ensureApiBase(){
 }
 async function checkApi(){await ensureApiBase();const box=document.getElementById('apiStatus'),dot=document.getElementById('apiDot'),title=document.getElementById('apiTitle'),sub=document.getElementById('apiSub');box.className='status show run';box.textContent='Đang kiểm tra...';dot.className='dot';title.textContent='Đang kiểm tra';try{const r=await fetch(API_BASE+'/health');const j=await r.json();dot.className='dot ok';title.textContent='API hoạt động';sub.textContent='Model: '+(j.model||'-')+' · Key: '+(j.hasKey?'OK':'Thiếu');box.className='status show ok';box.innerHTML='Kết nối OK<br><pre>'+JSON.stringify(j,null,2)+'</pre>'}catch(e){dot.className='dot err';title.textContent='API lỗi';sub.textContent='Kiểm tra proxy/tunnel.';box.className='status show err';box.textContent='Lỗi: '+e.message}}
 </script>
-</body>
+<script src="mojibake-cleaner.js"></script></body>
 </html>
 
 
