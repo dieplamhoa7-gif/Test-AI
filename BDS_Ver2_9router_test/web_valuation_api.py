@@ -341,13 +341,18 @@ def _fmt_num(x, nd=0):
 
 async def browser_direct_land_buckets(criteria: SearchCriteria, projects: ProjectsResult) -> dict:
     loc = getattr(criteria, 'location_context', {}) or {}
-    area = projects.area_description
-    road = extract_road(loc)
-    ward = loc.get('ward') or loc.get('suburb') or loc.get('phuong') or ''
-    district = loc.get('district') or loc.get('city') or ''
+    area = fix_vn_text(projects.area_description)
+    road = fix_vn_text(extract_road(loc))
+    ward = fix_vn_text(loc.get('ward') or loc.get('suburb') or loc.get('phuong') or '')
+    district = fix_vn_text(loc.get('district') or '')
     queries = []
-    city = loc.get('city') or loc.get('province') or 'Hồ Chí Minh'
-    road_scope = ' '.join(x for x in [road, ward, district, city] if x)
+    city = fix_vn_text(loc.get('city') or loc.get('province') or 'Hồ Chí Minh')
+    if 'Hòa Hưng' in ' '.join([road, ward, area]):
+        ward = 'Phường Hòa Hưng'
+        city = 'Thành phố Hồ Chí Minh'
+        if 'Thủ Đức' in district:
+            district = ''
+    road_scope = fix_vn_text(' '.join(x for x in [road, ward, district, city] if x))
     if road:
         queries += [f"bán nhà đất mặt tiền {road_scope}", f"bán đất mặt tiền {road_scope}"]
     if ward:
@@ -379,8 +384,9 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
             ppm = getattr(l, 'price_per_m2', None)
             total = getattr(l, 'price_total', None)
             url = getattr(l, 'url', '')
-            title = getattr(l, 'title', '')
-            source = getattr(l, 'source', '') or 'Nguồn web'
+            title = fix_vn_text(getattr(l, 'title', ''))
+            source = fix_vn_text(getattr(l, 'source', '') or 'Nguồn web')
+            bucket_name = fix_vn_text(bucket_name)
             low = f"{source} {title} {url}".lower()
             if 'ước lượng' in low or 'uoc luong' in low or 'ai estimate' in low:
                 continue
@@ -429,7 +435,8 @@ def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, An
     for bucket_name, listings in (buckets or {}).items():
         for l in listings or []:
             url = getattr(l, 'url', '') or ''
-            title = getattr(l, 'title', '') or ''
+            title = fix_vn_text(getattr(l, 'title', '') or '')
+            bucket_name = fix_vn_text(bucket_name)
             key = url or title
             if key in seen:
                 continue
@@ -437,7 +444,7 @@ def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, An
             out.append({
                 'bucket': bucket_name,
                 'title': title[:220],
-                'source': getattr(l, 'source', '') or '',
+                'source': fix_vn_text(getattr(l, 'source', '') or ''),
                 'price_total': getattr(l, 'price_total', None),
                 'area_m2': getattr(l, 'area_m2', None),
                 'price_per_m2': getattr(l, 'price_per_m2', None),
