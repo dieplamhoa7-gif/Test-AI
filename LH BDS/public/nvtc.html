@@ -67,9 +67,11 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 </style>
 <link rel="stylesheet" href="local-taste.css">
 <style id="nvtc-kpi-final-override">
-/* Final override: only the three NVTC KPI cards, not data tables */
-.kpi .b{background:linear-gradient(135deg,#102542,#1f3864)!important;border-color:#2e4a7d!important;box-shadow:0 8px 22px rgba(16,37,66,.16)!important}
-.kpi .b .v{color:#fff!important}.kpi .b .k{color:rgba(255,255,255,.78)!important}.kpi .b.red .v{color:#ffe082!important}
+/* Final override: only the result block shown in the screenshot */
+.result-card{background:linear-gradient(135deg,#102542,#1f3864)!important;border-color:#2e4a7d!important;color:#fff!important;box-shadow:0 14px 34px rgba(16,37,66,.18)!important}
+.result-card h2{color:#fff!important;border-bottom-color:rgba(255,255,255,.22)!important}.result-card .tag{background:rgba(255,255,255,.16)!important;color:#fff!important}
+.result-card table{background:transparent!important}.result-card th{background:#0b1f38!important;color:#fff!important;border-color:rgba(255,255,255,.18)!important}.result-card td{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.16)!important}.result-card tr:nth-child(even) td{background:rgba(255,255,255,.12)!important}.result-card tr.tot td{background:rgba(255,224,130,.18)!important;color:#ffe082!important;font-weight:800!important}
+.result-card .kpi .b{background:rgba(255,255,255,.10)!important;border-color:rgba(255,255,255,.20)!important;box-shadow:none!important}.result-card .kpi .b .v{color:#fff!important}.result-card .kpi .b .k{color:rgba(255,255,255,.78)!important}.result-card .kpi .b.red .v{color:#ffe082!important}
 </style>
 </head>
 <body class="hightech hightech">
@@ -150,7 +152,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
   </div>
 
   <!-- RESULTS -->
-  <div class="card">
+  <div class="card result-card">
     <h2>② Đơn giá vốn của đất <span class="tag" id="ctx"></span></h2>
     <table id="unitTbl"><thead><tr><th class="l">Loại đất</th><th>Bảng giá<br>theo VT</th><th>K thị<br>trường</th><th>K_QH</th><th>K yếu<br>tố</th><th>ĐƠN GIÁ VỐN<br>(ngđ/m²)</th></tr></thead><tbody></tbody></table>
     <div class="kpi" style="margin-top:14px">
