@@ -15,9 +15,15 @@ from scraper import Listing, SearchCriteria
 
 
 def chrome_path() -> str:
+    env = os.environ.get("BDS_CHROME_PATH") or os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH")
+    if env and Path(env).exists():
+        return env
     for p in [
         r"C:\Program Files\Google\Chrome\Application\chrome.exe",
         r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        "/usr/bin/google-chrome",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
     ]:
         if Path(p).exists():
             return p
@@ -25,11 +31,11 @@ def chrome_path() -> str:
 
 
 def profile_dir() -> str:
-    base = os.environ.get("BDS_CHROME_PROFILE")
+    base = os.environ.get("BDS_CHROME_PROFILE") or os.environ.get("BDS_BROWSER_PROFILE")
     if base:
         Path(base).mkdir(parents=True, exist_ok=True)
         return base
-    p = Path(os.environ.get("LOCALAPPDATA", ".")) / "LHBDS_Bot_Playwright_Profile"
+    p = (Path(os.environ.get("LOCALAPPDATA")) if os.environ.get("LOCALAPPDATA") else Path("/tmp")) / "LHBDS_Bot_Playwright_Profile"
     p.mkdir(parents=True, exist_ok=True)
     return str(p)
 
@@ -421,9 +427,9 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects) -
     buckets: dict[str, list[Listing]] = {}
     async with async_playwright() as p:
         ctx = await p.chromium.launch_persistent_context(
-            user_data_dir=profile_dir(), executable_path=chrome_path(), headless=False,
+            user_data_dir=profile_dir(), executable_path=chrome_path(), headless=(os.environ.get("BDS_HEADLESS", "1") != "0"),
             viewport={"width":1365,"height":1600},
-            args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check"],
+            args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check", "--no-sandbox", "--disable-dev-shm-usage"],
         )
         page = ctx.pages[0] if ctx.pages else await ctx.new_page()
         try:
@@ -466,9 +472,9 @@ async def scrape_batdongsan_queries_reuse(queries: list[str], mode: str = "buy",
         return buckets
     async with async_playwright() as p:
         ctx = await p.chromium.launch_persistent_context(
-            user_data_dir=profile_dir(), executable_path=chrome_path(), headless=False,
+            user_data_dir=profile_dir(), executable_path=chrome_path(), headless=(os.environ.get("BDS_HEADLESS", "1") != "0"),
             viewport={"width":1365,"height":1600},
-            args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check"],
+            args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check", "--no-sandbox", "--disable-dev-shm-usage"],
         )
         page = ctx.pages[0] if ctx.pages else await ctx.new_page()
         try:
