@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -240,7 +240,7 @@ const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="", wardFilter="";
 const $=id=>document.getElementById(id);
 const API_PRIMARY='https://collar-space-knock-promised.trycloudflare.com';
-const API_CANDIDATES=[API_PRIMARY,'http://localhost:8787'];
+const API_CANDIDATES=[API_PRIMARY];
 function resetApiBaseToPrimary(){try{const el=$('apiBase'); if(el && (!el.value || /trycloudflare\.com|localhost:8787/.test(el.value))) el.value=API_PRIMARY;}catch(e){}}
 async function ensureApiBase(){resetApiBaseToPrimary();for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store',mode:'cors'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}if($('apiBase'))$('apiBase').value=API_PRIMARY;return API_PRIMARY}
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
@@ -505,6 +505,7 @@ $('far').addEventListener('input',calc);
 </script>
 </body>
 </html>
+
 
 
 

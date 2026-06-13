@@ -1,7 +1,7 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LH Real Estate - Quy hoạch</title><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="local-taste.css">
+﻿<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LH Real Estate - Quy hoạch</title><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="local-taste.css">
 </head><body class="hightech hightech">
 <header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate<div class="muted" style="color:#dbeafe">Tra cứu quy hoạch theo tọa độ</div></div></div><nav class="nav"><a href="/">Tổng quan</a><a href="/nvtc.html">Nghĩa vụ tài chính</a><a class="active" href="/quyhoach.html">Quy hoạch</a><a href="/rd.html">R&D thị trường</a><a href="/fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header><main class="wrap"><section class="grid2"><div class="card"><h1>Tra quy hoạch</h1><p class="muted">Bản này hiển thị kết quả như bot Quyhoach hơn: vị trí, đồ án, chức năng đất, tầng cao, MĐXD, HSSDĐ, dân số và 3 nguồn đối chiếu. JSON kỹ thuật đã ẩn.</p><label>Tọa độ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"><button class="btn" onclick="lookup()">Tra quy hoạch</button><div id="status" class="status"></div></div><div class="card qh-result-card"><h2>Kết quả vị trí</h2><div id="locationBox" class="muted">Chưa tra cứu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>Đồ án quy hoạch</h2><div id="planningBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Chỉ tiêu ô đất / chức năng đất</h2><div id="indicatorBox" class="muted">Chưa có dữ liệu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>3 nguồn đối chiếu</h2><div id="sourceBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Cảnh báo kiểm tra</h2><div id="riskBox" class="muted">Chưa có dữ liệu.</div></div></section></main><script>let API_BASE='https://collar-space-knock-promised.trycloudflare.com';
-const API_CANDIDATES=['https://collar-space-knock-promised.trycloudflare.com','http://localhost:8787'];
+const API_CANDIDATES=['https://collar-space-knock-promised.trycloudflare.com'];
 async function ensureApiBase(){
   for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
   return API_BASE;
@@ -33,6 +33,7 @@ async function ensureApiBase(){
 })();
 </script>
 </body></html>
+
 
 
 
