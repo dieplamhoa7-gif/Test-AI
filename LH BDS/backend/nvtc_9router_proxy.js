@@ -71,6 +71,21 @@ function cleanVietnameseText(x) {
     .replaceAll('Dang', 'Đang')
     .replaceAll(moji(84,104,195,32,110,104), 'Thành').replaceAll(moji(116,104,195,32,110,104), 'thành')
     .replaceAll(moji(112,104,225,187,8216), 'phố').replaceAll(moji(72,225,187,8220), 'Hồ').replaceAll(moji(67,104,195,173), 'Chí')
+    .replaceAll('Thá»§ Ä�ức', 'Thủ Đức').replaceAll('Thá»§ Đức', 'Thủ Đức').replaceAll('Thủ Ä�ức', 'Thủ Đức')
+    .replaceAll('ThÃ nh phố', 'Thành phố').replaceAll('ThA�nh phố', 'Thành phố').replaceAll('ThA�nh ph��', 'Thành phố')
+    .replaceAll('PhÆ°á»�ng', 'Phường').replaceAll('phÆ°á»�ng', 'phường').replaceAll('Phưá»�ng', 'Phường').replaceAll('phưá»�ng', 'phường')
+    .replaceAll('HÃ²a', 'Hòa').replaceAll('HoÃ ', 'Hoà').replaceAll('HÃưng', 'Hưng')
+    .replaceAll('Ä�ức', 'Đức').replaceAll('Ä‘ức', 'đức')
+    .replaceAll('Ä‘', 'đ').replaceAll('Ä�', 'Đ').replaceAll('Æ°', 'ư').replaceAll('Æ¡', 'ơ')
+    .replaceAll('á»§', 'ủ').replaceAll('á»©', 'ứ').replaceAll('á»«', 'ừ').replaceAll('á»­', 'ử').replaceAll('á»¯', 'ữ').replaceAll('á»±', 'ự')
+    .replaceAll('á»™', 'ộ').replaceAll('á»“', 'ồ').replaceAll('á»‘', 'ố').replaceAll('á»•', 'ổ').replaceAll('á»—', 'ỗ')
+    .replaceAll('á»›', 'ớ').replaceAll('á»�', 'ờ').replaceAll('á»Ÿ', 'ở').replaceAll('á»£', 'ợ')
+    .replaceAll('áº¡', 'ạ').replaceAll('áº£', 'ả').replaceAll('áº¥', 'ấ').replaceAll('áº§', 'ầ').replaceAll('áº©', 'ẩ').replaceAll('áº«', 'ẫ').replaceAll('áº­', 'ậ')
+    .replaceAll('áº¯', 'ắ').replaceAll('áº±', 'ằ').replaceAll('áº³', 'ẳ').replaceAll('áºµ', 'ẵ').replaceAll('áº·', 'ặ')
+    .replaceAll('á»‹', 'ị').replaceAll('á»‰', 'ỉ').replaceAll('á»‡', 'ệ').replaceAll('á»ƒ', 'ể').replaceAll('áº¿', 'ế')
+    .replaceAll('Ã¡', 'á').replaceAll('Ã ', 'à').replaceAll('Ã¢', 'â').replaceAll('Ã£', 'ã').replaceAll('Ã©', 'é').replaceAll('Ã¨', 'è').replaceAll('Ãª', 'ê')
+    .replaceAll('Ã­', 'í').replaceAll('Ã¬', 'ì').replaceAll('Ã³', 'ó').replaceAll('Ã²', 'ò').replaceAll('Ã´', 'ô').replaceAll('Ãµ', 'õ').replaceAll('Ãº', 'ú').replaceAll('Ã¹', 'ù').replaceAll('Ã½', 'ý')
+    .replaceAll('batdongsan.com.vn', 'batdongsan.com.vn')
     .replaceAll(moji(196,63), 'Đ').replaceAll(moji(196,8216), 'đ');
 }
 function cleanVietnameseObject(obj) {
@@ -489,10 +504,10 @@ const server = http.createServer(async (req, res) => {
         const k1 = await lookupK1LandFee({ lat: null, lon: null, geoLocation: geo, text: payload.text || '', landUse: payload.landUse || 'ODT', position: payload.position || 'VT1', planningMultiplier: 1 });
         if (k1 && k1.error) {
           res.writeHead(422, {'content-type':'application/json'});
-          return res.end(JSON.stringify({ ok:false, location: geo, error: k1.error, k1 }));
+          return res.end(JSON.stringify(cleanVietnameseObject({ ok:false, location: geo, error: k1.error, k1 })));
         }
         res.writeHead(200, {'content-type':'application/json'});
-        return res.end(JSON.stringify({ ok:true, location: geo, k1 }));
+        return res.end(JSON.stringify(cleanVietnameseObject({ ok:true, location: geo, k1 })));
       } catch (e) {
         res.writeHead(500, {'content-type':'application/json'});
         return res.end(JSON.stringify({ok:false, error:String(e && e.message || e)}));
@@ -553,7 +568,7 @@ const server = http.createServer(async (req, res) => {
           return res.end(JSON.stringify({ ok:false, location: geo, error: k1.error, k1 }));
         }
         res.writeHead(200, {'content-type':'application/json'});
-        res.end(JSON.stringify({ ok:true, location: geo, k1 }));
+        res.end(JSON.stringify(cleanVietnameseObject({ ok:true, location: geo, k1 }))); 
       } catch (e) {
         res.writeHead(500, {'content-type':'application/json'});
         res.end(JSON.stringify({ ok:false, error: String(e && e.message || e) }));
