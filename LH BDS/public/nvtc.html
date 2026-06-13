@@ -215,8 +215,10 @@ let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
 const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="", wardFilter="";
 const $=id=>document.getElementById(id);
-const API_CANDIDATES=['https://approval-fundamental-eternal-nuclear.trycloudflare.com','http://localhost:8787'];
-async function ensureApiBase(){for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}return ($('apiBase')?.value||'https://approval-fundamental-eternal-nuclear.trycloudflare.com').replace(/\/$/,'')}
+const API_PRIMARY='https://approval-fundamental-eternal-nuclear.trycloudflare.com';
+const API_CANDIDATES=[API_PRIMARY,'http://localhost:8787'];
+function resetApiBaseToPrimary(){try{const el=$('apiBase'); if(el && (!el.value || /trycloudflare\.com|localhost:8787/.test(el.value))) el.value=API_PRIMARY;}catch(e){}}
+async function ensureApiBase(){resetApiBaseToPrimary();for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store',mode:'cors'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}if($('apiBase'))$('apiBase').value=API_PRIMARY;return API_PRIMARY}
 function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
 
 function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
@@ -309,14 +311,14 @@ function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({version:AP
   vt:$('vt').value,far100:$('far100').value,target:$('target').value,far:$('far').value,dongbo:$('dongbo').value,
   f1:$('f1').checked,f2:$('f2').checked,f4:$('f4').checked,f5:$('f5').checked,g1:$('g1').checked,
   api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
-function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s)return;
+function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s){resetApiBaseToPrimary();return;}
   // Không restore SEGMENTS từ localStorage nữa vì cache cũ có thể chứa đường/đoạn do AI search tạo ra.
   // Source đường/đoạn/đơn giá/K chỉ đến từ VERIFIED_SEGMENTS hoặc K1 lookup mới.
   SEGMENTS=JSON.parse(JSON.stringify(VERIFIED_SEGMENTS));
   if(s.version!==APP_DATA_VERSION){try{localStorage.removeItem('nvtc3');}catch(e){}; return;}
   if(s.rows)rows=s.rows;
-  // Luôn áp dụng 9Router BĐS local proxy, không restore API/key cũ từ localStorage.
- if(s.api){apiProvider.value='openai';apiBase.value='https://approval-fundamental-eternal-nuclear.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';}
+  // Luôn áp dụng 9Router BĐS local proxy hiện hành, không restore API/key cũ từ localStorage.
+ if(s.api){apiProvider.value='openai';apiBase.value=API_PRIMARY;apiKey.value='';apiModel.value='APIBDS';}
   setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
     $('vt').value=s.vt??1;$('far100').value=s.far100??0;$('target').value=s.target??'ODT';$('far').value=s.far??7;$('dongbo').value=s.dongbo??1;
     ['f1','f2','f4','f5','g1'].forEach(k=>{if(s[k]!==undefined)$(k).checked=s[k];});
@@ -349,25 +351,22 @@ function upsertK1Segment(rec){
   if(i>=0){SEGMENTS[i]={...SEGMENTS[i],...rec};return i;}
   SEGMENTS.push(rec);return SEGMENTS.length-1;
 }
-async function runK1LookupFirst(){await ensureApiBase();
+async function runK1LookupFirst(){const base=await ensureApiBase();
   const coord=parseCoord($('aiCoord').value); if(!coord)return null;
-  const base=$('apiBase').value.replace(/\/$/,'');
   const res=await fetch(base+'/nvtc/k1-lookup',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({lat:coord.lat,lon:coord.lon,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
   const j=await res.json(); if(!res.ok||!j.ok)throw new Error(j.error||'K1 lookup failed');
   return j;
 }
-async function manualK1Search(){await ensureApiBase();
+async function manualK1Search(){const base=await ensureApiBase();
   const ward=($('k1Ward')?.value||'').trim(), road=($('k1Road')?.value||'').trim();
   if(!ward||!road){setStatus('Nhập đủ phường và đường để tra K1.', 'err');return}
-  const base=$('apiBase').value.replace(/\/$/,'');
   setStatus('Đang tra K1 theo phường → đường → đoạn...', 'run');
   const res=await fetch(base+'/nvtc/k1-search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({ward,road,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
   const j=await res.json(); if(!res.ok||!j.ok){setStatus('Không tra được K1: '+(j.error||res.status), 'err');return}
   applyK1Lookup(j);
 }
-async function openK1Source(page){await ensureApiBase();
+async function openK1Source(page){const base=await ensureApiBase();
   if(!page){setStatus('Chưa có số trang nguồn K1 để xem.', 'err');return}
-  const base=$('apiBase').value.replace(/\/$/,'');
   const res=await fetch(base+'/nvtc/k1-source?page='+encodeURIComponent(page));
   const j=await res.json();
   if(!res.ok||!j.ok){setStatus('Không đọc được nguồn K1: '+(j.error||res.status), 'err');return}
@@ -452,7 +451,7 @@ function resetAll(){
 }
 // ===================== INIT =====================
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value='https://approval-fundamental-eternal-nuclear.trycloudflare.com';apiKey.value='';apiModel.value='APIBDS';ensureApiBase();calc();
+initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value=API_PRIMARY;apiKey.value='';apiModel.value='APIBDS';try{localStorage.setItem('nvtc_api_primary',API_PRIMARY)}catch(e){};ensureApiBase();calc();
 ['seg','vt','far100','target','far','dongbo','f1','f2','f4','f5','g1'].forEach(id=>$(id).addEventListener('change',calc));
 $('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
 $('far').addEventListener('input',calc);
