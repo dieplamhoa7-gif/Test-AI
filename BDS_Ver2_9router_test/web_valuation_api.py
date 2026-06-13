@@ -352,12 +352,13 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
         city = 'Thành phố Hồ Chí Minh'
         if 'Thủ Đức' in district:
             district = ''
-    road_scope = fix_vn_text(' '.join(x for x in [road, ward, district, city] if x))
+    # Non-project assets: Hòa Đại ka yêu cầu ưu tiên đường, không search phường.
+    # Chỉ giữ phường trong context để lọc/clean, không tạo keyword phường riêng.
+    road_scope = fix_vn_text(' '.join(x for x in [road, district, city] if x))
     if road:
         queries += [f"bán nhà đất mặt tiền {road_scope}", f"bán đất mặt tiền {road_scope}"]
-    if ward:
-        queries += [f"bán nhà đất {ward} {district} Hồ Chí Minh", f"bán đất {ward} {district} Hồ Chí Minh"]
-    queries.append(f"bán nhà đất {area}")
+    else:
+        queries.append(f"bán nhà đất {fix_vn_text(' '.join(x for x in [district, city] if x) or area)}")
     buckets = {}
     mode = getattr(criteria, 'transaction', 'buy') or 'buy'
     if mode == 'rent':
