@@ -47,7 +47,9 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .tag{font-size:11px;background:#eef2fb;color:var(--navy);padding:1px 7px;border-radius:5px}
 .chk{display:flex;align-items:center;gap:8px;font-weight:500;font-size:12.5px;margin:6px 0}.chk input{width:auto}
 .hsbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.hsbar .h{background:#eef2fb;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:600;color:var(--navy)}
+.hsbar .h{background:#ffe082!important;border:1px solid #d6a700!important;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:700;color:#111827!important}
+.btn.yellow-action{background:#ffe082!important;color:#111827!important;border:1px solid #d6a700!important;font-weight:800!important}
+.btn.yellow-action:hover{background:#ffd54f!important;color:#111827!important}
 .compact-detail{margin-top:8px;border:1px solid var(--line);background:#f8fafc;border-radius:10px;padding:0 10px 10px}
 .compact-detail>summary{cursor:pointer;color:var(--navy);font-weight:800;padding:9px 2px;font-size:12.5px}
 .table-scroll{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
@@ -92,7 +94,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
       <input id="aiCoord" value="10.727914, 106.742532">
       <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">🔎 Tra PDF NQ87/K1 theo tọa độ & đọc bản vẽ</button>
       <label class="chk" style="margin-top:8px"><input type="checkbox" id="aiReplace" checked> Cập nhật diện tích theo bản vẽ/kết quả AI; đường/đoạn/đơn giá/K vẫn lấy từ PDF NQ87/K1</label>
-      <button class="btn ghost sm" style="margin-top:4px" onclick="resetAll()">🧹 Xóa dữ liệu mẫu — bắt đầu trống</button>
+      <button class="btn ghost sm yellow-action" style="margin-top:4px" onclick="resetAll()">🧹 Xóa dữ liệu mẫu — bắt đầu trống</button>
       <div class="status" id="aiStatus"></div>
     </div>
     <div>
@@ -179,7 +181,7 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
   <details class="compact-detail">
     <summary>Danh sách đường/đoạn áp giá — bấm để xem/sửa</summary>
     <div class="table-scroll"><table id="segTbl"><thead><tr><th class="l">Đường</th><th class="l">Đoạn</th><th>Đất ở</th><th>TMDV</th><th>SXKD</th><th>K đất ở</th><th>K TMDV</th><th>K SXKD</th><th>K đất NN</th><th></th></tr></thead><tbody></tbody></table></div>
-    <button class="btn sm ghost" style="margin-top:8px" onclick="addSeg()">+ Thêm đường/đoạn (nhập tay)</button>
+    <button class="btn sm ghost yellow-action" style="margin-top:8px" onclick="addSeg()">+ Thêm đường/đoạn (nhập tay)</button>
     <p class="muted" style="margin-top:10px" id="agriTitle">Bảng giá đất nông nghiệp của đoạn đang chọn (ngđ/m² theo vị trí):</p>
     <table id="agriTbl"><thead><tr><th class="l">Loại đất NN</th><th>Vị trí 1</th><th>Vị trí 2</th><th>Vị trí 3</th></tr></thead><tbody></tbody></table>
     <div class="muted" style="margin-top:6px">Đơn giá theo bảng giá đất VT1. Hệ số K = hệ số điều chỉnh mức biến động thị trường (PL I). Sửa ô nào → tính lại ngay.</div>
