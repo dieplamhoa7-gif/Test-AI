@@ -73,7 +73,13 @@ def clean_bds_text(s: str) -> str:
     for a, b in pairs.items():
         out = out.replace(a, b)
     out = out.replace('ĐứcTám', 'Đức Tám')
-    out = out.replace('Tháng ủ Đức Tám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
+    out = out.replace('ThÃ¡ng á»§ Ä�á»©cTÃ¡m', 'Tháng Tám')
+    out = out.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
+    out = out.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
+    out = out.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    out = out.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    out = out.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    out = out.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     out = out.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     return out
 

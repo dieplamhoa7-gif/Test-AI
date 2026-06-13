@@ -47,7 +47,15 @@ def fix_vn_text(x):
         x = x.replace(a, b)
     # Repair no-space concatenation observed from BĐS search strings.
     x = x.replace('ĐứcTám', 'Đức Tám')
-    x = x.replace('Tháng ủ Đức Tám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
+    x = x.replace('ThÃ¡ng á»§ Ä�á»©cTÃ¡m', 'Tháng Tám')
+    x = x.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
+    x = x.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
+    # Hòa Hưng is not in TP Thủ Đức; prevent mojibake-cleaned search strings
+    # from creating a false administrative location.
+    x = x.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     bad = chr(0xFFFD)
     replacements = {
@@ -84,6 +92,11 @@ def fix_vn_text(x):
     }
     for a, b in bad_replacements.items():
         x = x.replace(a, b)
+    # Final administrative guard: Hòa Hưng is not in TP Thủ Đức.
+    x = x.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     return x
 
 try:
