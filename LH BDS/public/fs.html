@@ -307,6 +307,7 @@ function mdxdMax(loai, dtLo, caoM){
 /* ====================== MẶC ĐỊNH (từ file Excel gốc) ====================== */
 function defaults(){return {
   vat:10, cit:20, r_ck:12, r_loan:12, cit_tam:1, escal:5,
+  loan_sdd:0, loan_hatang:70, loan_build:70, loan_tuvan:0, loan_duphong:0,
   dat_tong:9611.8, dat_xd:3844.7,
   cp_chuyennhuong:400, cp_denbu:0, cp_sdd:666.3180972, cp_noxh:0, phaply_pct:3,
   dg_hatang:2.2, heso_xd:3, tuvan_pct:8, duphong_pct:10,
@@ -395,14 +396,20 @@ function run(p, sched, cost, coll){
   const sddV=p.cp_sdd*B;
   const shopShare=(nsaCH+nsaSH)>0?nsaSH/(nsaCH+nsaSH):0;
   const VATout=(F280-1.0*sddV)*v/(1+v) + (F287-shopShare*sddV)*v/(1+v); // F276: thuế VAT bán hàng
-  const land=Array(NY).fill(0), cpxd=Array(NY).fill(0);
+  const land=Array(NY).fill(0), cpxd=Array(NY).fill(0), ownerLand=Array(NY).fill(0), debtEligible=Array(NY).fill(0);
   const add=(arr,total,ph)=>{for(const [y,f] of Object.entries(ph||{})){const i=idx(Number(y)); if(i>=0&&i<NY)arr[i]+=total*f/100;}};
-  add(land,p.cp_chuyennhuong*B,cost.chuyennhuong); add(land,p.cp_denbu*B,cost.denbu);
-  add(land,sddV,cost.sdd); add(land,I83,cost.phaply);
-  add(cpxd,I85*(1+v),cost.hatang);
+  const addBoth=(arr1,arr2,total,ph,ratio=1)=>{for(const [y,f] of Object.entries(ph||{})){const i=idx(Number(y)); if(i>=0&&i<NY){const amt=total*f/100; arr1[i]+=amt; arr2[i]+=amt*ratio;}}};
+  // Chuyển nhượng + đền bù/GPMB: 100% vốn chủ đầu tư, không đưa vào hạn mức vay.
+  addBoth(land, ownerLand, p.cp_chuyennhuong*B, cost.chuyennhuong, 1);
+  addBoth(land, ownerLand, p.cp_denbu*B, cost.denbu, 1);
+  // Các cấu phần còn lại có tỷ lệ vay nhập trên web.
+  addBoth(land, debtEligible, sddV, cost.sdd, (p.loan_sdd||0)/100);
+  addBoth(land, debtEligible, I83, cost.phaply, 0);
+  addBoth(cpxd, debtEligible, I85*(1+v), cost.hatang, (p.loan_hatang||0)/100);
   const J86=I86*(1+v), W={mong:p.w_mong,ketcau:p.w_ketcau,hoanthien:p.w_hoanthien,me:p.w_me};
-  for(const k of ['mong','ketcau','hoanthien','me']) add(cpxd,J86*W[k]/100,cost[k]);
-  add(cpxd,I97*(1+v),cost.tuvan); add(cpxd,I101*(1+v),cost.duphong);
+  for(const k of ['mong','ketcau','hoanthien','me']) addBoth(cpxd, debtEligible, J86*W[k]/100, cost[k], (p.loan_build||0)/100);
+  addBoth(cpxd, debtEligible, I97*(1+v), cost.tuvan, (p.loan_tuvan||0)/100);
+  addBoth(cpxd, debtEligible, I101*(1+v), cost.duphong, (p.loan_duphong||0)/100);
   const invest=land.map((x,i)=>x+cpxd[i]);
   const F389=invest.reduce((a,b)=>a+b,0);
   const opr=(p.qldn_pct+p.banhang_pct)/100;
@@ -415,25 +422,35 @@ function run(p, sched, cost, coll){
   // Nghĩa là phân bổ tổng VAT phải nộp theo tỷ trọng thực thu từng kỳ, không net trừ VAT đầu vào tại dòng tiền dự án.
   const vatpay=collArr.map(c=>F274>0?VATpayTotal*c/F274:0);
   const thuNet=collArr.map(c=>c*(1-opr-p.cit_tam/100));
-  // vốn chủ: mode 1 = bằng đúng chi phí mua đất + GPMB theo tiến độ (logic file Excel gốc: I483=I400);
-  //          mode 2 = ngân sách cố định p.vonchu, rót vào các nhu cầu sớm nhất
+  // Vốn vay/vốn chủ theo waterfall:
+  // - Chuyển nhượng + đền bù/GPMB: 100% vốn chủ.
+  // - Hạn mức vay theo tỷ lệ nhập trên web cho từng cấu phần đủ điều kiện.
+  // - Trả nợ gốc theo thặng dư tiền mặt sau chi phí dự án/hoạt động.
+  // - Để tránh vòng lặp, vốn chủ trả lãi vay và thuế/VAT; lãi không làm tăng nhu cầu vay.
   const eqAuto=(p.vonchu_mode!=2);
-  const cnArr=Array(NY).fill(0);
-  add(cnArr,p.cp_chuyennhuong*B,cost.chuyennhuong); add(cnArr,p.cp_denbu*B,cost.denbu);
-  let eqRem=p.vonchu*B, prevFinal=0;
+  let eqRem=p.vonchu*B, prevFinal=0, undrawnFacility=0;
   const draw=Array(NY).fill(0), eq=Array(NY).fill(0), repay=Array(NY).fill(0), interest=Array(NY).fill(0), balEnd=Array(NY).fill(0);
   for(let i=0;i<NY;i++){
-    const e=eqAuto?Math.min(cnArr[i],invest[i]):Math.min(eqRem,invest[i]);
-    eq[i]=e; if(!eqAuto)eqRem-=e;
-    const d=(thuNet[i]-invest[i]<=0 && invest[i]>0)?Math.max(invest[i]-e,0):0;
-    draw[i]=d;
-    let bal=prevFinal+d;
-    const surplus=thuNet[i]>0?Math.max(thuNet[i]-Math.min(thuNet[i],cpxd[i]),0):0;
-    const rp1=(bal>0&&surplus>0)?Math.min(bal,surplus):0;
-    bal-=rp1;
-    interest[i]=p.r_loan/100*bal;
-    const rp2=(rp1>0&&bal>0)?bal:0;
-    repay[i]=rp1+rp2; balEnd[i]=bal-rp2; prevFinal=bal-rp2;
+    undrawnFacility += debtEligible[i];
+    const opening=prevFinal;
+    const taxByEquity = vatpay[i] + collArr[i]*(p.cit_tam||0)/100;
+    const cashAfterOpex = Math.max(collArr[i]-op[i],0);
+    const ownerMandatory = ownerLand[i];
+    const usesBeforeDebtService = invest[i] + op[i];
+    const gapBeforeDebt = Math.max(usesBeforeDebtService - cashAfterOpex - ownerMandatory, 0);
+    const d = Math.min(gapBeforeDebt, Math.max(undrawnFacility,0));
+    draw[i]=d; undrawnFacility-=d;
+    const equityGap = Math.max(gapBeforeDebt-d,0);
+    const balBeforeRepay = opening+d;
+    // Lãi tính trên dư nợ bình quân; trả gốc không làm giảm lãi cùng kỳ quá mức.
+    interest[i]=p.r_loan/100*(opening + d*0.5);
+    // Thặng dư tiền mặt dùng trả gốc: thu tiền - chi phí dự án - chi phí hoạt động, không trừ lãi/thuế vì vốn chủ trả.
+    const principalSurplus=Math.max(cashAfterOpex - invest[i], 0);
+    repay[i]=Math.min(balBeforeRepay, principalSurplus);
+    balEnd[i]=balBeforeRepay-repay[i]; prevFinal=balEnd[i];
+    const equityNeed = ownerMandatory + equityGap + interest[i] + taxByEquity;
+    eq[i]=eqAuto?equityNeed:Math.min(eqRem, equityNeed);
+    if(!eqAuto) eqRem-=eq[i];
   }
   const F425=interest.reduce((a,b)=>a+b,0);
   const outflow=invest.map((x,i)=>x+op[i]+interest[i]+vatpay[i]);
@@ -450,7 +467,7 @@ function run(p, sched, cost, coll){
     LNTT,LNST,NPV,IRRprj:irr(cfPrj),IRReq:irr(cfEq),
     lnttTmdt:F389>0?LNTT/F389:0, payback,
     nsaCH,nsaSH,hssd,mdxd,mdxdQC,hssdQC,danso,soCan,tangMax,gfaNoi,gfaHam,caoTB,doxeReq,
-    collArr,invest,land,cpxd,op,vatpay,interest,draw,repay,balEnd,cfPrj,cfEq,revCH,revSH,thuNet,eq
+    collArr,invest,land,cpxd,op,vatpay,interest,draw,repay,balEnd,cfPrj,cfEq,revCH,revSH,thuNet,eq,ownerLand,debtEligible
   };
 }
 
@@ -728,7 +745,9 @@ const XSCAL=[
  ['hs_tang','C52','Chiều cao trung bình 1 tầng','m'],['loai_qh','C53','Loại lô đất QCVN (1=chung cư B2.9, 2=hỗn hợp B2.10)',''],
  ['doxe_pct','C54','Chỗ đỗ xe tối thiểu / 100m2 NSA căn hộ (QCVN 04:2021)','%'],
  ['kkv','C55','Hệ số vùng Kkv (QĐ 409/QĐ-BXD)','lần'],['ktg','C56','Hệ số thời điểm Ktg','lần'],
- ['vonchu_mode','C64','Vốn chủ: 1=tự động bằng tiền mua đất+GPMB (như file gốc), 2=cố định theo ô C25',''],
+ ['vonchu_mode','C64','Vốn chủ: 1=tự động theo waterfall, 2=cố định theo ô C25',''],
+ ['loan_sdd','C65','Tỷ lệ vay tiền sử dụng đất','%'],['loan_hatang','C66','Tỷ lệ vay hạ tầng','%'],
+ ['loan_build','C67','Tỷ lệ vay CPXD chính','%'],['loan_tuvan','C68','Tỷ lệ vay tư vấn/QLDA/khác','%'],['loan_duphong','C69','Tỷ lệ vay dự phòng','%'],
 ];
 const X_SOTHAP='C36';
 const TW_ROWS=[
@@ -922,32 +941,32 @@ function buildSheets(p, sched, cost, coll, full){
     set(ws,c+'79',`=IF($F$58>0,${c}58/$F$58*$F$78,0)`,M);
   }
   set(ws,'B81','G. TÀI TRỢ & LÃI VAY');
-  set(ws,'B82','Dòng thu net (sau CP hđ + TNDN tạm nộp)');
-  set(ws,'B83','Vốn chủ giải ngân'); set(ws,'G83',0);
-  set(ws,'B84','Giải ngân vốn vay (+)');
-  set(ws,'B85','Tiền dư sau trả CPXD');
-  set(ws,'B86','Dư nợ sau giải ngân'); set(ws,'G91',0);
-  set(ws,'B87','Trả gốc đợt 1');
-  set(ws,'B88','Dư nợ tính lãi');
-  set(ws,'B89','Lãi vay');
-  set(ws,'B90','Trả gốc đợt 2 (tất toán)');
+  set(ws,'B82','Dòng thu sau CP hoạt động');
+  set(ws,'B83','Hạn mức vay phát sinh trong kỳ');
+  set(ws,'B84','Hạn mức vay còn lại đầu kỳ');
+  set(ws,'B85','Vốn chủ giải ngân'); set(ws,'G85',0);
+  set(ws,'B86','Giải ngân vốn vay (+)');
+  set(ws,'B87','Thặng dư tiền mặt trả gốc');
+  set(ws,'B88','Dư nợ trước trả gốc'); set(ws,'G91',0);
+  set(ws,'B89','Trả gốc theo thặng dư');
+  set(ws,'B90','Lãi vay — vốn chủ trả');
   set(ws,'B91','Dư nợ cuối năm');
   set(ws,'B92','Tổng trả gốc');
   for(let i=0;i<NY;i++){
     const c=fsCol(i), pv=i===0?'G':fsCol(i-1);
-    set(ws,c+'82',`=${c}58*(1-(INPUT!$C$21+INPUT!$C$22+INPUT!$C$8)/100)`,M);
-    set(ws,c+'83',`=IF(INPUT!$C$64=2,MAX(MIN(INPUT!$C$25*10^9-SUM($G$83:${pv}83),${c}74),0),MIN(${c}61+${c}62,${c}74))`,M);
-    set(ws,c+'84',`=IF(AND(${c}82-${c}74<=0,${c}74>0),MAX(${c}74-${c}83,0),0)`,M);
-    set(ws,c+'85',`=IF(${c}82>0,MAX(${c}82-MIN(${c}82,${c}73),0),0)`,M);
-    set(ws,c+'86',`=${pv}91+${c}84`,M);
-    set(ws,c+'87',`=IF(AND(${c}86>0,${c}85>0),MIN(${c}86,${c}85),0)`,M);
-    set(ws,c+'88',`=${c}86-${c}87`,M);
-    set(ws,c+'89',`=INPUT!$C$5/100*${c}88`,M);
-    set(ws,c+'90',`=IF(AND(${c}87>0,${c}88>0.01),${c}88,0)`,M);
-    set(ws,c+'91',`=${c}88-${c}90`,M);
-    set(ws,c+'92',`=${c}87+${c}90`,M);
+    set(ws,c+'82',`=${c}58-${c}77`,M);
+    set(ws,c+'83',`=${c}63*INPUT!$C$65/100+${c}65*INPUT!$C$66/100+SUM(${c}66:${c}69)*INPUT!$C$67/100+${c}70*INPUT!$C$68/100+${c}71*INPUT!$C$69/100`,M);
+    set(ws,c+'84',`=MAX(${pv}84+${c}83-${c}86,0)`,M);
+    set(ws,c+'86',`=MIN(MAX(${c}74-${c}82-(${c}61+${c}62),0),${c}84)`,M);
+    set(ws,c+'87',`=MAX(${c}82-${c}74,0)`,M);
+    set(ws,c+'88',`=${pv}91+${c}86`,M);
+    set(ws,c+'89',`=MIN(${c}88,${c}87)`,M);
+    set(ws,c+'90',`=INPUT!$C$5/100*(${pv}91+${c}86*0.5)`,M);
+    set(ws,c+'91',`=${c}88-${c}89`,M);
+    set(ws,c+'92',`=${c}89`,M);
+    set(ws,c+'85',`=IF(INPUT!$C$64=2,MIN(MAX(INPUT!$C$25*10^9-SUM($H$85:${pv}85),0),${c}61+${c}62+MAX(${c}74-${c}82-(${c}61+${c}62)-${c}86,0)+${c}90+${c}79+${c}58*INPUT!$C$8/100),${c}61+${c}62+MAX(${c}74-${c}82-(${c}61+${c}62)-${c}86,0)+${c}90+${c}79+${c}58*INPUT!$C$8/100)`,M);
   }
-  set(ws,'F89','=SUM(H89:T89)',M); set(ws,'F92','=SUM(H92:T92)',M); set(ws,'F84','=SUM(H84:T84)',M);
+  set(ws,'F90','=SUM(H90:T90)',M); set(ws,'F92','=SUM(H92:T92)',M); set(ws,'F86','=SUM(H86:T86)',M); set(ws,'F85','=SUM(H85:T85)',M);
   set(ws,'B94','H. DÒNG TIỀN');
   set(ws,'B95','Ngân lưu quan điểm TMĐT');
   set(ws,'B96','Ngân lưu quan điểm CĐT');
@@ -955,14 +974,14 @@ function buildSheets(p, sched, cost, coll, full){
   for(let i=0;i<NY;i++){
     const c=fsCol(i);
     set(ws,c+'95',`=${c}58-${c}74-${c}77-${c}89-${c}79`,M);
-    set(ws,c+'96',`=${c}95+${c}84-${c}92`,M);
+    set(ws,c+'96',`=${c}95+${c}86-${c}92`,M);
     set(ws,c+'97',`=SUM($H$96:${c}96)`,M);
   }
   set(ws,'F95','=SUM(H95:T95)',M); set(ws,'F96','=SUM(H96:T96)',M);
   set(ws,'B99','I. KẾT QUẢ & HIỆU QUẢ ĐẦU TƯ');
   const KQ=[
     [100,'TỔNG MỨC ĐẦU TƯ (chưa lãi vay, gồm VAT)','=F18',M],
-    [101,'Lãi vay','=F89',M],
+    [101,'Lãi vay','=F90',M],
     [102,'Doanh thu (có VAT)','=F42',M],
     [103,'Doanh thu thuần (chưa VAT)','=F42-(((F37-INPUT!$C$14*10^9)+(F41-$F$26/($F$25+$F$26)*INPUT!$C$14*10^9))*INPUT!$C$6/(100+INPUT!$C$6))',M],
     [104,'Chi phí đất & pháp lý (chưa VAT)','=F17',M],
@@ -1104,6 +1123,8 @@ const fN2=x=>x.toLocaleString('vi-VN',{maximumFractionDigits:2});
 const FIELDS={
  'grp-fin':[
    ['r_ck','Tỷ suất chiết khấu CĐT (r)','%/năm'],['r_loan','Lãi suất vay ngân hàng','%/năm'],
+   ['loan_sdd','Tỷ lệ vay tiền sử dụng đất','%'],['loan_hatang','Tỷ lệ vay hạ tầng','%'],
+   ['loan_build','Tỷ lệ vay CPXD chính','%'],['loan_tuvan','Tỷ lệ vay tư vấn/QLDA/khác','%'],['loan_duphong','Tỷ lệ vay dự phòng','%'],
    ['vat','Thuế VAT','%'],['cit','Thuế TNDN','%'],['cit_tam','Thuế TNDN tạm nộp/dòng thu','%'],
    ['escal','Tốc độ tăng giá bán','%/năm'],
  ],
