@@ -71,6 +71,10 @@ function cleanVietnameseText(x) {
     .replaceAll('Dang', 'Đang')
     .replaceAll(moji(84,104,195,32,110,104), 'Thành').replaceAll(moji(116,104,195,32,110,104), 'thành')
     .replaceAll(moji(112,104,225,187,8216), 'phố').replaceAll(moji(72,225,187,8220), 'Hồ').replaceAll(moji(67,104,195,173), 'Chí')
+    .replaceAll('CÃ¡ch', 'Cách').replaceAll('Máº¡ng', 'Mạng').replaceAll('ThÃ¡ng', 'Tháng').replaceAll('TÃ¡m', 'Tám')
+    .replaceAll('PhÆ°á»�ng', 'Phường').replaceAll('HÃ²a', 'Hòa').replaceAll('HÆ°ng', 'Hưng').replaceAll('ThÃ nh', 'Thành').replaceAll('phá»‘', 'phố')
+    .replaceAll('Ä�á»©c', 'Đức').replaceAll('ĐứcTám', 'Đức Tám')
+    .replaceAll('Tháng ủ Đức Tám', 'Tháng Tám').replaceAll('Tháng Thủ Đức Tám', 'Tháng Tám').replaceAll('Thà nh', 'Thành').replaceAll('thà nh', 'thành')
     .replaceAll('Thá»§ Ä�ức', 'Thủ Đức').replaceAll('Thá»§ Đức', 'Thủ Đức').replaceAll('Thủ Ä�ức', 'Thủ Đức')
     .replaceAll('ThÃ nh phố', 'Thành phố').replaceAll('ThA�nh phố', 'Thành phố').replaceAll('ThA�nh ph��', 'Thành phố')
     .replaceAll('PhÆ°á»�ng', 'Phường').replaceAll('phÆ°á»�ng', 'phường').replaceAll('Phưá»�ng', 'Phường').replaceAll('phưá»�ng', 'phường')
@@ -86,7 +90,8 @@ function cleanVietnameseText(x) {
     .replaceAll('Ã¡', 'á').replaceAll('Ã ', 'à').replaceAll('Ã¢', 'â').replaceAll('Ã£', 'ã').replaceAll('Ã©', 'é').replaceAll('Ã¨', 'è').replaceAll('Ãª', 'ê')
     .replaceAll('Ã­', 'í').replaceAll('Ã¬', 'ì').replaceAll('Ã³', 'ó').replaceAll('Ã²', 'ò').replaceAll('Ã´', 'ô').replaceAll('Ãµ', 'õ').replaceAll('Ãº', 'ú').replaceAll('Ã¹', 'ù').replaceAll('Ã½', 'ý')
     .replaceAll('batdongsan.com.vn', 'batdongsan.com.vn')
-    .replaceAll(moji(196,63), 'Đ').replaceAll(moji(196,8216), 'đ');
+    .replaceAll(moji(196,63), 'Đ').replaceAll(moji(196,8216), 'đ')
+    .replaceAll('Tháng ủ Đức Tám', 'Tháng Tám').replaceAll('Tháng Thủ Đức Tám', 'Tháng Tám').replaceAll('Thà nh', 'Thành').replaceAll('thà nh', 'thành');
 }
 function cleanVietnameseObject(obj) {
   if (typeof obj === 'string') return cleanVietnameseText(obj);

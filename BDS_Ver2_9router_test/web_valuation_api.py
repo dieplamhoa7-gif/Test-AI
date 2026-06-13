@@ -29,6 +29,26 @@ def fix_vn_text(x):
             x = _ftfy_fix_text(x)
         except Exception:
             pass
+    # Hard-clean common batdongsan/browser mojibake that ftfy may not fully
+    # recover after partial corruption/concatenation.
+    hard_replacements = {
+        'CÃ¡ch': 'Cách', 'Máº¡ng': 'Mạng', 'ThÃ¡ng': 'Tháng',
+        'TÃ¡m': 'Tám', 'PhÆ°á»�ng': 'Phường', 'phÆ°á»�ng': 'phường',
+        'HÃ²a': 'Hòa', 'HÆ°ng': 'Hưng', 'ThÃ nh': 'Thành',
+        'phá»‘': 'phố', 'Thá»§': 'Thủ', 'Ä�á»©c': 'Đức',
+        'Ä�ức': 'Đức', 'Ä‘ức': 'đức', 'Æ°': 'ư', 'Æ¡': 'ơ',
+        'Ã¡': 'á', 'Ã ': 'à', 'Ã²': 'ò', 'Ã³': 'ó', 'Ã´': 'ô',
+        'áº¡': 'ạ', 'á»§': 'ủ', 'á»©': 'ứ', 'á»�': 'ờ', 'á»›': 'ớ',
+        'á»Ÿ': 'ở', 'á»£': 'ợ', 'á»±': 'ự', 'á»™': 'ộ', 'á»‘': 'ố',
+        'á»“': 'ồ', 'á»•': 'ổ', 'á»—': 'ỗ', 'áº¿': 'ế', 'á»‡': 'ệ',
+        'Ä‘': 'đ', 'Ä�': 'Đ',
+    }
+    for a, b in hard_replacements.items():
+        x = x.replace(a, b)
+    # Repair no-space concatenation observed from BĐS search strings.
+    x = x.replace('ĐứcTám', 'Đức Tám')
+    x = x.replace('Tháng ủ Đức Tám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
+    x = x.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     bad = chr(0xFFFD)
     replacements = {
         'ThÃ nh': 'Thành', 'thÃ nh': 'thành', 'phá»‘': 'phố', 'Há»“': 'Hồ', 'ChÃ­': 'Chí',
