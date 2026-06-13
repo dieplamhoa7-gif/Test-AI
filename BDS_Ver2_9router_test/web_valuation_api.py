@@ -450,6 +450,28 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict, criteria: 
     return '\n'.join(lines)
 
 
+def bucket_diagnostics(buckets: dict, limit: int = 5) -> list[dict[str, Any]]:
+    out = []
+    for bucket_name, listings in (buckets or {}).items():
+        rows = list(listings or [])
+        out.append({
+            'bucket': fix_vn_text(str(bucket_name or '')),
+            'count': len(rows),
+            'price_count': sum(1 for l in rows if (getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None))),
+            'examples': [
+                {
+                    'title': fix_vn_text(str(getattr(l, 'title', '') or ''))[:180],
+                    'price_total': getattr(l, 'price_total', None),
+                    'price_per_m2': getattr(l, 'price_per_m2', None),
+                    'area': getattr(l, 'area', None),
+                    'url': getattr(l, 'url', '') or '',
+                }
+                for l in rows[:limit]
+            ],
+        })
+    return out
+
+
 def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, Any]]:
     out = []
     seen = set()
@@ -902,6 +924,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 log_error('browser_price_buckets', payload, e, 'AI estimate if still no price', note)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
+    source_diagnostics = bucket_diagnostics(buckets)
     total_samples = sum(len(v or []) for v in buckets.values()) if isinstance(buckets, dict) else 0
     price_samples = sum(1 for listings in buckets.values() for l in listings if (getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None))) if isinstance(buckets, dict) else 0
     confidence_level = 'Cao' if price_samples >= 8 else ('Trung bình' if price_samples >= 3 else ('Thấp' if total_samples else 'Chưa đủ mẫu'))
@@ -1034,6 +1057,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         'confidence': confidence_level,
         'sample_count': total_samples,
         'price_sample_count': price_samples,
+        'source_diagnostics': source_diagnostics,
         'criteria': payload,
         'area': projects.area_description,
         'intro': intro,
