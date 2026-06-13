@@ -94,6 +94,9 @@ function cleanVietnameseText(x) {
     .replaceAll('ThÃ¡ng á»§ Ä�á»©cTÃ¡m', 'Tháng Tám').replaceAll('Tháng ủ ĐứcTám', 'Tháng Tám').replaceAll('Tháng ủ Đức Tám', 'Tháng Tám').replaceAll('Tháng Thủ ĐứcTám', 'Tháng Tám').replaceAll('Tháng Thủ Đức Tám', 'Tháng Tám')
     .replaceAll('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh').replaceAll('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     .replaceAll('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh').replaceAll('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    .replaceAll('�ức', 'Đức').replaceAll('�Ức', 'Đức').replaceAll('� đức', ' Đức')
+    .replaceAll('Tháng ĐứcTám', 'Tháng Tám').replaceAll('Tháng Đức Tám', 'Tháng Tám')
+    .replaceAll('Tháng �ứcTám', 'Tháng Tám').replaceAll('Tháng �ức Tám', 'Tháng Tám')
     .replaceAll('Thà nh', 'Thành').replaceAll('thà nh', 'thành');
 }
 function cleanVietnameseObject(obj) {

@@ -53,9 +53,14 @@ def fix_vn_text(x):
     # Hòa Hưng is not in TP Thủ Đức; prevent mojibake-cleaned search strings
     # from creating a false administrative location.
     x = x.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Tháng ĐứcTám', 'Tháng Tám').replace('Tháng Đức Tám', 'Tháng Tám')
+    x = x.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
+    x = x.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('�ức', 'Đức').replace('�Ức', 'Đức').replace('� đức', ' Đức')
+    x = x.replace('Tháng �ứcTám', 'Tháng Tám').replace('Tháng �ức Tám', 'Tháng Tám')
     x = x.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     bad = chr(0xFFFD)
     replacements = {
@@ -94,6 +99,9 @@ def fix_vn_text(x):
         x = x.replace(a, b)
     # Final administrative guard: Hòa Hưng is not in TP Thủ Đức.
     x = x.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    x = x.replace('Tháng ĐứcTám', 'Tháng Tám').replace('Tháng Đức Tám', 'Tháng Tám')
+    x = x.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
+    x = x.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')

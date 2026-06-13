@@ -8,7 +8,7 @@
     ['áº¡','ạ'],['áº£','ả'],['áº¥','ấ'],['áº§','ầ'],['áº©','ẩ'],['áº«','ẫ'],['áº­','ậ'],['áº¯','ắ'],['áº±','ằ'],['áº³','ẳ'],['áºµ','ẵ'],['áº·','ặ'],
     ['Ã¡','á'],['Ã ','à'],['Ã¢','â'],['Ã£','ã'],['Ã©','é'],['Ã¨','è'],['Ãª','ê'],['Ã­','í'],['Ã¬','ì'],['Ã³','ó'],['Ã²','ò'],['Ã´','ô'],['Ãµ','õ'],['Ãº','ú'],['Ã¹','ù'],['Ã½','ý'],
     ['Â²','²'],['Â°','°'],['Â·','·'],['Â ',' '],['â€“','–'],['â€”','—'],['â€¦','…'],['â€œ','“'],['â€','”'],['â€˜','‘'],['â€™','’'],['â‚«','₫'],['â‰¥','≥'],['â‰¤','≤'],['â†’','→'],
-    ['Phưá»�ng','Phường'],['phưá»�ng','phường'],['PhÆ°á»�ng','Phường'],['phÆ°á»�ng','phường'],['ThA�nh ph��`','Thành phố'],['ThA�nh ph��','Thành phố'],['bA�n','bán'],
+    ['Phưá»�ng','Phường'],['phưá»�ng','phường'],['PhÆ°á»�ng','Phường'],['phÆ°á»�ng','phường'],['ThA�nh ph��`','Thành phố'],['ThA�nh ph��','Thành phố'],['bA�n','bán'],['�ức','Đức'],['�Ức','Đức'],['Tháng �ứcTám','Tháng Tám'],['Tháng �ức Tám','Tháng Tám'],
     // Common broken text emitted by older frontend/API result blocks.
     ['B�o c�o','Báo cáo'],['b�o c�o','báo cáo'],['D? li?u','Dữ liệu'],['d? li?u','dữ liệu'],['T?o','Tạo'],['t?o','tạo'],
     ['T?ng quan','Tổng quan'],['H? so','Hồ sơ'],['h? so','hồ sơ'],['d? �n','dự án'],['D? �n','Dự án'],['T�n d? �n','Tên dự án'],
@@ -36,7 +36,11 @@
       .split('nguồn chành').join('nguồn chính')
       .split('Nguồn chành').join('Nguồn chính')
       .split('dự án quy hoạch dạng b??').join('dự án quy hoạch đồng bộ')
-      .split('Thuộc dự án quy hoạch dạng b??').join('Thuộc dự án quy hoạch đồng bộ');
+      .split('Thuộc dự án quy hoạch dạng b??').join('Thuộc dự án quy hoạch đồng bộ')
+      .split('Tháng ĐứcTám').join('Tháng Tám')
+      .split('Tháng Đức Tám').join('Tháng Tám')
+      .split('Tháng ủ ĐứcTám').join('Tháng Tám')
+      .split('Tháng ủ Đức Tám').join('Tháng Tám');
     return out;
   }
   function cleanNodeText(node){

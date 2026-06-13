@@ -77,9 +77,15 @@ def clean_bds_text(s: str) -> str:
     out = out.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
     out = out.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     out = out.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
+    out = out.replace('Tháng ĐứcTám', 'Tháng Tám').replace('Tháng Đức Tám', 'Tháng Tám')
+    out = out.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
+    out = out.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     out = out.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     out = out.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     out = out.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
+    out = out.replace('�ức', 'Đức').replace('�Ức', 'Đức').replace('� đức', ' Đức')
+    out = out.replace('Tháng �ứcTám', 'Tháng Tám').replace('Tháng �ức Tám', 'Tháng Tám')
+    out = out.replace('Tháng ĐứcTám', 'Tháng Tám').replace('Tháng Đức Tám', 'Tháng Tám')
     out = out.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     return out
 
