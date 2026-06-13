@@ -26,8 +26,8 @@
   <div id="mapModal" onclick="closeMapModal(event)" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.86);z-index:9999;padding:20px;align-items:center;justify-content:center"><div><div style="display:flex;gap:10px;justify-content:flex-end;margin-bottom:10px"><a id="mapDownload" class="btn" download="bds-valuation-map.png">Tải ảnh PNG</a><button class="btn" type="button" onclick="mapModal.style.display='none'">Đóng</button></div><img id="mapLarge" style="max-width:96vw;max-height:86vh;border-radius:14px;background:white"></div></div>
 </main>
 <script>
-let API_BASE='https://collar-space-knock-promised.trycloudflare.com';
-const API_CANDIDATES=['https://collar-space-knock-promised.trycloudflare.com'];
+let API_BASE='https://appreciated-wagner-product-arabia.trycloudflare.com';
+const API_CANDIDATES=['https://appreciated-wagner-product-arabia.trycloudflare.com'];
 async function ensureApiBase(){
   for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
   return API_BASE;
