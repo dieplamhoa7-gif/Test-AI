@@ -396,7 +396,7 @@ function run(p, sched, cost, coll){
   const F274=collArr.reduce((a,b)=>a+b,0);
   const sddV=p.cp_sdd*B;
   const shopShare=(nsaCH+nsaSH)>0?nsaSH/(nsaCH+nsaSH):0;
-  const VATout=(F280-1.0*sddV)*v/(1+v) + (F287-shopShare*sddV)*v/(1+v); // F276: thuế VAT bán hàng
+  const VATout=(F280-(1-shopShare)*sddV)*v/(1+v) + (F287-shopShare*sddV)*v/(1+v); // F276: thuế VAT bán hàng — khấu trừ tiền SDĐ phân bổ theo NSA, tổng khấu trừ đúng 1 lần tiền SDĐ
   const land=Array(NY).fill(0), cpxd=Array(NY).fill(0), ownerLand=Array(NY).fill(0), debtEligible=Array(NY).fill(0);
   const add=(arr,total,ph)=>{for(const [y,f] of Object.entries(ph||{})){const i=idx(Number(y)); if(i>=0&&i<NY)arr[i]+=total*f/100;}};
   const addBoth=(arr1,arr2,total,ph,ratio=1)=>{for(const [y,f] of Object.entries(ph||{})){const i=idx(Number(y)); if(i>=0&&i<NY){const amt=total*f/100; arr1[i]+=amt; arr2[i]+=amt*ratio;}}};
@@ -437,7 +437,8 @@ function run(p, sched, cost, coll){
     const taxByEquity = vatpay[i] + collArr[i]*(p.cit_tam||0)/100;
     const cashAfterOpex = Math.max(collArr[i]-op[i],0);
     const ownerMandatory = ownerLand[i];
-    const usesBeforeDebtService = invest[i] + op[i];
+    // Opex đã trừ trong cashAfterOpex; nếu cộng op vào uses sẽ tính chi phí hoạt động 2 lần.
+    const usesBeforeDebtService = invest[i];
     const gapBeforeDebt = Math.max(usesBeforeDebtService - cashAfterOpex - ownerMandatory, 0);
     const d = Math.min(gapBeforeDebt, Math.max(undrawnFacility,0));
     draw[i]=d; undrawnFacility-=d;
@@ -454,12 +455,16 @@ function run(p, sched, cost, coll){
     if(!eqAuto) eqRem-=eq[i];
   }
   const F425=interest.reduce((a,b)=>a+b,0);
-  const outflow=invest.map((x,i)=>x+op[i]+interest[i]+vatpay[i]);
-  const cfPrj=collArr.map((c,i)=>c-outflow[i]);
-  const cfEq=cfPrj.map((c,i)=>c+draw[i]-repay[i]);
   const DTnet=F275-VATout;
   const LNTT=DTnet-(I78+I84+F425+F421/(1+v));
   const LNST=LNTT*(1-p.cit/100);
+  // Thuế TNDN đưa vào dòng tiền sau thuế, phân bổ theo tỷ trọng thực thu.
+  const citTotal=Math.max(LNTT,0)*p.cit/100;
+  const cit=collArr.map(c=>F274>0?citTotal*c/F274:0);
+  // Quan điểm TMĐT là unlevered: không trừ lãi vay/trả gốc; quan điểm CĐT mới gánh tài trợ.
+  const outflow=invest.map((x,i)=>x+op[i]+vatpay[i]+cit[i]);
+  const cfPrj=collArr.map((c,i)=>c-outflow[i]);
+  const cfEq=cfPrj.map((c,i)=>c-interest[i]+draw[i]-repay[i]);
   const NPV=cfEq.reduce((s,cf,i)=>s+cf/Math.pow(1+p.r_ck/100,i),0);
   let cum=0, payback=null;
   for(let i=0;i<NY;i++){cum+=cfEq[i]; if(cum>0&&payback===null&&i>0)payback=i;}
@@ -468,7 +473,7 @@ function run(p, sched, cost, coll){
     LNTT,LNST,NPV,IRRprj:irr(cfPrj),IRReq:irr(cfEq),
     lnttTmdt:F389>0?LNTT/F389:0, payback,
     nsaCH,nsaSH,hssd,mdxd,mdxdQC,hssdQC,danso,soCan,tangMax,gfaNoi,gfaHam,caoTB,doxeReq,
-    collArr,invest,land,cpxd,op,vatpay,interest,draw,repay,balEnd,cfPrj,cfEq,revCH,revSH,thuNet,eq,ownerLand,debtEligible
+    collArr,invest,land,cpxd,op,vatpay,cit,interest,draw,repay,balEnd,cfPrj,cfEq,revCH,revSH,thuNet,eq,ownerLand,debtEligible
   };
 }
 
@@ -935,7 +940,7 @@ function buildSheets(p, sched, cost, coll, full){
   for(let i=0;i<NY;i++) set(ws,fsCol(i)+'77',`=(INPUT!$C$21+INPUT!$C$22)/100*${fsCol(i)}42`,M);
   set(ws,'F77','=SUM(H77:T77)',M);
   set(ws,'B78','VAT phải nộp ròng = VAT đầu ra - VAT đầu vào');
-  set(ws,'F78','=MAX(((F37-INPUT!$C$14*10^9)+(F41-$F$26/($F$25+$F$26)*INPUT!$C$14*10^9))*INPUT!$C$6/(100+INPUT!$C$6)-INPUT!$C$6/100*$F$14-INPUT!$C$6/(100+INPUT!$C$6)*$F$77,0)',M);
+  set(ws,'F78','=MAX(((F37-$F$25/($F$25+$F$26)*INPUT!$C$14*10^9)+(F41-$F$26/($F$25+$F$26)*INPUT!$C$14*10^9))*INPUT!$C$6/(100+INPUT!$C$6)-INPUT!$C$6/100*$F$14-INPUT!$C$6/(100+INPUT!$C$6)*$F$77,0)',M);
   set(ws,'B79','Thuế VAT phải nộp theo năm');
   for(let i=0;i<NY;i++){
     const c=fsCol(i);
@@ -968,14 +973,16 @@ function buildSheets(p, sched, cost, coll, full){
     set(ws,c+'85',`=IF(INPUT!$C$64=2,MIN(MAX(INPUT!$C$25*10^9-SUM($H$85:${pv}85),0),${c}61+${c}62+MAX(${c}74-${c}82-(${c}61+${c}62)-${c}86,0)+${c}90+${c}79+${c}58*INPUT!$C$8/100),${c}61+${c}62+MAX(${c}74-${c}82-(${c}61+${c}62)-${c}86,0)+${c}90+${c}79+${c}58*INPUT!$C$8/100)`,M);
   }
   set(ws,'F90','=SUM(H90:T90)',M); set(ws,'F92','=SUM(H92:T92)',M); set(ws,'F86','=SUM(H86:T86)',M); set(ws,'F85','=SUM(H85:T85)',M);
-  set(ws,'B94','H. DÒNG TIỀN');
+  set(ws,'B93','Thuế TNDN theo năm');
+ set(ws,'B94','H. DÒNG TIỀN');
   set(ws,'B95','Ngân lưu quan điểm TMĐT');
   set(ws,'B96','Ngân lưu quan điểm CĐT');
   set(ws,'B97','Lũy kế ngân lưu CĐT');
   for(let i=0;i<NY;i++){
     const c=fsCol(i);
-    set(ws,c+'95',`=${c}58-${c}74-${c}77-${c}89-${c}79`,M);
-    set(ws,c+'96',`=${c}95+${c}86-${c}92`,M);
+    set(ws,c+'93',`=IF($F$58>0,${c}58/$F$58*MAX($F$107,0)*INPUT!$C$7/100,0)`,M);
+    set(ws,c+'95',`=${c}58-${c}74-${c}77-${c}79-${c}93`,M);
+    set(ws,c+'96',`=${c}95-${c}90+${c}86-${c}92`,M);
     set(ws,c+'97',`=SUM($H$96:${c}96)`,M);
   }
   set(ws,'F95','=SUM(H95:T95)',M); set(ws,'F96','=SUM(H96:T96)',M);
@@ -984,7 +991,7 @@ function buildSheets(p, sched, cost, coll, full){
     [100,'TỔNG MỨC ĐẦU TƯ (chưa lãi vay, gồm VAT)','=F18',M],
     [101,'Lãi vay','=F90',M],
     [102,'Doanh thu (có VAT)','=F42',M],
-    [103,'Doanh thu thuần (chưa VAT)','=F42-(((F37-INPUT!$C$14*10^9)+(F41-$F$26/($F$25+$F$26)*INPUT!$C$14*10^9))*INPUT!$C$6/(100+INPUT!$C$6))',M],
+    [103,'Doanh thu thuần (chưa VAT)','=F42-(((F37-$F$25/($F$25+$F$26)*INPUT!$C$14*10^9)+(F41-$F$26/($F$25+$F$26)*INPUT!$C$14*10^9))*INPUT!$C$6/(100+INPUT!$C$6))',M],
     [104,'Chi phí đất & pháp lý (chưa VAT)','=F17',M],
     [105,'Chi phí xây dựng (chưa VAT)','=F14',M],
     [106,'Chi phí hoạt động (chưa VAT)','=F77/'+vat,M],
