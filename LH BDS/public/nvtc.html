@@ -25,17 +25,18 @@ input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 
 .btn:hover{background:var(--navy2)}.btn:disabled{opacity:.5;cursor:not-allowed}
 .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--navy)}
 .btn.sm{padding:6px 10px;font-size:12px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{border:1px solid var(--line);padding:6px 7px;text-align:right}
-th{background:var(--navy);color:#fff;font-weight:600;text-align:center;font-size:11.5px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff3bf;border-radius:10px;overflow:hidden}
+th,td{border:1px solid #ecd985;padding:6px 7px;text-align:right}
+th{background:#8a6817;color:#fff;font-weight:600;text-align:center;font-size:11.5px}
+td{background:#fff9df}tbody tr:nth-child(even) td{background:#fff5c7}
 td.l,th.l{text-align:left}td.c{text-align:center}
-tr.tot td{background:#eef2fb;font-weight:700}
-tr.active td{background:#fff7e6}
-td input{padding:4px 6px;font-size:12.5px;text-align:right;border:1px solid #e2e8f0}
+tr.tot td{background:#ffe69b;font-weight:700}
+tr.active td{background:#ffefad!important}
+td input{padding:4px 6px;font-size:12.5px;text-align:right;border:1px solid #e2c867;background:#fffdf2}
 td input.txt{text-align:left}
-.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0}
-.kpi .b{flex:1;min-width:150px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:12px}
-.kpi .b .v{font-size:20px;font-weight:700;color:var(--navy)}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 10px}
+.kpi .b{min-width:0;background:#fff7d6;border:1px solid #ecd985;border-radius:9px;padding:10px}
+.kpi .b .v{font-size:18px;font-weight:800;color:var(--navy);line-height:1.15}
 .kpi .b.red .v{color:var(--accent)}.kpi .b .k{font-size:11.5px;color:var(--muted)}
 .note{background:var(--warnbg);border:1px solid #ffe082;border-radius:8px;padding:11px 13px;font-size:12.5px;color:var(--warn);margin-top:12px}
 .collapse summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:13px;padding:6px 0}
@@ -48,6 +49,12 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .chk{display:flex;align-items:center;gap:8px;font-weight:500;font-size:12.5px;margin:6px 0}.chk input{width:auto}
 .hsbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .hsbar .h{background:#eef2fb;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:600;color:var(--navy)}
+.compact-detail{margin-top:8px;border:1px solid #ecd985;background:#fffdf0;border-radius:10px;padding:0 10px 10px}
+.compact-detail>summary{cursor:pointer;color:#7a5a10;font-weight:800;padding:9px 2px;font-size:12.5px}
+.table-scroll{max-height:260px;overflow:auto;border:1px solid #ecd985;border-radius:10px;background:#fff8d0}
+.table-scroll table{border-radius:0}.table-scroll th{position:sticky;top:0;z-index:1}
+.compact-card{padding:13px}.compact-card h2{margin-bottom:8px}.compact-card .muted{font-size:11.5px}
+@media(max-width:920px){.kpi{grid-template-columns:1fr}.table-scroll{max-height:320px}}
 
 /* Unified LH header/nav */
 .top{background:linear-gradient(135deg,#102542,#1f4c86)!important;color:#fff!important;padding:26px 18px!important}
@@ -151,26 +158,35 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 </div>
 
 <!-- BREAKDOWN -->
-<div class="card">
-  <h2>③ Chi tiết nghĩa vụ tài chính theo nguồn gốc đất</h2>
-  <table id="calcTbl"><thead><tr><th class="l">Nguồn gốc đất</th><th>Loại</th><th>Diện tích<br>(m²)</th><th>Đơn giá vốn<br>MỚI</th><th>Đơn giá vốn<br>HIỆN TRẠNG</th><th>Chênh lệch<br>(ngđ/m²)</th><th>NVTC dòng<br>(triệu đ)</th></tr></thead><tbody></tbody></table>
+<div class="card compact-card">
+  <h2>③ Chi tiết nghĩa vụ tài chính</h2>
+  <details class="compact-detail" open>
+    <summary>Chi tiết theo nguồn gốc đất — bấm để thu gọn/mở rộng</summary>
+    <div class="table-scroll"><table id="calcTbl"><thead><tr><th class="l">Nguồn gốc đất</th><th>Loại</th><th>Diện tích<br>(m²)</th><th>Đơn giá vốn<br>MỚI</th><th>Đơn giá vốn<br>HIỆN TRẠNG</th><th>Chênh lệch<br>(ngđ/m²)</th><th>NVTC dòng<br>(triệu đ)</th></tr></thead><tbody></tbody></table></div>
+  </details>
   <div class="note">NVTC = Σ (Đơn giá vốn mục đích mới − Đơn giá vốn hiện trạng) × Diện tích, không âm. Đơn giá vốn = Bảng giá đất × K thị trường × K quy hoạch × K yếu tố.</div>
 </div>
 
 <!-- SOURCE DATA -->
-<div class="card">
-  <h2>④ Dữ liệu nguồn — danh sách đường/đoạn, bảng giá & hệ số K (AI nạp hoặc nhập tay)</h2>
-  <table id="segTbl"><thead><tr><th class="l">Đường</th><th class="l">Đoạn</th><th>Đất ở</th><th>TMDV</th><th>SXKD</th><th>K đất ở</th><th>K TMDV</th><th>K SXKD</th><th>K đất NN</th><th></th></tr></thead><tbody></tbody></table>
-  <button class="btn sm ghost" style="margin-top:8px" onclick="addSeg()">+ Thêm đường/đoạn (nhập tay)</button>
-  <p class="muted" style="margin-top:14px" id="agriTitle">Bảng giá đất nông nghiệp của đoạn đang chọn (ngđ/m² theo vị trí):</p>
-  <table id="agriTbl"><thead><tr><th class="l">Loại đất NN</th><th>Vị trí 1</th><th>Vị trí 2</th><th>Vị trí 3</th></tr></thead><tbody></tbody></table>
-  <div class="muted" style="margin-top:6px">Đơn giá theo bảng giá đất VT1 (đất phi NN). Hệ số K = hệ số điều chỉnh mức biến động thị trường (PL I). Sửa bất kỳ ô nào → tính lại ngay.</div>
+<div class="card compact-card">
+  <h2>④ Dữ liệu nguồn — đường/đoạn, bảng giá & hệ số K</h2>
+  <details class="compact-detail">
+    <summary>Danh sách đường/đoạn áp giá — bấm để xem/sửa</summary>
+    <div class="table-scroll"><table id="segTbl"><thead><tr><th class="l">Đường</th><th class="l">Đoạn</th><th>Đất ở</th><th>TMDV</th><th>SXKD</th><th>K đất ở</th><th>K TMDV</th><th>K SXKD</th><th>K đất NN</th><th></th></tr></thead><tbody></tbody></table></div>
+    <button class="btn sm ghost" style="margin-top:8px" onclick="addSeg()">+ Thêm đường/đoạn (nhập tay)</button>
+    <p class="muted" style="margin-top:10px" id="agriTitle">Bảng giá đất nông nghiệp của đoạn đang chọn (ngđ/m² theo vị trí):</p>
+    <table id="agriTbl"><thead><tr><th class="l">Loại đất NN</th><th>Vị trí 1</th><th>Vị trí 2</th><th>Vị trí 3</th></tr></thead><tbody></tbody></table>
+    <div class="muted" style="margin-top:6px">Đơn giá theo bảng giá đất VT1. Hệ số K = hệ số điều chỉnh mức biến động thị trường (PL I). Sửa ô nào → tính lại ngay.</div>
+  </details>
 </div>
 
 <!-- SENSITIVITY -->
-<div class="card">
-  <h2>⑤ Bảng độ nhạy — Đơn giá vốn đất ở (ngđ/m², gồm K_QH & K yếu tố hiện hành)</h2>
-  <table id="sensTbl"><thead><tr><th class="l">Đường — Đoạn \ Vị trí</th><th>VT1</th><th>VT2</th><th>VT3</th><th>VT4</th></tr></thead><tbody></tbody></table>
+<div class="card compact-card">
+  <h2>⑤ Bảng độ nhạy — đơn giá vốn đất ở</h2>
+  <details class="compact-detail">
+    <summary>Bảng độ nhạy theo vị trí — bấm để xem</summary>
+    <div class="table-scroll"><table id="sensTbl"><thead><tr><th class="l">Đường — Đoạn \ Vị trí</th><th>VT1</th><th>VT2</th><th>VT3</th><th>VT4</th></tr></thead><tbody></tbody></table></div>
+  </details>
 </div>
 
 <!-- SOURCES -->
