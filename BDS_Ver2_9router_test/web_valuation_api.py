@@ -378,7 +378,7 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
         return buckets
 
 
-def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
+def build_direct_land_report(projects: ProjectsResult, buckets: dict, criteria: SearchCriteria | None = None) -> str:
     all_items = []
     for bucket_name, listings in (buckets or {}).items():
         for l in listings or []:
@@ -413,6 +413,22 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
     elif totals:
         lines.append(f"- Số mẫu có giá tổng: {len(totals)}")
         lines.append(f"- Giá tổng median: ~{_fmt_num(med(totals),1)} tỷ")
+    if criteria is not None:
+        direct_ref = _direct_ref_evidence(criteria, buckets, limit=5)
+        if direct_ref:
+            lines.append('')
+            lines.append('*Ref ưu tiên theo evidence gần/cùng đặc tính:*')
+            lines.append(f"- Giá ref: {direct_ref.get('reference_price_label')} từ {direct_ref.get('ref_price_sample_count')} evidence tốt nhất")
+            lines.append(f"- Quy tắc chọn: {direct_ref.get('ref_selection_rule')}")
+            for j, ev in enumerate(direct_ref.get('ref_evidences') or [], 1):
+                why = ', '.join(ev.get('reasons') or []) or 'evidence theo thứ tự tìm kiếm gần nhất'
+                price = ev.get('price_per_m2')
+                price_txt = f"~{_fmt_num(price,0)} tr/m²" if isinstance(price, (int, float)) else 'có link kiểm chứng'
+                lines.append(f"  {j}) {price_txt} — {why}")
+                if ev.get('title'):
+                    lines.append(f"     {ev.get('title')[:180]}")
+                if ev.get('url'):
+                    lines.append(f"     {ev.get('url')}")
     lines.append('')
     lines.append('*Mẫu tin/link kiểm chứng:*')
     for i, x in enumerate(all_items[:12], 1):
@@ -654,6 +670,93 @@ def attach_ref_average_prices(projects: ProjectsResult, buckets: dict) -> None:
         if got:
             p.update(got)
 
+
+def _feature_keywords(feature: str | None) -> list[str]:
+    f = (feature or 'skip').lower()
+    if f == 'mattien':
+        return ['mặt tiền', 'mat tien', 'mt ', ' mặt đường', 'mat duong', 'đường lớn', 'duong lon']
+    if f == 'hem':
+        return ['hẻm', 'hem', 'ngõ', 'ngo', 'kiệt', 'kiet']
+    if f == 'corner':
+        return ['góc', 'goc', '2 mặt tiền', 'hai mặt tiền', '2mt']
+    return []
+
+
+def _direct_ref_evidence(criteria: SearchCriteria, buckets: dict, limit: int = 5) -> dict[str, Any]:
+    """Pick ref evidence for nhà/đất by same position feature first, then closest street/ward context.
+
+    Listings currently do not carry exact lat/lng, so "gần tọa độ" is approximated by direct search context:
+    same road > same ward/district > query bucket order. This avoids averaging unrelated evidence.
+    """
+    loc = getattr(criteria, 'location_context', {}) or {}
+    road = fix_vn_text(extract_road(loc)).lower()
+    ward = fix_vn_text(loc.get('ward') or loc.get('suburb') or loc.get('phuong') or '').lower()
+    district = fix_vn_text(loc.get('district') or loc.get('city') or '').lower()
+    feature_words = _feature_keywords(getattr(criteria, 'feature', None))
+    candidates = []
+    order = 0
+    for bucket_name, listings in (buckets or {}).items():
+        bucket = fix_vn_text(str(bucket_name or '')).lower()
+        for l in listings or []:
+            ppm = getattr(l, 'price_per_m2', None)
+            if not isinstance(ppm, (int, float)) or ppm <= 0:
+                continue
+            title = fix_vn_text(getattr(l, 'title', '') or '')
+            url = getattr(l, 'url', '') or ''
+            blob = f"{bucket} {title} {url}".lower()
+            score = 0
+            reasons = []
+            if feature_words:
+                if any(k in blob for k in feature_words):
+                    score += 60; reasons.append('cùng đặc tính vị trí')
+                else:
+                    score -= 35; reasons.append('khác/thiếu đặc tính vị trí')
+            if road and road in blob:
+                score += 45; reasons.append('cùng tuyến đường')
+            if ward and ward in blob:
+                score += 18; reasons.append('cùng phường/khu vực')
+            if district and district in blob:
+                score += 8; reasons.append('cùng quận/thành phố')
+            # Earlier browser queries are more targeted to the input coordinate/street.
+            score -= order * 0.15
+            candidates.append({'listing': l, 'score': score, 'reasons': list(dict.fromkeys(reasons)), 'bucket': fix_vn_text(str(bucket_name or 'Nguồn web'))})
+            order += 1
+    candidates.sort(key=lambda x: x['score'], reverse=True)
+    chosen = candidates[:limit]
+    vals = [float(x['listing'].price_per_m2) for x in chosen if getattr(x['listing'], 'price_per_m2', None)]
+    if not vals:
+        return {}
+    vals_sorted = sorted(vals)
+    n = len(vals_sorted)
+    med = vals_sorted[n//2] if n % 2 else (vals_sorted[n//2-1] + vals_sorted[n//2]) / 2
+    med = round(med, 1)
+    evidences = []
+    for x in chosen:
+        l = x['listing']
+        evidences.append({
+            'title': fix_vn_text(getattr(l, 'title', '') or '')[:220],
+            'source': fix_vn_text(getattr(l, 'source', '') or x.get('bucket') or ''),
+            'bucket': x.get('bucket'),
+            'price_per_m2': getattr(l, 'price_per_m2', None),
+            'price_total': getattr(l, 'price_total', None),
+            'area_m2': getattr(l, 'area', None),
+            'url': getattr(l, 'url', '') or '',
+            'score': round(x.get('score', 0), 1),
+            'reasons': x.get('reasons') or [],
+        })
+    return {
+        'reference_price': med,
+        'reference_price_label': f"{med:g} triệu/m²",
+        'ref_avg_price_per_m2': med,
+        'ref_price_sample_count': len(vals),
+        'ref_price_min': round(min(vals), 1),
+        'ref_price_max': round(max(vals), 1),
+        'ref_price_label': f"{med:g} triệu/m²",
+        'ref_selection_rule': 'Ưu tiên evidence cùng đặc tính vị trí và gần tọa độ/tuyến đường nhất',
+        'ref_evidences': evidences,
+    }
+
+
 def _dist_km(a_lat, a_lng, b_lat, b_lng):
     import math
     r = 6371.0
@@ -812,7 +915,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     write_progress('build_report', 'Đang tổng hợp báo cáo trực tiếp theo tên đường/khu vực...' if criteria.property_type != 'chungcu' else 'Đang tổng hợp báo cáo theo dự án/khu vực comparable...', warnings)
     try:
         if criteria.property_type != 'chungcu':
-            report = build_direct_land_report(projects, buckets)
+            report = build_direct_land_report(projects, buckets, criteria)
         else:
             report = await build_project_price_report(ai_report, criteria, projects, buckets)
     except Exception as e:
@@ -834,7 +937,13 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 lines.append('- Chưa lấy được mẫu giá trực tiếp; cần kiểm chứng thêm.')
         report = '\n'.join(lines)
 
-    attach_ref_average_prices(projects, buckets)
+    if criteria.property_type != 'chungcu':
+        direct_ref = _direct_ref_evidence(criteria, buckets, limit=5)
+        if direct_ref:
+            for p in getattr(projects, 'projects', []) or []:
+                p.update(direct_ref)
+    else:
+        attach_ref_average_prices(projects, buckets)
 
     ai_sale_assessment_text = ''
     investor_summary = {}
