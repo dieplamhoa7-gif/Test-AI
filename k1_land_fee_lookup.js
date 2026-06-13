@@ -114,6 +114,8 @@ function roadVariants(road) {
   // Common aliases in OCR/table text.
   variants.push(noPrefix.replace(/^ba\s+tháng\s+hai$/i, '3 Tháng 2'));
   variants.push(noPrefix.replace(/^3\s+tháng\s+2$/i, '3 Tháng 2'));
+  variants.push(noPrefix.replace(/tháng\s+tám/ig, 'Tháng 8'));
+  variants.push(noPrefix.replace(/tháng\s+8/ig, 'Tháng Tám'));
   return [...new Set(variants.filter(Boolean))];
 }
 

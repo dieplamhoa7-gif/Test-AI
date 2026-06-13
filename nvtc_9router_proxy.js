@@ -553,6 +553,14 @@ const server = http.createServer(async (req, res) => {
         const raw = await lookupHcmPlanning(lat, lon);
         const sum = summarize(raw);
         const geo = sum.location || {};
+        const geoTextForHoaHung = [geo.ward, geo.suburb, geo.neighbourhood, geo.road, geo.display_name].filter(Boolean).join(' ');
+        if (/Hòa Hưng/i.test(geoTextForHoaHung)) {
+          geo.ward = 'Phường Hòa Hưng';
+          geo.suburb = 'Phường Hòa Hưng';
+          geo.district = /Quận\s*10|Quan\s*10/i.test(String(geo.display_name || '')) ? 'Quận 10' : (geo.district && !/Thủ Đức/i.test(String(geo.district)) ? geo.district : 'Quận 10');
+          geo.city = 'Thành phố Hồ Chí Minh';
+          geo.display_name = cleanVietnameseText(String(geo.display_name || '').replace(/Thành phố Thủ Đức,\s*/gi, '').replace(/Thành phố Thủ Đức/gi, 'Thành phố Hồ Chí Minh'));
+        }
         if (req.url === '/planning/lookup') {
           let qhviet = null;
           let guland = null;
