@@ -21,8 +21,8 @@
   <section class="hero-rd"><div class="hero"><span class="eyebrow">LH Real Estate Research</span><h1>Báo cáo R&D thị trường</h1><p>Hỗ trợ chủ đầu tư ra quyết định: xác định vị trí, phạm vi so sánh, mẫu tin thị trường, mặt bằng giá và bản đồ kiểm chứng.</p><div class="chips"><span class="chip">Dữ liệu thị trường</span><span class="chip">Khoảng cách comparable</span><span class="chip">Map kiểm chứng</span><span class="chip">Giá có nguồn</span></div></div>
     <div class="panel"><div class="grid"><div class="full"><label>Tọa độ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"></div><div><label>Giao dịch</label><select id="transaction" onchange="syncFlow()"><option value="buy">Mua</option><option value="rent">Thuê</option></select></div><div><label id="ptypeLabel">Loại tài sản</label><select id="ptype" onchange="syncFlow()"></select></div><div id="mdsddBox"><label>MĐSDĐ</label><select id="mdsdd"></select></div><div id="segmentBox"><label>Phân khúc</label><select id="segment"><option value="A">A - Cao cấp</option><option value="B" selected>B - Trung cấp</option><option value="C">C - Bình dân</option></select></div><div><label>Chế độ R&D</label><select id="rdMode"><option value="fast">Nhanh</option><option value="standard" selected>Chuẩn</option><option value="deep">Sâu</option></select></div><div class="full"><label>Đặc tính/vị trí</label><select id="feature"><option value="mattien">Mặt tiền</option><option value="corner">Căn góc / 2 mặt tiền</option><option value="hem">Hẻm / ngõ</option><option value="skip">Bỏ qua</option></select></div></div><div class="toolbar"><button class="btn" onclick="analyze()">Tạo báo cáo</button><button class="btn secondary" onclick="resumeLastJob()">Xem báo cáo gần nhất</button></div><div id="status" class="status"></div></div>
   </section>
-  <section class="panel" style="margin-top:18px"><h2>Kết quả nghiên cứu</h2><div id="out" class="small">Chưa chạy.</div></section>
-  <section class="panel" style="margin-top:18px"><h2>Quy trình phân tích</h2><div class="steps"><div class="step" data-step="find">Xác định vị trí và phạm vi so sánh</div><div class="step" data-step="search">Tìm nguồn dữ liệu thị trường</div><div class="step" data-step="scrape">Đọc mẫu tin và giá rao</div><div class="step" data-step="report">Tổng hợp báo cáo và bản đồ</div></div></section>
+  <section class="panel rd-results-panel" style="margin-top:18px"><h2>Kết quả nghiên cứu</h2><div id="out" class="small">Chưa chạy.</div></section>
+  <section class="panel rd-steps-panel" style="margin-top:18px"><h2>Quy trình phân tích</h2><div class="steps"><div class="step" data-step="find">Xác định vị trí và phạm vi so sánh</div><div class="step" data-step="search">Tìm nguồn dữ liệu thị trường</div><div class="step" data-step="scrape">Đọc mẫu tin và giá rao</div><div class="step" data-step="report">Tổng hợp báo cáo và bản đồ</div></div></section>
   <div id="mapModal" onclick="closeMapModal(event)" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.86);z-index:9999;padding:20px;align-items:center;justify-content:center"><div><div style="display:flex;gap:10px;justify-content:flex-end;margin-bottom:10px"><a id="mapDownload" class="btn" download="bds-valuation-map.png">Tải ảnh PNG</a><button class="btn" type="button" onclick="mapModal.style.display='none'">Đóng</button></div><img id="mapLarge" style="max-width:96vw;max-height:86vh;border-radius:14px;background:white"></div></div>
 </main>
 <script>
@@ -86,6 +86,29 @@ async function exportNotebookLM(){await ensureApiBase();
 }
 function openMapModal(src){mapLarge.src=src;mapDownload.href=src;mapModal.style.display='flex'}function closeMapModal(e){if(e.target&&e.target.id==='mapModal')mapModal.style.display='none'}
 syncFlow();
+</script>
+<style id="rd-navy-final">
+/* R&D result/readout surfaces: navy cards, white text; input form remains light */
+.rd-results-panel,.rd-steps-panel,.metric,.report,.comp,.map-card{background:linear-gradient(135deg,#061426,#0b2342)!important;border-color:#23456f!important;color:#fff!important;box-shadow:0 14px 34px rgba(16,37,66,.20)!important}
+.rd-results-panel h2,.rd-steps-panel h2,.metric b,.metric span,.report,.report h3,.report p,.report li,.report pre,.comp,.comp h4,.comp div,.map-card,.map-card h3,.small{color:#fff!important}
+.metric,.comp{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.18)!important}.report pre{color:#fff!important}.badge{background:#ffe082!important;color:#111827!important;border-color:#d6a700!important}.step{background:rgba(255,255,255,.07)!important;color:#fff!important;border-color:rgba(255,255,255,.18)!important}.step.active{background:#173b6d!important;border-color:#93c5fd!important}.step.done{background:#0f3d2e!important;border-color:#86efac!important}.btn.secondary{background:#ffe082!important;color:#111827!important;border-color:#d6a700!important}
+</style>
+<script>
+(function forceRdNavy(){
+  function apply(){
+    document.querySelectorAll('.metric,.report,.comp,.map-card').forEach(el=>{
+      el.style.setProperty('background','linear-gradient(135deg,#061426,#0b2342)','important');
+      el.style.setProperty('border-color','#23456f','important');
+      el.style.setProperty('color','#fff','important');
+      el.querySelectorAll('h2,h3,h4,b,span,p,li,pre,div,.small').forEach(x=>x.style.setProperty('color','#fff','important'));
+    });
+    document.querySelectorAll('.badge').forEach(el=>{el.style.setProperty('background','#ffe082','important');el.style.setProperty('color','#111827','important')});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+  setTimeout(apply,300);setTimeout(apply,1200);setInterval(apply,2000);
+  try{new MutationObserver(apply).observe(document.body,{childList:true,subtree:true});}catch(e){}
+  window.__forceRdNavy=apply;
+})();
 </script>
 <script src="local-motion.js"></script>
 </body></html>
