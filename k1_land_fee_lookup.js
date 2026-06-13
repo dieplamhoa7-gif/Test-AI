@@ -265,6 +265,11 @@ function extractRoadDirectFromPage(row, road) {
   };
 }
 
+function wardMatchesHeader(header, geoWard) {
+  const h = normalize(header);
+  return !!(geoWard && h && (h === geoWard || h.includes(geoWard) || geoWard.includes(h)));
+}
+
 function findBestK1ByGeo(location = {}) {
   const geo = compactGeo(location);
   const geoWard = normalize(geo.ward);
@@ -284,9 +289,11 @@ function findBestK1ByGeo(location = {}) {
     });
   }).filter(Boolean).sort((a,b) => b.score - a.score || b.segmentScore - a.segmentScore || a.page - b.page);
   if (direct.length) {
-    const best = direct[0];
+    const scopedDirect = geoWard ? direct.filter(x => wardMatchesHeader(x.areaHeader, geoWard)) : direct;
+    if (!scopedDirect.length) return null;
+    const best = scopedDirect[0];
     const bestHeaderNorm = normalize(best.areaHeader);
-    const sameWardDirect = direct.filter(x => {
+    const sameWardDirect = scopedDirect.filter(x => {
       const h = normalize(x.areaHeader);
       if (!bestHeaderNorm || !h) return x.page === best.page;
       return h === bestHeaderNorm || h.includes(bestHeaderNorm) || bestHeaderNorm.includes(h);
@@ -307,10 +314,10 @@ function findBestK1ByGeo(location = {}) {
     let score = 0;
     if (normalize(e.road) === normalize(geo.road)) score += 10;
     else if (normalize(e.road).includes(nroad) || nroad.includes(normalize(e.road))) score += 6;
-    if (geoWard && headerNorm && (headerNorm.includes(geoWard) || geoWard.includes(headerNorm))) score += 50;
+    if (wardMatchesHeader(header, geoWard)) score += 50;
     else if (geoWard && headerNorm) score -= 100;
     return { ...e, areaHeader: header, score };
-  }).sort((a,b) => b.score - a.score || a.page - b.page || a.stt - b.stt);
+  }).filter(e => !geoWard || wardMatchesHeader(e.areaHeader, geoWard)).sort((a,b) => b.score - a.score || a.page - b.page || a.stt - b.stt);
   return enriched[0] || null;
 }
 
