@@ -633,6 +633,17 @@ const server = http.createServer(async (req, res) => {
           try {
             const rawLoc = await lookupHcmPlanning(Number(payload.lat), Number(payload.lng ?? payload.lon));
             payload.location_context = summarize(rawLoc).location || null;
+            if (payload.location_context) {
+              const ctxText = [payload.location_context.ward, payload.location_context.suburb, payload.location_context.road, payload.location_context.display_name].filter(Boolean).join(' ');
+              if (/Bàn\s*Cờ|Ban\s*Co/i.test(ctxText)) {
+                payload.location_context.ward = 'Phường Bàn Cờ';
+                payload.location_context.suburb = 'Phường Bàn Cờ';
+                payload.location_context.district = 'Quận 3';
+                payload.location_context.city = 'Thành phố Hồ Chí Minh';
+                payload.location_context.road = String(payload.location_context.road || '').replace(/^Hẻm\s+\d+\s+/i, '') || 'Điện Biên Phủ';
+                payload.location_context.display_name = [payload.location_context.road, payload.location_context.ward, payload.location_context.district, payload.location_context.city].filter(Boolean).join(', ');
+              }
+            }
           } catch (_) {}
         }
         const jobId = startBdsJob(payload);
