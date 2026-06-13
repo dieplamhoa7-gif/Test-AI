@@ -479,6 +479,25 @@ $('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
 $('far').addEventListener('input',calc);
 </script>
 <script src="mojibake-cleaner.js"></script><script src="local-motion.js"></script>
+<script>
+(function forceNvtcResultNavy(){
+  function apply(){
+    const card=document.querySelector('.result-card');
+    if(!card)return;
+    card.style.setProperty('background','linear-gradient(135deg,#102542,#1f3864)','important');
+    card.style.setProperty('border-color','#2e4a7d','important');
+    card.style.setProperty('color','#fff','important');
+    card.style.setProperty('box-shadow','0 14px 34px rgba(16,37,66,.20)','important');
+    card.querySelectorAll('h2,.tag,th,td,.kpi .k,.kpi .v').forEach(el=>el.style.setProperty('color','#fff','important'));
+    card.querySelectorAll('th').forEach(el=>{el.style.setProperty('background','#0b1f38','important');el.style.setProperty('border-color','rgba(255,255,255,.18)','important')});
+    card.querySelectorAll('td').forEach(el=>{el.style.setProperty('background','rgba(255,255,255,.08)','important');el.style.setProperty('border-color','rgba(255,255,255,.16)','important')});
+    card.querySelectorAll('.kpi .b').forEach(el=>{el.style.setProperty('background','rgba(255,255,255,.10)','important');el.style.setProperty('border-color','rgba(255,255,255,.20)','important')});
+    const red=card.querySelector('.kpi .b.red .v'); if(red) red.style.setProperty('color','#ffe082','important');
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+  setTimeout(apply,300); setTimeout(apply,1200);
+})();
+</script>
 </body>
 </html>
 
