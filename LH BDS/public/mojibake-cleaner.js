@@ -8,12 +8,35 @@
     ['áº¡','ạ'],['áº£','ả'],['áº¥','ấ'],['áº§','ầ'],['áº©','ẩ'],['áº«','ẫ'],['áº­','ậ'],['áº¯','ắ'],['áº±','ằ'],['áº³','ẳ'],['áºµ','ẵ'],['áº·','ặ'],
     ['Ã¡','á'],['Ã ','à'],['Ã¢','â'],['Ã£','ã'],['Ã©','é'],['Ã¨','è'],['Ãª','ê'],['Ã­','í'],['Ã¬','ì'],['Ã³','ó'],['Ã²','ò'],['Ã´','ô'],['Ãµ','õ'],['Ãº','ú'],['Ã¹','ù'],['Ã½','ý'],
     ['Â²','²'],['Â°','°'],['Â·','·'],['Â ',' '],['â€“','–'],['â€”','—'],['â€¦','…'],['â€œ','“'],['â€','”'],['â€˜','‘'],['â€™','’'],['â‚«','₫'],['â‰¥','≥'],['â‰¤','≤'],['â†’','→'],
-    ['Phưá»�ng','Phường'],['phưá»�ng','phường'],['PhÆ°á»�ng','Phường'],['phÆ°á»�ng','phường'],['ThA�nh ph��`','Thành phố'],['ThA�nh ph��','Thành phố'],['bA�n','bán']
+    ['Phưá»�ng','Phường'],['phưá»�ng','phường'],['PhÆ°á»�ng','Phường'],['phÆ°á»�ng','phường'],['ThA�nh ph��`','Thành phố'],['ThA�nh ph��','Thành phố'],['bA�n','bán'],
+    // Common broken text emitted by older frontend/API result blocks.
+    ['B�o c�o','Báo cáo'],['b�o c�o','báo cáo'],['D? li?u','Dữ liệu'],['d? li?u','dữ liệu'],['T?o','Tạo'],['t?o','tạo'],
+    ['T?ng quan','Tổng quan'],['H? so','Hồ sơ'],['h? so','hồ sơ'],['d? �n','dự án'],['D? �n','Dự án'],['T�n d? �n','Tên dự án'],
+    ['Quy ho?ch','Quy hoạch'],['quy ho?ch','quy hoạch'],['C?ng quy ho?ch','Cổng quy hoạch'],['ngu?n ch�nh','nguồn chính'],['Ngu?n ch�nh','Nguồn chính'],
+    ['M? ki?m ch?ng','Mở kiểm chứng'],['ki?m ch?ng','kiểm chứng'],['Ki?m ch?ng','Kiểm chứng'],['M? ngu?n','Mở nguồn'],['ngu?n','nguồn'],['Ngu?n','Nguồn'],
+    ['Khu v?c','Khu vực'],['khu v?c','khu vực'],['v?c','vực'],['D?a ch?','Địa chỉ'],['d?a ch?','địa chỉ'],['v? tr�','vị trí'],['V? tr�','Vị trí'],
+    ['Ch?c nang','Chức năng'],['ch?c nang','chức năng'],['M� quy u?c','Mã quy ước'],['T?ng cao','Tầng cao'],['Tr?ng th�i','Trạng thái'],
+    ['Da d?c du?c','Đã đọc được'],['Chua d?c du?c','Chưa đọc được'],['chua d?c du?c','chưa đọc được'],['kh�ng c� d? li?u','không có dữ liệu'],
+    ['Khu v?c cu','Khu vực cũ'],['Khu v?c m?i','Khu vực mới'],['M� t?','Mô tả'],['T?/th?a','Tờ/thửa'],['Di?n t�ch th?a','Diện tích thửa'],
+    ['Hi?n tr?ng','Hiện trạng'],['hi?n tr?ng','hiện trạng'],['lo?i d?t','loại đất'],['Lo?i d?t','Loại đất'],['Quy ho?ch x�y d?ng','Quy hoạch xây dựng'],
+    ['D? r?ng du?ng','Độ rộng đường'],['Hu?ng m?t ti?n','Hướng mặt tiền'],['Du?ng','Đường'],['du?ng','đường'],['d?t','đất'],['D?t','Đất'],
+    ['th?a','thửa'],['m?t ti?n','mặt tiền'],['di?n t�ch','diện tích'],['Di?n t�ch','Diện tích'],['th�ng tin','thông tin'],['Th�ng tin','Thông tin'],
+    ['ph�p ly','pháp lý'],['Ph�p ly','Pháp lý'],['l?i','lỗi'],['L?i','Lỗi'],['Kh�ng tra du?c','Không tra được'],['Dang','Đang'],['dang','đang'],['x? ly','xử lý'],['X? ly','Xử lý'],
+    ['c?n','cần'],['C?n','Cần'],['d?i chi?u','đối chiếu'],['D?i chi?u','Đối chiếu'],['c?nh b�o','cảnh báo'],['C?nh b�o','Cảnh báo'],['phuong','phương'],['d?a phuong','địa phương']
   ];
   function clean(s){
     if(typeof s !== 'string' || !s) return s;
     let out = s;
     for(const [a,b] of pairs) out = out.split(a).join(b);
+    // Post-fix collisions caused by older '?' mojibake patterns.
+    out = out.split('Cầng quy hoạch').join('Cổng quy hoạch')
+      .split('cầng quy hoạch').join('cổng quy hoạch')
+      .split('Khu vực cu').join('Khu vực cũ')
+      .split('khu vực cu').join('khu vực cũ')
+      .split('nguồn chành').join('nguồn chính')
+      .split('Nguồn chành').join('Nguồn chính')
+      .split('dự án quy hoạch dạng b??').join('dự án quy hoạch đồng bộ')
+      .split('Thuộc dự án quy hoạch dạng b??').join('Thuộc dự án quy hoạch đồng bộ');
     return out;
   }
   function cleanNodeText(node){
