@@ -102,10 +102,10 @@ small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
         <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
         <label>Nhà cung cấp</label>
         <select id="apiProvider"><option value="openai" selected>9Router BĐS server proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
-        <label>API Base URL</label><input id="apiBase" value="https://appreciated-wagner-product-arabia.trycloudflare.com">
+        <label>API Base URL</label><input id="apiBase" value="https://lh-realestate-api.lhrealestate.workers.dev">
         <label>API Key <span class="muted">(để trống — key nằm ở server)</span></label><input id="apiKey" type="password" placeholder="Để trống — server proxy giữ key riêng">
         <label>Model</label><input id="apiModel" value="APIBDS">
-        <small class="src">Đang dùng server proxy 9Router BĐS: <code>https://appreciated-wagner-product-arabia.trycloudflare.com</code>. API key nằm ở server/secret, không nhúng vào HTML. Bản cloud cố định đang chuẩn bị để thay quick tunnel.</small>
+        <small class="src">Đang dùng server proxy 9Router BĐS: <code>https://lh-realestate-api.lhrealestate.workers.dev</code>. API key nằm ở server/secret, không nhúng vào HTML. Bản cloud cố định đang chuẩn bị để thay quick tunnel.</small>
       </details>
       <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
       <details class="collapse" style="margin-top:10px">
@@ -239,7 +239,7 @@ let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
 const APP_DATA_VERSION="nq87-k1-source-only-v2";
 let roadFilter="", wardFilter="";
 const $=id=>document.getElementById(id);
-const API_PRIMARY='https://appreciated-wagner-product-arabia.trycloudflare.com';
+const API_PRIMARY='https://lh-realestate-api.lhrealestate.workers.dev';
 const API_CANDIDATES=[API_PRIMARY];
 function resetApiBaseToPrimary(){try{const el=$('apiBase'); if(el && (!el.value || /trycloudflare\.com|localhost:8787/.test(el.value))) el.value=API_PRIMARY;}catch(e){}}
 async function ensureApiBase(){resetApiBaseToPrimary();for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store',mode:'cors'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}if($('apiBase'))$('apiBase').value=API_PRIMARY;return API_PRIMARY}
@@ -505,6 +505,7 @@ $('far').addEventListener('input',calc);
 </script>
 </body>
 </html>
+
 
 
 

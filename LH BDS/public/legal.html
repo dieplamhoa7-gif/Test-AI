@@ -23,8 +23,8 @@ body{background:linear-gradient(135deg,#f6f8fb,#eef4ff);color:#102542}.wrap{max-
 <div id="cites" style="display:none"></div><div id="sources" style="display:none"></div>
 </main>
 <script>
-let API_BASE='https://appreciated-wagner-product-arabia.trycloudflare.com';
-const API_CANDIDATES=['https://appreciated-wagner-product-arabia.trycloudflare.com'];
+let API_BASE='https://lh-realestate-api.lhrealestate.workers.dev';
+const API_CANDIDATES=['https://lh-realestate-api.lhrealestate.workers.dev'];
 async function ensureApiBase(){
   for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store'});const j=await r.json();if(r.ok&&j.ok){API_BASE=b;return b}}catch(e){}}
   return API_BASE;
@@ -94,6 +94,7 @@ window.setQ=setQ; window.clearAll=clearAll; window.askLegal=askLegal; window.fol
 <script src="mojibake-cleaner.js"></script><script src="local-motion.js"></script>
 </body>
 </html>
+
 
 
 
