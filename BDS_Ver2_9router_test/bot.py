@@ -5,7 +5,14 @@ import logging
 import os
 import sys
 import time
-import msvcrt
+try:
+    import msvcrt  # Windows-only single-instance lock
+except ImportError:  # Linux/Render
+    msvcrt = None
+try:
+    import fcntl  # POSIX single-instance lock
+except ImportError:
+    fcntl = None
 import re
 import uuid
 import asyncio
@@ -61,7 +68,10 @@ def acquire_single_instance_lock() -> bool:
     lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bds_bot_single_instance.lock")
     f = open(lock_path, "a+")
     try:
-        msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+        if msvcrt is not None:
+            msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+        elif fcntl is not None:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
     except OSError:
         logger.warning("Another bot.py instance is already running; exiting this duplicate instance.")
         try:
