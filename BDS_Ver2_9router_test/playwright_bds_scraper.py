@@ -59,13 +59,13 @@ def clean_bds_text(s: str) -> str:
         return s
     pairs = {
         'CÃ¡ch': 'Cách', 'Máº¡ng': 'Mạng', 'ThÃ¡ng': 'Tháng', 'TÃ¡m': 'Tám',
-        'PhÆ°á»�ng': 'Phường', 'phÆ°á»�ng': 'phường', 'HÃ²a': 'Hòa', 'HÆ°ng': 'Hưng',
-        'ThÃ nh': 'Thành', 'phá»‘': 'phố', 'Thá»§': 'Thủ', 'Ä�á»©c': 'Đức',
-        'Ä�ức': 'Đức', 'Ä‘ức': 'đức', 'Ä‘': 'đ', 'Ä�': 'Đ', 'Æ°': 'ư', 'Æ¡': 'ơ',
+        'PhÆ°á»\uFFFDng': 'Phường', 'phÆ°á»\uFFFDng': 'phường', 'HÃ²a': 'Hòa', 'HÆ°ng': 'Hưng',
+        'ThÃ nh': 'Thành', 'phá»‘': 'phố', 'Thá»§': 'Thủ', 'Ä\uFFFDá»©c': 'Đức',
+        'Ä\uFFFDức': 'Đức', 'Ä‘ức': 'đức', 'Ä‘': 'đ', 'Ä\uFFFD': 'Đ', 'Æ°': 'ư', 'Æ¡': 'ơ',
         'Ã¡': 'á', 'Ã ': 'à', 'Ã²': 'ò', 'Ã³': 'ó', 'Ã´': 'ô', 'Ãµ': 'õ',
         'áº¡': 'ạ', 'á»§': 'ủ', 'á»©': 'ứ', 'á»±': 'ự', 'á»™': 'ộ', 'á»‘': 'ố',
         'á»“': 'ồ', 'á»•': 'ổ', 'á»—': 'ỗ', 'á»‹': 'ị', 'á»‰': 'ỉ', 'á»‡': 'ệ',
-        'á»ƒ': 'ể', 'áº¿': 'ế', 'á»�': 'ờ', 'á»›': 'ớ', 'á»Ÿ': 'ở', 'á»£': 'ợ',
+        'á»ƒ': 'ể', 'áº¿': 'ế', 'á»\uFFFD': 'ờ', 'á»›': 'ớ', 'á»Ÿ': 'ở', 'á»£': 'ợ',
         'áº£': 'ả', 'áº¥': 'ấ', 'áº§': 'ầ', 'áº©': 'ẩ', 'áº«': 'ẫ', 'áº­': 'ậ',
         'áº¯': 'ắ', 'áº±': 'ằ', 'áº³': 'ẳ', 'áºµ': 'ẵ', 'áº·': 'ặ',
     }
@@ -73,7 +73,7 @@ def clean_bds_text(s: str) -> str:
     for a, b in pairs.items():
         out = out.replace(a, b)
     out = out.replace('ĐứcTám', 'Đức Tám')
-    out = out.replace('ThÃ¡ng á»§ Ä�á»©cTÃ¡m', 'Tháng Tám')
+    out = out.replace('ThÃ¡ng á»§ Ä\uFFFDá»©cTÃ¡m', 'Tháng Tám')
     out = out.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
     out = out.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     out = out.replace('Phường Hòa Hưng Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
@@ -83,8 +83,8 @@ def clean_bds_text(s: str) -> str:
     out = out.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     out = out.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     out = out.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
-    out = out.replace('�ức', 'Đức').replace('�Ức', 'Đức').replace('� đức', ' Đức')
-    out = out.replace('Tháng �ứcTám', 'Tháng Tám').replace('Tháng �ức Tám', 'Tháng Tám')
+    out = out.replace('\uFFFDức', 'Đức').replace('\uFFFDỨc', 'Đức').replace('\uFFFD đức', ' Đức')
+    out = out.replace('Tháng \uFFFDứcTám', 'Tháng Tám').replace('Tháng \uFFFDức Tám', 'Tháng Tám')
     out = out.replace('Tháng ĐứcTám', 'Tháng Tám').replace('Tháng Đức Tám', 'Tháng Tám')
     out = out.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     return out

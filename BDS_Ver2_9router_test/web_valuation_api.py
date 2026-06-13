@@ -33,21 +33,21 @@ def fix_vn_text(x):
     # recover after partial corruption/concatenation.
     hard_replacements = {
         'CÃ¡ch': 'Cách', 'Máº¡ng': 'Mạng', 'ThÃ¡ng': 'Tháng',
-        'TÃ¡m': 'Tám', 'PhÆ°á»�ng': 'Phường', 'phÆ°á»�ng': 'phường',
+        'TÃ¡m': 'Tám', 'PhÆ°á»\uFFFDng': 'Phường', 'phÆ°á»\uFFFDng': 'phường',
         'HÃ²a': 'Hòa', 'HÆ°ng': 'Hưng', 'ThÃ nh': 'Thành',
-        'phá»‘': 'phố', 'Thá»§': 'Thủ', 'Ä�á»©c': 'Đức',
-        'Ä�ức': 'Đức', 'Ä‘ức': 'đức', 'Æ°': 'ư', 'Æ¡': 'ơ',
+        'phá»‘': 'phố', 'Thá»§': 'Thủ', 'Ä\uFFFDá»©c': 'Đức',
+        'Ä\uFFFDức': 'Đức', 'Ä‘ức': 'đức', 'Æ°': 'ư', 'Æ¡': 'ơ',
         'Ã¡': 'á', 'Ã ': 'à', 'Ã²': 'ò', 'Ã³': 'ó', 'Ã´': 'ô',
-        'áº¡': 'ạ', 'á»§': 'ủ', 'á»©': 'ứ', 'á»�': 'ờ', 'á»›': 'ớ',
+        'áº¡': 'ạ', 'á»§': 'ủ', 'á»©': 'ứ', 'á»\uFFFD': 'ờ', 'á»›': 'ớ',
         'á»Ÿ': 'ở', 'á»£': 'ợ', 'á»±': 'ự', 'á»™': 'ộ', 'á»‘': 'ố',
         'á»“': 'ồ', 'á»•': 'ổ', 'á»—': 'ỗ', 'áº¿': 'ế', 'á»‡': 'ệ',
-        'Ä‘': 'đ', 'Ä�': 'Đ',
+        'Ä‘': 'đ', 'Ä\uFFFD': 'Đ',
     }
     for a, b in hard_replacements.items():
         x = x.replace(a, b)
     # Repair no-space concatenation observed from BĐS search strings.
     x = x.replace('ĐứcTám', 'Đức Tám')
-    x = x.replace('ThÃ¡ng á»§ Ä�á»©cTÃ¡m', 'Tháng Tám')
+    x = x.replace('ThÃ¡ng á»§ Ä\uFFFDá»©cTÃ¡m', 'Tháng Tám')
     x = x.replace('Tháng ủ ĐứcTám', 'Tháng Tám').replace('Tháng ủ Đức Tám', 'Tháng Tám')
     x = x.replace('Tháng Thủ ĐứcTám', 'Tháng Tám').replace('Tháng Thủ Đức Tám', 'Tháng Tám')
     # Hòa Hưng is not in TP Thủ Đức; prevent mojibake-cleaned search strings
@@ -59,13 +59,13 @@ def fix_vn_text(x):
     x = x.replace('Phường Hòa Hưng, Thành phố Thủ Đức', 'Phường Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
     x = x.replace('Hòa Hưng, Thành phố Thủ Đức', 'Hòa Hưng, Thành phố Hồ Chí Minh')
-    x = x.replace('�ức', 'Đức').replace('�Ức', 'Đức').replace('� đức', ' Đức')
-    x = x.replace('Tháng �ứcTám', 'Tháng Tám').replace('Tháng �ức Tám', 'Tháng Tám')
+    x = x.replace('\uFFFDức', 'Đức').replace('\uFFFDỨc', 'Đức').replace('\uFFFD đức', ' Đức')
+    x = x.replace('Tháng \uFFFDứcTám', 'Tháng Tám').replace('Tháng \uFFFDức Tám', 'Tháng Tám')
     x = x.replace('Thà nh', 'Thành').replace('thà nh', 'thành')
     bad = chr(0xFFFD)
     replacements = {
         'ThÃ nh': 'Thành', 'thÃ nh': 'thành', 'phá»‘': 'phố', 'Há»“': 'Hồ', 'ChÃ­': 'Chí',
-        'Phưá»?ng': 'Phường', 'phưá»?ng': 'phường', 'Phưá»�ng': 'Phường', 'phưá»�ng': 'phường', 'PhÆ°á»?ng': 'Phường', 'phÆ°á»?ng': 'phường',
+        'Phưá»?ng': 'Phường', 'phưá»?ng': 'phường', 'Phưá»\uFFFDng': 'Phường', 'phưá»\uFFFDng': 'phường', 'PhÆ°á»?ng': 'Phường', 'phÆ°á»?ng': 'phường',
         'Ngá»?c': 'Ngọc', 'ngá»?c': 'ngọc', 'CÆ°': 'Cư', 'cÆ°': 'cư', 'Ä?': 'Đ', 'Ä‘': 'đ',
         'á»?': 'ọ', 'á»“': 'ồ', 'á»‘': 'ố', 'á»‹': 'ị', 'á»‡': 'ệ', 'áº¿': 'ế', 'áº§': 'ầ', 'áº¡': 'ạ',
         'Ã¡': 'á', 'Ã ': 'à', 'Ã¢': 'â', 'Ã£': 'ã', 'Ã©': 'é', 'Ã¨': 'è', 'Ãª': 'ê', 'Ã­': 'í',
