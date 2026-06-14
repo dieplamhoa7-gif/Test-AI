@@ -896,13 +896,18 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             warnings.append(f"browser direct street search lỗi/timeout: {type(e).__name__}. {note}")
             log_error('browser_direct_land', payload, e, 'direct street search only', note)
         has_direct_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
-        if not has_direct_price and alonhadat_buckets is not None:
-            write_progress('alonhadat_fallback', 'Batdongsan chưa có mẫu; thử thêm Alonhadat theo vị trí, không dùng AI estimate...', warnings)
-            try:
-                alo = await asyncio.to_thread(alonhadat_buckets, criteria, projects, 12)
-                buckets = merge_listing_buckets(buckets, alo)
-            except Exception as e:
-                warnings.append(f"alonhadat fallback lỗi: {type(e).__name__}: {e}")
+        if not has_direct_price:
+            if alonhadat_buckets is None:
+                warnings.append('alonhadat fallback không khả dụng: không import được alonhadat_scraper/bs4')
+            else:
+                write_progress('alonhadat_fallback', 'Batdongsan chưa có mẫu; thử thêm Alonhadat theo vị trí, không dùng AI estimate...', warnings)
+                try:
+                    alo = await asyncio.to_thread(alonhadat_buckets, criteria, projects, 12)
+                    alo_count = sum(len(v or []) for v in (alo or {}).values()) if isinstance(alo, dict) else 0
+                    warnings.append(f'alonhadat fallback trả {alo_count} mẫu')
+                    buckets = merge_listing_buckets(buckets, alo)
+                except Exception as e:
+                    warnings.append(f"alonhadat fallback lỗi: {type(e).__name__}: {e}")
     else:
         write_progress('browser_buckets', 'Đang chạy browser bucket để kiểm tra nguồn thật theo dự án...', warnings)
         try:
