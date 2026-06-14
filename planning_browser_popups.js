@@ -25,6 +25,9 @@ async function ensureCdpBrowser() {
       `--user-data-dir=${DEFAULT_PROFILE}`,
       '--no-first-run',
       '--disable-popup-blocking',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
       'about:blank',
     ], { detached: true, stdio: 'ignore' });
     child.unref();
@@ -127,39 +130,109 @@ function summarizeText(text, label) {
 }
 
 async function readGulandPopupText(lat, lon) {
+  // Guland needs a real browser click on the Leaflet marker; passive body text is mostly listings.
+  const { chromium } = require('playwright');
+  await ensureCdpBrowser();
   const url = `https://guland.vn/soi-quy-hoach?lat=${lat}&lng=${lon}`;
-  const text = await readVisibleText(url, true);
-  return summarizeText(text, 'Guland popup/browser');
+  const browser = await chromium.connectOverCDP(DEFAULT_CDP);
+  const context = browser.contexts()[0] || await browser.newContext();
+  const page = await context.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.waitForTimeout(12000);
+    await page.evaluate(async ({ lat, lon }) => {
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      const map = window.map || (typeof window.get_map === 'function' ? window.get_map() : null);
+      if (map && map.setView) {
+        map.setView([lat, lon], 19);
+        await sleep(2500);
+        if (window.main_marker && window.main_marker.setLatLng) window.main_marker.setLatLng([lat, lon]);
+        await sleep(1000);
+        try { if (window.main_marker && window.main_marker.fire) window.main_marker.fire('click'); } catch (_) {}
+        await sleep(5000);
+      }
+    }, { lat, lon });
+    const marker = page.locator('.leaflet-marker-icon.leaflet-marker-draggable').first();
+    if (await marker.count()) {
+      await marker.click({ timeout: 10000, force: true }).catch(() => null);
+      await page.waitForTimeout(5000);
+    }
+    const text = await page.locator('body').innerText({ timeout: 10000 });
+    return summarizeText(text, 'Guland popup/browser');
+  } finally {
+    await page.close().catch(() => null);
+    await browser.close().catch(() => null);
+  }
 }
 
-async function readQhVietPopupText(lat, lon) {
-  const url = `https://qhviet.com/`;
-  const tab = await openTab(url);
-  if (!tab.webSocketDebuggerUrl) throw new Error('Không có browser websocket');
-  const cdp = await connectWs(tab.webSocketDebuggerUrl);
+function slugVi(s) {
+  return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+
+function stripHtml(html) {
+  return String(html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+async function readQhVietPopupText(lat, lon, location = {}) {
+  // QH Việt 2026 uses a Vue single-page map for the new 2-level HCMC admin flow.
+  // Playwright drives the logged-in Chrome profile through CDP, then calls the same
+  // Vue methods the old Quyhoach bot used: selectProvince -> selectWard -> checkparcel.gapply().
+  const { chromium } = require('playwright');
+  await ensureCdpBrowser();
+  const targetWard = String(location.ward || location.suburb || 'Phường Tân Định').trim();
+  const url = 'https://qhviet.com/quy-hoach/thanh-pho-ho-chi-minh-hanh-chinh-2-cap';
+  const browser = await chromium.connectOverCDP(DEFAULT_CDP);
+  const context = browser.contexts()[0] || await browser.newContext();
+  const page = await context.newPage();
   try {
-    await cdp.send('Page.enable');
-    await cdp.send('Runtime.enable');
-    await cdp.send('Page.navigate', { url });
-    await wait(8000);
-    const expr = `async () => {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.waitForTimeout(7000);
+    const out = await page.evaluate(async ({ lat, lon, targetWard }) => {
       const sleep = ms => new Promise(r => setTimeout(r, ms));
       const app = document.querySelector('#app') && document.querySelector('#app').__vue__;
-      const picker = app && app.$refs && app.$refs.checkparcel;
-      if (picker) {
-        try { picker.activeTab = 3; } catch(e) {}
-        try { picker.gpoint = '${lat}, ${lon}'; } catch(e) {}
-        try { if (typeof picker.gapply === 'function') await picker.gapply(); } catch(e) { return 'QH Việt gapply error: '+(e.message||e); }
-        await sleep(7000);
+      const lvl = app && app.$refs && app.$refs['app-map'] && app.$refs['app-map'].$refs['province-box'] && app.$refs['app-map'].$refs['province-box'].$refs['province-level-2'];
+      if (!app || !lvl) return { error: 'Không thấy Vue province-level-2 của QH Việt', body: document.body?.innerText || '' };
+      const hcm = (lvl.provinces || []).find(p => /Hồ Chí Minh|Ho Chi Minh/i.test(p.name || ''));
+      if (!hcm) return { error: 'Không tìm thấy TP.HCM trong QH Việt', body: document.body?.innerText || '' };
+      lvl.selectProvince(hcm);
+      await sleep(5000);
+      const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
+      const want = norm(targetWard);
+      const ward = (lvl.wards || []).find(w => norm(w.name) === want) || (lvl.wards || []).find(w => norm(w.name).includes(want.replace(/^phuong\s+|^xa\s+/, '')));
+      if (!ward) return { error: `Không tìm thấy phường/xã QH Việt: ${targetWard}`, wards: (lvl.wards || []).map(w => w.name).slice(0, 220), body: document.body?.innerText || '' };
+      lvl.selectWard(ward);
+      await sleep(5000);
+      // This mirrors the real user action: click the map/point after selecting the new ward.
+      // It populates the right-side "Thông tin thửa" panel and app-map.parcel.plan_info.
+      lvl.accessPointPosition({ lat, lng: lon });
+      await sleep(18000);
+      const map = app.$refs && app.$refs['app-map'];
+      const parcel = map && map.parcel;
+      const rows = [];
+      if (parcel && Array.isArray(parcel.properties)) rows.push(...parcel.properties);
+      if (parcel && Array.isArray(parcel.plan_info)) {
+        for (const p of parcel.plan_info) {
+          if (p.name) rows.push(`Quy hoạch: ${p.name}`);
+          if (p.num_code) rows.push(`Loại đất: ${p.num_code}`);
+          if (Array.isArray(p.info)) {
+            for (const item of p.info) {
+              try {
+                const o = typeof item === 'string' ? JSON.parse(item) : item;
+                if (o && o.label) rows.push(`${o.label}: ${o.value ?? ''}`);
+              } catch (_) { rows.push(String(item)); }
+            }
+          }
+        }
       }
-      return (document.body && document.body.innerText ? document.body.innerText : '').slice(0, 12000);
-    }`;
-    const res = await cdp.send('Runtime.evaluate', { expression: `(${expr})()`, awaitPromise: true, returnByValue: true });
-    const text = String(res.result?.value || '');
-    return summarizeText(text, 'QH Việt browser');
+      return { province: hcm.name, ward: ward.name, ward_id: ward.id, rows, body: document.body?.innerText || '' };
+    }, { lat, lon, targetWard });
+    const rowsText = Array.isArray(out && out.rows) ? out.rows.map(stripHtml).filter(Boolean).join('\n') : '';
+    const bodyText = String((out && out.body) || '').slice(0, 6000);
+    const meta = out && out.error ? `Lỗi: ${out.error}\n` : `Khu vực mới: ${out.ward || targetWard}, Thành phố Hồ Chí Minh\n`;
+    return summarizeText(`${meta}${rowsText}\n${bodyText}`, 'QH Việt browser');
   } finally {
-    cdp.close();
-    await closeTab(tab.id).catch(() => null);
+    await page.close().catch(() => null);
+    await browser.close().catch(() => null);
   }
 }
 
