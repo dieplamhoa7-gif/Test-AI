@@ -489,10 +489,13 @@ async def scrape_batdongsan_queries_reuse(queries: list[str], mode: str = "buy",
             for q in queries:
                 try:
                     rows = await _search_on_existing_page(page, q, mode=mode, limit=limit_per_query)
-                except Exception:
+                except Exception as e:
                     rows = []
+                    buckets.setdefault(f'Batdongsan.com.vn::query::{q}::error::{type(e).__name__}', [])
                 if rows:
-                    buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
+                    buckets.setdefault(f'Batdongsan.com.vn::query::{q}', []).extend(rows)
+                else:
+                    buckets.setdefault(f'Batdongsan.com.vn::query::{q}', [])
             return buckets
         finally:
             await ctx.close()

@@ -126,7 +126,7 @@ def _candidate_queries(criteria: SearchCriteria, project_name: str | None = None
     loc = getattr(criteria, "location_context", {}) or {}
     district = loc.get("district") if isinstance(loc, dict) else None
     city = loc.get("city") if isinstance(loc, dict) else None
-    street = loc.get("street") if isinstance(loc, dict) else None
+    street = (loc.get("street") or loc.get("road")) if isinstance(loc, dict) else None
     kws = _property_keywords(criteria)
     bases=[]
     if project_name:
