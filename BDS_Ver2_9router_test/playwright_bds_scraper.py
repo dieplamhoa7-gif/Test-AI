@@ -343,7 +343,13 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
         except Exception:
             pass
     if not candidates:
-        raise RuntimeError("Cannot find BDS search input")
+        try:
+            title = await page.title()
+            body = (await page.locator('body').inner_text(timeout=3000)).replace('\n', ' ')[:220]
+            url = page.url
+        except Exception:
+            title, body, url = '', '', ''
+        raise RuntimeError(f"Cannot find BDS search input; title={title[:80]}; url={url[:120]}; body={body}")
     _, idx = max(candidates)
     el = inputs.nth(idx)
     await el.click()
