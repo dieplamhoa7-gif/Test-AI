@@ -380,5 +380,17 @@ async function lookupK1LandFee({ lat, lon, geoLocation, text, landUse='ODT', pos
   };
 }
 
-export { lookupK1LandFee };
+function getK1SourcePage(page) {
+  const n = Number(page);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  const hits = rows.filter(r => Number(r.page) === n || Number(r.pageNo) === n || Number(r.page_index) === n);
+  return {
+    page: n,
+    count: hits.length,
+    rows: hits.slice(0, 25),
+    text: hits.map(r => r.text || r.raw || r.content || '').filter(Boolean).join('\n\n'),
+  };
+}
+
+export { lookupK1LandFee, getK1SourcePage };
 

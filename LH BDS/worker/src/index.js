@@ -1,4 +1,4 @@
-import { lookupK1LandFee } from './k1.js';
+import { lookupK1LandFee, getK1SourcePage } from './k1.js';
 
 function corsHeaders() {
   return {
@@ -196,6 +196,12 @@ export default {
     const path = url.pathname.replace(/\/$/, '') || '/';
     if (request.method === 'GET' && path === '/health') {
       return json({ ok:true, runtime:'cloudflare-workers-free', model:env.NINEROUTER_MODEL || 'APIBDS', hasKey:!!env.NINEROUTER_API_KEY, hasPublicBase:!!env.NINEROUTER_BASE_URL, k1:true });
+    }
+    if (request.method === 'GET' && path === '/nvtc/k1-source') {
+      const page = url.searchParams.get('page');
+      const data = getK1SourcePage(page);
+      if (!data) return json({ ok:false, error:'page_required' }, 400);
+      return json({ ok:true, ...data });
     }
     if (request.method === 'POST' && path === '/nvtc/k1-search') return handleK1Search(request);
     if (request.method === 'POST' && path === '/nvtc/k1-lookup') return handleK1Lookup(request);
