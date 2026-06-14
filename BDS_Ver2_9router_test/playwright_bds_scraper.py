@@ -491,7 +491,7 @@ async def scrape_batdongsan_queries_reuse(queries: list[str], mode: str = "buy",
                     rows = await _search_on_existing_page(page, q, mode=mode, limit=limit_per_query)
                 except Exception as e:
                     rows = []
-                    buckets.setdefault(f'Batdongsan.com.vn::query::{q}::error::{type(e).__name__}', [])
+                    buckets.setdefault(f'Batdongsan.com.vn::query::{q}::error::{type(e).__name__}::{str(e)[:180]}', [])
                 if rows:
                     buckets.setdefault(f'Batdongsan.com.vn::query::{q}', []).extend(rows)
                 else:
