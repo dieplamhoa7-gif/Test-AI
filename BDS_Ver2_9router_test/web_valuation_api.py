@@ -370,15 +370,15 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     write_progress('browser_street_queries', 'Chrome mở 1 lần và search tiếp nhiều keyword: ' + ' | '.join(queries[:5]))
     try:
         return await scrape_batdongsan_queries_reuse(queries[:5], mode=mode, limit_per_query=8)
-    except Exception:
+    except Exception as reuse_error:
+        buckets.setdefault(f'Batdongsan.com.vn::reuse_error::{type(reuse_error).__name__}::{str(reuse_error)[:160]}', [])
         # Fallback old behavior only if reuse flow fails.
         for q in queries[:5]:
             try:
-                rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode=mode)
-                if rows:
-                    buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
-            except Exception:
-                continue
+                rows = await scrape_batdongsan_playwright(q, limit=8, headless=(os.environ.get('BDS_HEADLESS', '1') != '0'), mode=mode)
+                buckets.setdefault(f'Batdongsan.com.vn::fallback_query::{q}', []).extend(rows or [])
+            except Exception as fallback_error:
+                buckets.setdefault(f'Batdongsan.com.vn::fallback_error::{q}::{type(fallback_error).__name__}::{str(fallback_error)[:160]}', [])
         return buckets
 
 
