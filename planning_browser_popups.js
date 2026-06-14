@@ -28,6 +28,7 @@ async function ensureCdpBrowser() {
       '--no-sandbox',
       '--disable-dev-shm-usage',
       '--disable-gpu',
+      '--headless=new',
       'about:blank',
     ], { detached: true, stdio: 'ignore' });
     child.unref();
