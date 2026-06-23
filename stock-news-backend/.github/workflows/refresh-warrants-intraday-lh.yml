@@ -1,0 +1,58 @@
+name: Refresh LH warrants intraday
+
+on:
+  schedule:
+    # Vietnam market hours Mon-Fri: 09:00-15:00 ICT = 02:00-08:00 UTC.
+    # GitHub schedule granularity/reliability is best-effort; this keeps CW data near-realtime during trading hours.
+    - cron: '*/5 2-8 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-lh-warrants-intraday
+  cancel-in-progress: true
+
+jobs:
+  refresh-warrants:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stock-news-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Refresh covered warrant catalog
+        run: python build_warrant_catalog_cache.py
+
+      - name: Refresh covered warrant realtime cache
+        run: python refresh_warrants_cache_lh.py
+
+      - name: Commit updated warrants cache
+        run: |
+          git config user.name "LH Investment Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/warrants/warrant_catalog.json firebase_public/data/warrants_data.json firebase_public/data/app_version.json
+          git diff --cached --quiet || git commit -m "Auto refresh LH warrants intraday cache"
+          git push
+
+      - name: Deploy LHInvestment hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          npm install -g firebase-tools
+          firebase deploy --only hosting --project lhinvestment --token "$FIREBASE_TOKEN"
