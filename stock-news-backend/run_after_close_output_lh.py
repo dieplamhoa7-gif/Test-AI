@@ -127,16 +127,11 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/strategy_results_cache.json",
          "stock-news-backend/data/market_data.json",
          "stock-news-backend/data/market_overview.json",
-         "stock-news-backend/firebase_public/data/market_data.json",
-         "stock-news-backend/firebase_public/data/market_watch.json",
-         "stock-news-backend/firebase_public/data/market_overview.json",
-         "stock-news-backend/firebase_public/data/strategy_results_cache.json",
-         "stock-news-backend/firebase_public/data/strategy_matrix_cache.json",
-         "stock-news-backend/firebase_public/data/market_symbols.json",
-         "stock-news-backend/firebase_public/stocks.html",
-         "stock-news-backend/firebase_public/news-page.html",
-         "stock-news-backend/firebase_public/warrants.html",
-         "stock-news-backend/firebase_public/index.html"]
+         # Output-only automation: commit source data/output artifacts only.
+         # Do not stage firebase_public/* here. Those files are the live hosting
+         # payload and must only change through the reviewed guarded deploy flow.
+         "stock-news-backend/ml_core12_group_combo_search.py",
+         "stock-news-backend/data/core12_group_combo_config.json"]
     log("RUN " + " ".join(add_cmd))
     subprocess.run(add_cmd, cwd=git_root, check=True)
     # Commit only when there is staged output difference.
