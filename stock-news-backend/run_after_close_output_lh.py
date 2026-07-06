@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import subprocess
 import sys
 from datetime import datetime
@@ -148,7 +149,8 @@ def _run_pipeline(py: str) -> None:
     else:
         log("No output changes to commit")
 
-    run(["firebase", "deploy", "--only", "hosting", "--project", "lhinvestment"], timeout=600)
+    firebase_bin = shutil.which("firebase") or shutil.which("firebase.cmd") or "firebase.cmd"
+    run([firebase_bin, "deploy", "--only", "hosting", "--project", "lhinvestment"], timeout=600)
     log("DONE after-close output-only pipeline")
 
 
