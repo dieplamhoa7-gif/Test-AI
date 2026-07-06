@@ -1,0 +1,1666 @@
+{
+  "createdAt": "2026-05-11T12:20:29",
+  "selected": {
+    "CHUNG_KHOAN": {
+      "RS": {
+        "sectorGroup": "CHUNG_KHOAN",
+        "sampleCount": 149,
+        "task": "RS",
+        "positiveN": 25,
+        "positiveRate": 16.78,
+        "indicators": [
+          "MFI_CMF",
+          "SR_CLUSTER",
+          "VWAP_VWMA",
+          "ROC_MOMENTUM",
+          "RSI"
+        ],
+        "indicatorParams": {
+          "MFI_CMF": [
+            60.538,
+            0.129
+          ],
+          "SR_CLUSTER": {},
+          "VWAP_VWMA": [
+            60.051
+          ],
+          "ROC_MOMENTUM": [
+            52.13
+          ],
+          "RSI": [
+            49.657
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 36,
+        "avgPrecision": 100.0,
+        "minPrecision": 100.0,
+        "avgRecall": 50.0,
+        "avgF1": 66.67,
+        "minF1": 66.67,
+        "predTotal": 2,
+        "hit70_50": true,
+        "score": 574.136,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.78,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 34.78,
+              "f1": 51.61,
+              "predN": 8,
+              "tp": 8,
+              "fp": 0,
+              "oracleN": 23,
+              "n": 111
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 50.0,
+              "f1": 66.67,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 2,
+              "n": 38
+            },
+            "topFeatures": {
+              "SR_near_support_flag": 0.10582,
+              "SR_near_resistance_flag": 0.10296,
+              "SR_near_resistance_strength": 0.05314,
+              "SR_strong_resistance_support_touches": 0.04964,
+              "SR_strong_resistance_strength": 0.04698,
+              "SR_near_resistance_touches": 0.04575,
+              "MFI61": 0.04489,
+              "SR_cluster_count": 0.04467,
+              "SR_near_resistance_resistance_touches": 0.04025,
+              "SR_strong_support_dist_pct": 0.03543,
+              "SR_near_resistance_support_touches": 0.03472,
+              "SR_near_resistance_width_pct": 0.03356,
+              "SR_strong_resistance_touches": 0.03169,
+              "RSI50": 0.02977,
+              "VWAP60_dist": 0.0286,
+              "SR_strong_resistance_width_pct": 0.02763,
+              "SR_resistance_count": 0.02624,
+              "SR_support_count": 0.02472,
+              "SR_near_support_dist_pct": 0.02468,
+              "SR_strong_resistance_resistance_touches": 0.0214
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.74,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 39.13,
+              "f1": 56.25,
+              "predN": 9,
+              "tp": 9,
+              "fp": 0,
+              "oracleN": 23,
+              "n": 132
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 50.0,
+              "f1": 66.67,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 2,
+              "n": 17
+            },
+            "topFeatures": {
+              "SR_near_support_flag": 0.11551,
+              "SR_near_resistance_flag": 0.106,
+              "SR_near_resistance_strength": 0.05249,
+              "SR_near_resistance_resistance_touches": 0.04531,
+              "SR_near_resistance_touches": 0.04355,
+              "SR_strong_resistance_support_touches": 0.04236,
+              "SR_strong_support_dist_pct": 0.04109,
+              "MFI61": 0.04051,
+              "SR_strong_resistance_strength": 0.03963,
+              "SR_near_resistance_support_touches": 0.03348,
+              "SR_near_resistance_width_pct": 0.03204,
+              "SR_cluster_count": 0.03139,
+              "SR_strong_resistance_width_pct": 0.02941,
+              "SR_support_count": 0.02927,
+              "SR_strong_resistance_touches": 0.02832,
+              "RSI50": 0.02761,
+              "VWAP60_dist": 0.02505,
+              "SR_strong_resistance_resistance_touches": 0.02457,
+              "SR_resistance_count": 0.02321,
+              "SR_near_support_dist_pct": 0.02162
+            }
+          }
+        ]
+      },
+      "D1S": {
+        "sectorGroup": "CHUNG_KHOAN",
+        "sampleCount": 149,
+        "task": "D1S",
+        "positiveN": 15,
+        "positiveRate": 10.07,
+        "indicators": [
+          "ICHIMOKU",
+          "ROC_MOMENTUM",
+          "MACD",
+          "PVI_NVI",
+          "SUPERTREND"
+        ],
+        "indicatorParams": {
+          "ICHIMOKU": [
+            19.704,
+            26.819,
+            61.577
+          ],
+          "ROC_MOMENTUM": [
+            49.707
+          ],
+          "MACD": [
+            5.643,
+            70.284,
+            19.484
+          ],
+          "PVI_NVI": [
+            51.589
+          ],
+          "SUPERTREND": [
+            5.437,
+            3.7
+          ]
+        },
+        "model": "RF",
+        "mode": "balanced70_50",
+        "featureCount": 5,
+        "avgPrecision": 87.5,
+        "minPrecision": 75.0,
+        "avgRecall": 50.0,
+        "avgF1": 57.5,
+        "minF1": 40.0,
+        "predTotal": 7,
+        "hit70_50": true,
+        "score": 493.8,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.53,
+            "isStats": {
+              "precision": 75.0,
+              "recall": 100.0,
+              "f1": 85.71,
+              "predN": 4,
+              "tp": 3,
+              "fp": 1,
+              "oracleN": 3,
+              "n": 111
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 25.0,
+              "f1": 40.0,
+              "predN": 3,
+              "tp": 3,
+              "fp": 0,
+              "oracleN": 12,
+              "n": 38
+            },
+            "topFeatures": {
+              "MACD6_70_19_slope5": 0.32985,
+              "PVI_slope52": 0.237,
+              "ROC50": 0.14758,
+              "MACD6_70_19_hist": 0.14425,
+              "MOM50": 0.14132
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.51,
+            "isStats": {
+              "precision": 66.67,
+              "recall": 90.91,
+              "f1": 76.92,
+              "predN": 15,
+              "tp": 10,
+              "fp": 5,
+              "oracleN": 11,
+              "n": 132
+            },
+            "oosStats": {
+              "precision": 75.0,
+              "recall": 75.0,
+              "f1": 75.0,
+              "predN": 4,
+              "tp": 3,
+              "fp": 1,
+              "oracleN": 4,
+              "n": 17
+            },
+            "topFeatures": {
+              "PVI_slope52": 0.27908,
+              "MACD6_70_19_slope5": 0.2432,
+              "ROC50": 0.19147,
+              "MACD6_70_19_hist": 0.15308,
+              "MOM50": 0.13317
+            }
+          }
+        ]
+      },
+      "D1A": {
+        "sectorGroup": "CHUNG_KHOAN",
+        "sampleCount": 149,
+        "task": "D1A",
+        "positiveN": 69,
+        "positiveRate": 46.31,
+        "indicators": [
+          "PVI_NVI",
+          "SR_CLUSTER",
+          "ICHIMOKU",
+          "MA_EMA_WMA",
+          "SUPERTREND"
+        ],
+        "indicatorParams": {
+          "PVI_NVI": [
+            30.375
+          ],
+          "SR_CLUSTER": {},
+          "ICHIMOKU": [
+            9.152,
+            33.762,
+            53.282
+          ],
+          "MA_EMA_WMA": [
+            170.073,
+            0.116
+          ],
+          "SUPERTREND": [
+            31.757,
+            3.244
+          ]
+        },
+        "model": "RF",
+        "mode": "precision",
+        "featureCount": 33,
+        "avgPrecision": 80.0,
+        "minPrecision": 60.0,
+        "avgRecall": 70.84,
+        "avgF1": 73.34,
+        "minF1": 66.67,
+        "predTotal": 7,
+        "hit70_50": true,
+        "score": 473.969,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.65,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 55.38,
+              "f1": 71.29,
+              "predN": 36,
+              "tp": 36,
+              "fp": 0,
+              "oracleN": 65,
+              "n": 111
+            },
+            "oosStats": {
+              "precision": 60.0,
+              "recall": 75.0,
+              "f1": 66.67,
+              "predN": 5,
+              "tp": 3,
+              "fp": 2,
+              "oracleN": 4,
+              "n": 38
+            },
+            "topFeatures": {
+              "SR_strong_support_dist_pct": 0.11331,
+              "MA170_slope5": 0.09561,
+              "PVI_slope30": 0.06294,
+              "MA170_dist": 0.05973,
+              "SR_cluster_count": 0.04647,
+              "SR_near_support_dist_pct": 0.04348,
+              "SR_near_support_resistance_touches": 0.03752,
+              "SR_near_support_strength": 0.03508,
+              "SR_strong_support_resistance_touches": 0.03416,
+              "SR_strong_support_support_touches": 0.03277,
+              "SR_near_support_width_pct": 0.03248,
+              "SR_near_support_touches": 0.03203,
+              "SR_strong_support_strength": 0.0307,
+              "SR_near_resistance_strength": 0.02975,
+              "SR_near_resistance_resistance_touches": 0.02884,
+              "SR_near_resistance_width_pct": 0.02794,
+              "SR_support_count": 0.02743,
+              "SR_near_support_support_touches": 0.02579,
+              "SR_strong_resistance_strength": 0.0224,
+              "SR_support_resistance_box_pct": 0.02074
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.7,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 53.03,
+              "f1": 69.31,
+              "predN": 35,
+              "tp": 35,
+              "fp": 0,
+              "oracleN": 66,
+              "n": 132
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 66.67,
+              "f1": 80.0,
+              "predN": 2,
+              "tp": 2,
+              "fp": 0,
+              "oracleN": 3,
+              "n": 17
+            },
+            "topFeatures": {
+              "MA170_slope5": 0.13783,
+              "SR_strong_support_dist_pct": 0.09119,
+              "MA170_dist": 0.08571,
+              "PVI_slope30": 0.08325,
+              "SR_strong_support_support_touches": 0.04029,
+              "SR_near_support_strength": 0.04016,
+              "SR_near_resistance_resistance_touches": 0.03658,
+              "SR_near_resistance_strength": 0.03566,
+              "SR_near_support_dist_pct": 0.03232,
+              "SR_near_support_resistance_touches": 0.03116,
+              "SR_strong_support_resistance_touches": 0.02967,
+              "SR_near_support_width_pct": 0.02939,
+              "SR_strong_support_touches": 0.02762,
+              "SR_strong_support_strength": 0.02614,
+              "SR_near_resistance_width_pct": 0.02511,
+              "SR_near_support_touches": 0.02466,
+              "SR_near_resistance_touches": 0.02211,
+              "SR_strong_resistance_strength": 0.02168,
+              "SR_strong_resistance_width_pct": 0.02073,
+              "SR_strong_support_width_pct": 0.02043
+            }
+          }
+        ]
+      }
+    },
+    "REAL_ESTATE": {
+      "D1A": {
+        "sectorGroup": "REAL_ESTATE",
+        "sampleCount": 70,
+        "task": "D1A",
+        "positiveN": 50,
+        "positiveRate": 71.43,
+        "indicators": [
+          "ROC_MOMENTUM",
+          "SUPERTREND",
+          "MFI_CMF",
+          "PVI_NVI",
+          "VWAP_VWMA"
+        ],
+        "indicatorParams": {
+          "ROC_MOMENTUM": [
+            17.094
+          ],
+          "SUPERTREND": [
+            14.587,
+            1.246
+          ],
+          "MFI_CMF": [
+            67.216,
+            0.49
+          ],
+          "PVI_NVI": [
+            78.748
+          ],
+          "VWAP_VWMA": [
+            67.701
+          ]
+        },
+        "model": "HGB",
+        "mode": "precision",
+        "featureCount": 5,
+        "avgPrecision": 80.0,
+        "minPrecision": 60.0,
+        "avgRecall": 62.85,
+        "avgF1": 63.87,
+        "minF1": 57.14,
+        "predTotal": 12,
+        "hit70_50": true,
+        "score": 463.605,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.88,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 51.16,
+              "f1": 67.69,
+              "predN": 22,
+              "tp": 22,
+              "fp": 0,
+              "oracleN": 43,
+              "n": 52
+            },
+            "oosStats": {
+              "precision": 60.0,
+              "recall": 85.71,
+              "f1": 70.59,
+              "predN": 10,
+              "tp": 6,
+              "fp": 4,
+              "oracleN": 7,
+              "n": 18
+            },
+            "topFeatures": {}
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.84,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 42.22,
+              "f1": 59.38,
+              "predN": 19,
+              "tp": 19,
+              "fp": 0,
+              "oracleN": 45,
+              "n": 60
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 40.0,
+              "f1": 57.14,
+              "predN": 2,
+              "tp": 2,
+              "fp": 0,
+              "oracleN": 5,
+              "n": 10
+            },
+            "topFeatures": {}
+          }
+        ]
+      },
+      "RS": {
+        "sectorGroup": "REAL_ESTATE",
+        "sampleCount": 70,
+        "task": "RS",
+        "positiveN": 31,
+        "positiveRate": 44.29,
+        "indicators": [
+          "ICHIMOKU",
+          "MFI_CMF",
+          "PVI_NVI",
+          "TRIX",
+          "ADX_DMI"
+        ],
+        "indicatorParams": {
+          "ICHIMOKU": [
+            18.621,
+            28.28,
+            106.21
+          ],
+          "MFI_CMF": [
+            67.0,
+            0.388
+          ],
+          "PVI_NVI": [
+            46.931
+          ],
+          "TRIX": [
+            24.147
+          ],
+          "ADX_DMI": [
+            27.454
+          ]
+        },
+        "model": "LOG",
+        "mode": "precision",
+        "featureCount": 6,
+        "avgPrecision": 73.34,
+        "minPrecision": 66.67,
+        "avgRecall": 73.34,
+        "avgF1": 73.34,
+        "minF1": 66.67,
+        "predTotal": 8,
+        "hit70_50": true,
+        "score": 465.879,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.73,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 11.54,
+              "f1": 20.69,
+              "predN": 3,
+              "tp": 3,
+              "fp": 0,
+              "oracleN": 26,
+              "n": 52
+            },
+            "oosStats": {
+              "precision": 80.0,
+              "recall": 80.0,
+              "f1": 80.0,
+              "predN": 5,
+              "tp": 4,
+              "fp": 1,
+              "oracleN": 5,
+              "n": 18
+            },
+            "topFeatures": {}
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.72,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 17.86,
+              "f1": 30.3,
+              "predN": 5,
+              "tp": 5,
+              "fp": 0,
+              "oracleN": 28,
+              "n": 60
+            },
+            "oosStats": {
+              "precision": 66.67,
+              "recall": 66.67,
+              "f1": 66.67,
+              "predN": 3,
+              "tp": 2,
+              "fp": 1,
+              "oracleN": 3,
+              "n": 10
+            },
+            "topFeatures": {}
+          }
+        ]
+      }
+    },
+    "RETAIL_CONSUMER": {
+      "RS": {
+        "sectorGroup": "RETAIL_CONSUMER",
+        "sampleCount": 67,
+        "task": "RS",
+        "positiveN": 23,
+        "positiveRate": 34.33,
+        "indicators": [
+          "MFI_CMF",
+          "VWAP_VWMA",
+          "ROC_MOMENTUM",
+          "MA_EMA_WMA",
+          "PVI_NVI"
+        ],
+        "indicatorParams": {
+          "MFI_CMF": [
+            59.794,
+            0.209
+          ],
+          "VWAP_VWMA": [
+            75.269
+          ],
+          "ROC_MOMENTUM": [
+            89.612
+          ],
+          "MA_EMA_WMA": [
+            107.69,
+            0.039
+          ],
+          "PVI_NVI": [
+            63.36
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 7,
+        "avgPrecision": 80.0,
+        "minPrecision": 60.0,
+        "avgRecall": 58.34,
+        "avgF1": 64.91,
+        "minF1": 63.16,
+        "predTotal": 13,
+        "hit70_50": true,
+        "score": 462.133,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.55,
+            "isStats": {
+              "precision": 90.0,
+              "recall": 64.29,
+              "f1": 75.0,
+              "predN": 10,
+              "tp": 9,
+              "fp": 1,
+              "oracleN": 14,
+              "n": 32
+            },
+            "oosStats": {
+              "precision": 60.0,
+              "recall": 66.67,
+              "f1": 63.16,
+              "predN": 10,
+              "tp": 6,
+              "fp": 4,
+              "oracleN": 9,
+              "n": 35
+            },
+            "topFeatures": {
+              "PVI_slope63": 0.21047,
+              "VWAP75_dist": 0.19197,
+              "MFI60": 0.16695,
+              "MOM90": 0.13283,
+              "MA108_dist": 0.13131,
+              "ROC90": 0.10618,
+              "MA108_slope5": 0.0603
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.59,
+            "isStats": {
+              "precision": 87.5,
+              "recall": 41.18,
+              "f1": 56.0,
+              "predN": 8,
+              "tp": 7,
+              "fp": 1,
+              "oracleN": 17,
+              "n": 50
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 50.0,
+              "f1": 66.67,
+              "predN": 3,
+              "tp": 3,
+              "fp": 0,
+              "oracleN": 6,
+              "n": 17
+            },
+            "topFeatures": {
+              "MFI60": 0.18768,
+              "MA108_dist": 0.18261,
+              "PVI_slope63": 0.18053,
+              "VWAP75_dist": 0.13568,
+              "MOM90": 0.10988,
+              "MA108_slope5": 0.10487,
+              "ROC90": 0.09876
+            }
+          }
+        ]
+      },
+      "D1A": {
+        "sectorGroup": "RETAIL_CONSUMER",
+        "sampleCount": 67,
+        "task": "D1A",
+        "positiveN": 48,
+        "positiveRate": 71.64,
+        "indicators": [
+          "PVI_NVI",
+          "MFI_CMF",
+          "TRIX",
+          "ICHIMOKU",
+          "ADX_DMI"
+        ],
+        "indicatorParams": {
+          "PVI_NVI": [
+            74.805
+          ],
+          "MFI_CMF": [
+            45.076,
+            0.245
+          ],
+          "TRIX": [
+            30.057
+          ],
+          "ICHIMOKU": [
+            9.905,
+            49.364,
+            66.604
+          ],
+          "ADX_DMI": [
+            25.826
+          ]
+        },
+        "model": "LOG",
+        "mode": "precision",
+        "featureCount": 6,
+        "avgPrecision": 76.47,
+        "minPrecision": 52.94,
+        "avgRecall": 66.66,
+        "avgF1": 59.62,
+        "minF1": 50.0,
+        "predTotal": 37,
+        "hit70_50": true,
+        "score": 451.311,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.24,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 96.67,
+              "f1": 98.31,
+              "predN": 29,
+              "tp": 29,
+              "fp": 0,
+              "oracleN": 30,
+              "n": 32
+            },
+            "oosStats": {
+              "precision": 52.94,
+              "recall": 100.0,
+              "f1": 69.23,
+              "predN": 34,
+              "tp": 18,
+              "fp": 16,
+              "oracleN": 18,
+              "n": 35
+            },
+            "topFeatures": {}
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.62,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 53.85,
+              "f1": 70.0,
+              "predN": 21,
+              "tp": 21,
+              "fp": 0,
+              "oracleN": 39,
+              "n": 50
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 33.33,
+              "f1": 50.0,
+              "predN": 3,
+              "tp": 3,
+              "fp": 0,
+              "oracleN": 9,
+              "n": 17
+            },
+            "topFeatures": {}
+          }
+        ]
+      }
+    },
+    "BANK": {
+      "D1A": {
+        "sectorGroup": "BANK",
+        "sampleCount": 256,
+        "task": "D1A",
+        "positiveN": 167,
+        "positiveRate": 65.23,
+        "indicators": [
+          "VWAP_VWMA",
+          "MFI_CMF",
+          "ROC_MOMENTUM",
+          "ICHIMOKU",
+          "ADX_DMI"
+        ],
+        "indicatorParams": {
+          "VWAP_VWMA": [
+            68.75
+          ],
+          "MFI_CMF": [
+            71.051,
+            0.253
+          ],
+          "ROC_MOMENTUM": [
+            72.921
+          ],
+          "ICHIMOKU": [
+            13.197,
+            15.67,
+            94.145
+          ],
+          "ADX_DMI": [
+            48.918
+          ]
+        },
+        "model": "LOG",
+        "mode": "precision",
+        "featureCount": 6,
+        "avgPrecision": 77.09,
+        "minPrecision": 54.17,
+        "avgRecall": 50.0,
+        "avgF1": 54.89,
+        "minF1": 50.0,
+        "predTotal": 54,
+        "hit70_50": true,
+        "score": 442.418,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.67,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 35.94,
+              "f1": 52.87,
+              "predN": 46,
+              "tp": 46,
+              "fp": 0,
+              "oracleN": 128,
+              "n": 154
+            },
+            "oosStats": {
+              "precision": 54.17,
+              "recall": 66.67,
+              "f1": 59.77,
+              "predN": 48,
+              "tp": 26,
+              "fp": 22,
+              "oracleN": 39,
+              "n": 102
+            },
+            "topFeatures": {}
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.76,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 14.09,
+              "f1": 24.71,
+              "predN": 21,
+              "tp": 21,
+              "fp": 0,
+              "oracleN": 149,
+              "n": 203
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 33.33,
+              "f1": 50.0,
+              "predN": 6,
+              "tp": 6,
+              "fp": 0,
+              "oracleN": 18,
+              "n": 53
+            },
+            "topFeatures": {}
+          }
+        ]
+      },
+      "RS": {
+        "sectorGroup": "BANK",
+        "sampleCount": 256,
+        "task": "RS",
+        "positiveN": 65,
+        "positiveRate": 25.39,
+        "indicators": [
+          "ROC_MOMENTUM",
+          "MFI_CMF",
+          "TRIX",
+          "ICHIMOKU",
+          "SR_CLUSTER"
+        ],
+        "indicatorParams": {
+          "ROC_MOMENTUM": [
+            80.042
+          ],
+          "MFI_CMF": [
+            72.579,
+            0.019
+          ],
+          "TRIX": [
+            58.027
+          ],
+          "ICHIMOKU": [
+            5.435,
+            29.372,
+            88.551
+          ],
+          "SR_CLUSTER": {}
+        },
+        "model": "LOG",
+        "mode": "balanced70_50",
+        "featureCount": 35,
+        "avgPrecision": 24.27,
+        "minPrecision": 18.92,
+        "avgRecall": 91.11,
+        "avgF1": 37.95,
+        "minF1": 31.46,
+        "predTotal": 101,
+        "hit70_50": false,
+        "score": 202.231,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.44,
+            "isStats": {
+              "precision": 63.38,
+              "recall": 90.0,
+              "f1": 74.38,
+              "predN": 71,
+              "tp": 45,
+              "fp": 26,
+              "oracleN": 50,
+              "n": 154
+            },
+            "oosStats": {
+              "precision": 18.92,
+              "recall": 93.33,
+              "f1": 31.46,
+              "predN": 74,
+              "tp": 14,
+              "fp": 60,
+              "oracleN": 15,
+              "n": 102
+            },
+            "topFeatures": {}
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.71,
+            "isStats": {
+              "precision": 73.81,
+              "recall": 55.36,
+              "f1": 63.27,
+              "predN": 42,
+              "tp": 31,
+              "fp": 11,
+              "oracleN": 56,
+              "n": 203
+            },
+            "oosStats": {
+              "precision": 29.63,
+              "recall": 88.89,
+              "f1": 44.44,
+              "predN": 27,
+              "tp": 8,
+              "fp": 19,
+              "oracleN": 9,
+              "n": 53
+            },
+            "topFeatures": {}
+          }
+        ]
+      }
+    },
+    "ENERGY_UTIL": {
+      "D1A": {
+        "sectorGroup": "ENERGY_UTIL",
+        "sampleCount": 69,
+        "task": "D1A",
+        "positiveN": 39,
+        "positiveRate": 56.52,
+        "indicators": [
+          "MFI_CMF",
+          "PVI_NVI",
+          "MA_EMA_WMA",
+          "VWAP_VWMA",
+          "TRIX"
+        ],
+        "indicatorParams": {
+          "MFI_CMF": [
+            72.559,
+            0.306
+          ],
+          "PVI_NVI": [
+            74.941
+          ],
+          "MA_EMA_WMA": [
+            56.668,
+            0.294
+          ],
+          "VWAP_VWMA": [
+            55.172
+          ],
+          "TRIX": [
+            48.922
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 7,
+        "avgPrecision": 100.0,
+        "minPrecision": 100.0,
+        "avgRecall": 27.77,
+        "avgF1": 40.77,
+        "minF1": 20.0,
+        "predTotal": 9,
+        "hit70_50": false,
+        "score": 502.881,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.51,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 71.43,
+              "f1": 83.33,
+              "predN": 15,
+              "tp": 15,
+              "fp": 0,
+              "oracleN": 21,
+              "n": 27
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 44.44,
+              "f1": 61.54,
+              "predN": 8,
+              "tp": 8,
+              "fp": 0,
+              "oracleN": 18,
+              "n": 42
+            },
+            "topFeatures": {
+              "PVI_slope75": 0.30041,
+              "MA57_slope5": 0.13204,
+              "TRIX49_slope5": 0.13023,
+              "TRIX49": 0.12927,
+              "MA57_dist": 0.10766,
+              "VWAP55_dist": 0.10601,
+              "MFI73": 0.09438
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.56,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 66.67,
+              "f1": 80.0,
+              "predN": 20,
+              "tp": 20,
+              "fp": 0,
+              "oracleN": 30,
+              "n": 41
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 11.11,
+              "f1": 20.0,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 9,
+              "n": 28
+            },
+            "topFeatures": {
+              "TRIX49": 0.29638,
+              "PVI_slope75": 0.26475,
+              "MFI73": 0.1373,
+              "MA57_slope5": 0.10666,
+              "TRIX49_slope5": 0.09499,
+              "MA57_dist": 0.05567,
+              "VWAP55_dist": 0.04425
+            }
+          }
+        ]
+      }
+    },
+    "BDS": {
+      "RS": {
+        "sectorGroup": "BDS",
+        "sampleCount": 211,
+        "task": "RS",
+        "positiveN": 41,
+        "positiveRate": 19.43,
+        "indicators": [
+          "SUPERTREND",
+          "MA_EMA_WMA",
+          "TRIX",
+          "VWAP_VWMA",
+          "PVI_NVI"
+        ],
+        "indicatorParams": {
+          "SUPERTREND": [
+            15.066,
+            5.043
+          ],
+          "MA_EMA_WMA": [
+            228.517,
+            0.899
+          ],
+          "TRIX": [
+            38.146
+          ],
+          "VWAP_VWMA": [
+            97.877
+          ],
+          "PVI_NVI": [
+            74.869
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 6,
+        "avgPrecision": 100.0,
+        "minPrecision": 100.0,
+        "avgRecall": 20.84,
+        "avgF1": 34.28,
+        "minF1": 28.57,
+        "predTotal": 2,
+        "hit70_50": false,
+        "score": 490.729,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.62,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 14.29,
+              "f1": 25.0,
+              "predN": 5,
+              "tp": 5,
+              "fp": 0,
+              "oracleN": 35,
+              "n": 141
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 16.67,
+              "f1": 28.57,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 6,
+              "n": 70
+            },
+            "topFeatures": {
+              "VWAP98_dist": 0.2094,
+              "EMA229_slope5": 0.17787,
+              "TRIX38_slope5": 0.17309,
+              "EMA229_dist": 0.15327,
+              "PVI_slope75": 0.15297,
+              "TRIX38": 0.1334
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.61,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 24.32,
+              "f1": 39.13,
+              "predN": 9,
+              "tp": 9,
+              "fp": 0,
+              "oracleN": 37,
+              "n": 190
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 25.0,
+              "f1": 40.0,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 4,
+              "n": 21
+            },
+            "topFeatures": {
+              "PVI_slope75": 0.22264,
+              "VWAP98_dist": 0.2071,
+              "EMA229_slope5": 0.16658,
+              "EMA229_dist": 0.1481,
+              "TRIX38_slope5": 0.12988,
+              "TRIX38": 0.12571
+            }
+          }
+        ]
+      },
+      "D1A": {
+        "sectorGroup": "BDS",
+        "sampleCount": 211,
+        "task": "D1A",
+        "positiveN": 102,
+        "positiveRate": 48.34,
+        "indicators": [
+          "RSI",
+          "ICHIMOKU",
+          "TRIX",
+          "SUPERTREND",
+          "MFI_CMF"
+        ],
+        "indicatorParams": {
+          "RSI": [
+            3.324
+          ],
+          "ICHIMOKU": [
+            11.253,
+            41.053,
+            81.876
+          ],
+          "TRIX": [
+            51.073
+          ],
+          "SUPERTREND": [
+            18.543,
+            5.969
+          ],
+          "MFI_CMF": [
+            5.314,
+            0.4
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 5,
+        "avgPrecision": 63.63,
+        "minPrecision": 27.27,
+        "avgRecall": 40.48,
+        "avgF1": 33.44,
+        "minF1": 28.57,
+        "predTotal": 34,
+        "hit70_50": false,
+        "score": 296.446,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.55,
+            "isStats": {
+              "precision": 96.23,
+              "recall": 57.95,
+              "f1": 72.34,
+              "predN": 53,
+              "tp": 51,
+              "fp": 2,
+              "oracleN": 88,
+              "n": 141
+            },
+            "oosStats": {
+              "precision": 27.27,
+              "recall": 64.29,
+              "f1": 38.3,
+              "predN": 33,
+              "tp": 9,
+              "fp": 24,
+              "oracleN": 14,
+              "n": 70
+            },
+            "topFeatures": {
+              "TRIX51_slope5": 0.30852,
+              "TRIX51": 0.22789,
+              "RSI3": 0.17816,
+              "RSI3_slope5": 0.16971,
+              "MFI5": 0.11572
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.61,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 18.75,
+              "f1": 31.58,
+              "predN": 18,
+              "tp": 18,
+              "fp": 0,
+              "oracleN": 96,
+              "n": 190
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 16.67,
+              "f1": 28.57,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 6,
+              "n": 21
+            },
+            "topFeatures": {
+              "TRIX51_slope5": 0.38038,
+              "TRIX51": 0.29577,
+              "MFI5": 0.14543,
+              "RSI3": 0.08971,
+              "RSI3_slope5": 0.08871
+            }
+          }
+        ]
+      }
+    },
+    "ALL": {
+      "D1A": {
+        "sectorGroup": "ALL",
+        "sampleCount": 973,
+        "task": "D1A",
+        "positiveN": 558,
+        "positiveRate": 57.35,
+        "indicators": [
+          "MFI_CMF",
+          "SUPERTREND",
+          "MA_EMA_WMA",
+          "ADX_DMI",
+          "ROC_MOMENTUM"
+        ],
+        "indicatorParams": {
+          "MFI_CMF": [
+            36.134,
+            0.071
+          ],
+          "SUPERTREND": [
+            16.923,
+            1.454
+          ],
+          "MA_EMA_WMA": [
+            199.568,
+            0.3
+          ],
+          "ADX_DMI": [
+            18.116
+          ],
+          "ROC_MOMENTUM": [
+            77.608
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 7,
+        "avgPrecision": 77.94,
+        "minPrecision": 55.88,
+        "avgRecall": 17.87,
+        "avgF1": 24.51,
+        "minF1": 9.23,
+        "predTotal": 71,
+        "hit70_50": false,
+        "score": 363.967,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.57,
+            "isStats": {
+              "precision": 93.51,
+              "recall": 33.1,
+              "f1": 48.9,
+              "predN": 154,
+              "tp": 144,
+              "fp": 10,
+              "oracleN": 435,
+              "n": 604
+            },
+            "oosStats": {
+              "precision": 55.88,
+              "recall": 30.89,
+              "f1": 39.79,
+              "predN": 68,
+              "tp": 38,
+              "fp": 30,
+              "oracleN": 123,
+              "n": 369
+            },
+            "topFeatures": {
+              "ROC78": 0.33338,
+              "MOM78": 0.24032,
+              "ADX18": 0.20597,
+              "MA200_slope5": 0.08246,
+              "DI18_spread": 0.04959,
+              "MA200_dist": 0.04656,
+              "MFI36": 0.04172
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.62,
+            "isStats": {
+              "precision": 97.47,
+              "recall": 15.52,
+              "f1": 26.78,
+              "predN": 79,
+              "tp": 77,
+              "fp": 2,
+              "oracleN": 496,
+              "n": 792
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 4.84,
+              "f1": 9.23,
+              "predN": 3,
+              "tp": 3,
+              "fp": 0,
+              "oracleN": 62,
+              "n": 181
+            },
+            "topFeatures": {
+              "MA200_dist": 0.2303,
+              "MA200_slope5": 0.21579,
+              "ROC78": 0.20126,
+              "MOM78": 0.1755,
+              "MFI36": 0.08452,
+              "ADX18": 0.05045,
+              "DI18_spread": 0.04218
+            }
+          }
+        ]
+      },
+      "RS": {
+        "sectorGroup": "ALL",
+        "sampleCount": 973,
+        "task": "RS",
+        "positiveN": 239,
+        "positiveRate": 24.56,
+        "indicators": [
+          "MFI_CMF",
+          "ROC_MOMENTUM",
+          "PVI_NVI",
+          "ADX_DMI",
+          "RSI"
+        ],
+        "indicatorParams": {
+          "MFI_CMF": [
+            19.506,
+            0.383
+          ],
+          "ROC_MOMENTUM": [
+            72.436
+          ],
+          "PVI_NVI": [
+            62.561
+          ],
+          "ADX_DMI": [
+            40.748
+          ],
+          "RSI": [
+            23.956
+          ]
+        },
+        "model": "RF",
+        "mode": "precision",
+        "featureCount": 8,
+        "avgPrecision": 70.45,
+        "minPrecision": 40.91,
+        "avgRecall": 12.16,
+        "avgF1": 18.58,
+        "minF1": 12.5,
+        "predTotal": 24,
+        "hit70_50": false,
+        "score": 304.49,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.78,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 12.77,
+              "f1": 22.64,
+              "predN": 24,
+              "tp": 24,
+              "fp": 0,
+              "oracleN": 188,
+              "n": 604
+            },
+            "oosStats": {
+              "precision": 40.91,
+              "recall": 17.65,
+              "f1": 24.66,
+              "predN": 22,
+              "tp": 9,
+              "fp": 13,
+              "oracleN": 51,
+              "n": 369
+            },
+            "topFeatures": {
+              "DI41_spread": 0.23283,
+              "RSI24": 0.1975,
+              "ROC72": 0.12916,
+              "MOM72": 0.12886,
+              "MFI20": 0.10958,
+              "PVI_slope63": 0.08018,
+              "ADX41": 0.06361,
+              "RSI24_slope5": 0.05828
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.77,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 4.31,
+              "f1": 8.26,
+              "predN": 9,
+              "tp": 9,
+              "fp": 0,
+              "oracleN": 209,
+              "n": 792
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 6.67,
+              "f1": 12.5,
+              "predN": 2,
+              "tp": 2,
+              "fp": 0,
+              "oracleN": 30,
+              "n": 181
+            },
+            "topFeatures": {
+              "DI41_spread": 0.19409,
+              "RSI24": 0.16081,
+              "ROC72": 0.15627,
+              "MOM72": 0.15332,
+              "RSI24_slope5": 0.10417,
+              "MFI20": 0.09827,
+              "PVI_slope63": 0.07175,
+              "ADX41": 0.06132
+            }
+          }
+        ]
+      },
+      "D1S": {
+        "sectorGroup": "ALL",
+        "sampleCount": 973,
+        "task": "D1S",
+        "positiveN": 51,
+        "positiveRate": 5.24,
+        "indicators": [
+          "ROC_MOMENTUM",
+          "ICHIMOKU",
+          "MFI_CMF",
+          "TRIX",
+          "ADX_DMI"
+        ],
+        "indicatorParams": {
+          "ROC_MOMENTUM": [
+            56.581
+          ],
+          "ICHIMOKU": [
+            18.818,
+            53.02,
+            68.543
+          ],
+          "MFI_CMF": [
+            61.943,
+            0.528
+          ],
+          "TRIX": [
+            15.535
+          ],
+          "ADX_DMI": [
+            25.899
+          ]
+        },
+        "model": "ET",
+        "mode": "precision",
+        "featureCount": 6,
+        "avgPrecision": 50.0,
+        "minPrecision": 0.0,
+        "avgRecall": 3.33,
+        "avgF1": 6.25,
+        "minF1": 0.0,
+        "predTotal": 1,
+        "hit70_50": false,
+        "score": 157.401,
+        "splits": [
+          {
+            "split": "2025-10-01",
+            "threshold": 0.6,
+            "isStats": {
+              "precision": 100.0,
+              "recall": 40.0,
+              "f1": 57.14,
+              "predN": 4,
+              "tp": 4,
+              "fp": 0,
+              "oracleN": 10,
+              "n": 604
+            },
+            "oosStats": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "predN": 0,
+              "tp": 0,
+              "fp": 0,
+              "oracleN": 41,
+              "n": 369
+            },
+            "topFeatures": {
+              "TRIX16_slope5": 0.24464,
+              "ADX26": 0.20173,
+              "DI26_spread": 0.16775,
+              "TRIX16": 0.13584,
+              "ROC57": 0.12799,
+              "MOM57": 0.12205
+            }
+          },
+          {
+            "split": "2026-01-01",
+            "threshold": 0.66,
+            "isStats": {
+              "precision": 85.71,
+              "recall": 16.67,
+              "f1": 27.91,
+              "predN": 7,
+              "tp": 6,
+              "fp": 1,
+              "oracleN": 36,
+              "n": 792
+            },
+            "oosStats": {
+              "precision": 100.0,
+              "recall": 6.67,
+              "f1": 12.5,
+              "predN": 1,
+              "tp": 1,
+              "fp": 0,
+              "oracleN": 15,
+              "n": 181
+            },
+            "topFeatures": {
+              "TRIX16": 0.23882,
+              "DI26_spread": 0.20217,
+              "ROC57": 0.15823,
+              "TRIX16_slope5": 0.13747,
+              "ADX26": 0.13447,
+              "MOM57": 0.12882
+            }
+          }
+        ]
+      }
+    }
+  }
+}
