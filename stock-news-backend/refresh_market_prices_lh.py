@@ -54,31 +54,33 @@ def update_item(item, quote):
 
 
 def refresh_indices(now: str):
+    """Refresh VNINDEX/HNX/UPCOM from a recent daily VCI window.
+
+    The old 1m request used a long start date and VCI could return a stale
+    slice (observed stuck at 2026-05-19). Daily recent history is enough for
+    the overview cards and is much more reliable for scheduled output-only
+    hosting updates.
+    """
     specs = [('VNINDEX', 'VN-Index'), ('HNXINDEX', 'HNX-Index'), ('UPCOMINDEX', 'UPCOM-Index')]
     out = []
     for sym, label in specs:
         try:
             end = datetime.now(TZ).strftime('%Y-%m-%d')
-            df = Quote(symbol=sym, source='VCI').history(start='2026-04-20', end=end, interval='1m')
+            df = Quote(symbol=sym, source='VCI').history(start='2026-07-01', end=end, interval='1D')
             if df is None or df.empty or len(df) < 2:
                 continue
             df = df.sort_values('time')
-            dates = df['time'].astype(str).str.slice(0, 10)
             last = df.iloc[-1]
-            last_date = str(last.get('time'))[:10]
-            current_day = df[dates == last_date]
-            prev_days = df[dates < last_date]
-            if prev_days.empty:
-                continue
-            prev_close = float(prev_days.iloc[-1].get('close') or 0)
+            prev = df.iloc[-2]
+            prev_close = float(prev.get('close') or 0)
             close = float(last.get('close') or 0)
             change = close - prev_close
             change_pct = (change / prev_close * 100) if prev_close else 0
-            volume = int(float(current_day['volume'].sum() if not current_day.empty else last.get('volume') or 0))
+            volume = int(float(last.get('volume') or 0))
             out.append({'symbol': sym, 'label': label, 'close': round(close, 2), 'change': round(change, 2), 'changePct': round(change_pct, 2), 'volume': volume, 'time': str(last.get('time') or ''), 'refClose': round(prev_close, 2)})
         except Exception as exc:
-            print('index failed', sym, exc, flush=True)
-    payload = {'updatedAt': now, 'items': out, 'cached': False, 'ttlSeconds': 60, 'source': 'vnstock-index-1m-output'}
+            print('index failed', sym, str(exc), flush=True)
+    payload = {'updatedAt': now, 'items': out, 'cached': False, 'ttlSeconds': 60, 'source': 'vnstock-index-1d-recent-vci'}
     for path in MARKET_OVERVIEW_FILES:
         write_json(path, payload)
     return len(out)
