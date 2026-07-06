@@ -1096,10 +1096,15 @@
     }
 
     function getStrategyBucket(col, signalMap, state) {
-      const sig = signalMap[col.id] || signalMap[col.signalKey] || {};
-      if (state === 'buy') return sig.buy || sig.items || [];
-      if (state === 'watch') return sig.watch || sig.watchlist || [];
-      return sig.avoid || sig.reject || sig.rejects || [];
+      const sig = signalMap[col.id] || signalMap[col.signalKey] || signalMap[col.shortName] || {};
+      let rows = [];
+      if (state === 'buy') rows = sig.buy || sig.items || [];
+      else if (state === 'watch') rows = sig.watch || sig.watchlist || [];
+      else rows = sig.avoid || sig.reject || sig.rejects || [];
+      if ((!Array.isArray(rows) || !rows.length) && col && col.buckets) {
+        rows = col.buckets[state] || [];
+      }
+      return Array.isArray(rows) ? rows : [];
     }
 
     function renderStrategyMatrix(matrix, signalMap = {}) {

@@ -1,97 +1,425 @@
 {
-  "updatedAt": "2026-05-01T20:36:00+07:00",
-  "title": "Ma trận chiến lược PTKT",
-  "note": "Web chỉ đọc output/cache đã tính sẵn. Không hiển thị công thức, không chạy R/S hay chiến lược khi render.",
-  "displayMode": "output_only",
+  "updatedAt": "2026-06-30T19:16:13.679692",
+  "title": "LH Final Strategy Matrix - LH1/LH2/LH3/LH4",
+  "note": "BUY strict. Watchlist shows top 5 highest-score monitoring symbols only; WATCH is not a buy signal.",
+  "displayMode": "lh_final_top5",
+  "buyCount": 0,
+  "watchCount": 5,
   "columns": [
     {
-      "id": "b4_trend_pullback",
-      "name": "Trend Pullback Pro",
-      "shortName": "Trend Pullback",
+      "id": "LH1_FINAL",
+      "name": "LH1 Final - Premium Pullback",
+      "shortName": "LH1",
       "priority": 1,
-      "style": "primary",
-      "summary": "Mua cổ phiếu đang nằm trong xu hướng tăng, chờ nhịp điều chỉnh về vùng hỗ trợ rồi vào khi lực hồi phục xuất hiện. Chiến lược ưu tiên cổ phiếu còn khỏe, không bắt dao rơi và tránh mã đã gãy xu hướng.",
-      "indicators": "R/S, RSI, MACD, Bollinger Bands, Volume, ROC, Ichimoku Cloud, ADX, MA20/50/200, bullish/bearish divergence, support/resistance zones",
-      "tooltipMetrics": {
-        "winRate": "63.64%",
-        "averageReturn": "+1.59%/lệnh",
-        "totalReturn": "+17.51%"
-      },
-      "validation": {
-        "status": "Đang dùng làm chiến lược chính",
-        "current180": "11 lệnh · win rate 63.64% · tổng PnL +17.51%",
-        "oosPrev3m": "32 lệnh · win rate 56.25% · tổng PnL +16.27%",
-        "combined": "43 lệnh · 25 win / 18 loss · win rate ~58.14% · tổng PnL +33.78%",
-        "source": "data/b4_trend_pullback_locked_backtest.json"
-      },
-      "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
-        "watch": "Hiện mã gần đạt, cần chờ thêm tín hiệu xác nhận.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
+      "summary": "Trend pullback/premium setup; BUY strict, near-miss only goes WATCH.",
+      "buckets": {
+        "buy": [],
+        "watch": [],
+        "avoid": []
       }
     },
     {
-      "id": "clean_split_a_bottom",
-      "name": "Support Rebound Hunter",
-      "shortName": "Support Rebound",
-      "priority": 3,
-      "style": "warning",
-      "summary": "Tìm cổ phiếu đã giảm về gần vùng hỗ trợ mạnh, có dấu hiệu ngừng rơi và bắt đầu hồi. Đây là setup phụ, tín hiệu hiếm, chỉ phù hợp khi điểm mua sát hỗ trợ và rủi ro được khống chế rõ.",
-      "indicators": "R/S, support zones, RSI, MACD, Bollinger Bands, Volume, MA20/50/200, ADX, ROC, Ichimoku state, bullish divergence",
-      "tooltipMetrics": {
-        "winRate": "88.89%",
-        "averageReturn": "+4.42%/lệnh",
-        "totalReturn": "+39.75%"
-      },
-      "validation": {
-        "status": "Setup phụ, tín hiệu hiếm",
-        "current180": "Target +6: 9 lệnh · win rate 88.89% · tổng PnL +39.75%",
-        "altCurrent180": "Target +10 full: 9 lệnh · win rate 77.78% · tổng PnL +52.57%",
-        "oosPrev3m": "0 lệnh",
-        "combined": "Mẫu ít, chưa đủ làm chiến lược chính",
-        "source": "data/v3_clean_split_rs_action_backtest.json; data/v3_clean_split_baseline_locked.json"
-      },
-      "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua theo cache.",
-        "watch": "Hiện mã gần đạt, chưa mua.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
-      }
-    },
-    {
-      "id": "shakeout_breakdown_rebound",
-      "name": "Shakeout Rebound",
-      "shortName": "Shakeout",
+      "id": "LH2_FINAL",
+      "name": "LH2 Final - SR Pattern Shakeout",
+      "shortName": "LH2",
       "priority": 2,
-      "style": "danger",
-      "summary": "Bắt nhịp hồi sau pha rũ hàng: giá thủng hỗ trợ ngắn hạn để loại bỏ lực yếu, sau đó kéo ngược lại vùng hỗ trợ cũ. Setup này biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.",
-      "indicators": "R/S, prior support breakdown/rebound, Volume, RSI, MACD, Bollinger Bands, MA20/50/200, ROC, ADX, Ichimoku state, support/resistance zones",
-      "tooltipMetrics": {
-        "winRate": "69.23%",
-        "averageReturn": "+2.55%/lệnh",
-        "totalReturn": "+66.24%"
-      },
-      "validation": {
-        "status": "Có tiềm năng, cần kiểm soát rủi ro",
-        "train": "Midcap train: 11 lệnh · win rate 36.36% · tổng PnL -9.50%",
-        "oos": "Midcap OOS: 26 lệnh · win rate 69.23% · tổng PnL +66.24%",
-        "multiWindow": "4 cửa sổ: 46 lệnh · 24 win / 20 loss / 2 timeout · win rate 52.17% · tổng PnL +39.38%",
-        "source": "data/breakdown_rebound_midcap50_target6.json; data/midcap_shakeout_strategy_analysis.json"
-      },
-      "matrix": {
-        "buy": "Hiện mã đạt tín hiệu mua rũ theo cache.",
-        "watch": "Hiện mã cần theo dõi thêm, chưa mua.",
-        "avoid": "Không hiện trong danh sách mua; chỉ cảnh báo nếu cache đánh dấu rủi ro."
-      },
-      "webParityCheck": {
-        "checkedAt": "2026-05-01T20:36:00+07:00",
-        "matchesExistingWebOutput": true,
-        "note": "Đã đối chiếu bản web cũ: cùng nhóm Mua rũ Target +6%, stop -4%, target +6%. UI mới không hiển thị công thức chi tiết."
+      "summary": "Shakeout/reclaim support or breakout retest; no first-breakout chase.",
+      "buckets": {
+        "buy": [],
+        "watch": [
+          {
+            "symbol": "PC1",
+            "strategyId": "LH2_FINAL",
+            "action": "WATCH",
+            "state": "watch",
+            "entry": 23.1,
+            "buy": 23.1,
+            "target": 24.2,
+            "stop": null,
+            "stopLoss": null,
+            "rank": 68.75,
+            "rankScore": 68.75,
+            "close": 23.1,
+            "reason": "LH2 Final - SR Pattern Shakeout"
+          },
+          {
+            "symbol": "CTS",
+            "strategyId": "LH2_FINAL",
+            "action": "WATCH",
+            "state": "watch",
+            "entry": 26.15,
+            "buy": 26.15,
+            "target": 27.2,
+            "stop": null,
+            "stopLoss": null,
+            "rank": 50.0,
+            "rankScore": 50.0,
+            "close": 26.15,
+            "reason": "LH2 Final - SR Pattern Shakeout"
+          },
+          {
+            "symbol": "VGC",
+            "strategyId": "LH2_FINAL",
+            "action": "WATCH",
+            "state": "watch",
+            "entry": 45.0,
+            "buy": 45.0,
+            "target": 46.7,
+            "stop": null,
+            "stopLoss": null,
+            "rank": 50.0,
+            "rankScore": 50.0,
+            "close": 45.0,
+            "reason": "LH2 Final - SR Pattern Shakeout"
+          },
+          {
+            "symbol": "STB",
+            "strategyId": "LH2_FINAL",
+            "action": "WATCH",
+            "state": "watch",
+            "entry": 73.8,
+            "buy": 73.8,
+            "target": 75.5,
+            "stop": null,
+            "stopLoss": null,
+            "rank": 43.75,
+            "rankScore": 43.75,
+            "close": 73.8,
+            "reason": "LH2 Final - SR Pattern Shakeout"
+          },
+          {
+            "symbol": "KDC",
+            "strategyId": "LH2_FINAL",
+            "action": "WATCH",
+            "state": "watch",
+            "entry": 51.1,
+            "buy": 51.1,
+            "target": 52.6,
+            "stop": null,
+            "stopLoss": null,
+            "rank": 43.75,
+            "rankScore": 43.75,
+            "close": 51.1,
+            "reason": "LH2 Final - SR Pattern Shakeout"
+          }
+        ],
+        "avoid": []
+      }
+    },
+    {
+      "id": "LH3_FINAL",
+      "name": "LH3 Final - R/S Rebound ML v2",
+      "shortName": "LH3",
+      "priority": 3,
+      "summary": "Support rebound + rule score/ML confidence; current signal only, not historical buys.",
+      "buckets": {
+        "buy": [],
+        "watch": [],
+        "avoid": []
+      }
+    },
+    {
+      "id": "LH4_FINAL",
+      "name": "LH4 Final - High Winrate Wave Entry",
+      "shortName": "LH4",
+      "priority": 4,
+      "summary": "True 55-bar breakout, RSI 58-65, volume ratio >=1.5, ROC20 >=4%, base6 <=35%, score >=5; no symbol hindsight.",
+      "buckets": {
+        "buy": [],
+        "watch": [],
+        "avoid": []
       }
     }
   ],
   "rows": [
-    {"id": "buy", "label": "MUA"},
-    {"id": "watch", "label": "XEM XÉT"},
-    {"id": "avoid", "label": "TRÁNH XA"}
-  ]
+    {
+      "id": "buy",
+      "label": "MUA"
+    },
+    {
+      "id": "watch",
+      "label": "THEO DÕI"
+    },
+    {
+      "id": "avoid",
+      "label": "LOẠI TRỪ"
+    }
+  ],
+  "buySignals": [],
+  "watchlist": [
+    {
+      "symbol": "PC1",
+      "strategyId": "LH2_FINAL",
+      "strategyName": "LH2 Final - SR Pattern Shakeout",
+      "action": "WATCH",
+      "rankScore": 68.75,
+      "mlProbWin": null,
+      "rr": null,
+      "close": 23.1,
+      "support": null,
+      "target": 24.2,
+      "date": "2026-06-30",
+      "misses": [
+        "obvSlope20",
+        "breadth",
+        "rangePos60",
+        "nearHigh252"
+      ],
+      "reasons": []
+    },
+    {
+      "symbol": "CTS",
+      "strategyId": "LH2_FINAL",
+      "strategyName": "LH2 Final - SR Pattern Shakeout",
+      "action": "WATCH",
+      "rankScore": 50.0,
+      "mlProbWin": null,
+      "rr": null,
+      "close": 26.15,
+      "support": null,
+      "target": 27.2,
+      "date": "2026-06-30",
+      "misses": [
+        "breakout_high20_or_high50",
+        "obvSlope20",
+        "breadth",
+        "rangePos60",
+        "nearHigh252"
+      ],
+      "reasons": []
+    },
+    {
+      "symbol": "VGC",
+      "strategyId": "LH2_FINAL",
+      "strategyName": "LH2 Final - SR Pattern Shakeout",
+      "action": "WATCH",
+      "rankScore": 50.0,
+      "mlProbWin": null,
+      "rr": null,
+      "close": 45.0,
+      "support": null,
+      "target": 46.7,
+      "date": "2026-06-30",
+      "misses": [
+        "obvSlope20",
+        "vwapSlope5",
+        "breadth",
+        "rangePos60",
+        "adx14",
+        "nearHigh252"
+      ],
+      "reasons": []
+    },
+    {
+      "symbol": "STB",
+      "strategyId": "LH2_FINAL",
+      "strategyName": "LH2 Final - SR Pattern Shakeout",
+      "action": "WATCH",
+      "rankScore": 43.75,
+      "mlProbWin": null,
+      "rr": null,
+      "close": 73.8,
+      "support": null,
+      "target": 75.5,
+      "date": "2026-06-30",
+      "misses": [
+        "breakout_high20_or_high50",
+        "volumeRatio",
+        "obvSlope20",
+        "breadth",
+        "rangePos60"
+      ],
+      "reasons": []
+    },
+    {
+      "symbol": "KDC",
+      "strategyId": "LH2_FINAL",
+      "strategyName": "LH2 Final - SR Pattern Shakeout",
+      "action": "WATCH",
+      "rankScore": 43.75,
+      "mlProbWin": null,
+      "rr": null,
+      "close": 51.1,
+      "support": null,
+      "target": 52.6,
+      "date": "2026-06-03",
+      "misses": [
+        "breakout_high20_or_high50",
+        "volumeRatio",
+        "obvSlope20",
+        "breadth",
+        "nearHigh252"
+      ],
+      "reasons": []
+    }
+  ],
+  "source": "data/lh_final_unified_scan.json",
+  "schema": "lh4-current-ui-compat",
+  "signals": {
+    "PC1": {
+      "symbol": "PC1",
+      "LH2_FINAL": {
+        "symbol": "PC1",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 23.1,
+        "buy": 23.1,
+        "target": 24.2,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 68.75,
+        "rankScore": 68.75,
+        "close": 23.1,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      },
+      "LH2": {
+        "symbol": "PC1",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 23.1,
+        "buy": 23.1,
+        "target": 24.2,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 68.75,
+        "rankScore": 68.75,
+        "close": 23.1,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      }
+    },
+    "CTS": {
+      "symbol": "CTS",
+      "LH2_FINAL": {
+        "symbol": "CTS",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 26.15,
+        "buy": 26.15,
+        "target": 27.2,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 50.0,
+        "rankScore": 50.0,
+        "close": 26.15,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      },
+      "LH2": {
+        "symbol": "CTS",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 26.15,
+        "buy": 26.15,
+        "target": 27.2,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 50.0,
+        "rankScore": 50.0,
+        "close": 26.15,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      }
+    },
+    "VGC": {
+      "symbol": "VGC",
+      "LH2_FINAL": {
+        "symbol": "VGC",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 45.0,
+        "buy": 45.0,
+        "target": 46.7,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 50.0,
+        "rankScore": 50.0,
+        "close": 45.0,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      },
+      "LH2": {
+        "symbol": "VGC",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 45.0,
+        "buy": 45.0,
+        "target": 46.7,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 50.0,
+        "rankScore": 50.0,
+        "close": 45.0,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      }
+    },
+    "STB": {
+      "symbol": "STB",
+      "LH2_FINAL": {
+        "symbol": "STB",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 73.8,
+        "buy": 73.8,
+        "target": 75.5,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 43.75,
+        "rankScore": 43.75,
+        "close": 73.8,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      },
+      "LH2": {
+        "symbol": "STB",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 73.8,
+        "buy": 73.8,
+        "target": 75.5,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 43.75,
+        "rankScore": 43.75,
+        "close": 73.8,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      }
+    },
+    "KDC": {
+      "symbol": "KDC",
+      "LH2_FINAL": {
+        "symbol": "KDC",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 51.1,
+        "buy": 51.1,
+        "target": 52.6,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 43.75,
+        "rankScore": 43.75,
+        "close": 51.1,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      },
+      "LH2": {
+        "symbol": "KDC",
+        "strategyId": "LH2_FINAL",
+        "action": "WATCH",
+        "state": "watch",
+        "entry": 51.1,
+        "buy": 51.1,
+        "target": 52.6,
+        "stop": null,
+        "stopLoss": null,
+        "rank": 43.75,
+        "rankScore": 43.75,
+        "close": 51.1,
+        "reason": "LH2 Final - SR Pattern Shakeout"
+      }
+    }
+  }
 }
