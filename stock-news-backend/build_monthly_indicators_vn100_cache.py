@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import time
 from datetime import datetime
 from pathlib import Path
@@ -33,7 +34,9 @@ def hsx_universe_from_rs():
     return None
 
 def load_universe() -> list[str]:
-    hsx = hsx_universe_from_rs()
+    # Daily after-close must stay VN100-bounded; expand to HSX only when the
+    # weekly/manual job explicitly opts in.
+    hsx = hsx_universe_from_rs() if os.environ.get('LH_WEEKLY_HSX') == '1' else None
     if hsx:
         return hsx
     base = [str(s).strip().upper() for s in TECHNICAL_UNIVERSE if str(s).strip()]
@@ -137,6 +140,10 @@ def run_symbol(sym: str) -> tuple[dict | None, str | None]:
 def main() -> None:
     universe = load_universe()
     items, errors = load_partial()
+    universe_set = set(universe)
+    # Ignore stale partial rows from earlier HSX-wide runs when in VN100 mode.
+    items = [x for x in items if x.get('symbol') in universe_set]
+    errors = [x for x in errors if x.get('symbol') in universe_set]
     done = {x.get('symbol') for x in items} | {x.get('symbol') for x in errors}
     calls = 0
     print('monthly universe', len(universe), 'already done', len(done), flush=True)

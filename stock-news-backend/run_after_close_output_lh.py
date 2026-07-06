@@ -108,6 +108,7 @@ def _run_pipeline(py: str) -> None:
         [py, "build_strategy_results_from_indicator_cache.py"],
         [py, "refresh_market_prices_lh.py"],
         [py, "build_firebase_cache_site.py"],
+        [py, "apply_lh_live_overrides.py"],
     ])
     for step in steps:
         run(step)
@@ -125,6 +126,9 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/core12_ml_sr_full_universe_summary.csv",
          "stock-news-backend/data/lh_canonical_indicators_daily.json",
          "stock-news-backend/data/strategy_results_cache.json",
+         "stock-news-backend/data/strategy_matrix_cache.json",
+         "stock-news-backend/data/live_overrides/strategy_results_cache.json",
+         "stock-news-backend/data/live_overrides/strategy_matrix_cache.json",
          "stock-news-backend/data/market_data.json",
          "stock-news-backend/data/market_overview.json",
          # Output-only automation: commit source data/output artifacts only.
@@ -139,8 +143,8 @@ def _run_pipeline(py: str) -> None:
     if diff.returncode != 0:
         log("RUN git commit -m Auto refresh LH after-close outputs")
         subprocess.run(["git", "commit", "-m", "Auto refresh LH after-close outputs"], cwd=git_root, check=True)
-        log("RUN git push origin master")
-        subprocess.run(["git", "push", "origin", "master"], cwd=git_root, check=True)
+        log("RUN git push origin HEAD:master")
+        subprocess.run(["git", "push", "origin", "HEAD:master"], cwd=git_root, check=True)
     else:
         log("No output changes to commit")
 
