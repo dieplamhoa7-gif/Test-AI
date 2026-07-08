@@ -17,6 +17,9 @@ import tempfile
 import textwrap
 from typing import Any
 
+import os
+import time
+
 import requests
 
 from app.config import CONFIG
@@ -110,20 +113,32 @@ class OpenAICompatReal(TextAgent):
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
         self.model = model
+        self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "150"))
+        self.retries = int(os.getenv("SUPERLH_OPENAI_COMPAT_RETRIES", "0"))
 
     def complete(self, prompt: str, system: str = "") -> str:
         msgs = []
         if system:
             msgs.append({"role": "system", "content": system})
         msgs.append({"role": "user", "content": prompt})
-        r = requests.post(
-            f"{self.base_url}/chat/completions",
-            headers={"Authorization": f"Bearer {self.api_key}"},
-            json={"model": self.model, "messages": msgs, "temperature": 0.4},
-            timeout=120,
-        )
-        r.raise_for_status()
-        return _openai_compat_content(r)
+        last_exc: Exception | None = None
+        for attempt in range(self.retries + 1):
+            try:
+                r = requests.post(
+                    f"{self.base_url}/chat/completions",
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                    json={"model": self.model, "messages": msgs, "temperature": 0.4},
+                    timeout=self.timeout,
+                )
+                r.raise_for_status()
+                return _openai_compat_content(r)
+            except (requests.Timeout, requests.ConnectionError) as exc:
+                last_exc = exc
+                if attempt >= self.retries:
+                    break
+                time.sleep(2 * (attempt + 1))
+        assert last_exc is not None
+        raise last_exc
 
 
 class GrokBridgeReal(TextAgent):

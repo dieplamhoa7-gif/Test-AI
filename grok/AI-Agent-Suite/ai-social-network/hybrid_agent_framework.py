@@ -466,11 +466,63 @@ def _complete(agent_id: str, label: str, prompt: str, system: str, progress: Pro
                 next_tick += AGENT_TICK_SECONDS
 
 
+def _model3_codex_fallback(task: str, s: AgentStep, exc: Exception) -> str:
+    """Deterministic fallback for Model3 Codex sections when the LLM provider times out.
+
+    The report must keep running for Hòa Đại ka. This fallback does not invent exact
+    indicator values; the DOCX formatter still has the raw LHInvestment context/cache.
+    """
+    ticker_match = re.search(r"\b[A-Z]{2,5}\b", task.upper())
+    ticker = ticker_match.group(0) if ticker_match else "MÃ CP"
+    reason = f"{type(exc).__name__}: {str(exc)[:240]}"
+    if s in (MODEL3_ANALYSIS,):
+        return (
+            f"## LHINVESTMENT INDICATOR MATRIX — {ticker}\n"
+            f"Provider Codex bị timeout nên dùng fallback an toàn từ context nội bộ.\n\n"
+            "### Cặp 1 — Xu hướng / MA\n"
+            "Đọc trực tiếp các trường giá EOD, MA10/20/50/100/200 và cấu trúc xu hướng trong bảng dữ liệu LHInvestment. "
+            "Nếu giá nằm trên các MA ngắn và trung hạn thì ưu tiên xu hướng tích cực; nếu dưới MA20/50 thì giảm tỷ trọng theo kỷ luật.\n\n"
+            "### Cặp 2 — Động lượng\n"
+            "RSI, MACD, MACD signal/histogram và ROC/ret5 được dùng để xác nhận xung lực. "
+            "Không suy diễn số liệu; số cụ thể lấy từ context/bảng raw khi xuất báo cáo.\n\n"
+            "### Cặp 3 — Sức mạnh xu hướng / dòng tiền\n"
+            "ADX, +DI/-DI, volume, avgVol20 và volumeRatio là nhóm xác nhận chất lượng nhịp tăng/giảm. "
+            "Volume cao hơn trung bình 20 phiên mới được coi là xác nhận dòng tiền.\n\n"
+            "### Cặp 4 — Vùng giá / rủi ro\n"
+            "Dùng Bollinger, Ichimoku, hỗ trợ/kháng cự, RS levels, stop/invalid để lập vùng theo dõi. "
+            "Không khuyến nghị mua đuổi nếu giá sát kháng cự hoặc rủi ro invalid cao.\n\n"
+            f"Ghi chú kỹ thuật: Codex timeout ({reason}); workflow tiếp tục để không mất báo cáo."
+        )
+    if s in (MODEL3_FUNDAMENTAL, MODEL3_BULL_BEAR, MODEL3_FOLLOWUP_PLAN):
+        title = {
+            MODEL3_FUNDAMENTAL: "Fundamental & Macro",
+            MODEL3_BULL_BEAR: "Bull / Bear / Catalyst",
+            MODEL3_FOLLOWUP_PLAN: "Kế hoạch theo dõi",
+        }.get(s, s.label)
+        return (
+            f"## {title} — {ticker}\n"
+            f"Provider Codex bị timeout nên dùng fallback an toàn, không bịa dữ liệu.\n\n"
+            "- Chỉ sử dụng số liệu đã có trong context LHInvestment / macro / report cache khi formatter xuất DOCX.\n"
+            "- Nếu thiếu dữ liệu định lượng, đánh dấu cần kiểm chứng thay vì tự điền.\n"
+            "- Ưu tiên quản trị rủi ro: xác định vùng invalid, catalyst cần theo dõi, và điều kiện thay đổi quan điểm.\n"
+            "- Báo cáo vẫn chạy tiếp để Word/NotebookLM có file kiểm thử.\n\n"
+            f"Ghi chú kỹ thuật: Codex timeout ({reason})."
+        )
+    raise exc
+
+
 def _run_step(task: str, s: AgentStep, transcript: list[str], progress: ProgressFn, idx: int, total: int, mode: str) -> dict[str, Any]:
     progress(f"⏳ [{idx}/{total}] {s.label}: {s.goal}")
     started = time.time()
     prompt = s.task_template.format(task=task, context="\n\n".join(transcript[-8:]))
-    content = _repair_mojibake(_complete(s.agent_id, s.label, prompt, _system(s), progress))
+    try:
+        content = _repair_mojibake(_complete(s.agent_id, s.label, prompt, _system(s), progress))
+    except Exception as exc:
+        if s in (MODEL3_ANALYSIS, MODEL3_FUNDAMENTAL, MODEL3_BULL_BEAR, MODEL3_FOLLOWUP_PLAN):
+            progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}).")
+            content = _model3_codex_fallback(task, s, exc)
+        else:
+            raise
     # UTF-8 skill: clean at provider boundary first. Do not push obviously broken
     # Vietnamese directly into DOCX/frontend, and avoid long full-text restore loops.
     if has_vietnamese_quality_issue(content):
