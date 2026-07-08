@@ -108,7 +108,7 @@ def build_message(status: str = "success") -> str:
         lines.append("- Chưa có strategy cache.")
     lines.extend([
         "",
-        "Link: https://lhinvestment.web.app/stocks?v=" + datetime.now().strftime("%H%M"),
+        "Link: https://lhinvt.web.app/stocks?v=" + datetime.now().strftime("%H%M"),
         "",
         "Anh xem thông báo này rồi order em bước tiếp theo. Em không cần theo dõi tiếp.",
     ])

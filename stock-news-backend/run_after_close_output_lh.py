@@ -152,7 +152,7 @@ def _run_pipeline(py: str) -> None:
         log("No output changes to commit")
 
     firebase_bin = shutil.which("firebase") or shutil.which("firebase.cmd") or "firebase.cmd"
-    run([firebase_bin, "deploy", "--only", "hosting", "--project", "lhinvestment"], timeout=600)
+    run([firebase_bin, "deploy", "--project", "security-1c731", "--config", "firebase.lhinvt.json", "--only", "hosting"], timeout=600)
     log("DONE after-close output-only pipeline")
 
 
