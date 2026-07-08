@@ -88,6 +88,14 @@ def _aggregate(rows: list[dict[str, Any]], frame: str) -> list[dict[str, Any]]:
     return list(buckets.values())
 
 
+def _ma(rows: list[dict[str, Any]], n: int) -> float | None:
+    closes = [_num(r.get("close")) for r in rows]
+    closes = [c for c in closes if c is not None]
+    if len(closes) < n:
+        return None
+    return _round2(sum(closes[-n:]) / n)
+
+
 def _ichimoku(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
     if len(rows) < 52:
         return None
@@ -170,6 +178,9 @@ def _apply_frame(tech: dict[str, Any], suffix: str, vals: dict[str, Any]) -> Non
     tech[f"ichimokuState{suffix}"] = vals["ichimokuState"]
     tech[f"tenkan{suffix}"] = vals["tenkan"]
     tech[f"kijun{suffix}"] = vals["kijun"]
+    for extra_key in [f"ma20{suffix}", f"ma50{suffix}"]:
+        if vals.get(extra_key) is not None:
+            tech[extra_key] = vals[extra_key]
 
 
 def main() -> None:
@@ -196,9 +207,16 @@ def main() -> None:
             errors.append({"symbol": sym, "frame": "Hour", "error": str(exc)[:180]})
         try:
             time.sleep(REQUEST_DELAY_SECONDS)
-            month = _ichimoku(_aggregate(_fetch_daily_long(sym, end), "month"))
+            month_rows = _aggregate(_fetch_daily_long(sym, end), "month")
+            month = _ichimoku(month_rows)
             if month:
                 calc[sym]["Month"] = month
+                ma20m = _ma(month_rows, 20)
+                ma50m = _ma(month_rows, 50)
+                if ma20m is not None:
+                    calc[sym]["Month"]["ma20Month"] = ma20m
+                if ma50m is not None:
+                    calc[sym]["Month"]["ma50Month"] = ma50m
         except Exception as exc:
             errors.append({"symbol": sym, "frame": "Month", "error": str(exc)[:180]})
         print(f"{i}/{len(symbols)} {sym} frames={sorted(calc[sym].keys())}", flush=True)

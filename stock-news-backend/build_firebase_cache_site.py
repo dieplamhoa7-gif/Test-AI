@@ -429,7 +429,7 @@ def main() -> None:
     existing_market = read_json(DATA / "market_data.json", None)
     fresh_cutoff = datetime.now(timezone(timedelta(hours=7))) - timedelta(minutes=10)
     if existing_market and isinstance(existing_market, dict):
-        updated_at_str = existing_market.get("updatedAt") or existing_market.get("priceUpdatedAt")
+        updated_at_str = existing_market.get("popupIndicatorUpdatedAt") or existing_market.get("updatedAt") or existing_market.get("priceUpdatedAt")
         if updated_at_str:
             try:
                 from dateutil.parser import parse
