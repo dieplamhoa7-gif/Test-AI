@@ -5,31 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LH INVESTMENT</title>
-    <script id="lh-hard-cache-kill-20260703-0905-cachekill-hard">
-    (function () {
-      var LH_VERSION = '20260703-0905-cachekill-hard';
-      try {
-        var keys = ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache','hoa.cache.version','lh.static.version'];
-        for (var i = 0; i < keys.length; i++) { try { localStorage.removeItem(keys[i]); } catch (_) {} }
-        try { sessionStorage.setItem('lh.static.version', LH_VERSION); } catch (_) {}
-        try { localStorage.setItem('lh.static.version', LH_VERSION); localStorage.setItem('hoa.cache.version', LH_VERSION); } catch (_) {}
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function (regs) {
-            return Promise.all((regs || []).map(function (reg) { return reg.unregister(); }));
-          }).then(function () {
-            if (navigator.serviceWorker.controller && !location.search.match(/lh_nosw_reload=1/)) {
-              location.replace(location.pathname + '?lh_nosw_reload=1&v=' + encodeURIComponent(LH_VERSION));
-            }
-          }).catch(function () {});
-        }
-        if (window.caches && window.caches.keys) {
-          window.caches.keys().then(function (cacheKeys) {
-            return Promise.all((cacheKeys || []).map(function (key) { return window.caches.delete(key); }));
-          }).catch(function () {});
-        }
-      } catch (_) {}
-    })();
-  </script>
   <style>
     :root {
       --bg: #070b14;
@@ -493,7 +468,9 @@
   <script src="/lightweight-charts.standalone.production.js"></script>
 
 
-<script id="lh-cache-bust-20260703-0905-cachekill-hard">(function(){try{localStorage.setItem('lh.static.version','20260703-0905-cachekill-hard');localStorage.setItem('hoa.cache.version','20260703-0905-cachekill-hard');if(window.caches&&caches.keys)caches.keys().then(function(keys){keys.forEach(function(k){caches.delete(k);});});if('serviceWorker'in navigator)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}catch(e){}})();</script>
+<script id="lh-cache-bust-20260615-v2-cw-rich-popup-1452">
+(function(){try{if('serviceWorker'in navigator)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});if(window.caches&&caches.keys)caches.keys().then(function(keys){keys.forEach(function(k){caches.delete(k);});});localStorage.setItem('lh.static.version','20260615-v2-cw-rich-popup-1452');}catch(e){}})();
+</script>
 </head>
 <body>
   <div class="shell">
@@ -517,7 +494,7 @@
     const db = getFirestore(firebaseApp);
     const API_BASE = '';
     const MARKET_API_BASE = '';
-    const APP_CACHE_VERSION = '20260703-0905-cachekill-hard';
+    const APP_CACHE_VERSION = '2026-04-29-warrant-suggest-v4';
     (function cleanupOldCache(){ try { const old = localStorage.getItem('hoa.cache.version'); if (old !== APP_CACHE_VERSION) { ['hoa.market.cache','hoa.news.cache','hoa.warrants.cache','hoa.warrants.detail.cache'].forEach(k => localStorage.removeItem(k)); localStorage.setItem('hoa.cache.version', APP_CACHE_VERSION); } } catch(_) {} })();
     const AUTO_REFRESH_MS = 15 * 60 * 1000;
     const DEFAULT_CATEGORIES = ['Tổng hợp', 'Chứng khoán', 'Ngân hàng', 'Bất động sản', 'Doanh nghiệp', 'Vĩ mô', 'Quốc tế', 'Pháp luật', 'Khác'];
@@ -621,24 +598,9 @@
     function getWarrantClass(state) { const s = String(state || '').toUpperCase(); if (s === 'ITM') return 'warrant-itm'; if (s === 'ATM') return 'warrant-atm'; return 'warrant-otm'; }
     function renderWarrants() {
       if (!elements.warrantGrid) return;
-      const watchSet = new Set((warrantWatchSymbols || []).map(x => String(x || '').toUpperCase()).filter(Boolean));
-      // Never let the CW page go blank just because the user is not logged in
-      // or the account watchlist is empty. Show watchlist first when available;
-      // otherwise show the fresh warrant cache sorted by safer/liquid candidates.
-      let display = watchSet.size ? warrantItems.filter(item => watchSet.has(String(item.code || '').toUpperCase())) : [];
-      if (!display.length) {
-        display = [...warrantItems].sort((a, b) => {
-          const av = Number(a.volume || 0), bv = Number(b.volume || 0);
-          const ad = Number(a.daysLeft || 0), bd = Number(b.daysLeft || 0);
-          const as = Number(a.spreadPct || 999), bs = Number(b.spreadPct || 999);
-          return (bd - ad) || (bv - av) || (as - bs);
-        }).slice(0, 80);
-      }
-      const modeText = watchSet.size && display.length
-        ? `${warrantTextViEn('Đang hiển thị danh mục','Showing watchlist')} ${display.length} ${warrantTextViEn('mã chứng quyền','warrants')}`
-        : `${warrantTextViEn('Đang hiển thị dữ liệu chứng quyền mới nhất','Showing latest warrant cache')} (${display.length}/${warrantItems.length})`;
-      elements.warrantStatus.textContent = warrantItems.length ? modeText : warrantTextViEn('Không có dữ liệu chứng quyền trong cache.','No warrant data in cache.');
-      elements.warrantGrid.innerHTML = display.length ? display.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<span class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</span></strong><div class="warrant-row"><span>${warrantTextViEn('Giá hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="warrant-row"><span>${warrantTextViEn('Ngày còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft ?? '-')}</b></div></div>`; }).join('') : `<div class="empty error">${warrantTextViEn('Không có dữ liệu chứng quyền để hiển thị.','No warrant data to display.')}</div>`; elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
+      const display = warrantItems.filter(item => warrantWatchSymbols.includes(String(item.code || '').toUpperCase()));
+      elements.warrantStatus.textContent = !authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Đăng nhập để dùng danh mục chứng quyền theo account.','Login to use account warrant watchlist.') : (warrantWatchSymbols.length ? `${warrantTextViEn('Đang hiển thị','Showing')} ${display.length} ${warrantTextViEn('mã chứng quyền','warrants')}` : warrantTextViEn('Danh mục chứng quyền đang trống. Thêm mã để theo dõi.','Warrant watchlist is empty. Add codes to track.')));
+      elements.warrantGrid.innerHTML = display.length ? display.map(item => { const cls = getChangeClass(item.changePct); const sign = Number(item.changePct || 0) > 0 ? '+' : ''; const cwPrice = item.marketPrice || item.lastPrice || item.fairValue; return `<div role="button" tabindex="0" class="warrant-card" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<span class="${cls}">${escapeHtml(formatPrice(cwPrice))} / ${sign}${escapeHtml(formatNumber(item.changePct))}%</span></strong><div class="warrant-row"><span>${warrantTextViEn('Giá hòa vốn','Breakeven')}</span><b>${escapeHtml(formatPrice(item.breakeven))}</b></div><div class="warrant-row"><span>${warrantTextViEn('Ngày còn lại','Days left')}</span><b>${escapeHtml(item.daysLeft ?? '-')}</b></div></div>`; }).join('') : `<div class="empty">${!authReady ? warrantTextViEn('Đang kiểm tra đăng nhập...','Checking login...') : (!currentUserId ? warrantTextViEn('Vui lòng đăng nhập ở trang Account để xem danh mục chứng quyền.','Please login on Account page to view warrant watchlist.') : warrantTextViEn('Danh mục chứng quyền đang trống.','Warrant watchlist is empty.'))}</div>`; elements.warrantGrid.querySelectorAll('[data-warrant]').forEach(card => { card.addEventListener('click', () => openWarrantDetail(card.dataset.warrant)); card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWarrantDetail(card.dataset.warrant); } }); });
     }
     function warrantMarketPrice(item) { return Number(item?.marketPrice || item?.lastPrice || item?.fairValue || item?.refPrice || 0) || 0; }
     function normalCdf(x) { const sign = x < 0 ? -1 : 1; x = Math.abs(x) / Math.sqrt(2); const a1=0.254829592, a2=-0.284496736, a3=1.421413741, a4=-1.453152027, a5=1.061405429, p=0.3275911; const t = 1 / (1 + p * x); const y = 1 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1)*t*Math.exp(-x*x); return 0.5 * (1 + sign * y); }
@@ -738,53 +700,32 @@
       elements.warrantSuggest.classList.toggle('open', found.length > 0);
       elements.warrantSuggest.querySelectorAll('[data-warrant]').forEach(option => option.addEventListener('click', async () => { selectedWarrant = option.dataset.warrant; elements.warrantSearchInput.value = selectedWarrant; elements.warrantSuggest.classList.remove('open'); await openWarrantDetail(selectedWarrant); }));
     }
-
-    function installRobustWarrantSearch() {
-      const input = elements.warrantSearchInput;
-      const suggest = elements.warrantSuggest;
-      if (!input || !suggest || input.dataset.robustCwSearch === '1') return;
-      input.dataset.robustCwSearch = '1';
-      const run = () => {
-        const q = String(input.value || '').trim().toUpperCase();
-        selectedWarrant = '';
-        if (!q) { suggest.classList.remove('open'); suggest.innerHTML = ''; return; }
-        const found = warrantItems.filter(item => String(item.code || '').toUpperCase().includes(q) || String(item.underlying || '').toUpperCase().includes(q)).slice(0, 50);
-        suggest.innerHTML = found.map(item => `<div class="search-option" data-warrant="${escapeHtml(item.code)}"><strong>${escapeHtml(item.code)}<em>${escapeHtml(formatPrice(item.marketPrice || item.lastPrice || item.fairValue))}</em></strong><span>${escapeHtml(item.underlying || '')} • ${warrantTextViEn('Hòa vốn','Breakeven')} ${escapeHtml(formatPrice(item.breakeven))} • ${warrantTextViEn('Còn','Left')} ${escapeHtml(item.daysLeft ?? '-')} ${warrantTextViEn('ngày','days')}</span></div>`).join('');
-        suggest.classList.toggle('open', found.length > 0);
-        suggest.querySelectorAll('[data-warrant]').forEach(option => option.addEventListener('click', async () => { selectedWarrant = option.dataset.warrant; input.value = selectedWarrant; suggest.classList.remove('open'); await openWarrantDetail(selectedWarrant); }));
-      };
-      input.addEventListener('input', run);
-      input.addEventListener('keyup', run);
-      input.addEventListener('change', run);
-    }
     async function addWarrantToWatchlist(codeOverride = '') {
       const code = String(codeOverride || activeWarrantCode || selectedWarrant || elements.warrantTitle?.textContent || elements.warrantSearchInput?.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
       if (!code) return;
+      if (!currentUserId) { elements.warrantStatus.textContent = warrantTextViEn('Vui lòng đăng nhập để lưu danh mục chứng quyền theo account.','Please login to save warrant watchlist.'); return; }
       const exists = warrantItems.some(item => String(item.code || '').toUpperCase() === code);
       if (!exists) { elements.warrantStatus.textContent = `${warrantTextViEn('Không tìm thấy mã','Symbol not found')} ${code}`; return; }
-      if (currentUserId) { await setDoc(doc(db,'users',currentUserId,'warrantWatchlist',code),{code,enabled:true,updatedAt:serverTimestamp()},{merge:true}); }
-      else { try { localStorage.setItem('lh.warrant.watchlist', JSON.stringify([code, ...warrantWatchSymbols.filter(x => x !== code)])); } catch (_) {} }
+      elements.warrantStatus.textContent = `${warrantTextViEn('Đã thêm','Added')} ${code} ${warrantTextViEn('vào danh mục','to watchlist')}`;
+      await setDoc(doc(db,'users',currentUserId,'warrantWatchlist',code),{code,enabled:true,updatedAt:serverTimestamp()},{merge:true});
       if (!warrantWatchSymbols.includes(code)) warrantWatchSymbols.unshift(code);
       activeWarrantCode = code; selectedWarrant = code;
       elements.warrantSearchInput.value = '';
-      elements.warrantSuggest?.classList.remove('open');
-      elements.warrantSuggest && (elements.warrantSuggest.innerHTML = '');
       renderWarrants();
-      elements.warrantStatus.textContent = `${warrantTextViEn('Đã thêm','Added')} ${code} ${currentUserId ? warrantTextViEn('vào danh mục account','to account watchlist') : warrantTextViEn('vào danh mục local','to local watchlist')}`;
       if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
     }
     async function removeWarrantFromWatchlist(codeOverride = '') {
       const code = String(codeOverride || activeWarrantCode || selectedWarrant || elements.warrantTitle?.textContent || elements.warrantSearchInput?.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
       if (!code) return;
-      if (currentUserId) { try { await deleteDoc(doc(db,'users',currentUserId,'warrantWatchlist',code)); } catch (_) {} }
+      if (!currentUserId) { elements.warrantStatus.textContent = warrantTextViEn('Vui lòng đăng nhập để sửa danh mục chứng quyền.','Please login to edit warrant watchlist.'); return; }
+      try { await deleteDoc(doc(db,'users',currentUserId,'warrantWatchlist',code)); } catch (_) {}
       warrantWatchSymbols = warrantWatchSymbols.filter(x => x !== code);
-      if (!currentUserId) { try { localStorage.setItem('lh.warrant.watchlist', JSON.stringify(warrantWatchSymbols)); } catch (_) {} }
       activeWarrantCode = code; selectedWarrant = code;
       elements.warrantSearchInput.value = ''; renderWarrants();
       elements.warrantStatus.textContent = `${warrantTextViEn('Đã xóa','Removed')} ${code} ${warrantTextViEn('khỏi danh mục','from watchlist')}`;
       if (elements.warrantModal?.classList.contains('open')) openWarrantDetail(code);
     }
-    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); renderWarrants(); installRobustWarrantSearch(); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
+    async function loadWarrants() { if (!elements.warrantGrid) return; try { const res = await fetch(`/data/warrants_data.json?ts=${Date.now()}`, { cache: 'no-store' }); if (!res.ok) throw new Error('warrants'); const payload = await res.json(); warrantItems = (Array.isArray(payload?.items) ? payload.items : []).map(x => ({ ...x, code: String(x.code || '').toUpperCase() })); renderWarrants(); } catch (_) { elements.warrantStatus.textContent = warrantTextViEn('Không tải được dữ liệu chứng quyền','Cannot load warrant data'); elements.warrantGrid.innerHTML = `<div class="empty error">${warrantTextViEn('Không tải được dữ liệu chứng quyền.','Cannot load warrant data.')}</div>`; } }
 
 
     
@@ -1184,9 +1125,9 @@
       }
       e.preventDefault();
       switchTab(tab, true);
-    })); window.addEventListener('popstate', () => { switchTab(pageToTab()); const parts = location.pathname.split('/').filter(Boolean); if (parts[0] === 'stocks' && parts[1]) openStockSymbol(parts[1]); else elements.detailModal.classList.remove('open'); }); switchTab(pageToTab()); document.querySelectorAll('[data-filter-mode]').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('[data-filter-mode]').forEach(b => b.classList.toggle('active', b.dataset.filterMode === btn.dataset.filterMode)); loadStockFilters(btn.dataset.filterMode); })); elements.stockFilterGrid?.addEventListener('click', (e) => { const el = e.target.closest('[data-filter-symbol]'); if (el) openStockSymbol(el.dataset.filterSymbol); }); loadStockFilters('technical'); elements.stockSearchBtn?.addEventListener('click', () => addStockToWatchlist()); elements.stockRemoveBtn?.addEventListener('click', () => removeStockFromWatchlist()); elements.stockSearchInput?.addEventListener('input', searchStockCatalog); elements.stockSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); await openStockSymbol(selectedSymbol || elements.stockSearchInput.value); } }); elements.warrantSearchInput?.addEventListener('input', searchWarrants); installRobustWarrantSearch(); elements.warrantSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); const code = selectedWarrant || elements.warrantSearchInput.value; if (code) { await openWarrantDetail(String(code).trim().toUpperCase()); } } }); elements.warrantAddBtn?.addEventListener('click', () => addWarrantToWatchlist()); elements.warrantRemoveBtn?.addEventListener('click', () => removeWarrantFromWatchlist()); elements.warrantGrid?.addEventListener('click', (e) => { const card = e.target.closest('[data-warrant]'); if (card) openWarrantDetail(card.dataset.warrant); }); document.addEventListener('click', (e) => { if (!e.target.closest('.stock-search-bar')) { elements.stockSuggest?.classList.remove('open'); elements.warrantSuggest?.classList.remove('open'); } }); elements.prevPageBtn?.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); }); elements.nextPageBtn?.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); }); elements.goPageBtn?.addEventListener('click', () => { currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); }); elements.pageInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); } }); elements.addDetailBtn?.addEventListener('click', async () => { const symbol = activeDetailTicker || selectedSymbol || elements.stockSearchInput.value; if (!symbol || watchSymbols.includes(symbol)) { if (watchSymbols.includes(symbol)) elements.addDetailBtn.textContent = 'Đã thêm'; return; } elements.addDetailBtn.textContent = 'Đang thêm...'; await addStockToWatchlist(symbol); elements.addDetailBtn.textContent = 'Đã thêm'; }); elements.removeDetailBtn?.addEventListener('click', () => removeStockFromWatchlist(activeDetailTicker)); elements.addWarrantDetailBtn?.addEventListener('click', () => addWarrantToWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.removeWarrantDetailBtn?.addEventListener('click', () => removeWarrantFromWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.closeWarrantBtn?.addEventListener('click', () => elements.warrantModal.classList.remove('open')); elements.warrantModal?.addEventListener('click', (e) => { if (e.target === elements.warrantModal) elements.warrantModal.classList.remove('open'); }); elements.closeDetailBtn?.addEventListener('click', () => { elements.detailModal.classList.remove('open'); if (location.pathname.startsWith('/stocks/')) history.pushState({ tab: 'stocks' }, '', '/stocks'); }); elements.detailModal?.addEventListener('click', (e) => { if (e.target === elements.detailModal) elements.closeDetailBtn?.click(); }); elements.helpFab?.addEventListener('click', () => elements.helpModal.classList.add('open')); elements.closeHelpBtn?.addEventListener('click', () => elements.helpModal.classList.remove('open')); elements.helpModal?.addEventListener('click', (e) => { if (e.target === elements.helpModal) elements.helpModal.classList.remove('open'); }); async function switchLanguage(lang) { const nextLang = lang === 'en' ? 'en' : 'vi'; if (nextLang === currentLang) { applyLanguage(nextLang); return; } applyLanguage(nextLang); currentPage = 1; const tab = pageToTab(); if (tab === 'news') { allItems = []; elements.newsList.innerHTML = `<div class="empty">${nextLang === 'en' ? 'Loading news...' : 'Dang tai tin tuc...'}</div>`; await loadData(false, true); } else { renderMarket({ items: marketItems }); if (warrantItems.length) renderWarrants(); await loadData(false, true); } } elements.langViBtn?.addEventListener('click',()=>{ switchLanguage('vi'); }); elements.langEnBtn?.addEventListener('click',()=>{ switchLanguage('en'); }); applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); onAuthStateChanged(auth, user => { authReady = true; currentUserId = user?.uid || ''; if (watchlistUnsubscribe) { watchlistUnsubscribe(); watchlistUnsubscribe = null; } if (warrantWatchlistUnsubscribe) { warrantWatchlistUnsubscribe(); warrantWatchlistUnsubscribe = null; } watchSymbols = []; warrantWatchSymbols = []; renderMarket({ items: marketItems }); renderWarrants(); if (currentUserId) { watchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'watchlist'), qs => { watchSymbols = qs.docs.map(d => String((d.data() || {}).symbol || d.id).toUpperCase()).filter(Boolean).sort(); renderMarket({ items: marketItems }); }); warrantWatchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'warrantWatchlist'), qs => { warrantWatchSymbols = qs.docs.map(d => String((d.data() || {}).code || d.id).toUpperCase()).filter(Boolean).sort(); renderWarrants(); }); } }); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);
+    })); window.addEventListener('popstate', () => { switchTab(pageToTab()); const parts = location.pathname.split('/').filter(Boolean); if (parts[0] === 'stocks' && parts[1]) openStockSymbol(parts[1]); else elements.detailModal.classList.remove('open'); }); switchTab(pageToTab()); document.querySelectorAll('[data-filter-mode]').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('[data-filter-mode]').forEach(b => b.classList.toggle('active', b.dataset.filterMode === btn.dataset.filterMode)); loadStockFilters(btn.dataset.filterMode); })); elements.stockFilterGrid?.addEventListener('click', (e) => { const el = e.target.closest('[data-filter-symbol]'); if (el) openStockSymbol(el.dataset.filterSymbol); }); loadStockFilters('technical'); elements.stockSearchBtn?.addEventListener('click', () => addStockToWatchlist()); elements.stockRemoveBtn?.addEventListener('click', () => removeStockFromWatchlist()); elements.stockSearchInput?.addEventListener('input', searchStockCatalog); elements.stockSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); await openStockSymbol(selectedSymbol || elements.stockSearchInput.value); } }); elements.warrantSearchInput?.addEventListener('input', searchWarrants); elements.warrantSearchInput?.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); const code = selectedWarrant || elements.warrantSearchInput.value; if (code) { await openWarrantDetail(String(code).trim().toUpperCase()); } } }); elements.warrantAddBtn?.addEventListener('click', () => addWarrantToWatchlist()); elements.warrantRemoveBtn?.addEventListener('click', () => removeWarrantFromWatchlist()); elements.warrantGrid?.addEventListener('click', (e) => { const card = e.target.closest('[data-warrant]'); if (card) openWarrantDetail(card.dataset.warrant); }); document.addEventListener('click', (e) => { if (!e.target.closest('.stock-search-bar')) { elements.stockSuggest?.classList.remove('open'); elements.warrantSuggest?.classList.remove('open'); } }); elements.prevPageBtn?.addEventListener('click', () => { currentPage -= 1; renderNews(filteredItems); }); elements.nextPageBtn?.addEventListener('click', () => { currentPage += 1; renderNews(filteredItems); }); elements.goPageBtn?.addEventListener('click', () => { currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); }); elements.pageInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); currentPage = Number(elements.pageInput.value) || 1; renderNews(filteredItems); } }); elements.addDetailBtn?.addEventListener('click', async () => { const symbol = activeDetailTicker || selectedSymbol || elements.stockSearchInput.value; if (!symbol || watchSymbols.includes(symbol)) { if (watchSymbols.includes(symbol)) elements.addDetailBtn.textContent = 'Đã thêm'; return; } elements.addDetailBtn.textContent = 'Đang thêm...'; await addStockToWatchlist(symbol); elements.addDetailBtn.textContent = 'Đã thêm'; }); elements.removeDetailBtn?.addEventListener('click', () => removeStockFromWatchlist(activeDetailTicker)); elements.addWarrantDetailBtn?.addEventListener('click', () => addWarrantToWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.removeWarrantDetailBtn?.addEventListener('click', () => removeWarrantFromWatchlist(activeWarrantCode || selectedWarrant || elements.warrantTitle.textContent)); elements.closeWarrantBtn?.addEventListener('click', () => elements.warrantModal.classList.remove('open')); elements.warrantModal?.addEventListener('click', (e) => { if (e.target === elements.warrantModal) elements.warrantModal.classList.remove('open'); }); elements.closeDetailBtn?.addEventListener('click', () => { elements.detailModal.classList.remove('open'); if (location.pathname.startsWith('/stocks/')) history.pushState({ tab: 'stocks' }, '', '/stocks'); }); elements.detailModal?.addEventListener('click', (e) => { if (e.target === elements.detailModal) elements.closeDetailBtn?.click(); }); elements.helpFab?.addEventListener('click', () => elements.helpModal.classList.add('open')); elements.closeHelpBtn?.addEventListener('click', () => elements.helpModal.classList.remove('open')); elements.helpModal?.addEventListener('click', (e) => { if (e.target === elements.helpModal) elements.helpModal.classList.remove('open'); }); async function switchLanguage(lang) { const nextLang = lang === 'en' ? 'en' : 'vi'; if (nextLang === currentLang) { applyLanguage(nextLang); return; } applyLanguage(nextLang); currentPage = 1; const tab = pageToTab(); if (tab === 'news') { allItems = []; elements.newsList.innerHTML = `<div class="empty">${nextLang === 'en' ? 'Loading news...' : 'Dang tai tin tuc...'}</div>`; await loadData(false, true); } else { renderMarket({ items: marketItems }); if (warrantItems.length) renderWarrants(); await loadData(false, true); } } elements.langViBtn?.addEventListener('click',()=>{ switchLanguage('vi'); }); elements.langEnBtn?.addEventListener('click',()=>{ switchLanguage('en'); }); applyLanguage(currentLang); renderCategories(); hydrateFromLocalCache(); onAuthStateChanged(auth, user => { authReady = true; currentUserId = user?.uid || ''; if (watchlistUnsubscribe) { watchlistUnsubscribe(); watchlistUnsubscribe = null; } if (warrantWatchlistUnsubscribe) { warrantWatchlistUnsubscribe(); warrantWatchlistUnsubscribe = null; } watchSymbols = []; warrantWatchSymbols = []; renderMarket({ items: marketItems }); renderWarrants(); if (currentUserId) { watchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'watchlist'), qs => { watchSymbols = qs.docs.map(d => String((d.data() || {}).symbol || d.id).toUpperCase()).filter(Boolean).sort(); renderMarket({ items: marketItems }); }); warrantWatchlistUnsubscribe = onSnapshot(collection(db,'users',currentUserId,'warrantWatchlist'), qs => { warrantWatchSymbols = qs.docs.map(d => String((d.data() || {}).code || d.id).toUpperCase()).filter(Boolean).sort(); renderWarrants(); }); } }); loadData(); loadWarrants(); setTimeout(loadIndexOverview, 300);
   </script>
-<div id="lh-visible-version" style="position:fixed;left:10px;bottom:10px;z-index:99999;background:#23c77a;color:#03140c;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 10px;font:800 11px system-ui;box-shadow:0 8px 22px rgba(0,0,0,.25);">LH 20260704-final-no-rollback</div>
+<div id="lh-visible-version" style="position:fixed;left:10px;bottom:10px;z-index:99999;background:#23c77a;color:#03140c;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 10px;font:800 11px system-ui;box-shadow:0 8px 22px rgba(0,0,0,.25);">LH 20260615-v2-cw-rich-popup-1452</div>
 
 
 
@@ -1295,72 +1236,6 @@
     window.lhOpenRichCwPopup=openRich;
   }
   setTimeout(installRichCwPopup,1200);
-})();
-</script>
-
-<script id="lh-cw-search-add-override-20260705">
-(function(){
-  if(!(location.pathname.startsWith('/cw')||location.pathname.startsWith('/warrants'))) return;
-  let items=[];
-  const norm=x=>String(x||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
-  const fmt=n=>{const v=Number(n);return Number.isFinite(v)&&v>0?v.toLocaleString('vi-VN'):'-';};
-  const days=x=>Number(x.daysLeft||x.days_left||0)||0;
-  async function load(){
-    if(items.length) return items;
-    try{const r=await fetch('/data/warrants_data.json?ts='+Date.now(),{cache:'no-store'}); const p=await r.json(); items=(Array.isArray(p.items)?p.items:p).map(x=>({...x,code:norm(x.code)})).filter(x=>x.code);}catch(e){items=[];}
-    return items;
-  }
-  function getWatch(){try{return JSON.parse(localStorage.getItem('lh.warrant.watchlist')||'[]').map(norm).filter(Boolean);}catch(e){return [];}}
-  function setWatch(arr){try{localStorage.setItem('lh.warrant.watchlist',JSON.stringify([...new Set(arr.map(norm).filter(Boolean))]));}catch(e){}}
-  function renderWatch(){
-    const grid=document.getElementById('warrantGrid'); if(!grid||!items.length) return;
-    const watch=getWatch(); if(!watch.length) return;
-    const picked=watch.map(c=>items.find(x=>x.code===c)).filter(Boolean);
-    if(!picked.length) return;
-    grid.innerHTML=picked.map(x=>`<div class="warrant-card" data-warrant="${x.code}"><strong>${x.code}<span>${x.underlying||''}</span></strong><div class="warrant-row"><span>Giá / Hòa vốn</span><b>${fmt(x.lastPrice||x.marketPrice||x.fairValue)} / ${fmt(x.breakeven)}</b></div><div class="warrant-row"><span>Còn lại</span><b>${days(x)} ngày</b></div></div>`).join('');
-  }
-  async function search(){
-    await load();
-    const input=document.getElementById('warrantSearchInput'), box=document.getElementById('warrantSuggest'); if(!input||!box) return;
-    const q=norm(input.value); if(!q){box.innerHTML=''; box.classList.remove('open'); return;}
-    const found=items.filter(x=>x.code.includes(q)||norm(x.underlying).includes(q)).slice(0,50);
-    box.innerHTML=found.map(x=>`<div class="search-option" data-warrant="${x.code}"><strong>${x.code}<em>${fmt(x.lastPrice||x.marketPrice||x.fairValue)}</em></strong><span>${x.underlying||''} • Hòa vốn ${fmt(x.breakeven)} • Còn ${days(x)} ngày</span></div>`).join('');
-    box.classList.toggle('open',found.length>0);
-    const grid=document.getElementById('warrantGrid');
-    if(grid){ grid.innerHTML=(found.length?found:[]).map(x=>`<div class="warrant-card" data-warrant="${x.code}"><strong>${x.code}<span>${x.underlying||''}</span></strong><div class="warrant-row"><span>Giá / Hòa vốn</span><b>${fmt(x.lastPrice||x.marketPrice||x.fairValue)} / ${fmt(x.breakeven)}</b></div><div class="warrant-row"><span>Còn lại</span><b>${days(x)} ngày</b></div></div>`).join('') || '<div class="empty">Không tìm thấy mã chứng quyền phù hợp.</div>'; }
-    box.querySelectorAll('[data-warrant]').forEach(el=>el.onclick=()=>{input.value=el.dataset.warrant; box.classList.remove('open');});
-  }
-  async function add(){
-    await load();
-    const input=document.getElementById('warrantSearchInput'), status=document.getElementById('warrantStatus');
-    const code=norm(input&&input.value); if(!code) return;
-    if(!items.some(x=>x.code===code)){ if(status) status.textContent='Không tìm thấy mã '+code; return; }
-    const watch=[code,...getWatch().filter(x=>x!==code)]; setWatch(watch); renderWatch(); if(input) input.value=''; if(status) status.textContent='Đã thêm '+code+' vào danh mục local';
-  }
-  function bind(){
-    const input=document.getElementById('warrantSearchInput'), addBtn=document.getElementById('warrantAddBtn');
-    if(input&&!input.dataset.cwOverride){input.dataset.cwOverride='1'; ['input','keyup','change'].forEach(ev=>input.addEventListener(ev,search)); input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault(); add();}});}
-    if(addBtn&&!addBtn.dataset.cwOverride){addBtn.dataset.cwOverride='1'; addBtn.addEventListener('click',e=>{e.preventDefault(); e.stopImmediatePropagation(); add();},true);}
-    load().then(renderWatch);
-  }
-  setTimeout(bind,900); setTimeout(bind,1800); setTimeout(bind,3200);
-})();
-</script>
-
-<script id="lh-cw-live-refresh-20260705">
-(function(){
-  if(!(location.pathname.startsWith('/cw')||location.pathname.startsWith('/warrants'))) return;
-  let items=[];
-  const norm=x=>String(x||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
-  const fmt=n=>{const v=Number(n);return Number.isFinite(v)?v.toLocaleString('vi-VN'):'-';};
-  const pct=n=>{const v=Number(n);return Number.isFinite(v)?v.toFixed(2)+'%':'-';};
-  const getWatch=()=>{try{return JSON.parse(localStorage.getItem('lh.warrant.watchlist')||'[]').map(norm).filter(Boolean)}catch(e){return[]}};
-  function card(x){return `<div class="warrant-card" data-warrant="${x.code}"><strong>${x.code}<span>${x.underlying||''}</span></strong><div class="warrant-row"><span>Giá / Bid-Ask</span><b>${fmt(x.marketPrice||x.lastPrice||x.fairValue)} / ${fmt(x.bid)}-${fmt(x.ask)}</b></div><div class="warrant-row"><span>Cơ sở / Hòa vốn</span><b>${fmt(x.underlyingPrice)} / ${fmt(x.breakeven)}</b></div><div class="warrant-row"><span>Đòn bẩy / Spread</span><b>${fmt(x.leverage)}x / ${pct(x.spreadPct)}</b></div><div class="warrant-row"><span>Nội tại / Time value</span><b>${fmt(x.intrinsicValue)} / ${fmt(x.timeValue)}</b></div><div class="warrant-row"><span>Còn lại / Tín hiệu</span><b>${fmt(x.daysLeft)} ngày / ${x.advancedSignal||'-'}</b></div></div>`}
-  async function load(){try{const r=await fetch('/data/warrants_data.json?ts='+Date.now(),{cache:'no-store'});const p=await r.json();items=(Array.isArray(p.items)?p.items:p).map(x=>({...x,code:norm(x.code)})).filter(x=>x.code);const st=document.getElementById('warrantStatus');if(st)st.textContent=`Đã cập nhật ${items.length} chứng quyền lúc ${new Date(p.updatedAt||Date.now()).toLocaleTimeString('vi-VN')}`;window.__lhLatestWarrantItems=items;return p}catch(e){return null}}
-  function renderBase(){const grid=document.getElementById('warrantGrid');if(!grid||!items.length)return;const watch=getWatch();const list=watch.length?watch.map(c=>items.find(x=>x.code===c)).filter(Boolean):items.slice(0,80);grid.innerHTML=list.map(card).join('')||'<div class="empty">Không có dữ liệu chứng quyền.</div>';}
-  function bindSearch(){const input=document.getElementById('warrantSearchInput'), box=document.getElementById('warrantSuggest'); if(!input||!box||input.dataset.liveRefreshSearch==='1')return; input.dataset.liveRefreshSearch='1'; const run=()=>{const q=norm(input.value); if(!q){renderBase();box.classList.remove('open');box.innerHTML='';return;} const found=items.filter(x=>x.code.includes(q)||norm(x.underlying).includes(q)).slice(0,50); const grid=document.getElementById('warrantGrid'); if(grid)grid.innerHTML=found.map(card).join('')||'<div class="empty">Không tìm thấy mã chứng quyền phù hợp.</div>'; box.innerHTML=found.map(x=>`<div class="search-option" data-warrant="${x.code}"><strong>${x.code}<em>${fmt(x.marketPrice||x.lastPrice||x.fairValue)}</em></strong><span>${x.underlying||''} • Hòa vốn ${fmt(x.breakeven)} • ${fmt(x.daysLeft)} ngày</span></div>`).join(''); box.classList.toggle('open',found.length>0); box.querySelectorAll('[data-warrant]').forEach(el=>el.onclick=()=>{input.value=el.dataset.warrant;box.classList.remove('open');run();});}; ['input','keyup','change'].forEach(ev=>input.addEventListener(ev,(e)=>{ setTimeout(run,0); },true));};
-  async function refresh(){await load();renderBase();bindSearch();}
-  setTimeout(refresh,700); setInterval(refresh,60000);
 })();
 </script>
 </body>
