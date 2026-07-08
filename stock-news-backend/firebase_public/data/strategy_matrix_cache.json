@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-08T14:10:47.480727",
+  "updatedAt": "2026-07-08T14:25:00.556597",
   "title": "LH Final Strategy Matrix",
   "note": "LH1-LH4 final strategy matrix using latest close evidence.",
   "displayMode": "matrix",
@@ -8,10 +8,17 @@
   "columns": [
     {
       "id": "LH1_FINAL",
+      "signalKey": "b4_trend_pullback",
       "name": "LH1 Final - Premium Pullback",
       "shortName": "LH1",
       "priority": 1,
       "summary": "Trend pullback/premium setup; BUY strict, near-miss only goes WATCH.",
+      "indicators": "RSI, MACD, MA/VWAP, Volume, R/S, Ichimoku",
+      "tooltipMetrics": {
+        "winRate": "Win 82.76%",
+        "averageReturn": "+8.26%/lệnh",
+        "totalReturn": "+239.43%"
+      },
       "buckets": {
         "buy": [],
         "watch": [
@@ -2457,10 +2464,17 @@
     },
     {
       "id": "LH2_FINAL",
+      "signalKey": "shakeout_breakdown_rebound",
       "name": "LH2 Final - SR Pattern Shakeout",
       "shortName": "LH2",
       "priority": 2,
       "summary": "Shakeout/reclaim support or breakout retest; no first-breakout chase.",
+      "indicators": "R/S zone, shakeout, reclaim, volume, price action",
+      "tooltipMetrics": {
+        "winRate": "Theo cache",
+        "averageReturn": "Theo tín hiệu",
+        "totalReturn": "Theo cache"
+      },
       "buckets": {
         "buy": [],
         "watch": [
@@ -5031,10 +5045,17 @@
     },
     {
       "id": "LH3_FINAL",
+      "signalKey": "clean_split_a_bottom",
       "name": "LH3 Final - R/S Rebound ML v2",
       "shortName": "LH3",
       "priority": 3,
       "summary": "Support rebound + rule score/ML confidence; current signal only, not historical buys.",
+      "indicators": "R/S rebound, RSI, volume ratio, breadth, ML probability",
+      "tooltipMetrics": {
+        "winRate": "OOS 80%",
+        "averageReturn": "+3.6%/lệnh OOS",
+        "totalReturn": "+36.0% OOS"
+      },
       "buckets": {
         "buy": [],
         "watch": [
@@ -6573,10 +6594,17 @@
     },
     {
       "id": "LH4_FINAL",
+      "signalKey": "LH4_FINAL",
       "name": "LH4 Final - High Winrate Wave Entry",
       "shortName": "LH4",
       "priority": 4,
       "summary": "True 55-bar breakout, RSI 58-65, volume ratio >=1.5, ROC20 >=4%, base6 <=35%, score >=5; no symbol hindsight.",
+      "indicators": "55-bar breakout, RSI 58-65, volume ratio, ROC20, base compression",
+      "tooltipMetrics": {
+        "winRate": "High-winrate research",
+        "averageReturn": "Setup phụ, tín hiệu hiếm",
+        "totalReturn": "Theo backtest LH4"
+      },
       "buckets": {
         "buy": [],
         "watch": [],
