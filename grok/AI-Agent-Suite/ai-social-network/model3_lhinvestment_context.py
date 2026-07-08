@@ -596,6 +596,58 @@ def compact_record(rec: Any, max_chars: int = 2500) -> str:
     return text if len(text) <= max_chars else text[:max_chars].rstrip() + "…"
 
 
+def _macro_data_hub_context(max_rows: int = 80) -> str:
+    """Load the latest canonical Vietnam macro hub for all Model3 agents.
+
+    Source of truth per macro-data-hub skill:
+    FA/data/macro_data_hub/latest.json, mirrored to Vi mo/data/macro_data_hub/latest.json.
+    If missing, try a lightweight refresh once via FA/build_macro_data_hub.py.
+    """
+    fa_dir = WORKSPACE / "FA"
+    latest = fa_dir / "data" / "macro_data_hub" / "latest.json"
+    if not latest.exists() and (fa_dir / "build_macro_data_hub.py").exists():
+        try:
+            import subprocess
+            subprocess.run([sys.executable, "build_macro_data_hub.py"], cwd=str(fa_dir), timeout=120, check=False, capture_output=True, text=True, encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+    data = _read_json(latest)
+    if not isinstance(data, dict):
+        mirror = WORKSPACE / "Vi mo" / "data" / "macro_data_hub" / "latest.json"
+        data = _read_json(mirror)
+        latest = mirror
+    if not isinstance(data, dict):
+        return "MACRO_DATA_HUB: Không tìm thấy FA/data/macro_data_hub/latest.json hoặc Vi mo mirror; AI phải báo thiếu dữ liệu vĩ mô mới nhất, không được bịa."
+
+    rows = data.get("rows") if isinstance(data.get("rows"), list) else []
+    missing = [r for r in rows if isinstance(r, dict) and str(r.get("status") or "").lower() == "missing"]
+    priority = {
+        "interbankOvernight", "deposit12m", "govBond5y", "govBond10y", "usdVnd",
+        "vnindex", "foreignNetBuyBn", "marketTurnoverBn", "vix", "sp500", "nasdaq",
+        "us10y", "dxy", "brent", "gold", "omoOutstanding", "tbillOutstanding",
+        "totalLiquidityNet", "omoRate", "sbvOvernight", "vcbUsdBuy", "vcbUsdSell",
+    }
+    selected: list[dict[str, Any]] = []
+    for r in rows:
+        if isinstance(r, dict) and (r.get("indicator") in priority or len(selected) < max_rows // 2):
+            selected.append(r)
+        if len(selected) >= max_rows:
+            break
+    out = {
+        "sourcePath": str(latest),
+        "status": data.get("status"),
+        "date": data.get("date"),
+        "fetchedAt": data.get("fetchedAt"),
+        "generatedAt": data.get("generatedAt"),
+        "datasets": data.get("datasets"),
+        "indicators": data.get("indicators"),
+        "missingCount": len(missing),
+        "missingIndicators": [f"{m.get('dataset')}.{m.get('indicator')}" for m in missing[:20]],
+        "rows": selected,
+    }
+    return "MACRO_DATA_HUB LATEST — nguồn vĩ mô bắt buộc cho Codex/Kiro/Grok, lấy từ FA/data/macro_data_hub/latest.json; không dùng macro cũ nếu khác ngày:\n" + compact_record(out, 9000)
+
+
 def _deep_find_key(obj: Any, names: tuple[str, ...]) -> Any:
     wanted = {n.lower() for n in names}
     if isinstance(obj, dict):
@@ -811,6 +863,8 @@ def build_lhinvestment_context(task: str) -> str:
         parts.append("\nLIVE_MARKET_FORCE_REFRESH — dữ liệu giá/PTKT/vĩ mô mới nhất theo thứ tự LHINVT_WEB_CLEAN -> lhinvt.web.app -> stock-news-backend fallback:\n" + compact_record(live_snapshot, 4200))
     else:
         parts.append("\nLIVE_MARKET_FORCE_REFRESH: Không lấy được dữ liệu mới. Lỗi: " + str(live_snapshot.get("error") or "unknown") + ". Báo cáo phải cảnh báo thiếu dữ liệu mới, không dùng cache cũ làm giá hiện tại.")
+
+    parts.append("\n" + _macro_data_hub_context())
 
     rss_news, cache_news = load_news(symbol, 50)
     curated_news = curate_news(symbol, [*rss_news, *cache_news], 12)
