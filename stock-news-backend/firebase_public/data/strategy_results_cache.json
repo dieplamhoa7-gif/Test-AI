@@ -3216,7 +3216,7 @@
       "id": "LH2_FINAL",
       "name": "LH2 Final - SR Pattern Shakeout",
       "shortName": "LH2",
-      "summary": "Shakeout/reclaim support or breakout retest; no first-breakout chase.",
+      "summary": "Shakeout/reclaim support or breakout retest; current scan has 20 WATCH signals, 0 BUY. Final backtest metric file not found in current repo, so display uses current-signal validation only.",
       "buy": [],
       "watch": [
         {
@@ -7426,11 +7426,11 @@
       ],
       "sourceStrategyId": "shakeout_breakdown_rebound",
       "signalKey": "shakeout_breakdown_rebound",
-      "indicators": "R/S zone, shakeout, reclaim, volume, price action",
+      "indicators": "R/S zone, shakeout/reclaim, support retest, volume, price action",
       "tooltipMetrics": {
-        "winRate": "Theo cache",
-        "averageReturn": "Theo tín hiệu",
-        "totalReturn": "Theo cache"
+        "winRate": "Current scan: 20 WATCH / 0 BUY",
+        "averageReturn": "Backtest final: chưa có file metric riêng",
+        "totalReturn": "Không bịa số; cần bổ sung file LH2 backtest nếu muốn PnL"
       },
       "dataAsOf": "2026-07-08T14:06:56.262893",
       "source": "fresh rs_levels_vn100_cache + lh_canonical_indicators_daily"
@@ -9322,18 +9322,18 @@
       "id": "LH4_FINAL",
       "name": "LH4 Final - High Winrate Wave Entry",
       "shortName": "LH4",
-      "summary": "True 55-bar breakout, RSI 58-65, volume ratio >=1.5, ROC20 >=4%, base6 <=35%, score >=5; no symbol hindsight.",
+      "summary": "High-winrate wave/base breakout entry; current scan has 0 WATCH/BUY after strict filters.",
       "buy": [],
       "watch": [],
       "watchlist": [],
       "avoid": [],
       "sourceStrategyId": null,
       "signalKey": "LH4_FINAL",
-      "indicators": "55-bar breakout, RSI 58-65, volume ratio, ROC20, base compression",
+      "indicators": "55-bar breakout, RSI 58-65, volume ratio >=1.5, ROC20 >=4%, base6 <=35%, no hindsight",
       "tooltipMetrics": {
-        "winRate": "High-winrate research",
-        "averageReturn": "Setup phụ, tín hiệu hiếm",
-        "totalReturn": "Theo backtest LH4"
+        "winRate": "75.0% (WaveA current180)",
+        "averageReturn": "+14.29%/trade",
+        "totalReturn": "+57.15%, 4 trades"
       },
       "dataAsOf": "2026-07-08T14:06:56.262893",
       "source": "fresh rs_levels_vn100_cache + lh_canonical_indicators_daily"
