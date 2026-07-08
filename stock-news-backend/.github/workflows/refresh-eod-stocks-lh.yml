@@ -1,26 +1,28 @@
-name: Refresh LH EOD top200 market cap
+name: LH Investment after-close update
 
 on:
   schedule:
-    # After 15:15 Vietnam close window, weekdays: 15:25 ICT = 08:25 UTC.
-    - cron: '25 8 * * 1-5'
+    # 15:30 ICT (Asia/Saigon) on trading weekdays = 08:30 UTC, Monday-Friday.
+    - cron: '30 8 * * 1-5'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-lh-eod-top200-marketcap
+  group: lh-after-close-update-1530
   cancel-in-progress: true
 
 jobs:
-  refresh-eod-top200:
+  after-close-update:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: stock-news-backend
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -35,31 +37,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Refresh EOD top 200 market cap indicators
-        run: python refresh_eod_all_stocks_lh.py
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
 
-      - name: Refresh public Firebase cache (data only; HTML hard-locked)
-        run: python build_firebase_cache_site.py
-
-      - name: Guard final frontend markers after static build
-        run: python verify_lh_final_frontend_markers.py
-
-      - name: Refresh warrants cache after static rebuild
-        run: python refresh_warrants_cache_lh.py
-
-      - name: Commit updated EOD cache
+      - name: Configure git author
         run: |
           git config user.name "LH Investment Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/eod_top200_marketcap_hose_hnx.json firebase_public/data/eod_top200_marketcap_hose_hnx.json
-          git add data/eod_all_stocks_hose_hnx.json firebase_public/data/eod_all_stocks_hose_hnx.json
-          git add firebase_public/data/warrants_data.json firebase_public/data/app_version.json
-          git diff --cached --quiet || git commit -m "Auto refresh LH EOD stocks cache"
-          git push
 
-      - name: Deploy LHInvestment hosting
+      - name: Run LH after-close update pipeline
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PYTHONUTF8: '1'
+          PYTHONIOENCODING: utf-8
+        run: python lh_after_close_update/run_lh_after_close_update.py
+
+      - name: Guard final frontend markers after pipeline
         run: |
-          npm install -g firebase-tools
-          firebase deploy --only hosting --project lhinvestment --token "$FIREBASE_TOKEN"
+          python verify_lh_final_frontend_markers.py
+          python lh_after_close_update/verify_no_old_version_regression.py

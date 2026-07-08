@@ -1,0 +1,32 @@
+{
+  "pipeline": "LH Investment after-close update",
+  "schedule": "15:30 Asia/Saigon on trading weekdays (GitHub cron 30 8 * * 1-5)",
+  "entrypoint": "lh_after_close_update/run_lh_after_close_update.py",
+  "root_pipeline": "run_after_close_output_lh.py",
+  "data_scripts": [
+    "run_rs_levels_vn100_safe.py",
+    "build_v3_full_indicator_cache_v2.py",
+    "build_weekly_indicators_vn100_cache.py",
+    "build_monthly_indicators_vn100_cache.py",
+    "refresh_vn100_history_for_core12.py",
+    "build_core12_ml_sr_full_universe.py",
+    "build_lh_canonical_indicators_daily.py",
+    "build_strategy_results_from_indicator_cache.py",
+    "refresh_market_prices_lh.py",
+    "build_firebase_cache_site.py",
+    "update_popup_ichimoku_all_symbols.py",
+    "apply_lh_live_overrides.py"
+  ],
+  "guards": [
+    "verify_lh_final_frontend_markers.py",
+    "lh_after_close_update/verify_no_old_version_regression.py"
+  ],
+  "published_outputs": [
+    "firebase_public/data/market_data.json",
+    "firebase_public/data/market_watch.json",
+    "firebase_public/data/popup_ichimoku_update_summary.json",
+    "firebase_public/data/strategy_results_cache.json",
+    "firebase_public/data/strategy_matrix_cache.json"
+  ],
+  "backup_folder_latest_example": "_backups/lh_final_popup_ichimoku_20260708_1112"
+}
