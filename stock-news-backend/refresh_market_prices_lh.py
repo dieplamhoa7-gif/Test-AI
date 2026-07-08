@@ -30,7 +30,9 @@ def symbol_of(item):
 
 def update_item(item, quote):
     price = quote.get('price')
-    if price is None:
+    # Guard: before market open VPS can return 0/invalid quotes; never overwrite
+    # the last good EOD/precomputed price with 0, which shows as -100% on web.
+    if price is None or float(price or 0) <= 0:
         return False
     changed = False
     for key, val in {

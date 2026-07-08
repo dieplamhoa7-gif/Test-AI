@@ -16,6 +16,7 @@ import re
 import shutil
 from pathlib import Path
 from typing import Any
+from datetime import datetime, timezone, timedelta
 
 ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "firebase_public"
@@ -419,8 +420,31 @@ def main() -> None:
     PUBLIC.mkdir(exist_ok=True)
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
-    market = build_market_cache()
-    write_json(PUBLIC_DATA / "market_data.json", market)
+    # Preserve fresh market_data if refresh_market_prices_lh.py already ran recently
+    existing_market = read_json(DATA / "market_data.json", None)
+    fresh_cutoff = datetime.now(timezone(timedelta(hours=7))) - timedelta(minutes=10)
+    if existing_market and isinstance(existing_market, dict):
+        updated_at_str = existing_market.get("updatedAt") or existing_market.get("priceUpdatedAt")
+        if updated_at_str:
+            try:
+                from dateutil.parser import parse
+                updated_at = parse(updated_at_str)
+                if updated_at > fresh_cutoff:
+                    print(f"[build_firebase_cache_site] Preserving fresh market_data from {updated_at_str}")
+                    market = existing_market
+                    write_json(PUBLIC_DATA / "market_data.json", market)
+                else:
+                    market = build_market_cache()
+                    write_json(PUBLIC_DATA / "market_data.json", market)
+            except Exception:
+                market = build_market_cache()
+                write_json(PUBLIC_DATA / "market_data.json", market)
+        else:
+            market = build_market_cache()
+            write_json(PUBLIC_DATA / "market_data.json", market)
+    else:
+        market = build_market_cache()
+        write_json(PUBLIC_DATA / "market_data.json", market)
     default_watch = {"MWG", "FPT", "HPG", "SSI"}
     write_json(PUBLIC_DATA / "market_watch.json", {"items": [x for x in market["items"] if str(x.get("ticker") or x.get("symbol") or "").upper() in default_watch], "source": "firebase-static-watch-cache"})
     symbols = []
