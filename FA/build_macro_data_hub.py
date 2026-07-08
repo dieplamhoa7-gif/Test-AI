@@ -7,9 +7,12 @@ from pathlib import Path
 from typing import Any
 
 BASE = Path(__file__).resolve().parent
+WORKSPACE = BASE.parent
 DATA = BASE / "data"
 HISTORY = DATA / "history"
 OUT = DATA / "macro_data_hub"
+WEB_MACRO_DIR = WORKSPACE / "Vi mo"
+WEB_DATA_DIR = WEB_MACRO_DIR / "data" / "macro_data_hub"
 
 
 def load_latest_snapshot() -> tuple[Path, dict[str, Any]]:
@@ -107,12 +110,35 @@ def main() -> dict[str, Any]:
         "indicators": len(rows),
         "rows": rows,
     }
-    (OUT / "latest.json").write_text(json.dumps(latest, ensure_ascii=False, indent=2), encoding="utf-8")
+    latest_json = json.dumps(latest, ensure_ascii=False, indent=2)
+    (OUT / "latest.json").write_text(latest_json, encoding="utf-8")
     with (OUT / "latest.csv").open("w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader(); w.writerows(rows)
-    (OUT / f"macro_data_hub_{snap_date}.json").write_text(json.dumps(latest, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"status":"ok","datasets":latest["datasets"],"indicators":latest["indicators"],"out":str(OUT)}, ensure_ascii=False))
+    (OUT / f"macro_data_hub_{snap_date}.json").write_text(latest_json, encoding="utf-8")
+
+    # Mirror to the static macro web folder so the website can always fetch the
+    # same latest database without reading internal FA paths. If a deploy job
+    # publishes `Vi mo/`, these files go online with the web assets.
+    WEB_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (WEB_DATA_DIR / "latest.json").write_text(latest_json, encoding="utf-8")
+    with (WEB_DATA_DIR / "latest.csv").open("w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w.writeheader(); w.writerows(rows)
+    (WEB_DATA_DIR / f"macro_data_hub_{snap_date}.json").write_text(latest_json, encoding="utf-8")
+
+    manifest = {
+        "status": "ok",
+        "latest": "data/macro_data_hub/latest.json",
+        "latestCsv": "data/macro_data_hub/latest.csv",
+        "date": snap_date,
+        "generatedAt": latest["generatedAt"],
+        "datasets": latest["datasets"],
+        "indicators": latest["indicators"],
+    }
+    (WEB_MACRO_DIR / "macro_data_hub_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    print(json.dumps({"status":"ok","datasets":latest["datasets"],"indicators":latest["indicators"],"out":str(OUT),"webOut":str(WEB_DATA_DIR)}, ensure_ascii=False))
     return latest
 
 
