@@ -30,13 +30,18 @@ def _detect_workspace() -> Path:
 
 WORKSPACE = _detect_workspace()
 LH_ROOTS = [
-    # Current live/backend copy must win: Hòa Đại ka wants Super_LH reports anchored to stock-news-backend latest data.
+    # Current clean/live reference must win: Hòa Đại ka wants Model3/Codex to anchor reports
+    # to LHINVT_WEB_CLEAN first because it is local, fast, and mirrors lhinvt.web.app data.
+    WORKSPACE / "LHINVT_WEB_CLEAN",
+    # Main repo is fallback if clean copy misses a file/symbol.
     WORKSPACE / "stock-news-backend",
     WORKSPACE / "tmp_lh_push_clean" / "stock-news-backend",
     WORKSPACE / "CLAUDE_INVESTMENT_MODEL_REVIEW" / "stock-news-backend",
-    # Restored backup is fallback only; never prefer it over stock-news-backend.
+    # Restored backup is last fallback only; never prefer it over LHINVT_WEB_CLEAN/current repo.
     WORKSPACE / "_restore_lhinvestment_from_backup_20260626",
 ]
+
+LHINVT_LIVE_BASE = os.environ.get("LHINVT_LIVE_BASE", "https://lhinvt.web.app").rstrip("/")
 
 DEFAULT_RSS_URLS = [
     # Override/extend via SUPERLH_MODEL3_RSS_URLS="url1,url2" if CafeF/Vietstock changes feed paths.
@@ -100,7 +105,95 @@ def _manual_price_override(symbol: str) -> dict[str, Any] | None:
     return None
 
 
+def _latest_local_clean_snapshot(symbol: str) -> dict[str, Any] | None:
+    """Fast local source: LHINVT_WEB_CLEAN mirrors the current lhinvt.web.app data.
+
+    Prefer this over importing stock-news-backend.market_data because it is lighter and
+    avoids live library/cache side effects. Values still need freshness checks against
+    chart/EOD rows in _indicator_matrix_raw.
+    """
+    sym = symbol.upper().strip()
+    clean = WORKSPACE / "LHINVT_WEB_CLEAN"
+    if not clean.exists():
+        return None
+    rels = [
+        r"firebase_public\data\market_data.json",
+        r"data\market_data.json",
+        r"firebase_public\data\market_watch.json",
+        r"data\market_watch.json",
+        rf"firebase_public\data\charts\{sym}.json",
+        rf"firebase_public\data\charts\{sym}_day.json",
+    ]
+    candidates: list[tuple[str, Any, float]] = []
+    for rel in rels:
+        p = clean / rel.replace("\\", os.sep)
+        data = _read_json(p) if p.exists() else None
+        rec = _find_symbol_record(data, sym) if data is not None else None
+        if rec is None and isinstance(data, dict) and ("rows" in data or "data" in data):
+            rec = data
+        if rec is None:
+            continue
+        _, ts = _record_date_score(rec)
+        candidates.append((str(p), rec, ts))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[2], reverse=True)
+    src, rec, _ = candidates[0]
+    return {
+        "ok": True,
+        "source": f"LHINVT_WEB_CLEAN local cache ({src})",
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "symbol": rec,
+        "macro_index_overview": {},
+    }
+
+
+def _latest_lhinvt_live_snapshot(symbol: str) -> dict[str, Any] | None:
+    """Fallback to the currently deployed LHINVT web JSON if local clean copy misses data."""
+    sym = symbol.upper().strip()
+    headers = {"User-Agent": "SuperLH-Model3/1.0"}
+    endpoints = [
+        f"{LHINVT_LIVE_BASE}/data/market_data.json",
+        f"{LHINVT_LIVE_BASE}/data/market_watch.json",
+        f"{LHINVT_LIVE_BASE}/data/charts/{sym}.json",
+        f"{LHINVT_LIVE_BASE}/data/charts/{sym}_day.json",
+    ]
+    candidates: list[tuple[str, Any, float]] = []
+    for url in endpoints:
+        try:
+            r = requests.get(url, headers=headers, timeout=10, params={"ts": int(datetime.now(timezone.utc).timestamp())})
+            if r.status_code != 200:
+                continue
+            data = r.json()
+        except Exception:
+            continue
+        rec = _find_symbol_record(data, sym)
+        if rec is None and isinstance(data, dict) and ("rows" in data or "data" in data):
+            rec = data
+        if rec is None:
+            continue
+        _, ts = _record_date_score(rec)
+        candidates.append((url, rec, ts))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[2], reverse=True)
+    url, rec, _ = candidates[0]
+    return {
+        "ok": True,
+        "source": f"{LHINVT_LIVE_BASE} live JSON ({url})",
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "symbol": rec,
+        "macro_index_overview": {},
+    }
+
+
 def _latest_live_market_snapshot(symbol: str) -> dict[str, Any]:
+    local = _latest_local_clean_snapshot(symbol)
+    if local:
+        return local
+    live = _latest_lhinvt_live_snapshot(symbol)
+    if live:
+        return live
     """Force refresh current PTKT/price/index data from stock-news-backend.
 
     Hòa Đại ka updates prices daily, so Model3 must prefer this live fetch over
@@ -711,11 +804,11 @@ def build_lhinvestment_context(task: str) -> str:
     live_snapshot = _latest_live_market_snapshot(symbol)
     parts = [
         f"LHINVESTMENT_CONTEXT cho mã {symbol}",
-        "NGUYÊN TẮC DỮ LIỆU: giá/current indicator luôn phải là dữ liệu mới nhất. Ưu tiên manual override có bằng chứng, sau đó vnstock Quote.history EOD theo từng mã, sau đó cache JSON chỉ là fallback. Nếu cache cũ hơn ngày dữ liệu mới thì KHÔNG được dùng làm giá/current indicator; phải ghi rõ stale cache guard.",
-        f"Nguồn local: {WORKSPACE} / stock-news-backend + backup cache LHInvestment nếu current cache thiếu mã.",
+        "NGUYÊN TẮC DỮ LIỆU: giá/current indicator luôn phải là dữ liệu mới nhất. Ưu tiên LHINVT_WEB_CLEAN local cache vì nhanh/nhẹ và đang mirror lhinvt.web.app; nếu thiếu thì fallback live lhinvt.web.app; sau cùng mới dùng stock-news-backend/vnstock/cache. Nếu cache cũ hơn ngày dữ liệu mới thì KHÔNG được dùng làm giá/current indicator; phải ghi rõ stale cache guard.",
+        f"Nguồn ưu tiên: {WORKSPACE} / LHINVT_WEB_CLEAN -> {LHINVT_LIVE_BASE} -> stock-news-backend fallback.",
     ]
     if live_snapshot.get("ok"):
-        parts.append("\nLIVE_MARKET_FORCE_REFRESH — dữ liệu giá/PTKT/vĩ mô mới nhất từ stock-news-backend.app.market_data/vnstock EOD per-symbol:\n" + compact_record(live_snapshot, 4200))
+        parts.append("\nLIVE_MARKET_FORCE_REFRESH — dữ liệu giá/PTKT/vĩ mô mới nhất theo thứ tự LHINVT_WEB_CLEAN -> lhinvt.web.app -> stock-news-backend fallback:\n" + compact_record(live_snapshot, 4200))
     else:
         parts.append("\nLIVE_MARKET_FORCE_REFRESH: Không lấy được dữ liệu mới. Lỗi: " + str(live_snapshot.get("error") or "unknown") + ". Báo cáo phải cảnh báo thiếu dữ liệu mới, không dùng cache cũ làm giá hiện tại.")
 
