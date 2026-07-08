@@ -494,11 +494,14 @@ def _model3_codex_fallback(task: str, s: AgentStep, exc: Exception) -> str:
             f"Ghi chú kỹ thuật: Codex timeout ({reason}); workflow tiếp tục để không mất báo cáo."
         )
     if s in (MODEL3_FUNDAMENTAL, MODEL3_BULL_BEAR, MODEL3_FOLLOWUP_PLAN):
-        title = {
-            MODEL3_FUNDAMENTAL: "Fundamental & Macro",
-            MODEL3_BULL_BEAR: "Bull / Bear / Catalyst",
-            MODEL3_FOLLOWUP_PLAN: "Kế hoạch theo dõi",
-        }.get(s, s.label)
+        if s is MODEL3_FUNDAMENTAL or s.label == MODEL3_FUNDAMENTAL.label:
+            title = "Fundamental & Macro"
+        elif s is MODEL3_BULL_BEAR or s.label == MODEL3_BULL_BEAR.label:
+            title = "Bull / Bear / Catalyst"
+        elif s is MODEL3_FOLLOWUP_PLAN or s.label == MODEL3_FOLLOWUP_PLAN.label:
+            title = "Kế hoạch theo dõi"
+        else:
+            title = s.label
         return (
             f"## {title} — {ticker}\n"
             f"Provider Codex bị timeout nên dùng fallback an toàn, không bịa dữ liệu.\n\n"
