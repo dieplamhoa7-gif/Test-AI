@@ -109,6 +109,7 @@ def _run_pipeline(py: str) -> None:
         [py, "build_strategy_results_from_indicator_cache.py"],
         [py, "refresh_market_prices_lh.py"],
         [py, "build_firebase_cache_site.py"],
+        [py, "update_popup_ichimoku_all_symbols.py"],
         [py, "apply_lh_live_overrides.py"],
     ])
     for step in steps:
@@ -132,6 +133,7 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/live_overrides/strategy_matrix_cache.json",
          "stock-news-backend/data/market_data.json",
          "stock-news-backend/data/market_overview.json",
+         "stock-news-backend/data/popup_ichimoku_update_summary.json",
          # Output-only automation: commit source data/output artifacts only.
          # Do not stage firebase_public/* here. Those files are the live hosting
          # payload and must only change through the reviewed guarded deploy flow.
