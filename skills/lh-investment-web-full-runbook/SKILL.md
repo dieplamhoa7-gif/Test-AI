@@ -55,8 +55,13 @@ Use this skill for **all LH Investment / lhinvestment.web.app / future LHINVT.we
 - Current live project:
   - Firebase project: `lhinvestment`
   - URL: `https://lhinvestment.web.app`
-- New target project requested by Hòa Đại ka:
-  - URL/project desired: `LHINVT.web.app` / likely Firebase project id to be created/configured as `lhinvt` or exact ID chosen in Firebase Console.
+- New Firebase project/account deployment:
+  - Google account used by Firebase CLI after login: `lamhoabb1@gmail.com`
+  - Project display name: `Security`
+  - Project ID: `security-1c731`
+  - Default project site: `security-1c731.web.app`
+  - Added Hosting site for LH Investment: `lhinvt`
+  - New live URL: `https://lhinvt.web.app`
 
 ## Main Deploy Command
 
@@ -66,13 +71,16 @@ From `stock-news-backend/`:
 firebase deploy --project lhinvestment --only hosting
 ```
 
-For new Firebase project after login/setup:
+For new Firebase project/site after login/setup:
 
 ```powershell
-firebase deploy --project <NEW_PROJECT_ID> --only hosting
+firebase login:use lamhoabb1@gmail.com
+firebase deploy --project security-1c731 --config firebase.lhinvt.json --only hosting
 ```
 
-Do not deploy until `.firebaserc`, `firebase.json`, and `firebase_public/` are verified.
+`firebase.lhinvt.json` is a deploy config copied from `firebase.json` with `hosting.site = "lhinvt"`.
+
+Do not deploy until `.firebaserc`, `firebase.json` / `firebase.lhinvt.json`, and `firebase_public/` are verified.
 
 ## Mandatory Post-Deploy Verification
 
@@ -388,31 +396,35 @@ Do not use archived deploy folders unless explicitly restoring with evidence:
 
 ## New Firebase Project Migration to LHINVT.web.app
 
-When Hòa Đại ka logs into another Firebase/Google account:
+Current migration status:
 
-1. Open Firebase Console in browser.
-2. Let user login/create/select project.
-3. Determine exact project ID; likely lowercase `lhinvt`, but use exact ID shown by Firebase.
-4. Do not overwrite current `lhinvestment` deployment unless asked.
-5. Copy/deploy the same canonical `firebase_public/` to the new project.
-6. Use:
+- Firebase CLI added and switched to `lamhoabb1@gmail.com`.
+- Project confirmed:
+  - `security-1c731`
+- Hosting site created:
+  - `lhinvt`
+  - URL: `https://lhinvt.web.app`
+- Deploy config created:
+  - `stock-news-backend/firebase.lhinvt.json`
+- First deploy completed successfully to `https://lhinvt.web.app`.
+
+Deploy command:
 
 ```powershell
-firebase projects:list
-firebase use --add
-firebase deploy --project <NEW_PROJECT_ID> --only hosting
+firebase login:use lamhoabb1@gmail.com
+firebase deploy --project security-1c731 --config firebase.lhinvt.json --only hosting
 ```
 
-7. Verify new live URL:
+Verify new live URL:
 
-- `https://<NEW_PROJECT_ID>.web.app/stocks`
-- `https://<NEW_PROJECT_ID>.web.app/data/strategy_matrix_cache.json`
-- `https://<NEW_PROJECT_ID>.web.app/data/strategy_results_cache.json`
-- `https://<NEW_PROJECT_ID>.web.app/data/market_data.json`
-- `https://<NEW_PROJECT_ID>.web.app/data/warrants_data.json`
-- `https://<NEW_PROJECT_ID>.web.app/data/news_cache.json`
+- `https://lhinvt.web.app/stocks`
+- `https://lhinvt.web.app/data/strategy_matrix_cache.json`
+- `https://lhinvt.web.app/data/strategy_results_cache.json`
+- `https://lhinvt.web.app/data/market_data.json`
+- `https://lhinvt.web.app/data/warrants_data.json`
+- `https://lhinvt.web.app/data/news_cache.json`
 
-8. Run marker checks on live HTML manually/curl for the new URL, since local guard scripts may point at current project.
+Run marker checks on live HTML manually/curl for the new URL, since local guard scripts may point at current project.
 
 ## Emergency Rollback / Regression Checklist
 
