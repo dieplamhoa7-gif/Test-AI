@@ -735,20 +735,28 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
     if matched:
         section_key, agent = matched
         terminal_done = ("✅" in text) or (" xong" in low) or ("done" in low) or ("created" in low and section_key == "notebooklm")
-        terminal_error = ("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low)
+        # Do not paint Codex red for controlled fallback warnings. Messages like
+        # "provider lỗi/timeout, dùng fallback" mean the workflow is recovering,
+        # not that the section failed. Only hard failure markers should become error.
+        recoverable = ("fallback" in low) or ("workflow không chết" in low) or ("workflow khong chet" in low)
+        terminal_error = (not recoverable) and (("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low))
         next_status = "error" if terminal_error else ("done" if terminal_done else "running")
         if agent in job["agents"]:
             if next_status == "error":
                 job["agents"][agent] = "error"
-            elif job["agents"][agent] in {"pending", "running"}:
+            elif next_status == "done":
+                # A successful later completion overrides an earlier transient red state.
+                job["agents"][agent] = "running"
+            elif job["agents"][agent] in {"pending", "running", "error"}:
                 job["agents"][agent] = "running"
         for s in job["sections"]:
             if s["key"] == section_key:
                 if next_status == "error":
                     s["status"] = "error"
                 elif next_status == "done":
+                    # Done must override an earlier warning/error for the same section.
                     s["status"] = "done"
-                elif s["status"] == "pending":
+                elif s["status"] in {"pending", "error"}:
                     s["status"] = "running"
                 break
         # If all sections belonging to an agent are done/skipped, mark that AI done.
