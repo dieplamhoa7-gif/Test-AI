@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/cw">Warrants</a><a href="/news-page">News</a><a href="/portfolio-test">Portfolio Test</a></div></div>
+  <div class="top"><div><div class="brand">LH INVESTMENT</div><div class="muted">Account & price alerts</div></div><div class="nav"><a href="/stocks">Stocks</a><a href="/warrants">Warrants</a><a href="/news-page">News</a><a href="/portfolio-test">Portfolio Test</a></div></div>
   <div id="status" class="muted"></div>
   <section id="authCard" class="card">
     <h2>Tài khoản</h2><p class="muted">Đăng ký/đăng nhập bằng tên đăng nhập hoặc email + mật khẩu. Không cần OTP.</p>
@@ -29,11 +29,10 @@
 </div>
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
 import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, onSnapshot, serverTimestamp, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 const firebaseConfig = { projectId:'lhinvestment', appId:'1:17989244201:web:c2185c64a67d9515b95338', storageBucket:'lhinvestment.firebasestorage.app', apiKey:'AIzaSyCu4aWXDU3VUGry2MNy4zdRGeiINKi3GwQ', authDomain:'lhinvestment.firebaseapp.com', messagingSenderId:'17989244201' };
 const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getFirestore(app);
-await setPersistence(auth, browserLocalPersistence);
 const $=id=>document.getElementById(id); let uid='', notifyEnabled=true;
 function msg(t, cls='muted'){ $('status').className=cls; $('status').textContent=t||''; }
 function symClean(v){ return String(v||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,12); }
