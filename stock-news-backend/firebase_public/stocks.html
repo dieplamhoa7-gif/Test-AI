@@ -1963,5 +1963,31 @@
 })();
 </script>
 
+
+<script id="lh-market-indicator-fallback-renderer">
+(function(){
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+  function num(v,d=2){ const n=Number(v); return Number.isFinite(n)? n.toLocaleString('vi-VN',{maximumFractionDigits:d}) : '-'; }
+  function cls(v){ const n=Number(v||0); return n>0?'positive':(n<0?'negative':''); }
+  async function renderOverviewFallback(){
+    const box=document.getElementById('indexOverview'); if(!box) return;
+    try{ const d=await (await fetch('/data/market_overview.json?ts='+Date.now(),{cache:'no-store'})).json(); const items=Array.isArray(d.items)?d.items:[]; if(!items.length) return; box.innerHTML=items.map(x=>`<div class="index-card"><span>${esc(x.label||x.symbol)}</span><b class="${cls(x.changePct)}">${num(x.close,2)}</b><small class="${cls(x.changePct)}">${Number(x.change||0)>0?'+':''}${num(x.change,2)} • ${Number(x.changePct||0)>0?'+':''}${num(x.changePct,2)}%</small></div>`).join(''); }catch(e){}
+  }
+  async function renderMarketIndicatorFallback(){
+    const grid=document.getElementById('marketGrid'); const status=document.getElementById('marketStatus'); if(!grid) return;
+    try{
+      const d=await (await fetch('/data/market_data.json?ts='+Date.now(),{cache:'no-store'})).json();
+      const items=(Array.isArray(d.items)?d.items:[]).slice(0,50);
+      if(!items.length) return;
+      if(status) status.textContent='Dữ liệu giá + chỉ báo đã cập nhật: '+(d.priceUpdatedAt||d.updatedAt||'');
+      grid.innerHTML=items.map(x=>{ const t=x.technical||{}; const sym=x.symbol||x.ticker||''; return `<div class="mini-stock indicator-card" data-ticker="${esc(sym)}"><strong>${esc(sym)}</strong><span class="stock-line"><span>Giá</span><b class="${cls(x.changePct)}">${num(x.price,2)} (${Number(x.changePct||0)>0?'+':''}${num(x.changePct,2)}%)</b></span><span class="stock-line"><span>RSI / ADX</span><b>${num(t.rsi14,2)} / ${num(t.adx14,2)}</b></span><span class="stock-line"><span>BB %B</span><b>${num(t.bbPercent,3)}</b></span><span class="stock-line"><span>Ichimoku</span><b>${esc(t.ichimokuState||'-')}</b></span><span class="stock-line"><span>Tenkan/Kijun</span><b>${num(t.tenkan,2)} / ${num(t.kijun,2)}</b></span><span class="stock-line"><span>Hỗ trợ / Kháng cự</span><b>${num(t.activeSupportDay||x.activeSupportDay,2)} / ${num(t.activeResistanceDay||x.activeResistanceDay,2)}</b></span></div>`; }).join('');
+      grid.querySelectorAll('[data-ticker]').forEach(el=>el.addEventListener('click',()=>{ try{ openStockSymbol(el.dataset.ticker); }catch(_){} }));
+    }catch(e){ console.warn('LH market indicator fallback failed',e); }
+  }
+  function run(){ renderOverviewFallback(); renderMarketIndicatorFallback(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(run,1000)); else setTimeout(run,1000);
+})();
+</script>
+
 </body>
 </html>
