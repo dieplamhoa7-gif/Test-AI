@@ -465,6 +465,12 @@ def main() -> None:
         (DATA / "news_cache_en.json", PUBLIC_DATA / "news_cache_en.json"),
         (DATA / "strategy_results_cache.json", PUBLIC_DATA / "strategy_results_cache.json"),
         (DATA / "strategy_matrix_cache.json", PUBLIC_DATA / "strategy_matrix_cache.json"),
+        (DATA / "v3_full_indicator_cache_v2.json", PUBLIC_DATA / "v3_full_indicator_cache_v2.json"),
+        (DATA / "lh_canonical_indicators_daily.json", PUBLIC_DATA / "lh_canonical_indicators_daily.json"),
+        (DATA / "hourly_indicators_vn100_cache.json", PUBLIC_DATA / "hourly_indicators_vn100_cache.json"),
+        (DATA / "weekly_indicators_vn100_cache.json", PUBLIC_DATA / "weekly_indicators_vn100_cache.json"),
+        (DATA / "monthly_indicators_vn100_cache.json", PUBLIC_DATA / "monthly_indicators_vn100_cache.json"),
+        (DATA / "lh1_premium_vn100_today_scan.json", PUBLIC_DATA / "lh1_premium_vn100_today_scan.json"),
         (DATA / "rs_levels_hsx_all_cache.json", PUBLIC_DATA / "rs_levels_hsx_all_cache.json"),
     ]:
         if src.exists():
