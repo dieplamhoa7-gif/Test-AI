@@ -148,15 +148,27 @@ def core12_decision(core12: dict[str, Any] | None) -> dict[str, Any] | None:
     return {k: core12.get(k) for k in keys if k in core12}
 
 
+def source_created_at(payload: dict[str, Any]) -> str | None:
+    return payload.get('createdAt') or payload.get('updatedAt')
+
+
+def is_stale_for_today(payload: dict[str, Any]) -> bool:
+    created = source_created_at(payload)
+    if not created:
+        return False
+    return str(created)[:10] != datetime.now().date().isoformat()
+
+
 def clean_source_meta(name: str, payload: dict[str, Any], path: Path) -> dict[str, Any]:
     return {
         'name': name,
         'path': str(path),
         'exists': path.exists(),
-        'createdAt': payload.get('createdAt') or payload.get('updatedAt'),
+        'createdAt': source_created_at(payload),
         'count': payload.get('count') or len(payload.get('items') or payload.get('rows') or []),
         'errorCount': payload.get('errorCount'),
         'loadError': payload.get('_loadError'),
+        'staleSkipped': bool(name == 'rsHsxAll' and is_stale_for_today(payload)),
     }
 
 
@@ -164,7 +176,9 @@ def main() -> None:
     payloads = {name: load_json(path) for name, path in SOURCES.items()}
     daily = items_by_symbol(payloads['dailyV3'])
     rs_vn100 = items_by_symbol(payloads['rsVn100'])
-    rs_hsx = items_by_symbol(payloads['rsHsxAll'])
+    # HSX-all support/resistance is optional. Do not let an old broad-universe
+    # cache contaminate today's strategy scan; use it only when refreshed today.
+    rs_hsx = {} if is_stale_for_today(payloads['rsHsxAll']) else items_by_symbol(payloads['rsHsxAll'])
     hourly = items_by_symbol(payloads['hourly'])
     weekly = items_by_symbol(payloads['weekly'])
     monthly = items_by_symbol(payloads['monthly'])
