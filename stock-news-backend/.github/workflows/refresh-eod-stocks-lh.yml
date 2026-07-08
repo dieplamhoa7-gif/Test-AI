@@ -38,8 +38,11 @@ jobs:
       - name: Refresh EOD top 200 market cap indicators
         run: python refresh_eod_all_stocks_lh.py
 
-      - name: Refresh public Firebase cache
+      - name: Refresh public Firebase cache (data only; HTML hard-locked)
         run: python build_firebase_cache_site.py
+
+      - name: Guard final frontend markers after static build
+        run: python verify_lh_final_frontend_markers.py
 
       - name: Refresh warrants cache after static rebuild
         run: python refresh_warrants_cache_lh.py

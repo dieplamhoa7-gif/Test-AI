@@ -37,8 +37,11 @@ jobs:
       - name: Build English news output
         run: python build_news_translate_cache.py --limit 120
 
-      - name: Build Firebase static output
+      - name: Build Firebase static output (data only; HTML hard-locked)
         run: python build_firebase_cache_site.py
+
+      - name: Guard final frontend markers after static build
+        run: python verify_lh_final_frontend_markers.py
 
       - name: Commit updated cache
         run: |

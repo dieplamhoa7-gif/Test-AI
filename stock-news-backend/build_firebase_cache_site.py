@@ -356,6 +356,11 @@ def patch_html_for_firebase(html: str) -> str:
 
 
 def build_html() -> None:
+    # HARD LOCK: never regenerate Firebase HTML from dashboard_template.py in
+    # data refreshes. The approved frontend lives directly in firebase_public/.
+    # Rebuilding here reverts Wyckoff/Auto-chart/final frontend markers.
+    print("[build_html] HARD-SKIPPED: firebase_public HTML is canonical; data refresh only.")
+    return
     dashboard = extract_raw_py_string((APP / "dashboard_template.py").read_text(encoding="utf-8"), "DASHBOARD_HTML")
     dashboard = patch_html_for_firebase(dashboard)
     # Keep HTML small: use file logo instead of huge inline base64.
