@@ -52,10 +52,10 @@ Use this skill for **all LH Investment / lhinvestment.web.app / future LHINVT.we
 - Firebase config:
   - `stock-news-backend/firebase.json`
   - `stock-news-backend/.firebaserc`
-- Current live project:
+- Old Firebase project/site (do not use unless Hòa explicitly asks):
   - Firebase project: `lhinvestment`
   - URL: `https://lhinvestment.web.app`
-- New Firebase project/account deployment:
+- Current primary Firebase project/account deployment:
   - Google account used by Firebase CLI after login: `lamhoabb1@gmail.com`
   - Project display name: `Security`
   - Project ID: `security-1c731`
@@ -65,13 +65,9 @@ Use this skill for **all LH Investment / lhinvestment.web.app / future LHINVT.we
 
 ## Main Deploy Command
 
+Current primary deploy target is `https://lhinvt.web.app`. Do **not** deploy LH Investment routine updates to old `lhinvestment` unless Hòa explicitly asks.
+
 From `stock-news-backend/`:
-
-```powershell
-firebase deploy --project lhinvestment --only hosting
-```
-
-For new Firebase project/site after login/setup:
 
 ```powershell
 firebase login:use lamhoabb1@gmail.com
@@ -462,3 +458,224 @@ A task is not done until:
 - No forbidden rollback marker appears.
 - Git commit and push are verified against remote.
 - User-facing summary states exact live state and any caveat.
+
+
+## 2026-07-08 Cleanup State / Final-Only Rule
+
+Hòa Đại ka explicitly requested that old LHInvestment / CK / non-final strategy files be deleted/cleaned to stop repeated rollback/back-version confusion.
+
+### Clean working folders
+
+- Main repo remains: `C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend`
+- Clean deploy/reference copy: `C:\Users\HoaD-CVDT\.openclaw\workspace\LHINVT_WEB_CLEAN`
+- Old local material was moved to recoverable trash, not permanently destroyed:
+  - `workspace\trash\lhinvestment_old_cleanup_20260708_152124`
+  - `workspace\trash\ck_outside_workspace_cleanup_20260708_154951`
+
+### Git cleanup commits
+
+- `68a23466 Clean old LHInvestment temp files`
+- `749408a7 Remove obsolete LHInvestment archives and refresh live cache`
+- `b71199e0 Keep only final LH strategy backtest files`
+
+### Ignore rules added
+
+`stock-news-backend/.gitignore` blocks re-adding rollback-prone files:
+
+```gitignore
+tmp_*
+*.pyc
+__pycache__/
+.firebase/
+_ARCHIVE_DO_NOT_DEPLOY_*/
+_backups/
+archive_unused_strategy_files/
+logs/
+node_modules/
+```
+
+### Final LH strategy files only
+
+The repository should only retain final strategy evidence and live output files listed in:
+
+- `stock-news-backend/FINAL_STRATEGY_FILES.md`
+
+Final public contract:
+
+- `LH1_FINAL`
+- `LH2_FINAL`
+- `LH3_FINAL`
+- `LH4_FINAL`
+
+Keep these final/evidence files:
+
+#### Shared live strategy output
+
+- `data/strategy_results_cache.json`
+- `firebase_public/data/strategy_results_cache.json`
+- `data/live_overrides/strategy_results_cache.json`
+- `data/strategy_matrix_cache.json`
+- `firebase_public/data/strategy_matrix_cache.json`
+- `data/live_overrides/strategy_matrix_cache.json`
+
+#### LH1_FINAL
+
+- `data/b4_trend_pullback_dist3_target8_from_saved_trades.json`
+- `B4_TREND_PULLBACK_SPEC.md`
+
+#### LH2_FINAL
+
+- `build_lh2_v6.py`
+- `scan_lh2_final_current_watchlist.py`
+- `data/lh2_final_current_watchlist.json`
+- `firebase_public/data/lh2_final_current_watchlist.json`
+
+#### LH3_FINAL
+
+- `data/v3_clean_split_rs_action_backtest.json`
+- `data/v3_clean_split_baseline_locked.json`
+- `save_v3_clean_split_baseline.py`
+
+#### LH4_FINAL
+
+- `backtest_wave_entry_base_6m_target20_h60.py`
+- `data/wave_entry_base_6m_target20_h60_backtest.json`
+
+Do not re-add old/non-final variants like `backtest_a4_*`, old `backtest_b4_*` variants, `v3_target*`, `v3_two_strategies*`, non-H60 `wave_entry*`, `archive_unused_strategy_files`, or `tmp_*`.
+
+## How to Get the Latest Web Data
+
+Use this section when Hòa asks “lấy data mới nhất của web”, “update data web”, “check data live”, or when debugging stale UI.
+
+### A. Pull the latest code/cache from GitHub first
+
+From workspace root or repo:
+
+```powershell
+cd C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend
+git fetch origin
+git rebase origin/master
+```
+
+If PowerShell reports a git push/pull `NativeCommandError`, verify with refs before assuming failure.
+
+### B. Download live data currently served by `lhinvt.web.app`
+
+Use this to compare local cache vs deployed live cache:
+
+```powershell
+cd C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend
+Invoke-WebRequest "https://lhinvt.web.app/data/market_data.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_market_data.json
+Invoke-WebRequest "https://lhinvt.web.app/data/market_watch.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_market_watch.json
+Invoke-WebRequest "https://lhinvt.web.app/data/strategy_results_cache.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_strategy_results.json
+Invoke-WebRequest "https://lhinvt.web.app/data/strategy_matrix_cache.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_strategy_matrix.json
+Invoke-WebRequest "https://lhinvt.web.app/data/warrants_data.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_warrants_data.json
+Invoke-WebRequest "https://lhinvt.web.app/data/news_cache.json?ts=$(Get-Date -Format yyyyMMddHHmmss)" -OutFile tmp_live_news_cache.json
+```
+
+These `tmp_live_*` files are for inspection only. Do not commit them.
+
+### C. Check live endpoint status quickly
+
+```powershell
+$urls=@(
+  'https://lhinvt.web.app/stocks',
+  'https://lhinvt.web.app/data/market_data.json',
+  'https://lhinvt.web.app/data/market_watch.json',
+  'https://lhinvt.web.app/data/strategy_results_cache.json',
+  'https://lhinvt.web.app/data/strategy_matrix_cache.json',
+  'https://lhinvt.web.app/data/warrants_data.json',
+  'https://lhinvt.web.app/data/news_cache.json'
+)
+foreach($u in $urls){
+  try { $r=Invoke-WebRequest -Uri $u -Method Head -UseBasicParsing -TimeoutSec 20; "$($r.StatusCode) $u" }
+  catch { "ERR $u $($_.Exception.Message)" }
+}
+```
+
+All should return `200`.
+
+### D. Generate/refresh latest local web data
+
+For after-close stock/chart/strategy/popup refresh:
+
+```powershell
+cd C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend
+python lh_after_close_update\run_lh_after_close_update.py
+```
+
+For popup technical indicators only:
+
+```powershell
+python update_popup_ichimoku_all_symbols.py
+python build_firebase_cache_site.py
+```
+
+For news only:
+
+```powershell
+python refresh_news_cache_lh.py
+python build_news_translate_cache.py
+```
+
+For warrants/CW only:
+
+```powershell
+python refresh_warrants_cache_lh.py
+python build_warrant_catalog_cache.py
+```
+
+For canonical indicators:
+
+```powershell
+python build_lh_canonical_indicators_daily.py
+```
+
+### E. Deploy refreshed data to current site
+
+```powershell
+cd C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend
+firebase login:use lamhoabb1@gmail.com
+firebase deploy --project security-1c731 --config firebase.lhinvt.json --only hosting
+```
+
+### F. Verify no rollback after deploy
+
+Run local guards:
+
+```powershell
+python verify_lh_final_frontend_markers.py
+python lh_after_close_update\verify_no_old_version_regression.py
+```
+
+Verify live markers:
+
+```powershell
+$h=(Invoke-WebRequest -Uri "https://lhinvt.web.app/stocks?verify=$(Get-Date -Format yyyyMMddHHmmss)" -UseBasicParsing -TimeoutSec 30).Content
+@('20260621-lh-final-chartfix-1936','wyckoffDetailPane','loadWyckoffMethod','loadAutoChart','stockVolBox','Ichimoku','data-analysis-tab') | ForEach-Object { "$($_): $($h.Contains($_))" }
+"forbidden lh-market-indicator-fallback-renderer: $($h.Contains('lh-market-indicator-fallback-renderer'))"
+```
+
+Expected:
+
+- All required markers: `True`
+- Forbidden fallback marker: `False`
+
+### G. Commit refreshed data safely
+
+Avoid broad `git add .`. Add exact files that changed, then commit/push:
+
+```powershell
+git status --short stock-news-backend
+# add exact changed files only, for example:
+git add stock-news-backend/firebase_public/data/market_data.json stock-news-backend/firebase_public/data/market_watch.json
+git commit -m "Refresh LHINVT web data"
+git push origin master
+```
+
+If push output has PowerShell `NativeCommandError`, verify:
+
+```powershell
+git rev-parse --short HEAD
+git ls-remote origin refs/heads/master
+```
