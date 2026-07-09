@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-07-08T16:12:53.211787",
+  "createdAt": "2026-07-09T15:09:26.838243",
   "schemaVersion": "lh-canonical-indicators-daily.v1",
   "note": "Canonical daily indicator/feature store. Overlapping indicator families prefer Core12 tuned features in `preferred`; raw daily/R-S/Core12 values remain for audit.",
   "sources": [
@@ -7,7 +7,7 @@
       "name": "dailyV3",
       "path": "data\\v3_full_indicator_cache_v2.json",
       "exists": true,
-      "createdAt": "2026-07-08T16:07:50.875905",
+      "createdAt": "2026-07-09T15:05:17.518115",
       "count": 50,
       "errorCount": 0,
       "loadError": null,
@@ -17,7 +17,7 @@
       "name": "rsVn100",
       "path": "data\\rs_levels_vn100_cache.json",
       "exists": true,
-      "createdAt": "2026-07-08T16:07:46.480309",
+      "createdAt": "2026-07-09T15:05:12.175651",
       "count": 50,
       "errorCount": 0,
       "loadError": null,
@@ -47,7 +47,7 @@
       "name": "weekly",
       "path": "data\\weekly_indicators_vn100_cache.json",
       "exists": true,
-      "createdAt": "2026-07-08T16:07:55.404220",
+      "createdAt": "2026-07-09T15:05:22.965117",
       "count": 50,
       "errorCount": 0,
       "loadError": null,
@@ -57,7 +57,7 @@
       "name": "monthly",
       "path": "data\\monthly_indicators_vn100_cache.json",
       "exists": true,
-      "createdAt": "2026-07-08T16:07:59.447655",
+      "createdAt": "2026-07-09T15:05:28.603620",
       "count": 50,
       "errorCount": 0,
       "loadError": null,
@@ -67,7 +67,7 @@
       "name": "core12",
       "path": "data\\core12_ml_sr_full_universe.json",
       "exists": true,
-      "createdAt": "2026-07-08T16:12:52",
+      "createdAt": "2026-07-09T15:09:26",
       "count": 120,
       "errorCount": null,
       "loadError": null,
@@ -541,8 +541,8 @@
           "chikou": null,
           "state": "above_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": 1.4207048458149225,
-          "core12Tk": 1.2995594713655734,
+          "core12CloudPos": 1.5899122807016879,
+          "core12Tk": 1.6447368421051913,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -596,20 +596,20 @@
         },
         "rsiPreferred": 58.95,
         "adxPreferred": 34.67,
-        "rocPreferred": 12.376237623762387,
-        "momentumPreferred": 12.376237623761766,
-        "ichimokuCloudPreferred": 1.4207048458149225,
-        "ichimokuTkPreferred": 1.2995594713655734,
+        "rocPreferred": 12.871287128712883,
+        "momentumPreferred": 12.871287128712241,
+        "ichimokuCloudPreferred": 1.5899122807016879,
+        "ichimokuTkPreferred": 1.6447368421051913,
         "vwapPreferred": 21.3,
-        "mfiPreferred": 55.93031104014603,
-        "trixPreferred": 0.0361289312541091,
-        "trixSlope5Preferred": 0.016386620034114507,
-        "nearSupportPreferred": false,
+        "mfiPreferred": 56.221032519358644,
+        "trixPreferred": 0.03922923626245023,
+        "trixSlope5Preferred": 0.016057965770821525,
+        "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "21.81-21.96",
-        "activeSupportDay": "21.81-21.96",
-        "resistancePreferred": "22.92-23.08",
-        "activeResistanceDay": "22.92-23.08",
+        "supportPreferred": "21.41-21.58",
+        "activeSupportDay": "21.41-21.58",
+        "resistancePreferred": "",
+        "activeResistanceDay": "",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -903,9 +903,20 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 22.7,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 22.8,
+        "currentZone": {
+          "low": 22.76,
+          "high": 22.92,
+          "center": 22.84,
+          "strength": 4.62,
+          "touches": 2,
+          "sources": {
+            "swing_high": 2
+          },
+          "distPct": -0.18,
+          "widthPct": 0.7
+        },
         "mlConfig": {
           "indicators": [
             "ROC_MOMENTUM",
@@ -960,16 +971,16 @@
           },
           {
             "indicator": "SR_CLUSTER",
-            "signal": 0,
-            "reason": "neutral"
+            "signal": 1,
+            "reason": "near support"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.57%",
-        "core12Positive": 4,
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
+        "core12Positive": 5,
         "core12Negative": 0,
-        "core12Neutral": 1,
-        "holdScore": 80.0,
+        "core12Neutral": 0,
+        "holdScore": 100.0,
         "breakRiskScore": 0.0,
         "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
       },
@@ -1180,25 +1191,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 12.376237623762387,
-            "MOM80": 12.376237623761766
+            "ROC80": 12.871287128712883,
+            "MOM80": 12.871287128712241
           },
           "MFI_CMF": {
-            "MFI73": 55.93031104014603
+            "MFI73": 56.221032519358644
           },
           "TRIX": {
-            "TRIX58": 0.0361289312541091,
-            "TRIX58_slope5": 0.016386620034114507
+            "TRIX58": 0.03922923626245023,
+            "TRIX58_slope5": 0.016057965770821525
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": 1.4207048458149225,
-            "ICHI5_29_89_tk": 1.2995594713655734
+            "ICHI5_29_89_cloud_pos": 1.5899122807016879,
+            "ICHI5_29_89_tk": 1.6447368421051913
           },
           "SR_CLUSTER": {
-            "nearSupport": false,
+            "nearSupport": true,
             "supportBroken": false,
-            "S1": "21.81-21.96",
-            "R1": "22.92-23.08"
+            "S1": "21.41-21.58",
+            "R1": ""
           }
         }
       }
@@ -1647,13 +1658,13 @@
       "date": "2026-07-01",
       "price": 21.35,
       "preferred": {
-        "rsi14": 36.78343228156845,
+        "rsi14": 38.738158634224696,
         "macd": -0.1315,
         "signal": -0.2382,
         "histogram": 0.1067,
-        "adx14": 21.4925443731386,
+        "adx14": 21.55898658923565,
         "plusDi": 0.0,
-        "minusDi": 11.67186121811913,
+        "minusDi": 11.456520136534362,
         "ma20": 21.2,
         "ma50": 22.31,
         "ma200": 25.9,
@@ -1748,16 +1759,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 36.78343228156845,
-        "rsiSlope5Preferred": -8.114861302414006,
-        "adxPreferred": 21.4925443731386,
-        "diSpreadPreferred": -11.67186121811913,
-        "rocPreferred": -14.502164502164504,
-        "momentumPreferred": -14.50216450216388,
+        "rsiPreferred": 38.738158634224696,
+        "rsiSlope5Preferred": -7.22564839336286,
+        "adxPreferred": 21.55898658923565,
+        "diSpreadPreferred": -11.456520136534362,
+        "rocPreferred": -12.08791208791209,
+        "momentumPreferred": -12.087912087911558,
         "vwapPreferred": 23.1,
-        "mfiPreferred": 44.13034687401216,
-        "pviSlopePreferred": -11.371788848228748,
-        "nviSlopePreferred": -5.9742578007929374,
+        "mfiPreferred": 43.722319812378,
+        "pviSlopePreferred": -14.78748055590351,
+        "nviSlopePreferred": -4.784058532448543,
         "nearSupportPreferred": 20.1,
         "supportPreferred": 20.1,
         "resistancePreferred": 22.2,
@@ -2062,9 +2073,20 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 19.75,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 20.0,
+        "currentZone": {
+          "low": 20.07,
+          "high": 20.23,
+          "center": 20.15,
+          "strength": 8.52,
+          "touches": 4,
+          "sources": {
+            "swing_low": 4
+          },
+          "distPct": -0.75,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -2123,8 +2145,8 @@
             "reason": "RSI24_slope5<0"
           }
         ],
-        "priceStatus": "CHƯA CÓ S1 RÕ",
-        "reason": "không đủ cụm hỗ trợ major",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 0,
         "core12Negative": 5,
         "core12Neutral": 0,
@@ -2346,23 +2368,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 44.13034687401216
+            "MFI20": 43.722319812378
           },
           "ROC_MOMENTUM": {
-            "ROC72": -14.502164502164504,
-            "MOM72": -14.50216450216388
+            "ROC72": -12.08791208791209,
+            "MOM72": -12.087912087911558
           },
           "PVI_NVI": {
-            "PVI_slope63": -11.371788848228748,
-            "NVI_slope63": -5.9742578007929374
+            "PVI_slope63": -14.78748055590351,
+            "NVI_slope63": -4.784058532448543
           },
           "ADX_DMI": {
-            "ADX41": 21.4925443731386,
-            "DI41_spread": -11.67186121811913
+            "ADX41": 21.55898658923565,
+            "DI41_spread": -11.456520136534362
           },
           "RSI": {
-            "RSI24": 36.78343228156845,
-            "RSI24_slope5": -8.114861302414006
+            "RSI24": 38.738158634224696,
+            "RSI24_slope5": -7.22564839336286
           }
         }
       }
@@ -3095,13 +3117,13 @@
       "date": "2026-07-01",
       "price": 52.8,
       "preferred": {
-        "rsi14": 40.71807231052573,
+        "rsi14": 39.87647690648262,
         "macd": -0.3912,
         "signal": -0.3297,
         "histogram": -0.0615,
-        "adx14": 5.300160534585741,
+        "adx14": 5.3721639282648805,
         "plusDi": 0.0,
-        "minusDi": 3.1909826450487593,
+        "minusDi": 3.6799065539292783,
         "ma20": 53.17,
         "ma50": 53.73,
         "ma200": 60.83,
@@ -3196,15 +3218,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 40.71807231052573,
-        "rsiSlope5Preferred": -5.519336223915779,
-        "adxPreferred": 5.300160534585741,
-        "diSpreadPreferred": -3.1909826450487593,
-        "rocPreferred": -4.15879017013232,
-        "momentumPreferred": -4.158790170132239,
+        "rsiPreferred": 39.87647690648262,
+        "rsiSlope5Preferred": -5.119934066793675,
+        "adxPreferred": 5.3721639282648805,
+        "diSpreadPreferred": -3.6799065539292783,
+        "rocPreferred": -4.545454545454541,
+        "momentumPreferred": -4.545454545454457,
         "vwapPreferred": 54.4,
-        "mfiPreferred": 31.60857192150857,
-        "pviSlopePreferred": 4.869141553258172,
+        "mfiPreferred": 27.235635104210544,
+        "pviSlopePreferred": 0.8368412637332012,
         "nviSlopePreferred": -9.124123199482526,
         "nearSupportPreferred": 49.8,
         "supportPreferred": 52.0,
@@ -3508,8 +3530,8 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 50.7,
+        "date": "2026-07-09",
+        "close": 50.4,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -3565,18 +3587,18 @@
           },
           {
             "indicator": "RSI",
-            "signal": 0,
-            "reason": "RSI24 healthy; RSI24_slope5<0"
+            "signal": -1,
+            "reason": "RSI24_slope5<0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 1.87%",
+        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
+        "reason": "close sát S1 49.64-49.92",
         "core12Positive": 0,
-        "core12Negative": 3,
-        "core12Neutral": 2,
+        "core12Negative": 4,
+        "core12Neutral": 1,
         "holdScore": 0.0,
-        "breakRiskScore": 60.0,
-        "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
+        "breakRiskScore": 80.0,
+        "finalStatus": "TEST HỖ TRỢ - RỦI RO GÃY CAO"
       },
       "raw": {
         "dailyV3": {
@@ -3789,23 +3811,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 31.60857192150857
+            "MFI20": 27.235635104210544
           },
           "ROC_MOMENTUM": {
-            "ROC72": -4.15879017013232,
-            "MOM72": -4.158790170132239
+            "ROC72": -4.545454545454541,
+            "MOM72": -4.545454545454457
           },
           "PVI_NVI": {
-            "PVI_slope63": 4.869141553258172,
+            "PVI_slope63": 0.8368412637332012,
             "NVI_slope63": -9.124123199482526
           },
           "ADX_DMI": {
-            "ADX41": 5.300160534585741,
-            "DI41_spread": -3.1909826450487593
+            "ADX41": 5.3721639282648805,
+            "DI41_spread": -3.6799065539292783
           },
           "RSI": {
-            "RSI24": 40.71807231052573,
-            "RSI24_slope5": -5.519336223915779
+            "RSI24": 39.87647690648262,
+            "RSI24_slope5": -5.119934066793675
           }
         }
       }
@@ -4146,8 +4168,8 @@
           "chikou": null,
           "state": "below_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": -1.076555023923426,
-          "core12Tk": 0.11961722488039012,
+          "core12CloudPos": -2.4242424242423652,
+          "core12Tk": -0.42424242424240705,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -4201,18 +4223,18 @@
         },
         "rsiPreferred": 56.97,
         "adxPreferred": 19.25,
-        "rocPreferred": 2.829028290282909,
-        "momentumPreferred": 2.82902829028283,
-        "ichimokuCloudPreferred": -1.076555023923426,
-        "ichimokuTkPreferred": 0.11961722488039012,
+        "rocPreferred": 2.3573200992556,
+        "momentumPreferred": 2.357320099255532,
+        "ichimokuCloudPreferred": -2.4242424242423652,
+        "ichimokuTkPreferred": -0.42424242424240705,
         "vwapPreferred": 42.0,
-        "mfiPreferred": 62.215896016211595,
-        "trixPreferred": -0.012330848735531141,
-        "trixSlope5Preferred": 6.0136706203639534e-05,
+        "mfiPreferred": 61.17803952874833,
+        "trixPreferred": -0.01243979352426594,
+        "trixSlope5Preferred": -0.00010562134002967127,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "38.43-38.71",
-        "activeSupportDay": "38.43-38.71",
+        "supportPreferred": "38.44-38.71",
+        "activeSupportDay": "38.44-38.71",
         "resistancePreferred": "42.78-43.05",
         "activeResistanceDay": "42.78-43.05",
         "_sourceMap": {
@@ -4515,22 +4537,20 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 41.8,
+        "date": "2026-07-09",
+        "close": 41.25,
         "currentZone": {
-          "low": 41.51,
-          "high": 41.79,
-          "center": 41.65,
-          "strength": 12.28,
-          "touches": 6,
+          "low": 40.99,
+          "high": 41.26,
+          "center": 41.12,
+          "strength": 7.3,
+          "touches": 3,
           "sources": {
             "vol_node": 1,
-            "supertrend": 1,
-            "swing_low": 3,
-            "ma200": 1
+            "swing_low": 2
           },
-          "distPct": 0.35,
-          "widthPct": 0.67
+          "distPct": 0.31,
+          "widthPct": 0.65
         },
         "mlConfig": {
           "indicators": [
@@ -4576,13 +4596,13 @@
           },
           {
             "indicator": "TRIX",
-            "signal": 0,
-            "reason": "TRIX58<0; TRIX58_slope5>0"
+            "signal": -1,
+            "reason": "TRIX58<0; TRIX58_slope5<0"
           },
           {
             "indicator": "ICHIMOKU",
-            "signal": 0,
-            "reason": "ICHI5_29_89_cloud_pos<0; ICHI5_29_89_tk>=0"
+            "signal": -1,
+            "reason": "ICHI5_29_89_cloud_pos<0; ICHI5_29_89_tk<0"
           },
           {
             "indicator": "SR_CLUSTER",
@@ -4593,11 +4613,11 @@
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
         "core12Positive": 3,
-        "core12Negative": 0,
-        "core12Neutral": 2,
+        "core12Negative": 2,
+        "core12Neutral": 0,
         "holdScore": 60.0,
-        "breakRiskScore": 0.0,
-        "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
+        "breakRiskScore": 40.0,
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -4813,24 +4833,24 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 2.829028290282909,
-            "MOM80": 2.82902829028283
+            "ROC80": 2.3573200992556,
+            "MOM80": 2.357320099255532
           },
           "MFI_CMF": {
-            "MFI73": 62.215896016211595
+            "MFI73": 61.17803952874833
           },
           "TRIX": {
-            "TRIX58": -0.012330848735531141,
-            "TRIX58_slope5": 6.0136706203639534e-05
+            "TRIX58": -0.01243979352426594,
+            "TRIX58_slope5": -0.00010562134002967127
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": -1.076555023923426,
-            "ICHI5_29_89_tk": 0.11961722488039012
+            "ICHI5_29_89_cloud_pos": -2.4242424242423652,
+            "ICHI5_29_89_tk": -0.42424242424240705
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "38.43-38.71",
+            "S1": "38.44-38.71",
             "R1": "42.78-43.05"
           }
         }
@@ -6245,16 +6265,16 @@
         "rsiPreferred": 43.64,
         "adxPreferred": 26.4,
         "rocPreferred": -3.43,
-        "maTrendPreferred": -16.893518813964203,
-        "maTrendSlope5Preferred": -0.7991388217635897,
-        "vwapPreferred": -8.653318221922657,
-        "vwmaSlope5Preferred": -0.9454124807691255,
-        "pviSlopePreferred": 8.577075851147441,
-        "nviSlopePreferred": -7.772316797106738,
-        "trixPreferred": -0.17772051770508224,
-        "trixSlope5Preferred": -0.005668043375528509,
-        "supertrendDirPreferred": 1.0,
-        "supertrendDistPreferred": 20.736827586205468,
+        "maTrendPreferred": -19.05105962557122,
+        "maTrendSlope5Preferred": -0.8230293805121969,
+        "vwapPreferred": -10.939360530281173,
+        "vwmaSlope5Preferred": -0.9913736233511106,
+        "pviSlopePreferred": 15.43289708697615,
+        "nviSlopePreferred": -10.316528747531384,
+        "trixPreferred": -0.17972498042674312,
+        "trixSlope5Preferred": -0.007415823971435032,
+        "supertrendDirPreferred": 0.0,
+        "supertrendDistPreferred": -21.563546099289237,
         "nearSupportPreferred": 14.2,
         "supportPreferred": 14.2,
         "resistancePreferred": 15.7,
@@ -6528,9 +6548,20 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 14.5,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 14.1,
+        "currentZone": {
+          "low": 14.14,
+          "high": 14.26,
+          "center": 14.2,
+          "strength": 4.69,
+          "touches": 2,
+          "sources": {
+            "swing_low": 2
+          },
+          "distPct": -0.71,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "SUPERTREND",
@@ -6566,8 +6597,8 @@
         "core12Signals": [
           {
             "indicator": "SUPERTREND",
-            "signal": 1,
-            "reason": "ST15_5.0_dist>=0; ST15_5.0_dir=1.00"
+            "signal": -1,
+            "reason": "ST15_5.0_dist<0; ST15_5.0_dir=0.00"
           },
           {
             "indicator": "MA_EMA_WMA",
@@ -6590,14 +6621,14 @@
             "reason": "PVI_slope75>0; NVI_slope75<0"
           }
         ],
-        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
-        "reason": "close sát S1 14.23-14.35",
-        "core12Positive": 1,
-        "core12Negative": 3,
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
+        "core12Positive": 0,
+        "core12Negative": 4,
         "core12Neutral": 1,
-        "holdScore": 20.0,
-        "breakRiskScore": 60.0,
-        "finalStatus": "TEST HỖ TRỢ - RỦI RO GÃY CAO"
+        "holdScore": 0.0,
+        "breakRiskScore": 80.0,
+        "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
         "dailyV3": {
@@ -6814,24 +6845,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": 20.736827586205468,
-            "ST15_5.0_dir": 1.0
+            "ST15_5.0_dist": -21.563546099289237,
+            "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -16.893518813964203,
-            "EMA229_slope5": -0.7991388217635897
+            "EMA229_dist": -19.05105962557122,
+            "EMA229_slope5": -0.8230293805121969
           },
           "TRIX": {
-            "TRIX38": -0.17772051770508224,
-            "TRIX38_slope5": -0.005668043375528509
+            "TRIX38": -0.17972498042674312,
+            "TRIX38_slope5": -0.007415823971435032
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -8.653318221922657,
-            "VWMA98_slope5": -0.9454124807691255
+            "VWAP98_dist": -10.939360530281173,
+            "VWMA98_slope5": -0.9913736233511106
           },
           "PVI_NVI": {
-            "PVI_slope75": 8.577075851147441,
-            "NVI_slope75": -7.772316797106738
+            "PVI_slope75": 15.43289708697615,
+            "NVI_slope75": -10.316528747531384
           }
         }
       }
@@ -7905,8 +7936,8 @@
           "chikou": null,
           "state": "below_cloud",
           "bullishTkCross": false,
-          "core12CloudPos": -0.43478260869563545,
-          "core12Tk": 0.14492753623189222,
+          "core12CloudPos": -1.4684287812040686,
+          "core12Tk": 0.14684287812041938,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -7960,20 +7991,20 @@
         },
         "rsiPreferred": 54.72,
         "adxPreferred": 12.56,
-        "rocPreferred": 1.4705882352941124,
-        "momentumPreferred": 1.4705882352940742,
-        "ichimokuCloudPreferred": -0.43478260869563545,
-        "ichimokuTkPreferred": 0.14492753623189222,
+        "rocPreferred": -0.2928257686676483,
+        "momentumPreferred": -0.2928257686676383,
+        "ichimokuCloudPreferred": -1.4684287812040686,
+        "ichimokuTkPreferred": 0.14684287812041938,
         "vwapPreferred": 34.9,
-        "mfiPreferred": 50.26448193599205,
-        "trixPreferred": -0.0399745863865264,
-        "trixSlope5Preferred": -0.00416583408542337,
+        "mfiPreferred": 49.2557689654134,
+        "trixPreferred": -0.04060563856610466,
+        "trixSlope5Preferred": -0.0038241920026771403,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "33.16-33.34",
-        "activeSupportDay": "33.16-33.34",
-        "resistancePreferred": "35.42-35.59",
-        "activeResistanceDay": "35.42-35.59",
+        "supportPreferred": "32.41-32.59",
+        "activeSupportDay": "32.41-32.59",
+        "resistancePreferred": "35.41-35.59",
+        "activeResistanceDay": "35.41-35.59",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -8273,22 +8304,23 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 34.5,
+        "date": "2026-07-09",
+        "close": 34.05,
         "currentZone": {
-          "low": 34.42,
-          "high": 34.59,
-          "center": 34.51,
-          "strength": 16.59,
-          "touches": 8,
+          "low": 33.84,
+          "high": 34.02,
+          "center": 33.93,
+          "strength": 18.57,
+          "touches": 9,
           "sources": {
-            "swing_high": 3,
-            "swing_low": 3,
-            "vol_node": 1,
-            "ma50": 1
+            "vol_node": 2,
+            "swing_low": 4,
+            "ma20": 1,
+            "vwap30": 1,
+            "ich_kijun": 1
           },
-          "distPct": -0.02,
-          "widthPct": 0.51
+          "distPct": 0.36,
+          "widthPct": 0.52
         },
         "mlConfig": {
           "indicators": [
@@ -8324,8 +8356,8 @@
         "core12Signals": [
           {
             "indicator": "ROC_MOMENTUM",
-            "signal": 1,
-            "reason": "ROC80>0; MOM80>0"
+            "signal": -1,
+            "reason": "ROC80<0; MOM80<0"
           },
           {
             "indicator": "MFI_CMF",
@@ -8350,12 +8382,12 @@
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 3,
-        "core12Negative": 1,
+        "core12Positive": 2,
+        "core12Negative": 2,
         "core12Neutral": 1,
-        "holdScore": 60.0,
-        "breakRiskScore": 20.0,
-        "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
+        "holdScore": 40.0,
+        "breakRiskScore": 40.0,
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -8573,25 +8605,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 1.4705882352941124,
-            "MOM80": 1.4705882352940742
+            "ROC80": -0.2928257686676483,
+            "MOM80": -0.2928257686676383
           },
           "MFI_CMF": {
-            "MFI73": 50.26448193599205
+            "MFI73": 49.2557689654134
           },
           "TRIX": {
-            "TRIX58": -0.0399745863865264,
-            "TRIX58_slope5": -0.00416583408542337
+            "TRIX58": -0.04060563856610466,
+            "TRIX58_slope5": -0.0038241920026771403
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": -0.43478260869563545,
-            "ICHI5_29_89_tk": 0.14492753623189222
+            "ICHI5_29_89_cloud_pos": -1.4684287812040686,
+            "ICHI5_29_89_tk": 0.14684287812041938
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "33.16-33.34",
-            "R1": "35.42-35.59"
+            "S1": "32.41-32.59",
+            "R1": "35.41-35.59"
           }
         }
       }
@@ -8650,13 +8682,13 @@
       "date": "2026-07-01",
       "price": 85.9,
       "preferred": {
-        "rsi14": 47.951764887955484,
+        "rsi14": 47.94922713120035,
         "macd": -0.9957,
         "signal": -0.9207,
         "histogram": -0.075,
-        "adx14": 6.361424674383382,
+        "adx14": 6.258528164423618,
         "plusDi": 0.0,
-        "minusDi": 0.7363310955165474,
+        "minusDi": 0.7021506287008101,
         "ma20": 86.37,
         "ma50": 87.13,
         "ma200": 88.19,
@@ -8751,16 +8783,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 47.951764887955484,
-        "rsiSlope5Preferred": -0.23690096972494956,
-        "adxPreferred": 6.361424674383382,
-        "diSpreadPreferred": -0.7363310955165474,
-        "rocPreferred": 3.260869565217406,
-        "momentumPreferred": 3.260869565217356,
+        "rsiPreferred": 47.94922713120035,
+        "rsiSlope5Preferred": -0.03305456561588471,
+        "adxPreferred": 6.258528164423618,
+        "diSpreadPreferred": -0.7021506287008101,
+        "rocPreferred": 0.5901287553647938,
+        "momentumPreferred": 0.5901287553647959,
         "vwapPreferred": 88.0,
-        "mfiPreferred": 36.350547033813065,
-        "pviSlopePreferred": 11.360659869374533,
-        "nviSlopePreferred": -8.59814012856207,
+        "mfiPreferred": 34.52833131969071,
+        "pviSlopePreferred": 7.118022126479273,
+        "nviSlopePreferred": -8.571129138311662,
         "nearSupportPreferred": 83.1,
         "supportPreferred": 85.2,
         "resistancePreferred": 88.5,
@@ -9067,23 +9099,24 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 85.5,
+        "date": "2026-07-09",
+        "close": 75.0,
         "currentZone": {
-          "low": 85.03,
-          "high": 85.63,
-          "center": 85.33,
-          "strength": 20.17,
-          "touches": 10,
+          "low": 74.55,
+          "high": 75.06,
+          "center": 74.8,
+          "strength": 21.6,
+          "touches": 11,
           "sources": {
+            "ich_tenkan": 1,
             "supertrend": 1,
+            "ma20": 1,
             "swing_high": 1,
             "vol_node": 1,
-            "ma20": 1,
             "swing_low": 6
           },
-          "distPct": 0.2,
-          "widthPct": 0.7
+          "distPct": 0.26,
+          "widthPct": 0.68
         },
         "mlConfig": {
           "indicators": [
@@ -9369,23 +9402,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 36.350547033813065
+            "MFI20": 34.52833131969071
           },
           "ROC_MOMENTUM": {
-            "ROC72": 3.260869565217406,
-            "MOM72": 3.260869565217356
+            "ROC72": 0.5901287553647938,
+            "MOM72": 0.5901287553647959
           },
           "PVI_NVI": {
-            "PVI_slope63": 11.360659869374533,
-            "NVI_slope63": -8.59814012856207
+            "PVI_slope63": 7.118022126479273,
+            "NVI_slope63": -8.571129138311662
           },
           "ADX_DMI": {
-            "ADX41": 6.361424674383382,
-            "DI41_spread": -0.7363310955165474
+            "ADX41": 6.258528164423618,
+            "DI41_spread": -0.7021506287008101
           },
           "RSI": {
-            "RSI24": 47.951764887955484,
-            "RSI24_slope5": -0.23690096972494956
+            "RSI24": 47.94922713120035,
+            "RSI24_slope5": -0.03305456561588471
           }
         }
       }
@@ -10405,13 +10438,13 @@
       "date": "2026-07-01",
       "price": 35.55,
       "preferred": {
-        "rsi14": 44.56597128594005,
+        "rsi14": 41.796465461304045,
         "macd": -1.4024,
         "signal": -1.4498,
         "histogram": 0.0474,
-        "adx14": 13.072597486208974,
+        "adx14": 12.961159927261148,
         "plusDi": 0.0,
-        "minusDi": 4.119231647253102,
+        "minusDi": 3.9917874537917157,
         "ma20": 36.66,
         "ma50": 39.85,
         "ma200": 38.47,
@@ -10506,16 +10539,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 44.56597128594005,
-        "rsiSlope5Preferred": 6.249372157433392,
-        "adxPreferred": 13.072597486208974,
-        "diSpreadPreferred": -4.119231647253102,
-        "rocPreferred": -19.361936193619368,
-        "momentumPreferred": -19.36193619361894,
+        "rsiPreferred": 41.796465461304045,
+        "rsiSlope5Preferred": 3.8755716086242344,
+        "adxPreferred": 12.961159927261148,
+        "diSpreadPreferred": -3.9917874537917157,
+        "rocPreferred": -26.550598476605014,
+        "momentumPreferred": -26.55059847660443,
         "vwapPreferred": 41.6,
-        "mfiPreferred": 35.474371542848544,
-        "pviSlopePreferred": -10.171366635923007,
-        "nviSlopePreferred": -7.900884298375576,
+        "mfiPreferred": 31.341509334927864,
+        "pviSlopePreferred": -12.032832762996403,
+        "nviSlopePreferred": -10.31653276097293,
         "nearSupportPreferred": 34.5,
         "supportPreferred": 34.5,
         "resistancePreferred": 36.6,
@@ -10822,9 +10855,22 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 36.65,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 33.75,
+        "currentZone": {
+          "low": 33.48,
+          "high": 33.75,
+          "center": 33.62,
+          "strength": 6.91,
+          "touches": 3,
+          "sources": {
+            "vol_node": 1,
+            "ich_tenkan": 1,
+            "swing_high": 1
+          },
+          "distPct": 0.4,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -10883,8 +10929,8 @@
             "reason": "RSI24 healthy; RSI24_slope5>0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 2.05%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 1,
         "core12Negative": 4,
         "core12Neutral": 0,
@@ -11107,23 +11153,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 35.474371542848544
+            "MFI20": 31.341509334927864
           },
           "ROC_MOMENTUM": {
-            "ROC72": -19.361936193619368,
-            "MOM72": -19.36193619361894
+            "ROC72": -26.550598476605014,
+            "MOM72": -26.55059847660443
           },
           "PVI_NVI": {
-            "PVI_slope63": -10.171366635923007,
-            "NVI_slope63": -7.900884298375576
+            "PVI_slope63": -12.032832762996403,
+            "NVI_slope63": -10.31653276097293
           },
           "ADX_DMI": {
-            "ADX41": 13.072597486208974,
-            "DI41_spread": -4.119231647253102
+            "ADX41": 12.961159927261148,
+            "DI41_spread": -3.9917874537917157
           },
           "RSI": {
-            "RSI24": 44.56597128594005,
-            "RSI24_slope5": 6.249372157433392
+            "RSI24": 41.796465461304045,
+            "RSI24_slope5": 3.8755716086242344
           }
         }
       }
@@ -11133,13 +11179,13 @@
       "date": "2026-07-01",
       "price": 47.9,
       "preferred": {
-        "rsi14": 43.51262723966704,
+        "rsi14": 43.90469297353313,
         "macd": -0.046,
         "signal": -0.2259,
         "histogram": 0.18,
-        "adx14": 10.555063860109966,
+        "adx14": 10.431682060389653,
         "plusDi": 0.0,
-        "minusDi": 3.9124074232667425,
+        "minusDi": 3.0724704502890816,
         "ma20": 47.53,
         "ma50": 49.25,
         "ma200": 69.91,
@@ -11234,16 +11280,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 43.51262723966704,
-        "rsiSlope5Preferred": -2.040589046957656,
-        "adxPreferred": 10.555063860109966,
-        "diSpreadPreferred": -3.9124074232667425,
-        "rocPreferred": -14.899451553930543,
-        "momentumPreferred": -14.899451553930268,
+        "rsiPreferred": 43.90469297353313,
+        "rsiSlope5Preferred": -2.5929029896304456,
+        "adxPreferred": 10.431682060389653,
+        "diSpreadPreferred": -3.0724704502890816,
+        "rocPreferred": -10.707456978967489,
+        "momentumPreferred": -10.70745697896728,
         "vwapPreferred": 51.7,
-        "mfiPreferred": 58.129469122260865,
-        "pviSlopePreferred": -12.325271064505106,
-        "nviSlopePreferred": -2.0406337163844324,
+        "mfiPreferred": 57.66399580280953,
+        "pviSlopePreferred": -14.686349940685394,
+        "nviSlopePreferred": -1.724975178413568,
         "nearSupportPreferred": 44.9,
         "supportPreferred": 47.1,
         "resistancePreferred": 49.4,
@@ -11546,8 +11592,8 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 46.55,
+        "date": "2026-07-09",
+        "close": 46.7,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -11608,7 +11654,7 @@
           }
         ],
         "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.65%",
+        "reason": "trên S1 khoảng 3.96%",
         "core12Positive": 1,
         "core12Negative": 3,
         "core12Neutral": 1,
@@ -11828,23 +11874,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 58.129469122260865
+            "MFI20": 57.66399580280953
           },
           "ROC_MOMENTUM": {
-            "ROC72": -14.899451553930543,
-            "MOM72": -14.899451553930268
+            "ROC72": -10.707456978967489,
+            "MOM72": -10.70745697896728
           },
           "PVI_NVI": {
-            "PVI_slope63": -12.325271064505106,
-            "NVI_slope63": -2.0406337163844324
+            "PVI_slope63": -14.686349940685394,
+            "NVI_slope63": -1.724975178413568
           },
           "ADX_DMI": {
-            "ADX41": 10.555063860109966,
-            "DI41_spread": -3.9124074232667425
+            "ADX41": 10.431682060389653,
+            "DI41_spread": -3.0724704502890816
           },
           "RSI": {
-            "RSI24": 43.51262723966704,
-            "RSI24_slope5": -2.040589046957656
+            "RSI24": 43.90469297353313,
+            "RSI24_slope5": -2.5929029896304456
           }
         }
       }
@@ -12327,16 +12373,16 @@
         "rsiPreferred": 40.63,
         "adxPreferred": 22.26,
         "rocPreferred": -4.2,
-        "maTrendPreferred": -22.1443050232107,
-        "maTrendSlope5Preferred": -1.0069259010858422,
-        "vwapPreferred": -12.438622292340163,
-        "vwmaSlope5Preferred": -1.0610252244938279,
-        "pviSlopePreferred": 2.720122179253104,
+        "maTrendPreferred": -21.99409750159893,
+        "maTrendSlope5Preferred": -1.0110169888325138,
+        "vwapPreferred": -12.172918604300808,
+        "vwmaSlope5Preferred": -1.1613223459315036,
+        "pviSlopePreferred": 7.133877429142865,
         "nviSlopePreferred": -10.669596493138167,
-        "trixPreferred": -0.2341712436325305,
-        "trixSlope5Preferred": -0.011123945624169629,
-        "supertrendDirPreferred": 1.0,
-        "supertrendDistPreferred": 14.271346938774338,
+        "trixPreferred": -0.23647534798425518,
+        "trixSlope5Preferred": -0.011598719956273928,
+        "supertrendDirPreferred": 0.0,
+        "supertrendDistPreferred": -14.74636734693756,
         "nearSupportPreferred": 12.4,
         "supportPreferred": 12.4,
         "resistancePreferred": 13.0,
@@ -12640,7 +12686,7 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 12.25,
         "currentZone": null,
         "mlConfig": {
@@ -12678,8 +12724,8 @@
         "core12Signals": [
           {
             "indicator": "SUPERTREND",
-            "signal": 1,
-            "reason": "ST15_5.0_dist>=0; ST15_5.0_dir=1.00"
+            "signal": -1,
+            "reason": "ST15_5.0_dist<0; ST15_5.0_dir=0.00"
           },
           {
             "indicator": "MA_EMA_WMA",
@@ -12704,11 +12750,11 @@
         ],
         "priceStatus": "CHƯA CÓ S1 RÕ",
         "reason": "không đủ cụm hỗ trợ major",
-        "core12Positive": 1,
-        "core12Negative": 3,
+        "core12Positive": 0,
+        "core12Negative": 4,
         "core12Neutral": 1,
-        "holdScore": 20.0,
-        "breakRiskScore": 60.0,
+        "holdScore": 0.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -12924,23 +12970,23 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": 14.271346938774338,
-            "ST15_5.0_dir": 1.0
+            "ST15_5.0_dist": -14.74636734693756,
+            "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -22.1443050232107,
-            "EMA229_slope5": -1.0069259010858422
+            "EMA229_dist": -21.99409750159893,
+            "EMA229_slope5": -1.0110169888325138
           },
           "TRIX": {
-            "TRIX38": -0.2341712436325305,
-            "TRIX38_slope5": -0.011123945624169629
+            "TRIX38": -0.23647534798425518,
+            "TRIX38_slope5": -0.011598719956273928
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -12.438622292340163,
-            "VWMA98_slope5": -1.0610252244938279
+            "VWAP98_dist": -12.172918604300808,
+            "VWMA98_slope5": -1.1613223459315036
           },
           "PVI_NVI": {
-            "PVI_slope75": 2.720122179253104,
+            "PVI_slope75": 7.133877429142865,
             "NVI_slope75": -10.669596493138167
           }
         }
@@ -13097,13 +13143,13 @@
       "date": "2026-07-01",
       "price": 23.1,
       "preferred": {
-        "rsi14": 47.49365705427554,
+        "rsi14": 45.26712561804837,
         "macd": -0.7852,
         "signal": -0.8292,
         "histogram": 0.044,
-        "adx14": 13.300675766777276,
+        "adx14": 13.075882466732894,
         "plusDi": 0.0,
-        "minusDi": 3.164892247982049,
+        "minusDi": 1.9561289188244437,
         "ma20": 23.69,
         "ma50": 25.41,
         "ma200": 25.44,
@@ -13198,16 +13244,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 47.49365705427554,
-        "rsiSlope5Preferred": 10.581695778214382,
-        "adxPreferred": 13.300675766777276,
-        "diSpreadPreferred": -3.164892247982049,
-        "rocPreferred": -17.68707482993197,
-        "momentumPreferred": -17.68707482993137,
+        "rsiPreferred": 45.26712561804837,
+        "rsiSlope5Preferred": 9.353202383889666,
+        "adxPreferred": 13.075882466732894,
+        "diSpreadPreferred": -1.9561289188244437,
+        "rocPreferred": -23.472668810289388,
+        "momentumPreferred": -23.472668810288635,
         "vwapPreferred": 26.3,
-        "mfiPreferred": 41.13905983745528,
-        "pviSlopePreferred": 1.5093038385730395,
-        "nviSlopePreferred": -14.704188696542243,
+        "mfiPreferred": 42.848899886879806,
+        "pviSlopePreferred": -1.8275071872624005,
+        "nviSlopePreferred": -16.11403681726056,
         "nearSupportPreferred": 22.1,
         "supportPreferred": 22.1,
         "resistancePreferred": 23.7,
@@ -13516,9 +13562,22 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 24.2,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 23.8,
+        "currentZone": {
+          "low": 23.72,
+          "high": 23.91,
+          "center": 23.82,
+          "strength": 6.94,
+          "touches": 3,
+          "sources": {
+            "vol_node": 1,
+            "vwap30": 1,
+            "ich_kijun": 1
+          },
+          "distPct": -0.07,
+          "widthPct": 0.78
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -13563,8 +13622,8 @@
           },
           {
             "indicator": "PVI_NVI",
-            "signal": 0,
-            "reason": "PVI_slope63>0; NVI_slope63<0"
+            "signal": -1,
+            "reason": "PVI_slope63<0; NVI_slope63<0"
           },
           {
             "indicator": "ADX_DMI",
@@ -13577,13 +13636,13 @@
             "reason": "RSI24 healthy; RSI24_slope5>0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 5.50%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 1,
-        "core12Negative": 3,
-        "core12Neutral": 1,
+        "core12Negative": 4,
+        "core12Neutral": 0,
         "holdScore": 20.0,
-        "breakRiskScore": 60.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -13803,23 +13862,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 41.13905983745528
+            "MFI20": 42.848899886879806
           },
           "ROC_MOMENTUM": {
-            "ROC72": -17.68707482993197,
-            "MOM72": -17.68707482993137
+            "ROC72": -23.472668810289388,
+            "MOM72": -23.472668810288635
           },
           "PVI_NVI": {
-            "PVI_slope63": 1.5093038385730395,
-            "NVI_slope63": -14.704188696542243
+            "PVI_slope63": -1.8275071872624005,
+            "NVI_slope63": -16.11403681726056
           },
           "ADX_DMI": {
-            "ADX41": 13.300675766777276,
-            "DI41_spread": -3.164892247982049
+            "ADX41": 13.075882466732894,
+            "DI41_spread": -1.9561289188244437
           },
           "RSI": {
-            "RSI24": 47.49365705427554,
-            "RSI24_slope5": 10.581695778214382
+            "RSI24": 45.26712561804837,
+            "RSI24_slope5": 9.353202383889666
           }
         }
       }
@@ -14647,16 +14706,16 @@
         "rsiPreferred": 44.73,
         "adxPreferred": 14.01,
         "rocPreferred": -2.68,
-        "maTrendPreferred": -13.118588138099895,
-        "maTrendSlope5Preferred": -0.5888986291191056,
-        "vwapPreferred": -6.773339918542698,
-        "vwmaSlope5Preferred": -0.20609636769209905,
-        "pviSlopePreferred": 10.756995195724928,
-        "nviSlopePreferred": -11.035685122847527,
-        "trixPreferred": -0.05888002850695795,
-        "trixSlope5Preferred": -0.015255728945773317,
+        "maTrendPreferred": -13.7328210433446,
+        "maTrendSlope5Preferred": -0.6061264602047034,
+        "vwapPreferred": -7.390494468801412,
+        "vwmaSlope5Preferred": -0.3219912883183573,
+        "pviSlopePreferred": 18.785668209912853,
+        "nviSlopePreferred": -11.770927394559527,
+        "trixPreferred": -0.06301641421063708,
+        "trixSlope5Preferred": -0.01737152271573672,
         "supertrendDirPreferred": 0.0,
-        "supertrendDistPreferred": -14.031487603304644,
+        "supertrendDistPreferred": -14.284916666665492,
         "nearSupportPreferred": 12.2,
         "supportPreferred": 12.2,
         "resistancePreferred": 13.1,
@@ -14964,8 +15023,8 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 12.1,
+        "date": "2026-07-09",
+        "close": 12.0,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -15026,14 +15085,14 @@
             "reason": "PVI_slope75>0; NVI_slope75<0"
           }
         ],
-        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
-        "reason": "close sát S1 11.84-11.94",
+        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
+        "reason": "trên S1 khoảng 4.58%",
         "core12Positive": 0,
         "core12Negative": 4,
         "core12Neutral": 1,
         "holdScore": 0.0,
         "breakRiskScore": 80.0,
-        "finalStatus": "TEST HỖ TRỢ - RỦI RO GÃY CAO"
+        "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
         "dailyV3": {
@@ -15253,24 +15312,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": -14.031487603304644,
+            "ST15_5.0_dist": -14.284916666665492,
             "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -13.118588138099895,
-            "EMA229_slope5": -0.5888986291191056
+            "EMA229_dist": -13.7328210433446,
+            "EMA229_slope5": -0.6061264602047034
           },
           "TRIX": {
-            "TRIX38": -0.05888002850695795,
-            "TRIX38_slope5": -0.015255728945773317
+            "TRIX38": -0.06301641421063708,
+            "TRIX38_slope5": -0.01737152271573672
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -6.773339918542698,
-            "VWMA98_slope5": -0.20609636769209905
+            "VWAP98_dist": -7.390494468801412,
+            "VWMA98_slope5": -0.3219912883183573
           },
           "PVI_NVI": {
-            "PVI_slope75": 10.756995195724928,
-            "NVI_slope75": -11.035685122847527
+            "PVI_slope75": 18.785668209912853,
+            "NVI_slope75": -11.770927394559527
           }
         }
       }
@@ -16578,13 +16637,13 @@
       "date": "2026-07-01",
       "price": 72.9,
       "preferred": {
-        "rsi14": 47.14538368376191,
+        "rsi14": 47.145383683759555,
         "macd": -0.6743,
         "signal": -0.6409,
         "histogram": -0.0334,
-        "adx14": 12.723252593442393,
+        "adx14": 12.549571852904716,
         "plusDi": 0.0,
-        "minusDi": 2.943548103423261,
+        "minusDi": 2.625074711396529,
         "ma20": 72.41,
         "ma50": 72.78,
         "ma200": 86.77,
@@ -16679,15 +16738,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 47.14538368376191,
-        "rsiSlope5Preferred": -1.7383378138446872,
-        "adxPreferred": 12.723252593442393,
-        "diSpreadPreferred": -2.943548103423261,
-        "rocPreferred": -5.069124423963145,
-        "momentumPreferred": -5.069124423963078,
+        "rsiPreferred": 47.145383683759555,
+        "rsiSlope5Preferred": -0.8573203065694486,
+        "adxPreferred": 12.549571852904716,
+        "diSpreadPreferred": -2.625074711396529,
+        "rocPreferred": -1.489274491050696,
+        "momentumPreferred": -1.4892744910506743,
         "vwapPreferred": 73.4,
-        "mfiPreferred": 38.657846737154074,
-        "pviSlopePreferred": 10.105585489056823,
+        "mfiPreferred": 41.385334280995345,
+        "pviSlopePreferred": 3.0070069834178037,
         "nviSlopePreferred": -10.285518717805386,
         "nearSupportPreferred": 70.5,
         "supportPreferred": 73.4,
@@ -16988,12 +17047,12 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 72.1,
         "currentZone": {
-          "low": 71.7,
-          "high": 72.16,
-          "center": 71.93,
+          "low": 71.68,
+          "high": 72.15,
+          "center": 71.91,
           "strength": 6.32,
           "touches": 3,
           "sources": {
@@ -17001,8 +17060,8 @@
             "ma20": 1,
             "ich_tenkan": 1
           },
-          "distPct": 0.24,
-          "widthPct": 0.64
+          "distPct": 0.26,
+          "widthPct": 0.65
         },
         "mlConfig": {
           "indicators": [
@@ -17283,23 +17342,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 38.657846737154074
+            "MFI20": 41.385334280995345
           },
           "ROC_MOMENTUM": {
-            "ROC72": -5.069124423963145,
-            "MOM72": -5.069124423963078
+            "ROC72": -1.489274491050696,
+            "MOM72": -1.4892744910506743
           },
           "PVI_NVI": {
-            "PVI_slope63": 10.105585489056823,
+            "PVI_slope63": 3.0070069834178037,
             "NVI_slope63": -10.285518717805386
           },
           "ADX_DMI": {
-            "ADX41": 12.723252593442393,
-            "DI41_spread": -2.943548103423261
+            "ADX41": 12.549571852904716,
+            "DI41_spread": -2.625074711396529
           },
           "RSI": {
-            "RSI24": 47.14538368376191,
-            "RSI24_slope5": -1.7383378138446872
+            "RSI24": 47.145383683759555,
+            "RSI24_slope5": -0.8573203065694486
           }
         }
       }
@@ -17659,13 +17718,13 @@
       "date": "2026-07-01",
       "price": 78.0,
       "preferred": {
-        "rsi14": 41.70165863661813,
+        "rsi14": 45.154662717645735,
         "macd": -1.4548,
         "signal": -0.9782,
         "histogram": -0.4766,
-        "adx14": 9.84069470672017,
+        "adx14": 9.77330451330318,
         "plusDi": 0.0,
-        "minusDi": 5.355038804613599,
+        "minusDi": 3.38530074875629,
         "ma20": 81.12,
         "ma50": 81.18,
         "ma200": 79.42,
@@ -17760,15 +17819,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 41.70165863661813,
-        "rsiSlope5Preferred": -3.07349735855869,
-        "adxPreferred": 9.84069470672017,
-        "diSpreadPreferred": -5.355038804613599,
-        "rocPreferred": -9.333333333333337,
-        "momentumPreferred": -9.333333333333224,
+        "rsiPreferred": 45.154662717645735,
+        "rsiSlope5Preferred": 1.1975434451662608,
+        "adxPreferred": 9.77330451330318,
+        "diSpreadPreferred": -3.38530074875629,
+        "rocPreferred": -4.109589041095885,
+        "momentumPreferred": -4.109589041095836,
         "vwapPreferred": 82.1,
-        "mfiPreferred": 30.161610482957485,
-        "pviSlopePreferred": 2.610794040890574,
+        "mfiPreferred": 34.48407655444133,
+        "pviSlopePreferred": 2.1915273789403944,
         "nviSlopePreferred": -5.6962298630752635,
         "nearSupportPreferred": 73.1,
         "supportPreferred": 73.1,
@@ -18078,8 +18137,8 @@
         "sectorGroup": "ENERGY_UTIL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 74.8,
+        "date": "2026-07-09",
+        "close": 77.0,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -18135,16 +18194,16 @@
           },
           {
             "indicator": "RSI",
-            "signal": 0,
-            "reason": "RSI24 healthy; RSI24_slope5<0"
+            "signal": 1,
+            "reason": "RSI24 healthy; RSI24_slope5>0"
           }
         ],
         "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 2.14%",
-        "core12Positive": 0,
+        "reason": "trên S1 khoảng 4.99%",
+        "core12Positive": 1,
         "core12Negative": 3,
-        "core12Neutral": 2,
-        "holdScore": 0.0,
+        "core12Neutral": 1,
+        "holdScore": 20.0,
         "breakRiskScore": 60.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
@@ -18366,23 +18425,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 30.161610482957485
+            "MFI20": 34.48407655444133
           },
           "ROC_MOMENTUM": {
-            "ROC72": -9.333333333333337,
-            "MOM72": -9.333333333333224
+            "ROC72": -4.109589041095885,
+            "MOM72": -4.109589041095836
           },
           "PVI_NVI": {
-            "PVI_slope63": 2.610794040890574,
+            "PVI_slope63": 2.1915273789403944,
             "NVI_slope63": -5.6962298630752635
           },
           "ADX_DMI": {
-            "ADX41": 9.84069470672017,
-            "DI41_spread": -5.355038804613599
+            "ADX41": 9.77330451330318,
+            "DI41_spread": -3.38530074875629
           },
           "RSI": {
-            "RSI24": 41.70165863661813,
-            "RSI24_slope5": -3.07349735855869
+            "RSI24": 45.154662717645735,
+            "RSI24_slope5": 1.1975434451662608
           }
         }
       }
@@ -18666,13 +18725,13 @@
       "date": "2026-07-01",
       "price": 31.1,
       "preferred": {
-        "rsi14": 44.80661144450427,
+        "rsi14": 40.451713806516864,
         "macd": -0.2098,
         "signal": -0.2621,
         "histogram": 0.0524,
-        "adx14": 9.66658937105813,
+        "adx14": 9.745507531055443,
         "plusDi": 0.0,
-        "minusDi": 3.013310196306765,
+        "minusDi": 5.848427871982381,
         "ma20": 30.75,
         "ma50": 31.32,
         "ma200": 30.35,
@@ -18767,15 +18826,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 44.80661144450427,
-        "rsiSlope5Preferred": -6.795995684394555,
-        "adxPreferred": 9.66658937105813,
-        "diSpreadPreferred": -3.013310196306765,
-        "rocPreferred": 17.718940936863525,
-        "momentumPreferred": 17.718940936862815,
+        "rsiPreferred": 40.451713806516864,
+        "rsiSlope5Preferred": -10.627675683280124,
+        "adxPreferred": 9.745507531055443,
+        "diSpreadPreferred": -5.848427871982381,
+        "rocPreferred": 11.793611793611781,
+        "momentumPreferred": 11.793611793611307,
         "vwapPreferred": 31.4,
-        "mfiPreferred": 42.927125377005744,
-        "pviSlopePreferred": 13.311292644444773,
+        "mfiPreferred": 40.507093593405365,
+        "pviSlopePreferred": 0.07103247119186751,
         "nviSlopePreferred": 0.889873890931403,
         "nearSupportPreferred": 29.7,
         "supportPreferred": 29.7,
@@ -19087,20 +19146,18 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 28.9,
+        "date": "2026-07-09",
+        "close": 27.3,
         "currentZone": {
-          "low": 28.98,
-          "high": 29.21,
-          "center": 29.09,
-          "strength": 10.94,
-          "touches": 5,
+          "low": 27.44,
+          "high": 27.66,
+          "center": 27.55,
+          "strength": 4.66,
+          "touches": 2,
           "sources": {
-            "swing_low": 2,
-            "swing_high": 2,
-            "vol_node": 1
+            "swing_low": 2
           },
-          "distPct": -0.67,
+          "distPct": -0.92,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -19390,23 +19447,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 42.927125377005744
+            "MFI20": 40.507093593405365
           },
           "ROC_MOMENTUM": {
-            "ROC72": 17.718940936863525,
-            "MOM72": 17.718940936862815
+            "ROC72": 11.793611793611781,
+            "MOM72": 11.793611793611307
           },
           "PVI_NVI": {
-            "PVI_slope63": 13.311292644444773,
+            "PVI_slope63": 0.07103247119186751,
             "NVI_slope63": 0.889873890931403
           },
           "ADX_DMI": {
-            "ADX41": 9.66658937105813,
-            "DI41_spread": -3.013310196306765
+            "ADX41": 9.745507531055443,
+            "DI41_spread": -5.848427871982381
           },
           "RSI": {
-            "RSI24": 44.80661144450427,
-            "RSI24_slope5": -6.795995684394555
+            "RSI24": 40.451713806516864,
+            "RSI24_slope5": -10.627675683280124
           }
         }
       }
@@ -19781,13 +19838,13 @@
       "date": "2026-07-01",
       "price": 33.15,
       "preferred": {
-        "rsi14": 41.74517400277045,
+        "rsi14": 41.74517400276756,
         "macd": -0.5657,
         "signal": -0.3577,
         "histogram": -0.208,
-        "adx14": 8.319910074842014,
+        "adx14": 8.314083577977442,
         "plusDi": 0.0,
-        "minusDi": 4.133392231469678,
+        "minusDi": 3.811342314275972,
         "ma20": 34.18,
         "ma50": 34.76,
         "ma200": 32.03,
@@ -19882,15 +19939,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 41.74517400277045,
-        "rsiSlope5Preferred": -4.199800419195512,
-        "adxPreferred": 8.319910074842014,
-        "diSpreadPreferred": -4.133392231469678,
-        "rocPreferred": 3.2786885245901676,
-        "momentumPreferred": 3.2786885245900566,
+        "rsiPreferred": 41.74517400276756,
+        "rsiSlope5Preferred": -3.7448132133813132,
+        "adxPreferred": 8.314083577977442,
+        "diSpreadPreferred": -3.811342314275972,
+        "rocPreferred": 5.000000000000004,
+        "momentumPreferred": 4.999999999999834,
         "vwapPreferred": 34.8,
-        "mfiPreferred": 47.16251329883716,
-        "pviSlopePreferred": 11.737100692995561,
+        "mfiPreferred": 41.02274450203545,
+        "pviSlopePreferred": 6.015622645462648,
         "nviSlopePreferred": -10.504210884479615,
         "nearSupportPreferred": 32.0,
         "supportPreferred": 32.7,
@@ -20197,7 +20254,7 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 31.5,
         "currentZone": null,
         "mlConfig": {
@@ -20234,8 +20291,8 @@
         "core12Signals": [
           {
             "indicator": "MFI_CMF",
-            "signal": 1,
-            "reason": "MFI20 ok"
+            "signal": -1,
+            "reason": "MFI20 weak"
           },
           {
             "indicator": "ROC_MOMENTUM",
@@ -20259,12 +20316,12 @@
           }
         ],
         "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 9.21%",
-        "core12Positive": 2,
-        "core12Negative": 1,
+        "reason": "trên S1 khoảng 3.17%",
+        "core12Positive": 1,
+        "core12Negative": 2,
         "core12Neutral": 2,
-        "holdScore": 40.0,
-        "breakRiskScore": 20.0,
+        "holdScore": 20.0,
+        "breakRiskScore": 40.0,
         "finalStatus": "GIỮ TRÊN HỖ TRỢ"
       },
       "raw": {
@@ -20482,23 +20539,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 47.16251329883716
+            "MFI20": 41.02274450203545
           },
           "ROC_MOMENTUM": {
-            "ROC72": 3.2786885245901676,
-            "MOM72": 3.2786885245900566
+            "ROC72": 5.000000000000004,
+            "MOM72": 4.999999999999834
           },
           "PVI_NVI": {
-            "PVI_slope63": 11.737100692995561,
+            "PVI_slope63": 6.015622645462648,
             "NVI_slope63": -10.504210884479615
           },
           "ADX_DMI": {
-            "ADX41": 8.319910074842014,
-            "DI41_spread": -4.133392231469678
+            "ADX41": 8.314083577977442,
+            "DI41_spread": -3.811342314275972
           },
           "RSI": {
-            "RSI24": 41.74517400277045,
-            "RSI24_slope5": -4.199800419195512
+            "RSI24": 41.74517400276756,
+            "RSI24_slope5": -3.7448132133813132
           }
         }
       }
@@ -21263,7 +21320,7 @@
         "bbUpper": 28.48,
         "bbLower": 26.51,
         "bbPercent": 0.807,
-        "vwapDay": 1.8847522080356338,
+        "vwapDay": 1.2426372436124877,
         "donchianHighDay": 30.4,
         "donchianLowDay": 24.9,
         "donchianMidDay": 27.6,
@@ -21309,7 +21366,7 @@
           "percent": 0.699,
           "state": "above_mid"
         },
-        "roc20": 3.4862385321100975,
+        "roc20": 4.850746268656714,
         "fibonacciLevelsDay": [
           27.77,
           26.11,
@@ -21351,18 +21408,18 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 54.32586867104061,
-        "rsiSlope5Preferred": -0.5462908883478903,
+        "rsiPreferred": 54.07196499417729,
+        "rsiSlope5Preferred": -2.7309255137869712,
         "adxPreferred": 14.84,
-        "rocPreferred": 3.4862385321100975,
-        "momentumPreferred": 3.4862385321099616,
-        "vwapPreferred": 1.8847522080356338,
-        "vwmaSlope5Preferred": 1.6383400821824212,
-        "mfiPreferred": 66.04596307219452,
+        "rocPreferred": 4.850746268656714,
+        "momentumPreferred": 4.850746268656538,
+        "vwapPreferred": 1.2426372436124877,
+        "vwmaSlope5Preferred": 1.419024260479751,
+        "mfiPreferred": 64.5542146483713,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "25.66-25.88",
-        "activeSupportDay": "25.66-25.88",
+        "supportPreferred": "25.67-25.89",
+        "activeSupportDay": "25.67-25.89",
         "resistancePreferred": "30.34-30.56",
         "activeResistanceDay": "30.34-30.56",
         "_sourceMap": {
@@ -21657,20 +21714,20 @@
         "sectorGroup": "CHUNG_KHOAN",
         "configSector": "CHUNG_KHOAN",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 28.2,
+        "date": "2026-07-09",
+        "close": 28.1,
         "currentZone": {
-          "low": 27.95,
-          "high": 28.17,
-          "center": 28.06,
-          "strength": 5.65,
+          "low": 27.96,
+          "high": 28.18,
+          "center": 28.07,
+          "strength": 5.77,
           "touches": 3,
           "sources": {
             "ich_tenkan": 1,
             "swing_high": 1,
             "ich_spanb": 1
           },
-          "distPct": 0.5,
+          "distPct": 0.1,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -21947,25 +22004,25 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI61": 66.04596307219452
+            "MFI61": 64.5542146483713
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "25.66-25.88",
+            "S1": "25.67-25.89",
             "R1": "30.34-30.56"
           },
           "VWAP_VWMA": {
-            "VWAP60_dist": 1.8847522080356338,
-            "VWMA60_slope5": 1.6383400821824212
+            "VWAP60_dist": 1.2426372436124877,
+            "VWMA60_slope5": 1.419024260479751
           },
           "ROC_MOMENTUM": {
-            "ROC52": 3.4862385321100975,
-            "MOM52": 3.4862385321099616
+            "ROC52": 4.850746268656714,
+            "MOM52": 4.850746268656538
           },
           "RSI": {
-            "RSI50": 54.32586867104061,
-            "RSI50_slope5": -0.5462908883478903
+            "RSI50": 54.07196499417729,
+            "RSI50_slope5": -2.7309255137869712
           }
         }
       }
@@ -22336,13 +22393,13 @@
       "date": "2026-07-01",
       "price": 20.8,
       "preferred": {
-        "rsi14": 33.04013061174474,
+        "rsi14": 32.36191995676653,
         "macd": -0.3252,
         "signal": -0.3722,
         "histogram": 0.047,
-        "adx14": 20.0417221247147,
+        "adx14": 20.353518218326453,
         "plusDi": 0.0,
-        "minusDi": 14.989600233678313,
+        "minusDi": 14.845360051375108,
         "ma20": 21.02,
         "ma50": 22.0,
         "ma200": 25.3,
@@ -22437,16 +22494,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 33.04013061174474,
-        "rsiSlope5Preferred": -7.690629958047687,
-        "adxPreferred": 20.0417221247147,
-        "diSpreadPreferred": -14.989600233678313,
-        "rocPreferred": -31.70381020848311,
-        "momentumPreferred": -31.70381020848197,
+        "rsiPreferred": 32.36191995676653,
+        "rsiSlope5Preferred": -7.704463437459651,
+        "adxPreferred": 20.353518218326453,
+        "diSpreadPreferred": -14.845360051375108,
+        "rocPreferred": -29.951690821256037,
+        "momentumPreferred": -29.95169082125492,
         "vwapPreferred": 23.1,
-        "mfiPreferred": 28.745391418673847,
+        "mfiPreferred": 26.01496337860361,
         "pviSlopePreferred": -26.90791045785621,
-        "nviSlopePreferred": 2.867451725346859,
+        "nviSlopePreferred": -1.341298833959148,
         "nearSupportPreferred": 20.6,
         "supportPreferred": 20.6,
         "resistancePreferred": 21.5,
@@ -22750,8 +22807,8 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 19.0,
+        "date": "2026-07-09",
+        "close": 18.85,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -22797,8 +22854,8 @@
           },
           {
             "indicator": "PVI_NVI",
-            "signal": 0,
-            "reason": "PVI_slope63<0; NVI_slope63>0"
+            "signal": -1,
+            "reason": "PVI_slope63<0; NVI_slope63<0"
           },
           {
             "indicator": "ADX_DMI",
@@ -22814,10 +22871,10 @@
         "priceStatus": "CHƯA CÓ S1 RÕ",
         "reason": "không đủ cụm hỗ trợ major",
         "core12Positive": 0,
-        "core12Negative": 4,
-        "core12Neutral": 1,
+        "core12Negative": 5,
+        "core12Neutral": 0,
         "holdScore": 0.0,
-        "breakRiskScore": 80.0,
+        "breakRiskScore": 100.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -23033,23 +23090,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 28.745391418673847
+            "MFI20": 26.01496337860361
           },
           "ROC_MOMENTUM": {
-            "ROC72": -31.70381020848311,
-            "MOM72": -31.70381020848197
+            "ROC72": -29.951690821256037,
+            "MOM72": -29.95169082125492
           },
           "PVI_NVI": {
             "PVI_slope63": -26.90791045785621,
-            "NVI_slope63": 2.867451725346859
+            "NVI_slope63": -1.341298833959148
           },
           "ADX_DMI": {
-            "ADX41": 20.0417221247147,
-            "DI41_spread": -14.989600233678313
+            "ADX41": 20.353518218326453,
+            "DI41_spread": -14.845360051375108
           },
           "RSI": {
-            "RSI24": 33.04013061174474,
-            "RSI24_slope5": -7.690629958047687
+            "RSI24": 32.36191995676653,
+            "RSI24_slope5": -7.704463437459651
           }
         }
       }
@@ -23522,13 +23579,13 @@
       "date": "2026-07-01",
       "price": 23.45,
       "preferred": {
-        "rsi14": 43.9960620520369,
+        "rsi14": 43.99606205202749,
         "macd": -0.1682,
         "signal": -0.1684,
         "histogram": 0.0003,
-        "adx14": 7.279689270337069,
+        "adx14": 7.375799389078686,
         "plusDi": 0.0,
-        "minusDi": 4.855926538454419,
+        "minusDi": 4.814359899954354,
         "ma20": 23.61,
         "ma50": 24.11,
         "ma200": 24.29,
@@ -23623,15 +23680,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 43.9960620520369,
-        "rsiSlope5Preferred": -1.8177319231764102,
-        "adxPreferred": 7.279689270337069,
-        "diSpreadPreferred": -4.855926538454419,
-        "rocPreferred": -1.3605442176870763,
-        "momentumPreferred": -1.3605442176870184,
+        "rsiPreferred": 43.99606205202749,
+        "rsiSlope5Preferred": -1.3894843002690394,
+        "adxPreferred": 7.375799389078686,
+        "diSpreadPreferred": -4.814359899954354,
+        "rocPreferred": 0.34602076124565784,
+        "momentumPreferred": 0.3460207612456524,
         "vwapPreferred": 24.5,
-        "mfiPreferred": 34.34042728639899,
-        "pviSlopePreferred": -0.6713732370997594,
+        "mfiPreferred": 34.200084912825375,
+        "pviSlopePreferred": -4.9226384625518875,
         "nviSlopePreferred": -2.3952721243227115,
         "nearSupportPreferred": 22.6,
         "supportPreferred": 22.6,
@@ -23935,19 +23992,19 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 23.2,
         "currentZone": {
           "low": 23.15,
-          "high": 23.26,
+          "high": 23.25,
           "center": 23.2,
-          "strength": 16.24,
-          "touches": 8,
+          "strength": 14.4,
+          "touches": 7,
           "sources": {
-            "swing_low": 8
+            "swing_low": 7
           },
-          "distPct": -0.01,
-          "widthPct": 0.47
+          "distPct": -0.0,
+          "widthPct": 0.45
         },
         "mlConfig": {
           "indicators": [
@@ -23988,8 +24045,8 @@
           },
           {
             "indicator": "ROC_MOMENTUM",
-            "signal": -1,
-            "reason": "ROC72<0; MOM72<0"
+            "signal": 1,
+            "reason": "ROC72>0; MOM72>0"
           },
           {
             "indicator": "PVI_NVI",
@@ -24009,11 +24066,11 @@
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 0,
-        "core12Negative": 4,
+        "core12Positive": 1,
+        "core12Negative": 3,
         "core12Neutral": 1,
-        "holdScore": 0.0,
-        "breakRiskScore": 80.0,
+        "holdScore": 20.0,
+        "breakRiskScore": 60.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -24231,23 +24288,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 34.34042728639899
+            "MFI20": 34.200084912825375
           },
           "ROC_MOMENTUM": {
-            "ROC72": -1.3605442176870763,
-            "MOM72": -1.3605442176870184
+            "ROC72": 0.34602076124565784,
+            "MOM72": 0.3460207612456524
           },
           "PVI_NVI": {
-            "PVI_slope63": -0.6713732370997594,
+            "PVI_slope63": -4.9226384625518875,
             "NVI_slope63": -2.3952721243227115
           },
           "ADX_DMI": {
-            "ADX41": 7.279689270337069,
-            "DI41_spread": -4.855926538454419
+            "ADX41": 7.375799389078686,
+            "DI41_spread": -4.814359899954354
           },
           "RSI": {
-            "RSI24": 43.9960620520369,
-            "RSI24_slope5": -1.8177319231764102
+            "RSI24": 43.99606205202749,
+            "RSI24_slope5": -1.3894843002690394
           }
         }
       }
@@ -24525,13 +24582,13 @@
       "date": "2026-07-01",
       "price": 11.75,
       "preferred": {
-        "rsi14": 46.45206571850902,
+        "rsi14": 43.43993003180969,
         "macd": -0.1186,
         "signal": -0.1038,
         "histogram": -0.0148,
-        "adx14": 6.170247372695997,
+        "adx14": 6.196369560815907,
         "plusDi": 0.0,
-        "minusDi": 3.438659839870624,
+        "minusDi": 3.363961163382484,
         "ma20": 11.85,
         "ma50": 12.14,
         "ma200": 12.56,
@@ -24626,16 +24683,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 46.45206571850902,
-        "rsiSlope5Preferred": 0.43527722358298604,
-        "adxPreferred": 6.170247372695997,
-        "diSpreadPreferred": -3.438659839870624,
-        "rocPreferred": 5.595667870036092,
-        "momentumPreferred": 5.595667870035589,
+        "rsiPreferred": 43.43993003180969,
+        "rsiSlope5Preferred": -0.3597635483319479,
+        "adxPreferred": 6.196369560815907,
+        "diSpreadPreferred": -3.363961163382484,
+        "rocPreferred": 3.139013452914785,
+        "momentumPreferred": 3.1390134529145133,
         "vwapPreferred": 12.2,
-        "mfiPreferred": 37.44615047387583,
-        "pviSlopePreferred": 6.94879188639741,
-        "nviSlopePreferred": -2.2357906934255656,
+        "mfiPreferred": 37.12813933091069,
+        "pviSlopePreferred": 3.079843342703459,
+        "nviSlopePreferred": -3.9069737584952136,
         "nearSupportPreferred": 11.2,
         "supportPreferred": 11.2,
         "resistancePreferred": 12.1,
@@ -24936,20 +24993,21 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 11.7,
+        "date": "2026-07-09",
+        "close": 11.5,
         "currentZone": {
-          "low": 11.63,
-          "high": 11.7,
-          "center": 11.67,
-          "strength": 19.96,
-          "touches": 10,
+          "low": 11.48,
+          "high": 11.56,
+          "center": 11.52,
+          "strength": 15.76,
+          "touches": 8,
           "sources": {
-            "swing_low": 8,
-            "swing_high": 2
+            "swing_high": 2,
+            "swing_low": 5,
+            "ich_tenkan": 1
           },
-          "distPct": 0.29,
-          "widthPct": 0.65
+          "distPct": -0.19,
+          "widthPct": 0.67
         },
         "mlConfig": {
           "indicators": [
@@ -25005,16 +25063,16 @@
           },
           {
             "indicator": "RSI",
-            "signal": 1,
-            "reason": "RSI24 healthy; RSI24_slope5>0"
+            "signal": 0,
+            "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 2,
+        "core12Positive": 1,
         "core12Negative": 2,
-        "core12Neutral": 1,
-        "holdScore": 40.0,
+        "core12Neutral": 2,
+        "holdScore": 20.0,
         "breakRiskScore": 40.0,
         "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
@@ -25227,23 +25285,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 37.44615047387583
+            "MFI20": 37.12813933091069
           },
           "ROC_MOMENTUM": {
-            "ROC72": 5.595667870036092,
-            "MOM72": 5.595667870035589
+            "ROC72": 3.139013452914785,
+            "MOM72": 3.1390134529145133
           },
           "PVI_NVI": {
-            "PVI_slope63": 6.94879188639741,
-            "NVI_slope63": -2.2357906934255656
+            "PVI_slope63": 3.079843342703459,
+            "NVI_slope63": -3.9069737584952136
           },
           "ADX_DMI": {
-            "ADX41": 6.170247372695997,
-            "DI41_spread": -3.438659839870624
+            "ADX41": 6.196369560815907,
+            "DI41_spread": -3.363961163382484
           },
           "RSI": {
-            "RSI24": 46.45206571850902,
-            "RSI24_slope5": 0.43527722358298604
+            "RSI24": 43.43993003180969,
+            "RSI24_slope5": -0.3597635483319479
           }
         }
       }
@@ -26476,13 +26534,13 @@
       "date": "2026-07-01",
       "price": 29.8,
       "preferred": {
-        "rsi14": 40.55053500842041,
+        "rsi14": 39.66918138180748,
         "macd": -0.3799,
         "signal": -0.4693,
         "histogram": 0.0894,
-        "adx14": 11.931337853838329,
+        "adx14": 12.107623580727763,
         "plusDi": 0.0,
-        "minusDi": 8.813900970187873,
+        "minusDi": 8.731787595082768,
         "ma20": 29.94,
         "ma50": 31.52,
         "ma200": 33.69,
@@ -26577,16 +26635,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 40.55053500842041,
-        "rsiSlope5Preferred": -3.5613023993486266,
-        "adxPreferred": 11.931337853838329,
-        "diSpreadPreferred": -8.813900970187873,
-        "rocPreferred": -0.17301038062282892,
-        "momentumPreferred": -0.17301038062282156,
+        "rsiPreferred": 39.66918138180748,
+        "rsiSlope5Preferred": -2.4651219955972508,
+        "adxPreferred": 12.107623580727763,
+        "diSpreadPreferred": -8.731787595082768,
+        "rocPreferred": -0.17421602787456303,
+        "momentumPreferred": -0.1742160278745609,
         "vwapPreferred": 32.4,
-        "mfiPreferred": 43.62388023991585,
-        "pviSlopePreferred": 5.657784877206518,
-        "nviSlopePreferred": -13.999577184126654,
+        "mfiPreferred": 34.23519943137728,
+        "pviSlopePreferred": 0.28803198359661497,
+        "nviSlopePreferred": -14.595767290302565,
         "nearSupportPreferred": 28.6,
         "supportPreferred": 29.5,
         "resistancePreferred": 31.1,
@@ -26891,9 +26949,20 @@
         "sectorGroup": "INDUSTRIAL_LOGISTICS",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 28.85,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 28.65,
+        "currentZone": {
+          "low": 28.54,
+          "high": 28.76,
+          "center": 28.65,
+          "strength": 4.85,
+          "touches": 2,
+          "sources": {
+            "swing_low": 2
+          },
+          "distPct": 0.0,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -26948,17 +27017,17 @@
           },
           {
             "indicator": "RSI",
-            "signal": 0,
-            "reason": "RSI24 healthy; RSI24_slope5<0"
+            "signal": -1,
+            "reason": "RSI24_slope5<0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 2.25%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 0,
-        "core12Negative": 3,
-        "core12Neutral": 2,
+        "core12Negative": 4,
+        "core12Neutral": 1,
         "holdScore": 0.0,
-        "breakRiskScore": 60.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -27175,23 +27244,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 43.62388023991585
+            "MFI20": 34.23519943137728
           },
           "ROC_MOMENTUM": {
-            "ROC72": -0.17301038062282892,
-            "MOM72": -0.17301038062282156
+            "ROC72": -0.17421602787456303,
+            "MOM72": -0.1742160278745609
           },
           "PVI_NVI": {
-            "PVI_slope63": 5.657784877206518,
-            "NVI_slope63": -13.999577184126654
+            "PVI_slope63": 0.28803198359661497,
+            "NVI_slope63": -14.595767290302565
           },
           "ADX_DMI": {
-            "ADX41": 11.931337853838329,
-            "DI41_spread": -8.813900970187873
+            "ADX41": 12.107623580727763,
+            "DI41_spread": -8.731787595082768
           },
           "RSI": {
-            "RSI24": 40.55053500842041,
-            "RSI24_slope5": -3.5613023993486266
+            "RSI24": 39.66918138180748,
+            "RSI24_slope5": -2.4651219955972508
           }
         }
       }
@@ -27471,16 +27540,16 @@
         "rsiPreferred": 35.96,
         "adxPreferred": 19.9,
         "rocPreferred": -4.59,
-        "maTrendPreferred": -22.176238648996772,
-        "maTrendSlope5Preferred": -0.9676423518415911,
-        "vwapPreferred": -14.984736377963026,
-        "vwmaSlope5Preferred": -1.158840201865785,
-        "pviSlopePreferred": -8.857418807735783,
-        "nviSlopePreferred": -9.643834858321599,
-        "trixPreferred": -0.2618802431309408,
-        "trixSlope5Preferred": -0.004889800278118361,
+        "maTrendPreferred": -23.316778872344358,
+        "maTrendSlope5Preferred": -0.9929151647474432,
+        "vwapPreferred": -16.0282795235811,
+        "vwmaSlope5Preferred": -1.4388243737576523,
+        "pviSlopePreferred": -3.161007483219269,
+        "nviSlopePreferred": -11.149770944016236,
+        "trixPreferred": -0.2636812194344085,
+        "trixSlope5Preferred": -0.006397076084396769,
         "supertrendDirPreferred": 0.0,
-        "supertrendDistPreferred": -13.20376190476128,
+        "supertrendDistPreferred": -13.467215496367386,
         "nearSupportPreferred": 21.6,
         "supportPreferred": 21.6,
         "resistancePreferred": 22.6,
@@ -27778,8 +27847,8 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 21.0,
+        "date": "2026-07-09",
+        "close": 20.65,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -28057,24 +28126,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": -13.20376190476128,
+            "ST15_5.0_dist": -13.467215496367386,
             "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -22.176238648996772,
-            "EMA229_slope5": -0.9676423518415911
+            "EMA229_dist": -23.316778872344358,
+            "EMA229_slope5": -0.9929151647474432
           },
           "TRIX": {
-            "TRIX38": -0.2618802431309408,
-            "TRIX38_slope5": -0.004889800278118361
+            "TRIX38": -0.2636812194344085,
+            "TRIX38_slope5": -0.006397076084396769
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -14.984736377963026,
-            "VWMA98_slope5": -1.158840201865785
+            "VWAP98_dist": -16.0282795235811,
+            "VWMA98_slope5": -1.4388243737576523
           },
           "PVI_NVI": {
-            "PVI_slope75": -8.857418807735783,
-            "NVI_slope75": -9.643834858321599
+            "PVI_slope75": -3.161007483219269,
+            "NVI_slope75": -11.149770944016236
           }
         }
       }
@@ -28326,13 +28395,13 @@
       "date": "2026-07-01",
       "price": 14.85,
       "preferred": {
-        "rsi14": 38.045169753409986,
+        "rsi14": 37.3989179202288,
         "macd": -0.1601,
         "signal": -0.1776,
         "histogram": 0.0175,
-        "adx14": 18.004753214132098,
+        "adx14": 18.323674030516425,
         "plusDi": 0.0,
-        "minusDi": 11.34293377262122,
+        "minusDi": 11.895136903694691,
         "ma20": 14.94,
         "ma50": 15.4,
         "ma200": 17.34,
@@ -28427,16 +28496,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 38.045169753409986,
-        "rsiSlope5Preferred": -4.5092883262060965,
-        "adxPreferred": 18.004753214132098,
-        "diSpreadPreferred": -11.34293377262122,
-        "rocPreferred": -10.769230769230765,
-        "momentumPreferred": -10.769230769230107,
+        "rsiPreferred": 37.3989179202288,
+        "rsiSlope5Preferred": -4.5009285658287865,
+        "adxPreferred": 18.323674030516425,
+        "diSpreadPreferred": -11.895136903694691,
+        "rocPreferred": -9.968847352024934,
+        "momentumPreferred": -9.96884735202431,
         "vwapPreferred": 15.8,
-        "mfiPreferred": 39.378242831289235,
-        "pviSlopePreferred": 7.599079912222262,
-        "nviSlopePreferred": -13.058376360569557,
+        "mfiPreferred": 38.014572833525285,
+        "pviSlopePreferred": 3.5891763130089904,
+        "nviSlopePreferred": -13.35817506277449,
         "nearSupportPreferred": 14.4,
         "supportPreferred": 14.7,
         "resistancePreferred": 15.3,
@@ -28737,9 +28806,20 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 14.5,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 14.45,
+        "currentZone": {
+          "low": 14.34,
+          "high": 14.46,
+          "center": 14.4,
+          "strength": 4.72,
+          "touches": 2,
+          "sources": {
+            "swing_low": 2
+          },
+          "distPct": 0.35,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -28798,8 +28878,8 @@
             "reason": "RSI24_slope5<0"
           }
         ],
-        "priceStatus": "CHƯA CÓ S1 RÕ",
-        "reason": "không đủ cụm hỗ trợ major",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 0,
         "core12Negative": 4,
         "core12Neutral": 1,
@@ -29018,23 +29098,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 39.378242831289235
+            "MFI20": 38.014572833525285
           },
           "ROC_MOMENTUM": {
-            "ROC72": -10.769230769230765,
-            "MOM72": -10.769230769230107
+            "ROC72": -9.968847352024934,
+            "MOM72": -9.96884735202431
           },
           "PVI_NVI": {
-            "PVI_slope63": 7.599079912222262,
-            "NVI_slope63": -13.058376360569557
+            "PVI_slope63": 3.5891763130089904,
+            "NVI_slope63": -13.35817506277449
           },
           "ADX_DMI": {
-            "ADX41": 18.004753214132098,
-            "DI41_spread": -11.34293377262122
+            "ADX41": 18.323674030516425,
+            "DI41_spread": -11.895136903694691
           },
           "RSI": {
-            "RSI24": 38.045169753409986,
-            "RSI24_slope5": -4.5092883262060965
+            "RSI24": 37.3989179202288,
+            "RSI24_slope5": -4.5009285658287865
           }
         }
       }
@@ -30138,8 +30218,8 @@
           "chikou": null,
           "state": "below_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": -0.6730769230768999,
-          "core12Tk": 1.3461538461537863,
+          "core12CloudPos": -1.7276422764226824,
+          "core12Tk": 1.3821138211381545,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -30193,20 +30273,20 @@
         },
         "rsiPreferred": 63.18,
         "adxPreferred": 17.21,
-        "rocPreferred": -0.5736137667303964,
-        "momentumPreferred": -0.5736137667303742,
-        "ichimokuCloudPreferred": -0.6730769230768999,
-        "ichimokuTkPreferred": 1.3461538461537863,
+        "rocPreferred": -1.9920318725099584,
+        "momentumPreferred": -1.9920318725098807,
+        "ichimokuCloudPreferred": -1.7276422764226824,
+        "ichimokuTkPreferred": 1.3821138211381545,
         "vwapPreferred": 25.6,
-        "mfiPreferred": 51.3022224349973,
-        "trixPreferred": -0.0242998387336546,
-        "trixSlope5Preferred": -0.005043847767638443,
+        "mfiPreferred": 50.065618669326355,
+        "trixPreferred": -0.02490028290141888,
+        "trixSlope5Preferred": -0.004407312933618623,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "24.46-24.60",
-        "activeSupportDay": "24.46-24.60",
-        "resistancePreferred": "27.00-27.13",
-        "activeResistanceDay": "27.00-27.13",
+        "supportPreferred": "23.52-23.65",
+        "activeSupportDay": "23.52-23.65",
+        "resistancePreferred": "25.96-26.09",
+        "activeResistanceDay": "25.96-26.09",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -30505,21 +30585,21 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 26.0,
+        "date": "2026-07-09",
+        "close": 24.6,
         "currentZone": {
-          "low": 25.93,
-          "high": 26.07,
-          "center": 26.0,
-          "strength": 10.2,
-          "touches": 5,
+          "low": 24.57,
+          "high": 24.7,
+          "center": 24.64,
+          "strength": 11.76,
+          "touches": 6,
           "sources": {
-            "ma100": 1,
-            "swing_high": 2,
-            "swing_low": 2
+            "ich_spanb": 1,
+            "supertrend": 1,
+            "swing_high": 4
           },
-          "distPct": 0.0,
-          "widthPct": 0.51
+          "distPct": -0.15,
+          "widthPct": 0.53
         },
         "mlConfig": {
           "indicators": [
@@ -30801,25 +30881,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": -0.5736137667303964,
-            "MOM80": -0.5736137667303742
+            "ROC80": -1.9920318725099584,
+            "MOM80": -1.9920318725098807
           },
           "MFI_CMF": {
-            "MFI73": 51.3022224349973
+            "MFI73": 50.065618669326355
           },
           "TRIX": {
-            "TRIX58": -0.0242998387336546,
-            "TRIX58_slope5": -0.005043847767638443
+            "TRIX58": -0.02490028290141888,
+            "TRIX58_slope5": -0.004407312933618623
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": -0.6730769230768999,
-            "ICHI5_29_89_tk": 1.3461538461537863
+            "ICHI5_29_89_cloud_pos": -1.7276422764226824,
+            "ICHI5_29_89_tk": 1.3821138211381545
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "24.46-24.60",
-            "R1": "27.00-27.13"
+            "S1": "23.52-23.65",
+            "R1": "25.96-26.09"
           }
         }
       }
@@ -30842,7 +30922,7 @@
         "bbUpper": 21.17,
         "bbLower": 18.75,
         "bbPercent": 0.682,
-        "vwapDay": 7.720520221562732,
+        "vwapDay": 7.657463970392531,
         "donchianHighDay": 21.4,
         "donchianLowDay": 18.5,
         "donchianMidDay": 19.9,
@@ -30888,7 +30968,7 @@
           "percent": 0.63,
           "state": "above_mid"
         },
-        "roc20": 11.111111111111116,
+        "roc20": 12.755102040816336,
         "fibonacciLevelsDay": [
           26.04,
           24.31,
@@ -30930,18 +31010,18 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 54.533578936934994,
-        "rsiSlope5Preferred": 4.361433527287133,
+        "rsiPreferred": 54.79841490001146,
+        "rsiSlope5Preferred": 4.298749489614636,
         "adxPreferred": 19.42,
-        "rocPreferred": 11.111111111111116,
-        "momentumPreferred": 11.111111111110548,
-        "vwapPreferred": 7.720520221562732,
-        "vwmaSlope5Preferred": 1.7864449164430196,
-        "mfiPreferred": 58.68014667005839,
+        "rocPreferred": 12.755102040816336,
+        "momentumPreferred": 12.755102040815675,
+        "vwapPreferred": 7.657463970392531,
+        "vwmaSlope5Preferred": 2.163272910219627,
+        "mfiPreferred": 59.5397922974611,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "20.40-20.58",
-        "activeSupportDay": "20.40-20.58",
+        "supportPreferred": "20.38-20.55",
+        "activeSupportDay": "20.38-20.55",
         "resistancePreferred": "23.67-23.85",
         "activeResistanceDay": "23.67-23.85",
         "_sourceMap": {
@@ -31211,18 +31291,19 @@
         "sectorGroup": "CHUNG_KHOAN",
         "configSector": "CHUNG_KHOAN",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 22.0,
+        "date": "2026-07-09",
+        "close": 22.1,
         "currentZone": {
-          "low": 21.98,
-          "high": 22.16,
-          "center": 22.07,
-          "strength": 4.77,
-          "touches": 2,
+          "low": 21.94,
+          "high": 22.12,
+          "center": 22.03,
+          "strength": 7.33,
+          "touches": 3,
           "sources": {
+            "vol_node": 1,
             "swing_high": 2
           },
-          "distPct": -0.32,
+          "distPct": 0.3,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -31502,25 +31583,25 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI61": 58.68014667005839
+            "MFI61": 59.5397922974611
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "20.40-20.58",
+            "S1": "20.38-20.55",
             "R1": "23.67-23.85"
           },
           "VWAP_VWMA": {
-            "VWAP60_dist": 7.720520221562732,
-            "VWMA60_slope5": 1.7864449164430196
+            "VWAP60_dist": 7.657463970392531,
+            "VWMA60_slope5": 2.163272910219627
           },
           "ROC_MOMENTUM": {
-            "ROC52": 11.111111111111116,
-            "MOM52": 11.111111111110548
+            "ROC52": 12.755102040816336,
+            "MOM52": 12.755102040815675
           },
           "RSI": {
-            "RSI50": 54.533578936934994,
-            "RSI50_slope5": 4.361433527287133
+            "RSI50": 54.79841490001146,
+            "RSI50_slope5": 4.298749489614636
           }
         }
       }
@@ -32255,15 +32336,15 @@
         },
         "rsiPreferred": 46.77,
         "adxPreferred": 35.02,
-        "rocPreferred": -12.658227848101266,
-        "momentumPreferred": -12.658227848101106,
-        "maTrendPreferred": -8.827307762892278,
-        "maTrendSlope5Preferred": -0.4930606281957628,
-        "vwapPreferred": -8.82458684818478,
-        "vwmaSlope5Preferred": -0.475732345369706,
-        "mfiPreferred": 44.06184822165652,
-        "pviSlopePreferred": -4.735546941734848,
-        "nviSlopePreferred": -3.555320246355098,
+        "rocPreferred": -12.117346938775508,
+        "momentumPreferred": -12.117346938775356,
+        "maTrendPreferred": -8.841220644623837,
+        "maTrendSlope5Preferred": -0.5312861755925269,
+        "vwapPreferred": -9.0418303734211,
+        "vwmaSlope5Preferred": -0.3845168173901903,
+        "mfiPreferred": 45.35127611621784,
+        "pviSlopePreferred": -7.92328925771284,
+        "nviSlopePreferred": -3.6950951445487767,
         "nearSupportPreferred": 70.6,
         "supportPreferred": 70.6,
         "resistancePreferred": 75.6,
@@ -32566,8 +32647,8 @@
         "sectorGroup": "RETAIL_CONSUMER",
         "configSector": "RETAIL_CONSUMER",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 69.0,
+        "date": "2026-07-09",
+        "close": 68.9,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -32604,8 +32685,8 @@
         "core12Signals": [
           {
             "indicator": "MFI_CMF",
-            "signal": -1,
-            "reason": "MFI60 weak"
+            "signal": 1,
+            "reason": "MFI60 ok"
           },
           {
             "indicator": "VWAP_VWMA",
@@ -32629,12 +32710,12 @@
           }
         ],
         "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 4.20%",
-        "core12Positive": 0,
-        "core12Negative": 5,
+        "reason": "trên S1 khoảng 4.06%",
+        "core12Positive": 1,
+        "core12Negative": 4,
         "core12Neutral": 0,
-        "holdScore": 0.0,
-        "breakRiskScore": 100.0,
+        "holdScore": 20.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -32852,23 +32933,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI60": 44.06184822165652
+            "MFI60": 45.35127611621784
           },
           "VWAP_VWMA": {
-            "VWAP75_dist": -8.82458684818478,
-            "VWMA75_slope5": -0.475732345369706
+            "VWAP75_dist": -9.0418303734211,
+            "VWMA75_slope5": -0.3845168173901903
           },
           "ROC_MOMENTUM": {
-            "ROC90": -12.658227848101266,
-            "MOM90": -12.658227848101106
+            "ROC90": -12.117346938775508,
+            "MOM90": -12.117346938775356
           },
           "MA_EMA_WMA": {
-            "MA108_dist": -8.827307762892278,
-            "MA108_slope5": -0.4930606281957628
+            "MA108_dist": -8.841220644623837,
+            "MA108_slope5": -0.5312861755925269
           },
           "PVI_NVI": {
-            "PVI_slope63": -4.735546941734848,
-            "NVI_slope63": -3.555320246355098
+            "PVI_slope63": -7.92328925771284,
+            "NVI_slope63": -3.6950951445487767
           }
         }
       }
@@ -32981,15 +33062,15 @@
         },
         "rsiPreferred": 54.79,
         "adxPreferred": 20.82,
-        "rocPreferred": -15.359828141783026,
-        "momentumPreferred": -15.359828141782863,
-        "maTrendPreferred": -4.5769515394793014,
-        "maTrendSlope5Preferred": -0.37866517732476623,
-        "vwapPreferred": -2.1714094951522767,
-        "vwmaSlope5Preferred": -0.18983895532507233,
-        "mfiPreferred": 47.93106615480525,
-        "pviSlopePreferred": 15.122530629842368,
-        "nviSlopePreferred": -12.245117899230017,
+        "rocPreferred": -12.777777777777777,
+        "momentumPreferred": -12.777777777777635,
+        "maTrendPreferred": -4.865568472552628,
+        "maTrendSlope5Preferred": -0.39343675951176715,
+        "vwapPreferred": -2.8686674932690504,
+        "vwmaSlope5Preferred": 0.15594427123075683,
+        "mfiPreferred": 48.457095077173165,
+        "pviSlopePreferred": 9.640505361754649,
+        "nviSlopePreferred": -12.579210089968985,
         "nearSupportPreferred": 77.5,
         "supportPreferred": 77.5,
         "resistancePreferred": 83.2,
@@ -33284,20 +33365,22 @@
         "sectorGroup": "RETAIL_CONSUMER",
         "configSector": "RETAIL_CONSUMER",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 78.8,
+        "date": "2026-07-09",
+        "close": 78.5,
         "currentZone": {
-          "low": 78.72,
-          "high": 79.31,
-          "center": 79.02,
-          "strength": 4.96,
-          "touches": 2,
+          "low": 77.87,
+          "high": 78.44,
+          "center": 78.15,
+          "strength": 9.57,
+          "touches": 5,
           "sources": {
-            "ich_tenkan": 1,
-            "vol_node": 1
+            "swing_low": 2,
+            "vwap30": 1,
+            "ich_kijun": 1,
+            "ma20": 1
           },
-          "distPct": -0.27,
-          "widthPct": 0.74
+          "distPct": 0.44,
+          "widthPct": 0.73
         },
         "mlConfig": {
           "indicators": [
@@ -33339,8 +33422,8 @@
           },
           {
             "indicator": "VWAP_VWMA",
-            "signal": -1,
-            "reason": "VWAP75_dist<0; VWMA75_slope5<0"
+            "signal": 0,
+            "reason": "VWAP75_dist<0; VWMA75_slope5>0"
           },
           {
             "indicator": "ROC_MOMENTUM",
@@ -33361,11 +33444,11 @@
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
         "core12Positive": 1,
-        "core12Negative": 3,
-        "core12Neutral": 1,
+        "core12Negative": 2,
+        "core12Neutral": 2,
         "holdScore": 20.0,
-        "breakRiskScore": 60.0,
-        "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
+        "breakRiskScore": 40.0,
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -33577,23 +33660,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI60": 47.93106615480525
+            "MFI60": 48.457095077173165
           },
           "VWAP_VWMA": {
-            "VWAP75_dist": -2.1714094951522767,
-            "VWMA75_slope5": -0.18983895532507233
+            "VWAP75_dist": -2.8686674932690504,
+            "VWMA75_slope5": 0.15594427123075683
           },
           "ROC_MOMENTUM": {
-            "ROC90": -15.359828141783026,
-            "MOM90": -15.359828141782863
+            "ROC90": -12.777777777777777,
+            "MOM90": -12.777777777777635
           },
           "MA_EMA_WMA": {
-            "MA108_dist": -4.5769515394793014,
-            "MA108_slope5": -0.37866517732476623
+            "MA108_dist": -4.865568472552628,
+            "MA108_slope5": -0.39343675951176715
           },
           "PVI_NVI": {
-            "PVI_slope63": 15.122530629842368,
-            "NVI_slope63": -12.245117899230017
+            "PVI_slope63": 9.640505361754649,
+            "NVI_slope63": -12.579210089968985
           }
         }
       }
@@ -34244,13 +34327,13 @@
       "date": "2026-07-01",
       "price": 12.05,
       "preferred": {
-        "rsi14": 45.675710643367516,
+        "rsi14": 43.19951564938873,
         "macd": -0.1492,
         "signal": -0.1459,
         "histogram": -0.0033,
-        "adx14": 10.763270071163737,
+        "adx14": 10.807808881597925,
         "plusDi": 0.0,
-        "minusDi": 5.373034530496806,
+        "minusDi": 5.290053268500969,
         "ma20": 12.14,
         "ma50": 12.5,
         "ma200": 13.88,
@@ -34345,16 +34428,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 45.675710643367516,
-        "rsiSlope5Preferred": 2.264674760946612,
-        "adxPreferred": 10.763270071163737,
-        "diSpreadPreferred": -5.373034530496806,
-        "rocPreferred": -0.6568144499178974,
-        "momentumPreferred": -0.6568144499178449,
+        "rsiPreferred": 43.19951564938873,
+        "rsiSlope5Preferred": 2.1207058524741313,
+        "adxPreferred": 10.807808881597925,
+        "diSpreadPreferred": -5.290053268500969,
+        "rocPreferred": -1.565074135090616,
+        "momentumPreferred": -1.5650741350904913,
         "vwapPreferred": 12.9,
-        "mfiPreferred": 58.088007328567805,
-        "pviSlopePreferred": 7.863738257228237,
-        "nviSlopePreferred": -8.94596525101976,
+        "mfiPreferred": 57.814873251672466,
+        "pviSlopePreferred": 3.3344677549806967,
+        "nviSlopePreferred": -10.074734276833574,
         "nearSupportPreferred": 11.7,
         "supportPreferred": 11.7,
         "resistancePreferred": 12.5,
@@ -34655,9 +34738,21 @@
         "sectorGroup": "STEEL_MATERIAL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 12.1,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 11.95,
+        "currentZone": {
+          "low": 11.94,
+          "high": 12.03,
+          "center": 11.98,
+          "strength": 13.88,
+          "touches": 7,
+          "sources": {
+            "swing_low": 6,
+            "ich_tenkan": 1
+          },
+          "distPct": -0.29,
+          "widthPct": 0.76
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -34716,14 +34811,14 @@
             "reason": "RSI24 healthy; RSI24_slope5>0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.55%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 2,
         "core12Negative": 2,
         "core12Neutral": 1,
         "holdScore": 40.0,
         "breakRiskScore": 40.0,
-        "finalStatus": "GIỮ TRÊN HỖ TRỢ"
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -34937,23 +35032,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 58.088007328567805
+            "MFI20": 57.814873251672466
           },
           "ROC_MOMENTUM": {
-            "ROC72": -0.6568144499178974,
-            "MOM72": -0.6568144499178449
+            "ROC72": -1.565074135090616,
+            "MOM72": -1.5650741350904913
           },
           "PVI_NVI": {
-            "PVI_slope63": 7.863738257228237,
-            "NVI_slope63": -8.94596525101976
+            "PVI_slope63": 3.3344677549806967,
+            "NVI_slope63": -10.074734276833574
           },
           "ADX_DMI": {
-            "ADX41": 10.763270071163737,
-            "DI41_spread": -5.373034530496806
+            "ADX41": 10.807808881597925,
+            "DI41_spread": -5.290053268500969
           },
           "RSI": {
-            "RSI24": 45.675710643367516,
-            "RSI24_slope5": 2.264674760946612
+            "RSI24": 43.19951564938873,
+            "RSI24_slope5": 2.1207058524741313
           }
         }
       }
@@ -35483,16 +35578,16 @@
         "rsiPreferred": 40.84,
         "adxPreferred": 34.74,
         "rocPreferred": -0.79,
-        "maTrendPreferred": -5.067601598972093,
-        "maTrendSlope5Preferred": -0.2886241554559299,
-        "vwapPreferred": -12.239668804420711,
-        "vwmaSlope5Preferred": -0.13531912247050082,
+        "maTrendPreferred": -6.5151128809456615,
+        "maTrendSlope5Preferred": -0.28628461186563925,
+        "vwapPreferred": -13.640492060849763,
+        "vwmaSlope5Preferred": -0.1314288192819424,
         "pviSlopePreferred": 9.588603818244025,
-        "nviSlopePreferred": -7.728448768326146,
-        "trixPreferred": -0.03852230153261749,
-        "trixSlope5Preferred": -0.06527443654530396,
-        "supertrendDirPreferred": 1.0,
-        "supertrendDistPreferred": 19.466007905136788,
+        "nviSlopePreferred": -2.650639838255675,
+        "trixPreferred": -0.04991125513408301,
+        "trixSlope5Preferred": -0.06276606473857305,
+        "supertrendDirPreferred": 0.0,
+        "supertrendDistPreferred": -19.841044176705232,
         "nearSupportPreferred": 12.1,
         "supportPreferred": 12.1,
         "resistancePreferred": 13.2,
@@ -35798,19 +35893,20 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 12.65,
+        "date": "2026-07-09",
+        "close": 12.45,
         "currentZone": {
-          "low": 12.55,
-          "high": 12.65,
-          "center": 12.6,
-          "strength": 5.51,
-          "touches": 2,
+          "low": 12.29,
+          "high": 12.39,
+          "center": 12.34,
+          "strength": 12.58,
+          "touches": 6,
           "sources": {
-            "swing_low": 1,
+            "ich_tenkan": 1,
+            "swing_low": 4,
             "vol_node": 1
           },
-          "distPct": 0.38,
+          "distPct": 0.88,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -35848,8 +35944,8 @@
         "core12Signals": [
           {
             "indicator": "SUPERTREND",
-            "signal": 1,
-            "reason": "ST15_5.0_dist>=0; ST15_5.0_dir=1.00"
+            "signal": -1,
+            "reason": "ST15_5.0_dist<0; ST15_5.0_dir=0.00"
           },
           {
             "indicator": "MA_EMA_WMA",
@@ -35874,11 +35970,11 @@
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 1,
-        "core12Negative": 3,
+        "core12Positive": 0,
+        "core12Negative": 4,
         "core12Neutral": 1,
-        "holdScore": 20.0,
-        "breakRiskScore": 60.0,
+        "holdScore": 0.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -36096,24 +36192,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": 19.466007905136788,
-            "ST15_5.0_dir": 1.0
+            "ST15_5.0_dist": -19.841044176705232,
+            "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -5.067601598972093,
-            "EMA229_slope5": -0.2886241554559299
+            "EMA229_dist": -6.5151128809456615,
+            "EMA229_slope5": -0.28628461186563925
           },
           "TRIX": {
-            "TRIX38": -0.03852230153261749,
-            "TRIX38_slope5": -0.06527443654530396
+            "TRIX38": -0.04991125513408301,
+            "TRIX38_slope5": -0.06276606473857305
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -12.239668804420711,
-            "VWMA98_slope5": -0.13531912247050082
+            "VWAP98_dist": -13.640492060849763,
+            "VWMA98_slope5": -0.1314288192819424
           },
           "PVI_NVI": {
             "PVI_slope75": 9.588603818244025,
-            "NVI_slope75": -7.728448768326146
+            "NVI_slope75": -2.650639838255675
           }
         }
       }
@@ -36738,12 +36834,12 @@
       "date": "2026-07-01",
       "price": 22.5,
       "preferred": {
-        "rsi14": 53.09149496869045,
+        "rsi14": 52.073116411113666,
         "macd": 0.6418,
         "signal": 0.3549,
         "histogram": 0.2869,
-        "adx14": 12.219051206281302,
-        "plusDi": 1.2996616555690004,
+        "adx14": 11.98878347490109,
+        "plusDi": 1.2745639972285723,
         "minusDi": 0.0,
         "ma20": 20.71,
         "ma50": 20.35,
@@ -36839,16 +36935,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 53.09149496869045,
-        "rsiSlope5Preferred": -2.083805867709735,
-        "adxPreferred": 12.219051206281302,
-        "diSpreadPreferred": 1.2996616555690004,
-        "rocPreferred": -20.60931899641577,
-        "momentumPreferred": -20.609318996415034,
+        "rsiPreferred": 52.073116411113666,
+        "rsiSlope5Preferred": -2.6413697305413635,
+        "adxPreferred": 11.98878347490109,
+        "diSpreadPreferred": 1.2745639972285723,
+        "rocPreferred": -22.614840989399298,
+        "momentumPreferred": -22.614840989398502,
         "vwapPreferred": 20.8,
-        "mfiPreferred": 70.7492235490173,
-        "pviSlopePreferred": -8.034212841924015,
-        "nviSlopePreferred": -6.647117551741166,
+        "mfiPreferred": 67.24231304430465,
+        "pviSlopePreferred": -13.08727807038974,
+        "nviSlopePreferred": -7.700761823166213,
         "nearSupportPreferred": 21.4,
         "supportPreferred": 21.4,
         "resistancePreferred": 24.3,
@@ -37151,9 +37247,21 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 22.15,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 21.9,
+        "currentZone": {
+          "low": 21.74,
+          "high": 21.92,
+          "center": 21.83,
+          "strength": 4.23,
+          "touches": 2,
+          "sources": {
+            "ich_tenkan": 1,
+            "swing_high": 1
+          },
+          "distPct": 0.33,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -37212,14 +37320,14 @@
             "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.93%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 2,
         "core12Negative": 2,
         "core12Neutral": 1,
         "holdScore": 40.0,
         "breakRiskScore": 40.0,
-        "finalStatus": "GIỮ TRÊN HỖ TRỢ"
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -37431,23 +37539,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 70.7492235490173
+            "MFI20": 67.24231304430465
           },
           "ROC_MOMENTUM": {
-            "ROC72": -20.60931899641577,
-            "MOM72": -20.609318996415034
+            "ROC72": -22.614840989399298,
+            "MOM72": -22.614840989398502
           },
           "PVI_NVI": {
-            "PVI_slope63": -8.034212841924015,
-            "NVI_slope63": -6.647117551741166
+            "PVI_slope63": -13.08727807038974,
+            "NVI_slope63": -7.700761823166213
           },
           "ADX_DMI": {
-            "ADX41": 12.219051206281302,
-            "DI41_spread": 1.2996616555690004
+            "ADX41": 11.98878347490109,
+            "DI41_spread": 1.2745639972285723
           },
           "RSI": {
-            "RSI24": 53.09149496869045,
-            "RSI24_slope5": -2.083805867709735
+            "RSI24": 52.073116411113666,
+            "RSI24_slope5": -2.6413697305413635
           }
         }
       }
@@ -38445,13 +38553,13 @@
       "date": "2026-07-01",
       "price": 37.45,
       "preferred": {
-        "rsi14": 39.15516834589595,
+        "rsi14": 41.66327151031632,
         "macd": -0.8719,
         "signal": -0.7207,
         "histogram": -0.1512,
-        "adx14": 9.636101253341764,
+        "adx14": 9.613257782902968,
         "plusDi": 0.0,
-        "minusDi": 5.446522667484885,
+        "minusDi": 4.138546659274095,
         "ma20": 38.96,
         "ma50": 39.45,
         "ma200": 41.14,
@@ -38546,15 +38654,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 39.15516834589595,
-        "rsiSlope5Preferred": -4.438780861823922,
-        "adxPreferred": 9.636101253341764,
-        "diSpreadPreferred": -5.446522667484885,
-        "rocPreferred": -14.648910411622273,
-        "momentumPreferred": -14.648910411621916,
+        "rsiPreferred": 41.66327151031632,
+        "rsiSlope5Preferred": -1.347305827947899,
+        "adxPreferred": 9.613257782902968,
+        "diSpreadPreferred": -4.138546659274095,
+        "rocPreferred": -9.774436090225558,
+        "momentumPreferred": -9.774436090225315,
         "vwapPreferred": 40.3,
-        "mfiPreferred": 30.8317833316419,
-        "pviSlopePreferred": -2.7914548712463683,
+        "mfiPreferred": 36.74385449020499,
+        "pviSlopePreferred": -5.380618642209223,
         "nviSlopePreferred": -6.056362223752831,
         "nearSupportPreferred": 36.2,
         "supportPreferred": 36.2,
@@ -38864,18 +38972,20 @@
         "sectorGroup": "ENERGY_UTIL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 35.25,
+        "date": "2026-07-09",
+        "close": 36.0,
         "currentZone": {
-          "low": 34.88,
-          "high": 35.17,
-          "center": 35.02,
-          "strength": 8.52,
-          "touches": 4,
+          "low": 36.07,
+          "high": 36.35,
+          "center": 36.21,
+          "strength": 15.69,
+          "touches": 8,
           "sources": {
-            "swing_high": 4
+            "swing_high": 5,
+            "swing_low": 2,
+            "ich_tenkan": 1
           },
-          "distPct": 0.64,
+          "distPct": -0.59,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -38932,17 +39042,17 @@
           },
           {
             "indicator": "RSI",
-            "signal": -1,
-            "reason": "RSI24_slope5<0"
+            "signal": 0,
+            "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
         "core12Positive": 0,
-        "core12Negative": 5,
-        "core12Neutral": 0,
+        "core12Negative": 4,
+        "core12Neutral": 1,
         "holdScore": 0.0,
-        "breakRiskScore": 100.0,
+        "breakRiskScore": 80.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -39163,23 +39273,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 30.8317833316419
+            "MFI20": 36.74385449020499
           },
           "ROC_MOMENTUM": {
-            "ROC72": -14.648910411622273,
-            "MOM72": -14.648910411621916
+            "ROC72": -9.774436090225558,
+            "MOM72": -9.774436090225315
           },
           "PVI_NVI": {
-            "PVI_slope63": -2.7914548712463683,
+            "PVI_slope63": -5.380618642209223,
             "NVI_slope63": -6.056362223752831
           },
           "ADX_DMI": {
-            "ADX41": 9.636101253341764,
-            "DI41_spread": -5.446522667484885
+            "ADX41": 9.613257782902968,
+            "DI41_spread": -4.138546659274095
           },
           "RSI": {
-            "RSI24": 39.15516834589595,
-            "RSI24_slope5": -4.438780861823922
+            "RSI24": 41.66327151031632,
+            "RSI24_slope5": -1.347305827947899
           }
         }
       }
@@ -39391,15 +39501,15 @@
         },
         "rsiPreferred": 37.28,
         "adxPreferred": 24.88,
-        "rocPreferred": -36.01574996923834,
-        "momentumPreferred": -36.015749969237895,
-        "maTrendPreferred": -26.589194912484814,
-        "maTrendSlope5Preferred": -1.2625323957913603,
-        "vwapPreferred": -18.968776281231527,
-        "vwmaSlope5Preferred": -7.175862625887708,
-        "mfiPreferred": 29.06116956648097,
+        "rocPreferred": -39.75903614457831,
+        "momentumPreferred": -39.759036144577834,
+        "maTrendPreferred": -29.144086811615132,
+        "maTrendSlope5Preferred": -1.507544182740439,
+        "vwapPreferred": -21.18157967714135,
+        "vwmaSlope5Preferred": -7.9085882030439425,
+        "mfiPreferred": 31.503783680732198,
         "pviSlopePreferred": -4.220624500025494,
-        "nviSlopePreferred": -18.566915071386102,
+        "nviSlopePreferred": -26.824634844640393,
         "nearSupportPreferred": 57.4,
         "supportPreferred": 57.4,
         "resistancePreferred": 65.2,
@@ -39697,8 +39807,8 @@
         "sectorGroup": "RETAIL_CONSUMER",
         "configSector": "RETAIL_CONSUMER",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 52.0,
+        "date": "2026-07-09",
+        "close": 50.0,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -39977,23 +40087,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI60": 29.06116956648097
+            "MFI60": 31.503783680732198
           },
           "VWAP_VWMA": {
-            "VWAP75_dist": -18.968776281231527,
-            "VWMA75_slope5": -7.175862625887708
+            "VWAP75_dist": -21.18157967714135,
+            "VWMA75_slope5": -7.9085882030439425
           },
           "ROC_MOMENTUM": {
-            "ROC90": -36.01574996923834,
-            "MOM90": -36.015749969237895
+            "ROC90": -39.75903614457831,
+            "MOM90": -39.759036144577834
           },
           "MA_EMA_WMA": {
-            "MA108_dist": -26.589194912484814,
-            "MA108_slope5": -1.2625323957913603
+            "MA108_dist": -29.144086811615132,
+            "MA108_slope5": -1.507544182740439
           },
           "PVI_NVI": {
             "PVI_slope63": -4.220624500025494,
-            "NVI_slope63": -18.566915071386102
+            "NVI_slope63": -26.824634844640393
           }
         }
       }
@@ -40299,12 +40409,12 @@
       "date": "2026-07-01",
       "price": 33.45,
       "preferred": {
-        "rsi14": 52.49186894303565,
+        "rsi14": 54.86116912075036,
         "macd": 0.3772,
         "signal": 0.0111,
         "histogram": 0.366,
-        "adx14": 9.760114856269727,
-        "plusDi": 1.0367445948461125,
+        "adx14": 9.614688681253234,
+        "plusDi": 1.7755269948102352,
         "minusDi": 0.0,
         "ma20": 31.07,
         "ma50": 31.47,
@@ -40400,15 +40510,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 52.49186894303565,
-        "rsiSlope5Preferred": -3.5550503889735126,
-        "adxPreferred": 9.760114856269727,
-        "diSpreadPreferred": 1.0367445948461125,
-        "rocPreferred": -6.330935251798564,
-        "momentumPreferred": -6.330935251798387,
+        "rsiPreferred": 54.86116912075036,
+        "rsiSlope5Preferred": 1.4077832314326102,
+        "adxPreferred": 9.614688681253234,
+        "diSpreadPreferred": 1.7755269948102352,
+        "rocPreferred": -4.034582132564857,
+        "momentumPreferred": -4.034582132564741,
         "vwapPreferred": 32.2,
-        "mfiPreferred": 69.71465465683345,
-        "pviSlopePreferred": 27.570886553943286,
+        "mfiPreferred": 72.77515784596143,
+        "pviSlopePreferred": 27.737706521255756,
         "nviSlopePreferred": -20.883020190142577,
         "nearSupportPreferred": 32.3,
         "supportPreferred": 32.3,
@@ -40712,22 +40822,9 @@
         "sectorGroup": "ENERGY_UTIL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 32.55,
-        "currentZone": {
-          "low": 32.27,
-          "high": 32.53,
-          "center": 32.4,
-          "strength": 7.67,
-          "touches": 4,
-          "sources": {
-            "ich_tenkan": 1,
-            "swing_low": 2,
-            "ich_spanb": 1
-          },
-          "distPct": 0.47,
-          "widthPct": 0.8
-        },
+        "date": "2026-07-09",
+        "close": 33.3,
+        "currentZone": null,
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -40782,18 +40879,18 @@
           },
           {
             "indicator": "RSI",
-            "signal": 0,
-            "reason": "RSI24 healthy; RSI24_slope5<0"
+            "signal": 1,
+            "reason": "RSI24 healthy; RSI24_slope5>0"
           }
         ],
-        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
-        "reason": "close nằm trong/gần current zone",
-        "core12Positive": 2,
+        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
+        "reason": "trên S1 khoảng 5.47%",
+        "core12Positive": 3,
         "core12Negative": 1,
-        "core12Neutral": 2,
-        "holdScore": 40.0,
+        "core12Neutral": 1,
+        "holdScore": 60.0,
         "breakRiskScore": 20.0,
-        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
+        "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
       },
       "raw": {
         "dailyV3": {
@@ -41006,23 +41103,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 69.71465465683345
+            "MFI20": 72.77515784596143
           },
           "ROC_MOMENTUM": {
-            "ROC72": -6.330935251798564,
-            "MOM72": -6.330935251798387
+            "ROC72": -4.034582132564857,
+            "MOM72": -4.034582132564741
           },
           "PVI_NVI": {
-            "PVI_slope63": 27.570886553943286,
+            "PVI_slope63": 27.737706521255756,
             "NVI_slope63": -20.883020190142577
           },
           "ADX_DMI": {
-            "ADX41": 9.760114856269727,
-            "DI41_spread": 1.0367445948461125
+            "ADX41": 9.614688681253234,
+            "DI41_spread": 1.7755269948102352
           },
           "RSI": {
-            "RSI24": 52.49186894303565,
-            "RSI24_slope5": -3.5550503889735126
+            "RSI24": 54.86116912075036,
+            "RSI24_slope5": 1.4077832314326102
           }
         }
       }
@@ -41081,13 +41178,13 @@
       "date": "2026-07-01",
       "price": 38.9,
       "preferred": {
-        "rsi14": 44.45549300763345,
+        "rsi14": 47.24660454450227,
         "macd": -0.1713,
         "signal": -0.2355,
         "histogram": 0.0641,
-        "adx14": 11.265692833428133,
+        "adx14": 11.225488169734305,
         "plusDi": 0.0,
-        "minusDi": 5.348604106508656,
+        "minusDi": 4.237473674567244,
         "ma20": 38.37,
         "ma50": 38.86,
         "ma200": 37.03,
@@ -41182,15 +41279,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 44.45549300763345,
-        "rsiSlope5Preferred": -5.4257303614388235,
-        "adxPreferred": 11.265692833428133,
-        "diSpreadPreferred": -5.348604106508656,
-        "rocPreferred": -13.033175355450233,
-        "momentumPreferred": -13.033175355449927,
+        "rsiPreferred": 47.24660454450227,
+        "rsiSlope5Preferred": -1.4939159469744112,
+        "adxPreferred": 11.225488169734305,
+        "diSpreadPreferred": -4.237473674567244,
+        "rocPreferred": -10.476190476190473,
+        "momentumPreferred": -10.476190476190222,
         "vwapPreferred": 39.1,
-        "mfiPreferred": 45.404170800922216,
-        "pviSlopePreferred": 9.819340788566478,
+        "mfiPreferred": 45.96835972649007,
+        "pviSlopePreferred": 10.156176291791198,
         "nviSlopePreferred": -10.6456644691446,
         "nearSupportPreferred": 37.9,
         "supportPreferred": 37.9,
@@ -41462,9 +41559,21 @@
         "sectorGroup": "ENERGY_UTIL",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 36.7,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 37.6,
+        "currentZone": {
+          "low": 37.3,
+          "high": 37.61,
+          "center": 37.46,
+          "strength": 13.74,
+          "touches": 7,
+          "sources": {
+            "ich_tenkan": 1,
+            "swing_low": 6
+          },
+          "distPct": 0.38,
+          "widthPct": 0.8
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -41523,14 +41632,14 @@
             "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 4.52%",
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
         "core12Positive": 1,
         "core12Negative": 2,
         "core12Neutral": 2,
         "holdScore": 20.0,
         "breakRiskScore": 40.0,
-        "finalStatus": "GIỮ TRÊN HỖ TRỢ"
+        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
         "dailyV3": {
@@ -41743,23 +41852,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 45.404170800922216
+            "MFI20": 45.96835972649007
           },
           "ROC_MOMENTUM": {
-            "ROC72": -13.033175355450233,
-            "MOM72": -13.033175355449927
+            "ROC72": -10.476190476190473,
+            "MOM72": -10.476190476190222
           },
           "PVI_NVI": {
-            "PVI_slope63": 9.819340788566478,
+            "PVI_slope63": 10.156176291791198,
             "NVI_slope63": -10.6456644691446
           },
           "ADX_DMI": {
-            "ADX41": 11.265692833428133,
-            "DI41_spread": -5.348604106508656
+            "ADX41": 11.225488169734305,
+            "DI41_spread": -4.237473674567244
           },
           "RSI": {
-            "RSI24": 44.45549300763345,
-            "RSI24_slope5": -5.4257303614388235
+            "RSI24": 47.24660454450227,
+            "RSI24_slope5": -1.4939159469744112
           }
         }
       }
@@ -42290,13 +42399,13 @@
       "date": "2026-07-01",
       "price": 49.9,
       "preferred": {
-        "rsi14": 32.714557960405756,
+        "rsi14": 32.71455796040284,
         "macd": -0.6949,
         "signal": -0.7215,
         "histogram": 0.0265,
-        "adx14": 8.314378351808617,
+        "adx14": 8.581846405704312,
         "plusDi": 0.0,
-        "minusDi": 8.070059202977578,
+        "minusDi": 8.01320680635573,
         "ma20": 50.4,
         "ma50": 52.07,
         "ma200": 54.29,
@@ -42391,15 +42500,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 32.714557960405756,
-        "rsiSlope5Preferred": -8.245209026895964,
-        "adxPreferred": 8.314378351808617,
-        "diSpreadPreferred": -8.070059202977578,
-        "rocPreferred": -23.43876723438767,
-        "momentumPreferred": -23.438767234387285,
+        "rsiPreferred": 32.71455796040284,
+        "rsiSlope5Preferred": -7.2952266372005,
+        "adxPreferred": 8.581846405704312,
+        "diSpreadPreferred": -8.01320680635573,
+        "rocPreferred": -24.29831595829992,
+        "momentumPreferred": -24.298315958299526,
         "vwapPreferred": 53.9,
-        "mfiPreferred": 28.30549947960911,
-        "pviSlopePreferred": -15.153072924462862,
+        "mfiPreferred": 24.712980106436333,
+        "pviSlopePreferred": -17.05481439339731,
         "nviSlopePreferred": -1.8878434598987415,
         "nearSupportPreferred": 49.8,
         "supportPreferred": 49.8,
@@ -42706,7 +42815,7 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 47.2,
         "currentZone": null,
         "mlConfig": {
@@ -42991,23 +43100,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 28.30549947960911
+            "MFI20": 24.712980106436333
           },
           "ROC_MOMENTUM": {
-            "ROC72": -23.43876723438767,
-            "MOM72": -23.438767234387285
+            "ROC72": -24.29831595829992,
+            "MOM72": -24.298315958299526
           },
           "PVI_NVI": {
-            "PVI_slope63": -15.153072924462862,
+            "PVI_slope63": -17.05481439339731,
             "NVI_slope63": -1.8878434598987415
           },
           "ADX_DMI": {
-            "ADX41": 8.314378351808617,
-            "DI41_spread": -8.070059202977578
+            "ADX41": 8.581846405704312,
+            "DI41_spread": -8.01320680635573
           },
           "RSI": {
-            "RSI24": 32.714557960405756,
-            "RSI24_slope5": -8.245209026895964
+            "RSI24": 32.71455796040284,
+            "RSI24_slope5": -7.2952266372005
           }
         }
       }
@@ -43218,15 +43327,15 @@
         },
         "rsiPreferred": 53.49,
         "adxPreferred": 32.87,
-        "rocPreferred": -2.4793388429751984,
-        "momentumPreferred": -2.479338842975147,
-        "maTrendPreferred": 0.4502684861323214,
-        "maTrendSlope5Preferred": -0.205498308817742,
-        "vwapPreferred": 0.25253398978011266,
-        "vwmaSlope5Preferred": 0.5443283468351989,
-        "mfiPreferred": 54.23126107240439,
-        "pviSlopePreferred": 14.423275800592904,
-        "nviSlopePreferred": -6.355622085626733,
+        "rocPreferred": -0.10593220338983578,
+        "momentumPreferred": -0.10593220338983729,
+        "maTrendPreferred": 0.37946362570102643,
+        "maTrendSlope5Preferred": -0.20164463330185622,
+        "vwapPreferred": 0.009102238479030689,
+        "vwmaSlope5Preferred": 0.5906937463363127,
+        "mfiPreferred": 55.09299513843842,
+        "pviSlopePreferred": 11.020821564231653,
+        "nviSlopePreferred": -6.454821638502139,
         "nearSupportPreferred": 46.6,
         "supportPreferred": 46.6,
         "resistancePreferred": 49.8,
@@ -43523,21 +43632,9 @@
         "sectorGroup": "RETAIL_CONSUMER",
         "configSector": "RETAIL_CONSUMER",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 47.2,
-        "currentZone": {
-          "low": 47.13,
-          "high": 47.39,
-          "center": 47.26,
-          "strength": 5.03,
-          "touches": 2,
-          "sources": {
-            "vol_node": 1,
-            "ich_spanb": 1
-          },
-          "distPct": -0.13,
-          "widthPct": 0.55
-        },
+        "date": "2026-07-09",
+        "close": 47.15,
+        "currentZone": null,
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -43597,14 +43694,14 @@
             "reason": "PVI_slope63>0; NVI_slope63<0"
           }
         ],
-        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
-        "reason": "close nằm trong/gần current zone",
+        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
+        "reason": "close sát S1 46.42-46.68",
         "core12Positive": 2,
         "core12Negative": 1,
         "core12Neutral": 2,
         "holdScore": 40.0,
         "breakRiskScore": 20.0,
-        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
+        "finalStatus": "TEST S1 / CHƯA GÃY RÕ"
       },
       "raw": {
         "dailyV3": {
@@ -43817,23 +43914,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI60": 54.23126107240439
+            "MFI60": 55.09299513843842
           },
           "VWAP_VWMA": {
-            "VWAP75_dist": 0.25253398978011266,
-            "VWMA75_slope5": 0.5443283468351989
+            "VWAP75_dist": 0.009102238479030689,
+            "VWMA75_slope5": 0.5906937463363127
           },
           "ROC_MOMENTUM": {
-            "ROC90": -2.4793388429751984,
-            "MOM90": -2.479338842975147
+            "ROC90": -0.10593220338983578,
+            "MOM90": -0.10593220338983729
           },
           "MA_EMA_WMA": {
-            "MA108_dist": 0.4502684861323214,
-            "MA108_slope5": -0.205498308817742
+            "MA108_dist": 0.37946362570102643,
+            "MA108_slope5": -0.20164463330185622
           },
           "PVI_NVI": {
-            "PVI_slope63": 14.423275800592904,
-            "NVI_slope63": -6.355622085626733
+            "PVI_slope63": 11.020821564231653,
+            "NVI_slope63": -6.454821638502139
           }
         }
       }
@@ -46435,7 +46532,7 @@
         "bbUpper": 27.76,
         "bbLower": 25.96,
         "bbPercent": 0.69,
-        "vwapDay": -1.566821175885258,
+        "vwapDay": -2.383022586847894,
         "donchianHighDay": 29.2,
         "donchianLowDay": 26.1,
         "donchianMidDay": 27.7,
@@ -46481,7 +46578,7 @@
           "percent": 0.607,
           "state": "above_mid"
         },
-        "roc20": -3.374777975133214,
+        "roc20": -3.5778175313059046,
         "fibonacciLevelsDay": [
           36.08,
           34.0,
@@ -46523,18 +46620,18 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 47.477206295865585,
-        "rsiSlope5Preferred": 0.22852468733915288,
+        "rsiPreferred": 46.818525510569074,
+        "rsiSlope5Preferred": -0.17196019103593585,
         "adxPreferred": 13.52,
-        "rocPreferred": -3.374777975133214,
-        "momentumPreferred": -3.374777975133093,
-        "vwapPreferred": -1.566821175885258,
-        "vwmaSlope5Preferred": -0.7038830105791094,
-        "mfiPreferred": 48.96948629389005,
+        "rocPreferred": -3.5778175313059046,
+        "momentumPreferred": -3.5778175313057754,
+        "vwapPreferred": -2.383022586847894,
+        "vwmaSlope5Preferred": -0.8143729059055027,
+        "mfiPreferred": 49.689008104033284,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "26.06-26.26",
-        "activeSupportDay": "26.06-26.26",
+        "supportPreferred": "26.08-26.29",
+        "activeSupportDay": "26.08-26.29",
         "resistancePreferred": "28.64-28.84",
         "activeResistanceDay": "28.64-28.84",
         "_sourceMap": {
@@ -46831,19 +46928,21 @@
         "sectorGroup": "CHUNG_KHOAN",
         "configSector": "CHUNG_KHOAN",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 27.2,
+        "date": "2026-07-09",
+        "close": 26.95,
         "currentZone": {
-          "low": 27.2,
-          "high": 27.41,
-          "center": 27.31,
-          "strength": 6.34,
-          "touches": 3,
+          "low": 26.93,
+          "high": 27.13,
+          "center": 27.03,
+          "strength": 7.23,
+          "touches": 4,
           "sources": {
-            "swing_low": 2,
-            "ma50": 1
+            "ma20": 1,
+            "vwap30": 1,
+            "ich_tenkan": 1,
+            "ich_kijun": 1
           },
-          "distPct": -0.39,
+          "distPct": -0.3,
           "widthPct": 0.75
         },
         "mlConfig": {
@@ -46898,16 +46997,16 @@
           },
           {
             "indicator": "RSI",
-            "signal": 1,
-            "reason": "RSI50 healthy; RSI50_slope5>0"
+            "signal": 0,
+            "reason": "RSI50 healthy; RSI50_slope5<0"
           }
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 3,
+        "core12Positive": 2,
         "core12Negative": 2,
-        "core12Neutral": 0,
-        "holdScore": 60.0,
+        "core12Neutral": 1,
+        "holdScore": 40.0,
         "breakRiskScore": 40.0,
         "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
@@ -47122,25 +47221,25 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI61": 48.96948629389005
+            "MFI61": 49.689008104033284
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "26.06-26.26",
+            "S1": "26.08-26.29",
             "R1": "28.64-28.84"
           },
           "VWAP_VWMA": {
-            "VWAP60_dist": -1.566821175885258,
-            "VWMA60_slope5": -0.7038830105791094
+            "VWAP60_dist": -2.383022586847894,
+            "VWMA60_slope5": -0.8143729059055027
           },
           "ROC_MOMENTUM": {
-            "ROC52": -3.374777975133214,
-            "MOM52": -3.374777975133093
+            "ROC52": -3.5778175313059046,
+            "MOM52": -3.5778175313057754
           },
           "RSI": {
-            "RSI50": 47.477206295865585,
-            "RSI50_slope5": 0.22852468733915288
+            "RSI50": 46.818525510569074,
+            "RSI50_slope5": -0.17196019103593585
           }
         }
       }
@@ -47250,8 +47349,8 @@
           "chikou": null,
           "state": "below_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": -1.1988716502115406,
-          "core12Tk": 1.6925246826515823,
+          "core12CloudPos": -0.6338028169014036,
+          "core12Tk": 0.8450704225351914,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -47305,14 +47404,14 @@
         },
         "rsiPreferred": 56.79,
         "adxPreferred": 32.45,
-        "rocPreferred": 7.7507598784194665,
-        "momentumPreferred": 7.750759878419348,
-        "ichimokuCloudPreferred": -1.1988716502115406,
-        "ichimokuTkPreferred": 1.6925246826515823,
+        "rocPreferred": 6.606606606606613,
+        "momentumPreferred": 6.606606606606517,
+        "ichimokuCloudPreferred": -0.6338028169014036,
+        "ichimokuTkPreferred": 0.8450704225351914,
         "vwapPreferred": 69.7,
-        "mfiPreferred": 53.61718795965211,
-        "trixPreferred": 0.1991409750582207,
-        "trixSlope5Preferred": -0.002915333027853073,
+        "mfiPreferred": 52.83355662716,
+        "trixPreferred": 0.19816931492735446,
+        "trixSlope5Preferred": -0.003548152662502524,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
         "supportPreferred": "68.77-69.34",
@@ -47613,13 +47712,13 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 70.9,
+        "date": "2026-07-09",
+        "close": 71.0,
         "currentZone": {
-          "low": 70.58,
-          "high": 71.14,
-          "center": 70.86,
-          "strength": 11.28,
+          "low": 70.62,
+          "high": 71.18,
+          "center": 70.9,
+          "strength": 11.25,
           "touches": 6,
           "sources": {
             "swing_low": 2,
@@ -47628,7 +47727,7 @@
             "vwap30": 1,
             "ich_kijun": 1
           },
-          "distPct": 0.06,
+          "distPct": 0.14,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -47906,19 +48005,19 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 7.7507598784194665,
-            "MOM80": 7.750759878419348
+            "ROC80": 6.606606606606613,
+            "MOM80": 6.606606606606517
           },
           "MFI_CMF": {
-            "MFI73": 53.61718795965211
+            "MFI73": 52.83355662716
           },
           "TRIX": {
-            "TRIX58": 0.1991409750582207,
-            "TRIX58_slope5": -0.002915333027853073
+            "TRIX58": 0.19816931492735446,
+            "TRIX58_slope5": -0.003548152662502524
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": -1.1988716502115406,
-            "ICHI5_29_89_tk": 1.6925246826515823
+            "ICHI5_29_89_cloud_pos": -0.6338028169014036,
+            "ICHI5_29_89_tk": 0.8450704225351914
           },
           "SR_CLUSTER": {
             "nearSupport": true,
@@ -48239,13 +48338,13 @@
       "date": "2026-07-01",
       "price": 22.75,
       "preferred": {
-        "rsi14": 33.1830523984861,
+        "rsi14": 32.95952647687457,
         "macd": -0.6043,
         "signal": -0.6872,
         "histogram": 0.0828,
-        "adx14": 20.2543873469913,
+        "adx14": 20.492681586206757,
         "plusDi": 0.0,
-        "minusDi": 15.030072803482092,
+        "minusDi": 14.924715239158584,
         "ma20": 22.91,
         "ma50": 24.73,
         "ma200": 29.69,
@@ -48340,16 +48439,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 33.1830523984861,
-        "rsiSlope5Preferred": -4.47669747073666,
-        "adxPreferred": 20.2543873469913,
-        "diSpreadPreferred": -15.030072803482092,
-        "rocPreferred": -24.736842105263158,
-        "momentumPreferred": -24.736842105262294,
+        "rsiPreferred": 32.95952647687457,
+        "rsiSlope5Preferred": -3.646506995543575,
+        "adxPreferred": 20.492681586206757,
+        "diSpreadPreferred": -14.924715239158584,
+        "rocPreferred": -24.38162544169612,
+        "momentumPreferred": -24.38162544169526,
         "vwapPreferred": 25.6,
-        "mfiPreferred": 48.14808756711128,
-        "pviSlopePreferred": -22.149371826900556,
-        "nviSlopePreferred": -0.3516665867745128,
+        "mfiPreferred": 40.605680133050555,
+        "pviSlopePreferred": -24.866671239574167,
+        "nviSlopePreferred": -0.5839470842412431,
         "nearSupportPreferred": 22.1,
         "supportPreferred": 22.1,
         "resistancePreferred": 24.2,
@@ -48655,8 +48754,8 @@
         "sectorGroup": "INDUSTRIAL_LOGISTICS",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 21.45,
+        "date": "2026-07-09",
+        "close": 21.4,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -48692,8 +48791,8 @@
         "core12Signals": [
           {
             "indicator": "MFI_CMF",
-            "signal": 1,
-            "reason": "MFI20 ok"
+            "signal": -1,
+            "reason": "MFI20 weak"
           },
           {
             "indicator": "ROC_MOMENTUM",
@@ -48718,11 +48817,11 @@
         ],
         "priceStatus": "CHƯA CÓ S1 RÕ",
         "reason": "không đủ cụm hỗ trợ major",
-        "core12Positive": 1,
-        "core12Negative": 4,
+        "core12Positive": 0,
+        "core12Negative": 5,
         "core12Neutral": 0,
-        "holdScore": 20.0,
-        "breakRiskScore": 80.0,
+        "holdScore": 0.0,
+        "breakRiskScore": 100.0,
         "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
@@ -48940,23 +49039,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 48.14808756711128
+            "MFI20": 40.605680133050555
           },
           "ROC_MOMENTUM": {
-            "ROC72": -24.736842105263158,
-            "MOM72": -24.736842105262294
+            "ROC72": -24.38162544169612,
+            "MOM72": -24.38162544169526
           },
           "PVI_NVI": {
-            "PVI_slope63": -22.149371826900556,
-            "NVI_slope63": -0.3516665867745128
+            "PVI_slope63": -24.866671239574167,
+            "NVI_slope63": -0.5839470842412431
           },
           "ADX_DMI": {
-            "ADX41": 20.2543873469913,
-            "DI41_spread": -15.030072803482092
+            "ADX41": 20.492681586206757,
+            "DI41_spread": -14.924715239158584
           },
           "RSI": {
-            "RSI24": 33.1830523984861,
-            "RSI24_slope5": -4.47669747073666
+            "RSI24": 32.95952647687457,
+            "RSI24_slope5": -3.646506995543575
           }
         }
       }
@@ -49112,10 +49211,10 @@
           "cloudTop": 32.61,
           "cloudBottom": 31.02,
           "chikou": null,
-          "state": "above_cloud",
+          "state": "below_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": 1.3333333333332813,
-          "core12Tk": 3.5555555555554585,
+          "core12CloudPos": -0.11312217194570223,
+          "core12Tk": 2.9411764705881294,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -49169,20 +49268,20 @@
         },
         "rsiPreferred": 68.82,
         "adxPreferred": 23.54,
-        "rocPreferred": 14.874063989108244,
-        "momentumPreferred": 14.874063989107736,
-        "ichimokuCloudPreferred": 1.3333333333332813,
-        "ichimokuTkPreferred": 3.5555555555554585,
+        "rocPreferred": 12.06896551724137,
+        "momentumPreferred": 12.068965517240974,
+        "ichimokuCloudPreferred": -0.11312217194570223,
+        "ichimokuTkPreferred": 2.9411764705881294,
         "vwapPreferred": 32.1,
-        "mfiPreferred": 57.72348114699436,
-        "trixPreferred": -0.03938955172552161,
-        "trixSlope5Preferred": 0.009414329553458778,
+        "mfiPreferred": 56.471704203007455,
+        "trixPreferred": -0.03733078021883607,
+        "trixSlope5Preferred": 0.009790819740829182,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "32.28-32.55",
-        "activeSupportDay": "32.28-32.55",
-        "resistancePreferred": "34.67-34.94",
-        "activeResistanceDay": "34.67-34.94",
+        "supportPreferred": "30.69-30.95",
+        "activeSupportDay": "30.69-30.95",
+        "resistancePreferred": "34.05-34.32",
+        "activeResistanceDay": "34.05-34.32",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -49480,20 +49579,21 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 33.75,
+        "date": "2026-07-09",
+        "close": 33.15,
         "currentZone": {
-          "low": 33.53,
-          "high": 33.8,
-          "center": 33.67,
-          "strength": 8.91,
-          "touches": 4,
+          "low": 33.2,
+          "high": 33.47,
+          "center": 33.33,
+          "strength": 20.86,
+          "touches": 10,
           "sources": {
-            "vol_node": 1,
-            "swing_high": 2,
-            "ich_tenkan": 1
+            "vol_node": 2,
+            "swing_low": 6,
+            "ma200": 1,
+            "swing_high": 1
           },
-          "distPct": 0.24,
+          "distPct": -0.56,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -49545,8 +49645,8 @@
           },
           {
             "indicator": "ICHIMOKU",
-            "signal": 1,
-            "reason": "ICHI5_29_89_cloud_pos>=0; ICHI5_29_89_tk>=0"
+            "signal": 0,
+            "reason": "ICHI5_29_89_cloud_pos<0; ICHI5_29_89_tk>=0"
           },
           {
             "indicator": "SR_CLUSTER",
@@ -49556,10 +49656,10 @@
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 4,
+        "core12Positive": 3,
         "core12Negative": 0,
-        "core12Neutral": 1,
-        "holdScore": 80.0,
+        "core12Neutral": 2,
+        "holdScore": 60.0,
         "breakRiskScore": 0.0,
         "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
       },
@@ -49774,25 +49874,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 14.874063989108244,
-            "MOM80": 14.874063989107736
+            "ROC80": 12.06896551724137,
+            "MOM80": 12.068965517240974
           },
           "MFI_CMF": {
-            "MFI73": 57.72348114699436
+            "MFI73": 56.471704203007455
           },
           "TRIX": {
-            "TRIX58": -0.03938955172552161,
-            "TRIX58_slope5": 0.009414329553458778
+            "TRIX58": -0.03733078021883607,
+            "TRIX58_slope5": 0.009790819740829182
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": 1.3333333333332813,
-            "ICHI5_29_89_tk": 3.5555555555554585
+            "ICHI5_29_89_cloud_pos": -0.11312217194570223,
+            "ICHI5_29_89_tk": 2.9411764705881294
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "32.28-32.55",
-            "R1": "34.67-34.94"
+            "S1": "30.69-30.95",
+            "R1": "34.05-34.32"
           }
         }
       }
@@ -53245,7 +53345,7 @@
         "bbUpper": 25.24,
         "bbLower": 23.18,
         "bbPercent": 0.835,
-        "vwapDay": -0.07370223218241545,
+        "vwapDay": -0.9974781002827449,
         "donchianHighDay": 28.5,
         "donchianLowDay": 23.1,
         "donchianMidDay": 25.8,
@@ -53291,7 +53391,7 @@
           "percent": 0.679,
           "state": "above_mid"
         },
-        "roc20": -4.331450094161971,
+        "roc20": -7.550644567219145,
         "fibonacciLevelsDay": [
           30.47,
           29.07,
@@ -53333,20 +53433,20 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 49.58279402591191,
-        "rsiSlope5Preferred": 1.5503196214206696,
+        "rsiPreferred": 48.78251444131452,
+        "rsiSlope5Preferred": 0.8814291702090316,
         "adxPreferred": 13.93,
-        "rocPreferred": -4.331450094161971,
-        "momentumPreferred": -4.331450094161804,
-        "vwapPreferred": -0.07370223218241545,
-        "vwmaSlope5Preferred": -1.4696462047372738,
-        "mfiPreferred": 44.32018971012178,
+        "rocPreferred": -7.550644567219145,
+        "momentumPreferred": -7.550644567218866,
+        "vwapPreferred": -0.9974781002827449,
+        "vwmaSlope5Preferred": -1.6460624866927565,
+        "mfiPreferred": 45.027919663918446,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
         "supportPreferred": "23.99-24.19",
         "activeSupportDay": "23.99-24.19",
-        "resistancePreferred": "25.96-26.16",
-        "activeResistanceDay": "25.96-26.16",
+        "resistancePreferred": "26.25-26.45",
+        "activeResistanceDay": "26.25-26.45",
         "_sourceMap": {
           "rsiPreferred": "core12.RSI",
           "rsiSlope5Preferred": "core12.RSI",
@@ -53638,21 +53738,22 @@
         "sectorGroup": "CHUNG_KHOAN",
         "configSector": "CHUNG_KHOAN",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 25.4,
+        "date": "2026-07-09",
+        "close": 25.1,
         "currentZone": {
-          "low": 25.27,
-          "high": 25.47,
-          "center": 25.37,
-          "strength": 19.36,
-          "touches": 10,
+          "low": 24.95,
+          "high": 25.15,
+          "center": 25.05,
+          "strength": 17.68,
+          "touches": 9,
           "sources": {
-            "ich_spanb": 1,
-            "supertrend": 1,
-            "swing_high": 7,
-            "swing_low": 1
+            "ma50": 1,
+            "vol_node": 1,
+            "swing_low": 5,
+            "ich_tenkan": 1,
+            "ich_spanb": 1
           },
-          "distPct": 0.11,
+          "distPct": 0.2,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -53687,8 +53788,8 @@
         "core12Signals": [
           {
             "indicator": "MFI_CMF",
-            "signal": -1,
-            "reason": "MFI61 weak"
+            "signal": 1,
+            "reason": "MFI61 ok"
           },
           {
             "indicator": "SR_CLUSTER",
@@ -53713,11 +53814,11 @@
         ],
         "priceStatus": "GIỮ VÙNG HIỆN TẠI",
         "reason": "close nằm trong/gần current zone",
-        "core12Positive": 2,
-        "core12Negative": 3,
+        "core12Positive": 3,
+        "core12Negative": 2,
         "core12Neutral": 0,
-        "holdScore": 40.0,
-        "breakRiskScore": 60.0,
+        "holdScore": 60.0,
+        "breakRiskScore": 40.0,
         "finalStatus": "GIỮ VÙNG HIỆN TẠI"
       },
       "raw": {
@@ -53927,25 +54028,25 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI61": 44.32018971012178
+            "MFI61": 45.027919663918446
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
             "S1": "23.99-24.19",
-            "R1": "25.96-26.16"
+            "R1": "26.25-26.45"
           },
           "VWAP_VWMA": {
-            "VWAP60_dist": -0.07370223218241545,
-            "VWMA60_slope5": -1.4696462047372738
+            "VWAP60_dist": -0.9974781002827449,
+            "VWMA60_slope5": -1.6460624866927565
           },
           "ROC_MOMENTUM": {
-            "ROC52": -4.331450094161971,
-            "MOM52": -4.331450094161804
+            "ROC52": -7.550644567219145,
+            "MOM52": -7.550644567218866
           },
           "RSI": {
-            "RSI50": 49.58279402591191,
-            "RSI50_slope5": 1.5503196214206696
+            "RSI50": 48.78251444131452,
+            "RSI50_slope5": 0.8814291702090316
           }
         }
       }
@@ -54280,13 +54381,13 @@
       "date": "2026-07-01",
       "price": 60.0,
       "preferred": {
-        "rsi14": 49.6705709077305,
+        "rsi14": 46.012958646345226,
         "macd": 0.2882,
         "signal": -0.0264,
         "histogram": 0.3146,
-        "adx14": 8.211468242175124,
+        "adx14": 8.21838159865755,
         "plusDi": 0.0,
-        "minusDi": 3.6626819511288424,
+        "minusDi": 3.930237454963308,
         "ma20": 58.29,
         "ma50": 59.5,
         "ma200": 58.62,
@@ -54381,15 +54482,15 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 49.6705709077305,
-        "rsiSlope5Preferred": -3.512298587282075,
-        "adxPreferred": 8.211468242175124,
-        "diSpreadPreferred": -3.6626819511288424,
-        "rocPreferred": 0.6837606837606813,
-        "momentumPreferred": 0.6837606837606697,
+        "rsiPreferred": 46.012958646345226,
+        "rsiSlope5Preferred": -7.16991084866369,
+        "adxPreferred": 8.21838159865755,
+        "diSpreadPreferred": -3.930237454963308,
+        "rocPreferred": -2.6981450252950956,
+        "momentumPreferred": -2.6981450252950547,
         "vwapPreferred": 60.6,
-        "mfiPreferred": 60.44816890561735,
-        "pviSlopePreferred": -4.494090268571926,
+        "mfiPreferred": 55.71805053352942,
+        "pviSlopePreferred": -7.230085004000819,
         "nviSlopePreferred": 4.878313536893519,
         "nearSupportPreferred": 58.1,
         "supportPreferred": 58.1,
@@ -54692,25 +54793,9 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 58.9,
-        "currentZone": {
-          "low": 58.51,
-          "high": 58.97,
-          "center": 58.74,
-          "strength": 23.45,
-          "touches": 12,
-          "sources": {
-            "swing_low": 4,
-            "ma200": 1,
-            "ich_tenkan": 1,
-            "ma20": 1,
-            "swing_high": 4,
-            "vol_node": 1
-          },
-          "distPct": 0.27,
-          "widthPct": 0.79
-        },
+        "date": "2026-07-09",
+        "close": 57.7,
+        "currentZone": null,
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -54750,8 +54835,8 @@
           },
           {
             "indicator": "ROC_MOMENTUM",
-            "signal": 1,
-            "reason": "ROC72>0; MOM72>0"
+            "signal": -1,
+            "reason": "ROC72<0; MOM72<0"
           },
           {
             "indicator": "PVI_NVI",
@@ -54769,14 +54854,14 @@
             "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
-        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
-        "reason": "close nằm trong/gần current zone",
-        "core12Positive": 2,
-        "core12Negative": 1,
+        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
+        "reason": "trên S1 khoảng 4.26%",
+        "core12Positive": 1,
+        "core12Negative": 2,
         "core12Neutral": 2,
-        "holdScore": 40.0,
-        "breakRiskScore": 20.0,
-        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
+        "holdScore": 20.0,
+        "breakRiskScore": 40.0,
+        "finalStatus": "GIỮ TRÊN HỖ TRỢ"
       },
       "raw": {
         "dailyV3": {
@@ -54990,23 +55075,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 60.44816890561735
+            "MFI20": 55.71805053352942
           },
           "ROC_MOMENTUM": {
-            "ROC72": 0.6837606837606813,
-            "MOM72": 0.6837606837606697
+            "ROC72": -2.6981450252950956,
+            "MOM72": -2.6981450252950547
           },
           "PVI_NVI": {
-            "PVI_slope63": -4.494090268571926,
+            "PVI_slope63": -7.230085004000819,
             "NVI_slope63": 4.878313536893519
           },
           "ADX_DMI": {
-            "ADX41": 8.211468242175124,
-            "DI41_spread": -3.6626819511288424
+            "ADX41": 8.21838159865755,
+            "DI41_spread": -3.930237454963308
           },
           "RSI": {
-            "RSI24": 49.6705709077305,
-            "RSI24_slope5": -3.512298587282075
+            "RSI24": 46.012958646345226,
+            "RSI24_slope5": -7.16991084866369
           }
         }
       }
@@ -55120,16 +55205,16 @@
         "rsiPreferred": 53.77,
         "adxPreferred": 17.33,
         "rocPreferred": 4.05,
-        "maTrendPreferred": 31.630528931155098,
-        "maTrendSlope5Preferred": 1.4819070889371178,
-        "vwapPreferred": 17.981081211716997,
-        "vwmaSlope5Preferred": 2.8143842696061627,
-        "pviSlopePreferred": 45.691227989983794,
-        "nviSlopePreferred": 6.913258968548264,
-        "trixPreferred": 0.3773566379917881,
-        "trixSlope5Preferred": -0.028318611189059872,
+        "maTrendPreferred": 30.14468089953457,
+        "maTrendSlope5Preferred": 1.4515727160188119,
+        "vwapPreferred": 16.605436994108324,
+        "vwmaSlope5Preferred": 2.3411193471225333,
+        "pviSlopePreferred": 48.670819703671064,
+        "nviSlopePreferred": 5.986677390820838,
+        "trixPreferred": 0.37179446238371217,
+        "trixSlope5Preferred": -0.027639377833632572,
         "supertrendDirPreferred": 0.0,
-        "supertrendDistPreferred": -19.933271999999874,
+        "supertrendDistPreferred": -19.151927370544612,
         "nearSupportPreferred": 140.4,
         "supportPreferred": 149.5,
         "resistancePreferred": 155.7,
@@ -55432,18 +55517,18 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 150.0,
+        "date": "2026-07-09",
+        "close": 148.7,
         "currentZone": {
-          "low": 149.09,
+          "low": 149.1,
           "high": 150.29,
           "center": 149.69,
-          "strength": 4.65,
+          "strength": 4.55,
           "touches": 2,
           "sources": {
             "swing_high": 2
           },
-          "distPct": 0.2,
+          "distPct": -0.67,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -55726,24 +55811,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": -19.933271999999874,
+            "ST15_5.0_dist": -19.151927370544612,
             "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": 31.630528931155098,
-            "EMA229_slope5": 1.4819070889371178
+            "EMA229_dist": 30.14468089953457,
+            "EMA229_slope5": 1.4515727160188119
           },
           "TRIX": {
-            "TRIX38": 0.3773566379917881,
-            "TRIX38_slope5": -0.028318611189059872
+            "TRIX38": 0.37179446238371217,
+            "TRIX38_slope5": -0.027639377833632572
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": 17.981081211716997,
-            "VWMA98_slope5": 2.8143842696061627
+            "VWAP98_dist": 16.605436994108324,
+            "VWMA98_slope5": 2.3411193471225333
           },
           "PVI_NVI": {
-            "PVI_slope75": 45.691227989983794,
-            "NVI_slope75": 6.913258968548264
+            "PVI_slope75": 48.670819703671064,
+            "NVI_slope75": 5.986677390820838
           }
         }
       }
@@ -55804,8 +55889,8 @@
           "chikou": null,
           "state": "below_cloud",
           "bullishTkCross": true,
-          "core12CloudPos": -0.4615384615384288,
-          "core12Tk": 0.9230769230768576,
+          "core12CloudPos": -1.3975155279502105,
+          "core12Tk": 0.9316770186334736,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -55859,20 +55944,20 @@
         },
         "rsiPreferred": 61.08,
         "adxPreferred": 19.1,
-        "rocPreferred": 1.4357053682896304,
-        "momentumPreferred": 1.4357053682895513,
-        "ichimokuCloudPreferred": -0.4615384615384288,
-        "ichimokuTkPreferred": 0.9230769230768576,
+        "rocPreferred": -0.1240694789081842,
+        "momentumPreferred": -0.12406947890817824,
+        "ichimokuCloudPreferred": -1.3975155279502105,
+        "ichimokuTkPreferred": 0.9316770186334736,
         "vwapPreferred": 16.3,
-        "mfiPreferred": 54.62065411725812,
-        "trixPreferred": -0.04845035821919863,
-        "trixSlope5Preferred": 0.00609985556605519,
+        "mfiPreferred": 53.48290290734396,
+        "trixPreferred": -0.04730537253572198,
+        "trixSlope5Preferred": 0.006021232289787903,
         "nearSupportPreferred": false,
         "supportBrokenPreferred": false,
         "supportPreferred": "15.63-15.74",
         "activeSupportDay": "15.63-15.74",
-        "resistancePreferred": "16.43-16.54",
-        "activeResistanceDay": "16.43-16.54",
+        "resistancePreferred": "16.30-16.40",
+        "activeResistanceDay": "16.30-16.40",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -56169,8 +56254,8 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 16.25,
+        "date": "2026-07-09",
+        "close": 16.1,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -56206,8 +56291,8 @@
         "core12Signals": [
           {
             "indicator": "ROC_MOMENTUM",
-            "signal": 1,
-            "reason": "ROC80>0; MOM80>0"
+            "signal": -1,
+            "reason": "ROC80<0; MOM80<0"
           },
           {
             "indicator": "MFI_CMF",
@@ -56231,13 +56316,13 @@
           }
         ],
         "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.51%",
-        "core12Positive": 2,
-        "core12Negative": 0,
+        "reason": "trên S1 khoảng 2.61%",
+        "core12Positive": 1,
+        "core12Negative": 1,
         "core12Neutral": 3,
-        "holdScore": 40.0,
-        "breakRiskScore": 0.0,
-        "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
+        "holdScore": 20.0,
+        "breakRiskScore": 20.0,
+        "finalStatus": "GIỮ TRÊN HỖ TRỢ"
       },
       "raw": {
         "dailyV3": {
@@ -56452,25 +56537,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 1.4357053682896304,
-            "MOM80": 1.4357053682895513
+            "ROC80": -0.1240694789081842,
+            "MOM80": -0.12406947890817824
           },
           "MFI_CMF": {
-            "MFI73": 54.62065411725812
+            "MFI73": 53.48290290734396
           },
           "TRIX": {
-            "TRIX58": -0.04845035821919863,
-            "TRIX58_slope5": 0.00609985556605519
+            "TRIX58": -0.04730537253572198,
+            "TRIX58_slope5": 0.006021232289787903
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": -0.4615384615384288,
-            "ICHI5_29_89_tk": 0.9230769230768576
+            "ICHI5_29_89_cloud_pos": -1.3975155279502105,
+            "ICHI5_29_89_tk": 0.9316770186334736
           },
           "SR_CLUSTER": {
             "nearSupport": false,
             "supportBroken": false,
             "S1": "15.63-15.74",
-            "R1": "16.43-16.54"
+            "R1": "16.30-16.40"
           }
         }
       }
@@ -56584,16 +56669,16 @@
         "rsiPreferred": 54.77,
         "adxPreferred": 21.15,
         "rocPreferred": 9.87,
-        "maTrendPreferred": 46.51373272225619,
-        "maTrendSlope5Preferred": 2.1103571265071563,
-        "vwapPreferred": 19.56352494058551,
-        "vwmaSlope5Preferred": 3.357028457092448,
-        "pviSlopePreferred": 45.64542146911164,
-        "nviSlopePreferred": 12.246220878390313,
-        "trixPreferred": 0.4127111384546467,
-        "trixSlope5Preferred": -0.02678440919896552,
+        "maTrendPreferred": 46.11935506329796,
+        "maTrendSlope5Preferred": 2.0871784408118543,
+        "vwapPreferred": 19.26793025443725,
+        "vwmaSlope5Preferred": 2.6151811944403747,
+        "pviSlopePreferred": 45.84339893372753,
+        "nviSlopePreferred": 20.64681384221889,
+        "trixPreferred": 0.40760841695430816,
+        "trixSlope5Preferred": -0.026273878724225597,
         "supertrendDirPreferred": 1.0,
-        "supertrendDistPreferred": 19.40299954689616,
+        "supertrendDistPreferred": 17.764117647058747,
         "nearSupportPreferred": 207.2,
         "supportPreferred": 218.1,
         "resistancePreferred": 230.2,
@@ -56897,8 +56982,8 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 220.7,
+        "date": "2026-07-09",
+        "close": 221.0,
         "currentZone": null,
         "mlConfig": {
           "indicators": [
@@ -57181,24 +57266,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": 19.40299954689616,
+            "ST15_5.0_dist": 17.764117647058747,
             "ST15_5.0_dir": 1.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": 46.51373272225619,
-            "EMA229_slope5": 2.1103571265071563
+            "EMA229_dist": 46.11935506329796,
+            "EMA229_slope5": 2.0871784408118543
           },
           "TRIX": {
-            "TRIX38": 0.4127111384546467,
-            "TRIX38_slope5": -0.02678440919896552
+            "TRIX38": 0.40760841695430816,
+            "TRIX38_slope5": -0.026273878724225597
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": 19.56352494058551,
-            "VWMA98_slope5": 3.357028457092448
+            "VWAP98_dist": 19.26793025443725,
+            "VWMA98_slope5": 2.6151811944403747
           },
           "PVI_NVI": {
-            "PVI_slope75": 45.64542146911164,
-            "NVI_slope75": 12.246220878390313
+            "PVI_slope75": 45.84339893372753,
+            "NVI_slope75": 20.64681384221889
           }
         }
       }
@@ -57721,7 +57806,7 @@
         "bbUpper": 18.34,
         "bbLower": 16.91,
         "bbPercent": 0.763,
-        "vwapDay": 8.703523120160161,
+        "vwapDay": 6.455271675798069,
         "donchianHighDay": 18.6,
         "donchianLowDay": 15.4,
         "donchianMidDay": 17.0,
@@ -57767,7 +57852,7 @@
           "percent": 0.697,
           "state": "above_mid"
         },
-        "roc20": 16.29353233830846,
+        "roc20": 16.21279290690312,
         "fibonacciLevelsDay": [
           21.51,
           20.06,
@@ -57809,18 +57894,18 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 54.89724470814066,
-        "rsiSlope5Preferred": 2.1033794850910823,
+        "rsiPreferred": 53.5749243041519,
+        "rsiSlope5Preferred": 0.7810590811059797,
         "adxPreferred": 18.13,
-        "rocPreferred": 16.29353233830846,
-        "momentumPreferred": 16.293532338307454,
-        "vwapPreferred": 8.703523120160161,
-        "vwmaSlope5Preferred": 1.3287892350826613,
-        "mfiPreferred": 63.374635596025406,
+        "rocPreferred": 16.21279290690312,
+        "momentumPreferred": 16.21279290690209,
+        "vwapPreferred": 6.455271675798069,
+        "vwmaSlope5Preferred": 1.3455277092023987,
+        "mfiPreferred": 62.48399062331774,
         "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "17.65-17.80",
-        "activeSupportDay": "17.65-17.80",
+        "supportPreferred": "17.60-17.75",
+        "activeSupportDay": "17.60-17.75",
         "resistancePreferred": "19.26-19.40",
         "activeResistanceDay": "19.26-19.40",
         "_sourceMap": {
@@ -58121,19 +58206,22 @@
         "sectorGroup": "CHUNG_KHOAN",
         "configSector": "CHUNG_KHOAN",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 18.7,
+        "date": "2026-07-09",
+        "close": 18.35,
         "currentZone": {
-          "low": 18.5,
-          "high": 18.64,
-          "center": 18.57,
-          "strength": 11.14,
-          "touches": 5,
+          "low": 18.14,
+          "high": 18.29,
+          "center": 18.22,
+          "strength": 17.81,
+          "touches": 9,
           "sources": {
             "vol_node": 1,
-            "swing_high": 4
+            "ma200": 1,
+            "swing_low": 4,
+            "ich_tenkan": 1,
+            "swing_high": 2
           },
-          "distPct": 0.69,
+          "distPct": 0.72,
           "widthPct": 0.8
         },
         "mlConfig": {
@@ -58413,25 +58501,25 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI61": 63.374635596025406
+            "MFI61": 62.48399062331774
           },
           "SR_CLUSTER": {
             "nearSupport": true,
             "supportBroken": false,
-            "S1": "17.65-17.80",
+            "S1": "17.60-17.75",
             "R1": "19.26-19.40"
           },
           "VWAP_VWMA": {
-            "VWAP60_dist": 8.703523120160161,
-            "VWMA60_slope5": 1.3287892350826613
+            "VWAP60_dist": 6.455271675798069,
+            "VWMA60_slope5": 1.3455277092023987
           },
           "ROC_MOMENTUM": {
-            "ROC52": 16.29353233830846,
-            "MOM52": 16.293532338307454
+            "ROC52": 16.21279290690312,
+            "MOM52": 16.21279290690209
           },
           "RSI": {
-            "RSI50": 54.89724470814066,
-            "RSI50_slope5": 2.1033794850910823
+            "RSI50": 53.5749243041519,
+            "RSI50_slope5": 0.7810590811059797
           }
         }
       }
@@ -58692,14 +58780,14 @@
         },
         "rsiPreferred": 33.02,
         "adxPreferred": 26.55,
-        "rocPreferred": -15.65717746820109,
-        "momentumPreferred": -15.657177468200858,
-        "maTrendPreferred": -7.048038159811965,
-        "maTrendSlope5Preferred": -0.8815659895639594,
-        "vwapPreferred": -4.059452332406154,
-        "vwmaSlope5Preferred": -0.4448088484410029,
-        "mfiPreferred": 32.421162174219305,
-        "pviSlopePreferred": -4.7245373491038745,
+        "rocPreferred": -13.630020158164047,
+        "momentumPreferred": -13.630020158163836,
+        "maTrendPreferred": -6.906349235826104,
+        "maTrendSlope5Preferred": -0.841527639671491,
+        "vwapPreferred": -3.988929161040644,
+        "vwmaSlope5Preferred": -0.41973845955427525,
+        "mfiPreferred": 33.88178726773508,
+        "pviSlopePreferred": -7.160647001180564,
         "nviSlopePreferred": -1.0291824073515699,
         "nearSupportPreferred": 53.3,
         "supportPreferred": 53.3,
@@ -59000,7 +59088,7 @@
         "sectorGroup": "RETAIL_CONSUMER",
         "configSector": "RETAIL_CONSUMER",
         "task": "RS",
-        "date": "2026-07-08",
+        "date": "2026-07-09",
         "close": 55.7,
         "currentZone": null,
         "mlConfig": {
@@ -59286,22 +59374,22 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI60": 32.421162174219305
+            "MFI60": 33.88178726773508
           },
           "VWAP_VWMA": {
-            "VWAP75_dist": -4.059452332406154,
-            "VWMA75_slope5": -0.4448088484410029
+            "VWAP75_dist": -3.988929161040644,
+            "VWMA75_slope5": -0.41973845955427525
           },
           "ROC_MOMENTUM": {
-            "ROC90": -15.65717746820109,
-            "MOM90": -15.657177468200858
+            "ROC90": -13.630020158164047,
+            "MOM90": -13.630020158163836
           },
           "MA_EMA_WMA": {
-            "MA108_dist": -7.048038159811965,
-            "MA108_slope5": -0.8815659895639594
+            "MA108_dist": -6.906349235826104,
+            "MA108_slope5": -0.841527639671491
           },
           "PVI_NVI": {
-            "PVI_slope63": -4.7245373491038745,
+            "PVI_slope63": -7.160647001180564,
             "NVI_slope63": -1.0291824073515699
           }
         }
@@ -59590,8 +59678,8 @@
           "chikou": null,
           "state": "above_cloud",
           "bullishTkCross": false,
-          "core12CloudPos": 2.027027027026954,
-          "core12Tk": 2.4324324324323348,
+          "core12CloudPos": 0.22935779816512922,
+          "core12Tk": 2.4770642201833852,
           "source": "core12.ICHIMOKU"
         },
         "keltner": {
@@ -59645,20 +59733,20 @@
         },
         "rsiPreferred": 65.34,
         "adxPreferred": 17.13,
-        "rocPreferred": 10.119047619047628,
-        "momentumPreferred": 10.11904761904722,
-        "ichimokuCloudPreferred": 2.027027027026954,
-        "ichimokuTkPreferred": 2.4324324324323348,
+        "rocPreferred": 8.782435129740506,
+        "momentumPreferred": 8.782435129740165,
+        "ichimokuCloudPreferred": 0.22935779816512922,
+        "ichimokuTkPreferred": 2.4770642201833852,
         "vwapPreferred": 26.9,
-        "mfiPreferred": 58.30854959396027,
-        "trixPreferred": -0.028257214697191557,
-        "trixSlope5Preferred": 0.004053590549735198,
-        "nearSupportPreferred": false,
+        "mfiPreferred": 56.866337670157336,
+        "trixPreferred": -0.027222005624605305,
+        "trixSlope5Preferred": 0.004505579873670396,
+        "nearSupportPreferred": true,
         "supportBrokenPreferred": false,
-        "supportPreferred": "26.70-26.91",
-        "activeSupportDay": "26.70-26.91",
-        "resistancePreferred": "28.16-28.36",
-        "activeResistanceDay": "28.16-28.36",
+        "supportPreferred": "25.96-26.16",
+        "activeSupportDay": "25.96-26.16",
+        "resistancePreferred": "27.91-28.11",
+        "activeResistanceDay": "27.91-28.11",
         "_sourceMap": {
           "rsiPreferred": "daily.rsi14",
           "adxPreferred": "daily.adx14",
@@ -59959,9 +60047,21 @@
         "sectorGroup": "BANK",
         "configSector": "BANK",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 27.75,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 27.25,
+        "currentZone": {
+          "low": 27.15,
+          "high": 27.35,
+          "center": 27.25,
+          "strength": 7.46,
+          "touches": 3,
+          "sources": {
+            "swing_high": 2,
+            "vol_node": 1
+          },
+          "distPct": -0.01,
+          "widthPct": 0.74
+        },
         "mlConfig": {
           "indicators": [
             "ROC_MOMENTUM",
@@ -60016,16 +60116,16 @@
           },
           {
             "indicator": "SR_CLUSTER",
-            "signal": 0,
-            "reason": "neutral"
+            "signal": 1,
+            "reason": "near support"
           }
         ],
-        "priceStatus": "GIỮ TRÊN HỖ TRỢ",
-        "reason": "trên S1 khoảng 3.42%",
-        "core12Positive": 3,
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
+        "core12Positive": 4,
         "core12Negative": 0,
-        "core12Neutral": 2,
-        "holdScore": 60.0,
+        "core12Neutral": 1,
+        "holdScore": 80.0,
         "breakRiskScore": 0.0,
         "finalStatus": "GIỮ HỖ TRỢ / CORE12 ỦNG HỘ"
       },
@@ -60242,25 +60342,25 @@
         },
         "core12Values": {
           "ROC_MOMENTUM": {
-            "ROC80": 10.119047619047628,
-            "MOM80": 10.11904761904722
+            "ROC80": 8.782435129740506,
+            "MOM80": 8.782435129740165
           },
           "MFI_CMF": {
-            "MFI73": 58.30854959396027
+            "MFI73": 56.866337670157336
           },
           "TRIX": {
-            "TRIX58": -0.028257214697191557,
-            "TRIX58_slope5": 0.004053590549735198
+            "TRIX58": -0.027222005624605305,
+            "TRIX58_slope5": 0.004505579873670396
           },
           "ICHIMOKU": {
-            "ICHI5_29_89_cloud_pos": 2.027027027026954,
-            "ICHI5_29_89_tk": 2.4324324324323348
+            "ICHI5_29_89_cloud_pos": 0.22935779816512922,
+            "ICHI5_29_89_tk": 2.4770642201833852
           },
           "SR_CLUSTER": {
-            "nearSupport": false,
+            "nearSupport": true,
             "supportBroken": false,
-            "S1": "26.70-26.91",
-            "R1": "28.16-28.36"
+            "S1": "25.96-26.16",
+            "R1": "27.91-28.11"
           }
         }
       }
@@ -60664,16 +60764,16 @@
         "rsiPreferred": 45.62,
         "adxPreferred": 22.57,
         "rocPreferred": -2.48,
-        "maTrendPreferred": -4.952184705826291,
-        "maTrendSlope5Preferred": -0.12290668093017931,
-        "vwapPreferred": -6.544867164832335,
-        "vwmaSlope5Preferred": 0.23115030215354881,
+        "maTrendPreferred": -5.4341955621383775,
+        "maTrendSlope5Preferred": -0.16000108793412515,
+        "vwapPreferred": -7.052980795160124,
+        "vwmaSlope5Preferred": 0.13865760476694522,
         "pviSlopePreferred": 4.519091073251058,
-        "nviSlopePreferred": 2.4562128840397435,
-        "trixPreferred": 0.03227414435345022,
-        "trixSlope5Preferred": -0.031112968671087593,
+        "nviSlopePreferred": 5.134497235553392,
+        "trixPreferred": 0.02525200741625433,
+        "trixSlope5Preferred": -0.03219962480269789,
         "supertrendDirPreferred": 0.0,
-        "supertrendDistPreferred": -19.79436598890869,
+        "supertrendDistPreferred": -18.490855018586682,
         "nearSupportPreferred": 26.4,
         "supportPreferred": 26.4,
         "resistancePreferred": 30.0,
@@ -60980,21 +61080,9 @@
         "sectorGroup": "BDS",
         "configSector": "BDS",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 27.05,
-        "currentZone": {
-          "low": 27.03,
-          "high": 27.25,
-          "center": 27.14,
-          "strength": 4.62,
-          "touches": 2,
-          "sources": {
-            "swing_high": 1,
-            "swing_low": 1
-          },
-          "distPct": -0.33,
-          "widthPct": 0.8
-        },
+        "date": "2026-07-09",
+        "close": 26.9,
+        "currentZone": null,
         "mlConfig": {
           "indicators": [
             "SUPERTREND",
@@ -61054,14 +61142,14 @@
             "reason": "PVI_slope75>0; NVI_slope75>0"
           }
         ],
-        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
-        "reason": "close nằm trong/gần current zone",
+        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
+        "reason": "close sát S1 26.44-26.65",
         "core12Positive": 1,
         "core12Negative": 2,
         "core12Neutral": 2,
         "holdScore": 20.0,
         "breakRiskScore": 40.0,
-        "finalStatus": "GIỮ VÙNG HIỆN TẠI"
+        "finalStatus": "TEST HỖ TRỢ - RỦI RO GÃY CAO"
       },
       "raw": {
         "dailyV3": {
@@ -61279,24 +61367,24 @@
         },
         "core12Values": {
           "SUPERTREND": {
-            "ST15_5.0_dist": -19.79436598890869,
+            "ST15_5.0_dist": -18.490855018586682,
             "ST15_5.0_dir": 0.0
           },
           "MA_EMA_WMA": {
-            "EMA229_dist": -4.952184705826291,
-            "EMA229_slope5": -0.12290668093017931
+            "EMA229_dist": -5.4341955621383775,
+            "EMA229_slope5": -0.16000108793412515
           },
           "TRIX": {
-            "TRIX38": 0.03227414435345022,
-            "TRIX38_slope5": -0.031112968671087593
+            "TRIX38": 0.02525200741625433,
+            "TRIX38_slope5": -0.03219962480269789
           },
           "VWAP_VWMA": {
-            "VWAP98_dist": -6.544867164832335,
-            "VWMA98_slope5": 0.23115030215354881
+            "VWAP98_dist": -7.052980795160124,
+            "VWMA98_slope5": 0.13865760476694522
           },
           "PVI_NVI": {
             "PVI_slope75": 4.519091073251058,
-            "NVI_slope75": 2.4562128840397435
+            "NVI_slope75": 5.134497235553392
           }
         }
       }
@@ -61678,13 +61766,13 @@
       "date": "2026-07-01",
       "price": 65.5,
       "preferred": {
-        "rsi14": 45.12347574403339,
+        "rsi14": 43.701598671920706,
         "macd": -0.7133,
         "signal": -0.8252,
         "histogram": 0.1118,
-        "adx14": 3.6957206577340287,
+        "adx14": 3.6372294275443675,
         "plusDi": 0.0,
-        "minusDi": 1.278493442709152,
+        "minusDi": 0.636810470328335,
         "ma20": 64.37,
         "ma50": 66.05,
         "ma200": 73.06,
@@ -61779,16 +61867,16 @@
           },
           "notes": "Score minh bạch theo từng chỉ báo; dùng để xếp hạng, chưa phải tín hiệu mua độc lập."
         },
-        "rsiPreferred": 45.12347574403339,
-        "rsiSlope5Preferred": -3.48201076586691,
-        "adxPreferred": 3.6957206577340287,
-        "diSpreadPreferred": -1.278493442709152,
-        "rocPreferred": -2.4315644593974617,
-        "momentumPreferred": -2.4315644593974293,
+        "rsiPreferred": 43.701598671920706,
+        "rsiSlope5Preferred": -3.672020972010266,
+        "adxPreferred": 3.6372294275443675,
+        "diSpreadPreferred": -0.636810470328335,
+        "rocPreferred": -9.662664379645502,
+        "momentumPreferred": -9.662664379645362,
         "vwapPreferred": 68.1,
-        "mfiPreferred": 44.73370841582479,
-        "pviSlopePreferred": -7.831424952401678,
-        "nviSlopePreferred": -4.12605280715842,
+        "mfiPreferred": 49.917665816332786,
+        "pviSlopePreferred": -8.698214059432374,
+        "nviSlopePreferred": -7.458569688193006,
         "nearSupportPreferred": 63.4,
         "supportPreferred": 65.4,
         "resistancePreferred": 68.1,
@@ -62093,9 +62181,20 @@
         "sectorGroup": "OTHER",
         "configSector": "ALL",
         "task": "RS",
-        "date": "2026-07-08",
-        "close": 63.8,
-        "currentZone": null,
+        "date": "2026-07-09",
+        "close": 63.2,
+        "currentZone": {
+          "low": 62.68,
+          "high": 63.12,
+          "center": 62.9,
+          "strength": 4.65,
+          "touches": 2,
+          "sources": {
+            "swing_low": 2
+          },
+          "distPct": 0.47,
+          "widthPct": 0.7
+        },
         "mlConfig": {
           "indicators": [
             "MFI_CMF",
@@ -62130,8 +62229,8 @@
         "core12Signals": [
           {
             "indicator": "MFI_CMF",
-            "signal": -1,
-            "reason": "MFI20 weak"
+            "signal": 1,
+            "reason": "MFI20 ok"
           },
           {
             "indicator": "ROC_MOMENTUM",
@@ -62154,14 +62253,14 @@
             "reason": "RSI24 healthy; RSI24_slope5<0"
           }
         ],
-        "priceStatus": "TEST S1 / CHƯA GÃY RÕ",
-        "reason": "close sát S1 62.67-63.13",
-        "core12Positive": 0,
-        "core12Negative": 4,
+        "priceStatus": "GIỮ VÙNG HIỆN TẠI",
+        "reason": "close nằm trong/gần current zone",
+        "core12Positive": 1,
+        "core12Negative": 3,
         "core12Neutral": 1,
-        "holdScore": 0.0,
-        "breakRiskScore": 80.0,
-        "finalStatus": "TEST HỖ TRỢ - RỦI RO GÃY CAO"
+        "holdScore": 20.0,
+        "breakRiskScore": 60.0,
+        "finalStatus": "GIỮ GIÁ NHƯNG CORE12 YẾU"
       },
       "raw": {
         "dailyV3": {
@@ -62376,23 +62475,23 @@
         },
         "core12Values": {
           "MFI_CMF": {
-            "MFI20": 44.73370841582479
+            "MFI20": 49.917665816332786
           },
           "ROC_MOMENTUM": {
-            "ROC72": -2.4315644593974617,
-            "MOM72": -2.4315644593974293
+            "ROC72": -9.662664379645502,
+            "MOM72": -9.662664379645362
           },
           "PVI_NVI": {
-            "PVI_slope63": -7.831424952401678,
-            "NVI_slope63": -4.12605280715842
+            "PVI_slope63": -8.698214059432374,
+            "NVI_slope63": -7.458569688193006
           },
           "ADX_DMI": {
-            "ADX41": 3.6957206577340287,
-            "DI41_spread": -1.278493442709152
+            "ADX41": 3.6372294275443675,
+            "DI41_spread": -0.636810470328335
           },
           "RSI": {
-            "RSI24": 45.12347574403339,
-            "RSI24_slope5": -3.48201076586691
+            "RSI24": 43.701598671920706,
+            "RSI24_slope5": -3.672020972010266
           }
         }
       }
