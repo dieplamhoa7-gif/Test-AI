@@ -1,0 +1,778 @@
+{
+  "version": "detailed-3level-2026-07-09",
+  "title": "Flow pháp lý đầu tư dự án BĐS",
+  "subtitle": "Đi từ quyết định đầu tư → tuyến pháp lý → thủ tục con → checklist chi tiết. Mỗi node có tóm tắt ngắn, điều kiện, hồ sơ, cơ quan, output, rủi ro, căn cứ.",
+  "source_note": "Nguồn: 61 file local đã có + thư mục Additional anh cung cấp. File NĐ 274/2026/NĐ-CP đã đọc/extract sạch phần trọng yếu. File NĐ 94/2024/NĐ-CP dạng .doc nhị phân chưa convert sạch bằng CLI nên chỉ đánh dấu cần verify, không trích chi tiết để tránh sai.",
+  "doc_summaries": [
+    {
+      "doc": "NĐ 274/2026/NĐ-CP",
+      "role": "Tuyến đấu thầu lựa chọn nhà đầu tư dự án đầu tư kinh doanh",
+      "summary": [
+        "Quy định chi tiết Luật Đấu thầu về lựa chọn NĐT thực hiện dự án đầu tư kinh doanh.",
+        "Điều 4 xác định nhóm dự án phải đấu thầu: dự án có sử dụng đất theo Luật Đất đai; dự án có sử dụng đất phải đấu thầu theo luật chuyên ngành; dự án không sử dụng đất nhưng luật chuyên ngành yêu cầu đấu thầu và không thuộc đấu giá tài sản công.",
+        "Đối với BĐS, điểm cần nhớ là phân tuyến giữa đấu thầu NĐT, đấu giá QSDĐ, tự thỏa thuận nhận QSDĐ/chấp thuận NĐT.",
+        "Văn bản còn quy định bảo đảm cạnh tranh, ưu đãi, chi phí, chỉ định NĐT, phương thức/quy trình, tiêu chuẩn đánh giá HSDT, hợp đồng dự án có sử dụng đất, kiểm tra giám sát và xử lý vi phạm."
+      ],
+      "citations": [
+        "NĐ 274/2026/NĐ-CP: Điều 1",
+        "NĐ 274/2026/NĐ-CP: Điều 3",
+        "NĐ 274/2026/NĐ-CP: Điều 4"
+      ]
+    },
+    {
+      "doc": "Luật Đất đai 2024 + NĐ 102/103/71/2024",
+      "role": "Đất, giao/thuê/chuyển mục đích, tiền đất, giá đất",
+      "summary": [
+        "Là xương sống của gate tiếp cận đất: thu hồi đất, đấu giá/đấu thầu, giao đất/cho thuê đất/chuyển mục đích.",
+        "Nhà đầu tư phải kiểm tra quy hoạch, kế hoạch sử dụng đất, căn cứ thu hồi/giao/cho thuê, và nghĩa vụ tài chính đất.",
+        "Rủi ro lớn nhất là sai route đất, GPMB không xong hoặc nghĩa vụ tài chính làm vỡ mô hình đầu tư."
+      ],
+      "citations": [
+        "Luật Đất đai 2024: Điều 79, Điều 126",
+        "NĐ 102/2024/NĐ-CP",
+        "NĐ 103/2024/NĐ-CP",
+        "NĐ 71/2024/NĐ-CP"
+      ]
+    },
+    {
+      "doc": "Luật KDBĐS 2023 + NĐ 96/2024/NĐ-CP",
+      "role": "Kinh doanh sản phẩm, mở bán, huy động vốn",
+      "summary": [
+        "Điều chỉnh điều kiện kinh doanh BĐS, chuyển nhượng dự án, bán/cho thuê mua nhà/công trình hình thành trong tương lai.",
+        "Điểm đầu tư cần kiểm là thời điểm được huy động vốn/mở bán, hồ sơ pháp lý dự án, hợp đồng, bảo lãnh ngân hàng và nghĩa vụ công khai thông tin.",
+        "Rủi ro trọng yếu: nhận tiền trước điều kiện, dùng booking/đặt cọc sai bản chất, quảng cáo khi pháp lý chưa đủ."
+      ],
+      "citations": [
+        "Luật KDBĐS 2023",
+        "NĐ 96/2024/NĐ-CP",
+        "TT 49/2024/TT-NHNN"
+      ]
+    },
+    {
+      "doc": "Luật Nhà ở 2023 / NĐ hướng dẫn nhà ở",
+      "role": "Dự án nhà ở, chủ đầu tư, nhà ở hình thành trong tương lai, chung cư",
+      "summary": [
+        "Cần cho các dự án nhà ở thương mại, nhà ở xã hội, cải tạo xây dựng lại chung cư, bàn giao/vận hành/cấp sổ.",
+        "File NĐ 94/2024 trong Additional cần convert sạch trước khi trích điều chi tiết; hiện web chỉ dùng như nguồn cần verify."
+      ],
+      "citations": [
+        "Luật Nhà ở 2023",
+        "NĐ 94/2024/NĐ-CP — cần verify nội dung file"
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "A",
+      "title": "A. Tiền khả thi & lọc deal",
+      "summary": "Xác định đất/dự án có đủ cơ sở pháp lý để theo đuổi không trước khi tốn chi phí lớn.",
+      "children": [
+        {
+          "id": "A1",
+          "title": "A1. Kiểm tra quỹ đất",
+          "summary": "Làm rõ đất đang thuộc ai, mục đích gì, có nằm trong quy hoạch/kế hoạch phù hợp không.",
+          "children": [
+            {
+              "id": "A1.1",
+              "title": "Nguồn gốc và hiện trạng đất",
+              "summary": "Tách rõ đất Nhà nước quản lý, đất đang có người sử dụng, đất doanh nghiệp tự thỏa thuận, đất phải thu hồi.",
+              "conditions": [
+                "Có thông tin thửa/khu đất, hiện trạng sử dụng, pháp lý QSDĐ",
+                "Không vướng khu vực cấm/hạn chế hoặc phải xử lý đặc biệt"
+              ],
+              "dossier": [
+                "Bản đồ ranh",
+                "Thông tin quy hoạch",
+                "Hồ sơ QSDĐ hiện có",
+                "Hiện trạng GPMB"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Memo nguồn gốc đất và khả năng tiếp cận",
+              "risks": [
+                "Nhầm đất tự thỏa thuận với đất phải đấu giá/đấu thầu",
+                "Đất chưa phù hợp quy hoạch/kế hoạch sử dụng đất"
+              ],
+              "citations": [
+                "Luật Đất đai 2024",
+                "NĐ 102/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "A1.2",
+              "title": "Quy hoạch/kế hoạch sử dụng đất",
+              "summary": "Nếu quy hoạch không phù hợp thì deal chưa thể triển khai dù giá tốt.",
+              "conditions": [
+                "Mục đích sử dụng đất dự kiến phù hợp quy hoạch",
+                "Có/đưa được vào kế hoạch sử dụng đất nếu cần"
+              ],
+              "dossier": [
+                "Trích lục quy hoạch",
+                "Văn bản cung cấp thông tin quy hoạch",
+                "Kế hoạch sử dụng đất cấp có thẩm quyền"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Kết luận phù hợp quy hoạch hoặc danh sách việc phải điều chỉnh",
+              "risks": [
+                "Mất thời gian điều chỉnh quy hoạch",
+                "Không được chấp thuận chủ trương/giao đất"
+              ],
+              "citations": [
+                "Luật Đất đai 2024",
+                "Luật Quy hoạch đô thị và nông thôn 2024"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "A2",
+          "title": "A2. Chọn route tiếp cận đất",
+          "summary": "Quyết định đi đấu giá, đấu thầu lựa chọn NĐT, chấp thuận NĐT hay tự thỏa thuận.",
+          "children": [
+            {
+              "id": "A2.1",
+              "title": "Đấu giá QSDĐ",
+              "summary": "Áp dụng khi Nhà nước có quỹ đất sạch/đủ điều kiện đưa ra đấu giá quyền sử dụng đất.",
+              "conditions": [
+                "Quỹ đất do Nhà nước quản lý",
+                "Đủ điều kiện đấu giá theo pháp luật đất đai"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Quyết định trúng đấu giá và nghĩa vụ tài chính",
+              "risks": [
+                "Giá trúng cao làm vỡ IRR",
+                "Không đáp ứng điều kiện đấu giá/tiền đặt trước"
+              ],
+              "citations": [
+                "Luật Đất đai 2024"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "A2.2",
+              "title": "Đấu thầu lựa chọn nhà đầu tư",
+              "summary": "Áp dụng với dự án đầu tư kinh doanh thuộc trường hợp phải đấu thầu, nhất là dự án có sử dụng đất theo Điều 126 Luật Đất đai hoặc luật chuyên ngành.",
+              "conditions": [
+                "Dự án thuộc Điều 4 NĐ 274/2026",
+                "Quỹ đất dự kiến đáp ứng điều kiện",
+                "Có từ 02 NĐT quan tâm trong các trường hợp chuyên ngành yêu cầu"
+              ],
+              "dossier": [
+                "Thông tin dự án",
+                "Mời quan tâm/HSMT",
+                "HSDT năng lực tài chính, kinh nghiệm, phương án triển khai"
+              ],
+              "authority": "Bộ/cơ quan ngang bộ/UBND tỉnh/BQL khu kinh tế/UBND xã hoặc cơ quan được giao tùy dự án",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Kết quả lựa chọn NĐT + hợp đồng dự án",
+              "risks": [
+                "Không đủ năng lực/kinh nghiệm",
+                "Quỹ đất chưa đủ điều kiện",
+                "Nhầm với tuyến đấu giá"
+              ],
+              "citations": [
+                "NĐ 274/2026/NĐ-CP: Điều 2, 3, 4",
+                "Luật Đất đai 2024: Điều 126"
+              ],
+              "doc_summary": [
+                "NĐ 274 xem đấu thầu là route chọn NĐT cho dự án đầu tư kinh doanh; Điều 4 là điểm quyết định có phải đấu thầu hay không."
+              ]
+            },
+            {
+              "id": "A2.3",
+              "title": "Tự thỏa thuận nhận QSDĐ / chấp thuận NĐT",
+              "summary": "Phù hợp khi nhà đầu tư tự nhận quyền sử dụng đất và không đề xuất Nhà nước thu hồi đất; cần kiểm điều kiện chấp thuận chủ trương đồng thời chấp thuận NĐT.",
+              "conditions": [
+                "Có quyền sử dụng đất hợp pháp hoặc thỏa thuận nhận QSDĐ hợp lệ",
+                "Không thuộc trường hợp bắt buộc đấu giá/đấu thầu"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Chấp thuận chủ trương đồng thời chấp thuận NĐT hoặc văn bản tương đương",
+              "risks": [
+                "Thỏa thuận đất không đủ tỷ lệ/không sạch",
+                "Một phần đất xen kẹt làm tắc dự án"
+              ],
+              "citations": [
+                "Luật Đầu tư",
+                "Luật Đất đai 2024",
+                "NĐ 274/2026/NĐ-CP: Điều 4 — nhóm không phải đấu thầu cần đối chiếu"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "B. Chủ trương đầu tư & lựa chọn nhà đầu tư",
+      "summary": "Biến ý tưởng/quỹ đất thành dự án được cơ quan nhà nước chấp nhận và có nhà đầu tư hợp lệ.",
+      "children": [
+        {
+          "id": "B1",
+          "title": "B1. Chấp thuận chủ trương đầu tư",
+          "summary": "Xác định dự án có cần quyết định/chấp thuận chủ trương không và ai có thẩm quyền.",
+          "children": [
+            {
+              "id": "B1.1",
+              "title": "Xác định thẩm quyền",
+              "summary": "Phân loại theo quy mô, đất, dân số, ngành nghề, khu vực nhạy cảm để biết Quốc hội/Thủ tướng/UBND tỉnh xử lý.",
+              "conditions": [
+                "Có thông số dự án: diện tích, dân số, tổng vốn, loại đất, ngành nghề"
+              ],
+              "dossier": [
+                "Đề xuất dự án",
+                "Tài liệu năng lực NĐT",
+                "Nhu cầu sử dụng đất",
+                "Sơ bộ phương án đầu tư"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Văn bản chấp thuận chủ trương đầu tư",
+              "risks": [
+                "Sai thẩm quyền khiến hồ sơ phải làm lại",
+                "Thông số dự án chưa ổn định gây sửa đổi nhiều lần"
+              ],
+              "citations": [
+                "Luật Đầu tư hiện hành",
+                "Văn bản hướng dẫn Luật Đầu tư"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "B1.2",
+              "title": "Công bố thông tin dự án nếu không thuộc diện CTCTĐT",
+              "summary": "Theo NĐ 274, dự án không thuộc diện chấp thuận chủ trương nhưng phải lựa chọn NĐT vẫn có cơ chế công bố thông tin.",
+              "conditions": [
+                "Dự án phải lựa chọn NĐT nhưng không thuộc diện CTCTĐT",
+                "Cơ quan có thẩm quyền có đủ thông tin dự án"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Thông tin dự án được công bố làm cơ sở lựa chọn NĐT",
+              "risks": [
+                "Thông tin dự án thiếu làm kéo dài mời quan tâm/đấu thầu"
+              ],
+              "citations": [
+                "NĐ 274/2026/NĐ-CP: Điều 1 khoản 2 điểm b"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "B2",
+          "title": "B2. Đấu thầu NĐT",
+          "summary": "Nếu route là đấu thầu, trọng tâm là năng lực, kinh nghiệm, phương án và tính hợp lệ của quỹ đất.",
+          "children": [
+            {
+              "id": "B2.1",
+              "title": "Mời quan tâm và sơ tuyển/quan tâm",
+              "summary": "Xác định có bao nhiêu NĐT quan tâm, từ đó kích hoạt quy trình phù hợp.",
+              "conditions": [
+                "Dự án thuộc diện phải đấu thầu",
+                "Thông tin dự án đủ để mời quan tâm"
+              ],
+              "dossier": [
+                "Hồ sơ quan tâm",
+                "Năng lực tài chính",
+                "Kinh nghiệm dự án tương tự"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Danh sách NĐT quan tâm/đủ điều kiện",
+              "risks": [
+                "Ít hơn/yếu hơn số NĐT cần thiết",
+                "Tiêu chí năng lực đặt không đúng bản chất dự án"
+              ],
+              "citations": [
+                "NĐ 274/2026/NĐ-CP: Điều 1, Điều 4"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "B2.2",
+              "title": "Hồ sơ mời thầu và đánh giá HSDT",
+              "summary": "Đây là nơi quyết định NĐT thắng: tài chính, kinh nghiệm, kỹ thuật, tiến độ, hiệu quả sử dụng đất.",
+              "conditions": [
+                "HSMT/HSYC rõ tiêu chuẩn",
+                "NĐT đáp ứng bảo đảm cạnh tranh và năng lực"
+              ],
+              "dossier": [
+                "HSDT/HSĐX",
+                "Bảo đảm dự thầu nếu có",
+                "Phương án kỹ thuật/tài chính",
+                "Cam kết tiến độ"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Quyết định phê duyệt kết quả lựa chọn NĐT",
+              "risks": [
+                "Không đạt năng lực tài chính",
+                "Phương án không đủ điểm",
+                "Xung đột lợi ích/bảo đảm cạnh tranh"
+              ],
+              "citations": [
+                "NĐ 274/2026/NĐ-CP: Điều 1 khoản 1 điểm a, b, i",
+                "Luật Đấu thầu 2023/sửa đổi"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "B2.3",
+              "title": "Hợp đồng dự án có sử dụng đất",
+              "summary": "Sau khi chọn NĐT, hợp đồng dự án là cầu nối sang giao đất, triển khai, nghĩa vụ và tiến độ.",
+              "conditions": [
+                "Có kết quả lựa chọn NĐT",
+                "Các nghĩa vụ dự án/đất/tài chính được xác lập"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Hợp đồng dự án đầu tư có sử dụng đất",
+              "risks": [
+                "Cam kết tiến độ/đất/tài chính quá nặng",
+                "Không đồng bộ với quyết định đất và CTCTĐT"
+              ],
+              "citations": [
+                "NĐ 274/2026/NĐ-CP: Điều 1 khoản 1 điểm k"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "C. Đất đai & tài chính đất",
+      "summary": "Chuyển quyền triển khai từ giấy chấp thuận sang quyền sử dụng đất và nghĩa vụ tài chính cụ thể.",
+      "children": [
+        {
+          "id": "C1",
+          "title": "C1. GPMB / thu hồi / giao thuê đất",
+          "summary": "Điểm nghẽn lớn nhất của dự án BĐS là đất sạch và quyết định đất.",
+          "children": [
+            {
+              "id": "C1.1",
+              "title": "Bồi thường, hỗ trợ, tái định cư",
+              "summary": "Nếu Nhà nước thu hồi đất, tiến độ dự án phụ thuộc mạnh vào phương án bồi thường và tái định cư.",
+              "conditions": [
+                "Có căn cứ thu hồi đất",
+                "Có phương án bồi thường hỗ trợ tái định cư"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Mặt bằng đủ điều kiện bàn giao",
+              "risks": [
+                "Khiếu nại kéo dài",
+                "Chi phí GPMB vượt dự toán"
+              ],
+              "citations": [
+                "Luật Đất đai 2024: Điều 79",
+                "NĐ 102/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "C1.2",
+              "title": "Giao đất/cho thuê đất/chuyển mục đích",
+              "summary": "Là bước biến nhà đầu tư được chọn thành chủ thể có quyền sử dụng đất để triển khai.",
+              "conditions": [
+                "Hoàn tất route chọn NĐT/đấu giá/chấp thuận",
+                "Đủ căn cứ giao/thuê/chuyển mục đích"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Quyết định giao đất/cho thuê đất/chuyển mục đích",
+              "risks": [
+                "Chậm quyết định đất",
+                "Điều kiện đất không khớp dự án đã duyệt"
+              ],
+              "citations": [
+                "Luật Đất đai 2024",
+                "NĐ 102/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "C2",
+          "title": "C2. Tiền sử dụng đất / tiền thuê đất / giá đất",
+          "summary": "Quyết định hiệu quả đầu tư; cần kiểm sớm chứ không đợi cuối.",
+          "children": [
+            {
+              "id": "C2.1",
+              "title": "Xác định nghĩa vụ tài chính đất",
+              "summary": "Tính tiền sử dụng đất/tiền thuê đất/chi phí liên quan theo quyết định đất và phương án giá đất.",
+              "conditions": [
+                "Có quyết định đất",
+                "Có căn cứ giá đất/phương pháp tính"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Thông báo nghĩa vụ tài chính",
+              "risks": [
+                "Đội chi phí làm vỡ cấu trúc vốn",
+                "Chậm nộp tiền đất ảnh hưởng cấp sổ/mở bán"
+              ],
+              "citations": [
+                "NĐ 103/2024/NĐ-CP",
+                "NĐ 71/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "C2.2",
+              "title": "Đăng ký đất đai/GCN",
+              "summary": "Sau khi hoàn thành nghĩa vụ, cần đăng ký/cấp GCN/biến động để thế chấp, bán hàng, cấp sổ cho người mua.",
+              "conditions": [
+                "Hoàn tất nghĩa vụ tài chính",
+                "Hồ sơ đất đầy đủ"
+              ],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "GCN/đăng ký biến động",
+              "risks": [
+                "Thiếu GCN gây tắc vay vốn và tắc bán hàng",
+                "Sai ranh/sai mục đích phải chỉnh lý"
+              ],
+              "citations": [
+                "Thông tư BTNMT về đăng ký đất đai/GCN",
+                "Luật Đất đai 2024"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "D. Quy hoạch, xây dựng, môi trường, PCCC",
+      "summary": "Bộ điều kiện kỹ thuật trước khi khởi công và trước khi nghiệm thu/bàn giao.",
+      "children": [
+        {
+          "id": "D1",
+          "title": "D1. Quy hoạch – thiết kế – GPXD",
+          "summary": "Chốt chỉ tiêu và thiết kế để được phép xây dựng đúng pháp luật.",
+          "children": [
+            {
+              "id": "D1.1",
+              "title": "Quy hoạch chi tiết/chỉ tiêu kiến trúc",
+              "summary": "Chỉ tiêu quy hoạch quyết định sản phẩm bán được: mật độ, tầng cao, dân số, đất ở, đất hạ tầng.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Quy hoạch chi tiết/chỉ tiêu được duyệt",
+              "risks": [
+                "Chỉ tiêu không đủ hiệu quả tài chính",
+                "Không khớp CTCTĐT/đất"
+              ],
+              "citations": [
+                "Luật Quy hoạch đô thị và nông thôn 2024",
+                "Luật Xây dựng"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "D1.2",
+              "title": "Thẩm định thiết kế và giấy phép xây dựng",
+              "summary": "Không đủ thiết kế/GPXD thì không nên khởi công.",
+              "conditions": [],
+              "dossier": [
+                "Hồ sơ thiết kế",
+                "Văn bản thẩm định",
+                "Hồ sơ GPXD nếu thuộc diện"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Kết quả thẩm định/GPXD",
+              "risks": [
+                "Khởi công sai điều kiện",
+                "Thiết kế thay đổi kéo theo sửa CTCTĐT/quy hoạch"
+              ],
+              "citations": [
+                "Luật Xây dựng",
+                "Nghị định quản lý dự án đầu tư xây dựng — cần verify văn bản mới"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "D2",
+          "title": "D2. Môi trường – PCCC – hạ tầng",
+          "summary": "Các thủ tục dễ bị xem nhẹ nhưng có thể chặn khởi công/nghiệm thu/bàn giao.",
+          "children": [
+            {
+              "id": "D2.1",
+              "title": "ĐTM/GPMT",
+              "summary": "Dự án BĐS quy mô lớn thường phải rà nghĩa vụ môi trường trước khởi công/vận hành.",
+              "conditions": [],
+              "dossier": [
+                "Báo cáo ĐTM hoặc hồ sơ môi trường tương ứng",
+                "Văn bản phê duyệt/cấp phép"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Quyết định phê duyệt ĐTM/GPMT hoặc xác nhận nghĩa vụ tương ứng",
+              "risks": [
+                "Thiếu môi trường bị dừng thi công/vận hành",
+                "Phát sinh hạng mục xử lý nước thải/rác thải"
+              ],
+              "citations": [
+                "Luật BVMT 2020",
+                "NĐ 08/2022/NĐ-CP",
+                "TT 02/2022/TT-BTNMT"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "D2.2",
+              "title": "PCCC",
+              "summary": "PCCC là điều kiện quan trọng trước thi công/nghiệm thu với công trình thuộc diện thẩm duyệt/kiểm tra.",
+              "conditions": [],
+              "dossier": [
+                "Hồ sơ thẩm duyệt thiết kế PCCC",
+                "Biên bản nghiệm thu PCCC"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Văn bản thẩm duyệt/nghiệm thu PCCC",
+              "risks": [
+                "Không nghiệm thu được công trình",
+                "Không bàn giao/vận hành được"
+              ],
+              "citations": [
+                "Luật PCCC",
+                "NĐ 136/2020/NĐ-CP",
+                "NĐ 50/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "E. Kinh doanh, huy động vốn, chuyển nhượng",
+      "summary": "Tuyến thương mại: khi nào được bán, nhận tiền, chuyển nhượng dự án/sản phẩm.",
+      "children": [
+        {
+          "id": "E1",
+          "title": "E1. Mở bán/huy động vốn",
+          "summary": "Không phải có dự án là được thu tiền; phải đủ điều kiện theo KDBĐS/Nhà ở.",
+          "children": [
+            {
+              "id": "E1.1",
+              "title": "Nhà ở/công trình hình thành trong tương lai",
+              "summary": "Điểm chặn là giấy tờ đất, pháp lý dự án, xây dựng và bảo lãnh ngân hàng nếu thuộc diện.",
+              "conditions": [],
+              "dossier": [
+                "Hồ sơ pháp lý dự án",
+                "Giấy tờ đất",
+                "Hồ sơ xây dựng",
+                "Bảo lãnh NH",
+                "Thông báo đủ điều kiện bán nếu cần"
+              ],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Đủ điều kiện ký hợp đồng mua bán/thuê mua",
+              "risks": [
+                "Huy động vốn trái phép",
+                "Booking/đặt cọc bị coi là bán hàng trá hình"
+              ],
+              "citations": [
+                "Luật KDBĐS 2023",
+                "Luật Nhà ở 2023",
+                "NĐ 96/2024/NĐ-CP",
+                "TT 49/2024/TT-NHNN"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "E1.2",
+              "title": "Công khai thông tin và hợp đồng",
+              "summary": "Cần minh bạch pháp lý dự án, sản phẩm, tiến độ, bảo lãnh, hạn chế tranh chấp khách hàng.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Bộ hồ sơ bán hàng/hợp đồng mẫu",
+              "risks": [
+                "Thông tin sai/thiếu gây tranh chấp và xử phạt",
+                "Cam kết vượt pháp lý"
+              ],
+              "citations": [
+                "Luật KDBĐS 2023",
+                "NĐ 96/2024/NĐ-CP"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "title": "E2. Chuyển nhượng dự án/M&A",
+          "summary": "Nhà đầu tư cần biết khi nào có thể bán dự án, bán pháp nhân, hoặc chuyển nhượng một phần.",
+          "children": [
+            {
+              "id": "E2.1",
+              "title": "Chuyển nhượng toàn bộ/một phần dự án",
+              "summary": "Cần đủ điều kiện dự án, đất, nghĩa vụ tài chính, không tranh chấp/không bị kê biên và được cơ quan có thẩm quyền chấp thuận nếu pháp luật yêu cầu.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Văn bản chấp thuận chuyển nhượng + hợp đồng chuyển nhượng",
+              "risks": [
+                "Chuyển nhượng khi chưa đủ điều kiện",
+                "Bên nhận không đủ năng lực tiếp tục dự án"
+              ],
+              "citations": [
+                "Luật KDBĐS 2023",
+                "Luật Đầu tư",
+                "Luật Đất đai 2024"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "E2.2",
+              "title": "M&A pháp nhân dự án",
+              "summary": "Không chỉ là mua cổ phần; phải rà điều kiện đất, nghĩa vụ tài chính, chấp thuận NĐT/chủ trương, hạn chế chuyển nhượng.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Deal structure: asset deal/share deal/project transfer",
+              "risks": [
+                "Mua cổ phần nhưng không kiểm soát được đất/dự án",
+                "Trigger thủ tục điều chỉnh dự án"
+              ],
+              "citations": [
+                "Luật Doanh nghiệp",
+                "Luật Đầu tư",
+                "Luật Đất đai",
+                "Luật KDBĐS"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "F. Thi công, nghiệm thu, bàn giao, cấp sổ",
+      "summary": "Kết thúc vòng đời pháp lý: xây đúng, nghiệm thu đúng, bàn giao đúng, cấp sổ được.",
+      "children": [
+        {
+          "id": "F1",
+          "title": "F1. Thi công và nghiệm thu",
+          "summary": "Đảm bảo công trình đủ điều kiện nghiệm thu đưa vào sử dụng.",
+          "children": [
+            {
+              "id": "F1.1",
+              "title": "Quản lý chất lượng/hoàn công",
+              "summary": "Thi công phải theo thiết kế/GPXD; hoàn công là đầu vào cho nghiệm thu và đăng ký tài sản.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Hồ sơ hoàn công/nghiệm thu",
+              "risks": [
+                "Xây sai phép/sai thiết kế",
+                "Không đủ hồ sơ chất lượng"
+              ],
+              "citations": [
+                "Luật Xây dựng",
+                "Nghị định quản lý chất lượng công trình"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "F1.2",
+              "title": "Nghiệm thu hạ tầng/công trình",
+              "summary": "Trước bàn giao/bán tiếp cần nghiệm thu phần công trình/hạ tầng theo điều kiện pháp luật và hợp đồng.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Biên bản/văn bản nghiệm thu",
+              "risks": [
+                "Không đủ điều kiện bàn giao",
+                "Chậm dòng tiền cuối kỳ"
+              ],
+              "citations": [
+                "Luật Xây dựng",
+                "Luật Nhà ở 2023"
+              ],
+              "doc_summary": []
+            }
+          ]
+        },
+        {
+          "id": "F2",
+          "title": "F2. Bàn giao – vận hành – cấp GCN",
+          "summary": "Điểm khách hàng quan tâm nhất: nhận nhà, vận hành ổn, được cấp sổ.",
+          "children": [
+            {
+              "id": "F2.1",
+              "title": "Bàn giao sản phẩm",
+              "summary": "Chỉ bàn giao khi công trình/sản phẩm đủ điều kiện theo pháp luật và hợp đồng.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "Biên bản bàn giao",
+              "risks": [
+                "Bàn giao khi chưa nghiệm thu",
+                "Tranh chấp diện tích/chất lượng/phí"
+              ],
+              "citations": [
+                "Luật Nhà ở 2023",
+                "Luật KDBĐS 2023"
+              ],
+              "doc_summary": []
+            },
+            {
+              "id": "F2.2",
+              "title": "Cấp sổ cho người mua",
+              "summary": "Chủ đầu tư phải hoàn thiện hồ sơ để người mua được cấp GCN; đây là rủi ro uy tín lớn nếu kéo dài.",
+              "conditions": [],
+              "dossier": [],
+              "authority": "Cần xác định theo loại dự án/thẩm quyền",
+              "timeline": "Tùy thủ tục và quy mô dự án",
+              "output": "GCN cho người mua",
+              "risks": [
+                "Nợ nghĩa vụ tài chính/thiếu hoàn công làm tắc sổ",
+                "Khiếu kiện tập thể"
+              ],
+              "citations": [
+                "Luật Đất đai 2024",
+                "Thông tư BTNMT về GCN"
+              ],
+              "doc_summary": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
