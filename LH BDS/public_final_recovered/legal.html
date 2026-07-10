@@ -56,6 +56,9 @@ body{background:radial-gradient(900px 420px at 12% -8%,rgba(213,173,85,.18),tran
 .lawBullets li{line-height:1.45;color:inherit}
 .lawPoint{align-items:start!important}
 .lawLabel{padding-top:2px}
+</style><style id="lh-law-keypoints-v2">
+.keypointLaw{background:rgba(213,173,85,.08);border-radius:12px;padding:10px;margin-top:8px;border:1px solid rgba(213,173,85,.24)}
+.keypointLaw .lawLabel{color:#f8df8a!important}
 </style></head><body><header class="siteTop"><div class="siteInner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a class="active" href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header><section class="pageHero"><div class="heroPanel"><span class="eyebrow2">LH Legal Project Flow</span><h1>Lưu đồ pháp lý phát triển dự án BĐS</h1><p>Thay thế AI luật cũ bằng sổ tay quy trình pháp lý: bấm từng mốc để xem điều kiện, hồ sơ, quy trình, cách tính, rủi ro và căn cứ điều khoản liên quan.</p></div></section><main class="wrap"><div class="legend"><span class="lg"><i class="dot" style="background:#f4fff7;border:2px solid #2f9e44"></i>Pháp lý/đất</span><span class="lg"><i class="dot" style="background:#f8f5ff;border:2px solid #7048e8"></i>Thiết kế</span><span class="lg"><i class="dot" style="background:#fff9ed;border:2px solid #f59f00"></i>Thi công</span><span class="lg"><i class="dot" style="background:#fff5fa;border:2px solid #d63384"></i>Kinh doanh</span><span class="lg"><i class="dot" style="background:#f2fcff;border:2px solid #15aabf"></i>Bàn giao/cấp sổ</span></div><section class="board"><div class="flow" id="flow"></div></section></main><div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog"><div class="dlgTop"><button class="close" onclick="closeModal()">×</button><div id="mcode"></div><h2 id="mtitle"></h2><div class="meta" id="mmeta"></div></div><div class="dlgBody" id="mbody"></div></div></div><script>
 let DATA, ALL=[], DEEP={};const layout={I:['col1','legal'],II:['col2','support'],III:['col3','legal'],'III.1':['col3','legal'],'III.2':['col3','legal'],'III.3':['col3','legal'],IV:['col4','design'],V:['col5','legal'],VI:['col6','design'],VII:['col7','construct'],VIII:['col8','business'],IX:['col9','construct'],X:['col10','handover'],XI:['col11','handover']};
 Promise.all([fetch('tpre_bds_flow.json').then(r=>r.json()),fetch('tpre_legal_deep_modules.json').then(r=>r.json()).catch(()=>({}))]).then(([d,deep])=>{DATA=d;DEEP=deep||{};build()});
@@ -242,12 +245,113 @@ function detailBullets(text){
   if(parts.length<=1 && raw.includes(' — ')) parts=raw.split(/\s+—\s+/).map(x=>x.trim()).filter(Boolean);
   return parts.length?parts:[raw];
 }
+
+function lawKeypoints(l){
+  const doc=((l&&l.doc)||'')+' '+((l&&l.article)||'');
+  const t=doc.toLowerCase();
+  const arr=[];
+  if(t.includes('luật đầu tư')) arr.push(
+    'Xác định đúng thẩm quyền chấp thuận CTĐT: Quốc hội, Thủ tướng, UBND cấp tỉnh hoặc cơ quan đăng ký đầu tư; sai thẩm quyền thì hồ sơ phải làm lại từ đầu.',
+    'Hồ sơ đề xuất dự án phải khóa tối thiểu: mục tiêu, quy mô, địa điểm, nhu cầu đất, vốn đầu tư, tiến độ, thời hạn hoạt động, phương án huy động vốn và năng lực nhà đầu tư.',
+    'Chấp thuận chủ trương đầu tư khác chấp thuận nhà đầu tư: CTĐT là chấp thuận dự án/định hướng đầu tư; chấp thuận NĐT là xác lập chủ thể thực hiện dự án trong trường hợp pháp luật cho phép.',
+    'Ký quỹ/bảo đảm thực hiện dự án là nghĩa vụ sau chấp thuận; cần đưa vào dòng tiền vì khoản này bị giữ theo tiến độ thực hiện dự án.',
+    'Giai đoạn giao thời Luật Đầu tư 2020 → Luật Đầu tư 2025: hồ sơ nộp/tiếp nhận trước và sau ngày hiệu lực phải kiểm tra điều khoản chuyển tiếp, biểu mẫu và căn cứ pháp lý áp dụng.'
+  );
+  if(t.includes('luật đất đai')) arr.push(
+    'Điều 116: căn cứ giao đất/cho thuê đất/chuyển mục đích gồm quy hoạch sử dụng đất, kế hoạch sử dụng đất, quyết định/chấp thuận dự án và nhu cầu sử dụng đất; thiếu căn cứ nào thì không đủ điều kiện ra quyết định đất.',
+    'Điều 124–127: phải phân loại route đất: giao/thuê đất không đấu giá, đấu giá QSDĐ, đấu thầu dự án có sử dụng đất, hoặc đang có/nhận chuyển nhượng QSDĐ; mỗi route có hồ sơ, timeline và rủi ro riêng.',
+    'Điều 79 và 91: nếu dự án cần thu hồi đất, phải có căn cứ thu hồi và phương án bồi thường, hỗ trợ, tái định cư đúng trình tự; phê duyệt TĐC/bồi thường chậm là nguồn khiếu kiện lớn.',
+    'Điều 155–160: giá đất và nghĩa vụ tài chính phải tách khỏi quyết định giao đất; thời điểm xác định giá và phương pháp định giá ảnh hưởng trực tiếp IRR dự án.',
+    'Bảng giá đất mới áp dụng từ 01/01/2026 và cập nhật hằng năm; dự án kéo dài qua mốc này phải stress test nghĩa vụ tài chính theo mặt bằng giá mới.'
+  );
+  if(t.includes('nghị quyết 171')||t.includes('nđ 75')||t.includes('75/2025')) arr.push(
+    'Cơ chế thí điểm cho phép làm nhà ở thương mại thông qua thỏa thuận nhận QSDĐ với đất không phải đất ở nếu đáp ứng điều kiện và nằm trong danh mục được HĐND cấp tỉnh thông qua.',
+    'Thời hạn thí điểm từ 01/4/2025 trong 5 năm; phải kiểm tra dự án có thuộc danh mục thí điểm của địa phương hay không trước khi mua gom đất.',
+    'Không tự động hợp thức hóa mọi quỹ đất nông nghiệp đã gom; vẫn phải phù hợp quy hoạch, kế hoạch sử dụng đất, chương trình/kế hoạch phát triển nhà ở và điều kiện của nghị quyết.',
+    'Keypoint đầu tư: đây là route mở khóa quỹ đất lớn nhưng rủi ro nằm ở danh mục tỉnh, tỷ lệ đất, hiện trạng pháp lý từng thửa và sự đồng thuận của người sử dụng đất.'
+  );
+  if(t.includes('luật đấu thầu')||t.includes('115/2024')) arr.push(
+    'Đấu thầu lựa chọn NĐT dự án có sử dụng đất khác đấu giá QSDĐ: đấu thầu đánh giá năng lực, kinh nghiệm, phương án đầu tư, hiệu quả sử dụng đất và nghĩa vụ tài chính; đấu giá tập trung vào quyền sử dụng đất và giá.',
+    'Trình tự trọng tâm: công bố danh mục dự án, mời quan tâm, đánh giá sơ bộ năng lực kinh nghiệm, phát hành hồ sơ mời thầu, đánh giá hồ sơ dự thầu, phê duyệt kết quả lựa chọn NĐT.',
+    'Hồ sơ năng lực phải chuẩn bị trước: vốn chủ sở hữu, báo cáo tài chính, dự án tương tự, cam kết tín dụng/bảo lãnh, phương án triển khai và nghĩa vụ tài chính.',
+    'Rủi ro thường gặp: tiêu chí mời thầu không khớp quy hoạch/đất/GPMB; nghĩa vụ tài chính chưa tính đủ; dự án chưa đủ điều kiện công bố danh mục.'
+  );
+  if(t.includes('88/2024')) arr.push(
+    'NĐ 88/2024 là căn cứ chi tiết cho bồi thường, hỗ trợ, tái định cư khi Nhà nước thu hồi đất.',
+    'Keypoint hồ sơ: kiểm kê đất/tài sản, xác nhận đối tượng được bồi thường, phương án bồi thường, phương án tái định cư, quyết định thu hồi đất và chứng từ chi trả.',
+    'Nguyên tắc thực tế: 20% hộ cuối thường chiếm 80% chi phí/thời gian GPMB; phải lập ngân sách dự phòng và chiến lược xử lý nhóm khó từ đầu.',
+    'Chi phí GPMB chỉ được tính/khấu trừ khi có hồ sơ, chứng từ và căn cứ pháp lý phù hợp; chi tiền không chứng từ sẽ thành rủi ro tài chính.'
+  );
+  if(t.includes('71/2024')||t.includes('giá đất')) arr.push(
+    'NĐ 71/2024 quy định phương pháp định giá đất: so sánh, thu nhập, thặng dư, hệ số điều chỉnh; chọn sai phương pháp hoặc dữ liệu yếu sẽ làm kết quả bị trả hồ sơ.',
+    'Phương pháp thặng dư phụ thuộc mạnh vào giả định doanh thu, chi phí, tiến độ, lợi nhuận nhà đầu tư; phải chuẩn bị bộ evidence giá bán, suất đầu tư và tiến độ hấp thụ.',
+    'Giá khởi điểm đấu giá và giá đất cụ thể là hai điểm tài chính khác nhau; cần mô phỏng riêng trong FS.',
+    'Keypoint quản trị: chưa có giá đất/tiền sử dụng đất chính thức thì không nên chốt IRR, giá bán tối thiểu hoặc cam kết lợi nhuận.'
+  );
+  if(t.includes('103/2024')) arr.push(
+    'NĐ 103/2024 là căn cứ tính tiền sử dụng đất, tiền thuê đất; phải tách theo diện tích, mục đích sử dụng, hình thức giao/thuê và thời hạn.',
+    'Cần xác định rõ thuê đất trả tiền hằng năm hay một lần; tác động khác nhau đến dòng tiền, tài sản bảo đảm và quyền kinh doanh.',
+    'Khoản được trừ/miễn/giảm chỉ hợp lệ nếu có hồ sơ chứng minh; không được đưa vào model như chắc chắn khi chưa có căn cứ.',
+    'Output cần lưu: thông báo nghĩa vụ tài chính, chứng từ nộp tiền, xác nhận hoàn thành nghĩa vụ tài chính, căn cứ cấp GCN.'
+  );
+  if(t.includes('102/2024')) arr.push(
+    'NĐ 102/2024 hướng dẫn trình tự thủ tục đất đai sau CTĐT/kết quả lựa chọn NĐT: giao đất, cho thuê đất, chuyển mục đích, đăng ký biến động và quản lý hồ sơ đất.',
+    'Mỗi route đất có bộ hồ sơ khác nhau; không dùng một checklist chung cho đấu giá, đấu thầu, chấp thuận NĐT và thỏa thuận nhận QSDĐ.',
+    'Hồ sơ kỹ thuật phải khớp: ranh, diện tích, loại đất, bản đồ địa chính/trích đo, quy hoạch và quyết định đầu tư; lệch một chỉ tiêu có thể làm hồ sơ quay lại bước trước.',
+    'Sau mô hình chính quyền 2 cấp, cần kiểm tra lại cơ quan tiếp nhận/thẩm quyền theo NĐ 151/2025 nếu hồ sơ nhắc UBND cấp huyện.'
+  );
+  if(t.includes('luật kinh doanh bđs')||t.includes('kdbđs')) arr.push(
+    'Điều 23: đặt cọc mua bán nhà ở/công trình hình thành trong tương lai không quá 5% giá bán/cho thuê mua và chỉ khi bất động sản đã đủ điều kiện đưa vào kinh doanh.',
+    'Điều 24: điều kiện bán nhà ở HTTTL gồm giấy tờ đất, hồ sơ dự án, thiết kế/GPXD, nghiệm thu móng hoặc hạ tầng tương ứng, và văn bản đủ điều kiện bán của cơ quan quản lý.',
+    'Điều 25: thanh toán lần đầu không quá 30%; tổng trước bàn giao không quá 70% (75% nếu bên bán là tổ chức có vốn nước ngoài); trước khi có GCN không thu quá 95%.',
+    'Điều 26: bảo lãnh ngân hàng phải bảo đảm nghĩa vụ tài chính của CĐT với người mua; hợp đồng nguyên tắc với ngân hàng chưa đủ thay thế chứng thư/cam kết bảo lãnh cho giao dịch.',
+    'Keypoint sales: mọi booking/giữ chỗ/đặt cọc/thu tiền phải khớp mốc pháp lý; sales script vượt pháp lý có thể biến thành huy động vốn trái phép.'
+  );
+  if(t.includes('luật nhà ở')) arr.push(
+    'Luật Nhà ở 2023 quy định điều kiện làm chủ đầu tư, phát triển dự án nhà ở, quản lý nhà chung cư và nghĩa vụ bảo hành.',
+    'Điều 85 và nhóm quy định bảo hành: nhà chung cư tối thiểu 60 tháng, nhà ở riêng lẻ tối thiểu 24 tháng; phải khớp thời hạn bảo hành nhà thầu với nghĩa vụ CĐT trước khách hàng.',
+    'Dự án nhà ở phải khớp chương trình/kế hoạch phát triển nhà ở của địa phương; thiếu căn cứ này có thể nghẽn ở CTĐT hoặc QHCT.',
+    'Quỹ bảo trì, sở hữu chung/riêng và bàn giao vận hành là nhóm tranh chấp hậu bán cần chuẩn hóa từ hợp đồng và hồ sơ bàn giao.'
+  );
+  if(t.includes('175/2024')||t.includes('luật xây dựng')) arr.push(
+    'Phải phân biệt thẩm định báo cáo nghiên cứu khả thi/TKCS, thẩm định thiết kế triển khai sau thiết kế cơ sở, giấy phép xây dựng và thông báo khởi công.',
+    'Điều kiện khởi công: có mặt bằng, GPXD nếu thuộc diện, thiết kế bản vẽ thi công được phê duyệt, hợp đồng thầu, biện pháp an toàn và thông báo khởi công.',
+    'NĐ 175/2024 thay đổi phân cấp thẩm định; nộp sai cơ quan làm mất nhiều tuần và có thể phải điều chỉnh hồ sơ theo yêu cầu khác nhau.',
+    'Thiết kế phải khớp QHCT, đất, PCCC, môi trường và đấu nối; sửa ở giai đoạn TKBVTC đắt hơn nhiều so với sửa ở TKCS.'
+  );
+  if(t.includes('pccc')||t.includes('55/2024')||t.includes('105/2025')) arr.push(
+    'Luật PCCC và CNCH 2024 hiệu lực 01/7/2025; phải rà lại danh mục công trình phải thẩm định thiết kế và nghiệm thu PCCC theo luật mới.',
+    'PCCC phải được xử lý từ thiết kế cơ sở: giao thông chữa cháy, nguồn nước, lối thoát nạn, khoang cháy, hệ thống báo/chữa cháy, hút khói, tăng áp.',
+    'Không có văn bản nghiệm thu PCCC thì công trình thuộc diện không đủ điều kiện nghiệm thu đưa vào sử dụng.',
+    'Hồ sơ đã thẩm duyệt theo luật cũ cần kiểm tra quy định chuyển tiếp cho bước nghiệm thu/điều chỉnh sau 01/7/2025.'
+  );
+  if(t.includes('bvmt')||t.includes('môi trường')||t.includes('72/2020')) arr.push(
+    'Luật BVMT 2020 yêu cầu phân loại dự án để xác định phải lập ĐTM, giấy phép môi trường hay đăng ký môi trường.',
+    'ĐTM phải làm trước quyết định triển khai các bước xây dựng theo quy định; giấy phép môi trường gắn với vận hành công trình xử lý chất thải.',
+    'Trạm xử lý nước thải, xả thải, chất thải rắn, tiếng ồn, bụi và vận hành thử nghiệm là các điểm cơ quan nghiệm thu thường soi.',
+    'Thiếu môi trường/PCCC/đấu nối có thể làm công trình xây xong nhưng không đủ điều kiện đưa vào sử dụng.'
+  );
+  if(t.includes('101/2024')) arr.push(
+    'NĐ 101/2024 quy định đăng ký đất đai, cấp GCN lần đầu và đăng ký biến động; là căn cứ cho cấp sổ dự án và cấp sổ cho khách hàng.',
+    'Hồ sơ cấp sổ phải có quyết định đất/GCN dự án, hoàn công/nghiệm thu, nghĩa vụ tài chính, sơ đồ nhà đất/phân lô, hợp đồng mua bán và hồ sơ người mua.',
+    'Điểm nghẽn thường gặp: chưa hoàn thành nghĩa vụ tài chính, chưa giải chấp từng căn, sai lệch diện tích, thiếu hồ sơ hoàn công hoặc thiếu chữ ký/chứng từ khách hàng.',
+    'Luật KDBĐS yêu cầu CĐT nộp hồ sơ cấp GCN cho người mua trong thời hạn luật định sau bàn giao; chậm cấp sổ là rủi ro tranh chấp và xử phạt.'
+  );
+  if(t.includes('06/2021')) arr.push(
+    'NĐ 06/2021 là khung quản lý chất lượng, thi công, nghiệm thu và bảo trì công trình xây dựng.',
+    'Hồ sơ chất lượng gồm nhật ký, nghiệm thu vật liệu, nghiệm thu công việc, nghiệm thu giai đoạn, thí nghiệm, bản vẽ hoàn công; không thể gom cuối.',
+    'Công trình thuộc diện phải kiểm tra nghiệm thu phải có văn bản chấp thuận kết quả nghiệm thu của cơ quan chuyên môn trước khi đưa vào sử dụng.',
+    'Biên bản nghiệm thu móng/hạ tầng là căn cứ quan trọng cho điều kiện bán hàng HTTTL; sai thành phần ký hoặc sai thời điểm sẽ làm yếu bộ pháp lý bán hàng.'
+  );
+  return arr;
+}
+
 function lawDetailHtml(point){
   const p=splitPoint(point);
   const bullets=detailBullets(p.text);
   return `<div class="lawPoint"><div class="lawLabel">${esc(p.label)}</div><div class="lawText"><ul class="lawBullets">${bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul></div></div>`;
 }
-function laws(a){return (a||[]).map(l=>`<div class="law"><div class="lawHead"><span class="doc">${esc(l.doc)}</span><span class="article">${esc(l.article)}</span></div>${(l.points||[]).map(lawDetailHtml).join('')}<div class="sourceBlock"><b>Trích dẫn:</b> ${esc(l.doc)} — ${esc(l.article||'điều, khoản đang được cập nhật')}</div></div>`).join('')||'<div class="line">Căn cứ pháp lý cho mục này đang được biên soạn.</div>'}
+function laws(a){return (a||[]).map(l=>{const k=lawKeypoints(l);return `<div class="law"><div class="lawHead"><span class="doc">${esc(l.doc)}</span><span class="article">${esc(l.article)}</span></div>${(l.points||[]).map(lawDetailHtml).join('')}${k.length?`<div class="lawPoint keypointLaw"><div class="lawLabel">Keypoint trong luật</div><div class="lawText"><ul class="lawBullets">${k.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`:''}<div class="sourceBlock"><b>Trích dẫn:</b> ${esc(l.doc)} — ${esc(l.article||'điều, khoản đang được cập nhật')}</div></div>`}).join('')||'<div class="line">Căn cứ pháp lý cho mục này đang được biên soạn.</div>'}
 const EXTRA_LAWS={
 I:[{doc:'Luật Đất đai 2024 (31/2024/QH15)',article:'Điều 116, 121, 124, 125, 126, 127',points:['Nội dung chính: Luật tách rõ bốn con đường tiếp cận đất của dự án — giao/thuê đất không qua đấu giá, đấu thầu (Điều 124), đấu giá quyền sử dụng đất (Điều 125), đấu thầu lựa chọn nhà đầu tư dự án có sử dụng đất (Điều 126) và đang có/nhận chuyển nhượng quyền sử dụng đất (Điều 127). Mỗi route có điều kiện, hồ sơ và thời gian khác nhau, nên phải chốt route ngay từ Pre-FS.','Điều 116: Căn cứ để giao đất, cho thuê đất, cho phép chuyển mục đích là quy hoạch sử dụng đất, kế hoạch sử dụng đất hằng năm và tiến độ thực hiện dự án — thiếu một căn cứ là hồ sơ bị trả.','Điều 127: Dự án nhà ở thương mại theo cơ chế thường chỉ được thỏa thuận nhận quyền sử dụng đất đối với đất ở; muốn dùng đất nông nghiệp hoặc đất phi nông nghiệp khác phải đi theo cơ chế thí điểm của Nghị quyết 171/2024/QH15.']},{doc:'Nghị quyết 171/2024/QH15 · NĐ 75/2025/NĐ-CP',article:'Thí điểm dự án nhà ở thương mại qua thỏa thuận nhận QSDĐ — hiệu lực 01/4/2025, áp dụng trong 5 năm',points:['Nội dung chính: Lần đầu tiên cho phép làm dự án nhà ở thương mại thông qua thỏa thuận nhận quyền sử dụng đất hoặc đang có quyền sử dụng đất với đất nông nghiệp, đất phi nông nghiệp không phải đất ở.','Điều kiện: Khu đất phải phù hợp quy hoạch, nằm trong danh mục thí điểm được HĐND cấp tỉnh thông qua và dự án triển khai trong thời hạn thí điểm.','Ý nghĩa thực tiễn: Đây là lối ra pháp lý cho các quỹ đất nông nghiệp đã tích lũy từ trước; cần kiểm tra danh mục thí điểm của tỉnh trước khi quyết định đầu tư.']}],
 II:[{doc:'Luật Đất đai 2024 (31/2024/QH15)',article:'Điều 79, Điều 91',points:['Điều 79: Liệt kê các trường hợp Nhà nước thu hồi đất để phát triển kinh tế – xã hội vì lợi ích quốc gia, công cộng. Dự án không thuộc danh mục này thì không có cơ chế thu hồi, chủ đầu tư phải tự thỏa thuận toàn bộ diện tích.','Điều 91: Nguyên tắc bồi thường, hỗ trợ, tái định cư — việc phê duyệt phương án bồi thường và bố trí tái định cư phải hoàn thành trước khi có quyết định thu hồi đất; làm ngược trình tự là vi phạm trình tự thủ tục, dễ bị khiếu kiện kéo dài.']},{doc:'NĐ 88/2024/NĐ-CP · NĐ 151/2025/NĐ-CP',article:'Bồi thường, hỗ trợ, tái định cư · phân định thẩm quyền chính quyền 2 cấp',points:['NĐ 88/2024: Quy định chi tiết về bồi thường, hỗ trợ, tái định cư — đơn giá bồi thường tài sản, hỗ trợ ổn định đời sống, hỗ trợ đào tạo nghề, suất tái định cư tối thiểu. Đây là căn cứ chính để lập và bảo vệ ngân sách GPMB.','NĐ 151/2025 (hiệu lực 01/7/2025): Sau khi bỏ cấp huyện, phần lớn thẩm quyền thu hồi đất, phê duyệt phương án bồi thường được phân định lại cho UBND cấp xã và cấp tỉnh; hồ sơ đang xử lý dở cần rà soát lại cơ quan có thẩm quyền tiếp nhận.']}],
