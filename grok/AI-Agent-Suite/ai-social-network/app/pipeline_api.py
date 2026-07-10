@@ -22,6 +22,7 @@ import json
 import math
 import os
 import re
+import sqlite3
 import time
 import uuid
 from dataclasses import dataclass, field
@@ -676,6 +677,44 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         data = mod.get_market_symbol(ticker, force_refresh=True)
     except Exception as exc:
         raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
+
+    def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
+        """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
+        db_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\data\lhinvt_stock_chart.db")
+        if not db_path.exists():
+            return
+        try:
+            con = sqlite3.connect(str(db_path))
+            con.row_factory = sqlite3.Row
+            try:
+                row = con.execute(
+                    "SELECT latest_date, latest_close, latest_volume, updated_at FROM symbols WHERE upper(symbol)=upper(?) LIMIT 1",
+                    (ticker,),
+                ).fetchone()
+                if row:
+                    if not d.get("historyLastDate"):
+                        d["historyLastDate"] = row["latest_date"]
+                    if not d.get("price"):
+                        d["price"] = row["latest_close"]
+                    if d.get("volume") in (None, "", 0):
+                        d["volume"] = row["latest_volume"]
+                    d["lhinvtDbUpdatedAt"] = row["updated_at"]
+                candle = con.execute(
+                    "SELECT date, close, volume, updated_at FROM daily_ohlcv WHERE upper(symbol)=upper(?) ORDER BY date DESC LIMIT 1",
+                    (ticker,),
+                ).fetchone()
+                if candle and not d.get("historyLastDate"):
+                    d["historyLastDate"] = candle["date"]
+                    if not d.get("price"):
+                        d["price"] = candle["close"]
+                    if d.get("volume") in (None, "", 0):
+                        d["volume"] = candle["volume"]
+            finally:
+                con.close()
+        except Exception as exc:  # noqa: BLE001
+            log(f"⚠️ Freshness gate: LHINVT DB fallback lỗi {type(exc).__name__}: {exc}")
+
+    _apply_lhinvt_db_fallback(data)
 
     now = datetime.now(timezone.utc)
     source = data.get("source")
