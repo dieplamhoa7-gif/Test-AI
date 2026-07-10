@@ -981,56 +981,111 @@ def build_model3_news_context(task: str, progress: ProgressFn, limit: int = 12) 
 
 
 def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600) -> str:
-    """Run Grok news from a clean cwd and preflight the CLI before Model3 news.
+    """Run Grok news directly through the 9router OpenAI-compatible API.
 
-    Grok news must be Grok-sourced. The preflight below is the "auto-start / wake"
-    step: it launches the Grok CLI in a tiny directory before the real research
-    prompt, so the Model3 news branch does not silently fall back to web context.
+    No Grok terminal/PTY/bridge is used here. The function keeps the same Model3
+    news quality gate: Grok-sourced answer, direct 2026 news only, no silent web
+    fallback, and fail loudly if the API/key/model is not usable.
     """
-    work = Path(r"C:\tmp_grok_empty")
-    work.mkdir(parents=True, exist_ok=True)
-    grok = Path(os.environ.get("GROK_EXE", r"C:\Users\HoaD-CVDT\.grok\bin\grok.exe"))
-    if not grok.exists():
-        raise RuntimeError(f"Không tìm thấy Grok CLI tại {grok}")
+    def _load_local_env() -> None:
+        env_paths = [
+            Path(__file__).resolve().parent / ".env",
+            Path(__file__).resolve().parents[3] / "OPENAI_KEY_INPUT.env",
+        ]
+        for env_path in env_paths:
+            if not env_path.exists():
+                continue
+            for raw in env_path.read_text(encoding="utf-8", errors="replace").splitlines():
+                line = raw.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key and value and (not os.environ.get(key) or os.environ.get(key) == "sk-dummy-crewai-construction-only"):
+                    os.environ[key] = value
 
-    env = {
-        **os.environ,
-        "PYTHONIOENCODING": "utf-8",
-        "LANG": "C.UTF-8",
-        "LC_ALL": "C.UTF-8",
-        "NO_COLOR": "1",
-    }
+    _load_local_env()
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    if not api_key or api_key == "sk-dummy-crewai-construction-only":
+        raise RuntimeError("Grok 9router API thiếu OPENAI_API_KEY/keypoint API trong .env hoặc environment")
+    # Use the existing keypoint/OpenAI-compatible API setup; this is a direct
+    # HTTP API call, not the old Grok terminal/PTY bridge.
+    base_url = (
+        os.environ.get("GROK_9ROUTER_BASE_URL")
+        or os.environ.get("OPENAI_BASE_URL")
+        or "https://api.9router.com/v1"
+    ).rstrip("/")
+    model = (
+        os.environ.get("GROK_9ROUTER_MODEL")
+        or os.environ.get("GROK_MODEL")
+        or "Grok"
+    ).strip()
 
-    def _run_grok(args: list[str], run_timeout: int) -> subprocess.CompletedProcess[str]:
-        return subprocess.run(
-            [str(grok), "--cwd", str(work), *args],
-            cwd=str(work),
-            text=True,
-            capture_output=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=run_timeout,
-            env=env,
-        )
+    def _chat(prompt_text: str, call_timeout: int) -> str:
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": "Bạn là Grok News Analyst cho cổ phiếu Việt Nam. Luôn trả lời tiếng Việt Unicode sạch, bám nguồn, không bịa."},
+                {"role": "user", "content": prompt_text},
+            ],
+            "temperature": 0.2,
+        }
+        with httpx.Client(timeout=call_timeout) as client:
+            resp = client.post(
+                f"{base_url}/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json=payload,
+            )
+        if resp.status_code >= 400:
+            raise RuntimeError(f"Grok 9router API lỗi HTTP {resp.status_code}: {resp.text[-1200:]}")
+        raw_text = resp.text.strip()
+        try:
+            data = resp.json()
+        except Exception:
+            # Some keypoint proxies return JSON plus `data: [DONE]`, or newline-
+            # delimited JSON chunks. Decode the first/last choices object safely.
+            data = None
+            decoder = json.JSONDecoder()
+            try:
+                obj, _ = decoder.raw_decode(raw_text)
+                if isinstance(obj, dict) and obj.get("choices"):
+                    data = obj
+            except Exception:
+                pass
+            if data is None:
+                for line in raw_text.splitlines():
+                    line = line.strip()
+                    if not line or line == "[DONE]":
+                        continue
+                    if line.startswith("data:"):
+                        line = line[5:].strip()
+                    try:
+                        obj = json.loads(line)
+                    except Exception:
+                        continue
+                    if isinstance(obj, dict) and obj.get("choices"):
+                        data = obj
+            if data is None:
+                raise RuntimeError(f"Grok 9router API trả non-JSON: {raw_text[-1200:]}")
+        try:
+            choice = data["choices"][0]
+            msg = choice.get("message") or {}
+            text = msg.get("content") or choice.get("text") or choice.get("delta", {}).get("content")
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(f"Grok 9router API trả schema lạ: {json.dumps(data, ensure_ascii=False)[:1200]}") from exc
+        return repair_vietnamese_text(str(text or "").strip())
 
-    progress(f"🧠 Grok News: auto-start/preflight Grok CLI ngoài repo ({work})...")
-    smoke = _run_grok([
-        "--single", "Return exactly: OK",
-        "--no-alt-screen", "--no-memory", "--max-turns", "2", "--output-format", "plain",
-    ], run_timeout=90)
-    smoke_out = repair_vietnamese_text((smoke.stdout or "").strip())
-    smoke_err = repair_vietnamese_text((smoke.stderr or "").strip())
+    progress(f"🧠 Grok News: gọi trực tiếp 9router API, model={model}, base={base_url} (không dùng terminal)...")
+    smoke_out = _chat("Return exactly: OK", min(60, timeout))
     try:
         out_dir = Path("outputs") / "model3"
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / f"{symbol}_grok_cli_smoke_stdout.txt").write_text(smoke_out, encoding="utf-8")
-        (out_dir / f"{symbol}_grok_cli_smoke_stderr.txt").write_text(smoke_err, encoding="utf-8")
+        (out_dir / f"{symbol}_grok_9router_smoke_stdout.txt").write_text(smoke_out, encoding="utf-8")
     except Exception:
         pass
-    if smoke.returncode != 0:
-        raise RuntimeError(f"Grok CLI preflight lỗi {smoke.returncode}: {smoke_err[-1200:]}")
     if "OK" not in smoke_out.upper():
-        raise RuntimeError(f"Grok CLI preflight không trả OK; stdout={smoke_out[-500:]}; stderr={smoke_err[-500:]}")
+        raise RuntimeError(f"Grok 9router preflight không trả OK; output={smoke_out[-500:]}")
 
     prompt = (
         f"Tìm web và trả lời tiếng Việt có dấu. Lấy tối đa 5 tin có NGÀY CÔNG BỐ NẰM TRONG NĂM 2026 liên quan TRỰC TIẾP cổ phiếu {symbol}. "
@@ -1043,44 +1098,30 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600) ->
         "Bắt buộc tiếng Việt Unicode UTF-8 sạch, không viết không dấu, không mojibake. "
         "Trả kết quả theo từng tin có nhãn Ngày công bố, Tóm tắt và Tác động; kèm nguồn/link nếu có."
     )
-    progress(f"🔎 Grok News: Grok đã sẵn sàng, bắt đầu research tin trực tiếp cho {symbol}...")
-    proc = _run_grok([
-        "--single", prompt,
-        "--no-alt-screen", "--no-memory", "--max-turns", "8", "--output-format", "plain",
-    ], run_timeout=timeout)
-    out = repair_vietnamese_text((proc.stdout or "").strip())
-    err = repair_vietnamese_text((proc.stderr or "").strip())
+    progress(f"🔎 Grok News: bắt đầu research tin trực tiếp cho {symbol} qua 9router API...")
+    out = _chat(prompt, timeout)
     stale_pattern = re.compile(r"(?i)(tin\s+\d+[^\n]{0,120}(?:2025|2024|2023)|ngày\s+công\s+bố\s*[:\-]?\s*[^\n]{0,80}(?:2025|2024|2023)|\b(?:20/01/2026|21/01/2026)\b[^\n]{0,160}(?:quý\s*iv/2025|q4/2025)|\b2025\b[^\n]{0,80}(?:công\s+bố|ngày\s+đăng|nguồn))")
     if out and stale_pattern.search(out):
-        progress("⚠️ Grok News: phát hiện dấu hiệu tin cũ/2025 trong output; retry với bộ lọc chỉ tin công bố 2026...")
+        progress("⚠️ Grok News: phát hiện dấu hiệu tin cũ/2025 trong output API; retry với bộ lọc chỉ tin công bố 2026...")
         retry_prompt = prompt + (
             "\n\nLẦN TRƯỚC CÓ TIN CŨ. Hãy tự kiểm tra lại: loại mọi Tin có ngày công bố không thuộc 2026. "
             "Không được đưa Tin 2025, không đưa tin quý IV/2025 nếu nguồn/ngày đăng không xác nhận trong năm 2026. "
             "Nếu còn nghi ngờ ngày đăng, bỏ tin đó."
         )
-        retry = _run_grok([
-            "--single", retry_prompt,
-            "--no-alt-screen", "--no-memory", "--max-turns", "8", "--output-format", "plain",
-        ], run_timeout=timeout)
-        retry_out = repair_vietnamese_text((retry.stdout or "").strip())
-        retry_err = repair_vietnamese_text((retry.stderr or "").strip())
-        if retry.returncode == 0 and retry_out:
+        retry_out = _chat(retry_prompt, timeout)
+        if retry_out:
             out = retry_out
-            err = (err + "\n--- RETRY STDERR ---\n" + retry_err).strip()
     try:
         out_dir = Path("outputs") / "model3"
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / f"{symbol}_grok_cli_news_stdout.txt").write_text(out, encoding="utf-8")
-        (out_dir / f"{symbol}_grok_cli_news_stderr.txt").write_text(err, encoding="utf-8")
+        (out_dir / f"{symbol}_grok_9router_news_stdout.txt").write_text(out, encoding="utf-8")
     except Exception:
         pass
-    if proc.returncode != 0:
-        raise RuntimeError(f"Grok CLI lỗi {proc.returncode}: {err[-1200:]}")
     if not out or re.search(r"^\s*(ok|done)\s*$", out, re.I):
-        raise RuntimeError("Grok CLI không trả nội dung tin tức.")
+        raise RuntimeError("Grok 9router API không trả nội dung tin tức.")
     q = vietnamese_quality_report(out)
     if q.get("mojibake_markers") or q.get("replacement_chars"):
-        raise RuntimeError(f"Grok CLI trả output lỗi UTF-8/mojibake: {q}")
+        raise RuntimeError(f"Grok 9router API trả output lỗi UTF-8/mojibake: {q}")
     return out
 
 
@@ -1108,11 +1149,11 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         try:
             content = _run_grok_news_cli(sym, progress, timeout=600)
             elapsed = time.time() - started
-            progress(f"✅ GrokX News & Impact xong bằng Grok CLI sạch ({elapsed:.1f}s)")
+            progress(f"✅ GrokX News & Impact xong bằng Grok 9router API ({elapsed:.1f}s)")
             return {
                 "agent": "grok",
                 "name": MODEL3_NEWS.label,
-                "action": "Grok CLI news/direct-impact analyst | no_web_fallback",
+                "action": "Grok 9router API news/direct-impact analyst | no_web_fallback",
                 "content": content,
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
                 "elapsed": elapsed,
@@ -1126,15 +1167,17 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
                 "agent": "grok",
                 "name": MODEL3_NEWS.label,
                 "action": "GROK_NEWS_FAILED | no_web_fallback",
-                "content": f"GROK_NEWS_FAILED: {type(exc).__name__}: {exc}. Không dùng nguồn thay thế để lấp phần tin; cần sửa Grok runtime/search trước khi xuất bản tin tức.",
+                "content": f"GROK_NEWS_FAILED: {type(exc).__name__}: {exc}. Không dùng nguồn thay thế để lấp phần tin; cần sửa Grok 9router API/search trước khi xuất bản tin tức.",
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
                 "elapsed": elapsed,
                 "speaks_to": MODEL3_NEWS.speak_to,
                 "framework": mode,
             }
 
+    # Grok/news is intentionally NOT in the blocking dependency path.
+    # Hòa Đại ka requested: do not wait for Grok before investment scenarios.
+    # Run it in the background as optional enrichment; TA/Fundamental unlock the rest.
     phase1_steps: list[AgentStep] = [
-        MODEL3_NEWS,
         MODEL3_ANALYSIS,
         MODEL3_FUNDAMENTAL,
     ]
@@ -1176,19 +1219,49 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         order = {step_obj.label: i for i, step_obj in enumerate(steps)}
         return sorted(group_posts, key=lambda p: order.get(p.get("name", ""), 99))
 
-    total_steps = len(phase1_steps) + len(phase2_steps) + len(extra_steps) + 1
+    total_steps = len(phase1_steps) + len(phase2_steps) + len(extra_steps) + 2  # + optional Grok + final summary
     posts: list[dict[str, Any]] = []
-    phase1_posts = _run_step_group(phase1_steps, base_context, "Phase 1 độc lập — News / Technical / Fundamental", 0, total_steps)
+
+    progress("🛰️ GrokX News: chạy nền optional, không block kịch bản đầu tư.")
+    news_future = _EXECUTOR.submit(_run_news_branch)
+
+    phase1_posts = _run_step_group(phase1_steps, base_context, "Phase 1 nền — Technical / Fundamental (không chờ Grok)", 0, total_steps)
     for post in phase1_posts:
         _append(state, transcript, post)
         posts.append(post)
 
-    phase1_context = base_context + "\n\nDỮ LIỆU NỀN ĐÃ CÓ CHO NHẬN ĐỊNH PHỤ THUỘC:\n" + "\n\n".join(transcript[-8:])
-    progress("🔗 Phase 2 dependency: Bull/Bear/Catalyst, Risk/Viewpoint, Scenario và Follow-up nhận context từ News/TA/Fundamental đã xong.")
-    phase2_posts = _run_step_group(phase2_steps + extra_steps, phase1_context, "Phase 2 nhận định phụ thuộc", len(phase1_steps), total_steps)
+    phase1_context = base_context + "\n\nDỮ LIỆU NỀN ĐÃ CÓ CHO NHẬN ĐỊNH PHỤ THUỘC (KHÔNG CHỜ GROK):\n" + "\n\n".join(transcript[-8:])
+    progress("🔗 Phase 2 dependency: Scenario/Bull-Bear/Risk/Follow-up chạy ngay sau TA/Fundamental; Grok nếu xong sẽ bổ sung sau.")
+    phase2_posts = _run_step_group(phase2_steps + extra_steps, phase1_context, "Phase 2 kịch bản đầu tư — chạy song song, bỏ Grok khỏi critical path", len(phase1_steps), total_steps)
     for post in phase2_posts:
         _append(state, transcript, post)
         posts.append(post)
+
+    # Non-blocking Grok enrichment: collect only if already done. Do not wait here.
+    if news_future.done():
+        try:
+            news_post = news_future.result()
+        except Exception as exc:  # noqa: BLE001
+            news_post = _err(MODEL3_NEWS, exc, 0, mode)
+        news_post["content"] = _extract_marked_result(str(news_post.get("content", "")))
+        _append(state, transcript, news_post)
+        posts.append(news_post)
+        progress("✅ GrokX News đã xong kịp thời và được gắn vào báo cáo như enrichment.")
+    else:
+        progress("⏭️ GrokX News chưa xong; bỏ qua để không làm chậm báo cáo/kịch bản đầu tư.")
+        news_future.cancel()
+        skipped_news = {
+            "agent": "grok",
+            "name": MODEL3_NEWS.label,
+            "action": "SKIPPED_NOT_BLOCKING | optional_enrichment_timeout",
+            "content": "GrokX News chạy nền nhưng chưa xong tại thời điểm tổng hợp; báo cáo không chờ Grok theo cấu hình non-blocking.",
+            "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "elapsed": 0,
+            "speaks_to": MODEL3_NEWS.speak_to,
+            "framework": mode,
+        }
+        _append(state, transcript, skipped_news)
+        posts.append(skipped_news)
 
     progress("✅ Super_LH dependency graph: các phân tích chính đã xong; bắt đầu viết Executive Summary cuối cùng.")
     try:
