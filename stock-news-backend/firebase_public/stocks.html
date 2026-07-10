@@ -1191,7 +1191,6 @@
         const label = (key) => escapeHtml(L(key));
         const row = (name, value) => `<div class="detail-row"><span>${name}</span><b>${value}</b></div>`;
         let fundamentalLoaded = false;
-        let autoChartLoaded = false;
         let model3Loaded = false;
         const renderTechnicalFrame = (frame = 'day') => {
           const framed = computeFrameTechnical(item, frame);
@@ -1237,44 +1236,21 @@
           </div>
           <div class="analysis-switch">
             <button type="button" class="analysis-tab-btn active" data-analysis-tab="technical"><strong>${label('technical')}</strong><span>${label('timeframeNote')}</span></button>
-            <button type="button" class="analysis-tab-btn" data-analysis-tab="wyckoff"><strong>Wyckoff</strong><span>State / Phase / TR / Events</span></button>
-            <button type="button" class="analysis-tab-btn" data-analysis-tab="autochart"><strong>Auto-chart</strong><span>JSON static độc lập</span></button>
             <button type="button" class="analysis-tab-btn" data-analysis-tab="fundamental"><strong>${currentLang === 'en' ? 'Fundamental Analysis' : 'Phân tích cơ bản'}</strong><span>${currentLang === 'en' ? 'Cached broker reports' : 'Dữ liệu báo cáo định giá cũ'}</span></button>
             <button type="button" class="analysis-tab-btn" data-analysis-tab="model3"><strong>${label('model3Report')}</strong><span>${label('model3ReportNote')}</span></button>
           </div>
           <div class="analysis-grid">
             <div class="analysis-pane active" data-analysis-pane="technical"></div>
-            <div class="analysis-pane" data-analysis-pane="wyckoff" id="wyckoffDetailPane"><div class="autochart-panel"><div class="empty">Đang tải Wyckoff Method...</div></div></div>
-            <div class="analysis-pane" data-analysis-pane="autochart" id="autochartDetailPane"><div class="autochart-panel"><div class="empty">Đang tải Auto-chart...</div></div></div>
             <div class="analysis-pane" data-analysis-pane="fundamental" id="fundamentalDetailPane"><div class="fundamental-panel"><div class="empty">Đang tải Fundamental Analysis...</div></div></div>
             <div class="analysis-pane" data-analysis-pane="model3" id="model3ReportPane"><div class="model3-report-panel"><div class="empty">Mở tab Report để tải Model3...</div></div></div>
           </div>`;
-        let wyckoffLoaded = false;
         elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(btn => btn.addEventListener('click', () => {
           const tab = btn.dataset.analysisTab;
           elements.detailStats.querySelectorAll('[data-analysis-tab]').forEach(x => x.classList.toggle('active', x.dataset.analysisTab === tab));
           elements.detailStats.querySelectorAll('[data-analysis-pane]').forEach(x => x.classList.toggle('active', x.dataset.analysisPane === tab));
-          if (tab === 'wyckoff' && !wyckoffLoaded) loadWyckoffForDetail();
-          if (tab === 'autochart' && !autoChartLoaded) loadAutoChartForDetail();
           if (tab === 'fundamental' && !fundamentalLoaded) loadFundamentalForDetail();
           if (tab === 'model3' && !model3Loaded) loadModel3ReportForDetail();
         }));
-        const loadWyckoffForDetail = () => {
-          wyckoffLoaded = true;
-          loadWyckoffMethod(item.ticker).then(payload => {
-            if (activeDetailTicker !== item.ticker) return;
-            const pane = document.getElementById('wyckoffDetailPane');
-            if (pane) pane.innerHTML = renderWyckoffMethodPanel(item.ticker, payload);
-          }).catch(() => { const pane = document.getElementById('wyckoffDetailPane'); if (pane) pane.innerHTML = `<div class="autochart-panel"><div class="empty error">Không tải được Wyckoff Method cho ${escapeHtml(item.ticker)}.</div></div>`; });
-        };
-        const loadAutoChartForDetail = () => {
-          autoChartLoaded = true;
-          loadAutoChart(item.ticker, 'week').then(payload => {
-            if (activeDetailTicker !== item.ticker) return;
-            const pane = document.getElementById('autochartDetailPane');
-            if (pane) pane.innerHTML = renderAutoChartPanel(item.ticker, payload, 'week');
-          }).catch(() => { const pane = document.getElementById('autochartDetailPane'); if (pane) pane.innerHTML = `<div class="autochart-panel"><div class="empty error">Không tải được Auto-chart cho ${escapeHtml(item.ticker)}.</div></div>`; });
-        };
         const loadFundamentalForDetail = () => {
           fundamentalLoaded = true;
           Promise.all([loadFundamentalSignals(item.ticker), loadFundamentalAverage(item.ticker)]).then(([faPayload, faAvg]) => {
@@ -1292,8 +1268,6 @@
           pane.innerHTML = `<div class="model3-report-panel"><div class="model3-report-head"><div><h4>Report (Model3) · ${escapeHtml(item.ticker)}</h4><p>${currentLang === 'en' ? 'Run/export Model3 directly for this stock.' : 'Chạy/xuất báo cáo Model3 trực tiếp cho mã đang mở.'}</p></div><a class="chip-btn" href="/stock-report?ticker=${sym}" target="_blank">${currentLang === 'en' ? 'Open full page' : 'Mở trang đầy đủ'}</a></div><iframe class="model3-report-frame" src="${src}" loading="lazy"></iframe></div>`;
         };
         renderTechnicalFrame('day');
-        loadWyckoffForDetail();
-        loadAutoChartForDetail();
         loadDistributionRisk(item.ticker).then(risk => { if (activeDetailTicker === item.ticker) { const slot = document.getElementById('distributionRiskSlot'); if (slot) slot.outerHTML = renderDistributionRiskCard(risk); } });
         elements.detailModal.classList.add('open');
         renderStockChart(item.ticker, item);
@@ -1344,9 +1318,29 @@
         const normalizePointTime = (t) => { if (typeof t === 'number' && Number.isFinite(t)) { try { return new Date(t * 1000).toISOString().slice(0,10); } catch(_) { return t; } } return t; };
         const normalizePoints = (points = []) => (Array.isArray(points) ? points : []).map(p => ({ time: normalizePointTime(p.time), value: Number(p.value) }));
         const addOverlayLine = (chart, line, fallbackStyle = {}) => {
-          const points = normalizePoints(line?.points || []);
+          let points = normalizePoints(line?.points || []).filter(p => p && p.time && Number.isFinite(Number(p.value)));
           if (points.length < 2) return null;
           const style = { ...(line?.lineStyle || {}), ...fallbackStyle };
+          const extendToLastCandle = (pts) => {
+            try {
+              if (!Array.isArray(rows) || rows.length < 2 || pts.length < 2) return pts;
+              const lastTime = rows[rows.length - 1]?.time;
+              if (!lastTime) return pts;
+              const rowIndex = new Map(rows.map((r, i) => [String(r.time), i]));
+              const p1 = pts[0];
+              const p2 = pts[pts.length - 1];
+              const i1 = rowIndex.get(String(p1.time));
+              const i2 = rowIndex.get(String(p2.time));
+              const iLast = rows.length - 1;
+              if (!Number.isFinite(i1) || !Number.isFinite(i2) || i1 === i2 || i2 >= iLast) return pts;
+              const v1 = Number(p1.value), v2 = Number(p2.value);
+              const slope = (v2 - v1) / (i2 - i1);
+              const projected = +(v1 + slope * (iLast - i1)).toFixed(3);
+              if (!Number.isFinite(projected) || projected <= 0) return pts;
+              return [p1, { time: lastTime, value: projected }];
+            } catch (_) { return pts; }
+          };
+          points = extendToLastCandle(points);
           const series = chart.addLineSeries({ color: style.color || '#4ef0c0', lineWidth: style.lineWidth || 2, lineStyle: Number(style.lineStyle || 0), priceLineVisible:false, lastValueVisible:true, title: style.title || '' });
           series.setData(points);
           return { series, points, style };
