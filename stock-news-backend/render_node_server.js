@@ -74,7 +74,8 @@ async function fetchVpsQuote(symbol) {
     highPrice: Number(item.highPrice || lastPrice || refPrice || 0),
     openPrice: Number(item.openPrice || refPrice || lastPrice || 0),
     avgPrice: Number(item.avePrice || lastPrice || 0),
-    source: 'vps-live-node',
+    quoteUpdatedAt: new Date().toISOString(),
+    source: 'vps',
   };
 }
 
@@ -94,6 +95,68 @@ async function liveMarketSymbol(symbol) {
   const row = (cache.items || []).find(x => String(x.symbol || '').toUpperCase() === String(symbol || '').toUpperCase());
   if (!row) return null;
   return mergeQuote(itemFromRs(row), await fetchVpsQuote(symbol));
+}
+
+function historyLastDate(symbol) {
+  const normalized = String(symbol || '').trim().toUpperCase();
+  const candidates = [
+    path.join(DATA, 'vn100_history_2025_06_2026_05_cache.json'),
+    path.join(DATA, 'vn100_history_cache.json'),
+  ];
+  for (const file of candidates) {
+    if (!fs.existsSync(file)) continue;
+    try {
+      const payload = readJsonPath(file);
+      const entry = payload && payload.symbols ? payload.symbols[normalized] : null;
+      const rows = entry && Array.isArray(entry.rows) ? entry.rows : [];
+      for (let i = rows.length - 1; i >= 0; i -= 1) {
+        const t = rows[i] && (rows[i].time || rows[i].date);
+        if (t) return String(t).slice(0, 10);
+      }
+      if (payload && payload.end) return String(payload.end).slice(0, 10);
+    } catch (_) {}
+  }
+  return null;
+}
+
+function parseDateUtc(value) {
+  if (!value) return null;
+  const text = String(value);
+  const d = text.length <= 10 ? new Date(`${text}T00:00:00Z`) : new Date(text);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+async function model3Freshness(symbol) {
+  const normalized = String(symbol || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+  if (!normalized) return { status: 400, body: { fresh: false, error: 'Cần nhập mã cổ phiếu' } };
+  const quote = await fetchVpsQuote(normalized);
+  const hist = historyLastDate(normalized);
+  const now = new Date();
+  const quoteDt = parseDateUtc(quote && quote.quoteUpdatedAt);
+  const histDt = parseDateUtc(hist);
+  const quoteAgeMinutes = quoteDt ? (now.getTime() - quoteDt.getTime()) / 60000 : 999999;
+  const historyAgeDays = histDt ? Math.floor((Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - Date.UTC(histDt.getUTCFullYear(), histDt.getUTCMonth(), histDt.getUTCDate())) / 86400000) : 999999;
+  const issues = [];
+  if (!quote || quote.source !== 'vps') issues.push(`source không phải VPS live quote: ${quote && quote.source}`);
+  if (!quoteDt || quoteAgeMinutes > 15) issues.push(`quote cũ/thiếu: quoteUpdatedAt=${quote && quote.quoteUpdatedAt}, age_min=${quoteAgeMinutes.toFixed(1)}`);
+  if (!histDt || historyAgeDays > 1) issues.push(`PTKT/history cũ/thiếu: historyLastDate=${hist}, age_days=${historyAgeDays}`);
+  if (!quote || !quote.price || Number(quote.price) <= 0) issues.push(`giá không hợp lệ: ${quote && quote.price}`);
+  if (!quote || quote.volume === undefined || Number(quote.volume || 0) <= 0) issues.push(`KL không hợp lệ: ${quote && quote.volume}`);
+  const body = {
+    ticker: normalized,
+    source: quote && quote.source,
+    price: quote && quote.price,
+    volume: quote && quote.volume,
+    updatedAt: quote && quote.quoteUpdatedAt,
+    quoteUpdatedAt: quote && quote.quoteUpdatedAt,
+    historyLastDate: hist,
+    quoteAgeMinutes: Math.round(quoteAgeMinutes * 100) / 100,
+    historyAgeDays,
+    fresh: issues.length === 0,
+    issues,
+    logs: issues.length ? [`❌ Freshness gate FAIL: ${issues.join('; ')}`] : [`✅ Freshness gate OK: ${normalized} giá=${quote.price}, KL=${quote.volume}, quote=${quote.quoteUpdatedAt}, history=${hist}`],
+  };
+  return { status: issues.length ? 503 : 200, body };
 }
 
 function itemFromRs(row) {
@@ -328,6 +391,10 @@ const server = http.createServer((req, res) => {
     }
     if (pathname === '/market-data') {
       return liveMarketDataFromRs().then(payload => send(res, 200, JSON.stringify(payload))).catch(() => send(res, 200, JSON.stringify(marketDataFromRs())));
+    }
+    if (pathname.startsWith('/pipeline/model3/freshness/')) {
+      const symbol = decodeURIComponent(pathname.split('/').pop() || '').toUpperCase();
+      return model3Freshness(symbol).then(result => send(res, result.status, JSON.stringify(result.body))).catch(err => send(res, 503, JSON.stringify({ fresh: false, error: `CALL_ASSISTANT_FIX: freshness endpoint lỗi: ${String(err && err.message || err)}` })));
     }
     if (pathname.startsWith('/market-data/')) {
       const symbol = decodeURIComponent(pathname.split('/').pop() || '').toUpperCase();

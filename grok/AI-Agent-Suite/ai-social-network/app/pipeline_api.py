@@ -620,6 +620,103 @@ def _latest_model3_docx(ticker: str, before: set[Path]) -> Path | None:
     return max(files, key=lambda p: p.stat().st_mtime) if files else None
 
 
+def _parse_iso_or_date(value: Any) -> datetime | None:
+    if not value:
+        return None
+    text = str(value).replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(text)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        pass
+    try:
+        return datetime.strptime(text[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+
+def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] | None = None) -> dict[str, Any]:
+    """Ensure Model3 does not export with stale price/volume/technical data.
+
+    Policy:
+    - Always force-refresh market symbol before report generation.
+    - Quote must be from VPS live feed and updated recently (<=15 minutes).
+    - History/PTKT must have a latest bar dated today or yesterday (VN market holidays/weekends tolerated by 1 day).
+    - If refresh cannot make data fresh, fail loudly so Hòa/Tiểu đệ can fix instead of shipping an old report.
+    """
+    def log(msg: str) -> None:
+        if progress_cb:
+            try:
+                progress_cb(msg)
+            except Exception:
+                pass
+
+    log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
+    import importlib.util
+    provider_path = None
+    here = Path(__file__).resolve()
+    for parent in here.parents:
+        candidate = parent / "stock-news-backend" / "app" / "market_data.py"
+        if candidate.exists():
+            provider_path = candidate
+            break
+    if provider_path is None:
+        provider_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\app\market_data.py")
+    if not provider_path.exists():
+        raise RuntimeError("CALL_ASSISTANT_FIX: Không tìm thấy market_data.py để kiểm tra freshness")
+    spec = importlib.util.spec_from_file_location("fresh_market_data_provider", provider_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"CALL_ASSISTANT_FIX: Không load được market data provider: {provider_path}")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)  # type: ignore[union-attr]
+
+    try:
+        data = mod.get_market_symbol(ticker, force_refresh=True)
+    except Exception as exc:
+        raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
+
+    now = datetime.now(timezone.utc)
+    source = data.get("source")
+    quote_dt = _parse_iso_or_date(data.get("quoteUpdatedAt") or data.get("updatedAt"))
+    hist_dt = _parse_iso_or_date(data.get("historyLastDate"))
+    quote_age_min = ((now - quote_dt).total_seconds() / 60) if quote_dt else 999999
+    hist_age_days = ((now.date() - hist_dt.date()).days) if hist_dt else 999999
+    price = data.get("price")
+    volume = data.get("volume")
+    issues = []
+    if source != "vps":
+        issues.append(f"source không phải VPS live quote: {source}")
+    if quote_dt is None or quote_age_min > 15:
+        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
+    if hist_dt is None or hist_age_days > 1:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    if not price or float(price) <= 0:
+        issues.append(f"giá không hợp lệ: {price}")
+    if volume is None or int(float(volume or 0)) <= 0:
+        issues.append(f"KL không hợp lệ: {volume}")
+
+    summary = {
+        "ticker": ticker,
+        "source": source,
+        "price": price,
+        "volume": volume,
+        "updatedAt": data.get("updatedAt"),
+        "quoteUpdatedAt": data.get("quoteUpdatedAt"),
+        "historyLastDate": data.get("historyLastDate"),
+        "quoteAgeMinutes": round(quote_age_min, 2),
+        "historyAgeDays": hist_age_days,
+        "fresh": not issues,
+        "issues": issues,
+    }
+    if issues:
+        log("❌ Freshness gate FAIL: " + "; ".join(issues))
+        raise RuntimeError("CALL_ASSISTANT_FIX: Báo cáo sẽ dùng data cũ/không hợp lệ sau khi force refresh: " + json.dumps(summary, ensure_ascii=False))
+    log(f"✅ Freshness gate OK: {ticker} giá={price}, KL={volume}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}")
+    return summary
+
+
 def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, progress_cb: Callable[[str], None] | None = None) -> dict[str, Any]:
     """Run the real Model3 workflow and optionally create NotebookLM output.
 
@@ -641,6 +738,8 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
             except Exception:
                 pass
 
+    freshness = _market_data_freshness_gate(ticker, progress)
+
     from hybrid_agent_framework import run_model3_workflow
 
     task = (
@@ -660,6 +759,7 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "docx_name": docx.name,
         "feed_count": len(state.get("feed", [])) if isinstance(state, dict) else None,
         "logs_tail": logs[-30:],
+        "freshness": freshness,
     }
 
     if with_notebooklm:
@@ -860,6 +960,20 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     return j
 
 
+@router.get("/model3/freshness/{ticker}")
+async def model3_freshness(ticker: str):
+    ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
+    if not ticker:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    logs: list[str] = []
+    try:
+        result = await asyncio.to_thread(_market_data_freshness_gate, ticker, lambda m: logs.append(str(m)))
+        result["logs"] = logs
+        return JSONResponse(result)
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse({"fresh": False, "ticker": ticker, "error": str(exc)[-3000:], "logs": logs}, status_code=503)
+
+
 @router.get("/model3/notebooklm/auth-test")
 async def model3_notebooklm_auth_test(auto_login: bool = True):
     """Test NotebookLM CLI auth and optionally re-login via saved Chrome session."""
@@ -893,7 +1007,13 @@ async def model3_status(job_id: str):
 @router.get("/model3/file/{filename}")
 async def model3_file(filename: str):
     safe = Path(filename).name
-    candidates = [MODEL3_OUT_DIR / safe, Path("temp/notebooklm-share") / safe, Path("reports") / safe]
+    workspace_temp = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace") / "temp" / "notebooklm-share"
+    candidates = [
+        MODEL3_OUT_DIR / safe,
+        Path("temp/notebooklm-share") / safe,
+        workspace_temp / safe,
+        Path("reports") / safe,
+    ]
     found = next((p for p in candidates if p.exists() and p.is_file()), None)
     if not found:
         raise HTTPException(status_code=404, detail="File không tồn tại hoặc đã hết hạn TTL")
