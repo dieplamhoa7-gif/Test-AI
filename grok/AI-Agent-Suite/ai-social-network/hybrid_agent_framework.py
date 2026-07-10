@@ -980,7 +980,7 @@ def build_model3_news_context(task: str, progress: ProgressFn, limit: int = 12) 
     return "\n".join(lines)
 
 
-def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600) -> str:
+def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, news_context: str = "") -> str:
     """Run Grok news directly through the 9router OpenAI-compatible API.
 
     No Grok terminal/PTY/bridge is used here. The function keeps the same Model3
@@ -1088,29 +1088,21 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600) ->
         raise RuntimeError(f"Grok 9router preflight không trả OK; output={smoke_out[-500:]}")
 
     prompt = (
-        f"Tìm web và trả lời tiếng Việt có dấu. Lấy tối đa 5 tin có NGÀY CÔNG BỐ NẰM TRONG NĂM 2026 liên quan TRỰC TIẾP cổ phiếu {symbol}. "
-        "Ưu tiên KQKD, doanh thu/lợi nhuận, kế hoạch. "
-        "CẤM lấy tin có ngày công bố năm 2025 hoặc trước đó, kể cả khi nội dung nói về kế hoạch 2026. "
-        "Nếu nguồn có tiêu đề/nội dung nhắc KQKD quý IV/2025 nhưng ngày đăng là 2026 thì chỉ được dùng khi ghi rõ ngày đăng 2026; nếu không xác định được ngày đăng 2026 thì loại bỏ. "
-        "Mỗi tin phải có Ngày công bố dạng dd/mm/2026 hoặc tháng/năm 2026, Nguồn/link, Tóm tắt, Tác động. "
-        "Nếu không đủ 5 tin trực tiếp trong năm 2026 thì chỉ trả số tin tìm được và ghi rõ thiếu nguồn trực tiếp 2026. Không bịa, không dùng tin cũ để bù số lượng. "
-        "Mỗi tin gồm 2 câu: tóm tắt 1 câu, đánh giá tác động cổ phiếu tăng/giảm/trung tính bao nhiêu % và vì sao. "
-        "Bắt buộc tiếng Việt Unicode UTF-8 sạch, không viết không dấu, không mojibake. "
-        "Trả kết quả theo từng tin có nhãn Ngày công bố, Tóm tắt và Tác động; kèm nguồn/link nếu có."
+        f"Tìm kiếm/tổng hợp và trả lời tiếng Việt có dấu. Lấy tối đa 5 tin mới nhất liên quan TRỰC TIẾP cổ phiếu {symbol}. "
+        "Ưu tiên tin có NGÀY CÔNG BỐ trong năm 2026; nếu không đủ 5 tin 2026 thì được dùng tin trực tiếp gần nhất 2025/2024 nhưng phải ghi rõ ngày công bố và đánh dấu là tin cũ để tránh hiểu nhầm. "
+        "Ưu tiên KQKD, doanh thu/lợi nhuận, kế hoạch, cổ tức/phát hành, khuyến nghị CTCK, sự kiện doanh nghiệp, biến động ngành tác động trực tiếp. "
+        "Không được bịa; nếu nguồn không xác định ngày/link thì ghi rõ thiếu ngày/link. "
+        "Mỗi tin phải có nhãn đúng dạng 'Tin 1:', 'Tin 2:'... để formatter đưa vào báo cáo. "
+        "Mỗi tin gồm: Ngày công bố, Nguồn/link, Tóm tắt 1-2 câu, Tác động tăng/giảm/trung tính bao nhiêu % và vì sao. "
+        "Nếu không tìm thấy tin nào, vẫn trả một đoạn 'Kết luận Grok:' nói rõ không tìm thấy bản tin trực tiếp sau khi kiểm tra, đừng chỉ trả rỗng. "
+        "Bắt buộc tiếng Việt Unicode UTF-8 sạch, không viết không dấu, không mojibake."
     )
+    if news_context:
+        prompt += "\n\nCONTEXT WEB/NEWS ĐÃ ĐƯỢC HỆ THỐNG TRA SẴN — hãy cross-check, chọn/lọc lại bằng Grok; không cần bỏ qua chỉ vì không thuộc 2026 nếu đó là tin trực tiếp gần nhất:\n" + news_context[-9000:]
     progress(f"🔎 Grok News: bắt đầu research tin trực tiếp cho {symbol} qua 9router API...")
     out = _chat(prompt, timeout)
-    stale_pattern = re.compile(r"(?i)(tin\s+\d+[^\n]{0,120}(?:2025|2024|2023)|ngày\s+công\s+bố\s*[:\-]?\s*[^\n]{0,80}(?:2025|2024|2023)|\b(?:20/01/2026|21/01/2026)\b[^\n]{0,160}(?:quý\s*iv/2025|q4/2025)|\b2025\b[^\n]{0,80}(?:công\s+bố|ngày\s+đăng|nguồn))")
-    if out and stale_pattern.search(out):
-        progress("⚠️ Grok News: phát hiện dấu hiệu tin cũ/2025 trong output API; retry với bộ lọc chỉ tin công bố 2026...")
-        retry_prompt = prompt + (
-            "\n\nLẦN TRƯỚC CÓ TIN CŨ. Hãy tự kiểm tra lại: loại mọi Tin có ngày công bố không thuộc 2026. "
-            "Không được đưa Tin 2025, không đưa tin quý IV/2025 nếu nguồn/ngày đăng không xác nhận trong năm 2026. "
-            "Nếu còn nghi ngờ ngày đăng, bỏ tin đó."
-        )
-        retry_out = _chat(retry_prompt, timeout)
-        if retry_out:
-            out = retry_out
+    # Older direct company news is allowed when no 2026 item exists, but Grok
+    # must label it with the publication date. Do not auto-retry it away.
     try:
         out_dir = Path("outputs") / "model3"
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -1141,13 +1133,13 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
     progress("🚦 Super_LH fan-out: chạy song song các phân tích chính trên cùng context ban đầu; executive summary sẽ chạy cuối để không tóm tắt khi chưa có dữ liệu.")
 
     def _run_news_branch() -> dict[str, Any]:
-        # Build public-web context only for diagnostics/logging. Per Hòa Đại ka:
-        # do NOT replace Grok news with web fallback in the investor report.
-        _ = news_context_future.result()
+        # Build public-web context and pass it to Grok as grounding. Grok still
+        # owns the final news selection; do NOT silently replace Grok with web fallback.
+        presearched_news_context = news_context_future.result()
         sym = _extract_ticker(task) or "MWG"
         started = time.time()
         try:
-            content = _run_grok_news_cli(sym, progress, timeout=600)
+            content = _run_grok_news_cli(sym, progress, timeout=600, news_context=presearched_news_context)
             elapsed = time.time() - started
             progress(f"✅ GrokX News & Impact xong bằng Grok 9router API ({elapsed:.1f}s)")
             return {

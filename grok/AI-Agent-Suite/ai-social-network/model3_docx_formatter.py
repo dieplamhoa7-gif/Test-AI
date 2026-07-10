@@ -1113,6 +1113,13 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     _heading(doc, "2. Tin tức liên quan — tối thiểu 5 tin tác động tới cổ phiếu", 1)
     if news_rows:
         _table(doc, ["Nhãn", "Tóm tắt tin", "Tác động"], news_rows[:8])
+    else:
+        # Do not let an empty Grok result disappear from the PDF. Show Grok's
+        # conclusion/diagnostic so the user can see whether Grok searched but
+        # found no usable news, or whether the runtime failed.
+        raw_grok_note = _clean_cell(news_text, 1400)
+        if raw_grok_note:
+            _bullets(doc, ["Grok 9router API đã chạy nhưng không xuất được danh sách Tin 1/Tin 2 đủ điều kiện:", raw_grok_note])
     if len(news_lines) < 5:
         _bullets(doc, ["Nguồn tin tức chưa đủ 5 tin đã kiểm chứng tại thời điểm xuất báo cáo; chỉ dùng tin đã xác thực ở trên, không bổ sung tin chưa kiểm chứng để tránh sai lệch."])
 
