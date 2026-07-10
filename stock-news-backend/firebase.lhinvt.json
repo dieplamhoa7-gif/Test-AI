@@ -9,30 +9,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "redirects": [
-      {
-        "source": "/pipeline/model3/freshness/:ticker",
-        "destination": "https://hoa-investment.onrender.com/pipeline/model3/freshness/:ticker",
-        "type": 302
-      }
-    ],
     "headers": [
-      {
-        "source": "/stocks{,/**}",
-        "headers": [
-          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-          { "key": "Pragma", "value": "no-cache" },
-          { "key": "Expires", "value": "0" }
-        ]
-      },
-      {
-        "source": "/",
-        "headers": [
-          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-          { "key": "Pragma", "value": "no-cache" },
-          { "key": "Expires", "value": "0" }
-        ]
-      },
       {
         "source": "/warrants/**",
         "headers": [
