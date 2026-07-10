@@ -5,6 +5,8 @@ import json
 import os
 import re
 import importlib.util
+import sqlite3
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -848,6 +850,117 @@ def _indicator_matrix_raw(symbol: str, live_snapshot: dict[str, Any] | None = No
     return "\n".join(lines)
 
 
+def _stock_backend_root() -> Path | None:
+    for root in [WORKSPACE / "stock-news-backend", *LH_ROOTS]:
+        if (root / "build_lhinvt_stock_chart_db.py").exists() and (root / "data").exists():
+            return root
+    return None
+
+
+def _rebuild_lhinvt_stock_chart_db(root: Path) -> str:
+    """Best-effort rebuild so Model3 agents see the newest local LHINVT DB."""
+    if os.environ.get("MODEL3_SKIP_LHINVT_DB_REBUILD", "0").lower() in {"1", "true", "yes"}:
+        return "skipped_by_env"
+    script = root / "build_lhinvt_stock_chart_db.py"
+    if not script.exists():
+        return "missing_builder"
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(script)],
+            cwd=str(root),
+            text=True,
+            capture_output=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=int(os.environ.get("MODEL3_LHINVT_DB_REBUILD_TIMEOUT", "180")),
+        )
+        if proc.returncode == 0:
+            return "ok"
+        return f"failed_rc_{proc.returncode}: {_clip((proc.stderr or proc.stdout)[-700:], 700)}"
+    except Exception as exc:  # noqa: BLE001
+        return f"error_{type(exc).__name__}: {_clip(str(exc), 500)}"
+
+
+def _db_rows(con: sqlite3.Connection, sql: str, params: tuple[Any, ...] = (), limit: int | None = None) -> list[dict[str, Any]]:
+    cur = con.execute(sql, params)
+    rows = [dict(r) for r in cur.fetchall()]
+    if limit is not None:
+        return rows[:limit]
+    return rows
+
+
+def _lhinvt_stock_chart_db_context(symbol: str) -> str:
+    """Inject the LHINVT Stock/Chart SQLite DB into Model3's shared context.
+
+    This is the machine-readable version of skills/lhinvt-stock-chart-db/SKILL.md:
+    rebuild/check freshness, then provide metadata + latest OHLCV/indicator/chart/
+    CW/news rows so Grok/Codex/Kiro all anchor reports to the newest data.
+    """
+    root = _stock_backend_root()
+    if not root:
+        return "LHINVT_STOCK_CHART_DB: Không tìm thấy project stock-news-backend/build_lhinvt_stock_chart_db.py."
+    rebuild_status = _rebuild_lhinvt_stock_chart_db(root)
+    db_path = root / "data" / "lhinvt_stock_chart.db"
+    if not db_path.exists():
+        return f"LHINVT_STOCK_CHART_DB: DB không tồn tại sau rebuild_status={rebuild_status}: {db_path}"
+
+    lines = [
+        "LHINVT_STOCK_CHART_DB — nguồn dữ liệu local mới nhất cho Model3 (từ skills/lhinvt-stock-chart-db/SKILL.md).",
+        "QUY TẮC BẮT BUỘC CHO TẤT CẢ AI: trước khi kết luận giá/chart/PTKT/CW/news mới nhất, ưu tiên dữ liệu trong DB này; nếu khác website thì kiểm tra live file và cảnh báo cache/frontend precedence.",
+        f"Project: {root}",
+        f"DB: {db_path}",
+        f"Rebuild trước run: {rebuild_status}",
+    ]
+    try:
+        con = sqlite3.connect(str(db_path))
+        con.row_factory = sqlite3.Row
+        try:
+            meta = _db_rows(con, "SELECT key, value FROM metadata ORDER BY key")
+            meta_map = {r.get("key"): r.get("value") for r in meta}
+            focus_keys = [
+                "db_built_at", "history_latest_trading_date", "history_symbol_count", "history_row_count",
+                "market_latest_trading_date", "market_updated_at", "indicators_count", "chart_file_count",
+                "warrants_count", "warrants_updated_at", "news_count",
+            ]
+            lines.append("\nFRESHNESS_METADATA:")
+            for k in focus_keys:
+                if k in meta_map:
+                    lines.append(f"- {k}: {meta_map[k]}")
+
+            latest = _db_rows(con, "SELECT * FROM symbols WHERE upper(symbol)=upper(?) LIMIT 1", (symbol,))
+            lines.append("\nSYMBOL_LATEST:")
+            lines.append(compact_record(latest[0], 1400) if latest else f"Không có row symbols cho {symbol}.")
+
+            candles = _db_rows(con, "SELECT symbol,date,open,high,low,close,volume,source,updated_at FROM daily_ohlcv WHERE upper(symbol)=upper(?) ORDER BY date DESC LIMIT 20", (symbol,))
+            lines.append("\nDAILY_OHLCV_20_MỚI_NHẤT — các AI phải dùng latest row này cho giá nến hiện tại:")
+            lines.append(compact_record(candles, 3200) if candles else f"Không có daily_ohlcv cho {symbol}.")
+
+            market = _db_rows(con, "SELECT symbol,date,price,close,volume,change_pct,support_day,resistance_day,trend,recommendation FROM market_snapshot WHERE upper(symbol)=upper(?) LIMIT 1", (symbol,))
+            lines.append("\nMARKET_SNAPSHOT_WEBSITE_CARD:")
+            lines.append(compact_record(market[0], 1800) if market else f"Không có market_snapshot cho {symbol}.")
+
+            indicators = _db_rows(con, "SELECT symbol,date,rsi14,adx14,plus_di,minus_di,ma20,ma50,ma200,bb_upper,bb_middle,bb_lower,macd,signal,histogram FROM indicators_daily WHERE upper(symbol)=upper(?) ORDER BY date DESC LIMIT 3", (symbol,))
+            lines.append("\nINDICATORS_DAILY_MỚI_NHẤT:")
+            lines.append(compact_record(indicators, 2600) if indicators else f"Không có indicators_daily cho {symbol}.")
+
+            chart_files = _db_rows(con, "SELECT symbol,frame,path,row_count,latest_date,latest_close,source,updated_at FROM chart_files WHERE upper(symbol)=upper(?) ORDER BY CASE frame WHEN 'day' THEN 0 WHEN 'auto_chart_day' THEN 1 WHEN 'week' THEN 2 WHEN 'month' THEN 3 ELSE 9 END, frame LIMIT 12", (symbol,))
+            lines.append("\nCHART_FILES_FRESHNESS — dùng để phát hiện chart popup stale:")
+            lines.append(compact_record(chart_files, 2600) if chart_files else f"Không có chart_files cho {symbol}.")
+
+            warrants = _db_rows(con, "SELECT code,underlying,last_price,market_price,exercise_price,breakeven,issuer,expiry_date,source FROM warrants WHERE upper(underlying)=upper(?) ORDER BY expiry_date LIMIT 20", (symbol,))
+            lines.append("\nCOVERED_WARRANTS_BY_UNDERLYING:")
+            lines.append(compact_record(warrants, 2800) if warrants else f"Không có CW/warrants underlying={symbol}.")
+
+            news = _db_rows(con, "SELECT symbol,title,published_at,source,url FROM news_meta WHERE upper(symbol)=upper(?) OR symbol IS NULL OR symbol='' ORDER BY published_at DESC LIMIT 20", (symbol,))
+            lines.append("\nNEWS_META_20_MỚI_NHẤT — chỉ dùng làm nguồn ứng viên, vẫn phải kiểm tra ngày/link khi viết báo cáo:")
+            lines.append(compact_record(news, 3600) if news else "Không có news_meta.")
+        finally:
+            con.close()
+    except Exception as exc:  # noqa: BLE001
+        lines.append(f"\nDB_QUERY_ERROR: {type(exc).__name__}: {exc}")
+    return "\n".join(lines)
+
+
 def build_lhinvestment_context(task: str) -> str:
     symbol = extract_symbol(task)
     if not symbol:
@@ -863,6 +976,8 @@ def build_lhinvestment_context(task: str) -> str:
         parts.append("\nLIVE_MARKET_FORCE_REFRESH — dữ liệu giá/PTKT/vĩ mô mới nhất theo thứ tự LHINVT_WEB_CLEAN -> lhinvt.web.app -> stock-news-backend fallback:\n" + compact_record(live_snapshot, 4200))
     else:
         parts.append("\nLIVE_MARKET_FORCE_REFRESH: Không lấy được dữ liệu mới. Lỗi: " + str(live_snapshot.get("error") or "unknown") + ". Báo cáo phải cảnh báo thiếu dữ liệu mới, không dùng cache cũ làm giá hiện tại.")
+
+    parts.append("\n" + _lhinvt_stock_chart_db_context(symbol))
 
     parts.append("\n" + _macro_data_hub_context())
 
