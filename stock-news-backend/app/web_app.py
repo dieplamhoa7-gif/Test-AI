@@ -21,6 +21,7 @@ from app.report_sources import load_cached_24hmoney_reports
 from app.technical_filters import top_technical_setups
 from app.strategy_recommendations import current_strategy_recommendations
 from app.warrants.service import get_warrants_data
+from app.pipeline_api import router as pipeline_router
 
 
 @asynccontextmanager
@@ -32,6 +33,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
+app.include_router(pipeline_router)
 APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
 app.add_middleware(
     CORSMiddleware,
