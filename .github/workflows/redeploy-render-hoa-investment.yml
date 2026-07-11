@@ -1,0 +1,27 @@
+name: Redeploy hoa-investment Render backend
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'stock-news-backend/app/**'
+      - 'stock-news-backend/*.py'
+      - 'stock-news-backend/requirements*.txt'
+      - 'stock-news-backend/render.yaml'
+      - 'render.yaml'
+      - '.github/workflows/redeploy-render-hoa-investment.yml'
+  workflow_dispatch:
+
+jobs:
+  redeploy-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy hook
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "RENDER_DEPLOY_HOOK_URL secret is not configured. Skipping Render deploy."
+            exit 0
+          fi
+          curl -fsS -X POST "$RENDER_DEPLOY_HOOK_URL"

@@ -35,6 +35,19 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
 app.include_router(pipeline_router)
 APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
+DEPLOY_COMMIT = os.getenv("RENDER_GIT_COMMIT", os.getenv("GITHUB_SHA", "local"))
+
+
+@app.get("/deploy-info")
+def deploy_info():
+    return {
+        "ok": True,
+        "service": "hoa-investment",
+        "commit": DEPLOY_COMMIT,
+        "model3_routes": True,
+    }
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
