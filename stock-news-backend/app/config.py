@@ -16,7 +16,7 @@ class Config:
     gemini_text_model: str = os.getenv("GEMINI_TEXT_MODEL", "gemini-1.5-flash")
     gemini_image_model: str = os.getenv("GEMINI_IMAGE_MODEL", "gemini-1.5-flash")
     router9_api_key: str = os.getenv("ROUTER9_API_KEY", os.getenv("NINEROUTER_API_KEY", os.getenv("OPENAI_API_KEY", "")))
-    router9_base_url: str = os.getenv("ROUTER9_BASE_URL", os.getenv("OPENAI_BASE_URL", "https://3t8l9f.tail6c0e00.ts.net/v1"))
+    router9_base_url: str = os.getenv("ROUTER9_BASE_URL", os.getenv("OPENAI_BASE_URL", "http://100.89.47.25:20128/v1"))
     kiro_model: str = os.getenv("KIRO_MODEL", os.getenv("OPENAI_MODEL", "Kiro"))
     claude_real_provider: str = os.getenv("CLAUDE_REAL_PROVIDER", "router9")
     grok_real_provider: str = os.getenv("GROK_REAL_PROVIDER", "router9")
