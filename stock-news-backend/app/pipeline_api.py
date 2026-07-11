@@ -24,6 +24,7 @@ import os
 import re
 import sqlite3
 import time
+import urllib.request
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -65,6 +66,11 @@ _DATA_PROVIDER: Optional[Callable[[str], dict]] = None
 def _load_symbol(symbol: str) -> dict:
     if _DATA_PROVIDER is not None:
         return _DATA_PROVIDER(symbol)
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
+    if gateway:
+        url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', symbol.upper())}?force_refresh=true"
+        with urllib.request.urlopen(url, timeout=float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90"))) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     try:
         from app.market_data import get_market_symbol  # type: ignore  # optional local provider
         return get_market_symbol(symbol)
@@ -655,28 +661,38 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
                 pass
 
     log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
-    import importlib.util
-    provider_path = None
-    here = Path(__file__).resolve()
-    for parent in here.parents:
-        candidate = parent / "stock-news-backend" / "app" / "market_data.py"
-        if candidate.exists():
-            provider_path = candidate
-            break
-    if provider_path is None:
-        provider_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\app\market_data.py")
-    if not provider_path.exists():
-        raise RuntimeError("CALL_ASSISTANT_FIX: Không tìm thấy market_data.py để kiểm tra freshness")
-    spec = importlib.util.spec_from_file_location("fresh_market_data_provider", provider_path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"CALL_ASSISTANT_FIX: Không load được market data provider: {provider_path}")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)  # type: ignore[union-attr]
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
+    if gateway:
+        try:
+            url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
+            with urllib.request.urlopen(url, timeout=float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90"))) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+            log(f"✅ Freshness gate: lấy data qua local gateway {gateway}")
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(f"CALL_ASSISTANT_FIX: Local market-data gateway lỗi: {type(exc).__name__}: {str(exc)[:500]}")
+    else:
+        import importlib.util
+        provider_path = None
+        here = Path(__file__).resolve()
+        for parent in here.parents:
+            candidate = parent / "stock-news-backend" / "app" / "market_data.py"
+            if candidate.exists():
+                provider_path = candidate
+                break
+        if provider_path is None:
+            provider_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\app\market_data.py")
+        if not provider_path.exists():
+            raise RuntimeError("CALL_ASSISTANT_FIX: Không tìm thấy market_data.py để kiểm tra freshness")
+        spec = importlib.util.spec_from_file_location("fresh_market_data_provider", provider_path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError(f"CALL_ASSISTANT_FIX: Không load được market data provider: {provider_path}")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)  # type: ignore[union-attr]
 
-    try:
-        data = mod.get_market_symbol(ticker, force_refresh=True)
-    except Exception as exc:
-        raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
+        try:
+            data = mod.get_market_symbol(ticker, force_refresh=True)
+        except Exception as exc:
+            raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
 
     def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
         """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
