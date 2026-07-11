@@ -144,6 +144,13 @@ def _is_investor_low_confidence(text: Any) -> bool:
     return any(re.search(p, s, re.I) for p in low_patterns)
 
 
+def _clean_cell(text: Any, max_len: int = 500) -> str:
+    s = _clean_inline(str(text or ""))
+    if max_len and len(s) > max_len:
+        return s[: max_len - 1].rstrip() + "…"
+    return s
+
+
 def _investor_clean_cell(text: Any) -> str:
     s = _clean_inline(str(text or ""))
     # Remove low-confidence clauses inside otherwise useful rows.
