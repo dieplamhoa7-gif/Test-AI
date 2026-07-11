@@ -132,6 +132,16 @@ class OpenAICompatReal(TextAgent):
                 )
                 r.raise_for_status()
                 return _openai_compat_content(r)
+            except requests.HTTPError as exc:
+                # Surface safe provider diagnostics without leaking API keys.
+                resp = exc.response
+                status = getattr(resp, "status_code", "?")
+                body = ""
+                try:
+                    body = (resp.text or "")[:500]
+                except Exception:
+                    body = ""
+                raise RuntimeError(f"{self.agent_id} provider HTTP {status} model={self.model} base={self.base_url}: {body}") from exc
             except (requests.Timeout, requests.ConnectionError) as exc:
                 last_exc = exc
                 if attempt >= self.retries:
