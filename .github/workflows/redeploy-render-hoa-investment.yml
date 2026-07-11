@@ -21,7 +21,8 @@ jobs:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
-            echo "RENDER_DEPLOY_HOOK_URL secret is not configured. Skipping Render deploy."
-            exit 0
+            echo "RENDER_DEPLOY_HOOK_URL secret is not configured, so Render was NOT redeployed."
+            echo "Create a Render deploy hook for service hoa-investment and save it as this GitHub secret."
+            exit 1
           fi
           curl -fsS -X POST "$RENDER_DEPLOY_HOOK_URL"
