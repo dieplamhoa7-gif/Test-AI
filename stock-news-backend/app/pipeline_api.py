@@ -66,7 +66,7 @@ _DATA_PROVIDER: Optional[Callable[[str], dict]] = None
 def _load_symbol(symbol: str) -> dict:
     if _DATA_PROVIDER is not None:
         return _DATA_PROVIDER(symbol)
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "http://100.89.47.25:20129").rstrip("/")
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
     if gateway:
         url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', symbol.upper())}?force_refresh=true"
         with urllib.request.urlopen(url, timeout=float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90"))) as resp:
@@ -661,7 +661,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
                 pass
 
     log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "http://100.89.47.25:20129").rstrip("/")
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
     if gateway:
         try:
             url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
