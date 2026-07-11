@@ -522,7 +522,8 @@ def _run_step(task: str, s: AgentStep, transcript: list[str], progress: Progress
         content = _repair_mojibake(_complete(s.agent_id, s.label, prompt, _system(s), progress))
     except Exception as exc:
         if s in (MODEL3_ANALYSIS, MODEL3_FUNDAMENTAL, MODEL3_BULL_BEAR, MODEL3_FOLLOWUP_PLAN):
-            progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}).")
+            detail = str(exc).replace("\n", " ")[:700]
+            progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}: {detail}).")
             content = _model3_codex_fallback(task, s, exc)
         else:
             raise
