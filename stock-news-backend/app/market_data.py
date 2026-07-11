@@ -964,6 +964,8 @@ def _fetch_quote(symbol: str) -> dict[str, Any] | None:
             "highPrice": float(item.get("highPrice") or last_price or ref_price or 0),
             "openPrice": float(item.get("openPrice") or ref_price or last_price or 0),
             "avgPrice": float(item.get("avePrice") or last_price or 0),
+            "quoteUpdatedAt": _now_iso(),
+            "quoteCacheTtlSeconds": QUOTE_CACHE_TTL_SECONDS,
         }
         _quote_cache[normalized] = (now, quote)
         return quote
@@ -979,6 +981,12 @@ def _fetch_symbol(symbol: str, include_history: bool = True) -> dict[str, Any] |
     last_price = quote["price"]
     ref_price = quote.get("refPrice") or 0
     history_df = _load_history(normalized) if include_history else None
+    history_last_date = None
+    if history_df is not None and not history_df.empty and "time" in history_df.columns:
+        try:
+            history_last_date = str(history_df.sort_values("time").iloc[-1].get("time"))
+        except Exception:
+            history_last_date = None
     return {
         "ticker": normalized,
         "price": round(last_price, 2),
@@ -988,6 +996,12 @@ def _fetch_symbol(symbol: str, include_history: bool = True) -> dict[str, Any] |
         "financial": _load_financial_ratios(normalized) if include_history else {},
         "type": "stock",
         "source": "vps",
+        "updatedAt": _now_iso(),
+        "quoteUpdatedAt": quote.get("quoteUpdatedAt"),
+        "historyLastDate": history_last_date,
+        "cacheTtlSeconds": SYMBOL_CACHE_TTL_SECONDS,
+        "quoteCacheTtlSeconds": QUOTE_CACHE_TTL_SECONDS,
+        "historyCacheTtlSeconds": HISTORY_CACHE_TTL_SECONDS,
     }
 
 

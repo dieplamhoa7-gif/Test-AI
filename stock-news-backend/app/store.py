@@ -24,23 +24,10 @@ def _mongo_collection():
     return client[MONGODB_DB][MONGODB_COLLECTION]
 
 
-def _normalize_item(item: Dict) -> Dict:
-    out = dict(item)
-    snippet = out.get("snippet") or out.get("summary") or out.get("description") or ""
-    if snippet:
-        # Frontend variants have used both summary and snippet over time.
-        # Always keep both populated so refreshes do not make the summary disappear.
-        out.setdefault("snippet", snippet)
-        out.setdefault("summary", snippet)
-        out.setdefault("description", snippet)
-    return out
-
-
 def _dedupe(items: List[Dict]) -> List[Dict]:
     deduped = []
     seen = set()
     for item in items:
-        item = _normalize_item(item)
         key = item.get("url") or f"{item.get('title','')}|{item.get('published_at','')}"
         if key in seen:
             continue
