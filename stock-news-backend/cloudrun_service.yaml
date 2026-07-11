@@ -1,0 +1,32 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hoa-investment-model3
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "2"
+        run.googleapis.com/cpu-throttling: "true"
+    spec:
+      containerConcurrency: 4
+      timeoutSeconds: 900
+      containers:
+        - image: gcr.io/PROJECT_ID/hoa-investment-model3
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          env:
+            - name: REQUEST_TIMEOUT
+              value: "15"
+            - name: MAX_ARTICLES_PER_SOURCE
+              value: "8"
+            - name: SUMMARY_MAX_WORDS
+              value: "50"
+            # Set AI keys via Cloud Run secrets/env, never commit them here.
