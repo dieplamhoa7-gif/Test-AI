@@ -21,6 +21,7 @@ from app.report_sources import load_cached_24hmoney_reports
 from app.technical_filters import top_technical_setups
 from app.strategy_recommendations import current_strategy_recommendations
 from app.warrants.service import get_warrants_data
+from app.pipeline_api import router as pipeline_router
 
 
 @asynccontextmanager
@@ -32,7 +33,21 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
+app.include_router(pipeline_router)
 APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
+DEPLOY_COMMIT = os.getenv("RENDER_GIT_COMMIT", os.getenv("GITHUB_SHA", "local"))
+
+
+@app.get("/deploy-info")
+def deploy_info():
+    return {
+        "ok": True,
+        "service": "hoa-investment",
+        "commit": DEPLOY_COMMIT,
+        "model3_routes": True,
+    }
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -212,6 +227,59 @@ def market_data(refresh: bool = Query(default=False)):
 def market_symbol(symbol: str, refresh: bool = Query(default=False)):
     return get_market_symbol(_clean_symbol(symbol), force_refresh=refresh)
 
+
+def _parse_iso_or_date(value):
+    if not value:
+        return None
+    text = str(value).replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(text)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        pass
+    try:
+        return datetime.strptime(text[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+
+@app.get("/pipeline/model3/freshness/{symbol}")
+def model3_freshness(symbol: str):
+    normalized = _clean_symbol(symbol)[:8]
+    data = get_market_symbol(normalized, force_refresh=True)
+    now = _utcnow()
+    quote_dt = _parse_iso_or_date(data.get("quoteUpdatedAt") or data.get("updatedAt"))
+    hist_dt = _parse_iso_or_date(data.get("historyLastDate"))
+    quote_age_min = ((now - quote_dt).total_seconds() / 60) if quote_dt else 999999
+    hist_age_days = ((now.date() - hist_dt.date()).days) if hist_dt else 999999
+    issues = []
+    if data.get("source") != "vps":
+        issues.append(f"source không phải VPS live quote: {data.get('source')}")
+    if quote_dt is None or quote_age_min > 15:
+        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
+    if hist_dt is None or hist_age_days > 1:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    if not data.get("price") or float(data.get("price") or 0) <= 0:
+        issues.append(f"giá không hợp lệ: {data.get('price')}")
+    if data.get("volume") is None or int(float(data.get("volume") or 0)) <= 0:
+        issues.append(f"KL không hợp lệ: {data.get('volume')}")
+    body = {
+        "ticker": normalized,
+        "source": data.get("source"),
+        "price": data.get("price"),
+        "volume": data.get("volume"),
+        "updatedAt": data.get("updatedAt"),
+        "quoteUpdatedAt": data.get("quoteUpdatedAt"),
+        "historyLastDate": data.get("historyLastDate"),
+        "quoteAgeMinutes": round(quote_age_min, 2),
+        "historyAgeDays": hist_age_days,
+        "fresh": not issues,
+        "issues": issues,
+        "logs": (["❌ Freshness gate FAIL: " + "; ".join(issues)] if issues else [f"✅ Freshness gate OK: {normalized} giá={data.get('price')}, KL={data.get('volume')}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}"]),
+    }
+    return JSONResponse(body, status_code=200 if not issues else 503)
 
 
 @app.get("/market-symbols")
