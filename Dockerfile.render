@@ -4,17 +4,19 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PORT=10000
 
-WORKDIR /app
+WORKDIR /app/stock-news-backend
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.web.txt ./
+COPY stock-news-backend/requirements.web.txt ./
 RUN pip install --no-cache-dir -r requirements.web.txt
 
-COPY . ./
+COPY stock-news-backend/ ./
 
 EXPOSE 10000
 
 CMD ["sh", "-c", "python -m uvicorn app.web_app:app --host 0.0.0.0 --port ${PORT:-10000}"]
+
+# render-cache-bust-20260711-1719
