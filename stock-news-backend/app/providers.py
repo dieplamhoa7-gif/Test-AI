@@ -110,8 +110,16 @@ class OpenAICompatReal(TextAgent):
 
     def __init__(self, agent_id: str, base_url: str, api_key: str, model: str) -> None:
         self.agent_id = agent_id
+        # Render dashboard can retain stale hidden env values on blueprint-managed
+        # services. For Hòa Đại ka's Model3 deployment, force the working
+        # OpenAI-compatible Tailscale Funnel proxy when the stale public 9router
+        # URL leaks through; never expose the key in logs.
+        if "api.9router.com" in (base_url or ""):
+            base_url = os.getenv("MODEL3_FORCE_BASE_URL", "https://3t8l9f.tail6c0e00.ts.net/v1")
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
+        if model in ("", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
+            model = "Kiro" if agent_id == "kiro" else "APIFREE"
         self.model = model
         self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "150"))
         self.retries = int(os.getenv("SUPERLH_OPENAI_COMPAT_RETRIES", "0"))
