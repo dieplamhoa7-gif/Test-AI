@@ -779,6 +779,19 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
 
     freshness = _market_data_freshness_gate(ticker, progress)
 
+    # Guard against the bad 20-second "done" case: if Render has no real AI key,
+    # do not export a fake/fallback DOCX that looks empty or uninformative.
+    try:
+        from app.config import CONFIG  # type: ignore
+        has_real_ai = bool(CONFIG.router9_api_key or CONFIG.anthropic_key or CONFIG.openai_key or CONFIG.xai_key or CONFIG.google_key)
+    except Exception:
+        has_real_ai = False
+    if os.getenv("MODEL3_ALLOW_MOCK_EXPORT", "").lower() not in ("1", "true", "yes") and not has_real_ai:
+        raise RuntimeError(
+            "Model3 chưa có AI API key trên Render nên không xuất DOCX giả/fallback. "
+            "Cần cấu hình ROUTER9_API_KEY hoặc OPENAI_API_KEY/XAI_API_KEY trong Render rồi chạy lại."
+        )
+
     from hybrid_agent_framework import run_model3_workflow
 
     task = (
@@ -787,6 +800,14 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "xuất DOCX hoàn chỉnh cho NotebookLM"
     )
     state = run_model3_workflow(task, progress)
+    feed = state.get("feed", []) if isinstance(state, dict) else []
+    bad_markers = ("mock", "fallback", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "không dùng web fallback")
+    joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
+    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and any(m.lower() in joined_feed.lower() for m in bad_markers):
+        raise RuntimeError(
+            "Model3 AI chưa chạy đủ thật/đầy đủ nên chặn xuất Word để tránh file trống hoặc báo cáo giả. "
+            "Kiểm tra AI provider key/log Render rồi chạy lại."
+        )
     docx = _latest_model3_docx(ticker, before)
     if docx is None or not docx.exists():
         raise RuntimeError(f"Khong tim thay DOCX sau khi chay Model3 cho {ticker}")

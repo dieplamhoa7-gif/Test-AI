@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import re
@@ -229,6 +229,13 @@ def _drop_banned_blocks(text: str) -> str:
 
 def _clean_inline(text: str) -> str:
     text = _repair_text_quality(text)
+    # Never allow raw WordprocessingML/HTML-like markup to leak into visible DOCX cells.
+    # A previous build could pass table XML fragments through summary fields, making
+    # Word look blank/garbled even though document.xml contained many characters.
+    text = re.sub(r"<w:[^>]+>", " ", text)
+    text = re.sub(r"</w:[^>]+>", " ", text)
+    text = re.sub(r"<[^>]{1,200}>", " ", text)
+    text = re.sub(r"\b(?:w:tblPr|w:tblGrid|w:tr|w:tc|w:p|w:r|w:t|w:tcPr|w:rPr|w:pPr)\b", " ", text)
     text = re.sub(r"https?://\S+", "", text)
     text = text.replace("**", "")
     text = text.replace("###", "").replace("##", "").replace("####", "")
