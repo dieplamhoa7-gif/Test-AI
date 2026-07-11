@@ -58,9 +58,11 @@ app.add_middleware(
         "https://hoa-investment.onrender.com",
         "https://hoa-investment.web.app",
         "https://hoa-investment.firebaseapp.com",
+        "https://lhinvt.web.app",
+        "https://lhinvt.firebaseapp.com",
     ],
     allow_credentials=False,
-    allow_methods=["GET", "HEAD", "OPTIONS"],
+    allow_methods=["GET", "HEAD", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
 
