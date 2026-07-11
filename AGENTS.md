@@ -126,6 +126,7 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 
 - Use `skills/image-first-ocr-discipline/SKILL.md` automatically whenever Hòa Đại ka sends or asks about an image/screenshot/photo/scan/chart/map/document image. Hard rule: inspect/read the actual image first; OCR/crop/zoom if needed; never answer from filename, caption, prior context, or guesswork when an image is available.
 - Use `skills/project-folder-discipline/SKILL.md` before creating, writing, downloading, extracting, generating, patching, or running project/domain files. Keep project code/data/temp/output files inside the correct project folder, not workspace root, unless Hòa Đại ka explicitly asks otherwise.
+- Use `skills/openclaw-ui-ux-frontend-master/SKILL.md` automatically for any UI/UX/design/frontend task: pages, components, landing pages, dashboards, mobile/web interfaces, charts, visual polish, branding, banners, slides, accessibility, design systems, Tailwind/shadcn/frontend styling, or avoiding generic AI-looking design.
 
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 
