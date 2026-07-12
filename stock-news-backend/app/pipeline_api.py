@@ -869,13 +869,14 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     feed = state.get("feed", []) if isinstance(state, dict) else []
     bad_markers = ("mock", "fallback", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "không dùng web fallback")
     joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
-    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and any(m.lower() in joined_feed.lower() for m in bad_markers):
-        raise RuntimeError(
-            "Model3 AI chưa chạy đủ thật/đầy đủ nên chặn xuất Word để tránh file trống hoặc báo cáo giả. "
-            "Kiểm tra AI provider key/log Render rồi chạy lại."
-        )
+    partial_quality = any(m.lower() in joined_feed.lower() for m in bad_markers)
     docx = _latest_model3_docx(ticker, before)
     if docx is None or not docx.exists():
+        if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+            raise RuntimeError(
+                "Model3 AI chưa chạy đủ thật/đầy đủ và không tìm thấy DOCX để trả về. "
+                "Kiểm tra AI provider key/log Render rồi chạy lại."
+            )
         raise RuntimeError(f"Khong tim thay DOCX sau khi chay Model3 cho {ticker}")
 
     result: dict[str, Any] = {
@@ -886,7 +887,13 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "feed_count": len(state.get("feed", [])) if isinstance(state, dict) else None,
         "logs_tail": logs[-30:],
         "freshness": freshness,
+        "partial_quality": partial_quality,
     }
+    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+        result["warning"] = (
+            "Model3 đã xuất DOCX nhưng một số AI provider bị timeout/502 nên báo cáo có thể dùng fallback/thiếu phần Kiro. "
+            "Trả link file để kiểm tra, không coi là báo cáo chất lượng đầy đủ."
+        )
 
     if with_notebooklm:
         try:
@@ -1067,6 +1074,32 @@ async def run_pipeline(req: RunRequest):
     return {"batch_id": batch_id, "runs": runs}
 
 
+def _recover_model3_docx_result(job: dict[str, Any]) -> dict[str, Any] | None:
+    """Expose a DOCX that was already written even if final quality guard failed."""
+    ticker = re.sub(r"[^A-Z0-9]", "", str(job.get("ticker", "")).upper())[:8]
+    logs = [str(x) for x in job.get("logs", []) if x]
+    joined = "\n".join(logs)
+    m = re.search(r"(outputs/model3/[^\s]+\.docx)", joined)
+    docx: Path | None = None
+    if m:
+        cand = Path(m.group(1))
+        if cand.exists():
+            docx = cand
+    if docx is None and ticker:
+        docx = _latest_model3_docx(ticker, set())
+    if docx is None or not docx.exists():
+        return None
+    return {
+        "ok": True,
+        "ticker": ticker,
+        "docx_path": str(docx),
+        "docx_name": docx.name,
+        "partial_quality": True,
+        "warning": "DOCX đã được ghi nhưng job bị đánh dấu error do một số AI provider timeout/502; dùng file này để kiểm tra, chưa coi là báo cáo chất lượng đầy đủ.",
+        "logs_tail": logs[-30:],
+    }
+
+
 def _public_model3_result(result: dict[str, Any] | None) -> dict[str, Any] | None:
     if not isinstance(result, dict):
         return None
@@ -1091,7 +1124,10 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
-    j["result"] = _public_model3_result(job.get("result"))
+    result = job.get("result")
+    if not isinstance(result, dict) and job.get("status") == "error":
+        result = _recover_model3_docx_result(job)
+    j["result"] = _public_model3_result(result)
     j["logs_tail"] = (job.get("logs") or [])[-20:]
     return j
 
