@@ -787,18 +787,34 @@ def _build_news_queries(task: str) -> list[str]:
     if sym:
         aliases = STOCK_ALIASES.get(sym, [sym])
         main = " OR ".join(f'"{a}"' if " " in a else a for a in aliases)
-        return [
+        # Keep simple symbol/company queries first. Google News often performs
+        # poorly with a large `(A OR B OR C)` expression and returned only one
+        # SSI item, while these simple queries return the richer company-news
+        # set Hòa Đại ka expects (capital raise, profit plan, market share, AGM,
+        # ESOP, broker updates).
+        simple = [sym, *(a for a in aliases if a != sym)]
+        queries: list[str] = []
+        for base in simple[:3]:
+            queries.extend([
+                f'{base} cổ phiếu 2026',
+                f'{base} lợi nhuận 2026',
+                f'{base} tăng vốn 2026',
+                f'{base} đại hội cổ đông 2026',
+                f'{base} thị phần môi giới 2026',
+                f'{base} ESOP cổ tức 2026',
+            ])
+        queries.extend([
             f'({main}) 2026 lợi nhuận KQKD kế hoạch cổ tức tăng vốn',
             f'({main}) 2026 triển vọng tăng trưởng định giá khuyến nghị target',
             f'({main}) 2026 đại hội cổ đông ĐHĐCĐ phát hành ESOP cổ tức',
-            f'({main}) 2026 rủi ro pháp lý nợ xấu thanh tra trái phiếu',
             f'({main}) 2026 CafeF Vietstock 24HMoney FireAnt Stockbiz Mekong ASEAN',
-            f'({main}) site:cafef.vn 2026',
-            f'({main}) site:vietstock.vn 2026',
-            f'({main}) site:24hmoney.vn 2026',
-            f'({main}) site:fireant.vn 2026',
-            f'({main}) site:mekongasean.vn 2026',
-        ]
+            f'{sym} site:cafef.vn 2026',
+            f'{sym} site:vietstock.vn 2026',
+            f'{sym} site:24hmoney.vn 2026',
+            f'{sym} site:fireant.vn 2026',
+            f'{sym} site:mekongasean.vn 2026',
+        ])
+        return queries
     return [task, f"{task} 2026"]
 
 

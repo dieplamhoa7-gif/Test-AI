@@ -939,6 +939,28 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
         if len(items) >= limit:
             return items
 
+    # Controlled public-web fallback format produced when Grok provider is down:
+    # `1. [2026-..] Title — Source\nURL: ...\nSnippet: ...`
+    # Older formatter versions only accepted `Tin 1`, which made section 2 look
+    # empty even though RAW WEB RESULTS had usable public/news items.
+    web_pat = r"(?ims)^\s*\d+\.\s*\[(?P<date>[^\]]*)\]\s*(?P<title>.+?)\s*(?:\s+—\s+|\s+\|\s+)(?P<source>[^\n]*)\n\s*URL:\s*(?P<url>\S+)\s*\n\s*Snippet:\s*(?P<snippet>.*?)(?=^\s*\d+\.\s*\[|\Z)"
+    for m in re.finditer(web_pat, raw_text):
+        title = _clean_inline(m.group('title'))
+        source = _clean_inline(m.group('source'))
+        date = _clean_inline(m.group('date'))
+        url = _clean_inline(m.group('url'))
+        snippet = _clean_inline(m.group('snippet'))
+        if not (title or snippet):
+            continue
+        item = (
+            f"Tin {len(items)+1} - {title} | Ngày: {date or 'N/A'} | "
+            f"Nguồn/link: {source or 'web'} {url} | Tóm tắt: {snippet or title} | "
+            "Tác động: cần rà soát cùng diễn biến thị giá, thanh khoản và catalyst; đây là tin public-web fallback đã được lọc theo ticker."
+        )
+        items.append(item[:1400])
+        if len(items) >= limit:
+            return items
+
     return items
 
 
@@ -1009,7 +1031,7 @@ def _get_feed_text(state: dict[str, Any], labels: tuple[str, ...], *, allow_bad:
 def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str:
     symbol = _extract_symbol(task)
     # Section 2 ownership is GrokX only. Do not silently replace GrokX news with Kiro/web/cache output.
-    news_text = _strip_terminal_noise(_repair_text_quality(_get_feed_text(state, ("GrokX News & Impact",))))
+    news_text = _strip_terminal_noise(_repair_text_quality(_get_feed_text(state, ("GrokX News & Impact",), allow_bad=True)))
     if _is_grok_news_quality_bad(news_text):
         news_text = "Chưa có bản tin Grok đủ sạch để đưa vào báo cáo. Cần chạy lại Grok news hoặc dùng nguồn web đã kiểm chứng."
     analysis_text = _repair_text_quality(_get_feed_text(state, ("Research", "Analysis", "Codex TA", "Indicator", "Fundamental")))
@@ -1104,8 +1126,8 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     # Tin tức + đếm sentiment để đưa vào quan điểm tổng hợp.
     news_lines = _extract_news_items(news_text, 8)
     news_rows = _news_rows_from_items(news_lines) if news_lines else []
-    news_pos = sum(1 for r in news_rows if r[1] == "Tích cực")
-    news_neg = sum(1 for r in news_rows if r[1] == "Tiêu cực")
+    news_pos = sum(1 for r in news_rows if r and r[0] == "Tích cực")
+    news_neg = sum(1 for r in news_rows if r and r[0] == "Tiêu cực")
     stance, stance_rows = _synthesized_stance(close_v, ma20, ma50, ma200, rsi_v, macd_v, sig_v, volratio_v, adx_v, pdi_v, mdi_v, eod_flat.get("zoneState"), eod_flat.get("setupType"), news_pos, news_neg, len(news_rows))
 
     _heading(doc, "1. Tóm tắt nhanh", 1)
