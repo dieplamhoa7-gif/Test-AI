@@ -39,7 +39,10 @@ os.environ.setdefault("CREWAI_DISABLE_TELEMETRY", "true")
 if not os.environ.get("OPENAI_API_KEY"):
     os.environ["OPENAI_API_KEY"] = "sk-dummy-crewai-construction-only"
 
-AGENT_TIMEOUT_SECONDS = int(os.environ.get("SUPERLH_AGENT_TIMEOUT_SECONDS", "0"))
+# Never wait forever on an OpenAI-compatible/local gateway call. Render workers
+# can otherwise sit on a stuck upstream request until the whole job appears hung.
+# Keep default high enough for quality, but finite so Model3 can complete cleanly.
+AGENT_TIMEOUT_SECONDS = int(os.environ.get("SUPERLH_AGENT_TIMEOUT_SECONDS", "360"))
 AGENT_TICK_SECONDS = int(os.environ.get("SUPERLH_AGENT_TICK_SECONDS", "120"))
 AGENT_STUCK_WARN_SECONDS = int(os.environ.get("SUPERLH_AGENT_STUCK_WARN_SECONDS", "300"))
 _EXECUTOR = concurrent.futures.ThreadPoolExecutor(max_workers=16, thread_name_prefix="superlh-agent")
