@@ -1119,10 +1119,11 @@ def _market_gateway_base_urls() -> list[str]:
 
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    # On Render, start_render.sh exposes Tailscale userspace networking via
-    # HTTP_PROXY/HTTPS_PROXY/ALL_PROXY=127.0.0.1:1055. Use the default opener so
-    # tailnet IPs (100.x) go through that proxy instead of the public internet.
-    with urllib.request.urlopen(url, timeout=timeout) as resp:
+    # Render sets HTTP(S)_PROXY to Tailscale userspace. For the public Funnel
+    # hostname (*.ts.net), bypass that proxy and use normal internet HTTPS;
+    # otherwise the request loops through a broken/offline tailnet path.
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if "tail6c0e00.ts.net" in url else urllib.request.build_opener()
+    with opener.open(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
