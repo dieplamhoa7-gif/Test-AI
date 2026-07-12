@@ -1,25 +1,50 @@
 services:
   - type: web
-    name: hoa-investment
-    runtime: python
+    name: lh-realestate-browser-backend
+    runtime: docker
     plan: free
-    rootDir: stock-news-backend
-    buildCommand: pip install -r requirements.web.txt
-    startCommand: python -m uvicorn app.web_app:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: ./Dockerfile.render
+    healthCheckPath: /health
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.13.7
-      - key: REQUEST_TIMEOUT
-        value: 15
-      - key: MAX_ARTICLES_PER_SOURCE
-        value: 8
-      - key: SUMMARY_MAX_WORDS
-        value: 50
-      - key: OPENAI_MODEL
-        sync: false
-      - key: OPENAI_API_KEY
-        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: NVTC_PROXY_PORT
+        value: 10000
+      - key: PORT
+        value: 10000
+      - key: NINEROUTER_BDS_MODEL
+        value: APIBDS
+      - key: NINEROUTER_MODEL
+        value: APIBDS
+      - key: ROUTER9_BASE_URL
+        value: http://100.89.47.25:20128/v1
       - key: OPENAI_BASE_URL
-        sync: false
-      - key: MARKET_API_BASE
-        sync: false
+        value: http://100.89.47.25:20128/v1
+      - key: AI_PROVIDER_MODE
+        value: real
+      - key: MODEL3_FORCE_BASE_URL
+        value: http://100.89.47.25:20128/v1
+      - key: MARKET_DATA_GATEWAY_URL
+        value: https://3t8l9f.tail6c0e00.ts.net/marketdata
+      - key: MARKET_DATA_GATEWAY_TIMEOUT
+        value: "120"
+      - key: OPENAI_MODEL
+        value: APIFREE
+      - key: CHATGPT_MODEL
+        value: APIFREE
+      - key: CLAUDE_MODEL
+        value: APIFREE
+      - key: XAI_MODEL
+        value: APIFREE
+      - key: KIRO_MODEL
+        value: Kiro
+      - key: CHATGPT_REAL_PROVIDER
+        value: 9router
+      - key: GROK_REAL_PROVIDER
+        value: 9router
+      - key: CLAUDE_REAL_PROVIDER
+        value: 9router
+      - key: BDS_BROWSER_PROFILE
+        value: /tmp/lh-bds-browser-profile
+      - key: RENDER_CACHE_BUST
+        value: "20260712-073247"
