@@ -1,0 +1,25 @@
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PORT=10000
+
+WORKDIR /app/stock-news-backend
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential curl ca-certificates iptables \
+    && curl -fsSL https://tailscale.com/install.sh | sh \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY stock-news-backend/requirements.web.txt ./
+RUN pip install --no-cache-dir -r requirements.web.txt
+
+COPY stock-news-backend/ ./
+COPY start_render.sh /app/start_render.sh
+RUN chmod +x /app/start_render.sh
+
+EXPOSE 10000
+
+CMD ["/app/start_render.sh"]
+
+# render-cache-bust-20260711-1719
