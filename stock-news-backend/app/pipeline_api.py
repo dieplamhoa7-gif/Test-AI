@@ -34,7 +34,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header, UploadFile, File, Form
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, StreamingResponse
 from pydantic import BaseModel
 
@@ -53,6 +53,9 @@ MODEL3_JOB_STATE_DIR = Path(
         "/tmp/disk/model3_jobs" if Path("/tmp/disk").exists() else str(Path(tempfile.gettempdir()) / "model3_jobs"),
     )
 )
+
+MODEL3_EXTERNAL_WORKER_MODE = os.getenv("MODEL3_EXTERNAL_WORKER_MODE", "").lower() in ("1", "true", "yes")
+MODEL3_WORKER_TOKEN = os.getenv("MODEL3_WORKER_TOKEN", "")
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
 MODEL3_SECTIONS = [
@@ -77,6 +80,33 @@ def _model3_job_file(job_id: str) -> Path:
     if not safe:
         raise ValueError("invalid job_id")
     return MODEL3_JOB_STATE_DIR / f"{safe}.json"
+
+
+def _check_model3_worker_token(authorization: str | None = None) -> None:
+    if not MODEL3_WORKER_TOKEN:
+        raise HTTPException(status_code=403, detail="MODEL3_WORKER_TOKEN chưa được cấu hình")
+    token = (authorization or "").strip()
+    if token.lower().startswith("bearer "):
+        token = token[7:].strip()
+    if token != MODEL3_WORKER_TOKEN:
+        raise HTTPException(status_code=403, detail="worker token không hợp lệ")
+
+
+def _iter_model3_jobs_from_disk() -> list[dict[str, Any]]:
+    jobs = list(MODEL3_JOBS.values())
+    seen = {str(j.get("job_id")) for j in jobs}
+    if MODEL3_JOB_STATE_DIR.exists():
+        for path in MODEL3_JOB_STATE_DIR.glob("*.json"):
+            try:
+                job = json.loads(path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            jid = str(job.get("job_id") or "")
+            if jid and jid not in seen:
+                jobs.append(job)
+                seen.add(jid)
+    jobs.sort(key=lambda j: float(j.get("created_at") or 0))
+    return jobs
 
 
 def _save_model3_job(job: dict[str, Any]) -> None:
@@ -1374,7 +1404,67 @@ async def model3_export(req: Model3ExportRequest):
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
     job = _new_model3_job(ticker, req.notebooklm)
-    asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+    if MODEL3_EXTERNAL_WORKER_MODE:
+        job["status"] = "queued_external"
+        job["logs"].append("⏳ Job đã nhận; chờ local Model3 worker xử lý để tránh Render/Tailscale timeout.")
+        job["updated_at"] = time.time()
+        _save_model3_job(job)
+    else:
+        asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+    return JSONResponse(_public_model3_job(job))
+
+
+@router.get("/model3/worker/next")
+async def model3_worker_next(authorization: str | None = Header(default=None)):
+    _check_model3_worker_token(authorization)
+    for job in _iter_model3_jobs_from_disk():
+        if job.get("status") in {"queued_external", "queued"}:
+            job["status"] = "claimed_external"
+            job["updated_at"] = time.time()
+            job["logs"] = (job.get("logs") or [])[-79:] + ["🔧 Local worker đã nhận job."]
+            MODEL3_JOBS[str(job["job_id"])] = job
+            _save_model3_job(job)
+            return JSONResponse(_public_model3_job(job))
+    return JSONResponse({"job": None})
+
+
+@router.post("/model3/worker/{job_id}/status")
+async def model3_worker_update_status(job_id: str, payload: dict[str, Any], authorization: str | None = Header(default=None)):
+    _check_model3_worker_token(authorization)
+    job = _load_model3_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job_id không tồn tại")
+    for key in ("status", "progress", "error", "agents", "sections", "result"):
+        if key in payload:
+            job[key] = payload[key]
+    if payload.get("log"):
+        job["logs"] = (job.get("logs") or [])[-79:] + [str(payload["log"])[-1000:]]
+    job["updated_at"] = time.time()
+    MODEL3_JOBS[job_id] = job
+    _save_model3_job(job)
+    return JSONResponse(_public_model3_job(job))
+
+
+@router.post("/model3/worker/{job_id}/upload")
+async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partial_quality: bool = Form(False), authorization: str | None = Header(default=None)):
+    _check_model3_worker_token(authorization)
+    job = _load_model3_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job_id không tồn tại")
+    safe = Path(file.filename or f"{job.get('ticker','MODEL3')}_{job_id}.docx").name
+    MODEL3_OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out = MODEL3_OUT_DIR / safe
+    data = await file.read()
+    out.write_bytes(data)
+    result = {"ok": True, "ticker": job.get("ticker"), "docx_path": str(out), "docx_name": safe, "partial_quality": bool(partial_quality)}
+    job["result"] = result
+    job["status"] = "done"
+    job["progress"] = 100
+    job["updated_at"] = time.time()
+    job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded DOCX: {safe}"]
+    _model3_finalize_sections(job, result)
+    MODEL3_JOBS[job_id] = job
+    _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
