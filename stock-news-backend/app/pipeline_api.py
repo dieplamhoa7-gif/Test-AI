@@ -797,7 +797,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
     # Friday, so a 2-3 calendar-day gap can still be fresh.
     max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
     if hist_dt is None or hist_age_days > max_hist_age_days:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}", max={max_hist_age_days}")
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}, max={max_hist_age_days}")
     if not price or float(price) <= 0:
         issues.append(f"giá không hợp lệ: {price}")
     if volume is None or int(float(volume or 0)) <= 0:
