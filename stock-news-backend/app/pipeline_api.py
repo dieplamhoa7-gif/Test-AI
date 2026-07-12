@@ -793,8 +793,11 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         issues.append(f"source không phải VPS live quote: {source}")
     if quote_dt is None or quote_age_min > 15:
         issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
-    if hist_dt is None or hist_age_days > 1:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    # Weekend/holiday tolerance: on Sat/Sun, the latest trading bar is often
+    # Friday, so a 2-3 calendar-day gap can still be fresh.
+    max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
+    if hist_dt is None or hist_age_days > max_hist_age_days:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}", max={max_hist_age_days}")
     if not price or float(price) <= 0:
         issues.append(f"giá không hợp lệ: {price}")
     if volume is None or int(float(volume or 0)) <= 0:
