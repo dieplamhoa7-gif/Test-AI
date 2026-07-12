@@ -1124,10 +1124,17 @@ def _market_gateway_base_urls() -> list[str]:
 
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    # Render start_render.sh exports HTTP(S)_PROXY/ALL_PROXY to Tailscale
-    # userspace networking (127.0.0.1:1055). Use urllib's default proxy-aware
-    # opener so *.ts.net DNS and tailnet IP routes resolve through Tailscale.
-    with urllib.request.urlopen(url, timeout=timeout) as resp:
+    # Render reaches the user's PC through Tailscale userspace networking on
+    # 127.0.0.1:1055. urllib's global opener honors NO_PROXY; Render currently
+    # has .ts.net in NO_PROXY and may bypass the Tailscale proxy for 100.x IPs,
+    # which makes Python time out even though curl -x 127.0.0.1:1055 succeeds.
+    # Use a dedicated opener for gateway calls so they always traverse Tailscale.
+    proxy = os.getenv("MARKET_DATA_GATEWAY_PROXY") or os.getenv("ALL_PROXY") or os.getenv("HTTP_PROXY")
+    opener = None
+    if proxy:
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
+    open_fn = opener.open if opener is not None else urllib.request.urlopen
+    with open_fn(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
