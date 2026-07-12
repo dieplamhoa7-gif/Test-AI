@@ -1109,10 +1109,13 @@ def _extract_market_gateway_summary(data: Any) -> dict[str, Any]:
 
 
 def _market_gateway_base_urls() -> list[str]:
-    primary = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    # Render dashboard env can override render.yaml, so always include both the
+    # public Funnel route and tailnet-IP route as candidates.
+    primary = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
+    public_funnel = os.getenv("MARKET_DATA_GATEWAY_FUNNEL_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
     fallback = os.getenv("MARKET_DATA_GATEWAY_FALLBACK_URL", "http://100.89.47.25:20129").rstrip("/")
     urls: list[str] = []
-    for u in (primary, fallback):
+    for u in (primary, public_funnel, fallback):
         if u and u not in urls:
             urls.append(u)
     return urls
