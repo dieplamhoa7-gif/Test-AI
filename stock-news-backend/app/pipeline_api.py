@@ -23,6 +23,7 @@ import math
 import os
 import re
 import sqlite3
+import subprocess
 import tempfile
 import time
 import urllib.error
@@ -1122,11 +1123,10 @@ def _market_gateway_base_urls() -> list[str]:
 
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    # Render sets HTTP(S)_PROXY to Tailscale userspace. For the public Funnel
-    # hostname (*.ts.net), bypass that proxy and use normal internet HTTPS;
-    # otherwise the request loops through a broken/offline tailnet path.
-    opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if "tail6c0e00.ts.net" in url else urllib.request.build_opener()
-    with opener.open(url, timeout=timeout) as resp:
+    # Render start_render.sh exports HTTP(S)_PROXY/ALL_PROXY to Tailscale
+    # userspace networking (127.0.0.1:1055). Use urllib's default proxy-aware
+    # opener so *.ts.net DNS and tailnet IP routes resolve through Tailscale.
+    with urllib.request.urlopen(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
@@ -1138,6 +1138,24 @@ def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tup
         if isinstance(data, dict):
             data["_response_truncated"] = truncated
         return int(getattr(resp, "status", 200)), data, len(raw)
+
+
+@router.get("/model3/render-network-diag")
+async def model3_render_network_diag():
+    """Safe Render network diagnostics for Tailscale/proxy availability."""
+    env_keys = ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "all_proxy", "no_proxy", "TAILSCALE_AUTHKEY"]
+    env = {k: ("<set>" if k == "TAILSCALE_AUTHKEY" and os.getenv(k) else os.getenv(k)) for k in env_keys if os.getenv(k) is not None}
+    diag: dict[str, Any] = {"env": env}
+    for cmd_name, cmd in {
+        "tailscale_status": ["tailscale", "status", "--json"],
+        "tailscale_ip": ["tailscale", "ip", "-4"],
+    }.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=8)
+            diag[cmd_name] = {"returncode": cp.returncode, "stdout": cp.stdout[-3000:], "stderr": cp.stderr[-1500:]}
+        except Exception as exc:  # noqa: BLE001
+            diag[cmd_name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(diag)
 
 
 @router.get("/model3/market-gateway-ping")
