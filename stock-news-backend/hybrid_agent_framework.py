@@ -1128,7 +1128,10 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
             if data is None:
                 raise RuntimeError(f"Grok 9router API trả non-JSON: {raw_text[-1200:]}")
         try:
-            choice = data["choices"][0]
+            choices = data.get("choices") if isinstance(data, dict) else None
+            if not isinstance(choices, list) or not choices:
+                raise ValueError("missing/empty choices")
+            choice = choices[0] or {}
             msg = choice.get("message") or {}
             text = msg.get("content") or choice.get("text") or choice.get("delta", {}).get("content")
         except Exception as exc:  # noqa: BLE001
