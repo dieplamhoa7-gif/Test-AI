@@ -23,7 +23,9 @@ import math
 import os
 import re
 import sqlite3
+import tempfile
 import time
+import urllib.error
 import urllib.request
 import uuid
 from dataclasses import dataclass, field
@@ -44,6 +46,12 @@ STAGE_BACKOFF = float(os.getenv("PIPELINE_STAGE_BACKOFF", "0.8"))    # giây, nh
 REPORTS_DIR = Path(os.getenv("PIPELINE_REPORTS_DIR", "reports"))     # 'reports' đã tồn tại
 MODEL3_EXPORT_TTL_HOURS = float(os.getenv("PIPELINE_MODEL3_EXPORT_TTL_HOURS", "24"))
 MODEL3_OUT_DIR = Path(os.getenv("PIPELINE_MODEL3_OUT_DIR", "outputs/model3"))
+MODEL3_JOB_STATE_DIR = Path(
+    os.getenv(
+        "MODEL3_JOB_STATE_DIR",
+        "/tmp/disk/model3_jobs" if Path("/tmp/disk").exists() else str(Path(tempfile.gettempdir()) / "model3_jobs"),
+    )
+)
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
 MODEL3_SECTIONS = [
@@ -61,6 +69,48 @@ MODEL3_SECTIONS = [
 
 # hook cho phép test không cần pandas/mạng
 _DATA_PROVIDER: Optional[Callable[[str], dict]] = None
+
+
+def _model3_job_file(job_id: str) -> Path:
+    safe = re.sub(r"[^A-Za-z0-9_-]", "", str(job_id or ""))[:64]
+    if not safe:
+        raise ValueError("invalid job_id")
+    return MODEL3_JOB_STATE_DIR / f"{safe}.json"
+
+
+def _save_model3_job(job: dict[str, Any]) -> None:
+    """Persist Model3 job state so Render restarts do not lose job_id/status."""
+    job_id = str(job.get("job_id") or "")
+    if not job_id:
+        return
+    MODEL3_JOB_STATE_DIR.mkdir(parents=True, exist_ok=True)
+    path = _model3_job_file(job_id)
+    tmp = path.with_suffix(f".json.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(job, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    tmp.replace(path)
+
+
+def _load_model3_job(job_id: str) -> dict[str, Any] | None:
+    if job_id in MODEL3_JOBS:
+        return MODEL3_JOBS[job_id]
+    path = _model3_job_file(job_id)
+    if not path.exists():
+        return None
+    try:
+        job = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if isinstance(job, dict) and job.get("job_id") == job_id:
+        # A restarted Render process cannot resume the old background task. Make
+        # that explicit instead of returning 404/missing job.
+        if job.get("status") in {"queued", "running"}:
+            job["status"] = "interrupted"
+            job["error"] = job.get("error") or "Render process restarted before the in-flight Model3 job finished. Please start a new export."
+            job["updated_at"] = time.time()
+            _save_model3_job(job)
+        MODEL3_JOBS[job_id] = job
+        return job
+    return None
 
 
 def _load_symbol(symbol: str) -> dict:
@@ -885,6 +935,7 @@ def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
         "result": None,
     }
     MODEL3_JOBS[jid] = job
+    _save_model3_job(job)
     return job
 
 
@@ -944,6 +995,7 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
     running = sum(1 for s in job["sections"] if s["status"] == "running")
     job["progress"] = min(95, int((done + running * 0.5) / len(job["sections"]) * 100))
     job["updated_at"] = time.time()
+    _save_model3_job(job)
 
 
 def _model3_finalize_sections(job: dict[str, Any], result: dict[str, Any]) -> None:
@@ -957,25 +1009,33 @@ def _model3_finalize_sections(job: dict[str, Any], result: dict[str, Any]) -> No
         if job["agents"][a] == "running" or job["agents"][a] == "pending":
             job["agents"][a] = "done" if (a != "NotebookLM" or result.get("notebooklm")) else "skipped"
     job["progress"] = 100
+    job["updated_at"] = time.time()
+    _save_model3_job(job)
 
 
 async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
-    job = MODEL3_JOBS[job_id]
+    job = _load_model3_job(job_id)
+    if not job:
+        return
     job["status"] = "running"
     job["updated_at"] = time.time()
+    _save_model3_job(job)
     try:
         result = await asyncio.to_thread(_run_model3_full_export_sync, job["ticker"], notebooklm, lambda m: _model3_mark_progress(job, m))
         _model3_finalize_sections(job, result)
         job["result"] = result
         job["status"] = "done"
+        _save_model3_job(job)
     except Exception as exc:
         job["status"] = "error"
         job["error"] = str(exc)[-1500:]
+        _save_model3_job(job)
         for s in job["sections"]:
             if s["status"] == "running":
                 s["status"] = "error"
     finally:
         job["updated_at"] = time.time()
+        _save_model3_job(job)
 
 
 # ----------------------------- endpoints -----------------------------
@@ -1036,6 +1096,40 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     return j
 
 
+@router.get("/model3/market-gateway-test/{ticker}")
+async def model3_market_gateway_test(ticker: str = "SSI"):
+    """Fast Render-side check for the local market-data gateway, without running Model3."""
+    ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "SSI").upper()[:8]
+    if not ticker:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    timeout = float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30"))
+    url = f"{gateway}/market/{ticker}?force_refresh=true"
+    started = time.time()
+    try:
+        with urllib.request.urlopen(url, timeout=timeout) as resp:
+            body = resp.read().decode("utf-8")
+            data = json.loads(body)
+        latency_ms = int((time.time() - started) * 1000)
+        quote = data.get("quote") if isinstance(data, dict) else None
+        technical = data.get("technical") if isinstance(data, dict) else None
+        return JSONResponse({
+            "ok": True,
+            "ticker": ticker,
+            "url": url,
+            "latency_ms": latency_ms,
+            "source": (data.get("source") if isinstance(data, dict) else None) or (quote.get("source") if isinstance(quote, dict) else None),
+            "price": (data.get("price") if isinstance(data, dict) else None) or (quote.get("price") if isinstance(quote, dict) else None) or (technical.get("close") if isinstance(technical, dict) else None),
+            "volume": (data.get("volume") if isinstance(data, dict) else None) or (quote.get("volume") if isinstance(quote, dict) else None) or (technical.get("volume") if isinstance(technical, dict) else None),
+            "received_at": datetime.now(timezone.utc).isoformat(),
+        })
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")[:1000]
+        return JSONResponse({"ok": False, "ticker": ticker, "url": url, "status": exc.code, "error": body, "latency_ms": int((time.time() - started) * 1000)}, status_code=502)
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse({"ok": False, "ticker": ticker, "url": url, "error": f"{type(exc).__name__}: {str(exc)[:1000]}", "latency_ms": int((time.time() - started) * 1000)}, status_code=503)
+
+
 @router.get("/model3/freshness/{ticker}")
 async def model3_freshness(ticker: str):
     ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
@@ -1074,7 +1168,7 @@ async def model3_export(req: Model3ExportRequest):
 
 @router.get("/model3/status/{job_id}")
 async def model3_status(job_id: str):
-    job = MODEL3_JOBS.get(job_id)
+    job = _load_model3_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="job_id không tồn tại")
     return JSONResponse(_public_model3_job(job))
