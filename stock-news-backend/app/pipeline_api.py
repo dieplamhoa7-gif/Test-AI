@@ -725,7 +725,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         if not gateway:
             continue
         try:
-            url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
+            url = f"{gateway}/market-compact/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
             _status, data, _size = _urlopen_json(url, min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0), 524288)
             log(f"✅ Freshness gate: lấy data qua gateway {gateway}")
             break
@@ -1249,7 +1249,7 @@ async def model3_market_gateway_test(ticker: str = "SSI"):
     timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
     attempts: list[dict[str, Any]] = []
     for gateway in _market_gateway_base_urls():
-        url = f"{gateway}/market/{ticker}?force_refresh=false"
+        url = f"{gateway}/market-compact/{ticker}?force_refresh=false"
         started = time.time()
         try:
             status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, 262144)
