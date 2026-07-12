@@ -1254,6 +1254,30 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         extra_steps.append(CLAUDE_FINAL)
 
     def _run_step_group(steps: list[AgentStep], context: str, phase_label: str, offset: int, total: int) -> list[dict[str, Any]]:
+        # The local PC AI gateway is reliable but small; parallel 2-4 section
+        # bursts can overload its upstream router and return transient 502s.
+        # Default Model3 production to sequential AI sections for clean output;
+        # allow explicit opt-out when a stronger provider is configured.
+        sequential = os.getenv("MODEL3_SEQUENTIAL_AI", "1").lower() not in ("0", "false", "no")
+        if sequential:
+            progress(f"🚦 {phase_label}: chạy tuần tự {len(steps)} bot để tránh quá tải AI gateway và loại fallback 502.")
+            group_posts: list[dict[str, Any]] = []
+            for pos, step_obj in enumerate(steps, 1):
+                idx = offset + pos
+                started = time.time()
+                try:
+                    if step_obj.label == MODEL3_NEWS.label:
+                        post = _run_news_branch()
+                    else:
+                        post = _run_step(context, step_obj, [], progress, idx, total, mode)
+                except Exception as exc:  # noqa: BLE001
+                    post = _err(step_obj, exc, time.time() - started, mode)
+                    progress(f"❌ {step_obj.label} lỗi ({type(exc).__name__})")
+                if post.get("name") == MODEL3_NEWS.label:
+                    post["content"] = _extract_marked_result(str(post.get("content", "")))
+                group_posts.append(post)
+            return group_posts
+
         progress(f"🚦 {phase_label}: chạy song song {len(steps)} bot theo nhóm dependency đã sắp xếp.")
         futures: dict[Any, tuple[AgentStep, float]] = {}
         for pos, step_obj in enumerate(steps, 1):
