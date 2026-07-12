@@ -1114,9 +1114,10 @@ def _market_gateway_base_urls() -> list[str]:
     # public Funnel route and tailnet-IP route as candidates.
     primary = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
     public_funnel = os.getenv("MARKET_DATA_GATEWAY_FUNNEL_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    tailnet_host = os.getenv("MARKET_DATA_GATEWAY_TAILNET_HOST_URL", "http://3t8l9f.tail6c0e00.ts.net:20129").rstrip("/")
     fallback = os.getenv("MARKET_DATA_GATEWAY_FALLBACK_URL", "http://100.89.47.25:20129").rstrip("/")
     urls: list[str] = []
-    for u in (primary, public_funnel, fallback):
+    for u in (primary, public_funnel, tailnet_host, fallback):
         if u and u not in urls:
             urls.append(u)
     return urls
@@ -1156,6 +1157,36 @@ async def model3_render_network_diag():
         except Exception as exc:  # noqa: BLE001
             diag[cmd_name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
     return JSONResponse(diag)
+
+
+@router.get("/model3/render-tailnet-peers")
+async def model3_render_tailnet_peers():
+    """Compact Tailscale peer view focused on the local gateway host."""
+    try:
+        cp = await asyncio.to_thread(subprocess.run, ["tailscale", "status", "--json"], capture_output=True, text=True, timeout=8)
+        data = json.loads(cp.stdout or "{}") if cp.returncode == 0 else {}
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse({"ok": False, "error_type": type(exc).__name__, "error": str(exc)[:1000]}, status_code=503)
+    peers = []
+    for peer in (data.get("Peer") or {}).values():
+        if not isinstance(peer, dict):
+            continue
+        host = peer.get("HostName") or ""
+        ips = peer.get("TailscaleIPs") or []
+        if host == "3t8l9f" or "100.89.47.25" in ips or host.startswith("render-model3"):
+            peers.append({
+                "host": host,
+                "dns": peer.get("DNSName"),
+                "ips": ips,
+                "online": peer.get("Online"),
+                "active": peer.get("Active"),
+                "last_seen": peer.get("LastSeen"),
+                "cur_addr": peer.get("CurAddr"),
+                "relay": peer.get("Relay"),
+                "rx": peer.get("RxBytes"),
+                "tx": peer.get("TxBytes"),
+            })
+    return JSONResponse({"ok": True, "self_ips": data.get("Self", {}).get("TailscaleIPs"), "peers": peers})
 
 
 @router.get("/model3/market-gateway-ping")
