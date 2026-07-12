@@ -114,17 +114,10 @@ def _load_model3_job(job_id: str) -> dict[str, Any] | None:
     return None
 
 
-def _load_symbol(symbol: str) -> dict:
-    if _DATA_PROVIDER is not None:
-        return _DATA_PROVIDER(symbol)
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
-    if gateway:
-        url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', symbol.upper())}?force_refresh=true"
-        with urllib.request.urlopen(url, timeout=float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90"))) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+def _load_symbol_local_provider(symbol: str, force_refresh: bool = False) -> dict:
     try:
         from app.market_data import get_market_symbol  # type: ignore  # optional local provider
-        return get_market_symbol(symbol)
+        return get_market_symbol(symbol, force_refresh=force_refresh)
     except ModuleNotFoundError as exc:
         if exc.name != "app.market_data":
             raise
@@ -147,7 +140,21 @@ def _load_symbol(symbol: str) -> dict:
         raise ModuleNotFoundError(f"Cannot load market data provider from {provider_path}")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)  # type: ignore[union-attr]
-    return mod.get_market_symbol(symbol)
+    return mod.get_market_symbol(symbol, force_refresh=force_refresh)
+
+
+def _load_symbol(symbol: str) -> dict:
+    if _DATA_PROVIDER is not None:
+        return _DATA_PROVIDER(symbol)
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    if gateway:
+        try:
+            url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', symbol.upper())}?force_refresh=true"
+            with urllib.request.urlopen(url, timeout=min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0)) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception:
+            pass
+    return _load_symbol_local_provider(symbol, force_refresh=True)
 
 
 # ----------------------------- helpers -----------------------------
@@ -712,38 +719,27 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
                 pass
 
     log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
-    if gateway:
+    gateway_errors: list[str] = []
+    data = None
+    for gateway in _market_gateway_base_urls() if '_market_gateway_base_urls' in globals() else [os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")]:
+        if not gateway:
+            continue
         try:
-            url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
-            with urllib.request.urlopen(url, timeout=float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90"))) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-            log(f"✅ Freshness gate: lấy data qua local gateway {gateway}")
+            url = f"{gateway}/market-compact/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
+            _status, data, _size = _urlopen_json(url, min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0), 524288)
+            log(f"✅ Freshness gate: lấy data qua gateway {gateway}")
+            break
         except Exception as exc:  # noqa: BLE001
-            raise RuntimeError(f"CALL_ASSISTANT_FIX: Local market-data gateway lỗi: {type(exc).__name__}: {str(exc)[:500]}")
-    else:
-        import importlib.util
-        provider_path = None
-        here = Path(__file__).resolve()
-        for parent in here.parents:
-            candidate = parent / "stock-news-backend" / "app" / "market_data.py"
-            if candidate.exists():
-                provider_path = candidate
-                break
-        if provider_path is None:
-            provider_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\app\market_data.py")
-        if not provider_path.exists():
-            raise RuntimeError("CALL_ASSISTANT_FIX: Không tìm thấy market_data.py để kiểm tra freshness")
-        spec = importlib.util.spec_from_file_location("fresh_market_data_provider", provider_path)
-        if spec is None or spec.loader is None:
-            raise RuntimeError(f"CALL_ASSISTANT_FIX: Không load được market data provider: {provider_path}")
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)  # type: ignore[union-attr]
-
+            gateway_errors.append(f"{gateway}: {type(exc).__name__}: {str(exc)[:200]}")
+    if data is None:
         try:
-            data = mod.get_market_symbol(ticker, force_refresh=True)
+            data = _load_symbol_local_provider(ticker, force_refresh=True)
+            log("✅ Freshness gate: gateway unreachable, fallback local Render market_data provider OK")
         except Exception as exc:
-            raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
+            raise RuntimeError(
+                "CALL_ASSISTANT_FIX: Không lấy được market data qua gateway hoặc provider local. "
+                f"Gateway errors: {' | '.join(gateway_errors)[-1000:]}. Local error: {type(exc).__name__}: {exc}"
+            ) from exc
 
     def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
         """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
@@ -796,8 +792,11 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         issues.append(f"source không phải VPS live quote: {source}")
     if quote_dt is None or quote_age_min > 15:
         issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
-    if hist_dt is None or hist_age_days > 1:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    # Weekend/holiday tolerance: on Sat/Sun, the latest trading bar is often
+    # Friday, so a 2-3 calendar-day gap can still be fresh.
+    max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
+    if hist_dt is None or hist_age_days > max_hist_age_days:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}, max={max_hist_age_days}")
     if not price or float(price) <= 0:
         issues.append(f"giá không hợp lệ: {price}")
     if volume is None or int(float(volume or 0)) <= 0:
@@ -870,13 +869,14 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     feed = state.get("feed", []) if isinstance(state, dict) else []
     bad_markers = ("mock", "fallback", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "không dùng web fallback")
     joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
-    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and any(m.lower() in joined_feed.lower() for m in bad_markers):
-        raise RuntimeError(
-            "Model3 AI chưa chạy đủ thật/đầy đủ nên chặn xuất Word để tránh file trống hoặc báo cáo giả. "
-            "Kiểm tra AI provider key/log Render rồi chạy lại."
-        )
+    partial_quality = any(m.lower() in joined_feed.lower() for m in bad_markers)
     docx = _latest_model3_docx(ticker, before)
     if docx is None or not docx.exists():
+        if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+            raise RuntimeError(
+                "Model3 AI chưa chạy đủ thật/đầy đủ và không tìm thấy DOCX để trả về. "
+                "Kiểm tra AI provider key/log Render rồi chạy lại."
+            )
         raise RuntimeError(f"Khong tim thay DOCX sau khi chay Model3 cho {ticker}")
 
     result: dict[str, Any] = {
@@ -887,7 +887,13 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "feed_count": len(state.get("feed", [])) if isinstance(state, dict) else None,
         "logs_tail": logs[-30:],
         "freshness": freshness,
+        "partial_quality": partial_quality,
     }
+    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+        result["warning"] = (
+            "Model3 đã xuất DOCX nhưng một số AI provider bị timeout/502 nên báo cáo có thể dùng fallback/thiếu phần Kiro. "
+            "Trả link file để kiểm tra, không coi là báo cáo chất lượng đầy đủ."
+        )
 
     if with_notebooklm:
         try:
@@ -1068,6 +1074,32 @@ async def run_pipeline(req: RunRequest):
     return {"batch_id": batch_id, "runs": runs}
 
 
+def _recover_model3_docx_result(job: dict[str, Any]) -> dict[str, Any] | None:
+    """Expose a DOCX that was already written even if final quality guard failed."""
+    ticker = re.sub(r"[^A-Z0-9]", "", str(job.get("ticker", "")).upper())[:8]
+    logs = [str(x) for x in job.get("logs", []) if x]
+    joined = "\n".join(logs)
+    m = re.search(r"(outputs/model3/[^\s]+\.docx)", joined)
+    docx: Path | None = None
+    if m:
+        cand = Path(m.group(1))
+        if cand.exists():
+            docx = cand
+    if docx is None and ticker:
+        docx = _latest_model3_docx(ticker, set())
+    if docx is None or not docx.exists():
+        return None
+    return {
+        "ok": True,
+        "ticker": ticker,
+        "docx_path": str(docx),
+        "docx_name": docx.name,
+        "partial_quality": True,
+        "warning": "DOCX đã được ghi nhưng job bị đánh dấu error do một số AI provider timeout/502; dùng file này để kiểm tra, chưa coi là báo cáo chất lượng đầy đủ.",
+        "logs_tail": logs[-30:],
+    }
+
+
 def _public_model3_result(result: dict[str, Any] | None) -> dict[str, Any] | None:
     if not isinstance(result, dict):
         return None
@@ -1092,7 +1124,10 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
-    j["result"] = _public_model3_result(job.get("result"))
+    result = job.get("result")
+    if not isinstance(result, dict) and job.get("status") == "error":
+        result = _recover_model3_docx_result(job)
+    j["result"] = _public_model3_result(result)
     j["logs_tail"] = (job.get("logs") or [])[-20:]
     return j
 
@@ -1114,18 +1149,36 @@ def _market_gateway_base_urls() -> list[str]:
     # public Funnel route and tailnet-IP route as candidates.
     primary = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
     public_funnel = os.getenv("MARKET_DATA_GATEWAY_FUNNEL_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    tailnet_host = os.getenv("MARKET_DATA_GATEWAY_TAILNET_HOST_URL", "http://3t8l9f.tail6c0e00.ts.net:20129").rstrip("/")
     fallback = os.getenv("MARKET_DATA_GATEWAY_FALLBACK_URL", "http://100.89.47.25:20129").rstrip("/")
     urls: list[str] = []
-    for u in (primary, public_funnel, fallback):
+    for u in (primary, public_funnel, tailnet_host, fallback):
         if u and u not in urls:
             urls.append(u)
     return urls
 
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    # Render start_render.sh exports HTTP(S)_PROXY/ALL_PROXY to Tailscale
-    # userspace networking (127.0.0.1:1055). Use urllib's default proxy-aware
-    # opener so *.ts.net DNS and tailnet IP routes resolve through Tailscale.
+    # Render reaches the user's PC through Tailscale userspace networking on
+    # 127.0.0.1:1055. urllib can still mis-handle NO_PROXY/HTTP proxy edge cases
+    # here, while curl -x 127.0.0.1:1055 is verified working from Render. Prefer
+    # curl when a gateway proxy exists, then keep urllib as a local/dev fallback.
+    proxy = os.getenv("MARKET_DATA_GATEWAY_PROXY") or os.getenv("ALL_PROXY") or os.getenv("HTTP_PROXY")
+    if proxy:
+        cmd = ["curl", "-sS", "-m", str(max(1, int(timeout))), "-x", proxy, url]
+        cp = subprocess.run(cmd, capture_output=True, text=False, timeout=timeout + 3)
+        raw = cp.stdout or b""
+        if cp.returncode == 0 and raw:
+            truncated = bool(max_bytes is not None and len(raw) > max_bytes)
+            if max_bytes is not None:
+                raw = raw[:max_bytes]
+            data = json.loads(raw.decode("utf-8"))
+            if isinstance(data, dict):
+                data["_response_truncated"] = truncated
+            return 200, data, len(raw)
+        err = (cp.stderr or b"").decode("utf-8", errors="replace")[-1000:]
+        raise urllib.error.URLError(f"curl gateway proxy failed rc={cp.returncode}: {err}")
+
     with urllib.request.urlopen(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
@@ -1158,6 +1211,55 @@ async def model3_render_network_diag():
     return JSONResponse(diag)
 
 
+@router.get("/model3/render-tailnet-peers")
+async def model3_render_tailnet_peers():
+    """Compact Tailscale peer view focused on the local gateway host."""
+    try:
+        cp = await asyncio.to_thread(subprocess.run, ["tailscale", "status", "--json"], capture_output=True, text=True, timeout=8)
+        data = json.loads(cp.stdout or "{}") if cp.returncode == 0 else {}
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse({"ok": False, "error_type": type(exc).__name__, "error": str(exc)[:1000]}, status_code=503)
+    peers = []
+    for peer in (data.get("Peer") or {}).values():
+        if not isinstance(peer, dict):
+            continue
+        host = peer.get("HostName") or ""
+        ips = peer.get("TailscaleIPs") or []
+        if host == "3t8l9f" or "100.89.47.25" in ips or host.startswith("render-model3"):
+            peers.append({
+                "host": host,
+                "dns": peer.get("DNSName"),
+                "ips": ips,
+                "online": peer.get("Online"),
+                "active": peer.get("Active"),
+                "last_seen": peer.get("LastSeen"),
+                "cur_addr": peer.get("CurAddr"),
+                "relay": peer.get("Relay"),
+                "rx": peer.get("RxBytes"),
+                "tx": peer.get("TxBytes"),
+            })
+    return JSONResponse({"ok": True, "self_ips": data.get("Self", {}).get("TailscaleIPs"), "peers": peers})
+
+
+@router.get("/model3/render-curl-gateway")
+async def model3_render_curl_gateway():
+    """Try gateway with curl through/no proxy to diagnose urllib vs network."""
+    cmds = {
+        "curl_default_ip": ["curl", "-sS", "-m", "12", "-v", "http://100.89.47.25:20129/health"],
+        "curl_http_proxy_ip": ["curl", "-sS", "-m", "12", "-x", "http://127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_socks_ip": ["curl", "-sS", "-m", "12", "--socks5-hostname", "127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_funnel": ["curl", "-sS", "-m", "12", "-v", "https://3t8l9f.tail6c0e00.ts.net/marketdata/health"],
+    }
+    out: dict[str, Any] = {}
+    for name, cmd in cmds.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=15)
+            out[name] = {"returncode": cp.returncode, "stdout": cp.stdout[-1000:], "stderr": cp.stderr[-2000:]}
+        except Exception as exc:  # noqa: BLE001
+            out[name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(out)
+
+
 @router.get("/model3/market-gateway-ping")
 async def model3_market_gateway_ping():
     """Render-side network ping to gateway /health; does not fetch market payload."""
@@ -1183,7 +1285,7 @@ async def model3_market_gateway_test(ticker: str = "SSI"):
     timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
     attempts: list[dict[str, Any]] = []
     for gateway in _market_gateway_base_urls():
-        url = f"{gateway}/market/{ticker}?force_refresh=false"
+        url = f"{gateway}/market-compact/{ticker}?force_refresh=false"
         started = time.time()
         try:
             status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, 262144)

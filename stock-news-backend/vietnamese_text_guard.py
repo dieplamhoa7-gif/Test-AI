@@ -6,6 +6,11 @@ from typing import Any
 BAD_MOJIBAKE_MARKERS = (
     "\ufffd", "Ã", "Ä", "Æ", "Ð", "ð", "áº", "á»", "â€",
     "ThA", "phá»", "Ä‘", "Æ°", "Æ¡",
+    # Some upstream caches/providers replace Vietnamese bytes with literal '?'
+    # instead of U+FFFD. Count only high-signal Vietnamese finance phrases to
+    # avoid treating normal question marks as mojibake.
+    "B�o", "c? phi", "c? ph", "d?u t", "T�m t", "d? li", "k? thu", "d�nh gi",
+    "h? tr", "kh�ng c", "r?i ro", "tin t?c", "l?i nhu", "khuy?n ngh",
 )
 
 UNACCENTED_MARKERS = (
@@ -19,6 +24,28 @@ UNACCENTED_MARKERS = (
 )
 
 VI_PHRASE_FIXES: list[tuple[str, str]] = [
+    # Literal-question-mark mojibake seen in generated DOCX files.
+    ("BAO CAO PHAN TICH C? PHI?U", "BÁO CÁO PHÂN TÍCH CỔ PHIẾU"),
+    ("B�o c�o", "Báo cáo"), ("b�o c�o", "báo cáo"),
+    ("c? phi?u", "cổ phiếu"), ("C? phi?u", "Cổ phiếu"),
+    ("nh� d?u tu", "nhà đầu tư"), ("d?u tu", "đầu tư"),
+    ("T?ng h?p", "Tổng hợp"), ("t?ng h?p", "tổng hợp"),
+    ("tin t?c", "tin tức"), ("Tin t?c", "Tin tức"),
+    ("k? thu?t", "kỹ thuật"), ("K? thu?t", "Kỹ thuật"),
+    ("d?nh gi�", "đánh giá"), ("D?nh gi�", "Đánh giá"),
+    ("r?i ro", "rủi ro"), ("R?i ro", "Rủi ro"),
+    ("d? li?u", "dữ liệu"), ("D? li?u", "Dữ liệu"),
+    ("h? tr?", "hỗ trợ"), ("H? tr?", "Hỗ trợ"),
+    ("kh�ng c?", "kháng cự"), ("Kh�ng c?", "Kháng cự"),
+    ("l?i nhu?n", "lợi nhuận"), ("L?i nhu?n", "Lợi nhuận"),
+    ("khuy?n ngh?", "khuyến nghị"), ("Khuy?n ngh?", "Khuyến nghị"),
+    ("di?u ki?n", "điều kiện"), ("Di?u ki?n", "Điều kiện"),
+    ("h�nh d?ng", "hành động"), ("H�nh d?ng", "Hành động"),
+    ("theo doi", "theo dõi"), ("Theo doi", "Theo dõi"),
+    ("v�ng gi�", "vùng giá"), ("V�ng gi�", "Vùng giá"),
+    ("thanh kho?n", "thanh khoản"), ("Thanh kho?n", "Thanh khoản"),
+    ("c?n", "cần"), ("C?n", "Cần"),
+    ("chua", "chưa"), ("Chua", "Chưa"),
     ("Tm tt", "Tóm tắt"), ("tom tat", "tóm tắt"),
     ("dau tu", "đầu tư"),
     ("Ngan hang", "Ngân hàng"), ("Ngn hng", "Ngân hàng"),

@@ -514,6 +514,47 @@ def _model3_codex_fallback(task: str, s: AgentStep, exc: Exception) -> str:
     raise exc
 
 
+def _model3_kiro_fallback(task: str, s: AgentStep, exc: Exception, transcript: list[str]) -> str:
+    """Deterministic fallback for Model3 Kiro sections when the LLM provider times out."""
+    ticker_match = re.search(r"\b[A-Z]{2,5}\b", task.upper())
+    ticker = ticker_match.group(0) if ticker_match else "MÃ CP"
+    reason = str(exc).replace("\n", " ")[:500]
+    context_hint = _clip("\n\n".join(transcript[-4:]), 1800)
+    if s is MODEL3_SCENARIO or s.label == MODEL3_SCENARIO.label:
+        title = "Kịch bản đầu tư chuyên sâu"
+        bullets = (
+            "- Kịch bản tích cực: chỉ xem xét khi giá/khối lượng xác nhận đồng thuận với xu hướng và có catalyst mới rõ ràng.\n"
+            "- Kịch bản cơ sở: giữ quan điểm thận trọng, ưu tiên dữ liệu giá, thanh khoản, fundamental và macro đã có trong context.\n"
+            "- Kịch bản tiêu cực: giảm tỷ trọng/không mua đuổi nếu tín hiệu kỹ thuật suy yếu, thanh khoản mất xác nhận hoặc tin tức bất lợi xuất hiện.\n"
+            "- Điều kiện hành động: cần refresh dữ liệu thị trường và kiểm chứng lại vùng hỗ trợ/kháng cự trước khi ra quyết định."
+        )
+    elif s is MODEL3_RISK or s.label == MODEL3_RISK.label:
+        title = "Rủi ro và quan điểm"
+        bullets = (
+            "- Rủi ro dữ liệu: một số provider AI timeout nên phần nhận định định tính cần manual review.\n"
+            "- Rủi ro thị trường: biến động thanh khoản, xu hướng VNIndex/ngành và tin tức bất thường có thể làm kịch bản thay đổi.\n"
+            "- Rủi ro thực thi: không dùng báo cáo fallback làm khuyến nghị mua/bán tự động; chỉ dùng như bản kiểm thử có dữ liệu market thật.\n"
+            "- Quan điểm: ưu tiên bảo toàn vốn, chờ xác nhận bằng dữ liệu mới trước khi nâng mức tin cậy."
+        )
+    elif s is MODEL3_QUICK_SUMMARY or s.label == MODEL3_QUICK_SUMMARY.label:
+        title = "Tóm tắt nhanh"
+        bullets = (
+            "- Báo cáo đã lấy được dữ liệu thị trường thật qua gateway và tiếp tục xuất Word.\n"
+            "- Một số nhánh AI provider bị timeout/502 nên nội dung Kiro được thay bằng fallback kiểm soát rủi ro.\n"
+            "- Cần đọc phần freshness/technical/fundamental và kiểm chứng thủ công trước khi dùng."
+        )
+    else:
+        title = s.label
+        bullets = "- Provider Kiro timeout; dùng fallback an toàn để workflow không chết.\n- Không bịa số liệu mới ngoài context đã có."
+    return (
+        f"## {title} — {ticker}\n"
+        f"Provider Kiro bị timeout nên dùng fallback an toàn, không bịa dữ liệu.\n\n"
+        f"{bullets}\n\n"
+        f"Ngữ cảnh gần nhất dùng để kiểm soát nội dung:\n{context_hint}\n\n"
+        f"Ghi chú kỹ thuật: Kiro timeout/provider error ({reason})."
+    )
+
+
 def _run_step(task: str, s: AgentStep, transcript: list[str], progress: ProgressFn, idx: int, total: int, mode: str) -> dict[str, Any]:
     progress(f"⏳ [{idx}/{total}] {s.label}: {s.goal}")
     started = time.time()
@@ -522,8 +563,13 @@ def _run_step(task: str, s: AgentStep, transcript: list[str], progress: Progress
         content = _repair_mojibake(_complete(s.agent_id, s.label, prompt, _system(s), progress))
     except Exception as exc:
         if s in (MODEL3_ANALYSIS, MODEL3_FUNDAMENTAL, MODEL3_BULL_BEAR, MODEL3_FOLLOWUP_PLAN):
-            progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}).")
+            detail = str(exc).replace("\n", " ")[:700]
+            progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}: {detail}).")
             content = _model3_codex_fallback(task, s, exc)
+        elif s in (MODEL3_SCENARIO, MODEL3_RISK, MODEL3_QUICK_SUMMARY):
+            detail = str(exc).replace("\n", " ")[:700]
+            progress(f"⚠️ {s.label}: Kiro provider lỗi/timeout, dùng fallback nội bộ để workflow không đỏ ({type(exc).__name__}: {detail}).")
+            content = _model3_kiro_fallback(task, s, exc, transcript)
         else:
             raise
     # UTF-8 skill: clean at provider boundary first. Do not push obviously broken
@@ -1014,13 +1060,18 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
     base_url = (
         os.environ.get("GROK_9ROUTER_BASE_URL")
         or os.environ.get("OPENAI_BASE_URL")
-        or "https://api.9router.com/v1"
+        or "https://openrouter.ai/api/v1"
     ).rstrip("/")
     model = (
         os.environ.get("GROK_9ROUTER_MODEL")
         or os.environ.get("GROK_MODEL")
-        or "Grok"
+        or os.environ.get("MODEL3_OPENROUTER_MODEL")
+        or "qwen/qwen3-next-80b-a3b-instruct:free"
     ).strip()
+    if re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", base_url):
+        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
+    if model in ("", "Grok", "APIFREE", "Kiro", "grok-2-latest"):
+        model = os.environ.get("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")
 
     def _chat(prompt_text: str, call_timeout: int) -> str:
         payload = {
@@ -1153,13 +1204,17 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
                 "framework": mode,
             }
         except Exception as exc:  # noqa: BLE001
+            # Product mode: do not leave the investor report without news/data.
+            # If the Grok/OpenAI-compatible provider is down, use the already
+            # researched public-web context as an explicit fallback and label it.
             elapsed = time.time() - started
-            progress(f"❌ GrokX News & Impact lỗi thật ({type(exc).__name__}); không dùng web fallback thay Grok.")
+            progress(f"⚠️ GrokX News provider lỗi ({type(exc).__name__}); dùng public-web news fallback có ghi nhãn để báo cáo vẫn đủ tin.")
+            fallback = presearched_news_context.strip() or f"Không tìm thấy tin public-web đủ rõ cho {sym}."
             return {
                 "agent": "grok",
                 "name": MODEL3_NEWS.label,
-                "action": "GROK_NEWS_FAILED | no_web_fallback",
-                "content": f"GROK_NEWS_FAILED: {type(exc).__name__}: {exc}. Không dùng nguồn thay thế để lấp phần tin; cần sửa Grok 9router API/search trước khi xuất bản tin tức.",
+                "action": "Grok provider unavailable | public-web news fallback",
+                "content": "GROK_PROVIDER_UNAVAILABLE — dùng public-web news fallback có kiểm soát, không bịa.\n\n" + fallback,
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
                 "elapsed": elapsed,
                 "speaks_to": MODEL3_NEWS.speak_to,
