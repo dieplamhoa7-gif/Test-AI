@@ -1119,8 +1119,8 @@ def _market_gateway_base_urls() -> list[str]:
 
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if re.search(r"https?://100\.89\.47\.25(?::|/)", url) else urllib.request
-    with opener.urlopen(url, timeout=timeout) as resp:
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if re.search(r"https?://100\.89\.47\.25(?::|/)", url) else urllib.request.build_opener()
+    with opener.open(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
