@@ -1069,8 +1069,10 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
         or "qwen/qwen3-next-80b-a3b-instruct:free"
     ).strip()
     if re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", base_url):
-        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
-    if model in ("", "Grok", "APIFREE", "Kiro", "grok-2-latest"):
+        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", "http://100.89.47.25:20129/ai/v1").rstrip("/")
+    if "100.89.47.25:20129/ai" in base_url:
+        model = "APIFREE"
+    elif model in ("", "Grok", "APIFREE", "Kiro", "grok-2-latest"):
         model = os.environ.get("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")
 
     def _chat(prompt_text: str, call_timeout: int) -> str:

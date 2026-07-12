@@ -135,6 +135,7 @@ class OpenAICompatReal(TextAgent):
             os.getenv("MODEL3_FALLBACK_BASE_URL", ""),
             os.getenv("GROK_9ROUTER_BASE_URL", ""),
             "https://openrouter.ai/api/v1",
+            "http://100.89.47.25:20129/ai/v1",
         ):
             b = (raw or "").strip().rstrip("/")
             if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", b):
@@ -157,7 +158,7 @@ class OpenAICompatReal(TextAgent):
                     r = requests.post(
                         f"{base}/chat/completions",
                         headers={"Authorization": f"Bearer {self.api_key}"},
-                        json={"model": self.model, "messages": msgs, "temperature": 0.4},
+                        json={"model": "APIFREE" if "100.89.47.25:20129/ai" in base else self.model, "messages": msgs, "temperature": 0.4},
                         timeout=self.timeout,
                     )
                     r.raise_for_status()
@@ -175,9 +176,11 @@ class OpenAICompatReal(TextAgent):
                     except Exception:
                         body = ""
                     last_exc = RuntimeError(f"{self.agent_id} provider HTTP {status} model={self.model} base={base}: {body}")
-                    # 401/403 means bad key; trying the same key elsewhere will not help.
+                    # 401/403 means bad key for this provider. Continue to the
+                    # local gateway AI proxy candidate, which does not require
+                    # Render to hold the secret.
                     if str(status) in ("401", "403"):
-                        raise last_exc from exc
+                        break
                     break
                 except (requests.Timeout, requests.ConnectionError, RuntimeError, ValueError, json.JSONDecodeError) as exc:
                     last_exc = exc
