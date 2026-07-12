@@ -867,13 +867,32 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     )
     state = run_model3_workflow(task, progress)
     feed = state.get("feed", []) if isinstance(state, dict) else []
-    # Mark partial only for real provider/quality failures that made the report
-    # materially incomplete. Do not flag controlled public-news enrichment as
-    # partial: it is now part of the production degradation path when Grok's
-    # vendor schema is unavailable, and the DOCX still contains sourced news.
-    bad_markers = ("mock", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "AI_PROVIDER_FAILED", "không tìm thấy DOCX")
+    # Clean quality gate: any core AI provider timeout/502/internal fallback means
+    # the export is NOT a clean Model3 report. Public-web news fallback remains
+    # allowed only when MODEL3_ALLOW_NEWS_FALLBACK_CLEAN=1.
+    bad_markers = (
+        "mock",
+        "Provider Codex bị timeout",
+        "Provider Codex bi timeout",
+        "Provider Kiro bị timeout",
+        "Provider Kiro bi timeout",
+        "provider lỗi/timeout",
+        "provider loi/timeout",
+        "HTTP 502",
+        "502 Bad Gateway",
+        "fallback nội bộ",
+        "fallback noi bo",
+        "AI_PROVIDER_FAILED",
+        "GROK_NEWS_FAILED",
+        "không tìm thấy DOCX",
+        "khong tim thay DOCX",
+    )
     joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
-    partial_quality = any(m.lower() in joined_feed.lower() for m in bad_markers)
+    joined_logs = "\n".join(logs)
+    quality_text = (joined_feed + "\n" + joined_logs).lower()
+    partial_quality = any(m.lower() in quality_text for m in bad_markers)
+    if os.getenv("MODEL3_ALLOW_NEWS_FALLBACK_CLEAN", "").lower() not in ("1", "true", "yes"):
+        partial_quality = partial_quality or ("public-web news fallback" in quality_text) or ("grok_provider_unavailable" in quality_text)
     docx = _latest_model3_docx(ticker, before)
     if docx is None or not docx.exists():
         if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
@@ -973,11 +992,19 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
     if matched:
         section_key, agent = matched
         terminal_done = ("✅" in text) or (" xong" in low) or ("done" in low) or ("created" in low and section_key == "notebooklm")
-        # Do not paint Codex red for controlled fallback warnings. Messages like
-        # "provider lỗi/timeout, dùng fallback" mean the workflow is recovering,
-        # not that the section failed. Only hard failure markers should become error.
+        # Provider fallback is recoverable for producing an inspectable artifact,
+        # but it is not a clean section. Paint it red/partial instead of letting a
+        # fallback report look like full AI quality.
         recoverable = ("fallback" in low) or ("workflow không chết" in low) or ("workflow khong chet" in low)
-        terminal_error = (not recoverable) and (("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low))
+        provider_quality_error = (
+            "provider lỗi/timeout" in low
+            or "provider loi/timeout" in low
+            or "http 502" in low
+            or "502 bad gateway" in low
+            or "fallback nội bộ" in low
+            or "fallback noi bo" in low
+        )
+        terminal_error = provider_quality_error or ((not recoverable) and (("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low)))
         next_status = "error" if terminal_error else ("done" if terminal_done else "running")
         if agent in job["agents"]:
             if next_status == "error":
