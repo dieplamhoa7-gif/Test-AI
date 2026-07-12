@@ -32,7 +32,11 @@ def env(name: str, default: str = "") -> str:
 
 
 def log(msg: str) -> None:
-    print(time.strftime("%Y-%m-%d %H:%M:%S"), msg, flush=True)
+    safe = str(msg).encode("utf-8", errors="replace").decode("utf-8", errors="replace")
+    try:
+        print(time.strftime("%Y-%m-%d %H:%M:%S"), safe, flush=True)
+    except UnicodeEncodeError:
+        print(time.strftime("%Y-%m-%d %H:%M:%S"), safe.encode("ascii", errors="replace").decode("ascii"), flush=True)
 
 
 def request_json(method: str, url: str, token: str, **kwargs: Any) -> dict[str, Any]:

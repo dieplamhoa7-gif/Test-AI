@@ -57,6 +57,7 @@ $python = (Get-Command python -ErrorAction SilentlyContinue).Source
 if (-not $python) { $python = (Get-Command py -ErrorAction SilentlyContinue).Source }
 if (-not $python) { Log 'Python not found'; exit 3 }
 
+$env:PYTHONIOENCODING = 'utf-8'
 $env:MODEL3_RENDER_BASE = $RenderBase
 $env:MODEL3_WORKER_TOKEN = $WorkerToken
 $env:PIPELINE_MODEL3_OUT_DIR = Join-Path $RepoDir 'outputs\model3'
