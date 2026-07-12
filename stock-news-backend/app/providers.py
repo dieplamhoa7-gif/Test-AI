@@ -110,13 +110,12 @@ class OpenAICompatReal(TextAgent):
 
     def __init__(self, agent_id: str, base_url: str, api_key: str, model: str) -> None:
         self.agent_id = agent_id
-        # Render dashboard can retain stale hidden env values on blueprint-managed
-        # services. For Hòa Đại ka's Model3 deployment, force the working
-        # OpenAI-compatible Tailscale Funnel proxy when the stale public 9router
-        # URL leaks through; never expose the key in logs.
-        if "api.9router.com" in (base_url or "") or "tail6c0e00.ts.net" in (base_url or ""):
-            base_url = os.getenv("MODEL3_FORCE_BASE_URL", "http://100.89.47.25:20128/v1")
-        self.base_url = base_url.rstrip("/")
+        # Do not silently force AI calls through the market-data PC tunnel. 20128
+        # can point at a local 9Router web UI/reverse proxy and return HTML/502,
+        # which made Model3 Codex/Kiro fail. Use the configured base first, then
+        # safe OpenAI-compatible fallbacks if a provider is unavailable.
+        forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
+        self.base_url = (forced or base_url or "https://api.9router.com/v1").rstrip("/")
         self.api_key = api_key
         if model in ("", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
             model = "Kiro" if agent_id == "kiro" else "APIFREE"
@@ -124,39 +123,62 @@ class OpenAICompatReal(TextAgent):
         self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "150"))
         self.retries = int(os.getenv("SUPERLH_OPENAI_COMPAT_RETRIES", "0"))
 
+    def _base_candidates(self) -> list[str]:
+        bases: list[str] = []
+        for raw in (
+            self.base_url,
+            os.getenv("MODEL3_FALLBACK_BASE_URL", ""),
+            os.getenv("GROK_9ROUTER_BASE_URL", ""),
+            "https://api.9router.com/v1",
+        ):
+            b = (raw or "").strip().rstrip("/")
+            if b and b not in bases:
+                bases.append(b)
+        return bases
+
     def complete(self, prompt: str, system: str = "") -> str:
         msgs = []
         if system:
             msgs.append({"role": "system", "content": system})
         msgs.append({"role": "user", "content": prompt})
         last_exc: Exception | None = None
-        for attempt in range(self.retries + 1):
-            try:
-                r = requests.post(
-                    f"{self.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {self.api_key}"},
-                    json={"model": self.model, "messages": msgs, "temperature": 0.4},
-                    timeout=self.timeout,
-                )
-                r.raise_for_status()
-                return _openai_compat_content(r)
-            except requests.HTTPError as exc:
-                # Surface safe provider diagnostics without leaking API keys.
-                resp = exc.response
-                status = getattr(resp, "status_code", "?")
-                body = ""
+        last_base = self.base_url
+        for base in self._base_candidates():
+            last_base = base
+            for attempt in range(self.retries + 1):
                 try:
-                    body = (resp.text or "")[:500]
-                except Exception:
+                    r = requests.post(
+                        f"{base}/chat/completions",
+                        headers={"Authorization": f"Bearer {self.api_key}"},
+                        json={"model": self.model, "messages": msgs, "temperature": 0.4},
+                        timeout=self.timeout,
+                    )
+                    r.raise_for_status()
+                    content = _openai_compat_content(r)
+                    if not content and "text/html" in r.headers.get("content-type", ""):
+                        raise RuntimeError(f"{self.agent_id} provider returned HTML/empty response model={self.model} base={base}")
+                    self.base_url = base
+                    return content
+                except requests.HTTPError as exc:
+                    resp = exc.response
+                    status = getattr(resp, "status_code", "?")
                     body = ""
-                raise RuntimeError(f"{self.agent_id} provider HTTP {status} model={self.model} base={self.base_url}: {body}") from exc
-            except (requests.Timeout, requests.ConnectionError) as exc:
-                last_exc = exc
-                if attempt >= self.retries:
+                    try:
+                        body = (resp.text or "")[:500]
+                    except Exception:
+                        body = ""
+                    last_exc = RuntimeError(f"{self.agent_id} provider HTTP {status} model={self.model} base={base}: {body}")
+                    # 401/403 means bad key; trying the same key elsewhere will not help.
+                    if str(status) in ("401", "403"):
+                        raise last_exc from exc
                     break
-                time.sleep(2 * (attempt + 1))
+                except (requests.Timeout, requests.ConnectionError, RuntimeError, ValueError, json.JSONDecodeError) as exc:
+                    last_exc = exc
+                    if attempt >= self.retries:
+                        break
+                    time.sleep(2 * (attempt + 1))
         assert last_exc is not None
-        raise last_exc
+        raise RuntimeError(f"{self.agent_id} provider failed model={self.model} last_base={last_base}: {last_exc}") from last_exc
 
 
 class GrokBridgeReal(TextAgent):
