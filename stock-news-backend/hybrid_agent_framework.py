@@ -1052,13 +1052,19 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
                     os.environ[key] = value
 
     _load_local_env()
+    gateway_base = os.environ.get("MODEL3_LOCAL_AI_GATEWAY_BASE_URL", "http://100.89.47.25:20129/ai/v1").rstrip("/")
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    # The local gateway proxy terminates auth on the PC side; Render does not
+    # need to hold the real key. Keep a harmless placeholder for OpenAI-style
+    # clients that require an Authorization header to be present.
     if not api_key or api_key == "sk-dummy-crewai-construction-only":
-        raise RuntimeError("Grok 9router API thiếu OPENAI_API_KEY/keypoint API trong .env hoặc environment")
-    # Use the existing keypoint/OpenAI-compatible API setup; this is a direct
-    # HTTP API call, not the old Grok terminal/PTY bridge.
+        api_key = "sk-local-gateway-proxy"
+    # Use OpenAI-compatible HTTP API directly, not the old Grok terminal/PTY bridge.
     base_url = (
-        os.environ.get("GROK_9ROUTER_BASE_URL")
+        os.environ.get("MODEL3_FORCE_BASE_URL")
+        or os.environ.get("MODEL3_FALLBACK_BASE_URL")
+        or gateway_base
+        or os.environ.get("GROK_9ROUTER_BASE_URL")
         or os.environ.get("OPENAI_BASE_URL")
         or "https://openrouter.ai/api/v1"
     ).rstrip("/")
@@ -1068,9 +1074,9 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
         or os.environ.get("MODEL3_OPENROUTER_MODEL")
         or "qwen/qwen3-next-80b-a3b-instruct:free"
     ).strip()
-    if re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", base_url):
-        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", "http://100.89.47.25:20129/ai/v1").rstrip("/")
-    if "100.89.47.25:20129/ai" in base_url:
+    if re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com|openrouter\.ai", base_url):
+        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", gateway_base).rstrip("/")
+    if "/ai/v1" in base_url or "100.89.47.25:20129/ai" in base_url:
         model = "APIFREE"
     elif model in ("", "Grok", "APIFREE", "Kiro", "grok-2-latest"):
         model = os.environ.get("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")

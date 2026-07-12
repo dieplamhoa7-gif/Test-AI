@@ -116,27 +116,29 @@ class OpenAICompatReal(TextAgent):
         # which made Model3 Codex/Kiro fail. Use the configured base first, then
         # safe OpenAI-compatible fallbacks if a provider is unavailable.
         forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
-        chosen_base = (forced or base_url or "https://openrouter.ai/api/v1").rstrip("/")
-        if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", chosen_base):
-            chosen_base = os.getenv("MODEL3_FALLBACK_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
+        gateway_base = os.getenv("MODEL3_LOCAL_AI_GATEWAY_BASE_URL", "http://100.89.47.25:20129/ai/v1").rstrip("/")
+        chosen_base = (forced or base_url or gateway_base).rstrip("/")
+        if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com|openrouter\.ai", chosen_base):
+            chosen_base = os.getenv("MODEL3_FALLBACK_BASE_URL", gateway_base).rstrip("/")
         self.base_url = chosen_base
         self.api_key = api_key
         if model in ("", "APIFREE", "Kiro", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
             model = os.getenv("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")
         self.model = model
-        self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "150"))
+        self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "300"))
         self.retries = int(os.getenv("SUPERLH_OPENAI_COMPAT_RETRIES", "0"))
 
     def _base_candidates(self) -> list[str]:
         bases: list[str] = []
         forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
-        for raw in (
-            self.base_url,
-            os.getenv("MODEL3_FALLBACK_BASE_URL", ""),
-            os.getenv("GROK_9ROUTER_BASE_URL", ""),
-            "https://openrouter.ai/api/v1",
-            "http://100.89.47.25:20129/ai/v1",
-        ):
+        gateway_base = os.getenv("MODEL3_LOCAL_AI_GATEWAY_BASE_URL", "http://100.89.47.25:20129/ai/v1").rstrip("/")
+        openrouter_first = os.getenv("MODEL3_USE_OPENROUTER_FIRST", "").lower() in ("1", "true", "yes")
+        ordered = (
+            [self.base_url, os.getenv("MODEL3_FALLBACK_BASE_URL", ""), os.getenv("GROK_9ROUTER_BASE_URL", ""), "https://openrouter.ai/api/v1", gateway_base]
+            if forced or openrouter_first
+            else [gateway_base, self.base_url, os.getenv("MODEL3_FALLBACK_BASE_URL", ""), os.getenv("GROK_9ROUTER_BASE_URL", ""), "https://openrouter.ai/api/v1"]
+        )
+        for raw in ordered:
             b = (raw or "").strip().rstrip("/")
             if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", b):
                 continue
@@ -158,7 +160,7 @@ class OpenAICompatReal(TextAgent):
                     r = requests.post(
                         f"{base}/chat/completions",
                         headers={"Authorization": f"Bearer {self.api_key}"},
-                        json={"model": "APIFREE" if "100.89.47.25:20129/ai" in base else self.model, "messages": msgs, "temperature": 0.4},
+                        json={"model": "APIFREE" if "/ai/v1" in base or "100.89.47.25:20129/ai" in base else self.model, "messages": msgs, "temperature": 0.4},
                         timeout=self.timeout,
                     )
                     r.raise_for_status()
