@@ -23,6 +23,7 @@ import math
 import os
 import re
 import sqlite3
+import subprocess
 import tempfile
 import time
 import urllib.error
@@ -1137,6 +1138,24 @@ def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tup
         if isinstance(data, dict):
             data["_response_truncated"] = truncated
         return int(getattr(resp, "status", 200)), data, len(raw)
+
+
+@router.get("/model3/render-network-diag")
+async def model3_render_network_diag():
+    """Safe Render network diagnostics for Tailscale/proxy availability."""
+    env_keys = ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "all_proxy", "no_proxy", "TAILSCALE_AUTHKEY"]
+    env = {k: ("<set>" if k == "TAILSCALE_AUTHKEY" and os.getenv(k) else os.getenv(k)) for k in env_keys if os.getenv(k) is not None}
+    diag: dict[str, Any] = {"env": env}
+    for cmd_name, cmd in {
+        "tailscale_status": ["tailscale", "status", "--json"],
+        "tailscale_ip": ["tailscale", "ip", "-4"],
+    }.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=8)
+            diag[cmd_name] = {"returncode": cp.returncode, "stdout": cp.stdout[-3000:], "stderr": cp.stderr[-1500:]}
+        except Exception as exc:  # noqa: BLE001
+            diag[cmd_name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(diag)
 
 
 @router.get("/model3/market-gateway-ping")
