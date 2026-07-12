@@ -516,7 +516,8 @@ def _model3_codex_fallback(task: str, s: AgentStep, exc: Exception) -> str:
 
 def _model3_kiro_fallback(task: str, s: AgentStep, exc: Exception, transcript: list[str]) -> str:
     """Deterministic fallback for Model3 Kiro sections when the LLM provider times out."""
-    ticker = _guess_ticker(task)
+    ticker_match = re.search(r"\b[A-Z]{2,5}\b", task.upper())
+    ticker = ticker_match.group(0) if ticker_match else "MÃ CP"
     reason = str(exc).replace("\n", " ")[:500]
     context_hint = _clip("\n\n".join(transcript[-4:]), 1800)
     if s is MODEL3_SCENARIO or s.label == MODEL3_SCENARIO.label:
