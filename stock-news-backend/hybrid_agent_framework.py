@@ -514,6 +514,46 @@ def _model3_codex_fallback(task: str, s: AgentStep, exc: Exception) -> str:
     raise exc
 
 
+def _model3_kiro_fallback(task: str, s: AgentStep, exc: Exception, transcript: list[str]) -> str:
+    """Deterministic fallback for Model3 Kiro sections when the LLM provider times out."""
+    ticker = _guess_ticker(task)
+    reason = str(exc).replace("\n", " ")[:500]
+    context_hint = _clip("\n\n".join(transcript[-4:]), 1800)
+    if s is MODEL3_SCENARIO or s.label == MODEL3_SCENARIO.label:
+        title = "Kịch bản đầu tư chuyên sâu"
+        bullets = (
+            "- Kịch bản tích cực: chỉ xem xét khi giá/khối lượng xác nhận đồng thuận với xu hướng và có catalyst mới rõ ràng.\n"
+            "- Kịch bản cơ sở: giữ quan điểm thận trọng, ưu tiên dữ liệu giá, thanh khoản, fundamental và macro đã có trong context.\n"
+            "- Kịch bản tiêu cực: giảm tỷ trọng/không mua đuổi nếu tín hiệu kỹ thuật suy yếu, thanh khoản mất xác nhận hoặc tin tức bất lợi xuất hiện.\n"
+            "- Điều kiện hành động: cần refresh dữ liệu thị trường và kiểm chứng lại vùng hỗ trợ/kháng cự trước khi ra quyết định."
+        )
+    elif s is MODEL3_RISK or s.label == MODEL3_RISK.label:
+        title = "Rủi ro và quan điểm"
+        bullets = (
+            "- Rủi ro dữ liệu: một số provider AI timeout nên phần nhận định định tính cần manual review.\n"
+            "- Rủi ro thị trường: biến động thanh khoản, xu hướng VNIndex/ngành và tin tức bất thường có thể làm kịch bản thay đổi.\n"
+            "- Rủi ro thực thi: không dùng báo cáo fallback làm khuyến nghị mua/bán tự động; chỉ dùng như bản kiểm thử có dữ liệu market thật.\n"
+            "- Quan điểm: ưu tiên bảo toàn vốn, chờ xác nhận bằng dữ liệu mới trước khi nâng mức tin cậy."
+        )
+    elif s is MODEL3_QUICK_SUMMARY or s.label == MODEL3_QUICK_SUMMARY.label:
+        title = "Tóm tắt nhanh"
+        bullets = (
+            "- Báo cáo đã lấy được dữ liệu thị trường thật qua gateway và tiếp tục xuất Word.\n"
+            "- Một số nhánh AI provider bị timeout/502 nên nội dung Kiro được thay bằng fallback kiểm soát rủi ro.\n"
+            "- Cần đọc phần freshness/technical/fundamental và kiểm chứng thủ công trước khi dùng."
+        )
+    else:
+        title = s.label
+        bullets = "- Provider Kiro timeout; dùng fallback an toàn để workflow không chết.\n- Không bịa số liệu mới ngoài context đã có."
+    return (
+        f"## {title} — {ticker}\n"
+        f"Provider Kiro bị timeout nên dùng fallback an toàn, không bịa dữ liệu.\n\n"
+        f"{bullets}\n\n"
+        f"Ngữ cảnh gần nhất dùng để kiểm soát nội dung:\n{context_hint}\n\n"
+        f"Ghi chú kỹ thuật: Kiro timeout/provider error ({reason})."
+    )
+
+
 def _run_step(task: str, s: AgentStep, transcript: list[str], progress: ProgressFn, idx: int, total: int, mode: str) -> dict[str, Any]:
     progress(f"⏳ [{idx}/{total}] {s.label}: {s.goal}")
     started = time.time()
@@ -525,6 +565,10 @@ def _run_step(task: str, s: AgentStep, transcript: list[str], progress: Progress
             detail = str(exc).replace("\n", " ")[:700]
             progress(f"⚠️ {s.label}: provider lỗi/timeout, dùng fallback nội bộ để workflow không chết ({type(exc).__name__}: {detail}).")
             content = _model3_codex_fallback(task, s, exc)
+        elif s in (MODEL3_SCENARIO, MODEL3_RISK, MODEL3_QUICK_SUMMARY):
+            detail = str(exc).replace("\n", " ")[:700]
+            progress(f"⚠️ {s.label}: Kiro provider lỗi/timeout, dùng fallback nội bộ để workflow không đỏ ({type(exc).__name__}: {detail}).")
+            content = _model3_kiro_fallback(task, s, exc, transcript)
         else:
             raise
     # UTF-8 skill: clean at provider boundary first. Do not push obviously broken
