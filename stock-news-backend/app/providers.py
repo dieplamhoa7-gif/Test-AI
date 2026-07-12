@@ -18,6 +18,7 @@ import textwrap
 from typing import Any
 
 import os
+import re
 import time
 
 import requests
@@ -115,7 +116,10 @@ class OpenAICompatReal(TextAgent):
         # which made Model3 Codex/Kiro fail. Use the configured base first, then
         # safe OpenAI-compatible fallbacks if a provider is unavailable.
         forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
-        self.base_url = (forced or base_url or "https://api.9router.com/v1").rstrip("/")
+        chosen_base = (forced or base_url or "https://api.9router.com/v1").rstrip("/")
+        if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128", chosen_base):
+            chosen_base = os.getenv("MODEL3_FALLBACK_BASE_URL", "https://api.9router.com/v1").rstrip("/")
+        self.base_url = chosen_base
         self.api_key = api_key
         if model in ("", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
             model = "Kiro" if agent_id == "kiro" else "APIFREE"
@@ -125,6 +129,7 @@ class OpenAICompatReal(TextAgent):
 
     def _base_candidates(self) -> list[str]:
         bases: list[str] = []
+        forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
         for raw in (
             self.base_url,
             os.getenv("MODEL3_FALLBACK_BASE_URL", ""),
@@ -132,6 +137,8 @@ class OpenAICompatReal(TextAgent):
             "https://api.9router.com/v1",
         ):
             b = (raw or "").strip().rstrip("/")
+            if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128", b):
+                continue
             if b and b not in bases:
                 bases.append(b)
         return bases
