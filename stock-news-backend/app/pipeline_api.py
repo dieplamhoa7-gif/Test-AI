@@ -867,7 +867,11 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     )
     state = run_model3_workflow(task, progress)
     feed = state.get("feed", []) if isinstance(state, dict) else []
-    bad_markers = ("mock", "fallback", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "không dùng web fallback")
+    # Mark partial only for real provider/quality failures that made the report
+    # materially incomplete. Do not flag controlled public-news enrichment as
+    # partial: it is now part of the production degradation path when Grok's
+    # vendor schema is unavailable, and the DOCX still contains sourced news.
+    bad_markers = ("mock", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "AI_PROVIDER_FAILED", "không tìm thấy DOCX")
     joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
     partial_quality = any(m.lower() in joined_feed.lower() for m in bad_markers)
     docx = _latest_model3_docx(ticker, before)
