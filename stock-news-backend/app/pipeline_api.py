@@ -1108,8 +1108,19 @@ def _extract_market_gateway_summary(data: Any) -> dict[str, Any]:
     }
 
 
+def _market_gateway_base_urls() -> list[str]:
+    primary = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    fallback = os.getenv("MARKET_DATA_GATEWAY_FALLBACK_URL", "http://100.89.47.25:20129").rstrip("/")
+    urls: list[str] = []
+    for u in (primary, fallback):
+        if u and u not in urls:
+            urls.append(u)
+    return urls
+
+
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
-    with urllib.request.urlopen(url, timeout=timeout) as resp:
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if re.search(r"https?://100\.89\.47\.25(?::|/)", url) else urllib.request
+    with opener.urlopen(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
@@ -1126,15 +1137,17 @@ def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tup
 @router.get("/model3/market-gateway-ping")
 async def model3_market_gateway_ping():
     """Render-side network ping to gateway /health; does not fetch market payload."""
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
-    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
-    url = f"{gateway}/health"
-    started = time.time()
-    try:
-        status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, None)
-        return JSONResponse({"ok": True, "url": url, "status": status, "latency_ms": int((time.time() - started) * 1000), "bytes": size, "data": data})
-    except Exception as exc:  # noqa: BLE001
-        return JSONResponse({"ok": False, "url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)}, status_code=503)
+    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 12.0)
+    attempts: list[dict[str, Any]] = []
+    for gateway in _market_gateway_base_urls():
+        url = f"{gateway}/health"
+        started = time.time()
+        try:
+            status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, None)
+            return JSONResponse({"ok": True, "url": url, "status": status, "latency_ms": int((time.time() - started) * 1000), "bytes": size, "data": data, "attempts": attempts})
+        except Exception as exc:  # noqa: BLE001
+            attempts.append({"url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)})
+    return JSONResponse({"ok": False, "attempts": attempts}, status_code=503)
 
 
 @router.get("/model3/market-gateway-test/{ticker}")
@@ -1143,30 +1156,33 @@ async def model3_market_gateway_test(ticker: str = "SSI"):
     ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "SSI").upper()[:8]
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
-    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
-    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 45.0)
-    url = f"{gateway}/market/{ticker}?force_refresh=false"
-    started = time.time()
-    try:
-        status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, 262144)
-        latency_ms = int((time.time() - started) * 1000)
-        summary = _extract_market_gateway_summary(data)
-        return JSONResponse({
-            "ok": True,
-            "ticker": ticker,
-            "url": url,
-            "status": status,
-            "latency_ms": latency_ms,
-            "bytes_read": size,
-            "truncated": bool(data.get("_response_truncated")) if isinstance(data, dict) else False,
-            **summary,
-            "received_at": datetime.now(timezone.utc).isoformat(),
-        })
-    except urllib.error.HTTPError as exc:
-        body = exc.read(2000).decode("utf-8", errors="replace")
-        return JSONResponse({"ok": False, "ticker": ticker, "url": url, "status": exc.code, "error_type": "HTTPError", "error": body, "latency_ms": int((time.time() - started) * 1000)}, status_code=502)
-    except Exception as exc:  # noqa: BLE001
-        return JSONResponse({"ok": False, "ticker": ticker, "url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)}, status_code=503)
+    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
+    attempts: list[dict[str, Any]] = []
+    for gateway in _market_gateway_base_urls():
+        url = f"{gateway}/market/{ticker}?force_refresh=false"
+        started = time.time()
+        try:
+            status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, 262144)
+            latency_ms = int((time.time() - started) * 1000)
+            summary = _extract_market_gateway_summary(data)
+            return JSONResponse({
+                "ok": True,
+                "ticker": ticker,
+                "url": url,
+                "status": status,
+                "latency_ms": latency_ms,
+                "bytes_read": size,
+                "truncated": bool(data.get("_response_truncated")) if isinstance(data, dict) else False,
+                **summary,
+                "attempts": attempts,
+                "received_at": datetime.now(timezone.utc).isoformat(),
+            })
+        except urllib.error.HTTPError as exc:
+            body = exc.read(2000).decode("utf-8", errors="replace")
+            attempts.append({"url": url, "status": exc.code, "error_type": "HTTPError", "error": body, "latency_ms": int((time.time() - started) * 1000)})
+        except Exception as exc:  # noqa: BLE001
+            attempts.append({"url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)})
+    return JSONResponse({"ok": False, "ticker": ticker, "attempts": attempts}, status_code=503)
 
 
 @router.get("/model3/freshness/{ticker}")
