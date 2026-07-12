@@ -116,13 +116,13 @@ class OpenAICompatReal(TextAgent):
         # which made Model3 Codex/Kiro fail. Use the configured base first, then
         # safe OpenAI-compatible fallbacks if a provider is unavailable.
         forced = os.getenv("MODEL3_FORCE_BASE_URL", "").strip()
-        chosen_base = (forced or base_url or "https://api.9router.com/v1").rstrip("/")
-        if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128", chosen_base):
-            chosen_base = os.getenv("MODEL3_FALLBACK_BASE_URL", "https://api.9router.com/v1").rstrip("/")
+        chosen_base = (forced or base_url or "https://openrouter.ai/api/v1").rstrip("/")
+        if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", chosen_base):
+            chosen_base = os.getenv("MODEL3_FALLBACK_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
         self.base_url = chosen_base
         self.api_key = api_key
-        if model in ("", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
-            model = "Kiro" if agent_id == "kiro" else "APIFREE"
+        if model in ("", "APIFREE", "Kiro", "gpt-4o-mini", "claude-3-5-sonnet-latest", "anthropic/claude-sonnet-4-20250514", "grok-2-latest"):
+            model = os.getenv("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")
         self.model = model
         self.timeout = int(os.getenv("SUPERLH_OPENAI_COMPAT_TIMEOUT", "150"))
         self.retries = int(os.getenv("SUPERLH_OPENAI_COMPAT_RETRIES", "0"))
@@ -134,10 +134,10 @@ class OpenAICompatReal(TextAgent):
             self.base_url,
             os.getenv("MODEL3_FALLBACK_BASE_URL", ""),
             os.getenv("GROK_9ROUTER_BASE_URL", ""),
-            "https://api.9router.com/v1",
+            "https://openrouter.ai/api/v1",
         ):
             b = (raw or "").strip().rstrip("/")
-            if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128", b):
+            if not forced and re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", b):
                 continue
             if b and b not in bases:
                 bases.append(b)

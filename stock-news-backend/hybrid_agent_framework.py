@@ -1060,13 +1060,18 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
     base_url = (
         os.environ.get("GROK_9ROUTER_BASE_URL")
         or os.environ.get("OPENAI_BASE_URL")
-        or "https://api.9router.com/v1"
+        or "https://openrouter.ai/api/v1"
     ).rstrip("/")
     model = (
         os.environ.get("GROK_9ROUTER_MODEL")
         or os.environ.get("GROK_MODEL")
-        or "Grok"
+        or os.environ.get("MODEL3_OPENROUTER_MODEL")
+        or "qwen/qwen3-next-80b-a3b-instruct:free"
     ).strip()
+    if re.search(r"100\.89\.47\.25:20128|127\.0\.0\.1:20128|localhost:20128|api\.9router\.com", base_url):
+        base_url = os.environ.get("MODEL3_FALLBACK_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
+    if model in ("", "Grok", "APIFREE", "Kiro", "grok-2-latest"):
+        model = os.environ.get("MODEL3_OPENROUTER_MODEL", "qwen/qwen3-next-80b-a3b-instruct:free")
 
     def _chat(prompt_text: str, call_timeout: int) -> str:
         payload = {
@@ -1199,13 +1204,17 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
                 "framework": mode,
             }
         except Exception as exc:  # noqa: BLE001
+            # Product mode: do not leave the investor report without news/data.
+            # If the Grok/OpenAI-compatible provider is down, use the already
+            # researched public-web context as an explicit fallback and label it.
             elapsed = time.time() - started
-            progress(f"❌ GrokX News & Impact lỗi thật ({type(exc).__name__}); không dùng web fallback thay Grok.")
+            progress(f"⚠️ GrokX News provider lỗi ({type(exc).__name__}); dùng public-web news fallback có ghi nhãn để báo cáo vẫn đủ tin.")
+            fallback = presearched_news_context.strip() or f"Không tìm thấy tin public-web đủ rõ cho {sym}."
             return {
                 "agent": "grok",
                 "name": MODEL3_NEWS.label,
-                "action": "GROK_NEWS_FAILED | no_web_fallback",
-                "content": f"GROK_NEWS_FAILED: {type(exc).__name__}: {exc}. Không dùng nguồn thay thế để lấp phần tin; cần sửa Grok 9router API/search trước khi xuất bản tin tức.",
+                "action": "Grok provider unavailable | public-web news fallback",
+                "content": "GROK_PROVIDER_UNAVAILABLE — dùng public-web news fallback có kiểm soát, không bịa.\n\n" + fallback,
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
                 "elapsed": elapsed,
                 "speaks_to": MODEL3_NEWS.speak_to,
