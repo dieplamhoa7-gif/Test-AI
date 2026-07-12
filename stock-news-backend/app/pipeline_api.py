@@ -1189,6 +1189,25 @@ async def model3_render_tailnet_peers():
     return JSONResponse({"ok": True, "self_ips": data.get("Self", {}).get("TailscaleIPs"), "peers": peers})
 
 
+@router.get("/model3/render-curl-gateway")
+async def model3_render_curl_gateway():
+    """Try gateway with curl through/no proxy to diagnose urllib vs network."""
+    cmds = {
+        "curl_default_ip": ["curl", "-sS", "-m", "12", "-v", "http://100.89.47.25:20129/health"],
+        "curl_http_proxy_ip": ["curl", "-sS", "-m", "12", "-x", "http://127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_socks_ip": ["curl", "-sS", "-m", "12", "--socks5-hostname", "127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_funnel": ["curl", "-sS", "-m", "12", "-v", "https://3t8l9f.tail6c0e00.ts.net/marketdata/health"],
+    }
+    out: dict[str, Any] = {}
+    for name, cmd in cmds.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=15)
+            out[name] = {"returncode": cp.returncode, "stdout": cp.stdout[-1000:], "stderr": cp.stderr[-2000:]}
+        except Exception as exc:  # noqa: BLE001
+            out[name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(out)
+
+
 @router.get("/model3/market-gateway-ping")
 async def model3_market_gateway_ping():
     """Render-side network ping to gateway /health; does not fetch market payload."""
