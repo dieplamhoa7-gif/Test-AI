@@ -726,8 +726,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
             continue
         try:
             url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
-            with urllib.request.urlopen(url, timeout=min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0)) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
+            _status, data, _size = _urlopen_json(url, min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0), 524288)
             log(f"✅ Freshness gate: lấy data qua gateway {gateway}")
             break
         except Exception as exc:  # noqa: BLE001
@@ -1125,16 +1124,26 @@ def _market_gateway_base_urls() -> list[str]:
 
 def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
     # Render reaches the user's PC through Tailscale userspace networking on
-    # 127.0.0.1:1055. urllib's global opener honors NO_PROXY; Render currently
-    # has .ts.net in NO_PROXY and may bypass the Tailscale proxy for 100.x IPs,
-    # which makes Python time out even though curl -x 127.0.0.1:1055 succeeds.
-    # Use a dedicated opener for gateway calls so they always traverse Tailscale.
+    # 127.0.0.1:1055. urllib can still mis-handle NO_PROXY/HTTP proxy edge cases
+    # here, while curl -x 127.0.0.1:1055 is verified working from Render. Prefer
+    # curl when a gateway proxy exists, then keep urllib as a local/dev fallback.
     proxy = os.getenv("MARKET_DATA_GATEWAY_PROXY") or os.getenv("ALL_PROXY") or os.getenv("HTTP_PROXY")
-    opener = None
     if proxy:
-        opener = urllib.request.build_opener(urllib.request.ProxyHandler({"http": proxy, "https": proxy}))
-    open_fn = opener.open if opener is not None else urllib.request.urlopen
-    with open_fn(url, timeout=timeout) as resp:
+        cmd = ["curl", "-sS", "-m", str(max(1, int(timeout))), "-x", proxy, url]
+        cp = subprocess.run(cmd, capture_output=True, text=False, timeout=timeout + 3)
+        raw = cp.stdout or b""
+        if cp.returncode == 0 and raw:
+            truncated = bool(max_bytes is not None and len(raw) > max_bytes)
+            if max_bytes is not None:
+                raw = raw[:max_bytes]
+            data = json.loads(raw.decode("utf-8"))
+            if isinstance(data, dict):
+                data["_response_truncated"] = truncated
+            return 200, data, len(raw)
+        err = (cp.stderr or b"").decode("utf-8", errors="replace")[-1000:]
+        raise urllib.error.URLError(f"curl gateway proxy failed rc={cp.returncode}: {err}")
+
+    with urllib.request.urlopen(url, timeout=timeout) as resp:
         raw = resp.read(max_bytes or -1)
         if max_bytes is not None:
             # Drain a tiny extra byte only to know whether the gateway response was truncated.
