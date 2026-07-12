@@ -13,7 +13,7 @@ if [ -n "${TAILSCALE_AUTHKEY:-}" ]; then
   export HTTP_PROXY="http://127.0.0.1:1055"
   export HTTPS_PROXY="http://127.0.0.1:1055"
   export ALL_PROXY="http://127.0.0.1:1055"
-  export NO_PROXY="127.0.0.1,localhost,.onrender.com"
+  export NO_PROXY="127.0.0.1,localhost,.onrender.com,.ts.net,3t8l9f.tail6c0e00.ts.net"
   echo "Tailscale ready."
 else
   echo "TAILSCALE_AUTHKEY not set; starting without tailnet."
