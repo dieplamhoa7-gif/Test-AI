@@ -289,8 +289,14 @@ def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Mod
     last_err = ""
     last_quality: dict[str, Any] = {}
     for attempt, prompt in enumerate((base_prompt, retry_prompt), 1):
-        # Model 3: yÃªu cáº§u Ä‘Ãºng 2 trang dá»c dense; dÃ¹ng detailed_deck nhÆ°ng focus Ã©p two-page portrait / 10 panels.
-        _run(["slides", "create", notebook_id, "--format", "detailed_deck", "--length", "short", "--language", "vi", "--focus", prompt, "--confirm"], timeout=900)
+        # Model 3: yêu cầu đúng 2 trang dọc dense; dùng detailed_deck nhưng focus ép two-page portrait / 10 panels.
+        try:
+            _run(["slides", "create", notebook_id, "--format", "detailed_deck", "--length", "short", "--language", "vi", "--focus", prompt, "--confirm"], timeout=900)
+        except Exception as exc:
+            err = str(exc)
+            if "Rate limited" in err or "RESOURCE_EXHAUSTED" in err or "code 8" in err:
+                return {"ok": True, "notebook_id": notebook_id, "slide_pdf": None, "slide_deck_error": "NotebookLM Studio slide/PDF quota/rate limit; notebook/source created successfully; retry slide deck later.", "attempt": attempt}
+            raise
         out_pdf = TEMP_DIR / f"{time.strftime('%Y%m%d-%H%M%S')}-{safe}-attempt{attempt}.pdf"
         for _ in range(30):
             try:
