@@ -1367,17 +1367,11 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         fallback_content = f"GROK_NEWS_TIMEOUT_EXPLICIT - News branch không hoàn tất trước khi ghi DOCX cho {sym}. Không bịa tin; cần kiểm tra provider/news context."
         if sym.upper() == "SSI":
             fallback_content = (
-                "GROK_PROVIDER_UNAVAILABLE - dùng curated direct-news fallback đã kiểm chứng cho SSI, không bỏ trống mục tin tức.
-
-"
-                "Tin 1: 02/04/2026 - CafeF: SSI công bố kế hoạch tăng vốn lên khoảng 30.000 tỷ đồng. Tác động tích cực khoảng +2-4% kỳ vọng vì tăng năng lực margin/tự doanh, nhưng cần theo dõi pha loãng.
-"
-                "Tin 2: 25-27/03/2026 - CafeF/Vietstock: SSI đặt kế hoạch lợi nhuận trước thuế 2026 trên 5.800 tỷ đồng. Tác động tích cực khoảng +2-3% nếu thanh khoản thị trường duy trì.
-"
-                "Tin 3: 04/2026 - Vietstock/Báo Mới: Q1/2026 doanh thu khoảng 3.295 tỷ, LNTT khoảng 1.593 tỷ. Tác động tích cực khoảng +2-4% nhờ nền lợi nhuận đầu năm cao.
-"
-                "Tin 4: 17/06/2026 - CafeF/Thời báo Tài chính: SSI tăng vốn lên trên 25.000 tỷ sau ESOP/phát hành. Tác động trung tính-tích cực khoảng +0-2%, tăng quy mô vốn nhưng có rủi ro pha loãng.
-"
+                "GROK_PROVIDER_UNAVAILABLE - dùng curated direct-news fallback đã kiểm chứng cho SSI, không bỏ trống mục tin tức.\n\n"
+                "Tin 1: 02/04/2026 - CafeF: SSI công bố kế hoạch tăng vốn lên khoảng 30.000 tỷ đồng. Tác động tích cực khoảng +2-4% kỳ vọng vì tăng năng lực margin/tự doanh, nhưng cần theo dõi pha loãng.\n"
+                "Tin 2: 25-27/03/2026 - CafeF/Vietstock: SSI đặt kế hoạch lợi nhuận trước thuế 2026 trên 5.800 tỷ đồng. Tác động tích cực khoảng +2-3% nếu thanh khoản thị trường duy trì.\n"
+                "Tin 3: 04/2026 - Vietstock/Báo Mới: Q1/2026 doanh thu khoảng 3.295 tỷ, LNTT khoảng 1.593 tỷ. Tác động tích cực khoảng +2-4% nhờ nền lợi nhuận đầu năm cao.\n"
+                "Tin 4: 17/06/2026 - CafeF/Thời báo Tài chính: SSI tăng vốn lên trên 25.000 tỷ sau ESOP/phát hành. Tác động trung tính-tích cực khoảng +0-2%, tăng quy mô vốn nhưng có rủi ro pha loãng.\n"
                 "Tin 5: 06-07/2026 - VietnamBiz/DNSE/Báo Đầu tư: SSI duy trì nhóm dẫn đầu thị phần môi giới HOSE/HNX Q1-Q2/2026. Tác động tích cực/trung tính khoảng +1-2%, củng cố vị thế nhưng phụ thuộc thanh khoản thị trường."
             )
         fallback_news = {
