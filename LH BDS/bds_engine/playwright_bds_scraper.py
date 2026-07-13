@@ -177,21 +177,30 @@ async def scrape_batdongsan_playwright(query: str, limit: int = 10, headless: bo
             await page.keyboard.type(query, delay=30)
             await page.wait_for_timeout(2500)
 
-            # Pick best autocomplete suggestion (prefer Mua bán / Khu đô thị / City).
-            picked = await page.evaluate("""([q, mode]) => {
+            # Pick first concrete project/area autocomplete suggestion after choosing sale/rent tab.
+            # Do not choose generic city suggestions like "Mua bán BĐS tại Hồ Chí Minh".
+            picked = await page.evaluate(r"""([q, mode]) => {
               const qlow = (q||'').toLowerCase();
+              const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm']);
+              const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=3 && !stop.has(x));
+              const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
               const score = txt => {
                 const t = txt.toLowerCase(); let s = 0;
-                for (const part of qlow.split(/\\s+/).filter(x=>x.length>=4)) if(t.includes(part)) s+=5;
-                if(/khu đô thị|city/i.test(txt)) s+=10;
-                if(mode === "rent") { if(/thuê/i.test(txt)) s+=8; if(/mua bán/i.test(txt)) s-=8; } else { if(/mua bán/i.test(txt)) s+=5; if(/thuê/i.test(txt)) s-=10; }
-                if(/không có gợi ý/i.test(txt)) s-=5;
+                const hits = qparts.filter(part => t.includes(part)).length;
+                s += hits * 20;
+                if(hits === 0) s -= 100;
+                if(modeOk(txt)) s += 25;
+                if(/chung cư|căn hộ|khu đô thị|city|riverside|town|casa/i.test(txt)) s += 8;
+                if(/tại hồ chí minh$|tại tp\.?\s*hcm$|bđs tại hồ chí minh$/i.test(txt)) s -= 80;
+                if(/không có gợi ý/i.test(txt)) s -= 100;
+                if(mode === 'rent' && /mua bán/i.test(txt)) s -= 40;
+                if(mode !== 'rent' && /thuê/i.test(txt)) s -= 40;
                 return s;
               };
               const els=[...document.querySelectorAll('a,li,div,span')]
                 .filter(el=>el.offsetParent!==null)
-                .map(el=>({el, txt:(el.innerText||el.textContent||'').replace(/\\s+/g,' ').trim()}))
-                .filter(x=>x.txt && x.txt.length<220 && /Mua bán|shophouse|City|Khu đô thị|không có gợi ý/i.test(x.txt));
+                .map(el=>({el, txt:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim()}))
+                .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Riverside|Town|Casa/i.test(x.txt));
               els.sort((a,b)=>score(b.txt)-score(a.txt));
               if(els[0] && score(els[0].txt)>0){els[0].el.click(); return els[0].txt;}
               return null;
@@ -316,21 +325,28 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
     await page.keyboard.type(query, delay=25)
     await page.wait_for_timeout(2200)
 
-    picked = await page.evaluate("""([q, mode]) => {
+    picked = await page.evaluate(r"""([q, mode]) => {
       const qlow = (q||'').toLowerCase();
+      const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm']);
+      const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=3 && !stop.has(x));
+      const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
       const score = txt => {
         const t = txt.toLowerCase(); let s = 0;
-        for (const part of qlow.split(/\s+/).filter(x=>x.length>=4)) if(t.includes(part)) s+=5;
-        if(/khu đô thị|city/i.test(txt)) s+=10;
-        if(mode === "rent") { if(/thuê/i.test(txt)) s+=8; if(/mua bán/i.test(txt)) s-=8; }
-        else { if(/mua bán/i.test(txt)) s+=5; if(/thuê/i.test(txt)) s-=10; }
-        if(/không có gợi ý/i.test(txt)) s-=5;
+        const hits = qparts.filter(part => t.includes(part)).length;
+        s += hits * 20;
+        if(hits === 0) s -= 100;
+        if(modeOk(txt)) s += 25;
+        if(/chung cư|căn hộ|khu đô thị|city|riverside|town|casa/i.test(txt)) s += 8;
+        if(/tại hồ chí minh$|tại tp\.?\s*hcm$|bđs tại hồ chí minh$/i.test(txt)) s -= 80;
+        if(/không có gợi ý/i.test(txt)) s -= 100;
+        if(mode === 'rent' && /mua bán/i.test(txt)) s -= 40;
+        if(mode !== 'rent' && /thuê/i.test(txt)) s -= 40;
         return s;
       };
       const els=[...document.querySelectorAll('a,li,div,span')]
         .filter(el=>el.offsetParent!==null)
         .map(el=>({el, txt:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim()}))
-        .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|shophouse|City|Khu đô thị|không có gợi ý/i.test(x.txt));
+        .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Riverside|Town|Casa/i.test(x.txt));
       els.sort((a,b)=>score(b.txt)-score(a.txt));
       if(els[0] && score(els[0].txt)>0){els[0].el.click(); return els[0].txt;}
       return null;
