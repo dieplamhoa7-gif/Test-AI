@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+/**
+ * lh_tunnel_publish.js  (REBUILT 2026-07-11)
+ *
+ * Muc dich: cham dut loi "R&D/Quy hoach khong chay sau khi tunnel restart".
+ * Quick tunnel Cloudflare doi URL moi lan khoi dong lai. Script nay:
+ *   1) Spawn cloudflared cho backend R&D (port 8787) va Quy hoach (neu co).
+ *   2) Bat URL https://*.trycloudflare.com tu log cloudflared.
+ *   3) Health-check URL do; khi OK -> ghi vao <DEPLOY_DIR>/api-config.json
+ *      (rdApiBase / qhApiBase) roi chay `firebase deploy --only hosting`.
+ *   4) cloudflared chet -> tu spawn lai -> lap lai buoc 2-3.
+ * Nho vay frontend luon doc duoc URL tunnel hien tai qua /api-config.json,
+ * KHONG can sua tay HTML moi lan restart.
+ *
+ * Cau hinh qua bien moi truong (deu co default):
+ *   RD_PORT=8787              Cong backend R&D (rd_api_server.py)
+ *   QH_PORT=                  Cong backend Quy hoach (bo trong neu chua co)
+ *   DEPLOY_DIR=public_final_2026_07_11
+ *   FIREBASE_SITE=lhrealestate
+ *   CLOUDFLARED=cloudflared   Duong dan cloudflared neu khong nam trong PATH
+ *   SKIP_DEPLOY=0             Dat =1 neu chi muon ghi api-config.json, tu deploy tay
+ *
+ * Chay:  node tools/lh_tunnel_publish.js
+ */
+const { spawn, execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.resolve(__dirname, '..');
+const DEPLOY_DIR = process.env.DEPLOY_DIR || 'public_final_2026_07_11';
+const CONFIG_PATH = path.join(ROOT, DEPLOY_DIR, 'api-config.json');
+const FIREBASE_SITE = process.env.FIREBASE_SITE || 'lhrealestate';
+const CLOUDFLARED = process.env.CLOUDFLARED || 'cloudflared';
+const SKIP_DEPLOY = process.env.SKIP_DEPLOY === '1';
+const WORKER = 'https://lh-realestate-api.lhrealestate.workers.dev';
+
+const ROLES = [];
+if (process.env.RD_PORT !== '') ROLES.push({ role: 'rd', port: process.env.RD_PORT || '8787', needFlag: 'hasBdsWebApi' });
+if (process.env.QH_PORT) ROLES.push({ role: 'qh', port: process.env.QH_PORT, needFlag: 'hasPlanning' });
+
+const state = {}; // role -> current published url
+
+function log(...a) { console.log(new Date().toISOString(), ...a); }
+
+function readConfig() {
+  try { return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8')); }
+  catch { return { worker: WORKER }; }
+}
+
+function writeConfigAndDeploy() {
+  const cfg = readConfig();
+  cfg.worker = WORKER;
+  cfg.updated = new Date().toISOString();
+  for (const { role } of ROLES) cfg[role + 'ApiBase'] = state[role] || '';
+  fs.writeFileSync(CONFIG_PATH, JSON.stringify(cfg, null, 2));
+  log('api-config.json updated:', JSON.stringify({ rd: cfg.rdApiBase, qh: cfg.qhApiBase }));
+  if (SKIP_DEPLOY) { log('SKIP_DEPLOY=1 -> khong deploy; nho deploy tay:', `firebase deploy --only hosting:${FIREBASE_SITE}`); return; }
+  try {
+    execSync(`firebase deploy --only hosting:${FIREBASE_SITE}`, { cwd: ROOT, stdio: 'inherit' });
+    log('firebase deploy xong.');
+  } catch (e) { log('firebase deploy LOI:', e.message, '-> se thu lai lan cap nhat sau.'); }
+}
+
+async function healthOk(url, needFlag) {
+  try {
+    const r = await fetch(url + '/health', { cache: 'no-store' });
+    if (!r.ok) return false;
+    const j = await r.json();
+    return !!(j && j.ok && (!needFlag || j[needFlag]));
+  } catch { return false; }
+}
+
+function runRole(cfg) {
+  const { role, port, needFlag } = cfg;
+  log(`starting cloudflared for ${role} -> http://localhost:${port}`);
+  const cf = spawn(CLOUDFLARED, ['tunnel', '--url', `http://localhost:${port}`], { shell: process.platform === 'win32' });
+  let settled = false;
+  const onData = async (buf) => {
+    const s = buf.toString();
+    const m = s.match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/i);
+    if (m && !settled) {
+      const url = m[0];
+      settled = true;
+      log(`${role}: tunnel URL = ${url}; dang health-check...`);
+      for (let i = 0; i < 20; i++) {
+        if (await healthOk(url, needFlag)) {
+          state[role] = url;
+          log(`${role}: health OK -> publish`);
+          writeConfigAndDeploy();
+          return;
+        }
+        await new Promise(r => setTimeout(r, 3000));
+      }
+      log(`${role}: tunnel len nhung /health chua OK (backend port ${port} da chay chua?). Van publish URL de frontend thu.`);
+      state[role] = url; writeConfigAndDeploy();
+    }
+  };
+  cf.stdout.on('data', onData);
+  cf.stderr.on('data', onData);
+  cf.on('exit', (code) => {
+    log(`${role}: cloudflared thoat (code ${code}); restart sau 5s`);
+    state[role] = '';
+    setTimeout(() => runRole(cfg), 5000);
+  });
+}
+
+if (!ROLES.length) { log('Chua cau hinh role nao (RD_PORT/QH_PORT). Thoat.'); process.exit(1); }
+log('LH tunnel publisher khoi dong. Deploy dir:', DEPLOY_DIR, '| roles:', ROLES.map(r => r.role).join(','));
+ROLES.forEach(runRole);
