@@ -16,9 +16,26 @@ function stripGulandDisclaimer(text) {
 
 function cleanLandUse(s) {
   return String(s || '')
+    .replace(/Tên chủ:.*$/i, '')
+    .replace(/Tầng\s*:.*$/i, '')
+    .replace(/Mật\s*độ\s*:.*$/i, '')
+    .replace(/Loại đất quy hoạch.*$/i, '')
+    .replace(/Thông tin mô tả thửa.*$/i, '')
+    .replace(/thông tin quy hoạch chi tiết.*$/i, '')
+    .replace(/Thu gọn thông tin.*$/i, '')
     .replace(/^[\s\-:]+|[\s\-:]+$/g, '')
     .replace(/^(?:-|–|—)\s*/, '')
     .trim();
+}
+
+function dedupeRows(rows) {
+  const seen = new Set();
+  return rows.filter(r => {
+    const key = [r.kind || '', r.code || '', r.area_m2 || '', r.land_use || ''].join('|');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function parseGulandPopupText(text) {
@@ -60,6 +77,13 @@ function parseGulandPopupText(text) {
     }
   }
 
+  // Guland commonly renders parcel rows as: ODT 2355.39m² Đất ở đô thị DGT 160.41m² Đất giao thông.
+  const parcelBlock = (t.match(/Tờ\s*\d+\s*Thửa\s*\d+[^]+?(?=\s+Tên chủ:|\s+Thông tin quy hoạch xây dựng|$)/i) || [])[0] || '';
+  const codeAreaRegex = new RegExp(`\\b(${codes})\\b\\s*([\\d.,]+)\\s*m(?:2|²)?\\s*([^]+?)(?=\\s+\\b(?:${codes})\\b\\s*[\\d.,]+\\s*m(?:2|²)?|\\s+Tên chủ:|\\s+Thông tin quy hoạch xây dựng|$)`, 'ig');
+  while ((m = codeAreaRegex.exec(parcelBlock))) {
+    out.planning.push({ code: m[1].toUpperCase(), area_m2: normalizeNumber(m[2]), land_use: cleanLandUse(m[3]) });
+  }
+
   // Fallback for planning
   if (!out.planning.length && (m = t.match(new RegExp(`\\b(${codes})\\b\\s*(?:[\\d.,]+\\s*m(?:2|²)?)?\\s*([^]+?)(?=\\s+Thông tin quy hoạch|\\s+Dữ liệu chính|$)`, 'i')))) {
     out.planning.push({ code: m[1].toUpperCase(), land_use: cleanLandUse(m[2]), area_m2: out.parcel.area_m2 || null });
@@ -77,15 +101,17 @@ function parseGulandPopupText(text) {
   }
 
   if ((m = t.match(/Tầng\s*:\s*([^;]+?)(?:;|\s*Mặt|$)/i))) out.height = m[1].trim();
-  if ((m = t.match(/Mật\s*độ\s*xây\s*dựng\s*:?\s*([\d.,]+)\s*%?/i))) out.density = normalizeNumber(m[1]);
-  if ((m = t.match(/Hệ số sử dụng đất\s*:\s*([\d.,]+)/i))) out.far = normalizeNumber(m[1]);
+  if ((m = t.match(/Mật\s*độ(?:\s*xây\s*dựng)?\s*:?\s*([\d.,]+)\s*%?/i))) out.density = normalizeNumber(m[1]);
+  if ((m = t.match(/(?:Hệ số sử dụng đất|HSSDĐ|HSSDD)\s*:?\s*([\d.,]+)/i))) out.far = normalizeNumber(m[1]);
   if ((m = t.match(/Độ rộng đường\s*([\d.,]+)\s*m/i))) out.road_width_m = normalizeNumber(m[1]);
-  if ((m = t.match(/Hướng mặt tiền\s*([^]+?)(?=\s+Dữ liệu|$)/i))) out.frontage_direction = m[1].trim();
+  if ((m = t.match(/Hướng mặt tiền\s*([^]+?)(?=\s+thông tin quy hoạch|\s+Thu gọn|\s+Dữ liệu|$)/i))) out.frontage_direction = cleanLandUse(m[1]);
 
   if (out.planning.length) {
-    out.parcel.land_rows = out.planning;
-    out.parcel.land_code = out.planning[0].code;
-    out.parcel.land_use = out.planning[0].land_use;
+    out.planning = dedupeRows(out.planning).filter(r => r.land_use || r.code || r.area_m2);
+    out.parcel.land_rows = out.planning.filter(r => r.kind !== 'construction_planning');
+    const first = out.parcel.land_rows[0] || out.planning[0];
+    out.parcel.land_code = first.code;
+    out.parcel.land_use = first.land_use;
     out.planning = out.planning.map((r, idx) => idx === 0 ? { ...r, height: out.height || null, density: out.density ?? null, far: out.far ?? null } : r);
   }
   return out;
