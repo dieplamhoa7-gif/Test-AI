@@ -1403,14 +1403,18 @@ async def model3_export(req: Model3ExportRequest):
     ticker = re.sub(r"[^A-Za-z0-9]", "", req.ticker or "").upper()[:8]
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
-    job = _new_model3_job(ticker, req.notebooklm)
+    # Legacy Firebase stock-report pages may still send notebooklm:false.
+    # Public Model3 web exports should always attempt NotebookLM; failures are
+    # recorded as notebooklm_error without hiding the Word report.
+    with_notebooklm = True
+    job = _new_model3_job(ticker, with_notebooklm)
     if MODEL3_EXTERNAL_WORKER_MODE:
         job["status"] = "queued_external"
         job["logs"].append("⏳ Job đã nhận; chờ local Model3 worker xử lý để tránh Render/Tailscale timeout.")
         job["updated_at"] = time.time()
         _save_model3_job(job)
     else:
-        asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+        asyncio.create_task(_run_model3_job(job["job_id"], with_notebooklm))
     return JSONResponse(_public_model3_job(job))
 
 
