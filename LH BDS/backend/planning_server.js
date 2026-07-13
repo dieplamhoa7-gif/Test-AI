@@ -28,7 +28,9 @@ const { parseQhVietPopupText } = require('./qhviet_popup_parser');
 const PORT = process.env.QH_PORT || 8790;
 const PW_PROFILE = process.env.QH_BROWSER_PROFILE || path.resolve(__dirname, '..', '.pw-tvpl-profile');
 const HEADLESS = process.env.QH_HEADLESS === '1';
-const USE_TEMP_PROFILE = process.env.QH_TEMP_PROFILE === '1';
+const USE_TEMP_PROFILE = process.env.QH_TEMP_PROFILE !== '0';
+const GULAND_TIMEOUT_MS = Number(process.env.GULAND_TIMEOUT_MS || 35000);
+const QHVIET_TIMEOUT_MS = Number(process.env.QHVIET_TIMEOUT_MS || 45000);
 
 const app = express();
 app.use(express.json({ limit: '1mb' }));
@@ -48,6 +50,14 @@ const km = (a, b, c, d) => {
   const x = Math.sin((c - a) * r / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin((d - b) * r / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(x));
 };
+
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} timeout sau ${Math.round(ms / 1000)}s`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 async function geocode(lat, lng) {
   const loc = { display_name: '', road: '', ward: '', suburb: '', district: '', city: '', nearest_pois: [] };
@@ -186,23 +196,23 @@ app.post('/planning/lookup', async (req, res) => {
   };
   const raw = { official_lots: { details: [], lots: [] } };
 
-  let qhviet = { ok: false, error: 'Bo qua (includeQhViet=false)' };
-  let guland = { ok: false, error: 'Bo qua (includeGuland=false)' };
-
-  if (req.body.includeGuland) {
+  const qhvietTask = req.body.includeQhViet ? (async () => {
     try {
-      const txt = await grabPopupText(`https://guland.vn/soi-quy-hoach?lat=${lat}&lng=${lng}`);
-      const parsed = parseGulandPopupText(txt);
-      guland = { ok: !!txt, error: txt ? '' : 'Khong bat duoc popup Guland (can tinh chinh selector)', parsed, raw_text: txt.slice(0, 1200) };
-    } catch (e) { guland = { ok: false, error: 'Guland loi: ' + e.message }; }
-  }
-  if (req.body.includeQhViet) {
-    try {
-      const txt = await grabQhVietPointText(lat, lng);
+      const txt = await withTimeout(grabQhVietPointText(lat, lng), QHVIET_TIMEOUT_MS, 'QH Viet');
       const parsed = parseQhVietPopupText(txt);
-      qhviet = { ok: !!txt, error: txt ? '' : 'Khong bat duoc popup QH Viet (can dang nhap/tinh chinh selector)', parsed, raw_text: txt.slice(0, 1200) };
-    } catch (e) { qhviet = { ok: false, error: 'QH Viet loi: ' + e.message }; }
-  }
+      return { ok: !!txt, error: txt ? '' : 'Khong bat duoc popup QH Viet (can dang nhap/tinh chinh selector)', parsed, raw_text: txt.slice(0, 1200) };
+    } catch (e) { return { ok: false, error: 'QH Viet loi: ' + e.message }; }
+  })() : Promise.resolve({ ok: false, error: 'Bo qua (includeQhViet=false)' });
+
+  const gulandTask = req.body.includeGuland ? (async () => {
+    try {
+      const txt = await withTimeout(grabPopupText(`https://guland.vn/soi-quy-hoach?lat=${lat}&lng=${lng}`), GULAND_TIMEOUT_MS, 'Guland');
+      const parsed = parseGulandPopupText(txt);
+      return { ok: !!txt, error: txt ? '' : 'Khong bat duoc popup Guland (can tinh chinh selector)', parsed, raw_text: txt.slice(0, 1200) };
+    } catch (e) { return { ok: false, error: 'Guland loi: ' + e.message }; }
+  })() : Promise.resolve({ ok: false, error: 'Bo qua (includeGuland=false)' });
+
+  const [qhviet, guland] = await Promise.all([qhvietTask, gulandTask]);
 
   res.json({ ok: true, location, planning, raw, qhviet, guland });
 });

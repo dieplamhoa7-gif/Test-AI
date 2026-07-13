@@ -1,7 +1,27 @@
 // Lightweight parser for QH Viet popup text captured from browser automation.
 // Parses deterministic fields only; no AI interpretation.
 
+function stripHtml(s) {
+  return String(s || '').replace(/<[^>]+>/g, ' ').replace(/\+/g, '').replace(/\"/g, '"').replace(/\s+/g, ' ').trim();
+}
+
+function extractQhVietHtmlFields(raw) {
+  const fields = {};
+  const str = String(raw || '');
+  try {
+    const obj = JSON.parse(str.split('\n')[0]);
+    const html = obj?.feature?.properties?.html || [];
+    for (const h of html) {
+      const lab = (String(h).match(/<div class="label">([^<]+)<\/div>/i) || [])[1];
+      const val = (String(h).match(/<div class="value">([\s\S]*?)<\/div>/i) || [])[1];
+      if (lab) fields[stripHtml(lab)] = stripHtml(val || '');
+    }
+  } catch {}
+  return fields;
+}
+
 function parseQhVietPopupText(text) {
+  const fields = extractQhVietHtmlFields(text);
   const t = String(text || '').replace(/\s+/g, ' ').trim();
   const out = {
     source: 'QH Viet popup',
@@ -11,6 +31,9 @@ function parseQhVietPopupText(text) {
   };
 
   let m;
+  if (fields['Khu vực cũ']) out.old_area_name = fields['Khu vực cũ'];
+  if (fields['Khu vực mới']) out.area_name = fields['Khu vực mới'];
+  if (fields['Tọa độ']) out.coordinate_text = fields['Tọa độ'];
   if ((m = t.match(/Số\s*tờ\s*(\d+)\s*Số\s*thửa\s*(\d+)/i))) {
     out.parcel.map_sheet = m[1];
     out.parcel.parcel_no = m[2];
@@ -37,11 +60,11 @@ function parseQhVietPopupText(text) {
     out.planning = landRows.map(r => ({ area_m2: r.area_m2, land_use: r.land_use, code: r.code }));
   }
 
-  if ((m = t.match(/Khu\s*vực\s*cũ\s*:?\s*([^]+?)(?:\s+Khu\s*vực\s*mới|\s+Thông tin|\s+Xem quy hoạch|$)/i))) {
+  if (!out.old_area_name && (m = t.match(/Khu\s*vực\s*cũ\s*:?\s*([^]+?)(?:\s+Khu\s*vực\s*mới|\s+Thông tin|\s+Xem quy hoạch|$)/i))) {
     out.old_area_name = m[1].trim();
   }
   const newMatches = [...t.matchAll(/Khu\s*vực\s*mới\s*:?\s*([^]+?)(?=\s+Tọa\s*độ|\s+Khu\s*vực\s*cũ|\s+Thông tin|\s+Xem quy hoạch|\s+Quy hoạch|\s+Loại\s*đất|\s+Ký\s*hiệu|\s+Đất\s+\S+|$)/ig)];
-  if (newMatches.length) {
+  if (!out.area_name && newMatches.length) {
     out.area_name = newMatches[newMatches.length - 1][1].trim();
   }
 
