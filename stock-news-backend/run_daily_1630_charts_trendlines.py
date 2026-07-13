@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / 'logs'; LOG_DIR.mkdir(exist_ok=True)
-LOG = LOG_DIR / 'daily_1530_prices_indicators_cw.log'
+LOG = LOG_DIR / 'daily_1630_charts_trendlines.log'
 
 def log(msg: str):
     line=f'[{datetime.now().isoformat(timespec="seconds")}] {msg}'
@@ -25,26 +25,25 @@ def run(cmd: list[str], timeout: int|None=None):
 
 def main():
     py=sys.executable
-    log('START 15:30 prices + indicators + CW (NO R/S)')
-    # No run_rs_levels_* here by design: keep job light.
+    log('START 16:30 stock charts + trendlines')
     steps=[
-        [py,'build_v3_full_indicator_cache_v2.py'],
-        [py,'build_weekly_indicators_vn100_cache.py'],
-        [py,'build_monthly_indicators_vn100_cache.py'],
-        [py,'refresh_market_prices_lh.py'],
-        [py,'refresh_warrants_cache_lh.py'],
-        [py,'build_firebase_cache_site.py'],
+        [py,'refresh_vn100_history_for_core12.py'],
         [py,'patch_market_latest_history.py'],
+        [py,'patch_chart_files_latest_history.py'],
+        [py,'publish_vn100_history_for_frontend.py'],
+        # patch_frontend_extend_trendlines.py targets an older stocks.html pattern.
+        # update_popup_ichimoku_all_symbols.py is too heavy for the daily deploy
+        # path and can hold the whole chart update hostage; run it separately only
+        # when that feature specifically changes.
+        [py,'patch_market_latest_history.py'],
+        [py,'patch_chart_files_latest_history.py'],
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
-    for s in steps: run(s, timeout=1800)
-    # Hard guard: never deploy LHINVT if covered-warrant data fell back to
-    # stale firebase-static-cache or carries stale daysLeft values.
-    run([py,'verify_lhinvt_warrants_fresh.py'], timeout=120)
+    for s in steps: run(s, timeout=2400)
     firebase=shutil.which('firebase') or shutil.which('firebase.cmd') or 'firebase.cmd'
     run([firebase,'deploy','--account','lamhoabb1@gmail.com','--project','security-1c731','--config','firebase.lhinvt.json','--only','hosting'], timeout=600)
-    run([py,'lhinvt_deploy_notify.py','1530_prices_indicators_cw','success'], timeout=60)
-    log('DONE 15:30 prices + indicators + CW')
+    run([py,'lhinvt_deploy_notify.py','1630_charts_trendlines','success'], timeout=60)
+    log('DONE 16:30 stock charts + trendlines')
 
 if __name__=='__main__': main()
