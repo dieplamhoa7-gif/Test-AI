@@ -1359,30 +1359,103 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     # 3D. Strategy - fixed LHinvt web strategy names/logic, not generic invented labels.
     _heading(doc, "3D. Strategy", 2)
     _near_support_pct = None
+    _resistance_gap_pct = None
     try:
         if _num(close_v) is not None and _num(rs_s) is not None and _num(close_v) > 0:
             _near_support_pct = abs(_num(close_v) - _num(rs_s)) / _num(close_v) * 100
+        if _num(close_v) is not None and _num(rs_r) is not None and _num(close_v) > 0:
+            _resistance_gap_pct = (_num(rs_r) - _num(close_v)) / _num(close_v) * 100
     except Exception:
         pass
     _above_cloud = bool(ichi and str(ichi.get("state")) == "above_cloud")
-    _macd_recover = (_num(hist_v) is not None and _num(hist_v) >= -0.02) or (_num(macd_v) is not None and _num(sig_v) is not None and _num(macd_v) >= _num(sig_v))
+    _below_cloud = bool(ichi and str(ichi.get("state")) == "below_cloud")
+    _macd_cross_up = _num(macd_v) is not None and _num(sig_v) is not None and _num(macd_v) >= _num(sig_v)
+    _macd_hist_ok = _num(hist_v) is not None and _num(hist_v) >= -0.02
+    _macd_recover = _macd_hist_ok or _macd_cross_up
     _rsi_ok_pullback = _num(rsi_v) is not None and 48 <= _num(rsi_v) <= 62
     _rsi_low_watch = _num(rsi_v) is not None and _num(rsi_v) <= 45
     _near3 = _near_support_pct is not None and _near_support_pct <= 3.0
     _near25 = _near_support_pct is not None and _near_support_pct <= 2.5
     _vol_ok = _num(volratio_v) is not None and _num(volratio_v) >= 0.8
+    _vol_breakout = _num(volratio_v) is not None and _num(volratio_v) >= 1.2
+    _adx_ok = _num(adx_v) is not None and _num(adx_v) >= 20
+    _di_bull = _num(pdi_v) is not None and _num(mdi_v) is not None and _num(pdi_v) >= _num(mdi_v)
+    _ma20_ok = _num(close_v) is not None and _num(ma20) is not None and _num(close_v) >= _num(ma20)
+    _ma50_ok = _num(close_v) is not None and _num(ma50) is not None and _num(close_v) >= _num(ma50)
+    _ma200_ok = _num(close_v) is not None and _num(ma200) is not None and _num(close_v) >= _num(ma200)
+    _bb_not_high = _num(bbp) is None or _num(bbp) <= 0.75
+    _bb_rebound_zone = _num(bbp) is not None and _num(bbp) <= 0.55
+    _bear_div = bool(div and (div.get("bearish") or str(div.get("type") or "").lower().find("bear") >= 0 or str(div.get("type") or "").lower().find("âm") >= 0))
+    _bull_div = bool(div and (div.get("bullish") or str(div.get("type") or "").lower().find("bull") >= 0 or str(div.get("type") or "").lower().find("dương") >= 0))
+
+    def _yn(x: bool) -> str:
+        return "Đạt" if x else "Chưa đạt"
+
+    evidence_common = (
+        f"Close {_fmt(close_v)}; hỗ trợ {_fmt(rs_s)} ({_pct_delta(rs_s, close_v)}), kháng cự {_fmt(rs_r)} ({_pct_delta(rs_r, close_v)}); "
+        f"MA20/50/200 {_fmt(ma20)}/{_fmt(ma50)}/{_fmt(ma200)}; Ichimoku {str(ichi.get('state') if ichi else 'N/A')}; "
+        f"RSI14 {_fmt(rsi_v)}; MACD {_fmt(macd_v, 4)} / signal {_fmt(sig_v, 4)} / hist {_fmt(hist_v, 4)}; "
+        f"Bollinger L/M/U {_fmt(bb_l)}/{_fmt(bb_m)}/{_fmt(bb_u)}, %B {_fmt(bbp)}; "
+        f"VolumeRatio {_fmt(volratio_v)}, ADX {_fmt(adx_v)}, +DI/-DI {_fmt(pdi_v)}/{_fmt(mdi_v)}; "
+        f"V3 zone {eod_flat.get('zoneState') or 'N/A'}, setup {eod_flat.get('setupType') or 'N/A'}, score {_score_str(eod_flat.get('signalScore') or eod_flat.get('v3FullScore'))}; "
+        f"phân kỳ {'âm' if _bear_div else ('dương' if _bull_div else 'không rõ/không có')}.")
+    _bullets(doc, ["3D dùng trực tiếp bộ chỉ báo chiến lược LHinvt: xu hướng MA/Ichimoku, hỗ trợ-kháng cự, RSI, MACD histogram/cross, Bollinger %B, volume/ADX/DI, phân kỳ và trạng thái V3. Không gắn nhãn BUY nếu thiếu xác nhận giá + dòng tiền."])
+
     strat_rows = []
-    if _above_cloud and _near3 and _rsi_ok_pullback and _macd_recover and _vol_ok:
-        strat_rows.append(["Trend Pullback Pro", "WATCH/BUY khi có nến xác nhận", f"Giá trên mây, gần hỗ trợ {_fmt(rs_s)}, RSI {_fmt(rsi_v)}, MACD/histogram đang hồi; chờ volume xác nhận để nâng tỷ trọng."])
-    else:
-        strat_rows.append(["Trend Pullback Pro", "Reject", f"Chưa đủ bộ lọc: trên mây={_above_cloud}, gần hỗ trợ≤3%={_near3}, RSI 48-62={_rsi_ok_pullback}, MACD hồi={_macd_recover}, volume ổn={_vol_ok}."])
-    if _near25 and (_rsi_low_watch or (_above_cloud and _rsi_ok_pullback)) and _macd_recover:
-        strat_rows.append(["Support Rebound Hunter", "Watch yếu / chưa đủ BUY", f"Giá gần hỗ trợ {_fmt(rs_s)} và có dấu hiệu hồi; chỉ nâng lên BUY nếu xuất hiện nến bật rõ kèm thanh khoản."])
-    else:
-        strat_rows.append(["Support Rebound Hunter", "Reject/Watch", f"Điều kiện rebound chưa đủ mạnh: gần hỗ trợ≤2,5%={_near25}, RSI thấp/vùng hồi={_rsi_low_watch or (_above_cloud and _rsi_ok_pullback)}, MACD hồi={_macd_recover}."])
-    strat_rows.append(["Shakeout Rebound", "Reject hiện tại", f"Chưa có mẫu breakdown dưới hỗ trợ {_fmt(rs_s)} rồi reclaim trong 1-3 nến; không gắn nhãn shakeout khi chưa có xác nhận hành vi giá."])
-    strat_rows.append(["LH4 Wave Entry", "Reject", f"Chưa đạt chất lượng sóng/xu hướng/volume đủ mạnh; cần breakout hoặc nền tích lũy rõ hơn trước khi coi là điểm vào LH4."])
-    _table(doc, ["Chiến lược LHinvt", "Kết luận", "PTKT / điều kiện kiểm tra"], strat_rows)
+    _trend_checks = [
+        ("Giá trên mây Ichimoku", _above_cloud), ("gần hỗ trợ ≤3%", _near3), ("RSI 48-62", _rsi_ok_pullback),
+        ("MACD/hist hồi", _macd_recover), ("volume không quá yếu", _vol_ok), ("không có phân kỳ âm", not _bear_div),
+        ("không nằm vùng Bollinger quá cao", _bb_not_high),
+    ]
+    _trend_pass = sum(1 for _, ok in _trend_checks if ok)
+    _trend_status = "WATCH/BUY khi có nến xác nhận" if _trend_pass >= 6 and _above_cloud and _near3 else ("Watch" if _trend_pass >= 4 else "Reject")
+    strat_rows.append([
+        "Trend Pullback Pro",
+        _trend_status,
+        "; ".join(f"{name}: {_yn(ok)}" for name, ok in _trend_checks),
+        f"{evidence_common} Kết luận: {'ưu tiên chờ pullback giữ hỗ trợ rồi bật lên' if _trend_status != 'Reject' else 'chưa đủ nền pullback pro, không mua đuổi/không nâng tỷ trọng'}.",
+    ])
+
+    _support_checks = [
+        ("gần hỗ trợ ≤2,5%", _near25), ("RSI thấp hoặc vùng hồi hợp lệ", _rsi_low_watch or (_above_cloud and _rsi_ok_pullback)),
+        ("%B ≤0,55", _bb_rebound_zone), ("MACD histogram/cross đang hồi", _macd_recover),
+        ("volume xác nhận", _vol_ok), ("không phân kỳ âm", not _bear_div),
+    ]
+    _support_pass = sum(1 for _, ok in _support_checks if ok)
+    _support_status = "Watch yếu / chưa đủ BUY" if _support_pass >= 4 and _near25 else ("Reject/Watch" if _support_pass >= 3 else "Reject")
+    strat_rows.append([
+        "Support Rebound Hunter",
+        _support_status,
+        "; ".join(f"{name}: {_yn(ok)}" for name, ok in _support_checks),
+        f"{evidence_common} Kết luận: chỉ chuyển BUY nếu có nến bật tại {_fmt(rs_s)} kèm VolumeRatio > 1,2 và MACD/RSI xác nhận; nếu mất hỗ trợ thì loại setup.",
+    ])
+
+    _shake_checks = [
+        ("có breakdown dưới hỗ trợ 2-4,5%", False), ("reclaim hỗ trợ trong 1-3 nến", False),
+        ("volume bán không tiếp diễn", _vol_ok), ("RSI/MACD hồi sau rũ", _macd_recover),
+        ("không có phân kỳ âm", not _bear_div),
+    ]
+    strat_rows.append([
+        "Shakeout Rebound",
+        "Reject hiện tại",
+        "; ".join(f"{name}: {_yn(ok)}" for name, ok in _shake_checks),
+        f"Không gắn nhãn shakeout nếu chưa thấy breakdown-reclaim rõ quanh hỗ trợ {_fmt(rs_s)}. Cần kiểm tra thêm nến ngày/volume tại vùng rũ để tránh nhận nhầm breakdown thật.",
+    ])
+
+    _lh4_checks = [
+        ("giá trên MA20", _ma20_ok), ("giá trên MA50", _ma50_ok), ("giá trên MA200", _ma200_ok),
+        ("Ichimoku ủng hộ", _above_cloud and not _below_cloud), ("ADX ≥20", _adx_ok), ("+DI ≥ -DI", _di_bull),
+        ("volume breakout ≥1,2", _vol_breakout), ("MACD/RSI đồng thuận", _macd_recover and (_num(rsi_v) is not None and _num(rsi_v) >= 50)),
+    ]
+    _lh4_pass = sum(1 for _, ok in _lh4_checks if ok)
+    _lh4_status = "Watch" if _lh4_pass >= 6 and _vol_breakout else "Reject"
+    strat_rows.append([
+        "LH4 Wave Entry",
+        _lh4_status,
+        "; ".join(f"{name}: {_yn(ok)}" for name, ok in _lh4_checks),
+        f"LH4 cần chất lượng sóng/xu hướng/dòng tiền đồng thuận. Hiện đạt {_lh4_pass}/{len(_lh4_checks)} điều kiện; {'chờ breakout qua kháng cự ' + _fmt(rs_r) if _lh4_status == 'Watch' else 'chưa đủ chất lượng để coi là điểm vào LH4'}.",
+    ])
+    _table(doc, ["Chiến lược LHinvt", "Kết luận", "Checklist PTKT", "Diễn giải hành động"], strat_rows)
 
     missing = []
     for must in ("ADX", "Ichimoku"):
@@ -1501,7 +1574,7 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
         scenario_rows.append(["Bổ sung", line])
     _table(doc, ["Kịch bản", "Điều kiện - tác động - hành động"], scenario_rows)
 
-    _heading(doc, "7. Rủi ro & quan điểm", 1)
+    _heading(doc, "6. Rủi ro & quan điểm", 1)
     risk_items = _pick_lines(risk_text, ("Risk", "rủi ro", "Invalidation", "Stance", "WATCH", "AVOID", "stop", "thanh khoản", "khuyến nghị", "theo dõi"), 14)
     # Risk score định lượng 1-5: mỗi tiêu chí rủi ro cộng 1 điểm, nêu rõ căn cứ.
     risk_reasons = []
@@ -1537,7 +1610,7 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     ])
     _bullets(doc, _dedupe_lines(risk_items, seen_keys) or ["Nội dung rủi ro bổ sung chưa đủ chuẩn kiểm chứng trong kỳ này; bảng rủi ro trên dùng dữ liệu LHInvestment, indicator và số tin đã xác thực để đánh giá."])
 
-    _heading(doc, "8. Kế hoạch theo dõi", 1)
+    _heading(doc, "7. Kế hoạch theo dõi", 1)
     followup_items = _pick_lines(followup_text, ("trade plan", "kế hoạch", "điều kiện", "hỗ trợ", "kháng cự", "cắt", "mua", "volume", "MACD", "RSI", "refresh", "trigger"), 14)
     _table(doc, ["Việc cần theo dõi", "Ngưỡng/số liệu cụ thể", "Hành động"], [
         ["Giá & vùng kỹ thuật", f"Close {_fmt(close_v)}; hỗ trợ {_fmt(rs_s)} ({_pct_delta(rs_s, close_v)}); kháng cự {_fmt(rs_r)} ({_pct_delta(rs_r, close_v)}); Bollinger {_fmt(bb_l)}/{_fmt(bb_m)}/{_fmt(bb_u)}; %B {_fmt(bbp)}", "Cập nhật mỗi phiên; chỉ quan sát mua khi giữ hỗ trợ hoặc breakout kháng cự có xác nhận."],
