@@ -132,7 +132,8 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         "  ]\n"
         "}\n\n"
         "Quy tắc: không để trống developer/scale/operation_year/handover_status; "
-        "không chắc thì ghi 'đang kiểm chứng', không bịa chi tiết."
+        "không chắc thì ghi 'đang kiểm chứng', không bịa chi tiết. "
+        "Tuyệt đối không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố."
     )
     data = await client.chat_json(system, user, temperature=0.2)
     if not isinstance(data, dict):
