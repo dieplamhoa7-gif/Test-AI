@@ -60,6 +60,10 @@ def _repair_text_quality(text: Any) -> str:
         "ỗ trợong": "trong",
         "catalystỷ đồngành": "catalyst ngành",
         "ngànhỷ đồngán lẻ": "ngành bán lẻ",
+        "hỗ trợên": "trên",
+        "kế hoạchỗ trợên": "kế hoạch trên",
+        "kế hoạctrên": "kế hoạch trên",
+        "quyết đánh giáao dịch": "quyết định giao dịch",
     }
     for src, dst in glue_fixes.items():
         s = s.replace(src, dst)
