@@ -119,7 +119,52 @@ def run_job(base: str, token: str, job: dict[str, Any], out_dir: Path) -> None:
         r = requests.post(f"{base}/pipeline/model3/worker/{job_id}/upload", headers={"Authorization": f"Bearer {token}"}, files=files, data=data, timeout=180)
     if r.status_code >= 400:
         raise RuntimeError(f"upload failed HTTP {r.status_code}: {r.text[:1000]}")
+    uploaded_job = r.json()
     log(f"{job_id} uploaded {docx.name}")
+
+    wants_notebook = any(
+        str(s.get("key")) == "notebooklm" and str(s.get("status")) != "skipped"
+        for s in (job.get("sections") or [])
+        if isinstance(s, dict)
+    )
+    if wants_notebook:
+        try:
+            progress("NotebookLM: đang tạo notebook/slides từ DOCX...")
+            from model3_notebooklm import create_presentation_from_docx  # type: ignore
+
+            nb = create_presentation_from_docx(str(docx), title=f"{ticker} Model3 NotebookLM Web Export")
+            result = dict((uploaded_job.get("result") or {}) if isinstance(uploaded_job, dict) else {})
+            result["notebooklm"] = nb
+            if isinstance(nb, dict):
+                pdf = nb.get("slide_pdf")
+                notebook_id = nb.get("notebook_id")
+                if pdf:
+                    result["notebooklm_pdf_url"] = f"/pipeline/model3/file/{Path(str(pdf)).name}"
+                if notebook_id:
+                    result["notebooklm_url"] = f"https://notebooklm.google.com/notebook/{notebook_id}"
+            sections = uploaded_job.get("sections") or job.get("sections") or []
+            agents = uploaded_job.get("agents") or job.get("agents") or {}
+            for sec in sections:
+                if isinstance(sec, dict) and sec.get("key") == "notebooklm":
+                    sec["status"] = "done"
+            if isinstance(agents, dict):
+                agents["NotebookLM"] = "done"
+            post_status(base, token, job_id, status="done", progress=100, result=result, sections=sections, agents=agents, log="NotebookLM export xong")
+            log(f"{job_id} NotebookLM export done")
+        except Exception as exc:  # noqa: BLE001
+            err = str(exc)[-1500:]
+            result = dict((uploaded_job.get("result") or {}) if isinstance(uploaded_job, dict) else {})
+            result["notebooklm"] = None
+            result["notebooklm_error"] = err
+            sections = uploaded_job.get("sections") or job.get("sections") or []
+            agents = uploaded_job.get("agents") or job.get("agents") or {}
+            for sec in sections:
+                if isinstance(sec, dict) and sec.get("key") == "notebooklm":
+                    sec["status"] = "error"
+            if isinstance(agents, dict):
+                agents["NotebookLM"] = "error"
+            post_status(base, token, job_id, status="done", progress=100, result=result, sections=sections, agents=agents, log=f"NotebookLM export lỗi: {err}")
+            log(f"{job_id} NotebookLM export failed: {err}")
 
 
 def main() -> int:
