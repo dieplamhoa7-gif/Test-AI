@@ -65,11 +65,21 @@ def _tokens(s: str) -> list[str]:
 
 
 def _query_match(query: str, text: str, url: str) -> bool:
-    qtokens = [t for t in _tokens(query) if t not in {"shophouse", "mặt", "tiền", "nha", "nhà", "phố", "thuong", "thương", "mai", "mại"}]
+    # City/admin words are useful for Batdongsan search/autocomplete, but many
+    # listing cards/URLs omit them. Do not reject a valid La Casa / Era Town
+    # listing only because "Hồ Chí Minh" is absent from the card text.
+    ignored = {
+        "shophouse", "mặt", "tiền", "nha", "nhà", "phố", "thuong", "thương", "mai", "mại",
+        "hồ", "chi", "chí", "minh", "ho", "thành", "thanh", "phố", "pho", "hcm", "tphcm",
+        "quận", "quan", "huyện", "huyen", "phường", "phuong",
+    }
+    qtokens = [t for t in _tokens(query) if t not in ignored]
     hay = ((text or "") + " " + (url or "")).lower()
     if not qtokens:
         return True
-    return sum(1 for t in qtokens if t in hay) >= max(1, min(2, len(qtokens)))
+    # For short project names (La Casa, Era Town), one distinctive project token
+    # is enough; requiring two tokens dropped all real price samples.
+    return sum(1 for t in qtokens if t in hay) >= 1
 
 
 def _parse_row(source: str, row: dict, mode: str = "buy") -> Listing | None:
@@ -228,14 +238,15 @@ async def scrape_batdongsan_playwright(query: str, limit: int = 10, headless: bo
             await ctx.close()
 
 
-async def browser_true_buckets_async(criteria: SearchCriteria, projects) -> dict[str, list[Listing]]:
+async def browser_true_buckets_async(criteria: SearchCriteria, projects, max_projects: int = 5) -> dict[str, list[Listing]]:
     city = "Hồ Chí Minh"
     if "hà nội" in (criteria.human_summary or "").lower():
         city = "Hà Nội"
     elif "đà nẵng" in (criteria.human_summary or "").lower() or "da nang" in (criteria.human_summary or "").lower():
         city = "Đà Nẵng"
     buckets: dict[str, list[Listing]] = {}
-    for p in projects.projects[:5]:
+    is_apartment = (getattr(criteria, "property_type", "") or "").lower() in {"chungcu", "canho", "apartment"}
+    for p in projects.projects[:max_projects]:
         name=(p.get("name") or "").strip()
         if not name:
             continue
@@ -244,14 +255,17 @@ async def browser_true_buckets_async(criteria: SearchCriteria, projects) -> dict
             # because it can make Batdongsan autocomplete choose the wrong category.
             mode = getattr(criteria, "transaction", "buy") or "buy"
             rows = await scrape_batdongsan_playwright(f"{name} {city}", limit=10, headless=False, mode=mode)
-            # For streets/areas, Batdongsan often needs district/city context.
-            loc = getattr(criteria, "location_context", {}) or {}
-            district = loc.get("district") if isinstance(loc, dict) else None
-            street = loc.get("street") if isinstance(loc, dict) else None
-            if not rows and district and district.lower() not in name.lower():
-                rows = await scrape_batdongsan_playwright(f"{name} {district} {city}", limit=10, headless=False, mode=mode)
-            if not rows and street and street.lower() not in name.lower():
-                rows = await scrape_batdongsan_playwright(f"{name} {street} {district or ''} {city}", limit=10, headless=False, mode=mode)
+            # For landed/street searches Batdongsan often needs district/city context.
+            # For apartments, fallback street/district queries make fast-mode exceed timeout
+            # and often broaden away from the project, so keep the exact project+city query.
+            if not is_apartment:
+                loc = getattr(criteria, "location_context", {}) or {}
+                district = loc.get("district") if isinstance(loc, dict) else None
+                street = loc.get("street") if isinstance(loc, dict) else None
+                if not rows and district and district.lower() not in name.lower():
+                    rows = await scrape_batdongsan_playwright(f"{name} {district} {city}", limit=10, headless=False, mode=mode)
+                if not rows and street and street.lower() not in name.lower():
+                    rows = await scrape_batdongsan_playwright(f"{name} {street} {district or ''} {city}", limit=10, headless=False, mode=mode)
         except Exception:
             rows = []
         if rows:
@@ -359,7 +373,7 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
     return out
 
 
-async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects) -> dict[str, list[Listing]]:
+async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, max_projects: int = 5) -> dict[str, list[Listing]]:
     """Open Batdongsan once, choose sale/rent tab once, then search projects sequentially."""
     from playwright.async_api import async_playwright
     city = "Hồ Chí Minh"
@@ -388,20 +402,22 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects) -
                 await page.wait_for_timeout(1500)
             except Exception:
                 pass
-            for pr in projects.projects[:5]:
+            is_apartment = (getattr(criteria, "property_type", "") or "").lower() in {"chungcu", "canho", "apartment"}
+            for pr in projects.projects[:max_projects]:
                 name=(pr.get("name") or "").strip()
                 if not name: continue
                 search_name = _clean_project_search_name(name)
                 try:
                     # Primary rule: clean project name + city only.
                     rows = await _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10)
-                    district = loc.get("district") if isinstance(loc, dict) else None
-                    street = loc.get("street") if isinstance(loc, dict) else None
-                    # Fallbacks only if no rows: add real district/street from reverse context, never hardcode.
-                    if not rows and district and district.lower() not in search_name.lower():
-                        rows = await _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10)
-                    if not rows and street and street.lower() not in search_name.lower():
-                        rows = await _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10)
+                    if not is_apartment:
+                        district = loc.get("district") if isinstance(loc, dict) else None
+                        street = loc.get("street") if isinstance(loc, dict) else None
+                        # Fallbacks only if no rows: add real district/street from reverse context, never hardcode.
+                        if not rows and district and district.lower() not in search_name.lower():
+                            rows = await _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10)
+                        if not rows and street and street.lower() not in search_name.lower():
+                            rows = await _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10)
                 except Exception:
                     rows = []
                 if rows:

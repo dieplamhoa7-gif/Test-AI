@@ -724,8 +724,16 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
             log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
     else:
-        write_progress('browser_buckets', 'Web fast-mode: bỏ qua browser bucket nặng cho chung cư; chuyển sang tổng hợp nhanh...', warnings)
-        warnings.append('Web fast-mode: bỏ qua browser bucket nặng cho chung cư để job không treo quá lâu.')
+        write_progress('browser_buckets', 'Chung cư: Playwright đang search Batdongsan theo tên dự án + thành phố...', warnings)
+        try:
+            apt_browser = await asyncio.wait_for(browser_true_buckets_async(criteria, projects, max_projects=(3 if is_fast_mode else 5)), timeout=(120 if is_fast_mode else 180))
+            buckets = merge_listing_buckets(buckets, apt_browser)
+            if any(apt_browser.values()):
+                warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + thành phố.')
+        except Exception as e:
+            note = 'Playwright Batdongsan chung cư timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'
+            warnings.append(f'browser chung cư lỗi/timeout: {type(e).__name__}. {note}')
+            log_error('browser_buckets_chungcu', payload, e, 'continue with fallback/AI estimate', note)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
     if not has_price:
