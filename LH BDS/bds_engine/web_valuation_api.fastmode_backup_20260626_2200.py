@@ -26,6 +26,29 @@ def fix_vn_text(x):
             x = _ftfy_fix_text(x)
         except Exception:
             pass
+    # Sau ftfy: vai tu Viet con sot "khoang trang gia" (à/ị... + space) hoac chua ghep dau.
+    # Pho bien nhat: "Thà nh pho" phai la "Thành pho" (xuat hien o moi dia chi -> loi mojibake nang).
+    _post_ftfy = {
+        # tone/vowel families con sot sau ftfy (UTF-8 doc nham latin1)
+        'á»±': 'ự', 'á»§': 'ủ', 'á»©': 'ứ', 'á»™': 'ộ', 'á»•': 'ổ', 'á»—': 'ỗ',
+        'á» ': 'ở', 'á»Ÿ': 'ở', 'á»›': 'ớ', 'á»£': 'ợ', 'á»­': 'ử', 'á»¯': 'ữ',
+        'á»‰': 'ỉ', 'á»‹': 'ị', 'á»…': 'ễ', 'á»ƒ': 'ể', 'á»‡': 'ệ', 'á»“': 'ồ',
+        'á»‘': 'ố', 'á»•': 'ổ', 'á»?': 'ọ',
+        'á»': 'ờ', 'á»': 'ở', 'á»': 'ớ', 'á»': 'ố', 'á»': 'ồ', 'á»§': 'ủ',
+        'áº£': 'ả', 'áº¥': 'ấ', 'áº§': 'ầ', 'áº©': 'ẩ', 'áº«': 'ẫ', 'áº­': 'ậ',
+        'áº¯': 'ắ', 'áº±': 'ằ', 'áº³': 'ẳ', 'áºµ': 'ẵ', 'áº·': 'ặ', 'áº¡': 'ạ',
+        'áº¿': 'ế', 'áº½': 'ẽ', 'áº»': 'ẻ', 'áº¹': 'ẹ',
+        'Æ°': 'ư', 'Æ¡': 'ơ', 'Ä‘': 'đ', 'Ä‘': 'đ',
+        'Ãª': 'ê', 'Ã´': 'ô', 'Ã¢': 'â', 'Ã ': 'à', 'Ã¡': 'á', 'Ã­': 'í',
+        'Ã³': 'ó', 'Ã²': 'ò', 'Ãº': 'ú', 'Ã¹': 'ù', 'Ã½': 'ý', 'Ã©': 'é', 'Ã¨': 'è',
+        'CÄ': 'Că', 'cÄ': 'că', 'há»™': 'hộ', 'Há»™': 'Hộ',
+        # tu pho bien bi chen khoang trang gia sau ftfy
+        'Thà nh': 'Thành', 'thà nh': 'thành',
+        'Thà nh phố': 'Thành phố', 'thà nh phố': 'thành phố',
+        'Nhà  ': 'Nhà ', 'nhà  ': 'nhà ',
+    }
+    for _a, _b in _post_ftfy.items():
+        x = x.replace(_a, _b)
     bad = chr(0xFFFD)
     replacements = {
         'ThÃ nh': 'Thành', 'thÃ nh': 'thành', 'phá»‘': 'phố', 'Há»“': 'Hồ', 'ChÃ­': 'Chí',
@@ -624,7 +647,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     else:
         write_progress('find_comparables', 'Chung cư: đang tìm 5 dự án/khu vực comparable giống BDS_bot...', warnings)
         try:
-            projects = await asyncio.wait_for(find_nearby_projects(ai_fast, criteria), timeout=20)
+            projects = await asyncio.wait_for(find_nearby_projects(ai_fast, criteria), timeout=45)
         except Exception as e:
             note = 'Fallback dự án/khu vực vì AI tìm comparable quá chậm/timeout.'
             warnings.append(f"find_nearby_projects lỗi/timeout, dùng fallback: {type(e).__name__}. {note}")
@@ -708,7 +731,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             warnings.append('Web nguồn/search bị chặn hoặc không parse được giá; dùng AI estimate có nhãn kiểm chứng.')
             write_progress('ai_support', 'Nguồn thật chưa đủ giá; AI support đang tạo estimate có nhãn cần kiểm chứng...', warnings)
             try:
-                ai_est_timeout = 25 if criteria.property_type == 'chungcu' else 60
+                ai_est_timeout = 60 if criteria.property_type == 'chungcu' else 60
                 est = await asyncio.wait_for(build_ai_estimate_buckets(ai_report, criteria, projects), timeout=ai_est_timeout)
                 buckets = merge_listing_buckets(buckets, est)
             except Exception as e:
@@ -721,7 +744,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         if criteria.property_type != 'chungcu':
             report = build_direct_land_report(projects, buckets)
         else:
-            report = await asyncio.wait_for(build_project_price_report(ai_report, criteria, projects, buckets), timeout=25)
+            report = await asyncio.wait_for(build_project_price_report(ai_report, criteria, projects, buckets), timeout=60)
     except Exception as e:
         note = 'Report AI timeout/lỗi; dùng báo cáo tối thiểu deterministic từ dữ liệu hiện có, không gọi AI support phụ.'
         warnings.append(f'build_project_price_report lỗi: {type(e).__name__}. {note}')
