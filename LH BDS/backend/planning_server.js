@@ -24,6 +24,7 @@ const express = require('express');
 const path = require('path');
 const { parseGulandPopupText } = require('./guland_popup_parser');
 const { parseQhVietPopupText } = require('./qhviet_popup_parser');
+const { lookupGisXayDung } = require('./gisxaydung_client');
 
 const PORT = process.env.QH_PORT || 8790;
 const PW_PROFILE = process.env.QH_BROWSER_PROFILE || path.resolve(__dirname, '..', '.pw-tvpl-profile');
@@ -188,6 +189,39 @@ app.post('/planning/lookup', async (req, res) => {
 
   let qhviet = { ok: false, error: 'Bo qua (includeQhViet=false)' };
   let guland = { ok: false, error: 'Bo qua (includeGuland=false)' };
+  let gisxaydung = { ok: false, error: 'Chua query GIS Xay dung' };
+
+  try {
+    gisxaydung = await lookupGisXayDung(lat, lng);
+    if (gisxaydung.ok) {
+      const gp = gisxaydung.planning || {};
+      planning.exact_indicators = {
+        chuc_nang_dat: gp.land_use || null,
+        ma_quy_uoc: gp.land_code || null,
+        tang_cao: gp.height || null,
+        mat_do_xay_dung: gp.density,
+        he_so_su_dung_dat: gp.far,
+        dan_so_lo_o_pho: gp.population || null,
+        dien_tich: gp.area_m2,
+      };
+      planning.confidence.district_planning = 'Da query GIS Xay dung TP.HCM';
+      planning.confidence.exact_indicators = 'GIS Xay dung TP.HCM';
+      raw.official_lots.details = [{ detail: {
+        chucnangsdd: gp.land_use || null,
+        maquyuoc: gp.land_code || null,
+        tangcao: gp.height || null,
+        matdo: gp.density,
+        hesosdd: gp.far,
+        danso: gp.population || null,
+        dientich: gp.area_m2,
+      } }];
+      raw.official_lots.lots = [{
+        chucnang: gp.land_use || null,
+        maso: gp.land_code || null,
+        dientich: gp.area_m2,
+      }];
+    }
+  } catch (e) { gisxaydung = { ok: false, error: 'GIS Xay dung loi: ' + e.message }; }
 
   if (req.body.includeGuland) {
     try {
@@ -204,7 +238,7 @@ app.post('/planning/lookup', async (req, res) => {
     } catch (e) { qhviet = { ok: false, error: 'QH Viet loi: ' + e.message }; }
   }
 
-  res.json({ ok: true, location, planning, raw, qhviet, guland });
+  res.json({ ok: true, location, planning, raw, qhviet, guland, gisxaydung });
 });
 
 app.listen(PORT, () => console.log(`[planning_server] listening on http://localhost:${PORT}`));
