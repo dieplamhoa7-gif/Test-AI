@@ -628,6 +628,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     )
     criteria.transaction = payload.get('transaction') or 'buy'
     criteria.segment = payload.get('segment') or None
+    rd_mode = str(payload.get('mode') or payload.get('rdMode') or 'standard').lower()
+    is_fast_mode = rd_mode == 'fast'
     warnings: list[str] = []
     write_progress('resolve_location', 'Đang xác định khu vực/vị trí nghiên cứu...', warnings)
     if isinstance(payload.get('location_context'), dict) and payload.get('location_context'):
@@ -675,8 +677,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     else:
         write_progress('discover_links', 'Đang search link nguồn thật Batdongsan/Guland/Alonhadat...', warnings)
         try:
-            search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=30)
-            source_hits = await asyncio.wait_for(discover_real_source_links(search_targets, per_source_limit=4), timeout=45)
+            search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=(12 if is_fast_mode else 30))
+            source_hits = await asyncio.wait_for(discover_real_source_links(search_targets, per_source_limit=(2 if is_fast_mode else 4)), timeout=(18 if is_fast_mode else 45))
             evidence_buckets = listings_from_search_hits(source_hits)
         except Exception as e:
             note = 'Tự fallback nguồn search vì search link nguồn thật quá chậm/timeout.'
@@ -693,7 +695,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         buckets = {}
     else:
         try:
-            buckets = await asyncio.wait_for(scrape_all_sources(ai_bds, criteria, projects, max_concurrent=1), timeout=90)
+            buckets = await asyncio.wait_for(scrape_all_sources(ai_bds, criteria, projects, max_concurrent=1), timeout=(20 if is_fast_mode else 90))
         except Exception as e:
             note = 'Bỏ qua scrape nguồn vì quá chậm/timeout; tiếp tục bằng evidence/fallback buckets để web không treo.'
             warnings.append(f"scrape_all_sources lỗi/timeout: {type(e).__name__}. {note}")
@@ -704,18 +706,21 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
     if criteria.property_type != 'chungcu':
         write_progress('browser_street_search', 'Sản phẩm không phải chung cư: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
+        if is_fast_mode:
+            warnings.append('Fast-mode: bỏ qua browser_direct_land_buckets nặng; dùng Google snippet/browser_price nhanh để tránh treo Playwright.')
+        else:
+            try:
+                land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=220)
+                buckets = merge_listing_buckets(buckets, land_true)
+            except Exception as e:
+                note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
+                warnings.append(f"browser direct land lỗi/timeout: {type(e).__name__}. {note}")
+                log_error('browser_direct_land', payload, e, 'try Google snippet browser price search', note)
         try:
-            land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=220)
-            buckets = merge_listing_buckets(buckets, land_true)
-        except Exception as e:
-            note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
-            warnings.append(f"browser direct land lỗi/timeout: {type(e).__name__}. {note}")
-            log_error('browser_direct_land', payload, e, 'try Google snippet browser price search', note)
-        try:
-            land_browser = await asyncio.wait_for(browser_price_buckets(criteria, projects, max_projects=5), timeout=120)
+            land_browser = await asyncio.wait_for(browser_price_buckets(criteria, projects, max_projects=(3 if is_fast_mode else 5)), timeout=(35 if is_fast_mode else 120))
             buckets = merge_listing_buckets(buckets, land_browser)
         except Exception as e:
-            note = await ai_support_agent(ai_report, 'browser_land_search', payload, e, 'continue with scraped/direct source buckets only')
+            note = 'Fast-mode bỏ qua AI support phụ sau lỗi browser search.' if is_fast_mode else await ai_support_agent(ai_report, 'browser_land_search', payload, e, 'continue with scraped/direct source buckets only')
             warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
             log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
     else:
