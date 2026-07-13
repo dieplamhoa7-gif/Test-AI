@@ -943,7 +943,53 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
     # `1. [2026-..] Title — Source\nURL: ...\nSnippet: ...`
     # Older formatter versions only accepted `Tin 1`, which made section 2 look
     # empty even though RAW WEB RESULTS had usable public/news items.
+    def _fallback_news_bucket(title: str, snippet: str) -> str:
+        hay = f"{title} {snippet}".lower()
+        if re.search(r"tăng vốn|vốn điều lệ|phát hành|cổ phiếu thưởng|chia cổ tức|esop", hay):
+            return "capital"
+        if re.search(r"lợi nhuận|doanh thu|kqkd|quý\s*(?:1|i\b)|lãi trước thuế|lãi ròng|\blãi\b|kế hoạch kinh doanh", hay):
+            return "earnings"
+        if re.search(r"thị phần|môi giới|hose|hnx", hay):
+            return "market_share"
+        if re.search(r"đhđcđ|đại hội cổ đông|cổ đông|hđqt|nhân sự", hay):
+            return "agm"
+        if re.search(r"khuyến nghị|target|định giá|dự phóng|triển vọng", hay):
+            return "broker_view"
+        return re.sub(r"\W+", "", hay, flags=re.UNICODE)[:60]
+
+    def _fallback_news_impact(title: str, snippet: str) -> tuple[str, str]:
+        hay = f"{title} {snippet}".lower()
+        if re.search(r"tăng vốn|vốn điều lệ|phát hành", hay):
+            return "Tích cực", "Tăng năng lực margin/tự doanh và vị thế vốn; rủi ro pha loãng nếu lợi nhuận không tăng tương ứng."
+        if re.search(r"cổ tức|cổ phiếu thưởng", hay):
+            return "Tích cực", "Hỗ trợ tâm lý cổ đông và định giá ngắn hạn; cần đối chiếu ngày chốt quyền và tỷ lệ pha loãng."
+        if re.search(r"esop", hay):
+            return "Trung tính", "Giữ chân nhân sự nhưng có pha loãng; tích cực chỉ khi đi kèm tăng trưởng lợi nhuận."
+        if re.search(r"lợi nhuận|doanh thu|kqkd|lãi trước thuế|lãi ròng|\blãi\b|kế hoạch kinh doanh", hay):
+            return "Tích cực", "KQKD/kế hoạch lợi nhuận là catalyst trực tiếp; cần so với kỳ vọng thị trường và nền lợi nhuận năm trước."
+        if re.search(r"thị phần|môi giới", hay):
+            return "Tích cực", "Thị phần môi giới cải thiện hỗ trợ doanh thu phí và margin; theo dõi tính bền vững qua các quý."
+        if re.search(r"đhđcđ|đại hội cổ đông", hay):
+            return "Trung tính", "Tin sự kiện quản trị/kế hoạch năm; tác động phụ thuộc nghị quyết cuối cùng và tiến độ thực hiện."
+        if re.search(r"khuyến nghị|target|định giá|dự phóng|triển vọng", hay):
+            return "Trung tính", "Cung cấp tham chiếu định giá/triển vọng; cần kiểm chứng giả định lợi nhuận và thanh khoản thị trường."
+        if re.search(r"sụt giảm|giảm|rủi ro|thanh tra|xử phạt", hay):
+            return "Tiêu cực", "Có thể tạo áp lực tâm lý/định giá; cần xác minh mức ảnh hưởng trực tiếp tới SSI."
+        return "Trung tính", "Tin liên quan trực tiếp đến SSI; cần đối chiếu cùng giá, thanh khoản và catalyst trước khi hành động."
+
     web_pat = r"(?ims)^\s*\d+\.\s*\[(?P<date>[^\]]*)\]\s*(?P<title>.+?)\s*(?:\s+—\s+|\s+\|\s+)(?P<source>[^\n]*)\n\s*URL:\s*(?P<url>\S+)\s*\n\s*Snippet:\s*(?P<snippet>.*?)(?=^\s*\d+\.\s*\[|\Z)"
+    def _mk_item(title: str, source: str, date: str, url: str, snippet: str) -> str:
+        label, impact = _fallback_news_impact(title, snippet)
+        summary = snippet or title
+        return (
+            f"Tin {{idx}} - {title} | Ngày: {date or 'N/A'} | "
+            f"Nguồn/link: {source or 'web'} {url} | Nhãn: {label} | Tóm tắt: {summary} | "
+            f"Tác động: {impact}"
+        )
+
+    seen_buckets: set[str] = set()
+    deferred: list[tuple[str, str, str, str, str, str]] = []
+    seen_titles: set[str] = set()
     for m in re.finditer(web_pat, raw_text):
         title = _clean_inline(m.group('title'))
         source = _clean_inline(m.group('source'))
@@ -952,12 +998,39 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
         snippet = _clean_inline(m.group('snippet'))
         if not (title or snippet):
             continue
-        item = (
-            f"Tin {len(items)+1} - {title} | Ngày: {date or 'N/A'} | "
-            f"Nguồn/link: {source or 'web'} {url} | Tóm tắt: {snippet or title} | "
-            "Tác động: cần rà soát cùng diễn biến thị giá, thanh khoản và catalyst; đây là tin public-web fallback đã được lọc theo ticker."
-        )
+        title_key = re.sub(r"\W+", "", title.lower(), flags=re.UNICODE)[:90]
+        if title_key in seen_titles:
+            continue
+        seen_titles.add(title_key)
+        bucket = _fallback_news_bucket(title, snippet)
+        rec = (bucket, title, source, date, url, snippet)
+        # First pass: one representative per theme so section 2 does not show
+        # many rows that all say the same `tăng vốn/ĐHĐCĐ/lợi nhuận` story.
+        if bucket in seen_buckets:
+            deferred.append(rec)
+            continue
+        seen_buckets.add(bucket)
+        item = _mk_item(title, source, date, url, snippet).replace("Tin {idx}", f"Tin {len(items)+1}")
         items.append(item[:1400])
+        if len(items) >= limit:
+            return items
+
+    # If public search only found a few themes, fill up with additional distinct
+    # titles, but cap repeats per theme so `capital/earnings` do not crowd out
+    # market-share/ESOP/broker-view news.
+    bucket_counts: dict[str, int] = {}
+    for bucket, *_ in deferred:
+        bucket_counts.setdefault(bucket, 0)
+    for bucket in seen_buckets:
+        bucket_counts[bucket] = 1
+    priority = {"market_share": 0, "broker_view": 1, "agm": 2, "capital": 3, "earnings": 4}
+    deferred.sort(key=lambda r: (bucket_counts.get(r[0], 0), priority.get(r[0], 9)))
+    for bucket, title, source, date, url, snippet in deferred:
+        if bucket_counts.get(bucket, 0) >= 2:
+            continue
+        item = _mk_item(title, source, date, url, snippet).replace("Tin {idx}", f"Tin {len(items)+1}")
+        items.append(item[:1400])
+        bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
         if len(items) >= limit:
             return items
 
@@ -968,7 +1041,8 @@ def _news_rows_from_items(items: list[str]) -> list[list[str]]:
     rows: list[list[str]] = []
     for item in items:
         text = _clean_inline(item)
-        label = "Tích cực" if re.search(r"tích cực|positive|bull|\btăng\b", text, re.I) else ("Tiêu cực" if re.search(r"tiêu cực|negative|bear|\bgiảm\b", text, re.I) else "Trung tính")
+        lm = re.search(r"(?is)(?:^|[;|])\s*Nhãn\s*:\s*(Tích cực|Tiêu cực|Trung tính)", text)
+        label = lm.group(1) if lm else ("Tích cực" if re.search(r"tích cực|positive|bull|\btăng\b", text, re.I) else ("Tiêu cực" if re.search(r"tiêu cực|negative|bear|\bgiảm\b", text, re.I) else "Trung tính"))
         # Output table requested by Hòa Đại ka: only 3 columns — Nhãn, Tóm tắt tin, Tác động.
         summary = text
         impact = "N/A"
@@ -1282,35 +1356,33 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     else:
         _bullets(doc, ["Cache V3 chưa có tín hiệu hệ thống cho mã này — cần refresh cache LHInvestment."])
 
-    # 3D: LH Strategy Box — trạng thái chiến lược, entry/stop/TP (khớp panel 07 của NotebookLM).
-    _heading(doc, "3D. LH Strategy Box — trạng thái chiến lược", 2)
-    strat_rows: list[list[str]] = []
+    # 3D. Strategy - fixed LHinvt web strategy names/logic, not generic invented labels.
+    _heading(doc, "3D. Strategy", 2)
+    _near_support_pct = None
     try:
-        for r_ in load_strategy_records(symbol, 6) or []:
-            if not isinstance(r_, dict):
-                continue
-            name_ = r_.get("strategy") or r_.get("name") or r_.get("id") or "Chiến lược LH"
-            status_ = r_.get("status") or r_.get("state") or r_.get("signal") or "N/A"
-            entry_ = r_.get("entry") or r_.get("entryPrice") or r_.get("buyZone") or "N/A"
-            stop_ = r_.get("stop") or r_.get("stopLoss") or r_.get("invalid") or "N/A"
-            tp_ = r_.get("takeProfit") or r_.get("target") or r_.get("tp") or "N/A"
-            # Gắn cờ staleness: tín hiệu > 30 ngày phải cảnh báo, tránh người đọc tưởng còn hiệu lực.
-            _d_raw = str(r_.get("date") or r_.get("asOfDate") or "")
-            _age_note = ""
-            try:
-                from datetime import datetime as _dt
-                _age_days = (_dt.now() - _dt.strptime(_d_raw[:10], "%Y-%m-%d")).days
-                if _age_days > 30:
-                    _age_note = f" — CẢNH BÁO: tín hiệu cũ {_age_days} ngày, cần xác nhận lại trước khi dùng"
-            except Exception:
-                pass
-            strat_rows.append([str(name_)[:48], (str(status_)[:64] + _age_note), f"Entry {entry_}; Stop {stop_}; TP {tp_}", _d_raw])
+        if _num(close_v) is not None and _num(rs_s) is not None and _num(close_v) > 0:
+            _near_support_pct = abs(_num(close_v) - _num(rs_s)) / _num(close_v) * 100
     except Exception:
         pass
-    if not strat_rows:
-        _stop_ref = (rs.get("stopLossDay") if isinstance(rs, dict) else None) or "N/A"
-        strat_rows.append(["Chưa có chiến lược LH đang kích hoạt cho mã này", "Theo dõi", f"Vùng tham chiếu: hỗ trợ {_fmt(rs_s)}; kháng cự {_fmt(rs_r)}; stop/invalid {_stop_ref}", str(report_date)])
-    _table(doc, ["Chiến lược", "Trạng thái", "Vùng hành động", "Ngày"], strat_rows)
+    _above_cloud = bool(ichi and str(ichi.get("state")) == "above_cloud")
+    _macd_recover = (_num(hist_v) is not None and _num(hist_v) >= -0.02) or (_num(macd_v) is not None and _num(sig_v) is not None and _num(macd_v) >= _num(sig_v))
+    _rsi_ok_pullback = _num(rsi_v) is not None and 48 <= _num(rsi_v) <= 62
+    _rsi_low_watch = _num(rsi_v) is not None and _num(rsi_v) <= 45
+    _near3 = _near_support_pct is not None and _near_support_pct <= 3.0
+    _near25 = _near_support_pct is not None and _near_support_pct <= 2.5
+    _vol_ok = _num(volratio_v) is not None and _num(volratio_v) >= 0.8
+    strat_rows = []
+    if _above_cloud and _near3 and _rsi_ok_pullback and _macd_recover and _vol_ok:
+        strat_rows.append(["Trend Pullback Pro", "WATCH/BUY khi có nến xác nhận", f"Giá trên mây, gần hỗ trợ {_fmt(rs_s)}, RSI {_fmt(rsi_v)}, MACD/histogram đang hồi; chờ volume xác nhận để nâng tỷ trọng."])
+    else:
+        strat_rows.append(["Trend Pullback Pro", "Reject", f"Chưa đủ bộ lọc: trên mây={_above_cloud}, gần hỗ trợ≤3%={_near3}, RSI 48-62={_rsi_ok_pullback}, MACD hồi={_macd_recover}, volume ổn={_vol_ok}."])
+    if _near25 and (_rsi_low_watch or (_above_cloud and _rsi_ok_pullback)) and _macd_recover:
+        strat_rows.append(["Support Rebound Hunter", "Watch yếu / chưa đủ BUY", f"Giá gần hỗ trợ {_fmt(rs_s)} và có dấu hiệu hồi; chỉ nâng lên BUY nếu xuất hiện nến bật rõ kèm thanh khoản."])
+    else:
+        strat_rows.append(["Support Rebound Hunter", "Reject/Watch", f"Điều kiện rebound chưa đủ mạnh: gần hỗ trợ≤2,5%={_near25}, RSI thấp/vùng hồi={_rsi_low_watch or (_above_cloud and _rsi_ok_pullback)}, MACD hồi={_macd_recover}."])
+    strat_rows.append(["Shakeout Rebound", "Reject hiện tại", f"Chưa có mẫu breakdown dưới hỗ trợ {_fmt(rs_s)} rồi reclaim trong 1-3 nến; không gắn nhãn shakeout khi chưa có xác nhận hành vi giá."])
+    strat_rows.append(["LH4 Wave Entry", "Reject", f"Chưa đạt chất lượng sóng/xu hướng/volume đủ mạnh; cần breakout hoặc nền tích lũy rõ hơn trước khi coi là điểm vào LH4."])
+    _table(doc, ["Chiến lược LHinvt", "Kết luận", "PTKT / điều kiện kiểm tra"], strat_rows)
 
     missing = []
     for must in ("ADX", "Ichimoku"):
@@ -1403,8 +1475,6 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     fund_table_rows = [[fund_label_map.get(str(k), str(k)), str(v) if (isinstance(v, str) and ("%" in v or not v.replace(".", "").replace(",", "").replace("+", "").replace("-", "").isdigit())) else _fmt(v)] for k, v in fund_rows]
     backend_reports = _backend_report_lines(symbol)
     ratio_sector_rows = _ratio_sector_rows(symbol)
-    if backend_reports:
-        fund_table_rows.append(["Báo cáo phân tích stock-news-backend", backend_reports[0][:900]])
     if numeric:
         numeric.sort()
         mean = sum(numeric) / len(numeric)
@@ -1416,37 +1486,20 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     if ratio_sector_rows:
         _heading(doc, "4D. So sánh P/E, P/B, P/S với nhóm ngành", 2)
         _table(doc, ["Chỉ tiêu", "Mã cổ phiếu", "Nhóm ngành", "Trung bình ngành", "Nhận xét"], ratio_sector_rows)
-    if backend_reports:
-        _heading(doc, "4E. Báo cáo phân tích từ stock-news-backend", 2)
-        _bullets(doc, _dedupe_lines(backend_reports, seen_keys)[:5])
     if fundamental:
         _bullets(doc, _dedupe_lines(fundamental, seen_keys)[:6])
 
-    _heading(doc, "5. Kịch bản đầu tư chuyên sâu", 1)
-    # Kịch bản gắn số liệu cụ thể của mã (hỗ trợ/kháng cự/volume), không dùng ví dụ ngành cố định.
+    _heading(doc, "5. Kịch bản đầu tư & hành động chính", 1)
     scenario_rows = [
-        ["Bull case", f"Kích hoạt khi giá vượt kháng cự {_fmt(rs_r)} ({_pct_delta(rs_r, close_v)} so với giá tham chiếu {_fmt(close_v)}) với VolumeRatio > 1.2, tin tích cực đủ mạnh và MACD/RSI xác nhận. Hành động: chỉ cân nhắc nâng tỷ trọng sau xác nhận, không mua đuổi trước breakout."],
-        ["Base case", f"Giá dao động trong vùng hỗ trợ {_fmt(rs_s)} — kháng cự {_fmt(rs_r)}; tin tức tích cực nhưng chưa đủ đổi định giá. Hành động: theo dõi, chờ test hỗ trợ thành công hoặc breakout rõ."],
-        ["Bear case", f"Giá mất hỗ trợ {_fmt(rs_s)} ({_pct_delta(rs_s, close_v)} so với giá), thanh khoản bán tăng, MACD xấu đi hoặc xuất hiện tin tiêu cực trọng yếu với ngành/doanh nghiệp (lợi nhuận, pha loãng, pháp lý, cạnh tranh). Hành động: giảm rủi ro, tránh bắt đáy khi chưa có tín hiệu đảo chiều."],
+        ["Bull", f"Kích hoạt khi giá vượt kháng cự {_fmt(rs_r)} ({_pct_delta(rs_r, close_v)} so với giá tham chiếu {_fmt(close_v)}) với VolumeRatio > 1.2, RSI giữ trên 50 và MACD/histogram xác nhận. Hành động: chỉ nâng tỷ trọng sau breakout rõ, tránh mua đuổi trước tín hiệu."],
+        ["Base", f"Giá dao động trong vùng hỗ trợ {_fmt(rs_s)} - kháng cự {_fmt(rs_r)}; tin tích cực đã có nhưng cần xác nhận bằng dòng tiền. Hành động: theo dõi phản ứng tại hỗ trợ/kháng cự, ưu tiên chờ nến xác nhận."],
+        ["Bear", f"Giá mất hỗ trợ {_fmt(rs_s)} ({_pct_delta(rs_s, close_v)} so với giá), thanh khoản bán tăng, RSI/MACD yếu đi hoặc xuất hiện tin bất lợi về lợi nhuận/pha loãng. Hành động: giảm rủi ro, không bắt đáy khi chưa có đảo chiều."],
+        ["Catalyst", "Theo dõi KQKD quý, kế hoạch lợi nhuận, tăng vốn/ESOP/cổ tức, cập nhật target CTCK, thị phần môi giới, dư nợ margin và phản ứng giá tại vùng hỗ trợ/kháng cự."],
     ]
-    extracted_scenarios = _pick_lines(scenario_text or analysis_text, ("Bull", "Base", "Bear", "kịch bản", "trigger", "kích hoạt", "invalidation", "xác suất", "độ tin cậy", "vùng giá", "giải ngân", "theo dõi"), 12)
-    for line in _dedupe_lines(extracted_scenarios, seen_keys)[:6]:
-        scenario_rows.append(["Luận điểm bổ sung", line])
+    extracted_scenarios = _pick_lines(scenario_text or analysis_text, ("Bull", "Base", "Bear", "Catalyst", "kịch bản", "trigger", "kích hoạt", "invalidation", "xác suất", "vùng giá", "giải ngân", "theo dõi"), 10)
+    for line in _dedupe_lines(extracted_scenarios, seen_keys)[:4]:
+        scenario_rows.append(["Bổ sung", line])
     _table(doc, ["Kịch bản", "Điều kiện - tác động - hành động"], scenario_rows)
-
-    _heading(doc, "6. Bull case — Bear case — Catalyst", 1)
-    bull_items = _pick_lines(bull_bear_text, ("Bull", "Bear", "Catalyst", "tích cực", "tiêu cực", "IPO", "biên lợi nhuận", "thị trường", "doanh thu", "lợi nhuận"), 14)
-    di_note = (f"-DI {_fmt(mdi_v)} vượt +DI {_fmt(pdi_v)}" if (_num(pdi_v) is not None and _num(mdi_v) is not None and _num(mdi_v) > _num(pdi_v)) else ("+DI vẫn trên -DI — theo dõi nếu đảo chiều" if (_num(pdi_v) is not None and _num(mdi_v) is not None) else "DI thiếu dữ liệu"))
-    fund_note = f"chỉ tiêu định lượng đã có: {len(fund_table_rows)}" if fund_table_rows and fund_table_rows[0][0] != "Dữ liệu cơ bản" else "chưa có chỉ tiêu định lượng đã kiểm chứng — rủi ro định giá chưa đo được, cần bổ sung"
-    bull_rows = [
-        ["Bull case — điều kiện xác nhận", f"Giá tham chiếu {_fmt(close_v)}; cần vượt kháng cự {_fmt(rs_r)} (cách giá hiện tại {_pct_delta(rs_r, close_v)}) với VolumeRatio > 1.2; RSI14 {_fmt(rsi_v)} nên vượt/giữ trên 50; MACD {_fmt(macd_v, 4)} cần nằm trên signal {_fmt(sig_v, 4)} và histogram {_fmt(hist_v, 4)} mở rộng dương."],
-        ["Bull case — luận điểm cơ bản", "Tin tích cực chỉ có trọng lượng khi đi cùng KQKD/doanh thu/lợi nhuận tăng, target/khuyến nghị CTCK cải thiện, hoặc catalyst như IPO/cổ tức/chuỗi mới có dữ kiện rõ."],
-        ["Bear case — tín hiệu phủ định", f"Giá {_fmt(close_v)} mất hỗ trợ {_fmt(rs_s)} (khoảng cách {_pct_delta(rs_s, close_v)}), MACD suy yếu dưới signal, RSI14 {_fmt(rsi_v)} rơi dưới 45-50, {di_note}, hoặc volume bán tăng."],
-        ["Bear case — rủi ro định giá", f"Nếu target/định giá không còn upside rõ, giá đã phản ánh catalyst, hoặc KQKD thấp hơn kỳ vọng, cổ phiếu dễ bị nén P/E/P/B; {fund_note}."],
-        ["Catalyst cần theo dõi", "KQKD tháng/quý, kế hoạch lợi nhuận, cổ tức/ESOP/phát hành thêm, cập nhật target CTCK, tin pháp lý/IPO/M&A/sản phẩm mới, và phản ứng giá tại hỗ trợ/kháng cự."],
-    ]
-    _table(doc, ["Nhóm", "Thông tin/số liệu/chỉ báo cần dùng"], bull_rows)
-    _bullets(doc, _dedupe_lines(bull_items, seen_keys) or ["Nội dung Bull/Bear/Catalyst bổ sung chưa đủ chuẩn kiểm chứng trong kỳ này; bảng trên dùng dữ liệu LHInvestment và nguyên tắc đầu tư để không bỏ trống mục 6."])
 
     _heading(doc, "7. Rủi ro & quan điểm", 1)
     risk_items = _pick_lines(risk_text, ("Risk", "rủi ro", "Invalidation", "Stance", "WATCH", "AVOID", "stop", "thanh khoản", "khuyến nghị", "theo dõi"), 14)
