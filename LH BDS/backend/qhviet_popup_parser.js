@@ -86,8 +86,7 @@ function formatQhVietPopup(parsed, sourceUrl) {
     parsed.parcel.area_m2 ? `- Diện tích thửa: ${parsed.parcel.area_m2} m²` : null,
     parsed.parcel.land_code ? `- Quy hoạch: ${parsed.parcel.land_code} - ${parsed.parcel.land_use || ''}` : null,
     parsed.area_name ? `- Khu vực: ${parsed.area_name}` : null,
-    '- Ghi chú: dữ liệu QH Việt là nguồn tham khảo/đối chiếu.',
-  ].filter(Boolean).join('\n');
+      ].filter(Boolean).join('\n');
 }
 
 module.exports = { parseQhVietPopupText, formatQhVietPopup };
