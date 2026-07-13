@@ -24,8 +24,11 @@
         value: real
       - key: MODEL3_FORCE_BASE_URL
         value: http://100.89.47.25:20128/v1
+      # Do not point market data at the 9Router/AI Funnel. Leave blank so
+      # Model3 uses the bundled/local market provider unless a real market API
+      # gateway is configured.
       - key: MARKET_DATA_GATEWAY_URL
-        value: https://3t8l9f.tail6c0e00.ts.net/marketdata
+        value: ""
       - key: MARKET_DATA_GATEWAY_TIMEOUT
         value: "120"
       - key: OPENAI_MODEL

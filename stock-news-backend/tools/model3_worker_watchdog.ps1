@@ -3,7 +3,9 @@ param(
   [string]$RenderBase = $env:MODEL3_RENDER_BASE,
   [string]$WorkerToken = $env:MODEL3_WORKER_TOKEN,
   [int]$GatewayPort = 20128,
-  [string]$GatewayHost = '100.89.47.25'
+  [string]$GatewayHost = '100.89.47.25',
+  [string]$AiBaseUrl = $env:MODEL3_FORCE_BASE_URL,
+  [string]$MarketGatewayUrl = $env:MARKET_DATA_GATEWAY_URL
 )
 
 $ErrorActionPreference = 'Continue'
@@ -35,15 +37,30 @@ try {
   }
 } catch { Log "Tailscale check failed: $($_.Exception.Message)" }
 
-# Gateway smoke check. If local gateway is managed elsewhere, watchdog only reports; it does not invent start commands.
+# AI gateway smoke check. Port 20128 is 9Router/AI, not market data.
 try {
   $tcp = Test-NetConnection $GatewayHost -Port $GatewayPort -WarningAction SilentlyContinue
   if (-not $tcp.TcpTestSucceeded) {
-    Log "Gateway TCP not reachable: ${GatewayHost}:${GatewayPort}. Worker will still run; jobs may fail fast."
+    Log "AI gateway TCP not reachable: ${GatewayHost}:${GatewayPort}. Worker will still run; jobs may fail fast."
   } else {
-    Log "Gateway TCP OK: ${GatewayHost}:${GatewayPort}"
+    Log "AI gateway TCP OK: ${GatewayHost}:${GatewayPort}"
   }
-} catch { Log "Gateway TCP check failed: $($_.Exception.Message)" }
+  if (-not $AiBaseUrl) { $AiBaseUrl = "http://${GatewayHost}:${GatewayPort}/v1" }
+  $probe = $AiBaseUrl.TrimEnd('/')
+  if ($probe -notmatch '/v1$') { $probe = "$probe/v1" }
+  $probe = "$probe/models"
+  try {
+    $resp = Invoke-WebRequest -Uri $probe -UseBasicParsing -TimeoutSec 15
+    Log "AI gateway HTTP OK: $probe status=$($resp.StatusCode)"
+  } catch {
+    Log "AI gateway HTTP FAIL: $probe $($_.Exception.Message)"
+  }
+  if ($MarketGatewayUrl) {
+    Log "Market gateway configured separately: $MarketGatewayUrl (watchdog will not point it at AI port)."
+  } else {
+    Log "Market gateway blank: Model3 should use bundled/local market provider fallback."
+  }
+} catch { Log "Gateway check failed: $($_.Exception.Message)" }
 
 # Avoid duplicate worker processes.
 $needle = 'tools\model3_local_worker.py'
