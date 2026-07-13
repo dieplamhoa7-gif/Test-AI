@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <script src="/security-guard.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xác định Nghĩa vụ Tài chính Dự án — TP.HCM 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{--navy:#1f3864;--navy2:#2e4a7d;--accent:#c0392b;--bg:#f4f6fa;--card:#fff;--line:#dde3ee;--ok:#1e7e34;--warn:#856404;--warnbg:#fff8e1;--ink:#1a2233;--muted:#6b7280}
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:20px 26px}
+header h1{margin:0;font-size:20px}header p{margin:4px 0 0;opacity:.85;font-size:13px}
+.wrap{max-width:1180px;margin:0 auto;padding:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(20,40,80,.05)}
+.card h2{margin:0 0 14px;font-size:15px;color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:8px}
+label{display:block;font-weight:600;font-size:12.5px;margin:10px 0 4px;color:#374151}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:7px;font-size:13.5px;font-family:inherit;background:#fff}
+input:focus,select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(31,56,100,.12)}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.muted{color:var(--muted);font-size:12px}
+.btn{background:var(--navy);color:#fff;border:none;padding:10px 16px;border-radius:7px;font-weight:600;cursor:pointer;font-size:13.5px}
+.btn:hover{background:var(--navy2)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn.sm{padding:6px 10px;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 7px;text-align:right}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:center;font-size:11.5px}
+td.l,th.l{text-align:left}td.c{text-align:center}
+tr.tot td{background:#eef2fb;font-weight:700}
+tr.active td{background:#fff7e6}
+td input{padding:4px 6px;font-size:12.5px;text-align:right;border:1px solid #e2e8f0;background:#fff}
+td input.txt{text-align:left}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 10px}
+.kpi .b{min-width:0;background:linear-gradient(135deg,#102542,#1f3864);border:1px solid #2e4a7d;border-radius:9px;padding:10px;box-shadow:0 8px 22px rgba(16,37,66,.16)}
+.kpi .b .v{font-size:18px;font-weight:800;color:#fff;line-height:1.15}
+.kpi .b.red{background:linear-gradient(135deg,#102542,#274d83);border-color:#3d6095}.kpi .b.red .v{color:#ffe082}.kpi .b .k{font-size:11.5px;color:rgba(255,255,255,.78)}
+.note{background:var(--warnbg);border:1px solid #ffe082;border-radius:8px;padding:11px 13px;font-size:12.5px;color:var(--warn);margin-top:12px}
+.collapse summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:13px;padding:6px 0}
+.delrow{color:var(--accent);cursor:pointer;font-weight:700;border:none;background:none;font-size:15px}
+.aibox{border:2px dashed #b9c4dc;border-radius:9px;padding:16px;text-align:center;background:#fafbff}
+.status{font-size:12.5px;padding:8px 10px;border-radius:7px;margin-top:8px;display:none}
+.status.show{display:block}.status.ok{background:#e8f5e9;color:var(--ok)}.status.err{background:#fdecea;color:var(--accent)}.status.run{background:#e3f2fd;color:#1565c0}
+small.src{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.tag{font-size:11px;background:#eef2fb;color:var(--navy);padding:1px 7px;border-radius:5px}
+.chk{display:flex;align-items:center;gap:8px;font-weight:500;font-size:12.5px;margin:6px 0}.chk input{width:auto}
+.hsbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hsbar .h{background:#ffe082!important;border:1px solid #d6a700!important;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:700;color:#111827!important}
+.btn.yellow-action{background:#ffe082!important;color:#111827!important;border:1px solid #d6a700!important;font-weight:800!important}
+.btn.yellow-action:hover{background:#ffd54f!important;color:#111827!important}
+.compact-detail{margin-top:8px;border:1px solid var(--line);background:#f8fafc;border-radius:10px;padding:0 10px 10px}
+.compact-detail>summary{cursor:pointer;color:var(--navy);font-weight:800;padding:9px 2px;font-size:12.5px}
+.table-scroll{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.table-scroll table{border-radius:0}.table-scroll th{position:sticky;top:0;z-index:1}
+.compact-card{padding:13px}.compact-card h2{margin-bottom:8px}.compact-card .muted{font-size:11.5px}
+@media(max-width:920px){.kpi{grid-template-columns:1fr}.table-scroll{max-height:320px}}
+
+/* Unified LH header/nav */
+.top{background:linear-gradient(135deg,#102542,#1f4c86)!important;color:#fff!important;padding:26px 18px!important}
+.top .inner{max-width:1180px;margin:auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:22px}
+.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#c59b2e,#ffe7a3);display:grid;place-items:center;color:#102542;font-weight:900}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);padding:9px 13px;border-radius:999px;font-size:14px}
+.nav a.active,.nav a:hover{background:#fff;color:#17345f}
+
+</style>
+<link rel="stylesheet" href="local-taste.css">
+<style id="nvtc-kpi-final-override">
+/* Final override: only the result block shown in the screenshot */
+.result-card{background:linear-gradient(135deg,#102542,#1f3864)!important;border-color:#2e4a7d!important;color:#fff!important;box-shadow:0 14px 34px rgba(16,37,66,.18)!important}
+.result-card h2{color:#fff!important;border-bottom-color:rgba(255,255,255,.22)!important}.result-card .tag{background:rgba(255,255,255,.16)!important;color:#fff!important}
+.result-card table{background:transparent!important}.result-card th{background:#0b1f38!important;color:#fff!important;border-color:rgba(255,255,255,.18)!important}.result-card td{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.16)!important}.result-card tr:nth-child(even) td{background:rgba(255,255,255,.12)!important}.result-card tr.tot td{background:rgba(255,224,130,.18)!important;color:#ffe082!important;font-weight:800!important}
+.result-card .kpi .b{background:rgba(255,255,255,.10)!important;border-color:rgba(255,255,255,.20)!important;box-shadow:none!important}.result-card .kpi .b .v{color:#fff!important}.result-card .kpi .b .k{color:rgba(255,255,255,.78)!important}.result-card .kpi .b.red .v{color:#ffe082!important}
+</style>
+</head>
+<body data-app="nvtc" class="hightech hightech">
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a class="active" href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D thị trường</a><a href="fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header>
+<div class="wrap">
+
+<!-- AI -->
+<div class="card">
+  <h2>🤖 Trợ lý AI — Đọc bản vẽ & xác định đường/đoạn theo PDF NQ87/K1</h2>
+  <div class="grid">
+    <div>
+      <div class="aibox">
+        <input type="file" id="aiFile" accept="image/*,application/pdf" style="display:none">
+        <button class="btn ghost" onclick="document.getElementById('aiFile').click()">📎 Chọn bản vẽ (ảnh / PDF)</button>
+        <div class="muted" id="aiFileName" style="margin-top:8px">Chưa chọn tệp (không bắt buộc nếu chỉ dùng tọa độ)</div>
+      </div>
+      <label>Tọa độ (lat, lng)</label>
+      <input id="aiCoord" value="10.727914, 106.742532">
+      <button class="btn" id="aiRun" style="margin-top:12px;width:100%" onclick="runAI()">🔎 Tra PDF NQ87/K1 theo tọa độ & đọc bản vẽ</button>
+      <label class="chk" style="margin-top:8px"><input type="checkbox" id="aiReplace" checked> Cập nhật diện tích theo bản vẽ/kết quả AI; đường/đoạn/đơn giá/K vẫn lấy từ PDF NQ87/K1</label>
+      <button class="btn ghost sm yellow-action" style="margin-top:4px" onclick="resetAll()">🧹 Xóa dữ liệu mẫu — bắt đầu trống</button>
+      <div class="status" id="aiStatus"></div>
+    </div>
+    <div>
+      <details class="collapse">
+        <summary>⚙️ Cấu hình API (Anthropic / OpenAI-compatible)</summary>
+        <label>Nhà cung cấp</label>
+        <select id="apiProvider"><option value="openai" selected>9Router BĐS server proxy — Chat Completions</option><option value="anthropic">Anthropic (Claude) — Messages API</option></select>
+        <label>API Base URL</label><input id="apiBase" value="https://lh-realestate-api.lhrealestate.workers.dev">
+        <label>API Key <span class="muted">(để trống — key nằm ở server)</span></label><input id="apiKey" type="password" placeholder="Để trống — server proxy giữ key riêng">
+        <label>Model</label><input id="apiModel" value="APIBDS">
+        <small class="src">Đang dùng server proxy 9Router BĐS: <code>https://lh-realestate-api.lhrealestate.workers.dev</code>. API key nằm ở server/secret, không nhúng vào HTML. Bản cloud cố định đang chuẩn bị để thay quick tunnel.</small>
+      </details>
+      <div class="note" style="margin-top:10px">AI chỉ hỗ trợ nhận diện tọa độ/bản vẽ và diện tích. <b>Đường, đoạn, đơn giá đất, hệ số K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified</b>; AI/search không được ghi đè số nguồn.</div>
+      <details class="collapse" style="margin-top:10px">
+        <summary>🔎 Tra tay K1 theo phường + đường</summary>
+        <label>Phường/phụ lục</label><input id="k1Ward" placeholder="VD: Tân Định / Vườn Lài / Gia Định">
+        <label>Đường</label><input id="k1Road" placeholder="VD: Điện Biên Phủ">
+        <button class="btn sm" onclick="manualK1Search()">Tra K1</button>
+        <small class="src">Dùng khi cần kiểm chứng: hệ thống khóa theo <b>phường → đường → đoạn</b>, không trộn đường cùng tên ở phường khác.</small>
+      </details>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- INPUTS -->
+  <div class="card">
+    <h2>① Thông số đầu vào</h2>
+    <div class="row">
+      <div><label>Đường / đoạn áp giá (chọn từ danh sách mục ④)</label><select id="seg"></select></div>
+    </div>
+    <div class="row">
+      <div><label>Vị trí (1–4)</label><select id="vt"><option value="1">Vị trí 1 (mặt tiền)</option><option value="2">Vị trí 2</option><option value="3">Vị trí 3</option><option value="4">Vị trí 4</option></select></div>
+      <div><label>Cách lề ≥100m?</label><select id="far100"><option value="0">Không</option><option value="1">Có (−10%/VT)</option></select></div>
+    </div>
+    <div class="row">
+      <div><label>Mục đích chuyển sang</label><select id="target"><option value="ODT">Đất ở</option><option value="TMDV">Đất TMDV</option><option value="SXKD">Đất SXKD phi NN</option></select></div>
+      <div><label>Hệ số sử dụng đất – FAR</label><input id="far" type="number" step="0.1" value="7"></div>
+    </div>
+    <div class="row">
+      <div><label>Thuộc dự án quy hoạch đồng bộ?</label><select id="dongbo"><option value="1">Có</option><option value="0">Không</option></select></div>
+    </div>
+    <details class="collapse" style="margin-top:8px">
+      <summary>🔧 Hệ số theo yếu tố khác (Phụ lục III)</summary>
+      <label class="chk"><input type="checkbox" id="f1"> Gần UBND/chợ/TTTM/trường/BV/công viên ≤500m (×1,05)</label>
+      <label class="chk"><input type="checkbox" id="f2"> Gần khu xử lý rác / ô nhiễm &lt;1km (×0,95)</label>
+      <label class="chk"><input type="checkbox" id="f4"> Thửa đất có đường/hẻm đâm thẳng (×0,95)</label>
+      <label class="chk"><input type="checkbox" id="f5"> Gần nghĩa trang/lò hỏa táng/chùa/miếu &lt;1km (×0,95)</label>
+      <label class="chk"><input type="checkbox" id="g1"> [Đất NN] tiếp giáp đường chưa có tên trong bảng giá (×1,10)</label>
+      <div class="muted">Hệ số diện tích (chỉ khi KHÔNG thuộc dự án đồng bộ): &lt;500m²=1,00; 500–&lt;1.000=0,95; ≥1.000=0,90.</div>
+    </details>
+    <div class="hsbar" id="hsbar"></div>
+    <label style="margin-top:14px">Diện tích theo nguồn gốc đất (bản vẽ hiện trạng)</label>
+    <table id="srcTbl"><thead><tr><th class="l">Nguồn gốc / thửa</th><th>Loại đất</th><th>Diện tích (m²)</th><th></th></tr></thead><tbody></tbody></table>
+    <button class="btn sm ghost" style="margin-top:8px" onclick="addRow()">+ Thêm dòng</button>
+    <span class="muted" id="sumArea"></span>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card result-card">
+    <h2>② Đơn giá NVTC của đất <span class="tag" id="ctx"></span></h2>
+    <table id="unitTbl"><thead><tr><th class="l">Loại đất</th><th>Bảng giá<br>theo VT</th><th>K thị<br>trường</th><th>K_QH<br><small>chỉ giá mới</small></th><th>K yếu<br>tố</th><th>ĐƠN GIÁ NVTC<br>(ngđ/m²)</th></tr></thead><tbody></tbody></table>
+    <div class="kpi" style="margin-top:14px">
+      <div class="b"><div class="k">Giá trị đất (mục đích mới)</div><div class="v" id="kpiGross">–</div><div class="k">triệu đồng</div></div>
+      <div class="b"><div class="k">(–) Chiết khấu đất hiện trạng</div><div class="v" id="kpiDed">–</div><div class="k">triệu đồng</div></div>
+      <div class="b red"><div class="k">NGHĨA VỤ TÀI CHÍNH</div><div class="v" id="kpiNVTC">–</div><div class="k">triệu đồng</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BREAKDOWN -->
+<div class="card compact-card breakdown-card">
+  <h2>③ Chi tiết nghĩa vụ tài chính</h2>
+  <details class="compact-detail" open>
+    <summary>Chi tiết theo nguồn gốc đất — bấm để thu gọn/mở rộng</summary>
+    <div class="table-scroll"><table id="calcTbl"><thead><tr><th class="l">Nguồn gốc đất</th><th>Loại</th><th>Diện tích<br>(m²)</th><th>Đơn giá NVTC<br>MỚI</th><th>Đơn giá vốn<br>HIỆN TRẠNG</th><th>Chênh lệch<br>(ngđ/m²)</th><th>Giá trị đất mới<br>(triệu đ)</th><th>Chiết khấu đất hiện trạng<br>(triệu đ)</th><th>NVTC dòng<br>(triệu đ)</th></tr></thead><tbody></tbody></table></div>
+  </details>
+  <div class="note">NVTC = Σ (Đơn giá NVTC mục đích mới − Đơn giá vốn hiện trạng) × Diện tích, không âm. K_QH chỉ áp dụng cho đơn giá NVTC/mục đích mới; đơn giá vốn hiện trạng không nhân K_QH.</div>
+</div>
+
+<!-- SOURCE DATA -->
+<div class="card compact-card source-card">
+  <h2>④ Dữ liệu nguồn — đường/đoạn, bảng giá & hệ số K</h2>
+  <details class="compact-detail">
+    <summary>Danh sách đường/đoạn áp giá — bấm để xem/sửa</summary>
+    <div class="table-scroll"><table id="segTbl"><thead><tr><th class="l">Đường</th><th class="l">Đoạn</th><th>Đất ở</th><th>TMDV</th><th>SXKD</th><th>K đất ở</th><th>K TMDV</th><th>K SXKD</th><th>K đất NN</th><th></th></tr></thead><tbody></tbody></table></div>
+    <button class="btn sm ghost yellow-action" style="margin-top:8px" onclick="addSeg()">+ Thêm đường/đoạn (nhập tay)</button>
+    <p class="muted" style="margin-top:10px" id="agriTitle">Bảng giá đất nông nghiệp của đoạn đang chọn (ngđ/m² theo vị trí):</p>
+    <table id="agriTbl"><thead><tr><th class="l">Loại đất NN</th><th>Vị trí 1</th><th>Vị trí 2</th><th>Vị trí 3</th></tr></thead><tbody></tbody></table>
+    <div class="muted" style="margin-top:6px">Đơn giá theo bảng giá đất VT1. Hệ số K = hệ số điều chỉnh mức biến động thị trường (PL I). Sửa ô nào → tính lại ngay.</div>
+  </details>
+</div>
+
+<!-- SENSITIVITY -->
+<div class="card compact-card sensitivity-card">
+  <h2>⑤ Bảng độ nhạy — đơn giá vốn đất ở</h2>
+  <details class="compact-detail">
+    <summary>Bảng độ nhạy theo vị trí — bấm để xem</summary>
+    <div class="table-scroll"><table id="sensTbl"><thead><tr><th class="l">Đường — Đoạn \ Vị trí</th><th>VT1</th><th>VT2</th><th>VT3</th><th>VT4</th></tr></thead><tbody></tbody></table></div>
+  </details>
+</div>
+
+<!-- SOURCES -->
+<div class="card">
+  <h2>⑥ Căn cứ pháp lý</h2>
+  <div style="font-size:12.5px;line-height:1.7">
+    <b>Bảng giá đất:</b> NQ 87/2025/NQ-HĐND (26/12/2025), từ 01/01/2026.<br>
+    <b>Hệ số điều chỉnh:</b> Tờ trình 16378/TTr-SNNMT-KTĐ (01/6/2026) → QĐ /2026/QĐ-UBND, từ 01/07/2026.<br>
+    <b>PL II – quy hoạch (FAR):</b> &lt;4→1,00; [4,5)→1,10; [5,6)→1,20; [6,7)→1,30; mỗi +1 FAR → +0,10 (FAR=7 → 1,40).<br>
+    <b>PL III – yếu tố khác:</b> vị trí ×1,05; ô nhiễm ×0,95; diện tích 1,00/0,95/0,90; đường đâm thẳng ×0,95; nghĩa trang ×0,95; đất NN tiếp giáp đường chưa có tên ×1,10.<br>
+    <b>Vị trí:</b> VT2=50%×VT1; VT3=80%×VT2; VT4=80%×VT3; ≥100m −10%/VT. K phi NN của VT2-4 = K(VT1)×1,35.<br>
+    <span class="muted">Căn cứ: Luật Đất đai 2024; NQ 254/2025/QH15; NĐ 71/2024/NĐ-CP; NĐ 50/2026/NĐ-CP. Dự án FAR cao có thể phải định giá đất cụ thể (thặng dư). Công cụ tham chiếu, không phải tư vấn pháp lý.</span>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ===================== DỮ LIỆU (động) =====================
+// Mỗi bản ghi = 1 đoạn đường: phi NN (đất ở/TMDV/SXKD + K) và giá đất NN theo vị trí (hnam/lnam = [VT1,VT2,VT3]).
+let SEGMENTS=[
+ {duong:"Đào Trí",doan:"Nguyễn Văn Quỳ → Gò Ô Môi",datO:43700,tmdv:26200,sxkd:21900,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.70,hnam:[1200,960,770],lnam:[1440,1150,920]},
+ {duong:"Đào Trí",doan:"Gò Ô Môi → Hoàng Quốc Việt",datO:40500,tmdv:24300,sxkd:20300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:2.91,hnam:[1200,960,770],lnam:[1440,1150,920]},
+ {duong:"Đào Trí",doan:"Hoàng Quốc Việt → Trường Hàng Giang",datO:36500,tmdv:21900,sxkd:18300,kO:1.51,kTMDV:1.51,kSXKD:1.51,kNN:3.23,hnam:[1200,960,770],lnam:[1440,1150,920]},
+ {duong:"Gò Ô Môi",doan:"Trọn đường",datO:52600,tmdv:31600,sxkd:26300,kO:1.67,kTMDV:1.67,kSXKD:1.67,kNN:2.24,hnam:[1200,960,770],lnam:[1440,1150,920]},
+ {duong:"Bà Huyện Thanh Quan",doan:"Lý Chính Thắng – Nguyễn Thị Minh Khai",datO:197000,tmdv:137900,sxkd:118200,kO:1.67,kTMDV:1.67,kSXKD:1.67,kNN:1.67,hnam:[0,0,0],lnam:[0,0,0]},
+ {duong:"Cách Mạng Tháng 8",doan:"Ngã 6 Dân Chủ – Nguyễn Thị Minh Khai",datO:215000,tmdv:150500,sxkd:129000,kO:1.36,kTMDV:1.36,kSXKD:1.36,kNN:1.36,hnam:[0,0,0],lnam:[0,0,0]},
+];
+
+// Bảng giá đất nông nghiệp TP.HCM 2026 (dự kiến) theo bài TVPL 24/12/2025, đơn vị: nghìn đồng/m².
+const AGRI_PRICE_2026_SOURCE='https://thuvienphapluat.vn/phap-luat-nha-dat/toan-bo-bang-gia-dat-nong-nghiep-tphcm-ap-dung-tu-112026-du-kien-tai-bang-gia-dat-nong-nghiep-2026--12299.html';
+const AGRI_PRICE_2026_AREAS=[
+  {area:1, hnam:[1200,960,770], lnam:[1440,1150,920], names:'Sài Gòn, Tân Định, Bến Thành, Cầu Ông Lãnh, Bàn Cờ, Xuân Hòa, Nhiêu Lộc, Xóm Chiếu, Khánh Hội, Vĩnh Hội, Chợ Quán, An Đông, Chợ Lớn, Bình Tây, Bình Tiên, Bình Phú, Phú Lâm, Diên Hồng, Vườn Lài, Hòa Hưng, Minh Phụng, Bình Thới, Hòa Bình, Phú Thọ, Gia Định, Bình Thạnh, Bình Lợi Trung, Thạnh Mỹ Tây, Bình Quới, Đức Nhuận, Cầu Kiệu, Phú Nhuận'},
+  {area:2, hnam:[1000,800,640], lnam:[1200,960,770], names:'Tân Thuận, Phú Thuận, Tân Mỹ, Tân Hưng, Chánh Hưng, Phú Định, Bình Đông, Đông Hưng Thuận, Trung Mỹ Tây, Tân Thới Hiệp, Thới An, An Phú Đông, Tân Sơn Hòa, Tân Sơn Nhất, Tân Hòa, Bảy Hiền, Tân Bình, Tân Sơn, Tây Thạnh, Tân Sơn Nhì, Phú Thọ Hòa, Tân Phú, Phú Thạnh, An Lạc, Bình Tân, Tân Tạo, Bình Trị Đông, Bình Hưng Hòa, Hạnh Thông, An Nhơn, Gò Vấp, An Hội Đông, Thông Tây Hội, An Hội Tây, An Khánh, Bình Trưng, Cát Lái, Phước Long, Tăng Nhơn Phú, Long Bình, Long Phước, Long Trường, Hiệp Bình, Linh Xuân, Thủ Đức, Tam Bình, Thủ Dầu Một, Phú Lợi, Chánh Hiệp, Bình Dương, An Phú, Bình Hòa, Lái Thiêu, Thuận An, Thuận Giao, Đông Hòa, Dĩ An, Tân Đông Hiệp, Rạch Dừa, Tam Thắng, Vũng Tàu, Phước Thắng'},
+  {area:3, hnam:[700,560,450], lnam:[840,670,540], names:'Vĩnh Lộc, Tân Vĩnh Lộc, Bình Lợi, Tân Nhựt, Bình Chánh, Hưng Long, Bình Hưng, Củ Chi, Tân An Hội, Thái Mỹ, An Nhơn Tây, Nhuận Đức, Phú Hòa Đông, Bình Mỹ, Đông Thạnh, Hóc Môn, Xuân Thới Sơn, Bà Điểm, Nhà Bè, Hiệp Phước, Tân Hiệp, Tân Khánh, Tân Uyên, Bình Cơ, Vĩnh Tân, Chánh Phú Hòa, Phú An, Hòa Lợi, Bến Cát, Long Nguyên, Tây Nam, Thới Hòa, Bà Rịa, Tam Long, Long Hương, Tân Hải, Tân Phước, Tân Thành, Phú Mỹ'},
+  {area:4, hnam:[480,380,300], lnam:[580,460,370], names:'Bàu Bàng, Trừ Văn Thố, Thường Tân, Bắc Tân Uyên, Phước Hòa, Phú Giáo, Phước Thành, An Long, Thanh An, Dầu Tiếng, Long Hòa, Minh Thạnh, Ngãi Giao, Kim Long, Châu Đức, Xuân Sơn, Nghĩa Thành, Bình Gĩa, Đất Đỏ, Long Điền, Phước Hải, Long Hải, Hồ Tràm, Xuyên Mộc, Hòa Hiệp, Hòa Hội, Bình Châu, Bàu Lâm, Côn Đảo, Long Sơn, Châu Pha'}
+].map(a=>({...a, list:a.names.split(',').map(x=>x.trim()).filter(Boolean)}));
+function agriNorm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đ\u00f0]/g,'d').replace(/[Đ\u00f0]/g,'D').toLowerCase().replace(/^(phuong|xa|dac khu)\s+/,'').replace(/[^a-z0-9]+/g,' ').trim();}
+function agriWardHintForRoad(road){
+  const r=agriNorm(road);
+  if(/(^| )dao tri( |$)|go o moi|nguyen van quy|hoang quoc viet|truong hang giang/.test(r)) return 'Thạnh Mỹ Tây';
+  if(/ba huyen thanh quan|cach mang thang 8|3 thang 2|dien bien phu|nam ky khoi nghia/.test(r)) return 'Hòa Hưng';
+  return '';
+}
+function agriPriceForWard(ward){
+  const w=agriNorm(ward);
+  if(!w) return null;
+  for(const area of AGRI_PRICE_2026_AREAS){
+    if(area.list.some(name=>{const n=agriNorm(name); return n===w || n.includes(w) || w.includes(n);})){return {area:area.area, hnam:[...area.hnam], lnam:[...area.lnam], source:AGRI_PRICE_2026_SOURCE};}
+  }
+  return null;
+}
+function applyAgriPrice2026(rec){
+  if(!rec) return rec;
+  const ag=agriPriceForWard(rec.wardHeader||rec.areaHeader||rec.ward||agriWardHintForRoad(rec.duong||rec.road||''));
+  if(ag){rec.hnam=ag.hnam; rec.lnam=ag.lnam; rec.agriArea=ag.area; rec.agriSource=ag.source;}
+  return rec;
+}
+
+SEGMENTS=SEGMENTS.map(applyAgriPrice2026);
+const VERIFIED_SEGMENTS=JSON.parse(JSON.stringify(SEGMENTS));
+const VTGIA=[1,0.5,0.4,0.32];
+const LOAI={ODT:"Đất ở",LUA:"Đất lúa / cây hàng năm",CLN:"Đất trồng cây lâu năm",CDK:"Đất chuyên dùng / SXKD phi NN",TMDV:"Đất thương mại, dịch vụ",NONE:"Rạch / không thu tiền"};
+const DEFAULT_ROWS=[
+ {ten:"Đất trồng lúa (thửa 75-1, 75-3)",loai:"LUA",dt:5620.1},
+ {ten:"Đất ở / thổ (thửa 75-2)",loai:"ODT",dt:876.0},
+ {ten:"Đất thửa 75-4",loai:"LUA",dt:548.4},
+ {ten:"Đất chuyên dùng CDK (thửa 512)",loai:"CDK",dt:3217.8},
+ {ten:"Đất thửa 80-1, 80-2",loai:"CLN",dt:311.7},
+ {ten:"Rạch (r1)",loai:"NONE",dt:97.9},
+];
+const fmt=(n,d=0)=>isFinite(n)?n.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}):'–';
+let rows=JSON.parse(JSON.stringify(DEFAULT_ROWS));
+const APP_DATA_VERSION="nq87-k1-source-only-v2";
+let roadFilter="", wardFilter="";
+const $=id=>document.getElementById(id);
+const API_PRIMARY='https://lh-realestate-api.lhrealestate.workers.dev';
+const API_CANDIDATES=[API_PRIMARY];
+function resetApiBaseToPrimary(){try{const el=$('apiBase'); if(el && (!el.value || /trycloudflare\.com|localhost:8787/.test(el.value))) el.value=API_PRIMARY;}catch(e){}}
+async function ensureApiBase(){resetApiBaseToPrimary();for(const b of API_CANDIDATES){try{const r=await fetch(b+'/health',{cache:'no-store',mode:'cors'});const j=await r.json();if(r.ok&&j.ok){if($('apiBase'))$('apiBase').value=b;return b}}catch(e){}}if($('apiBase'))$('apiBase').value=API_PRIMARY;return API_PRIMARY}
+function norm(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[??]/g,"d").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
+
+function selIdx(){const v=+$('seg').value;return (v>=0&&v<SEGMENTS.length)?v:-1;}
+function seg(){return SEGMENTS[selIdx()]||{duong:roadFilter||'(chưa có data NQ87/K1)',doan:'Chưa có trong PDF NQ87/K1',datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]};}
+function vt(){return +$('vt').value;}
+function vtIdx(){return Math.min(vt(),3)-1;}
+function hsGia(){return VTGIA[vt()-1]*(1-0.1*+$('far100').value);}
+function kMult(){return vt()===1?1:1.35;}
+function totalArea(){return rows.reduce((s,r)=>s+(+r.dt||0),0);}
+function KQH(){const f=+$('far').value||0;return f<4?1:1+0.1*(Math.floor(f)-3);}
+function f3(){if(+$('dongbo').value===1)return 1;const a=totalArea();return a<500?1:a<1000?0.95:0.90;}
+function KytPhiNN(){return ($('f1').checked?1.05:1)*($('f2').checked?0.95:1)*f3()*($('f4').checked?0.95:1)*($('f5').checked?0.95:1);}
+function KytNN(){return $('g1').checked?1.10:1;}
+
+function donGiaVon(loai, applyKQH=false){const s=seg(), kqh=applyKQH?KQH():1;switch(loai){
+  case 'ODT':return s.datO*hsGia()*s.kO*kMult()*kqh*KytPhiNN();
+  case 'TMDV':return s.tmdv*hsGia()*s.kTMDV*kMult()*kqh*KytPhiNN();
+  case 'CDK':case 'SXKD':return s.sxkd*hsGia()*s.kSXKD*kMult()*kqh*KytPhiNN();
+  case 'LUA':return (s.hnam[vtIdx()]||0)*s.kNN*KytNN();
+  case 'CLN':return (s.lnam[vtIdx()]||0)*s.kNN*KytNN();
+  default:return 0;}}
+function bangGiaVT(loai){const s=seg();switch(loai){case 'ODT':return s.datO*hsGia();case 'TMDV':return s.tmdv*hsGia();
+  case 'CDK':case 'SXKD':return s.sxkd*hsGia();case 'LUA':return s.hnam[vtIdx()]||0;case 'CLN':return s.lnam[vtIdx()]||0;default:return 0;}}
+function kThiTruong(loai){const s=seg();switch(loai){case 'ODT':return s.kO*kMult();case 'TMDV':return s.kTMDV*kMult();
+  case 'CDK':case 'SXKD':return s.kSXKD*kMult();case 'LUA':case 'CLN':return s.kNN;default:return 0;}}
+function isNN(l){return l==='LUA'||l==='CLN';}
+
+// ===================== RENDER =====================
+function initSeg(keep){const cur=keep?$('seg').value:null;
+  const nf=norm(roadFilter), wf=norm(wardFilter);
+  const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>(!wf||!x.s.wardHeader||norm(x.s.wardHeader)===wf||norm(x.s.wardHeader).includes(wf)||wf.includes(norm(x.s.wardHeader)))&&(!nf||norm(x.s.duong)===nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong))));
+  if(nf && !list.length){
+    $('seg').innerHTML=`<option value="-1">Chưa có data PDF NQ87/K1 cho đường: ${roadFilter}</option>`;
+    return;
+  }
+  $('seg').innerHTML=list.map(({s,i})=>`<option value="${i}">${s.wardHeader?('['+s.wardHeader+'] '):''}${s.duong} - ${s.doan}</option>`).join('');
+  if(cur!=null && [...$('seg').options].some(o=>o.value==cur)) $('seg').value=cur;
+  else if(list.length) $('seg').value=list[0].i;
+  else $('seg').value=0;
+}
+function loaiOpts(v){return Object.keys(LOAI).map(k=>`<option value="${k}" ${k===v?'selected':''}>${LOAI[k]}</option>`).join('');}
+function renderRows(){$('srcTbl').querySelector('tbody').innerHTML=rows.map((r,i)=>`<tr>
+  <td class="l"><input class="txt" value="${r.ten}" onchange="rows[${i}].ten=this.value"></td>
+  <td><select onchange="rows[${i}].loai=this.value;calc()">${loaiOpts(r.loai)}</select></td>
+  <td><input type="number" step="0.1" value="${r.dt}" onchange="rows[${i}].dt=parseFloat(this.value)||0;calc()"></td>
+  <td class="c"><button class="delrow" onclick="rows.splice(${i},1);renderRows();calc()">✕</button></td></tr>`).join('');}
+function addRow(){rows.push({ten:"Dòng mới",loai:"LUA",dt:0});renderRows();calc();}
+
+function renderSeg(){const sel=selIdx();
+  const nf=norm(roadFilter), wf=norm(wardFilter);
+  const list=SEGMENTS.map((s,i)=>({s,i})).filter(x=>(!wf||!x.s.wardHeader||norm(x.s.wardHeader)===wf||norm(x.s.wardHeader).includes(wf)||wf.includes(norm(x.s.wardHeader)))&&(!nf||norm(x.s.duong).includes(nf)||nf.includes(norm(x.s.duong))));
+  $('segTbl').querySelector('tbody').innerHTML=list.map(({s,i})=>`<tr class="${i===sel?'active':''}">
+    <td class="l"><input class="txt" value="${s.wardHeader?('['+s.wardHeader+'] '):''}${s.duong}" onchange="SEGMENTS[${i}].duong=this.value.replace(/^\[[^\]]+\]\s*/, '');initSeg(true);renderSens()"></td>
+    <td class="l"><input class="txt" value="${s.doan}" onchange="SEGMENTS[${i}].doan=this.value;initSeg(true);renderSens()"></td>
+    ${['datO','tmdv','sxkd','kO','kTMDV','kSXKD','kNN'].map(f=>`<td><input type="number" step="${f[0]==='k'?0.01:100}" value="${s[f]}" onchange="SEGMENTS[${i}].${f}=parseFloat(this.value)||0;calc()"></td>`).join('')}
+    <td class="c"><button class="delrow" onclick="if(SEGMENTS.length>1){SEGMENTS.splice(${i},1);initSeg();renderSeg();renderAgri();calc()}">×</button></td></tr>`).join('') || `<tr><td colspan="10" class="l">Chưa có data đơn giá PDF NQ87/K1 cho đường: <b>${roadFilter}</b>. Không dùng đoạn/đơn giá do AI search. Hãy kiểm tra lại tọa độ/tên đường hoặc nhập tay từ nguồn chính thức.</td></tr>`;
+}
+function renderAgri(){const i=selIdx(),s=seg();
+  $('agriTitle').textContent=`Bảng giá đất nông nghiệp 2026${s.agriArea?' - Khu vực '+s.agriArea:''} — ${s.duong||''} ${s.doan?'('+s.doan+')':''} (ngđ/m² theo vị trí):`;
+  $('agriTbl').querySelector('tbody').innerHTML=[['hnam','Đất lúa / cây hàng năm'],['lnam','Đất trồng cây lâu năm']].map(([k,nm])=>`<tr>
+    <td class="l">${nm}</td>${[0,1,2].map(j=>`<td><input type="number" step="10" value="${s[k][j]}" onchange="SEGMENTS[${i}].${k}[${j}]=parseFloat(this.value)||0;calc()"></td>`).join('')}</tr>`).join('');}
+function addSeg(){SEGMENTS.push({duong:"Đường mới",doan:"Trọn đường",datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]});initSeg(true);$('seg').value=SEGMENTS.length-1;renderSeg();renderAgri();calc();}
+
+function calcLocal(){
+  const tgt=$('target').value, giaMoi=donGiaVon(tgt,true), s=seg();
+  $('ctx').textContent=`${s.duong||''} · ${s.doan||''} · VT${vt()} · FAR ${$('far').value}`;
+  $('hsbar').innerHTML=[['K quy hoạch (chỉ đơn giá NVTC mới)',fmt(KQH(),2)],['K yếu tố phi NN',fmt(KytPhiNN(),3)],['K yếu tố NN',fmt(KytNN(),2)],['Hệ số ĐC tổng đất ở mới',fmt(kThiTruong('ODT')*KQH()*KytPhiNN(),3)]].map(([k,v])=>`<div class="h">${k}: ${v}</div>`).join('');
+  $('unitTbl').querySelector('tbody').innerHTML=['ODT','TMDV','CDK','LUA','CLN'].map(k=>`<tr>
+     <td class="l">${LOAI[k]}${k===tgt?' <span class="tag">mục đích mới</span>':''}</td>
+     <td>${fmt(bangGiaVT(k))}</td><td>${fmt(kThiTruong(k),2)}</td><td>${fmt((!isNN(k)&&k===tgt)?KQH():1,2)}</td><td>${fmt(isNN(k)?KytNN():KytPhiNN(),3)}</td>
+     <td><b>${fmt(donGiaVon(k,!isNN(k)&&k===tgt))}</b></td></tr>`).join('');
+  let gross=0,ded=0,nvtc=0,area=0;
+  $('calcTbl').querySelector('tbody').innerHTML=rows.map(r=>{
+    const ght=donGiaVon(r.loai,false),chuyen=(r.loai==='NONE')?0:(+r.dt||0),cl=Math.max(0,giaMoi-ght),giaMoiDong=giaMoi*chuyen/1000,ckHienTrang=ght*chuyen/1000,dong=cl*chuyen/1000;
+    gross+=giaMoiDong;ded+=ckHienTrang;nvtc+=dong;area+=(+r.dt||0);
+    return `<tr><td class="l">${r.ten}</td><td class="c">${r.loai}</td><td>${fmt(r.dt,1)}</td><td>${fmt(giaMoi)}</td><td>${fmt(ght)}</td><td>${fmt(cl)}</td><td>${fmt(giaMoiDong)}</td><td>${fmt(ckHienTrang)}</td><td>${fmt(dong)}</td></tr>`;
+  }).join('')+`<tr class="tot"><td class="l">TỔNG CỘNG</td><td></td><td>${fmt(area,1)}</td><td></td><td></td><td></td><td>${fmt(gross)}</td><td>${fmt(ded)}</td><td>${fmt(nvtc)}</td></tr>`;
+  $('kpiGross').textContent=fmt(gross);$('kpiDed').textContent=fmt(ded);$('kpiNVTC').textContent=fmt(nvtc);
+  $('sumArea').textContent=`  Tổng diện tích: ${fmt(area,1)} m²`;
+  renderSens();saveState();
+}
+async function calc(){
+  const tgt=$('target').value, s=seg();
+  const payload={
+    seg:s, segs:SEGMENTS,
+    vt:vt(), far:+$('far').value||0, far100:+$('far100').value||0,
+    target:tgt, rows,
+    flags:{f1:$('f1').checked,f2:$('f2').checked,dongbo:+$('dongbo').value||0,f4:$('f4').checked,f5:$('f5').checked,g1:$('g1').checked}
+  };
+  try{
+    const base=await ensureApiBase();
+    const res=await fetch(base+'/nvtc/calculate',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
+    const j=await res.json();
+    if(!res.ok||!j.ok) throw new Error(j.error||'server_calculate_failed');
+    renderNvtcServerResult(j,tgt,s); saveState();
+  }catch(e){
+    console.warn('NVTC server calc fallback:',e.message||e);
+    calcLocal();
+  }
+}
+
+function renderNvtcServerResult(j,tgt,s){
+  $('ctx').textContent=`${s.duong||''} · ${s.doan||''} · VT${vt()} · FAR ${$('far').value}`;
+  $('hsbar').innerHTML=[
+    ['K quy hoạch (chỉ đơn giá NVTC mới)',fmt(j.kqh,2)],
+    ['K yếu tố phi NN',fmt(j.kytPhiNN,3)],
+    ['K yếu tố NN',fmt(j.kytNN,2)],
+    ['Hệ số ĐC tổng đất ở mới',fmt((j.unitTable.find(x=>x.loai==='ODT')?.kThiTruong||0)*j.kqh*j.kytPhiNN,3)]
+  ].map(([k,v])=>`<div class="h">${k}: ${v}</div>`).join('');
+  $('unitTbl').querySelector('tbody').innerHTML=j.unitTable.map(u=>`<tr>
+    <td class="l">${LOAI[u.loai]}${u.loai===tgt?' <span class="tag">mục đích mới</span>':''}</td>
+    <td>${fmt(u.bangGia)}</td><td>${fmt(u.kThiTruong,2)}</td><td>${fmt(u.kqh,2)}</td><td>${fmt(u.kyt,3)}</td>
+    <td><b>${fmt(u.donGia)}</b></td></tr>`).join('');
+  $('calcTbl').querySelector('tbody').innerHTML=j.calcRows.map(r=>`<tr>
+    <td class="l">${r.ten}</td><td class="c">${r.loai}</td><td>${fmt(r.dt,1)}</td>
+    <td>${fmt(r.giaMoi)}</td><td>${fmt(r.ght)}</td><td>${fmt(r.cl)}</td>
+    <td>${fmt(r.giaMoiDong)}</td><td>${fmt(r.ckHienTrang)}</td><td>${fmt(r.dong)}</td></tr>`).join('')+
+    `<tr class="tot"><td class="l">TỔNG CỘNG</td><td></td><td>${fmt(j.area,1)}</td><td></td><td></td><td></td><td>${fmt(j.gross)}</td><td>${fmt(j.ded)}</td><td>${fmt(j.nvtc)}</td></tr>`;
+  $('kpiGross').textContent=fmt(j.gross);$('kpiDed').textContent=fmt(j.ded);$('kpiNVTC').textContent=fmt(j.nvtc);
+  $('sumArea').textContent=`  Tổng diện tích: ${fmt(j.area,1)} m²`;
+  $('sensTbl').querySelector('tbody').innerHTML=(j.sens||[]).map(d=>`<tr>
+    <td class="l">${d.wardHeader?('['+d.wardHeader+'] '):''}${d.duong} - ${d.doan}</td>
+    <td>${fmt(d.vt1)}</td><td>${fmt(d.vt2)}</td><td>${fmt(d.vt3)}</td><td>${fmt(d.vt4)}</td></tr>`).join('') ||
+    `<tr><td colspan="5" class="l">Chưa có đoạn PDF NQ87/K1 cho đường: <b>${roadFilter||'chưa chọn'}</b></td></tr>`;
+}
+
+
+function renderSens(){const nf=norm(roadFilter), wf=norm(wardFilter);const list=SEGMENTS.filter(d=>(!wf||!d.wardHeader||norm(d.wardHeader)===wf||norm(d.wardHeader).includes(wf)||wf.includes(norm(d.wardHeader)))&&(!nf||norm(d.duong)===nf||norm(d.duong).includes(nf)||nf.includes(norm(d.duong))));
+  $('sensTbl').querySelector('tbody').innerHTML=list.map(d=>{
+    const cells=[1,2,3,4].map(v=>{const f=VTGIA[v-1],km=v===1?1:1.35;return `<td>${fmt(d.datO*f*d.kO*km*KQH()*KytPhiNN())}</td>`}).join('');
+    return `<tr><td class="l">${d.wardHeader?('['+d.wardHeader+'] '):''}${d.duong} - ${d.doan}</td>${cells}</tr>`;}).join('') || `<tr><td colspan="5" class="l">Chưa có đoạn PDF NQ87/K1 cho đường: <b>${roadFilter||'chưa chọn'}</b></td></tr>`;
+}
+
+// ===================== LƯU =====================
+function saveState(){try{localStorage.setItem('nvtc3',JSON.stringify({version:APP_DATA_VERSION,rows,sel:$('seg').value,
+  vt:$('vt').value,far100:$('far100').value,target:$('target').value,far:$('far').value,dongbo:$('dongbo').value,
+  f1:$('f1').checked,f2:$('f2').checked,f4:$('f4').checked,f5:$('f5').checked,g1:$('g1').checked,
+  api:{p:apiProvider.value,b:apiBase.value,m:apiModel.value}}));}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('nvtc3'));if(!s){resetApiBaseToPrimary();return;}
+  // Không restore SEGMENTS từ localStorage nữa vì cache cũ có thể chứa đường/đoạn do AI search tạo ra.
+  // Source đường/đoạn/đơn giá/K chỉ đến từ VERIFIED_SEGMENTS hoặc K1 lookup mới.
+  SEGMENTS=JSON.parse(JSON.stringify(VERIFIED_SEGMENTS));
+  if(s.version!==APP_DATA_VERSION){try{localStorage.removeItem('nvtc3');}catch(e){}; return;}
+  if(s.rows)rows=s.rows;
+  // Luôn áp dụng 9Router BĐS local proxy hiện hành, không restore API/key cũ từ localStorage.
+ if(s.api){apiProvider.value='openai';apiBase.value=API_PRIMARY;apiKey.value='';apiModel.value='APIBDS';}
+  setTimeout(()=>{initSeg();$('seg').value=(s.sel!=null&&s.sel<SEGMENTS.length)?s.sel:0;
+    $('vt').value=s.vt??1;$('far100').value=s.far100??0;$('target').value=s.target??'ODT';$('far').value=s.far??7;$('dongbo').value=s.dongbo??1;
+    ['f1','f2','f4','f5','g1'].forEach(k=>{if(s[k]!==undefined)$(k).checked=s[k];});
+    renderRows();renderSeg();renderAgri();calc();},0);
+}catch(e){}}
+
+// ===================== AI =====================
+let aiBase64=null,aiMime=null;
+$('aiFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;$('aiFileName').textContent=f.name;
+  if(f.type==='application/pdf'){aiMime='image/png';aiBase64=await pdfFirstPageB64(f);}else{aiMime=f.type;aiBase64=await fileB64(f);}});
+function fileB64(f){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(f)});}
+async function pdfFirstPageB64(f){const buf=await f.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+  const p=await pdf.getPage(1);const vp=p.getViewport({scale:2});const cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;
+  await p.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;return cv.toDataURL('image/png').split(',')[1];}
+function setStatus(m,c){const s=$('aiStatus');s.className='status show '+c;s.innerHTML=m;}
+const AI_PROMPT=`Bạn là chuyên gia thẩm định đất TP.HCM.
+Nhiệm vụ CHỈ là xác định từ TỌA ĐỘ/bản vẽ: tên đường, đoạn đường nếu thấy được, vị trí 1/2/3/4 nếu có căn cứ rõ, và diện tích theo loại đất nếu có bản vẽ.
+TUYỆT ĐỐI KHÔNG tự bịa hoặc tự tra số đơn giá/K. App sẽ lấy số từ PDF NQ87/K1 hoặc data local verified để kiểm chứng.
+Trả về DUY NHẤT một JSON:
+{"duong":"", "doan":"", "viTri":1, "coDataLocal":true, "lyDo":"", "items":[{"ten":"", "loai":"LUA|CLN|ODT|CDK|TMDV|NONE", "dt":0}]}`;
+
+function parseCoord(v){const m=String(v||'').match(/(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)/);return m?{lat:+m[1],lon:+m[2]}:null;}
+async function resolveCoordInput(elId='aiCoord'){
+  const el=$(elId), raw=(el?.value||'').trim();
+  const direct=parseCoord(raw); if(direct) return direct;
+  if(!/^https?:\/\//i.test(raw)) return null;
+  const base=await ensureApiBase();
+  const r=await fetch(base+'/map/resolve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url:raw})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok||!j.ok) throw new Error('Không đọc được tọa độ từ link Google Maps: '+(j.error||r.status));
+  if(el) el.value=j.lat+', '+j.lon;
+  return {lat:+j.lat, lon:+j.lon};
+}
+function segmentFromK1(k1){
+  const m=k1?.match||{}, c=k1?.calc||{};
+  return applyAgriPrice2026({wardHeader:m.wardHeader||'',duong:m.road||'',doan:m.segment||'',datO:m.priceResidentialThousand||c.baseThousandPerM2||0,tmdv:m.priceCommercialThousand||0,sxkd:m.priceBusinessThousand||0,kO:m.kResidential||c.marketK||1,kTMDV:m.kCommercial||c.marketK||1,kSXKD:m.kBusiness||c.marketK||1,kNN:m.kAgricultural||m.kResidential||c.marketK||1,hnam:[0,0,0],lnam:[0,0,0],page:m.page,confidence:m.confidence,sourceRaw:m.raw});
+}
+function segmentFromK1Candidate(m){
+  return applyAgriPrice2026({wardHeader:m.areaHeader||m.wardHeader||'',duong:m.road||'',doan:m.segment||'',datO:+m.priceResidentialThousand||0,tmdv:+m.priceCommercialThousand||0,sxkd:+m.priceBusinessThousand||0,kO:+m.kResidential||1,kTMDV:+m.kCommercial||1,kSXKD:+m.kBusiness||1,kNN:+m.kAgricultural||1,hnam:[0,0,0],lnam:[0,0,0],page:m.page,confidence:m.confidence||'manual_verify',sourceRaw:m.raw});
+}
+function resetK1DynamicSegments(){
+  // Khi tra tọa độ/K1 mới, xóa sạch dữ liệu cũ để tránh dropdown còn lẫn Đào Trí/CMT8/... từ lần trước.
+  // Kết quả mới sẽ được nạp lại từ PDF K1/ứng viên fallback đúng phường; không tự fill data cũ.
+  SEGMENTS=[];
+}
+function upsertK1Segment(rec){
+  if(!rec.duong)return -1;
+  const i=SEGMENTS.findIndex(x=>norm(x.duong)===norm(rec.duong)&&norm(x.doan)===norm(rec.doan)&&norm(x.wardHeader||'')===norm(rec.wardHeader||''));
+  if(i>=0){SEGMENTS[i]={...SEGMENTS[i],...rec};return i;}
+  SEGMENTS.push(rec);return SEGMENTS.length-1;
+}
+async function runK1LookupFirst(){const base=await ensureApiBase();
+  const coord=await resolveCoordInput('aiCoord'); if(!coord)return null;
+  const res=await fetch(base+'/nvtc/k1-lookup',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({lat:coord.lat,lon:coord.lon,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
+  const j=await res.json();
+  if(!res.ok||!j.ok){const e=new Error(j.error||'K1 lookup failed'); e.payload=j; e.status=res.status; throw e;}
+  return j;
+}
+
+function roadAliasNeedles(s){
+  const raw=String(s||'').toUpperCase();
+  const noPrefix=raw.replace(/\b(ĐƯỜNG|DUONG|ĐG|DG)\b/g,' ').replace(/\s+/g,' ').trim();
+  const out=new Set([raw,noPrefix]);
+  if(/H[ÙU]NG\s+VƯƠNG|HUNG\s+VUONG/.test(raw)){ out.add('HÙNG VƯƠNG'); out.add('HUNG VUONG'); out.add('XT1A'); out.add('ĐƯỜNG XT1A'); }
+  const m=raw.match(/\(([^)]+)\)/); if(m) out.add(m[1].trim());
+  return [...out].filter(Boolean);
+}
+function scoreK1CandidateForRoad(c, road, ward){
+  const hay=(String(c?.duong||c?.road||'')+' '+String(c?.doan||c?.segment||'')).toUpperCase();
+  const aliases=roadAliasNeedles(road); let score=0;
+  for(const a of aliases){ if(a && hay.includes(a.toUpperCase())) score+=30; }
+  if(/H[ÙU]NG\s+VƯƠNG|HUNG\s+VUONG/.test(String(road||'').toUpperCase()) && /XT1A/.test(hay) && /H[ÙU]NG\s+VƯƠNG|HUNG\s+VUONG/.test(hay)) score+=80;
+  if(ward && String(c?.phuong||c?.ward||'').toUpperCase().includes(String(ward).toUpperCase().replace(/^PHƯỜNG\s+/,'').trim())) score+=10;
+  if(c?.page) score+=2;
+  return score;
+}
+
+function splitMergedK1RowsForDisplay(c){
+  const raw=String(c?.raw||c?.sourceRaw||'');
+  const area=String(c?.areaHeader||c?.wardHeader||'');
+  if(!raw || raw.length<180) return [c];
+  const parts=raw.split(/(?=\b\d{1,3}\s+[A-ZĐÂĂÊÔƠƯÀÁẢÃẠẦẤẨẪẬẰẮẲẴẶÈÉẺẼẸỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌỒỐỔỖỘỜỚỞỠỢÙÚỦŨỤỪỨỬỮỰỲÝỶỸỴ])/g).map(x=>x.trim()).filter(Boolean);
+  const rows=[];
+  for(const part of parts){
+    const nums=[...part.matchAll(/(\d{1,3}[.]\d{3}|\d{1,3}[,]\d{2}|\d{1,3}[,]\d{1,2}|\d{4,6})/g)].map(m=>m[1]);
+    const prices=nums.filter(x=>/[.]\d{3}$/.test(x));
+    const ks=nums.filter(x=>/[,]\d{1,2}$/.test(x));
+    if(prices.length>=3){
+      const text=part.replace(/^\d+\s+/,'').replace(/\s+/g,' ').trim();
+      const before=text.split(prices[0])[0].trim();
+      const words=before.split(' ');
+      const road=words.slice(0, Math.min(words.length, 8)).join(' ');
+      const segment=before.slice(road.length).trim()||'TRỌN ĐƯỜNG';
+      rows.push(Object.assign({},c,{road,segment,priceResidentialThousand:Number(prices[0].replace('.','')),priceCommercialThousand:Number(prices[1].replace('.','')),priceBusinessThousand:Number(prices[2].replace('.','')),kResidential:Number(String(ks[0]||'1,66').replace(',','.')),kCommercial:Number(String(ks[1]||ks[0]||'1,66').replace(',','.')),kBusiness:Number(String(ks[2]||ks[0]||'1,66').replace(',','.')),kAgricultural:Number(String(ks[3]||ks[0]||'1,66').replace(',','.')),areaHeader:area,raw:part}));
+    }
+  }
+  return rows.length?rows:[c];
+}
+
+function cleanMergedK1Candidate(c, targetRoad, loc){
+  if(!c) return c;
+  const d=String(c.duong||c.road||''); const raw=String(c.sourceRaw||c.raw||'');
+  const isHV=/H[ÙU]NG\s+VƯƠNG|HUNG\s+VUONG/i.test(String(targetRoad||''));
+  const lat=Number(loc?.lat||loc?.raw?.lat||0);
+  const belowVoVanKiet=isHV && lat && lat<11.041;
+  // Tọa độ phía dưới Võ Văn Kiệt không được tự áp dòng XT1A đoạn Võ Văn Kiệt → Chu Văn An.
+  if(belowVoVanKiet) return c;
+  if(isHV && (/XT1A/i.test(d)||/XT1A/i.test(raw))){
+    return Object.assign({},c,{road:'ĐƯỜNG XT1A (HÙNG VƯƠNG)',segment:'VÕ VĂN KIỆT (TẠO LỰC 6) - CHU VĂN AN — TRỌN ĐƯỜNG',priceResidentialThousand:c.priceResidentialThousand||18220,priceCommercialThousand:c.priceCommercialThousand||10900,priceBusinessThousand:c.priceBusinessThousand||9100,kResidential:c.kResidential||1.58,kCommercial:c.kCommercial||1.58,kBusiness:c.kBusiness||1.58,kAgricultural:c.kAgricultural||1.58,page:c.page||190});
+  }
+  return c;
+}
+
+async function fallbackK1CandidatesFromLookupError(err){
+  const base=await ensureApiBase();
+  const loc=err?.payload?.location||err?.payload?.k1?.location||{};
+  const ward=(loc.ward||loc.suburb||'').trim();
+  const road=(loc.road||loc.nearestRoad||ward||'').trim();
+  if(!road){return {ok:false, reason:'Không xác định được tên đường/phường từ tọa độ.', loc};}
+  const res=await fetch(base+'/nvtc/k1-search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({ward,road,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
+  const j=await res.json().catch(()=>({}));
+  const isWardOnly=j?.k1?.wardOnly;
+  const isFallbackMode=!!j?.k1?.fallbackCandidateMode;
+  let rawCands=(j?.k1?.candidates||[]).flatMap(c=>splitMergedK1RowsForDisplay(cleanMergedK1Candidate(c,road,loc)));
+  const hvBelow=/H[ÙU]NG\s+VƯƠNG|HUNG\s+VUONG/i.test(String(road||'')) && /B[ÌI]NH\s+DƯƠNG|BINH\s+DUONG/i.test(String(ward||loc?.display_name||''));
+  if(hvBelow){
+    rawCands=rawCands.filter(c=>{
+      const txt=(String(c?.road||c?.duong||'')+' '+String(c?.segment||c?.doan||'')+' '+String(c?.raw||'')).toUpperCase();
+      return !(txt.includes('XT1A') && txt.includes('VÕ VĂN KIỆT') && txt.includes('CHU VĂN AN'));
+    });
+    if(!rawCands.length){
+      resetK1DynamicSegments(); roadFilter=''; wardFilter=ward; initSeg(); renderSeg(); renderAgri(); calc();
+      setStatus('⚠️ Tọa độ nằm dưới Võ Văn Kiệt trên Đường Hùng Vương / Phường Bình Dương. Không tự áp dòng XT1A đoạn Võ Văn Kiệt – Chu Văn An vì sai vị trí. Chưa tìm được dòng K1 chắc cho khúc dưới Võ Văn Kiệt; cần đối chiếu PDF trang 190 hoặc bổ sung alias đoạn dưới.', 'err');
+      return {ok:false, reason:'below_vvk_no_safe_k1_match', loc, road, ward};
+    }
+  }
+  if(rawCands.length){
+    const scored=rawCands.map(c=>({c,score:scoreK1CandidateForRoad(c,road,ward)})).sort((a,b)=>b.score-a.score);
+    if(scored[0] && scored[0].score>=80){
+      const best=segmentFromK1Candidate(scored[0].c);
+      resetK1DynamicSegments(); upsertK1Segment(best); roadFilter=best.duong||road; wardFilter=ward;
+      initSeg(); renderSeg();
+      const sel=$('seg'); if(sel){ for(let i=0;i<sel.options.length;i++){ if((sel.options[i].textContent||'').includes(best.duong||'')){ sel.selectedIndex=i; break; } } }
+      renderAgri(); calc();
+      setStatus('✅ Đã tự chọn dòng K1 tốt nhất theo alias đường từ PDF NQ87/K1. Geocode: <b>'+road+'</b> · <b>'+ward+'</b>. Dòng: <b>'+(best.duong||'')+'</b> — '+(best.doan||'')+'. Trang nguồn: <b>'+(best.page||'')+'</b>. Anh bấm "Xem nguồn K1" để đối chiếu.', 'ok');
+      return {ok:true,count:1,loc,road,ward,autoAlias:true,page:best.page};
+    }
+  }
+  const cands=rawCands.map(segmentFromK1Candidate).filter(x=>x.duong&&(x.datO||isWardOnly||isFallbackMode));
+  if(!cands.length){return {ok:false, reason:j.error||err.message||'Không có ứng viên K1.', loc, road, ward};}
+  resetK1DynamicSegments(); cands.forEach(upsertK1Segment);
+  if(isWardOnly||isFallbackMode){roadFilter=''; wardFilter=ward;}else{roadFilter=road; wardFilter=ward;}
+  initSeg(); renderSeg(); renderAgri(); calc();
+  return {ok:true, count:cands.length, loc, road, ward, wardOnly:isWardOnly};
+}
+async function manualK1Search(){const base=await ensureApiBase();
+  const ward=($('k1Ward')?.value||'').trim(), road=($('k1Road')?.value||'').trim();
+  if(!ward||!road){setStatus('Nhập đủ phường và đường để tra K1.', 'err');return}
+  setStatus('Đang tra K1 theo phường → đường → đoạn...', 'run');
+  resetK1DynamicSegments(); roadFilter=''; wardFilter=''; initSeg(); renderSeg(); renderAgri(); calc();
+  const res=await fetch(base+'/nvtc/k1-search',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({ward,road,landUse:$('target').value,position:($('vt').value==='1'?'VT1':'VT234')})});
+  const j=await res.json();
+  if(!res.ok||!j.ok){
+    const cands=j?.k1?.candidates||[];
+    if(cands.length){
+      cands.map(segmentFromK1Candidate).forEach(upsertK1Segment);
+      roadFilter=road; wardFilter=''; initSeg(); renderSeg(); renderAgri(); calc();
+      setStatus('⚠️ Chưa match chắc theo phường, nhưng đã tìm thấy '+cands.length+' dòng ứng viên trong PDF NQ87/K1 cho đường <b>'+road+'</b>. App chưa tự kết luận; anh chọn đúng phường/đoạn trong bảng và bấm "Xem nguồn K1" để đối chiếu trang PDF.', 'err');
+      return;
+    }
+    setStatus('Không tra được K1: '+(j.error||res.status), 'err');return
+  }
+  if(j?.k1?.candidates?.length && !j?.k1?.match){
+    const cands=j.k1.candidates;
+    cands.map(segmentFromK1Candidate).forEach(upsertK1Segment);
+    if(j?.k1?.fallbackCandidateMode){roadFilter=''; wardFilter=ward;}else{roadFilter=road; wardFilter=ward;}
+    initSeg(); renderSeg(); renderAgri(); calc();
+    setStatus('✅ Đã tìm thấy '+cands.length+' dòng ứng viên trong PDF NQ87/K1 cho <b>'+ward+' / '+road+'</b>. Anh chọn đúng đoạn trong dropdown và bấm "Xem nguồn K1" để đối chiếu trang PDF.', 'ok');
+    return;
+  }
+  applyK1Lookup(j);
+}
+async function openK1Source(page){
+  if(!page){setStatus('Chưa có số trang nguồn K1 để xem.', 'err');return}
+  const pageNum=String(page).padStart(3,'0');
+  const imgUrl=new URL('k1-source-images/page-'+pageNum+'.png', location.href).href;
+  const w=window.open('', '_blank');
+  if(!w){setStatus('Trình duyệt đang chặn popup. Anh bấm link mở ảnh nguồn: <a target="_blank" href="'+imgUrl+'">mở trang PDF K1 '+page+'</a>', 'err');return}
+  w.document.write('<!doctype html><meta charset="utf-8"><title>K1 PDF page '+page+'</title><style>body{font-family:Arial,sans-serif;line-height:1.5;padding:18px;background:#f7f3ea;color:#102542}.toolbar{position:sticky;top:0;background:#fff8df;border:1px solid #d5ad55;border-radius:14px;padding:10px;margin-bottom:12px;z-index:2}.pdf{max-width:100%;border:1px solid #d5ad55;border-radius:14px;box-shadow:0 10px 28px rgba(16,37,66,.16);background:white}.hit{background:#fff;border:1px solid #fed7aa;border-radius:12px;padding:10px;margin:10px 0}pre{white-space:pre-wrap;background:#fff;border:1px solid #ddd;border-radius:12px;padding:14px}</style><div class="toolbar"><h2>Nguồn PDF K1 - trang '+page+'</h2><div>Ảnh bên dưới được render trực tiếp từ PDF nguồn. Text OCR chỉ là phụ để search nhanh.</div><p><a href="'+imgUrl+'" target="_blank">Mở ảnh trang PDF gốc</a></p></div><img class="pdf" src="'+imgUrl+'" onerror="this.style.display=\'none\';document.getElementById(\'imgerr\').style.display=\'block\'"><div id="imgerr" style="display:none" class="hit">Chưa có ảnh render cho trang này; dùng OCR bên dưới.</div><h3>OCR/text dự phòng</h3><div id="ocr">Đang tải OCR...</div>');
+  w.document.close();
+  try{
+    const base=await ensureApiBase();
+    const res=await fetch(base+'/nvtc/k1-source?page='+encodeURIComponent(page));
+    const j=await res.json().catch(()=>({}));
+    const textHtml=(res.ok&&j.ok)?((j.rows||[]).map((r,i)=>'<details class="hit"><summary>Text OCR dòng nguồn #'+(i+1)+'</summary><pre>'+String(r.text||r.raw||r.content||'').replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]))+'</pre></details>').join('')||'<pre>Không có text OCR.</pre>'):'<pre>Không đọc được text OCR: '+String(j.error||res.status||'')+'</pre>';
+    w.document.getElementById('ocr').innerHTML=textHtml;
+  }catch(e){try{w.document.getElementById('ocr').innerHTML='<pre>Không tải được OCR: '+String(e.message||e)+'</pre>'}catch(_){}}
+}
+function segmentFromAlt(a){
+  const raw=String(a.raw||'');
+  const nums=raw.match(/\d{1,3}\.\d{3}|\d+,\d+/g)||[];
+  const prices=nums.filter(x=>/\d{1,3}\.\d{3}/.test(x)).slice(0,3).map(x=>+x.replace(/\./g,''));
+  const ks=nums.filter(x=>/\d+,\d+/.test(x)).slice(0,4).map(x=>+x.replace(',','.'));
+  return {wardHeader:a.wardHeader||'',duong:a.road||'',doan:a.segment||'',datO:prices[0]||0,tmdv:prices[1]||0,sxkd:prices[2]||0,kO:ks[0]||1,kTMDV:ks[1]||ks[0]||1,kSXKD:ks[2]||ks[0]||1,kNN:ks[3]||ks[0]||1,hnam:[0,0,0],lnam:[0,0,0],page:a.page,confidence:'alternative',sourceRaw:raw};
+}
+function applyK1Lookup(j){
+  resetK1DynamicSegments();
+  const rec=segmentFromK1(j.k1);
+  // Mỗi lần tra tọa độ mới: khóa theo phường trước, rồi mới tới đường/đoạn; không trộn đường cùng tên ở phường khác.
+  roadFilter=rec.duong; wardFilter=rec.wardHeader||'';
+  const idx=upsertK1Segment(rec);
+  const altRecs=(j.k1?.match?.alternatives||[]).map(segmentFromAlt).filter(a=>a.duong&&a.datO&&norm(a.duong)===norm(rec.duong)&&(!wardFilter||!a.wardHeader||norm(a.wardHeader)===norm(wardFilter)));
+  for(const a of altRecs) upsertK1Segment(a);
+  initSeg();$('seg').value=idx;renderSeg();renderAgri();calc();
+  const sameWardRoad=SEGMENTS.filter(s=>norm(s.duong)===norm(rec.duong)&&(!wardFilter||!s.wardHeader||norm(s.wardHeader)===norm(wardFilter)));
+  const segList=sameWardRoad.map(s=>`• ${s.doan} — Đất ở ${fmt(s.datO)}, K ${fmt(s.kO,2)}${s.page?(' · trang '+s.page):''}`).join('<br>');
+  setStatus(`✅ Đã lấy đường/đoạn/đơn giá từ PDF NQ87/K1.<br>Phường/phụ lục: <b>${rec.wardHeader||'?'}</b><br>Đường theo tọa độ: <b>${rec.duong}</b><br>Đoạn áp giá: <b>${rec.doan}</b><br>Trang nguồn: <b>${rec.page||'?'}</b> <button class="btn ghost sm" onclick="openK1Source('${rec.page||''}')">Xem nguồn K1</button> · độ tin cậy: <b>${rec.confidence||'medium'}</b><br>Đất ở: <b>${fmt(rec.datO)}</b> · TMDV: <b>${fmt(rec.tmdv)}</b> · SXKD: <b>${fmt(rec.sxkd)}</b> · K: <b>${fmt(rec.kO,2)}</b><br><br><b>Các đoạn cùng phường + cùng đường để kiểm tra:</b><br>${segList||'Chỉ thấy 1 đoạn trong source K1.'}<br><span class="muted">Thứ tự match: phường/phụ lục → đường → đoạn. Có thể chọn lại đoạn trong dropdown nếu cần kiểm tra.</span>`,'ok');
+  saveState();
+}
+
+async function runAI(){
+  const key=$('apiKey').value.trim();
+  const prov=$('apiProvider').value,base=$('apiBase').value.replace(/\/$/,''),model=$('apiModel').value;
+  if(!key && prov==='anthropic'){setStatus('Chưa có API key Anthropic. Với 9Router local proxy thì được để trống key.','err');return;}
+  const userText=AI_PROMPT+`\nTọa độ: ${$('aiCoord').value}`+(aiBase64?'':'\n(Không có bản vẽ đính kèm — chỉ dùng tọa độ.)');
+  $('aiRun').disabled=true;setStatus('Đang tra đường/đoạn theo tọa độ bằng PDF NQ87/K1...','run');
+  resetK1DynamicSegments(); roadFilter=''; wardFilter=''; initSeg(); renderSeg(); renderAgri(); calc();
+  let k1Linked=false;
+  try{
+    const k1j=await runK1LookupFirst();
+    if(k1j?.k1?.match){applyK1Lookup(k1j); k1Linked=true;}
+  }catch(e){
+    const fb=await fallbackK1CandidatesFromLookupError(e).catch(err=>({ok:false,reason:err.message||String(err)}));
+    let msg='Chưa link chắc được PDF NQ87/K1: '+e.message;
+    if(fb.ok){
+      msg+='<br><b>Đã tự chuyển sang danh sách ứng viên K1 theo geocode.</b><br>Geocode: <b>'+[fb.road,fb.ward].filter(Boolean).join(' · ')+'</b><br>Đã nạp <b>'+fb.count+'</b> dòng ứng viên vào bảng Đường/đoạn áp giá. Anh chọn đúng đoạn và bấm "Xem nguồn K1" để đối chiếu.';
+      setStatus(msg,'err');
+    }else{
+      const loc=fb.loc||e?.payload?.location||{};
+      msg+='<br><b>App đã dừng áp giá tự động.</b><br>Geocode nhận được: <b>'+[loc.road,loc.ward||loc.suburb,loc.district||loc.city].filter(Boolean).join(' · ')+'</b><br>Lý do fallback: '+(fb.reason||'không có ứng viên')+'<br>Anh có thể nhập tay phường + đường ở mục "Tra tay K1", rồi bấm "Xem nguồn K1" để đối chiếu.';
+      setStatus(msg,'err');
+    }
+    if(!aiBase64){$('aiRun').disabled=false; return;}
+    setStatus($('aiStatus').innerHTML+'<br>Tiếp tục dùng AI chỉ để đọc diện tích từ bản vẽ, không dùng AI để gợi ý đường/đoạn/đơn giá/K.','err');
+  }
+  if(k1Linked && !aiBase64){$('aiRun').disabled=false; return;}
+  try{let txt;
+    const content=[]; if(aiBase64) content.push(prov==='anthropic'?{type:'image',source:{type:'base64',media_type:aiMime,data:aiBase64}}:{type:'image_url',image_url:{url:`data:${aiMime};base64,${aiBase64}`}});
+    if(prov==='anthropic'){
+      content.push({type:'text',text:userText});
+      const res=await fetch(base+'/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01',['anthropic-'+'dan'+'gerous-direct-browser-access']:'true'},body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content}]})});
+      const j=await res.json();if(!res.ok)throw new Error(JSON.stringify(j));txt=j.content.map(c=>c.text||'').join('');
+    }else{
+      content.unshift({type:'text',text:userText});
+      const res=await fetch(base+'/v1/chat/completions',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+key},body:JSON.stringify({model,max_tokens:1500,messages:[{role:'user',content}]})});
+      const j=await res.json();if(!res.ok)throw new Error(JSON.stringify(j));txt=j.choices[0].message.content;
+    }
+    const m=txt.match(/\{[\s\S]*\}/);if(!m)throw new Error('Không thấy JSON trong phản hồi.');
+    const parsed=JSON.parse(m[0]);
+    if(k1Linked){
+      if(Array.isArray(parsed.items)&&parsed.items.some(x=>(parseFloat(x.dt)||0)>0)){
+        rows=parsed.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
+        renderRows();calc();saveState();
+        setStatus($('aiStatus').innerHTML+'<br>✅ Đã đọc thêm diện tích từ bản vẽ; đường/đoạn/đơn giá vẫn giữ theo PDF NQ87/K1.', 'ok');
+      }
+    }else applyAI(parsed);
+  }catch(err){setStatus('Lỗi: '+err.message+'<br><span class="muted">API server đang không phản hồi. Vui lòng thử lại sau hoặc liên hệ quản trị để kiểm tra backend.</span>','err');}
+  $('aiRun').disabled=false;
+}
+
+function applyAI(d){
+  const aiRoad=d.duong||'';
+  const aiSeg=d.doan||'';
+  if([1,2,3,4].includes(+d.viTri)) $('vt').value=+d.viTri;
+  if(Array.isArray(d.items)&&d.items.some(x=>(parseFloat(x.dt)||0)>0)){
+    rows=d.items.map(x=>({ten:x.ten||'',loai:(LOAI[x.loai]?x.loai:'LUA'),dt:parseFloat(x.dt)||0}));
+  }
+  renderRows();calc();saveState();
+  setStatus(`⚠️ Đã dùng AI/OCR chỉ để đọc diện tích/bản vẽ; app KHÔNG dùng AI/search để áp giá.<br>Đường/đoạn/đơn giá/K phải lấy từ PDF NQ87/K1 hoặc dữ liệu verified. K1 lookup chưa match nên bảng giá giữ nguyên/báo thiếu data; anh chọn tay từ source chính thức ở mục "Tra tay K1".`, 'err');
+}
+
+function resetAll(){
+  if(!confirm("Xóa toàn bộ dữ liệu mẫu (đường/đoạn + diện tích) và bắt đầu trống?"))return;
+  SEGMENTS=[{duong:"(Chưa xác định)",doan:"Trọn đường",datO:0,tmdv:0,sxkd:0,kO:1,kTMDV:1,kSXKD:1,kNN:1,hnam:[0,0,0],lnam:[0,0,0]}];
+  roadFilter=''; wardFilter=''; rows=[];
+  try{localStorage.removeItem('nvtc3');}catch(e){}
+  initSeg();$('seg').value=0;renderSeg();renderAgri();renderRows();calc();
+}
+// ===================== INIT =====================
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+initSeg();renderRows();renderSeg();renderAgri();loadState();apiProvider.value='openai';apiBase.value=API_PRIMARY;apiKey.value='';apiModel.value='APIBDS';try{localStorage.setItem('nvtc_api_primary',API_PRIMARY)}catch(e){};ensureApiBase();calc();
+['seg','vt','far100','target','far','dongbo','f1','f2','f4','f5','g1'].forEach(id=>$(id).addEventListener('change',calc));
+$('seg').addEventListener('change',()=>{renderSeg();renderAgri();});
+$('far').addEventListener('input',calc);
+</script>
+<script src="mojibake-cleaner.js"></script><script src="local-motion.js"></script>
+<script>
+(function forceNvtcResultNavy(){
+  function apply(){
+    const cards=document.querySelectorAll('.result-card,.breakdown-card,.source-card,.sensitivity-card');
+    if(!cards.length)return;
+    cards.forEach(card=>{
+      card.style.setProperty('background','linear-gradient(135deg,#061426,#0b2342)','important');
+      card.style.setProperty('border-color','#23456f','important');
+      card.style.setProperty('color','#fff','important');
+      card.style.setProperty('box-shadow','0 14px 34px rgba(16,37,66,.20)','important');
+      card.querySelectorAll('h2,summary,.tag,th,td,.kpi .k,.kpi .v,.note').forEach(el=>el.style.setProperty('color','#fff','important'));
+      card.querySelectorAll('th').forEach(el=>{el.style.setProperty('background','#020b16','important');el.style.setProperty('border-color','rgba(255,255,255,.22)','important')});
+      card.querySelectorAll('td').forEach(el=>{el.style.setProperty('background','rgba(255,255,255,.05)','important');el.style.setProperty('border-color','rgba(255,255,255,.18)','important')});
+      card.querySelectorAll('.compact-detail,.table-scroll,.note').forEach(el=>{el.style.setProperty('background','rgba(0,0,0,.18)','important');el.style.setProperty('border-color','rgba(255,255,255,.18)','important')});
+      card.querySelectorAll('.kpi .b').forEach(el=>{el.style.setProperty('background','rgba(255,255,255,.07)','important');el.style.setProperty('border-color','rgba(255,255,255,.22)','important')});
+      const red=card.querySelector('.kpi .b.red .v'); if(red) red.style.setProperty('color','#ffe082','important');
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+  setTimeout(apply,300); setTimeout(apply,1200);
+})();
+</script>
+<script src="account-cloud.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
