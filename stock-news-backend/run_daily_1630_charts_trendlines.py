@@ -42,6 +42,7 @@ def main():
     ]
     for s in steps: run(s, timeout=2400)
     run([py,'lhinvt_firebase_deploy.py'], timeout=1200)
+    run([py,'verify_lhinvt_live_fresh.py'], timeout=120)
     run([py,'lhinvt_deploy_notify.py','1630_charts_trendlines','success'], timeout=60)
     log('DONE 16:30 stock charts + trendlines')
 
