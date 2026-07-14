@@ -190,7 +190,7 @@ async def scrape_batdongsan_playwright(query: str, limit: int = 10, headless: bo
             # Do not choose generic city suggestions like "Mua bán BĐS tại Hồ Chí Minh".
             picked = await page.evaluate(r"""([q, mode]) => {
               const qlow = (q||'').toLowerCase();
-              const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi']);
+              const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi','de','la','the','can','căn','ho','hộ','du','an','dự','án','khu','toa','tòa','nha','nhà','ban','bán']);
               const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=2 && !stop.has(x));
               const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
               const isGeneric = txt => /^(mua bán|thuê)$|bđs tại hồ chí minh$|bđs tại hà nội$|tại hồ chí minh$|tại hà nội$/i.test(txt.trim());
@@ -338,7 +338,7 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
 
     picked = await page.evaluate(r"""([q, mode]) => {
       const qlow = (q||'').toLowerCase();
-      const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi']);
+      const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi','de','la','the','can','căn','ho','hộ','du','an','dự','án','khu','toa','tòa','nha','nhà','ban','bán']);
       const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=2 && !stop.has(x));
       const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
       const isGeneric = txt => /^(mua bán|thuê)$|bđs tại hồ chí minh$|bđs tại hà nội$|tại hồ chí minh$|tại hà nội$/i.test(txt.trim());
