@@ -726,9 +726,14 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     else:
         write_progress('browser_buckets', 'Chung cư: Playwright đang search Batdongsan theo tên dự án + thành phố...', warnings)
         try:
-            apt_browser = await asyncio.wait_for(browser_true_buckets_async(criteria, projects, max_projects=(3 if is_fast_mode else 5)), timeout=(120 if is_fast_mode else 180))
+            apt_browser = await asyncio.wait_for(
+                browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(32 if is_fast_mode else 45)),
+                timeout=(190 if is_fast_mode else 260),
+            )
             buckets = merge_listing_buckets(buckets, apt_browser)
-            if any(apt_browser.values()):
+            sample_count = sum(len(v or []) for v in apt_browser.values())
+            warnings.append(f'Playwright Batdongsan chung cư: {len(apt_browser)} bucket, {sample_count} mẫu giá.')
+            if sample_count:
                 warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + thành phố.')
         except Exception as e:
             note = 'Playwright Batdongsan chung cư timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'

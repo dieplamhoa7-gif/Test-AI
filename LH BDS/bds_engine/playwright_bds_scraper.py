@@ -77,9 +77,16 @@ def _query_match(query: str, text: str, url: str) -> bool:
     hay = ((text or "") + " " + (url or "")).lower()
     if not qtokens:
         return True
-    # For short project names (La Casa, Era Town), one distinctive project token
-    # is enough; requiring two tokens dropped all real price samples.
-    return sum(1 for t in qtokens if t in hay) >= 1
+    # Require the leading distinctive project token. Otherwise `RiverGate Residence`
+    # can incorrectly match `Đạt Gia Residence`, and `Saigon Royal` can match
+    # `Royal Vạn Phúc` only because of a generic second token.
+    leading = qtokens[0]
+    if leading not in hay:
+        return False
+    # For short project names (La Casa, Era Town, Icon 56), the leading token is
+    # enough. For longer names, require at least 2 project tokens when available.
+    hits = sum(1 for t in qtokens if t in hay)
+    return hits >= max(1, min(2, len(qtokens)))
 
 
 def _parse_row(source: str, row: dict, mode: str = "buy") -> Listing | None:
@@ -389,8 +396,14 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
     return out
 
 
-async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, max_projects: int = 5) -> dict[str, list[Listing]]:
-    """Open Batdongsan once, choose sale/rent tab once, then search projects sequentially."""
+async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, max_projects: int = 5, per_project_timeout: int = 35) -> dict[str, list[Listing]]:
+    """Open Batdongsan once, choose sale/rent tab once, then search projects sequentially.
+
+    This follows the manual flow Hòa Đại ka prefers: open Batdongsan a single
+    time, click Nhà đất bán/cho thuê once, then reuse the same page for project
+    1 -> project 5. Each project has its own timeout so one slow autocomplete or
+    result page does not hang the whole R&D job.
+    """
     from playwright.async_api import async_playwright
     city = "Hồ Chí Minh"
     loc = getattr(criteria, "location_context", {}) or {}
@@ -413,29 +426,48 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, m
             await page.goto("https://batdongsan.com.vn", wait_until="domcontentloaded", timeout=60000)
             await page.wait_for_timeout(4000)
             tab_text = "Nhà đất cho thuê" if mode == "rent" else "Nhà đất bán"
-            try:
-                await page.get_by_text(tab_text, exact=False).first.click(timeout=8000)
-                await page.wait_for_timeout(1500)
-            except Exception:
-                pass
+            async def ensure_mode_tab():
+                try:
+                    await page.get_by_text(tab_text, exact=False).first.click(timeout=8000)
+                    await page.wait_for_timeout(1200)
+                except Exception:
+                    pass
+            await ensure_mode_tab()
             is_apartment = (getattr(criteria, "property_type", "") or "").lower() in {"chungcu", "canho", "apartment"}
             for pr in projects.projects[:max_projects]:
                 name=(pr.get("name") or "").strip()
                 if not name: continue
                 search_name = _clean_project_search_name(name)
                 try:
-                    # Primary rule: clean project name + city only.
-                    rows = await _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10)
+                    # Primary rule: clean project name + city only. Reuse the same
+                    # browser/page; do not close and reopen Batdongsan per project.
+                    rows = await asyncio.wait_for(
+                        _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10),
+                        timeout=per_project_timeout,
+                    )
                     if not is_apartment:
                         district = loc.get("district") if isinstance(loc, dict) else None
                         street = loc.get("street") if isinstance(loc, dict) else None
                         # Fallbacks only if no rows: add real district/street from reverse context, never hardcode.
                         if not rows and district and district.lower() not in search_name.lower():
-                            rows = await _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10)
+                            rows = await asyncio.wait_for(
+                                _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10),
+                                timeout=per_project_timeout,
+                            )
                         if not rows and street and street.lower() not in search_name.lower():
-                            rows = await _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10)
+                            rows = await asyncio.wait_for(
+                                _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10),
+                                timeout=per_project_timeout,
+                            )
                 except Exception:
                     rows = []
+                    # Recover the same browser tab for the next project if a search timed out.
+                    try:
+                        await page.goto("https://batdongsan.com.vn", wait_until="domcontentloaded", timeout=30000)
+                        await page.wait_for_timeout(1500)
+                        await ensure_mode_tab()
+                    except Exception:
+                        pass
                 if rows:
                     buckets.setdefault(f"Batdongsan.com.vn::{name}", []).extend(rows)
             return buckets
