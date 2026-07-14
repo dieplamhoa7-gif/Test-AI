@@ -44,6 +44,9 @@ MODEL3_EXPORT_TTL_HOURS = float(os.getenv("PIPELINE_MODEL3_EXPORT_TTL_HOURS", "2
 MODEL3_OUT_DIR = Path(os.getenv("PIPELINE_MODEL3_OUT_DIR", "outputs/model3"))
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
+MODEL3_QUEUE: asyncio.Queue[str] | None = None
+MODEL3_WORKER_TASK: asyncio.Task | None = None
+MODEL3_ACTIVE_BY_KEY: dict[str, str] = {}
 MODEL3_SECTIONS = [
     ("news", "Grok", "Tin tức & impact"),
     ("technical", "Codex", "LHInvestment indicators / TA"),
@@ -793,22 +796,59 @@ class Model3ExportRequest(BaseModel):
     notebooklm: bool = True
 
 
+def _model3_job_key(ticker: str, notebooklm: bool) -> str:
+    return f"{ticker}:{1 if notebooklm else 0}"
+
+
+def _model3_queue_position(job_id: str) -> int:
+    if MODEL3_QUEUE is None:
+        return 0
+    try:
+        pending = list(MODEL3_QUEUE._queue)  # type: ignore[attr-defined]  # read-only snapshot for UI only
+        return pending.index(job_id) + 1
+    except ValueError:
+        return 0
+
+
+def _ensure_model3_worker() -> None:
+    global MODEL3_QUEUE, MODEL3_WORKER_TASK
+    if MODEL3_QUEUE is None:
+        MODEL3_QUEUE = asyncio.Queue()
+    if MODEL3_WORKER_TASK is None or MODEL3_WORKER_TASK.done():
+        MODEL3_WORKER_TASK = asyncio.create_task(_model3_worker())
+
+
+def _find_active_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any] | None:
+    key = _model3_job_key(ticker, notebooklm)
+    jid = MODEL3_ACTIVE_BY_KEY.get(key)
+    job = MODEL3_JOBS.get(jid or "")
+    if job and job.get("status") in {"queued", "running"}:
+        return job
+    MODEL3_ACTIVE_BY_KEY.pop(key, None)
+    return None
+
+
 def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
     jid = uuid.uuid4().hex[:12]
+    key = _model3_job_key(ticker, notebooklm)
     job = {
         "job_id": jid,
         "ticker": ticker,
+        "dedupe_key": key,
         "status": "queued",
         "progress": 0,
+        "queue_position": 0,
+        "notebooklm": notebooklm,
         "error": None,
         "created_at": time.time(),
         "updated_at": time.time(),
-        "logs": [],
+        "logs": ["🧾 Đã nhận yêu cầu, đưa vào hàng đợi Model3."],
         "agents": {"Codex": "pending", "Grok": "pending", "Kiro": "pending", "NotebookLM": "pending" if notebooklm else "skipped"},
         "sections": [{"key": k, "agent": a, "name": n, "status": "pending"} for k, a, n in MODEL3_SECTIONS],
         "result": None,
     }
     MODEL3_JOBS[jid] = job
+    MODEL3_ACTIVE_BY_KEY[key] = jid
     return job
 
 
@@ -878,7 +918,9 @@ def _model3_finalize_sections(job: dict[str, Any], result: dict[str, Any]) -> No
 async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
     job = MODEL3_JOBS[job_id]
     job["status"] = "running"
+    job["queue_position"] = 0
     job["updated_at"] = time.time()
+    job["logs"].append("▶️ Worker bắt đầu chạy job Model3. Các job khác sẽ chờ lần lượt.")
     try:
         result = await asyncio.to_thread(_run_model3_full_export_sync, job["ticker"], notebooklm, lambda m: _model3_mark_progress(job, m))
         _model3_finalize_sections(job, result)
@@ -891,7 +933,21 @@ async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
             if s["status"] == "running":
                 s["status"] = "error"
     finally:
+        MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or ""), None)
         job["updated_at"] = time.time()
+
+
+async def _model3_worker() -> None:
+    assert MODEL3_QUEUE is not None
+    while True:
+        job_id = await MODEL3_QUEUE.get()
+        try:
+            job = MODEL3_JOBS.get(job_id)
+            if not job or job.get("status") != "queued":
+                continue
+            await _run_model3_job(job_id, bool(job.get("notebooklm", True)))
+        finally:
+            MODEL3_QUEUE.task_done()
 
 
 # ----------------------------- endpoints -----------------------------
@@ -947,8 +1003,11 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
+    if job.get("status") == "queued":
+        j["queue_position"] = _model3_queue_position(str(job.get("job_id") or ""))
+        j["logs"] = [*(job.get("logs") or []), f"⏳ Đang chờ trong hàng đợi. Vị trí: #{j['queue_position']}" if j["queue_position"] else "⏳ Đang chờ worker nhận job..."]
     j["result"] = _public_model3_result(job.get("result"))
-    j["logs_tail"] = (job.get("logs") or [])[-20:]
+    j["logs_tail"] = (j.get("logs") or job.get("logs") or [])[-20:]
     return j
 
 
@@ -979,12 +1038,29 @@ async def model3_notebooklm_auth_test(auto_login: bool = True):
 
 @router.post("/model3/export")
 async def model3_export(req: Model3ExportRequest):
-    """Start full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM."""
+    """Queue full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM.
+
+    Only one Model3 job runs at a time because Grok/NotebookLM/browser resources are
+    single-session. Concurrent requests are queued FIFO. Repeated clicks for the
+    same ticker + NotebookLM option reuse the active queued/running job instead of
+    creating duplicate jobs/messages.
+    """
     ticker = re.sub(r"[^A-Za-z0-9]", "", req.ticker or "").upper()[:8]
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    _ensure_model3_worker()
+    existing = _find_active_model3_job(ticker, req.notebooklm)
+    if existing:
+        existing["logs"].append("♻️ Yêu cầu trùng mã đang queued/running nên dùng lại job hiện tại, không tạo job mới.")
+        existing["logs"] = existing["logs"][-80:]
+        existing["updated_at"] = time.time()
+        return JSONResponse(_public_model3_job(existing))
     job = _new_model3_job(ticker, req.notebooklm)
-    asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+    assert MODEL3_QUEUE is not None
+    await MODEL3_QUEUE.put(job["job_id"])
+    job["queue_position"] = _model3_queue_position(job["job_id"])
+    job["logs"].append(f"⏳ Vị trí hàng đợi: #{job['queue_position']}.")
+    job["updated_at"] = time.time()
     return JSONResponse(_public_model3_job(job))
 
 
