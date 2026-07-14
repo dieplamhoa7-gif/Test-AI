@@ -1651,7 +1651,9 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('u2',`=MIN(${A('D2',i)},MAX(${A('prof',i)}-${A('u5',i)}-${A('u4',i)}-${A('u3',i)},0))`);
       Y('u1',`=MIN(${A('D1',i)},MAX(${A('prof',i)}-${A('u5',i)}-${A('u4',i)}-${A('u3',i)}-${A('u2',i)},0))`);
       Y('taxable',`=MAX(${A('prof',i)}-(${A('D1',i)}+${A('D2',i)}+${A('D3',i)}+${A('D4',i)}+${A('D5',i)}),0)`);
-      Y('citYr',`=IF(${i}=MATCH(2,1/(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']}>0))-1,MAX(${Rr('totLNTT')}*INPUT!$C$7/100-SUM(${yc(0)}${RW['collArr']}:INDEX(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']},1,MATCH(2,1/(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']}>0))-1))*INPUT!$C$8/100,-SUM(${yc(0)}${RW['collArr']}:INDEX(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']},1,MATCH(2,1/(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']}>0))-1))*INPUT!$C$8/100),${A('collArr',i)}*INPUT!$C$8/100)`);
+      const lastRevExpr=`IFERROR(MATCH(2,1/(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']}>0))-1,0)`;
+      const citPaidPrev=i===0?'0':`SUM(${yc(0)}${RW['citYr']}:${yc(i-1)}${RW['citYr']})`;
+      Y('citYr',`=IF(${i}=${lastRevExpr},MAX(${Rr('totLNTT')}*INPUT!$C$7/100-${citPaidPrev},-${citPaidPrev}),${A('collArr',i)}*INPUT!$C$8/100)`);
       Y('newLoss',`=MAX(-${A('ebt',i)},0)`);
       Y('cit',`=IF(${Rr('F274')}>0,${Rr('citTotalSale')}*${A('collArr',i)}/${Rr('F274')},0)`);
       Y('cfPrj',`=${A('collArr',i)}+${A('gross',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('leaseCapex',i)}-${A('leaseCostYr',i)}-${A('citYr',i)}`);
