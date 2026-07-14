@@ -17,6 +17,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -144,8 +145,14 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
     for p in projects:
         if not isinstance(p, dict):
             continue
+        raw_name = str(p.get("name") or "").strip()
+        # Defensive cleanup: models sometimes still return names like
+        # "dự án The Gold View hạng B gần đường Bến Vân Đồn" despite the prompt.
+        # Keep only the clean project/area name; descriptive context stays in note/type_hint.
+        clean_name = re.sub(r"^(dự\s*án|du\s*an|khu\s+vực|khu\s+vuc)\s+", "", raw_name, flags=re.I).strip()
+        clean_name = re.sub(r"\s+(hạng|hang|gần|gan|tại|tai|ở|o)\s+.*$", "", clean_name, flags=re.I).strip(" -–,;")
         norm.append({
-            "name": str(p.get("name") or "").strip(),
+            "name": clean_name,
             "developer": p.get("developer") or "CĐT đang kiểm chứng",
             "scale": p.get("scale") or "quy mô đang kiểm chứng",
             "operation_year": p.get("operation_year") or "đang kiểm chứng",
