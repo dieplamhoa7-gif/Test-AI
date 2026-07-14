@@ -55,6 +55,9 @@ MODEL3_JOB_STATE_DIR = Path(
 )
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
+MODEL3_QUEUE: asyncio.Queue[str] | None = None
+MODEL3_WORKER_TASK: asyncio.Task | None = None
+MODEL3_ACTIVE_BY_KEY: dict[str, str] = {}
 MODEL3_SECTIONS = [
     ("news", "Grok", "Tin tức & impact"),
     ("technical", "Codex", "LHInvestment indicators / TA"),
@@ -930,22 +933,78 @@ class Model3ExportRequest(BaseModel):
     notebooklm: bool = True
 
 
+def _model3_job_key(ticker: str, notebooklm: bool) -> str:
+    return f"{re.sub(r'[^A-Z0-9]', '', str(ticker or '').upper())[:8]}:{1 if notebooklm else 0}"
+
+
+def _model3_queue_position(job_id: str) -> int:
+    if MODEL3_QUEUE is None:
+        return 0
+    try:
+        pending = list(MODEL3_QUEUE._queue)  # type: ignore[attr-defined]  # UI-only snapshot
+        return pending.index(job_id) + 1
+    except ValueError:
+        return 0
+
+
+def _ensure_model3_worker() -> None:
+    global MODEL3_QUEUE, MODEL3_WORKER_TASK
+    if MODEL3_QUEUE is None:
+        MODEL3_QUEUE = asyncio.Queue()
+    if MODEL3_WORKER_TASK is None or MODEL3_WORKER_TASK.done():
+        MODEL3_WORKER_TASK = asyncio.create_task(_model3_worker())
+
+
+def _find_active_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any] | None:
+    key = _model3_job_key(ticker, notebooklm)
+    jid = MODEL3_ACTIVE_BY_KEY.get(key)
+    if jid:
+        job = _load_model3_job(jid)
+        if job and job.get("status") in {"queued", "queued_external", "running"}:
+            return job
+        MODEL3_ACTIVE_BY_KEY.pop(key, None)
+    # Rebuild the in-memory index after Render restart or when old jobs were loaded
+    # from disk before this process knew MODEL3_ACTIVE_BY_KEY.
+    for job in sorted(MODEL3_JOBS.values(), key=lambda j: float(j.get("created_at") or 0), reverse=True):
+        if job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+            MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+            return job
+    try:
+        if MODEL3_JOB_STATE_DIR.exists():
+            for path in sorted(MODEL3_JOB_STATE_DIR.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True):
+                try:
+                    job = json.loads(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if isinstance(job, dict) and job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+                    MODEL3_JOBS[str(job.get("job_id"))] = job
+                    MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+                    return job
+    except Exception:
+        pass
+    return None
+
+
 def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
     jid = uuid.uuid4().hex[:12]
     job = {
         "job_id": jid,
         "ticker": ticker,
+        "notebooklm": notebooklm,
+        "dedupe_key": _model3_job_key(ticker, notebooklm),
+        "queue_position": None,
         "status": "queued",
         "progress": 0,
         "error": None,
         "created_at": time.time(),
         "updated_at": time.time(),
-        "logs": [],
+        "logs": ["🧾 Đã nhận yêu cầu, đưa vào hàng đợi Model3."],
         "agents": {"Codex": "pending", "Grok": "pending", "Kiro": "pending", "NotebookLM": "pending" if notebooklm else "skipped"},
         "sections": [{"key": k, "agent": a, "name": n, "status": "pending"} for k, a, n in MODEL3_SECTIONS],
         "result": None,
     }
     MODEL3_JOBS[jid] = job
+    MODEL3_ACTIVE_BY_KEY[job["dedupe_key"]] = jid
     _save_model3_job(job)
     return job
 
@@ -1029,6 +1088,8 @@ async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
     if not job:
         return
     job["status"] = "running"
+    job["queue_position"] = None
+    job["logs"].append("▶️ Worker bắt đầu chạy job Model3. Các job khác sẽ chờ lần lượt.")
     job["updated_at"] = time.time()
     _save_model3_job(job)
     try:
@@ -1045,8 +1106,22 @@ async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
             if s["status"] == "running":
                 s["status"] = "error"
     finally:
+        MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), notebooklm)), None)
         job["updated_at"] = time.time()
         _save_model3_job(job)
+
+
+async def _model3_worker() -> None:
+    assert MODEL3_QUEUE is not None
+    while True:
+        job_id = await MODEL3_QUEUE.get()
+        try:
+            job = _load_model3_job(job_id)
+            if not job or job.get("status") != "queued":
+                continue
+            await _run_model3_job(job_id, bool(job.get("notebooklm", True)))
+        finally:
+            MODEL3_QUEUE.task_done()
 
 
 # ----------------------------- endpoints -----------------------------
@@ -1128,11 +1203,14 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
+    if job.get("status") == "queued":
+        j["queue_position"] = _model3_queue_position(str(job.get("job_id") or ""))
+        j["logs"] = [*(job.get("logs") or []), f"⏳ Đang chờ trong hàng đợi. Vị trí: #{j['queue_position']}" if j["queue_position"] else "⏳ Đang chờ worker nhận job..."]
     result = job.get("result")
     if not isinstance(result, dict) and job.get("status") == "error":
         result = _recover_model3_docx_result(job)
     j["result"] = _public_model3_result(result)
-    j["logs_tail"] = (job.get("logs") or [])[-20:]
+    j["logs_tail"] = (j.get("logs") or job.get("logs") or [])[-20:]
     return j
 
 
@@ -1342,12 +1420,31 @@ async def model3_notebooklm_auth_test(auto_login: bool = True):
 
 @router.post("/model3/export")
 async def model3_export(req: Model3ExportRequest):
-    """Start full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM."""
+    """Queue full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM.
+
+    Only one Model3 job runs at a time because Grok/NotebookLM/browser resources are
+    single-session. Concurrent requests are queued FIFO. Repeated clicks for the
+    same ticker + NotebookLM option reuse the active queued/running job instead of
+    creating duplicate jobs/messages.
+    """
     ticker = re.sub(r"[^A-Za-z0-9]", "", req.ticker or "").upper()[:8]
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    _ensure_model3_worker()
+    existing = _find_active_model3_job(ticker, req.notebooklm)
+    if existing:
+        existing["logs"].append("♻️ Yêu cầu trùng mã đang queued/running nên dùng lại job hiện tại, không tạo job mới.")
+        existing["logs"] = existing["logs"][-80:]
+        existing["updated_at"] = time.time()
+        _save_model3_job(existing)
+        return JSONResponse(_public_model3_job(existing))
     job = _new_model3_job(ticker, req.notebooklm)
-    asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+    assert MODEL3_QUEUE is not None
+    await MODEL3_QUEUE.put(job["job_id"])
+    job["queue_position"] = _model3_queue_position(job["job_id"])
+    job["logs"].append(f"⏳ Vị trí hàng đợi: #{job['queue_position']}.")
+    job["updated_at"] = time.time()
+    _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
