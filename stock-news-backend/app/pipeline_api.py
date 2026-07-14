@@ -1566,7 +1566,8 @@ async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partia
     job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded DOCX: {safe}"]
     _model3_finalize_sections(job, result)
     MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), bool(job.get("notebooklm", True)))), None)
-    MODEL3_JOBS[job_id] = job    _save_model3_job(job)
+    MODEL3_JOBS[job_id] = job
+    _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
