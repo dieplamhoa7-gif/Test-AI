@@ -23,7 +23,11 @@ import math
 import os
 import re
 import sqlite3
+import subprocess
+import tempfile
 import time
+import urllib.error
+import urllib.request
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -43,8 +47,17 @@ STAGE_BACKOFF = float(os.getenv("PIPELINE_STAGE_BACKOFF", "0.8"))    # giây, nh
 REPORTS_DIR = Path(os.getenv("PIPELINE_REPORTS_DIR", "reports"))     # 'reports' đã tồn tại
 MODEL3_EXPORT_TTL_HOURS = float(os.getenv("PIPELINE_MODEL3_EXPORT_TTL_HOURS", "24"))
 MODEL3_OUT_DIR = Path(os.getenv("PIPELINE_MODEL3_OUT_DIR", "outputs/model3"))
+MODEL3_JOB_STATE_DIR = Path(
+    os.getenv(
+        "MODEL3_JOB_STATE_DIR",
+        "/tmp/disk/model3_jobs" if Path("/tmp/disk").exists() else str(Path(tempfile.gettempdir()) / "model3_jobs"),
+    )
+)
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
+MODEL3_QUEUE: asyncio.Queue[str] | None = None
+MODEL3_WORKER_TASK: asyncio.Task | None = None
+MODEL3_ACTIVE_BY_KEY: dict[str, str] = {}
 MODEL3_SECTIONS = [
     ("news", "Grok", "Tin tức & impact"),
     ("technical", "Codex", "LHInvestment indicators / TA"),
@@ -62,12 +75,52 @@ MODEL3_SECTIONS = [
 _DATA_PROVIDER: Optional[Callable[[str], dict]] = None
 
 
-def _load_symbol(symbol: str) -> dict:
-    if _DATA_PROVIDER is not None:
-        return _DATA_PROVIDER(symbol)
+def _model3_job_file(job_id: str) -> Path:
+    safe = re.sub(r"[^A-Za-z0-9_-]", "", str(job_id or ""))[:64]
+    if not safe:
+        raise ValueError("invalid job_id")
+    return MODEL3_JOB_STATE_DIR / f"{safe}.json"
+
+
+def _save_model3_job(job: dict[str, Any]) -> None:
+    """Persist Model3 job state so Render restarts do not lose job_id/status."""
+    job_id = str(job.get("job_id") or "")
+    if not job_id:
+        return
+    MODEL3_JOB_STATE_DIR.mkdir(parents=True, exist_ok=True)
+    path = _model3_job_file(job_id)
+    tmp = path.with_suffix(f".json.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(job, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    tmp.replace(path)
+
+
+def _load_model3_job(job_id: str) -> dict[str, Any] | None:
+    if job_id in MODEL3_JOBS:
+        return MODEL3_JOBS[job_id]
+    path = _model3_job_file(job_id)
+    if not path.exists():
+        return None
+    try:
+        job = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if isinstance(job, dict) and job.get("job_id") == job_id:
+        # A restarted Render process cannot resume the old background task. Make
+        # that explicit instead of returning 404/missing job.
+        if job.get("status") in {"queued", "running"}:
+            job["status"] = "interrupted"
+            job["error"] = job.get("error") or "Render process restarted before the in-flight Model3 job finished. Please start a new export."
+            job["updated_at"] = time.time()
+            _save_model3_job(job)
+        MODEL3_JOBS[job_id] = job
+        return job
+    return None
+
+
+def _load_symbol_local_provider(symbol: str, force_refresh: bool = False) -> dict:
     try:
         from app.market_data import get_market_symbol  # type: ignore  # optional local provider
-        return get_market_symbol(symbol)
+        return get_market_symbol(symbol, force_refresh=force_refresh)
     except ModuleNotFoundError as exc:
         if exc.name != "app.market_data":
             raise
@@ -90,7 +143,21 @@ def _load_symbol(symbol: str) -> dict:
         raise ModuleNotFoundError(f"Cannot load market data provider from {provider_path}")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)  # type: ignore[union-attr]
-    return mod.get_market_symbol(symbol)
+    return mod.get_market_symbol(symbol, force_refresh=force_refresh)
+
+
+def _load_symbol(symbol: str) -> dict:
+    if _DATA_PROVIDER is not None:
+        return _DATA_PROVIDER(symbol)
+    gateway = os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    if gateway:
+        try:
+            url = f"{gateway}/market/{re.sub(r'[^A-Za-z0-9]', '', symbol.upper())}?force_refresh=true"
+            with urllib.request.urlopen(url, timeout=min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0)) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception:
+            pass
+    return _load_symbol_local_provider(symbol, force_refresh=True)
 
 
 # ----------------------------- helpers -----------------------------
@@ -655,28 +722,27 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
                 pass
 
     log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
-    import importlib.util
-    provider_path = None
-    here = Path(__file__).resolve()
-    for parent in here.parents:
-        candidate = parent / "stock-news-backend" / "app" / "market_data.py"
-        if candidate.exists():
-            provider_path = candidate
+    gateway_errors: list[str] = []
+    data = None
+    for gateway in _market_gateway_base_urls() if '_market_gateway_base_urls' in globals() else [os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")]:
+        if not gateway:
+            continue
+        try:
+            url = f"{gateway}/market-compact/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
+            _status, data, _size = _urlopen_json(url, min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0), 524288)
+            log(f"✅ Freshness gate: lấy data qua gateway {gateway}")
             break
-    if provider_path is None:
-        provider_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\app\market_data.py")
-    if not provider_path.exists():
-        raise RuntimeError("CALL_ASSISTANT_FIX: Không tìm thấy market_data.py để kiểm tra freshness")
-    spec = importlib.util.spec_from_file_location("fresh_market_data_provider", provider_path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"CALL_ASSISTANT_FIX: Không load được market data provider: {provider_path}")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)  # type: ignore[union-attr]
-
-    try:
-        data = mod.get_market_symbol(ticker, force_refresh=True)
-    except Exception as exc:
-        raise RuntimeError(f"CALL_ASSISTANT_FIX: force refresh market data lỗi cho {ticker}: {type(exc).__name__}: {exc}") from exc
+        except Exception as exc:  # noqa: BLE001
+            gateway_errors.append(f"{gateway}: {type(exc).__name__}: {str(exc)[:200]}")
+    if data is None:
+        try:
+            data = _load_symbol_local_provider(ticker, force_refresh=True)
+            log("✅ Freshness gate: gateway unreachable, fallback local Render market_data provider OK")
+        except Exception as exc:
+            raise RuntimeError(
+                "CALL_ASSISTANT_FIX: Không lấy được market data qua gateway hoặc provider local. "
+                f"Gateway errors: {' | '.join(gateway_errors)[-1000:]}. Local error: {type(exc).__name__}: {exc}"
+            ) from exc
 
     def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
         """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
@@ -729,8 +795,11 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         issues.append(f"source không phải VPS live quote: {source}")
     if quote_dt is None or quote_age_min > 15:
         issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
-    if hist_dt is None or hist_age_days > 1:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    # Weekend/holiday tolerance: on Sat/Sun, the latest trading bar is often
+    # Friday, so a 2-3 calendar-day gap can still be fresh.
+    max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
+    if hist_dt is None or hist_age_days > max_hist_age_days:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}, max={max_hist_age_days}")
     if not price or float(price) <= 0:
         issues.append(f"giá không hợp lệ: {price}")
     if volume is None or int(float(volume or 0)) <= 0:
@@ -779,6 +848,19 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
 
     freshness = _market_data_freshness_gate(ticker, progress)
 
+    # Guard against the bad 20-second "done" case: if Render has no real AI key,
+    # do not export a fake/fallback DOCX that looks empty or uninformative.
+    try:
+        from app.config import CONFIG  # type: ignore
+        has_real_ai = bool(CONFIG.router9_api_key or CONFIG.anthropic_key or CONFIG.openai_key or CONFIG.xai_key or CONFIG.google_key)
+    except Exception:
+        has_real_ai = False
+    if os.getenv("MODEL3_ALLOW_MOCK_EXPORT", "").lower() not in ("1", "true", "yes") and not has_real_ai:
+        raise RuntimeError(
+            "Model3 chưa có AI API key trên Render nên không xuất DOCX giả/fallback. "
+            "Cần cấu hình ROUTER9_API_KEY hoặc OPENAI_API_KEY/XAI_API_KEY trong Render rồi chạy lại."
+        )
+
     from hybrid_agent_framework import run_model3_workflow
 
     task = (
@@ -787,8 +869,21 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "xuất DOCX hoàn chỉnh cho NotebookLM"
     )
     state = run_model3_workflow(task, progress)
+    feed = state.get("feed", []) if isinstance(state, dict) else []
+    # Mark partial only for real provider/quality failures that made the report
+    # materially incomplete. Do not flag controlled public-news enrichment as
+    # partial: it is now part of the production degradation path when Grok's
+    # vendor schema is unavailable, and the DOCX still contains sourced news.
+    bad_markers = ("mock", "Provider Codex bị timeout", "GROK_NEWS_FAILED", "AI_PROVIDER_FAILED", "không tìm thấy DOCX")
+    joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
+    partial_quality = any(m.lower() in joined_feed.lower() for m in bad_markers)
     docx = _latest_model3_docx(ticker, before)
     if docx is None or not docx.exists():
+        if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+            raise RuntimeError(
+                "Model3 AI chưa chạy đủ thật/đầy đủ và không tìm thấy DOCX để trả về. "
+                "Kiểm tra AI provider key/log Render rồi chạy lại."
+            )
         raise RuntimeError(f"Khong tim thay DOCX sau khi chay Model3 cho {ticker}")
 
     result: dict[str, Any] = {
@@ -799,7 +894,13 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         "feed_count": len(state.get("feed", [])) if isinstance(state, dict) else None,
         "logs_tail": logs[-30:],
         "freshness": freshness,
+        "partial_quality": partial_quality,
     }
+    if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
+        result["warning"] = (
+            "Model3 đã xuất DOCX nhưng một số AI provider bị timeout/502 nên báo cáo có thể dùng fallback/thiếu phần Kiro. "
+            "Trả link file để kiểm tra, không coi là báo cáo chất lượng đầy đủ."
+        )
 
     if with_notebooklm:
         try:
@@ -832,22 +933,79 @@ class Model3ExportRequest(BaseModel):
     notebooklm: bool = True
 
 
+def _model3_job_key(ticker: str, notebooklm: bool) -> str:
+    return f"{re.sub(r'[^A-Z0-9]', '', str(ticker or '').upper())[:8]}:{1 if notebooklm else 0}"
+
+
+def _model3_queue_position(job_id: str) -> int:
+    if MODEL3_QUEUE is None:
+        return 0
+    try:
+        pending = list(MODEL3_QUEUE._queue)  # type: ignore[attr-defined]  # UI-only snapshot
+        return pending.index(job_id) + 1
+    except ValueError:
+        return 0
+
+
+def _ensure_model3_worker() -> None:
+    global MODEL3_QUEUE, MODEL3_WORKER_TASK
+    if MODEL3_QUEUE is None:
+        MODEL3_QUEUE = asyncio.Queue()
+    if MODEL3_WORKER_TASK is None or MODEL3_WORKER_TASK.done():
+        MODEL3_WORKER_TASK = asyncio.create_task(_model3_worker())
+
+
+def _find_active_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any] | None:
+    key = _model3_job_key(ticker, notebooklm)
+    jid = MODEL3_ACTIVE_BY_KEY.get(key)
+    if jid:
+        job = _load_model3_job(jid)
+        if job and job.get("status") in {"queued", "queued_external", "running"}:
+            return job
+        MODEL3_ACTIVE_BY_KEY.pop(key, None)
+    # Rebuild the in-memory index after Render restart or when old jobs were loaded
+    # from disk before this process knew MODEL3_ACTIVE_BY_KEY.
+    for job in sorted(MODEL3_JOBS.values(), key=lambda j: float(j.get("created_at") or 0), reverse=True):
+        if job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+            MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+            return job
+    try:
+        if MODEL3_JOB_STATE_DIR.exists():
+            for path in sorted(MODEL3_JOB_STATE_DIR.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True):
+                try:
+                    job = json.loads(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if isinstance(job, dict) and job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+                    MODEL3_JOBS[str(job.get("job_id"))] = job
+                    MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+                    return job
+    except Exception:
+        pass
+    return None
+
+
 def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
     jid = uuid.uuid4().hex[:12]
     job = {
         "job_id": jid,
         "ticker": ticker,
+        "notebooklm": notebooklm,
+        "dedupe_key": _model3_job_key(ticker, notebooklm),
+        "queue_position": None,
         "status": "queued",
         "progress": 0,
         "error": None,
         "created_at": time.time(),
         "updated_at": time.time(),
-        "logs": [],
+        "logs": ["🧾 Đã nhận yêu cầu, đưa vào hàng đợi Model3."],
         "agents": {"Codex": "pending", "Grok": "pending", "Kiro": "pending", "NotebookLM": "pending" if notebooklm else "skipped"},
         "sections": [{"key": k, "agent": a, "name": n, "status": "pending"} for k, a, n in MODEL3_SECTIONS],
         "result": None,
     }
     MODEL3_JOBS[jid] = job
+    MODEL3_ACTIVE_BY_KEY[job["dedupe_key"]] = jid
+    _save_model3_job(job)
     return job
 
 
@@ -907,6 +1065,7 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
     running = sum(1 for s in job["sections"] if s["status"] == "running")
     job["progress"] = min(95, int((done + running * 0.5) / len(job["sections"]) * 100))
     job["updated_at"] = time.time()
+    _save_model3_job(job)
 
 
 def _model3_finalize_sections(job: dict[str, Any], result: dict[str, Any]) -> None:
@@ -920,25 +1079,49 @@ def _model3_finalize_sections(job: dict[str, Any], result: dict[str, Any]) -> No
         if job["agents"][a] == "running" or job["agents"][a] == "pending":
             job["agents"][a] = "done" if (a != "NotebookLM" or result.get("notebooklm")) else "skipped"
     job["progress"] = 100
+    job["updated_at"] = time.time()
+    _save_model3_job(job)
 
 
 async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
-    job = MODEL3_JOBS[job_id]
+    job = _load_model3_job(job_id)
+    if not job:
+        return
     job["status"] = "running"
+    job["queue_position"] = None
+    job["logs"].append("▶️ Worker bắt đầu chạy job Model3. Các job khác sẽ chờ lần lượt.")
     job["updated_at"] = time.time()
+    _save_model3_job(job)
     try:
         result = await asyncio.to_thread(_run_model3_full_export_sync, job["ticker"], notebooklm, lambda m: _model3_mark_progress(job, m))
         _model3_finalize_sections(job, result)
         job["result"] = result
         job["status"] = "done"
+        _save_model3_job(job)
     except Exception as exc:
         job["status"] = "error"
         job["error"] = str(exc)[-1500:]
+        _save_model3_job(job)
         for s in job["sections"]:
             if s["status"] == "running":
                 s["status"] = "error"
     finally:
+        MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), notebooklm)), None)
         job["updated_at"] = time.time()
+        _save_model3_job(job)
+
+
+async def _model3_worker() -> None:
+    assert MODEL3_QUEUE is not None
+    while True:
+        job_id = await MODEL3_QUEUE.get()
+        try:
+            job = _load_model3_job(job_id)
+            if not job or job.get("status") != "queued":
+                continue
+            await _run_model3_job(job_id, bool(job.get("notebooklm", True)))
+        finally:
+            MODEL3_QUEUE.task_done()
 
 
 # ----------------------------- endpoints -----------------------------
@@ -970,6 +1153,32 @@ async def run_pipeline(req: RunRequest):
     return {"batch_id": batch_id, "runs": runs}
 
 
+def _recover_model3_docx_result(job: dict[str, Any]) -> dict[str, Any] | None:
+    """Expose a DOCX that was already written even if final quality guard failed."""
+    ticker = re.sub(r"[^A-Z0-9]", "", str(job.get("ticker", "")).upper())[:8]
+    logs = [str(x) for x in job.get("logs", []) if x]
+    joined = "\n".join(logs)
+    m = re.search(r"(outputs/model3/[^\s]+\.docx)", joined)
+    docx: Path | None = None
+    if m:
+        cand = Path(m.group(1))
+        if cand.exists():
+            docx = cand
+    if docx is None and ticker:
+        docx = _latest_model3_docx(ticker, set())
+    if docx is None or not docx.exists():
+        return None
+    return {
+        "ok": True,
+        "ticker": ticker,
+        "docx_path": str(docx),
+        "docx_name": docx.name,
+        "partial_quality": True,
+        "warning": "DOCX đã được ghi nhưng job bị đánh dấu error do một số AI provider timeout/502; dùng file này để kiểm tra, chưa coi là báo cáo chất lượng đầy đủ.",
+        "logs_tail": logs[-30:],
+    }
+
+
 def _public_model3_result(result: dict[str, Any] | None) -> dict[str, Any] | None:
     if not isinstance(result, dict):
         return None
@@ -994,9 +1203,194 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
-    j["result"] = _public_model3_result(job.get("result"))
-    j["logs_tail"] = (job.get("logs") or [])[-20:]
+    if job.get("status") == "queued":
+        j["queue_position"] = _model3_queue_position(str(job.get("job_id") or ""))
+        j["logs"] = [*(job.get("logs") or []), f"⏳ Đang chờ trong hàng đợi. Vị trí: #{j['queue_position']}" if j["queue_position"] else "⏳ Đang chờ worker nhận job..."]
+    result = job.get("result")
+    if not isinstance(result, dict) and job.get("status") == "error":
+        result = _recover_model3_docx_result(job)
+    j["result"] = _public_model3_result(result)
+    j["logs_tail"] = (j.get("logs") or job.get("logs") or [])[-20:]
     return j
+
+
+def _extract_market_gateway_summary(data: Any) -> dict[str, Any]:
+    if not isinstance(data, dict):
+        return {}
+    quote = data.get("quote") if isinstance(data.get("quote"), dict) else {}
+    technical = data.get("technical") if isinstance(data.get("technical"), dict) else {}
+    return {
+        "source": data.get("source") or quote.get("source"),
+        "price": data.get("price") or quote.get("price") or technical.get("close"),
+        "volume": data.get("volume") or quote.get("volume") or technical.get("volume"),
+    }
+
+
+def _market_gateway_base_urls() -> list[str]:
+    # Render dashboard env can override render.yaml, so always include both the
+    # public Funnel route and tailnet-IP route as candidates.
+    primary = os.getenv("MARKET_DATA_GATEWAY_URL", "").rstrip("/")
+    public_funnel = os.getenv("MARKET_DATA_GATEWAY_FUNNEL_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")
+    tailnet_host = os.getenv("MARKET_DATA_GATEWAY_TAILNET_HOST_URL", "http://3t8l9f.tail6c0e00.ts.net:20129").rstrip("/")
+    fallback = os.getenv("MARKET_DATA_GATEWAY_FALLBACK_URL", "http://100.89.47.25:20129").rstrip("/")
+    urls: list[str] = []
+    for u in (primary, public_funnel, tailnet_host, fallback):
+        if u and u not in urls:
+            urls.append(u)
+    return urls
+
+
+def _urlopen_json(url: str, timeout: float, max_bytes: int | None = None) -> tuple[int, dict[str, Any], int]:
+    # Render reaches the user's PC through Tailscale userspace networking on
+    # 127.0.0.1:1055. urllib can still mis-handle NO_PROXY/HTTP proxy edge cases
+    # here, while curl -x 127.0.0.1:1055 is verified working from Render. Prefer
+    # curl when a gateway proxy exists, then keep urllib as a local/dev fallback.
+    proxy = os.getenv("MARKET_DATA_GATEWAY_PROXY") or os.getenv("ALL_PROXY") or os.getenv("HTTP_PROXY")
+    if proxy:
+        cmd = ["curl", "-sS", "-m", str(max(1, int(timeout))), "-x", proxy, url]
+        cp = subprocess.run(cmd, capture_output=True, text=False, timeout=timeout + 3)
+        raw = cp.stdout or b""
+        if cp.returncode == 0 and raw:
+            truncated = bool(max_bytes is not None and len(raw) > max_bytes)
+            if max_bytes is not None:
+                raw = raw[:max_bytes]
+            data = json.loads(raw.decode("utf-8"))
+            if isinstance(data, dict):
+                data["_response_truncated"] = truncated
+            return 200, data, len(raw)
+        err = (cp.stderr or b"").decode("utf-8", errors="replace")[-1000:]
+        raise urllib.error.URLError(f"curl gateway proxy failed rc={cp.returncode}: {err}")
+
+    with urllib.request.urlopen(url, timeout=timeout) as resp:
+        raw = resp.read(max_bytes or -1)
+        if max_bytes is not None:
+            # Drain a tiny extra byte only to know whether the gateway response was truncated.
+            more = resp.read(1)
+            truncated = bool(more)
+        else:
+            truncated = False
+        data = json.loads(raw.decode("utf-8"))
+        if isinstance(data, dict):
+            data["_response_truncated"] = truncated
+        return int(getattr(resp, "status", 200)), data, len(raw)
+
+
+@router.get("/model3/render-network-diag")
+async def model3_render_network_diag():
+    """Safe Render network diagnostics for Tailscale/proxy availability."""
+    env_keys = ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "all_proxy", "no_proxy", "TAILSCALE_AUTHKEY"]
+    env = {k: ("<set>" if k == "TAILSCALE_AUTHKEY" and os.getenv(k) else os.getenv(k)) for k in env_keys if os.getenv(k) is not None}
+    diag: dict[str, Any] = {"env": env}
+    for cmd_name, cmd in {
+        "tailscale_status": ["tailscale", "status", "--json"],
+        "tailscale_ip": ["tailscale", "ip", "-4"],
+    }.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=8)
+            diag[cmd_name] = {"returncode": cp.returncode, "stdout": cp.stdout[-3000:], "stderr": cp.stderr[-1500:]}
+        except Exception as exc:  # noqa: BLE001
+            diag[cmd_name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(diag)
+
+
+@router.get("/model3/render-tailnet-peers")
+async def model3_render_tailnet_peers():
+    """Compact Tailscale peer view focused on the local gateway host."""
+    try:
+        cp = await asyncio.to_thread(subprocess.run, ["tailscale", "status", "--json"], capture_output=True, text=True, timeout=8)
+        data = json.loads(cp.stdout or "{}") if cp.returncode == 0 else {}
+    except Exception as exc:  # noqa: BLE001
+        return JSONResponse({"ok": False, "error_type": type(exc).__name__, "error": str(exc)[:1000]}, status_code=503)
+    peers = []
+    for peer in (data.get("Peer") or {}).values():
+        if not isinstance(peer, dict):
+            continue
+        host = peer.get("HostName") or ""
+        ips = peer.get("TailscaleIPs") or []
+        if host == "3t8l9f" or "100.89.47.25" in ips or host.startswith("render-model3"):
+            peers.append({
+                "host": host,
+                "dns": peer.get("DNSName"),
+                "ips": ips,
+                "online": peer.get("Online"),
+                "active": peer.get("Active"),
+                "last_seen": peer.get("LastSeen"),
+                "cur_addr": peer.get("CurAddr"),
+                "relay": peer.get("Relay"),
+                "rx": peer.get("RxBytes"),
+                "tx": peer.get("TxBytes"),
+            })
+    return JSONResponse({"ok": True, "self_ips": data.get("Self", {}).get("TailscaleIPs"), "peers": peers})
+
+
+@router.get("/model3/render-curl-gateway")
+async def model3_render_curl_gateway():
+    """Try gateway with curl through/no proxy to diagnose urllib vs network."""
+    cmds = {
+        "curl_default_ip": ["curl", "-sS", "-m", "12", "-v", "http://100.89.47.25:20129/health"],
+        "curl_http_proxy_ip": ["curl", "-sS", "-m", "12", "-x", "http://127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_socks_ip": ["curl", "-sS", "-m", "12", "--socks5-hostname", "127.0.0.1:1055", "-v", "http://100.89.47.25:20129/health"],
+        "curl_funnel": ["curl", "-sS", "-m", "12", "-v", "https://3t8l9f.tail6c0e00.ts.net/marketdata/health"],
+    }
+    out: dict[str, Any] = {}
+    for name, cmd in cmds.items():
+        try:
+            cp = await asyncio.to_thread(subprocess.run, cmd, capture_output=True, text=True, timeout=15)
+            out[name] = {"returncode": cp.returncode, "stdout": cp.stdout[-1000:], "stderr": cp.stderr[-2000:]}
+        except Exception as exc:  # noqa: BLE001
+            out[name] = {"error_type": type(exc).__name__, "error": str(exc)[:1000]}
+    return JSONResponse(out)
+
+
+@router.get("/model3/market-gateway-ping")
+async def model3_market_gateway_ping():
+    """Render-side network ping to gateway /health; does not fetch market payload."""
+    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 12.0)
+    attempts: list[dict[str, Any]] = []
+    for gateway in _market_gateway_base_urls():
+        url = f"{gateway}/health"
+        started = time.time()
+        try:
+            status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, None)
+            return JSONResponse({"ok": True, "url": url, "status": status, "latency_ms": int((time.time() - started) * 1000), "bytes": size, "data": data, "attempts": attempts})
+        except Exception as exc:  # noqa: BLE001
+            attempts.append({"url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)})
+    return JSONResponse({"ok": False, "attempts": attempts}, status_code=503)
+
+
+@router.get("/model3/market-gateway-test/{ticker}")
+async def model3_market_gateway_test(ticker: str = "SSI"):
+    """Fast Render-side check for market gateway; reads bounded payload and returns compact summary."""
+    ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "SSI").upper()[:8]
+    if not ticker:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
+    attempts: list[dict[str, Any]] = []
+    for gateway in _market_gateway_base_urls():
+        url = f"{gateway}/market-compact/{ticker}?force_refresh=false"
+        started = time.time()
+        try:
+            status, data, size = await asyncio.to_thread(_urlopen_json, url, timeout, 262144)
+            latency_ms = int((time.time() - started) * 1000)
+            summary = _extract_market_gateway_summary(data)
+            return JSONResponse({
+                "ok": True,
+                "ticker": ticker,
+                "url": url,
+                "status": status,
+                "latency_ms": latency_ms,
+                "bytes_read": size,
+                "truncated": bool(data.get("_response_truncated")) if isinstance(data, dict) else False,
+                **summary,
+                "attempts": attempts,
+                "received_at": datetime.now(timezone.utc).isoformat(),
+            })
+        except urllib.error.HTTPError as exc:
+            body = exc.read(2000).decode("utf-8", errors="replace")
+            attempts.append({"url": url, "status": exc.code, "error_type": "HTTPError", "error": body, "latency_ms": int((time.time() - started) * 1000)})
+        except Exception as exc:  # noqa: BLE001
+            attempts.append({"url": url, "error_type": type(exc).__name__, "error": str(exc)[:1200], "latency_ms": int((time.time() - started) * 1000)})
+    return JSONResponse({"ok": False, "ticker": ticker, "attempts": attempts}, status_code=503)
 
 
 @router.get("/model3/freshness/{ticker}")
@@ -1026,18 +1420,37 @@ async def model3_notebooklm_auth_test(auto_login: bool = True):
 
 @router.post("/model3/export")
 async def model3_export(req: Model3ExportRequest):
-    """Start full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM."""
+    """Queue full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM.
+
+    Only one Model3 job runs at a time because Grok/NotebookLM/browser resources are
+    single-session. Concurrent requests are queued FIFO. Repeated clicks for the
+    same ticker + NotebookLM option reuse the active queued/running job instead of
+    creating duplicate jobs/messages.
+    """
     ticker = re.sub(r"[^A-Za-z0-9]", "", req.ticker or "").upper()[:8]
     if not ticker:
         raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    _ensure_model3_worker()
+    existing = _find_active_model3_job(ticker, req.notebooklm)
+    if existing:
+        existing["logs"].append("♻️ Yêu cầu trùng mã đang queued/running nên dùng lại job hiện tại, không tạo job mới.")
+        existing["logs"] = existing["logs"][-80:]
+        existing["updated_at"] = time.time()
+        _save_model3_job(existing)
+        return JSONResponse(_public_model3_job(existing))
     job = _new_model3_job(ticker, req.notebooklm)
-    asyncio.create_task(_run_model3_job(job["job_id"], req.notebooklm))
+    assert MODEL3_QUEUE is not None
+    await MODEL3_QUEUE.put(job["job_id"])
+    job["queue_position"] = _model3_queue_position(job["job_id"])
+    job["logs"].append(f"⏳ Vị trí hàng đợi: #{job['queue_position']}.")
+    job["updated_at"] = time.time()
+    _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
 @router.get("/model3/status/{job_id}")
 async def model3_status(job_id: str):
-    job = MODEL3_JOBS.get(job_id)
+    job = _load_model3_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="job_id không tồn tại")
     return JSONResponse(_public_model3_job(job))
