@@ -738,6 +738,15 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     )
     criteria.transaction = payload.get('transaction') or 'buy'
     criteria.segment = payload.get('segment') or None
+    if criteria.transaction == 'rent':
+        criteria.rent_subtype = criteria.property_type
+        if criteria.property_type == 'rent_chungcu':
+            criteria.property_type = 'chungcu'
+        elif criteria.property_type in {'rent_vanphong', 'rent_santhuongmai'}:
+            criteria.property_type = 'shophouse'
+        elif criteria.property_type == 'rent_nha':
+            criteria.property_type = 'nha'
+    use_comparable_flow = criteria.property_type == 'chungcu' or (criteria.transaction == 'rent' and getattr(criteria, 'rent_subtype', None) in {'rent_vanphong', 'rent_santhuongmai'})
     rd_mode = str(payload.get('mode') or payload.get('rdMode') or 'standard').lower()
     is_fast_mode = rd_mode == 'fast'
     warnings: list[str] = []
@@ -753,11 +762,11 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             log_error('resolve_location', payload, e, 'continue without location_context', note)
             criteria.location_context = {}
 
-    if criteria.property_type != 'chungcu':
-        write_progress('direct_street_search', 'Sản phẩm không phải chung cư: ưu tiên tìm/search theo tên đường...', warnings)
+    if not use_comparable_flow:
+        write_progress('direct_street_search', 'Sản phẩm direct-search: ưu tiên tìm/search thẳng theo tên đường...', warnings)
         projects = direct_land_projects(criteria)
     else:
-        write_progress('find_comparables', 'Chung cư: đang tìm 5 dự án/khu vực comparable giống BDS_bot...', warnings)
+        write_progress('find_comparables', 'Đang tìm 5 dự án/khu vực comparable bằng AI...', warnings)
         try:
             projects = await asyncio.wait_for(find_nearby_projects(ai_fast, criteria), timeout=45)
         except Exception as e:
@@ -767,7 +776,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             projects = fallback_nearby_projects(criteria, type(e).__name__)
 
     project_text = "\n".join(_project_line(i, p) for i, p in enumerate(projects.projects[:5])) or "  (AI không trả về dự án nào)"
-    if criteria.property_type != 'chungcu':
+    if not use_comparable_flow:
         intro = (
             f"Khu vực: {projects.area_description}\n\n"
             "⏳ Đang tìm mẫu tin trực tiếp theo tên đường/phường/khu vực trên Batdongsan, Guland, Alonhadat…"
@@ -780,9 +789,9 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         )
 
     project_names = [p.get('name', '') for p in projects.projects if p.get('name')]
-    if criteria.property_type == 'chungcu':
-        write_progress('discover_links', 'Web fast-mode: bỏ qua search link nguồn thật chậm cho chung cư; dùng fallback links + AI estimate...', warnings)
-        warnings.append('Web fast-mode: bỏ qua discover_real_source_links cho chung cư vì bước này thường timeout 45-75s trên web; dùng fallback links + AI chính.')
+    if use_comparable_flow:
+        write_progress('discover_links', 'Web fast-mode: bỏ qua search link nguồn thật chậm cho flow comparable; dùng fallback links + AI estimate...', warnings)
+        warnings.append('Web fast-mode: bỏ qua discover_real_source_links cho flow comparable vì bước này thường timeout 45-75s trên web; dùng fallback links + AI chính.')
         evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
     else:
         write_progress('discover_links', 'Đang search link nguồn thật Batdongsan/Guland/Alonhadat...', warnings)
@@ -799,8 +808,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
 
     write_progress('scrape_sources', 'Đang scrape Batdongsan/Guland/Alonhadat...', warnings)
-    if criteria.property_type == 'chungcu':
-        note = 'Web fast-mode: bỏ qua scrape nguồn nặng cho chung cư để tránh treo; dùng evidence/fallback + AI estimate có nhãn kiểm chứng.'
+    if use_comparable_flow:
+        note = 'Web fast-mode: bỏ qua scrape nguồn nặng cho flow comparable để tránh treo; dùng evidence/fallback + AI estimate có nhãn kiểm chứng.'
         warnings.append(note)
         buckets = {}
     else:
@@ -814,8 +823,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     buckets = merge_listing_buckets(buckets, evidence_buckets)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
-    if criteria.property_type != 'chungcu':
-        write_progress('browser_street_search', 'Sản phẩm không phải chung cư: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
+    if not use_comparable_flow:
+        write_progress('browser_street_search', 'Sản phẩm direct-search: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
         if is_fast_mode and getattr(criteria, 'transaction', 'buy') != 'rent':
             warnings.append('Fast-mode: bỏ qua browser_direct_land_buckets nặng; dùng Google snippet/browser_price nhanh để tránh treo Playwright.')
         else:
@@ -837,7 +846,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
                 log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
     else:
-        write_progress('browser_buckets', 'Chung cư: Playwright đang search Batdongsan theo tên dự án + thành phố...', warnings)
+        write_progress('browser_buckets', 'Flow comparable: Playwright đang search Batdongsan theo tên dự án/khu vực + quận + thành phố...', warnings)
         try:
             apt_browser = await asyncio.wait_for(
                 browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
@@ -865,18 +874,18 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                     sample_count = sum(len(v or []) for v in apt_browser.values())
                     warnings.append('Reuse-session Batdongsan trả 0 mẫu; đã fallback mở search độc lập từng dự án.')
             buckets = merge_listing_buckets(buckets, apt_browser)
-            warnings.append(f'Playwright Batdongsan chung cư: {len(apt_browser)} bucket, {sample_count} mẫu giá.')
+            warnings.append(f'Playwright Batdongsan flow comparable: {len(apt_browser)} bucket, {sample_count} mẫu giá.')
             if sample_count:
                 warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + quận + thành phố.')
         except Exception as e:
-            note = 'Playwright Batdongsan chung cư timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'
-            warnings.append(f'browser chung cư lỗi/timeout: {type(e).__name__}. {note}')
-            log_error('browser_buckets_chungcu', payload, e, 'continue with fallback/AI estimate', note)
+            note = 'Playwright Batdongsan flow comparable timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'
+            warnings.append(f'browser flow comparable lỗi/timeout: {type(e).__name__}. {note}')
+            log_error('browser_buckets_comparable', payload, e, 'continue with fallback/AI estimate', note)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
     if not has_price:
-        if criteria.property_type != 'chungcu':
-            warnings.append('Không có mẫu giá real parse được; không dùng AI estimate cho sản phẩm không phải chung cư.')
+        if not use_comparable_flow:
+            warnings.append('Không có mẫu giá real parse được; không dùng AI estimate cho sản phẩm direct-search.')
             write_progress('no_real_street_price', 'Không có mẫu giá real parse được; trả kết quả không có số ước lượng.', warnings)
         else:
             warnings.append('Web nguồn/search bị chặn hoặc không parse được giá; dùng AI estimate có nhãn kiểm chứng.')
@@ -890,9 +899,9 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 warnings.append(f'AI estimate lỗi: {type(e).__name__}. {note}')
                 log_error('ai_support', payload, e, 'continue with available buckets', note)
 
-    write_progress('build_report', 'Đang tổng hợp báo cáo trực tiếp theo tên đường/khu vực...' if criteria.property_type != 'chungcu' else 'Đang tổng hợp báo cáo theo dự án/khu vực comparable...', warnings)
+    write_progress('build_report', 'Đang tổng hợp báo cáo trực tiếp theo tên đường/khu vực...' if not use_comparable_flow else 'Đang tổng hợp báo cáo theo dự án/khu vực comparable...', warnings)
     try:
-        if criteria.property_type != 'chungcu':
+        if not use_comparable_flow:
             report = build_direct_land_report(projects, buckets)
         else:
             report = await asyncio.wait_for(build_project_price_report(ai_report, criteria, projects, buckets), timeout=60)
@@ -900,7 +909,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         note = 'Report AI timeout/lỗi; dùng báo cáo tối thiểu deterministic từ dữ liệu hiện có, không gọi AI support phụ.'
         warnings.append(f'build_project_price_report lỗi: {type(e).__name__}. {note}')
         log_error('build_report', payload, e, 'minimal deterministic report', note)
-        lines = ['📍 *Định giá trực tiếp theo tên đường/khu vực*' if criteria.property_type != 'chungcu' else '📍 *Định giá theo dự án/khu vực comparable*', '', 'Báo cáo chi tiết bị lỗi, em trả bản tối thiểu từ dữ liệu đã lấy được:']
+        lines = ['📍 *Định giá trực tiếp theo tên đường/khu vực*' if not use_comparable_flow else '📍 *Định giá theo dự án/khu vực comparable*', '', 'Báo cáo chi tiết bị lỗi, em trả bản tối thiểu từ dữ liệu đã lấy được:']
         for idx, p in enumerate(projects.projects[:5], 1):
             name = p.get('name') or f'Comparable {idx}'
             listings = buckets.get(name, []) or []
@@ -939,8 +948,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     map_b64 = None
     map_caption = None
     map_points = []
-    if criteria.property_type == 'chungcu':
-        write_progress('render_map', 'Đang geocode 5 dự án và dựng bản đồ...', warnings)
+    if use_comparable_flow:
+        write_progress('render_map', 'Đang geocode 5 dự án/khu vực comparable và dựng bản đồ...', warnings)
         try:
             map_points = await asyncio.wait_for(geocode_projects_google_maps(criteria, projects, timeout_sec=180), timeout=200)
         except Exception as e:
@@ -960,29 +969,30 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                         map_points.append(mp)
         except Exception as e:
             warnings.append(f'Nominatim geocode fallback lỗi: {type(e).__name__}.')
-    try:
-        map_points = [mp for mp in map_points if _dist_km(criteria.lat, criteria.lng, mp.lat, mp.lng) <= 8.0]
-        point_by_name = {getattr(mp, 'name', ''): mp for mp in map_points}
-        for p in projects.projects:
-            mp = point_by_name.get((p.get('name') or '')[:80]) or point_by_name.get(p.get('name') or '')
-            if mp:
-                p['distance_km'] = round(_dist_km(criteria.lat, criteria.lng, mp.lat, mp.lng), 2)
-                p['lat'] = mp.lat
-                p['lng'] = mp.lng
-        valuation_points = build_valuation_points(projects, map_points, buckets, getattr(criteria, 'transaction', 'buy'))
-        map_png = render_valuation_map_png(criteria.lat, criteria.lng, valuation_points, title='Bản đồ vệ tinh: vị trí nghiên cứu + dự án khảo sát')
-        map_caption = '🗺️ Bản đồ so sánh: pin dự án/khu vực + giá/m²'
-        if not map_png:
-            map_png = build_map_snapshot(criteria.lat, criteria.lng, map_points, title=f"Vị trí so sánh quanh {projects.area_description}")
-            map_caption = '🗺️ Map sơ đồ dự phòng: tọa độ cần định giá và các dự án/khu vực so sánh'
-        if map_png:
-            map_b64 = base64.b64encode(map_png).decode('ascii')
-    except Exception as e:
-        note = 'Bỏ qua render map vì lỗi/timeout.'
-        warnings.append(f'render map lỗi: {type(e).__name__}. {note}')
-        log_error('render_map', payload, e, 'continue without map image', note)
-        map_caption = None
-        map_b64 = None
+    if use_comparable_flow:
+        try:
+            map_points = [mp for mp in map_points if _dist_km(criteria.lat, criteria.lng, mp.lat, mp.lng) <= 8.0]
+            point_by_name = {getattr(mp, 'name', ''): mp for mp in map_points}
+            for p in projects.projects:
+                mp = point_by_name.get((p.get('name') or '')[:80]) or point_by_name.get(p.get('name') or '')
+                if mp:
+                    p['distance_km'] = round(_dist_km(criteria.lat, criteria.lng, mp.lat, mp.lng), 2)
+                    p['lat'] = mp.lat
+                    p['lng'] = mp.lng
+            valuation_points = build_valuation_points(projects, map_points, buckets, getattr(criteria, 'transaction', 'buy'))
+            map_png = render_valuation_map_png(criteria.lat, criteria.lng, valuation_points, title='Bản đồ vệ tinh: vị trí nghiên cứu + dự án khảo sát')
+            map_caption = '🗺️ Bản đồ so sánh: pin dự án/khu vực + giá/m²'
+            if not map_png:
+                map_png = build_map_snapshot(criteria.lat, criteria.lng, map_points, title=f"Vị trí so sánh quanh {projects.area_description}")
+                map_caption = '🗺️ Map sơ đồ dự phòng: tọa độ cần định giá và các dự án/khu vực so sánh'
+            if map_png:
+                map_b64 = base64.b64encode(map_png).decode('ascii')
+        except Exception as e:
+            note = 'Bỏ qua render map vì lỗi/timeout.'
+            warnings.append(f'render map lỗi: {type(e).__name__}. {note}')
+            log_error('render_map', payload, e, 'continue without map image', note)
+            map_caption = None
+            map_b64 = None
 
     write_progress('done', 'Hoàn tất báo cáo R&D thị trường.', warnings)
     return {
@@ -990,7 +1000,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         'criteria': payload,
         'area': projects.area_description,
         'intro': intro,
-        'comparables': projects.projects[:5],
+        'comparables': projects.projects[:5] if use_comparable_flow else [],
         'location_context': getattr(criteria, 'location_context', {}) or {},
         'ai_sale_assessment': ai_sale_assessment_text,
         'investor_summary': investor_summary,
