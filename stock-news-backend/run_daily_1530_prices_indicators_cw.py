@@ -42,8 +42,7 @@ def main():
     # Hard guard: never deploy LHINVT if covered-warrant data fell back to
     # stale firebase-static-cache or carries stale daysLeft values.
     run([py,'verify_lhinvt_warrants_fresh.py'], timeout=120)
-    firebase=shutil.which('firebase') or shutil.which('firebase.cmd') or 'firebase.cmd'
-    run([firebase,'deploy','--account','lamhoabb1@gmail.com','--project','security-1c731','--config','firebase.lhinvt.json','--only','hosting'], timeout=600)
+    run([py,'lhinvt_firebase_deploy.py'], timeout=1200)
     run([py,'lhinvt_deploy_notify.py','1530_prices_indicators_cw','success'], timeout=60)
     log('DONE 15:30 prices + indicators + CW')
 

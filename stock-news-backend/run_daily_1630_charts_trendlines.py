@@ -41,8 +41,7 @@ def main():
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
     for s in steps: run(s, timeout=2400)
-    firebase=shutil.which('firebase') or shutil.which('firebase.cmd') or 'firebase.cmd'
-    run([firebase,'deploy','--account','lamhoabb1@gmail.com','--project','security-1c731','--config','firebase.lhinvt.json','--only','hosting'], timeout=600)
+    run([py,'lhinvt_firebase_deploy.py'], timeout=1200)
     run([py,'lhinvt_deploy_notify.py','1630_charts_trendlines','success'], timeout=60)
     log('DONE 16:30 stock charts + trendlines')
 
