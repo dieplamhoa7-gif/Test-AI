@@ -73,19 +73,21 @@ def _query_match(query: str, text: str, url: str) -> bool:
         "hồ", "chi", "chí", "minh", "ho", "thành", "thanh", "phố", "pho", "hcm", "tphcm",
         "quận", "quan", "huyện", "huyen", "phường", "phuong",
     }
-    qtokens = [t for t in _tokens(query) if t not in ignored]
+    short_stop = {"de", "la", "the", "can", "ho", "du", "an", "khu", "toa", "nha", "ban"}
+    qtokens = [t.lower() for t in re.split(r"\W+", query or "") if len(t) >= 2 and t.lower() not in ignored and t.lower() not in short_stop]
     hay = ((text or "") + " " + (url or "")).lower()
     if not qtokens:
-        return True
+        return False
     # Require the leading distinctive project token. Otherwise `RiverGate Residence`
     # can incorrectly match `Đạt Gia Residence`, and `Saigon Royal` can match
     # `Royal Vạn Phúc` only because of a generic second token.
     leading = qtokens[0]
-    if leading not in hay:
+    hay_compact = re.sub(r"\W+", "", hay)
+    if leading not in hay and leading not in hay_compact:
         return False
     # For short project names (La Casa, Era Town, Icon 56), the leading token is
     # enough. For longer names, require at least 2 project tokens when available.
-    hits = sum(1 for t in qtokens if t in hay)
+    hits = sum(1 for t in qtokens if t in hay or t in hay_compact)
     return hits >= max(1, min(2, len(qtokens)))
 
 
