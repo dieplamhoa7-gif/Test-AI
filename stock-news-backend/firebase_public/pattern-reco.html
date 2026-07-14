@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LHINVT Pattern Chart / Wyckoff</title>
+  <script src="/lightweight-charts.standalone.production.js"></script>
+  <style>
+    :root{--bg:#07111f;--card:#0d1b2e;--line:#20344f;--text:#edf5ff;--muted:#92a7c0;--good:#49d49d;--bad:#ff7b7b;--warn:#ffd166;--blue:#63b3ff}
+    body{margin:0;background:linear-gradient(135deg,#07111f,#0a1220);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+    header{position:sticky;top:0;z-index:5;background:rgba(7,17,31,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 22px}
+    h1{margin:0;font-size:21px}.meta{color:var(--muted);font-size:13px;margin-top:5px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.controls input,.controls select,.controls button{background:#08172a;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.controls button{cursor:pointer}
+    main{padding:18px;display:grid;grid-template-columns:320px 1fr;gap:16px}.list{height:calc(100vh - 145px);overflow:auto;display:flex;flex-direction:column;gap:9px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:13px;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+    .row{cursor:pointer}.row:hover,.row.active{border-color:var(--blue)}.sym{font-weight:850;font-size:18px}.bias{float:right;padding:4px 8px;border-radius:999px;background:#132740;color:var(--blue);font-size:12px}.bullish{color:var(--good)}.bearish{color:var(--bad)}.neutral{color:var(--warn)}.small{color:var(--muted);font-size:12px}.score{margin-top:8px;display:flex;gap:7px;flex-wrap:wrap}.pill{padding:4px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted)}
+    #chart{height:560px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#07111f}.grid{display:grid;grid-template-columns:1fr 420px;gap:14px}.side{max-height:560px;overflow:auto}.pat{border-left:4px solid var(--blue);margin:8px 0;padding:9px 10px;background:#091a30;border-radius:10px}.pat.bullish{border-color:var(--good)}.pat.bearish{border-color:var(--bad)}.pat .type{font-weight:800}.note{color:#cfe3ff;margin-top:5px}.legend{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.legend span{font-size:12px;padding:4px 8px;border-radius:999px;background:#0a2038;color:var(--muted)}pre{white-space:pre-wrap;color:#b9cbe0;font-size:11px}
+    @media(max-width:1050px){main{grid-template-columns:1fr}.list{height:auto;max-height:260px}.grid{grid-template-columns:1fr}.side{max-height:none}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>LHINVT Pattern Chart / Wyckoff / Claude Auto Chart</h1>
+  <div class="meta" id="meta">Đang tải...</div>
+  <div class="controls">
+    <input id="q" placeholder="Tìm mã / pattern: MWG, FPT, wyckoff, spring..." />
+    <select id="bias"><option value="">Tất cả bias</option><option>bullish</option><option>bearish</option><option>neutral</option></select>
+    <select id="wy"><option value="">Tất cả</option><option value="wyckoff">Có Wyckoff</option><option value="spring">Có Spring/Upthrust</option><option value="trendline">Có Trendline</option><option value="support">Có Support</option></select>
+    <button onclick="reloadSelected()">Reload chart</button>
+  </div>
+</header>
+<main>
+  <section class="list" id="list"></section>
+  <section>
+    <div class="grid">
+      <div>
+        <div class="card" style="margin-bottom:12px"><div id="title" class="sym">Chọn mã</div><div id="sub" class="small"></div><div class="legend"><span>🟢 bullish line/zone</span><span>🔴 bearish line</span><span>🟡 pattern marker</span><span>MA20/MA50</span></div></div>
+        <div id="chart"></div>
+      </div>
+      <aside class="card side" id="detail"><div class="small">Chọn một mã để xem pattern chi tiết.</div></aside>
+    </div>
+  </section>
+</main>
+<script>
+let payload=null, items=[], selected=null, chart=null, candleSeries=null, ma20=null, ma50=null, overlaySeries=[];
+const $=id=>document.getElementById(id);
+function clsBias(b){b=(b||'').toLowerCase(); return b.includes('bull')?'bullish':b.includes('bear')?'bearish':'neutral'}
+function getPatterns(x){return x.patterns||[]}
+function topText(x){return (x.summary?.primarySignals||[]).map(p=>p.type).join(', ') || getPatterns(x).slice(0,3).map(p=>p.type).join(', ') || 'No pattern'}
+function render(){const q=$('q').value.toLowerCase().trim(), b=$('bias').value, wy=$('wy').value; let arr=items.filter(x=>{const text=JSON.stringify({s:x.symbol,summary:x.summary,patterns:x.patterns}).toLowerCase(); if(q&&!text.includes(q))return false; if(b&&String(x.summary?.bias||'').toLowerCase()!=b)return false; if(wy&&!text.includes(wy))return false; return true;}); $('list').innerHTML=arr.map(x=>`<div class="card row ${selected?.symbol===x.symbol?'active':''}" onclick="show('${x.symbol}')"><div><span class="sym">${x.symbol}</span><span class="bias ${clsBias(x.summary?.bias)}">${x.summary?.bias||'n/a'} ${x.summary?.biasStrength??''}</span></div><div class="small">Close ${x.lastClose} • ${x.period?.[1]||''} • ${x.patternCount||0} patterns</div><div class="score"><span class="pill">Bull ${x.summary?.bullScore??'-'}</span><span class="pill">Bear ${x.summary?.bearScore??'-'}</span><span class="pill">${topText(x)}</span></div></div>`).join('')||'<div class="card small">Không có kết quả.</div>'}
+function lineColor(dir){return String(dir||'').toLowerCase().includes('bear')?'#ff7b7b':'#49d49d'}
+function addLine(points, color, title){ if(!points||points.length<2||!chart) return; const s=chart.addLineSeries({color,lineWidth:2,priceLineVisible:false,lastValueVisible:false,title:title||''}); s.setData(points.map(p=>({time:p.time,value:Number(p.value)})).filter(p=>p.time&&isFinite(p.value))); overlaySeries.push(s); }
+function clearChart(){ if(chart){chart.remove(); chart=null; overlaySeries=[];} $('chart').innerHTML=''; chart=LightweightCharts.createChart($('chart'),{layout:{background:{color:'#07111f'},textColor:'#dbeafe'},grid:{vertLines:{color:'#12243a'},horzLines:{color:'#12243a'}},rightPriceScale:{borderColor:'#20344f'},timeScale:{borderColor:'#20344f'}}); candleSeries=chart.addCandlestickSeries({upColor:'#49d49d',downColor:'#ff7b7b',borderUpColor:'#49d49d',borderDownColor:'#ff7b7b',wickUpColor:'#49d49d',wickDownColor:'#ff7b7b'}); ma20=chart.addLineSeries({color:'#63b3ff',lineWidth:1,priceLineVisible:false,lastValueVisible:false,title:'MA20'}); ma50=chart.addLineSeries({color:'#ffd166',lineWidth:1,priceLineVisible:false,lastValueVisible:false,title:'MA50'}); }
+async function loadChart(sym){ clearChart(); const url=`/data/charts/${sym}_auto_chart_day.json?ts=${Date.now()}`; let d=await fetch(url).then(r=>r.ok?r.json():Promise.reject(r.status)); const rows=d.rows||[]; candleSeries.setData(rows.map(r=>({time:r.time,open:+r.open,high:+r.high,low:+r.low,close:+r.close}))); ma20.setData((d.ma20||[]).filter(x=>x.value!=null)); ma50.setData((d.ma50||[]).filter(x=>x.value!=null)); const patterns=d.patterns||[]; const markers=[]; patterns.forEach(p=>{(p.lines||[]).forEach(l=>addLine(l.points,lineColor(p.direction),p.type)); if(p.time){markers.push({time:p.time,position:String(p.direction).includes('bear')?'aboveBar':'belowBar',color:lineColor(p.direction),shape:String(p.direction).includes('bear')?'arrowDown':'arrowUp',text:p.type});}}); (d.trendlines||[]).slice(0,12).forEach(t=>addLine(t.points, String(t.type||'').includes('resistance')?'#ff7b7b':'#49d49d', t.label||t.type)); candleSeries.setMarkers(markers.slice(-40)); chart.timeScale().fitContent(); return d; }
+async function show(sym){selected=items.find(x=>x.symbol===sym)||{symbol:sym}; render(); $('title').textContent=sym; $('sub').textContent='Đang tải chart overlay...'; let chartData={}; try{chartData=await loadChart(sym); $('sub').textContent=`${chartData.source||''} • ${chartData.patternSource||''} • ${chartData.patterns?.length||0} chart patterns • ${chartData.trendlines?.length||0} trendlines`; }catch(e){$('sub').textContent='Không tải được auto chart: '+e;} const pats=[...(chartData.patterns||[]), ...getPatterns(selected)].slice(0,80); $('detail').innerHTML=`<h2>${sym} <span class="bias ${clsBias(selected.summary?.bias)}">${selected.summary?.bias||''}</span></h2><div class="small">Engine cache: ${selected.period?.[0]||''} → ${selected.period?.[1]||''} • Last close ${selected.lastClose||''}</div><h3>Key levels</h3><div class="score"><span class="pill">Support: ${(selected.summary?.keyLevels?.supports||[]).join(', ')||'-'}</span><span class="pill">Resistance: ${(selected.summary?.keyLevels?.resistances||[]).join(', ')||'-'}</span></div><h3>Patterns / Overlay</h3>${pats.map(p=>`<div class="pat ${clsBias(p.direction)}"><div><span class="type">${p.type||''}</span> <span class="small">${p.direction||''} • score ${p.score??''} • ${p.confidence||''}</span></div><div class="note">${p.evidence?.notes||p.evidence?.confluence||''}</div><pre>${JSON.stringify(p.levels||{},null,1)}</pre></div>`).join('')||'<div class="small">Không có pattern.</div>'}`; }
+function reloadSelected(){if(selected) show(selected.symbol)}
+['q','bias','wy'].forEach(id=>$(id).addEventListener('input',render));
+fetch('/data/pattern_reco_cache.json?ts='+Date.now()).then(r=>r.json()).then(d=>{payload=d;items=d.items||[];$('meta').textContent=`Pattern engine ${d.source} • Updated ${d.updatedAt} • ${d.count} mã • Errors ${d.errorCount}`;render(); const first=items.find(x=>x.symbol==='MWG')||items.find(x=>x.symbol==='FPT')||items[0]; if(first) show(first.symbol)}).catch(e=>{$('meta').textContent='Load lỗi '+e});
+</script>
+</body>
+</html>
