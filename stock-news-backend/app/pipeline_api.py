@@ -1,17 +1,17 @@
-"""
-pipeline_api.py — Backend thật cho Stock AI Pipeline (10 giai đoạn).
+﻿"""
+pipeline_api.py â€” Backend tháº­t cho Stock AI Pipeline (10 giai Ä‘oáº¡n).
 
-Đấu nối THÊM (không sửa site đang khoá):
-- Orchestrator chạy 10 "bot" theo group song song (asyncio), mỗi bot điền 1 slice của
+Äáº¥u ná»‘i THÃŠM (khÃ´ng sá»­a site Ä‘ang khoÃ¡):
+- Orchestrator cháº¡y 10 "bot" theo group song song (asyncio), má»—i bot Ä‘iá»n 1 slice cá»§a
   report-template.json.
-- Dữ liệu THẬT lấy từ app.market_data.get_market_symbol (giá/kỹ thuật/PE-PB). Các bước
-  phân tích sâu dùng suy luận từ dữ liệu thật (heuristic) + tùy chọn AI, tự degrade khi thiếu.
-- Có retry theo stage, QA gate chặn xuất khi mâu thuẫn nghiêm trọng.
-- Hàng đợi nhiều mã (asyncio.Queue) + giới hạn concurrency.
+- Dá»¯ liá»‡u THáº¬T láº¥y tá»« app.market_data.get_market_symbol (giÃ¡/ká»¹ thuáº­t/PE-PB). CÃ¡c bÆ°á»›c
+  phÃ¢n tÃ­ch sÃ¢u dÃ¹ng suy luáº­n tá»« dá»¯ liá»‡u tháº­t (heuristic) + tÃ¹y chá»n AI, tá»± degrade khi thiáº¿u.
+- CÃ³ retry theo stage, QA gate cháº·n xuáº¥t khi mÃ¢u thuáº«n nghiÃªm trá»ng.
+- HÃ ng Ä‘á»£i nhiá»u mÃ£ (asyncio.Queue) + giá»›i háº¡n concurrency.
 - Endpoints: /pipeline (dashboard), /pipeline/run, /pipeline/status, /pipeline/events (SSE),
   /pipeline/report(.md).
 
-Wire vào app/main.py bằng 2 dòng:
+Wire vÃ o app/main.py báº±ng 2 dÃ²ng:
     from app.pipeline_api import router as pipeline_router
     app.include_router(pipeline_router)
 """
@@ -42,9 +42,9 @@ router = APIRouter(prefix="/pipeline", tags=["pipeline"])
 
 # ----------------------------- config -----------------------------
 MAX_CONCURRENT_TICKERS = int(os.getenv("PIPELINE_CONCURRENCY", "2"))
-STAGE_RETRIES = int(os.getenv("PIPELINE_STAGE_RETRIES", "2"))       # số lần thử lại thêm
-STAGE_BACKOFF = float(os.getenv("PIPELINE_STAGE_BACKOFF", "0.8"))    # giây, nhân đôi mỗi lần
-REPORTS_DIR = Path(os.getenv("PIPELINE_REPORTS_DIR", "reports"))     # 'reports' đã tồn tại
+STAGE_RETRIES = int(os.getenv("PIPELINE_STAGE_RETRIES", "2"))       # sá»‘ láº§n thá»­ láº¡i thÃªm
+STAGE_BACKOFF = float(os.getenv("PIPELINE_STAGE_BACKOFF", "0.8"))    # giÃ¢y, nhÃ¢n Ä‘Ã´i má»—i láº§n
+REPORTS_DIR = Path(os.getenv("PIPELINE_REPORTS_DIR", "reports"))     # 'reports' Ä‘Ã£ tá»“n táº¡i
 MODEL3_EXPORT_TTL_HOURS = float(os.getenv("PIPELINE_MODEL3_EXPORT_TTL_HOURS", "24"))
 MODEL3_OUT_DIR = Path(os.getenv("PIPELINE_MODEL3_OUT_DIR", "outputs/model3"))
 MODEL3_JOB_STATE_DIR = Path(
@@ -58,20 +58,23 @@ MODEL3_EXTERNAL_WORKER_MODE = os.getenv("MODEL3_EXTERNAL_WORKER_MODE", "").lower
 MODEL3_WORKER_TOKEN = os.getenv("MODEL3_WORKER_TOKEN", "")
 
 MODEL3_JOBS: dict[str, dict[str, Any]] = {}
+MODEL3_QUEUE: asyncio.Queue[str] | None = None
+MODEL3_WORKER_TASK: asyncio.Task | None = None
+MODEL3_ACTIVE_BY_KEY: dict[str, str] = {}
 MODEL3_SECTIONS = [
-    ("news", "Grok", "Tin tức & impact"),
+    ("news", "Grok", "Tin tá»©c & impact"),
     ("technical", "Codex", "LHInvestment indicators / TA"),
     ("fundamental", "Codex", "Fundamental & macro"),
-    ("scenario", "Kiro", "Kịch bản đầu tư"),
+    ("scenario", "Kiro", "Ká»‹ch báº£n Ä‘áº§u tÆ°"),
     ("bull_bear", "Codex", "Bull/Bear/Catalyst"),
     ("risk", "Kiro", "Risk & viewpoint"),
-    ("followup", "Codex", "Kế hoạch theo dõi"),
-    ("quick_summary", "Kiro", "Executive Summary cuối"),
-    ("word", "Model3", "Xuất Word"),
-    ("notebooklm", "NotebookLM", "Tạo NotebookLM / PDF online"),
+    ("followup", "Codex", "Káº¿ hoáº¡ch theo dÃµi"),
+    ("quick_summary", "Kiro", "Executive Summary cuá»‘i"),
+    ("word", "Model3", "Xuáº¥t Word"),
+    ("notebooklm", "NotebookLM", "Táº¡o NotebookLM / PDF online"),
 ]
 
-# hook cho phép test không cần pandas/mạng
+# hook cho phÃ©p test khÃ´ng cáº§n pandas/máº¡ng
 _DATA_PROVIDER: Optional[Callable[[str], dict]] = None
 
 
@@ -84,12 +87,12 @@ def _model3_job_file(job_id: str) -> Path:
 
 def _check_model3_worker_token(authorization: str | None = None) -> None:
     if not MODEL3_WORKER_TOKEN:
-        raise HTTPException(status_code=403, detail="MODEL3_WORKER_TOKEN chưa được cấu hình")
+        raise HTTPException(status_code=403, detail="MODEL3_WORKER_TOKEN chÆ°a Ä‘Æ°á»£c cáº¥u hÃ¬nh")
     token = (authorization or "").strip()
     if token.lower().startswith("bearer "):
         token = token[7:].strip()
     if token != MODEL3_WORKER_TOKEN:
-        raise HTTPException(status_code=403, detail="worker token không hợp lệ")
+        raise HTTPException(status_code=403, detail="worker token khÃ´ng há»£p lá»‡")
 
 
 def _iter_model3_jobs_from_disk() -> list[dict[str, Any]]:
@@ -207,7 +210,7 @@ def _clamp(v, lo=0, hi=100):
 def _score_from_rsi(rsi):
     if rsi is None:
         return 50
-    # 45-65 vùng khỏe mạnh; quá mua/quá bán trừ điểm
+    # 45-65 vÃ¹ng khá»e máº¡nh; quÃ¡ mua/quÃ¡ bÃ¡n trá»« Ä‘iá»ƒm
     if rsi >= 70:
         return 55
     if rsi <= 30:
@@ -244,7 +247,7 @@ class Run:
     error: Optional[str] = None
     stages: dict[str, StageState] = field(default_factory=dict)
     report: dict[str, Any] = field(default_factory=dict)
-    version: int = 0              # tăng mỗi lần đổi state (cho SSE)
+    version: int = 0              # tÄƒng má»—i láº§n Ä‘á»•i state (cho SSE)
 
     def touch(self):
         self.version += 1
@@ -288,29 +291,29 @@ _sem: asyncio.Semaphore = None  # type: ignore
 
 
 # ----------------------------- stage definitions -----------------------------
-# group: 0 tuần tự; 1 & 2 song song; 3 QA; 4 tổng hợp
+# group: 0 tuáº§n tá»±; 1 & 2 song song; 3 QA; 4 tá»•ng há»£p
 STAGE_DEFS = [
-    ("stage_1_data", "Thu thập dữ liệu", 0, "cheap", 900),
-    ("stage_2_technical", "Phân tích kỹ thuật", 1, "cheap", 700),
-    ("stage_3_fundamental", "Phân tích cơ bản", 1, "standard", 1100),
-    ("stage_4_quant_risk", "Định lượng & rủi ro", 1, "standard", 1000),
-    ("stage_5_flow_sentiment", "Dòng tiền & tâm lý", 1, "standard", 950),
-    ("stage_6_sector_macro", "Ngành & vĩ mô", 1, "standard", 1000),
-    ("stage_7_valuation", "Định giá đa mô hình", 2, "strong", 1400),
-    ("stage_8_scenarios", "Kịch bản & quản trị RR", 2, "strong", 1300),
-    ("stage_9_qa", "Kiểm định chéo (QA)", 3, "standard", 600),
-    ("stage_10_synthesis", "Tổng hợp & NotebookLM", 4, "strong", 1200),
+    ("stage_1_data", "Thu tháº­p dá»¯ liá»‡u", 0, "cheap", 900),
+    ("stage_2_technical", "PhÃ¢n tÃ­ch ká»¹ thuáº­t", 1, "cheap", 700),
+    ("stage_3_fundamental", "PhÃ¢n tÃ­ch cÆ¡ báº£n", 1, "standard", 1100),
+    ("stage_4_quant_risk", "Äá»‹nh lÆ°á»£ng & rá»§i ro", 1, "standard", 1000),
+    ("stage_5_flow_sentiment", "DÃ²ng tiá»n & tÃ¢m lÃ½", 1, "standard", 950),
+    ("stage_6_sector_macro", "NgÃ nh & vÄ© mÃ´", 1, "standard", 1000),
+    ("stage_7_valuation", "Äá»‹nh giÃ¡ Ä‘a mÃ´ hÃ¬nh", 2, "strong", 1400),
+    ("stage_8_scenarios", "Ká»‹ch báº£n & quáº£n trá»‹ RR", 2, "strong", 1300),
+    ("stage_9_qa", "Kiá»ƒm Ä‘á»‹nh chÃ©o (QA)", 3, "standard", 600),
+    ("stage_10_synthesis", "Tá»•ng há»£p & NotebookLM", 4, "strong", 1200),
 ]
 
 
 # ----------------------------- stage implementations -----------------------------
-# Mỗi stage nhận (run) và trả về slice dict để ghi vào report[key].
-# Dữ liệu thô stage_1 lưu ở run.report['_raw'] (khóa nội bộ, không xuất ra ngoài).
+# Má»—i stage nháº­n (run) vÃ  tráº£ vá» slice dict Ä‘á»ƒ ghi vÃ o report[key].
+# Dá»¯ liá»‡u thÃ´ stage_1 lÆ°u á»Ÿ run.report['_raw'] (khÃ³a ná»™i bá»™, khÃ´ng xuáº¥t ra ngoÃ i).
 
 async def _stage_1_data(run: Run) -> dict:
     raw = await asyncio.to_thread(_load_symbol, run.ticker)
     if not raw or not isinstance(raw, dict):
-        raise RuntimeError("Không lấy được dữ liệu thị trường")
+        raise RuntimeError("KhÃ´ng láº¥y Ä‘Æ°á»£c dá»¯ liá»‡u thá»‹ trÆ°á»ng")
     run.report["_raw"] = raw
     tech = raw.get("technical") or {}
     fin = raw.get("financial") or {}
@@ -350,7 +353,7 @@ async def _stage_2_technical(run: Run) -> dict:
         "support": tech.get("supportLevelsDay") or [],
         "resistance": tech.get("resistanceLevelsDay") or [],
         "score": score,
-        "comment": f"Xu hướng {trend}, MACD {macd_sig}, {cross}.",
+        "comment": f"Xu hÆ°á»›ng {trend}, MACD {macd_sig}, {cross}.",
         "_confidence": "cao" if sig_score is not None else "trung_binh",
     }
 
@@ -360,7 +363,7 @@ async def _stage_3_fundamental(run: Run) -> dict:
     pe = _num(fin.get("pe")); pb = _num(fin.get("pb"))
     if pe is None and pb is None:
         return {"ratios": {"pe": None, "pb": None}, "financial_health": None,
-                "score": 50, "comment": "Thiếu dữ liệu P/E, P/B — độ tin cậy thấp.", "_confidence": "thap"}
+                "score": 50, "comment": "Thiáº¿u dá»¯ liá»‡u P/E, P/B â€” Ä‘á»™ tin cáº­y tháº¥p.", "_confidence": "thap"}
     score = 50
     if pe is not None:
         score += 15 if pe < 12 else (5 if pe < 18 else -10 if pe > 30 else 0)
@@ -369,19 +372,19 @@ async def _stage_3_fundamental(run: Run) -> dict:
     score = int(_clamp(score))
     health = "manh" if score >= 68 else "on_dinh" if score >= 52 else "yeu"
     return {"ratios": {"pe": pe, "pb": pb}, "financial_health": health,
-            "score": score, "comment": f"P/E={pe}, P/B={pb} → {health}.", "_confidence": "trung_binh"}
+            "score": score, "comment": f"P/E={pe}, P/B={pb} â†’ {health}.", "_confidence": "trung_binh"}
 
 
 async def _stage_4_quant_risk(run: Run) -> dict:
     raw = run.report.get("_raw") or {}
     tech = raw.get("technical") or {}
     price = _num(raw.get("price")); atr = _num(tech.get("atr"))
-    # volatility proxy hằng năm từ ATR/price (nếu có)
+    # volatility proxy háº±ng nÄƒm tá»« ATR/price (náº¿u cÃ³)
     vol = None
     if price and atr:
         vol = round((atr / price) * math.sqrt(252) * 100, 1)
     rr = _num(tech.get("riskReward"))
-    # risk_score: biến động càng cao điểm rủi ro càng cao (0-100)
+    # risk_score: biáº¿n Ä‘á»™ng cÃ ng cao Ä‘iá»ƒm rá»§i ro cÃ ng cao (0-100)
     risk = 50
     if vol is not None:
         risk = int(_clamp(30 + vol))  # vol ~20% -> 50
@@ -391,7 +394,7 @@ async def _stage_4_quant_risk(run: Run) -> dict:
         "risk_reward_ratio": rr,
         "liquidity_risk": "thap" if _num(raw.get("volume")) and raw.get("volume", 0) > 500000 else "trung_binh",
         "risk_score": risk,
-        "comment": f"Biến động năm ~{vol}% (từ ATR)." if vol else "Thiếu dữ liệu biến động.",
+        "comment": f"Biáº¿n Ä‘á»™ng nÄƒm ~{vol}% (tá»« ATR)." if vol else "Thiáº¿u dá»¯ liá»‡u biáº¿n Ä‘á»™ng.",
         "_confidence": "trung_binh" if vol is not None else "thap",
     }
 
@@ -405,18 +408,18 @@ async def _stage_5_flow_sentiment(run: Run) -> dict:
              "distribution" if (vol_ratio and vol_ratio > 1.2 and chg < 0) else "neutral"
     score = int(_clamp(50 + (chg * 3) + ((vol_ratio - 1) * 20 if vol_ratio else 0)))
     return {"smart_money_signal": signal, "volume_ratio": vol_ratio,
-            "score": score, "comment": f"Dòng tiền {signal} (volRatio={vol_ratio}, +/-{chg}%).",
+            "score": score, "comment": f"DÃ²ng tiá»n {signal} (volRatio={vol_ratio}, +/-{chg}%).",
             "_confidence": "trung_binh"}
 
 
 async def _stage_6_sector_macro(run: Run) -> dict:
     tech = (run.report.get("_raw") or {}).get("technical") or {}
-    struct = tech.get("marketStructure") or "—"
+    struct = tech.get("marketStructure") or "â€”"
     trend = (run.report.get("stage_2_technical") or {}).get("trend", "di_ngang")
     score = (run.report.get("stage_2_technical") or {}).get("score", 55)
     return {"sector": None, "market_structure": struct, "sector_trend": trend,
             "score": int(_clamp(score - 3)),
-            "comment": f"Cấu trúc thị trường: {struct}.", "_confidence": "thap"}
+            "comment": f"Cáº¥u trÃºc thá»‹ trÆ°á»ng: {struct}.", "_confidence": "thap"}
 
 
 async def _stage_7_valuation(run: Run) -> dict:
@@ -424,7 +427,7 @@ async def _stage_7_valuation(run: Run) -> dict:
     price = _num(raw.get("price"))
     fa = run.report.get("stage_3_fundamental") or {}
     ta = run.report.get("stage_2_technical") or {}
-    # giá mục tiêu heuristic: từ kháng cự kỹ thuật + điều chỉnh theo điểm cơ bản
+    # giÃ¡ má»¥c tiÃªu heuristic: tá»« khÃ¡ng cá»± ká»¹ thuáº­t + Ä‘iá»u chá»‰nh theo Ä‘iá»ƒm cÆ¡ báº£n
     resist = ta.get("resistance") or []
     target = None
     if resist and price:
@@ -435,7 +438,7 @@ async def _stage_7_valuation(run: Run) -> dict:
     upside = round((target - price) / price * 100, 1) if (target and price) else None
     score = int(_clamp((fa.get("score", 50) + ta.get("score", 50)) / 2))
     return {"blended_target_price": target, "upside_pct": upside, "method": "resistance+fundamental",
-            "score": score, "comment": f"Giá mục tiêu ~{target} (upside {upside}%).",
+            "score": score, "comment": f"GiÃ¡ má»¥c tiÃªu ~{target} (upside {upside}%).",
             "_confidence": "trung_binh" if target else "thap"}
 
 
@@ -467,17 +470,17 @@ async def _stage_8_scenarios(run: Run) -> dict:
 async def _stage_9_qa(run: Run) -> dict:
     r = run.report
     issues = []
-    # thiếu dữ liệu cơ bản
+    # thiáº¿u dá»¯ liá»‡u cÆ¡ báº£n
     if (r.get("stage_3_fundamental") or {}).get("ratios", {}).get("pe") is None:
-        issues.append({"severity": "medium", "stage_ref": "stage_3_fundamental", "note": "Thiếu P/E."})
-    # mâu thuẫn: kỹ thuật tăng nhưng dòng tiền phân phối
+        issues.append({"severity": "medium", "stage_ref": "stage_3_fundamental", "note": "Thiáº¿u P/E."})
+    # mÃ¢u thuáº«n: ká»¹ thuáº­t tÄƒng nhÆ°ng dÃ²ng tiá»n phÃ¢n phá»‘i
     ta = (r.get("stage_2_technical") or {}).get("trend")
     flow = (r.get("stage_5_flow_sentiment") or {}).get("smart_money_signal")
     if ta == "tang" and flow == "distribution":
-        issues.append({"severity": "high", "stage_ref": "stage_2/5", "note": "Kỹ thuật tăng nhưng dòng tiền phân phối."})
-    # giá mục tiêu thấp hơn giá hiện tại nhưng verdict sẽ mua -> cảnh báo ở synthesis
+        issues.append({"severity": "high", "stage_ref": "stage_2/5", "note": "Ká»¹ thuáº­t tÄƒng nhÆ°ng dÃ²ng tiá»n phÃ¢n phá»‘i."})
+    # giÃ¡ má»¥c tiÃªu tháº¥p hÆ¡n giÃ¡ hiá»‡n táº¡i nhÆ°ng verdict sáº½ mua -> cáº£nh bÃ¡o á»Ÿ synthesis
     if (r.get("stage_7_valuation") or {}).get("blended_target_price") is None:
-        issues.append({"severity": "low", "stage_ref": "stage_7_valuation", "note": "Không định giá được mục tiêu."})
+        issues.append({"severity": "low", "stage_ref": "stage_7_valuation", "note": "KhÃ´ng Ä‘á»‹nh giÃ¡ Ä‘Æ°á»£c má»¥c tiÃªu."})
     high = any(i["severity"] == "high" for i in issues)
     check = "fail" if high else ("warn" if issues else "pass")
     conf = "thap" if high else ("trung_binh" if issues else "cao")
@@ -488,9 +491,9 @@ async def _stage_10_synthesis(run: Run) -> dict:
     r = run.report
     qa = r.get("stage_9_qa") or {}
     if qa.get("consistency_check") == "fail":
-        # QA gate: chặn xuất, trả verdict thận trọng
+        # QA gate: cháº·n xuáº¥t, tráº£ verdict tháº­n trá»ng
         return {"composite_score": None, "verdict": "hold", "confidence": "thap",
-                "executive_summary": f"{run.ticker}: QA phát hiện mâu thuẫn nghiêm trọng — tạm dừng khuyến nghị, cần rà soát.",
+                "executive_summary": f"{run.ticker}: QA phÃ¡t hiá»‡n mÃ¢u thuáº«n nghiÃªm trá»ng â€” táº¡m dá»«ng khuyáº¿n nghá»‹, cáº§n rÃ  soÃ¡t.",
                 "blocked_by_qa": True, "key_strengths": [], "key_risks": [i["note"] for i in qa.get("issues", [])],
                 "notebooklm_source": None}
     parts = []
@@ -507,19 +510,19 @@ async def _stage_10_synthesis(run: Run) -> dict:
     fa = r.get("stage_3_fundamental") or {}
     strengths, risks = [], []
     if (fa.get("financial_health") == "manh"):
-        strengths.append(f"Cơ bản mạnh (P/E {fa.get('ratios',{}).get('pe')})")
+        strengths.append(f"CÆ¡ báº£n máº¡nh (P/E {fa.get('ratios',{}).get('pe')})")
     if (r.get("stage_5_flow_sentiment") or {}).get("smart_money_signal") == "accumulation":
-        strengths.append("Dòng tiền đang tích lũy")
+        strengths.append("DÃ²ng tiá»n Ä‘ang tÃ­ch lÅ©y")
     if val.get("upside_pct") and val["upside_pct"] > 5:
-        strengths.append(f"Còn upside ~{val['upside_pct']}%")
+        strengths.append(f"CÃ²n upside ~{val['upside_pct']}%")
     qv = r.get("stage_4_quant_risk") or {}
     if qv.get("volatility_annualized_pct"):
-        risks.append(f"Biến động năm ~{qv['volatility_annualized_pct']}%")
+        risks.append(f"Biáº¿n Ä‘á»™ng nÄƒm ~{qv['volatility_annualized_pct']}%")
     for i in qa.get("issues", []):
         risks.append(i["note"])
-    summary = (f"{run.ticker}: điểm tổng hợp {comp}/100 → {verdict.upper()}. "
-               f"Giá mục tiêu ~{val.get('blended_target_price')} (upside {val.get('upside_pct')}%). "
-               f"Độ tin cậy {qa.get('overall_confidence')}.")
+    summary = (f"{run.ticker}: Ä‘iá»ƒm tá»•ng há»£p {comp}/100 â†’ {verdict.upper()}. "
+               f"GiÃ¡ má»¥c tiÃªu ~{val.get('blended_target_price')} (upside {val.get('upside_pct')}%). "
+               f"Äá»™ tin cáº­y {qa.get('overall_confidence')}.")
     md = _build_markdown(run, comp, verdict, summary, strengths, risks)
     src_path = _save_markdown(run.ticker, md)
     return {"composite_score": comp, "verdict": verdict, "confidence": qa.get("overall_confidence", "trung_binh"),
@@ -550,31 +553,31 @@ def _build_markdown(run: Run, comp, verdict, summary, strengths, risks) -> str:
     scn = r.get("stage_8_scenarios") or {}; qa = r.get("stage_9_qa") or {}
     price = ((r.get("stage_1_data") or {}).get("price") or {}).get("last")
     L = []; A = L.append
-    A(f"# {run.ticker} — Báo cáo phân tích tự động\n")
-    A("> Nguồn tài liệu cho NotebookLM. Research-only, không phải khuyến nghị đầu tư.\n")
-    A(f"- Ngày: {datetime.now(timezone.utc).astimezone().strftime('%Y-%m-%d %H:%M')}")
-    A(f"- Giá hiện tại: **{price}** | Điểm tổng hợp: **{comp}/100** | Khuyến nghị: **{verdict.upper()}**\n")
-    A(f"## Tóm tắt điều hành\n{summary}\n")
-    A("## Điểm mạnh")
-    A("\n".join(f"- {s}" for s in strengths) or "- (không có)")
-    A("\n## Rủi ro")
-    A("\n".join(f"- {s}" for s in risks) or "- (không có)")
-    A("\n## Kỹ thuật")
-    A(f"- Xu hướng: {ta.get('trend')} | RSI: {ta.get('indicators',{}).get('rsi_14')} | MACD: {ta.get('indicators',{}).get('macd_signal')}")
-    A(f"- Hỗ trợ: {ta.get('support')} | Kháng cự: {ta.get('resistance')}")
-    A("\n## Cơ bản")
-    A(f"- P/E: {fa.get('ratios',{}).get('pe')} | P/B: {fa.get('ratios',{}).get('pb')} | Sức khỏe: {fa.get('financial_health')}")
-    A("\n## Định lượng & rủi ro")
-    A(f"- Biến động năm: {qv.get('volatility_annualized_pct')}% | R:R: {qv.get('risk_reward_ratio')}")
-    A("\n## Định giá")
-    A(f"- Giá mục tiêu: {val.get('blended_target_price')} | Upside: {val.get('upside_pct')}%")
-    A("\n## Kịch bản & quản trị rủi ro")
+    A(f"# {run.ticker} â€” BÃ¡o cÃ¡o phÃ¢n tÃ­ch tá»± Ä‘á»™ng\n")
+    A("> Nguá»“n tÃ i liá»‡u cho NotebookLM. Research-only, khÃ´ng pháº£i khuyáº¿n nghá»‹ Ä‘áº§u tÆ°.\n")
+    A(f"- NgÃ y: {datetime.now(timezone.utc).astimezone().strftime('%Y-%m-%d %H:%M')}")
+    A(f"- GiÃ¡ hiá»‡n táº¡i: **{price}** | Äiá»ƒm tá»•ng há»£p: **{comp}/100** | Khuyáº¿n nghá»‹: **{verdict.upper()}**\n")
+    A(f"## TÃ³m táº¯t Ä‘iá»u hÃ nh\n{summary}\n")
+    A("## Äiá»ƒm máº¡nh")
+    A("\n".join(f"- {s}" for s in strengths) or "- (khÃ´ng cÃ³)")
+    A("\n## Rá»§i ro")
+    A("\n".join(f"- {s}" for s in risks) or "- (khÃ´ng cÃ³)")
+    A("\n## Ká»¹ thuáº­t")
+    A(f"- Xu hÆ°á»›ng: {ta.get('trend')} | RSI: {ta.get('indicators',{}).get('rsi_14')} | MACD: {ta.get('indicators',{}).get('macd_signal')}")
+    A(f"- Há»— trá»£: {ta.get('support')} | KhÃ¡ng cá»±: {ta.get('resistance')}")
+    A("\n## CÆ¡ báº£n")
+    A(f"- P/E: {fa.get('ratios',{}).get('pe')} | P/B: {fa.get('ratios',{}).get('pb')} | Sá»©c khá»e: {fa.get('financial_health')}")
+    A("\n## Äá»‹nh lÆ°á»£ng & rá»§i ro")
+    A(f"- Biáº¿n Ä‘á»™ng nÄƒm: {qv.get('volatility_annualized_pct')}% | R:R: {qv.get('risk_reward_ratio')}")
+    A("\n## Äá»‹nh giÃ¡")
+    A(f"- GiÃ¡ má»¥c tiÃªu: {val.get('blended_target_price')} | Upside: {val.get('upside_pct')}%")
+    A("\n## Ká»‹ch báº£n & quáº£n trá»‹ rá»§i ro")
     A(f"- Entry: {scn.get('suggested_entry')} | Stop-loss: {scn.get('stop_loss')} | Take-profit: {scn.get('take_profit')} | R:R: {scn.get('risk_reward_ratio')}")
-    A("\n## Kiểm định chéo (QA)")
-    A(f"- Kết quả: {qa.get('consistency_check')} | Độ tin cậy: {qa.get('overall_confidence')}")
+    A("\n## Kiá»ƒm Ä‘á»‹nh chÃ©o (QA)")
+    A(f"- Káº¿t quáº£: {qa.get('consistency_check')} | Äá»™ tin cáº­y: {qa.get('overall_confidence')}")
     for i in qa.get("issues", []):
         A(f"- [{i['severity']}] {i['stage_ref']}: {i['note']}")
-    A("\n---\n*Tạo tự động bởi Stock AI Pipeline. Không phải khuyến nghị đầu tư.*")
+    A("\n---\n*Táº¡o tá»± Ä‘á»™ng bá»Ÿi Stock AI Pipeline. KhÃ´ng pháº£i khuyáº¿n nghá»‹ Ä‘áº§u tÆ°.*")
     return "\n".join(L)
 
 
@@ -599,7 +602,7 @@ async def _run_stage(run: Run, key: str):
         st.started_at = st.started_at or time.time()
         run.touch()
         try:
-            # tiến trình mượt
+            # tiáº¿n trÃ¬nh mÆ°á»£t
             for p in (25, 60, 90):
                 st.progress = p
                 run.touch()
@@ -646,7 +649,7 @@ async def _run_pipeline(run: Run):
         run.status = "error"
         run.error = str(e)[:240]
     finally:
-        run.report.pop("_raw", None)  # bỏ khóa nội bộ khỏi report xuất ra
+        run.report.pop("_raw", None)  # bá» khÃ³a ná»™i bá»™ khá»i report xuáº¥t ra
         run.ended_at = time.time()
         run.touch()
 
@@ -663,7 +666,7 @@ async def _worker():
             _queue.task_done()
             continue
         async with _sem:
-            # cập nhật queue_pos cho các run còn chờ
+            # cáº­p nháº­t queue_pos cho cÃ¡c run cÃ²n chá»
             await _run_pipeline(run)
         _queue.task_done()
 
@@ -739,7 +742,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
     - Always force-refresh market symbol before report generation.
     - Quote must be from VPS live feed and updated recently (<=15 minutes).
     - History/PTKT must have a latest bar dated today or yesterday (VN market holidays/weekends tolerated by 1 day).
-    - If refresh cannot make data fresh, fail loudly so Hòa/Tiểu đệ can fix instead of shipping an old report.
+    - If refresh cannot make data fresh, fail loudly so HÃ²a/Tiá»ƒu Ä‘á»‡ can fix instead of shipping an old report.
     """
     def log(msg: str) -> None:
         if progress_cb:
@@ -748,7 +751,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
             except Exception:
                 pass
 
-    log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
+    log(f"ðŸ”Ž Freshness gate: kiá»ƒm tra data giÃ¡/KL/PTKT má»›i nháº¥t cho {ticker}...")
     gateway_errors: list[str] = []
     data = None
     for gateway in _market_gateway_base_urls() if '_market_gateway_base_urls' in globals() else [os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")]:
@@ -757,17 +760,17 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         try:
             url = f"{gateway}/market-compact/{re.sub(r'[^A-Za-z0-9]', '', ticker.upper())}?force_refresh=true"
             _status, data, _size = _urlopen_json(url, min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "90")), 20.0), 524288)
-            log(f"✅ Freshness gate: lấy data qua gateway {gateway}")
+            log(f"âœ… Freshness gate: láº¥y data qua gateway {gateway}")
             break
         except Exception as exc:  # noqa: BLE001
             gateway_errors.append(f"{gateway}: {type(exc).__name__}: {str(exc)[:200]}")
     if data is None:
         try:
             data = _load_symbol_local_provider(ticker, force_refresh=True)
-            log("✅ Freshness gate: gateway unreachable, fallback local Render market_data provider OK")
+            log("âœ… Freshness gate: gateway unreachable, fallback local Render market_data provider OK")
         except Exception as exc:
             raise RuntimeError(
-                "CALL_ASSISTANT_FIX: Không lấy được market data qua gateway hoặc provider local. "
+                "CALL_ASSISTANT_FIX: KhÃ´ng láº¥y Ä‘Æ°á»£c market data qua gateway hoáº·c provider local. "
                 f"Gateway errors: {' | '.join(gateway_errors)[-1000:]}. Local error: {type(exc).__name__}: {exc}"
             ) from exc
 
@@ -805,7 +808,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
             finally:
                 con.close()
         except Exception as exc:  # noqa: BLE001
-            log(f"⚠️ Freshness gate: LHINVT DB fallback lỗi {type(exc).__name__}: {exc}")
+            log(f"âš ï¸ Freshness gate: LHINVT DB fallback lá»—i {type(exc).__name__}: {exc}")
 
     _apply_lhinvt_db_fallback(data)
 
@@ -819,18 +822,18 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
     volume = data.get("volume")
     issues = []
     if source != "vps":
-        issues.append(f"source không phải VPS live quote: {source}")
+        issues.append(f"source khÃ´ng pháº£i VPS live quote: {source}")
     if quote_dt is None or quote_age_min > 15:
-        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
+        issues.append(f"quote cÅ©/thiáº¿u: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
     # Weekend/holiday tolerance: on Sat/Sun, the latest trading bar is often
     # Friday, so a 2-3 calendar-day gap can still be fresh.
     max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
     if hist_dt is None or hist_age_days > max_hist_age_days:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}, max={max_hist_age_days}")
+        issues.append(f"PTKT/history cÅ©/thiáº¿u: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}, max={max_hist_age_days}")
     if not price or float(price) <= 0:
-        issues.append(f"giá không hợp lệ: {price}")
+        issues.append(f"giÃ¡ khÃ´ng há»£p lá»‡: {price}")
     if volume is None or int(float(volume or 0)) <= 0:
-        issues.append(f"KL không hợp lệ: {volume}")
+        issues.append(f"KL khÃ´ng há»£p lá»‡: {volume}")
 
     summary = {
         "ticker": ticker,
@@ -846,9 +849,9 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
         "issues": issues,
     }
     if issues:
-        log("❌ Freshness gate FAIL: " + "; ".join(issues))
-        raise RuntimeError("CALL_ASSISTANT_FIX: Báo cáo sẽ dùng data cũ/không hợp lệ sau khi force refresh: " + json.dumps(summary, ensure_ascii=False))
-    log(f"✅ Freshness gate OK: {ticker} giá={price}, KL={volume}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}")
+        log("âŒ Freshness gate FAIL: " + "; ".join(issues))
+        raise RuntimeError("CALL_ASSISTANT_FIX: BÃ¡o cÃ¡o sáº½ dÃ¹ng data cÅ©/khÃ´ng há»£p lá»‡ sau khi force refresh: " + json.dumps(summary, ensure_ascii=False))
+    log(f"âœ… Freshness gate OK: {ticker} giÃ¡={price}, KL={volume}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}")
     return summary
 
 
@@ -884,16 +887,16 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
         has_real_ai = False
     if os.getenv("MODEL3_ALLOW_MOCK_EXPORT", "").lower() not in ("1", "true", "yes") and not has_real_ai:
         raise RuntimeError(
-            "Model3 chưa có AI API key trên Render nên không xuất DOCX giả/fallback. "
-            "Cần cấu hình ROUTER9_API_KEY hoặc OPENAI_API_KEY/XAI_API_KEY trong Render rồi chạy lại."
+            "Model3 chÆ°a cÃ³ AI API key trÃªn Render nÃªn khÃ´ng xuáº¥t DOCX giáº£/fallback. "
+            "Cáº§n cáº¥u hÃ¬nh ROUTER9_API_KEY hoáº·c OPENAI_API_KEY/XAI_API_KEY trong Render rá»“i cháº¡y láº¡i."
         )
 
     from hybrid_agent_framework import run_model3_workflow
 
     task = (
-        f"model3 {ticker} full web export: Codex TA research, Kiro News, UTF-8 cleaner trước, "
-        "không Gemini, 3-5 tin trực tiếp 2026, PTKT LHInvestment, full technical fundamental strategy risk, "
-        "xuất DOCX hoàn chỉnh cho NotebookLM"
+        f"model3 {ticker} full web export: Codex TA research, Kiro News, UTF-8 cleaner trÆ°á»›c, "
+        "khÃ´ng Gemini, 3-5 tin trá»±c tiáº¿p 2026, PTKT LHInvestment, full technical fundamental strategy risk, "
+        "xuáº¥t DOCX hoÃ n chá»‰nh cho NotebookLM"
     )
     state = run_model3_workflow(task, progress)
     feed = state.get("feed", []) if isinstance(state, dict) else []
@@ -902,19 +905,19 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     # allowed only when MODEL3_ALLOW_NEWS_FALLBACK_CLEAN=1.
     bad_markers = (
         "mock",
-        "Provider Codex bị timeout",
+        "Provider Codex bá»‹ timeout",
         "Provider Codex bi timeout",
-        "Provider Kiro bị timeout",
+        "Provider Kiro bá»‹ timeout",
         "Provider Kiro bi timeout",
-        "provider lỗi/timeout",
+        "provider lá»—i/timeout",
         "provider loi/timeout",
         "HTTP 502",
         "502 Bad Gateway",
-        "fallback nội bộ",
+        "fallback ná»™i bá»™",
         "fallback noi bo",
         "AI_PROVIDER_FAILED",
         "GROK_NEWS_FAILED",
-        "không tìm thấy DOCX",
+        "khÃ´ng tÃ¬m tháº¥y DOCX",
         "khong tim thay DOCX",
     )
     joined_feed = "\n".join(str(item.get("content", "")) for item in feed if isinstance(item, dict))
@@ -927,8 +930,8 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     if docx is None or not docx.exists():
         if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
             raise RuntimeError(
-                "Model3 AI chưa chạy đủ thật/đầy đủ và không tìm thấy DOCX để trả về. "
-                "Kiểm tra AI provider key/log Render rồi chạy lại."
+                "Model3 AI chÆ°a cháº¡y Ä‘á»§ tháº­t/Ä‘áº§y Ä‘á»§ vÃ  khÃ´ng tÃ¬m tháº¥y DOCX Ä‘á»ƒ tráº£ vá». "
+                "Kiá»ƒm tra AI provider key/log Render rá»“i cháº¡y láº¡i."
             )
         raise RuntimeError(f"Khong tim thay DOCX sau khi chay Model3 cho {ticker}")
 
@@ -944,19 +947,19 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
     }
     if os.getenv("MODEL3_ALLOW_PARTIAL_EXPORT", "").lower() not in ("1", "true", "yes") and partial_quality:
         result["warning"] = (
-            "Model3 đã xuất DOCX nhưng một số AI provider bị timeout/502 nên báo cáo có thể dùng fallback/thiếu phần Kiro. "
-            "Trả link file để kiểm tra, không coi là báo cáo chất lượng đầy đủ."
+            "Model3 Ä‘Ã£ xuáº¥t DOCX nhÆ°ng má»™t sá»‘ AI provider bá»‹ timeout/502 nÃªn bÃ¡o cÃ¡o cÃ³ thá»ƒ dÃ¹ng fallback/thiáº¿u pháº§n Kiro. "
+            "Tráº£ link file Ä‘á»ƒ kiá»ƒm tra, khÃ´ng coi lÃ  bÃ¡o cÃ¡o cháº¥t lÆ°á»£ng Ä‘áº§y Ä‘á»§."
         )
 
     if with_notebooklm:
         try:
             if progress_cb:
-                progress_cb("⏳ NotebookLM: đang tạo notebook/slides từ DOCX...")
+                progress_cb("â³ NotebookLM: Ä‘ang táº¡o notebook/slides tá»« DOCX...")
             from model3_notebooklm import create_presentation_from_docx
             nb = create_presentation_from_docx(str(docx), title=f"{ticker} Model3 NotebookLM Web Export")
             result["notebooklm"] = nb
             if progress_cb:
-                progress_cb("✅ NotebookLM export xong")
+                progress_cb("âœ… NotebookLM export xong")
         except Exception as exc:  # noqa: BLE001
             # NotebookLM auth/quota is external. Keep the completed Model3 DOCX/report visible
             # instead of failing the entire job.
@@ -964,7 +967,7 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
             result["notebooklm"] = None
             result["notebooklm_error"] = err
             if progress_cb:
-                progress_cb(f"❌ NotebookLM export lỗi: {err}")
+                progress_cb(f"âŒ NotebookLM export lá»—i: {err}")
     return result
 
 
@@ -979,22 +982,78 @@ class Model3ExportRequest(BaseModel):
     notebooklm: bool = True
 
 
+def _model3_job_key(ticker: str, notebooklm: bool) -> str:
+    return f"{re.sub(r'[^A-Z0-9]', '', str(ticker or '').upper())[:8]}:{1 if notebooklm else 0}"
+
+
+def _model3_queue_position(job_id: str) -> int:
+    if MODEL3_QUEUE is None:
+        return 0
+    try:
+        pending = list(MODEL3_QUEUE._queue)  # type: ignore[attr-defined]  # UI-only snapshot
+        return pending.index(job_id) + 1
+    except ValueError:
+        return 0
+
+
+def _ensure_model3_worker() -> None:
+    global MODEL3_QUEUE, MODEL3_WORKER_TASK
+    if MODEL3_QUEUE is None:
+        MODEL3_QUEUE = asyncio.Queue()
+    if MODEL3_WORKER_TASK is None or MODEL3_WORKER_TASK.done():
+        MODEL3_WORKER_TASK = asyncio.create_task(_model3_worker())
+
+
+def _find_active_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any] | None:
+    key = _model3_job_key(ticker, notebooklm)
+    jid = MODEL3_ACTIVE_BY_KEY.get(key)
+    if jid:
+        job = _load_model3_job(jid)
+        if job and job.get("status") in {"queued", "queued_external", "running"}:
+            return job
+        MODEL3_ACTIVE_BY_KEY.pop(key, None)
+    # Rebuild the in-memory index after Render restart or when old jobs were loaded
+    # from disk before this process knew MODEL3_ACTIVE_BY_KEY.
+    for job in sorted(MODEL3_JOBS.values(), key=lambda j: float(j.get("created_at") or 0), reverse=True):
+        if job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+            MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+            return job
+    try:
+        if MODEL3_JOB_STATE_DIR.exists():
+            for path in sorted(MODEL3_JOB_STATE_DIR.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True):
+                try:
+                    job = json.loads(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if isinstance(job, dict) and job.get("dedupe_key") == key and job.get("status") in {"queued", "queued_external", "running"}:
+                    MODEL3_JOBS[str(job.get("job_id"))] = job
+                    MODEL3_ACTIVE_BY_KEY[key] = str(job.get("job_id"))
+                    return job
+    except Exception:
+        pass
+    return None
+
+
 def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
     jid = uuid.uuid4().hex[:12]
     job = {
         "job_id": jid,
         "ticker": ticker,
+        "notebooklm": notebooklm,
+        "dedupe_key": _model3_job_key(ticker, notebooklm),
+        "queue_position": None,
         "status": "queued",
         "progress": 0,
         "error": None,
         "created_at": time.time(),
         "updated_at": time.time(),
-        "logs": [],
+        "logs": ["ðŸ§¾ ÄÃ£ nháº­n yÃªu cáº§u, Ä‘Æ°a vÃ o hÃ ng Ä‘á»£i Model3."],
         "agents": {"Codex": "pending", "Grok": "pending", "Kiro": "pending", "NotebookLM": "pending" if notebooklm else "skipped"},
         "sections": [{"key": k, "agent": a, "name": n, "status": "pending"} for k, a, n in MODEL3_SECTIONS],
         "result": None,
     }
     MODEL3_JOBS[jid] = job
+    MODEL3_ACTIVE_BY_KEY[job["dedupe_key"]] = jid
     _save_model3_job(job)
     return job
 
@@ -1021,20 +1080,20 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
             break
     if matched:
         section_key, agent = matched
-        terminal_done = ("✅" in text) or (" xong" in low) or ("done" in low) or ("created" in low and section_key == "notebooklm")
+        terminal_done = ("âœ…" in text) or (" xong" in low) or ("done" in low) or ("created" in low and section_key == "notebooklm")
         # Provider fallback is recoverable for producing an inspectable artifact,
         # but it is not a clean section. Paint it red/partial instead of letting a
         # fallback report look like full AI quality.
-        recoverable = ("fallback" in low) or ("workflow không chết" in low) or ("workflow khong chet" in low)
+        recoverable = ("fallback" in low) or ("workflow khÃ´ng cháº¿t" in low) or ("workflow khong chet" in low)
         provider_quality_error = (
-            "provider lỗi/timeout" in low
+            "provider lá»—i/timeout" in low
             or "provider loi/timeout" in low
             or "http 502" in low
             or "502 bad gateway" in low
-            or "fallback nội bộ" in low
+            or "fallback ná»™i bá»™" in low
             or "fallback noi bo" in low
         )
-        terminal_error = provider_quality_error or ((not recoverable) and (("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low)))
+        terminal_error = provider_quality_error or ((not recoverable) and (("âŒ" in text) or (" error" in low) or (" lá»—i" in low) or ("failed" in low)))
         next_status = "error" if terminal_error else ("done" if terminal_done else "running")
         if agent in job["agents"]:
             if next_status == "error":
@@ -1086,6 +1145,8 @@ async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
     if not job:
         return
     job["status"] = "running"
+    job["queue_position"] = None
+    job["logs"].append("â–¶ï¸ Worker báº¯t Ä‘áº§u cháº¡y job Model3. CÃ¡c job khÃ¡c sáº½ chá» láº§n lÆ°á»£t.")
     job["updated_at"] = time.time()
     _save_model3_job(job)
     try:
@@ -1102,8 +1163,22 @@ async def _run_model3_job(job_id: str, notebooklm: bool) -> None:
             if s["status"] == "running":
                 s["status"] = "error"
     finally:
+        MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), notebooklm)), None)
         job["updated_at"] = time.time()
         _save_model3_job(job)
+
+
+async def _model3_worker() -> None:
+    assert MODEL3_QUEUE is not None
+    while True:
+        job_id = await MODEL3_QUEUE.get()
+        try:
+            job = _load_model3_job(job_id)
+            if not job or job.get("status") != "queued":
+                continue
+            await _run_model3_job(job_id, bool(job.get("notebooklm", True)))
+        finally:
+            MODEL3_QUEUE.task_done()
 
 
 # ----------------------------- endpoints -----------------------------
@@ -1115,7 +1190,7 @@ async def run_pipeline(req: RunRequest):
         tickers += req.tickers
     if req.ticker:
         tickers.append(req.ticker)
-    # tách theo dấu phẩy/space, chuẩn hoá, loại rỗng & trùng
+    # tÃ¡ch theo dáº¥u pháº©y/space, chuáº©n hoÃ¡, loáº¡i rá»—ng & trÃ¹ng
     norm: list[str] = []
     for t in tickers:
         for part in str(t).replace(",", " ").split():
@@ -1123,7 +1198,7 @@ async def run_pipeline(req: RunRequest):
             if p and p not in norm:
                 norm.append(p)
     if not norm:
-        raise HTTPException(status_code=400, detail="Cần ít nhất 1 mã cổ phiếu")
+        raise HTTPException(status_code=400, detail="Cáº§n Ã­t nháº¥t 1 mÃ£ cá»• phiáº¿u")
     batch_id = uuid.uuid4().hex[:8]
     runs = []
     for i, tk in enumerate(norm):
@@ -1156,7 +1231,7 @@ def _recover_model3_docx_result(job: dict[str, Any]) -> dict[str, Any] | None:
         "docx_path": str(docx),
         "docx_name": docx.name,
         "partial_quality": True,
-        "warning": "DOCX đã được ghi nhưng job bị đánh dấu error do một số AI provider timeout/502; dùng file này để kiểm tra, chưa coi là báo cáo chất lượng đầy đủ.",
+        "warning": "DOCX Ä‘Ã£ Ä‘Æ°á»£c ghi nhÆ°ng job bá»‹ Ä‘Ã¡nh dáº¥u error do má»™t sá»‘ AI provider timeout/502; dÃ¹ng file nÃ y Ä‘á»ƒ kiá»ƒm tra, chÆ°a coi lÃ  bÃ¡o cÃ¡o cháº¥t lÆ°á»£ng Ä‘áº§y Ä‘á»§.",
         "logs_tail": logs[-30:],
     }
 
@@ -1185,11 +1260,14 @@ def _public_model3_job(job: dict[str, Any]) -> dict[str, Any]:
     updated = float(job.get("updated_at") or created)
     j["elapsed_seconds"] = max(0, int(now - created))
     j["idle_seconds"] = max(0, int(now - updated))
+    if job.get("status") == "queued":
+        j["queue_position"] = _model3_queue_position(str(job.get("job_id") or ""))
+        j["logs"] = [*(job.get("logs") or []), f"â³ Äang chá» trong hÃ ng Ä‘á»£i. Vá»‹ trÃ­: #{j['queue_position']}" if j["queue_position"] else "â³ Äang chá» worker nháº­n job..."]
     result = job.get("result")
     if not isinstance(result, dict) and job.get("status") == "error":
         result = _recover_model3_docx_result(job)
     j["result"] = _public_model3_result(result)
-    j["logs_tail"] = (job.get("logs") or [])[-20:]
+    j["logs_tail"] = (j.get("logs") or job.get("logs") or [])[-20:]
     return j
 
 
@@ -1342,7 +1420,7 @@ async def model3_market_gateway_test(ticker: str = "SSI"):
     """Fast Render-side check for market gateway; reads bounded payload and returns compact summary."""
     ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "SSI").upper()[:8]
     if not ticker:
-        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+        raise HTTPException(status_code=400, detail="Cáº§n nháº­p mÃ£ cá»• phiáº¿u")
     timeout = min(float(os.getenv("MARKET_DATA_GATEWAY_TIMEOUT", "30")), 20.0)
     attempts: list[dict[str, Any]] = []
     for gateway in _market_gateway_base_urls():
@@ -1376,7 +1454,7 @@ async def model3_market_gateway_test(ticker: str = "SSI"):
 async def model3_freshness(ticker: str):
     ticker = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
     if not ticker:
-        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+        raise HTTPException(status_code=400, detail="Cáº§n nháº­p mÃ£ cá»• phiáº¿u")
     logs: list[str] = []
     try:
         result = await asyncio.to_thread(_market_data_freshness_gate, ticker, lambda m: logs.append(str(m)))
@@ -1399,14 +1477,26 @@ async def model3_notebooklm_auth_test(auto_login: bool = True):
 
 @router.post("/model3/export")
 async def model3_export(req: Model3ExportRequest):
-    """Start full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM."""
+    """Queue full Model3 report job: Codex/Grok/Kiro -> Word -> NotebookLM.
+
+    Only one Model3 job runs at a time because Grok/NotebookLM/browser resources are
+    single-session. Concurrent requests are queued FIFO. Repeated clicks for the
+    same ticker + NotebookLM option reuse the active queued/running job instead of
+    creating duplicate jobs/messages.
+    """
     ticker = re.sub(r"[^A-Za-z0-9]", "", req.ticker or "").upper()[:8]
     if not ticker:
-        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+        raise HTTPException(status_code=400, detail="Cáº§n nháº­p mÃ£ cá»• phiáº¿u")
     # Legacy Firebase stock-report pages may still send notebooklm:false.
     # Public Model3 web exports should always attempt NotebookLM; failures are
     # recorded as notebooklm_error without hiding the Word report.
     with_notebooklm = True
+    existing = _find_active_model3_job(ticker, with_notebooklm)
+    if existing:
+        existing["logs"] = (existing.get("logs") or [])[-79:] + ["♻️ Yêu cầu trùng mã đang queued/running nên dùng lại job hiện tại, không tạo job mới."]
+        existing["updated_at"] = time.time()
+        _save_model3_job(existing)
+        return JSONResponse(_public_model3_job(existing))
     job = _new_model3_job(ticker, with_notebooklm)
     if MODEL3_EXTERNAL_WORKER_MODE:
         job["status"] = "queued_external"
@@ -1414,7 +1504,13 @@ async def model3_export(req: Model3ExportRequest):
         job["updated_at"] = time.time()
         _save_model3_job(job)
     else:
-        asyncio.create_task(_run_model3_job(job["job_id"], with_notebooklm))
+        _ensure_model3_worker()
+        assert MODEL3_QUEUE is not None
+        await MODEL3_QUEUE.put(job["job_id"])
+        job["queue_position"] = _model3_queue_position(job["job_id"])
+        job["logs"].append(f"⏳ Vị trí hàng đợi: #{job['queue_position']}.")
+        job["updated_at"] = time.time()
+        _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
@@ -1444,6 +1540,8 @@ async def model3_worker_update_status(job_id: str, payload: dict[str, Any], auth
     if payload.get("log"):
         job["logs"] = (job.get("logs") or [])[-79:] + [str(payload["log"])[-1000:]]
     job["updated_at"] = time.time()
+    if job.get("status") in {"done", "error", "interrupted"}:
+        MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), bool(job.get("notebooklm", True)))), None)
     MODEL3_JOBS[job_id] = job
     _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
@@ -1467,8 +1565,8 @@ async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partia
     job["updated_at"] = time.time()
     job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded DOCX: {safe}"]
     _model3_finalize_sections(job, result)
-    MODEL3_JOBS[job_id] = job
-    _save_model3_job(job)
+    MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), bool(job.get("notebooklm", True)))), None)
+    MODEL3_JOBS[job_id] = job    _save_model3_job(job)
     return JSONResponse(_public_model3_job(job))
 
 
@@ -1476,7 +1574,7 @@ async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partia
 async def model3_status(job_id: str):
     job = _load_model3_job(job_id)
     if not job:
-        raise HTTPException(status_code=404, detail="job_id không tồn tại")
+        raise HTTPException(status_code=404, detail="job_id khÃ´ng tá»“n táº¡i")
     return JSONResponse(_public_model3_job(job))
 
 
@@ -1492,7 +1590,7 @@ async def model3_file(filename: str):
     ]
     found = next((p for p in candidates if p.exists() and p.is_file()), None)
     if not found:
-        raise HTTPException(status_code=404, detail="File không tồn tại hoặc đã hết hạn TTL")
+        raise HTTPException(status_code=404, detail="File khÃ´ng tá»“n táº¡i hoáº·c Ä‘Ã£ háº¿t háº¡n TTL")
     media = "application/octet-stream"
     if found.suffix.lower() == ".docx":
         media = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -1507,7 +1605,7 @@ async def model3_file(filename: str):
 async def status(run_id: str):
     run = RUNS.get(run_id)
     if not run:
-        raise HTTPException(status_code=404, detail="run_id không tồn tại")
+        raise HTTPException(status_code=404, detail="run_id khÃ´ng tá»“n táº¡i")
     return run.snapshot()
 
 
@@ -1515,7 +1613,7 @@ async def status(run_id: str):
 async def batch_status(batch_id: str):
     ids = BATCHES.get(batch_id)
     if ids is None:
-        raise HTTPException(status_code=404, detail="batch_id không tồn tại")
+        raise HTTPException(status_code=404, detail="batch_id khÃ´ng tá»“n táº¡i")
     return {"batch_id": batch_id, "runs": [RUNS[i].snapshot() for i in ids if i in RUNS]}
 
 
@@ -1523,11 +1621,11 @@ async def batch_status(batch_id: str):
 async def events(run_id: str):
     run = RUNS.get(run_id)
     if not run:
-        raise HTTPException(status_code=404, detail="run_id không tồn tại")
+        raise HTTPException(status_code=404, detail="run_id khÃ´ng tá»“n táº¡i")
 
     async def gen():
         last = -1
-        # gửi ngay trạng thái đầu
+        # gá»­i ngay tráº¡ng thÃ¡i Ä‘áº§u
         while True:
             if run.version != last:
                 last = run.version
@@ -1545,7 +1643,7 @@ async def events(run_id: str):
 async def report(run_id: str):
     run = RUNS.get(run_id)
     if not run:
-        raise HTTPException(status_code=404, detail="run_id không tồn tại")
+        raise HTTPException(status_code=404, detail="run_id khÃ´ng tá»“n táº¡i")
     return JSONResponse({"meta": {"ticker": run.ticker, "status": run.status,
                                   "as_of": datetime.now(timezone.utc).isoformat()},
                          **{k: v for k, v in run.report.items() if not k.startswith("_")}})
@@ -1555,7 +1653,7 @@ async def report(run_id: str):
 async def report_markdown(run_id: str):
     run = RUNS.get(run_id)
     if not run:
-        raise HTTPException(status_code=404, detail="run_id không tồn tại")
+        raise HTTPException(status_code=404, detail="run_id khÃ´ng tá»“n táº¡i")
     syn = run.report.get("stage_10_synthesis") or {}
     comp = syn.get("composite_score"); verdict = syn.get("verdict", "hold")
     md = _build_markdown(run, comp, verdict, syn.get("executive_summary", ""),
@@ -1565,24 +1663,24 @@ async def report_markdown(run_id: str):
 
 @router.get("/report/{run_id}/docx")
 async def report_docx(run_id: str):
-    """Tải file Word model3 tương ứng với run_id (tìm theo ticker và timestamp gần nhất)."""
+    """Táº£i file Word model3 tÆ°Æ¡ng á»©ng vá»›i run_id (tÃ¬m theo ticker vÃ  timestamp gáº§n nháº¥t)."""
     run = RUNS.get(run_id)
     if not run:
-        raise HTTPException(status_code=404, detail="run_id không tồn tại")
+        raise HTTPException(status_code=404, detail="run_id khÃ´ng tá»“n táº¡i")
     
     ticker = run.ticker.upper()
     outputs_dir = Path("outputs/model3")
     if not outputs_dir.exists():
-        raise HTTPException(status_code=404, detail="Thư mục outputs/model3 không tồn tại")
+        raise HTTPException(status_code=404, detail="ThÆ° má»¥c outputs/model3 khÃ´ng tá»“n táº¡i")
     
-    # Tìm file .docx mới nhất cho ticker này (pattern: YYYYMMDD-HHMMSS-*-TICKER.docx)
+    # TÃ¬m file .docx má»›i nháº¥t cho ticker nÃ y (pattern: YYYYMMDD-HHMMSS-*-TICKER.docx)
     pattern = re.compile(rf"^\d{{8}}-\d{{6}}-.*-{re.escape(ticker)}\.docx$", re.I)
     candidates = [f for f in outputs_dir.iterdir() if f.is_file() and pattern.match(f.name)]
     
     if not candidates:
-        raise HTTPException(status_code=404, detail=f"Không tìm thấy file Word cho {ticker}")
+        raise HTTPException(status_code=404, detail=f"KhÃ´ng tÃ¬m tháº¥y file Word cho {ticker}")
     
-    # Sắp xếp theo tên (timestamp trong tên file) để lấy mới nhất
+    # Sáº¯p xáº¿p theo tÃªn (timestamp trong tÃªn file) Ä‘á»ƒ láº¥y má»›i nháº¥t
     latest = sorted(candidates, key=lambda x: x.name, reverse=True)[0]
     
     return FileResponse(
@@ -1597,3 +1695,4 @@ async def report_docx(run_id: str):
 async def dashboard_page():
     from app.pipeline_dashboard import DASHBOARD_HTML
     return HTMLResponse(DASHBOARD_HTML)
+
