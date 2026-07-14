@@ -99,6 +99,10 @@ def _parse_row(source: str, row: dict, mode: str = "buy") -> Listing | None:
     if mode == "buy" and ("/năm" in title.lower() or "/tháng" in title.lower() or "/nam" in title.lower()):
         return None
     url = (row.get("url") or "").strip()
+    if mode == "rent" and "/cho-thue-" not in url:
+        return None
+    if mode != "rent" and "/ban-" not in url:
+        return None
     pt = area_m2 = ppm = None
     if mode == "rent":
         # Rent pattern: "15 triệu/tháng · 80 m²" or "250 nghìn/m²/tháng".
@@ -308,7 +312,7 @@ if __name__ == "__main__":
     asyncio.run(_t())
 
 
-async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: int = 5) -> list[Listing]:
+async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: int = 5, district: str | None = None) -> list[Listing]:
     """Search project on an already-open Batdongsan page/tab."""
     # Fill the main search input: pick largest visible text input.
     inputs = page.locator("input")

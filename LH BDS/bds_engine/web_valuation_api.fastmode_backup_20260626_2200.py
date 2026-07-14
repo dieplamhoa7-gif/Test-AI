@@ -415,17 +415,26 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     district = loc.get('district') or loc.get('city') or ''
     queries = []
     city = loc.get('city') or loc.get('province') or 'Hồ Chí Minh'
+    mode = getattr(criteria, 'transaction', 'buy') or 'buy'
+    is_rent = mode == 'rent'
     road_scope = ' '.join(x for x in [road, ward, district, city] if x)
     if road:
-        queries += [f"bán nhà đất mặt tiền {road_scope}", f"bán đất mặt tiền {road_scope}"]
+        if is_rent:
+            queries += [f"cho thuê nhà đất mặt tiền {road_scope}", f"cho thuê mặt bằng {road_scope}"]
+        else:
+            queries += [f"bán nhà đất mặt tiền {road_scope}", f"bán đất mặt tiền {road_scope}"]
     if ward:
-        queries += [f"bán nhà đất {ward} {district} Hồ Chí Minh", f"bán đất {ward} {district} Hồ Chí Minh"]
-    queries.append(f"bán nhà đất {area}")
+        scope = ' '.join(x for x in [ward, district, city] if x)
+        if is_rent:
+            queries += [f"cho thuê nhà đất {scope}", f"cho thuê mặt bằng {scope}"]
+        else:
+            queries += [f"bán nhà đất {scope}", f"bán đất {scope}"]
+    queries.append(("cho thuê nhà đất " if is_rent else "bán nhà đất ") + area)
     buckets = {}
-    write_progress('browser_street_queries', 'Chrome search theo tên đường: ' + ' | '.join(queries[:5]))
+    write_progress('browser_street_queries', ('Chrome search cho thuê theo tên đường: ' if is_rent else 'Chrome search bán theo tên đường: ') + ' | '.join(queries[:5]))
     for q in queries[:5]:
         try:
-            rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode='buy')
+            rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode=mode)
             if rows:
                 buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
         except Exception:
@@ -817,13 +826,16 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
                 warnings.append(f"browser direct land lỗi/timeout: {type(e).__name__}. {note}")
                 log_error('browser_direct_land', payload, e, 'try Google snippet browser price search', note)
-        try:
-            land_browser = await asyncio.wait_for(browser_price_buckets(criteria, projects, max_projects=(3 if is_fast_mode else 5)), timeout=(35 if is_fast_mode else 120))
-            buckets = merge_listing_buckets(buckets, land_browser)
-        except Exception as e:
-            note = 'Fast-mode bỏ qua AI support phụ sau lỗi browser search.' if is_fast_mode else await ai_support_agent(ai_report, 'browser_land_search', payload, e, 'continue with scraped/direct source buckets only')
-            warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
-            log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
+        if getattr(criteria, 'transaction', 'buy') == 'rent':
+            warnings.append('R&D cho thuê: bỏ qua Google/browser snippet để tránh lẫn mẫu Nhà đất bán; chỉ dùng nguồn/tab cho thuê.')
+        else:
+            try:
+                land_browser = await asyncio.wait_for(browser_price_buckets(criteria, projects, max_projects=(3 if is_fast_mode else 5)), timeout=(35 if is_fast_mode else 120))
+                buckets = merge_listing_buckets(buckets, land_browser)
+            except Exception as e:
+                note = 'Fast-mode bỏ qua AI support phụ sau lỗi browser search.' if is_fast_mode else await ai_support_agent(ai_report, 'browser_land_search', payload, e, 'continue with scraped/direct source buckets only')
+                warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
+                log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
     else:
         write_progress('browser_buckets', 'Chung cư: Playwright đang search Batdongsan theo tên dự án + thành phố...', warnings)
         try:
