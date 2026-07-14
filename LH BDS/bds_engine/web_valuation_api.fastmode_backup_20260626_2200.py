@@ -816,14 +816,14 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
     if criteria.property_type != 'chungcu':
         write_progress('browser_street_search', 'Sản phẩm không phải chung cư: Chrome đang search trực tiếp Batdongsan theo tên đường/phường...', warnings)
-        if is_fast_mode:
+        if is_fast_mode and getattr(criteria, 'transaction', 'buy') != 'rent':
             warnings.append('Fast-mode: bỏ qua browser_direct_land_buckets nặng; dùng Google snippet/browser_price nhanh để tránh treo Playwright.')
         else:
             try:
-                land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=220)
+                land_true = await asyncio.wait_for(browser_direct_land_buckets(criteria, projects), timeout=(120 if is_fast_mode else 220))
                 buckets = merge_listing_buckets(buckets, land_true)
             except Exception as e:
-                note = await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
+                note = 'R&D cho thuê: Playwright nguồn cho thuê timeout/lỗi; tiếp tục bằng nguồn còn lại.' if (is_fast_mode and getattr(criteria, 'transaction', 'buy') == 'rent') else await ai_support_agent(ai_report, 'browser_direct_land', payload, e, 'try Google snippet browser price search')
                 warnings.append(f"browser direct land lỗi/timeout: {type(e).__name__}. {note}")
                 log_error('browser_direct_land', payload, e, 'try Google snippet browser price search', note)
         if getattr(criteria, 'transaction', 'buy') == 'rent':
