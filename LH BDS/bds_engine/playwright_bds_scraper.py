@@ -462,29 +462,30 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, m
                     pass
             await ensure_mode_tab()
             is_apartment = (getattr(criteria, "property_type", "") or "").lower() in {"chungcu", "canho", "apartment"}
+            district = loc.get("district") if isinstance(loc, dict) else None
+            street = loc.get("street") if isinstance(loc, dict) else None
             for pr in projects.projects[:max_projects]:
                 name=(pr.get("name") or "").strip()
                 if not name: continue
                 search_name = _clean_project_search_name(name)
+                ai_keyword = str(pr.get("search_keyword") or "").strip()
+                primary_query = ai_keyword or (f"{search_name} {district} {city}" if district and district.lower() not in search_name.lower() else f"{search_name} {city}")
                 try:
-                    # Primary rule: clean project name + city only. Reuse the same
-                    # browser/page; do not close and reopen Batdongsan per project.
+                    # Primary rule: use AI keyword: project name + district + city.
                     rows = await asyncio.wait_for(
-                        _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10),
+                        _search_on_existing_page(page, primary_query, mode=mode, limit=10, district=district),
                         timeout=per_project_timeout,
                     )
+                    if not rows and primary_query.strip().lower() != f"{search_name} {city}".strip().lower():
+                        rows = await asyncio.wait_for(
+                            _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10, district=district),
+                            timeout=per_project_timeout,
+                        )
                     if not is_apartment:
-                        district = loc.get("district") if isinstance(loc, dict) else None
-                        street = loc.get("street") if isinstance(loc, dict) else None
-                        # Fallbacks only if no rows: add real district/street from reverse context, never hardcode.
-                        if not rows and district and district.lower() not in search_name.lower():
-                            rows = await asyncio.wait_for(
-                                _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10),
-                                timeout=per_project_timeout,
-                            )
+                        # Fallbacks only if no rows: add real street from reverse context, never hardcode.
                         if not rows and street and street.lower() not in search_name.lower():
                             rows = await asyncio.wait_for(
-                                _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10),
+                                _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10, district=district),
                                 timeout=per_project_timeout,
                             )
                 except Exception:
