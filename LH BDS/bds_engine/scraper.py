@@ -113,18 +113,22 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         f"Giao dịch: {getattr(criteria, 'transaction', 'buy')}\n\n"
         "Hãy:\n"
         "1. Xác định khu vực (đường/trục đường gần nhất, phường, quận, thành phố/tỉnh) của toạ độ này.\n"
-        "2. Khi chọn dự án, ưu tiên dạng: \"dự án ... hạng ... gần đường ... ở TP ...\" để bắt đúng comparable.\n"
-        "3. Chọn bán kính tìm kiếm phù hợp mật độ dự án khu vực (1-5 km).\n"
-        "4. Liệt kê 5 dự án/khu vực có thể dùng tham chiếu định giá; ưu tiên dự án có nhiều tin rao trên "
+        "2. Khi chọn dự án, chỉ chọn dự án/khu vực nằm trong đúng quận/huyện của toạ độ, trừ khi ghi rõ lý do khoảng cách rất gần.\n"
+        "3. Với mỗi dự án, bắt buộc tạo 1 dòng keyword tìm kiếm ngắn gọn theo dạng: Tên dự án + Quận/Huyện + Thành phố. "
+        "Ví dụ: 'RiverGate Residence Quận 4 TP Hồ Chí Minh'. Không thêm mô tả hạng/gần đường vào keyword.\n"
+        "4. Chọn bán kính tìm kiếm phù hợp mật độ dự án khu vực (1-5 km).\n"
+        "5. Liệt kê 5 dự án/khu vực có thể dùng tham chiếu định giá; ưu tiên dự án có nhiều tin rao trên "
         "Batdongsan.com.vn, Guland.vn, Alonhadat.com.vn.\n"
-        "5. Mỗi dự án kèm metadata ngắn: chủ đầu tư (developer), quy mô (scale), năm vận hành/bàn giao "
+        "6. Mỗi dự án kèm metadata ngắn: chủ đầu tư (developer), quy mô (scale), năm vận hành/bàn giao "
         "(operation_year), tình trạng bàn giao (handover_status).\n\n"
         "Trả về JSON đúng schema:\n"
         "{\n"
         '  "area": "Phường ..., Quận ..., TP ...",\n'
         '  "radius_km": <số>,\n'
         '  "projects": [\n'
-        '     {"name": "...", "developer": "CĐT hoặc \'Khu vực/không có CĐT đơn nhất\'",\n'
+        '     {"name": "Tên dự án sạch, không kèm quận/thành phố",\n'
+        '      "search_keyword": "Tên dự án + Quận/Huyện + Thành phố để search, ví dụ RiverGate Residence Quận 4 TP Hồ Chí Minh",\n'
+        '      "developer": "CĐT hoặc \'Khu vực/không có CĐT đơn nhất\'",\n'
         '      "scale": "vd \'198 ha\' hoặc \'4 block ~1.000 căn\'",\n'
         '      "operation_year": "năm bàn giao hoặc \'đang kiểm chứng\'",\n'
         '      "handover_status": "đã bàn giao/chưa bàn giao/đang triển khai/không áp dụng",\n'
@@ -132,9 +136,10 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         "     ... (đúng 5 phần tử)\n"
         "  ]\n"
         "}\n\n"
-        "Quy tắc: không để trống developer/scale/operation_year/handover_status; "
+        "Quy tắc: không để trống search_keyword/developer/scale/operation_year/handover_status; "
         "không chắc thì ghi 'đang kiểm chứng', không bịa chi tiết. "
-        "Tuyệt đối không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố."
+        "Tuyệt đối không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; "
+        "phần quận/thành phố chỉ đưa vào search_keyword. Nếu toạ độ ở Quận 4 thì search_keyword phải có Quận 4, không được dùng TP Thủ Đức."
     )
     data = await client.chat_json(system, user, temperature=0.2)
     if not isinstance(data, dict):
@@ -151,8 +156,15 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         # Keep only the clean project/area name; descriptive context stays in note/type_hint.
         clean_name = re.sub(r"^(dự\s*án|du\s*an|khu\s+vực|khu\s+vuc)\s+", "", raw_name, flags=re.I).strip()
         clean_name = re.sub(r"\s+(hạng|hang|gần|gan|tại|tai|ở|o)\s+.*$", "", clean_name, flags=re.I).strip(" -–,;")
+        loc = getattr(criteria, "location_context", {}) or {}
+        district = loc.get("district") if isinstance(loc, dict) else ""
+        city = (loc.get("city") or loc.get("province")) if isinstance(loc, dict) else ""
+        search_keyword = str(p.get("search_keyword") or "").strip()
+        if not search_keyword:
+            search_keyword = " ".join(x for x in [clean_name, district, city or "TP Hồ Chí Minh"] if x)
         norm.append({
             "name": clean_name,
+            "search_keyword": search_keyword,
             "developer": p.get("developer") or "CĐT đang kiểm chứng",
             "scale": p.get("scale") or "quy mô đang kiểm chứng",
             "operation_year": p.get("operation_year") or "đang kiểm chứng",
