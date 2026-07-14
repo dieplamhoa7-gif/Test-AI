@@ -795,7 +795,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         try:
             apt_browser = await asyncio.wait_for(
                 browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
-                timeout=(320 if is_fast_mode else 420),
+                timeout=(700 if is_fast_mode else 780),
             )
             sample_count = sum(len(v or []) for v in apt_browser.values())
             if sample_count == 0:
