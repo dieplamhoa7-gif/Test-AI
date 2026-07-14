@@ -1037,15 +1037,7 @@ function run(p, sched, cost, coll){
   // Nếu đã tạm ứng nhiều hơn thuế cuối cùng, quyết toán là số âm để cộng lại vào dòng tiền,
   // nhưng không được hoàn/cộng lại vượt quá tổng đã tạm ứng trước đó.
   const citTamBeforeFinalX=citTamX.slice(0,lastRevX).reduce((a,b)=>a+b,0);
-  let finalTaxForSettlement=totCIT;
-  // Match Excel H2 row 31 settlement: final tax = E30*20%; with the attached H2-style input this is ~4.227 tỷ,
-  // so 2030 settlement must be 4.227 - 11.771 = -7.544 tỷ.
-  // Derive the H2-style final tax from the temporary CIT pattern when possible: if there are 3 revenue/tax years,
-  // the final year temporary tax remains a cash prepayment line but the settlement compares against prior temp only.
-  if(citTamX.filter(x=>Math.abs(x)>1e-6).length===3 && lastRevX>=2){
-    const h2TargetTax = citTamBeforeFinalX - 7544086882.327645;
-    if(Number.isFinite(h2TargetTax) && h2TargetTax>0) finalTaxForSettlement=h2TargetTax;
-  }
+  const finalTaxForSettlement=totCIT;
   citFinalX[lastRevX]=Math.max(finalTaxForSettlement-citTamBeforeFinalX, -citTamBeforeFinalX);
   // Dòng 31 FS: các kỳ trước là tạm ứng; kỳ quyết toán là phần quyết toán/hoàn lại,
   // không cộng thêm tạm ứng của chính kỳ quyết toán.
