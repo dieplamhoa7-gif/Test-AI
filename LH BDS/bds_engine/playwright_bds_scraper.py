@@ -190,28 +190,30 @@ async def scrape_batdongsan_playwright(query: str, limit: int = 10, headless: bo
             # Do not choose generic city suggestions like "Mua bán BĐS tại Hồ Chí Minh".
             picked = await page.evaluate(r"""([q, mode]) => {
               const qlow = (q||'').toLowerCase();
-              const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm']);
-              const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=3 && !stop.has(x));
+              const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi']);
+              const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=2 && !stop.has(x));
               const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
-              const score = txt => {
-                const t = txt.toLowerCase(); let s = 0;
-                const hits = qparts.filter(part => t.includes(part)).length;
-                s += hits * 20;
-                if(hits === 0) s -= 100;
-                if(modeOk(txt)) s += 25;
-                if(/chung cư|căn hộ|khu đô thị|city|riverside|town|casa/i.test(txt)) s += 8;
-                if(/tại hồ chí minh$|tại tp\.?\s*hcm$|bđs tại hồ chí minh$/i.test(txt)) s -= 80;
-                if(/không có gợi ý/i.test(txt)) s -= 100;
-                if(mode === 'rent' && /mua bán/i.test(txt)) s -= 40;
-                if(mode !== 'rent' && /thuê/i.test(txt)) s -= 40;
-                return s;
+              const isGeneric = txt => /^(mua bán|thuê)$|bđs tại hồ chí minh$|bđs tại hà nội$|tại hồ chí minh$|tại hà nội$/i.test(txt.trim());
+              const matchProject = txt => {
+                const t = txt.toLowerCase(); const compact = t.replace(/\W+/g, '');
+                let hits = 0;
+                for (const part of qparts) if(t.includes(part) || compact.includes(part)) hits++;
+                return hits >= 1;
               };
               const els=[...document.querySelectorAll('a,li,div,span')]
                 .filter(el=>el.offsetParent!==null)
                 .map(el=>({el, txt:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim()}))
-                .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Riverside|Town|Casa/i.test(x.txt));
-              els.sort((a,b)=>score(b.txt)-score(a.txt));
-              if(els[0] && score(els[0].txt)>0){els[0].el.click(); return els[0].txt;}
+                .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Residence|Riverside|Town|Casa|Park|View|Gate|Royal|Icon/i.test(x.txt));
+              for (const x of els) {
+                if(isGeneric(x.txt)) continue;
+                if(!modeOk(x.txt)) continue;
+                if(!matchProject(x.txt)) continue;
+                x.el.click(); return x.txt;
+              }
+              for (const x of els) {
+                if(isGeneric(x.txt)) continue;
+                if(matchProject(x.txt)) { x.el.click(); return x.txt; }
+              }
               return null;
             }""", [query, mode])
             if not picked:
@@ -336,28 +338,35 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
 
     picked = await page.evaluate(r"""([q, mode]) => {
       const qlow = (q||'').toLowerCase();
-      const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm']);
-      const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=3 && !stop.has(x));
+      const stop = new Set(['hồ','ho','chí','chi','minh','thành','thanh','phố','pho','tp','hcm','tphcm','hà','ha','nội','noi']);
+      const qparts = qlow.split(/\s+/).map(x=>x.trim()).filter(x=>x.length>=2 && !stop.has(x));
       const modeOk = txt => mode === 'rent' ? /thuê/i.test(txt) : /mua bán/i.test(txt);
-      const score = txt => {
-        const t = txt.toLowerCase(); let s = 0;
-        const hits = qparts.filter(part => t.includes(part)).length;
-        s += hits * 20;
-        if(hits === 0) s -= 100;
-        if(modeOk(txt)) s += 25;
-        if(/chung cư|căn hộ|khu đô thị|city|riverside|town|casa/i.test(txt)) s += 8;
-        if(/tại hồ chí minh$|tại tp\.?\s*hcm$|bđs tại hồ chí minh$/i.test(txt)) s -= 80;
-        if(/không có gợi ý/i.test(txt)) s -= 100;
-        if(mode === 'rent' && /mua bán/i.test(txt)) s -= 40;
-        if(mode !== 'rent' && /thuê/i.test(txt)) s -= 40;
-        return s;
+      const isGeneric = txt => /^(mua bán|thuê)$|bđs tại hồ chí minh$|bđs tại hà nội$|tại hồ chí minh$|tại hà nội$/i.test(txt.trim());
+      const matchProject = txt => {
+        const t = txt.toLowerCase();
+        const compact = t.replace(/\W+/g, '');
+        let hits = 0;
+        for (const part of qparts) if(t.includes(part) || compact.includes(part)) hits++;
+        return hits >= 1;
       };
       const els=[...document.querySelectorAll('a,li,div,span')]
         .filter(el=>el.offsetParent!==null)
         .map(el=>({el, txt:(el.innerText||el.textContent||'').replace(/\s+/g,' ').trim()}))
-        .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Riverside|Town|Casa/i.test(x.txt));
-      els.sort((a,b)=>score(b.txt)-score(a.txt));
-      if(els[0] && score(els[0].txt)>0){els[0].el.click(); return els[0].txt;}
+        .filter(x=>x.txt && x.txt.length<220 && /Mua bán|Thuê|chung cư|căn hộ|BĐS|City|Khu đô thị|Residence|Riverside|Town|Casa|Park|View|Gate|Royal|Icon/i.test(x.txt));
+      // Batdongsan usually ranks the closest suggestion first. Keep that order,
+      // only skip generic city/category suggestions and wrong transaction type.
+      for (const x of els) {
+        if(isGeneric(x.txt)) continue;
+        if(!modeOk(x.txt)) continue;
+        if(!matchProject(x.txt)) continue;
+        x.el.click();
+        return x.txt;
+      }
+      // Fallback: first project-like suggestion even if it misses explicit mode text.
+      for (const x of els) {
+        if(isGeneric(x.txt)) continue;
+        if(matchProject(x.txt)) { x.el.click(); return x.txt; }
+      }
       return null;
     }""", [query, mode])
     if not picked:
