@@ -433,9 +433,26 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, m
             args=["--disable-blink-features=AutomationControlled", "--no-first-run", "--no-default-browser-check"],
         )
         page = ctx.pages[0] if ctx.pages else await ctx.new_page()
+        async def goto_batdongsan_with_retry(attempts: int = 3):
+            last_err = None
+            for i in range(attempts):
+                try:
+                    if page.is_closed():
+                        raise RuntimeError("page closed before goto")
+                    await page.goto("https://batdongsan.com.vn", wait_until="domcontentloaded", timeout=60000)
+                    await page.wait_for_timeout(4000)
+                    return
+                except Exception as exc:
+                    last_err = exc
+                    logger.warning("Batdongsan initial goto failed attempt %s/%s: %s", i + 1, attempts, exc)
+                    try:
+                        await page.wait_for_timeout(1500 + i * 1000)
+                        await page.goto("about:blank", wait_until="domcontentloaded", timeout=10000)
+                    except Exception:
+                        pass
+            raise last_err or RuntimeError("Batdongsan initial goto failed")
         try:
-            await page.goto("https://batdongsan.com.vn", wait_until="domcontentloaded", timeout=60000)
-            await page.wait_for_timeout(4000)
+            await goto_batdongsan_with_retry()
             tab_text = "Nhà đất cho thuê" if mode == "rent" else "Nhà đất bán"
             async def ensure_mode_tab():
                 try:
