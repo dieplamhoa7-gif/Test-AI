@@ -727,8 +727,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         write_progress('browser_buckets', 'Chung cư: Playwright đang search Batdongsan theo tên dự án + thành phố...', warnings)
         try:
             apt_browser = await asyncio.wait_for(
-                browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(32 if is_fast_mode else 45)),
-                timeout=(190 if is_fast_mode else 260),
+                browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
+                timeout=(320 if is_fast_mode else 420),
             )
             buckets = merge_listing_buckets(buckets, apt_browser)
             sample_count = sum(len(v or []) for v in apt_browser.values())
