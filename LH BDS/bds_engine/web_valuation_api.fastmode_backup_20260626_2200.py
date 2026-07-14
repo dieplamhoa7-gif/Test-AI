@@ -797,11 +797,31 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
                 timeout=(320 if is_fast_mode else 420),
             )
-            buckets = merge_listing_buckets(buckets, apt_browser)
             sample_count = sum(len(v or []) for v in apt_browser.values())
+            if sample_count == 0:
+                loc = getattr(criteria, 'location_context', {}) or {}
+                city = (loc.get('city') or loc.get('province') or 'TP Hồ Chí Minh') if isinstance(loc, dict) else 'TP Hồ Chí Minh'
+                district = loc.get('district') if isinstance(loc, dict) else ''
+                fallback_browser = {}
+                for pr in (projects.projects or [])[:5]:
+                    pname = (pr.get('name') or '').strip()
+                    if not pname:
+                        continue
+                    keyword = (pr.get('search_keyword') or '').strip() or ' '.join(x for x in [pname, district, city] if x)
+                    try:
+                        rows = await asyncio.wait_for(scrape_batdongsan_playwright(keyword, limit=10, headless=False, mode=getattr(criteria, 'transaction', 'buy') or 'buy'), timeout=75)
+                    except Exception:
+                        rows = []
+                    if rows:
+                        fallback_browser.setdefault(f'Batdongsan.com.vn::{pname}', []).extend(rows)
+                if fallback_browser:
+                    apt_browser = fallback_browser
+                    sample_count = sum(len(v or []) for v in apt_browser.values())
+                    warnings.append('Reuse-session Batdongsan trả 0 mẫu; đã fallback mở search độc lập từng dự án.')
+            buckets = merge_listing_buckets(buckets, apt_browser)
             warnings.append(f'Playwright Batdongsan chung cư: {len(apt_browser)} bucket, {sample_count} mẫu giá.')
             if sample_count:
-                warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + thành phố.')
+                warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + quận + thành phố.')
         except Exception as e:
             note = 'Playwright Batdongsan chung cư timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'
             warnings.append(f'browser chung cư lỗi/timeout: {type(e).__name__}. {note}')
