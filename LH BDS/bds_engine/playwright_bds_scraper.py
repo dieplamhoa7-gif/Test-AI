@@ -315,11 +315,10 @@ async def browser_true_buckets_async(criteria: SearchCriteria, projects, max_pro
         if not name:
             continue
         try:
-            # User rule: keyword = project name + district + city, prepared by AI as search_keyword.
-            # Avoid adding asset type here because it can make Batdongsan autocomplete choose the wrong category.
+            # User rule: keyword = project/area name + city. Avoid adding asset type here
+            # because it can make Batdongsan autocomplete choose the wrong category.
             mode = getattr(criteria, "transaction", "buy") or "buy"
-            keyword = (p.get("search_keyword") or "").strip() or f"{name} {city}"
-            rows = await scrape_batdongsan_playwright(keyword, limit=10, headless=False, mode=mode)
+            rows = await scrape_batdongsan_playwright(f"{name} {city}", limit=10, headless=False, mode=mode)
             # For landed/street searches Batdongsan often needs district/city context.
             # For apartments, fallback street/district queries make fast-mode exceed timeout
             # and often broaden away from the project, so keep the exact project+city query.
@@ -515,12 +514,11 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, m
                 name=(pr.get("name") or "").strip()
                 if not name: continue
                 search_name = _clean_project_search_name(name)
-                ai_keyword = str(pr.get("search_keyword") or "").strip()
                 try:
-                    # Primary rule: use AI-provided one-line keyword:
-                    # "Tên dự án + Quận/Huyện + Thành phố". Fallback builds the
-                    # same shape from verified reverse-geocode context.
-                    primary_query = ai_keyword or (f"{search_name} {district} {city}" if district and district.lower() not in search_name.lower() else f"{search_name} {city}")
+                    # Primary rule: include the verified district when available.
+                    # Without this, Batdongsan autocomplete can jump from a Q4
+                    # search into promoted/similar TP Thu Duc projects.
+                    primary_query = f"{search_name} {district} {city}" if district and district.lower() not in search_name.lower() else f"{search_name} {city}"
                     rows = await asyncio.wait_for(
                         _search_on_existing_page(page, primary_query, mode=mode, limit=10, district=district),
                         timeout=per_project_timeout,
