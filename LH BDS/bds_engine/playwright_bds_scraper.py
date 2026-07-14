@@ -7,13 +7,9 @@ headless=False and solve it; later bot runs can reuse the profile.
 from __future__ import annotations
 
 import asyncio
-import logging
 import os
 import re
-import unicodedata
 from pathlib import Path
-
-logger = logging.getLogger(__name__)
 
 from scraper import Listing, SearchCriteria
 
@@ -66,46 +62,6 @@ def _num_vn(s: str) -> float | None:
 
 def _tokens(s: str) -> list[str]:
     return [t.lower() for t in re.split(r"\W+", s or "") if len(t) >= 4]
-
-
-def _fold_vi(s: str) -> str:
-    s = (s or "").lower().replace("đ", "d")
-    s = unicodedata.normalize("NFD", s)
-    s = "".join(ch for ch in s if unicodedata.category(ch) != "Mn")
-    return re.sub(r"\s+", " ", s).strip()
-
-
-def _district_aliases(district: str | None) -> set[str]:
-    d = _fold_vi(district or "")
-    m = re.search(r"(?:quan|q)\s*0*(\d+)", d)
-    if not m:
-        return {d} if d else set()
-    n = str(int(m.group(1)))
-    return {f"quan {n}", f"q {n}", f"q.{n}", f"quan{n}", f"q{n}"}
-
-
-def _listing_matches_location(text: str, url: str, district: str | None) -> bool:
-    """Reject obvious cross-district cards when the valuation is grounded to a district.
-
-    Batdongsan autocomplete can jump from a Q4 project query to promoted/similar
-    projects in TP Thu Duc. If a card explicitly mentions another district, drop it.
-    If it does not mention any district, keep it because many cards omit location.
-    """
-    aliases = _district_aliases(district)
-    if not aliases:
-        return True
-    hay = _fold_vi(f"{text} {url}")
-    if any(a in hay for a in aliases):
-        return True
-    forbidden = [
-        "thu duc", "tp thu duc", "thanh pho thu duc", "quan 1", "q1", "quan 2", "q2",
-        "quan 3", "q3", "quan 5", "q5", "quan 7", "q7", "quan 8", "q8", "quan 9", "q9",
-        "quan 10", "q10", "quan 11", "q11", "quan 12", "q12", "binh thanh", "phu nhuan",
-        "tan binh", "tan phu", "go vap", "binh tan", "nha be", "binh chanh", "hoc mon",
-    ]
-    # Do not reject the target district itself if it appears in the forbidden list.
-    forbidden = [x for x in forbidden if x not in aliases]
-    return not any(re.search(rf"(?<![a-z0-9]){re.escape(x)}(?![a-z0-9])", hay) for x in forbidden)
 
 
 def _query_match(query: str, text: str, url: str) -> bool:
@@ -352,7 +308,7 @@ if __name__ == "__main__":
     asyncio.run(_t())
 
 
-async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: int = 5, district: str | None = None) -> list[Listing]:
+async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: int = 5) -> list[Listing]:
     """Search project on an already-open Batdongsan page/tab."""
     # Fill the main search input: pick largest visible text input.
     inputs = page.locator("input")
@@ -445,8 +401,6 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
     for r in rows:
         if not _query_match(query, r.get("title", ""), r.get("url", "")):
             continue
-        if not _listing_matches_location(r.get("title", ""), r.get("url", ""), district):
-            continue
         l=_parse_row("Batdongsan.com.vn", r, mode=mode)
         if l: out.append(l)
         if len(out) >= limit: break
@@ -508,31 +462,29 @@ async def browser_true_buckets_async_reuse(criteria: SearchCriteria, projects, m
                     pass
             await ensure_mode_tab()
             is_apartment = (getattr(criteria, "property_type", "") or "").lower() in {"chungcu", "canho", "apartment"}
-            district = loc.get("district") if isinstance(loc, dict) else None
-            street = loc.get("street") if isinstance(loc, dict) else None
             for pr in projects.projects[:max_projects]:
                 name=(pr.get("name") or "").strip()
                 if not name: continue
                 search_name = _clean_project_search_name(name)
                 try:
-                    # Primary rule: include the verified district when available.
-                    # Without this, Batdongsan autocomplete can jump from a Q4
-                    # search into promoted/similar TP Thu Duc projects.
-                    primary_query = f"{search_name} {district} {city}" if district and district.lower() not in search_name.lower() else f"{search_name} {city}"
+                    # Primary rule: clean project name + city only. Reuse the same
+                    # browser/page; do not close and reopen Batdongsan per project.
                     rows = await asyncio.wait_for(
-                        _search_on_existing_page(page, primary_query, mode=mode, limit=10, district=district),
+                        _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10),
                         timeout=per_project_timeout,
                     )
-                    if not rows:
-                        rows = await asyncio.wait_for(
-                            _search_on_existing_page(page, f"{search_name} {city}", mode=mode, limit=10, district=district),
-                            timeout=per_project_timeout,
-                        )
                     if not is_apartment:
-                        # Fallbacks only if no rows: add real street from reverse context, never hardcode.
+                        district = loc.get("district") if isinstance(loc, dict) else None
+                        street = loc.get("street") if isinstance(loc, dict) else None
+                        # Fallbacks only if no rows: add real district/street from reverse context, never hardcode.
+                        if not rows and district and district.lower() not in search_name.lower():
+                            rows = await asyncio.wait_for(
+                                _search_on_existing_page(page, f"{search_name} {district} {city}", mode=mode, limit=10),
+                                timeout=per_project_timeout,
+                            )
                         if not rows and street and street.lower() not in search_name.lower():
                             rows = await asyncio.wait_for(
-                                _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10, district=district),
+                                _search_on_existing_page(page, f"{search_name} {street} {district or ''} {city}", mode=mode, limit=10),
                                 timeout=per_project_timeout,
                             )
                 except Exception:
