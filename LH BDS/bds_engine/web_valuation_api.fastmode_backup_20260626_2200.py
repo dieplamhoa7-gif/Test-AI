@@ -315,6 +315,32 @@ def _median(vals: list[float]) -> float | None:
     return vals[mid] if n % 2 else (vals[mid - 1] + vals[mid]) / 2
 
 
+def _location_appraisal_notes(criteria: SearchCriteria, projects: ProjectsResult) -> list[str]:
+    loc = getattr(criteria, 'location_context', {}) or {}
+    area = (projects.area_description or getattr(criteria, 'human_summary', '') or '').strip()
+    district = loc.get('district') if isinstance(loc, dict) else ''
+    ward = loc.get('ward') or loc.get('suburb') if isinstance(loc, dict) else ''
+    street = loc.get('street') or loc.get('road') if isinstance(loc, dict) else ''
+    low = (area + ' ' + str(district) + ' ' + str(street)).lower()
+    notes = []
+    if 'quận 4' in low or 'quan 4' in low or 'xóm chiếu' in low or 'xom chieu' in low:
+        notes.extend([
+            'Vị trí thuộc lõi đô thị Quận 4, nằm giữa Quận 1, Quận 7 và khu Nam; ưu thế chính là khoảng cách rất gần CBD nhưng mặt bằng giá thường thấp hơn nhóm lõi Quận 1.',
+            'Kết nối chính qua các trục Bến Vân Đồn, Nguyễn Tất Thành, Hoàng Diệu, Khánh Hội; tiếp cận Quận 1 qua cầu Calmette/Ông Lãnh/Kênh Tẻ và đi Quận 7 qua trục Nguyễn Tất Thành - cầu Tân Thuận.',
+            'Hạ tầng khu vực đã hình thành, mật độ dân cư cao; lợi thế là tiện ích đô thị sẵn có, bất lợi là áp lực giao thông giờ cao điểm và quỹ đất mới hạn chế.',
+            'Tiện ích xung quanh gồm hệ thống thương mại - dịch vụ dọc Bến Vân Đồn/Khánh Hội/Nguyễn Tất Thành, trường học, y tế, chợ/khu ăn uống, bán kính di chuyển ngắn tới trung tâm Quận 1.',
+            'Nguồn cung cạnh tranh trực tiếp là các dự án đã bàn giao quanh Bến Vân Đồn, Tôn Thất Thuyết, Nguyễn Tất Thành; tính thanh khoản phụ thuộc mạnh vào pháp lý sổ, chất lượng quản lý vận hành, view sông và khả năng cho thuê.',
+        ])
+    else:
+        notes.extend([
+            f'Vị trí nghiên cứu: {area or "khu vực mục tiêu"}. Cần xem xét trong tương quan với trung tâm hành chính - thương mại gần nhất, trục giao thông chính và bán kính tiện ích 1-3 km.',
+            'Kết nối được đánh giá theo khả năng tiếp cận đường chính, thời gian di chuyển tới CBD/khu việc làm, và mức độ ùn tắc tại các nút giao trọng yếu.',
+            'Hạ tầng - tiện ích cần kiểm tra gồm trường học, y tế, thương mại, công viên, bãi xe, giao thông công cộng và các dự án hạ tầng đang/chuẩn bị triển khai.',
+            'Nguồn cung cạnh tranh gồm các dự án cùng phân khúc, cùng giai đoạn bàn giao và cùng bán kính thị trường; ưu tiên so sánh dự án đã bàn giao, pháp lý rõ và có thanh khoản thật.',
+        ])
+    return [x for x in notes if x]
+
+
 def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, buckets: dict) -> tuple[str, dict[str, Any]]:
     """Deterministic appraisal section restored for web fast-mode.
 
@@ -355,7 +381,20 @@ def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, 
     lines.extend(['', '*Bảng comparable dùng cho thẩm định:*'])
     for i, r in enumerate(sorted(project_rows, key=lambda x: x.get('median') or 0, reverse=True), 1):
         lines.append(f'{i}. {r["name"]}: median ~{_fmt_num(r["median"],1)} triệu/m² ({r["n"]} mẫu; biên {_fmt_num(r["min"],1)}–{_fmt_num(r["max"],1)}).')
+    lines.extend(['', '*Phân tích vị trí - hạ tầng - tiện ích:*'])
+    for note in _location_appraisal_notes(criteria, projects):
+        lines.append(f'- {note}')
     lines.extend([
+        '',
+        '*Phân tích thị trường và khả năng thanh khoản:*',
+        '- Nhóm comparable được chọn theo tiêu chí cùng khu vực/quận, cùng loại hình căn hộ, đã vận hành hoặc có thị trường thứ cấp đủ dữ liệu; loại bỏ mẫu không khớp dự án hoặc thiếu giá/diện tích.',
+        '- Các dự án có nhiều mẫu rao, giá tập trung và đường link kiểm chứng rõ được ưu tiên làm neo giá; dự án ít mẫu chỉ dùng để đối chiếu xu hướng, không dùng làm neo chính.',
+        '- Thanh khoản tốt khi dự án có pháp lý rõ, phí quản lý hợp lý, tỷ lệ lấp đầy cao, vị trí thuận tiện cho thuê/ở thật và chênh lệch giá không vượt quá nhóm cạnh tranh trực tiếp.',
+        '',
+        '*Điều chỉnh chuyên môn khi áp giá:*',
+        '- Cộng giá cho căn có view sông/view thoáng, tầng trung-cao hợp lý, layout hiệu quả, nội thất tốt, pháp lý sổ đầy đủ và tòa nhà quản lý vận hành tốt.',
+        '- Trừ giá cho căn tầng thấp/nhiễu ồn, hướng nắng gắt, layout xấu, diện tích khó thanh khoản, pháp lý chưa hoàn chỉnh hoặc dự án có chi phí vận hành/nguồn cung bán lại lớn.',
+        '- Với dự án mới hơn hoặc chất lượng vận hành tốt hơn nhóm mẫu, biên cộng có thể 3-7%; với bất lợi rõ, biên trừ 3-10% tùy mức độ.',
         '',
         '*Kết luận sơ bộ:*',
         f'- Nếu sản phẩm mục tiêu có chất lượng/vị trí tương đương nhóm trung vị, có thể lấy mốc {_fmt_num(market_med,1)} triệu/m² làm giá tham chiếu.',
