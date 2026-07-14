@@ -306,6 +306,73 @@ def _fmt_num(x, nd=0):
         return str(x)
 
 
+def _median(vals: list[float]) -> float | None:
+    vals = sorted(float(v) for v in vals if v is not None)
+    if not vals:
+        return None
+    n = len(vals)
+    mid = n // 2
+    return vals[mid] if n % 2 else (vals[mid - 1] + vals[mid]) / 2
+
+
+def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, buckets: dict) -> tuple[str, dict[str, Any]]:
+    """Deterministic appraisal section restored for web fast-mode.
+
+    Uses real Batdongsan/browser samples already collected, so it is fast and
+    does not add another AI call. This complements the raw R&D price table with
+    a valuation-style conclusion like the older report.
+    """
+    project_rows = []
+    all_ppm: list[float] = []
+    for p in (projects.projects or [])[:5]:
+        name = (p.get('name') or '').strip()
+        listings = []
+        for key, rows in (buckets or {}).items():
+            k = str(key).lower()
+            if name and (name.lower() in k or k.endswith('::' + name.lower())):
+                listings.extend(rows or [])
+        ppms = [float(getattr(x, 'price_per_m2', 0) or 0) for x in listings if getattr(x, 'price_per_m2', None)]
+        if ppms:
+            med = _median(ppms)
+            project_rows.append({'name': name, 'median': med, 'min': min(ppms), 'max': max(ppms), 'n': len(ppms), 'developer': p.get('developer') or '', 'scale': p.get('scale') or ''})
+            all_ppm.extend(ppms)
+    if not all_ppm:
+        return ('', {})
+    market_med = _median(all_ppm) or 0
+    low = market_med * 0.95
+    high = market_med * 1.05
+    selected = sorted(project_rows, key=lambda r: (abs((r.get('median') or market_med) - market_med), -r.get('n', 0)))[0] if project_rows else {}
+    lines = [
+        '',
+        '🏦 *Báo cáo thẩm định giá sơ bộ*',
+        '',
+        f'- Phương pháp: so sánh trực tiếp từ {len(project_rows)} dự án comparable, {len(all_ppm)} mẫu giá rao có nguồn Batdongsan/Playwright.',
+        f'- Mặt bằng giá thị trường: khoảng {_fmt_num(min(all_ppm),1)}–{_fmt_num(max(all_ppm),1)} triệu/m²; median {_fmt_num(market_med,1)} triệu/m².',
+        f'- Khoảng giá đề xuất thận trọng cho sản phẩm mục tiêu: {_fmt_num(low,1)}–{_fmt_num(high,1)} triệu/m².',
+    ]
+    if selected:
+        lines.append(f'- Comparable neo chính: {selected["name"]} (~{_fmt_num(selected["median"],1)} triệu/m², {selected["n"]} mẫu), sau đó đối chiếu với các dự án còn lại theo vị trí/quy mô/bàn giao.')
+    lines.extend(['', '*Bảng comparable dùng cho thẩm định:*'])
+    for i, r in enumerate(sorted(project_rows, key=lambda x: x.get('median') or 0, reverse=True), 1):
+        lines.append(f'{i}. {r["name"]}: median ~{_fmt_num(r["median"],1)} triệu/m² ({r["n"]} mẫu; biên {_fmt_num(r["min"],1)}–{_fmt_num(r["max"],1)}).')
+    lines.extend([
+        '',
+        '*Kết luận sơ bộ:*',
+        f'- Nếu sản phẩm mục tiêu có chất lượng/vị trí tương đương nhóm trung vị, có thể lấy mốc {_fmt_num(market_med,1)} triệu/m² làm giá tham chiếu.',
+        '- Nếu tầng/view/pháp lý/nội thất tốt hơn nhóm mẫu, xem xét cộng biên 3–7%; nếu bất lợi hơn, trừ 3–10%.',
+        '- Đây là báo cáo sơ bộ từ giá rao thị trường; trước khi chốt giá cần kiểm chứng giao dịch thực tế, pháp lý căn hộ và tình trạng bàn giao.',
+    ])
+    summary = {
+        'selected_comparable': selected.get('name'),
+        'reference_price': round(market_med, 1),
+        'reference_price_label': f'~{_fmt_num(market_med,1)} triệu/m²',
+        'suggested_price_range': f'{_fmt_num(low,1)}–{_fmt_num(high,1)} triệu/m²',
+        'sample_count': len(all_ppm),
+        'comparable_count': len(project_rows),
+    }
+    return '\n'.join(lines), summary
+
+
 async def browser_direct_land_buckets(criteria: SearchCriteria, projects: ProjectsResult) -> dict:
     loc = getattr(criteria, 'location_context', {}) or {}
     area = projects.area_description
@@ -787,22 +854,19 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     ai_sale_assessment_text = ''
     investor_summary = {}
     if criteria.property_type == 'chungcu':
-        # Web fast-mode still uses AI in estimate/report above, but skips optional chained AI
-        # narratives that add 2 extra slow calls on APIFREE/local 9Router.
-        warnings.append('Web fast-mode: vẫn dùng AI cho estimate/report chính, bỏ qua AI sale assessment và investor summary phụ để tránh chậm.')
-        # Force reference_price to equal median/average market price of the selected comparable, not AI suggested price.
+        # Restore valuation-appraisal section in web fast-mode without adding slow chained AI calls.
+        # It is deterministic from real Batdongsan/Playwright samples and appears after the R&D price table.
         try:
-            selected_name = (investor_summary or {}).get('selected_comparable') or (projects.projects[0].get('name') if projects.projects else '')
-            selected = None
-            for p in projects.projects:
-                if selected_name and (selected_name.lower() in (p.get('name') or '').lower() or (p.get('name') or '').lower() in selected_name.lower()):
-                    selected = p; break
-            selected = selected or (projects.projects[0] if projects.projects else {})
-            if selected and selected.get('reference_price_label'):
-                investor_summary['reference_price'] = selected.get('reference_price')
-                investor_summary['reference_price_label'] = selected.get('reference_price_label')
-        except Exception:
-            pass
+            appraisal_text, appraisal_summary = build_appraisal_summary(criteria, projects, buckets)
+            if appraisal_text:
+                ai_sale_assessment_text = appraisal_text
+                investor_summary.update(appraisal_summary or {})
+                warnings.append('Đã bổ sung báo cáo thẩm định giá sơ bộ từ mẫu giá thật.')
+            else:
+                warnings.append('Chưa đủ mẫu giá thật để dựng báo cáo thẩm định giá sơ bộ.')
+        except Exception as e:
+            warnings.append(f'Báo cáo thẩm định giá sơ bộ lỗi: {type(e).__name__}.')
+            log_error('appraisal_summary', payload, e, 'continue without appraisal section')
         report += ai_sale_assessment_text
 
     write_progress('render_map', 'Đang dựng bản đồ kiểm chứng...', warnings)
