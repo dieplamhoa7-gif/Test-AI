@@ -37,6 +37,8 @@ def main():
         # when that feature specifically changes.
         [py,'patch_market_latest_history.py'],
         [py,'patch_chart_files_latest_history.py'],
+        [py,'build_lh_canonical_indicators_daily.py'],
+        [py,'build_strategy_results_from_indicator_cache.py'],
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]

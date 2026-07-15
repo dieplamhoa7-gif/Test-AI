@@ -35,6 +35,8 @@ def main():
         [py,'refresh_warrants_cache_lh.py'],
         [py,'build_firebase_cache_site.py'],
         [py,'patch_market_latest_history.py'],
+        [py,'build_lh_canonical_indicators_daily.py'],
+        [py,'build_strategy_results_from_indicator_cache.py'],
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
