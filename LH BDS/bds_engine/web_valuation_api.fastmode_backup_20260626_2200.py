@@ -595,21 +595,38 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
     return '\n'.join(lines)
 
 
-def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, Any]]:
+def clean_market_title(x: str) -> str:
+    x = fix_vn_text(str(x or '')).strip()
+    for token in ['[ước lượng Batdongsan.com.vn]', '[Ước lượng Batdongsan.com.vn]', '[ước lượng]', '[Ước lượng]', '[uoc luong Batdongsan.com.vn]', '[uoc luong]']:
+        x = x.replace(token, '')
+    return ' '.join(x.split(' - ')).strip(' -')[:220]
+
+
+def is_estimated_listing(bucket_name: str, listing: Any) -> bool:
+    url = getattr(listing, 'url', '') or ''
+    title = fix_vn_text(getattr(listing, 'title', '') or '')
+    source = fix_vn_text(getattr(listing, 'source', '') or '')
+    blob = f"{bucket_name} {title} {source}".lower()
+    return (not url) or ('ước lượng' in blob) or ('uoc luong' in blob) or ('ai estimate' in blob)
+
+
+def summarize_price_samples(buckets: dict, limit: int = 20, require_url: bool = True) -> list[dict[str, Any]]:
     out = []
     seen = set()
     for bucket_name, listings in (buckets or {}).items():
         for l in listings or []:
+            if require_url and is_estimated_listing(bucket_name, l):
+                continue
             url = getattr(l, 'url', '') or ''
-            title = getattr(l, 'title', '') or ''
+            title = clean_market_title(getattr(l, 'title', '') or '')
             key = url or title
             if key in seen:
                 continue
             seen.add(key)
             out.append({
-                'bucket': bucket_name,
+                'bucket': clean_market_title(bucket_name),
                 'title': title[:220],
-                'source': getattr(l, 'source', '') or '',
+                'source': clean_market_title(getattr(l, 'source', '') or ''),
                 'price_total': getattr(l, 'price_total', None),
                 'area_m2': getattr(l, 'area_m2', None),
                 'price_per_m2': getattr(l, 'price_per_m2', None),
@@ -656,14 +673,14 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
         total = s.get('price_total')
         label_parts = []
         if isinstance(ppm, (int, float)) and ppm > 0:
-            label_parts.append(f"~{_fmt_num(ppm,0)} triệu/m²")
+            label_parts.append(f"{_fmt_num(ppm,0)} triệu/m²")
         if isinstance(total, (int, float)) and total > 0:
-            label_parts.append(f"~{_fmt_num(total,1)} tỷ")
+            label_parts.append(f"{_fmt_num(total,1)} tỷ")
         comps.append({
             'name': s.get('title') or f"Mẫu Batdongsan {idx}",
             'developer': s.get('source') or s.get('bucket') or 'Batdongsan.com.vn',
             'scale': s.get('url') or '',
-            'confidence': 'Có link kiểm chứng' if s.get('url') else 'Đang kiểm chứng',
+            'confidence': 'Có link kiểm chứng' if s.get('url') else '',
             'ref_price_label': ' / '.join(label_parts) if label_parts else '',
             'ref_price_sample_count': 1,
             'ref_price_min': ppm,
@@ -673,7 +690,7 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
                 'title': s.get('title') or '',
                 'source': s.get('source') or s.get('bucket') or '',
                 'price_per_m2': ppm,
-                'reasons': ['mẫu trực tiếp', 'có link' if s.get('url') else 'chưa có link'],
+                'reasons': ['mẫu trực tiếp'] + (['có link'] if s.get('url') else []),
                 'url': s.get('url') or '',
             }],
         })
