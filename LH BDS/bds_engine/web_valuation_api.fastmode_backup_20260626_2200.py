@@ -159,7 +159,9 @@ def write_progress(stage: str, message: str, warnings: list[str] | None = None):
         'find_comparables': 'Đang tìm khu vực/tài sản so sánh...',
         'discover_links': 'Đang tìm nguồn dữ liệu thị trường thật...',
         'scrape_sources': 'Đang scrape Batdongsan/Guland/Alonhadat...',
-        'browser_street_queries': 'Chrome đang tìm mẫu tin theo tên đường/phường/khu vực...',
+        # browser_street_queries intentionally uses the detailed message passed by
+        # browser_direct_land_buckets(), so the UI shows the exact prioritized
+        # Batdongsan search keywords: street -> ward/district/city.
         'browser_street_search': 'Chrome đang tìm tin rao trực tiếp trên Batdongsan...',
         'browser_buckets': 'Playwright đang tìm tin theo khu vực/tài sản so sánh...',
         'ai_support': 'AI đang hỗ trợ ước lượng khi nguồn dữ liệu chưa đủ...',
