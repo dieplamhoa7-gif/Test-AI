@@ -9,7 +9,7 @@ const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const required = {
   I: ['Luật Đầu tư','Luật Đất đai','Luật Nhà ở','Luật Quy hoạch'],
   II: ['Luật Đất đai','NĐ 102','NĐ 103'],
-  III: ['Luật Đầu tư','Luật Đất đai','Luật Đấu thầu','Luật Đấu giá'],
+  III: ['Luật Đầu tư','Luật Đất đai'],
   IV: ['Luật Quy hoạch','Luật Nhà ở','Luật Kiến trúc'],
   V: ['Luật Đất đai','NĐ 102','NĐ 103','NĐ 71','NĐ 101'],
   VI: ['Luật Xây dựng','Luật BVMT','Luật PCCC','Luật Tài nguyên nước','Luật Điện lực'],
@@ -24,7 +24,10 @@ for (const ph of data.phases) {
   const pref = ph.id.split('.')[0];
   const item = ph.items[0];
   const docs = item.legal_basis.map(l => `${l.doc} ${l.article}`).join(' | ');
-  const miss = (required[pref]||[]).filter(r => !docs.toLowerCase().includes(r.toLowerCase()));
+  const phaseReq = [...(required[pref]||[])];
+  if (ph.id === 'III.2') phaseReq.push('Luật Đấu giá');
+  if (ph.id === 'III.3') phaseReq.push('Luật Đấu thầu');
+  const miss = phaseReq.filter(r => !docs.toLowerCase().includes(r.toLowerCase()));
   if (miss.length) issues.push({phase: ph.id, type:'missing-required-law', miss, docs});
   if (!item.phase_detail) issues.push({phase: ph.id, type:'missing-phase-detail'});
   if (!item.statutory_timeline?.length) issues.push({phase: ph.id, type:'missing-timeline'});
@@ -44,7 +47,7 @@ console.log('DATA_ISSUES', JSON.stringify(issues, null, 2));
   const errors=[];
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', msg => { if (msg.type()==='error') errors.push(msg.text()); });
-  const targetUrl = process.env.TPRE_URL || 'http://127.0.0.1:8878/tpre_flowchart_popup.html';
+  const targetUrl = process.env.TPRE_URL || 'http://127.0.0.1:8879/tpre_flowchart_popup.html';
   await page.goto(targetUrl, {waitUntil:'networkidle'});
   await page.waitForSelector('.node', {timeout:10000});
   const count = await page.locator('.node').count();
