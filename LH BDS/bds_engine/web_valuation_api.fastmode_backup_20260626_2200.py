@@ -570,6 +570,56 @@ def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, An
 
 
 
+def market_summary_score(result: dict[str, Any]) -> dict[str, Any]:
+    """Compute a simple 0-100 R&D summary score for UI display.
+
+    This is not an investment recommendation; it is a data-quality/relevance score:
+    higher means the report has more real samples, better direct evidence, and clearer
+    comparable support.
+    """
+    sample_count = int(result.get('price_sample_count') or result.get('sample_count') or 0)
+    comp_count = len(result.get('comparables') or [])
+    confidence = str(result.get('confidence') or '').lower()
+    score = 0
+    reasons = []
+    if sample_count >= 20:
+        score += 45; reasons.append('nhiều mẫu giá thật')
+    elif sample_count >= 10:
+        score += 35; reasons.append('đủ mẫu giá tham chiếu')
+    elif sample_count >= 5:
+        score += 24; reasons.append('có một số mẫu giá')
+    elif sample_count > 0:
+        score += 12; reasons.append('mẫu giá còn mỏng')
+    else:
+        reasons.append('chưa parse được mẫu giá')
+    if comp_count >= 5:
+        score += 20; reasons.append('đủ comparable')
+    elif comp_count >= 3:
+        score += 14; reasons.append('có comparable hỗ trợ')
+    elif comp_count > 0:
+        score += 8; reasons.append('comparable còn ít')
+    if 'cao' in confidence or 'high' in confidence:
+        score += 20; reasons.append('độ tin cậy cao')
+    elif 'trung' in confidence or 'medium' in confidence:
+        score += 12; reasons.append('độ tin cậy trung bình')
+    elif confidence:
+        score += 6; reasons.append('có nhãn độ tin cậy')
+    if result.get('map_png_base64') or result.get('map_url'):
+        score += 5; reasons.append('có bản đồ kiểm chứng')
+    if result.get('investor_summary'):
+        score += 10; reasons.append('có tổng kết thẩm định')
+    score = max(0, min(100, int(round(score))))
+    if score >= 75:
+        label = 'Tốt'
+    elif score >= 50:
+        label = 'Trung bình khá'
+    elif score >= 30:
+        label = 'Cần kiểm chứng thêm'
+    else:
+        label = 'Dữ liệu yếu'
+    return {'score': score, 'label': label, 'reasons': reasons[:5]}
+
+
 def rank_comparables_for_valuation(criteria: SearchCriteria, projects: ProjectsResult) -> list[dict[str, Any]]:
     """Rank comparable projects by relevance to the target coordinate for valuation."""
     loc = getattr(criteria, 'location_context', {}) or {}
@@ -1045,8 +1095,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             map_caption = None
             map_b64 = None
 
-    write_progress('done', 'Hoàn tất báo cáo R&D thị trường.', warnings)
-    return {
+    result = {
         'ok': True,
         'criteria': payload,
         'area': projects.area_description,
@@ -1061,6 +1110,9 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         'map_caption': map_caption if map_b64 else None,
         'warnings': warnings,
     }
+    result['summary_score'] = market_summary_score(result)
+    write_progress('done', 'Hoàn tất báo cáo R&D thị trường.', warnings)
+    return result
 
 
 def strip_surrogates(obj):
