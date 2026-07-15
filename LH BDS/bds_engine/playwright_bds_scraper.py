@@ -106,7 +106,7 @@ def _parse_row(source: str, row: dict, mode: str = "buy") -> Listing | None:
     pt = area_m2 = ppm = None
     if mode == "rent":
         # Rent pattern: "15 triệu/tháng · 80 m²" or "250 nghìn/m²/tháng".
-        mppm = re.search(r"(\d{1,4}(?:[\.,]\d+)?)\s*(?:nghìn|ngan)\s*/\s*m", title, re.I)
+        mppm = re.search(r"(\d{1,4}(?:[\.,]\d+)?)\s*(?:nghìn|ngàn|ngan)\s*/\s*m", title, re.I)
         if mppm:
             ppm = (_num_vn(mppm.group(1)) or 0) / 1000.0  # million VND/m2/month
         compact_r = re.search(r"(\d{1,4}(?:[\.,]\d+)?)\s*triệu\s*/?\s*tháng\s*·\s*(\d{2,5}(?:[\.,]\d+)?)\s*m", title, re.I)
@@ -240,7 +240,9 @@ async def scrape_batdongsan_playwright(query: str, limit: int = 10, headless: bo
                 if(!txt || !(mode === 'rent' ? href.includes('/cho-thue-') : href.includes('/ban-'))) continue;
                 if(mode === 'rent') { if(!/(triệu|nghìn|m²|m2|tháng)/i.test(txt)) continue; } else { if(!/(tỷ|Giá thỏa thuận|m²|m2)/i.test(txt)) continue; }
                 if(mode !== 'rent' && /\/năm|\/tháng|\/nam/i.test(txt)) continue;
-                const price=(txt.match(/(?:Giá thỏa thuận|\d{1,3}(?:[,.]\d+)?\s*tỷ)/i)||[''])[0];
+                const price = mode === 'rent'
+                  ? (txt.match(/(?:\d{1,4}(?:[,.]\d+)?\s*(?:triệu|nghìn|ngàn)\s*(?:\/\s*m²?\s*)?(?:\/\s*tháng|\/tháng)?|Giá thỏa thuận)/i)||[''])[0]
+                  : (txt.match(/(?:Giá thỏa thuận|\d{1,3}(?:[,.]\d+)?\s*tỷ)/i)||[''])[0];
                 const area=(txt.match(/\d{1,4}(?:[,.]\d+)?\s*m²?/i)||[''])[0];
                 if(!price || !area) continue;
                 rows.push({title:txt, price, area, url:href});
@@ -392,7 +394,9 @@ async def _search_on_existing_page(page, query: str, mode: str = "buy", limit: i
         if(mode === 'rent') { if(!/(triệu|nghìn|m²|m2|tháng)/i.test(txt)) continue; }
         else { if(!/(tỷ|Giá thỏa thuận|m²|m2)/i.test(txt)) continue; }
         if(mode !== 'rent' && /\/năm|\/tháng|\/nam/i.test(txt)) continue;
-        const price=(txt.match(/(?:Giá thỏa thuận|\d{1,4}(?:[,.]\d+)?\s*(?:tỷ|triệu|nghìn))/i)||[''])[0];
+        const price = mode === 'rent'
+          ? (txt.match(/(?:\d{1,4}(?:[,.]\d+)?\s*(?:triệu|nghìn|ngàn)\s*(?:\/\s*m²?\s*)?(?:\/\s*tháng|\/tháng)?|Giá thỏa thuận)/i)||[''])[0]
+          : (txt.match(/(?:Giá thỏa thuận|\d{1,4}(?:[,.]\d+)?\s*(?:tỷ|triệu|nghìn))/i)||[''])[0];
         const area=(txt.match(/\d{1,5}(?:[,.]\d+)?\s*m²?/i)||[''])[0];
         if(!price || !area) continue;
         rows.push({title:txt, price, area, url:href});
