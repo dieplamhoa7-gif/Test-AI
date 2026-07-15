@@ -56,6 +56,8 @@ if ($existingPublisher) {
   $env:QH_PORT = ''
   $env:DEPLOY_DIR = 'public_final_2026_07_11'
   $env:FIREBASE_SITE = 'lhrealestate'
+  $env:FIREBASE_PROJECT = 'hoa-investment'
+  $env:FIREBASE_CONFIG = 'firebase.json'
   Start-Process -FilePath 'node' `
     -ArgumentList @('tools\lh_tunnel_publish.js') `
     -WorkingDirectory $Root `

@@ -30,6 +30,8 @@ const ROOT = path.resolve(__dirname, '..');
 const DEPLOY_DIR = process.env.DEPLOY_DIR || 'public_final_2026_07_11';
 const CONFIG_PATH = path.join(ROOT, DEPLOY_DIR, 'api-config.json');
 const FIREBASE_SITE = process.env.FIREBASE_SITE || 'lhrealestate';
+const FIREBASE_PROJECT = process.env.FIREBASE_PROJECT || 'hoa-investment';
+const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || 'firebase.json';
 const CLOUDFLARED = process.env.CLOUDFLARED || 'cloudflared';
 const SKIP_DEPLOY = process.env.SKIP_DEPLOY === '1';
 const WORKER = 'https://lh-realestate-api.lhrealestate.workers.dev';
@@ -54,9 +56,10 @@ function writeConfigAndDeploy() {
   for (const { role } of ROLES) cfg[role + 'ApiBase'] = state[role] || '';
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(cfg, null, 2));
   log('api-config.json updated:', JSON.stringify({ rd: cfg.rdApiBase, qh: cfg.qhApiBase }));
-  if (SKIP_DEPLOY) { log('SKIP_DEPLOY=1 -> khong deploy; nho deploy tay:', `firebase deploy --only hosting:${FIREBASE_SITE}`); return; }
+  const deployCmd = `firebase deploy --project ${FIREBASE_PROJECT} --config ${FIREBASE_CONFIG} --only hosting:${FIREBASE_SITE}`;
+  if (SKIP_DEPLOY) { log('SKIP_DEPLOY=1 -> khong deploy; nho deploy tay:', deployCmd); return; }
   try {
-    execSync(`firebase deploy --only hosting:${FIREBASE_SITE}`, { cwd: ROOT, stdio: 'inherit' });
+    execSync(deployCmd, { cwd: ROOT, stdio: 'inherit' });
     log('firebase deploy xong.');
   } catch (e) { log('firebase deploy LOI:', e.message, '-> se thu lai lan cap nhat sau.'); }
 }
