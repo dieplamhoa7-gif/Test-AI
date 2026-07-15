@@ -37,6 +37,7 @@ from typing import Any, Callable, Optional
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, StreamingResponse
 from pydantic import BaseModel
+from vietnamese_text_guard import clean_vietnamese_object, repair_vietnamese_text
 
 router = APIRouter(prefix="/pipeline", tags=["pipeline"])
 
@@ -90,6 +91,7 @@ def _save_model3_job(job: dict[str, Any]) -> None:
     MODEL3_JOB_STATE_DIR.mkdir(parents=True, exist_ok=True)
     path = _model3_job_file(job_id)
     tmp = path.with_suffix(f".json.{os.getpid()}.tmp")
+    job = clean_vietnamese_object(job)
     tmp.write_text(json.dumps(job, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     tmp.replace(path)
 
@@ -1010,7 +1012,7 @@ def _new_model3_job(ticker: str, notebooklm: bool) -> dict[str, Any]:
 
 
 def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
-    text = str(msg)[-1000:]
+    text = repair_vietnamese_text(str(msg))[-1000:]
     job["logs"].append(text)
     job["logs"] = job["logs"][-80:]
     low = text.lower()

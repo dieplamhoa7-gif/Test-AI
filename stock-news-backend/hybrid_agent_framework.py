@@ -31,6 +31,7 @@ import httpx
 from app.providers import get_text_agent
 from model3_lhinvestment_context import build_lhinvestment_context
 from model3_docx_formatter import write_model3_docx
+from model3_utf8_gate import assert_model3_utf8_quality, write_model3_text
 from vietnamese_text_guard import has_vietnamese_quality_issue, repair_vietnamese_text, clean_vietnamese_object, vietnamese_quality_report
 
 ProgressFn = Callable[[str], None]
@@ -640,9 +641,10 @@ def _write_html(task: str, html: str) -> str:
     out.mkdir(parents=True, exist_ok=True)
     safe = re.sub(r"[^A-Za-z0-9_-]+", "-", task.strip())[:50].strip("-") or "tradingagents-report"
     path = out / f"{time.strftime('%Y%m%d-%H%M%S')}-{safe}.html"
+    html = assert_model3_utf8_quality(html, "model3-html")
     if "<html" not in html.lower():
         html = "<!doctype html><html lang='vi'><head><meta charset='utf-8'><title>Model 3 Report</title></head><body><pre>" + html.replace("<", "&lt;") + "</pre></body></html>"
-    path.write_text(html, encoding="utf-8")
+    write_model3_text(path, html, "model3-html")
     return str(path)
 
 
@@ -1081,7 +1083,7 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
     try:
         out_dir = Path("outputs") / "model3"
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / f"{symbol}_grok_9router_smoke_stdout.txt").write_text(smoke_out, encoding="utf-8")
+        write_model3_text(out_dir / f"{symbol}_grok_9router_smoke_stdout.txt", smoke_out, "model3-grok-smoke")
     except Exception:
         pass
     if "OK" not in smoke_out.upper():
@@ -1106,7 +1108,7 @@ def _run_grok_news_cli(symbol: str, progress: ProgressFn, timeout: int = 600, ne
     try:
         out_dir = Path("outputs") / "model3"
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / f"{symbol}_grok_9router_news_stdout.txt").write_text(out, encoding="utf-8")
+        write_model3_text(out_dir / f"{symbol}_grok_9router_news_stdout.txt", out, "model3-grok-news")
     except Exception:
         pass
     if not out or re.search(r"^\s*(ok|done)\s*$", out, re.I):
