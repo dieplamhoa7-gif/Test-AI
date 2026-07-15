@@ -33,6 +33,7 @@ const FIREBASE_SITE = process.env.FIREBASE_SITE || 'lhrealestate';
 const FIREBASE_PROJECT = process.env.FIREBASE_PROJECT || 'hoa-investment';
 const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || 'firebase.json';
 const CLOUDFLARED = process.env.CLOUDFLARED || 'cloudflared';
+const LOCAL_HOST = process.env.LOCAL_HOST || '127.0.0.1';
 const SKIP_DEPLOY = process.env.SKIP_DEPLOY === '1';
 const WORKER = 'https://lh-realestate-api.lhrealestate.workers.dev';
 
@@ -75,8 +76,8 @@ async function healthOk(url, needFlag) {
 
 function runRole(cfg) {
   const { role, port, needFlag } = cfg;
-  log(`starting cloudflared for ${role} -> http://localhost:${port}`);
-  const cf = spawn(CLOUDFLARED, ['tunnel', '--url', `http://localhost:${port}`], { shell: process.platform === 'win32' });
+  log(`starting cloudflared for ${role} -> http://${LOCAL_HOST}:${port}`);
+  const cf = spawn(CLOUDFLARED, ['tunnel', '--url', `http://${LOCAL_HOST}:${port}`], { shell: process.platform === 'win32' });
   let settled = false;
   const onData = async (buf) => {
     const s = buf.toString();
