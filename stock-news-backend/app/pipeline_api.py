@@ -1093,15 +1093,20 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
     job["logs"].append(text)
     job["logs"] = job["logs"][-80:]
     low = text.lower()
+    # Deterministic section mapping. Keep this broader than raw labels because
+    # older Model3 progress strings may arrive mojibaked or with provider labels
+    # like "Codex Technical/Macro" instead of exact section keys.
     mapping = [
-        ("quick", "quick_summary", "Kiro"), ("summary", "quick_summary", "Kiro"),
-        ("news", "news", "Grok"), ("impact", "news", "Grok"), ("grok", "news", "Grok"),
-        ("indicator", "technical", "Codex"), ("technical", "technical", "Codex"),
-        ("fundamental", "fundamental", "Codex"), ("macro", "fundamental", "Codex"),
-        ("scenario", "scenario", "Kiro"), ("bull", "bull_bear", "Codex"), ("bear", "bull_bear", "Codex"),
-        ("catalyst", "bull_bear", "Codex"), ("risk", "risk", "Kiro"), ("viewpoint", "risk", "Kiro"),
-        ("follow", "followup", "Codex"), ("docx", "word", "Model3"), ("word", "word", "Model3"),
-        ("notebook", "notebooklm", "NotebookLM"), ("slide", "notebooklm", "NotebookLM"),
+        ("quick summary", "quick_summary", "Kiro"), ("executive summary", "quick_summary", "Kiro"), ("summary", "quick_summary", "Kiro"),
+        ("grokx news", "news", "Grok"), ("grok news", "news", "Grok"), ("news & impact", "news", "Grok"), ("news", "news", "Grok"), ("impact", "news", "Grok"), ("grok", "news", "Grok"),
+        ("codex technical", "technical", "Codex"), ("technical/macro", "technical", "Codex"), ("indicator", "technical", "Codex"), ("technical", "technical", "Codex"), ("ptkt", "technical", "Codex"),
+        ("fundamental & macro", "fundamental", "Codex"), ("codex fundamental", "fundamental", "Codex"), ("fundamental", "fundamental", "Codex"), ("macro", "fundamental", "Codex"),
+        ("kiro deep investment scenario", "scenario", "Kiro"), ("scenario", "scenario", "Kiro"), ("kịch bản", "scenario", "Kiro"), ("kich ban", "scenario", "Kiro"),
+        ("bull/bear", "bull_bear", "Codex"), ("bull case", "bull_bear", "Codex"), ("bull", "bull_bear", "Codex"), ("bear", "bull_bear", "Codex"), ("catalyst", "bull_bear", "Codex"),
+        ("risk manager", "risk", "Kiro"), ("risk", "risk", "Kiro"), ("viewpoint", "risk", "Kiro"), ("rủi ro", "risk", "Kiro"), ("rui ro", "risk", "Kiro"),
+        ("follow-up", "followup", "Codex"), ("followup", "followup", "Codex"), ("follow", "followup", "Codex"),
+        ("ghi docx", "word", "Model3"), ("docx", "word", "Model3"), ("word", "word", "Model3"),
+        ("notebook", "notebooklm", "NotebookLM"), ("slide", "notebooklm", "NotebookLM"), ("pdf", "notebooklm", "NotebookLM"),
     ]
     matched: tuple[str, str] | None = None
     for needle, section_key, agent in mapping:
@@ -1117,6 +1122,7 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
         recoverable = ("fallback" in low) or ("workflow không chết" in low) or ("workflow khong chet" in low)
         terminal_error = (not recoverable) and (("❌" in text) or (" error" in low) or (" lỗi" in low) or ("failed" in low))
         next_status = "error" if terminal_error else ("done" if terminal_done else "running")
+        job["current_step"] = {"section": section_key, "agent": agent, "status": next_status, "message": text[-300:], "updated_at": time.time()}
         if agent in job["agents"]:
             if next_status == "error":
                 job["agents"][agent] = "error"
@@ -1134,6 +1140,8 @@ def _model3_mark_progress(job: dict[str, Any], msg: str) -> None:
                     s["status"] = "done"
                 elif s["status"] in {"pending", "error"}:
                     s["status"] = "running"
+                s["last_message"] = text[-220:]
+                s["updated_at"] = time.time()
                 break
         # If all sections belonging to an agent are done/skipped, mark that AI done.
         if agent in job["agents"] and agent != "Model3":
