@@ -452,21 +452,35 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     city = loc.get('city') or loc.get('province') or 'Hồ Chí Minh'
     mode = getattr(criteria, 'transaction', 'buy') or 'buy'
     is_rent = mode == 'rent'
+    ptype = (getattr(criteria, 'property_type', '') or '').lower()
+    # For land/townhouse sale, prioritize exact street + ward/district/city from
+    # the coordinate. This avoids Batdongsan returning broad city/project samples.
+    if ptype == 'dat':
+        sale_terms = ['bán đất', 'bán đất mặt tiền', 'bán đất nền']
+        rent_terms = ['cho thuê đất', 'cho thuê mặt bằng']
+    elif ptype == 'nha':
+        sale_terms = ['bán nhà mặt tiền', 'bán nhà phố', 'bán nhà riêng']
+        rent_terms = ['cho thuê nhà mặt tiền', 'cho thuê nhà phố', 'cho thuê nhà riêng']
+    else:
+        sale_terms = ['bán nhà đất mặt tiền', 'bán đất mặt tiền']
+        rent_terms = ['cho thuê nhà đất mặt tiền', 'cho thuê mặt bằng']
+    terms = rent_terms if is_rent else sale_terms
     road_scope = ' '.join(x for x in [road, ward, district, city] if x)
-    if road:
-        if is_rent:
-            queries += [f"cho thuê nhà đất mặt tiền {road_scope}", f"cho thuê mặt bằng {road_scope}"]
-        else:
-            queries += [f"bán nhà đất mặt tiền {road_scope}", f"bán đất mặt tiền {road_scope}"]
-    if ward:
-        scope = ' '.join(x for x in [ward, district, city] if x)
-        if is_rent:
-            queries += [f"cho thuê nhà đất {scope}", f"cho thuê mặt bằng {scope}"]
-        else:
-            queries += [f"bán nhà đất {scope}", f"bán đất {scope}"]
-    queries.append(("cho thuê nhà đất " if is_rent else "bán nhà đất ") + area)
+    ward_scope = ' '.join(x for x in [ward, district, city] if x)
+    district_scope = ' '.join(x for x in [district, city] if x)
+    if road_scope:
+        queries += [f"{term} {road_scope}" for term in terms]
+    if ward_scope:
+        queries += [f"{term} {ward_scope}" for term in terms[:2]]
+    if district_scope and not road_scope:
+        queries += [f"{term} {district_scope}" for term in terms[:2]]
+    # Last fallback is still location-based, not generic project comparable.
+    if area:
+        queries.append((terms[0] + ' ' + area).strip())
+    # de-duplicate while preserving priority order
+    seen_q = set(); queries = [q for q in queries if q and not (q.lower() in seen_q or seen_q.add(q.lower()))]
     buckets = {}
-    write_progress('browser_street_queries', ('Chrome search cho thuê theo tên đường: ' if is_rent else 'Chrome search bán theo tên đường: ') + ' | '.join(queries[:5]))
+    write_progress('browser_street_queries', ('Chrome search cho thuê ưu tiên đường/phường/quận: ' if is_rent else 'Chrome search bán ưu tiên đường/phường/quận: ') + ' | '.join(queries[:5]))
     for q in queries[:5]:
         try:
             rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode=mode)
