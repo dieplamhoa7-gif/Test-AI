@@ -451,7 +451,15 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     ward = loc.get('ward') or loc.get('suburb') or loc.get('phuong') or ''
     district = loc.get('district') or loc.get('county') or loc.get('city_district') or ''
     queries = []
-    city = loc.get('city') or loc.get('province') or 'Hồ Chí Minh'
+    city = loc.get('city') or loc.get('province') or 'TP Hồ Chí Minh'
+    city_l = fix_vn_text(str(city or '')).lower()
+    province = loc.get('province') or loc.get('state') or ''
+    province_l = fix_vn_text(str(province or '')).lower()
+    if 'thủ đức' in city_l or 'thu duc' in city_l:
+        if province and ('hồ chí minh' in province_l or 'ho chi minh' in province_l or 'hcm' in province_l):
+            city = province
+        else:
+            city = 'TP Hồ Chí Minh'
     def scope(*parts):
         out = []
         seen = set()

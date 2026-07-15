@@ -59,7 +59,19 @@ async def resolve_location_context(client, criteria: SearchCriteria) -> dict[str
                 road = a.get("road") or a.get("pedestrian") or a.get("residential") or ""
                 ward = a.get("suburb") or a.get("quarter") or a.get("ward") or a.get("village") or ""
                 district = a.get("city_district") or a.get("county") or a.get("district") or ""
-                city = a.get("city") or a.get("state") or a.get("town") or ""
+                raw_city = a.get("city") or a.get("town") or ""
+                state = a.get("state") or a.get("province") or ""
+                city = raw_city or state
+                # Nominatim may return "Thành phố Thủ Đức" as city for HCMC
+                # coordinates. For search keywords, city must be the province-level
+                # city (TP Hồ Chí Minh); Thu Duc belongs in district scope only.
+                city_l = str(city or "").lower()
+                state_l = str(state or "").lower()
+                if "thủ đức" in city_l or "thu duc" in city_l:
+                    if state and ("hồ chí minh" in state_l or "ho chi minh" in state_l or "hcm" in state_l):
+                        city = state
+                    else:
+                        city = "TP Hồ Chí Minh"
                 ctx = {
                     "display_name": j.get("display_name") or "",
                     "road": road,
