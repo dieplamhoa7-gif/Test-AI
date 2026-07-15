@@ -596,6 +596,72 @@ def summarize_price_samples(buckets: dict, limit: int = 20) -> list[dict[str, An
 
 
 
+def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
+    samples = summarize_price_samples(buckets, limit=20)
+    ppms = [x.get('price_per_m2') for x in samples if isinstance(x.get('price_per_m2'), (int, float)) and x.get('price_per_m2') > 0]
+    totals = [x.get('price_total') for x in samples if isinstance(x.get('price_total'), (int, float)) and x.get('price_total') > 0]
+    def med(vals):
+        vals = sorted(vals)
+        if not vals:
+            return None
+        n = len(vals)
+        return vals[n//2] if n % 2 else (vals[n//2-1] + vals[n//2]) / 2
+    median_ppm = med(ppms)
+    investor = {}
+    if median_ppm:
+        investor['average_suggested_price'] = f"~{_fmt_num(median_ppm,0)} triệu/m²"
+        investor['suggested_price'] = investor['average_suggested_price']
+        investor['reference_price_label'] = f"~{_fmt_num(median_ppm,0)} triệu/m² từ {len(ppms)} mẫu Batdongsan"
+        investor['confidence'] = 'Tạm đủ mẫu kiểm chứng' if len(ppms) >= 5 else 'Cần kiểm chứng thêm'
+        investor['adjustment_bullets'] = [
+            f"Đã đọc {len(samples)} mẫu tin trực tiếp từ nguồn web.",
+            f"Có {len(ppms)} mẫu parse được giá/m².",
+            f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m²." if ppms else '',
+        ]
+        investor['adjustment_bullets'] = [x for x in investor['adjustment_bullets'] if x]
+        investor['price_rationale'] = 'Giá đề xuất lấy median từ các mẫu giá trực tiếp đã parse, cần đối chiếu pháp lý/diện tích/hẻm-mặt tiền trước khi chốt.'
+    elif totals:
+        investor['average_suggested_price'] = f"~{_fmt_num(med(totals),1)} tỷ/tài sản"
+        investor['suggested_price'] = investor['average_suggested_price']
+        investor['reference_price_label'] = f"~{_fmt_num(med(totals),1)} tỷ từ {len(totals)} mẫu có giá tổng"
+        investor['confidence'] = 'Cần kiểm chứng thêm'
+    comps = []
+    for idx, s in enumerate(samples[:5], 1):
+        ppm = s.get('price_per_m2')
+        total = s.get('price_total')
+        label_parts = []
+        if isinstance(ppm, (int, float)) and ppm > 0:
+            label_parts.append(f"~{_fmt_num(ppm,0)} triệu/m²")
+        if isinstance(total, (int, float)) and total > 0:
+            label_parts.append(f"~{_fmt_num(total,1)} tỷ")
+        comps.append({
+            'name': s.get('title') or f"Mẫu Batdongsan {idx}",
+            'developer': s.get('source') or s.get('bucket') or 'Batdongsan.com.vn',
+            'scale': s.get('url') or '',
+            'confidence': 'Có link kiểm chứng' if s.get('url') else 'Đang kiểm chứng',
+            'ref_price_label': ' / '.join(label_parts) if label_parts else '',
+            'ref_price_sample_count': 1,
+            'ref_price_min': ppm,
+            'ref_price_max': ppm,
+            'ref_selection_rule': 'Mẫu tin trực tiếp theo keyword đường/phường/thành phố từ tọa độ.',
+            'ref_evidences': [{
+                'title': s.get('title') or '',
+                'source': s.get('source') or s.get('bucket') or '',
+                'price_per_m2': ppm,
+                'reasons': ['mẫu trực tiếp', 'có link' if s.get('url') else 'chưa có link'],
+                'url': s.get('url') or '',
+            }],
+        })
+    return {
+        'price_samples': samples,
+        'price_sample_count': len(ppms),
+        'sample_count': len(samples),
+        'suggested_price_range': investor.get('reference_price_label') or '',
+        'investor_summary': investor,
+        'direct_comparables': comps,
+    }
+
+
 def market_summary_score(result: dict[str, Any]) -> dict[str, Any]:
     """Compute a simple 0-100 R&D summary score for UI display.
 
@@ -1121,15 +1187,22 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             map_caption = None
             map_b64 = None
 
+    direct_struct = direct_market_structured_fields(buckets) if not use_comparable_flow else {}
+    merged_investor_summary = dict(direct_struct.get('investor_summary') or {})
+    merged_investor_summary.update(investor_summary or {})
     result = {
         'ok': True,
         'criteria': payload,
         'area': projects.area_description,
         'intro': intro,
-        'comparables': projects.projects[:5] if use_comparable_flow else [],
+        'comparables': projects.projects[:5] if use_comparable_flow else (direct_struct.get('direct_comparables') or []),
         'location_context': getattr(criteria, 'location_context', {}) or {},
         'ai_sale_assessment': ai_sale_assessment_text,
-        'investor_summary': investor_summary,
+        'investor_summary': merged_investor_summary,
+        'price_samples': direct_struct.get('price_samples') or [],
+        'price_sample_count': direct_struct.get('price_sample_count') or 0,
+        'sample_count': direct_struct.get('sample_count') or 0,
+        'suggested_price_range': direct_struct.get('suggested_price_range') or '',
         'report': report,
         'text': intro + "\n\n" + report,
         'map_png_base64': map_b64,
