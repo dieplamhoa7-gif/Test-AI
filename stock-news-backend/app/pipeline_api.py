@@ -738,13 +738,34 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
             gateway_errors.append(f"{gateway}: {type(exc).__name__}: {str(exc)[:200]}")
     if data is None:
         try:
-            data = _load_symbol_local_provider(ticker, force_refresh=True)
-            log("✅ Freshness gate: gateway unreachable, fallback local Render market_data provider OK")
-        except Exception as exc:
-            raise RuntimeError(
-                "CALL_ASSISTANT_FIX: Không lấy được market data qua gateway hoặc provider local. "
-                f"Gateway errors: {' | '.join(gateway_errors)[-1000:]}. Local error: {type(exc).__name__}: {exc}"
-            ) from exc
+            public_url = os.getenv("LHINVT_PUBLIC_MARKET_DATA_URL", "https://lhinvt.web.app/data/market_data.json")
+            _status, public_data, _size = _urlopen_json(public_url, 20.0, 8 * 1024 * 1024)
+            items = public_data.get("items") if isinstance(public_data, dict) else public_data
+            found = None
+            if isinstance(items, list):
+                for item in items:
+                    if isinstance(item, dict) and str(item.get("ticker") or item.get("symbol") or "").upper() == ticker.upper():
+                        found = dict(item)
+                        break
+            if not found:
+                raise RuntimeError(f"ticker {ticker} not found in public market_data")
+            found.setdefault("source", found.get("priceSource") or "firebase-public-market-data")
+            found.setdefault("updatedAt", public_data.get("priceUpdatedAt") or public_data.get("updatedAt") if isinstance(public_data, dict) else None)
+            found.setdefault("quoteUpdatedAt", public_data.get("priceUpdatedAt") or public_data.get("updatedAt") if isinstance(public_data, dict) else None)
+            found.setdefault("historyLastDate", found.get("latestCandleDate") or found.get("date") or (public_data.get("latestTradingDate") if isinstance(public_data, dict) else None))
+            found.setdefault("volume", found.get("volume"))
+            found.setdefault("price", found.get("price") or found.get("close"))
+            data = found
+            log(f"✅ Freshness gate: gateway timeout, dùng Firebase public market_data mới cho {ticker}")
+        except Exception as public_exc:
+            try:
+                data = _load_symbol_local_provider(ticker, force_refresh=True)
+                log("✅ Freshness gate: gateway/public unreachable, fallback local Render market_data provider OK")
+            except Exception as exc:
+                raise RuntimeError(
+                    "CALL_ASSISTANT_FIX: Không lấy được market data qua gateway, Firebase public hoặc provider local. "
+                    f"Gateway errors: {' | '.join(gateway_errors)[-1000:]}. Public error: {type(public_exc).__name__}: {public_exc}. Local error: {type(exc).__name__}: {exc}"
+                ) from exc
 
     def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
         """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
@@ -793,10 +814,13 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
     price = data.get("price")
     volume = data.get("volume")
     issues = []
-    if source != "vps":
-        issues.append(f"source không phải VPS live quote: {source}")
-    if quote_dt is None or quote_age_min > 15:
-        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
+    source_text = str(source or "")
+    public_fallback_ok = source_text == "firebase-public-market-data" or "firebase" in source_text or "vps" in source_text.lower()
+    if not public_fallback_ok:
+        issues.append(f"source không phải VPS/Firebase public fresh data: {source}")
+    max_quote_age_min = int(os.getenv("MARKET_QUOTE_MAX_AGE_MINUTES", "2160" if public_fallback_ok else "15"))
+    if quote_dt is None or quote_age_min > max_quote_age_min:
+        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}, max={max_quote_age_min}")
     # Weekend/holiday tolerance: on Sat/Sun, the latest trading bar is often
     # Friday, so a 2-3 calendar-day gap can still be fresh.
     max_hist_age_days = int(os.getenv("MARKET_HISTORY_MAX_AGE_DAYS", "3" if now.weekday() >= 5 else "1"))
