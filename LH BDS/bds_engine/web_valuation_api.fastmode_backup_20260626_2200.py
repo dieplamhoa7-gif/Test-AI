@@ -164,7 +164,7 @@ def write_progress(stage: str, message: str, warnings: list[str] | None = None):
         # Batdongsan search keywords: street -> ward/district/city.
         'browser_street_search': 'Chrome đang tìm tin rao trực tiếp trên Batdongsan...',
         'browser_buckets': 'Playwright đang tìm tin theo khu vực/tài sản so sánh...',
-        'ai_support': 'AI đang hỗ trợ ước lượng khi nguồn dữ liệu chưa đủ...',
+        'ai_support': 'Đang tổng hợp giá tham chiếu khi nguồn dữ liệu chưa đủ...',
         'build_report': 'Đang tổng hợp báo cáo R&D...',
         'render_map': 'Đang dựng bản đồ kiểm chứng...',
         'done': 'Hoàn tất báo cáo R&D thị trường.',
@@ -609,9 +609,9 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
     median_ppm = med(ppms)
     investor = {}
     if median_ppm:
-        investor['average_suggested_price'] = f"~{_fmt_num(median_ppm,0)} triệu/m²"
+        investor['average_suggested_price'] = f"{_fmt_num(median_ppm,0)} triệu/m²"
         investor['suggested_price'] = investor['average_suggested_price']
-        investor['reference_price_label'] = f"~{_fmt_num(median_ppm,0)} triệu/m² từ {len(ppms)} mẫu Batdongsan"
+        investor['reference_price_label'] = f"{_fmt_num(median_ppm,0)} triệu/m² · {len(ppms)} mẫu Batdongsan"
         investor['confidence'] = 'Tạm đủ mẫu kiểm chứng' if len(ppms) >= 5 else 'Cần kiểm chứng thêm'
         investor['adjustment_bullets'] = [
             f"Đã đọc {len(samples)} mẫu tin trực tiếp từ nguồn web.",
@@ -619,11 +619,11 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
             f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m²." if ppms else '',
         ]
         investor['adjustment_bullets'] = [x for x in investor['adjustment_bullets'] if x]
-        investor['price_rationale'] = 'Giá đề xuất lấy median từ các mẫu giá trực tiếp đã parse, cần đối chiếu pháp lý/diện tích/hẻm-mặt tiền trước khi chốt.'
+        investor['price_rationale'] = 'Median từ mẫu giá trực tiếp; cần kiểm tra pháp lý, diện tích và vị trí trước khi chốt.'
     elif totals:
-        investor['average_suggested_price'] = f"~{_fmt_num(med(totals),1)} tỷ/tài sản"
+        investor['average_suggested_price'] = f"{_fmt_num(med(totals),1)} tỷ/tài sản"
         investor['suggested_price'] = investor['average_suggested_price']
-        investor['reference_price_label'] = f"~{_fmt_num(med(totals),1)} tỷ từ {len(totals)} mẫu có giá tổng"
+        investor['reference_price_label'] = f"{_fmt_num(med(totals),1)} tỷ · {len(totals)} mẫu có giá tổng"
         investor['confidence'] = 'Cần kiểm chứng thêm'
     comps = []
     for idx, s in enumerate(samples[:5], 1):
@@ -1079,7 +1079,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     if not has_price:
         if not use_comparable_flow:
             warnings.append('Không có mẫu giá real parse được; không dùng AI estimate cho sản phẩm direct-search.')
-            write_progress('no_real_street_price', 'Không có mẫu giá real parse được; trả kết quả không có số ước lượng.', warnings)
+            write_progress('no_real_street_price', 'Không có mẫu giá thực parse được; trả kết quả không có giá tham chiếu.', warnings)
         else:
             warnings.append('Web nguồn/search bị chặn hoặc không parse được giá; dùng AI estimate có nhãn kiểm chứng.')
             write_progress('ai_support', 'Nguồn thật chưa đủ giá; AI support đang tạo estimate có nhãn cần kiểm chứng...', warnings)
