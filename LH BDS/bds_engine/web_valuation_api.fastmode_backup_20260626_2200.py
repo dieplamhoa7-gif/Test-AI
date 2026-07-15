@@ -476,18 +476,43 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     mode = getattr(criteria, 'transaction', 'buy') or 'buy'
     is_rent = mode == 'rent'
     ptype = (getattr(criteria, 'property_type', '') or '').lower()
-    # For land/townhouse sale, prioritize exact street + ward/district/city from
-    # the coordinate. This avoids Batdongsan returning broad city/project samples.
+    rent_subtype = (getattr(criteria, 'rent_subtype', '') or '').lower()
+    feature = (getattr(criteria, 'feature', '') or '').lower()
+    feature_terms = []
+    if feature == 'mattien':
+        feature_terms = ['mặt tiền']
+    elif feature == 'corner':
+        feature_terms = ['góc', '2 mặt tiền']
+    elif feature == 'hem':
+        feature_terms = ['hẻm', 'ngõ']
+    # For land/townhouse/shophouse/commercial space, prioritize exact street +
+    # ward/district/city from the coordinate and include product/feature terms.
     if ptype == 'dat':
         sale_terms = ['bán đất', 'bán đất mặt tiền', 'bán đất nền']
         rent_terms = ['cho thuê đất', 'cho thuê mặt bằng']
     elif ptype == 'nha':
         sale_terms = ['bán nhà mặt tiền', 'bán nhà phố', 'bán nhà riêng']
         rent_terms = ['cho thuê nhà mặt tiền', 'cho thuê nhà phố', 'cho thuê nhà riêng']
+    elif ptype == 'shophouse':
+        sale_terms = ['bán shophouse', 'bán nhà phố thương mại', 'bán mặt bằng kinh doanh']
+        if rent_subtype == 'rent_vanphong':
+            rent_terms = ['cho thuê văn phòng', 'cho thuê mặt bằng văn phòng', 'cho thuê sàn văn phòng']
+        elif rent_subtype == 'rent_santhuongmai':
+            rent_terms = ['cho thuê mặt bằng kinh doanh', 'cho thuê sàn thương mại', 'cho thuê shophouse']
+        else:
+            rent_terms = ['cho thuê shophouse', 'cho thuê mặt bằng kinh doanh', 'cho thuê nhà phố thương mại']
     else:
         sale_terms = ['bán nhà đất mặt tiền', 'bán đất mặt tiền']
         rent_terms = ['cho thuê nhà đất mặt tiền', 'cho thuê mặt bằng']
     terms = rent_terms if is_rent else sale_terms
+    if feature_terms:
+        enriched = []
+        for term in terms:
+            enriched.append(term)
+            for ft in feature_terms:
+                if ft not in term:
+                    enriched.append(f"{term} {ft}")
+        terms = enriched
     road_scope = scope(road, ward, district, city)
     ward_scope = scope(ward, district, city)
     district_scope = scope(district, city)
@@ -939,7 +964,10 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             criteria.property_type = 'shophouse'
         elif criteria.property_type == 'rent_nha':
             criteria.property_type = 'nha'
-    use_comparable_flow = criteria.property_type == 'chungcu' or (criteria.transaction == 'rent' and getattr(criteria, 'rent_subtype', None) in {'rent_vanphong', 'rent_santhuongmai'})
+    # Only apartments use project/comparable-first flow. Land, townhouse,
+    # shophouse, office floor and commercial space must search by street/ward/city
+    # first because their value is highly frontage/location-specific.
+    use_comparable_flow = criteria.property_type == 'chungcu'
     rd_mode = str(payload.get('mode') or payload.get('rdMode') or 'standard').lower()
     is_fast_mode = rd_mode == 'fast'
     warnings: list[str] = []
