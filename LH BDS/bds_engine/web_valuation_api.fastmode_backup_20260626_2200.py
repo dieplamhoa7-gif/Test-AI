@@ -638,7 +638,7 @@ def summarize_price_samples(buckets: dict, limit: int = 20, require_url: bool = 
 
 
 
-def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
+def direct_market_structured_fields(buckets: dict, is_rent: bool = False) -> dict[str, Any]:
     samples = summarize_price_samples(buckets, limit=20)
     ppms = [x.get('price_per_m2') for x in samples if isinstance(x.get('price_per_m2'), (int, float)) and x.get('price_per_m2') > 0]
     totals = [x.get('price_total') for x in samples if isinstance(x.get('price_total'), (int, float)) and x.get('price_total') > 0]
@@ -651,21 +651,31 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
     median_ppm = med(ppms)
     investor = {}
     if median_ppm:
-        investor['average_suggested_price'] = f"{_fmt_num(median_ppm,0)} triệu/m²"
-        investor['suggested_price'] = investor['average_suggested_price']
-        investor['reference_price_label'] = f"{_fmt_num(median_ppm,0)} triệu/m² · {len(ppms)} mẫu Batdongsan"
+        if is_rent:
+            investor['average_suggested_price'] = f"{_fmt_num(median_ppm,2)} triệu/m²/tháng"
+            investor['suggested_price'] = investor['average_suggested_price']
+            investor['reference_price_label'] = f"{_fmt_num(median_ppm,2)} triệu/m²/tháng · {len(ppms)} mẫu Batdongsan"
+        else:
+            investor['average_suggested_price'] = f"{_fmt_num(median_ppm,0)} triệu/m²"
+            investor['suggested_price'] = investor['average_suggested_price']
+            investor['reference_price_label'] = f"{_fmt_num(median_ppm,0)} triệu/m² · {len(ppms)} mẫu Batdongsan"
         investor['confidence'] = 'Tạm đủ mẫu kiểm chứng' if len(ppms) >= 5 else 'Cần kiểm chứng thêm'
         investor['adjustment_bullets'] = [
             f"Đã đọc {len(samples)} mẫu tin trực tiếp từ nguồn web.",
             f"Có {len(ppms)} mẫu parse được giá/m².",
-            f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m²." if ppms else '',
+            (f"Biên giá thuê: {_fmt_num(min(ppms),2)}–{_fmt_num(max(ppms),2)} triệu/m²/tháng." if is_rent else f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m².") if ppms else '',
         ]
         investor['adjustment_bullets'] = [x for x in investor['adjustment_bullets'] if x]
         investor['price_rationale'] = 'Median từ mẫu giá trực tiếp; cần kiểm tra pháp lý, diện tích và vị trí trước khi chốt.'
     elif totals:
-        investor['average_suggested_price'] = f"{_fmt_num(med(totals),1)} tỷ/tài sản"
-        investor['suggested_price'] = investor['average_suggested_price']
-        investor['reference_price_label'] = f"{_fmt_num(med(totals),1)} tỷ · {len(totals)} mẫu có giá tổng"
+        if is_rent:
+            investor['average_suggested_price'] = f"{_fmt_num(med(totals)*1000,1)} triệu/căn/tháng"
+            investor['suggested_price'] = investor['average_suggested_price']
+            investor['reference_price_label'] = f"{_fmt_num(med(totals)*1000,1)} triệu/căn/tháng · {len(totals)} mẫu có giá thuê tổng"
+        else:
+            investor['average_suggested_price'] = f"{_fmt_num(med(totals),1)} tỷ/tài sản"
+            investor['suggested_price'] = investor['average_suggested_price']
+            investor['reference_price_label'] = f"{_fmt_num(med(totals),1)} tỷ · {len(totals)} mẫu có giá tổng"
         investor['confidence'] = 'Cần kiểm chứng thêm'
     comps = []
     for idx, s in enumerate(samples[:5], 1):
@@ -673,9 +683,9 @@ def direct_market_structured_fields(buckets: dict) -> dict[str, Any]:
         total = s.get('price_total')
         label_parts = []
         if isinstance(ppm, (int, float)) and ppm > 0:
-            label_parts.append(f"{_fmt_num(ppm,0)} triệu/m²")
+            label_parts.append(f"{_fmt_num(ppm,2)} triệu/m²/tháng" if is_rent else f"{_fmt_num(ppm,0)} triệu/m²")
         if isinstance(total, (int, float)) and total > 0:
-            label_parts.append(f"{_fmt_num(total,1)} tỷ")
+            label_parts.append(f"{_fmt_num(total*1000,1)} triệu/căn/tháng" if is_rent else f"{_fmt_num(total,1)} tỷ")
         comps.append({
             'name': s.get('title') or f"Mẫu Batdongsan {idx}",
             'developer': s.get('source') or s.get('bucket') or 'Batdongsan.com.vn',
@@ -1232,7 +1242,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             map_caption = None
             map_b64 = None
 
-    direct_struct = direct_market_structured_fields(buckets) if not use_comparable_flow else {}
+    direct_struct = direct_market_structured_fields(buckets, is_rent=(getattr(criteria, 'transaction', 'buy') == 'rent')) if not use_comparable_flow else {}
     merged_investor_summary = dict(direct_struct.get('investor_summary') or {})
     merged_investor_summary.update(investor_summary or {})
     result = {
