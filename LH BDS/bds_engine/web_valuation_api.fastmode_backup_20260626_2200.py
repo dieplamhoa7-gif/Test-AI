@@ -991,10 +991,12 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             criteria.property_type = 'shophouse'
         elif criteria.property_type == 'rent_nha':
             criteria.property_type = 'nha'
-    # Only apartments use project/comparable-first flow. Land, townhouse,
-    # shophouse, office floor and commercial space must search by street/ward/city
-    # first because their value is highly frontage/location-specific.
+    # Apartments use project/comparable-first flow. Office lease keeps direct
+    # street-search for rent prices, but also asks AI for 5 office/project
+    # comparables so the report has a proper comparison set.
+    rent_subtype = getattr(criteria, 'rent_subtype', None)
     use_comparable_flow = criteria.property_type == 'chungcu'
+    needs_ai_comparables = (criteria.transaction == 'rent' and rent_subtype == 'rent_vanphong')
     rd_mode = str(payload.get('mode') or payload.get('rdMode') or 'standard').lower()
     is_fast_mode = rd_mode == 'fast'
     warnings: list[str] = []
@@ -1010,11 +1012,11 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             log_error('resolve_location', payload, e, 'continue without location_context', note)
             criteria.location_context = {}
 
-    if not use_comparable_flow:
+    if not use_comparable_flow and not needs_ai_comparables:
         write_progress('direct_street_search', 'Sản phẩm direct-search: ưu tiên tìm/search thẳng theo tên đường...', warnings)
         projects = direct_land_projects(criteria)
     else:
-        write_progress('find_comparables', 'Đang tìm 5 dự án/khu vực comparable bằng AI...', warnings)
+        write_progress('find_comparables', 'Đang tìm 5 dự án/khu vực/văn phòng comparable bằng AI...', warnings)
         try:
             projects = await asyncio.wait_for(find_nearby_projects(ai_fast, criteria), timeout=45)
         except Exception as e:
@@ -1027,7 +1029,8 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     if not use_comparable_flow:
         intro = (
             f"Khu vực: {projects.area_description}\n\n"
-            "⏳ Đang tìm mẫu tin trực tiếp theo tên đường/phường/khu vực trên Batdongsan, Guland, Alonhadat…"
+            + (f"5 dự án/khu vực tham chiếu:\n{project_text}\n\n" if needs_ai_comparables else '')
+            + "⏳ Đang tìm mẫu tin trực tiếp theo tên đường/phường/khu vực trên Batdongsan, Guland, Alonhadat…"
         )
     else:
         intro = (
@@ -1245,12 +1248,20 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     direct_struct = direct_market_structured_fields(buckets, is_rent=(getattr(criteria, 'transaction', 'buy') == 'rent')) if not use_comparable_flow else {}
     merged_investor_summary = dict(direct_struct.get('investor_summary') or {})
     merged_investor_summary.update(investor_summary or {})
+    result_comparables = projects.projects[:5] if use_comparable_flow else (direct_struct.get('direct_comparables') or [])
+    if needs_ai_comparables:
+        seen_names = {str(x.get('name') or '').strip().lower() for x in result_comparables if isinstance(x, dict)}
+        for p in (projects.projects or [])[:5]:
+            name = str(p.get('name') or '').strip()
+            if name and name.lower() not in seen_names:
+                result_comparables.append(p)
+                seen_names.add(name.lower())
     result = {
         'ok': True,
         'criteria': payload,
         'area': projects.area_description,
         'intro': intro,
-        'comparables': projects.projects[:5] if use_comparable_flow else (direct_struct.get('direct_comparables') or []),
+        'comparables': result_comparables[:8],
         'location_context': getattr(criteria, 'location_context', {}) or {},
         'ai_sale_assessment': ai_sale_assessment_text,
         'investor_summary': merged_investor_summary,
