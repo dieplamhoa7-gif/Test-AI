@@ -17,6 +17,9 @@ except Exception:
 def fix_vn_text(x):
     if not isinstance(x, str):
         return x
+    # Keep already-good Vietnamese intact; repair common mojibake forms from
+    # browser/geocoder/search results. Some old literals in this file are already
+    # lossy (contain U+FFFD), so we also apply conservative domain replacements.
     try:
         x = x.encode('utf-8', 'replace').decode('utf-8', 'replace')
     except Exception:
@@ -26,6 +29,22 @@ def fix_vn_text(x):
             x = _ftfy_fix_text(x)
         except Exception:
             pass
+    _domain = {
+        'Ph����?ng': 'Phường', 'ph����?ng': 'phường', 'Ph���?ng': 'Phường', 'ph���?ng': 'phường',
+        'Ph����': 'Phường', 'ph����': 'phường', 'Ph��?ng': 'Phường', 'ph��?ng': 'phường',
+        'SA�i GA�n': 'Sài Gòn', 'SA�i': 'Sài', 'GA�n': 'Gòn',
+        'ThA�nh ph��?': 'Thành phố', 'ThA�nh ph��`': 'Thành phố', 'ThA�nh ph��': 'Thành phố', 'ThA�nh': 'Thành',
+        'Th�� �?��cc': 'Thủ Đức', 'Th�� �?��c': 'Thủ Đức', 'Th��': 'Thủ', '�?��cc': 'Đức', '�?��c': 'Đức',
+        'H��? ChA- Minh': 'Hồ Chí Minh', 'ChA- Minh': 'Chí Minh',
+        'LA� T��� Tr��?ng': 'Lý Tự Trọng', 'LA� T��� Tr��ng': 'Lý Tự Trọng',
+        '�?ang': 'Đang', '�3 �?ang': 'Đang', '�?A�y': 'Đây', 'L��u A�': 'Lưu ý',
+        'd???': '', '�??': '-', 'mA�': 'm²', 't���': 'tỷ', 'tri��?u': 'triệu', 'GiA�': 'Giá', 'giA�': 'giá',
+        'bA�n': 'bán', 'BA�n': 'Bán', 'nhA�': 'nhà', 'NhA�': 'Nhà', '�?���t': 'đất', '�`���t': 'đất',
+        'm���t ti��?n': 'mặt tiền', 'tr���c ti���p': 'trực tiếp', 'ki��?m ch��cng': 'kiểm chứng',
+        'ngu��?n th��-t': 'nguồn thật', 'th��-t': 'thật', 'tA�n': 'tên', '�`����?ng': 'đường',
+    }
+    for _a, _b in _domain.items():
+        x = x.replace(_a, _b)
     # Sau ftfy: vai tu Viet con sot "khoang trang gia" (à/ị... + space) hoac chua ghep dau.
     # Pho bien nhat: "Thà nh pho" phai la "Thành pho" (xuat hien o moi dia chi -> loi mojibake nang).
     _post_ftfy = {
@@ -133,7 +152,23 @@ def _now():
 def write_progress(stage: str, message: str, warnings: list[str] | None = None):
     if not JOB_ID:
         return
-    data = {'ok': True, 'jobId': JOB_ID, 'time': _now(), 'stage': stage, 'message': fix_vn_text(message), 'warnings': [fix_vn_text(w) for w in (warnings or [])]}
+    stage_messages = {
+        'init': 'Đang nhận yêu cầu R&D và khởi tạo backend...',
+        'resolve_location': 'Đang xác định vị trí/khu vực nghiên cứu...',
+        'direct_street_search': 'Đang xác định tuyến đường và khu vực...',
+        'find_comparables': 'Đang tìm khu vực/tài sản so sánh...',
+        'discover_links': 'Đang tìm nguồn dữ liệu thị trường thật...',
+        'scrape_sources': 'Đang scrape Batdongsan/Guland/Alonhadat...',
+        'browser_street_queries': 'Chrome đang tìm mẫu tin theo tên đường/phường/khu vực...',
+        'browser_street_search': 'Chrome đang tìm tin rao trực tiếp trên Batdongsan...',
+        'browser_buckets': 'Playwright đang tìm tin theo khu vực/tài sản so sánh...',
+        'ai_support': 'AI đang hỗ trợ ước lượng khi nguồn dữ liệu chưa đủ...',
+        'build_report': 'Đang tổng hợp báo cáo R&D...',
+        'render_map': 'Đang dựng bản đồ kiểm chứng...',
+        'done': 'Hoàn tất báo cáo R&D thị trường.',
+    }
+    clean_msg = stage_messages.get(stage) or fix_vn_text(message)
+    data = {'ok': True, 'jobId': JOB_ID, 'time': _now(), 'stage': stage, 'message': clean_msg, 'warnings': [fix_vn_text(w) for w in (warnings or [])]}
     tmp = os.path.join(LOG_DIR, f'bds_job_{JOB_ID}.tmp')
     final = os.path.join(LOG_DIR, f'bds_job_{JOB_ID}.json')
     with open(tmp, 'w', encoding='utf-8') as f:
