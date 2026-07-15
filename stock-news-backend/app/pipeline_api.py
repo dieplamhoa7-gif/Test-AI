@@ -724,9 +724,62 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
                 pass
 
     log(f"🔎 Freshness gate: kiểm tra data giá/KL/PTKT mới nhất cho {ticker}...")
+
+    def _lhinvt_db_path() -> Path:
+        return Path(os.getenv("LHINVT_STOCK_CHART_DB", "data/lhinvt_stock_chart.db"))
+
+    def _load_lhinvt_db_symbol() -> dict[str, Any] | None:
+        """Use Hòa Đại ka's canonical SQLite DB as the first source for Model3 freshness."""
+        db_path = _lhinvt_db_path()
+        if not db_path.exists():
+            return None
+        con = sqlite3.connect(str(db_path))
+        con.row_factory = sqlite3.Row
+        try:
+            row = con.execute(
+                "SELECT latest_date, latest_close, latest_volume, updated_at FROM symbols WHERE upper(symbol)=upper(?) LIMIT 1",
+                (ticker,),
+            ).fetchone()
+            candle = con.execute(
+                "SELECT date, close, volume, updated_at FROM daily_ohlcv WHERE upper(symbol)=upper(?) ORDER BY date DESC LIMIT 1",
+                (ticker,),
+            ).fetchone()
+            if not row and not candle:
+                return None
+            latest_date = (row["latest_date"] if row else None) or (candle["date"] if candle else None)
+            price = (row["latest_close"] if row else None) or (candle["close"] if candle else None)
+            volume = (row["latest_volume"] if row else None) or (candle["volume"] if candle else None)
+            updated_at = (row["updated_at"] if row else None) or (candle["updated_at"] if candle else None)
+            return {
+                "ticker": ticker,
+                "symbol": ticker,
+                "source": "lhinvt-stock-chart-db",
+                "price": price,
+                "close": price,
+                "volume": volume,
+                "updatedAt": updated_at,
+                "quoteUpdatedAt": updated_at,
+                "historyLastDate": latest_date,
+                "latestCandleDate": latest_date,
+                "lhinvtDbPath": str(db_path),
+                "lhinvtDbUpdatedAt": updated_at,
+            }
+        finally:
+            con.close()
+
     gateway_errors: list[str] = []
     data = None
-    for gateway in _market_gateway_base_urls() if '_market_gateway_base_urls' in globals() else [os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")]:
+    try:
+        data = _load_lhinvt_db_symbol()
+        if data:
+            log(f"✅ Freshness gate: dùng database LHINVT mới nhất cho {ticker} ({data.get('historyLastDate')})")
+    except Exception as exc:  # noqa: BLE001
+        gateway_errors.append(f"LHINVT DB: {type(exc).__name__}: {str(exc)[:200]}")
+        log(f"⚠️ Freshness gate: đọc database LHINVT lỗi {type(exc).__name__}: {exc}")
+
+    if data is None:
+        log("🔎 Freshness gate: DB chưa có/không đọc được, thử market gateway force-refresh...")
+    for gateway in ([] if data is not None else (_market_gateway_base_urls() if '_market_gateway_base_urls' in globals() else [os.getenv("MARKET_DATA_GATEWAY_URL", "https://3t8l9f.tail6c0e00.ts.net/marketdata").rstrip("/")])):
         if not gateway:
             continue
         try:
@@ -769,7 +822,7 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
 
     def _apply_lhinvt_db_fallback(d: dict[str, Any]) -> None:
         """Fill missing history/current fields from the canonical LHINVT SQLite DB."""
-        db_path = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace\stock-news-backend\data\lhinvt_stock_chart.db")
+        db_path = _lhinvt_db_path()
         if not db_path.exists():
             return
         try:
@@ -815,9 +868,9 @@ def _market_data_freshness_gate(ticker: str, progress_cb: Callable[[str], None] 
     volume = data.get("volume")
     issues = []
     source_text = str(source or "")
-    public_fallback_ok = source_text == "firebase-public-market-data" or "firebase" in source_text or "vps" in source_text.lower()
+    public_fallback_ok = source_text == "firebase-public-market-data" or "firebase" in source_text or "vps" in source_text.lower() or source_text == "lhinvt-stock-chart-db"
     if not public_fallback_ok:
-        issues.append(f"source không phải VPS/Firebase public fresh data: {source}")
+        issues.append(f"source không phải VPS/Firebase/DB fresh data: {source}")
     max_quote_age_min = int(os.getenv("MARKET_QUOTE_MAX_AGE_MINUTES", "2160" if public_fallback_ok else "15"))
     if quote_dt is None or quote_age_min > max_quote_age_min:
         issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}, max={max_quote_age_min}")
