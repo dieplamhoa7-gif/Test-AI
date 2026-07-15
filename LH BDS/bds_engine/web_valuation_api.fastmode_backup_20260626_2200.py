@@ -449,9 +449,22 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     area = projects.area_description
     road = extract_road(loc)
     ward = loc.get('ward') or loc.get('suburb') or loc.get('phuong') or ''
-    district = loc.get('district') or loc.get('city') or ''
+    district = loc.get('district') or loc.get('county') or loc.get('city_district') or ''
     queries = []
     city = loc.get('city') or loc.get('province') or 'Hồ Chí Minh'
+    def scope(*parts):
+        out = []
+        seen = set()
+        for p in parts:
+            p = fix_vn_text(str(p or '').strip())
+            if not p:
+                continue
+            key = p.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(p)
+        return ' '.join(out)
     mode = getattr(criteria, 'transaction', 'buy') or 'buy'
     is_rent = mode == 'rent'
     ptype = (getattr(criteria, 'property_type', '') or '').lower()
@@ -467,9 +480,9 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
         sale_terms = ['bán nhà đất mặt tiền', 'bán đất mặt tiền']
         rent_terms = ['cho thuê nhà đất mặt tiền', 'cho thuê mặt bằng']
     terms = rent_terms if is_rent else sale_terms
-    road_scope = ' '.join(x for x in [road, ward, district, city] if x)
-    ward_scope = ' '.join(x for x in [ward, district, city] if x)
-    district_scope = ' '.join(x for x in [district, city] if x)
+    road_scope = scope(road, ward, district, city)
+    ward_scope = scope(ward, district, city)
+    district_scope = scope(district, city)
     if road_scope:
         queries += [f"{term} {road_scope}" for term in terms]
     if ward_scope:
@@ -488,6 +501,11 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
             rows = await scrape_batdongsan_playwright(q, limit=8, headless=False, mode=mode)
             if rows:
                 buckets.setdefault('Batdongsan.com.vn', []).extend(rows)
+                # Search -> collect data immediately; stop once the first precise
+                # street/ward keywords produce enough usable rows to avoid drifting
+                # into broader/fallback keywords.
+                if len(buckets.get('Batdongsan.com.vn', [])) >= 8:
+                    break
         except Exception:
             continue
     return buckets
