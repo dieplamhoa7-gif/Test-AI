@@ -58,9 +58,11 @@ app.add_middleware(
         "https://hoa-investment.onrender.com",
         "https://hoa-investment.web.app",
         "https://hoa-investment.firebaseapp.com",
+        "https://lhinvt.web.app",
+        "https://lhinvt.firebaseapp.com",
     ],
     allow_credentials=False,
-    allow_methods=["GET", "HEAD", "OPTIONS"],
+    allow_methods=["GET", "POST", "HEAD", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
 
@@ -243,43 +245,6 @@ def _parse_iso_or_date(value):
         return datetime.strptime(text[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
     except Exception:
         return None
-
-
-@app.get("/pipeline/model3/freshness/{symbol}")
-def model3_freshness(symbol: str):
-    normalized = _clean_symbol(symbol)[:8]
-    data = get_market_symbol(normalized, force_refresh=True)
-    now = _utcnow()
-    quote_dt = _parse_iso_or_date(data.get("quoteUpdatedAt") or data.get("updatedAt"))
-    hist_dt = _parse_iso_or_date(data.get("historyLastDate"))
-    quote_age_min = ((now - quote_dt).total_seconds() / 60) if quote_dt else 999999
-    hist_age_days = ((now.date() - hist_dt.date()).days) if hist_dt else 999999
-    issues = []
-    if data.get("source") != "vps":
-        issues.append(f"source không phải VPS live quote: {data.get('source')}")
-    if quote_dt is None or quote_age_min > 15:
-        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
-    if hist_dt is None or hist_age_days > 1:
-        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
-    if not data.get("price") or float(data.get("price") or 0) <= 0:
-        issues.append(f"giá không hợp lệ: {data.get('price')}")
-    if data.get("volume") is None or int(float(data.get("volume") or 0)) <= 0:
-        issues.append(f"KL không hợp lệ: {data.get('volume')}")
-    body = {
-        "ticker": normalized,
-        "source": data.get("source"),
-        "price": data.get("price"),
-        "volume": data.get("volume"),
-        "updatedAt": data.get("updatedAt"),
-        "quoteUpdatedAt": data.get("quoteUpdatedAt"),
-        "historyLastDate": data.get("historyLastDate"),
-        "quoteAgeMinutes": round(quote_age_min, 2),
-        "historyAgeDays": hist_age_days,
-        "fresh": not issues,
-        "issues": issues,
-        "logs": (["❌ Freshness gate FAIL: " + "; ".join(issues)] if issues else [f"✅ Freshness gate OK: {normalized} giá={data.get('price')}, KL={data.get('volume')}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}"]),
-    }
-    return JSONResponse(body, status_code=200 if not issues else 503)
 
 
 @app.get("/market-symbols")
