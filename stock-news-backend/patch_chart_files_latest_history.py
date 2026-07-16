@@ -111,14 +111,21 @@ def _extend_line_points(points, rows, idx_by_time, explicit_slope=None):
     i1 = idx_by_time.get(str(t1)); i2 = idx_by_time.get(str(t2)); ilast = len(rows) - 1
     if i1 is None:
         return points
-    if i2 is None:
-        i2 = ilast
-    if i2 >= ilast:
-        return points
     try:
         v1 = float(p1.get('value'))
         v2 = float(p2.get('value'))
-        slope = float(explicit_slope) if explicit_slope is not None else ((v2 - v1) / (i2 - i1) if i2 != i1 else 0.0)
+        # Some generated overlays store the right endpoint as a future UNIX timestamp
+        # (TradingView-style right extension). The frontend then shows the line running
+        # past the candle area instead of ending at the newest real candle. Always snap
+        # the right endpoint to rows[-1], projecting by slope where available.
+        if i2 is None:
+            slope = float(explicit_slope) if explicit_slope is not None else 0.0
+        else:
+            slope = float(explicit_slope) if explicit_slope is not None else ((v2 - v1) / (i2 - i1) if i2 != i1 else 0.0)
+            if i2 == ilast and str(t2) == str(latest_time):
+                return points
+            if i2 == ilast:
+                slope = float(explicit_slope) if explicit_slope is not None else ((v2 - v1) / (i2 - i1) if i2 != i1 else 0.0)
         p2['time'] = _same_time_format(t2, latest_time)
         p2['value'] = round(v1 + slope * (ilast - i1), 4)
         new_points = [dict(x) for x in points]
