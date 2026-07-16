@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-08T14:25:00.556597",
+  "updatedAt": "2026-07-16T09:11:45.067235",
   "title": "LH Final Strategy Matrix",
-  "note": "LH1-LH4 final strategy matrix using latest close evidence.",
+  "note": "LH1-LH4 final strategy matrix. Tooltip explains strategy in Vietnamese, full indicators, and validation trade count.",
   "displayMode": "matrix",
   "buyCount": 0,
   "watchCount": 33,
@@ -12,12 +12,13 @@
       "name": "LH1 Final - Premium Pullback",
       "shortName": "LH1",
       "priority": 1,
-      "summary": "Trend pullback/premium setup; BUY strict, near-miss only goes WATCH.",
-      "indicators": "RSI, MACD, MA/VWAP, Volume, R/S, Ichimoku",
+      "summary": "Chiến lược mua kéo hồi trong xu hướng tăng: chỉ chọn cổ phiếu còn giữ nền giá tốt, giá gần vùng hỗ trợ, xu hướng/động lượng chưa gãy. Đạt đủ điều kiện mới vào BUY; thiếu nhẹ một vài tiêu chí thì đưa vào WATCH để theo dõi.",
+      "indicators": "RSI14; MACD, MACD Signal, MACD Histogram; MA20, MA50, MA200; VWAP; Volume Ratio; vùng hỗ trợ/kháng cự ngày; Ichimoku Cloud/Tenkan/Kijun; Bollinger %B; ADX/+DI/-DI; ROC20; tín hiệu phân kỳ động lượng.",
       "tooltipMetrics": {
-        "winRate": "Win 82.76%",
-        "averageReturn": "+8.26%/lệnh",
-        "totalReturn": "+239.43%"
+        "winRate": "82,76%",
+        "averageReturn": "+8,26%/lệnh",
+        "totalReturn": "+239,43%",
+        "tradeCount": "29 lệnh kiểm định"
       },
       "buckets": {
         "buy": [],
@@ -2468,12 +2469,13 @@
       "name": "LH2 Final - v6 BALANCED Breakout/RS",
       "shortName": "LH2",
       "priority": 2,
-      "summary": "LH2 v6 BALANCED: breakout high20/high50 + RS rank >=70 + volume/OBV/VWAP/breadth/range/ADX/RSI/near-high filters. BUY = full pass; WATCH = near-pass.",
-      "indicators": "breakout20/50, RS rank, volume ratio, OBV slope20, VWAP slope5, breadth, rangePos60, ADX14, RSI14, nearHigh252",
+      "summary": "Chiến lược breakout cân bằng: tìm cổ phiếu vượt đỉnh 20/50 phiên, có sức mạnh tương đối tốt, dòng tiền xác nhận và không quá xa nền giá. BUY là vượt đầy đủ bộ lọc; WATCH là gần đạt để chờ xác nhận thêm.",
+      "indicators": "Breakout high20/high50; RS Rank; Volume Ratio; OBV slope20; VWAP slope5; độ rộng thị trường/breadth; Range Position 60 phiên; ADX14; RSI14; khoảng cách tới đỉnh 252 phiên; MA20/MA50; thanh khoản xác nhận.",
       "tooltipMetrics": {
-        "winRate": "OOS 53.85% / Full 58.33%",
-        "averageReturn": "OOS +3.85%/trade / Full +4.02%",
-        "totalReturn": "OOS +50.02% / Full +96.38%"
+        "winRate": "OOS 53,85% / Full 58,33%",
+        "averageReturn": "OOS +3,85%/lệnh / Full +4,02%",
+        "totalReturn": "OOS +50,02% / Full +96,38%",
+        "tradeCount": "OOS 13 lệnh / Full 24 lệnh"
       },
       "buckets": {
         "buy": [],
@@ -5049,12 +5051,13 @@
       "name": "LH3 Final - R/S Rebound ML v2",
       "shortName": "LH3",
       "priority": 3,
-      "summary": "Support rebound + rule score/ML confidence; current signal only, not historical buys.",
-      "indicators": "R/S rebound, RSI, volume ratio, breadth, ML probability",
+      "summary": "Chiến lược hồi phục từ hỗ trợ: ưu tiên mã đang chạm/gần hỗ trợ mạnh, có dấu hiệu bật lại bằng điểm luật và xác suất ML. Dùng để bắt nhịp hồi có kiểm soát rủi ro, không mua khi hỗ trợ bị phá rõ.",
+      "indicators": "Vùng hỗ trợ/kháng cự ngày; khoảng cách tới hỗ trợ; RSI14; Volume Ratio; breadth; MACD Histogram; MA20/MA50; xác suất ML; điểm rule score; trạng thái giữ hỗ trợ/phá hỗ trợ; tín hiệu dòng tiền hồi phục.",
       "tooltipMetrics": {
-        "winRate": "OOS 80%",
-        "averageReturn": "+3.6%/lệnh OOS",
-        "totalReturn": "+36.0% OOS"
+        "winRate": "OOS 80,00%",
+        "averageReturn": "+3,60%/lệnh OOS",
+        "totalReturn": "+36,00% OOS",
+        "tradeCount": "10 lệnh kiểm định OOS"
       },
       "buckets": {
         "buy": [],
@@ -6598,12 +6601,13 @@
       "name": "LH4 Final - High Winrate Wave Entry",
       "shortName": "LH4",
       "priority": 4,
-      "summary": "High-winrate wave/base breakout entry; current scan has 0 WATCH/BUY after strict filters.",
-      "indicators": "55-bar breakout, RSI 58-65, volume ratio >=1.5, ROC20 >=4%, base6 <=35%, no hindsight",
+      "summary": "Chiến lược sóng tăng sau nền tích lũy 6 tháng: tìm cổ phiếu đi ngang đủ lâu, nền không quá rộng, sau đó có breakout/động lượng tăng xác nhận. Bộ lọc rất chặt nên hiện tại có thể không có BUY/WATCH nếu thị trường không đạt chuẩn.",
+      "indicators": "Nền giá 6 tháng; biên độ nền <=35%; vị trí giá trong nền; breakout Donchian 20/60 phiên; RSI vùng 55-72; MACD Histogram dương và tăng; Volume Ratio 1,15-3,0; ROC20; Bollinger %B; MA20/MA50/MA200; Ichimoku above cloud; loại bỏ bearish divergence; kiểm tra giá không quá xa MA20.",
       "tooltipMetrics": {
-        "winRate": "75.0% (WaveA current180)",
-        "averageReturn": "+14.29%/trade",
-        "totalReturn": "+57.15%, 4 trades"
+        "winRate": "Current180: 0,00% / Prev3M: WaveA 75,00%, WaveB 66,67%, WaveC 100,00%",
+        "averageReturn": "Current180: -8,00%/lệnh; Prev3M: WaveA +14,29%, WaveB +12,47%, WaveC +16,62%",
+        "totalReturn": "Current180: WaveA -8,00%, WaveB -40,00%, WaveC -40,00%; Prev3M: WaveA +57,15%, WaveB +149,66%, WaveC +16,62%",
+        "tradeCount": "Current180: 11 lệnh; Prev3M: 17 lệnh"
       },
       "buckets": {
         "buy": [],

@@ -1005,6 +1005,7 @@
       const indicators = translateStrategyText(col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S');
       const m = col.tooltipMetrics || {};
       const validation = [
+        `${currentLang === 'en' ? 'Trade count' : 'Số lệnh kiểm định'}: ${translateStrategyText(m.tradeCount || m.trades || m.sampleSize || '-')}`,
         `Win rate: ${m.winRate || '-'}`,
         `${currentLang === 'en' ? 'Average Return' : 'Lợi nhuận TB'}: ${translateStrategyText(m.averageReturn || '-')}`,
         `${currentLang === 'en' ? 'Total Return' : 'Tổng lợi nhuận'}: ${translateStrategyText(m.totalReturn || '-')}`
