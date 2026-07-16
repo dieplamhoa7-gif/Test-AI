@@ -727,7 +727,35 @@
     body.lh-premium-taste .ticker-item strong{color:#fff!important;}
     @media(max-width:760px){body.lh-premium-taste .shell{width:min(100% - 16px,1320px)}body.lh-premium-taste .hero-main{min-height:300px;border-radius:26px!important}body.lh-premium-taste .hero-main h2{font-size:clamp(30px,12vw,46px)!important}.top-actions{gap:6px!important}.status-pill{display:none!important}}
 
-  </style>
+  
+
+    /* LHINVT unified premium UI layer - safe override */
+    :root {
+      --lh-surface-glass: linear-gradient(180deg, rgba(16, 23, 38, .94), rgba(11, 17, 30, .90));
+      --lh-surface-soft: rgba(255,255,255,.045);
+      --lh-border-strong: rgba(151, 170, 214, .20);
+      --lh-focus: 0 0 0 3px rgba(100,181,255,.25);
+    }
+    body { text-rendering: geometricPrecision; -webkit-font-smoothing: antialiased; }
+    .topbar, .hero, .panel, .strategy-card, .news-card, .warrant-card, .chart-card, .filter-card, .stock-card {
+      border-color: var(--lh-border-strong) !important;
+      background-image: var(--lh-surface-glass);
+      backdrop-filter: blur(18px) saturate(1.12);
+    }
+    a, button, input, select, textarea { transition: border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .18s ease; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; box-shadow: var(--lh-focus); }
+    button:hover, .btn:hover, .chip:hover, .nav-link:hover { transform: translateY(-1px); }
+    table { border-collapse: separate; border-spacing: 0; }
+    th { color: var(--text); font-weight: 800; letter-spacing: .01em; }
+    td, th { border-color: var(--line) !important; }
+    .strategy-tooltip, .tooltip, [role="tooltip"] { line-height: 1.55; border: 1px solid var(--lh-border-strong) !important; box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+    .muted, .subtle, .hint { color: var(--muted) !important; }
+    @media (max-width: 760px) {
+      .topbar, .hero, .panel, .strategy-card { border-radius: 18px !important; }
+      button, .btn, input, select { min-height: 44px; }
+    }
+
+</style>
   <script src="/lightweight-charts.standalone.production.js"></script>
 
 <script id="lh-cache-bust-20260703-0905-cachekill-hard">(function(){try{localStorage.setItem('lh.static.version','20260703-0905-cachekill-hard');localStorage.setItem('hoa.cache.version','20260703-0905-cachekill-hard');if(window.caches&&caches.keys)caches.keys().then(function(keys){keys.forEach(function(k){caches.delete(k);});});if('serviceWorker'in navigator)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}catch(e){}})();</script>
