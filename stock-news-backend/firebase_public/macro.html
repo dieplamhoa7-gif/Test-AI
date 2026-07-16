@@ -3,17 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CSTT & Dòng Vốn Ngoại — LH Investment</title>
+<title>CSTT & Dòng Vốn Ngoại — Phân Tích Chuyên Sâu 05/06/2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0d1117;--s1:#161b22;--s2:#1c2330;--s3:#21262d;--bd:#30363d;
+  --t1:#c9d1d9;--t2:#8b949e;--t3:#6e7681;
+  --bl:#58a6ff;--gr:#3fb950;--re:#f85149;--or:#d29922;--pu:#bc8cff;--cy:#79c0ff;--ye:#e3b341;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t1);font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;line-height:1.55}
+.pg{max-width:1500px;margin:0 auto;padding:16px 14px}
+.row{display:grid;gap:12px;margin-bottom:12px}
+.c2{grid-template-columns:1fr 1fr} .c3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:860px){.c2,.c3{grid-template-columns:1fr}}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.sec{margin:20px 0 10px}
+.sec h2{font-size:14px;font-weight:700;color:var(--bl);padding-bottom:8px;
+  border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:7px;line-height:1.4}
+.sec h2 em{font-size:10px;font-weight:400;color:var(--t3);font-style:normal}
+.hero{background:linear-gradient(135deg,#0a1929,#0d2137,#0a1929);
+  border:1px solid #1a4060;border-radius:12px;padding:20px 24px;margin-bottom:14px}
+.ht{font-size:19px;font-weight:800;color:#fff}
+.hs{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.krow{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;padding:9px 13px;min-width:130px}
+.kl{font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.4);margin-bottom:2px}
+.kv{font-size:17px;font-weight:700;color:#fff}
+.ks{font-size:10px;margin-top:1px}
+.rpm{display:inline-flex;align-items:center;gap:6px;background:rgba(255,193,7,.1);
+  border:1px solid rgba(255,193,7,.3);border-radius:20px;padding:4px 12px;margin-top:10px}
+.rd{width:6px;height:6px;border-radius:50%;background:#ffc107}
+.rt{color:#ffc107;font-size:11px;font-weight:600}
+.sb{display:flex;align-items:center;gap:9px;margin-top:7px}
+.sbt{flex:1;max-width:190px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.sbf{height:100%;border-radius:3px;background:linear-gradient(90deg,#f85149,#d29922,#3fb950)}
+.sbl{font-size:10px;color:rgba(255,255,255,.35)}
+.cg{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:12px}
+.cc{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:9px;text-align:center}
+.cn{font-size:9px;color:var(--t3);text-transform:uppercase;margin-bottom:3px}
+.cv2{font-size:18px;font-weight:700}
+.cb{height:3px;border-radius:2px;background:var(--bd);margin-top:4px;overflow:hidden}
+.cbf{height:100%;border-radius:2px}
+@media(max-width:600px){.cg{grid-template-columns:repeat(3,1fr)}}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px}
+.sc{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:10px}
+.sl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.sv{font-size:15px;font-weight:700}
+.ss{font-size:9px;color:var(--t2);margin-top:1px}
+.ct{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
+.cw{position:relative}
+.h140{height:140px}.h180{height:180px}.h220{height:220px}.h260{height:260px}.h300{height:300px}
+.ib{border-left:3px solid;border-radius:6px;padding:9px 12px;margin-bottom:8px;background:var(--s2);font-size:12px;line-height:1.65}
+.ibb{border-color:var(--bl)}.ibg{border-color:var(--gr)}.ibr{border-color:var(--re)}.ibo{border-color:var(--or)}.ibp{border-color:var(--pu)}
+.ih{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+.ihb{color:var(--bl)}.ihg{color:var(--gr)}.ihr{color:var(--re)}.iho{color:var(--or)}.ihp{color:var(--pu)}
+.ib b{color:var(--ye)}
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{background:var(--s3);padding:7px 9px;text-align:left;color:var(--t2);font-size:9px;text-transform:uppercase;border-bottom:1px solid var(--bd)}
+.tbl td{padding:7px 9px;border-bottom:1px solid rgba(48,54,61,.4)}
+.tbl tr:hover td{background:var(--s2)}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:10px;color:var(--t2)}
+.pos{color:var(--gr)}.neg{color:var(--re)}.warn{color:var(--or)}.info{color:var(--cy)}
+/* Correlation badge */
+.corr-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.corr-neg-strong{background:rgba(248,81,73,.15);color:#f85149}
+.corr-pos-strong{background:rgba(63,185,80,.15);color:#3fb950}
+.footer{text-align:center;color:var(--t3);font-size:10px;padding:14px;border-top:1px solid var(--bd);margin-top:22px}
+</style>
+
 <link rel="stylesheet" href="/assets/lh-unified-ui.css">
-<style>.macro-shell{width:min(1440px,calc(100% - 32px));margin:0 auto;padding:18px 0 36px}.macro-original{margin-top:18px}.macro-original>.wrap,.macro-original .wrap{width:100%;max-width:none}.macro-source-note{display:none}</style>
+<style id="lh-macro-shell-css">.macro-site-shell{width:min(1440px,calc(100% - 32px));margin:18px auto 0;position:relative;z-index:20}.macro-site-shell .topbar{position:sticky}.macro-site-shell .main-tabs{margin:16px 0 18px}.macro-site-shell+*{margin-top:18px!important}</style>
 </head>
-<body class="lh-unified-page">
-<div class="macro-shell">
-<header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
-<nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
-<div class="macro-source-note">source: vn_macro_cstt_v2_20260605_AXIS_VISIBLE_MMYY.html</div>
-<section class="macro-original">
+<body>
+<div class="macro-site-shell"><header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav></div>
 
 <div class="pg">
 
@@ -581,9 +644,5 @@ document.addEventListener('DOMContentLoaded',function(){
 
 });
 </script>
-
-</section>
-</div>
-<script>window.__LHINVT_MACRO_SAFE_SOURCE="vn_macro_cstt_v2_20260605_AXIS_VISIBLE_MMYY.html";</script>
-</body>
+<script>window.__LHINVT_MACRO_PRESERVE_HEAD="vn_macro_cstt_v2_20260605_AXIS_VISIBLE_MMYY.html";</script></body>
 </html>
