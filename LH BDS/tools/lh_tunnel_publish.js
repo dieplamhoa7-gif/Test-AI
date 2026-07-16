@@ -42,6 +42,11 @@ if (process.env.RD_PORT !== '') ROLES.push({ role: 'rd', port: process.env.RD_PO
 if (process.env.QH_PORT) ROLES.push({ role: 'qh', port: process.env.QH_PORT, needFlag: 'hasPlanning' });
 
 const state = {}; // role -> current published url
+const procs = {}; // role -> active cloudflared child process
+const healthFails = {}; // role -> consecutive public health failures
+const HEALTH_INTERVAL_MS = Number(process.env.HEALTH_INTERVAL_MS || 30000);
+const HEALTH_FAIL_LIMIT = Number(process.env.HEALTH_FAIL_LIMIT || 3);
+const RESTART_DELAY_MS = Number(process.env.RESTART_DELAY_MS || 5000);
 
 function log(...a) { console.log(new Date().toISOString(), ...a); }
 
@@ -74,10 +79,22 @@ async function healthOk(url, needFlag) {
   } catch { return false; }
 }
 
+function restartRole(cfg, reason) {
+  const { role } = cfg;
+  log(`${role}: restart requested: ${reason}`);
+  state[role] = '';
+  healthFails[role] = 0;
+  try { if (procs[role] && !procs[role].killed) procs[role].kill(); } catch (_) {}
+  setTimeout(() => runRole(cfg), RESTART_DELAY_MS);
+}
+
 function runRole(cfg) {
   const { role, port, needFlag } = cfg;
+  if (procs[role] && !procs[role].killed) return;
   log(`starting cloudflared for ${role} -> http://${LOCAL_HOST}:${port}`);
   const cf = spawn(CLOUDFLARED, ['tunnel', '--url', `http://${LOCAL_HOST}:${port}`], { shell: process.platform === 'win32' });
+  procs[role] = cf;
+  healthFails[role] = 0;
   let settled = false;
   const onData = async (buf) => {
     const s = buf.toString();
@@ -89,6 +106,7 @@ function runRole(cfg) {
       for (let i = 0; i < 20; i++) {
         if (await healthOk(url, needFlag)) {
           state[role] = url;
+          healthFails[role] = 0;
           log(`${role}: health OK -> publish`);
           writeConfigAndDeploy();
           return;
@@ -102,11 +120,24 @@ function runRole(cfg) {
   cf.stdout.on('data', onData);
   cf.stderr.on('data', onData);
   cf.on('exit', (code) => {
-    log(`${role}: cloudflared thoat (code ${code}); restart sau 5s`);
+    if (procs[role] === cf) procs[role] = null;
+    log(`${role}: cloudflared thoat (code ${code}); restart sau ${Math.round(RESTART_DELAY_MS/1000)}s`);
     state[role] = '';
-    setTimeout(() => runRole(cfg), 5000);
+    setTimeout(() => runRole(cfg), RESTART_DELAY_MS);
   });
 }
+
+setInterval(async () => {
+  for (const cfg of ROLES) {
+    const { role, needFlag } = cfg;
+    const url = state[role];
+    if (!url) continue;
+    if (await healthOk(url, needFlag)) { healthFails[role] = 0; continue; }
+    healthFails[role] = (healthFails[role] || 0) + 1;
+    log(`${role}: public /health failed ${healthFails[role]}/${HEALTH_FAIL_LIMIT}: ${url}`);
+    if (healthFails[role] >= HEALTH_FAIL_LIMIT) restartRole(cfg, `public tunnel health dead: ${url}`);
+  }
+}, HEALTH_INTERVAL_MS).unref?.();
 
 if (!ROLES.length) { log('Chua cau hinh role nao (RD_PORT/QH_PORT). Thoat.'); process.exit(1); }
 log('LH tunnel publisher khoi dong. Deploy dir:', DEPLOY_DIR, '| roles:', ROLES.map(r => r.role).join(','));
