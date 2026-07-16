@@ -39,7 +39,13 @@ const WORKER = 'https://lh-realestate-api.lhrealestate.workers.dev';
 
 const ROLES = [];
 if (process.env.RD_PORT !== '') ROLES.push({ role: 'rd', port: process.env.RD_PORT || '8787', needFlag: 'hasBdsWebApi' });
-if (process.env.QH_PORT) ROLES.push({ role: 'qh', port: process.env.QH_PORT, needFlag: 'hasPlanning' });
+if (process.env.QH_PORT) {
+  const qhPort = process.env.QH_PORT;
+  const rdPort = process.env.RD_PORT || '8787';
+  // QH may be served by the same BDS/R&D backend, whose /health exposes hasBdsWebApi
+  // but not hasPlanning. In that common setup, plain ok:true is enough.
+  ROLES.push({ role: 'qh', port: qhPort, needFlag: qhPort === rdPort ? '' : 'hasPlanning' });
+}
 
 const state = {}; // role -> current published url
 const procs = {}; // role -> active cloudflared child process
