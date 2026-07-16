@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LH Investment — Vĩ mô</title>
+<title>CSTT & Dòng Vốn Ngoại — LH Investment</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link rel="stylesheet" href="/assets/lh-unified-ui.css">
-<style>.macro-shell{width:min(1440px,calc(100% - 32px));margin:0 auto;padding:18px 0 36px}.macro-content{margin-top:18px}.macro-content>.wrap,.macro-content .wrap{width:100%;max-width:none}</style>
+<style>.macro-shell{width:min(1440px,calc(100% - 32px));margin:0 auto;padding:18px 0 36px}.macro-original{margin-top:18px}.macro-original>.wrap,.macro-original .wrap{width:100%;max-width:none}.macro-source-note{display:none}</style>
 </head>
 <body class="lh-unified-page">
 <div class="macro-shell">
 <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
-<nav class="main-tabs"><a class="chip-btn active" href="/macro">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
-<section class="panel hero-main lh-unified-hero-marker"><span class="eyebrow">Vĩ mô</span><h2>CSTT & Dòng Vốn Ngoại</h2><p>Phân tích chuyên sâu vĩ mô, chính sách tiền tệ, lãi suất và dòng vốn ngoại.</p></section>
-<section class="macro-content">
+<nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
+<div class="macro-source-note">source: vn_macro_cstt_v2_20260605_AXIS_VISIBLE_MMYY.html</div>
+<section class="macro-original">
+
 <div class="pg">
 
 <!-- HERO -->
@@ -258,6 +259,30 @@ Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";Chart.defaults.font
 // Year colors for scatter
 const yrColor={'2024':'#79c0ff','2025':'#f85149','2026':'#d29922','2023':'#e3b341','2022':'#3fb950','2021':'#58a6ff'};
 
+
+function fmtMY(lbl){
+  lbl = String(lbl || '');
+  var m = lbl.match(/^(\d{2})\/(\d{2})\/(\d{2})$/);
+  if(m) return m[2] + '/' + m[3];
+  m = lbl.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m) return m[2] + '/' + m[1].slice(2);
+  m = lbl.match(/^(\d{2})\/(\d{2})$/);
+  if(m) return lbl;
+  m = lbl.match(/^(\d{2})\/(\d{4})$/);
+  if(m) return m[1] + '/' + m[2].slice(2);
+  return lbl;
+}
+function myTick(labels, maxN){
+  return function(val, idx){
+    var lbl = labels && labels[idx] ? labels[idx] : (this.getLabelForValue ? this.getLabelForValue(val) : val);
+    if(!lbl) return '';
+    var n = labels ? labels.length : 0;
+    var step = Math.max(1, Math.floor((n || maxN || 8) / (maxN || 8)));
+    if(idx === 0 || idx === n-1 || idx % step === 0) return fmtMY(lbl);
+    return '';
+  };
+}
+
 document.addEventListener('DOMContentLoaded',function(){
   // Score bars
   document.getElementById('sbf').style.width='45.7%';
@@ -304,14 +329,7 @@ document.addEventListener('DOMContentLoaded',function(){
       plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}},
         tooltip:{callbacks:{title:function(i){return i[0].label;},
           label:function(c){return c.dataset.label+': '+c.parsed.y.toFixed(2)+'%';}}}},
-      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:16,font:{size:8},maxRotation:45,
-        callback:function(val,idx){
-          // Show month label at start of each month
-          var lbl=labels[idx]; if(!lbl)return '';
-          var parts=lbl.split('/');
-          if(idx===0||labels[idx-1].split('/')[1]!==parts[1]) return parts[1]+'/'+parts[2];
-          return '';
-        }}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(labels,8)}},
         y:{grid:{color:G},ticks:{maxTicksLimit:6},title:{display:true,text:'%/năm',font:{size:9}},
            suggestedMax:20}},
       elements:{point:{radius:0,hoverRadius:3},line:{tension:.2}}
@@ -337,13 +355,7 @@ document.addEventListener('DOMContentLoaded',function(){
           return c.dataset.label+': '+(c.yAxisID==='y2'?c.parsed.y.toFixed(2)+'%':c.parsed.y.toFixed(0));
         }}}},
       scales:{
-        x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
-          callback:function(val,idx){
-            var lbl=lb[idx]; if(!lbl)return '';
-            var parts=lbl.split('/');
-            if(idx===0||lb[idx-1]&&lb[idx-1].split('/')[1]!==parts[1]) return parts[1]+'/'+parts[2];
-            return '';
-          }}},
+        x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(lb,8)}},
         y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'VNIndex',font:{size:9}},position:'left'},
         y2:{position:'right',grid:{drawOnChartArea:false},ticks:{maxTicksLimit:5},
             title:{display:true,text:'IB %/năm',font:{size:9}},suggestedMax:20}
@@ -363,7 +375,7 @@ document.addEventListener('DOMContentLoaded',function(){
     ]},options:{responsive:true,maintainAspectRatio:false,
       interaction:{intersect:false,mode:'index'},
       plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
-      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(r.l,8)}},
               y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'%/năm',font:{size:9}}}}
     }});
   })();
@@ -380,9 +392,7 @@ document.addEventListener('DOMContentLoaded',function(){
        borderWidth:1,borderDash:[4,4],fill:false,pointRadius:0,tension:0},
     ]},options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
-      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
-        callback:function(val,idx){var lbl=d.l[idx];if(!lbl)return '';
-          var p=lbl.split('/');if(idx===0||d.l[idx-1]&&d.l[idx-1].split('/')[1]!==p[1])return p[1]+'/'+p[2];return '';}}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(d.l,8)}},
         y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'% (IB − Deposit)',font:{size:9}}}}
     }});
   })();
@@ -402,9 +412,7 @@ document.addEventListener('DOMContentLoaded',function(){
     ]},options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}},
         tooltip:{callbacks:{label:function(c){return c.dataset.label?c.dataset.label+': '+c.parsed.y.toFixed(3):'';}}}},
-      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
-        callback:function(val,idx){var lbl=rc.l[idx];if(!lbl)return '';
-          var p=lbl.split('/');if(idx===0||rc.l[idx-1]&&rc.l[idx-1].split('/')[1]!==p[1])return p[1]+'/'+p[2];return '';}}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(rc.l,8)}},
         y:{grid:{color:G},min:-1,max:1,ticks:{maxTicksLimit:5},
            title:{display:true,text:'Hệ số tương quan',font:{size:9}}}}
     }});
@@ -527,7 +535,7 @@ document.addEventListener('DOMContentLoaded',function(){
       data:d.v,backgroundColor:d.c,borderRadius:3,borderSkipped:false
     }]},options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(0)+' tỷ';}}}},
-      scales:{x:{grid:{color:G},ticks:{font:{size:8}}},y:{grid:{color:G},ticks:{maxTicksLimit:4}}}
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:myTick(d.l,6)}},y:{grid:{color:G},ticks:{maxTicksLimit:4}}}
     }});
   })();
 
@@ -564,7 +572,7 @@ document.addEventListener('DOMContentLoaded',function(){
       interaction:{intersect:false,mode:'index'},
       plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
       scales:{
-        x:{grid:{color:G},ticks:{font:{size:9}}},
+        x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0,minRotation:0,autoSkip:false,callback:function(val,idx){var labs=this.chart.data.labels||[];return myTick(labs,8).call(this,val,idx);}}},
         y:{grid:{color:G},ticks:{maxTicksLimit:4},title:{display:true,text:'VNIndex',font:{size:9}},position:'left'},
         y2:{position:'right',grid:{drawOnChartArea:false},ticks:{maxTicksLimit:4},title:{display:true,text:'Tỷ đồng',font:{size:9}}}
       }
@@ -572,64 +580,6 @@ document.addEventListener('DOMContentLoaded',function(){
   })();
 
 });
-</script>
-
-<script>
-(function(){
-  if (typeof Chart === 'undefined') return;
-  function toMonthYear(raw){
-    const s = String(raw || '');
-    let m;
-    // dd/mm/yy -> mm/yy
-    m = s.match(/^(\d{2})\/(\d{2})\/(\d{2})$/);
-    if (m) return m[2] + '/' + m[3];
-    // yyyy-mm-dd -> mm/yy
-    m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (m) return m[2] + '/' + m[1].slice(2);
-    // mm/yy
-    m = s.match(/^(\d{2})\/(\d{2})$/);
-    if (m) return s;
-    // mm/yyyy -> mm/yy
-    m = s.match(/^(\d{2})\/(\d{4})$/);
-    if (m) return m[1] + '/' + m[2].slice(2);
-    return s;
-  }
-  function patchMonthYearAxis(chartId, tickLimit){
-    const chart = Chart.getChart(chartId);
-    if (!chart || !chart.data || !chart.data.labels) return;
-    const labels = chart.data.labels;
-    chart.options.scales = chart.options.scales || {};
-    chart.options.scales.x = chart.options.scales.x || {};
-    chart.options.scales.x.ticks = chart.options.scales.x.ticks || {};
-    chart.options.scales.x.ticks.font = {size: 9};
-    chart.options.scales.x.ticks.maxRotation = 0;
-    chart.options.scales.x.ticks.minRotation = 0;
-    chart.options.scales.x.ticks.autoSkip = true;
-    chart.options.scales.x.ticks.maxTicksLimit = tickLimit || 8;
-    chart.options.scales.x.ticks.callback = function(value){
-      const label = this.getLabelForValue ? this.getLabelForValue(value) : labels[value];
-      return toMonthYear(label);
-    };
-    chart.options.plugins = chart.options.plugins || {};
-    chart.options.plugins.tooltip = chart.options.plugins.tooltip || {};
-    chart.options.plugins.tooltip.callbacks = chart.options.plugins.tooltip.callbacks || {};
-    chart.options.plugins.tooltip.callbacks.title = function(items){
-      const i = items && items[0] ? items[0].dataIndex : 0;
-      return String(labels[i] || '');
-    };
-    chart.update();
-  }
-  window.addEventListener('load', function(){
-    setTimeout(function(){
-      // Only existing charts; no new chart, no extra DOM, no data changes.
-      ['c_ib','c_ib_vni','c_rates4','c_spr','c_roll_corr','c_fnb_fx_ts','c_fnbm','c_indices','c_tv_vni'].forEach(function(id){
-        patchMonthYearAxis(id, 8);
-      });
-      // 20-session charts: keep short date style visible, but still no data/template changes.
-      ['c_fnb20'].forEach(function(id){ patchMonthYearAxis(id, 6); });
-    }, 300);
-  });
-})();
 </script>
 
 </section>
