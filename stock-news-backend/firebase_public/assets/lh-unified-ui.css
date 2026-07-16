@@ -168,3 +168,17 @@ body::before{
   background:linear-gradient(135deg,#f0abfc,#c7b8ff 52%,#a78bfa)!important;color:#170f2d!important;border-color:transparent!important;box-shadow:0 12px 30px rgba(167,139,250,.26)!important;
 }
 input,select,textarea{border-color:rgba(199,184,255,.20)!important;background:rgba(12,16,30,.72)!important;color:#f7f3ff!important}.filter-tab.active,.tabs .active,.subtab.active{background:linear-gradient(135deg,rgba(240,171,252,.22),rgba(199,184,255,.18))!important;border-color:rgba(199,184,255,.34)!important;color:#fff!important}
+
+
+/* LHINVT active tab sync v5 - force soft lavender selection everywhere */
+.main-tabs a.active,.main-tabs a[aria-current="page"],.main-tabs .chip-btn.active,.main-tabs .chip-btn[aria-current="page"],
+.chip-btn.active,.filter-tab.active,.tab-btn.active,.tabs .active,.subtab.active,[data-tab].active,[data-filter-mode].active{
+  background:linear-gradient(135deg,#f4eaff 0%,#d8ccff 38%,#b9a4ff 72%,#a78bfa 100%)!important;
+  color:#1c1232!important;
+  border-color:rgba(244,234,255,.58)!important;
+  box-shadow:0 12px 30px rgba(167,139,250,.34),0 0 0 1px rgba(255,255,255,.35) inset!important;
+}
+.main-tabs a.active:hover,.main-tabs a[aria-current="page"]:hover,.chip-btn.active:hover{
+  color:#160d29!important;filter:brightness(1.03);
+}
+.main-tabs .chip-btn:not(.active):not([aria-current="page"]){background:rgba(255,255,255,.025)!important;color:#cfc5ee!important}
