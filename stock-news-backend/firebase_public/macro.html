@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LH Investment — Vĩ mô</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="/assets/lh-unified-ui.css">
+<style>
+.macro-shell { width:min(1440px,calc(100% - 32px)); margin:0 auto; padding:18px 0 36px; }
+.macro-embed-panel { margin-top:18px; }
+.macro-embed-panel > .wrap, .macro-embed-panel .wrap { width:100%; max-width:none; padding:0; }
+</style>
+</head>
+<body class="lh-unified-page">
+<div class="macro-shell">
+<header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
+<nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
+<section class="panel hero-main macro-embed-panel"><span class="eyebrow">Vĩ mô</span><h2>Vietnam Macro Intelligence</h2><p>Theo dõi các chỉ báo vĩ mô, thanh khoản, lãi suất, tỷ giá và bối cảnh thị trường để hỗ trợ quyết định đầu tư.</p></section>
+<section class="macro-embed-panel">
+
+<div class="app">
+  <div class="top">
+    <div class="title">
+      <h1>📈 LH Investment — Technical Chart Scanner</h1>
+      <div class="sub">Mẫu web phân tích theo ảnh: chart chính + trend/volume/momentum + vùng giá + kịch bản hành động</div>
+      <div class="meta">
+        <div class="pill"><b>Mã:</b> MWG / mẫu</div>
+        <div class="pill"><b>Khung:</b> Daily</div>
+        <div class="pill"><b>Ngày scan:</b> 08/06/2026</div>
+        <div class="pill"><b>Style:</b> Support · Resistance · Volume · RSI · MACD</div>
+      </div>
+    </div>
+    <div class="score">
+      <div class="lab">Setup Score</div>
+      <div class="num">72/100</div>
+      <div class="bar"><div></div></div>
+      <div class="sub">Xu hướng tích cực nhưng không mua đuổi; ưu tiên pullback / breakout có volume.</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card chart-card">
+      <div class="ct"><span>Biểu đồ giá — vùng hỗ trợ/kháng cự & MA</span><span class="blue">Chart style sample</span></div>
+      <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
+      <div class="levels">
+        <div class="level"><div class="l">Hỗ trợ 1</div><div class="v green">58.0</div><div class="note">Vùng mua kiểm định</div></div>
+        <div class="level"><div class="l">Hỗ trợ 2</div><div class="v green">54.5</div><div class="note">Fail-safe / stop zone</div></div>
+        <div class="level"><div class="l">Kháng cự</div><div class="v orange">64.0</div><div class="note">Break cần volume</div></div>
+        <div class="level"><div class="l">Target gần</div><div class="v blue">69.0</div><div class="note">R:R tối thiểu 1.8+</div></div>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <div class="ct">Tín hiệu scan</div>
+        <div class="signal"><div><div class="name">Trend ngắn hạn</div><div class="desc">Giá trên MA20, MA20 dốc lên</div></div><span class="tag good">Tốt</span></div>
+        <div class="signal"><div><div class="name">Trend trung hạn</div><div class="desc">MA50 giữ vai trò hỗ trợ động</div></div><span class="tag good">Ổn</span></div>
+        <div class="signal"><div><div class="name">Volume</div><div class="desc">Break chưa đủ xác nhận nếu vol thấp</div></div><span class="tag warn">Chờ</span></div>
+        <div class="signal"><div><div class="name">RSI</div><div class="desc">Trên 50, chưa quá mua</div></div><span class="tag good">Bull</span></div>
+        <div class="signal"><div><div class="name">MACD</div><div class="desc">Histogram thu hẹp, cần mở rộng lại</div></div><span class="tag info">Theo dõi</span></div>
+        <div class="signal"><div><div class="name">Risk</div><div class="desc">Sai nếu thủng hỗ trợ 58</div></div><span class="tag bad">Stop</span></div>
+      </div>
+      <div class="card">
+        <div class="ct">Hành động đề xuất</div>
+        <table class="table">
+          <tr><th>Tình huống</th><th>Hành động</th></tr>
+          <tr><td>Pullback 58–60</td><td class="green">Canh mua nhỏ</td></tr>
+          <tr><td>Break 64 + vol</td><td class="green">Mua xác nhận</td></tr>
+          <tr><td>Thủng 58</td><td class="red">Cắt / không mua</td></tr>
+          <tr><td>Lên 69–72</td><td class="orange">Chốt từng phần</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="card">
+      <div class="ct">Volume & Momentum</div>
+      <div class="mini"><canvas id="volumeChart"></canvas></div>
+      <div class="note">Đọc giống ảnh mẫu: giá tăng phải đi cùng volume; breakout volume thấp thì chỉ là tín hiệu theo dõi.</div>
+    </div>
+    <div class="card">
+      <div class="ct">Kịch bản</div>
+      <div class="scenario good"><h3>Bullish</h3><p>Giá vượt 64 với volume lớn hơn trung bình 20 phiên → mục tiêu 69–72, trailing stop dưới vùng breakout.</p></div>
+      <div class="scenario warn"><h3>Base</h3><p>Giá dao động 58–64, volume thấp → tiếp tục tích lũy, chỉ mua gần hỗ trợ.</p></div>
+      <div class="scenario bad"><h3>Bearish</h3><p>Thủng 58 kèm volume lớn → mất cấu trúc higher low, ưu tiên phòng thủ.</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="ct">Checklist scan theo chart mẫu</div>
+    <table class="table">
+      <tr><th>Layer</th><th>Cần đọc</th><th>Kết luận mẫu</th></tr>
+      <tr><td>Trend</td><td>HH/HL, MA20/50/100</td><td>Trend còn giữ nếu giá trên MA50 và không thủng đáy gần nhất</td></tr>
+      <tr><td>Support/Resistance</td><td>Vùng phản ứng nhiều lần</td><td>Không mua giữa biên; mua gần support hoặc sau breakout</td></tr>
+      <tr><td>Volume</td><td>Breakout / breakdown có vol không</td><td>Volume là điều kiện xác nhận, không phải trang trí</td></tr>
+      <tr><td>Momentum</td><td>RSI/MACD phân kỳ, cắt lên/xuống</td><td>Momentum ủng hộ thì giữ; suy yếu thì chốt dần</td></tr>
+      <tr><td>Risk</td><td>Điểm sai rõ ràng</td><td>Setup chỉ đáng mua khi stop-loss gần và R:R đủ</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">LH Investment — Chart Scanner UI prototype · Nội bộ · Không phải lời khuyên đầu tư</div>
+</div>
+<script>
+const labels=['01/25','02/25','03/25','04/25','05/25','06/25','07/25','08/25','09/25','10/25','11/25','12/25','01/26','02/26','03/26','04/26','05/26','06/26'];
+const price=[42,44,43,46,48,47,51,53,55,54,57,59,61,60,62,63,61,64];
+const ma20=[41,42,43,44,46,47,48,50,52,53,54,56,58,59,60,61,62,63];
+const ma50=[40,41,41.5,42,43,44,45,47,49,50,51,53,55,56,57,58,59,60];
+new Chart(document.getElementById('priceChart'),{type:'line',data:{labels,datasets:[
+ {label:'Giá',data:price,borderColor:'#4ea1ff',backgroundColor:'rgba(78,161,255,.10)',fill:true,borderWidth:2.5,pointRadius:3,tension:.25},
+ {label:'MA20',data:ma20,borderColor:'#22c55e',borderWidth:1.8,pointRadius:0,tension:.25},
+ {label:'MA50',data:ma50,borderColor:'#f59e0b',borderWidth:1.8,pointRadius:0,tension:.25},
+ {label:'Hỗ trợ 58',data:labels.map(()=>58),borderColor:'rgba(34,197,94,.65)',borderDash:[6,4],pointRadius:0,borderWidth:1.5},
+ {label:'Kháng cự 64',data:labels.map(()=>64),borderColor:'rgba(245,158,11,.75)',borderDash:[6,4],pointRadius:0,borderWidth:1.5}
+]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top'}},scales:{x:{grid:{color:'rgba(255,255,255,.06)'}},y:{grid:{color:'rgba(255,255,255,.06)'}}}}});
+new Chart(document.getElementById('volumeChart'),{type:'bar',data:{labels,datasets:[{label:'Volume',data:[18,21,19,25,28,22,35,38,44,31,42,46,55,40,48,52,37,66],backgroundColor:price.map((v,i)=>i&&v<price[i-1]?'rgba(239,68,68,.65)':'rgba(34,197,94,.65)')}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(255,255,255,.06)'}}}}});
+</script>
+
+</section>
+</div>
+</body>
+</html>
