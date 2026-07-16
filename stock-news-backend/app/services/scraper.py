@@ -1,7 +1,7 @@
 import os
 import re
 from datetime import datetime
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import httpx
 from bs4 import BeautifulSoup
@@ -36,6 +36,55 @@ def _clean_text(text: str) -> str:
     text = re.sub(r"<[^>]+>", " ", text or " ")
     text = re.sub(r"\s+", " ", text).strip()
     return text
+
+
+def canonical_news_url(url: str) -> str:
+    """Return a stable URL key so the same article is not stored repeatedly.
+
+    CafeF/Vietstock/Google links often differ only by tracking query, fragment,
+    trailing slash, AMP suffix, or mobile host. Raw-URL dedupe is therefore too
+    weak for the scheduled news cache.
+    """
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+    try:
+        parsed = urlparse(raw)
+        scheme = (parsed.scheme or "https").lower()
+        netloc = parsed.netloc.lower()
+        if netloc.startswith("www."):
+            netloc = netloc[4:]
+        if netloc.startswith("m."):
+            netloc = netloc[2:]
+        path = re.sub(r"/{2,}", "/", parsed.path or "/")
+        path = re.sub(r"/(amp|amp/)$", "", path, flags=re.I).rstrip("/") or "/"
+        keep_query = []
+        for k, v in parse_qsl(parsed.query, keep_blank_values=False):
+            lk = k.lower()
+            if lk.startswith("utm_") or lk in {"fbclid", "gclid", "zarsrc", "output", "amp", "ref", "source"}:
+                continue
+            keep_query.append((k, v))
+        query = urlencode(keep_query, doseq=True)
+        return urlunparse((scheme, netloc, path, "", query, ""))
+    except Exception:
+        return raw.split("#", 1)[0].split("?", 1)[0].rstrip("/")
+
+
+def canonical_news_title(title: str) -> str:
+    text = _clean_text(title).lower()
+    text = re.sub(r"[^\w\s%+.-]", " ", text, flags=re.UNICODE)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def news_dedupe_key(item: dict) -> str:
+    url_key = canonical_news_url(item.get("url") or "")
+    title_key = canonical_news_title(item.get("title") or "")
+    if url_key:
+        return f"url:{url_key}"
+    if title_key:
+        return f"title:{title_key}"
+    return f"fallback:{item.get('source','')}|{item.get('published_at','')}"
 
 
 def _fetch(url: str) -> str:
@@ -222,7 +271,9 @@ def collect_news(limit: int = 10) -> list[dict]:
     seen = set()
     dedup = []
     for item in collected:
-        key = item.get("url")
+        item["canonical_url"] = canonical_news_url(item.get("url") or "")
+        item["dedupe_key"] = news_dedupe_key(item)
+        key = item["dedupe_key"]
         if not key or key in seen:
             continue
         seen.add(key)

@@ -1,6 +1,13 @@
+import sys
+
 from app.services.scraper import collect_news
 from app.services.summarizer import enrich_news_with_ai
 from app.store import merge_news
+
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
 
 def main():

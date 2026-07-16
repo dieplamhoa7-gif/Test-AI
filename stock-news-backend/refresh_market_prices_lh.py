@@ -67,8 +67,10 @@ def refresh_indices(now: str):
     out = []
     for sym, label in specs:
         try:
-            end = datetime.now(TZ).strftime('%Y-%m-%d')
-            df = Quote(symbol=sym, source='VCI').history(start='2026-07-01', end=end, interval='1D')
+            end_dt = datetime.now(TZ)
+            end = end_dt.strftime('%Y-%m-%d')
+            start = (end_dt - timedelta(days=45)).strftime('%Y-%m-%d')
+            df = Quote(symbol=sym, source='VCI').history(start=start, end=end, interval='1D')
             if df is None or df.empty or len(df) < 2:
                 continue
             df = df.sort_values('time')
