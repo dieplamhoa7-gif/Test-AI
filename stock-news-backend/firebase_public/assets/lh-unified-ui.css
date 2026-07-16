@@ -99,3 +99,72 @@ body::before{
 }
 .hero-main h2,.lh-unified-hero-marker h2,.lh-cw-hero-marker h2{position:relative;z-index:1;max-width:850px!important;font-size:clamp(34px,5vw,64px)!important;line-height:.98!important;margin:18px 0 12px!important;letter-spacing:-.055em!important;background:linear-gradient(180deg,#fff,#cfe0ff 62%,#8fb1e8);-webkit-background-clip:text;background-clip:text;color:transparent!important}.hero-main p,.lh-unified-hero-marker p,.lh-cw-hero-marker p{position:relative;z-index:1;max-width:780px!important;color:#b7c6e6!important;font-size:16px!important;line-height:1.75!important}.hero-actions{position:relative;z-index:1}.panel,.card,.news-card,.warrant-card,.strategy-card{box-shadow:0 18px 58px rgba(0,0,0,.30)!important}
 @media(max-width:760px){.topbar{border-radius:22px!important;padding:13px!important}.main-tabs{border-radius:22px!important;overflow-x:auto;justify-content:flex-start}.hero-main,.lh-unified-hero-marker,.lh-cw-hero-marker{border-radius:22px!important;padding:20px!important;min-height:190px!important}.hero-main h2,.lh-unified-hero-marker h2,.lh-cw-hero-marker h2{font-size:clamp(30px,10vw,44px)!important}}
+
+
+/* LHINVT lavender detail polish v4 - match soft purple dashboard reference */
+:root{
+  --lh-lavender:#c7b8ff;
+  --lh-lavender-2:#a78bfa;
+  --lh-lavender-3:#e9ddff;
+  --lh-pink:#f0abfc;
+  --lh-soft-card:rgba(18,24,42,.74);
+  --lh-soft-line:rgba(199,184,255,.22);
+}
+body::before{
+  background:
+    radial-gradient(760px 360px at 16% 0%,rgba(167,139,250,.24),transparent 62%),
+    radial-gradient(640px 340px at 84% 2%,rgba(240,171,252,.15),transparent 60%),
+    radial-gradient(560px 360px at 50% 18%,rgba(129,140,248,.13),transparent 64%)!important;
+}
+.topbar{
+  background:linear-gradient(135deg,rgba(13,16,32,.90),rgba(24,18,45,.78) 52%,rgba(10,15,30,.82))!important;
+  border-color:rgba(199,184,255,.26)!important;
+  box-shadow:0 24px 80px rgba(10,8,28,.44),0 0 0 1px rgba(255,255,255,.035) inset!important;
+}
+.brand-icon{
+  background:linear-gradient(135deg,#f0abfc 0%,#c7b8ff 48%,#8b5cf6 100%)!important;
+  box-shadow:0 16px 44px rgba(167,139,250,.30),0 0 0 1px rgba(255,255,255,.24) inset!important;
+}
+.brand-text h1{color:#f7f3ff!important;text-shadow:0 0 24px rgba(199,184,255,.18)}
+.brand-text p{color:#bfb1e8!important}.theme-toggle,.status-pill,.lang-toggle{border-color:rgba(199,184,255,.22)!important;background:rgba(199,184,255,.065)!important}.status-pill{color:#d9f99d!important}.lang-btn.active{background:linear-gradient(135deg,#f0abfc,#c7b8ff 48%,#a78bfa)!important;color:#170f2d!important;box-shadow:0 8px 24px rgba(199,184,255,.24)!important}
+.main-tabs{
+  background:linear-gradient(180deg,rgba(18,16,34,.72),rgba(10,12,24,.58))!important;
+  border-color:rgba(199,184,255,.18)!important;
+  box-shadow:0 16px 54px rgba(8,6,25,.30),0 0 0 1px rgba(255,255,255,.025) inset!important;
+}
+.main-tabs .chip-btn{color:#cfc5ee!important;letter-spacing:.01em!important}.main-tabs .chip-btn:hover{background:rgba(199,184,255,.11)!important;color:#fff!important;box-shadow:0 8px 22px rgba(167,139,250,.12)!important}.main-tabs .chip-btn.active,.main-tabs .chip-btn[aria-current="page"]{
+  background:linear-gradient(135deg,#f2e7ff 0%,#c7b8ff 42%,#a78bfa 100%)!important;
+  color:#201238!important;
+  box-shadow:0 12px 32px rgba(167,139,250,.34),0 0 0 1px rgba(255,255,255,.34) inset!important;
+}
+.hero-main,.lh-unified-hero-marker,.lh-cw-hero-marker{
+  background:
+    radial-gradient(560px 260px at 82% 18%,rgba(199,184,255,.22),transparent 66%),
+    radial-gradient(420px 220px at 18% 0%,rgba(240,171,252,.13),transparent 68%),
+    linear-gradient(135deg,rgba(20,22,40,.97),rgba(28,21,52,.94) 48%,rgba(11,17,31,.96))!important;
+  border-color:rgba(199,184,255,.28)!important;
+  box-shadow:0 28px 96px rgba(8,6,25,.44),0 0 0 1px rgba(255,255,255,.04) inset!important;
+}
+.hero-main::after,.lh-unified-hero-marker::after,.lh-cw-hero-marker::after{
+  background:radial-gradient(circle,rgba(199,184,255,.32),rgba(240,171,252,.13) 40%,transparent 70%)!important;
+}
+.hero-main .eyebrow,.lh-unified-hero-marker .eyebrow,.lh-cw-hero-marker .eyebrow{
+  background:rgba(199,184,255,.13)!important;border-color:rgba(199,184,255,.30)!important;color:#e9ddff!important;
+  box-shadow:0 8px 24px rgba(167,139,250,.12)!important;
+}
+.hero-main h2,.lh-unified-hero-marker h2,.lh-cw-hero-marker h2{
+  background:linear-gradient(180deg,#fff 0%,#efe7ff 52%,#c7b8ff 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
+}
+.hero-main p,.lh-unified-hero-marker p,.lh-cw-hero-marker p{color:#d6cdf2!important}
+.panel,.card,.news-card,.warrant-card,.strategy-card,.index-card,.metric-card,.sector-card,.filter-board,.stats-box,.detail-box,.summary-card{
+  background:linear-gradient(180deg,rgba(22,27,46,.82),rgba(15,20,36,.74))!important;
+  border-color:rgba(199,184,255,.18)!important;
+  box-shadow:0 18px 58px rgba(7,6,22,.34),0 0 0 1px rgba(255,255,255,.025) inset!important;
+}
+.index-card:hover,.metric-card:hover,.sector-card:hover,.news-card:hover,.warrant-card:hover,.strategy-card:hover{
+  transform:translateY(-2px);border-color:rgba(199,184,255,.34)!important;box-shadow:0 22px 70px rgba(98,72,166,.28)!important;
+}
+.section-head h3,.card h3,.panel h3{color:#f7f3ff!important}.muted,.section-head p,.card p{color:#bdb4d9!important}.reload-btn,.primary-btn,button.primary,.chip-btn.primary{
+  background:linear-gradient(135deg,#f0abfc,#c7b8ff 52%,#a78bfa)!important;color:#170f2d!important;border-color:transparent!important;box-shadow:0 12px 30px rgba(167,139,250,.26)!important;
+}
+input,select,textarea{border-color:rgba(199,184,255,.20)!important;background:rgba(12,16,30,.72)!important;color:#f7f3ff!important}.filter-tab.active,.tabs .active,.subtab.active{background:linear-gradient(135deg,rgba(240,171,252,.22),rgba(199,184,255,.18))!important;border-color:rgba(199,184,255,.34)!important;color:#fff!important}
