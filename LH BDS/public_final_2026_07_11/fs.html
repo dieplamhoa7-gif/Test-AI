@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <script src="/security-guard.js"></script>
@@ -625,7 +625,7 @@ function defaults(){return {
   hs_tang:3.5, kkv:1, ktg:1, vonchu_mode:1,
   le_on:1, le_start:2030, le_years:45, le_disc:12, le_cit:20, le_esc:10, le_esc_yr:2,
   le_opex:30, le_hotel_opex:50, le_ffe:3, le_ins:1, le_capex:0, le_dep_years:25, le_disp:0, le_life:50, le_sell_cap:11, le_gfa:0, le_exit_cost:2, le_alloc_basis:1, le_alloc_manual:0,
-  le_nsa:2878, le_rent:0.098, le_units:0, le_urent:15, le_rooms:0, le_adr:1.5,
+  le_nsa:2878, le_rent:98, le_units:0, le_urent:15, le_rooms:0, le_adr:1.5,
   oc_nsa_1:40, oc_nsa_2:60, oc_nsa_3:80, oc_nsa_4:90, oc_nsa_5:95, oc_nsa_s:95,
   oc_un_1:50, oc_un_2:70, oc_un_3:85, oc_un_4:92, oc_un_5:95, oc_un_s:95,
   oc_ht_1:45, oc_ht_2:55, oc_ht_3:62, oc_ht_4:68, oc_ht_5:70, oc_ht_s:70,
@@ -682,7 +682,7 @@ function runLease(p, capexBase, depBase){
   const rD=(p.le_disc||0)/100/4, cit=(p.le_cit!=null?p.le_cit:p.cit)/100, vatR=(p.vat||0)/100;
   const escYrs=Math.max(1,Math.round(p.le_esc_yr||1)), escRate=(p.le_esc||0)/100;
   const opexR=(p.le_opex||0)/100, hOpexR=(p.le_hotel_opex||0)/100, ffeR=(p.le_ffe||0)/100, insR=(p.le_ins||0)/100;
-  const rentNsa=(p.le_rent||0)*1e6, rentUnit=(p.le_urent||0)*1e6, adr=(p.le_adr||0)*1e6, nightsQ=365/4;
+  const rentNsa=(p.le_rent||0)*1e3, rentUnit=(p.le_urent||0)*1e6, adr=(p.le_adr||0)*1e6, nightsQ=365/4;
   const capex=(capexBase&&capexBase>0)?capexBase:((p.le_capex||0)*1e9), depYears=Math.max(0,Math.round(p.le_dep_years||0));
   const depAsset=(depBase!=null&&depBase>0)?depBase:capex;   // SỬA(1): khấu hao trên TÀI SẢN XY DỰNG (ex đất/SDD/chuyển nhượng)
   const depQ=(depAsset>0&&depYears>0)?depAsset/depYears/4:0;
@@ -1344,7 +1344,7 @@ const LEASE_XSCAL=[
  ['le_start','C75','Năm bắt đầu vận hành','năm'],['le_years','C76','Số năm khai thác','năm'],
  ['le_disc','C77','Suất chiết khấu cho thuê','%/năm'],['le_cit','C78','Thuế TNDN cho thuê','%'],
  ['le_esc','C79','Trượt giá thuê mỗi chu kỳ','%'],['le_esc_yr','C80','Chu kỳ điều chỉnh giá thuê','năm'],
- ['le_nsa','C81','Diện tích cho thuê (NSA)','m²'],['le_rent','C82','Giá thuê NSA (NET — chưa VAT)','tr.đ/m²/tháng'],
+ ['le_nsa','C81','Diện tích cho thuê (NSA)','m²'],['le_rent','C82','Giá thuê NSA (NET — chưa VAT)','ngàn/m²/tháng'],
  ['le_units','C83','Số căn cho thuê','căn'],['le_urent','C84','Giá thuê mỗi căn (NET — chưa VAT)','tr.đ/căn/tháng'],
  ['le_rooms','C85','Số phòng khách sạn','phòng'],['le_adr','C86','Giá phòng ADR (NET — chưa VAT)','tr.đ/đêm'],
  ['le_opex','C87','Tỷ lệ opex / doanh thu thuê','%'],['le_hotel_opex','C88','Tỷ lệ opex khách sạn / DT','%'],
@@ -1608,7 +1608,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('occU',`=IF(${act}=1,IF(${A('ly',i)}<5,CHOOSE(${A('ly',i)}+1,${Lr('oc_un_1')},${Lr('oc_un_2')},${Lr('oc_un_3')},${Lr('oc_un_4')},${Lr('oc_un_5')}),${Lr('oc_un_s')})/100,0)`);
       Y('occH',`=IF(${act}=1,IF(${A('ly',i)}<5,CHOOSE(${A('ly',i)}+1,${Lr('oc_ht_1')},${Lr('oc_ht_2')},${Lr('oc_ht_3')},${Lr('oc_ht_4')},${Lr('oc_ht_5')}),${Lr('oc_ht_s')})/100,0)`);
       Y('esc',`=IF(${act}=1,(1+${Lr('le_esc')}/100)^INT(${A('ly',i)}/${Lr('le_esc_yr')}),0)`);
-      Y('gNsa',`=${A('esc',i)}*${Lr('le_nsa')}*${Lr('le_rent')}*1000000*12*${A('occN',i)}`);
+      Y('gNsa',`=${A('esc',i)}*${Lr('le_nsa')}*${Lr('le_rent')}*1000*12*${A('occN',i)}`);
       Y('gUnit',`=${A('esc',i)}*${Lr('le_units')}*${Lr('le_urent')}*1000000*12*${A('occU',i)}`);
       Y('gHot',`=${A('esc',i)}*${Lr('le_rooms')}*${Lr('le_adr')}*1000000*365*${A('occH',i)}`);
       Y('gross',`=${A('gNsa',i)}+${A('gUnit',i)}+${A('gHot',i)}`);
@@ -2054,7 +2054,7 @@ const FIELDS={
    ['le_disp','Exit: 0=giữ trọn đời · 1=bán theo cap-rate',''],['le_life','Tổng vòng đời N (tham chiếu)','năm'],['le_sell_cap','Exit cap-rate (NOI năm sau ÷ cap-rate)','%/năm'],['le_exit_cost','Chi phí thoái vốn / thuế chuyển nhượng (khi bán)','%'],['le_alloc_basis','Cơ sở phân bổ CP chung: 1=CPXD · 2=GFA · 3=nhập tay',''],['le_alloc_manual','Tỷ trọng phân bổ cho thuê (khi basis=3)','%'],
  ],
  'grp-lease-prod':[
-   ['le_nsa','① Thuê NSA — diện tích','m²'],['le_rent','① Giá thuê NSA (CHƯA VAT)','tr.đ/m²/tháng'],
+   ['le_nsa','① Thuê NSA — diện tích','m²'],['le_rent','① Giá thuê NSA (CHƯA VAT)','ngàn/m²/tháng'],
    ['le_units','② Thuê căn (CHDV) — số căn','căn'],['le_urent','② Giá thuê / căn (CHƯA VAT)','tr.đ/căn/tháng'],
    ['le_rooms','③ Khách sạn — số phòng','phòng'],['le_adr','③ Giá phòng ADR (CHƯA VAT)','tr.đ/phòng/đêm'],
  ],
@@ -3873,6 +3873,9 @@ function taoBaoCao(selId){
 <script src="account-cloud.js"></script>
 </body>
 </html>
+
+
+
 
 
 
