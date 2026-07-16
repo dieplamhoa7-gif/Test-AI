@@ -331,3 +331,31 @@ html body [data-filter-mode].active{
   border-color:rgba(255,255,255,.42)!important;
   box-shadow:0 10px 26px rgba(185,164,255,.30),0 0 0 1px rgba(255,255,255,.26) inset!important;
 }
+
+
+/* LHINVT brand/nav isolation v11 - do not let active tab styles hit brand */
+.topbar a.brand-wrap,.topbar a.brand-wrap:link,.topbar a.brand-wrap:visited,.topbar a.brand-wrap:hover,.topbar a.brand-wrap:active{
+  background:transparent!important;
+  background-image:none!important;
+  color:inherit!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+.topbar .brand-text h1,.topbar a.brand-wrap .brand-text h1{
+  color:#f5f0ff!important;
+  background:none!important;
+  -webkit-text-fill-color:#f5f0ff!important;
+}
+.topbar .brand-text p,.topbar a.brand-wrap .brand-text p{color:#c7bddf!important;background:none!important;-webkit-text-fill-color:#c7bddf!important}
+.topbar .brand-icon,.topbar a.brand-wrap .brand-icon{
+  background-image:linear-gradient(135deg,#ece4ff 0%,#d9ceff 42%,#b9a4ff 72%,#9f7aea 100%)!important;
+  background-color:#d9ceff!important;
+}
+/* Only direct nav children can receive selected lavender style */
+nav.main-tabs > a.chip-btn.active,nav.main-tabs > a.chip-btn[aria-current="page"]{
+  background-color:#d9ceff!important;
+  background-image:linear-gradient(135deg,#f4eaff 0%,#d9ceff 46%,#b9a4ff 100%)!important;
+  color:#201438!important;
+  border-color:rgba(255,255,255,.42)!important;
+}
