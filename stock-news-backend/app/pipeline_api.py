@@ -1480,6 +1480,43 @@ async def model3_status(job_id: str):
     return JSONResponse(_public_model3_job(job))
 
 
+@router.get("/model3/latest/{ticker}")
+async def model3_latest(ticker: str):
+    """Return the latest completed Model3 job/report for a ticker.
+
+    The Firebase stock-report UI may be opened after a local worker uploads the
+    DOCX. Without this endpoint the page can only display a report for the
+    current browser's job_id, so users see an empty/old state after refresh.
+    """
+    normalized = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
+    if not normalized:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    jobs = [
+        job for job in _iter_model3_jobs_from_disk()
+        if str(job.get("ticker") or "").upper() == normalized and job.get("status") == "done"
+    ]
+    jobs = [job for job in jobs if isinstance(job.get("result"), dict) and (job.get("result") or {}).get("docx_name")]
+    if jobs:
+        latest = max(jobs, key=lambda j: float(j.get("updated_at") or j.get("created_at") or 0))
+        return JSONResponse(_public_model3_job(latest))
+    docx = _latest_model3_docx(normalized, set())
+    if docx and docx.exists():
+        synthetic = {
+            "job_id": f"latest-{normalized}",
+            "ticker": normalized,
+            "status": "done",
+            "progress": 100,
+            "created_at": docx.stat().st_mtime,
+            "updated_at": docx.stat().st_mtime,
+            "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
+            "sections": MODEL3_SECTIONS,
+            "logs": [f"✅ Latest DOCX found: {docx.name}"],
+            "result": {"ok": True, "ticker": normalized, "docx_path": str(docx), "docx_name": docx.name, "partial_quality": False},
+        }
+        return JSONResponse(_public_model3_job(synthetic))
+    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới cho {normalized}")
+
+
 @router.get("/model3/file/{filename}")
 async def model3_file(filename: str):
     safe = Path(filename).name
