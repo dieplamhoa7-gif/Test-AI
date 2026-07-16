@@ -236,3 +236,14 @@ body{background-color:var(--lh-bg-deep)!important}
 }
 /* neutralize old cyan accents in header area */
 .topbar *{text-shadow:none!important}.topbar .status-pill::before,.main-tabs .chip-btn::before{background:var(--lh-lavender-mid)!important}
+
+
+/* LHINVT stocks/news exact active state sync v7 */
+.main-tabs .chip-btn.active,.main-tabs .chip-btn[aria-current="page"],
+.filter-tab.active,.tab-panel .chip-btn.active,.categories .chip-btn.active,.hero-actions .chip-btn.active{
+  background:linear-gradient(135deg,#f1eaff 0%,#d9ceff 45%,#b9a4ff 100%)!important;
+  color:#201438!important;
+  border-color:rgba(255,255,255,.32)!important;
+  box-shadow:0 10px 26px rgba(185,164,255,.30),0 0 0 1px rgba(255,255,255,.28) inset!important;
+}
+.news-page .main-tabs .chip-btn.active,.stocks-page .main-tabs .chip-btn.active{background:linear-gradient(135deg,#f1eaff,#d9ceff 45%,#b9a4ff)!important}
