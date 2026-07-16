@@ -82,9 +82,10 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
     prompt = (
         "Bạn là giám đốc đầu tư chứng khoán. "
         "Hãy đọc kỹ tin và phân loại đúng 1 nhãn: Chứng khoán, Ngân hàng, Bất động sản, Doanh nghiệp, Vĩ mô, Quốc tế, Pháp luật, Khác. "
-        "Tóm tắt đúng 5 câu: đủ ý, bôi đậm sự kiện chính và số liệu quan trọng (% giá trị, chỉ số), thời gian bằng thẻ <strong>...</strong>. "
-        "Phong cách thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; có thể viết tắt. "
-        "Nêu nhận định ảnh hưởng tích cực/tiêu cực đến các cổ phiếu có trong bài nếu đủ dữ kiện. "
+        "Tóm tắt đúng 5 câu, khoảng 100-140 từ: đủ bối cảnh, sự kiện chính, hệ quả đầu tư và rủi ro nếu có. "
+        "Bắt buộc bôi đậm bằng thẻ <strong>...</strong> các số liệu, thời gian, mã cổ phiếu, tên riêng quan trọng, sự kiện then chốt (% giá trị, chỉ số, tiền, khối lượng, ngày chốt quyền, KQKD). "
+        "Phong cách thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; ưu tiên thông tin có thể tác động đến giá/nhóm ngành. "
+        "Nêu nhận định ảnh hưởng tích cực/tiêu cực/trung tính đến các cổ phiếu có trong bài nếu đủ dữ kiện. "
         "Không dùng Markdown **, không dùng HTML khác ngoài <strong>. "
         "Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
     )
