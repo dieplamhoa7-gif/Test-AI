@@ -4,7 +4,8 @@
 $ErrorActionPreference = 'Continue'
 Set-Location $Root
 $env:RD_PORT = if ($env:RD_PORT) { $env:RD_PORT } else { '8787' }
-$env:QH_PORT = if ($env:QH_PORT) { $env:QH_PORT } else { '8787' }
+$env:QH_PORT = if ($env:QH_PORT) { $env:QH_PORT } else { '8788' }
+& (Join-Path $Root 'tools\lh_start_planning_proxy.ps1') -Root $Root -Port ([int]$env:QH_PORT)
 $env:DEPLOY_DIR = if ($env:DEPLOY_DIR) { $env:DEPLOY_DIR } else { 'public_final_2026_07_11' }
 $env:FIREBASE_SITE = if ($env:FIREBASE_SITE) { $env:FIREBASE_SITE } else { 'lhrealestate' }
 $env:FIREBASE_PROJECT = if ($env:FIREBASE_PROJECT) { $env:FIREBASE_PROJECT } else { 'hoa-investment' }

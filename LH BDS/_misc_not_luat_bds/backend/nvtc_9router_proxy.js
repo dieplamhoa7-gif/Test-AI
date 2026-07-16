@@ -325,7 +325,7 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === 'GET' && req.url === '/health') {
     res.writeHead(200, {'content-type':'application/json'});
-    return res.end(JSON.stringify({ok:true, base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey()}));
+    return res.end(JSON.stringify({ok:true, service:'bds_browser_planning_proxy', base:LOCAL_9ROUTER_BASE, model:FALLBACK_MODEL, hasKey:!!readBdsKey(), hasPlanning:!!(lookupHcmPlanning && summarize), hasQhViet:!!(readQhVietPopupText && parseQhVietPopupText), hasGuland:!!(readGulandPopupText && parseGulandPopupText)}));
   }
   if (req.method === 'POST' && req.url === '/notebooklm/report/start') {
     try {
