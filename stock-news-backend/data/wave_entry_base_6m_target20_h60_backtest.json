@@ -1,12 +1,2017 @@
 {
-  "createdAt": "2026-05-01T21:22:12.040052",
+  "createdAt": "2026-07-16T08:58:15.968468",
   "name": "Wave Entry after 6m base accumulation target20 H60",
   "method": "Uses long history from 2022-01-01. User requested horizon reduced from 84 to 60 sessions. Exit: target +20%, take 50% at +20%, trailing stop for remaining 50% at max(entry+1%, peak-8%), initial stop 8%, horizon 60 sessions. Output saved; web should only read cache.",
   "windows": {
     "current180": {
       "window": "current180",
-      "start": "2025-11-02",
-      "end": "2026-05-01",
+      "start": "2026-01-17",
+      "end": "2026-07-16",
+      "results": {
+        "WaveA_base_breakout_safe": {
+          "summary": {
+            "totalTrades": 1,
+            "wins": 0,
+            "losses": 1,
+            "flats": 0,
+            "winRatePct": 0.0,
+            "avgPnlPct": -8.0,
+            "sumPnlPct": -8.0,
+            "avgWinPct": 0,
+            "avgLossPct": -8.0,
+            "avgHoldSessions": 6.0
+          },
+          "trades": [
+            {
+              "entry": 64.7,
+              "stopInitial": 59.52,
+              "target": 77.64,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 6,
+              "exitDate": "2026-02-09",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-02-02",
+                  "close": 69.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-03",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-04",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-05",
+                  "close": 63.5,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-06",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-09",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "VHC",
+              "signalDate": "2026-01-29",
+              "entryDate": "2026-01-30",
+              "strategy": "WaveA_base_breakout_safe",
+              "entryIndicators": {
+                "price": 65.0,
+                "ma20": 59.3,
+                "ma50": 57.36,
+                "ma200": 55.47,
+                "ma20Slope5Pct": 2.79,
+                "ma50Slope20Pct": 1.43,
+                "rsi": 67.84,
+                "macdHist": 0.2638,
+                "macdHistSeq": [
+                  0.1653,
+                  -0.0283,
+                  0.0009,
+                  0.2638
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 3.0,
+                "roc20": 14.84,
+                "bbPercent": 1.036,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 55.85,
+                  "cloudBottom": 55.77
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 65.0,
+                    "low": 50.7,
+                    "rangePct": 28.21,
+                    "positionPct": 100.0,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "base12m": {
+                    "high": 70.55,
+                    "low": 42.28,
+                    "rangePct": 66.86,
+                    "positionPct": 80.37,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "donchian20Prev": 63.8,
+                  "donchian60Prev": 63.8
+                }
+              }
+            }
+          ],
+          "rejects": {
+            "not_above_cloud": 1857,
+            "not_above_ma20_ma50": 302,
+            "volume_not_confirm": 212,
+            "bearish_divergence": 122,
+            "rsi_not_55_72": 76,
+            "too_extended_ma20": 74,
+            "no_6m_base": 67,
+            "roc20_weak": 19,
+            "ma20_below_ma50": 15,
+            "base_volume_not_dry": 13,
+            "macd_hist_not_positive": 13,
+            "no_breakout20": 10,
+            "bb_too_high": 3
+          }
+        },
+        "WaveB_early_wave_from_base": {
+          "summary": {
+            "totalTrades": 5,
+            "wins": 0,
+            "losses": 5,
+            "flats": 0,
+            "winRatePct": 0.0,
+            "avgPnlPct": -8.0,
+            "sumPnlPct": -40.0,
+            "avgWinPct": 0,
+            "avgLossPct": -8.0,
+            "avgHoldSessions": 24.8
+          },
+          "trades": [
+            {
+              "entry": 25.0,
+              "stopInitial": 23.0,
+              "target": 30.0,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 58,
+              "exitDate": "2026-07-06",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-04-13",
+                  "close": 24.82,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-14",
+                  "close": 25.49,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-15",
+                  "close": 25.04,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-16",
+                  "close": 24.95,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-17",
+                  "close": 25.0,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-20",
+                  "close": 25.4,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-21",
+                  "close": 25.49,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-22",
+                  "close": 25.18,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-23",
+                  "close": 24.82,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-24",
+                  "close": 24.91,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-28",
+                  "close": 24.77,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-29",
+                  "close": 24.77,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-04",
+                  "close": 24.64,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-05",
+                  "close": 24.37,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-06",
+                  "close": 24.64,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-07",
+                  "close": 24.77,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-08",
+                  "close": 24.86,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-11",
+                  "close": 24.55,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-12",
+                  "close": 24.45,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-13",
+                  "close": 24.64,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-14",
+                  "close": 24.59,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-15",
+                  "close": 24.14,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-18",
+                  "close": 24.05,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-19",
+                  "close": 23.86,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-20",
+                  "close": 23.82,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-21",
+                  "close": 24.14,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-22",
+                  "close": 23.95,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-25",
+                  "close": 24.1,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-26",
+                  "close": 24.25,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-27",
+                  "close": 24.15,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-28",
+                  "close": 24.0,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-29",
+                  "close": 24.0,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-01",
+                  "close": 24.05,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-02",
+                  "close": 23.7,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-03",
+                  "close": 24.15,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-04",
+                  "close": 23.95,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-05",
+                  "close": 23.75,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-08",
+                  "close": 23.3,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-09",
+                  "close": 23.55,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-10",
+                  "close": 23.6,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-11",
+                  "close": 23.3,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-12",
+                  "close": 23.2,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-15",
+                  "close": 24.35,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-16",
+                  "close": 24.2,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-17",
+                  "close": 24.0,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-18",
+                  "close": 23.65,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-19",
+                  "close": 23.6,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-22",
+                  "close": 23.6,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-23",
+                  "close": 23.3,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-24",
+                  "close": 23.5,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-25",
+                  "close": 23.4,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-26",
+                  "close": 23.5,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-29",
+                  "close": 23.65,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-30",
+                  "close": 23.3,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-01",
+                  "close": 23.45,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-02",
+                  "close": 23.4,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-03",
+                  "close": 23.25,
+                  "stop": 23.0,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-06",
+                  "close": 23.1,
+                  "stop": 23.0,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "HPG",
+              "signalDate": "2026-04-09",
+              "entryDate": "2026-04-10",
+              "strategy": "WaveB_early_wave_from_base",
+              "entryIndicators": {
+                "price": 25.22,
+                "ma20": 23.87,
+                "ma50": 24.16,
+                "ma200": 24.04,
+                "ma20Slope5Pct": 0.5,
+                "ma50Slope20Pct": -0.11,
+                "rsi": 61.42,
+                "macdHist": 0.174,
+                "macdHistSeq": [
+                  0.0774,
+                  0.0682,
+                  0.1283,
+                  0.174
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 1.56,
+                "roc20": 5.39,
+                "bbPercent": 1.071,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 25.07,
+                  "cloudBottom": 24.57
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 26.56,
+                    "low": 22.54,
+                    "rangePct": 17.83,
+                    "positionPct": 66.67,
+                    "ma50Slope20Pct": 0.11,
+                    "volumeDryRatio20v100": 0.84
+                  },
+                  "base12m": {
+                    "high": 27.54,
+                    "low": 15.85,
+                    "rangePct": 73.75,
+                    "positionPct": 80.15,
+                    "ma50Slope20Pct": 0.11,
+                    "volumeDryRatio20v100": 0.84
+                  },
+                  "donchian20Prev": 25.04,
+                  "donchian60Prev": 26.51
+                }
+              }
+            },
+            {
+              "entry": 25.04,
+              "stopInitial": 23.04,
+              "target": 30.05,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 55,
+              "exitDate": "2026-07-06",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-04-16",
+                  "close": 24.95,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-17",
+                  "close": 25.0,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-20",
+                  "close": 25.4,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-21",
+                  "close": 25.49,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-22",
+                  "close": 25.18,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-23",
+                  "close": 24.82,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-24",
+                  "close": 24.91,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-28",
+                  "close": 24.77,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-29",
+                  "close": 24.77,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-04",
+                  "close": 24.64,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-05",
+                  "close": 24.37,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-06",
+                  "close": 24.64,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-07",
+                  "close": 24.77,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-08",
+                  "close": 24.86,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-11",
+                  "close": 24.55,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-12",
+                  "close": 24.45,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-13",
+                  "close": 24.64,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-14",
+                  "close": 24.59,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-15",
+                  "close": 24.14,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-18",
+                  "close": 24.05,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-19",
+                  "close": 23.86,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-20",
+                  "close": 23.82,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-21",
+                  "close": 24.14,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-22",
+                  "close": 23.95,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-25",
+                  "close": 24.1,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-26",
+                  "close": 24.25,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-27",
+                  "close": 24.15,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-28",
+                  "close": 24.0,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-05-29",
+                  "close": 24.0,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-01",
+                  "close": 24.05,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-02",
+                  "close": 23.7,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-03",
+                  "close": 24.15,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-04",
+                  "close": 23.95,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-05",
+                  "close": 23.75,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-08",
+                  "close": 23.3,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-09",
+                  "close": 23.55,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-10",
+                  "close": 23.6,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-11",
+                  "close": 23.3,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-12",
+                  "close": 23.2,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-15",
+                  "close": 24.35,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-16",
+                  "close": 24.2,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-17",
+                  "close": 24.0,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-18",
+                  "close": 23.65,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-19",
+                  "close": 23.6,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-22",
+                  "close": 23.6,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-23",
+                  "close": 23.3,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-24",
+                  "close": 23.5,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-25",
+                  "close": 23.4,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-26",
+                  "close": 23.5,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-29",
+                  "close": 23.65,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-06-30",
+                  "close": 23.3,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-01",
+                  "close": 23.45,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-02",
+                  "close": 23.4,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-03",
+                  "close": 23.25,
+                  "stop": 23.04,
+                  "event": null
+                },
+                {
+                  "date": "2026-07-06",
+                  "close": 23.1,
+                  "stop": 23.04,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "HPG",
+              "signalDate": "2026-04-14",
+              "entryDate": "2026-04-15",
+              "strategy": "WaveB_early_wave_from_base",
+              "entryIndicators": {
+                "price": 25.49,
+                "ma20": 24.05,
+                "ma50": 24.25,
+                "ma200": 24.11,
+                "ma20Slope5Pct": 1.15,
+                "ma50Slope20Pct": 0.2,
+                "rsi": 62.18,
+                "macdHist": 0.1856,
+                "macdHistSeq": [
+                  0.174,
+                  0.1799,
+                  0.1626,
+                  0.1856
+                ],
+                "macdHistRising": false,
+                "macdHistPositive": true,
+                "volumeRatio": 1.74,
+                "roc20": 6.16,
+                "bbPercent": 0.978,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 24.57,
+                  "cloudBottom": 24.57
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 26.56,
+                    "low": 22.54,
+                    "rangePct": 17.83,
+                    "positionPct": 73.38,
+                    "ma50Slope20Pct": 0.2,
+                    "volumeDryRatio20v100": 0.89
+                  },
+                  "base12m": {
+                    "high": 27.54,
+                    "low": 16.92,
+                    "rangePct": 62.77,
+                    "positionPct": 80.7,
+                    "ma50Slope20Pct": 0.2,
+                    "volumeDryRatio20v100": 0.89
+                  },
+                  "donchian20Prev": 25.53,
+                  "donchian60Prev": 26.51
+                }
+              }
+            },
+            {
+              "entry": 56.09,
+              "stopInitial": 51.6,
+              "target": 67.31,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 3,
+              "exitDate": "2026-03-09",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-03-05",
+                  "close": 55.22,
+                  "stop": 51.6,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-06",
+                  "close": 53.92,
+                  "stop": 51.6,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-09",
+                  "close": 50.18,
+                  "stop": 51.6,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "REE",
+              "signalDate": "2026-03-03",
+              "entryDate": "2026-03-04",
+              "strategy": "WaveB_early_wave_from_base",
+              "entryIndicators": {
+                "price": 56.09,
+                "ma20": 53.37,
+                "ma50": 53.14,
+                "ma200": 55.48,
+                "ma20Slope5Pct": 0.61,
+                "ma50Slope20Pct": -1.61,
+                "rsi": 67.54,
+                "macdHist": 0.3517,
+                "macdHistSeq": [
+                  0.1421,
+                  0.1413,
+                  0.2729,
+                  0.3517
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 1.69,
+                "roc20": 5.04,
+                "bbPercent": 1.142,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 55.28,
+                  "cloudBottom": 54.02
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 59.05,
+                    "low": 51.26,
+                    "rangePct": 15.2,
+                    "positionPct": 62.0,
+                    "ma50Slope20Pct": 1.61,
+                    "volumeDryRatio20v100": 1.3
+                  },
+                  "base12m": {
+                    "high": 60.93,
+                    "low": 42.49,
+                    "rangePct": 43.4,
+                    "positionPct": 73.75,
+                    "ma50Slope20Pct": 1.61,
+                    "volumeDryRatio20v100": 1.3
+                  },
+                  "donchian20Prev": 56.87,
+                  "donchian60Prev": 56.87
+                }
+              }
+            },
+            {
+              "entry": 55.22,
+              "stopInitial": 50.8,
+              "target": 66.26,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 2,
+              "exitDate": "2026-03-09",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-03-06",
+                  "close": 53.92,
+                  "stop": 50.8,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-09",
+                  "close": 50.18,
+                  "stop": 50.8,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "REE",
+              "signalDate": "2026-03-04",
+              "entryDate": "2026-03-05",
+              "strategy": "WaveB_early_wave_from_base",
+              "entryIndicators": {
+                "price": 56.09,
+                "ma20": 53.53,
+                "ma50": 53.2,
+                "ma200": 55.5,
+                "ma20Slope5Pct": 0.84,
+                "ma50Slope20Pct": -1.37,
+                "rsi": 67.54,
+                "macdHist": 0.3817,
+                "macdHistSeq": [
+                  0.1413,
+                  0.2729,
+                  0.3517,
+                  0.3817
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 2.97,
+                "roc20": 6.05,
+                "bbPercent": 1.027,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 55.28,
+                  "cloudBottom": 54.02
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 59.05,
+                    "low": 51.26,
+                    "rangePct": 15.2,
+                    "positionPct": 62.0,
+                    "ma50Slope20Pct": 1.37,
+                    "volumeDryRatio20v100": 1.41
+                  },
+                  "base12m": {
+                    "high": 60.93,
+                    "low": 42.49,
+                    "rangePct": 43.4,
+                    "positionPct": 73.75,
+                    "ma50Slope20Pct": 1.37,
+                    "volumeDryRatio20v100": 1.41
+                  },
+                  "donchian20Prev": 56.87,
+                  "donchian60Prev": 56.87
+                }
+              }
+            },
+            {
+              "entry": 64.7,
+              "stopInitial": 59.52,
+              "target": 77.64,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 6,
+              "exitDate": "2026-02-09",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-02-02",
+                  "close": 69.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-03",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-04",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-05",
+                  "close": 63.5,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-06",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-09",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "VHC",
+              "signalDate": "2026-01-29",
+              "entryDate": "2026-01-30",
+              "strategy": "WaveB_early_wave_from_base",
+              "entryIndicators": {
+                "price": 65.0,
+                "ma20": 59.3,
+                "ma50": 57.36,
+                "ma200": 55.47,
+                "ma20Slope5Pct": 2.79,
+                "ma50Slope20Pct": 1.43,
+                "rsi": 67.84,
+                "macdHist": 0.2638,
+                "macdHistSeq": [
+                  0.1653,
+                  -0.0283,
+                  0.0009,
+                  0.2638
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 3.0,
+                "roc20": 14.84,
+                "bbPercent": 1.036,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 55.85,
+                  "cloudBottom": 55.77
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 65.0,
+                    "low": 50.7,
+                    "rangePct": 28.21,
+                    "positionPct": 100.0,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "base12m": {
+                    "high": 70.55,
+                    "low": 42.28,
+                    "rangePct": 66.86,
+                    "positionPct": 80.37,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "donchian20Prev": 63.8,
+                  "donchian60Prev": 63.8
+                }
+              }
+            }
+          ],
+          "rejects": {
+            "not_above_cloud": 1857,
+            "not_above_ma20_ma50": 302,
+            "volume_not_confirm": 212,
+            "bearish_divergence": 122,
+            "rsi_not_55_72": 76,
+            "too_extended_ma20": 74,
+            "no_6m_base": 67,
+            "roc20_weak": 19,
+            "not_near_breakout20": 15,
+            "ma20_below_ma50": 15,
+            "macd_hist_not_positive": 13,
+            "rsi_too_hot_early": 7
+          }
+        },
+        "WaveC_strong_momentum_after_base": {
+          "summary": {
+            "totalTrades": 5,
+            "wins": 0,
+            "losses": 5,
+            "flats": 0,
+            "winRatePct": 0.0,
+            "avgPnlPct": -8.0,
+            "sumPnlPct": -40.0,
+            "avgWinPct": 0,
+            "avgLossPct": -8.0,
+            "avgHoldSessions": 8.0
+          },
+          "trades": [
+            {
+              "entry": 102.68,
+              "stopInitial": 94.47,
+              "target": 123.22,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 19,
+              "exitDate": "2026-02-23",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-01-21",
+                  "close": 103.57,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-22",
+                  "close": 102.09,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-23",
+                  "close": 99.63,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-26",
+                  "close": 97.16,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-27",
+                  "close": 100.71,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-28",
+                  "close": 103.08,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-29",
+                  "close": 104.66,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-01-30",
+                  "close": 103.08,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-02",
+                  "close": 102.88,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-03",
+                  "close": 102.49,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-04",
+                  "close": 100.51,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-05",
+                  "close": 97.65,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-06",
+                  "close": 96.27,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-09",
+                  "close": 97.65,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-10",
+                  "close": 96.47,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-11",
+                  "close": 97.26,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-12",
+                  "close": 97.46,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-13",
+                  "close": 94.99,
+                  "stop": 94.47,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-23",
+                  "close": 93.21,
+                  "stop": 94.47,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "FPT",
+              "signalDate": "2026-01-19",
+              "entryDate": "2026-01-20",
+              "strategy": "WaveC_strong_momentum_after_base",
+              "entryIndicators": {
+                "price": 104.36,
+                "ma20": 95.46,
+                "ma50": 95.61,
+                "ma200": 97.87,
+                "ma20Slope5Pct": 1.87,
+                "ma50Slope20Pct": 0.37,
+                "rsi": 70.72,
+                "macdHist": 1.1135,
+                "macdHistSeq": [
+                  0.6745,
+                  0.5834,
+                  0.9222,
+                  1.1135
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 1.79,
+                "roc20": 12.07,
+                "bbPercent": 1.104,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 95.75,
+                  "cloudBottom": 94.35
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 110.12,
+                    "low": 84.93,
+                    "rangePct": 29.66,
+                    "positionPct": 77.13,
+                    "ma50Slope20Pct": 0.37,
+                    "volumeDryRatio20v100": 0.91
+                  },
+                  "base12m": {
+                    "high": 131.31,
+                    "low": 82.32,
+                    "rangePct": 59.51,
+                    "positionPct": 44.99,
+                    "ma50Slope20Pct": 0.37,
+                    "volumeDryRatio20v100": 0.91
+                  },
+                  "donchian20Prev": 103.87,
+                  "donchian60Prev": 103.87
+                }
+              }
+            },
+            {
+              "entry": 26.25,
+              "stopInitial": 24.15,
+              "target": 31.5,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 4,
+              "exitDate": "2026-03-04",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-02-27",
+                  "close": 25.71,
+                  "stop": 24.15,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-02",
+                  "close": 25.44,
+                  "stop": 24.15,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-03",
+                  "close": 24.73,
+                  "stop": 24.15,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-04",
+                  "close": 24.73,
+                  "stop": 24.15,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "HPG",
+              "signalDate": "2026-02-25",
+              "entryDate": "2026-02-26",
+              "strategy": "WaveC_strong_momentum_after_base",
+              "entryIndicators": {
+                "price": 26.16,
+                "ma20": 24.19,
+                "ma50": 23.98,
+                "ma200": 23.3,
+                "ma20Slope5Pct": 0.35,
+                "ma50Slope20Pct": 0.18,
+                "rsi": 68.94,
+                "macdHist": 0.1759,
+                "macdHistSeq": [
+                  -0.026,
+                  0.0122,
+                  0.0804,
+                  0.1759
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 2.97,
+                "roc20": 9.32,
+                "bbPercent": 1.237,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 23.97,
+                  "cloudBottom": 23.77
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 27.54,
+                    "low": 22.63,
+                    "rangePct": 21.7,
+                    "positionPct": 71.89,
+                    "ma50Slope20Pct": 0.18,
+                    "volumeDryRatio20v100": 1.17
+                  },
+                  "base12m": {
+                    "high": 27.54,
+                    "low": 15.85,
+                    "rangePct": 73.75,
+                    "positionPct": 88.2,
+                    "ma50Slope20Pct": 0.18,
+                    "volumeDryRatio20v100": 1.17
+                  },
+                  "donchian20Prev": 25.53,
+                  "donchian60Prev": 25.53
+                }
+              }
+            },
+            {
+              "entry": 62.35,
+              "stopInitial": 57.36,
+              "target": 74.82,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 6,
+              "exitDate": "2026-04-03",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-03-27",
+                  "close": 62.35,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-30",
+                  "close": 60.87,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-31",
+                  "close": 59.57,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-01",
+                  "close": 58.61,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-02",
+                  "close": 57.65,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-03",
+                  "close": 56.0,
+                  "stop": 57.36,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "REE",
+              "signalDate": "2026-03-25",
+              "entryDate": "2026-03-26",
+              "strategy": "WaveC_strong_momentum_after_base",
+              "entryIndicators": {
+                "price": 61.65,
+                "ma20": 55.31,
+                "ma50": 54.02,
+                "ma200": 55.62,
+                "ma20Slope5Pct": 2.33,
+                "ma50Slope20Pct": 1.84,
+                "rsi": 69.49,
+                "macdHist": 0.6181,
+                "macdHistSeq": [
+                  0.4298,
+                  0.3703,
+                  0.3812,
+                  0.6181
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 2.61,
+                "roc20": 14.36,
+                "bbPercent": 1.142,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 54.17,
+                  "cloudBottom": 53.38
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 61.65,
+                    "low": 50.18,
+                    "rangePct": 22.86,
+                    "positionPct": 100.0,
+                    "ma50Slope20Pct": 1.84,
+                    "volumeDryRatio20v100": 2.21
+                  },
+                  "base12m": {
+                    "high": 61.65,
+                    "low": 42.49,
+                    "rangePct": 45.09,
+                    "positionPct": 100.0,
+                    "ma50Slope20Pct": 1.84,
+                    "volumeDryRatio20v100": 2.21
+                  },
+                  "donchian20Prev": 60.79,
+                  "donchian60Prev": 60.79
+                }
+              }
+            },
+            {
+              "entry": 62.35,
+              "stopInitial": 57.36,
+              "target": 74.82,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 5,
+              "exitDate": "2026-04-03",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-03-30",
+                  "close": 60.87,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-03-31",
+                  "close": 59.57,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-01",
+                  "close": 58.61,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-02",
+                  "close": 57.65,
+                  "stop": 57.36,
+                  "event": null
+                },
+                {
+                  "date": "2026-04-03",
+                  "close": 56.0,
+                  "stop": 57.36,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "REE",
+              "signalDate": "2026-03-26",
+              "entryDate": "2026-03-27",
+              "strategy": "WaveC_strong_momentum_after_base",
+              "entryIndicators": {
+                "price": 62.35,
+                "ma20": 55.73,
+                "ma50": 54.21,
+                "ma200": 55.64,
+                "ma20Slope5Pct": 2.74,
+                "ma50Slope20Pct": 2.19,
+                "rsi": 70.76,
+                "macdHist": 0.772,
+                "macdHistSeq": [
+                  0.3703,
+                  0.3812,
+                  0.6181,
+                  0.772
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 1.33,
+                "roc20": 15.27,
+                "bbPercent": 1.07,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 54.12,
+                  "cloudBottom": 53.38
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 63.05,
+                    "low": 50.18,
+                    "rangePct": 25.65,
+                    "positionPct": 94.56,
+                    "ma50Slope20Pct": 2.19,
+                    "volumeDryRatio20v100": 2.27
+                  },
+                  "base12m": {
+                    "high": 63.05,
+                    "low": 42.49,
+                    "rangePct": 48.39,
+                    "positionPct": 96.6,
+                    "ma50Slope20Pct": 2.19,
+                    "volumeDryRatio20v100": 2.27
+                  },
+                  "donchian20Prev": 61.65,
+                  "donchian60Prev": 61.65
+                }
+              }
+            },
+            {
+              "entry": 64.7,
+              "stopInitial": 59.52,
+              "target": 77.64,
+              "pnlPct": -8.0,
+              "outcome": "loss",
+              "holdSessions": 6,
+              "exitDate": "2026-02-09",
+              "partialTaken": false,
+              "futurePath": [
+                {
+                  "date": "2026-02-02",
+                  "close": 69.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-03",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-04",
+                  "close": 68.2,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-05",
+                  "close": 63.5,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-06",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": null
+                },
+                {
+                  "date": "2026-02-09",
+                  "close": 60.0,
+                  "stop": 59.52,
+                  "event": "stop"
+                }
+              ],
+              "symbol": "VHC",
+              "signalDate": "2026-01-29",
+              "entryDate": "2026-01-30",
+              "strategy": "WaveC_strong_momentum_after_base",
+              "entryIndicators": {
+                "price": 65.0,
+                "ma20": 59.3,
+                "ma50": 57.36,
+                "ma200": 55.47,
+                "ma20Slope5Pct": 2.79,
+                "ma50Slope20Pct": 1.43,
+                "rsi": 67.84,
+                "macdHist": 0.2638,
+                "macdHistSeq": [
+                  0.1653,
+                  -0.0283,
+                  0.0009,
+                  0.2638
+                ],
+                "macdHistRising": true,
+                "macdHistPositive": true,
+                "volumeRatio": 3.0,
+                "roc20": 14.84,
+                "bbPercent": 1.036,
+                "ichimoku": {
+                  "state": "above_cloud",
+                  "cloudTop": 55.85,
+                  "cloudBottom": 55.77
+                },
+                "bearishDivergence": false,
+                "base": {
+                  "base6m": {
+                    "high": 65.0,
+                    "low": 50.7,
+                    "rangePct": 28.21,
+                    "positionPct": 100.0,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "base12m": {
+                    "high": 70.55,
+                    "low": 42.28,
+                    "rangePct": 66.86,
+                    "positionPct": 80.37,
+                    "ma50Slope20Pct": 1.43,
+                    "volumeDryRatio20v100": 1.09
+                  },
+                  "donchian20Prev": 63.8,
+                  "donchian60Prev": 63.8
+                }
+              }
+            }
+          ],
+          "rejects": {
+            "not_above_cloud": 1857,
+            "not_above_ma20_ma50": 302,
+            "volume_not_confirm": 212,
+            "bearish_divergence": 122,
+            "rsi_not_55_72": 76,
+            "too_extended_ma20": 74,
+            "no_6m_base": 67,
+            "no_breakout60": 21,
+            "roc20_weak": 19,
+            "ma20_below_ma50": 15,
+            "macd_hist_not_positive": 13,
+            "macd_not_rising3": 1
+          }
+        }
+      },
+      "counts": {
+        "FPT": {
+          "loops": 58,
+          "candidates": 1
+        },
+        "MWG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "HPG": {
+          "loops": 58,
+          "candidates": 3
+        },
+        "SSI": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VCI": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VND": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "HCM": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "MBS": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "TCB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "MBB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "ACB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "CTG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "BID": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VPB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "STB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VIB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VRE": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "KDH": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "DXG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "NVL": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "KBC": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "GEX": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "GVR": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "PNJ": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VNM": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "MSN": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "SAB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "GAS": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "PLX": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "PVD": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "PVS": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "DGC": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "DCM": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "DPM": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "HSG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "NKG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "DIG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "CEO": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VTP": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "CTR": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "REE": {
+          "loops": 58,
+          "candidates": 4
+        },
+        "PC1": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "SZC": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "BCM": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "HDG": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "KSB": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "ANV": {
+          "loops": 58,
+          "candidates": 0
+        },
+        "VHC": {
+          "loops": 58,
+          "candidates": 3
+        }
+      }
+    },
+    "prev3m": {
+      "window": "prev3m",
+      "start": "2025-10-19",
+      "end": "2026-01-17",
       "results": {
         "WaveA_base_breakout_safe": {
           "summary": {
@@ -1008,18 +3013,18 @@
             }
           ],
           "rejects": {
-            "not_above_cloud": 2144,
-            "not_above_ma20_ma50": 130,
-            "volume_not_confirm": 116,
-            "bearish_divergence": 97,
-            "too_extended_ma20": 77,
-            "rsi_not_55_72": 75,
-            "no_6m_base": 66,
-            "ma20_below_ma50": 39,
-            "no_breakout20": 16,
+            "not_above_cloud": 2420,
+            "not_above_ma20_ma50": 154,
+            "bearish_divergence": 103,
+            "volume_not_confirm": 95,
+            "rsi_not_55_72": 64,
+            "no_6m_base": 59,
+            "too_extended_ma20": 52,
+            "ma20_below_ma50": 43,
+            "no_breakout20": 12,
             "roc20_weak": 9,
-            "bb_too_high": 4,
-            "macd_hist_not_positive": 4,
+            "bb_too_high": 3,
+            "macd_hist_not_positive": 3,
             "base_volume_not_dry": 3
           }
         },
@@ -2740,7 +4745,7 @@
               "strategy": "WaveB_early_wave_from_base",
               "entryIndicators": {
                 "price": 36.5,
-                "ma20": 34.92,
+                "ma20": 34.91,
                 "ma50": 34.51,
                 "ma200": 35.52,
                 "ma20Slope5Pct": 1.18,
@@ -3385,212 +5390,35 @@
             }
           ],
           "rejects": {
-            "not_above_cloud": 2144,
-            "not_above_ma20_ma50": 130,
-            "volume_not_confirm": 116,
-            "bearish_divergence": 97,
-            "too_extended_ma20": 77,
-            "rsi_not_55_72": 75,
-            "no_6m_base": 66,
-            "ma20_below_ma50": 39,
-            "not_near_breakout20": 11,
+            "not_above_cloud": 2420,
+            "not_above_ma20_ma50": 154,
+            "bearish_divergence": 103,
+            "volume_not_confirm": 95,
+            "rsi_not_55_72": 64,
+            "no_6m_base": 59,
+            "too_extended_ma20": 52,
+            "ma20_below_ma50": 43,
             "roc20_weak": 9,
-            "macd_hist_not_positive": 4,
+            "not_near_breakout20": 6,
             "rsi_too_hot_early": 3,
+            "macd_hist_not_positive": 3,
             "momentum_not_starting": 1
           }
         },
         "WaveC_strong_momentum_after_base": {
           "summary": {
-            "totalTrades": 2,
+            "totalTrades": 1,
             "wins": 1,
-            "losses": 1,
+            "losses": 0,
             "flats": 0,
-            "winRatePct": 50.0,
-            "avgPnlPct": 4.31,
-            "sumPnlPct": 8.62,
+            "winRatePct": 100.0,
+            "avgPnlPct": 16.62,
+            "sumPnlPct": 16.62,
             "avgWinPct": 16.62,
-            "avgLossPct": -8.0,
-            "avgHoldSessions": 12.0
+            "avgLossPct": 0,
+            "avgHoldSessions": 5.0
           },
           "trades": [
-            {
-              "entry": 104.1,
-              "stopInitial": 95.77,
-              "target": 124.92,
-              "pnlPct": -8.0,
-              "outcome": "loss",
-              "holdSessions": 19,
-              "exitDate": "2026-02-23",
-              "partialTaken": false,
-              "futurePath": [
-                {
-                  "date": "2026-01-21",
-                  "close": 105.0,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-22",
-                  "close": 103.5,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-23",
-                  "close": 101.0,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-26",
-                  "close": 98.5,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-27",
-                  "close": 102.1,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-28",
-                  "close": 104.5,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-29",
-                  "close": 106.1,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-01-30",
-                  "close": 104.5,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-02",
-                  "close": 104.3,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-03",
-                  "close": 103.9,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-04",
-                  "close": 101.9,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-05",
-                  "close": 99.0,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-06",
-                  "close": 97.6,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-09",
-                  "close": 99.0,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-10",
-                  "close": 97.8,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-11",
-                  "close": 98.6,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-12",
-                  "close": 98.8,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-13",
-                  "close": 96.3,
-                  "stop": 95.77,
-                  "event": null
-                },
-                {
-                  "date": "2026-02-23",
-                  "close": 94.5,
-                  "stop": 95.77,
-                  "event": "stop"
-                }
-              ],
-              "symbol": "FPT",
-              "signalDate": "2026-01-19",
-              "entryDate": "2026-01-20",
-              "strategy": "WaveC_strong_momentum_after_base",
-              "entryIndicators": {
-                "price": 105.8,
-                "ma20": 96.78,
-                "ma50": 96.93,
-                "ma200": 99.22,
-                "ma20Slope5Pct": 1.87,
-                "ma50Slope20Pct": 0.37,
-                "rsi": 70.72,
-                "macdHist": 1.1291,
-                "macdHistSeq": [
-                  0.6842,
-                  0.5919,
-                  0.9351,
-                  1.1291
-                ],
-                "macdHistRising": true,
-                "macdHistPositive": true,
-                "volumeRatio": 1.79,
-                "roc20": 12.08,
-                "bbPercent": 1.104,
-                "ichimoku": {
-                  "state": "above_cloud",
-                  "cloudTop": 97.06,
-                  "cloudBottom": 95.66
-                },
-                "bearishDivergence": false,
-                "base": {
-                  "base6m": {
-                    "high": 111.64,
-                    "low": 86.1,
-                    "rangePct": 29.66,
-                    "positionPct": 77.13,
-                    "ma50Slope20Pct": 0.37,
-                    "volumeDryRatio20v100": 0.9
-                  },
-                  "base12m": {
-                    "high": 133.12,
-                    "low": 83.46,
-                    "rangePct": 59.5,
-                    "positionPct": 44.99,
-                    "ma50Slope20Pct": 0.37,
-                    "volumeDryRatio20v100": 0.9
-                  },
-                  "donchian20Prev": 105.3,
-                  "donchian60Prev": 105.3
-                }
-              }
-            },
             {
               "entry": 35.75,
               "stopInitial": 32.89,
@@ -3638,7 +5466,7 @@
               "strategy": "WaveC_strong_momentum_after_base",
               "entryIndicators": {
                 "price": 36.5,
-                "ma20": 34.92,
+                "ma20": 34.91,
                 "ma50": 34.51,
                 "ma200": 35.52,
                 "ma20Slope5Pct": 1.18,
@@ -3686,1255 +5514,212 @@
             }
           ],
           "rejects": {
-            "not_above_cloud": 2144,
-            "not_above_ma20_ma50": 130,
-            "volume_not_confirm": 116,
-            "bearish_divergence": 97,
-            "too_extended_ma20": 77,
-            "rsi_not_55_72": 75,
-            "no_6m_base": 66,
-            "ma20_below_ma50": 39,
-            "no_breakout60": 25,
+            "not_above_cloud": 2420,
+            "not_above_ma20_ma50": 154,
+            "bearish_divergence": 103,
+            "volume_not_confirm": 95,
+            "rsi_not_55_72": 64,
+            "no_6m_base": 59,
+            "too_extended_ma20": 52,
+            "ma20_below_ma50": 43,
+            "no_breakout60": 21,
             "roc20_weak": 9,
-            "macd_hist_not_positive": 4
+            "macd_hist_not_positive": 3
           }
         }
       },
       "counts": {
         "FPT": {
-          "loops": 58,
-          "candidates": 1
+          "loops": 63,
+          "candidates": 0
         },
         "MWG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "HPG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "SSI": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VCI": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VND": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "HCM": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "MBS": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "TCB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "MBB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "ACB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "CTG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "BID": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VPB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "STB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VIB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VRE": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "KDH": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "DXG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "NVL": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "KBC": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "GEX": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "GVR": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "PNJ": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 8
         },
         "VNM": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "MSN": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "SAB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 2
         },
         "GAS": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 1
         },
         "PLX": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 2
         },
         "PVD": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "PVS": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "DGC": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "DCM": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "DPM": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "HSG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "NKG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "DIG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "CEO": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VTP": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "CTR": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "REE": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "PC1": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "SZC": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "BCM": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 1
         },
         "HDG": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "KSB": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "ANV": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 0
         },
         "VHC": {
-          "loops": 58,
+          "loops": 63,
           "candidates": 3
-        }
-      }
-    },
-    "prev3m": {
-      "window": "prev3m",
-      "start": "2025-08-04",
-      "end": "2025-11-02",
-      "results": {
-        "WaveA_base_breakout_safe": {
-          "summary": {
-            "totalTrades": 0,
-            "wins": 0,
-            "losses": 0,
-            "flats": 0,
-            "winRatePct": 0,
-            "avgPnlPct": 0,
-            "sumPnlPct": 0,
-            "avgWinPct": 0,
-            "avgLossPct": 0,
-            "avgHoldSessions": 0
-          },
-          "trades": [],
-          "rejects": {
-            "not_above_cloud": 1263,
-            "not_above_ma20_ma50": 549,
-            "bearish_divergence": 382,
-            "volume_not_confirm": 351,
-            "rsi_not_55_72": 152,
-            "no_6m_base": 100,
-            "too_extended_ma20": 96,
-            "roc20_weak": 37,
-            "macd_hist_not_positive": 25,
-            "ma20_below_ma50": 14,
-            "base_volume_not_dry": 3,
-            "bb_too_high": 2,
-            "no_breakout20": 2
-          }
-        },
-        "WaveB_early_wave_from_base": {
-          "summary": {
-            "totalTrades": 1,
-            "wins": 0,
-            "losses": 1,
-            "flats": 0,
-            "winRatePct": 0.0,
-            "avgPnlPct": -8.0,
-            "sumPnlPct": -8.0,
-            "avgWinPct": 0,
-            "avgLossPct": -8.0,
-            "avgHoldSessions": 25.0
-          },
-          "trades": [
-            {
-              "entry": 60.27,
-              "stopInitial": 55.45,
-              "target": 72.32,
-              "pnlPct": -8.0,
-              "outcome": "loss",
-              "holdSessions": 25,
-              "exitDate": "2025-10-20",
-              "partialTaken": false,
-              "futurePath": [
-                {
-                  "date": "2025-09-16",
-                  "close": 61.8,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-17",
-                  "close": 62.18,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-18",
-                  "close": 60.75,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-19",
-                  "close": 59.22,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-22",
-                  "close": 58.65,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-23",
-                  "close": 58.84,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-24",
-                  "close": 59.22,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-25",
-                  "close": 58.74,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-26",
-                  "close": 58.36,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-29",
-                  "close": 57.6,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-30",
-                  "close": 57.31,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-01",
-                  "close": 59.32,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-02",
-                  "close": 58.46,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-03",
-                  "close": 58.55,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-06",
-                  "close": 59.6,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-07",
-                  "close": 58.65,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-08",
-                  "close": 60.56,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-09",
-                  "close": 60.08,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-10",
-                  "close": 59.6,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-13",
-                  "close": 61.13,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-14",
-                  "close": 60.66,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-15",
-                  "close": 60.75,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-16",
-                  "close": 61.2,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-17",
-                  "close": 58.8,
-                  "stop": 55.45,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-20",
-                  "close": 55.0,
-                  "stop": 55.45,
-                  "event": "stop"
-                }
-              ],
-              "symbol": "VNM",
-              "signalDate": "2025-09-12",
-              "entryDate": "2025-09-15",
-              "strategy": "WaveB_early_wave_from_base",
-              "entryIndicators": {
-                "price": 60.37,
-                "ma20": 57.9,
-                "ma50": 57.93,
-                "ma200": 56.26,
-                "ma20Slope5Pct": -0.08,
-                "ma50Slope20Pct": 2.91,
-                "rsi": 63.06,
-                "macdHist": 0.1513,
-                "macdHistSeq": [
-                  0.0002,
-                  -0.0559,
-                  -0.0032,
-                  0.1513
-                ],
-                "macdHistRising": true,
-                "macdHistPositive": true,
-                "volumeRatio": 2.55,
-                "roc20": 3.44,
-                "bbPercent": 1.124,
-                "ichimoku": {
-                  "state": "above_cloud",
-                  "cloudTop": 58.6,
-                  "cloudBottom": 56.69
-                },
-                "bearishDivergence": false,
-                "base": {
-                  "base6m": {
-                    "high": 61.32,
-                    "low": 47.42,
-                    "rangePct": 29.31,
-                    "positionPct": 93.17,
-                    "ma50Slope20Pct": 2.91,
-                    "volumeDryRatio20v100": 1.08
-                  },
-                  "base12m": {
-                    "high": 66.79,
-                    "low": 47.42,
-                    "rangePct": 40.85,
-                    "positionPct": 66.86,
-                    "ma50Slope20Pct": 2.91,
-                    "volumeDryRatio20v100": 1.08
-                  },
-                  "donchian20Prev": 59.7,
-                  "donchian60Prev": 61.32
-                }
-              }
-            }
-          ],
-          "rejects": {
-            "not_above_cloud": 1263,
-            "not_above_ma20_ma50": 549,
-            "bearish_divergence": 382,
-            "volume_not_confirm": 351,
-            "rsi_not_55_72": 152,
-            "no_6m_base": 100,
-            "too_extended_ma20": 96,
-            "roc20_weak": 37,
-            "macd_hist_not_positive": 25,
-            "ma20_below_ma50": 14,
-            "rsi_too_hot_early": 4,
-            "not_near_breakout20": 2
-          }
-        },
-        "WaveC_strong_momentum_after_base": {
-          "summary": {
-            "totalTrades": 2,
-            "wins": 0,
-            "losses": 2,
-            "flats": 0,
-            "winRatePct": 0.0,
-            "avgPnlPct": -8.0,
-            "sumPnlPct": -16.0,
-            "avgWinPct": 0,
-            "avgLossPct": -8.0,
-            "avgHoldSessions": 34.5
-          },
-          "trades": [
-            {
-              "entry": 40.9,
-              "stopInitial": 37.63,
-              "target": 49.08,
-              "pnlPct": -8.0,
-              "outcome": "loss",
-              "holdSessions": 46,
-              "exitDate": "2025-10-20",
-              "partialTaken": false,
-              "futurePath": [
-                {
-                  "date": "2025-08-14",
-                  "close": 41.69,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-15",
-                  "close": 40.55,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-18",
-                  "close": 40.35,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-19",
-                  "close": 40.4,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-20",
-                  "close": 40.25,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-21",
-                  "close": 41.83,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-22",
-                  "close": 42.77,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-25",
-                  "close": 40.55,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-26",
-                  "close": 41.34,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-27",
-                  "close": 42.33,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-28",
-                  "close": 42.03,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-08-29",
-                  "close": 42.38,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-03",
-                  "close": 43.02,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-04",
-                  "close": 42.92,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-05",
-                  "close": 41.49,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-08",
-                  "close": 40.2,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-09",
-                  "close": 40.2,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-10",
-                  "close": 40.25,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-11",
-                  "close": 40.2,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-12",
-                  "close": 40.5,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-15",
-                  "close": 41.74,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-16",
-                  "close": 41.59,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-17",
-                  "close": 40.55,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-18",
-                  "close": 40.35,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-19",
-                  "close": 39.36,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-22",
-                  "close": 40.55,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-23",
-                  "close": 40.4,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-24",
-                  "close": 40.75,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-25",
-                  "close": 40.45,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-26",
-                  "close": 40.1,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-29",
-                  "close": 39.86,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-30",
-                  "close": 39.56,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-01",
-                  "close": 39.61,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-02",
-                  "close": 39.66,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-03",
-                  "close": 39.36,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-06",
-                  "close": 40.3,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-07",
-                  "close": 40.05,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-08",
-                  "close": 40.01,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-09",
-                  "close": 40.35,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-10",
-                  "close": 40.75,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-13",
-                  "close": 40.45,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-14",
-                  "close": 39.6,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-15",
-                  "close": 39.35,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-16",
-                  "close": 39.75,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-17",
-                  "close": 39.05,
-                  "stop": 37.63,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-20",
-                  "close": 36.5,
-                  "stop": 37.63,
-                  "event": "stop"
-                }
-              ],
-              "symbol": "BID",
-              "signalDate": "2025-08-12",
-              "entryDate": "2025-08-13",
-              "strategy": "WaveC_strong_momentum_after_base",
-              "entryIndicators": {
-                "price": 41.04,
-                "ma20": 38.4,
-                "ma50": 36.92,
-                "ma200": 37.67,
-                "ma20Slope5Pct": 1.29,
-                "ma50Slope20Pct": 3.06,
-                "rsi": 68.75,
-                "macdHist": 0.2192,
-                "macdHistSeq": [
-                  0.0833,
-                  0.0978,
-                  0.1292,
-                  0.2192
-                ],
-                "macdHistRising": true,
-                "macdHistPositive": true,
-                "volumeRatio": 1.48,
-                "roc20": 8.92,
-                "bbPercent": 1.131,
-                "ichimoku": {
-                  "state": "above_cloud",
-                  "cloudTop": 35.85,
-                  "cloudBottom": 34.86
-                },
-                "bearishDivergence": false,
-                "base": {
-                  "base6m": {
-                    "high": 41.54,
-                    "low": 30.86,
-                    "rangePct": 34.61,
-                    "positionPct": 95.32,
-                    "ma50Slope20Pct": 3.06,
-                    "volumeDryRatio20v100": 1.95
-                  },
-                  "base12m": {
-                    "high": 42.25,
-                    "low": 30.86,
-                    "rangePct": 36.91,
-                    "positionPct": 89.38,
-                    "ma50Slope20Pct": 3.06,
-                    "volumeDryRatio20v100": 1.95
-                  },
-                  "donchian20Prev": 40.55,
-                  "donchian60Prev": 40.55
-                }
-              }
-            },
-            {
-              "entry": 62.18,
-              "stopInitial": 57.21,
-              "target": 74.62,
-              "pnlPct": -8.0,
-              "outcome": "loss",
-              "holdSessions": 23,
-              "exitDate": "2025-10-20",
-              "partialTaken": false,
-              "futurePath": [
-                {
-                  "date": "2025-09-18",
-                  "close": 60.75,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-19",
-                  "close": 59.22,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-22",
-                  "close": 58.65,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-23",
-                  "close": 58.84,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-24",
-                  "close": 59.22,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-25",
-                  "close": 58.74,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-26",
-                  "close": 58.36,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-29",
-                  "close": 57.6,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-09-30",
-                  "close": 57.31,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-01",
-                  "close": 59.32,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-02",
-                  "close": 58.46,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-03",
-                  "close": 58.55,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-06",
-                  "close": 59.6,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-07",
-                  "close": 58.65,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-08",
-                  "close": 60.56,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-09",
-                  "close": 60.08,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-10",
-                  "close": 59.6,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-13",
-                  "close": 61.13,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-14",
-                  "close": 60.66,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-15",
-                  "close": 60.75,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-16",
-                  "close": 61.2,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-17",
-                  "close": 58.8,
-                  "stop": 57.21,
-                  "event": null
-                },
-                {
-                  "date": "2025-10-20",
-                  "close": 55.0,
-                  "stop": 57.21,
-                  "event": "stop"
-                }
-              ],
-              "symbol": "VNM",
-              "signalDate": "2025-09-16",
-              "entryDate": "2025-09-17",
-              "strategy": "WaveC_strong_momentum_after_base",
-              "entryIndicators": {
-                "price": 61.8,
-                "ma20": 58.14,
-                "ma50": 58.17,
-                "ma200": 56.29,
-                "ma20Slope5Pct": 0.4,
-                "ma50Slope20Pct": 2.95,
-                "rsi": 68.12,
-                "macdHist": 0.368,
-                "macdHistSeq": [
-                  -0.0032,
-                  0.1513,
-                  0.2329,
-                  0.368
-                ],
-                "macdHistRising": true,
-                "macdHistPositive": true,
-                "volumeRatio": 2.28,
-                "roc20": 6.06,
-                "bbPercent": 1.155,
-                "ichimoku": {
-                  "state": "above_cloud",
-                  "cloudTop": 58.62,
-                  "cloudBottom": 56.69
-                },
-                "bearishDivergence": false,
-                "base": {
-                  "base6m": {
-                    "high": 62.47,
-                    "low": 47.42,
-                    "rangePct": 31.74,
-                    "positionPct": 95.55,
-                    "ma50Slope20Pct": 2.95,
-                    "volumeDryRatio20v100": 1.11
-                  },
-                  "base12m": {
-                    "high": 66.52,
-                    "low": 47.42,
-                    "rangePct": 40.28,
-                    "positionPct": 75.29,
-                    "ma50Slope20Pct": 2.95,
-                    "volumeDryRatio20v100": 1.11
-                  },
-                  "donchian20Prev": 60.66,
-                  "donchian60Prev": 61.32
-                }
-              }
-            }
-          ],
-          "rejects": {
-            "not_above_cloud": 1263,
-            "not_above_ma20_ma50": 549,
-            "bearish_divergence": 382,
-            "volume_not_confirm": 351,
-            "rsi_not_55_72": 152,
-            "no_6m_base": 100,
-            "too_extended_ma20": 96,
-            "roc20_weak": 37,
-            "macd_hist_not_positive": 25,
-            "ma20_below_ma50": 14,
-            "no_breakout60": 5
-          }
-        }
-      },
-      "counts": {
-        "FPT": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "MWG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "HPG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "SSI": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VCI": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VND": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "HCM": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "MBS": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "TCB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "MBB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "ACB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "CTG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "BID": {
-          "loops": 62,
-          "candidates": 1
-        },
-        "VPB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "STB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VIB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VRE": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "KDH": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "DXG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "NVL": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "KBC": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "GEX": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "GVR": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "PNJ": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VNM": {
-          "loops": 62,
-          "candidates": 2
-        },
-        "MSN": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "SAB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "GAS": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "PLX": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "PVD": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "PVS": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "DGC": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "DCM": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "DPM": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "HSG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "NKG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "DIG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "CEO": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VTP": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "CTR": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "REE": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "PC1": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "SZC": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "BCM": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "HDG": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "KSB": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "ANV": {
-          "loops": 62,
-          "candidates": 0
-        },
-        "VHC": {
-          "loops": 62,
-          "candidates": 0
         }
       }
     }
