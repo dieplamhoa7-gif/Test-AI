@@ -1,120 +1,635 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LH Investment — Vĩ mô</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link rel="stylesheet" href="/assets/lh-unified-ui.css">
-<style>
-.macro-shell { width:min(1440px,calc(100% - 32px)); margin:0 auto; padding:18px 0 36px; }
-.macro-embed-panel { margin-top:18px; }
-.macro-embed-panel > .wrap, .macro-embed-panel .wrap { width:100%; max-width:none; padding:0; }
-</style>
+<style>.macro-shell{width:min(1440px,calc(100% - 32px));margin:0 auto;padding:18px 0 36px}.macro-content{margin-top:18px}.macro-content>.wrap,.macro-content .wrap{width:100%;max-width:none}</style>
 </head>
 <body class="lh-unified-page">
 <div class="macro-shell">
 <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
-<nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
-<section class="panel hero-main macro-embed-panel lh-unified-hero-marker"><span class="eyebrow">Vĩ mô</span><h2>Vietnam Macro Intelligence</h2><p>Theo dõi các chỉ báo vĩ mô, thanh khoản, lãi suất, tỷ giá và bối cảnh thị trường để hỗ trợ quyết định đầu tư.</p></section>
-<section class="macro-embed-panel">
+<nav class="main-tabs"><a class="chip-btn active" href="/macro">Vĩ mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
+<section class="panel hero-main lh-unified-hero-marker"><span class="eyebrow">Vĩ mô</span><h2>CSTT & Dòng Vốn Ngoại</h2><p>Phân tích chuyên sâu vĩ mô, chính sách tiền tệ, lãi suất và dòng vốn ngoại.</p></section>
+<section class="macro-content">
+<div class="pg">
 
-<div class="app">
-  <div class="top">
-    <div class="title">
-      <h1>📈 LH Investment — Technical Chart Scanner</h1>
-      <div class="sub">Mẫu web phân tích theo ảnh: chart chính + trend/volume/momentum + vùng giá + kịch bản hành động</div>
-      <div class="meta">
-        <div class="pill"><b>Mã:</b> MWG / mẫu</div>
-        <div class="pill"><b>Khung:</b> Daily</div>
-        <div class="pill"><b>Ngày scan:</b> 08/06/2026</div>
-        <div class="pill"><b>Style:</b> Support · Resistance · Volume · RSI · MACD</div>
-      </div>
-    </div>
-    <div class="score">
-      <div class="lab">Setup Score</div>
-      <div class="num">72/100</div>
-      <div class="bar"><div></div></div>
-      <div class="sub">Xu hướng tích cực nhưng không mua đuổi; ưu tiên pullback / breakout có volume.</div>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="ht">🏦 CSTT & Dòng Vốn Ngoại — Phân Tích Chuyên Sâu</div>
+  <div class="hs">Lãi suất liên NH · Tương quan IB↔VNIndex · FNB↔USD/VND↔DXY · OMO | 05/06/2026</div>
+  <div class="krow">
+    <div class="kpi"><div class="kl">VN-INDEX</div><div class="kv">1,831.55</div>
+      <div class="ks" style="color:#3fb950">+2.6% YTD · -5.0% vs ATH 1,927.94</div></div>
+    <div class="kpi"><div class="kl">Liên NH ON</div><div class="kv" style="color:#d29922">5.43%</div>
+      <div class="ks" style="color:#f85149">Peak: 18.55% | Avg 2026: 6.06%</div></div>
+    <div class="kpi"><div class="kl">Tiết Kiệm 12T</div><div class="kv" style="color:#d29922">5.90%</div>
+      <div class="ks">TPCP 10Y: 4.38% (ATH)</div></div>
+    <div class="kpi"><div class="kl">NĐTNN hôm nay</div><div class="kv" style="color:#f85149">-5,742 tỷ</div>
+      <div class="ks" style="color:#f85149">2025 FY: -125,742 tỷ</div></div>
+    <div class="kpi"><div class="kl">USD/VND</div><div class="kv">26,402</div>
+      <div class="ks">Tương quan FNB: <span class="corr-neg-strong">-0.42</span></div></div>
+    <div class="kpi"><div class="kl">OMO Bơm Ròng</div><div class="kv" style="color:#3fb950">3,000 tỷ</div>
+      <div class="ks" style="color:#79c0ff">@ 4.5% · 2026-06-04</div></div>
   </div>
-
-  <div class="grid">
-    <div class="card chart-card">
-      <div class="ct"><span>Biểu đồ giá — vùng hỗ trợ/kháng cự & MA</span><span class="blue">Chart style sample</span></div>
-      <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
-      <div class="levels">
-        <div class="level"><div class="l">Hỗ trợ 1</div><div class="v green">58.0</div><div class="note">Vùng mua kiểm định</div></div>
-        <div class="level"><div class="l">Hỗ trợ 2</div><div class="v green">54.5</div><div class="note">Fail-safe / stop zone</div></div>
-        <div class="level"><div class="l">Kháng cự</div><div class="v orange">64.0</div><div class="note">Break cần volume</div></div>
-        <div class="level"><div class="l">Target gần</div><div class="v blue">69.0</div><div class="note">R:R tối thiểu 1.8+</div></div>
-      </div>
-    </div>
-
-    <div class="side">
-      <div class="card">
-        <div class="ct">Tín hiệu scan</div>
-        <div class="signal"><div><div class="name">Trend ngắn hạn</div><div class="desc">Giá trên MA20, MA20 dốc lên</div></div><span class="tag good">Tốt</span></div>
-        <div class="signal"><div><div class="name">Trend trung hạn</div><div class="desc">MA50 giữ vai trò hỗ trợ động</div></div><span class="tag good">Ổn</span></div>
-        <div class="signal"><div><div class="name">Volume</div><div class="desc">Break chưa đủ xác nhận nếu vol thấp</div></div><span class="tag warn">Chờ</span></div>
-        <div class="signal"><div><div class="name">RSI</div><div class="desc">Trên 50, chưa quá mua</div></div><span class="tag good">Bull</span></div>
-        <div class="signal"><div><div class="name">MACD</div><div class="desc">Histogram thu hẹp, cần mở rộng lại</div></div><span class="tag info">Theo dõi</span></div>
-        <div class="signal"><div><div class="name">Risk</div><div class="desc">Sai nếu thủng hỗ trợ 58</div></div><span class="tag bad">Stop</span></div>
-      </div>
-      <div class="card">
-        <div class="ct">Hành động đề xuất</div>
-        <table class="table">
-          <tr><th>Tình huống</th><th>Hành động</th></tr>
-          <tr><td>Pullback 58–60</td><td class="green">Canh mua nhỏ</td></tr>
-          <tr><td>Break 64 + vol</td><td class="green">Mua xác nhận</td></tr>
-          <tr><td>Thủng 58</td><td class="red">Cắt / không mua</td></tr>
-          <tr><td>Lên 69–72</td><td class="orange">Chốt từng phần</td></tr>
-        </table>
-      </div>
-    </div>
+  <div class="rpm"><div class="rd"></div>
+    <div class="rt">Cuối chu kỳ / Phòng thủ &nbsp;|&nbsp; Score: 45.7/100 &nbsp;|&nbsp; IB↔VNI corr (tháng): <span style="color:#3fb950">+0.70</span></div></div>
+  <div class="sb">
+    <div class="sbt"><div class="sbf" id="sbf"></div></div>
+    <div class="sbl">Macro Score</div>
   </div>
+</div>
 
-  <div class="row2">
-    <div class="card">
-      <div class="ct">Volume & Momentum</div>
-      <div class="mini"><canvas id="volumeChart"></canvas></div>
-      <div class="note">Đọc giống ảnh mẫu: giá tăng phải đi cùng volume; breakout volume thấp thì chỉ là tín hiệu theo dõi.</div>
-    </div>
-    <div class="card">
-      <div class="ct">Kịch bản</div>
-      <div class="scenario good"><h3>Bullish</h3><p>Giá vượt 64 với volume lớn hơn trung bình 20 phiên → mục tiêu 69–72, trailing stop dưới vùng breakout.</p></div>
-      <div class="scenario warn"><h3>Base</h3><p>Giá dao động 58–64, volume thấp → tiếp tục tích lũy, chỉ mua gần hỗ trợ.</p></div>
-      <div class="scenario bad"><h3>Bearish</h3><p>Thủng 58 kèm volume lớn → mất cấu trúc higher low, ưu tiên phòng thủ.</p></div>
-    </div>
+<!-- COMPONENTS -->
+<div class="cg">
+  <div class="cc"><div class="cn">Thanh Khoản</div><div class="cv2 warn">50.0</div><div class="cb"><div class="cbf" id="cl"></div></div></div>
+  <div class="cc"><div class="cn">Tỷ Giá FX</div><div class="cv2 info">50.0</div><div class="cb"><div class="cbf" id="cf"></div></div></div>
+  <div class="cc"><div class="cn">Lãi Suất</div><div class="cv2 neg">42.0</div><div class="cb"><div class="cbf" id="cr"></div></div></div>
+  <div class="cc"><div class="cn">Global Risk</div><div class="cv2 pos">56.0</div><div class="cb"><div class="cbf" id="cg_"></div></div></div>
+  <div class="cc"><div class="cn">Market Flow</div><div class="cv2 neg">30.0</div><div class="cb"><div class="cbf" id="cm"></div></div></div>
+</div>
+
+<!-- ══ I. LÃI SUẤT LIÊN NH — PHÂN TÍCH THỰC TẾ ════════════════════ -->
+<div class="sec"><h2>🏦 I. Lãi Suất Liên Ngân Hàng — Phân Tích Chi Tiết 2025–2026
+  <em>Daily data 310 phiên · Các mốc quan trọng · OMO Response</em></h2></div>
+
+<div class="sg">
+  <div class="sc"><div class="sl">Liên NH ON hôm nay</div><div class="sv warn">5.43%</div><div class="ss">↓ từ peak 18.55%</div></div>
+  <div class="sc"><div class="sl">Avg IB 2025</div><div class="sv info">4.60%</div><div class="ss">Tăng dần từ Q3</div></div>
+  <div class="sc"><div class="sl">Avg IB 2026 YTD</div><div class="sv neg">6.06%</div><div class="ss">Cao nhất 6 năm</div></div>
+  <div class="sc"><div class="sl">Spread IB–Deposit</div><div class="sv warn">-0.47%</div><div class="ss">Hệ thống căng</div></div>
+  <div class="sc"><div class="sl">TPCP 10Y</div><div class="sv neg">4.38%</div><div class="ss">ATH</div></div>
+  <div class="sc"><div class="sl">OMO Bơm Ròng</div><div class="sv pos">3,000 tỷ</div><div class="ss">@ 4.5% · 2026-06-04</div></div>
+</div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct">Lãi suất liên NH qua đêm — Daily 2025–2026 (310 phiên thực tế, với MA10 & MA20)</div>
+    <div class="cw h300"><canvas id="c_ib"></canvas></div>
   </div>
+  <div class="card">
+    <div class="ct">VN-INDEX vs Lãi suất liên NH — Dual axis 2025–2026</div>
+    <div class="cw h300"><canvas id="c_ib_vni"></canvas></div>
+  </div>
+</div>
 
-  <div class="card" style="margin-top:12px">
-    <div class="ct">Checklist scan theo chart mẫu</div>
-    <table class="table">
-      <tr><th>Layer</th><th>Cần đọc</th><th>Kết luận mẫu</th></tr>
-      <tr><td>Trend</td><td>HH/HL, MA20/50/100</td><td>Trend còn giữ nếu giá trên MA50 và không thủng đáy gần nhất</td></tr>
-      <tr><td>Support/Resistance</td><td>Vùng phản ứng nhiều lần</td><td>Không mua giữa biên; mua gần support hoặc sau breakout</td></tr>
-      <tr><td>Volume</td><td>Breakout / breakdown có vol không</td><td>Volume là điều kiện xác nhận, không phải trang trí</td></tr>
-      <tr><td>Momentum</td><td>RSI/MACD phân kỳ, cắt lên/xuống</td><td>Momentum ủng hộ thì giữ; suy yếu thì chốt dần</td></tr>
-      <tr><td>Risk</td><td>Điểm sai rõ ràng</td><td>Setup chỉ đáng mua khi stop-loss gần và R:R đủ</td></tr>
+<div class="row c2">
+  <div class="card">
+    <div class="ct">4 loại lãi suất chính: Liên NH · Tiết kiệm · TPCP 10Y · TPCP 5Y (%/năm, tháng)</div>
+    <div class="cw h220"><canvas id="c_rates4"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ct">Spread: IB − Tiết kiệm 12T (%) — Áp lực thanh khoản hệ thống</div>
+    <div class="cw h220"><canvas id="c_spr"></canvas></div>
+  </div>
+</div>
+
+<!-- Regime table -->
+<div class="row c2">
+  <div class="card">
+    <div class="ct" style="margin-bottom:10px">📅 Lịch sử lãi suất liên NH — Theo giai đoạn 2025–2026</div>
+    <table class="tbl">
+      <thead><tr><th>Giai đoạn</th><th>IB avg/peak</th><th>Bối cảnh NHNN</th><th>Tác động</th></tr></thead>
+      <tbody>
+        <tr><td><b>H1/2025</b></td><td class="warn">~4.0% / 5.5%</td>
+          <td class="note">NHNN ổn định thanh khoản, IB dao động 2–5% — giai đoạn bình thường</td>
+          <td class="pos">VNI tăng +35% H1/2025. FNB bán nhưng nội địa absorb tốt</td></tr>
+        <tr><td><b>Q3/2025</b></td><td class="neg">~4.5% / 7.6%</td>
+          <td class="note">IB spike 7.6% (01/07) — quarter-end pressure. Spike 5.3–6.7% tháng 8</td>
+          <td class="neg">FNB -10,101 tỷ (05/08) — phiên bán ròng kỷ lục. VNI correction ngắn</td></tr>
+        <tr><td><b>Q4/2025</b></td><td class="neg">~5.5% / 7.6%</td>
+          <td class="note">IB tăng dần lên 5–7.6%, cuối năm áp lực cao (year-end funding)</td>
+          <td class="neg">NĐTNN tiếp tục bán ròng -92k tỷ H2/2025. VNI duy trì bull nhờ nội địa</td></tr>
+        <tr><td><b>T1-T2/2026</b></td><td class="neg">~6% / <b>18.55%</b></td>
+          <td class="note"><b>Spike 18.55% ngày 04/02/2026</b> — NHNN hút VND bảo vệ tỷ giá dịp Tết. Đỉnh tuyệt đối</td>
+          <td class="warn">VNI test ATH dù IB cực cao — earnings momentum + nội địa mạnh</td></tr>
+        <tr><td><b>T3-T4/2026</b></td><td class="neg">~5% / 11.3%</td>
+          <td class="note">Spike 10-11% (03/03–05/03), sau đó dao động 4.5–8.5% tháng 4</td>
+          <td class="warn">VNI ATH 1,927 (19/05/2026). NĐTNN tiếp tục bán</td></tr>
+        <tr><td><b>T5-T6/2026</b></td><td class="warn">~6.5% → 5.43%</td>
+          <td class="note">NHNN bơm OMO 3,000 tỷ/ngày @ 4.5%. IB hạ từ 10.45% (02/06) về 5.43%</td>
+          <td class="pos">Tín hiệu nới lỏng. VNI điều chỉnh từ ATH về 1,831. NĐTNN vẫn bán</td></tr>
+      </tbody>
     </table>
   </div>
-
-  <div class="footer">LH Investment — Chart Scanner UI prototype · Nội bộ · Không phải lời khuyên đầu tư</div>
+  <div class="card">
+    <div class="ct">Rolling 20-phiên tương quan: IB vs thay đổi % VNIndex</div>
+    <div class="cw h260"><canvas id="c_roll_corr"></canvas></div>
+  </div>
 </div>
+
+<div class="row c3">
+  <div class="ib ibr"><div class="ih ihr">🚨 Spike 18.55% — Cơ chế chi tiết</div>
+    Ngày <b>04/02/2026</b>: Liên NH ON = <b>18.55%/năm</b>. Cơ chế: (1) NHNN phát hành tín phiếu hút thanh khoản VND để bảo vệ tỷ giá trước Tết khi USD/VND có áp lực; (2) Tín phiếu cũ đáo hạn đồng loạt tạo cầu VND đột ngột; (3) Nhu cầu rút tiền mặt dịp Tết. NHNN phản ứng ngay: bơm OMO 3+ tenor, IB về 8.63% sau 1 ngày, về 5% sau 1 tuần. <b>Đây KHÔNG phải tín hiệu khủng hoảng — NHNN kiểm soát tốt.</b></div>
+  <div class="ib ibo"><div class="ih iho">⚠ Nghịch lý IB↔VNIndex: Corr +0.70 (tháng)</div>
+    Tương quan IB vs VNIndex theo tháng = <b>+0.70</b> (mạnh, cùng chiều). Khi IB ≥5.3%: VNI avg = <b>1,698 </b>. Khi IB ≤3.9%: VNI avg = <b>1,187</b>. Giải thích: IB cao xuất hiện cùng lúc kinh tế tăng trưởng mạnh (earnings tốt → VNI cao). Nhưng trên ngắn hạn (daily, rolling 20): IB spike → VNI giảm ngắn hạn (corr −0.36). <b>Kết luận: IB cao ảnh hưởng ngắn hạn tiêu cực nhưng trung hạn không phải yếu tố duy nhất.</b></div>
+  <div class="ib ibg"><div class="ih ihg">✅ OMO Rate Gap: Tín hiệu định hướng NHNN</div>
+    OMO rate = <b>4.5%</b> < Liên NH thị trường <b>5.43%</b> → Gap = <b>0.93%</b>. NHNN neo lãi suất mục tiêu về 4–4.5%. Nếu tiếp tục bơm 2–3 tuần với quy mô này, liên NH có thể về vùng 4–4.5% — đây là <b>tín hiệu bullish trung hạn cho TTCK</b> vì: chi phí vốn giảm → earnings cải thiện → P/E re-rate upward.</div>
+</div>
+
+<!-- ══ II. TƯƠNG QUAN FNB vs TỶ GIÁ ════════════════════════════════ -->
+<div class="sec"><h2>💱 II. Tương Quan FNB vs Tỷ Giá USD/VND
+  <em>Toàn khung thời gian · Monthly scatter · Time series overlay · Cơ chế</em></h2></div>
+
+<div class="sg">
+  <div class="sc"><div class="sl">Tương quan FNB–FX (tháng)</div>
+    <div class="sv neg">-0.42</div><div class="ss">Corr: mạnh</div></div>
+  <div class="sc"><div class="sl">USD/VND hiện tại</div><div class="sv">26,402</div><div class="ss">vs avg 2025: 26,348</div></div>
+  <div class="sc"><div class="sl">USD/VND avg 2026</div><div class="sv warn">~25,870</div><div class="ss">YTD nhẹ</div></div>
+  <div class="sc"><div class="sl">FNB YTD 2026</div><div class="sv neg">-66,823 tỷ</div><div class="ss">pace ~-160k/năm</div></div>
+  <div class="sc"><div class="sl">FNB 2025 FY</div><div class="sv neg">-125,742 tỷ</div><div class="ss">Kỷ lục</div></div>
+</div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct">Scatter: USD/VND avg tháng vs NĐTNN mua ròng tổng tháng (toàn lịch sử)</div>
+    <div class="cw h260"><canvas id="c_sc_fx"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ct">FNB mua ròng tháng vs USD/VND — Dual axis 2025–2026</div>
+    <div class="cw h260"><canvas id="c_fnb_fx_ts"></canvas></div>
+  </div>
+</div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct">NĐTNN mua ròng tổng tháng — 2022–2026 (tỷ đồng)</div>
+    <div class="cw h200"><canvas id="c_fnbm"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ct">Tích lũy mua ròng NĐTNN — So sánh các năm (tỷ đồng)</div>
+    <div class="cw h200"><canvas id="c_cumul"></canvas></div>
+  </div>
+</div>
+
+<div class="row c3">
+  <div class="ib ibr"><div class="ih ihr">🔴 Cơ chế FNB↔FX: Vòng lặp tiêu cực</div>
+    Tương quan FNB vs USD/VND = <b>-0.42</b> (ngưỡng âm mạnh). Cơ chế: (1) USD/VND tăng (VND mất giá) → Return tính theo USD của NĐT nước ngoài giảm; (2) Cộng thêm lãi suất USD cao (4.25-4.5%) → Opportunity cost giữ VN assets cao; (3) → NĐTNN bán ròng mạnh hơn → Cung USD tăng thêm → Áp lực giữ VND. <b>NHNN phải can thiệp để phá vòng lặp này.</b> Năm 2026 đang quản lý tốt: USD/VND ổn định dù FNB bán mạnh.</div>
+  <div class="ib ibo"><div class="ih iho">⚠ DXY: Biến số vĩ mô quan trọng</div>
+    DXY = <b>99.26</b> (hiện tại) — thấp hơn đỉnh 108+ của 2022-2023. DXY thấp hơn → USD yếu → (1) Áp lực USD/VND giảm, (2) Môi trường EM flows cải thiện toàn cầu. Tuy nhiên VN vẫn bị bán ròng do yếu tố nội tại (MSCI, lãi suất VN cao). <b>Nếu DXY tiếp tục giảm về 95-97 (Fed cut mạnh), đây là điều kiện cần để FNB đảo chiều — nhưng cần thêm MSCI upgrade mới đủ.</b></div>
+  <div class="ib ibg"><div class="ih ihg">✅ Tại sao USD/VND ổn định dù bán ròng?</div>
+    <b>3 cơ chế bảo vệ:</b> (1) FDI disbursement 7.4 tỷ USD (4T/2026) — cung USD tự nhiên, (2) NHNN bán dự trữ ngoại hối khi cần can thiệp, (3) Kiều hối ~19 tỷ USD/năm ổn định. Kết quả: dù NĐTNN bán >190k tỷ tích lũy, USD/VND chỉ tăng nhẹ từ 25,461 (TB 2024) → 26,402 (+3.7%). <b>Đây là năng lực quản lý FX tốt của NHNN trong bối cảnh áp lực kép.</b></div>
+</div>
+
+<!-- ══ III. THỊ TRƯỜNG CHỨNG KHOÁN ════════════════════════════════ -->
+<div class="sec"><h2>📈 III. Thị Trường Chứng Khoán vs CSTT
+  <em>VNIndex · VN30 · HNX · Thanh khoản · Sector</em></h2></div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct">Scatter: Liên NH avg tháng vs VNIndex — Tương quan &amp; Regime</div>
+    <div class="cw h260"><canvas id="c_sc_ib_vni"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ct">20 phiên gần nhất — NĐTNN mua ròng (tỷ đồng)</div>
+    <div class="cw h260"><canvas id="c_fnb20"></canvas></div>
+  </div>
+</div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct">VN-INDEX · VN30 · HNX — 2025–2026 (cùng thời gian với dữ liệu daily IB)</div>
+    <div class="cw h240"><canvas id="c_indices"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ct">Thanh khoản (tỷ) + VNIndex — 20 phiên gần nhất</div>
+    <div class="cw h240"><canvas id="c_tv_vni"></canvas></div>
+  </div>
+</div>
+
+<!-- ══ IV. TỔNG HỢP ═══════════════════════════════════════════════ -->
+<div class="sec"><h2>🎯 IV. Tổng Hợp — Trigger &amp; Scenario
+  <em>Risk matrix · Kịch bản · Chiến lược sector</em></h2></div>
+
+<div class="row c2">
+  <div class="card">
+    <div class="ct" style="margin-bottom:10px">📋 Trigger levels theo dõi hàng ngày</div>
+    <table class="tbl">
+      <thead><tr><th>Chỉ số</th><th class="pos">Bullish</th><th class="neg">Bearish</th><th>Hành động</th></tr></thead>
+      <tbody>
+        <tr><td><b>Liên NH ON</b></td><td class="pos">&lt;4.5% (3 phiên)</td><td class="neg">&gt;8% (2 phiên)</td><td class="note">Tăng/giảm tỷ trọng 10-15%</td></tr>
+        <tr><td><b>VNIndex</b></td><td class="pos">Break ATH 1,928</td><td class="neg">&lt;1,750 + vol cao</td><td class="note">Momentum / Stop-loss</td></tr>
+        <tr><td><b>USD/VND</b></td><td class="pos">&lt;26,200 ổn định</td><td class="neg">&gt;26,700</td><td class="note">FX pressure → IB tăng</td></tr>
+        <tr><td><b>NĐTNN</b></td><td class="pos">&gt;+500 tỷ × 5 phiên</td><td class="neg">&lt;-3,000 tỷ × 3 phiên</td><td class="note">Tín hiệu đảo chiều / Chờ</td></tr>
+        <tr><td><b>OMO</b></td><td class="pos">Bơm &gt;5,000 tỷ/ngày</td><td class="neg">Hút &gt;5,000 tỷ/ngày</td><td class="note">NHNN nới lỏng / thắt</td></tr>
+        <tr><td><b>TPCP 10Y (xu hướng)</b></td><td class="pos">Giảm &lt;3.5%</td><td class="neg">&gt;5%</td><td class="note">Valuation re-rate</td></tr>
+        <tr><td><b>DXY</b></td><td class="pos">&lt;97 (trend)</td><td class="neg">&gt;104</td><td class="note">EM flows cải thiện / xấu</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="ct" style="margin-bottom:10px">🔮 Scenario 6 tháng tới</div>
+    <table class="tbl">
+      <thead><tr><th>Kịch bản</th><th>XS</th><th>IB → VNI</th><th>FNB → FX</th></tr></thead>
+      <tbody>
+        <tr><td class="pos"><b>Base Bull nội địa</b></td><td class="pos">50%</td>
+          <td class="note">IB về 4–5%, earnings 15%+ → VNI 1,950–2,100</td>
+          <td class="note">FNB tiếp tục âm nhưng giảm. USD/VND ổn định</td></tr>
+        <tr><td class="warn"><b>Bull MSCI + Fed cut</b></td><td class="warn">25%</td>
+          <td class="note">MSCI announce → VNI 2,100–2,400 ngay sau</td>
+          <td class="note">FNB đảo chiều mạnh. DXY &lt;97, USD/VND &lt;26,200</td></tr>
+        <tr><td class="neg"><b>Bear Tái thắt chặt</b></td><td class="neg">25%</td>
+          <td class="note">IB &gt;8%, USD/VND &gt;26,700 → VNI 1,600–1,750</td>
+          <td class="note">FNB bán mạnh hơn. NHNN phải can thiệp FX</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px">
+      <div class="ib ibp" style="margin-bottom:0"><div class="ih ihp">🔑 Key Insight: Mối liên hệ 3 chiều IB → FX → FNB</div>
+        IB cao → Chi phí vốn VND tăng → NHNN hút VND bảo vệ FX → FX ổn định → FNB ít chịu FX risk → Nhưng IB cao → Carry trade kém → FNB vẫn bán ròng vì cơ cấu (MSCI). Ba yếu tố cần đồng thời thuận lợi để FNB đảo chiều: <b>IB &lt;4.5%</b> + <b>USD/VND ổn định &lt;26,200</b> + <b>MSCI announcement</b>.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  LH Investment — CSTT & Dòng Vốn Ngoại | 05/06/2026 | Nguồn: Pinetree Morning Brief · SBV OMO · 7,462 obs<br>
+  <span style="color:#484f58">Tài liệu phân tích nội bộ — Không phải lời khuyên đầu tư</span>
+</div>
+</div>
+
 <script>
-const labels=['01/25','02/25','03/25','04/25','05/25','06/25','07/25','08/25','09/25','10/25','11/25','12/25','01/26','02/26','03/26','04/26','05/26','06/26'];
-const price=[42,44,43,46,48,47,51,53,55,54,57,59,61,60,62,63,61,64];
-const ma20=[41,42,43,44,46,47,48,50,52,53,54,56,58,59,60,61,62,63];
-const ma50=[40,41,41.5,42,43,44,45,47,49,50,51,53,55,56,57,58,59,60];
-new Chart(document.getElementById('priceChart'),{type:'line',data:{labels,datasets:[
- {label:'Giá',data:price,borderColor:'#4ea1ff',backgroundColor:'rgba(78,161,255,.10)',fill:true,borderWidth:2.5,pointRadius:3,tension:.25},
- {label:'MA20',data:ma20,borderColor:'#22c55e',borderWidth:1.8,pointRadius:0,tension:.25},
- {label:'MA50',data:ma50,borderColor:'#f59e0b',borderWidth:1.8,pointRadius:0,tension:.25},
- {label:'Hỗ trợ 58',data:labels.map(()=>58),borderColor:'rgba(34,197,94,.65)',borderDash:[6,4],pointRadius:0,borderWidth:1.5},
- {label:'Kháng cự 64',data:labels.map(()=>64),borderColor:'rgba(245,158,11,.75)',borderDash:[6,4],pointRadius:0,borderWidth:1.5}
-]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top'}},scales:{x:{grid:{color:'rgba(255,255,255,.06)'}},y:{grid:{color:'rgba(255,255,255,.06)'}}}}});
-new Chart(document.getElementById('volumeChart'),{type:'bar',data:{labels,datasets:[{label:'Volume',data:[18,21,19,25,28,22,35,38,44,31,42,46,55,40,48,52,37,66],backgroundColor:price.map((v,i)=>i&&v<price[i-1]?'rgba(239,68,68,.65)':'rgba(34,197,94,.65)')}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(255,255,255,.06)'}}}}});
+const D={"ib_d": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [4.35, 4.76, 4.98, 4.5, 3.95, 4.82, 4.82, 5.5, 4.51, 4.37, 4.63, 4.07, 4.53, 4.76, 4.2, 3.82, 4.8, 4.76, 4.77, 4.17, 4.02, 3.99, 4.15, 4.58, 4.74, 4.56, 4.3, 4.24, 4.16, 4.1, 4.04, 4.22, 4.38, 4.5, 4.34, 3.96, 3.58, 4.52, 4.04, 4.0, 4.06, 4.18, 4.18, 4.07, 4.1, 4.08, 4.06, 4.1, 4.18, 4.47, 3.97, 3.33, 2.43, 2.5, 4.0, 4.22, 4.18, 4.08, 4.02, 4.02, 4.02, 4.07, 3.98, 3.95, 3.8, 3.76, 3.68, 3.67, 3.85, 3.98, 4.0, 4.2, 4.12, 3.78, 3.08, 3.83, 3.75, 3.19, 3.09, 2.8, 2.88, 2.9, 3.3, 4.04, 3.7, 3.24, 2.5, 2.02, 1.68, 1.9, 3.37, 7.6, 4.72, 3.83, 4.0, 4.18, 4.38, 4.57, 4.7, 4.72, 4.7, 4.73, 4.8, 5.24, 5.23, 5.02, 5.0, 5.08, 5.34, 6.02, 6.57, 5.88, 4.42, 3.68, 3.38, 5.4, 5.3, 5.52, 5.5, 6.73, 6.28, 5.84, 5.07, 4.25, 3.98, 4.56, 4.5, 3.85, 3.88, 4.56, 4.96, 4.92, 4.0, 3.33, 1.98, 3.84, 5.0, 4.75, 4.0, 4.5, 4.2, 4.1, 4.07, 4.16, 4.23, 4.59, 4.2, 3.92, 3.88, 4.0, 4.35, 4.62, 4.36, 3.73, 4.94, 4.56, 4.4, 4.3, 4.48, 4.78, 4.98, 5.18, 4.77, 4.75, 4.9, 5.04, 5.86, 5.45, 5.06, 5.1, 6.28, 5.9, 5.86, 5.86, 5.45, 4.22, 3.24, 4.58, 5.4, 5.5, 6.0, 6.0, 5.9, 6.0, 6.1, 5.4, 4.5, 4.6, 4.2, 4.08, 4.2, 4.4, 5.83, 6.5, 5.8, 5.8, 5.3, 7.17, 7.22, 7.48, 7.0, 7.0, 7.48, 7.6, 7.5, 7.5, 7.4, 6.3, 5.2, 4.45, 5.75, 6.73, 6.23, 6.9, 4.5, 3.3, 1.57, 8.1, 6.87, 5.53, 4.66, 3.6, 3.17, 3.9, 4.0, 3.9, 3.82, 3.33, 2.83, 2.83, 2.83, 4.8, 5.88, 4.05, 5.58, 9.7, 18.55, 9.5, 8.63, 9.68, 8.3, 3.83, 3.68, 6.08, 6.8, 4.53, 3.63, 4.73, 11.3, 10.4, 10.8, 5.5, 4.8, 6.03, 5.8, 4.22, 4.0, 3.83, 4.48, 4.5, 4.55, 4.5, 5.58, 8.83, 6.88, 4.6, 4.98, 9.87, 6.65, 7.17, 8.5, 5.53, 8.53, 5.58, 4.63, 5.73, 7.03, 6.03, 4.73, 5.2, 5.5, 5.57, 6.0, 5.85, 4.5, 3.8, 3.95, 6.4, 6.67, 6.9, 6.15, 5.2, 6.4, 6.38, 6.0, 5.2, 5.88, 6.2, 6.08, 5.79, 6.78, 6.98, 7.78, 7.78, 6.89, 7.17, 10.45, 6.33, 5.24, 5.43]}, "ib_ma10": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [4.35, 4.555, 4.697, 4.647, 4.508, 4.56, 4.597, 4.71, 4.688, 4.656, 4.684, 4.615, 4.57, 4.596, 4.621, 4.521, 4.519, 4.445, 4.471, 4.451, 4.39, 4.382, 4.344, 4.326, 4.38, 4.454, 4.404, 4.352, 4.291, 4.284, 4.286, 4.309, 4.332, 4.324, 4.284, 4.224, 4.152, 4.18, 4.168, 4.158, 4.16, 4.156, 4.136, 4.093, 4.069, 4.081, 4.129, 4.087, 4.101, 4.148, 4.139, 4.054, 3.879, 3.722, 3.712, 3.726, 3.738, 3.736, 3.72, 3.675, 3.68, 3.754, 3.909, 4.054, 4.034, 3.988, 3.938, 3.897, 3.88, 3.876, 3.874, 3.887, 3.901, 3.884, 3.812, 3.819, 3.826, 3.778, 3.702, 3.584, 3.472, 3.342, 3.26, 3.286, 3.348, 3.289, 3.164, 3.047, 2.906, 2.816, 2.865, 3.335, 3.477, 3.456, 3.486, 3.58, 3.768, 4.023, 4.325, 4.607, 4.74, 4.453, 4.461, 4.602, 4.725, 4.809, 4.871, 4.922, 4.986, 5.116, 5.303, 5.418, 5.38, 5.224, 5.039, 5.077, 5.107, 5.151, 5.167, 5.238, 5.209, 5.205, 5.27, 5.327, 5.387, 5.303, 5.223, 5.056, 4.894, 4.677, 4.545, 4.453, 4.346, 4.254, 4.054, 3.982, 4.032, 4.122, 4.134, 4.128, 4.052, 3.97, 3.977, 4.06, 4.285, 4.36, 4.28, 4.197, 4.185, 4.135, 4.15, 4.202, 4.231, 4.188, 4.259, 4.256, 4.276, 4.314, 4.374, 4.452, 4.515, 4.571, 4.612, 4.714, 4.71, 4.758, 4.904, 5.019, 5.077, 5.109, 5.239, 5.311, 5.42, 5.531, 5.586, 5.504, 5.242, 5.155, 5.189, 5.229, 5.201, 5.211, 5.215, 5.229, 5.294, 5.412, 5.538, 5.54, 5.42, 5.278, 5.098, 4.938, 4.931, 4.981, 4.951, 4.991, 5.071, 5.328, 5.63, 5.97, 6.25, 6.51, 6.675, 6.785, 6.955, 7.125, 7.335, 7.248, 7.046, 6.743, 6.618, 6.591, 6.466, 6.396, 6.096, 5.676, 5.093, 5.273, 5.44, 5.548, 5.439, 5.126, 4.82, 4.52, 4.47, 4.53, 4.755, 4.278, 3.874, 3.604, 3.421, 3.541, 3.812, 3.827, 3.985, 4.565, 6.038, 6.655, 7.235, 7.92, 8.467, 8.37, 8.15, 8.353, 8.475, 7.958, 6.466, 5.989, 6.256, 6.328, 6.578, 6.745, 6.857, 6.852, 6.752, 6.721, 6.758, 6.668, 5.986, 5.396, 4.771, 4.671, 4.749, 5.029, 5.137, 5.175, 5.273, 5.877, 6.094, 6.361, 6.756, 6.859, 7.154, 6.829, 6.604, 6.717, 6.922, 6.538, 6.346, 6.149, 5.849, 5.853, 5.6, 5.627, 5.614, 5.421, 5.113, 5.15, 5.344, 5.514, 5.579, 5.542, 5.582, 5.635, 5.785, 5.925, 6.118, 6.098, 6.039, 5.928, 5.991, 6.169, 6.307, 6.447, 6.536, 6.733, 7.19, 7.203, 7.119, 7.083]}, "ib_ma20": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [4.35, 4.555, 4.697, 4.647, 4.508, 4.56, 4.597, 4.71, 4.688, 4.656, 4.654, 4.605, 4.599, 4.611, 4.583, 4.536, 4.551, 4.563, 4.574, 4.553, 4.537, 4.498, 4.457, 4.461, 4.5, 4.487, 4.461, 4.399, 4.381, 4.367, 4.338, 4.345, 4.338, 4.325, 4.332, 4.339, 4.278, 4.266, 4.229, 4.221, 4.223, 4.232, 4.234, 4.208, 4.176, 4.152, 4.141, 4.133, 4.135, 4.153, 4.149, 4.105, 4.008, 3.908, 3.891, 3.904, 3.933, 3.911, 3.911, 3.912, 3.909, 3.904, 3.894, 3.888, 3.873, 3.857, 3.838, 3.817, 3.8, 3.775, 3.777, 3.821, 3.905, 3.969, 3.923, 3.903, 3.882, 3.837, 3.791, 3.73, 3.673, 3.614, 3.58, 3.585, 3.58, 3.554, 3.495, 3.413, 3.304, 3.2, 3.168, 3.339, 3.369, 3.371, 3.417, 3.434, 3.466, 3.535, 3.615, 3.712, 3.802, 3.894, 3.969, 4.029, 4.106, 4.194, 4.319, 4.473, 4.655, 4.862, 5.022, 4.936, 4.92, 4.913, 4.882, 4.943, 4.989, 5.037, 5.077, 5.177, 5.256, 5.312, 5.325, 5.276, 5.213, 5.19, 5.165, 5.104, 5.03, 4.958, 4.877, 4.829, 4.808, 4.79, 4.72, 4.643, 4.628, 4.589, 4.514, 4.403, 4.298, 4.212, 4.161, 4.157, 4.17, 4.171, 4.156, 4.159, 4.159, 4.131, 4.101, 4.086, 4.104, 4.124, 4.272, 4.308, 4.278, 4.256, 4.28, 4.293, 4.333, 4.386, 4.421, 4.451, 4.484, 4.507, 4.59, 4.667, 4.726, 4.78, 4.877, 4.941, 5.016, 5.123, 5.148, 5.131, 5.073, 5.087, 5.133, 5.169, 5.22, 5.261, 5.317, 5.38, 5.44, 5.458, 5.39, 5.348, 5.304, 5.254, 5.15, 5.074, 5.073, 5.105, 5.122, 5.202, 5.304, 5.434, 5.525, 5.624, 5.674, 5.724, 5.803, 5.883, 5.953, 6.058, 6.203, 6.288, 6.338, 6.356, 6.434, 6.55, 6.571, 6.591, 6.526, 6.4, 6.214, 6.26, 6.243, 6.146, 6.028, 5.859, 5.643, 5.458, 5.283, 5.103, 4.924, 4.776, 4.657, 4.576, 4.43, 4.333, 4.316, 4.173, 4.228, 4.548, 5.397, 5.467, 5.554, 5.762, 5.944, 5.955, 5.981, 6.09, 6.23, 6.261, 6.252, 6.322, 6.745, 7.124, 7.523, 7.558, 7.503, 7.602, 7.614, 7.339, 6.612, 6.329, 6.121, 5.862, 5.675, 5.708, 5.803, 5.941, 5.944, 5.948, 6.016, 6.272, 6.04, 5.879, 5.763, 5.765, 5.952, 5.929, 5.87, 5.946, 6.098, 6.208, 6.22, 6.255, 6.303, 6.356, 6.377, 6.228, 6.109, 6.069, 6.018, 5.844, 5.845, 5.832, 5.714, 5.697, 5.591, 5.631, 5.7, 5.673, 5.615, 5.624, 5.692, 5.721, 5.785, 5.856, 5.944, 6.041, 6.161, 6.329, 6.654, 6.65, 6.579, 6.506]}, "ib_hist": {"l": ["07/10/20", "30/10/20", "16/11/20", "20/11/20", "24/11/20", "09/12/20", "14/04/22", "15/04/22", "18/04/22", "26/04/22", "09/05/22", "07/06/22", "03/03/23", "01/04/24", "08/05/24", "05/11/24", "06/11/24", "21/11/24", "22/11/24", "25/11/24", "26/11/24", "27/11/24", "28/11/24", "29/11/24", "02/12/24", "03/12/24", "04/12/24", "05/12/24", "06/12/24", "16/12/24"], "v": [0.11, 0.11, 0.11, 0.11, 0.11, 0.11, 2.11, 2.11, 2.12, 1.33, 1.63, 0.4, 6.27, 4.7, 4.27, 6.2, 5.65, 4.18, 4.18, 4.6, 5.48, 5.45, 4.4, 4.4, 3.13, 4.22, 4.2, 4.14, 4.03, 4.08]}, "events": [{"idx": 236, "date": "2026-02-04", "label": "18.55%\n(Spike Tết)", "y": 18.55, "color": "#f85149"}, {"idx": 248, "date": "2026-03-03", "label": "11.3%\n(Spike T3)", "y": 11.3, "color": "#ff7b72"}, {"idx": 306, "date": "2026-06-02", "label": "10.45%\n(Spike T6)", "y": 10.45, "color": "#ff7b72"}, {"idx": 91, "date": "2025-07-01", "label": "7.6%\n(Q3)", "y": 7.6, "color": "#d29922"}, {"idx": 203, "date": "2025-12-10", "label": "7.6%\n(YE)", "y": 7.6, "color": "#d29922"}, {"idx": 52, "date": "2025-04-28", "label": "2.43%\n(đáy)", "y": 2.43, "color": "#3fb950"}, {"idx": 228, "date": "2026-01-21", "label": "2.83%\n(Tết trước)", "y": 2.83, "color": "#3fb950"}], "vni_d": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "17/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [1245.77, 1230.48, 1235.65, 1229.07, 1236.18, 1265.05, 1253.03, 1264.68, 1269.61, 1271.48, 1676.98, 1296.75, 1304.56, 1303.16, 1302.96, 1307.8, 1305.36, 1309.37, 1311.91, 1304.71, 1318.22, 1326.05, 1330.28, 1332.54, 1334.41, 1326.27, 1326.15, 1336.26, 1330.97, 1324.63, 1323.93, 1321.88, 1330.32, 1331.92, 1326.09, 1323.81, 1317.46, 1317.33, 1317.83, 1229.84, 1210.67, 1132.79, 1094.3, 1168.34, 1241.44, 1227.79, 1210.3, 1217.25, 1219.12, 1197.13, 1211.0, 1223.35, 1229.23, 1226.8, 1226.8, 1240.05, 1241.95, 1250.37, 1269.8, 1267.3, 1283.26, 1293.43, 1309.73, 1313.2, 1301.39, 1296.29, 1315.15, 1323.05, 1313.84, 1314.46, 1332.51, 1339.81, 1341.87, 1341.86, 1332.6, 1336.3, 1347.25, 1345.74, 1345.74, 1329.89, 1310.57, 1316.23, 1315.2, 1322.99, 1315.49, 1338.11, 1347.59, 1346.83, 1352.04, 1349.35, 1366.75, 1376.07, 1377.84, 1384.59, 1381.96, 1386.97, 1402.06, 1415.46, 1431.32, 1445.64, 1457.76, 1470.42, 1460.65, 1475.47, 1475.47, 1497.28, 1485.05, 1509.54, 1512.31, 1521.02, 1531.13, 1557.42, 1493.41, 1507.63, 1502.52, 1495.21, 1528.19, 1547.15, 1573.71, 1581.81, 1584.95, 1596.86, 1608.22, 1611.6, 1640.69, 1630.0, 1636.37, 1654.2, 1664.36, 1688.0, 1645.47, 1645.47, 1667.63, 1672.78, 1680.86, 1682.21, 1681.3, 1696.29, 1666.97, 1624.53, 1637.32, 1643.26, 1657.75, 1667.26, 1684.9, 1680.9, 1670.97, 1665.18, 1658.62, 1634.45, 1635.26, 1657.46, 1666.09, 1660.7, 1666.48, 1661.7, 1665.05, 1652.71, 1645.82, 1695.5, 1685.3, 1697.83, 1716.47, 1747.55, 1765.12, 1761.06, 1757.95, 1766.85, 1731.19, 1636.43, 1663.43, 1678.5, 1687.06, 1683.18, 1652.54, 1680.5, 1685.83, 1669.57, 1639.65, 1617.0, 1651.98, 1654.89, 1642.64, 1599.1, 1580.54, 1631.86, 1631.44, 1635.46, 1654.42, 1659.92, 1649.0, 1655.99, 1654.93, 1667.98, 1660.36, 1680.36, 1684.32, 1690.99, 1701.67, 1717.06, 1731.77, 1737.24, 1741.32, 1753.74, 1747.17, 1718.98, 1698.9, 1646.89, 1646.01, 1679.18, 1673.66, 1704.31, 1751.03, 1772.15, 1782.82, 1729.8, 1754.84, 1766.9, 1784.49, 1788.4, 1816.27, 1861.58, 1855.56, 1867.9, 1877.33, 1902.93, 1864.8, 1879.13, 1896.59, 1893.78, 1885.44, 1882.73, 1870.79, 1802.91, 1814.98, 1829.04, 1806.5, 1813.4, 1791.43, 1782.56, 1754.82, 1754.03, 1796.85, 1814.09, 1824.09, 1860.14, 1867.62, 1860.91, 1880.33, 1846.1, 1813.14, 1818.27, 1808.51, 1767.84, 1652.79, 1676.73, 1709.61, 1696.24, 1693.21, 1710.29, 1713.83, 1699.13, 1647.81, 1591.17, 1614.77, 1658.19, 1644.63, 1672.8, 1662.54, 1674.49, 1702.93, 1694.82, 1684.04, 1674.99, 1677.54, 1756.55, 1736.68, 1750.0, 1758.96, 1775.65, 1800.65, 1817.17, 1837.11, 1833.48, 1857.3, 1870.36, 1853.29, 1875.84, 1854.1, 1854.1, 1874.85, 1891.2, 1895.5, 1901.1, 1898.37, 1925.46, 1921.6, 1927.94, 1912.93, 1913.23, 1896.89, 1877.13, 1886.03, 1884.18, 1874.43, 1863.67, 1863.49, 1844.54, 1826.47, 1819.01, 1831.55]}, "vni_all": {"l": ["01/04/24", "08/05/24", "05/11/24", "06/11/24", "21/11/24", "22/11/24", "25/11/24", "26/11/24", "27/11/24", "28/11/24", "29/11/24", "02/12/24", "03/12/24", "04/12/24", "05/12/24", "06/12/24", "16/12/24", "10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "17/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [1306.86, 1248.63, 1244.71, 1245.76, 1216.54, 1228.33, 1228.1, 1234.7, 1242.13, 1241.97, 1242.11, 1250.46, 1251.21, 1249.83, 1240.41, 1267.53, 1262.57, 1245.77, 1230.48, 1235.65, 1229.07, 1236.18, 1265.05, 1253.03, 1264.68, 1269.61, 1271.48, 1676.98, 1296.75, 1304.56, 1303.16, 1302.96, 1307.8, 1305.36, 1309.37, 1311.91, 1304.71, 1318.22, 1326.05, 1330.28, 1332.54, 1334.41, 1326.27, 1326.15, 1336.26, 1330.97, 1324.63, 1323.93, 1321.88, 1330.32, 1331.92, 1326.09, 1323.81, 1317.46, 1317.33, 1317.83, 1229.84, 1210.67, 1132.79, 1094.3, 1168.34, 1241.44, 1227.79, 1210.3, 1217.25, 1219.12, 1197.13, 1211.0, 1223.35, 1229.23, 1226.8, 1226.8, 1240.05, 1241.95, 1250.37, 1269.8, 1267.3, 1283.26, 1293.43, 1309.73, 1313.2, 1301.39, 1296.29, 1315.15, 1323.05, 1313.84, 1314.46, 1332.51, 1339.81, 1341.87, 1341.86, 1332.6, 1336.3, 1347.25, 1345.74, 1345.74, 1329.89, 1310.57, 1316.23, 1315.2, 1322.99, 1315.49, 1338.11, 1347.59, 1346.83, 1352.04, 1349.35, 1366.75, 1376.07, 1377.84, 1384.59, 1381.96, 1386.97, 1402.06, 1415.46, 1431.32, 1445.64, 1457.76, 1470.42, 1460.65, 1475.47, 1475.47, 1497.28, 1485.05, 1509.54, 1512.31, 1521.02, 1531.13, 1557.42, 1493.41, 1507.63, 1502.52, 1495.21, 1528.19, 1547.15, 1573.71, 1581.81, 1584.95, 1596.86, 1608.22, 1611.6, 1640.69, 1630.0, 1636.37, 1654.2, 1664.36, 1688.0, 1645.47, 1645.47, 1667.63, 1672.78, 1680.86, 1682.21, 1681.3, 1696.29, 1666.97, 1624.53, 1637.32, 1643.26, 1657.75, 1667.26, 1684.9, 1680.9, 1670.97, 1665.18, 1658.62, 1634.45, 1635.26, 1657.46, 1666.09, 1660.7, 1666.48, 1661.7, 1665.05, 1652.71, 1645.82, 1695.5, 1685.3, 1697.83, 1716.47, 1747.55, 1765.12, 1761.06, 1757.95, 1766.85, 1731.19, 1636.43, 1663.43, 1678.5, 1687.06, 1683.18, 1652.54, 1680.5, 1685.83, 1669.57, 1639.65, 1617.0, 1651.98, 1654.89, 1642.64, 1599.1, 1580.54, 1631.86, 1631.44, 1635.46, 1654.42, 1659.92, 1649.0, 1655.99, 1654.93, 1667.98, 1660.36, 1680.36, 1684.32, 1690.99, 1701.67, 1717.06, 1731.77, 1737.24, 1741.32, 1753.74, 1747.17, 1718.98, 1698.9, 1646.89, 1646.01, 1679.18, 1673.66, 1704.31, 1751.03, 1772.15, 1782.82, 1729.8, 1754.84, 1766.9, 1784.49, 1788.4, 1816.27, 1861.58, 1855.56, 1867.9, 1877.33, 1902.93, 1864.8, 1879.13, 1896.59, 1893.78, 1885.44, 1882.73, 1870.79, 1802.91, 1814.98, 1829.04, 1806.5, 1813.4, 1791.43, 1782.56, 1754.82, 1754.03, 1796.85, 1814.09, 1824.09, 1860.14, 1867.62, 1860.91, 1880.33, 1846.1, 1813.14, 1818.27, 1808.51, 1767.84, 1652.79, 1676.73, 1709.61, 1696.24, 1693.21, 1710.29, 1713.83, 1699.13, 1647.81, 1591.17, 1614.77, 1658.19, 1644.63, 1672.8, 1662.54, 1674.49, 1702.93, 1694.82, 1684.04, 1674.99, 1677.54, 1756.55, 1736.68, 1750.0, 1758.96, 1775.65, 1800.65, 1817.17, 1837.11, 1833.48, 1857.3, 1870.36, 1853.29, 1875.84, 1854.1, 1854.1, 1874.85, 1891.2, 1895.5, 1901.1, 1898.37, 1925.46, 1921.6, 1927.94, 1912.93, 1913.23, 1896.89, 1877.13, 1886.03, 1884.18, 1874.43, 1863.67, 1863.49, 1844.54, 1826.47, 1819.01, 1831.55]}, "fnbm": {"l": ["01/22", "02/22", "03/22", "04/22", "05/22", "06/22", "07/22", "08/22", "09/22", "10/22", "11/22", "12/22", "01/23", "02/23", "03/23", "04/23", "05/23", "06/23", "07/23", "08/23", "09/23", "10/23", "11/23", "12/23", "01/24", "02/24", "03/24", "04/24", "05/24", "06/24", "07/24", "08/24", "09/24", "10/24", "11/24", "12/24", "01/25", "02/25", "03/25", "04/25", "05/25", "06/25", "07/25", "08/25", "09/25", "10/25", "11/25", "12/25", "01/26", "02/26", "03/26", "04/26", "05/26", "06/26"], "v": [0.0, 0.0, 0.0, 1676.6, -64.92, 13.28, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -118.7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1360.2, 136.68, 0.0, 0.0, 0.0, 0.0, 0.0, -2961.85, -467.5, -1903.99, -5368.21, -10661.57, -15059.83, 672.33, -2658.33, 11730.04, -41132.87, -29129.27, -24876.56, -9027.19, 1673.68, -6187.51, -3069.67, -18155.96, -12184.64, -18927.29, -8297.49], "c": ["rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(63,185,80,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)", "rgba(248,81,73,.8)"]}, "r_fnb": {"l": ["07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [-1115.03, -1006.33, -836.02, -1515.46, 214.0, -816.39, -694.26, -813.5, 109.13, -1732.31, -3217.59, -1999.85, -895.5, -791.42, -593.1, -750.75, -632.62, -564.85, -607.08, -5742.19], "c": ["rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(63,185,80,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(63,185,80,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)", "rgba(248,81,73,.85)"]}, "cumul": {"2022": {"doy": [104, 105, 108, 116, 129, 158], "v": [1551.7, 1326.4, 1437.1, 1676.6, 1611.7, 1625.0], "c": "#3fb950"}, "2023": {"doy": [62], "v": [-118.7], "c": "#e3b341"}, "2024": {"doy": [92, 129, 310, 311, 326, 327, 330, 331, 332, 333, 334, 337, 338, 339, 340, 341, 351], "v": [-1360.2, -1223.5, -1908.2, -2777.9, -4031.6, -4959.7, -4931.5, -4815.3, -4566.3, -4222.6, -4185.4, -3825.7, -4250.2, -4551.2, -5262.8, -4591.8, -4652.9], "c": "#79c0ff"}, "2025": {"doy": [10, 13, 14, 15, 16, 34, 35, 36, 37, 38, 50, 55, 56, 57, 58, 59, 62, 63, 64, 65, 66, 69, 70, 71, 72, 73, 76, 77, 78, 79, 80, 83, 84, 85, 86, 87, 90, 92, 93, 94, 98, 99, 100, 101, 105, 106, 107, 108, 111, 113, 114, 115, 118, 119, 125, 126, 127, 128, 129, 132, 133, 134, 135, 136, 139, 140, 141, 142, 143, 146, 147, 148, 149, 150, 153, 154, 155, 156, 157, 160, 161, 162, 163, 164, 167, 168, 169, 170, 171, 174, 177, 182, 183, 184, 185, 188, 189, 190, 191, 192, 195, 196, 197, 198, 199, 202, 203, 204, 205, 206, 209, 210, 211, 212, 213, 216, 217, 218, 219, 220, 223, 224, 225, 226, 227, 230, 231, 232, 233, 234, 237, 238, 239, 240, 241, 246, 247, 248, 251, 252, 253, 254, 255, 258, 259, 261, 262, 265, 266, 267, 268, 269, 272, 273, 274, 275, 276, 279, 280, 281, 282, 283, 286, 287, 288, 289, 290, 293, 294, 295, 296, 297, 300, 301, 302, 303, 304, 307, 308, 309, 310, 311, 314, 315, 317, 318, 321, 322, 323, 324, 325, 328, 329, 330, 331, 332, 335, 336, 337, 338, 339, 342, 343, 344, 345, 346, 349, 350, 351, 352, 356, 357, 358, 359, 363, 364, 365], "v": [-441.8, -728.0, -806.8, -1461.3, -1904.0, -1289.1, -2754.9, -3740.5, -4153.0, -4504.3, -5402.3, -5595.0, -5878.9, -6278.0, -6612.7, -7272.2, -8343.5, -8848.4, -9188.3, -9571.1, -9177.4, -9393.0, -9919.8, -10121.5, -11044.1, -10960.6, -11337.9, -11177.7, -11668.4, -13185.3, -14640.6, -15656.1, -16409.5, -16839.2, -17376.9, -17478.3, -17933.8, -18396.5, -19156.8, -22872.8, -25625.4, -27323.1, -26976.9, -27977.6, -28281.2, -28182.2, -28563.1, -33270.4, -33271.3, -32685.6, -32800.3, -32342.1, -32984.1, -32993.6, -33330.1, -33224.1, -33144.4, -33064.8, -32823.2, -32916.1, -33009.0, -32023.1, -29748.9, -28859.5, -29830.2, -30305.2, -30869.6, -30418.4, -30351.0, -30548.1, -30607.8, -31805.4, -32016.7, -32321.3, -33444.9, -33611.8, -32698.6, -32752.7, -32806.9, -35080.2, -35419.2, -35158.0, -35373.1, -34952.1, -34868.5, -33904.0, -33321.4, -33638.7, -34540.3, -35111.3, -34979.6, -34438.0, -34821.2, -33880.8, -31568.7, -29720.8, -28463.9, -26963.7, -25031.6, -24048.3, -22881.7, -22842.5, -21716.6, -21404.6, -21092.7, -21159.1, -21026.8, -22794.5, -22692.4, -23042.7, -23093.5, -24077.9, -24850.4, -23249.6, -25485.3, -27973.7, -38074.4, -40158.3, -39403.9, -39468.4, -40284.7, -40931.3, -41661.0, -43232.0, -45671.5, -48759.3, -50827.6, -52360.0, -52604.9, -55108.1, -56649.6, -58191.1, -57504.2, -61700.2, -64382.4, -67946.2, -70882.1, -71739.2, -73225.8, -72271.2, -73131.8, -76143.2, -77413.8, -78623.9, -80200.4, -80317.5, -82017.0, -85002.9, -86754.2, -86759.0, -88339.8, -90541.8, -92703.9, -93511.7, -94783.4, -96582.6, -98983.2, -100299.1, -102201.9, -103593.7, -103454.3, -105202.8, -105842.1, -107002.0, -108437.4, -109324.0, -108903.5, -110948.1, -113092.6, -110649.4, -112492.8, -113978.0, -115848.5, -117046.4, -115591.0, -117151.0, -118388.3, -118915.8, -119121.4, -117985.6, -118859.2, -120088.9, -121456.8, -121776.4, -122234.9, -123453.7, -124126.0, -125101.4, -125182.0, -125902.1, -125657.8, -126331.5, -127579.0, -127985.3, -127402.2, -127415.4, -127070.8, -127387.5, -126735.6, -123142.8, -122057.2, -122737.6, -124686.5, -127255.8, -127618.0, -128155.5, -128712.8, -128050.7, -128177.1, -128173.6, -127622.8, -127150.0, -126456.2, -125392.8, -126615.9, -126724.7, -125741.8], "c": "#f85149"}, "2026": {"doy": [5, 6, 7, 8, 9, 12, 13, 14, 16, 19, 20, 21, 22, 23, 26, 29, 30, 33, 34, 35, 36, 37, 41, 42, 43, 44, 54, 55, 56, 57, 61, 62, 63, 64, 65, 68, 69, 70, 72, 75, 76, 77, 78, 79, 82, 83, 84, 85, 86, 89, 90, 91, 92, 93, 96, 97, 98, 99, 100, 103, 104, 105, 106, 110, 111, 112, 113, 114, 118, 119, 124, 125, 126, 127, 132, 133, 134, 135, 138, 139, 140, 141, 142, 145, 146, 147, 148, 149, 152, 153, 154, 155, 156], "v": [694.2, -53.1, -601.1, -102.2, 398.3, 1185.9, 2207.9, 1618.4, 610.7, -617.7, -127.5, -1790.9, -2039.1, -3554.7, -3752.9, -5595.7, -6187.5, -5451.2, -7947.1, -8565.5, -9529.9, -10747.4, -10979.1, -10025.3, -7847.8, -7501.3, -7280.2, -8493.2, -8307.4, -9257.2, -9317.5, -8539.3, -9353.1, -11139.9, -14368.1, -15757.3, -16032.4, -14957.7, -15257.8, -15757.1, -17058.2, -17748.1, -20643.8, -21678.9, -23510.5, -23933.9, -24419.5, -25293.2, -25989.6, -26078.6, -27413.1, -27954.8, -28643.1, -25674.6, -27200.9, -27294.5, -28074.9, -28677.1, -31149.8, -30233.7, -30357.0, -30473.2, -33935.3, -33887.7, -34526.7, -34954.4, -35382.0, -37097.8, -39046.0, -39597.8, -40895.1, -41823.9, -42821.4, -43936.5, -44942.8, -45778.8, -47294.3, -47080.3, -47896.7, -48590.9, -49404.4, -49295.3, -51027.6, -54245.2, -56245.0, -57140.5, -57932.0, -58525.1, -59275.8, -59908.4, -60473.3, -61080.4, -66822.6], "c": "#d29922"}}, "sc_fnb_fx": {"x": [23281.5, 23265.333, 23223.0, 23143.333, 23175.0, 23325.0, 23895.0, 25461.0, 26408.0, 26130.714, 26232.235, 26327.957, 26458.81, 26472.5, 26377.739, 26376.737, 26403.571, 26368.765, 26168.0, 25251.238, 25177.421, 26382.722, 26398.2], "y": [-440.71, 738.07, -74.68, 1676.6, -64.92, 13.28, -118.7, 136.68, -5368.21, 672.33, -2658.33, 11730.04, -41132.87, -29129.27, -24876.56, -9027.19, 1673.68, -6187.51, -3069.67, -18155.96, -12184.64, -18927.29, -8297.49], "l": ["10/20", "11/20", "12/20", "04/22", "05/22", "06/22", "03/23", "05/24", "02/25", "05/25", "06/25", "07/25", "08/25", "09/25", "10/25", "11/25", "12/25", "01/26", "02/26", "03/26", "04/26", "05/26", "06/26"], "yr": ["2020", "2020", "2020", "2022", "2022", "2022", "2023", "2024", "2025", "2025", "2025", "2025", "2025", "2025", "2025", "2025", "2025", "2026", "2026", "2026", "2026", "2026", "2026"]}, "fnb_fx_ts": {"l": ["02/25", "05/25", "06/25", "07/25", "08/25", "09/25", "10/25", "11/25", "12/25", "01/26", "02/26", "03/26", "04/26", "05/26", "06/26"], "fnb": [-5368.21, 672.33, -2658.33, 11730.04, -41132.87, -29129.27, -24876.56, -9027.19, 1673.68, -6187.51, -3069.67, -18155.96, -12184.64, -18927.29, -8297.49], "fx": [26408.0, 26130.714, 26232.235, 26327.957, 26458.81, 26472.5, 26377.739, 26376.737, 26403.571, 26368.765, 26168.0, 25251.238, 25177.421, 26382.722, 26398.2]}, "sc_ib_vni": {"x": [0.11, 0.11, 0.11, 1.917, 1.63, 0.4, 6.27, 4.7, 4.27, 4.949, 3.967, 4.508, 4.548, 4.303, 3.898, 3.969, 3.016, 4.974, 4.657, 4.237, 5.016, 5.305, 6.17, 4.359, 7.576, 6.199, 5.815, 6.414, 6.924], "y": [919.08, 994.19, 1029.26, 1310.92, 1360.68, 1290.01, 1037.61, 1306.86, 1248.63, 1242.11, 1262.57, 1236.18, 1307.8, 1317.46, 1226.8, 1341.86, 1366.75, 1507.63, 1680.86, 1666.48, 1669.57, 1684.32, 1766.9, 1814.98, 1860.91, 1662.54, 1875.84, 1863.67, 1831.55], "fnb": [-440.71, 738.07, -74.68, 1676.6, -64.92, 13.28, -118.7, -1360.2, 136.68, -2961.85, -467.5, -1903.99, -5368.21, -10661.57, -15059.83, 672.33, -2658.33, 11730.04, -41132.87, -29129.27, -24876.56, -9027.19, 1673.68, -6187.51, -3069.67, -18155.96, -12184.64, -18927.29, -8297.49], "l": ["10/20", "11/20", "12/20", "04/22", "05/22", "06/22", "03/23", "04/24", "05/24", "11/24", "12/24", "01/25", "02/25", "03/25", "04/25", "05/25", "06/25", "07/25", "08/25", "09/25", "10/25", "11/25", "12/25", "01/26", "02/26", "03/26", "04/26", "05/26", "06/26"]}, "roll_corr": {"l": ["19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [-0.032, 0.252, 0.252, 0.248, 0.244, 0.221, 0.215, 0.212, 0.209, 0.21, 0.198, 0.199, 0.207, 0.207, 0.21, 0.205, 0.218, 0.272, 0.273, 0.273, 0.185, -0.155, -0.184, -0.156, -0.159, -0.066, 0.126, 0.078, 0.048, 0.191, 0.251, 0.25, 0.264, 0.102, 0.03, 0.046, 0.05, 0.037, 0.039, 0.002, -0.017, -0.078, -0.107, -0.104, -0.103, -0.088, -0.088, -0.09, -0.084, -0.076, -0.063, 0.005, 0.063, 0.015, -0.098, -0.063, -0.045, -0.054, -0.047, 0.153, 0.16, 0.206, 0.267, 0.225, 0.403, 0.37, 0.381, 0.391, 0.362, 0.541, 0.614, 0.513, 0.484, 0.5, 0.535, 0.42, 0.292, 0.262, 0.225, 0.258, 0.193, 0.228, 0.222, 0.233, 0.21, 0.214, 0.243, 0.269, 0.299, 0.289, 0.268, 0.278, 0.166, 0.196, 0.138, 0.264, 0.201, 0.168, 0.135, -0.034, 0.079, 0.185, 0.24, 0.199, 0.218, 0.192, 0.24, 0.272, 0.307, 0.291, 0.279, 0.299, 0.276, 0.28, 0.19, 0.225, 0.22, 0.184, 0.175, 0.158, 0.134, 0.084, -0.027, 0.017, -0.034, 0.022, -0.044, -0.079, -0.08, -0.117, -0.143, -0.222, -0.269, -0.268, -0.254, -0.259, -0.267, -0.243, -0.197, -0.255, -0.098, -0.076, -0.076, -0.069, 0.025, 0.045, 0.037, -0.05, -0.013, 0.022, 0.089, 0.183, 0.275, 0.31, 0.303, 0.281, 0.241, 0.002, -0.212, -0.182, -0.053, -0.021, -0.046, -0.104, -0.077, -0.081, -0.012, 0.012, 0.084, 0.108, 0.122, 0.105, 0.09, 0.11, 0.194, 0.198, 0.159, 0.122, 0.07, 0.115, 0.052, 0.033, 0.066, 0.098, 0.109, 0.13, 0.051, 0.018, 0.063, 0.116, 0.117, 0.126, 0.201, 0.14, -0.058, -0.17, -0.27, -0.214, -0.269, -0.316, -0.346, -0.348, -0.346, -0.348, -0.021, -0.127, -0.14, -0.114, -0.129, -0.164, -0.215, -0.174, -0.197, -0.177, -0.127, 0.011, 0.214, 0.233, 0.25, 0.281, 0.273, 0.156, -0.039, -0.075, -0.038, -0.159, -0.031, -0.112, -0.129, -0.185, -0.165, -0.207, -0.209, -0.196, -0.146, -0.211, -0.183, -0.171, -0.248, -0.309, -0.296, -0.303, -0.336, -0.132, -0.138, -0.172, -0.304, -0.282, -0.298, -0.266, -0.263, -0.172, -0.129, -0.06, -0.05, -0.033, -0.051, -0.029, 0.047, 0.158, 0.134, 0.134, 0.093, 0.137, 0.027, 0.08, 0.062, 0.05, 0.055, 0.034, -0.01, -0.152, -0.255, -0.335, -0.387, -0.336, -0.332, -0.276, -0.293, -0.33, -0.278, -0.284, -0.21, -0.233, -0.038, -0.011, -0.045, -0.098, -0.074, -0.039, -0.116, -0.071, -0.091, -0.146, -0.112, -0.314, -0.304, -0.308, -0.268, -0.36]}, "ib_vni_daily": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "ib": [4.35, 4.76, 4.98, 4.5, 3.95, 4.82, 4.82, 5.5, 4.51, 4.37, 4.63, 4.07, 4.53, 4.76, 4.2, 3.82, 4.8, 4.76, 4.77, 4.17, 4.02, 3.99, 4.15, 4.58, 4.74, 4.56, 4.3, 4.24, 4.16, 4.1, 4.04, 4.22, 4.38, 4.5, 4.34, 3.96, 3.58, 4.52, 4.04, 4.0, 4.06, 4.18, 4.18, 4.07, 4.1, 4.08, 4.06, 4.1, 4.18, 4.47, 3.97, 3.33, 2.43, 2.5, 4.0, 4.22, 4.18, 4.08, 4.02, 4.02, 4.02, 4.07, 3.98, 3.95, 3.8, 3.76, 3.68, 3.67, 3.85, 3.98, 4.0, 4.2, 4.12, 3.78, 3.08, 3.83, 3.75, 3.19, 3.09, 2.8, 2.88, 2.9, 3.3, 4.04, 3.7, 3.24, 2.5, 2.02, 1.68, 1.9, 3.37, 7.6, 4.72, 3.83, 4.0, 4.18, 4.38, 4.57, 4.7, 4.72, 4.7, 4.73, 4.8, 5.24, 5.23, 5.02, 5.0, 5.08, 5.34, 6.02, 6.57, 5.88, 4.42, 3.68, 3.38, 5.4, 5.3, 5.52, 5.5, 6.73, 6.28, 5.84, 5.07, 4.25, 3.98, 4.56, 4.5, 3.85, 3.88, 4.56, 4.96, 4.92, 4.0, 3.33, 1.98, 3.84, 5.0, 4.75, 4.0, 4.5, 4.2, 4.1, 4.07, 4.16, 4.23, 4.59, 4.2, 3.92, 3.88, 4.0, 4.35, 4.62, 4.36, 3.73, 4.94, 4.56, 4.4, 4.3, 4.48, 4.78, 4.98, 5.18, 4.77, 4.75, 4.9, 5.04, 5.86, 5.45, 5.06, 5.1, 6.28, 5.9, 5.86, 5.86, 5.45, 4.22, 3.24, 4.58, 5.4, 5.5, 6.0, 6.0, 5.9, 6.0, 6.1, 5.4, 4.5, 4.6, 4.2, 4.08, 4.2, 4.4, 5.83, 6.5, 5.8, 5.8, 5.3, 7.17, 7.22, 7.48, 7.0, 7.0, 7.48, 7.6, 7.5, 7.5, 7.4, 6.3, 5.2, 4.45, 5.75, 6.73, 6.23, 6.9, 4.5, 3.3, 1.57, 8.1, 6.87, 5.53, 4.66, 3.6, 3.17, 3.9, 4.0, 3.9, 3.82, 3.33, 2.83, 2.83, 2.83, 4.8, 5.88, 4.05, 5.58, 9.7, 18.55, 9.5, 8.63, 9.68, 8.3, 3.83, 3.68, 6.08, 6.8, 4.53, 3.63, 4.73, 11.3, 10.4, 10.8, 5.5, 4.8, 6.03, 5.8, 4.22, 4.0, 3.83, 4.48, 4.5, 4.55, 4.5, 5.58, 8.83, 6.88, 4.6, 4.98, 9.87, 6.65, 7.17, 8.5, 5.53, 8.53, 5.58, 4.63, 5.73, 7.03, 6.03, 4.73, 5.2, 5.5, 5.57, 6.0, 5.85, 4.5, 3.8, 3.95, 6.4, 6.67, 6.9, 6.15, 5.2, 6.4, 6.38, 6.0, 5.2, 5.88, 6.2, 6.08, 5.79, 6.78, 6.98, 7.78, 7.78, 6.89, 7.17, 10.45, 6.33, 5.24, 5.43], "vni": [1245.77, 1230.48, 1235.65, 1229.07, 1236.18, 1265.05, 1253.03, 1264.68, 1269.61, 1271.48, 1676.98, 1296.75, 1304.56, 1303.16, 1302.96, 1307.8, 1305.36, 1309.37, 1311.91, 1304.71, 1318.22, 1326.05, 1330.28, 1332.54, 1334.41, 1326.27, 1326.15, 1336.26, 1330.97, 1324.63, 1323.93, 1321.88, 1330.32, 1331.92, 1326.09, 1323.81, 1317.46, 1317.33, 1317.83, 1229.84, 1210.67, 1132.79, 1094.3, 1168.34, 1241.44, 1227.79, 1210.3, 1217.25, 1219.12, 1197.13, 1211.0, 1223.35, 1229.23, 1226.8, 1226.8, 1240.05, 1241.95, 1250.37, 1269.8, 1267.3, 1283.26, 1293.43, 1309.73, 1313.2, 1301.39, 1296.29, 1315.15, 1323.05, 1313.84, 1314.46, 1332.51, 1339.81, 1341.87, 1341.86, 1332.6, 1336.3, 1347.25, 1345.74, 1345.74, 1329.89, 1310.57, 1316.23, 1315.2, 1322.99, 1315.49, 1338.11, 1347.59, 1346.83, 1352.04, 1349.35, 1366.75, 1376.07, 1377.84, 1384.59, 1381.96, 1386.97, 1402.06, 1415.46, 1431.32, 1445.64, 1457.76, 1470.42, 1460.65, 1475.47, 1475.47, 1497.28, 1485.05, 1509.54, 1512.31, 1521.02, 1531.13, 1557.42, 1493.41, 1507.63, 1502.52, 1495.21, 1528.19, 1547.15, 1573.71, 1581.81, 1584.95, 1596.86, 1608.22, 1611.6, 1640.69, 1630.0, 1636.37, 1654.2, 1664.36, 1688.0, 1645.47, 1645.47, 1667.63, 1672.78, 1680.86, 1682.21, 1681.3, 1696.29, 1666.97, 1624.53, 1637.32, 1643.26, 1657.75, 1667.26, 1684.9, 1670.97, 1665.18, 1658.62, 1634.45, 1635.26, 1657.46, 1666.09, 1660.7, 1666.48, 1661.7, 1665.05, 1652.71, 1645.82, 1695.5, 1685.3, 1697.83, 1716.47, 1747.55, 1765.12, 1761.06, 1757.95, 1766.85, 1731.19, 1636.43, 1663.43, 1678.5, 1687.06, 1683.18, 1652.54, 1680.5, 1685.83, 1669.57, 1639.65, 1617.0, 1651.98, 1654.89, 1642.64, 1599.1, 1580.54, 1631.86, 1631.44, 1635.46, 1654.42, 1659.92, 1649.0, 1655.99, 1654.93, 1667.98, 1660.36, 1680.36, 1684.32, 1690.99, 1701.67, 1717.06, 1731.77, 1737.24, 1741.32, 1753.74, 1747.17, 1718.98, 1698.9, 1646.89, 1646.01, 1679.18, 1673.66, 1704.31, 1751.03, 1772.15, 1782.82, 1729.8, 1754.84, 1766.9, 1784.49, 1788.4, 1816.27, 1861.58, 1855.56, 1867.9, 1877.33, 1902.93, 1864.8, 1879.13, 1896.59, 1893.78, 1885.44, 1882.73, 1870.79, 1802.91, 1814.98, 1829.04, 1806.5, 1813.4, 1791.43, 1782.56, 1754.82, 1754.03, 1796.85, 1814.09, 1824.09, 1860.14, 1867.62, 1860.91, 1880.33, 1846.1, 1813.14, 1818.27, 1808.51, 1767.84, 1652.79, 1676.73, 1709.61, 1696.24, 1693.21, 1710.29, 1713.83, 1699.13, 1647.81, 1591.17, 1614.77, 1658.19, 1644.63, 1672.8, 1662.54, 1674.49, 1702.93, 1694.82, 1684.04, 1674.99, 1677.54, 1756.55, 1736.68, 1750.0, 1758.96, 1775.65, 1800.65, 1817.17, 1837.11, 1833.48, 1857.3, 1870.36, 1853.29, 1875.84, 1854.1, 1854.1, 1874.85, 1891.2, 1895.5, 1901.1, 1898.37, 1925.46, 1921.6, 1927.94, 1912.93, 1913.23, 1896.89, 1877.13, 1886.03, 1884.18, 1874.43, 1863.67, 1863.49, 1844.54, 1826.47, 1819.01, 1831.55]}, "m_rates": {"l": ["01/25", "02/25", "03/25", "04/25", "05/25", "06/25", "07/25", "08/25", "09/25", "10/25", "11/25", "12/25", "01/26", "02/26", "03/26", "04/26", "05/26", "06/26"], "ib": [4.508, 4.548, 4.303, 3.898, 3.969, 3.016, 4.974, 4.657, 4.237, 5.016, 5.305, 6.17, 4.359, 7.576, 6.199, 5.815, 6.414, 6.924], "dep": [4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 5.2, 5.2, 5.2, 5.9, 5.9, 5.9], "b10": [2.89, 2.99, 2.9, 2.99, 2.99, 3.14, 3.24, 3.5, 3.49, 3.75, 3.83, 3.92, 4.07, 4.06, 4.06, 4.23, 4.33, 4.38]}, "spr_ib_d": {"l": ["10/01/25", "13/01/25", "14/01/25", "15/01/25", "16/01/25", "03/02/25", "04/02/25", "05/02/25", "06/02/25", "07/02/25", "19/02/25", "24/02/25", "25/02/25", "26/02/25", "27/02/25", "28/02/25", "03/03/25", "04/03/25", "05/03/25", "06/03/25", "07/03/25", "10/03/25", "11/03/25", "12/03/25", "13/03/25", "14/03/25", "17/03/25", "18/03/25", "19/03/25", "20/03/25", "21/03/25", "24/03/25", "25/03/25", "26/03/25", "27/03/25", "28/03/25", "31/03/25", "02/04/25", "03/04/25", "04/04/25", "08/04/25", "09/04/25", "10/04/25", "11/04/25", "15/04/25", "16/04/25", "17/04/25", "18/04/25", "21/04/25", "23/04/25", "24/04/25", "25/04/25", "28/04/25", "29/04/25", "05/05/25", "06/05/25", "07/05/25", "08/05/25", "09/05/25", "12/05/25", "13/05/25", "14/05/25", "15/05/25", "16/05/25", "19/05/25", "20/05/25", "21/05/25", "22/05/25", "23/05/25", "26/05/25", "27/05/25", "28/05/25", "29/05/25", "30/05/25", "02/06/25", "03/06/25", "04/06/25", "05/06/25", "06/06/25", "09/06/25", "10/06/25", "11/06/25", "12/06/25", "13/06/25", "16/06/25", "17/06/25", "18/06/25", "19/06/25", "20/06/25", "23/06/25", "26/06/25", "01/07/25", "02/07/25", "03/07/25", "04/07/25", "07/07/25", "08/07/25", "09/07/25", "10/07/25", "11/07/25", "14/07/25", "15/07/25", "16/07/25", "17/07/25", "18/07/25", "21/07/25", "22/07/25", "23/07/25", "24/07/25", "25/07/25", "28/07/25", "29/07/25", "30/07/25", "31/07/25", "01/08/25", "04/08/25", "05/08/25", "06/08/25", "07/08/25", "08/08/25", "11/08/25", "12/08/25", "13/08/25", "14/08/25", "15/08/25", "18/08/25", "19/08/25", "20/08/25", "21/08/25", "22/08/25", "25/08/25", "26/08/25", "27/08/25", "28/08/25", "29/08/25", "03/09/25", "04/09/25", "05/09/25", "08/09/25", "09/09/25", "10/09/25", "11/09/25", "12/09/25", "15/09/25", "16/09/25", "18/09/25", "19/09/25", "22/09/25", "23/09/25", "24/09/25", "25/09/25", "26/09/25", "29/09/25", "30/09/25", "01/10/25", "02/10/25", "03/10/25", "06/10/25", "07/10/25", "08/10/25", "09/10/25", "10/10/25", "13/10/25", "14/10/25", "15/10/25", "16/10/25", "17/10/25", "20/10/25", "21/10/25", "22/10/25", "23/10/25", "24/10/25", "27/10/25", "28/10/25", "29/10/25", "30/10/25", "31/10/25", "03/11/25", "04/11/25", "05/11/25", "06/11/25", "07/11/25", "10/11/25", "11/11/25", "13/11/25", "14/11/25", "17/11/25", "18/11/25", "19/11/25", "20/11/25", "21/11/25", "24/11/25", "25/11/25", "26/11/25", "27/11/25", "28/11/25", "01/12/25", "02/12/25", "03/12/25", "04/12/25", "05/12/25", "08/12/25", "09/12/25", "10/12/25", "11/12/25", "12/12/25", "15/12/25", "16/12/25", "17/12/25", "18/12/25", "22/12/25", "23/12/25", "24/12/25", "25/12/25", "29/12/25", "30/12/25", "31/12/25", "05/01/26", "06/01/26", "07/01/26", "08/01/26", "09/01/26", "12/01/26", "13/01/26", "14/01/26", "16/01/26", "19/01/26", "20/01/26", "21/01/26", "22/01/26", "23/01/26", "26/01/26", "29/01/26", "30/01/26", "02/02/26", "03/02/26", "04/02/26", "05/02/26", "06/02/26", "10/02/26", "11/02/26", "12/02/26", "13/02/26", "23/02/26", "24/02/26", "25/02/26", "26/02/26", "02/03/26", "03/03/26", "04/03/26", "05/03/26", "06/03/26", "09/03/26", "10/03/26", "11/03/26", "13/03/26", "16/03/26", "17/03/26", "18/03/26", "19/03/26", "20/03/26", "23/03/26", "24/03/26", "25/03/26", "26/03/26", "27/03/26", "30/03/26", "31/03/26", "01/04/26", "02/04/26", "03/04/26", "06/04/26", "07/04/26", "08/04/26", "09/04/26", "10/04/26", "13/04/26", "14/04/26", "15/04/26", "16/04/26", "20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [-0.25, 0.16, 0.38, -0.1, -0.65, 0.22, 0.22, 0.9, -0.09, -0.23, 0.03, -0.53, -0.07, 0.16, -0.4, -0.78, 0.2, 0.16, 0.17, -0.43, -0.58, -0.61, -0.45, -0.02, 0.14, -0.04, -0.3, -0.36, -0.44, -0.5, -0.56, -0.38, -0.22, -0.1, -0.26, -0.64, -1.02, -0.08, -0.56, -0.6, -0.54, -0.42, -0.42, -0.53, -0.5, -0.52, -0.54, -0.5, -0.42, -0.13, -0.63, -1.27, -2.17, -2.1, -0.6, -0.38, -0.42, -0.52, -0.58, -0.58, -0.58, -0.53, -0.62, -0.65, -0.8, -0.84, -0.92, -0.93, -0.75, -0.62, -0.6, -0.4, -0.48, -0.82, -1.52, -0.77, -0.85, -1.41, -1.51, -1.8, -1.72, -1.7, -1.3, -0.56, -0.9, -1.36, -2.1, -2.58, -2.92, -2.7, -1.23, 3.0, 0.12, -0.77, -0.6, -0.42, -0.22, -0.03, 0.1, 0.12, 0.1, 0.13, 0.2, 0.64, 0.63, 0.42, 0.4, 0.48, 0.74, 1.42, 1.97, 1.28, -0.18, -0.92, -1.22, 0.8, 0.7, 0.92, 0.9, 2.13, 1.68, 1.24, 0.47, -0.35, -0.62, -0.04, -0.1, -0.75, -0.72, -0.04, 0.36, 0.32, -0.6, -1.27, -2.62, -0.76, 0.4, 0.15, -0.6, -0.1, -0.4, -0.5, -0.53, -0.44, -0.37, -0.01, -0.4, -0.68, -0.72, -0.6, -0.25, 0.02, -0.24, -0.87, 0.34, -0.04, -0.2, -0.3, -0.12, 0.18, 0.38, 0.58, 0.17, 0.15, 0.3, 0.44, 1.26, 0.85, 0.46, 0.5, 1.68, 1.3, 1.26, 1.26, 0.85, -0.38, -1.36, -0.02, 0.8, 0.9, 1.4, 1.4, 1.3, 1.4, 1.5, 0.8, -0.1, 0.0, -0.4, -0.52, -0.4, -0.2, 1.23, 1.9, 1.2, 1.2, 0.7, 2.57, 2.62, 2.88, 2.4, 2.4, 2.88, 3.0, 2.9, 2.9, 2.8, 1.7, 0.6, -0.15, 1.15, 2.13, 1.63, 2.3, -0.1, -1.3, -3.03, 3.5, 2.27, 0.93, 0.06, -1.0, -1.43, -0.7, -1.2, -1.3, -1.38, -1.87, -2.37, -2.37, -2.37, -0.4, 0.68, -1.15, 0.38, 4.5, 13.35, 4.3, 3.43, 4.48, 3.1, -1.37, -1.52, 0.88, 1.6, -0.67, -1.57, -0.47, 6.1, 5.2, 5.6, 0.3, -0.4, 0.83, 0.6, -0.98, -1.2, -1.37, -0.72, -0.7, -0.65, -0.7, 0.38, 3.63, 1.68, -0.6, -0.22, 4.67, 1.45, 1.97, 3.3, 0.33, 3.33, 0.38, -0.57, 0.53, 1.83, 0.83, -0.47, 0.0, 0.3, 0.37, 0.1, -0.05, -1.4, -2.1, -1.95, 0.5, 0.77, 1.0, 0.25, -0.7, 0.5, 0.48, 0.1, -0.7, -0.02, 0.3, 0.18, -0.11, 0.88, 1.08, 1.88, 1.88, 0.99, 1.27, 4.55, 0.43, -0.66, -0.47]}, "corr_fnb_fx_daily": -0.072, "corr_fnb_fx_monthly": -0.419, "corr_ib_vni_monthly": 0.696, "vni_r": {"l": ["20/04/26", "21/04/26", "22/04/26", "23/04/26", "24/04/26", "28/04/26", "29/04/26", "04/05/26", "05/05/26", "06/05/26", "07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [1817.17, 1837.11, 1833.48, 1857.3, 1870.36, 1853.29, 1875.84, 1854.1, 1854.1, 1874.85, 1891.2, 1895.5, 1901.1, 1898.37, 1925.46, 1921.6, 1927.94, 1912.93, 1913.23, 1896.89, 1877.13, 1886.03, 1884.18, 1874.43, 1863.67, 1863.49, 1844.54, 1826.47, 1819.01, 1831.55]}, "tv_r": {"l": ["07/05/26", "12/05/26", "13/05/26", "14/05/26", "15/05/26", "18/05/26", "19/05/26", "20/05/26", "21/05/26", "22/05/26", "25/05/26", "26/05/26", "27/05/26", "28/05/26", "29/05/26", "01/06/26", "02/06/26", "03/06/26", "04/06/26", "05/06/26"], "v": [26074.12, 29953.39, 22366.95, 32327.26, 23547.78, 24885.84, 29269.76, 34668.91, 34315.01, 23250.93, 24193.58, 20319.91, 21593.34, 25509.17, 20938.52, 20802.03, 16374.13, 20962.65, 22124.39, 23348.13]}};
+const G='rgba(255,255,255,.07)';
+const [B,GR,R,O,P,C,Y]=['#58a6ff','#3fb950','#f85149','#d29922','#bc8cff','#79c0ff','#e3b341'];
+Chart.defaults.color='#8b949e';Chart.defaults.borderColor=G;
+Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";Chart.defaults.font.size=10;
+
+// Year colors for scatter
+const yrColor={'2024':'#79c0ff','2025':'#f85149','2026':'#d29922','2023':'#e3b341','2022':'#3fb950','2021':'#58a6ff'};
+
+document.addEventListener('DOMContentLoaded',function(){
+  // Score bars
+  document.getElementById('sbf').style.width='45.7%';
+  [['cl',50.0,O],['cf',50.0,C],['cr',42.0,R],
+   ['cg_',56.0,GR],['cm',30.0,R]].forEach(function(x){
+    var e=document.getElementById(x[0]); if(e){e.style.width=x[1]+'%';e.style.background=x[2];}
+  });
+
+  // ── Helpers ─────────────────────────────────────────────────────
+  function mkC(id,type,data,opts){
+    var el=document.getElementById(id); if(!el)return;
+    return new Chart(el,{type:type,data:data,options:opts});
+  }
+  var baseOpts={responsive:true,maintainAspectRatio:false,
+    interaction:{intersect:false,mode:'index'},
+    plugins:{legend:{position:'top',labels:{boxWidth:9,padding:9,font:{size:10}}},
+             tooltip:{mode:'index',intersect:false}},
+    scales:{x:{grid:{color:G},ticks:{maxTicksLimit:12,font:{size:9},maxRotation:0}},
+            y:{grid:{color:G},ticks:{maxTicksLimit:5,font:{size:10}}}},
+    elements:{point:{radius:0,hoverRadius:3},line:{tension:.25}}
+  };
+  function mergeOpts(a,b){return Object.assign({},a,b,
+    {scales:Object.assign({},a.scales,b.scales||{}),
+     plugins:Object.assign({},a.plugins,b.plugins||{})});}
+
+  // ── C1: IB Daily 2025-2026 with MA10 MA20 & event annotations ──
+  (function(){
+    var el=document.getElementById('c_ib'); if(!el)return;
+    // Build annotation plugin data
+    var labels=D.ib_d.l;
+    var eventLines={};
+    if(D.events){D.events.forEach(function(e){
+      if(e.idx!==null&&e.idx!==undefined){eventLines[e.idx]={label:e.label,color:e.color,val:e.val||e.y};}
+    });}
+    new Chart(el,{type:'line',data:{labels:labels,datasets:[
+      {label:'Liên NH ON (%)',data:D.ib_d.v,borderColor:O,borderWidth:2,
+       backgroundColor:'rgba(210,153,34,.1)',fill:true,pointRadius:0,pointHoverRadius:3,tension:.2},
+      {label:'MA10',data:D.ib_ma10.v,borderColor:B,borderWidth:1.5,
+       borderDash:[4,3],fill:false,pointRadius:0,tension:.2},
+      {label:'MA20',data:D.ib_ma20.v,borderColor:GR,borderWidth:1.2,
+       borderDash:[2,4],fill:false,pointRadius:0,tension:.2},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}},
+        tooltip:{callbacks:{title:function(i){return i[0].label;},
+          label:function(c){return c.dataset.label+': '+c.parsed.y.toFixed(2)+'%';}}}},
+      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:16,font:{size:8},maxRotation:45,
+        callback:function(val,idx){
+          // Show month label at start of each month
+          var lbl=labels[idx]; if(!lbl)return '';
+          var parts=lbl.split('/');
+          if(idx===0||labels[idx-1].split('/')[1]!==parts[1]) return parts[1]+'/'+parts[2];
+          return '';
+        }}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:6},title:{display:true,text:'%/năm',font:{size:9}},
+           suggestedMax:20}},
+      elements:{point:{radius:0,hoverRadius:3},line:{tension:.2}}
+    }});
+  })();
+
+  // ── C2: IB + VNI dual axis (2025-2026) ─────────────────────────
+  (function(){
+    var el=document.getElementById('c_ib_vni'); if(!el)return;
+    var n=Math.min(D.ib_d.l.length,D.vni_d.l.length);
+    var lb=D.ib_d.l.slice(-n);
+    var ib_v=D.ib_d.v.slice(-n);
+    var vni_v=D.vni_d.v.slice(-n);
+    new Chart(el,{type:'line',data:{labels:lb,datasets:[
+      {label:'VN-INDEX',data:vni_v,borderColor:B,borderWidth:2,fill:false,
+       pointRadius:0,tension:.25,yAxisID:'y'},
+      {label:'Liên NH ON (%)',data:ib_v,borderColor:O,borderWidth:1.8,fill:true,
+       backgroundColor:'rgba(210,153,34,.08)',borderDash:[],pointRadius:0,tension:.2,yAxisID:'y2'},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}},
+        tooltip:{callbacks:{label:function(c){
+          return c.dataset.label+': '+(c.yAxisID==='y2'?c.parsed.y.toFixed(2)+'%':c.parsed.y.toFixed(0));
+        }}}},
+      scales:{
+        x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
+          callback:function(val,idx){
+            var lbl=lb[idx]; if(!lbl)return '';
+            var parts=lbl.split('/');
+            if(idx===0||lb[idx-1]&&lb[idx-1].split('/')[1]!==parts[1]) return parts[1]+'/'+parts[2];
+            return '';
+          }}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'VNIndex',font:{size:9}},position:'left'},
+        y2:{position:'right',grid:{drawOnChartArea:false},ticks:{maxTicksLimit:5},
+            title:{display:true,text:'IB %/năm',font:{size:9}},suggestedMax:20}
+      },
+      elements:{point:{radius:0,hoverRadius:3},line:{tension:.25}}
+    }});
+  })();
+
+  // ── C3: Rates 4 (monthly, 2025+) ───────────────────────────────
+  (function(){
+    var el=document.getElementById('c_rates4'); if(!el)return;
+    var r=D.m_rates;
+    new Chart(el,{type:'line',data:{labels:r.l,datasets:[
+      {label:'Liên NH ON avg',data:r.ib,borderColor:O,borderWidth:2,fill:false,pointRadius:3,pointBackgroundColor:O,tension:.25},
+      {label:'Tiết kiệm 12T',data:r.dep,borderColor:C,borderWidth:1.8,fill:false,pointRadius:2,tension:.25},
+      {label:'TPCP 10Y',data:r.b10,borderColor:R,borderWidth:1.8,fill:false,pointRadius:2,tension:.25},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0}},
+              y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'%/năm',font:{size:9}}}}
+    }});
+  })();
+
+  // ── C4: IB-Deposit Spread ────────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_spr'); if(!el)return;
+    var d=D.spr_ib_d;
+    new Chart(el,{type:'line',data:{labels:d.l,datasets:[
+      {label:'Spread IB − Tiết kiệm (%)',data:d.v,borderColor:R,borderWidth:2,
+       backgroundColor:'rgba(248,81,73,.12)',fill:true,pointRadius:0,tension:.25},
+      // Zero line
+      {label:'',data:d.l.map(function(){return 0;}),borderColor:'rgba(255,255,255,.2)',
+       borderWidth:1,borderDash:[4,4],fill:false,pointRadius:0,tension:0},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
+        callback:function(val,idx){var lbl=d.l[idx];if(!lbl)return '';
+          var p=lbl.split('/');if(idx===0||d.l[idx-1]&&d.l[idx-1].split('/')[1]!==p[1])return p[1]+'/'+p[2];return '';}}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'% (IB − Deposit)',font:{size:9}}}}
+    }});
+  })();
+
+  // ── C5: Rolling correlation IB vs VNI % change ──────────────
+  (function(){
+    var el=document.getElementById('c_roll_corr'); if(!el)return;
+    var rc=D.roll_corr;
+    new Chart(el,{type:'line',data:{labels:rc.l,datasets:[
+      {label:'Rolling 20-phiên corr: IB vs ΔVNI%',data:rc.v,borderColor:P,borderWidth:2,
+       backgroundColor:function(ctx){
+         var val=ctx.parsed&&ctx.parsed.y;
+         return val<0?'rgba(248,81,73,.1)':'rgba(63,185,80,.1)';
+       },fill:true,pointRadius:0,tension:.25},
+      {label:'',data:rc.l.map(function(){return 0;}),borderColor:'rgba(255,255,255,.25)',
+       borderWidth:1,borderDash:[4,4],fill:false,pointRadius:0},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label?c.dataset.label+': '+c.parsed.y.toFixed(3):'';}}}},
+      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
+        callback:function(val,idx){var lbl=rc.l[idx];if(!lbl)return '';
+          var p=lbl.split('/');if(idx===0||rc.l[idx-1]&&rc.l[idx-1].split('/')[1]!==p[1])return p[1]+'/'+p[2];return '';}}},
+        y:{grid:{color:G},min:-1,max:1,ticks:{maxTicksLimit:5},
+           title:{display:true,text:'Hệ số tương quan',font:{size:9}}}}
+    }});
+  })();
+
+  // ── C6: FNB vs FX scatter (full history) ────────────────────
+  (function(){
+    var el=document.getElementById('c_sc_fx'); if(!el)return;
+    var sc=D.sc_fnb_fx;
+    new Chart(el,{type:'scatter',data:{datasets:[{
+      label:'FNB vs USD/VND',
+      data:sc.x.map(function(x,i){return{x:x,y:sc.y[i],l:sc.l[i],yr:sc.yr[i]};}),
+      backgroundColor:sc.yr.map(function(yr){return (yrColor[yr]||'#888')+'aa';}),
+      pointRadius:5,pointHoverRadius:7,borderWidth:0
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{
+        label:function(c){return c.raw.yr+' '+c.raw.l+': FX='+c.raw.x.toFixed(0)+', FNB='+c.raw.y.toFixed(0)+' tỷ';}
+      }},
+      // Custom legend for year colors
+      afterDraw:function(chart){
+        var ctx=chart.ctx;
+        var yrs=['2022','2023','2024','2025','2026'];
+        var x=chart.chartArea.left+10, y=chart.chartArea.bottom-40;
+        yrs.forEach(function(yr){
+          ctx.fillStyle=yrColor[yr]; ctx.fillRect(x,y,10,10);
+          ctx.fillStyle='#8b949e'; ctx.font='9px Segoe UI'; ctx.fillText(yr,x+13,y+9);
+          x+=50;
+        });
+      }},
+      scales:{
+        x:{grid:{color:G},title:{display:true,text:'USD/VND avg tháng',font:{size:9}},ticks:{maxTicksLimit:6}},
+        y:{grid:{color:G},title:{display:true,text:'NĐTNN tổng tháng (tỷ)',font:{size:9}},ticks:{maxTicksLimit:5}}
+      }
+    }});
+  })();
+
+  // ── C7: FNB + FX dual axis time series ──────────────────────
+  (function(){
+    var el=document.getElementById('c_fnb_fx_ts'); if(!el)return;
+    var d=D.fnb_fx_ts;
+    new Chart(el,{type:'bar',data:{labels:d.l,datasets:[
+      {label:'FNB tổng tháng (tỷ)',data:d.fnb,backgroundColor:d.fnb.map(function(v){return v<0?'rgba(248,81,73,.75)':'rgba(63,185,80,.75)';}),
+       borderRadius:2,yAxisID:'y',order:2},
+      {label:'USD/VND avg',data:d.fx,type:'line',borderColor:GR,borderWidth:2.5,
+       fill:false,pointRadius:3,pointBackgroundColor:GR,tension:.2,yAxisID:'y2',order:1},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
+      scales:{
+        x:{grid:{color:G},ticks:{font:{size:9},maxRotation:0}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'FNB tỷ đồng',font:{size:9}},position:'left'},
+        y2:{position:'right',grid:{drawOnChartArea:false},ticks:{maxTicksLimit:5},title:{display:true,text:'USD/VND',font:{size:9}}}
+      }
+    }});
+  })();
+
+  // ── C8: FNB monthly bar ─────────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_fnbm'); if(!el)return;
+    var d=D.fnbm;
+    new Chart(el,{type:'bar',data:{labels:d.l,datasets:[{
+      data:d.v,backgroundColor:d.c,borderRadius:2,borderSkipped:false
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return (c.parsed.y/1000).toFixed(1)+'k tỷ';}}}},
+      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:18,font:{size:8},maxRotation:0}},y:{grid:{color:G},ticks:{maxTicksLimit:4}}}
+    }});
+  })();
+
+  // ── C9: Cumulative by year ──────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_cumul'); if(!el)return;
+    var datasets=Object.keys(D.cumul).map(function(yr){
+      var d=D.cumul[yr];
+      return{label:yr,data:d.doy.map(function(x,i){return{x:x,y:d.v[i]};}),
+             borderColor:d.c,borderWidth:2,fill:false,pointRadius:0,tension:.2};
+    });
+    new Chart(el,{type:'line',data:{datasets:datasets},options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
+      scales:{
+        x:{type:'linear',grid:{color:G},
+           ticks:{maxTicksLimit:7,font:{size:9},callback:function(v){
+             var m=['','T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+             return m[Math.round(v/30.5)]||'';
+           }},title:{display:true,text:'Tháng trong năm',font:{size:9}}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:5},title:{display:true,text:'Tỷ đồng tích lũy',font:{size:9}}}
+      }
+    }});
+  })();
+
+  // ── C10: Scatter IB vs VNI ─────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_sc_ib_vni'); if(!el)return;
+    var sc=D.sc_ib_vni;
+    new Chart(el,{type:'scatter',data:{datasets:[{
+      label:'IB vs VNIndex',
+      data:sc.x.map(function(x,i){return{x:x,y:sc.y[i],fnb:sc.fnb[i],l:sc.l[i]};}),
+      backgroundColor:sc.fnb.map(function(v){return v<0?'rgba(248,81,73,.65)':'rgba(63,185,80,.65)';}),
+      pointRadius:5,pointHoverRadius:7,borderWidth:0
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},
+        subtitle:{display:true,text:'Màu đỏ = tháng FNB bán ròng · Xanh = mua ròng',font:{size:9},color:'#8b949e'}},
+        tooltip:{callbacks:{label:function(c){
+          return c.raw.l+': IB='+c.raw.x.toFixed(1)+'%, VNI='+c.raw.y.toFixed(0)+
+            ', FNB='+(c.raw.fnb/1000).toFixed(1)+'k tỷ';
+        }}},
+      scales:{
+        x:{grid:{color:G},title:{display:true,text:'Liên NH avg tháng (%) — Corr vs VNI: +0.70',font:{size:9}},ticks:{maxTicksLimit:6}},
+        y:{grid:{color:G},title:{display:true,text:'VNIndex cuối tháng',font:{size:9}},ticks:{maxTicksLimit:5}}
+      }
+    }});
+  })();
+
+  // ── C11: FNB 20 sessions bar ────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_fnb20'); if(!el)return;
+    var d=D.r_fnb;
+    new Chart(el,{type:'bar',data:{labels:d.l,datasets:[{
+      data:d.v,backgroundColor:d.c,borderRadius:3,borderSkipped:false
+    }]},options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(0)+' tỷ';}}}},
+      scales:{x:{grid:{color:G},ticks:{font:{size:8}}},y:{grid:{color:G},ticks:{maxTicksLimit:4}}}
+    }});
+  })();
+
+  // ── C12: VNI + VN30 + HNX (2025+) ──────────────────────────
+  (function(){
+    var el=document.getElementById('c_indices'); if(!el)return;
+    var n=D.vni_d.l.length;
+    var vn30_aligned=D.vni_d.l.map(function(lb,i){
+      var j=D.ib_d.l.indexOf(lb);
+      return null; // will use vni_d as base
+    });
+    // Use vni_d labels directly, slice vn30 and hnx to match
+    new Chart(el,{type:'line',data:{labels:D.vni_d.l,datasets:[
+      {label:'VN-INDEX',data:D.vni_d.v,borderColor:B,borderWidth:2,fill:false,pointRadius:0,tension:.25},
+      {label:'VN30',data:D.vni_all.v.slice(-n),borderColor:C,borderWidth:1.5,borderDash:[4,4],fill:false,pointRadius:0,tension:.25},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
+      scales:{x:{grid:{color:G},ticks:{maxTicksLimit:14,font:{size:8},maxRotation:45,
+        callback:function(val,idx){var lbl=D.vni_d.l[idx];if(!lbl)return '';
+          var p=lbl.split('/');if(idx===0||D.vni_d.l[idx-1]&&D.vni_d.l[idx-1].split('/')[1]!==p[1])return p[1]+'/'+p[2];return '';}}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:5}}}
+    }});
+  })();
+
+  // ── C13: TV + VNI recent 20 ─────────────────────────────────
+  (function(){
+    var el=document.getElementById('c_tv_vni'); if(!el)return;
+    new Chart(el,{type:'bar',data:{labels:D.tv_r.l,datasets:[
+      {label:'Thanh khoản (tỷ)',data:D.tv_r.v,backgroundColor:'rgba(121,192,255,.6)',borderRadius:3,yAxisID:'y2',order:2},
+      {label:'VNIndex',data:D.vni_r.v.slice(-20),type:'line',borderColor:B,borderWidth:2.5,
+       fill:false,pointRadius:4,pointBackgroundColor:B,tension:.2,yAxisID:'y',order:1},
+    ]},options:{responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{position:'top',labels:{boxWidth:9,font:{size:10}}}},
+      scales:{
+        x:{grid:{color:G},ticks:{font:{size:9}}},
+        y:{grid:{color:G},ticks:{maxTicksLimit:4},title:{display:true,text:'VNIndex',font:{size:9}},position:'left'},
+        y2:{position:'right',grid:{drawOnChartArea:false},ticks:{maxTicksLimit:4},title:{display:true,text:'Tỷ đồng',font:{size:9}}}
+      }
+    }});
+  })();
+
+});
+</script>
+
+<script>
+(function(){
+  if (typeof Chart === 'undefined') return;
+  function toMonthYear(raw){
+    const s = String(raw || '');
+    let m;
+    // dd/mm/yy -> mm/yy
+    m = s.match(/^(\d{2})\/(\d{2})\/(\d{2})$/);
+    if (m) return m[2] + '/' + m[3];
+    // yyyy-mm-dd -> mm/yy
+    m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (m) return m[2] + '/' + m[1].slice(2);
+    // mm/yy
+    m = s.match(/^(\d{2})\/(\d{2})$/);
+    if (m) return s;
+    // mm/yyyy -> mm/yy
+    m = s.match(/^(\d{2})\/(\d{4})$/);
+    if (m) return m[1] + '/' + m[2].slice(2);
+    return s;
+  }
+  function patchMonthYearAxis(chartId, tickLimit){
+    const chart = Chart.getChart(chartId);
+    if (!chart || !chart.data || !chart.data.labels) return;
+    const labels = chart.data.labels;
+    chart.options.scales = chart.options.scales || {};
+    chart.options.scales.x = chart.options.scales.x || {};
+    chart.options.scales.x.ticks = chart.options.scales.x.ticks || {};
+    chart.options.scales.x.ticks.font = {size: 9};
+    chart.options.scales.x.ticks.maxRotation = 0;
+    chart.options.scales.x.ticks.minRotation = 0;
+    chart.options.scales.x.ticks.autoSkip = true;
+    chart.options.scales.x.ticks.maxTicksLimit = tickLimit || 8;
+    chart.options.scales.x.ticks.callback = function(value){
+      const label = this.getLabelForValue ? this.getLabelForValue(value) : labels[value];
+      return toMonthYear(label);
+    };
+    chart.options.plugins = chart.options.plugins || {};
+    chart.options.plugins.tooltip = chart.options.plugins.tooltip || {};
+    chart.options.plugins.tooltip.callbacks = chart.options.plugins.tooltip.callbacks || {};
+    chart.options.plugins.tooltip.callbacks.title = function(items){
+      const i = items && items[0] ? items[0].dataIndex : 0;
+      return String(labels[i] || '');
+    };
+    chart.update();
+  }
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      // Only existing charts; no new chart, no extra DOM, no data changes.
+      ['c_ib','c_ib_vni','c_rates4','c_spr','c_roll_corr','c_fnb_fx_ts','c_fnbm','c_indices','c_tv_vni'].forEach(function(id){
+        patchMonthYearAxis(id, 8);
+      });
+      // 20-session charts: keep short date style visible, but still no data/template changes.
+      ['c_fnb20'].forEach(function(id){ patchMonthYearAxis(id, 6); });
+    }, 300);
+  });
+})();
 </script>
 
 </section>
