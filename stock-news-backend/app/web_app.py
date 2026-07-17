@@ -284,6 +284,60 @@ def model3_freshness(symbol: str):
     return JSONResponse(body, status_code=200 if not issues else 503)
 
 
+@app.get("/pipeline/model3/latest/{symbol}")
+def model3_latest_direct(symbol: str):
+    """Direct latest Model3 route for Firebase stock-report.
+
+    Kept in web_app.py as a hard fallback because this Render service also owns
+    direct /pipeline/model3/freshness routes.
+    """
+    normalized = _clean_symbol(symbol)[:8]
+    if not normalized:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+    try:
+        from app import pipeline_api as p
+        candidates = []
+        for job in getattr(p, "MODEL3_JOBS", {}).values():
+            if str(job.get("ticker") or "").upper() == normalized:
+                candidates.append(job)
+        try:
+            for job in p._iter_model3_jobs_from_disk():
+                if isinstance(job, dict) and str(job.get("ticker") or "").upper() == normalized:
+                    candidates.append(job)
+        except Exception:
+            pass
+        by_id = {}
+        for job in candidates:
+            jid = str(job.get("job_id") or "")
+            if jid:
+                by_id[jid] = job
+        jobs = sorted(by_id.values(), key=lambda j: float(j.get("updated_at") or j.get("created_at") or 0), reverse=True)
+        if jobs:
+            out = p._public_model3_job(jobs[0])
+            out["latest"] = True
+            return JSONResponse(out)
+        docx = p._latest_model3_docx(normalized, set())
+        if docx and docx.exists():
+            mtime = docx.stat().st_mtime
+            pseudo = {
+                "job_id": f"latest-{normalized}-{int(mtime)}",
+                "ticker": normalized,
+                "status": "done",
+                "created_at": mtime,
+                "updated_at": mtime,
+                "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
+                "sections": [{"key": k, "agent": a, "name": n, "status": "done" if k != "notebooklm" else "skipped"} for k, a, n in p.MODEL3_SECTIONS],
+                "logs": [f"Loaded latest local Model3 DOCX for {normalized}: {docx.name}"],
+                "result": {"ok": True, "ticker": normalized, "docx_path": str(docx), "docx_name": docx.name},
+            }
+            out = p._public_model3_job(pseudo)
+            out["latest"] = True
+            return JSONResponse(out)
+    except Exception as exc:
+        return JSONResponse({"latest": False, "ticker": normalized, "error": str(exc)[-1500:]}, status_code=503)
+    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới nhất cho {normalized}")
+
+
 @app.get("/market-symbols")
 def market_symbols(query: str = Query(default="", max_length=20), limit: int = Query(default=20, ge=1, le=30)):
     return get_symbol_catalog(query=query[:20], limit=limit)
