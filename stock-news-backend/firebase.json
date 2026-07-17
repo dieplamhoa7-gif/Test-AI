@@ -3,6 +3,7 @@
     "rules": "firestore.rules"
   },
   "hosting": {
+    "target": "lhinvt",
     "public": "firebase_public",
     "ignore": [
       "firebase.json",
@@ -171,6 +172,14 @@
       {
         "source": "/news-page",
         "destination": "/news-page.html"
+      },
+      {
+        "source": "/stock-report",
+        "destination": "/stock-report.html"
+      },
+      {
+        "source": "/stock-report/**",
+        "destination": "/stock-report.html"
       },
       {
         "source": "/account",
