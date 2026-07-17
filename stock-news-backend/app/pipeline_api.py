@@ -1630,7 +1630,18 @@ async def model3_latest(ticker: str):
         public["latest"] = True
         return JSONResponse(public)
 
-    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới nhất cho {symbol}")
+    now = time.time()
+    return JSONResponse({
+        "latest": True,
+        "job_id": f"latest-{symbol}-empty",
+        "ticker": symbol,
+        "status": "no_report_yet",
+        "created_at": now,
+        "updated_at": now,
+        "logs": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {symbol}; cần chạy báo cáo mới để lấy data mới nhất."],
+        "logs_tail": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {symbol}; cần chạy báo cáo mới để lấy data mới nhất."],
+        "result": {"ok": False, "ticker": symbol, "reason": "no_saved_model3_report"},
+    })
 
 
 @router.get("/model3/file/{filename}")

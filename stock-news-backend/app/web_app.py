@@ -335,7 +335,19 @@ def model3_latest_direct(symbol: str):
             return JSONResponse(out)
     except Exception as exc:
         return JSONResponse({"latest": False, "ticker": normalized, "error": str(exc)[-1500:]}, status_code=503)
-    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới nhất cho {normalized}")
+    import time
+    now = time.time()
+    return JSONResponse({
+        "latest": True,
+        "job_id": f"latest-{normalized}-empty",
+        "ticker": normalized,
+        "status": "no_report_yet",
+        "created_at": now,
+        "updated_at": now,
+        "logs": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {normalized}; cần chạy báo cáo mới để lấy data mới nhất."],
+        "logs_tail": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {normalized}; cần chạy báo cáo mới để lấy data mới nhất."],
+        "result": {"ok": False, "ticker": normalized, "reason": "no_saved_model3_report"},
+    })
 
 
 @app.get("/market-symbols")
