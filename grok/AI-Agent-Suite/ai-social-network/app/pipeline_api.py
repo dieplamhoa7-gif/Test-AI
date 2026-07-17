@@ -1119,6 +1119,47 @@ async def model3_status(job_id: str):
     return JSONResponse(_public_model3_job(job))
 
 
+@router.get("/model3/latest/{ticker}")
+async def model3_latest(ticker: str):
+    """Return latest in-memory Model3 job/report for the stock-report page.
+
+    The page calls this on load. If it is missing, browsers silently keep stale UI.
+    """
+    symbol = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
+    if not symbol:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+
+    jobs = sorted(
+        [j for j in MODEL3_JOBS.values() if str(j.get("ticker") or "").upper() == symbol],
+        key=lambda j: float(j.get("updated_at") or j.get("created_at") or 0),
+        reverse=True,
+    )
+    if jobs:
+        public = _public_model3_job(jobs[0])
+        public["latest"] = True
+        return JSONResponse(public)
+
+    docx = _latest_model3_docx(symbol, set())
+    if docx and docx.exists():
+        mtime = docx.stat().st_mtime
+        pseudo = {
+            "job_id": f"latest-{symbol}-{int(mtime)}",
+            "ticker": symbol,
+            "status": "done",
+            "created_at": mtime,
+            "updated_at": mtime,
+            "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
+            "sections": [{"key": k, "agent": a, "name": n, "status": "done" if k != "notebooklm" else "skipped"} for k, a, n in MODEL3_SECTIONS],
+            "logs": [f"Loaded latest local Model3 DOCX for {symbol}: {docx.name}"],
+            "result": {"ok": True, "ticker": symbol, "docx_path": str(docx), "docx_name": docx.name},
+        }
+        public = _public_model3_job(pseudo)
+        public["latest"] = True
+        return JSONResponse(public)
+
+    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới nhất cho {symbol}")
+
+
 @router.get("/model3/file/{filename}")
 async def model3_file(filename: str):
     safe = Path(filename).name
