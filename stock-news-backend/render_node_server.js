@@ -295,6 +295,48 @@ const server = http.createServer((req, res) => {
     if (pathname === '/health') {
       return send(res, 200, JSON.stringify({ ok: true, service: 'web', runtime: 'node-cache-server' }));
     }
+    if (pathname.startsWith('/pipeline/model3/latest/')) {
+      const symbol = decodeURIComponent(pathname.split('/').pop() || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 8);
+      if (!symbol) return send(res, 400, JSON.stringify({ detail: 'Cần nhập mã cổ phiếu' }));
+      const jobDirs = [process.env.MODEL3_JOB_STATE_DIR, '/tmp/disk/model3_jobs', '/tmp/model3_jobs', path.join(ROOT, 'outputs', 'model3_jobs'), path.join(ROOT, '..', 'outputs', 'model3_jobs')].filter(Boolean);
+      const jobs = [];
+      for (const dir of jobDirs) {
+        try {
+          if (!fs.existsSync(dir)) continue;
+          for (const name of fs.readdirSync(dir)) {
+            if (!/\.json$/i.test(name)) continue;
+            try {
+              const j = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+              if (String(j.ticker || '').toUpperCase() === symbol) jobs.push(j);
+            } catch (_) {}
+          }
+        } catch (_) {}
+      }
+      jobs.sort((a,b) => Number(b.updated_at || b.created_at || 0) - Number(a.updated_at || a.created_at || 0));
+      if (jobs.length) {
+        const j = jobs[0];
+        j.latest = true;
+        j.logs_tail = Array.isArray(j.logs) ? j.logs.slice(-20) : [];
+        return send(res, 200, JSON.stringify(j));
+      }
+      const outDirs = [process.env.PIPELINE_MODEL3_OUT_DIR, '/tmp/disk/model3', path.join(ROOT, 'outputs', 'model3'), path.join(ROOT, '..', 'outputs', 'model3'), path.join(ROOT, 'reports'), path.join(ROOT, '..', 'reports')].filter(Boolean);
+      let best = null;
+      for (const dir of outDirs) {
+        try {
+          if (!fs.existsSync(dir)) continue;
+          for (const name of fs.readdirSync(dir)) {
+            if (!name.toUpperCase().includes(symbol) || !/\.(docx|pdf)$/i.test(name)) continue;
+            const full = path.join(dir, name); const st = fs.statSync(full);
+            if (!best || st.mtimeMs > best.mtimeMs) best = { name, full, mtimeMs: st.mtimeMs };
+          }
+        } catch (_) {}
+      }
+      if (best) {
+        const ts = Math.round(best.mtimeMs / 1000);
+        return send(res, 200, JSON.stringify({ latest:true, job_id:`latest-${symbol}-${ts}`, ticker:symbol, status:'done', created_at:ts, updated_at:ts, logs:[`Loaded latest Model3 file for ${symbol}: ${best.name}`], logs_tail:[`Loaded latest Model3 file for ${symbol}: ${best.name}`], result:{ok:true,ticker:symbol,docx_path:best.full,docx_name:best.name} }));
+      }
+      return send(res, 404, JSON.stringify({ detail: `Không tìm thấy báo cáo Model3 mới nhất cho ${symbol}` }));
+    }
     if (pathname.startsWith('/assets/')) {
       const assetName = path.basename(pathname);
       const assetPath = path.join(DATA, 'assets', assetName);
