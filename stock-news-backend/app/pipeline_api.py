@@ -1456,6 +1456,61 @@ async def model3_status(job_id: str):
     return JSONResponse(_public_model3_job(job))
 
 
+@router.get("/model3/latest/{ticker}")
+async def model3_latest(ticker: str):
+    """Return latest Model3 job/report for the stock-report page."""
+    symbol = re.sub(r"[^A-Za-z0-9]", "", ticker or "").upper()[:8]
+    if not symbol:
+        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
+
+    candidates: list[dict[str, Any]] = []
+    for job in MODEL3_JOBS.values():
+        if str(job.get("ticker") or "").upper() == symbol:
+            candidates.append(job)
+    try:
+        if MODEL3_JOB_STATE_DIR.exists():
+            for path in MODEL3_JOB_STATE_DIR.glob("*.json"):
+                try:
+                    job = json.loads(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if isinstance(job, dict) and str(job.get("ticker") or "").upper() == symbol:
+                    candidates.append(job)
+    except Exception:
+        pass
+
+    by_id: dict[str, dict[str, Any]] = {}
+    for job in candidates:
+        jid = str(job.get("job_id") or "")
+        if jid:
+            by_id[jid] = job
+    jobs = sorted(by_id.values(), key=lambda j: float(j.get("updated_at") or j.get("created_at") or 0), reverse=True)
+    if jobs:
+        public = _public_model3_job(jobs[0])
+        public["latest"] = True
+        return JSONResponse(public)
+
+    docx = _latest_model3_docx(symbol, set())
+    if docx and docx.exists():
+        mtime = docx.stat().st_mtime
+        pseudo = {
+            "job_id": f"latest-{symbol}-{int(mtime)}",
+            "ticker": symbol,
+            "status": "done",
+            "created_at": mtime,
+            "updated_at": mtime,
+            "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
+            "sections": [{"key": k, "agent": a, "name": n, "status": "done" if k != "notebooklm" else "skipped"} for k, a, n in MODEL3_SECTIONS],
+            "logs": [f"Loaded latest local Model3 DOCX for {symbol}: {docx.name}"],
+            "result": {"ok": True, "ticker": symbol, "docx_path": str(docx), "docx_name": docx.name},
+        }
+        public = _public_model3_job(pseudo)
+        public["latest"] = True
+        return JSONResponse(public)
+
+    raise HTTPException(status_code=404, detail=f"Không tìm thấy báo cáo Model3 mới nhất cho {symbol}")
+
+
 @router.get("/model3/file/{filename}")
 async def model3_file(filename: str):
     safe = Path(filename).name
