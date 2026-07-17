@@ -1538,7 +1538,12 @@ async def model3_worker_update_status(job_id: str, payload: dict[str, Any], auth
         if key in payload:
             job[key] = payload[key]
     if payload.get("log"):
-        job["logs"] = (job.get("logs") or [])[-79:] + [str(payload["log"])[-1000:]]
+        # Treat worker logs as first-class progress events. Older local workers
+        # only post a log line, not a full sections[] payload; previously the
+        # frontend had to guess progress from logs. Updating sections/agents here
+        # makes /model3/latest and /model3/status the source of truth for each
+        # phase/agent in real time.
+        _model3_mark_progress(job, str(payload["log"])[-1000:])
     job["updated_at"] = time.time()
     if job.get("status") in {"done", "error", "interrupted"}:
         MODEL3_ACTIVE_BY_KEY.pop(str(job.get("dedupe_key") or _model3_job_key(job.get("ticker", ""), bool(job.get("notebooklm", True)))), None)
