@@ -483,6 +483,72 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, {'content-type':'application/json; charset=utf-8'});
     return res.end(JSON.stringify(diag));
   }
+  if (req.method === 'GET' && req.url.startsWith('/pipeline/model3/latest/')) {
+    try {
+      const u = new URL(req.url, 'http://localhost');
+      const symbol = decodeURIComponent(u.pathname.split('/').pop() || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 8);
+      if (!symbol) { res.writeHead(400, {'content-type':'application/json; charset=utf-8'}); return res.end(JSON.stringify({detail:'Cần nhập mã cổ phiếu'})); }
+      const roots = [
+        process.env.MODEL3_JOB_STATE_DIR,
+        '/tmp/disk/model3_jobs',
+        '/tmp/model3_jobs',
+        path.join(process.cwd(), 'stock-news-backend', 'outputs', 'model3_jobs'),
+        path.join(process.cwd(), 'outputs', 'model3_jobs'),
+      ].filter(Boolean);
+      const jobs = [];
+      for (const dir of roots) {
+        try {
+          if (!fs.existsSync(dir)) continue;
+          for (const name of fs.readdirSync(dir)) {
+            if (!/\.json$/i.test(name)) continue;
+            try {
+              const j = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+              if (String(j.ticker || '').toUpperCase() === symbol) jobs.push(j);
+            } catch (_) {}
+          }
+        } catch (_) {}
+      }
+      jobs.sort((a,b) => Number(b.updated_at || b.created_at || 0) - Number(a.updated_at || a.created_at || 0));
+      if (jobs.length) {
+        const j = jobs[0];
+        j.latest = true;
+        j.elapsed_seconds = Math.max(0, Math.round(Date.now()/1000 - Number(j.created_at || Date.now()/1000)));
+        j.idle_seconds = Math.max(0, Math.round(Date.now()/1000 - Number(j.updated_at || j.created_at || Date.now()/1000)));
+        j.logs_tail = Array.isArray(j.logs) ? j.logs.slice(-20) : [];
+        res.writeHead(200, {'content-type':'application/json; charset=utf-8', 'cache-control':'no-store'});
+        return res.end(JSON.stringify(j));
+      }
+      const outDirs = [
+        process.env.PIPELINE_MODEL3_OUT_DIR,
+        '/tmp/disk/model3',
+        path.join(process.cwd(), 'stock-news-backend', 'outputs', 'model3'),
+        path.join(process.cwd(), 'outputs', 'model3'),
+        path.join(process.cwd(), 'reports'),
+      ].filter(Boolean);
+      let best = null;
+      for (const dir of outDirs) {
+        try {
+          if (!fs.existsSync(dir)) continue;
+          for (const name of fs.readdirSync(dir)) {
+            if (!name.toUpperCase().includes(symbol) || !/\.(docx|pdf)$/i.test(name)) continue;
+            const full = path.join(dir, name); const st = fs.statSync(full);
+            if (!best || st.mtimeMs > best.mtimeMs) best = {name, full, mtimeMs: st.mtimeMs};
+          }
+        } catch (_) {}
+      }
+      if (best) {
+        const ts = Math.round(best.mtimeMs / 1000);
+        const body = {latest:true, job_id:`latest-${symbol}-${ts}`, ticker:symbol, status:'done', created_at:ts, updated_at:ts, logs:[`Loaded latest local Model3 file for ${symbol}: ${best.name}`], logs_tail:[`Loaded latest local Model3 file for ${symbol}: ${best.name}`], result:{ok:true,ticker:symbol,docx_path:best.full,docx_name:best.name}};
+        res.writeHead(200, {'content-type':'application/json; charset=utf-8', 'cache-control':'no-store'});
+        return res.end(JSON.stringify(body));
+      }
+      res.writeHead(404, {'content-type':'application/json; charset=utf-8'});
+      return res.end(JSON.stringify({detail:`Không tìm thấy báo cáo Model3 mới nhất cho ${symbol}`}));
+    } catch (e) {
+      res.writeHead(500, {'content-type':'application/json; charset=utf-8'});
+      return res.end(JSON.stringify({ok:false,error:String(e && e.message || e)}));
+    }
+  }
   if (req.method === 'GET' && req.url.startsWith('/nvtc/k1-source')) {
     try {
       const u = new URL(req.url, 'http://localhost');
