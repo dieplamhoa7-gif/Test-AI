@@ -335,7 +335,18 @@ const server = http.createServer((req, res) => {
         const ts = Math.round(best.mtimeMs / 1000);
         return send(res, 200, JSON.stringify({ latest:true, job_id:`latest-${symbol}-${ts}`, ticker:symbol, status:'done', created_at:ts, updated_at:ts, logs:[`Loaded latest Model3 file for ${symbol}: ${best.name}`], logs_tail:[`Loaded latest Model3 file for ${symbol}: ${best.name}`], result:{ok:true,ticker:symbol,docx_path:best.full,docx_name:best.name} }));
       }
-      return send(res, 404, JSON.stringify({ detail: `Không tìm thấy báo cáo Model3 mới nhất cho ${symbol}` }));
+      const now = Math.round(Date.now() / 1000);
+      return send(res, 200, JSON.stringify({
+        latest: true,
+        job_id: `latest-${symbol}-empty`,
+        ticker: symbol,
+        status: 'no_report_yet',
+        created_at: now,
+        updated_at: now,
+        logs: [`Chưa tìm thấy báo cáo Model3 đã lưu cho ${symbol}; cần chạy báo cáo mới để lấy data mới nhất.`],
+        logs_tail: [`Chưa tìm thấy báo cáo Model3 đã lưu cho ${symbol}; cần chạy báo cáo mới để lấy data mới nhất.`],
+        result: { ok: false, ticker: symbol, reason: 'no_saved_model3_report' }
+      }));
     }
     if (pathname.startsWith('/assets/')) {
       const assetName = path.basename(pathname);
