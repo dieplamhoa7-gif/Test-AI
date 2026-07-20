@@ -1297,35 +1297,66 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     else:
         _bullets(doc, ["Cache V3 chưa có tín hiệu hệ thống cho mã này — cần refresh cache LHInvestment."])
 
-    # 3D: LH Strategy Box — trạng thái chiến lược, entry/stop/TP (khớp panel 07 của NotebookLM).
-    _heading(doc, "3D. LH Strategy Box — trạng thái chiến lược", 2)
+    # 3D: LH Strategy Box — phân tích từng chiến lược, không chỉ ghi trạng thái tổng hợp.
+    _heading(doc, "3D. LH Strategy Box — phân tích từng chiến lược", 2)
+    def _first_val(d: dict[str, Any], *keys: str, default: str = "N/A") -> Any:
+        for k in keys:
+            v = d.get(k)
+            if v not in (None, "", [], {}):
+                return v
+        return default
+
+    def _strategy_view(r_: dict[str, Any]) -> list[str]:
+        name_ = _first_val(r_, "strategyGroupName", "strategy", "name", "id", "strategyGroupId", default="Chiến lược LH")
+        bucket_ = str(_first_val(r_, "bucket", "status", "state", default="theo dõi")).upper()
+        action_ = _first_val(r_, "action", "signal", "decision", "recommendation", default=bucket_)
+        score_ = _first_val(r_, "rankScore", "score", "signalScore", "confidence", default="N/A")
+        entry_ = _first_val(r_, "entry", "entryPrice", "buyZone", "buy_zone", "entryZone", default="N/A")
+        stop_ = _first_val(r_, "stop", "stopLoss", "stop_loss", "invalid", "invalidation", default="N/A")
+        tp_ = _first_val(r_, "takeProfit", "take_profit", "target", "targetPrice", "tp", default="N/A")
+        reason_ = _first_val(r_, "reason", "rationale", "note", "explain", "summary", "comment", default="")
+        trig_ = _first_val(r_, "trigger", "activation", "condition", "entryCondition", default="")
+        risk_ = _first_val(r_, "risk", "riskNote", "warning", "invalidReason", default="")
+        date_ = str(_first_val(r_, "date", "asOfDate", "updatedAt", "createdAt", default=""))[:10]
+        age_note = ""
+        try:
+            from datetime import datetime as _dt
+            if date_:
+                age_days = (_dt.now() - _dt.strptime(date_, "%Y-%m-%d")).days
+                if age_days > 30:
+                    age_note = f"Tín hiệu cũ {age_days} ngày — chỉ dùng sau khi xác nhận lại EOD/volume."
+        except Exception:
+            pass
+        why = str(reason_ or trig_ or "Dựa trên cache strategy_results_cache và ma trận kỹ thuật hiện tại; cần đối chiếu freshness gate trước khi hành động.")
+        risk = str(risk_ or age_note or f"Vô hiệu nếu thủng stop/invalidation {stop_} hoặc volume/RS xấu đi.")
+        action = f"{action_}; score={score_}; ngày={date_ or 'N/A'}"
+        plan = f"Entry/vùng mua: {entry_}; Stop/Inval: {stop_}; TP/Target: {tp_}"
+        return [str(name_)[:46], bucket_[:18], action[:95], plan[:120], why[:160], risk[:150]]
+
     strat_rows: list[list[str]] = []
     try:
-        for r_ in load_strategy_records(symbol, 6) or []:
-            if not isinstance(r_, dict):
-                continue
-            name_ = r_.get("strategy") or r_.get("name") or r_.get("id") or "Chiến lược LH"
-            status_ = r_.get("status") or r_.get("state") or r_.get("signal") or "N/A"
-            entry_ = r_.get("entry") or r_.get("entryPrice") or r_.get("buyZone") or "N/A"
-            stop_ = r_.get("stop") or r_.get("stopLoss") or r_.get("invalid") or "N/A"
-            tp_ = r_.get("takeProfit") or r_.get("target") or r_.get("tp") or "N/A"
-            # Gắn cờ staleness: tín hiệu > 30 ngày phải cảnh báo, tránh người đọc tưởng còn hiệu lực.
-            _d_raw = str(r_.get("date") or r_.get("asOfDate") or "")
-            _age_note = ""
-            try:
-                from datetime import datetime as _dt
-                _age_days = (_dt.now() - _dt.strptime(_d_raw[:10], "%Y-%m-%d")).days
-                if _age_days > 30:
-                    _age_note = f" — CẢNH BÁO: tín hiệu cũ {_age_days} ngày, cần xác nhận lại trước khi dùng"
-            except Exception:
-                pass
-            strat_rows.append([str(name_)[:48], (str(status_)[:64] + _age_note), f"Entry {entry_}; Stop {stop_}; TP {tp_}", _d_raw])
+        for r_ in load_strategy_records(symbol, 12) or []:
+            if isinstance(r_, dict):
+                strat_rows.append(_strategy_view(r_))
     except Exception:
         pass
+
     if not strat_rows:
         _stop_ref = (rs.get("stopLossDay") if isinstance(rs, dict) else None) or "N/A"
-        strat_rows.append(["Chưa có chiến lược LH đang kích hoạt cho mã này", "Theo dõi", f"Vùng tham chiếu: hỗ trợ {_fmt(rs_s)}; kháng cự {_fmt(rs_r)}; stop/invalid {_stop_ref}", str(report_date)])
-    _table(doc, ["Chiến lược", "Trạng thái", "Vùng hành động", "Ngày"], strat_rows)
+        _support = _fmt(rs_s)
+        _resist = _fmt(rs_r)
+        _close = _fmt(close_v)
+        _rsi = _fmt(rsi_v)
+        _macd = _fmt(macd_v)
+        _adx = _fmt(adx_v)
+        _vol = _fmt(vol_v)
+        strat_rows = [
+            ["Breakout theo kháng cự", "WATCH", f"Kích hoạt khi giá vượt {_resist} kèm volume xác nhận", f"Entry sau breakout; Stop dưới {_resist}; TP theo R/R 1.5-2.0", f"Phù hợp nếu xu hướng và RS cải thiện; close hiện tại {_close}, volume {_vol}.", f"Không mua đuổi nếu breakout thiếu volume hoặc quay xuống dưới {_resist} trong 1-2 phiên."],
+            ["Pullback về hỗ trợ", "WATCH", f"Chờ điều chỉnh về vùng hỗ trợ {_support}", f"Entry quanh hỗ trợ; Stop dưới {_stop_ref}; TP về {_resist}", f"Chiến lược ưu tiên kiểm soát rủi ro khi chưa có tín hiệu mua cache chính thức.", f"Vô hiệu nếu thủng hỗ trợ {_support} với thanh khoản tăng."],
+            ["Momentum kỹ thuật", "CONDITION", f"RSI={_rsi}; MACD={_macd}; ADX={_adx}", "Chỉ hành động khi RSI/MACD/ADX đồng thuận và giá giữ trên hỗ trợ", "Dùng để xác nhận sức mạnh sau khi có tín hiệu giá/volume.", "Tránh dùng riêng lẻ khi chỉ báo phân kỳ hoặc thị trường/ngành suy yếu."],
+            ["Risk-off / đứng ngoài", "AVOID", "Áp dụng khi mất hỗ trợ, volume bán tăng, hoặc dữ liệu strategy chưa xác nhận", f"Không mở vị thế; chờ lấy lại {_support}/{_resist}", "Nhánh bảo vệ vốn khi cache chiến lược chưa có tín hiệu kích hoạt rõ.", "Cần refresh strategy_results_cache nếu muốn ra quyết định chính thức."],
+        ]
+    _table(doc, ["Chiến lược", "Trạng thái", "Điều kiện/tín hiệu", "Kế hoạch hành động", "Luận điểm", "Rủi ro/vô hiệu"], strat_rows[:12])
 
     missing = []
     for must in ("ADX", "Ichimoku"):
