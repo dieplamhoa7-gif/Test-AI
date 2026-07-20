@@ -2,6 +2,7 @@
 
 import json
 import re
+import sqlite3
 import time
 from pathlib import Path
 from typing import Any
@@ -15,6 +16,33 @@ from docx.oxml.ns import qn
 
 from model3_lhinvestment_context import load_json_record, load_cache_news, load_strategy_records, _derived_indicators_from_history
 from vietnamese_text_guard import repair_vietnamese_text, vietnamese_quality_report
+
+def _latest_db_price_record(symbol: str) -> dict[str, Any] | None:
+    """Canonical latest price/volume for report header/current-price fields."""
+    db = Path(__file__).resolve().parent / "data" / "lhinvt_stock_chart.db"
+    if not db.exists():
+        return None
+    con = sqlite3.connect(str(db))
+    con.row_factory = sqlite3.Row
+    try:
+        row = con.execute(
+            "select latest_date, latest_close, latest_volume, updated_at from symbols where upper(symbol)=upper(?) limit 1",
+            (symbol,),
+        ).fetchone()
+        candle = con.execute(
+            "select date, close, volume, updated_at from daily_ohlcv where upper(symbol)=upper(?) order by date desc limit 1",
+            (symbol,),
+        ).fetchone()
+        if not row and not candle:
+            return None
+        latest_date = (row["latest_date"] if row else None) or (candle["date"] if candle else None)
+        close = (row["latest_close"] if row else None) or (candle["close"] if candle else None)
+        volume = (row["latest_volume"] if row else None) or (candle["volume"] if candle else None)
+        updated_at = (row["updated_at"] if row else None) or (candle["updated_at"] if candle else None)
+        return {"source": "lhinvt_stock_chart.db", "date": latest_date, "tradingDate": latest_date, "latestCandleDate": latest_date, "asOfDate": latest_date, "close": close, "price": close, "volume": volume, "updatedAt": updated_at}
+    finally:
+        con.close()
+
 
 BANNED_PATTERNS = [
     r"Trend\s*Pullback",
@@ -1032,8 +1060,9 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     # Use the latest available price/EOD at report generation as the anchor for all downstream judgment.
     _, _price_eod = load_json_record(symbol, [r"data\v3_full_indicator_cache_v2.json", r"data\eod_all_stocks_hose_hnx.json", r"firebase_public\data\eod_all_stocks_hose_hnx.json", r"data\market_data.json"])
     _price_derived = _derived_indicators_from_history(symbol) or {}
+    _price_db = _latest_db_price_record(symbol) or {}
     def _price_val(*names):
-        for src in (_price_eod if isinstance(_price_eod, dict) else {}, _price_derived):
+        for src in (_price_db, _price_derived, _price_eod if isinstance(_price_eod, dict) else {}):
             for name in names:
                 v = src.get(name)
                 if v not in (None, ""):
@@ -1059,7 +1088,7 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
         if eod_flat.get("close") in (None, "") and eod_flat.get("price") not in (None, ""):
             eod_flat["close"] = eod_flat["price"]
     def val(*names):
-        for src in (eod_flat, derived):
+        for src in (_price_db, derived, eod_flat):
             for name in names:
                 v = src.get(name)
                 if v not in (None, ""):
@@ -1097,7 +1126,7 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
     _heading(doc, "1. Tóm tắt nhanh", 1)
     _table(doc, ["Hạng mục", "Thông tin chính"], [
         ["Mã cổ phiếu", symbol],
-        ["Giá tham chiếu khi xuất báo cáo", f"{_fmt(report_price)} — ngày close: {report_date}; volume: {_fmt(report_volume)}" + (f" (phiên {(_price_derived or {}).get('asOfDate')})" if (isinstance(_price_eod, dict) and _price_eod.get('volume') in (None, '') and str((_price_derived or {}).get('asOfDate') or '') not in ('', str(report_date))) else "")],
+        ["Giá tham chiếu khi xuất báo cáo", f"{_fmt(report_price)} — ngày close: {report_date}; volume: {_fmt(report_volume)}" + (f" (nguồn {_price_db.get('source')}, cập nhật {_price_db.get('updatedAt')})" if _price_db else (f" (phiên {(_price_derived or {}).get('asOfDate')})" if (isinstance(_price_eod, dict) and _price_eod.get('volume') in (None, '') and str((_price_derived or {}).get('asOfDate') or '') not in ('', str(report_date))) else ""))],
         ["Quan điểm tổng hợp", stance],
         ["Vùng giá quan trọng", f"Hỗ trợ {_fmt(rs_s)} ({_pct_delta(rs_s, close_v)} so với giá); kháng cự {_fmt(rs_r)} ({_pct_delta(rs_r, close_v)} so với giá)"],
         ["Lưu ý", "Mọi nhận định kỹ thuật/risk/trigger bên dưới lấy giá tham chiếu khi xuất báo cáo làm mốc; số liệu thiếu ghi N/A, không suy đoán."],
@@ -1117,7 +1146,7 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
         # Do not let an empty Grok result disappear from the PDF. Show Grok's
         # conclusion/diagnostic so the user can see whether Grok searched but
         # found no usable news, or whether the runtime failed.
-        raw_grok_note = _clean_cell(news_text, 1400)
+        raw_grok_note = _clean_backend_text(news_text)[:1400]
         if raw_grok_note:
             _bullets(doc, ["Grok 9router API đã chạy nhưng không xuất được danh sách Tin 1/Tin 2 đủ điều kiện:", raw_grok_note])
     if len(news_lines) < 5:
