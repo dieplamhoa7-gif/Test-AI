@@ -79,6 +79,8 @@ def sync_canonical_data(ticker: str, progress) -> None:
         (canonical / "data" / "lhinvt_stock_chart.db", ROOT / "data" / "lhinvt_stock_chart.db"),
         (canonical / "data" / "market_data.json", ROOT / "data" / "market_data.json"),
         (canonical / "data" / "v3_full_indicator_cache_v2.json", ROOT / "data" / "v3_full_indicator_cache_v2.json"),
+        (canonical / "data" / "lh_canonical_indicators_daily.json", ROOT / "data" / "lh_canonical_indicators_daily.json"),
+        (canonical / "data" / "strategy_results_cache.json", ROOT / "data" / "strategy_results_cache.json"),
     ]
     for src, dst in pairs:
         if not src.exists():
