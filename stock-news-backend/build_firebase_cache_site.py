@@ -458,15 +458,18 @@ def main() -> None:
         if src.exists():
             shutil.copyfile(src, dst)
 
-    # Re-pin canonical 17/07 final strategy/app payload every data build.
-    # This makes build_firebase_cache_site.py safe even if data/ was dirtied by
-    # older scanners or scheduled jobs.
-    backup = ROOT / "final_backup_17.7.2026"
+    # Re-pin the current approved live strategy/app payload every data build.
+    # If data/live_strategy_lock exists, it is the active user-approved payload;
+    # otherwise fall back to final_backup_17.7.2026. This prevents unrelated data
+    # refreshes from rolling the strategy web payload backward/sideways.
+    lock = DATA / "live_strategy_lock"
+    backup = ROOT / "final_backup_17.7.2026" / "firebase_public" / "data"
+    strategy_source = lock if lock.exists() else backup
     for rel in ["app_version.json", "strategy_results_cache.json", "strategy_matrix_cache.json"]:
-        src = backup / "firebase_public" / "data" / rel
+        src = strategy_source / rel
         dst = PUBLIC_DATA / rel
         if not src.exists():
-            raise FileNotFoundError(f"Missing canonical backup payload: {src}")
+            raise FileNotFoundError(f"Missing canonical strategy payload: {src}")
         shutil.copyfile(src, dst)
 
     # Do not overwrite a just-refreshed live CW payload with the static catalog.
