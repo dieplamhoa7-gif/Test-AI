@@ -162,6 +162,11 @@ def notebooklm_auth_check(auto_login: bool = True, timeout: int = 360) -> dict[s
     return {"ok": False, "stage": "verify_after_login", "error": out[-2000:]}
 
 
+def _is_rate_limited_output(out: str) -> bool:
+    low = str(out or "").lower()
+    return any(x in low for x in ("rate limited", "resource_exhausted", "rpc rate limit", "code 8"))
+
+
 def _run(args: list[str], timeout: int = 900) -> str:
     code, out = _run_once(args, timeout=timeout)
     if code == 0:
@@ -177,8 +182,21 @@ def _run(args: list[str], timeout: int = 900) -> str:
             code = code2
         else:
             out = f"{out}\n\nAUTO_AUTH_FAILED: {auth}"
+    if _is_rate_limited_output(out):
+        delays = [60, 120, 240]
+        last = out
+        code2 = code
+        for delay in delays:
+            time.sleep(delay)
+            code2, out2 = _run_once(args, timeout=timeout)
+            if code2 == 0:
+                return out2.strip()
+            last = out2
+            if not _is_rate_limited_output(out2):
+                break
+        out = f"NOTEBOOKLM_RATE_LIMIT: NotebookLM đang giới hạn tạo slide/PDF; đã retry {sum(delays)}s. Chi tiết: {last[-1600:]}"
+        code = code2
     raise RuntimeError(f"nlm {' '.join(args)} failed ({code}): {out[-2000:]}")
-
 
 def _extract_id(text: str) -> str:
     try:
