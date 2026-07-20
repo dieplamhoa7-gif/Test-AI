@@ -41,8 +41,10 @@ def main() -> None:
     # Keep EN cache fresh enough for English toggle without making the news job too slow.
     run([py, 'build_news_translate_cache.py', '--limit', '80', '--sleep', '0.05'], timeout=1200)
     run([py, 'build_firebase_cache_site.py'], timeout=300)
+    run([py, 'verify_news_freshness.py'], timeout=60)
+    run([py, 'verify_lh_final_version_lock.py'], timeout=60)
     firebase_bin = shutil.which('firebase') or shutil.which('firebase.cmd') or 'firebase.cmd'
-    run([firebase_bin, 'deploy', '--project', 'security-1c731', '--config', 'firebase.lhinvt.json', '--only', 'hosting'], timeout=900)
+    run([firebase_bin, 'deploy', '--project', 'security-1c731', '--config', 'firebase.lhinvt.deploy.json', '--only', 'hosting:lhinvt'], timeout=900)
     log('DONE LHINVT news refresh + deploy')
 
 
