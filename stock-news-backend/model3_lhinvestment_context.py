@@ -582,6 +582,41 @@ def load_strategy_records(symbol: str, limit: int = 12) -> list[dict[str, Any]]:
                         item["strategyGroupName"] = sname
                         item["strategySourcePath"] = source_path
                         out.append(item)
+    if not out:
+        # strategy_results_cache.json stores only top BUY/WATCH rows for the web board.
+        # A Model3 single-stock report still needs the latest status for all LH strategies,
+        # so evaluate the same daily strategy rules on-demand from the canonical indicator file.
+        try:
+            from build_strategy_results_from_indicator_cache import eval_b4, eval_shakeout, eval_clean, eval_lh4  # type: ignore
+            source_file = _find_first_existing(r"data\lh_canonical_indicators_daily.json") or (Path(__file__).resolve().parent / "data" / "lh_canonical_indicators_daily.json")
+            data = _read_json(source_file)
+            items = data.get("items") if isinstance(data, dict) else []
+            for item in items or []:
+                if not isinstance(item, dict) or str(item.get("symbol") or "").upper() != sym:
+                    continue
+                item = dict(item)
+                if "indicators" not in item:
+                    item["indicators"] = item.get("preferred") or item.get("daily") or {}
+                for fn, sid, sname in [
+                    (eval_b4, "b4_trend_pullback", "LH1"),
+                    (eval_shakeout, "shakeout_breakdown_rebound", "LH2"),
+                    (eval_clean, "clean_split_a_bottom", "LH3"),
+                    (eval_lh4, "lh4", "LH4 - Wave Momentum Entry"),
+                ]:
+                    rec = fn(item)
+                    if isinstance(rec, dict):
+                        rec = dict(rec)
+                        action = str(rec.get("action") or "").upper()
+                        rec["bucket"] = "buy" if action == "BUY" else "watchlist" if action == "WATCH" else "avoid"
+                        rec["strategyGroupId"] = sid
+                        rec["strategyGroupName"] = sname
+                        rec["strategySourcePath"] = str(source_file)
+                        rec["onDemandStrategyEval"] = True
+                        rec["cacheUpdatedAt"] = data.get("updatedAt") or data.get("generatedAt") or data.get("date")
+                        out.append(rec)
+                break
+        except Exception:
+            pass
     # Rank BUY/WATCH first, then higher score.
     order = {"buy": 0, "watchlist": 1, "hold": 2, "avoid": 3, "sell": 4}
     out.sort(key=lambda x: (order.get(str(x.get("bucket")), 9), -float(x.get("rankScore") or x.get("score") or 0)))

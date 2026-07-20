@@ -1327,11 +1327,24 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
                     age_note = f"Tín hiệu cũ {age_days} ngày — chỉ dùng sau khi xác nhận lại EOD/volume."
         except Exception:
             pass
-        why = str(reason_ or trig_ or "Dựa trên cache strategy_results_cache và ma trận kỹ thuật hiện tại; cần đối chiếu freshness gate trước khi hành động.")
+        ai_ = r_.get("entryIndicators") if isinstance(r_.get("entryIndicators"), dict) else {}
+        miss_ = r_.get("missingReasons") if isinstance(r_.get("missingReasons"), list) else []
+        indicator_bits = []
+        for lab, key in [("RSI", "rsi"), ("MACD", "macd"), ("Hist", "macdHist"), ("BB%B", "bbPercent"), ("VolRatio", "volumeRatio"), ("ROC20", "roc20")]:
+            val = ai_.get(key) if isinstance(ai_, dict) else None
+            if val not in (None, "", [], {}):
+                indicator_bits.append(f"{lab}={val}")
+        ichi_state = ((ai_.get("ichimoku") or {}) if isinstance(ai_, dict) else {}).get("state")
+        if ichi_state:
+            indicator_bits.append(f"Ichi={ichi_state}")
+        source_note = "on-demand từ lh_canonical_indicators_daily" if r_.get("onDemandStrategyEval") else "từ strategy_results_cache"
+        why = str(reason_ or trig_ or ("; ".join(indicator_bits) if indicator_bits else source_note))
+        if miss_:
+            why = (why + " | Thiếu/chưa đạt: " + "; ".join(str(x) for x in miss_[:5])).strip()
         risk = str(risk_ or age_note or f"Vô hiệu nếu thủng stop/invalidation {stop_} hoặc volume/RS xấu đi.")
-        action = f"{action_}; score={score_}; ngày={date_ or 'N/A'}"
+        action = f"{action_}; score={score_}; ngày={date_ or 'N/A'}; nguồn={source_note}"
         plan = f"Entry/vùng mua: {entry_}; Stop/Inval: {stop_}; TP/Target: {tp_}"
-        return [str(name_)[:46], bucket_[:18], action[:95], plan[:120], why[:160], risk[:150]]
+        return [str(name_)[:46], bucket_[:18], action[:115], plan[:120], why[:220], risk[:150]]
 
     strat_rows: list[list[str]] = []
     try:
