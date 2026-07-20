@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $TaskName = 'LHInvestment Daily Macro Update'
-$Workspace = 'C:\Users\HoaD-CVDT\.openclaw\workspace\FA'
+$Workspace = 'C:\Users\HoaD-CVDT\.openclaw\workspace\render_backend_work\ai-social-network-deploy-fix\FA'
 $Python = (Get-Command py).Source
 $Script = Join-Path $Workspace 'run_daily_macro_update.py'
 

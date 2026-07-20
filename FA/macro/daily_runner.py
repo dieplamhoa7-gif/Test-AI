@@ -40,6 +40,11 @@ from macro.fetchers import fiinprox_excel
 from macro.fetchers import tradingeconomics_browser
 from macro.fetchers import pinetree_archive
 from macro.fetchers import market_valuation_breadth
+from macro.fetchers import public_macro_timeline
+try:
+    from macro.fetchers import customs_trade
+except Exception:
+    customs_trade = None
 from macro.scoring import regime_score as scorer
 from macro.storage import macro_history as history
 
@@ -213,7 +218,20 @@ def run(
         snapshot["pinetreeArchive"] = {"status": "error", "error": str(e)[:200]}
         print(f"  ✗ Pinetree archive failed: {e}")
 
-    # ── 5e. FiinProX manual Excel import (paid/manual source fallback) ───
+    # ── 5e. Vietnam Customs monthly trade statistics ────────────────────
+    print(f"[{ts()}] Fetching Vietnam Customs trade statistics ...")
+    try:
+        if customs_trade is None:
+            raise RuntimeError("customs_trade fetcher unavailable")
+        ct = customs_trade.fetch(save=True)
+        snapshot["customsTrade"] = ct
+        rows_ct = ct.get("rows", {})
+        print(f"  ✓ Customs trade: period={ct.get('period')}, rows={len(rows_ct)}")
+    except Exception as e:
+        snapshot["customsTrade"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ✗ Customs trade failed: {e}")
+
+    # ── 5f. FiinProX manual Excel import (paid/manual source fallback) ───
     print(f"[{ts()}] Importing FiinProX Excel macro timeline ...")
     try:
         fiin = fiinprox_excel.fetch()
@@ -307,6 +325,20 @@ def run(
     score_result = scorer.compute(merged_pinetree, global_data)
     snapshot.update(score_result)
     snapshot["mergedPinetree"] = merged_pinetree
+
+    # ── 8b. Public/free replacement unified timeline ──────────────────
+    print(f"[{ts()}] Building public-source replacement macro timeline ...")
+    try:
+        public_tl = public_macro_timeline.build(snapshot, snapshot.get("fiinproxExcel"))
+        snapshot["publicMacroTimeline"] = public_tl
+        if snapshot.get("fiinproxExcel", {}).get("rowCount", 0) == 0:
+            snapshot.setdefault("warnings", []).append(
+                "FiinProX manual Excel has no rows; using public/free replacement timeline for daily automation."
+            )
+        print(f"  ✓ Public timeline: {public_tl.get('rowCount', 0)} rows → {public_tl.get('csv')}")
+    except Exception as e:
+        snapshot["publicMacroTimeline"] = {"status": "error", "error": str(e)[:200]}
+        print(f"  ✗ Public timeline failed: {e}")
 
     # ── 9. Save ───────────────────────────────────────────────────────
     path = history.save(snapshot, d)
