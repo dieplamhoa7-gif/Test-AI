@@ -32,11 +32,11 @@ def _detect_workspace() -> Path:
 
 WORKSPACE = _detect_workspace()
 LH_ROOTS = [
-    # Current clean/live reference must win: Hòa Đại ka wants Model3/Codex to anchor reports
-    # to LHINVT_WEB_CLEAN first because it is local, fast, and mirrors lhinvt.web.app data.
-    WORKSPACE / "LHINVT_WEB_CLEAN",
-    # Main repo is fallback if clean copy misses a file/symbol.
+    # Main live repo must win: this is where the scheduled Model3/market-data flow
+    # refreshes data first. Clean/static mirrors are fallback only, otherwise Model3
+    # can accidentally anchor reports to stale restored public cache.
     WORKSPACE / "stock-news-backend",
+    WORKSPACE / "LHINVT_WEB_CLEAN",
     WORKSPACE / "tmp_lh_push_clean" / "stock-news-backend",
     WORKSPACE / "CLAUDE_INVESTMENT_MODEL_REVIEW" / "stock-news-backend",
     # Restored backup is last fallback only; never prefer it over LHINVT_WEB_CLEAN/current repo.
