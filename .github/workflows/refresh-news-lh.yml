@@ -56,7 +56,13 @@ jobs:
           git diff --cached --quiet || git commit -m "Auto refresh LH news cache"
           git push
 
-      - name: Deploy LHInvestment hosting
+      - name: Verify frontend/data locks before deploy
+        run: |
+          python verify_news_freshness.py
+          python verify_lh_final_version_lock.py
+          python verify_lh_final_frontend_markers.py
+
+      - name: Deploy LHINVT hosting
         env:
           FIREBASE_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}
         run: |
@@ -70,4 +76,4 @@ jobs:
           print('Wrote Firebase service account file')
           PY
           npm install -g firebase-tools
-          GOOGLE_APPLICATION_CREDENTIALS=firebase-service-account.json firebase deploy --only hosting --project lhinvestment
+          GOOGLE_APPLICATION_CREDENTIALS=firebase-service-account.json firebase deploy --only hosting:lhinvt --project security-1c731 --config firebase.lhinvt.deploy.json
