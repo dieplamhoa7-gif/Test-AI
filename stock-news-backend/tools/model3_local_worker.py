@@ -189,7 +189,21 @@ def run_job(base: str, token: str, job: dict[str, Any], out_dir: Path) -> None:
                 pdf = nb.get("slide_pdf")
                 notebook_id = nb.get("notebook_id")
                 if pdf:
-                    result["notebooklm_pdf_url"] = f"/pipeline/model3/file/{Path(str(pdf)).name}"
+                    pdf_path = Path(str(pdf))
+                    if pdf_path.exists():
+                        try:
+                            with pdf_path.open("rb") as pf:
+                                files = {"file": (pdf_path.name, pf, "application/pdf")}
+                                data = {"artifact_kind": "notebooklm_pdf"}
+                                rr = requests.post(f"{base}/pipeline/model3/worker/{job_id}/upload", headers={"Authorization": f"Bearer {token}"}, files=files, data=data, timeout=180)
+                            if rr.status_code < 400:
+                                up = rr.json()
+                                result.update((up.get("result") or {}) if isinstance(up, dict) else {})
+                            else:
+                                result["notebooklm_pdf_upload_error"] = rr.text[:500]
+                        except Exception as exc:
+                            result["notebooklm_pdf_upload_error"] = str(exc)[-500:]
+                    result.setdefault("notebooklm_pdf_url", f"/pipeline/model3/file/{pdf_path.name}")
                 if notebook_id:
                     result["notebooklm_url"] = f"https://notebooklm.google.com/notebook/{notebook_id}"
             sections = uploaded_job.get("sections") or job.get("sections") or []
