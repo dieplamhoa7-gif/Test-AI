@@ -1348,15 +1348,62 @@ def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str
         _close = _fmt(close_v)
         _rsi = _fmt(rsi_v)
         _macd = _fmt(macd_v)
+        _sig = _fmt(sig_v)
+        _hist = _fmt(hist_v)
         _adx = _fmt(adx_v)
+        _pdi = _fmt(pdi_v)
+        _mdi = _fmt(mdi_v)
         _vol = _fmt(vol_v)
+        _avgvol = _fmt(avgvol_v)
+        _volratio = _fmt(volratio_v)
+        _ma20 = _fmt(ma20)
+        _ma50 = _fmt(ma50)
+        _ma200 = _fmt(ma200)
+        _bb = f"{_fmt(bb_l)}/{_fmt(bb_m)}/{_fmt(bb_u)}; %B {_fmt(bbp)}"
+        _rsi_n, _macd_n, _sig_n, _adx_n, _pdi_n, _mdi_n, _vr_n, _c_n, _ma20_n, _ma50_n = map(_num, [rsi_v, macd_v, sig_v, adx_v, pdi_v, mdi_v, volratio_v, close_v, ma20, ma50])
+        _trend_ok = (_c_n is not None and ((_ma20_n and _c_n >= _ma20_n) or (_ma50_n and _c_n >= _ma50_n)))
+        _mom_ok = (_rsi_n is not None and _rsi_n >= 50) and (_macd_n is not None and (_sig_n is None or _macd_n >= _sig_n))
+        _flow_ok = (_vr_n is not None and _vr_n >= 1.2)
+        _adx_ok = (_adx_n is not None and _adx_n >= 20 and (_pdi_n is None or _mdi_n is None or _pdi_n >= _mdi_n))
+        _break_status = "READY" if (_trend_ok and _mom_ok and _flow_ok) else "WATCH"
+        _pull_status = "WATCH" if _num(rs_s) is not None else "WAIT-DATA"
+        _mom_status = "CONFIRM" if (_mom_ok and _adx_ok) else "MIXED"
+        _risk_status = "ACTIVE" if ((_c_n is not None and _num(rs_s) is not None and _c_n < _num(rs_s)) or (_mom_ok is False and _flow_ok is False)) else "STANDBY"
         strat_rows = [
-            ["Breakout theo kháng cự", "WATCH", f"Kích hoạt khi giá vượt {_resist} kèm volume xác nhận", f"Entry sau breakout; Stop dưới {_resist}; TP theo R/R 1.5-2.0", f"Phù hợp nếu xu hướng và RS cải thiện; close hiện tại {_close}, volume {_vol}.", f"Không mua đuổi nếu breakout thiếu volume hoặc quay xuống dưới {_resist} trong 1-2 phiên."],
-            ["Pullback về hỗ trợ", "WATCH", f"Chờ điều chỉnh về vùng hỗ trợ {_support}", f"Entry quanh hỗ trợ; Stop dưới {_stop_ref}; TP về {_resist}", f"Chiến lược ưu tiên kiểm soát rủi ro khi chưa có tín hiệu mua cache chính thức.", f"Vô hiệu nếu thủng hỗ trợ {_support} với thanh khoản tăng."],
-            ["Momentum kỹ thuật", "CONDITION", f"RSI={_rsi}; MACD={_macd}; ADX={_adx}", "Chỉ hành động khi RSI/MACD/ADX đồng thuận và giá giữ trên hỗ trợ", "Dùng để xác nhận sức mạnh sau khi có tín hiệu giá/volume.", "Tránh dùng riêng lẻ khi chỉ báo phân kỳ hoặc thị trường/ngành suy yếu."],
-            ["Risk-off / đứng ngoài", "AVOID", "Áp dụng khi mất hỗ trợ, volume bán tăng, hoặc dữ liệu strategy chưa xác nhận", f"Không mở vị thế; chờ lấy lại {_support}/{_resist}", "Nhánh bảo vệ vốn khi cache chiến lược chưa có tín hiệu kích hoạt rõ.", "Cần refresh strategy_results_cache nếu muốn ra quyết định chính thức."],
+            [
+                "1. Breakout theo kháng cự",
+                _break_status,
+                f"Close {_close}; kháng cự {_resist}; MA20/50/200 {_ma20}/{_ma50}/{_ma200}; RSI {_rsi}; MACD {_macd} vs signal {_sig}; VolumeRatio {_volratio}; ADX/+DI/-DI {_adx}/{_pdi}/{_mdi}",
+                f"Chỉ mua/nâng tỷ trọng khi đóng cửa vượt {_resist}, volume > AvgVol20 và VolumeRatio >= 1.2; ưu tiên khi RSI > 50, MACD >= signal, +DI >= -DI.",
+                f"Entry sau breakout hoặc retest thành công {_resist}; Stop dưới vùng breakout/MA20; TP theo R/R 1.5-2.0 hoặc kháng cự kế tiếp.",
+                f"Không mua đuổi nếu breakout thiếu volume, ADX yếu, MACD không xác nhận, hoặc giá quay xuống dưới {_resist} trong 1-2 phiên.",
+            ],
+            [
+                "2. Pullback về hỗ trợ",
+                _pull_status,
+                f"Hỗ trợ {_support}; stop/invalidation {_stop_ref}; Bollinger {_bb}; RSI {_rsi}; volume {_vol} / avg {_avgvol}; close hiện tại {_close}.",
+                f"Chờ giá điều chỉnh về {_support} hoặc MA20/MA50, xuất hiện nến hồi/volume bán cạn; không bắt đáy nếu thủng hỗ trợ bằng volume lớn.",
+                f"Entry quanh hỗ trợ khi giữ được vùng giá; Stop dưới {_stop_ref}; TP quay lại {_resist}; phù hợp khi thị trường/ngành không xấu thêm.",
+                f"Vô hiệu nếu close thủng {_support}, RSI mất 45-50, MACD mở rộng âm, hoặc volume bán tăng mạnh.",
+            ],
+            [
+                "3. Momentum / Trend-following",
+                _mom_status,
+                f"RSI {_rsi}; MACD/hist {_macd}/{_hist}; ADX {_adx}; +DI/-DI {_pdi}/{_mdi}; MA20/50/200 {_ma20}/{_ma50}/{_ma200}; VolumeRatio {_volratio}.",
+                "Chỉ xác nhận xu hướng khi RSI giữ trên 50, MACD trên signal/hist mở rộng, ADX cải thiện và +DI lớn hơn -DI; cần giá giữ trên MA20/MA50.",
+                f"Nếu đủ điều kiện, ưu tiên nắm giữ/đi theo xu hướng; tăng tỷ trọng sau nhịp retest thành công, không mua khi sát kháng cự {_resist} nếu R/R kém.",
+                "Rủi ro bull-trap khi ADX thấp, volume không xác nhận, RSI/MACD phân kỳ hoặc MA20/MA50 chưa được lấy lại.",
+            ],
+            [
+                "4. Risk-off / Đứng ngoài",
+                _risk_status,
+                f"Trigger xấu: mất hỗ trợ {_support}, close dưới MA20/50, RSI < 45, MACD dưới signal, -DI > +DI, VolumeRatio bán tăng; data strategy cache chưa có tín hiệu chính thức.",
+                "Giảm rủi ro/không mở vị thế mới khi các trigger xấu xuất hiện; chờ hồi phục lại hỗ trợ/kháng cự quan trọng và chỉ báo đồng thuận.",
+                f"Hành động: bảo toàn vốn, đặt cảnh báo tại {_support}/{_resist}, refresh strategy_results_cache và EOD/volume trước khi ra quyết định chính thức.",
+                "Nếu dữ liệu thiếu hoặc tín hiệu mâu thuẫn thì báo cáo chỉ dùng để watchlist, không tự động đặt mua/bán.",
+            ],
         ]
-    _table(doc, ["Chiến lược", "Trạng thái", "Điều kiện/tín hiệu", "Kế hoạch hành động", "Luận điểm", "Rủi ro/vô hiệu"], strat_rows[:12])
+    _table(doc, ["Chiến lược", "Status", "Chỉ báo xác nhận", "Điều kiện kích hoạt", "Kế hoạch", "Rủi ro/vô hiệu"], strat_rows[:12])
 
     missing = []
     for must in ("ADX", "Ichimoku"):
