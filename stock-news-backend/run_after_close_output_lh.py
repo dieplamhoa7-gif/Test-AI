@@ -106,11 +106,21 @@ def _run_pipeline(py: str) -> None:
         [py, "refresh_vn100_history_for_core12.py"],
         [py, "build_core12_ml_sr_full_universe.py"],
         [py, "build_lh_canonical_indicators_daily.py"],
-        [py, "build_strategy_results_from_indicator_cache.py"],
+        # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
+        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
         [py, "refresh_market_prices_lh.py"],
+        [py, "ml_pivot_zones.py", "--train"],
+        [py, "build_pattern_winrates.py"],
+        [py, "build_pattern_reco_cache.py"],
+        [py, "refresh_warrants_cache_lh.py"],
+        [py, "refresh_news_cache_lh.py"],
         [py, "build_firebase_cache_site.py"],
+        [py, "patch_market_latest_history.py"],
+        [py, "patch_chart_files_latest_history.py"],
         [py, "update_popup_ichimoku_all_symbols.py"],
-        [py, "apply_lh_live_overrides.py"],
+        [py, "patch_market_latest_history.py"],
+        [py, "patch_chart_files_latest_history.py"],
+        # Do NOT apply live_overrides here; overrides may contain old HTML/data.
     ])
     for step in steps:
         run(step)
@@ -127,10 +137,6 @@ def _run_pipeline(py: str) -> None:
          "stock-news-backend/data/core12_ml_sr_full_universe.json",
          "stock-news-backend/data/core12_ml_sr_full_universe_summary.csv",
          "stock-news-backend/data/lh_canonical_indicators_daily.json",
-         "stock-news-backend/data/strategy_results_cache.json",
-         "stock-news-backend/data/strategy_matrix_cache.json",
-         "stock-news-backend/data/live_overrides/strategy_results_cache.json",
-         "stock-news-backend/data/live_overrides/strategy_matrix_cache.json",
          "stock-news-backend/data/market_data.json",
          "stock-news-backend/data/market_overview.json",
          "stock-news-backend/data/popup_ichimoku_update_summary.json",
@@ -147,12 +153,22 @@ def _run_pipeline(py: str) -> None:
         log("RUN git commit -m Auto refresh LH after-close outputs")
         subprocess.run(["git", "commit", "-m", "Auto refresh LH after-close outputs"], cwd=git_root, check=True)
         log("RUN git push origin HEAD:master")
-        subprocess.run(["git", "push", "origin", "HEAD:master"], cwd=git_root, check=True)
+        push = subprocess.run(["git", "push", "origin", "HEAD:master"], cwd=git_root, text=True, encoding="utf-8", errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        if push.stdout:
+            with LOG.open("a", encoding="utf-8") as f:
+                f.write(push.stdout)
+            print(push.stdout, end="", flush=True)
+        if push.returncode != 0:
+            # Do not block the live Firebase deploy just because the repo is diverged
+            # or GitHub rejected a non-fast-forward push. The generated data is already
+            # present locally; deploy it first, then let a human/agent reconcile git.
+            log(f"WARN git push failed {push.returncode}; continuing to Firebase deploy")
     else:
         log("No output changes to commit")
 
-    firebase_bin = shutil.which("firebase") or shutil.which("firebase.cmd") or "firebase.cmd"
-    run([firebase_bin, "deploy", "--project", "security-1c731", "--config", "firebase.lhinvt.json", "--only", "hosting"], timeout=600)
+    run([py, "verify_lh_final_version_lock.py"], timeout=60)
+    run([py, "verify_lh_final_frontend_markers.py"], timeout=60)
+    run([py, "lhinvt_firebase_deploy.py"], timeout=1200)
     log("DONE after-close output-only pipeline")
 
 
