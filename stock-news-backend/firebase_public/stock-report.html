@@ -41,14 +41,30 @@
 </div>
 <script>
 const API='https://lh-realestate-browser-backend.onrender.com';
-const BUILD='20260720-lhinvt-header-utf8';
+const BUILD='20260720-lhinvt-header-log-cleaner';
 const params=new URLSearchParams(location.search);let timer=null,uiTimer=null,current=null,localStart=null,lastJob=null,lastRenderedProgress=0;
 const agentMeta={Codex:['🧪','TA/Fundamental/Bull-Bear/Follow-up'],Grok:['🗞️','News & catalyst impact'],Kiro:['🧭','Scenario/Risk/Executive Summary'],NotebookLM:['🧠','Notebook/PDF online']};
 const phases=[['Pha 1 — Dữ liệu nền',['news','technical','fundamental']],['Pha 2 — Luận điểm đầu tư',['scenario','bull_bear','risk','followup']],['Pha 3 — Kết xuất',['quick_summary','word','notebooklm']]];
 const scopeDefs=[{key:'data',name:'Data/Freshness',weight:15,desc:'Sync DB + freshness gate',sections:[]},{key:'news',name:'Grok News',weight:20,desc:'Tin tức/catalyst có tác động',sections:['news']},{key:'analysis',name:'Analysis',weight:35,desc:'TA, fundamental, scenario, risk',sections:['technical','fundamental','scenario','bull_bear','risk','followup','quick_summary']},{key:'word',name:'Word',weight:20,desc:'DOCX upload xong mới đạt',sections:['word']},{key:'notebook',name:'NotebookLM',weight:10,desc:'Phụ trợ, lỗi không chặn Word',sections:['notebooklm']}];
 const labels={queued:'Chờ',queued_external:'Chờ worker',claimed_external:'Worker nhận job',running:'Đang chạy',running_external:'Đang chạy',uploading_external:'Đang upload file',pending:'Chờ',done:'Xong',fallback:'Fallback',error:'Lỗi',skipped:'Bỏ qua',idle:'idle'};
 const $=id=>document.getElementById(id);const cls=s=>String(s||'pending').replace('_external','');const st=s=>labels[s]||s||'pending';
-function clean(s){return String(s??'').replace(/\uFFFD/g,'?')}
+function mojibakeScore(x){x=String(x||'');return (x.match(/[�ÃÂ¤¥§©ª«¬®¯°±²³µ¶·¸¹º»¼½¾¿]|A\?|A�|\?\?|d\?|�\?/g)||[]).length}
+function tryRepairLatin1(x){try{const bytes=Uint8Array.from(Array.from(String(x),c=>c.charCodeAt(0)&255));return new TextDecoder('utf-8',{fatal:false}).decode(bytes)}catch(_){return x}}
+function clean(s){let x=String(s??'');let y=tryRepairLatin1(x);if(mojibakeScore(y)<mojibakeScore(x))x=y;x=x.replace(/\uFFFD/g,'?').replace(/A��,AA_|A\?A\?A\?A�/g,'').replace(/d\?\?\?|d\?c|�\?3/g,'').replace(/\s+/g,' ').trim();
+  const low=x.toLowerCase();
+  if(mojibakeScore(x)>6){
+    if(low.includes('freshness gate')&&low.includes('ok'))return '✅ Freshness gate OK — dữ liệu giá/KL/PTKT đã qua kiểm tra.';
+    if(low.includes('freshness gate'))return '🔎 Freshness gate — đang kiểm tra dữ liệu mới nhất.';
+    if(low.includes('canonical db ok'))return x.replace(/[�ÃÂ]/g,'');
+    if(low.includes('grok news'))return '📰 Grok News — đang lấy/tổng hợp tin tác động.';
+    if(low.includes('uploading docx'))return x;
+    if(low.includes('local worker uploaded docx'))return x;
+    if(low.includes('notebooklm'))return '🧠 NotebookLM/PDF — đang xử lý hoặc fallback nếu quota.';
+    if(low.includes('model 3')||low.includes('model3'))return '📄 Model3 — đang chạy workflow và xuất báo cáo.';
+    return '• Log backend bị lỗi mã hóa; xem tiến độ chính ở các scope cards phía trên.';
+  }
+  return x
+}
 function fmt(sec){sec=Math.max(0,Math.floor(sec||0));return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
 function hasWord(j){const r=j&&j.result||{};return !!(r.docx_url||r.docx_name)}
 function logHas(j,needle){return ((j.logs_tail||j.logs||[]).join('\n')).toLowerCase().includes(needle.toLowerCase())}
