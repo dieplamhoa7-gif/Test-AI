@@ -197,8 +197,11 @@ def run_job(base: str, token: str, job: dict[str, Any], out_dir: Path) -> None:
                                 data = {"artifact_kind": "notebooklm_pdf"}
                                 rr = requests.post(f"{base}/pipeline/model3/worker/{job_id}/upload", headers={"Authorization": f"Bearer {token}"}, files=files, data=data, timeout=180)
                             if rr.status_code < 400:
-                                up = rr.json()
-                                result.update((up.get("result") or {}) if isinstance(up, dict) else {})
+                                # Render's older upload endpoint stores the file even if it treats every
+                                # upload as a DOCX. Preserve the original Word result and expose this
+                                # second file explicitly as fallback/NotebookLM PDF.
+                                result["notebooklm_pdf_name"] = pdf_path.name
+                                result["notebooklm_pdf_url"] = f"/pipeline/model3/file/{pdf_path.name}"
                             else:
                                 result["notebooklm_pdf_upload_error"] = rr.text[:500]
                         except Exception as exc:
@@ -218,17 +221,50 @@ def run_job(base: str, token: str, job: dict[str, Any], out_dir: Path) -> None:
         except Exception as exc:  # noqa: BLE001
             err = str(exc)[-1500:]
             result = dict((uploaded_job.get("result") or {}) if isinstance(uploaded_job, dict) else {})
-            result["notebooklm"] = None
-            result["notebooklm_error"] = err
             sections = uploaded_job.get("sections") or job.get("sections") or []
             agents = uploaded_job.get("agents") or job.get("agents") or {}
+            fallback_ok = False
+            try:
+                progress("NotebookLM loi/quota; dang tao bao cao fallback tu DOCX...")
+                from model3_fallback_report import create_fallback_report_from_docx  # type: ignore
+
+                fb = create_fallback_report_from_docx(str(docx), title=f"{ticker} Model3 fallback report")
+                result["notebooklm"] = {"ok": False, "fallback_used": True, "error": err}
+                result["notebooklm_error"] = err
+                result["fallback_report"] = fb
+                pdf = fb.get("slide_pdf") or fb.get("pdf_path")
+                if pdf:
+                    pdf_path = Path(str(pdf))
+                    if pdf_path.exists():
+                        try:
+                            with pdf_path.open("rb") as pf:
+                                files = {"file": (pdf_path.name, pf, "application/pdf")}
+                                data = {"artifact_kind": "notebooklm_pdf"}
+                                rr = requests.post(f"{base}/pipeline/model3/worker/{job_id}/upload", headers={"Authorization": f"Bearer {token}"}, files=files, data=data, timeout=180)
+                            if rr.status_code < 400:
+                                result["notebooklm_pdf_name"] = pdf_path.name
+                                result["notebooklm_pdf_url"] = f"/pipeline/model3/file/{pdf_path.name}"
+                                result["fallback_pdf_url"] = result["notebooklm_pdf_url"]
+                            else:
+                                result["fallback_upload_error"] = rr.text[:500]
+                        except Exception as up_exc:
+                            result["fallback_upload_error"] = str(up_exc)[-500:]
+                html_path = fb.get("html_path") if isinstance(fb, dict) else None
+                if html_path:
+                    result["fallback_html_path"] = str(html_path)
+                fallback_ok = True
+            except Exception as fb_exc:  # noqa: BLE001
+                result["notebooklm"] = None
+                result["notebooklm_error"] = err
+                result["fallback_error"] = str(fb_exc)[-1000:]
             for sec in sections:
                 if isinstance(sec, dict) and sec.get("key") == "notebooklm":
-                    sec["status"] = "error"
+                    sec["status"] = "done" if fallback_ok else "error"
             if isinstance(agents, dict):
-                agents["NotebookLM"] = "error"
-            post_status(base, token, job_id, status="done", progress=100, result=result, sections=sections, agents=agents, log=f"NotebookLM export lỗi: {err}")
-            log(f"{job_id} NotebookLM export failed: {err}")
+                agents["NotebookLM"] = "fallback" if fallback_ok else "error"
+            msg = "NotebookLM loi/quota; da tao bao cao fallback" if fallback_ok else f"NotebookLM export lỗi: {err}"
+            post_status(base, token, job_id, status="done", progress=100, result=result, sections=sections, agents=agents, log=msg)
+            log(f"{job_id} NotebookLM export failed; fallback_ok={fallback_ok}: {err}")
 
 
 def main() -> int:
