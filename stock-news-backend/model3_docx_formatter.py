@@ -1023,7 +1023,7 @@ def _get_feed_text(state: dict[str, Any], labels: tuple[str, ...], *, allow_bad:
 def write_model3_docx(task: str, state: dict[str, Any], path: str | Path) -> str:
     symbol = _extract_symbol(task)
     # Section 2 ownership is GrokX only. Do not silently replace GrokX news with Kiro/web/cache output.
-    news_text = _strip_terminal_noise(_repair_text_quality(_get_feed_text(state, ("GrokX News & Impact",))))
+    news_text = _strip_terminal_noise(_repair_text_quality(_get_feed_text(state, ("GrokX News", "grok"), allow_bad=True)))
     if _is_grok_news_quality_bad(news_text):
         news_text = "Chưa có bản tin Grok đủ sạch để đưa vào báo cáo. Cần chạy lại Grok news hoặc dùng nguồn web đã kiểm chứng."
     analysis_text = _repair_text_quality(_get_feed_text(state, ("Research", "Analysis", "Codex TA", "Indicator", "Fundamental")))
