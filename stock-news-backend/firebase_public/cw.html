@@ -1417,14 +1417,26 @@
   const pct=n=>{const v=Number(n);return Number.isFinite(v)?v.toFixed(2)+'%':'-';};
   const getWatch=()=>{try{return JSON.parse(localStorage.getItem('lh.warrant.watchlist')||'[]').map(norm).filter(Boolean)}catch(e){return[]}};
   function card(x){
-    const tvPerDay=(Number(x.timeValue)||0)/Math.max(1,Number(x.daysLeft)||1);
-    const premium=Number(x.premiumPct), req=Number(x.requiredDailyGainPct), gear=Number(x.effectiveGearing||x.leverage), spread=Number(x.spreadPct);
+    const ratio=Number(x.conversionRatio)||1;
+    const strike=Number(x.exercisePrice)||0;
+    const cwPrice=Number(x.marketPrice||x.lastPrice||x.fairValue)||0;
+    const breakeven=Number(x.breakeven)||((strike&&cwPrice)?strike+cwPrice*ratio:0);
+    const inferredUnderlying=(breakeven&&strike&&cwPrice)?Math.max(0,breakeven-(cwPrice*ratio)):0;
+    const underlying=Number(x.underlyingPrice)||inferredUnderlying||0;
+    const intrinsic=Math.max(0,(underlying-strike)/ratio);
+    const timeValue=Math.max(0,cwPrice-intrinsic);
+    const days=Math.max(1,Number(x.daysLeft)||1);
+    const tvPerDay=timeValue/days;
+    const premium=underlying?((breakeven/underlying-1)*100):Number(x.premiumPct);
+    const req=Number.isFinite(premium)?premium/days:Number(x.requiredDailyGainPct);
+    const gear=(cwPrice&&ratio&&underlying)?underlying/(cwPrice*ratio):Number(x.effectiveGearing||x.leverage);
+    const spread=Number(x.spreadPct);
     return `<div class="warrant-card" data-warrant="${x.code}">
       <strong>${x.code}<span>${x.underlying||''}</span></strong>
       <div class="warrant-row"><span>Giá / Bid-Ask</span><b>${fmt(x.marketPrice||x.lastPrice||x.fairValue)} / ${fmt(x.bid)}-${fmt(x.ask)}</b></div>
-      <div class="warrant-row"><span>Cơ sở / Hòa vốn</span><b>${fmt(x.underlyingPrice)} / ${fmt(x.breakeven)}</b></div>
+      <div class="warrant-row"><span>Cơ sở / Hòa vốn</span><b>${fmt(underlying)} / ${fmt(breakeven)}</b></div>
       <div class="warrant-row"><span>Đòn bẩy hiệu dụng / Spread</span><b>${Number.isFinite(gear)?gear.toFixed(2):'-'}x / ${pct(spread)}</b></div>
-      <div class="warrant-row"><span>Nội tại / Time value</span><b>${fmt(x.intrinsicValue)} / ${fmt(x.timeValue)}</b></div>
+      <div class="warrant-row"><span>Nội tại / Time value</span><b>${fmt(intrinsic)} / ${fmt(timeValue)}</b></div>
       <div class="warrant-row"><span>Time value/ngày / Premium</span><b>${fmt(tvPerDay)} / ${pct(premium)}</b></div>
       <div class="warrant-row"><span>Cần tăng/ngày / Risk</span><b>${pct(req)} / ${x.riskLevel||'-'}</b></div>
       <div class="warrant-row"><span>Còn lại / Tín hiệu</span><b>${fmt(x.daysLeft)} ngày / ${x.advancedSignal||x.signal||'-'}</b></div>
