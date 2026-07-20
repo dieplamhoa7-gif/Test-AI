@@ -82,6 +82,25 @@ def sync_canonical_data(ticker: str, progress) -> None:
         (canonical / "data" / "lh_canonical_indicators_daily.json", ROOT / "data" / "lh_canonical_indicators_daily.json"),
         (canonical / "data" / "strategy_results_cache.json", ROOT / "data" / "strategy_results_cache.json"),
     ]
+    # Optional version manifest written by Hòa Đại ka's database build.
+    # It lets the worker discover newly added canonical artifacts without code changes.
+    manifest = canonical / "data" / "model3_data_manifest.json"
+    if manifest.exists():
+        try:
+            import json
+            m = json.loads(manifest.read_text(encoding="utf-8"))
+            files = m.get("files") if isinstance(m, dict) else []
+            for rel in files or []:
+                rel_s = str(rel).replace("\\", "/").lstrip("/")
+                if rel_s.startswith("data/"):
+                    src = canonical / rel_s
+                    dst = ROOT / rel_s
+                    pair = (src, dst)
+                    if pair not in pairs:
+                        pairs.append(pair)
+            progress(f"Canonical manifest OK: version={m.get('version') or m.get('updatedAt') or 'N/A'}, files={len(files or [])}")
+        except Exception as exc:  # noqa: BLE001
+            progress(f"Canonical manifest read failed: {type(exc).__name__}: {exc}")
     for src, dst in pairs:
         if not src.exists():
             raise RuntimeError(f"canonical data missing: {src}")

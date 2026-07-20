@@ -655,6 +655,17 @@ def _macro_data_hub_context(max_rows: int = 80) -> str:
         latest = mirror
     if not isinstance(data, dict):
         return "MACRO_DATA_HUB: Không tìm thấy FA/data/macro_data_hub/latest.json hoặc Vi mo mirror; AI phải báo thiếu dữ liệu vĩ mô mới nhất, không được bịa."
+    # Hard visibility guard: macro may lag non-trading/global data, but Model3 must not silently treat it as current.
+    try:
+        from datetime import datetime as _dt
+        macro_date = str(data.get("date") or data.get("asOfDate") or data.get("generatedAt") or "")[:10]
+        if macro_date:
+            age_days = (_dt.now().date() - _dt.strptime(macro_date, "%Y-%m-%d").date()).days
+            data = dict(data)
+            data["macroAgeDays"] = age_days
+            data["freshnessWarning"] = "MACRO_STALE" if age_days > int(os.getenv("MODEL3_MACRO_MAX_AGE_DAYS", "2")) else "OK"
+    except Exception:
+        pass
 
     rows = data.get("rows") if isinstance(data.get("rows"), list) else []
     missing = [r for r in rows if isinstance(r, dict) and str(r.get("status") or "").lower() == "missing"]
@@ -676,6 +687,8 @@ def _macro_data_hub_context(max_rows: int = 80) -> str:
         "date": data.get("date"),
         "fetchedAt": data.get("fetchedAt"),
         "generatedAt": data.get("generatedAt"),
+        "macroAgeDays": data.get("macroAgeDays"),
+        "freshnessWarning": data.get("freshnessWarning"),
         "datasets": data.get("datasets"),
         "indicators": data.get("indicators"),
         "missingCount": len(missing),
