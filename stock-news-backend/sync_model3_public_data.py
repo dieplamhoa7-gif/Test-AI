@@ -13,7 +13,9 @@ DATA = ROOT / "data"
 PUBLIC_DATA = ROOT / "firebase_public" / "data"
 MARKET_SRC = DATA / "market_data.json"
 MARKET_DST = PUBLIC_DATA / "market_data.json"
-APP_VERSION_PATHS = [DATA / "app_version.json", PUBLIC_DATA / "app_version.json"]
+# Do NOT update app_version.json here. app_version is locked to
+# final_backup_17.7.2026 by verify_lh_final_version_lock.py. Model3 freshness is
+# verified from market_data/DB directly.
 DB = DATA / "lhinvt_stock_chart.db"
 
 
@@ -56,17 +58,6 @@ def sync_market_data() -> dict[str, Any]:
     # or restored backup folders from leaving stale public data behind.
     write_json(MARKET_DST, src)
 
-    now = datetime.now(timezone(timedelta(hours=7))).isoformat(timespec="seconds")
-    for p in APP_VERSION_PATHS:
-        v = read_json(p) if p.exists() else {}
-        v.update({
-            "marketDataRefresh": f"market-data-{now[:10].replace('-', '')}",
-            "model3DataFlow": "sync_model3_public_data.py: data/market_data.json -> firebase_public/data/market_data.json; build_lhinvt_stock_chart_db.py",
-            "model3DataAsOf": src_date,
-            "model3DataUpdatedAt": src.get("updatedAt") or src.get("priceUpdatedAt") or now,
-            "model3FreshnessGuard": "deploy must fail if public market_data is older than canonical data/market_data.json",
-        })
-        write_json(p, v)
     return {"items": len(src.get("items") or []), "latestTradingDate": src_date, "updatedAt": src.get("updatedAt")}
 
 

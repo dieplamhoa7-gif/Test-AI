@@ -36,7 +36,8 @@ def main():
         [py,'build_firebase_cache_site.py'],
         [py,'patch_market_latest_history.py'],
         [py,'build_lh_canonical_indicators_daily.py'],
-        [py,'build_strategy_results_from_indicator_cache.py'],
+        # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
+        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
@@ -44,6 +45,8 @@ def main():
     # Hard guard: never deploy LHINVT if covered-warrant data fell back to
     # stale firebase-static-cache or carries stale daysLeft values.
     run([py,'verify_lhinvt_warrants_fresh.py'], timeout=120)
+    run([py,'verify_lh_final_version_lock.py'], timeout=60)
+    run([py,'verify_lh_final_frontend_markers.py'], timeout=60)
     run([py,'lhinvt_firebase_deploy.py'], timeout=1200)
     run([py,'verify_lhinvt_live_fresh.py'], timeout=120)
     run([py,'lhinvt_deploy_notify.py','1530_prices_indicators_cw','success'], timeout=60)

@@ -46,9 +46,14 @@ jobs:
         run: |
           git config user.name "LH Investment Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add app/warrants/warrant_catalog.json firebase_public/data/warrants_data.json firebase_public/data/app_version.json
+          git add app/warrants/warrant_catalog.json firebase_public/data/warrants_data.json
           git diff --cached --quiet || git commit -m "Auto refresh LH warrants intraday cache"
           git push
+
+      - name: Verify final locks before deploy
+        run: |
+          python verify_lh_final_version_lock.py
+          python verify_lh_final_frontend_markers.py
 
       - name: Deploy LHInvestment hosting
         env:

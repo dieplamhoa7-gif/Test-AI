@@ -43,15 +43,18 @@ def run(cmd: list[str], timeout: int | None = None):
 
 def main():
     py = sys.executable
-    log('START 15:45 strategy refresh')
+    log('START 15:45 strategy/data guard refresh')
     steps = [
         [py, 'patch_market_latest_history.py'],
         [py, 'build_lh_canonical_indicators_daily.py'],
-        [py, 'build_strategy_results_from_indicator_cache.py'],
+        # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
+        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
         [py, 'build_lhinvt_stock_chart_db.py'],
     ]
     for s in steps:
         run(s, timeout=900)
+    run([py, 'verify_lh_final_version_lock.py'], timeout=60)
+    run([py, 'verify_lh_final_frontend_markers.py'], timeout=60)
     run([py, 'lhinvt_firebase_deploy.py'], timeout=1200)
     run([py, 'lhinvt_deploy_notify.py', '1545_strategy_refresh', 'success'], timeout=60)
     log('DONE 15:45 strategy refresh')

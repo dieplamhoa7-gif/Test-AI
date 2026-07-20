@@ -15,7 +15,9 @@ from app.warrants.service import (
 )
 
 OUT_PATH = Path("firebase_public/data/warrants_data.json")
-VERSION_PATH = Path("firebase_public/data/app_version.json")
+# Do NOT update app_version.json here. app_version is locked to
+# final_backup_17.7.2026 by verify_lh_final_version_lock.py; warrants realtime
+# freshness lives in warrants_data.json only.
 MAX_WORKERS = 24
 
 
@@ -54,14 +56,6 @@ def main() -> None:
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    version_payload = {}
-    if VERSION_PATH.exists():
-        try:
-            version_payload = json.loads(VERSION_PATH.read_text(encoding="utf-8"))
-        except Exception:
-            version_payload = {}
-    version_payload["warrants"] = "warrant-realtime-" + datetime.now().strftime("%Y%m%d%H%M")
-    VERSION_PATH.write_text(json.dumps(version_payload, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"refreshed {len(items)}/{len(symbols)} warrants at {updated_at}")
 
 

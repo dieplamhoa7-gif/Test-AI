@@ -38,11 +38,14 @@ def main():
         [py,'patch_market_latest_history.py'],
         [py,'patch_chart_files_latest_history.py'],
         [py,'build_lh_canonical_indicators_daily.py'],
-        [py,'build_strategy_results_from_indicator_cache.py'],
+        # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
+        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
     for s in steps: run(s, timeout=2400)
+    run([py,'verify_lh_final_version_lock.py'], timeout=60)
+    run([py,'verify_lh_final_frontend_markers.py'], timeout=60)
     run([py,'lhinvt_firebase_deploy.py'], timeout=1200)
     run([py,'verify_lhinvt_live_fresh.py'], timeout=120)
     run([py,'lhinvt_deploy_notify.py','1630_charts_trendlines','success'], timeout=60)

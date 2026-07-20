@@ -1,5 +1,5 @@
 from pathlib import Path
-import shutil, json, sys
+import shutil, sys
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT=Path(__file__).resolve().parent
 BACKUP=ROOT/'final_backup_17.7.2026'
@@ -17,11 +17,4 @@ for rel in FILES:
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src,dst)
     print('restored',rel)
-# add restore marker to app_version public and data without breaking existing fields
-for rel in ['firebase_public/data/app_version.json','data/app_version.json']:
-    p=ROOT/rel
-    d=json.loads(p.read_text(encoding='utf-8'))
-    d['restoredFrom']='final_backup_17.7.2026'
-    d['restoreReason']='Lock LH final web payload to verified 17.7.2026 backup; prevent schema drift.'
-    p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
-    print('marked',rel)
+print('restored exact final_backup_17.7.2026 payloads; no mutation applied')

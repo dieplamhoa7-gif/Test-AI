@@ -18,7 +18,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from pathlib import Path
 
-LIVE = "https://lhinvestment.web.app"
+LIVE = "https://lhinvt.web.app"
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "firebase_public" / "data"
 
@@ -108,8 +108,11 @@ def verify_final_payload() -> None:
 
 def deploy() -> None:
     verify_final_payload()
-    print("Chạy firebase deploy --only hosting ...")
-    cmd = ["firebase", "deploy", "--only", "hosting", "--project", "lhinvestment"]
+    frontend = ROOT / "verify_lh_final_frontend_markers.py"
+    if frontend.exists():
+        subprocess.run([sys.executable, str(frontend)], cwd=str(ROOT), check=True)
+    print("Chạy firebase deploy đúng target lhinvt ...")
+    cmd = ["firebase", "deploy", "--only", "hosting:lhinvt", "--project", "security-1c731", "--config", "firebase.lhinvt.deploy.json"]
     r = subprocess.run(cmd, cwd=str(ROOT), shell=(sys.platform == "win32"))
     if r.returncode != 0:
         sys.exit(f"Deploy thất bại (exit {r.returncode}).")

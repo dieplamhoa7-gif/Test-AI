@@ -425,31 +425,12 @@ def main() -> None:
     PUBLIC.mkdir(exist_ok=True)
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
 
-    # Preserve fresh market_data if refresh_market_prices_lh.py already ran recently
-    existing_market = read_json(DATA / "market_data.json", None)
-    fresh_cutoff = datetime.now(timezone(timedelta(hours=7))) - timedelta(minutes=10)
-    if existing_market and isinstance(existing_market, dict):
-        updated_at_str = existing_market.get("popupIndicatorUpdatedAt") or existing_market.get("updatedAt") or existing_market.get("priceUpdatedAt")
-        if updated_at_str:
-            try:
-                from dateutil.parser import parse
-                updated_at = parse(updated_at_str)
-                if updated_at > fresh_cutoff:
-                    print(f"[build_firebase_cache_site] Preserving fresh market_data from {updated_at_str}")
-                    market = existing_market
-                    write_json(PUBLIC_DATA / "market_data.json", market)
-                else:
-                    market = build_market_cache()
-                    write_json(PUBLIC_DATA / "market_data.json", market)
-            except Exception:
-                market = build_market_cache()
-                write_json(PUBLIC_DATA / "market_data.json", market)
-        else:
-            market = build_market_cache()
-            write_json(PUBLIC_DATA / "market_data.json", market)
-    else:
-        market = build_market_cache()
-        write_json(PUBLIC_DATA / "market_data.json", market)
+    # Always rebuild market cache from the freshly generated technical caches,
+    # then merge latest VN100 history candles below in patch_market_latest_history.py.
+    # Do not preserve data/market_data.json here: that file may contain a fresh
+    # updatedAt timestamp while individual chart/date fields are stale.
+    market = build_market_cache()
+    write_json(PUBLIC_DATA / "market_data.json", market)
     default_watch = {"MWG", "FPT", "HPG", "SSI"}
     write_json(PUBLIC_DATA / "market_watch.json", {"items": [x for x in market["items"] if str(x.get("ticker") or x.get("symbol") or "").upper() in default_watch], "source": "firebase-static-watch-cache"})
     symbols = []
@@ -463,8 +444,9 @@ def main() -> None:
     for src, dst in [
         (DATA / "news_cache.json", PUBLIC_DATA / "news_cache.json"),
         (DATA / "news_cache_en.json", PUBLIC_DATA / "news_cache_en.json"),
-        (DATA / "strategy_results_cache.json", PUBLIC_DATA / "strategy_results_cache.json"),
-        (DATA / "strategy_matrix_cache.json", PUBLIC_DATA / "strategy_matrix_cache.json"),
+        # Do NOT copy strategy/app lock files from data/. They are pinned below
+        # to final_backup_17.7.2026 to prevent data refreshes from rolling the
+        # web back to a mixed/old strategy version.
         (DATA / "v3_full_indicator_cache_v2.json", PUBLIC_DATA / "v3_full_indicator_cache_v2.json"),
         (DATA / "lh_canonical_indicators_daily.json", PUBLIC_DATA / "lh_canonical_indicators_daily.json"),
         (DATA / "hourly_indicators_vn100_cache.json", PUBLIC_DATA / "hourly_indicators_vn100_cache.json"),
@@ -476,7 +458,23 @@ def main() -> None:
         if src.exists():
             shutil.copyfile(src, dst)
 
-    write_json(PUBLIC_DATA / "warrants_data.json", build_warrants_cache())
+    # Re-pin canonical 17/07 final strategy/app payload every data build.
+    # This makes build_firebase_cache_site.py safe even if data/ was dirtied by
+    # older scanners or scheduled jobs.
+    backup = ROOT / "final_backup_17.7.2026"
+    for rel in ["app_version.json", "strategy_results_cache.json", "strategy_matrix_cache.json"]:
+        src = backup / "firebase_public" / "data" / rel
+        dst = PUBLIC_DATA / rel
+        if not src.exists():
+            raise FileNotFoundError(f"Missing canonical backup payload: {src}")
+        shutil.copyfile(src, dst)
+
+    # Do not overwrite a just-refreshed live CW payload with the static catalog.
+    existing_warrants = read_json(PUBLIC_DATA / "warrants_data.json", None)
+    if isinstance(existing_warrants, dict) and existing_warrants.get("source") == "vps-realtime-scheduled-refresh" and existing_warrants.get("items"):
+        print(f"[build_firebase_cache_site] Preserving live warrants_data {existing_warrants.get('updatedAt')}")
+    else:
+        write_json(PUBLIC_DATA / "warrants_data.json", build_warrants_cache())
     fundamental = build_fundamental_cache()
     write_json(PUBLIC_DATA / "fundamental_signals.json", fundamental)
     write_json(PUBLIC_DATA / "fundamental_top_upside.json", build_fundamental_top_upside(fundamental.get("items", []), market.get("items", [])))
