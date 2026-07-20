@@ -70,6 +70,7 @@ def main() -> None:
         run([py, 'build_firebase_cache_site.py'], timeout=300)
         run([py, 'verify_news_freshness.py'], timeout=60)
         run([py, 'verify_lh_final_version_lock.py'], timeout=60)
+        run([py, 'verify_lh_final_frontend_markers.py'], timeout=60)
         firebase_bin = shutil.which('firebase') or shutil.which('firebase.cmd') or 'firebase.cmd'
         run([firebase_bin, 'deploy', '--project', 'security-1c731', '--config', 'firebase.lhinvt.deploy.json', '--only', 'hosting:lhinvt'], timeout=900)
         log('DONE continuous news refresh')
