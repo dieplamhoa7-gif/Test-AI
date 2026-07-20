@@ -890,6 +890,31 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
     raw_text = str(text or "").strip()
     clean = re.sub(r"(?is)^.*?(?=##{1,4}\s*Tin\s*1\b|Tin\s*1\s*[-:—])", "", raw_text)
     items: list[str] = []
+    seen_news_keys: set[str] = set()
+
+    def _news_key(item: str) -> str:
+        key = re.sub(r"(?i)Tin\s*\d+\s*[-:—]?", " ", item)
+        key = re.sub(r"(?i)Ngày\s*:\s*[^|;]+", " ", key)
+        key = re.sub(r"(?i)Nguồn/link\s*:\s*[^|;]+", " ", key)
+        key = re.sub(r"https?://\S+", " ", key)
+        key = re.sub(r"[^0-9A-Za-zÀ-ỹ]+", " ", key).lower().strip()
+        # keep first meaningful window so repeated Grok variants collapse.
+        return key[:220]
+
+    def _append_item(item: str | None) -> bool:
+        if not item:
+            return False
+        item = item[:1400]
+        key = _news_key(item)
+        if not key or key in seen_news_keys:
+            return False
+        # fuzzy: skip if one key is mostly contained in another.
+        for old_key in list(seen_news_keys):
+            if len(key) > 80 and len(old_key) > 80 and (key[:140] in old_key or old_key[:140] in key):
+                return False
+        seen_news_keys.add(key)
+        items.append(item)
+        return True
 
     def _field(body: str, name_patterns: str) -> str:
         mm = re.search(rf"(?ims)^\s*(?:[-*]\s*)?\*\*(?:{name_patterns})\s*:\*\*\s*(.+?)(?=\n\s*(?:[-*]\s*)?\*\*(?:Ngày|Nguồn|URL|Tóm tắt|Tác động|Tiêu đề)\s*:\*\*|\n\s*---\s*$|\Z)", body)
@@ -929,8 +954,7 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
     sections = [p for p in parts if re.match(r"(?is)^\s*Tin\s*\d+\b", p.strip())]
     for sec in sections:
         item = _parse_section(sec, len(items) + 1)
-        if item:
-            items.append(item[:1400])
+        _append_item(item)
         if len(items) >= limit:
             return items
 
@@ -939,8 +963,7 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
     for m in re.finditer(sec_pat, raw_text):
         sec = f"Tin {len(items)+1} - {m.group('head')}\n{m.group('body')}"
         item = _parse_section(sec, len(items) + 1)
-        if item:
-            items.append(item[:1400])
+        _append_item(item)
         if len(items) >= limit:
             return items
 
@@ -948,8 +971,7 @@ def _extract_news_items(text: str, limit: int = 5) -> list[str]:
     pattern = r"(?is)(Tin\s*\d+\s*(?:[-:—][^\n]*)?.*?)(?=(?:\n\s*Tin\s*\d+\s*(?:[-:—]|$))|\Z)"
     for m in re.finditer(pattern, clean):
         item = _parse_section(m.group(1), len(items) + 1)
-        if item:
-            items.append(item[:1400])
+        _append_item(item)
         if len(items) >= limit:
             return items
 
