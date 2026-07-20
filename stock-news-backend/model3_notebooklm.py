@@ -12,6 +12,7 @@ from vietnamese_text_guard import repair_vietnamese_text, vietnamese_quality_rep
 
 WORKSPACE = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace")
 TEMP_DIR = WORKSPACE / "temp" / "notebooklm-share"
+PROFILE_STATE = TEMP_DIR / "nlm-profile-pool-state.json"
 NLM = Path(os.environ.get("NLM_EXE", Path(os.environ.get("LOCALAPPDATA", "")) / r"Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts\nlm.exe"))
 
 NOTEBOOKLM_STOCK_PROMPT = """
@@ -105,6 +106,40 @@ FOCUS_PROMPT = (
 )
 
 
+
+def _profile_pool() -> list[str]:
+    raw = os.environ.get("NLM_PROFILE_POOL") or os.environ.get("NOTEBOOKLM_PROFILE_POOL") or ""
+    return [x.strip() for x in re.split(r"[,;\s]+", raw) if x.strip()]
+
+
+def _select_profile() -> str | None:
+    pool = _profile_pool()
+    if not pool:
+        return os.environ.get("NLM_PROFILE") or os.environ.get("NOTEBOOKLM_PROFILE") or None
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    idx = 0
+    try:
+        data = json.loads(PROFILE_STATE.read_text(encoding="utf-8")) if PROFILE_STATE.exists() else {}
+        idx = int(data.get("idx", 0))
+    except Exception:
+        idx = 0
+    profile = pool[idx % len(pool)]
+    try:
+        PROFILE_STATE.write_text(json.dumps({"idx": idx + 1, "last_profile": profile, "pool": pool}, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+    return profile
+
+
+def _with_profile(args: list[str], profile: str | None = None) -> list[str]:
+    prof = profile or _ACTIVE_PROFILE
+    if not prof:
+        return args
+    # login has its own --profile option; other commands also expose --profile.
+    if "--profile" in args or "-p" in args:
+        return args
+    return [*args, "--profile", prof]
+
 def cleanup_temp(max_age_days: int = 3) -> None:
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     cutoff = time.time() - max_age_days * 86400
@@ -116,10 +151,12 @@ def cleanup_temp(max_age_days: int = 3) -> None:
             pass
 
 
+_ACTIVE_PROFILE: str | None = None
+
 def _run_once(args: list[str], timeout: int = 900) -> tuple[int, str]:
     if not NLM.exists():
         raise FileNotFoundError(f"nlm.exe not found: {NLM}")
-    proc = subprocess.run([str(NLM), *args], text=True, capture_output=True, encoding="utf-8", errors="replace", timeout=timeout)
+    proc = subprocess.run([str(NLM), *_with_profile(args)], text=True, capture_output=True, encoding="utf-8", errors="replace", timeout=timeout)
     out = (proc.stdout or "") + ("\n" + proc.stderr if proc.stderr else "")
     return proc.returncode, out
 
@@ -284,6 +321,8 @@ def _pdf_quality_score(pdf_path: Path) -> dict[str, Any]:
 
 
 def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Model 3 Report") -> dict[str, Any]:
+    global _ACTIVE_PROFILE
+    _ACTIVE_PROFILE = _select_profile()
     cleanup_temp(3)
     docx = Path(docx_path)
     if not docx.exists():
@@ -322,10 +361,10 @@ def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Mod
                         pass  # thiáº¿u PyMuPDF/Pillow thÃ¬ giá»¯ nguyÃªn PDF, khÃ´ng cháº·n pipeline
                     last_quality = _pdf_quality_score(out_pdf)
                     if last_quality.get("ok", True) or attempt == 2:
-                        return {"ok": bool(last_quality.get("ok", True)), "notebook_id": notebook_id, "slide_pdf": str(out_pdf), "quality": last_quality, "attempt": attempt}
+                        return {"ok": bool(last_quality.get("ok", True)), "profile": _ACTIVE_PROFILE, "notebook_id": notebook_id, "slide_pdf": str(out_pdf), "quality": last_quality, "attempt": attempt}
                     last_err = str(last_quality.get("reason") or "deck quality too sparse")
                     break
             except Exception as exc:
                 last_err = str(exc)
             time.sleep(20)
-    return {"ok": False, "notebook_id": notebook_id, "error": last_err, "quality": last_quality}
+    return {"ok": False, "profile": _ACTIVE_PROFILE, "notebook_id": notebook_id, "error": last_err, "quality": last_quality}
