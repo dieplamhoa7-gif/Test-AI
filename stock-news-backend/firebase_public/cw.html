@@ -1428,7 +1428,17 @@
       <div class="warrant-row"><span>Time value/ngày / Premium</span><b>${fmt(tvPerDay)} / ${pct(premium)}</b></div>
       <div class="warrant-row"><span>Cần tăng/ngày / Risk</span><b>${pct(req)} / ${x.riskLevel||'-'}</b></div>
       <div class="warrant-row"><span>Còn lại / Tín hiệu</span><b>${fmt(x.daysLeft)} ngày / ${x.advancedSignal||x.signal||'-'}</b></div>
-      <div class="cw-score-note" style="margin-top:8px">${x.analysisNote||'Theo dõi giá cơ sở, spread, thanh khoản, time value và số ngày còn lại.'}</div>
+      <div class="cw-formula" style="margin-top:8px">
+        <b>Công thức đang dùng:</b><br>
+        Hòa vốn = Giá thực hiện + Giá CW × Tỷ lệ chuyển đổi<br>
+        Nội tại = max(0, Giá cơ sở - Giá thực hiện) / Tỷ lệ chuyển đổi<br>
+        Time value = Giá CW - Nội tại<br>
+        Time value/ngày = Time value / Số ngày còn lại<br>
+        Premium % = (Hòa vốn / Giá cơ sở - 1) × 100<br>
+        Cần tăng/ngày = Premium % / Số ngày còn lại<br>
+        Đòn bẩy hiệu dụng ≈ Giá cơ sở / (Giá CW × Tỷ lệ chuyển đổi)
+      </div>
+      <div class="cw-score-note" style="margin-top:8px"><b>Ghi chú:</b> ${x.analysisNote||'Theo dõi giá cơ sở, spread, thanh khoản, time value và số ngày còn lại.'}</div>
     </div>`}
   async function load(){try{const r=await fetch('/data/warrants_data.json?ts='+Date.now(),{cache:'no-store'});const p=await r.json();items=(Array.isArray(p.items)?p.items:p).map(x=>({...x,code:norm(x.code)})).filter(x=>x.code);const st=document.getElementById('warrantStatus');if(st)st.textContent=`Đã cập nhật ${items.length} chứng quyền lúc ${new Date(p.updatedAt||Date.now()).toLocaleTimeString('vi-VN')}`;window.__lhLatestWarrantItems=items;return p}catch(e){return null}}
   function renderBase(){const grid=document.getElementById('warrantGrid');if(!grid||!items.length)return;const watch=getWatch();const list=watch.length?watch.map(c=>items.find(x=>x.code===c)).filter(Boolean):items.slice(0,80);grid.innerHTML=list.map(card).join('')||'<div class="empty">Không có dữ liệu chứng quyền.</div>';}
