@@ -54,6 +54,11 @@ def main() -> None:
     firebase = shutil.which("firebase") or shutil.which("firebase.cmd") or "firebase.cmd"
     log(f"START LHINVT Firebase deploy account={ACCOUNT} project={PROJECT} site={SITE}")
 
+    # Permanent freshness guard for Model3/web data:
+    # every deploy must republish canonical data/market_data.json to firebase_public
+    # and rebuild the SQLite DB used by Model3. If this fails, do not deploy a stale site.
+    run([sys.executable, "sync_model3_public_data.py"], timeout=300, check=True)
+
     login = run([firebase, "login:list"], timeout=60, check=False)
     if ACCOUNT not in (login.stdout or ""):
         raise SystemExit(
@@ -85,7 +90,7 @@ def main() -> None:
             "--config",
             CONFIG,
             "--only",
-            "hosting",
+            f"hosting:{SITE}",
         ],
         timeout=900,
         check=True,
