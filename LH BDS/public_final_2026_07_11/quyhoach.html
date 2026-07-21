@@ -2,7 +2,7 @@
   <script src="/security-guard.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LH Real Estate - Quy hoáº¡ch</title><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="local-taste.css">
 </head><body data-app="quyhoach" class="hightech hightech">
 <header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate<div class="muted" style="color:#dbeafe">Tra cá»©u quy hoáº¡ch theo tá»a Ä‘á»™</div></div></div><nav class="nav"><a href="/">Tá»•ng quan</a><a href="/nvtc.html">NghÄ©a vá»¥ tÃ i chÃ­nh</a><a class="active" href="/quyhoach.html">Quy hoáº¡ch</a><a href="/rd.html">R&D thá»‹ trÆ°á»ng</a><a href="/fs.html">FS hiá»‡u quáº£ dá»± Ã¡n</a><a href="legal.html">PhÃ¡p lÃ½ & Äáº§u tÆ°</a><a href="dossier.html">Há»“ sÆ¡ dá»± Ã¡n</a><a href="status.html">Status</a></nav></div></header><main class="wrap"><section class="grid2"><div class="card"><h1>Tra quy hoáº¡ch</h1><p class="muted">Báº£n nÃ y hiá»ƒn thá»‹ káº¿t quáº£ nhÆ° bot Quyhoach hÆ¡n: vá»‹ trÃ­, Ä‘á»“ Ã¡n, chá»©c nÄƒng Ä‘áº¥t, táº§ng cao, MÄXD, HSSDÄ, dÃ¢n sá»‘ vÃ  3 nguá»“n Ä‘á»‘i chiáº¿u. JSON ká»¹ thuáº­t Ä‘Ã£ áº©n.</p><label>Tá»a Ä‘á»™ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"><button class="btn" onclick="lookup()">Tra quy hoáº¡ch</button><div id="status" class="status"></div></div><div class="card qh-result-card"><h2>Káº¿t quáº£ vá»‹ trÃ­</h2><div id="locationBox" class="muted">ChÆ°a tra cá»©u.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>Äá»“ Ã¡n quy hoáº¡ch</h2><div id="planningBox" class="muted">ChÆ°a cÃ³ dá»¯ liá»‡u.</div></div><div class="card qh-result-card"><h2>Chá»‰ tiÃªu Ã´ Ä‘áº¥t / chá»©c nÄƒng Ä‘áº¥t</h2><div id="indicatorBox" class="muted">ChÆ°a cÃ³ dá»¯ liá»‡u.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>3 nguá»“n Ä‘á»‘i chiáº¿u</h2><div id="sourceBox" class="muted">ChÆ°a cÃ³ dá»¯ liá»‡u.</div></div><div class="card qh-result-card"><h2>Cáº£nh bÃ¡o kiá»ƒm tra</h2><div id="riskBox" class="muted">ChÆ°a cÃ³ dá»¯ liá»‡u.</div></div></section></main><script>const API_WORKER='https://lh-realestate-api.lhrealestate.workers.dev';
-const API_FALLBACKS_QH=['https://closely-hearts-locking-funny.trycloudflare.com'];
+const API_FALLBACKS_QH=['https://peninsula-bull-impression-concentration.trycloudflare.com','https://bicycle-shelf-ellis-prevention.trycloudflare.com','https://gibson-elderly-introduction-hazards.trycloudflare.com'];
 let API_BASE=(function(){try{return localStorage.getItem('lh_api_override_qh')||''}catch(e){return ''}})();
 async function _liveApiBase(role){try{const r=await fetch('/api-config.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();const u=j[role+'ApiBase']||j.apiBase;if(u)return u;}}catch(e){}try{const r=await fetch(API_WORKER+'/api/endpoint?role='+role+'&ts='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&j.url)return j.url;}}catch(e){}return '';}
 async function ensureApiBase(){
@@ -71,6 +71,7 @@ const warnings=[];if(loc.district&&p.TenQH&&String(loc.district).toLowerCase().i
 })();
 </script>
 </body></html>
+
 
 
 
