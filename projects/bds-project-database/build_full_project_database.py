@@ -6,7 +6,7 @@ masters=json.load(open(base/'project_popup_master_clean.json',encoding='utf-8'))
 def clean(s): return re.sub(r'\s+',' ',str(s or '')).strip()
 fields=[
  'master_id','project_name','mention_count','first_report_date','latest_report_date','source_files','senders',
- 'latitude','longitude','coordinates','map_urls','location','province_city','district_area',
+ 'latitude','longitude','coordinates','coordinate_quality','coordinate_anomaly_note','map_urls','location','province_city','district_area',
  'land_area_main','land_area_main_raw','other_area_mentions','project_type','land_type',
  'planning_doc_status','planning_summary','max_floors_clean','far_clean','density_clean','population_clean',
  'legal_summary','legal_status','gpm_status','lur_status','approval_status',

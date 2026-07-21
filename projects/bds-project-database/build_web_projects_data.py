@@ -9,11 +9,12 @@ for r in records:
     try: lat=float(r['latitude']); lng=float(r['longitude'])
     except Exception: continue
     score=int(r.get('data_completeness_score') or 0)
+    suspicious=(r.get('coordinate_quality')=='suspicious_shared_by_many_projects')
     rows.append({
         'id':r.get('master_id'), 'name':r.get('project_name'), 'lat':lat, 'lng':lng,
         'date':r.get('latest_report_date') or r.get('first_report_date'), 'datetime_raw':'', 'sender':r.get('senders'),
-        'type':r.get('project_type') or 'master', 'status':'master/review', 'priority':'high' if score>=70 else 'medium' if score>=45 else 'low',
-        'score':score, 'popup':r,
+        'type':r.get('project_type') or 'master', 'status':'coord-review' if suspicious else 'master/review', 'priority':'low' if suspicious else ('high' if score>=70 else 'medium' if score>=45 else 'low'),
+        'score':min(score,44) if suspicious else score, 'popup':r,
         'area':r.get('land_area_main') or r.get('land_area'), 'price':r.get('asking_price') or r.get('price_mentions'), 'far':r.get('far'), 'population':r.get('population'),
         'irr':r.get('irr'), 'npv':r.get('npv'), 'excerpt':r.get('source_excerpt'), 'map_url':(r.get('map_urls') or '').split(';')[0].strip(),
         'source_file':r.get('source_files'), 'source_chat':'Bee || Phân Tích Đầu Tư'
