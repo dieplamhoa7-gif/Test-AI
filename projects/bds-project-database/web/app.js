@@ -82,7 +82,6 @@ function renderFullTable(){
   const q=(qs('#fullTableSearch')?.value||'').toLowerCase();
   const filt=qs('#fullCompletenessFilter')?.value||'';
   const rows=(window.FULL_PROJECTS||[]).filter(r=>{
-    if(r.entity_valid_for_project_map==='no') return false;
     if(q && !Object.values(r).join(' ').toLowerCase().includes(q)) return false;
     if(filt==='missing_coordinates' && r.has_coordinates==='yes') return false;
     if(filt==='missing_area' && r.has_area==='yes') return false;
