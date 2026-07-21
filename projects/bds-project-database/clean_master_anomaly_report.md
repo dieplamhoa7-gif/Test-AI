@@ -1,14 +1,14 @@
 # Clean Master Anomaly Report
 
 - Total master records: 503
-- Records with issues: 484
+- Records with issues: 483
 
 - missing_coordinates: 449
-- missing_planning: 271
 - missing_land_area: 260
-- missing_legal: 206
-- missing_report_date: 186
-- bad_name: 56
+- missing_planning: 254
+- missing_legal: 199
+- missing_report_date: 182
+- bad_name: 54
 - land_area_outlier: 17
 
 ## Top issue samples
@@ -19,13 +19,6 @@
 - Coords: 10.970034, 106.715651
 - Land area: 28.000 m² (~2.80 ha)
 - Excerpt: [] P.ĐT báo cáo sếp Admin 01 dự án Trần Đức 1 (2.8ha) I. Thông tin dự án - Diện tích: 2.8 ha - Vị trí: Ngã tư Mỹ Phước Tân Vạn - Thủ Khoa Huân, P.Thuận Giao, Bình Dương (cũ) https://maps.app.goo.gl/t178LDzcrFtjxgEz9 II. PA quy hoạch: - Khu đất dự án thuộc ô khu phố có diện tích 8.5ha, hệ số 9/13 (9 ở, 4 TMDV), dân số 4.000, chức năng ở hỗn hợp. - Do dự án có quy mô 2.8ha nên không thể lấy được hết dân số 4000. P.TKQH đã binh phương án sơ bộ như sau: - Hệ số: 5.08 - Dân số: 2.700 - Quy mô: 2 phân khu + Cao tầng (30 tầng) : 1.46 ha - 1.275 căn hộ ở, 18 căn shop TM và 154 căn officetel. + Thấp tầng (nhà liên kế 1 trệt 2 lầu): 6.572 m2 (đất thương phẩm) - 73 nhà liên kế III. PA triển khai đầu tư
-
-### BDS-MASTER-0004 — Cao tầng 31 Trần Não
-- Issues: missing_planning
-- Date: 2025-02-11
-- Coords: 10.7964935, 106.7288642
-- Land area: 5.244 m²
-- Excerpt: [2025-02-11] Thao L - INVT 2/11/2025 1:56 PM Edited Translate K.ĐT báo cáo anh Mr Mike1 -CEO về Cao tầng 31 Trần Não như sau: 1. Thông tin, vị trí và hiện trạng: - Dự án cao tầng với tổng diện tích đất là 5,243.6m2. - Chi phí đất ban đầu: 894 tỷ ~ 170tr/m2 – full ở - Vị trí dự án tiếp giáp đường Trần Não. - Hiện trạng: Dự án có nguồn gốc đất là Full ở lâu dài (theo thông tin được cung cấp), vì thế phần đất tương ứng sản phẩm Thương mại (TTTM, Khách sạn, Văn phòng) có khả năng được thời hạn lâu dài (tương tự dự án 197 Lê Văn Sỹ, Quận 3). Tuy nhiên, để P.PLDA có đánh giá chính xác và chi tiết hơn cần cung cấp đầy đủ hồ sơ dự án. 2. Hồ sơ Pháp lý: P.ĐT nhận thông tin Tính hiệu quả sơ bộ dự án t
 
 ### BDS-MASTER-0005 — Khu gia đình quân nhân quân chủng PK-KQ (8
 - Issues: missing_report_date
@@ -105,7 +98,7 @@
 - Excerpt: [] P.ĐT xin báo cáo sếp Admin 01 dự án Thủ Đức Living, Đường Phạm Văn Đồng, TP HCM 1. Tóm tắt sơ bộ hiện trạng pháp lý dự án: a) Vị trí và ranh dự án: https://maps.app.goo.gl/D8GuCY5LefTH8JVq9 b) Sơ bộ hiện trạng pháp lý: Tổng diện tích khu đất là: 4,661 m2 (1,471 m2 đất ở, 3,190m2 đất cây hằng năm) Pháp lý đất: được thực hiện dự án thí điểm Nhà Ở Thương Mại (Dựa theo nghị quyết 171). Pháp lý QH: Diện tích phù hợp QH còn 3,545 m2 (Dính lộ giới: 1,111m2). Tầng cao 25 tầng cao, 0 tầng hầm; Hệ số sử dụng đất 6 lần, dân số là 500 người (tương đương hệ số 5.31 ,chưa sử dụng hết được hệ số HS SDĐ) 2. Hiệu quả dự án: a) Doanh thu (Có VAT): 1,179 tỷ VNĐ Giá bán căn hộ chung cư: 1,038 tỷ (66tr/m2 tim
 
 ### BDS-MASTER-0021 — nhà ở lực lượng vũ trang nhân dân Quận 12
-- Issues: missing_report_date; missing_legal; missing_planning
+- Issues: missing_report_date; missing_legal
 - Date: 
 - Coords: 10.824590, 106.617167
 - Land area: 11.800 m² (~1.18 ha)
@@ -126,7 +119,7 @@
 - Excerpt: [] P.ĐT báo cáo anh Mr Mike1 -CEO về tổng quan dự án Chen Sea 3,1ha tại xã Cửa Dương, huyện Phú Quốc, tỉnh Kiên Giang như sau: 1/ Vị trí: - Dự án tiếp giáp đường nội bộ đường Dinh Bà, cách đường Dinh Bà khoảng 350m, cách sân bay Quốc tế Phú Quốc khoảng 19km - Hiện trạng: Dự án đã khai thác 1 phần, với 22 căn villas tương ứng 36 phòng 2/ Pháp lý Đất: Quy mô dự án là 4,7ha, trong đó: - Đã có GCN QSDĐ 3,1ha: Mục đích sử dụng đất là đất sản xuất kinh doanh; Thời hạn sử dụng đất đến 16/12/2052. Nguồn gốc đất: Thuê đất trả tiền 1 lần - Phần diện tích còn lại 1,6ha: Chưa được cấp GCN và chưa giải phóng đền bù 3/ Pháp lý Quy hoạch: Đã có phê duyệt quy hoạch chi tiết 1/500 số 272/QĐ-BQLKKTPQ ngày 02/
 
 ### BDS-MASTER-0034 — chung cư cao cấp THAT 1
-- Issues: missing_report_date; missing_planning
+- Issues: missing_report_date
 - Date: 
 - Coords: 16.077574, 108.246196
 - Land area: 34.916 m² (~3.49 ha)
@@ -174,8 +167,8 @@
 - Land area: 13.900 m² (~1.39 ha)
 - Excerpt: [] P.ĐT xin báo cáo Sếp Admin 01 về khu đất phường Phú Thọ Hòa, Quận Tân Phú, TP HCM (Nguồn Sếp Tâm) như sau: 1. Pháp lý đất: Diện tích: 13,907.5 m2 Mục đích: Đất trồng cây lâu năm Thời hạn: 50 năm ( 07/2011 – 07/2061) Nguồn gốc sử dụng: Nhà nước công nhận quyền sử dụng đất Vị trí: https://maps.app.goo.gl/v8GdHbU3xb5G8JFs9 Ranh đất: Hạ tang giao thông nội bộ: có bề rộng mặt đường hẹp (7m) và vị trí khó khả thi phát triển thành khu thương mại dịch vụ. 2. Quy hoạch: 3. Đánh giá: Hiện trạng khu đất là đất trồng cây lâu năm có thời hạn sử dụng đến tháng 07/2061. Căn cứ theo Tra cứu Quy hoạch như trên, Khu đất có quy hoạch công viên cây xanh chiếm tỉ trọng lớn 56% và phần còn lại là đất TMDV, khô
 
-### BDS-MASTER-0043 — phân lô bán nền 4
-- Issues: bad_name; missing_report_date
+### BDS-MASTER-0043 — chỉnh trang)
+- Issues: missing_report_date
 - Date: 
 - Coords: 10.840838, 106.919985
 - Land area: 49.000 m² (~4.90 ha)
@@ -371,8 +364,8 @@
 - Excerpt: [2025-09-29] Thanh L - INVT 9/29/2025 12:13 PM Translate Kính gửi Sếp Mr Mike1 -CEO, P.ĐT báo cáo cập nhật hiệu quả đầu tư dự án 1ha Sơn Trà, Đà Nẵng như sau: Thông tin Quy hoạch: + Diện tích đất: 10.063m2 + Hệ số sử dụng đất: 11.94 + Tổng diện tích sàn (bao gồm hầm, tầng kỹ thuật): 162.271m2 + Diện tích thương phẩm căn hộ: 74.619m2 (khoảng 915 căn hộ) + Số lượng phòng khách sạn: 175 phòng Hiệu quả dự án phần Căn hộ Tổng doanh thu căn hộ chưa VAT là: 6.763 tỷ đồng (Đơn giá giá căn hộ bao gồm VAT tại thời điểm mở bán 2027 là 90 Triệu/m2; Giá shophouse bao gồm VAT: 90 Triệu/m2) Tổng mức đầu tư chưa bao gồm VAT, bao gồm lãi vay là: 4.950 tỷ đồng (Đơn giá All in bao gồm VAT là 20 triệu/m2; Chi p
 
 ### BDS-MASTER-0071 — H2-02
-- Issues: bad_name; missing_report_date; missing_coordinates; missing_land_area
-- Date: 
+- Issues: bad_name; missing_coordinates; missing_land_area
+- Date: 2026-05-27
 - Coords: 
 - Land area: 
 - Excerpt: [] P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau: 1. Giá chào cập nhật 600 tỷ 2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộ… 2. 120 tỷ là số chốt chưa hay áng chừng nhỉ Begin quote, Admin 01, 5/27/2026 7:36 PM, 2... by Huy M - IM --- [] P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau: 1. Giá chào cập nhật 600 tỷ 2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua chịu) 120 tỷ - điểm này cần P.PLDA đánh giá làm rõ vì theo thông tin đối tác cung cấp ban đầu, dự án đã có GPXD và GCN (100% đất ở xây dựng chung cư) 3. Suất xây dựn
@@ -384,54 +377,54 @@
 - Land area: 339 m²
 - Excerpt: [] P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ dự án 10ha Đường Long Thuận, Long Phước, Quận 9, TP.HCM PHƯƠNG ÁN 1: Dân số 1500 người Phương án 1a P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tuy… Mai trình bày em cái này Nhầm, t2 chứ by Admin 01 --- [] P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ dự án 10ha Đường Long Thuận, Long Phước, Quận 9, TP.HCM PHƯƠNG ÁN 1: Dân số 1500 người Phương án 1a --- [] P.ĐT báo cáo Sếp Mr Mike1 -CEO V/v cập nhật lại dự án 10ha Đường Long Thuận, Long Phước, Quận 9, HCM với PA 3.900 dân như sau: Phương án quy hoạch:
 
-### BDS-MASTER-0073 — NHƯ SAU
-- Issues: bad_name; missing_report_date; missing_coordinates
-- Date: 
-- Coords: 
-- Land area: 100.000 m² (~10.00 ha)
-- Excerpt: [] Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ dự kiến hiệu quả đầu tư dự án 2.316 ha Phía Nam Nhơn Trạch, như sau: I/TỔNG QUAN MẶT BẰNG: II/CHỈ TIÊU QUY HOẠCH TẠM TÍNH (ANH TÀI): III/HIỆU QUẢ TẠM TÍNH (P&L SƠ BỘ) Dựa trên các giả định: Giá bán: cơ sở đề xuất giá bình quân cho từng loại sản phẩm của phòng R&D đề xuất: Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2; Đơn giá chi phí đất (gồm tiền sử dụng đất)(đơn giá đất đường gần nhất khu đất vị trí 1 theo bảng giá đất là 6,5 tr/m2), phòng tính bài toán ngược với LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2 (tính bình quân cho nhiều vị trí phân khu bên trong khu đất); Suất vốn xây dựng cao t
-
-### BDS-MASTER-0074 — Văn phòng tại khu đất 197 Lê Văn Sỹ cập nhật Hệ số sử dụng đất mới 9
+### BDS-MASTER-0073 — Văn phòng tại khu đất 197 Lê Văn Sỹ cập nhật Hệ số sử dụng đất mới 9
 - Issues: missing_coordinates
 - Date: 2023-07-03
 - Coords: 
 - Land area: 986 m²
 - Excerpt: [2023-07-03] Thao L - INVT 7/3/2023 10:43 AM Edited K.ĐT báo cáo anh Tuan Tran-CEO dự án Văn phòng tại khu đất 197 Lê Văn Sỹ cập nhật Hệ số sử dụng đất mới 9,5 lần như sau: CẬP NHẬT HỆ SỐ SỬ DỤNG ĐẤT MỚI 9,5 LẦN 1/ SƠ BỘ THÔNG TIN DỰ ÁN: - Dự án Văn phòng tại khu đất 197 Lê Văn Sỹ, phường 13, quận 3. Khu đất Nằm trên đường Lê Văn Sỹ và hẻm 195 Lê Văn Sỹ, cách cầu Lê Văn Sỹ khoảng 50m có tổng diện tích 985,7m2 với giá chào bán là 340 tỷ. - Link vị trí: https://goo.gl/maps/BgnUiLh44bo3Nyq37 - Đề xuất pháp lý: Mục tiêu: Xây dựng, vận hành Văn phòng mà vẫn giữ được mục đích Đất ở lâu dài. Cách thức để giữ lại mục đích Đất ở lâu dài: - Đại diện một cá nhân đứng tên giấy chứng nhận QSDĐ khu đất. C
 
-### BDS-MASTER-0075 — cao tầng Việt An
+### BDS-MASTER-0074 — cao tầng Việt An
 - Issues: missing_coordinates
 - Date: 2024-12-06
 - Coords: 
 - Land area: 9.652 m²
 - Excerpt: [2024-12-06] Huy M - IM 12/6/2024 8:01 AM Translate K.ĐT báo cáo anh Tuan Tran-CEO về dự án cao tầng Việt An, Thuận Giao, Bình Dương như sau: 1/ THÔNG TIN DỰ ÁN: • Giá chào: 200 tỷ. • Diện tích đất: 9.652,2m2 ~ 20,7tr/m2. • Vị trí: Tiếp giáp đường D4 (vào bằng đường Thuận Giao 09), Thuận Giao, Thuận An, Bình Dương. • Link map: https://goo.gl/maps/xNEqZWHrXNzKYLHe6 • Hiện trạng: Đất trống + Nhà xưởng tạm. • Quy mô: Dự án cao tầng gồm 02 khối tháp, mỗi khối gồm 24 tầng + 2 hầm; HSSDĐ cả khu: 10,7 lần. 2/ PHÁP LÝ: a/ Pháp lý đất: • 03 GCNQSDĐ, trong đó: Đất ở tại đô thị: 86,7m2 – Lâu dài. Đất trồng cây hàng năm: 3.153,3m2 – 10/2063. Đất thương mại dịch vụ: 2.000m2 – 12/2020 (hiện đã hết thời hạ
 
-### BDS-MASTER-0076 — chung cư Hòa Xuân (A2-3 & A2-4) 1
+### BDS-MASTER-0075 — chung cư Hòa Xuân (A2-3 & A2-4) 1
 - Issues: missing_report_date; missing_coordinates
 - Date: 
 - Coords: 
 - Land area: 6.648 m²
 - Excerpt: [] P.ĐT báo cáo sếp hiệu quả dự án chung cư Hòa Xuân (A2-3 & A2-4) 1. Thông tin tổng quan a) Diện tích: 6.648 m2; Trong đó: + A2-3: 3.508 m2 + A2-4: 3.140 m2 b) Quy hoạch theo QHPK mới: + A2-3: 18 tầng, 880 dân, mđxd 73%, hệ số 12.4 (Thiết kế đc 12.4) + A2-4: 15 tầng, 804 dân (thiết kế được 682) , mđxd 76%, hệ số 12.2 (thiết kế được 10.6) 2. Hiệu quả: a) Giả định kinh doanh (tham chiếu báo cáo từ RnD): + Giá bán căn hộ: 55 – 60 tr/m2 (chưa VAT tim tường) + Giá bán shop: 80 tr/m2 (chưa VAT tim tường) + Nhà trẻ: cho thuê 3.5$/m2/tháng + Chi phí bán hàng: 19 %/doanh thu b) Giả định xây dựng: + Suất xây dựng: 13tr./m2 (gồm VAT), trang bị nội thất liền tường. + Suất Đầu tư all in: 15tr/m2 + Chi p
 
-### BDS-MASTER-0077 — có 1 mặt tiền đường Song Hành rộng khoảng 110m của đường Xa lộ Hà Nội
+### BDS-MASTER-0076 — có 1 mặt tiền đường Song Hành rộng khoảng 110m của đường Xa lộ Hà Nội
 - Issues: missing_coordinates
 - Date: 2022-09-06
 - Coords: 
 - Land area: 26.000 m² (~2.60 ha)
 - Excerpt: [2022-09-06] Trieu Nguyen-PTDT 9/6/2022 10:34 AM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 2.6ha tại mặt tiền đường Song Hành XLHN, Thủ Đức có giá chào 1250 tỷ (48tr.đồng/m2 đất), cụ thể: Vị trí và hiện trạng: Dự án có 1 mặt tiền đường Song Hành rộng khoảng 110m của đường Xa lộ Hà Nội, và 1 mặt tiền đường Linh Trung rộng khoảng 200m tại P.Linh Trung, Thủ Đức, TPHCM Dự án nằm cách điểm lên ga Metro khoảng 500m, cách cầu Sài Gòn khoảng 10km, cách đường Nguyễn Huệ, Q1 khoảng 15km Hiện trạng có 1 căn biệt thự nằm trong khuôn viên dự án, nằm gần các trụ điện cao thế Pháp lý đất: Chưa được cấp GCNQSDĐ nhưng đã có quyết định giao đất, có cho phép chuyển mục đích sử dụng đất sang dự án chung cư
 
-### BDS-MASTER-0078 — sẽ mất 1 năm để xử lý các vấn đề liên quan khoản nợ đang trong DATC
+### BDS-MASTER-0077 — sẽ mất 1 năm để xử lý các vấn đề liên quan khoản nợ đang trong DATC
 - Issues: missing_report_date; missing_coordinates
 - Date: 
 - Coords: 
 - Land area: 279.000 m² (~27.90 ha)
 - Excerpt: [] P.ĐT dự kiến dự án sẽ mất 1 năm để xử lý các vấn đề liên quan khoản nợ đang trong DATC, và sau đó mất khoảng 2 năm để triển khai pháp lý (kế thừa qh1.500 hiện có). Như vậy dự án sẽ bắt đầu triển khai xây dựng từ cuối 2028- đầu 2029 2.1 Giả định kinh doanh a) Nhóm sản phẩm bán: + Giá bán căn hộ: 56-66 tr/m2 (chưa VAT tim tường) + Giá bán căn shop: 69 – 79 tr/m2 (chưa VAT tim tường) + Giá bán căn hộ cho thuê (theo QH1/500 có loại hình này và P.ĐT định hướng thành sản phẩm bán 50 năm): 47-56 tr/m2 (chưa VAT tim tường) b) Nhóm sản phẩm khai thác cho thuê: + Giá cho thuê sàn thương mại siêu thị: 8$/m2/tháng + Giá cho thuê sàn thương mại văn phòng: 9.5$/m2/tháng + Giá cho thuê sàn nhà trẻ: 4$/m
 
-### BDS-MASTER-0079 — thay đổi khi thay đổi giá mua dự án và giá bán căn hộ
+### BDS-MASTER-0078 — thay đổi khi thay đổi giá mua dự án và giá bán căn hộ
 - Issues: missing_report_date; missing_coordinates
 - Date: 
 - Coords: 
 - Land area: 290 m²
 - Excerpt: [] P.ĐT báo cáo Sếp Admin 01 về cập nhật DA Võ Văn Kiệt (Gộp 2 Lô) theo chỉ tiêu QH dự kiến điều chỉnh, như sau: 1. Quy hoạch: Những thay đổi chính trong PA QH mới: Hệ số tăng từ 13,7 lên 14,7 Tầng cao từ 30 lên 36 tầng Tăng 3.467 m2 sàn kinh doanh ~ tăng 19 căn, từ 833 lên 852, đồng thời Shop điều chỉnh thành 3 tầng. 2. Hiệu quả tài chính: Đơn giá xây dựng All-in vẫn giữ 21 tr/m2 (gồm VAT). Chi phí kinh doanh bán hàng 19%/Doanh thu. Giá bán căn hộ giảm từ 105 xuống còn 99 tr/m2 (gồm VAT), tương đương với giá 90 tr chưa VAT ~ 5 tỷ/căn 56 m2. Giá bán Shop giữ đơn giá tầng 1+2 vẫn 230 tr/m2, tầng 3 còn 110 tr/m2 => Đơn giá bình quân cho căn Shop 3 tầng còn 193 tr/m2 (gồm VAT), ~ 175 tr chưa VA
+
+### BDS-MASTER-0079 — theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm 2026
+- Issues: missing_report_date; missing_coordinates
+- Date: 
+- Coords: 
+- Land area: 100.000 m² (~10.00 ha)
+- Excerpt: [] Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ dự kiến hiệu quả đầu tư dự án 2.316 ha Phía Nam Nhơn Trạch, như sau: I/TỔNG QUAN MẶT BẰNG: II/CHỈ TIÊU QUY HOẠCH TẠM TÍNH (ANH TÀI): III/HIỆU QUẢ TẠM TÍNH (P&L SƠ BỘ) Dựa trên các giả định: Giá bán: cơ sở đề xuất giá bình quân cho từng loại sản phẩm của phòng R&D đề xuất: Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2; Đơn giá chi phí đất (gồm tiền sử dụng đất)(đơn giá đất đường gần nhất khu đất vị trí 1 theo bảng giá đất là 6,5 tr/m2), phòng tính bài toán ngược với LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2 (tính bình quân cho nhiều vị trí phân khu bên trong khu đất); Suất vốn xây dựng cao t
 
 ### BDS-MASTER-0080 — ~38ha
 - Issues: bad_name; missing_report_date; missing_coordinates
@@ -441,7 +434,7 @@
 - Excerpt: [] Hanh T - INVT 3/6 1:23 PM Edited Translate P. Đầu tư báo cáo Sếp Admin 01 về khu đất 35ha tại Kiên Giang (thuộc Châu Thành giáp ranh TP Rạch Giá), từ công ty CKG như sau: 1. Sơ bộ về khu đất: Vị trí và ranh đất: https://www.google.com/maps/d/edit?mid=1SAcLUqc-JTEBiY1uNXVoDUdI-a5wJd0&ll=10.002013642197713%2C105… Đường Lạc Hồng (xã Thạnh Lộc, H. Châu Thành, tỉnh Kiên Giang, nay là xã Thạnh Lộc. tỉnh An Giang). Pháp lý: Tổng diện tích đất khoảng 35ha/38,8ha lập dự án, chủ yếu là đất lúa. Hiện chưa lập dự án, định hướng xin Quyết định chủ trương đầu tư theo hướng tự thỏa thuận quyền sử dụng đất và vận dụng thí điểm diện tích mua gom >75% diện tích đất lập dự án ~38ha. Quy hoạch: Phòng Quy Hoạ
 
 ### BDS-MASTER-0081 — (GỒM VAT) – 4
-- Issues: missing_coordinates; missing_land_area; missing_planning
+- Issues: missing_coordinates; missing_land_area
 - Date: 2025-09-11
 - Coords: 
 - Land area: 
@@ -572,3 +565,10 @@
 - Coords: 
 - Land area: 5.243 m²
 - Excerpt: [] Thao L - INVT 5/11 1:38 PM Edited Translate K.ĐT gửi anh Admin 01 báo cáo dự án 31 Trần Não như sau: I. TỔNG QUAN 02 PHƯƠNG ÁN: II. PHƯƠNG ÁN CĂN HỘ DỊCH VỤ KẾT HỢP VĂN PHÒNG VÀ TRUNG TÂM THƯƠNG MẠI 1. Chi phí xây dựng (VAT): 1,800 tỷ - Đơn giá XD Allin: 21.5tr/m2 (trong đó SĐT VP + hầm: 18.6tr/m2 - Dựa vào S.ĐT P.QS tính theo chuẩn VP Opal) - SĐT/CHDV: 3.1 tỷ/key 2. Doanh thu và Chi phí vận hành (VAT): - Tỷ lệ diện tích thương phẩm Văn phòng đạt khoảng 79%, CHDV chỉ khoảng 60% (nhiều tiện ích đi kèm) - Giá thuê và phí dịch vụ của văn phòng năm đầu: 38.5$/m2/tháng gồm VP: 33$/m²/tháng + phí dịch vụ 5.5$/m²/tháng; CPVH: 20% DT; Tỷ lệ tăng giá thuê 3%/năm - Giá thuê CHDV năm đầu: + Dài ngày
+
+### BDS-MASTER-0100 — 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4
+- Issues: missing_report_date; missing_coordinates
+- Date: 
+- Coords: 
+- Land area: 44.000 m² (~4.40 ha)
+- Excerpt: [] Báo cáo Dự án 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4,4ha (giá chào bán 600 tỷ tương đương 13,4 tr/m2) tại 2 mặt tiền đường Quốc lộ 51 và đường Hùng Vương thuộc Phường Tân Phước, Thị xã Phú Mỹ, tỉnh Bà Rịa – Vũng Tàu: Vị trí dự án có nhiều tiềm năng: - Dự án tiếp giáp 2 mặt tiền đường hiện hữu: + Mặt tiền tiếp giáp khoảng 110m, giáp đường Quốc lộ 51, đường nhựa rộng khoảng 46m. + Mặt tiền tiếp giáp đường khoảng 78,7m, giáp đường Hùng Vương đường nhựa rộng khoảng 25m. - Cách Trung tâm Hành chính Thị xã Phú Mỹ khoảng 1km, cách các tiện ích ngoại khu trong vòng bán kính 2,5km gồm siêu thị Co.opmart, KNG Mall, phòng khám đa khoa, 2 trường Trung học Cơ sở, 2 trường T

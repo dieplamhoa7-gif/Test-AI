@@ -21,8 +21,8 @@ for r in masters:
     if not (r.get('land_area_main') or r.get('land_area')): issues.append('missing_land_area')
     if len(clean(r.get('other_area_mentions')))>120: issues.append('many_other_area_mentions')
     if len(clean(r.get('financial_raw_mentions')))>600 and not (r.get('asking_land_price') or r.get('selling_price') or r.get('irr_clean')): issues.append('financial_not_classified')
-    if not (r.get('legal_summary') or r.get('legal_status')): issues.append('missing_legal')
-    if not r.get('planning_summary'): issues.append('missing_planning')
+    if not (r.get('legal_summary') or r.get('legal_status') or r.get('approval_status') or r.get('lur_status') or r.get('gpm_status')): issues.append('missing_legal')
+    if not (r.get('planning_summary') or r.get('far_clean') or r.get('max_floors_clean') or r.get('population_clean') or r.get('planning_doc_status')): issues.append('missing_planning')
     if issues:
         rows.append({'master_id':r.get('master_id'),'project_name':name,'issues':'; '.join(issues),'latest_report_date':r.get('latest_report_date'),'coords':r.get('coordinates'),'land_area_main':r.get('land_area_main') or r.get('land_area'),'sample_excerpt':clean(r.get('source_excerpt'))[:700]})
 with open(base/'clean_master_anomaly_report.csv','w',encoding='utf-8-sig',newline='') as fp:
