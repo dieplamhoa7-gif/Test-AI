@@ -34,7 +34,8 @@ window.FIELD_SECTIONS = [
       ['Diện tích đất chính', 'land_area_main'],
       ['Raw diện tích đất chính', 'land_area_main_raw'],
       ['Diện tích khác trong tin', 'other_area_mentions'],
-      ['Loại dự án / sản phẩm', 'project_type'],
+      ['Loại dự án', 'project_type'],
+      ['Cơ cấu sản phẩm theo phương án', 'product_structure'],
       ['Loại đất / mục đích sử dụng đất', 'land_type']
     ]
   },

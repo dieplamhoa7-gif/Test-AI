@@ -5,7 +5,8 @@ p=base/'project_master_curated_deduped.json'
 rows=json.loads(p.read_text(encoding='utf-8'))
 # Explicit parent aliases: these are report/message subjects, not separate projects.
 merge_rules={
- 'Phú Quang':['Phú Quang – Phương án bổ sung tiền sử dụng đất (LURF) và chi phí liên quan đến phần đất công trong dự án','Phú Quang cập nhật']
+ 'Phú Quang':['Phú Quang – Phương án bổ sung tiền sử dụng đất (LURF) và chi phí liên quan đến phần đất công trong dự án','Phú Quang cập nhật'],
+ 'Đông Trung':['Đông Trung tại Thuận An','Đông Trung - Đề xuất']
 }
 def clean(v):return re.sub(r'\s+',' ',str(v or '')).strip()
 def join(vals):
