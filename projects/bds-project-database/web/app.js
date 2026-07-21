@@ -5,7 +5,30 @@ function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&l
 function firstVal(p,keys){const r=p.popup||{};for(const k of keys){if(clean(r[k]))return r[k];}return '';} function markerIcon(p){return L.divIcon({className:'',iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-27],html:`<div class="marker-pin priority-${prio(p.priority)}"><span>${Math.round(+p.score||0)}</span></div>`});}
 const GROUPS=(window.FIELD_SECTIONS||[]).map(section=>[section.id, section.title, section.fields]);
 function chipClass(label,val){const s=(label+' '+val).toLowerCase(); if(/irr|npv|lợi nhuận|doanh thu|hoàn vốn/.test(s)) return 'good'; if(/giá|chi phí|tỷ|tr\/m2|triệu|tmđt|tsdđ|lur/.test(s)) return 'money'; return '';}
-function formatValue(label,val){val=clean(val); if(!val) return ''; const parts=val.split(/;\s*/).filter(Boolean); if(parts.length>1 && parts.length<=18){return `<div class="value-chips">${parts.map(x=>`<span class="value-chip ${chipClass(label,x)}">${esc(x)}</span>`).join('')}</div>`;} return esc(val);}
+function splitValue(label,val){
+  const raw=String(val||'').replace(/\r/g,'\n').trim();
+  if(!raw) return [];
+  let parts=[];
+  if(raw.includes('\n')) parts=raw.split(/\n+/);
+  else if(raw.includes(';')) parts=raw.split(/;\s*/);
+  else if(raw.length>220 && /\s[-+]\s|\s\d+[.)]\s|\s[a-z]\)\s/i.test(raw)) parts=raw.split(/(?=\s[-+]\s|\s\d+[.)]\s|\s[a-z]\)\s)/i);
+  else parts=[raw];
+  const out=[];
+  parts.forEach(p=>{
+    p=clean(p).replace(/^[-+•]\s*/,'');
+    if(!p) return;
+    if(p.length>360 && /[,;]\s+/.test(p)){
+      p.split(/;\s*/).forEach(x=>{x=clean(x); if(x) out.push(x);});
+    } else out.push(p);
+  });
+  return [...new Set(out)].slice(0,40);
+}
+function formatValue(label,val){
+  const parts=splitValue(label,val); if(!parts.length) return '';
+  if(parts.length===1 && parts[0].length<220) return esc(parts[0]);
+  if(parts.length<=10 && parts.every(x=>x.length<120)) return `<div class="value-chips">${parts.map(x=>`<span class="value-chip ${chipClass(label,x)}">${esc(x)}</span>`).join('')}</div>`;
+  return `<ul class="value-list">${parts.map(x=>`<li class="${chipClass(label,x)}">${esc(x)}</li>`).join('')}</ul>`;
+}
 function table(fields,r){const body=fields.filter(([_,k])=>clean(r[k])).map(([label,k])=>`<tr><th>${esc(label)}</th><td>${formatValue(label,r[k])}</td></tr>`).join('');return body?`<table class="info-table"><tbody>${body}</tbody></table>`:'';}
 function detailGroups(p){const r=p.popup||{};return GROUPS.map(([id,title,fields])=>{const t=table(fields,r);return t?`<section class="info-group" data-group="${id}"><h4>${esc(title)}</h4>${t}</section>`:''}).join('')+`<section class="excerpt-box"><b>Excerpt tin nhắn gốc</b><p>${esc(r.source_excerpt||p.excerpt||'')}</p>${p.map_url?`<a class="map-link" href="${esc(p.map_url)}" target="_blank" rel="noreferrer">Mở Google Maps gốc</a>`:''}</section>`;}
 function popupHtml(p){return `<div class="popup"><div class="popup-head"><h3>${esc(p.name)}</h3><span class="score-badge ${scoreClass(p.score)}">${Math.round(+p.score||0)}</span></div><p>${esc(p.date||p.datetime_raw||'Chưa rõ ngày')} · ${esc(p.type||'raw')}</p><table class="popup-summary"><tr><th>Diện tích</th><td>${short(firstVal(p,['land_area_main','land_area','area']),70)||'—'}</td></tr><tr><th>Giá</th><td>${short(firstVal(p,['asking_land_price','asking_price','price_mentions']),70)||'—'}</td></tr><tr><th>IRR/NPV</th><td>${short([firstVal(p,['irr_clean','irr']),firstVal(p,['npv_clean','npv'])].filter(Boolean).join(' / '),70)||'—'}</td></tr><tr><th>Pháp lý</th><td>${short(firstVal(p,['legal_status','legal_summary']),70)||'—'}</td></tr></table><a class="map-link" href="#" onclick="window.__selectProject('${esc(p.id)}');return false;">Xem chi tiết đầy đủ</a></div>`;}
