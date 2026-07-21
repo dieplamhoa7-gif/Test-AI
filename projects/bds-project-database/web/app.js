@@ -29,7 +29,9 @@ function formatValue(label,val){
   if(parts.length<=10 && parts.every(x=>x.length<120)) return `<div class="value-chips">${parts.map(x=>`<span class="value-chip ${chipClass(label,x)}">${esc(x)}</span>`).join('')}</div>`;
   return `<ul class="value-list">${parts.map(x=>`<li class="${chipClass(label,x)}">${esc(x)}</li>`).join('')}</ul>`;
 }
-function table(fields,r){const body=fields.filter(([_,k])=>clean(r[k])).map(([label,k])=>`<tr><th>${esc(label)}</th><td>${formatValue(label,r[k])}</td></tr>`).join('');return body?`<table class="info-table"><tbody>${body}</tbody></table>`:'';}
+const FIELD_FALLBACKS={land_area_main:['land_area'],land_area_main_raw:['land_area_raw_mentions'],asking_land_price:['asking_price'],selling_price:['price_mentions'],far_clean:['far'],max_floors_clean:['max_floors'],density_clean:['building_density'],population_clean:['population'],total_investment_clean:['total_investment'],revenue_clean:['revenue'],profit_clean:['profit'],irr_clean:['irr'],npv_clean:['npv'],payback_clean:['payback']};
+function fieldValue(r,k){if(clean(r[k]))return r[k];for(const alt of FIELD_FALLBACKS[k]||[]){if(clean(r[alt]))return r[alt];}return '';}
+function table(fields,r){const body=fields.map(([label,k])=>[label,k,fieldValue(r,k)]).filter(([,,v])=>clean(v)).map(([label,k,v])=>`<tr><th>${esc(label)}</th><td>${formatValue(label,v)}</td></tr>`).join('');return body?`<table class="info-table"><tbody>${body}</tbody></table>`:'';}
 function scenarioPanel(r){
   if(!clean(r.scenario_data))return '';
   let scenarios=[];try{scenarios=JSON.parse(r.scenario_data)}catch(e){return '';} if(!Array.isArray(scenarios)||!scenarios.length)return '';
