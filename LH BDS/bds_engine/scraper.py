@@ -95,6 +95,52 @@ def _loc_str(criteria: SearchCriteria) -> str:
     return ", ".join(dict.fromkeys(parts)) or f"quanh {criteria.lat:.6f}, {criteria.lng:.6f}"
 
 
+def _requested_project_name(criteria: SearchCriteria) -> str:
+    """Extract an explicit project/query name from user payload.
+
+    Coordinates often reverse-geocode to a road/ward. If the user typed a
+    project name (e.g. Lovera Vista), keep it as the first comparable instead
+    of falling back to generic geocode scopes only.
+    """
+    chunks = []
+    for attr in ("project_name", "project", "text", "address", "human_summary"):
+        v = getattr(criteria, attr, None)
+        if isinstance(v, str) and v.strip():
+            chunks.append(v.strip())
+    loc = getattr(criteria, "location_context", {}) or {}
+    for key in ("project", "project_name", "name", "query"):
+        v = loc.get(key)
+        if isinstance(v, str) and v.strip():
+            chunks.append(v.strip())
+    raw = " | ".join(chunks)
+    # Prefer well-known project-like phrases; keep conservative to avoid using raw coordinates.
+    known = ["Lovera Vista"]
+    for name in known:
+        if re.search(re.escape(name), raw, flags=re.I):
+            return name
+    m = re.search(r"\b([A-Z][A-Za-z0-9]*(?:\s+[A-Z][A-Za-z0-9]*){1,5})\b", raw)
+    if not m:
+        return ""
+    name = m.group(1).strip()
+    if re.search(r"^(Toa|Tọa|Nguyen|Nguyễn|Thanh|Thành|Phuong|Phường|Quan|Quận|Ho|Hồ|Chi|Chí|Minh)\b", name, flags=re.I):
+        return ""
+    if re.search(r"\d+\.\d+", name):
+        return ""
+    return name
+
+
+def _explicit_project_candidate(name: str) -> dict:
+    return {
+        "name": name,
+        "developer": "CĐT đang kiểm chứng",
+        "scale": "quy mô đang kiểm chứng",
+        "operation_year": "đang kiểm chứng",
+        "handover_status": "đang kiểm chứng",
+        "type_hint": "explicit_project",
+        "note": "Tên dự án do người dùng nhập; ưu tiên search trực tiếp trước khi fallback geocode",
+    }
+
+
 async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteria) -> ProjectsResult:
     """Dùng AI để xác định khu vực và liệt kê 5 dự án/khu vực comparable."""
     segment = getattr(criteria, "segment", None)
@@ -103,9 +149,11 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         "Khi nhận toạ độ GPS, bạn xác định chính xác vị trí (phường, quận, thành phố), rồi liệt kê "
         "5 dự án/khu vực phù hợp tiêu chí người dùng để dùng làm tham chiếu định giá."
     )
+    explicit_name = _requested_project_name(criteria)
     user = (
         f"Toạ độ: {criteria.lat}, {criteria.lng}\n"
         f"Ngữ cảnh vị trí đã quy đổi sơ bộ: {getattr(criteria, 'location_context', {})}\n"
+        f"Tên dự án/từ khoá người dùng nhập nếu có: {explicit_name or getattr(criteria, 'human_summary', '') or 'không có'}\n"
         f"Loại tài sản: {PROPERTY_TYPE_LABELS.get(criteria.property_type, criteria.property_type)}\n"
         f"MĐSDĐ: {MDSDD_LABELS.get(criteria.mdsdd) if criteria.mdsdd else 'không yêu cầu'}\n"
         f"Đặc tính: {FEATURE_LABELS.get(criteria.feature) if criteria.feature else 'không yêu cầu'}\n"
@@ -161,7 +209,9 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
             "note": p.get("note") or "",
         })
     norm = [p for p in norm if p["name"]]
-    return ProjectsResult(area_description=str(data.get("area") or _loc_str(criteria)), projects=norm)
+    if explicit_name and explicit_name.lower() not in {p["name"].lower() for p in norm}:
+        norm.insert(0, _explicit_project_candidate(explicit_name))
+    return ProjectsResult(area_description=str(data.get("area") or _loc_str(criteria)), projects=norm[:5])
 
 
 def _num(x: Any) -> float | None:
@@ -252,6 +302,10 @@ def fallback_nearby_projects(criteria: SearchCriteria, reason: str = "") -> Proj
     ]
     projects = []
     seen = set()
+    explicit_name = _requested_project_name(criteria)
+    if explicit_name:
+        projects.append(_explicit_project_candidate(explicit_name))
+        seen.add(explicit_name.lower())
     for sc in scopes:
         sc = sc.strip()
         if not sc or sc.lower() in seen:

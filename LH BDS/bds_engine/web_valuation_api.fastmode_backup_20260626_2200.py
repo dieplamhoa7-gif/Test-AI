@@ -983,6 +983,10 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     )
     criteria.transaction = payload.get('transaction') or 'buy'
     criteria.segment = payload.get('segment') or None
+    # Preserve explicit user/project keyword (e.g. "Lovera Vista") for comparable search.
+    # Without this, coordinate-only reverse geocode can dominate and the AI/fallback
+    # returns generic ward/road comparables even when the user typed a project name.
+    criteria.human_summary = " | ".join(str(payload.get(k) or '').strip() for k in ('project_name', 'project', 'text', 'address', 'query') if str(payload.get(k) or '').strip())
     if criteria.transaction == 'rent':
         criteria.rent_subtype = criteria.property_type
         if criteria.property_type == 'rent_chungcu':
