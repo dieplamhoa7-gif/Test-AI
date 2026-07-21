@@ -66,7 +66,7 @@ MODEL3_SECTIONS = [
     ("bull_bear", "Codex", "Bull/Bear/Catalyst"),
     ("risk", "Kiro", "Risk & viewpoint"),
     ("followup", "Codex", "Kế hoạch theo dõi"),
-    ("quick_summary", "Kiro", "Executive Summary cuối"),
+    ("quick_summary", "Kiro", "Executive Summary"),
     ("word", "Model3", "Xuất Word"),
     ("notebooklm", "NotebookLM", "Tạo NotebookLM / PDF online"),
 ]
@@ -1450,22 +1450,31 @@ async def model3_worker_update_status(job_id: str, payload: dict[str, Any], auth
 
 
 @router.post("/model3/worker/{job_id}/upload")
-async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partial_quality: bool = Form(False), authorization: str | None = Header(default=None)):
+async def model3_worker_upload(job_id: str, file: UploadFile = File(...), partial_quality: bool = Form(False), artifact_kind: str = Form("docx"), authorization: str | None = Header(default=None)):
     _check_model3_worker_token(authorization)
     job = _load_model3_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="job_id không tồn tại")
-    safe = Path(file.filename or f"{job.get('ticker','MODEL3')}_{job_id}.docx").name
+    kind = re.sub(r"[^a-z0-9_-]", "", str(artifact_kind or "docx").lower()) or "docx"
+    safe = Path(file.filename or f"{job.get('ticker','MODEL3')}_{job_id}.{kind}").name
     MODEL3_OUT_DIR.mkdir(parents=True, exist_ok=True)
     out = MODEL3_OUT_DIR / safe
     data = await file.read()
     out.write_bytes(data)
-    result = {"ok": True, "ticker": job.get("ticker"), "docx_path": str(out), "docx_name": safe, "partial_quality": bool(partial_quality)}
+    result = dict(job.get("result") or {})
+    result.update({"ok": True, "ticker": job.get("ticker")})
+    if kind in {"pdf", "slide", "slides", "notebooklm_pdf"} or safe.lower().endswith(".pdf"):
+        result["notebooklm_pdf_path"] = str(out)
+        result["notebooklm_pdf_name"] = safe
+        result["notebooklm_pdf_url"] = f"/pipeline/model3/file/{safe}"
+        job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded NotebookLM PDF/Slide: {safe}"]
+    else:
+        result.update({"docx_path": str(out), "docx_name": safe, "partial_quality": bool(partial_quality)})
+        job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded DOCX: {safe}"]
     job["result"] = result
     job["status"] = "done"
     job["progress"] = 100
     job["updated_at"] = time.time()
-    job["logs"] = (job.get("logs") or [])[-79:] + [f"✅ Local worker uploaded DOCX: {safe}"]
     _model3_finalize_sections(job, result)
     MODEL3_JOBS[job_id] = job
     _save_model3_job(job)

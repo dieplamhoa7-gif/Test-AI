@@ -1387,7 +1387,7 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         _append(state, transcript, fallback_news)
         posts.append(fallback_news)
 
-    progress("✅ Super_LH dependency graph: các phân tích chính đã xong; bắt đầu viết Executive Summary cuối cùng.")
+    progress("✅ Super_LH dependency graph: các phân tích chính đã xong; bắt đầu viết Executive Summary.")
     try:
         summary_context = base_context + "\n\nKẾT QUẢ PHÂN TÍCH CHÍNH ĐÃ HOÀN TẤT:\n" + "\n\n".join(transcript[-14:])
         summary_post = _run_step(summary_context, MODEL3_QUICK_SUMMARY, [], progress, total_steps, total_steps, mode)
