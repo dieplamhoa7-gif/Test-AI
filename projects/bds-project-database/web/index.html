@@ -22,6 +22,10 @@
           <span>⌕</span>
           <input id="search" type="search" placeholder="Tìm dự án, vị trí, pháp lý, IRR, giá…" autocomplete="off" />
         </div>
+        <div class="view-toggle" role="group" aria-label="Đổi kiểu xem">
+          <button id="cardViewBtn" class="active" type="button">Cards</button>
+          <button id="tableViewBtn" type="button">Table</button>
+        </div>
         <button id="fitMapBtn" class="ghost-btn">Fit map</button>
         <button id="exportCsvBtn" class="ghost-btn">Export CSV</button>
       </div>
@@ -44,6 +48,12 @@
       <section class="list-card">
         <div class="section-title"><span>Danh sách dự án</span><b id="countLabel"></b></div>
         <div class="project-list" id="projectList" role="list"></div>
+        <div class="master-table-wrap" id="masterTableWrap" hidden>
+          <table class="master-table" id="masterTable">
+            <thead><tr><th>Dự án</th><th>Score</th><th>Ngày</th><th>Diện tích</th><th>Giá</th><th>IRR/NPV</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </section>
     </aside>
 
