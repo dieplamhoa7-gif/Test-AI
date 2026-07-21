@@ -1,13 +1,13 @@
 # Clean Master Anomaly Report
 
 - Total master records: 503
-- Records with issues: 483
+- Records with issues: 482
 
 - missing_coordinates: 449
 - missing_land_area: 260
 - missing_planning: 254
 - missing_legal: 199
-- missing_report_date: 182
+- missing_report_date: 158
 - bad_name: 54
 - land_area_outlier: 17
 
@@ -166,13 +166,6 @@
 - Coords: 10.785522, 106.631470
 - Land area: 13.900 m² (~1.39 ha)
 - Excerpt: [] P.ĐT xin báo cáo Sếp Admin 01 về khu đất phường Phú Thọ Hòa, Quận Tân Phú, TP HCM (Nguồn Sếp Tâm) như sau: 1. Pháp lý đất: Diện tích: 13,907.5 m2 Mục đích: Đất trồng cây lâu năm Thời hạn: 50 năm ( 07/2011 – 07/2061) Nguồn gốc sử dụng: Nhà nước công nhận quyền sử dụng đất Vị trí: https://maps.app.goo.gl/v8GdHbU3xb5G8JFs9 Ranh đất: Hạ tang giao thông nội bộ: có bề rộng mặt đường hẹp (7m) và vị trí khó khả thi phát triển thành khu thương mại dịch vụ. 2. Quy hoạch: 3. Đánh giá: Hiện trạng khu đất là đất trồng cây lâu năm có thời hạn sử dụng đến tháng 07/2061. Căn cứ theo Tra cứu Quy hoạch như trên, Khu đất có quy hoạch công viên cây xanh chiếm tỉ trọng lớn 56% và phần còn lại là đất TMDV, khô
-
-### BDS-MASTER-0043 — chỉnh trang)
-- Issues: missing_report_date
-- Date: 
-- Coords: 10.840838, 106.919985
-- Land area: 49.000 m² (~4.90 ha)
-- Excerpt: [] P.ĐT báo cáo nhanh anh Mr Mike1 -CEO về dự án phân lô bán nền 4,9ha Khu dân cư Tam Phước, phường Tam Phước, Thành phố Biên Hòa, tỉnh Đồng Nai (Nguồn: Mr. Duy - P.PTQĐ) như sau: 1/ Vị trí: Dự án nằm trong hẻm đường Quốc lộ 51, cách đường Quốc lộ 51 khoảng 850m, cách cao tốc Biên Hòa Vũng Tàu khoảng 1,2km, bên phải giáp đường ĐT 771 (quy hoạch), bên dưới giáp đường ĐT 777 (quy hoạch). Trong bán kính 2-3km có cách khu công nghiệp như: KCN Long Thành, KCN An Phước, KCN Tam Phước Cách dự án Aqua City khoảng 5,5km (theo đường chim bay), cách sân golf Long Thành khoảng 3,5km 2/ Hiện trạng: Đất trống, cỏ cây mọc um tùm (hình ảnh vệ tinh) 3/ Thông tin dự án (P.PTQĐ cung cấp) Tổng diện tích dự án k
 
 ### BDS-MASTER-0044 — Thuận Nghiệp ở Dĩ An
 - Issues: missing_report_date
@@ -350,8 +343,8 @@
 - Excerpt: [2025-10-07] Hanh T - INVT 10/7/2025 5:32 PM Edited Translate Kính gửi Sếp Mr Mike1 -CEO, P.ĐT xin báo cáo hiệu quả đầu tư dự án tại 353 Nơ Trang Long, Bình Thạnh, TPHCM như sau: * Ranh đất, vị trí và thông tin Quy hoạch: https://www.google.com/maps/d/edit?mid=1Fl7DvT-DOnJvyHZ0Oq5v-nUadBLGHFo&usp=sharing + Diện tích đất: 3.399 m2, diện tích phù hợp QH (Sau khi trừ lộ giới) 3.195 m2; + Chỉ tiêu QH theo 1/2000 được duyệt (QĐ 5674/QĐ-UBND 2017): Hệ số 6 lần, dân số 606, tầng cao 18, MĐXD 70%. + Phòng ĐT tính FS theo 02 phương án từ phòng QH: Phương án 1: Phù hợp (dưới <=) chỉ tiêu cho phép theo 1/2000 Phương án 2: Cao hơn (>=) chỉ tiêu cho phép 1/2000, cơ sở tham khảo từ dự án gần đó là Ascent 
 
 ### BDS-MASTER-0069 — ở khu vực gần đó đã được duyệt giá đất (như Emerald 2
-- Issues: missing_report_date; missing_coordinates
-- Date: 
+- Issues: missing_coordinates
+- Date: 2025-08-08
 - Coords: 
 - Land area: 128.300 m² (~12.83 ha)
 - Excerpt: [] P.ĐT giả định giá chào bán bao gồm chỉ tiêu dân số 3.952 dân với các chỉ tiêu tính toán từ phòng QH như sau: Dân ~ 3.952 dân, tầng cao 31 tầng (có 2 tầng nổi để xe), 1 tầng hầm; Hệ số sử dụng đất 7,5 lần. Quy mô xây dựng và sản phẩm: + Xây dựng: 1 tầng hầm, (để xe trên 2 tầng nổi và không bố trí diện tích TMDV), 31 tầng nổi, 1.921 căn hộ (diện tích bình quân 67 m2/căn) mà không bố trí Shop tầng trệt. + Kinh doanh: 1.921 căn hộ ở ~ diện tích sàn tim tường 128.324 m2 (đói tác không đề xuất Shop TM). Hiệu quả dự án: - Tổng chi phí chưa VAT: 6.424 tỷ, trong đó gồm: + CP mua đất : 1.000 tỷ đồng + CP tiền sử dụng đất: 630 tỷ đồng (giả định được khấu trừ tiền đất theo Sổ ~40%, chỉ đóng 60% tiền 
@@ -420,8 +413,8 @@
 - Excerpt: [] P.ĐT báo cáo Sếp Admin 01 về cập nhật DA Võ Văn Kiệt (Gộp 2 Lô) theo chỉ tiêu QH dự kiến điều chỉnh, như sau: 1. Quy hoạch: Những thay đổi chính trong PA QH mới: Hệ số tăng từ 13,7 lên 14,7 Tầng cao từ 30 lên 36 tầng Tăng 3.467 m2 sàn kinh doanh ~ tăng 19 căn, từ 833 lên 852, đồng thời Shop điều chỉnh thành 3 tầng. 2. Hiệu quả tài chính: Đơn giá xây dựng All-in vẫn giữ 21 tr/m2 (gồm VAT). Chi phí kinh doanh bán hàng 19%/Doanh thu. Giá bán căn hộ giảm từ 105 xuống còn 99 tr/m2 (gồm VAT), tương đương với giá 90 tr chưa VAT ~ 5 tỷ/căn 56 m2. Giá bán Shop giữ đơn giá tầng 1+2 vẫn 230 tr/m2, tầng 3 còn 110 tr/m2 => Đơn giá bình quân cho căn Shop 3 tầng còn 193 tr/m2 (gồm VAT), ~ 175 tr chưa VA
 
 ### BDS-MASTER-0079 — theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm 2026
-- Issues: missing_report_date; missing_coordinates
-- Date: 
+- Issues: missing_coordinates
+- Date: 2025-09-11
 - Coords: 
 - Land area: 100.000 m² (~10.00 ha)
 - Excerpt: [] Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ dự kiến hiệu quả đầu tư dự án 2.316 ha Phía Nam Nhơn Trạch, như sau: I/TỔNG QUAN MẶT BẰNG: II/CHỈ TIÊU QUY HOẠCH TẠM TÍNH (ANH TÀI): III/HIỆU QUẢ TẠM TÍNH (P&L SƠ BỘ) Dựa trên các giả định: Giá bán: cơ sở đề xuất giá bình quân cho từng loại sản phẩm của phòng R&D đề xuất: Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2; Đơn giá chi phí đất (gồm tiền sử dụng đất)(đơn giá đất đường gần nhất khu đất vị trí 1 theo bảng giá đất là 6,5 tr/m2), phòng tính bài toán ngược với LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2 (tính bình quân cho nhiều vị trí phân khu bên trong khu đất); Suất vốn xây dựng cao t
@@ -567,8 +560,15 @@
 - Excerpt: [] Thao L - INVT 5/11 1:38 PM Edited Translate K.ĐT gửi anh Admin 01 báo cáo dự án 31 Trần Não như sau: I. TỔNG QUAN 02 PHƯƠNG ÁN: II. PHƯƠNG ÁN CĂN HỘ DỊCH VỤ KẾT HỢP VĂN PHÒNG VÀ TRUNG TÂM THƯƠNG MẠI 1. Chi phí xây dựng (VAT): 1,800 tỷ - Đơn giá XD Allin: 21.5tr/m2 (trong đó SĐT VP + hầm: 18.6tr/m2 - Dựa vào S.ĐT P.QS tính theo chuẩn VP Opal) - SĐT/CHDV: 3.1 tỷ/key 2. Doanh thu và Chi phí vận hành (VAT): - Tỷ lệ diện tích thương phẩm Văn phòng đạt khoảng 79%, CHDV chỉ khoảng 60% (nhiều tiện ích đi kèm) - Giá thuê và phí dịch vụ của văn phòng năm đầu: 38.5$/m2/tháng gồm VP: 33$/m²/tháng + phí dịch vụ 5.5$/m²/tháng; CPVH: 20% DT; Tỷ lệ tăng giá thuê 3%/năm - Giá thuê CHDV năm đầu: + Dài ngày
 
 ### BDS-MASTER-0100 — 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4
-- Issues: missing_report_date; missing_coordinates
-- Date: 
+- Issues: missing_coordinates
+- Date: 2022-08-26
 - Coords: 
 - Land area: 44.000 m² (~4.40 ha)
 - Excerpt: [] Báo cáo Dự án 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4,4ha (giá chào bán 600 tỷ tương đương 13,4 tr/m2) tại 2 mặt tiền đường Quốc lộ 51 và đường Hùng Vương thuộc Phường Tân Phước, Thị xã Phú Mỹ, tỉnh Bà Rịa – Vũng Tàu: Vị trí dự án có nhiều tiềm năng: - Dự án tiếp giáp 2 mặt tiền đường hiện hữu: + Mặt tiền tiếp giáp khoảng 110m, giáp đường Quốc lộ 51, đường nhựa rộng khoảng 46m. + Mặt tiền tiếp giáp đường khoảng 78,7m, giáp đường Hùng Vương đường nhựa rộng khoảng 25m. - Cách Trung tâm Hành chính Thị xã Phú Mỹ khoảng 1km, cách các tiện ích ngoại khu trong vòng bán kính 2,5km gồm siêu thị Co.opmart, KNG Mall, phòng khám đa khoa, 2 trường Trung học Cơ sở, 2 trường T
+
+### BDS-MASTER-0101 — 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ
+- Issues: missing_coordinates
+- Date: 2022-08-11
+- Coords: 
+- Land area: 3.000.000 m² (~300.00 ha)
+- Excerpt: [2022-08-11] Trieu Nguyen-PTDT 8/11/2022 12:10 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ: Vị trí và hạ tầng giao thông kết nối - Dự án nằm sát cảng hàng không nội địa Phan Thiết đang trong giai đoạn hoàn thành Chủ trương đầu tư, đã hoàn thành công tác đền bù và giải phóng mặt bằng, phục vụ dân dụng và quốc phòng - Dự án nằm tiếp giáp đường 715, là tuyến đường kết nối đến đường Võ Nguyên Giáp - tuyến đường chính chạy về thành phố Phan Thiết, nằm cách đường Võ Nguyên Giáp khoảng 6.8km - Dự án cách biển 7.4km, cách thành phố Phan Thiết 24km 2. Đánh giá về sự ảnh hưởng sân bay Phan Thiết và các sân bay khác đến định hướng phát triển 

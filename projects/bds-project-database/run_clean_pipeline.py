@@ -5,9 +5,11 @@ scripts=[
  'clean_project_master.py',
  'clean_area_fields.py',
  'backfill_master_dates_and_names.py',
+ 'backfill_master_dates_from_batches.py',
  'clean_planning_legal_fields.py',
  'clean_financial_fields.py',
  'audit_clean_master.py',
+ 'build_geocode_candidates.py',
  'build_web_projects_data.py',
 ]
 for s in scripts:
