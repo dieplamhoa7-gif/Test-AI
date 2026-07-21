@@ -1,6 +1,6 @@
 const fs=require('fs');
 const base='C:/Users/HoaD-CVDT/.openclaw/workspace/projects/bds-project-database';
-const masters=JSON.parse(fs.readFileSync(base+'/project_popup_master_clean.json','utf8'));
+const masters=JSON.parse(fs.readFileSync(base+'/project_master_curated_deduped.json','utf8'));
 let existing=[]; try{existing=JSON.parse(fs.readFileSync(base+'/map_link_resolution_all.json','utf8'));}catch{}
 const byUrl=new Map(existing.map(x=>[x.url,x]));
 const re=/https?:\/\/(?:maps\.app\.goo\.gl|goo\.gl\/maps|www\.google\.com\/maps)[^\s)>\]]+/ig;
