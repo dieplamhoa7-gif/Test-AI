@@ -9,7 +9,12 @@ r.update({
  'land_area_main_raw':'Tổng quy mô ban đầu: 12 ha; quy mô điều chỉnh: 4,6 ha',
  'other_area_mentions':'PA NOTM: 4,8 ha; đất công/NƠ cán bộ: 8.000 m²; đất công phát hiện: 5,4 ha',
  'project_type':'Đất ở hỗn hợp: chung cư cao tầng + nhà phố thấp tầng',
- 'product_structure':'PA 4,6 ha: 111 nhà phố liền kề + 5 tháp chung cư trung cấp (1.622 căn); PA tách: 2 khu chung cư 40 tầng (1.886 căn) + 2 khu thấp tầng (116 nền) + 2 block NƠ cán bộ 18 tầng (~359 căn)',
+ 'product_structure':'Xem chi tiết tại các tab phương án bên dưới',
+ 'scenario_data':json.dumps([
+   {'id':'base12','title':'PA gốc – 12 ha','status':'Quy hoạch/chủ trương ban đầu','area':'12 ha','planning':'QH 1/500 nhà phố thấp tầng; dân số 2.970 người','products':'Nhà phố thấp tầng','legal':'Đã có chủ trương đầu tư cho tổng quy mô 12 ha','financial':'Chưa đủ số liệu hiệu quả riêng cho PA này'},
+   {'id':'adjust46','title':'PA điều chỉnh – 4,6 ha','status':'Phương án sau rà soát đất công','area':'4,6 ha đã đền bù cho dân','planning':'Đất ở thấp tầng + đất ở hỗn hợp cao tầng; đã trình điều chỉnh QH 1/500','products':'111 nhà phố liền kề + 5 tháp chung cư trung cấp (1.622 căn)','legal':'UBND chấp thuận điều chỉnh chủ trương giảm quy mô còn 4,6 ha; chưa có pháp lý xây dựng','financial':'Nhà phố 65 tr/m² đất; căn hộ tham chiếu 36,5 tr/m² theo báo cáo đầu'},
+   {'id':'split48','title':'PA tách – 4,8 ha NOTM + 0,8 ha NƠ cán bộ','status':'Phương án đánh giá hiệu quả sau','area':'4,8 ha NOTM + 8.000 m² đất công/NƠ cán bộ','planning':'2 khu chung cư 40 tầng + 2 khu thấp tầng; 2 block NƠ cán bộ 18 tầng','products':'1.886 căn chung cư + 116 nền thấp tầng + khoảng 359 căn NƠ cán bộ','population':'3.950 dân cho NOTM + khoảng 550 dân NƠ cán bộ; có case so sánh 3.021 dân','legal':'Cần xử lý/tách phần đất công và hoàn thiện hồ sơ phương án','financial':'Căn hộ 40,6–45 tr/m²; suất đầu tư 13,9 tr/m² (2028), quy đổi ~12,6 tr/m²; TSDĐ tổng ~1.250 tỷ, sau khấu trừ ~780 tỷ; IRR CĐT 25% cần xác nhận case'}
+ ],ensure_ascii=False),
  'planning_doc_status':'Đã có QH 1/500 cho quy mô 12 ha; đã trình điều chỉnh QH 1/500 theo quy mô 4,6 ha',
  'planning_summary':'Quy hoạch cũ: 12 ha, nhà phố thấp tầng, dân số 2.970. Sau rà soát 5,4 ha có nguồn gốc đất công, trình QH 1/500 điều chỉnh còn 4,6 ha gồm đất ở thấp tầng và đất ở hỗn hợp cao tầng. PA tách sau đó: 4,8 ha NOTM + 8.000 m² đất công/NƠ cán bộ.',
  'max_floors_clean':'PA tách: chung cư 40 tầng; NƠ cán bộ 18 tầng',

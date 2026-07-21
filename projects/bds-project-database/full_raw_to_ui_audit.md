@@ -1,0 +1,219 @@
+# Full raw → curated → UI audit
+
+- Curated records audited: **477**
+- Issues: **1304**
+
+## Summary
+- CRITICAL | bad_project_name: **43**
+- CRITICAL | coordinate_outside_vietnam: **3**
+- CRITICAL | location_reference_as_name: **6**
+- HIGH | message_subject_variant: **28**
+- HIGH | suspicious_shared_coordinate: **120**
+- HIGH | multi_scenario_unstructured: **58**
+- MEDIUM | missing_main_area: **249**
+- MEDIUM | missing_planning: **256**
+- MEDIUM | missing_financial: **306**
+- MEDIUM | missing_legal: **235**
+
+## Critical / High review queue
+
+- **CRITICAL** `BDS-CURATED-0182` — (1) chưa có chủ trương đầu tư (Điểm cộng để xin thí điểm) + (2) dự án chưa đăng ký ngay đợt đầu như PGK nên sợ: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0124` — (giá bán quỹ đất bao gồm cam kết của đối tác sẽ hỗ trợ phần đất đi vào dự án) với chi phí làm đường là 1tr/m2: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0146` — Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0103` — Hội An Riverside Resort & Spa theo Concept Lamanon và giá kinh doanh của anh David Cường cung cấp: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0104` — IDEO CHANRAN 70 RIVERVIEW nằm trên đường Charan Sanit Wong: coordinate_outside_vietnam — Tọa độ ngoài biên độ Việt Nam
+- **CRITICAL** `BDS-CURATED-0232` — IDEO cách trung tâm Bangk: coordinate_outside_vietnam — Tọa độ ngoài biên độ Việt Nam
+- **CRITICAL** `BDS-CURATED-0189` — IDEO cách trung tâm Bangkok khoảng 6-7Km và gần sông Chao Phraya: coordinate_outside_vietnam — Tọa độ ngoài biên độ Việt Nam
+- **CRITICAL** `BDS-CURATED-0105` — KCN do Tập đoàn Xuận Thiện làm CĐT với 02 Nhà máy Gang thép - Cán thép đã dược tỉnh phê duyệt chủ trương đầu t: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0147` — Khu chung Cư và văn phòng An PHú Quy hoạch chỉ tiết 1/500 đã được phê duyệt có 3 khu chức năng chính: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0149` — Masteri An Phú - Masteri Thảo Điền - The Vista tăng 40-50% giá trị chỉ trong 3 tháng ) 🎉 Nếu lấy sàn thứ 2 (70: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0381` — NOXH đang đánh giá khoảng 15Km Trên dưới 20 Triệu/m2 Giá đất UBND MT đường DT742 5 Triệu/m2 Theo Tổng mức đầu: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0381` — NOXH đang đánh giá khoảng 15Km Trên dưới 20 Triệu/m2 Giá đất UBND MT đường DT742 5 Triệu/m2 Theo Tổng mức đầu: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0234` — Phú Quang khoảng 350m + Có 2 mặt tiếp xúc: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0129` — Phú Quang khoảng 350m + Có 2 mặt tiếp xúc kênh rạch II/ Kết nối giao thông đến dự án: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0108` — Suối Nhum với giá 1180 tỷ theo hình thức chuyển nhượng 100% cổ phần cty với hiện trạng có Quy hoạch mới dự kiế: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0194` — Swanbay 456ha hiện Dic đã chuyển nhượng lại các dự án thành phần cho các chủ đầu tư khác nên có nhiều dự án co: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0151` — THEO PHƯƠNG ÁN KINH DOANH ANH CƯỜNG – TMĐT Ko bao gồm ĐẤT Kết quả kinh doanh – PA vận hành 15 năm + GOP bình q: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0167` — The Bale của Được gửi giá đã giảm mà lại ko lãi hã Dự án Bale này giá có giảm nhưng pháp lý trước đây họ cam k: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0195` — The Sang Residence đang gần hoàn thành xây dựng với giá bán (58-68trđ/m2) với vị trí nằm sâu trong đường Phạm: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0196` — Thông tin quyết định chủ trương đầu tư/pháp lý dự án/thông tin quy hoạch dự án - Thông tin đơn vị khác tham: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0113` — Westgate của AnGia – 38 tr/m2 (vị trí trung tâm Huyện Bình Chánh) + Thấp hơn mức giá trung bình của Akari – Na: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0198` — cao tầng phải đầu tư 2–3 tầng hầm Trường hợp cần rà soát chi tiết và cập nhật chính xác hơn: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0237` — chung cư nhiều nhưng số lượng dự án và thị trường thì thấy Đà Nẵng có vẻ sôi động hơn à Nhưng condotel ở Đà Nẵ: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0168` — chỉ mới trong giai đoạn pháp lý đền bù GPMB thì được xem là quỹ đất và được định giá lại theo phương thức giá: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0239` — chợ lớn có khi phải điều chỉnh ranh Dự án Chợ Lớn đang làm quy hoạch anh Tài đã có cập nhật ranh Metro vào rồi: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0030` — có 1 mặt tiền đường Song Hành rộng khoảng 110m của đường Xa lộ Hà Nội: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0019` — có 2 mặt tiền đường Thuận An Hóa rộng khoảng 60m: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0042` — có mặt tiền rộng khoảng 100m ngay đường Nguyễn Hữu Thọ: location_reference_as_name — Tên là câu tham chiếu khoảng cách, không phải dự án
+- **CRITICAL** `BDS-CURATED-0243` — của Novaland được tháo gỡ liên quan đến Waterbay và Lakeview theo NQ 170 của Quốc Hội Liên quan đến vấn đề giả: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0202` — của mình nằm sát Khu CBD mới của Đà Nẵng và lợi thế nằm ngay đường Phạm Văn Đồng (có 4 mặt tiền: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0445` — của mình sẽ thực hiện đồng bộ theo hạ tầng của tỉnh Vậy cầu này làm để kết nói đường bộ ven biể: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0020` — gồm Chung cư cao tầng gồm 02 Hầm + 02 tầng Khối đế + 26 tầng căn hộ (trong đó căn hộ NOXH chiếm 20% tổng số că: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0117` — hạ tầng trọng điểm quốc gia đang được triển khai như Đường DT 770B (LG 60m) khởi công xây dựng Quý I-2024: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0205` — khi thực hiện kcn phải san lấp thêm ở mức bao nhiêu nên cũng chưa ước tính chi phí san lấp cho dự án này: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0093` — không đạt hiệu quả tài chính với giá chào chuyển nhượng là 280 tỷ đồng (chưa bao gồm tiền CMĐSDĐ) - Để dự án đ: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0155` — là tính khả thi của công tác giải phóng mặt bằng khi diện tích nhà dân nằm xen cài nhiều trong ranh đất dự án: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0210` — mình khảo sát ở kcn Vĩnh Phúc khi bay flycam thì thấy hiện trạng là đất lúa xen kẽ nhiều nhà dân và có các đồi: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0290` — mình là đường ven biển rồi lên Cao Tốc ra Cảng Hải Phòng Anh vẽ cho em đường bộ và đường sông đi ra: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0249` — nghỉ dưỡng nghìn tỷ bà Trương Mỹ Lan từng thâu tóm Ngân hàng TMCP Công Thương Việt Nam - Chi nhánh Thủ Thiêm (: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0120` — nhà ở khi chuyển mục đích sang đất ở theo Luật Đất đai sẽ phải thực hiện đấu giá đối với hiện trạng các khu đấ: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0211` — nhà ở thương mại thông qua thỏa thuận về nhận quyền sử dụng đất hoặc đang có quyền sử dụng đất để thể chế hóa: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0212` — này hiện chỉ đóng tiền sử dụng đát trên diện tích đất xây dựng thay vì diện tích đất toàn khu đối với toàn khu: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0174` — này hiện đã thực hiện pháp lý đến giai đoạn cấp sổ đỏ riêng cho từng lô biệt thự Nhưng hiện tại: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0175` — này hồi xưa mình có thông tin nhưng sau đó đề xuất là không quan tâm sâu do có 2 nhược điểm lớn là: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0296` — thông qua đấu thầu nên khả năng cao chỉ thực hiện được chuyển nhượng thông qua hình thức mua cổ phần nên: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0262` — tiền M&A nên đang bị phẩn bổ khá nhiều thời gian cho phần phân tích các dự án tiền M&A này Begin quote: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0222` — trước năm 2024 đúng thật là thấy giá chung cư của HN thấy thấp hơn SG nếu nhìn vị trí có tính tương đương: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0179` — tuy đạt hiệu quả đầu tư về mặt tính toán nhưng sẽ bị vướng mắc về Pháp lý đất (đất SKC bị hết hạn: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0069` — đã được chấp thuận đầu tư dự án và đã được gia hạn tiến độ 02 năm kể từ ngày được cấp phép xây dựng - Hiện chủ: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0269` — được tính bằng cách lấy tổng doanh thu trừ các chi phí vận hành trực tiếp (như chi phí phòng: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0143` — đạt hiệu quả LNTT/TMĐT ~ >=20% ở khung từ giá bán bình quân chưa VAT đạt từ 75 triệu/m2 trở lên chi phí đầu tư: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **CRITICAL** `BDS-CURATED-0180` — đạt hiệu quả với giá mua dự án ở khoảng 17 triệu đồng/m2 ~ ngưỡng giá mua dự án 520 tỷ đồng: bad_project_name — Tên dài >90 ký tự, có thể là tiêu đề tin nhắn/câu mô tả
+- **HIGH** `BDS-CURATED-0071` — (FS): message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0071` — (FS): suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0124` — (giá bán quỹ đất bao gồm cam kết của đối tác sẽ hỗ trợ phần đất đi vào dự án) với chi phí làm đường là 1tr/m2: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0183` — (pháp lý: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0274` — 12ha đủ lớn để có thể địn hướng triển khai tiện ích cảnh quan: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0072` — 132 $/phòng/đêm 145: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0001` — 31 Trần Não: multi_scenario_unstructured — Có 8 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0362` — 386 ha là 84: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0315` — 48 Nguyễn Thiện Thuật: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0099` — 50ha thuộc huyện Vĩnh Tường – Yên Lạc: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0099` — 50ha thuộc huyện Vĩnh Tường – Yên Lạc: multi_scenario_unstructured — Có 10 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0184` — 50ha ở Vĩnh Yên: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0125` — 53ha đấu thầu tại đường Thăng Long: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0049` — 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0228` — => Nên chưa đánh giá hiệu quả dự án theo yếu tố dòng tiền ** Link Drive: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0228` — => Nên chưa đánh giá hiệu quả dự án theo yếu tố dòng tiền ** Link Drive: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0073` — AK (2025)~ 4: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0159` — Aqua city của Novaland đã được tháo gỡ vướng mắc về pháp lý: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0275` — Aqua thì hiện nay Nova đang dừng triển khai ở dự án này: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0342` — Bất động sản khảo sát: multi_scenario_unstructured — Có 10 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0186` — CCN Giao Yến cũng đang ở bước đầu xin dự án: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0053` — Chen Sea 3: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0035` — Chung cư Minh Ngọc tại đường CMT8: multi_scenario_unstructured — Có 10 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0025` — Chung cư Võ Thị Sáu: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0002` — Chung cư Đỗ Xuân Hợp: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0003` — Chưa đặt tên: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0276` — Cát Lái: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0187` — Cát Lái từ P: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0101` — Cù lao Tân Vạn theo đơn giá bán (đất + nhà) trung bình dựa vào các loại hình do Mr: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0055` — DKC ARITA TWIN TOWER 1: multi_scenario_unstructured — Có 10 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0012` — Diamond Garden Đào Trí Phú Thuận: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0076` — Giá bán đề xuất: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0076` — Giá bán đề xuất: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0076` — Giá bán đề xuất: multi_scenario_unstructured — Có 8 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0277` — Gladia heights dự kiến triển khai trong 2026 này: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0037` — Green Hill tại Quy Nhơn: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0313` — H2-02: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0230` — HLW - Merryaland 1: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0077` — Hoa viên Vĩnh Thanh sau khi có Thông số từ P: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0038` — Hoa viên Vĩnh Thanh tại đường nhánh của đường DT19: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0007` — Holiday Beach: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0146` — Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0146` — Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0322` — Hải Nhân: suspicious_shared_coordinate — no_reliable_coordinate; merged duplicate group needs coordinate review
+- **HIGH** `BDS-CURATED-0322` — Hải Nhân: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0102` — Hải Âu tại Bãi Trường: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0323` — Hội An Riverside Resort & Spa: suspicious_shared_coordinate — no_reliable_coordinate; merged duplicate group needs coordinate review
+- **HIGH** `BDS-CURATED-0103` — Hội An Riverside Resort & Spa theo Concept Lamanon và giá kinh doanh của anh David Cường cung cấp: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0231` — Hội An Riverside có nhiều khả năng thay đổi concept: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0344` — KCN Phước An tại xã Phước An: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0163` — KDC: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0106` — KDC An Tôn theo 02 phương án quy hoạch: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0106` — KDC An Tôn theo 02 phương án quy hoạch: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0080` — KHU DU LỊCH SINH THÁI BIỂN CAO CẤP LẠC VIỆT: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0190` — KS 25 Trần Phú sẽ đi theo PA 5 tầng nổi + 1 tầng hầm: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0317` — Khu gia đình quân nhân quân chủng PK-KQ (8: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0278` — Khu nhà ở công nhân và chuyên gia tại xã Nhơn Trạch của Công ty TNHH Vạn Phúc: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0057` — Khu trung tâm tòa nhà hỗn hợp thương mại: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0082` — Khu Đô Thị Mới Bắc Quán Hành - Quán Hành - Nghi Lộc - Nghệ An: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0164` — Khu Đô Thị Văn Giang (Red River Villa) tại Hưng Yên: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0127` — Khách sạn: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0148` — Lô mặt tiền Quốc Lộ 13 Hiệp Bình Phước: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0314` — Lô đất Phú Thọ Hòa Tân Phú: multi_scenario_unstructured — Có 13 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0165` — NOXH sẽ giúp tạo thương hiệu tích cực cho công ty trên thị trường: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0381` — NOXH đang đánh giá khoảng 15Km Trên dưới 20 Triệu/m2 Giá đất UBND MT đường DT742 5 Triệu/m2 Theo Tổng mức đầu: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0191` — Nguyễn Thiện Thuật và Đoàn Trần Nghiệp - Nha Trang: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0306` — Ngọc Hồi Thanh Trì: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0059` — Nơ Trang Long: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0338` — PGK phương án 900 tỷ: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0128` — Parklane: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0307` — Parklane P: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0345` — Phú Gia Khiêm với 02 phương án: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0060` — Phú Quang: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0280` — Phượng Hoàng theo Chính sá… Vậy chốt PkD phương án này đi Ok Sếp: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0280` — Phượng Hoàng theo Chính sá… Vậy chốt PkD phương án này đi Ok Sếp: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0193` — Regalia Gold 4 sao tại Nha Trang: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0339` — Richland: multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0150` — Richland Quận 9: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0150` — Richland Quận 9: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0009` — Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13: multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0108` — Suối Nhum với giá 1180 tỷ theo hình thức chuyển nhượng 100% cổ phần cty với hiện trạng có Quy hoạch mới dự kiế: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0166` — Sông Đà - Quốc Cường Gia Lai (Nguồn từ Mr Tiến R&D) có giá chào 6: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0151` — THEO PHƯƠNG ÁN KINH DOANH ANH CƯỜNG – TMĐT Ko bao gồm ĐẤT Kết quả kinh doanh – PA vận hành 15 năm + GOP bình q: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0109` — Thanh Đa: multi_scenario_unstructured — Có 8 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0281` — The Bale của Được gửi giá đã giảm mà lại ko lãi hã Begin quote: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0196` — Thông tin quyết định chủ trương đầu tư/pháp lý dự án/thông tin quy hoạch dự án - Thông tin đơn vị khác tham: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0028` — Thủ Đức Living: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0085` — Toàn Thịnh Phát tại Bãi Trường: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0004` — Trần Đức 1 2.8ha Thuận Giao: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0004` — Trần Đức 1 2.8ha Thuận Giao: multi_scenario_unstructured — Có 6 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0086` — Urban Green: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0086` — Urban Green: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0111` — Vì 2 vấn đề trên: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0111` — Vì 2 vấn đề trên: multi_scenario_unstructured — Có 9 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0132` — Võ Văn Kiệt (Gộp 2 Lô) theo chỉ tiêu QH dự kiến điều chỉnh: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0087` — Văn phòng tại khu đất 197 Lê Văn Sỹ: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0029` — Văn phòng tại khu đất 197 Lê Văn Sỹ cập nhật Hệ số sử dụng đất mới 9: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0112` — Vương Bảo Long (kèm đánh giá pháp lý) *Hiện trạng: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0112` — Vương Bảo Long (kèm đánh giá pháp lý) *Hiện trạng: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0197` — Với phương án của mình trước là làm phân kh: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0197` — Với phương án của mình trước là làm phân kh: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0113` — Westgate của AnGia – 38 tr/m2 (vị trí trung tâm Huyện Bình Chánh) + Thấp hơn mức giá trung bình của Akari – Na: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0283` — by Huy M - IM: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0284` — bên mình đã đang follow nha a Huy Mai-PTDT Anh đã share hồ sơ cho em rồi nha: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0198` — cao tầng phải đầu tư 2–3 tầng hầm Trường hợp cần rà soát chi tiết và cập nhật chính xác hơn: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0088` — cao tầng tại Trung tâm Quận 9 (TPHCM) với quy mô 3: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0199` — cao tầng với: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0334` — chung cư Hải Sơn có diện tích đất 8: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0006` — chung cư Thuận Nghiệp - DT743C: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0041` — chung cư Thành Lộc với tổng diện tích đất phù hợp quy hoạch để thực hiện dự án là 8: multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0325` — chung cư Việt An: suspicious_shared_coordinate — no_reliable_coordinate; merged duplicate group needs coordinate review
+- **HIGH** `BDS-CURATED-0325` — chung cư Việt An: multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0237` — chung cư nhiều nhưng số lượng dự án và thị trường thì thấy Đà Nẵng có vẻ sôi động hơn à Nhưng condotel ở Đà Nẵ: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0063` — chung cư trên quy đất này có thể theo 2 hướng: multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0238` — chưa bàn giao nên chưa dc vào ở à: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0152` — chưa phê duyệt quyết định/ chấp thuận chủ trương đầu tư: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0089` — chỉnh trang): multi_scenario_unstructured — Có 4 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0286` — chợ lớn có khi phải điều chỉnh ranh Begin quote: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0239` — chợ lớn có khi phải điều chỉnh ranh Dự án Chợ Lớn đang làm quy hoạch anh Tài đã có cập nhật ranh Metro vào rồi: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0239` — chợ lớn có khi phải điều chỉnh ranh Dự án Chợ Lớn đang làm quy hoạch anh Tài đã có cập nhật ranh Metro vào rồi: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0240` — càng tốt ạ Vì luật hiện nay vẫn quy định đơn giá ko dc: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0030` — có 1 mặt tiền đường Song Hành rộng khoảng 110m của đường Xa lộ Hà Nội: multi_scenario_unstructured — Có 5 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0019` — có 2 mặt tiền đường Thuận An Hóa rộng khoảng 60m: multi_scenario_unstructured — Có 10 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0241` — có giá vốn đất thấp trong khi hệ số cao (trên 11 chấm): suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0042` — có mặt tiền rộng khoảng 100m ngay đường Nguyễn Hữu Thọ: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0042` — có mặt tiền rộng khoảng 100m ngay đường Nguyễn Hữu Thọ: multi_scenario_unstructured — Có 9 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0115` — có tỷ lệ LNTT/TMDT đạt hiệu quả nhưng không đạt hiệu quả về chỉ tiêu IRR: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0169` — có vị trí tại phường An Bình: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0200` — cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0201` — cần kiểm tra lại QH 1: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0441` — cập nhật chốt xin giữ dân số cho PGK là 3800: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0243` — của Novaland được tháo gỡ liên quan đến Waterbay và Lakeview theo NQ 170 của Quốc Hội Liên quan đến vấn đề giả: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0170` — do mình có điều chỉnh qh 1/500: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0203` — du lịch sinh thái nghỉ dưỡng giải trí núi Chứa Chan với giá khoảng 1: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0171` — dự kiến hợp tác vs: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0204` — dự kiến hợp tác vs park hyatt: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0020` — gồm Chung cư cao tầng gồm 02 Hầm + 02 tầng Khối đế + 26 tầng căn hộ (trong đó căn hộ NOXH chiếm 20% tổng số că: multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0133` — gộp 2 lô Võ Văn Kiệt theo thay đổi giá bán căn hộ và giá mua dự án: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0245` — hiện tại mình đang vận hành để xem thử mình có chi phí nào khác cần bổ sung không à: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0064` — khu dân cư cao tầng Ngọc Hồi với tổng diện tích đất thực hiện dự án là 24: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0043` — khu mặt tiền đường Ngô Chí Quốc (gom đất gần Phú Quang)- Cập nhật Quy hoạch Phân khu: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0043` — khu mặt tiền đường Ngô Chí Quốc (gom đất gần Phú Quang)- Cập nhật Quy hoạch Phân khu: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0335` — khá cao cấp): multi_scenario_unstructured — Có 7 quy mô/diện tích khác nhau nhưng chưa có scenario_data
+- **HIGH** `BDS-CURATED-0416` — khác Team cũng có đánh giá lại theo giá thị trường: message_subject_variant — Tên chứa từ khóa tiêu đề báo cáo/phương án, cần gom dự án cha
+- **HIGH** `BDS-CURATED-0208` — không khả thi với bất kỳ giá mua nào Begin quote: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0118` — không đạt hiệu quả tài: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0134` — không đạt hiệu quả ạ Begin quote: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
+- **HIGH** `BDS-CURATED-0094` — không đạt được hiệu quả với NPV: suspicious_shared_coordinate — Same coordinate is shared by many unrelated project names; verify before relying on map marker.
