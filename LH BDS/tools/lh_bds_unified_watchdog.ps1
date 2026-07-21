@@ -70,7 +70,8 @@ function Ensure-PlanningProxy() {
   $out = Join-Path $LogDir 'planning_proxy_8788.out.log'
   $err = Join-Path $LogDir 'planning_proxy_8788.err.log'
   Log 'Starting Guland/GIS planning proxy on 0.0.0.0:8788.'
-  Start-Process -FilePath 'node' -ArgumentList 'nvtc_9router_proxy.js' -WorkingDirectory $backend -WindowStyle Hidden -RedirectStandardOutput $out -RedirectStandardError $err -Environment @{ NVTC_PROXY_PORT = '8788' }
+  $cmd = '/c set NVTC_PROXY_PORT=8788&& node nvtc_9router_proxy.js'
+  Start-Process -FilePath 'cmd.exe' -ArgumentList $cmd -WorkingDirectory $backend -WindowStyle Hidden -RedirectStandardOutput $out -RedirectStandardError $err
   for ($i=0; $i -lt 12; $i++) { Start-Sleep -Seconds 5; if (Test-UrlOk 'http://127.0.0.1:8788/health' 5) { Log 'Guland/GIS planning proxy healthy after start.'; return } }
   Log 'WARNING: planning proxy still unhealthy after 60s.'
 }
@@ -87,9 +88,8 @@ function Ensure-PublisherSingleton() {
   $out = Join-Path $LogDir 'lh_tunnel_publish.out.log'
   $err = Join-Path $LogDir 'lh_tunnel_publish.err.log'
   Log 'Starting tunnel publisher for rd=8787 and qh=8788.'
-  Start-Process -FilePath 'node' -ArgumentList @('tools\lh_tunnel_publish.js') -WorkingDirectory $Root -WindowStyle Hidden -RedirectStandardOutput $out -RedirectStandardError $err -Environment @{
-    RD_PORT='8787'; QH_PORT='8788'; DEPLOY_DIR='public_final_2026_07_11'; FIREBASE_SITE='lhrealestate'; FIREBASE_PROJECT='hoa-investment'; FIREBASE_CONFIG='firebase.json'; HEALTH_INTERVAL_MS='30000'; HEALTH_FAIL_LIMIT='3'
-  }
+  $runner = Join-Path $Root 'tools\run_lh_tunnel_publish.cmd'
+  Start-Process -FilePath $runner -WorkingDirectory $Root -WindowStyle Hidden -RedirectStandardOutput $out -RedirectStandardError $err
 }
 
 function Remove-DuplicateQuickTunnels() {
