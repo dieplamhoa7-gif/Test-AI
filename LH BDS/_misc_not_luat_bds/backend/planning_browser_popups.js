@@ -160,30 +160,31 @@ async function readGulandPopupText(lat, lon) {
     await page.waitForSelector('.leaflet-container, #map, .map', { timeout: 12000 }).catch(() => {});
     await page.waitForTimeout(2500);
 
-    // Force Leaflet/Guland globals to the exact coordinate. Do not create a new L.map(); use page globals only.
+    // Switch Guland into its real check-plan mode before clicking the coordinate.
+    // Without this, the page stays at is_check_plan=0 and returns nearby listings only.
     await page.evaluate(async ({ lat, lon }) => {
       const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-      const maps=[];
-      for (const k of Object.keys(window)) {
-        let v;
-        try { v = window[k]; } catch (_) { continue; }
-        try { if (v && typeof v==='object' && typeof v.setView==='function' && typeof v.getCenter==='function') maps.push(v); } catch (_) {}
-      }
-      const map = window.map || window.guland_map || window.map_view || window.main_map || maps[0];
+      const map = window.map || window.__sqhMap || (typeof window.get_map === 'function' ? window.get_map() : null);
+      window.is_check_plan = 1;
+      try { if (typeof window.applyCheckPlanMapLayerSwitch === 'function') window.applyCheckPlanMapLayerSwitch(); } catch (_) {}
       if (map && typeof map.setView === 'function') {
-        try { map.setView([lat, lon], 19); } catch(e) {}
+        try { map.setView([lat, lon], 19); } catch (_) {}
+        await sleep(3000);
       }
-      if (window.main_marker && typeof window.main_marker.setLatLng === 'function') {
-        try { window.main_marker.setLatLng([lat, lon]); } catch(e) {}
-      }
-      if (window.main_marker && typeof window.main_marker.fire === 'function') {
-        try { window.main_marker.fire('click'); } catch(e) {}
-      }
-      // Try common app functions if present.
-      for (const fn of ['checkPlan','check_planning','showPlanning','getPlanning','loadPlanning']) {
-        if (typeof window[fn] === 'function') { try { window[fn](lat, lon); } catch(e){} }
-      }
-      await sleep(3500);
+      try {
+        // Guland loads the parcel popup from the Leaflet container click handler.
+        // `main_marker.fire()` alone only moves the marker on newer page builds.
+        if (map && typeof map.latLngToContainerPoint === 'function' && typeof map.getContainer === 'function') {
+          const pt = map.latLngToContainerPoint([lat, lon]);
+          const rect = map.getContainer().getBoundingClientRect();
+          map.getContainer().dispatchEvent(new MouseEvent('click', {
+            bubbles: true, clientX: rect.left + pt.x, clientY: rect.top + pt.y
+          }));
+        }
+        if (window.main_marker && typeof window.main_marker.setLatLng === 'function') window.main_marker.setLatLng([lat, lon]);
+        if (window.main_marker && typeof window.main_marker.fire === 'function') window.main_marker.fire('click');
+      } catch (_) {}
+      await sleep(8000);
     }, { lat, lon });
 
     // Try clicking the marker - try several possible selectors
