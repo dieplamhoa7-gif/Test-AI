@@ -89,8 +89,10 @@ def _looks_listing(url: str) -> bool:
 
 def _location_ok(text: str, target: SearchTarget) -> bool:
     t = (text or "").lower()
-    # Ưu tiên TP.HCM/Thủ Đức/Dĩ An quanh tọa độ, loại bớt các Phạm Văn Đồng ở Hà Nội.
-    positive = ["thủ đức", "thu duc", "hiệp bình", "hiep binh", "linh đông", "linh dong", "dĩ an", "di an", "bình dương", "binh duong", "tp.hcm", "hồ chí minh", "ho chi minh", "vạn phúc", "van phuc", "him lam phú đông", "him lam phu dong"]
+    # Ưu tiên TP.HCM + các cụm địa danh đã gặp trong hệ LH BDS.
+    # Trước đây danh sách này thiên về Thủ Đức/Dĩ An nên tọa độ Bình Hưng - Bình Chánh
+    # dễ rơi khỏi discovery/fallback dù search ngoài ra Lovera Vista.
+    positive = ["thủ đức", "thu duc", "hiệp bình", "hiep binh", "linh đông", "linh dong", "dĩ an", "di an", "bình dương", "binh duong", "tp.hcm", "hồ chí minh", "ho chi minh", "vạn phúc", "van phuc", "him lam phú đông", "him lam phu dong", "bình hưng", "binh hung", "bình chánh", "binh chanh", "nguyễn văn linh", "nguyen van linh", "lovera vista", "mizuki", "saigon mia", "trung sơn", "trung son", "nam sài gòn", "nam sai gon"]
     negative = ["bắc từ liêm", "bac tu liem", "cổ nhuế", "co nhue", "hà nội", "ha noi", "nam từ liêm", "nam tu liem"]
     if any(n in t for n in negative):
         return False

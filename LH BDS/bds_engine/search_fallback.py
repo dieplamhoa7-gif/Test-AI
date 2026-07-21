@@ -18,9 +18,50 @@ def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return 2 * r * asin(sqrt(a))
 
 
-# Approximate anchors for common Thu Duc / nearby comparables.
+# Approximate anchors for common LH BDS comparable clusters.
 # Kept deliberately small; this is fallback evidence, not the valuation engine.
 _PROJECT_CATALOG = [
+    {
+        "name": "Lovera Vista",
+        "lat": 10.7261,
+        "lng": 106.6678,
+        "links": {
+            "Batdongsan.com.vn": [
+                ("Mua bán căn hộ Lovera Vista", "https://batdongsan.com.vn/ban-can-ho-chung-cu-lovera-vista"),
+                ("Cho thuê căn hộ Lovera Vista", "https://batdongsan.com.vn/cho-thue-can-ho-chung-cu-lovera-vista"),
+            ],
+            "Guland.vn": [
+                ("Dự án Lovera Vista", "https://guland.vn/du-an/lovera-vista"),
+            ],
+        },
+    },
+    {
+        "name": "Mizuki Park",
+        "lat": 10.7171,
+        "lng": 106.6629,
+        "links": {
+            "Batdongsan.com.vn": [
+                ("Mua bán căn hộ Mizuki Park", "https://batdongsan.com.vn/ban-can-ho-chung-cu-mizuki-park"),
+                ("Nhà đất bán Mizuki Park", "https://batdongsan.com.vn/nha-dat-ban-mizuki-park"),
+            ],
+            "Guland.vn": [
+                ("Dự án Mizuki Park", "https://guland.vn/du-an/mizuki-park"),
+            ],
+        },
+    },
+    {
+        "name": "Saigon Mia",
+        "lat": 10.7330,
+        "lng": 106.6889,
+        "links": {
+            "Batdongsan.com.vn": [
+                ("Mua bán căn hộ Saigon Mia", "https://batdongsan.com.vn/ban-can-ho-chung-cu-saigon-mia"),
+            ],
+            "Guland.vn": [
+                ("Dự án Saigon Mia", "https://guland.vn/du-an/saigon-mia"),
+            ],
+        },
+    },
     {
         "name": "Vạn Phúc City",
         "lat": 10.8266,
