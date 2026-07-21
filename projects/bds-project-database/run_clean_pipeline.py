@@ -8,6 +8,7 @@ scripts=[
  'backfill_master_dates_from_batches.py',
  'clean_planning_legal_fields.py',
  'clean_financial_fields.py',
+ 'attach_map_links_from_chunks.py',
  'audit_clean_master.py',
  'build_geocode_candidates.py',
  'build_web_projects_data.py',
