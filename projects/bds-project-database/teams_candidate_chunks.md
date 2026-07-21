@@ -2207,3 +2207,3340 @@ Vị trí: https://maps.app.goo.gl/ioqJ9N2mKRyMdiAe6
 23.12.13_So sanh PA 3.700 dan và 5.437 dan.pdf
 So với báo cáo năm 2023 thì hiện tại dự án ... by Khoa L - INVT
 ```
+
+
+## Chunk 73 — batch_062.txt
+
+```text
+P.ĐT báo cáo Sếp Admin 01 về phương án gộp 2 lô Võ Văn Kiệt ~ diện tích 4.600 m2 như sau:
+
+1. VỊ TRÍ VÀ RANH ĐẤT 2 LÔ ĐẤT:
+Vị trí theo đường link: Vị Trí Dự án
+
+
+
+2. THÔNG SỐ QUY HOẠCH
+Trên cơ sở phòng QH giả định:
+
+
+Giữ nguyên chỉ tiêu dân số của 2 lô, theo đó tổng dân số cho dự án gộp là 1.290 dân (Lô Kế VVK là 740, Lô VVK là 550 dân).
+
+Điều chỉnh tăng hệ số sử dụng đất lên 13.7 (tăng 0.9 lần so với QH Lô Kế VVK là 12.8) đồng thời tăng 3 tầng nổi.
+
+         + Diện tích đất của 2 lô : 4.613 m2
+         + Quy mô xây dựng: 2 Block 30 tầng nổi, 3 tầng hầm.
+         + Tổng sản phẩm: 833 căn gồm 812 căn hộ ở + 21 căn Shop TM khối đế. 
+         + Hệ số sử dụng đất: 13,7 lần.
+
+
+
+3. HIỆU QUẢ DỰ ÁN
+Giả định về Giá mua dự án:
+* Lô A17-02 (gọi là DA Võ Văn Kiệt) cố định ~ 190 tr/m2. 
+* Lô A17-01 (gọi là DA Kế Võ Văn Kiệt) theo đơn giá chào là 380 tr/m2.
+
+
+3.1 Chi phí (Gồm VAT):
+
+
+a) Chi phí đất: 1.780 tỷ đồng ~ 52% TMĐT, gồm CP mua DA + Tiền SDĐ nộp:
++ CP nhận chuyển nhượng: 1.383 tỷ đồng ~ 298 tr.đ/m2. 
++ Tiền sử dụng đất bổ sung: 332 tỷ đồng, bằng (=) tiền sử dụng đất tính theo PP thặng dư (1.387 tỷ đồng)  (-) trừ đi tiền đất theo hiện trạng được khấu trừ 1.047 tỷ đồng (đơn giá đất ở nhà nước ban hành theo QĐ mới nhất số 45/2025/QĐ-UBND ngày 26/6/2025 áp dụng từ năm 2026 là 227 tr/m2). 
++ CP pháp lý ~ 2% TMĐT ~ 64 tỷ đồng.
+b) Chi phí Đầu tư Xây dựng & Khác (48%): ~1.643 tỷ đồng.
++ Chi phí xây dựng công trình chính (Chung cư): 1.379 tỷ đồng.
++ Chi phí hạ tầng: 5,3 tỷ VNĐ.
++ Tư vấn, quản lý & Dự phòng (10%): ~258 tỷ đồng.
+=> Suất đầu tư xây dựng All-in : ~21 tr gồm VAT, ~ 19 tr.đ/m2 chưa VAT. 
+c) Chi phí lãi vay: 180 tỷ đồng (dự kiến vay phần xây dựng trong năm đầu ~ 950 tỷ)
+d) Chi phí bán hàng ~ 19 % Doanh thu ~ 1.062 tỷ đồng.
+
+3.2 Doanh thu (Gồm VAT):
+ 
+Tổng doanh thu dự kiến (đã bao gồm VAT) 5.560 tỷ VNĐ, trong đó:
++ Căn hộ : ~4.826 tỷ VNĐ (Giá bán từ 100 tr, bình quân ~108 tr/m2 có VAT, 95 tr chưa VAT, thời điểm bán từ Q4/2027).
++ Shop TM: ~767 tỷ (Giá bán t~230 triệu VNĐ/m2 có VAT) vào cuối năm bàn giao dự án ~ 2030.
+
+
+
+3.3 Hiệu quả tài chính:
+ 
+
+
+Do phân khúc đơn giá bán từ 100 tr/m2 ở Đà Nẵng hiện chưa có nhiều minh chứng cho sự hấp thụ mạnh nên phòng ĐT đang tính thận trọng với tỷ lệ bán hàng thấp ở 2 năm đầu lần lượt 12% (2027), 36% (2028) và bán phần còn lại ở 2029, đồng thời suất vốn đầu tư xây dựng All -in 21 tr/m2 khá an toàn trong trường hợp các năm sau chi phí xây dựng tăng.
+ 
+Nên dự án chỉ đạt hiệu quả tài chính nhưng thấp ~ IRR 12%, LNĐ/TMĐT 20% với giá mua tính riêng cho lô A17-01 là 380 tr/m2. 
+
+Để đạt suất sinh lời kỳ vọng ~ IRR từ 20% và tỷ lệ LNTT/TMĐT 30%, phòng có chạy độ nhạy ở giá mua đất đầu vào và giá bán đầu ra của căn hộ thì kết quả tương ứng như sau:
+
+
+
+Kết quả Phân tích độ nhạy cho thấy:
+ 
+
+Dự án đạt hiệu quả với IRR>15% và LNTT/TMĐT >20% sẽ tương đương với khung giá mua mức 320 trđ/m2 ~ giá mua lô A17-02 khoảng 841 tỷ đồng.
+
+Dự án đạt hiệu quả với IRR>20% và LNTT/TMĐT >30% sẽ tương đương với khung giá mua mức 260-280 trđ/m2 ~ giá mua lô A17-02 từ 685 đến 738 tỷ đồng.
+
+
+Trân trọng báo cáo.
+```
+
+
+## Chunk 74 — batch_062.txt
+
+```text
+Phòng xin gửi đính kèm Báo cáo Đầu tư (dạng trình bày) và Báo cáo đề xuất giá của phòng R&D.
+
+28.5 P.ĐT BC Trinh Bay DA Vo Van Kiet Gop 2 Lo (IN).pdf
+27052026_R&D_2VVK - IN.pdf
+Sao Phú Quốc xây 16tr mà ĐN xây 21tr lận by Admin 01
+```
+
+
+## Chunk 75 — batch_062.txt
+
+```text
+Admin 01
+5/28/2026 5:16 PM
+Sao Phú Quốc xây 16tr mà ĐN xây 21tr lận
+
+Cái Đà Nẵng mình xây 3 hầm lận Sếp, Còn cái Bà Kèo mình 1 hầm. Với là cái ĐN mình bán tới gía ~100 tr/m2 nên chuẩn đầu tư, thiết bị cũng phải cao hơn cái Bà Kèo đang bán 65-70/m2 à Sếp.
+```
+
+
+## Chunk 76 — batch_062.txt
+
+```text
+Admin 01
+6/1 1:51 PM
+
+https://www.google.com/maps?q=10.8403809,106.7198151&entry=gps&shh=CAE&lucs=,94297699,94231188,9428…
+
+Hồi xưa mình có tính cái Kinh Đô này đúng k... by Admin 01
+```
+
+
+## Chunk 77 — batch_064.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau: 1. Giá chào cập nhật 600 tỷ 2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộ…
+2. 120 tỷ là số chốt chưa hay áng chừng nhỉ
+
+Begin quote, Admin 01, 5/27/2026 7:36 PM, 2... by Huy M - IM
+```
+
+
+## Chunk 78 — batch_064.txt
+
+```text
+Admin 01
+5/27/2026 7:36 PM
+2. 120 tỷ là số chốt chưa hay áng chừng nhỉ
+Mình đang tạm lấy theo số bên đó báo Sếp. Số liệu chi tiết thẩm định, cơ sở thì chưa có thông tin để check nên anh mới đề xuất có plda tham gia để đánh giá thêm về chuyên mô á Sếp. Với cái này họ chuyển cty nên cũng cần PTC thẩm định về bctc công tin để xem có khoản nợ tiềm tàng nào ko để tránh rủi ro mình mua vào sau này phát sinh thì mình phải chịu Sếp
+```
+
+
+## Chunk 79 — batch_064.txt
+
+```text
+P.ĐT gửi anh Admin 01 tóm tắt PL sơ bộ của dự án 43ha - Dự án Tân phú, Bình Dương (Kim Oanh) như sau:
+
+ 
+
+ 
+
+Link:  Công ty Kim Oanh liên quan gì đến vụ án 43ha “đất vàng” tại Bình Dương?
+
+ 
+
+Đối tác đang chào bán 13tr/m2 cho 43 ha (5,600 tỷ) ~ 30tr/m2 đất ở thương phẩm (theo 1/500 dự kiến đối tác đề xuất) và giá chào này theo hiện trạng dự án, không
+```
+
+
+## Chunk 80 — batch_066.txt
+
+```text
+Admin 01
+5/27/2026 4:34 PM
+Chi phí bán hàng ngoài đảo này tốn hơn nha
+
+Về chi phí bán hàng:
+
+-Tỷ lệ chi phí bán hàng của khối cao tầng đang dự kiến ở mức 17%, cao hơn so với dự án Fenica (16%). Đồng thời, mức chi phí này hiện chưa bao gồm chi phí nhà mẫu.
+
+-Ngoài ra, trong cơ cấu chi phí bán hàng có nhiều khoản mang tính chất cố định (fixed cost) nhưng hiện vẫn đang được phân bổ theo tỷ lệ doanh thu, như: chi phí setup sàn bán hàng, chi phí nhân sự quản lý, chi phí tổ chức sự kiện/bán hàng, sa bàn,… Các khoản chi phí này thực tế không chênh lệch quá lớn giữa dự án quy mô 1,500–2,000 căn của Bà Kèo và dự án Fenica chỉ khoảng 579 căn
+
+-Chi tiết tổng chi phí bán hàng (chưa VAT) của từng phương án hiện cũng rất cao như sau:
+
++PA10: 1,362 tỷ
+
++ PA11: 1,513 tỷ
+
++ PA12: 1,590 tỷ
+=> Do đó, nhìn chung chi phí bán hàng đã được dự trù ở mức tương đối  và theo hướng thận trọng ạ
+
+Begin quote, Admin 01, 5/27/2026 4:35 PM, V... by Thao L - INVT
+```
+
+
+## Chunk 81 — batch_066.txt
+
+```text
+Admin 01
+5/27/2026 4:35 PM
+Với chi phí dự phòng cũng cao hơn
+
+Về chi phí xây dựng:
+
+-Đối với khối cao tầng, hiện phương án thiết kế từ P.QH đang theo hướng tối ưu chi phí xây dựng, gồm: chỉ bố trí 01 tầng hầm và khối tháp cao khoảng 35–40 tầng, đồng thời sử dụng giải pháp để xe nổi.
+
+=> Vì vậy, chi phí xây dựng dự kiến sẽ không quá nặng như các dự án cao tầng phải đầu tư 2–3 tầng hầm
+
+Trường hợp cần rà soát chi tiết và cập nhật chính xác hơn, P.ĐT sẽ phối hợp cung cấp thêm thông tin đầu vào để P.QS tính toán và cập nhật lại chi phí xây dựng cụ thể ạ
+
+Anh nghĩ nên tăng cp bán hàng đi, ngoài đảo... by Admin 01
+```
+
+
+## Chunk 82 — batch_066.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau:
+1. Giá chào cập nhật 600 tỷ
+
+ 
+
+2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua chịu) 120 tỷ - điểm này cần P.PLDA đánh giá làm rõ vì theo thông tin đối tác cung cấp ban đầu, dự án đã có GPXD và GCN (100% đất ở xây dựng chung cư)
+
+ 
+
+3. Suất xây dựng gồm V: 17tr/m2 (all in). 
+
+ 
+
+4. Giá bán 75tr.m2 (chưa V, tim tường) (CPBH 15% doanh thu)
+
+ 
+
+Hiệu quả cập nhật như sau:
++ LNTT: 342 tỷ
++ NPV: 53 tỷ
++ IRR: 14.4%
++ LNTT/TMĐT: 19.8%
+
+
+
+* Một số lưu ý:
+1. Qua khảo sát nhanh các dự án “hàng xóm” của lô H2-02 thì chuẩn bàn giao các căn hộ của các dự án này khá thấp, ví dụ như không bàn giao bếp chỉ có ống chờ. Các căn hộ đều không có ban công. Tiện ích rất hạn chế (đánh giá không bằng Fenica). Hàng lang căn hộ rất hẹp (1.2m-1.4m).
+
+ 
+
+2. P.ĐT cũng tự thu thập được hồ sơ TKCS của dự án, theo đó dự án bố trí nhiều tiện ích (công viên chuyên đề, khu vui chơi trẻ em, sân thể thao, rạp phim ngoài trời, quảng trường nhạc nước, hồ bơi, SHCĐ, nhà trẻ…). Đánh giá tiện ích của dự án này vượt trội so với các dự án xung quanh.
+
+ 
+
+3. Dựa vào khảo sát thực tế, thị trường căn hộ khu vực đang có giá giao dịch thứ cấp từ 52-63tr/m2 (tùy dự án), riêng dự án Citi Grand chuẩn bị bàn giao có mức giá từ 65-70tr./m2. Như vậy mức giao dịch nền của các dự án tại KDC Cát Lái đang ở ngưỡng 60-70tr/m2 trong khi mức độ bàn giao và chuẩn căn hộ chỉ ở mức B- đến B.
+
+ 
+
+4. Theo chỉ đạo, P.ĐT cũng đã vừa họp nhanh với P.KD và RnD. Theo quan điểm P.KD giá bán dự án có thể ở mức 80-85 tr/m2 (chưa V, tim tường), bán vào nửa cuối 2027, CPBH ~ 12-13 %. Trong FS, P.ĐT vẫn đang để mức giá 75tr.m2 và CPBH là 15%. Sau khi có báo cáo tổng thể của P.KD, P.ĐT sẽ cập nhật FS và báo cáo sếp. 
+
+* Nhận định:
+
++ Đánh giá các đối thủ xung quanh không nhiều tiện ích, chuẩn bàn giao ko cao cấp hơn so với Fenica – trong khi đó suất đầu tư trong FS 17tr/m2 cho thấy cách tiếp cận chi phí thận trọng và suất đầu tư này sẽ đảm bảo room để công ty đầu tư nhiều hơn cho dự án. (có thể phát triển concept đặc biệt hơn, ví du như boutique…)
+
+ 
+
++ CPBH theo KD đề xuất ~ 12-13%, trong khi FS tính 15% nên đảm bảo ngân sách bán hàng cho dự án.
+
+ 
+
++ Giá bán trong FS ở mức 75tr/m2 thấp hơn so vơi KD dự kiến 80-85 tr/m2
+
+=> Như vậy FS đang tiếp cận ở mức độ thận trọng đồng thời cho thấy tiềm năng của dự án. 
+
+* Tuy nhiên, theo báo cáo trước P.ĐT nhận thấy dự án vẫn còn những vấn đề về mặt PLDA, cũng như đề xuất của đối tác là chuyển nhượng cổ phần công ty có tồn tại các RỦI RO, nên P.ĐT đề xuất:
+
+ 
+
+1. Đề xuất chỉ đạo PLDA đánh giá toàn diện Pháp lý dự án, rà soát khoảng tiền 120 tỷ tiền sử dụng đất mà đối tác vừa thông báo, kiểm tra rà soát các nghĩa vụ tài chính và các vấn đề khác.
+
+ 
+
+2. Do phương án chuyển nhượng CP công ty CP Phú Gia nên có thể có phát sinh các nghĩa vụ thuế-phí, P.ĐT đề xuất P.TC tham gia đánh giá tài chính công ty và các rủi ro phát sinh trong trường hợp thực hiện chuyển nhượng CP Công ty
+
+Begin quote, Thao L - INVT, 5/27/2026 5:08 ... by Admin 01
+```
+
+
+## Chunk 83 — batch_068.txt
+
+```text
+K.ĐT báo cáo Sếp  Admin   01 , về lô đất là... by Hoa D - CVDT, has an attachment.
+5/27 9:18 AM
+Edited
+Hoa D - CVDT
+
+K.ĐT báo cáo Sếp Admin 01, về lô đất làm dự án khách sạn cạnh TMS với giá chào là 650tr/m2 tại 290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng như sau:
+
+I SƠ BỘ VỀ DỰ ÁN
+
+Vị trí: Sở hữu vị trí mặt tiền hiếm có trên trục biển Võ Nguyên Giáp – trung tâm du lịch cao cấp Đà Nẵng, kết nối thuận tiện sân bay, trung tâm và Hội An.
+Pháp lý: Đất TMDV có thời hạn sử dụng lâu dài. Sổ bị cấp sai về thời hạn sử dụng đất nên khi xin dự án sẽ điều chỉnh lại còn 50 năm tới 2061.
+Quy hoạch: hiện đang giả định là 25 tầng, HS SDĐ: 14.7
+
+                                              
+
+II ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN
+
+1. Phương án Kinh Doanh: Dựa trên dự án KS Serene, Phòng đầu tư giả định như sau:
+
+2. Dòng tiền dự án
+
+ 
+
+ 
+
+3. Độ nhạy dự án
+
+ 
+
+Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá thuê (VAT)
+
+Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá mua đất
+
+Để IRR của dự án đạt 10% thì giá mua đất khoản 144 tỷ (Tương đương 129tr/m2) và TMĐT Phòng là 2.8 tỷ/key 
+
+2026.05.27_Bao cao Loi lo dat canh TMS.pdf
+```
+
+
+## Chunk 84 — batch_068.txt
+
+```text
+Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ DA Chung cư Hạnh Phúc (Nguồn Mr.Khôi), diện tích đất gần 7.000 m2, đường Trần Đại Nghĩa, H.Bình Chánh, TPHCM :
+1. Vị trí dự án:  Số 10 Trần Đại Nghĩa, H. Bình Chánh, TP HCM, link map.
+
+2. Hiện trạng:
++ Pháp lý: 
+* Giấy CN QSD đất: 6.952 m2, đất SXKD cấp năm 2005 - thời hạn lâu dài - Chủ là DN tư nhân Thanh Tùng.
+* QĐ 54/QĐ-SXD-PTN ngày 29/04/2008 của Sở Xây dựng TP.HCM – Phê duyệt dự án đầu tư xây dựng Cao ốc căn hộ Hạnh Phúc, về Quy định pháp lý xây dựng thì QĐ này tương đương với ~ GPXD thời điểm đó. 
+* QĐ số 4448/QĐ-UBND ngày 11/10/2008 của UBND TP.HCM – Giao đất cho Doanh nghiệp tư nhân Thanh Tùng để xây dựng nhà ở chung cư. Tuy nhiên, doanh nghiệp Chưa hoàn thành nghĩa vụ tài chính khi chuyển Mục đích SKC sang đất ở xây dựng chung cư. 
++ Xây dựng: Đã xây lên tầng 5 từ 2018 và bỏ hoang đến nay.
++ Bán hàng: Đã mở bán từ 2018, và có thông tin (Nguồn tự tìm trên các trang báo điện tử thì đã thu 15% tiền HĐ từ khách hàng. Hiện chưa có thông tin về tình trạng bán hàng, link bài báo tại đây Link.
++ Thế chấp: Cũng từ bài báo phía trên Link. thì Sổ đã thế chấp tại NH AGribank CN Bình Tân (Khoản nợ của DN Thanh Tùng - Chủ sở hữu đứng tên trên Sổ đất).
+
+Thông tin tự tìm hiểu thêm:
+
+* Năm 2008: DA tên đầu tiên là Happy Plaza - Khởi công 2008 DN Thanh Tùng làm chủ đầu tư.
+
+* Năm 2018: DA tái khởi công, đổi tên Victoria Garden - Công ty TNHH Đầu tư- Khai thác Nguyên Hạnh Lợi mua lại khoản nợ của Thanh Tùng, mở bán và đổi quy mô xây dựng so với QĐ được phê duyệt trước đây.
+* Năm 2019: DA tiếp tục đổi tên Victoria Boulevard và đổi chủ đầu tư - Công ty TNHH Gia Việt Khánh Hưng (Cty mẹ của Nguyên Hạnh Lợi thu hồi dự án => Giao cho Công ty Cường Thịnh bán hàng và thu tiền).  
+
+* Năm 2020: Cơ quan CSĐT Công an TP.HCM cho biết đang điều tra vụ án lừa đảo chiếm đoạt tài sản xảy ra tại Công ty TNHH Đầu tư – Khai thác Nguyên Hạnh Lợi và Công ty TNHH Gia Việt Khánh Hưng. (Hai công ty tự xưng là chủ đầu tư mở bán DA trên), link bài báo tại đây
+
+ 
+
+3. Tóm tắt các rủi ro nổi bật (Sắp xếp theo mức độ nghiêm trọng):
+(i). Rủi ro về Giấy chứng nhận Quyền sử dụng đất (Mức độ: Nghiêm trọng)
+* Giấy chứng nhận (GCN) gốc có khả năng cao đang cắm ở ngân hàng để đảm bảo khoản nợ của DN Thanh Tùng (quá hạn), chưa hoàn tất chuyển mục đích sd đất sang đất ở chung cư (vẫn là đất SXKD). Nếu triển khai dự án thì Sổ này cơ quan nhà nước sẽ thu hồi.
+* Dự án chưa được cấp GCN mới do chủ đầu tư chưa nộp chứng từ chứng minh đã hoàn thành nghĩa vụ tài chính (tiền sử dụng đất, lệ phí trước bạ).
+
+=> Việc xác định lại tiền sử dụng đất ở thời điểm hiện tại cũng có thể cao hơn rất nhiều so với khái toán năm 2008.
+=> Hậu quả: Toàn bộ pháp lý đất đai của 644 căn hộ (theo QĐ phê duyệt dự án) không được đảm bảo, dẫn đến việc người mua nhà sẽ không thể được cấp sổ hồng riêng.
+(ii). Rủi ro dự án "treo" và chậm tiến độ (Mức độ: Nghiêm trọng)
+* Theo QĐ phê duyệt, thời gian thực hiện từ 2008 - 2011. Tuy nhiên, thực tế dự án mới thi công đến tầng 5 rồi ngưng trệ, đến nay đã 18 năm.
+=> Việc chậm trễ này dẫn đến nguy cơ dự án bị Nhà nước thu hồi đất.
+(iii). Rủi ro về năng lực chủ đầu tư & Huy động vốn (Mức độ: Cao)
+* Loại hình doanh nghiệp: 
+
++ Chủ đầu tư ban đầu là Doanh nghiệp tư nhân (DNTN), không có tư cách pháp nhân. Chủ sở hữu chịu trách nhiệm vô hạn bằng tài sản cá nhân, khiến cấu trúc pháp lý bảo vệ người mua nhà rất yếu.
+
++ Các thông tin về các công ty tự xưng là chủ đầu tư thời điểm 2018 (như Cty Nguyên Hạnh Lợi) chưa có cơ sở pháp lý về chuyển nhượng dự án. Lại bị điều tra về tội lừa đảo năm 2020. 
+
+* Huy động vốn trái quy định: Dự án có nguy cơ đã thu tiền của khách hàng trước khi hoàn tất phần móng và hạ tầng, vi phạm pháp luật và có thể dẫn đến việc hợp đồng mua bán bị vô hiệu. 
+
+=> TÓM TẮT NHỮNG VƯỚNG CHÍNH CỦA DỰ ÁN TRÊN:
+
+* DA Chưa hoàn thành nghĩa vụ tài chính, sổ đang thế chấp ngân hàng.
+* DA Có nguy cơ bị thu hồi do chậm triển khai xây dựng (từ 2008 đến nay)
+* DA Có rủi ro tranh chấp, kiện tụng từ khách hàng cũ đã mua trước đây.
+* DA Có rủi ro vì chủ đầu tư đã bỏ trốn và bị khởi tố theo pháp luật về tội lừa đảo.
+* Da Có giá chào cao ~ hơn 1.000 tỷ đồng /~ 7000 m2 (~ 143 tr/m2) cho 1 DA vướng quá nhiều pháp lý.
+Từ những vướng và rủi ro về pháp lý ở trên, phòng ĐT đề xuất không nghiên cứu sâu dự án này. 
+
+Trân trọng.
+
+K.ĐT gửi anh  Admin   01  báo cáo dự án Bà ... by Thao L - INVT, has an attachment.
+```
+
+
+## Chunk 85 — batch_068.txt
+
+```text
+Thao L - INVT
+5/27 4:30 PM
+Edited
+Translate
+
+K.ĐT gửi anh Admin 01 báo cáo dự án Bà Kèo, Phú Quốc với 03 phương án 10,11,12 như sau:
+
+ 
+
+1. THÔNG SỐ QUY HOẠCH:
+
+- Theo thông tin từ P.QH, toàn bộ phần đất thương phẩm của dự án có khả năng được chuyển đổi sang đất ở. Do đó, định hướng phát triển tập trung vào 02 loại hình chính gồm Chung cư ở và Nhà liên kế.
+
+- Hiện K.ĐT đang phối hợp cùng P.QH nghiên cứu 03 phương án như sau:
+
++ PA10: 1,500 căn hộ + TTTM + 140 căn nhà liên kế 4 tầng, quy mô dân số khoảng 3,531 người.
+
++ PA11: 2,000 căn hộ + 44 shophouse + 114 căn nhà liên kế 4 tầng, quy mô dân số khoảng 4,355 người.
+
++ PA12: 2,000 căn hộ + TTTM + 138 căn nhà liên kế 4 tầng, quy mô dân số khoảng 4,525 người.
+
+Chi tiết từng phương án:
+
+ 
+
+a. PA10: Khối cao tầng nằm gần MT Trần Hưng Đạo, 1,500 căn hộ + TTTM, 140 Nhà liên kế 4 tầng với Tổng dân số là 3,531 người
+
+Tổng mặt bằng và Phối cảnh:
+
+ 
+
+b. PA11: Khối cao tầng nằm phía bên trong, 2,000 căn hộ + 44 Shophouses, 114 Nhà liên kế 4 tầng với Tổng dân số là 4,355 người
+
+Tổng mặt bằng và Phối cảnh:
+
+ 
+
+c. PA12: Khối cao tầng nằm gần MT Trần Hưng Đạo, 2,000 căn hộ + TTTM + 138 căn nhà liên kế 4 tầng, quy mô dân số khoảng 4,525 người.
+
+Tổng mặt bằng và Phối cảnh:
+
+ 
+
+ 
+
+2. CHI PHÍ
+
+=> Các phương án tăng số lượng căn hộ (PA11, PA12) làm chi phí đầu tư tăng đáng kể, đặc biệt ở các khoản tiền sử dụng đất, chi phí xây dựng và chi phí lãi vay.
+
+ 
+
+3. DOANH THU (chưa VAT, tim tường)
+
+ 
+
+ 
+
+4. HIỆU QUẢ DỰ ÁN
+
+ 
+
+ 
+
+5. ĐÁNH GIÁ:
+
+1. Các phương án tăng lên 2,000 căn hộ - đặc biệt PA12 (Khối cao tầng nằm gần MT Trần Hưng Đạo, 2,000 căn hộ + TTTM + 138 căn nhà liên kế 4 tầng, quy mô dân số khoảng 4,525 người) chưa đạt hiệu quả đầu tư tốt do Chi phí tăng mạnh, đặc biệt gồm:
+
+- Tiền sử dụng đất
+
+- Chi phí xây dựng
+
+- Chi phí lãi vay
+
+Trong khi đó, để phù hợp với khả năng hấp thụ của thị trường, P.RD đề xuất giá bán căn hộ PA12 chỉ khoảng 60 - 65 triệu đồng/m², thấp hơn so với PA10 (65 - 70 triệu đồng/m²).
+
+=> Việc chi phí đầu tư tăng nhưng giá bán giảm khiến hiệu quả của PA12 giảm đáng kể so với PA10.
+
+2. PA10: Khối cao tầng nằm gần MT Trần Hưng Đạo, 1,500 căn hộ + TTTM, 140 Nhà liên kế 4 tầng với Tổng dân số là 3,531 người có hiệu quả tốt hơn:
+
+- Quy mô sản phẩm phù hợp hơn với sức hấp thụ của thị trường Phú Quốc.
+
+- Mặt bằng giá bán tốt hơn, hỗ trợ tốc độ bán hàng.
+
+- Kiểm soát tốt hơn chi phí đầu tư và áp lực dòng tiền.
+
+=> Hiệu quả tài chính PA10 tốt hơn đáng kể so với các phương án tăng căn hộ.
+
+2026.05.07_BCPA10.11.12.pdf
+Chi phí bán hàng ngoài đảo này tốn hơn nha by Admin 01
+```
+
+
+## Chunk 86 — batch_068.txt
+
+```text
+Admin 01
+5/27 4:34 PM
+Translate
+Chi phí bán hàng ngoài đảo này tốn hơn nha
+Với chi phí dự phòng cũng cao hơn by Admin 01
+```
+
+
+## Chunk 87 — batch_068.txt
+
+```text
+P.ĐT cập nhật Sếp Admin 01 đánh giá pháp lý sơ bộ dự án Cát Lái từ P.PLDA
+
+Các vấn đề cần lưu ý như sau:
+
+ 
+
+- Do quá trình chuyển nhượng lô H2-02 từ Invesco sang Phú Gia khi chưa hoàn thành đầu tư xây dựng hạ tầng, do đó trong quá trình thẩm định chủ trương đầu tư, Sở XD đã có ý kiến đề nghị Sở NNMT giải thích vấn đề này=> P.PLDA đề xuất CĐT Phú Gia cung cấp ý kiến giải trình của Sở NNMT để đảm bảo kiểm soát rủi ro tiềm tàng
+
+ 
+
+- Dự án có thời hạn đưa đất vào sử dụng là tháng 12
+```
+
+
+## Chunk 88 — batch_073.txt
+
+```text
+Dạ P.ĐT báo cáo sếp Admin 01 dự án H2-02 (Sky Habitat) thuộc KDC Cát Lái I. Thông tin tổng quan: 📷 Lô H2-02 thuộc KDC Cát Lái có CĐT là Công ty Invesco. Năm 2014, Invesco đã chuyển nhượng lại 2 lô…
+Check kỹ lại xem, kêu bên Phòng Kinh Doanh đánh giá xem giá bán ổn không, số lượng ít vậy thì hạn chế bán hàng như thế nào
+
+Ok Sếp. Sáng PĐT cũng khảo sát hiện trạng k... by Huy M - IM
+```
+
+
+## Chunk 89 — batch_073.txt
+
+```text
+Huy M - IM
+5/26 9:02 PM
+Translate
+Ok Sếp. Sáng PĐT cũng khảo sát hiện trạng khu đất, các dự án xung quanh. Anh sẽ báo Bên KD và RD làm báo cáo chi tiết hơn
+```
+
+
+## Chunk 90 — batch_073.txt
+
+```text
+Wednesday, May 27
+K.ĐT báo cáo Sếp  Admin   01 , về lô đất là... by Hoa D - CVDT, has an attachment.
+5/27 9:18 AM
+Edited
+Hoa D - CVDT
+
+K.ĐT báo cáo Sếp Admin 01, về lô đất làm dự án khách sạn cạnh TMS với giá chào là 650tr/m2 tại 290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng như sau:
+
+I SƠ BỘ VỀ DỰ ÁN
+
+Vị trí: Sở hữu vị trí mặt tiền hiếm có trên trục biển Võ Nguyên Giáp – trung tâm du lịch cao cấp Đà Nẵng, kết nối thuận tiện sân bay, trung tâm và Hội An.
+Pháp lý: Đất TMDV có thời hạn sử dụng lâu dài. Sổ bị cấp sai về thời hạn sử dụng đất nên khi xin dự án sẽ điều chỉnh lại còn 50 năm tới 2061.
+Quy hoạch: hiện đang giả định là 25 tầng, HS SDĐ: 14.7
+
+                                              
+
+II ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN
+
+1. Phương án Kinh Doanh: Dựa trên dự án KS Serene, Phòng đầu tư giả định như sau:
+
+2. Dòng tiền dự án
+
+ 
+
+ 
+
+3. Độ nhạy dự án
+
+ 
+
+Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá thuê (VAT)
+
+Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá mua đất
+
+Để IRR của dự án đạt 10% thì giá mua đất khoản 144 tỷ (Tương đương 129tr/m2) và TMĐT Phòng là 2.8 tỷ/key 
+
+2026.05.27_Bao cao Loi lo dat canh TMS.pdf
+```
+
+
+## Chunk 91 — batch_074.txt
+
+```text
+P.ĐT báo cáo Sếp Admin 01 về dự án kế bên DA Võ Văn Kiệt, TP Đà Nẵng như sau:
+
+1. VỊ TRÍ VÀ RANH ĐẤT:
+
+Dự án thuộc lô A17-01, sát bên dự án Võ Văn Kiệt của Công ty (lô A17-02), đường Võ Văn Kiệt, TP. Đà Nẵng.
+
+Vị trí theo đường link: Vị Trí Dự án
+
+ 
+
+ 
+
+2. THÔNG SỐ QUY HOẠCH
+
+Trên cơ sở Quyết định chủ trương đầu tư theo QĐ 2915/QĐ-UBND ngày 09/12/2025 (nguồn từ cổng thông tin điện tử Thành phố Đà Nẵng tại trang Cổng thông tin TP Đà Nẵng
+
+Diện tích đất: 2.635 m2
+Dân số: 740 dân
+MĐXD: 60%
+Tầng cao: 27 tầng nổi, 3 tầng hầm.
+Tổng sản phẩm 305 căn gồm 299 căn hộ ở (không bán cho tổ chức, cá nhân người nước ngoài) + 6 căn shop khối đế (1 Trệt 1 Lầu).
+Hệ số sử dụng đất: 12,8 lần.
+
+3. HIỆU QUẢ DỰ ÁN
+
+3.1 Chi phí (Gồm VAT):
+
+ Chi phí đất: 1.182 tỷ đồng ~ 52% , gồm CP mua DA và tiền sử dụng đất nộp bổ sung:
+
++ CP nhận chuyển nhượng: 1.001 tỷ đồng ~ đơn giá chào là 380 tr.đ/m2, cao gấp đôi giá DA Võ Văn Kiệt là ~190 tr/m2.
+
++ Tiền sử dụng đất bổ sung: 164 tỷ đồng, bằng (=) tiền sử dụng đất tính theo PP thặng dư (762 tỷ đồng)  (-) trừ đi tiền đất theo hiện trạng được khấu trừ (hiện đơn giá đất ở nhà nước ban hành theo QĐ mới nhất là 227 tr/m2.)  => Tiền đất được khấu trừ: 598 tỷ đồng (Theo QĐ số 45/2025/QĐ-UBND ngày 26/6/2025 áp dụng từ năm 2026);
+
++ CP pháp lý ~ 2% TMĐT ~ 15,7 tỷ đồng.
+
+Chi phí Đầu tư Xây dựng & Khác (48%): ~907 tỷ VNĐ
+
++ Chi phí xây dựng công trình chính (Chung cư): 761,3 tỷ VNĐ.
+
++ Chi phí hạ tầng: 2,6 tỷ VNĐ.
+
++ Tư vấn, quản lý & Dự phòng: ~143,1 tỷ VNĐ.
+
+=> Suất đầu tư xây dựng All-in : ~19.6 tr gồm VAT, ~ 18 tr.đ/m2 chưa VAT.
+
+3.2 Doanh thu (Gồm VAT):
+
+Tổng doanh thu dự kiến (đã bao gồm VAT) đạt 2.903,6 tỷ VNĐ, cụ thể:
+
++ Căn hộ : ~2.633,1 tỷ VNĐ (Giá bán từ 100 tr, bình quân ~102 triệu VNĐ/m2 có VAT, thời điểm bán Q4/2027).
+
++ Shophouse: ~270,4 tỷ VNĐ (Giá bán t~220 triệu VNĐ/m2 có VAT).
+
+3.3 Hiệu quả:
+
+Tổng Lợi nhuận trước thuế (LNTT): 94 tỷ VNĐ.
+Tổng Lợi nhuận sau thuế (LNST): 75 tỷ VNĐ 
+Tỷ suất sinh lời nội bộ Dự án (Project IRR): 4,8%.
+Tỷ suất sinh lời nội bộ Vốn Chủ Sở Hữu (Equity IRR): 7,1% .
+Giá trị hiện tại thuần (NPV Chủ đầu tư): -49 tỷ VNĐ.
+Thời gian hoàn vốn có chiết khấu: 3 năm.
+Tỷ suất LNTT / Tổng mức đầu tư: 4.5%.
+
+Dự án không đạt hiệu quả tài chính với giá mua dự án chào là 380 tr/m2.
+
+Phân tích độ nhạy thay đổi giá bán đầu ra và giá mua dự án đầu vào thì Dự án đạt hiệu quả với IRR>15% và LNTT/TMĐT >20% sẽ tương đương với khung giá mua từ dưới 260 trđ/m2.
+
+Trân trọng.
+
+Ủa này là tính gộp 2 lô vào chưa  by Admin 01
+```
+
+
+## Chunk 92 — batch_079.txt
+
+```text
+Huy M - IM
+5/25 12:27 PM
+Edited
+Translate
+
+Miếng màu tím thì giải quyết thêm cho mình được thêm môt lối tiếp cận từ đường số 2 cho dự án, giảm tải áp lực giao thông. Tuy nhiên, (1) theo qhpk 1.2000 thì lô màu tím chỉ được tầng cao tối đa 20 tầng, 31 TN thì hiện trạng được 35 tầng nên sẽ không đồng bộ về chiều cao và (2) hình dáng khu đất sẽ hơi nhiều gốc cạnh sau khi ráp 2 miếng vào. 
+
+ 
+
+Nếu có hướng mua thêm được lô warning zone bên cạnh nữa thì quá đẹp Sếp.
+
+Mình xin điều chỉnh gộp quy hoạch đc by Admin 01
+```
+
+
+## Chunk 93 — batch_079.txt
+
+```text
+Admin 01
+5/25 12:29 PM
+Translate
+Mình xin điều chỉnh gộp quy hoạch đc
+Begin quote, Admin 01, 5/25/2026 12:29 PM, ... by Huy M - IM
+```
+
+
+## Chunk 94 — batch_079.txt
+
+```text
+Phòng đầu tư xin báo cáo lại sếp Admin 01 về lô mặt tiền Quốc Lộ 13, Hiệp Bình Phước, TP Thủ Đức.
+
+ 
+
+1. Vị trí dự án: https://maps.app.goo.gl/oHEYY6H9GGykdD9C6
+
+ 
+
+2. Thông tin lô đất (nguồn anh Hùng):
+
+a. Diện tích: 42x100m (4.214m2)
+
+b. MĐSDĐ: Đất sản xuất phi nông nghiệp, thời hạn sử dung đất lâu dài
+
+c. Giá: 350 tỷ
+```
+
+
+## Chunk 95 — batch_084.txt
+
+```text
+Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ
+
+image Dạ đây là bản đồ các dự án cao tầng g... by Khoa L - INVT
+```
+
+
+## Chunk 96 — batch_085.txt
+
+```text
+Dạ P.ĐT báo cáo sếp Admin 01 dự án H2-02 (Sky Habitat) thuộc KDC Cát Lái
+
+I. Thông tin tổng quan:
+
+ 
+
+Lô H2-02 thuộc KDC Cát Lái có CĐT là Công ty Invesco. Năm 2014, Invesco đã chuyển nhượng lại 2 lô H2-02 và H2-05 cho Công ty Phú Gia.
+Năm 2023, Công ty Phú Gia được phê duyệt CTĐT dự án xây dựng chung cư trên lô H2-02. 
+Vị trí: KDC Cát Lái, Tp.Hồ Chí Minh
+Diện tích: 7,988.9 m2
+Chủ Đầu tư: Công ty CP Phú Gia
+
+Thông số quy hoạch Lô H2-02 như sau:
+- Tầng cao: 25
+- Hệ số: 5
+- MĐXD: 40%
+- Dân số: 988
+
+ 
+
+II. PA quy hoạch
+
+Căn cứ hồ sơ TKCS phát hành 05/2025 của Công ty Phú Gia, Thông số quy hoạch chi tiết của dự án như sau: 
+- Quy mô công trình: 1 khối đế cao 2 tầng và 2 tháp A&B cao 23 tầng và 1 hầm.
+- Số lượng căn hộ: 457 căn hộ (trong đó có 19 căn hộ khối đế)
+
+- Hệ số sử dung đất: 4.98
+- Tổng diện tích sàn xây dựng (gồm diện tích kỹ thuật, hầm, mái): 54.949 m2
+- Diện tích sử dụng căn hộ: 28.137,1 m2 (Diện tích tim tường: 31.024 m2)
+
+ 
+
+III. PA triển khai đầu tư
+
+ 
+
+a) Giả định kinh doanh:
++ Giá bán căn hộ: 75 - 78.8 tr/m2 (chưa V, tim tường)
++ Nhà trẻ: Cho thuê giá 5$/m2/tháng.
+
+
+b) Giả định chi phí:
++ Giá mua đất/dự án: 660 tỷ (giá chào)
++ Suất xây dựng cao tầng: 16.5 tr/m2 (chưa V, allin)
++Chi phí bán hàng: 15%/doanh thu
++ Lãi suất: 12%/năm
+
+
+c) Hiệu quả đầu tư:
++ LNTT: 363 tỷ
++ LNST: 290 tỷ
++ LNTT/TMĐT: 21,3%
++ IRR: 15,1%
++ NPV: 65 tỷ
+
+ 
+
+Để dự án đạt mức IRR 20%, thì giá chào là 584 tỷ
+
+ 
+
+IV. Đánh giá và đề xuất
+
+Dự án H2-02 có những ưu nhược điểm sau:
+
+
++ Ưu điểm: 
+- Nằm trong KDC hạ tầng hoàn chỉnh. Khu vực có sự phát triển hạ tầng tốt với nhiều tuyến đường, nút giao, cầu và nhà ga đang được đầu tư và nâng cấp mở rộng
+- Thị trường căn hộ giao dịch tương đối tốt.
+- PLDA đã được triển khai và đang đi vào giai đoạn hoàn thiện trước khi khởi công xây dựng
+- P.ĐT đang giả định giá bán 74,5tr/m2 thấp hơn đề xuất từ RnD (90tr./m2) để đảm bảo tính thận trọng, kết quả cho thấy Dự án vẫn đảm bảo tính hiệu quả kinh tế
+
+ 
+
++ Nhược điểm:
+- KDC Cát Lái có nhiều hạn chế trong giao thông, hiện tại chỉ có duy nhất 1 đường kết nối qua tuyến đường Nguyễn Thị Định
+- Pháp lý dự án có nhiều vấn đề cần tìm hiểu kỹ:
++Vấn đề thời hạn chủ trương đầu tư đã quá hạn (hạn chót triển khai 12/2024)
++Sự phù hợp trong việc chuyển nhượng đất giữa Invesco (CĐT KDC Cát Lái) và Phú Gia
++Vấn đề tranh chấp đã từng xảy ra giữa Invesco và Phú Gia vào năm 2019
++Tính hiệu dụng trong thiết kế (theo hồ sơ TKCS) là khá thấp, tỷ lệ hiệu dụng mặt bằng sàn chỉ ~ 61%
+
+
+ĐỀ XUẤT: nghiên cứu sâu hơn dự án và làm việc rõ hơn với đối tác Phú Gia về các vấn đề pháp lý dự án.
+
+2026.05.21-Bao cao H2-02 1.pdf
+Khang điền bán khu đó nhiêu by Admin 01
+```
+
+
+## Chunk 97 — batch_089.txt
+
+```text
+P. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.
+5/22 9:23 AM
+Edited
+Hoa D - CVDT
+
+P. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: 
+
+1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:
+
+a) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA
+
+b) Đánh giá vị trí dự án:
+
+Dự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.
+
+ 
+
+b. Sơ bộ hiện trạng pháp lý:
+
+Tổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN
+Pháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).
+Pháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).
+Tầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)
+
+2. Hiệu quả dự án:
+
+Do chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:
+
+Phương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ
+Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư
+Thông số quy hoạch
+
+Hiệu quả dự án
+
+ 
+
+Độ nhạy dự án
+
+Phương án 1:
+
+Để dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).
+
+Dựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân
+
+Phương án 2:
+
+Trong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)
+
+Nhận xét:
+
+Dự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.
+Hiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.
+Chỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.
+```
+
+
+## Chunk 98 — batch_089.txt
+
+```text
+Phòng Đầu tư đã nhờ Bộ phận Pháp lý tìm kiếm và xác minh thêm các thông tin trên, tuy nhiên hiện chưa có kết quả.
+Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào. Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện
+```
+
+
+## Chunk 99 — batch_089.txt
+
+```text
+Phòng đầu tư xin đính kèm báo cáo của R&D ạ.
+
+22052026_R&D_120 Đặng Văn Bi, Thủ Đức.pdf
+21.05.2026 Bao cao kha thi Dang Van Bi.pdf
+```
+
+
+## Chunk 100 — batch_089.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS cho dự án Cát Lái - Sky Habitat, theo PA giá chào 690 tỷ bao tiền sử dụng đất (LUR)
+
+ 
+
+1. Thông tin cập nhật:
+
+- Giá chào: 690 tỷ (bao gồm LUR)
+
+- Giá vốn: Qua trao đổi với đơn vị giới thiệu, Công ty dự án đang ghi nhận giá vốn chỉ 50 tỷ 
+
+=> Điều này dẫn đến thiệt hại về thuế TNDN cho công ty mình khi mình bỏ ra 690 tỷ mua cổ phần nhưng BCTC ch
+```
+
+
+## Chunk 101 — batch_091.txt
+
+```text
+Friday, May 22
+P. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.
+5/22 9:23 AM
+Edited
+Hoa D - CVDT
+
+P. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: 
+
+1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:
+
+a) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA
+
+b) Đánh giá vị trí dự án:
+
+Dự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.
+
+ 
+
+b. Sơ bộ hiện trạng pháp lý:
+
+Tổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN
+Pháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).
+Pháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).
+Tầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)
+
+2. Hiệu quả dự án:
+
+Do chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:
+
+Phương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ
+Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư
+Thông số quy hoạch
+
+Hiệu quả dự án
+
+ 
+
+Độ nhạy dự án
+
+Phương án 1:
+
+Để dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).
+
+Dựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân
+
+Phương án 2:
+
+Trong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)
+
+Nhận xét:
+
+Dự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.
+Hiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.
+Chỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.
+```
+
+
+## Chunk 102 — batch_091.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS cho dự án Cát Lái - Sky Habitat, theo PA giá chào 690 tỷ bao tiền sử dụng đất (LUR)
+
+ 
+
+1. Thông tin cập nhật:
+
+- Giá chào: 690 tỷ (bao gồm LUR)
+
+- Giá vốn: Qua trao đổi với đơn vị giới thiệu, Công ty dự án đang ghi nhận giá vốn chỉ 50 tỷ 
+
+=> Điều này dẫn đến thiệt hại về thuế TNDN cho công ty mình khi mình bỏ ra 690 tỷ mua cổ phầ
+```
+
+
+## Chunk 103 — batch_093.txt
+
+```text
+P.ĐT gửi Sếp list các Dự án:
+1. 31 Trần Não
++ Vị trí: 31 Trần Não, Quận 2, TP.HCM
++ Diện tích: 5.835m2
++ Hiện trạng: Đang tính phương án 4: 35 tầng VP + tiện ích (gym, hồi bơi,...)
++ Deadline: 20/05/2026
+ 
+2. Dự án Đặng Văn Bi
++ Vị trí: đường Đặng Văn Bi, Phường Thủ Đức, TP HCM
++ Diện Tích, quy mô: Khoảng 4.600 m2, 22 tầng cao, HS SDĐ là 7
++ Thông tin sơ bộ: Dự án phát triển chung cư và căn hộ dịch vụ
++ Deadline: 21/05/2026
+ 
+3. Dự án sát bên dự án Võ Văn Kiệt - Đà Nẵng.
++ Diện tích khoảng 2000 m2
++ Giả định quy hoạch tương đương với miếng Võ Văn Kiệt.
++ Tính FS để ra giá có thể mua được.
++ Dealine: 22/5/2026.
+ 
+4. H2-02 Tên thương mại Sky Habitat
++ Vị trí: KDC Cát Lái, tp.HCM
++ Diện tích: 7.988,9
++ Hiện trạng: DA đã có pháp lý tương đối đầy đủ và đã triển khai thông tin trên thị trường. P.ĐT đang rà soát pháp lý tổng thể và đánh giá hiệu quả FS
++ Deadline: 22/05/2026
+ 
+5. Bà Kèo
++ Vị trí: Trần Hưng Đạo, Phú Quốc
++ Diện tích: 4,2ha
++ Hiện trạng: Đang đợi báo cáo RD về 02 phương án mới (PA10: 1.500 căn hộ và PA11: 2.000 căn hộ)
++ Deadline: 22/05/2026
+ 
+6. Dự án: Khách sạn Đà Nẵng cạnh TMS
++ Vị trí: phường Mỹ An, Ngũ Hành Sơn, Đà Nẵng
++ Diện tích: 1.120 m2
++ Deadline: 28/05/2026
+ 
+7. Dự án 02 Tây Thạnh - Đấu giá Sacombank - Phân tích dự án.
++ Vị Trí: 02 Tây Thạnh, Tân Phú. Diện tích 11.220 m2 (đất ở lâu dài/Mục đích Đất SKC)
++ Giá chào: 592 tỷ ~ 53 tr/m2.
++ Quy hoạch: Đất hỗn hợp (ở 92 m, 9000 m2 TMDV, còn lại là cây xanh, giáo dục).
+=> ĐÁNH GIÁ SƠ BỘ:
+Không có dân số, khó điều chỉnh quy hoạch. Đang xin ý kiến Sếp không nghiên cứu sâu.
+ 
+8. Richland Hill - Lê Văn Việt, Quận 9. Nguồn Mr.Duy
++ Vị Trí Lê Văn Việt, Quận 9.
++ Diện tích 48.378 m2 (đất ở
+lâu dài)
++ Có GPXD 2007 chung cư + TMVP. Đã thi công xây dựng 1 phần từ 2008 và ngưng đến nay.
++ Sổ đất 3,85 ha, Dt đất dự án 4,8 ha “=> chênh lệch khoảng 1ha chưa xử lý nghĩa vụ tài chính.
++ Giá chào:
+* Thời điểm tháng 5/2025 là 3300 tỷ ~ 68 tr/m2
+* Thời điểm hiện tại 5/2026
+3500 tỷ ~ 72 tr/m2.
+Hiện đang chờ đối tác cập nhật báo cáo giải quyết những vướng mắt tồn tại trước đây.
+ 
+9. Dự án Holiday Beach:
++ Tính và báo cáo phương án khách sạn kết hợp condotel với giả định reset lại thời hạn 50 năm .
++ Đang chờ ý kiến chỉ đạo để cập nhật lại báo cáo.
+ 
+10. Hòa Xuân Đà Nẵng:
++ Ví trí: Võ Chí Công, KDC Hòa Xuân, Đà Nẵng
++ Diện tích: 3.508 m2
++ Hiện trạng: Đánh giá dự án theo PA điều chỉnh tầng cao, đang đợi kết quả làm việc từ PLDA và Sở/Ban/Ngành. Song song với đó, P.ĐT vẫn thực hiện đàm phán và chuẩn bị hồ sơ gửi SGR để nhận chuyển nhượng trước lô A2-3.
+
+11. Dự án Phú Quang
++ Vị trí: Thuận An, Bình Dương
++ Diện tích: ~ 32ha
++ Hiện trạng: Phối hợp Phòng/Ban chuẩn bị số liệu TMĐT. Cập nhật FS khi có thay đổi quy hoạch hoặc định hướng kinh doanh mới
+ 
+12. Dự án Đông Trung
++ Vị Trí: Bùi Hữu Nghĩa, Thuận An, Bình Dương
++ Diện tích: 9.6ha
++ Hiện trạng: Phối hợp Phòng/Ban đánh giá cập nhật FS NO lực lượng vũ trang nhân dân (8km2) và FS nhóm nhà ở thương mại
+
+13. Dự án An Tôn:
++ Tính và báo cáo phương án có NOXH và chuyển NOXH.
++ Cập nhật FS khi có thay đổi chỉ tiêu QH.
+ 
+14. Dự án gom đất gần Phú Quang (KDC Vĩnh Phú) -
++ Vị trí: KDC Vĩnh Phú, Tam Bình, HCM
++ Diện tích: ~12.5 ha
++ Hiện trạng: Đánh giá dự án theo PA điều chỉnh dân số
+
+15. Dự án Hotel Casa
++ Vị trí: Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa
++ Diện tích, quy mô: 700 m2, 242 phòng
++ Hiện trạng: Đã báo cáo sếp và chốt làm khách sạn, không làm căn hộ dịch vụ
+ 
+16. Dự án Phú Hải Resort
++ Vị trí: Mặt tiền Nguyễn Đình Chiểu, Khu phố 5, Thành phố Phan Thiết, Bình Thuận
++ Diện tích, quy mô: Tổng diện tích đất 2.1 Ha, Phân khu 150 phòng (tầng cao 6)
++ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được
+
+K.ĐT báo cáo anh Admin   01  về dự án 31 T... by Thao L - INVT, has an attachment.
+```
+
+
+## Chunk 104 — batch_093.txt
+
+```text
+Thao L - INVT
+5/20 3:20 PM
+Translate
+
+K.ĐT báo cáo anh Admin 01 về dự án 31 Trần Não – PA4: Full VP + tiện ích (gym, hồ bơi,…) như sau:
+
+ 
+
+I. Tóm tắt PA4:
+
+Tách một phần tầng 03 làm Hồ bơi 240m2 và 378 m2 làm các tiện ích như:
++ Giải khát 25 chỗ      
+
++ Gym
+
++ Yoga/Fitness
+
++ Khu ăn uống 50 chỗ
+
++ WC, thay đồ            
+
+=> Phần tiện ích này sẽ đầu tư hoàn thiện full nội thất có thể đưa vào hoạt động ngay khi hoàn thành
+
+1. Chi phí xây dựng (VAT):
+
+- Phương án 4 có tiện ích: 1.578 tỷ đồng (SĐT all-in ~19 tr.đ/m² sàn)
+
+- Phương án 3 không bố trí tiện ích: 1.525 tỷ đồng (SĐT all-in ~18.4 tr.đ/m² sàn)
+
+=> Chi phí tăng thêm khoảng 54 tỷ đồng do đầu tư các hạng mục tiện ích nêu trên.
+
+2. Doanh thu (VAT):
+
+a. Giá thuê VP - Q4.2030: 30.8$; tỷ lệ tăng giá: 2%/năm
+
++ Phí dịch vụ VP: 4 năm đầu: 5$, ổn định: 7$
+
++ Chi phí vận hành VP: 20%
+
++ Tỷ lệ lắp đầy VP: Năm 1 (40%), Năm 2 (50%), Năm 3 (60%), Năm 4 (75%) và duy trì ổn định sau 4 năm
+
+b. Giá thuê sỉ TTTM - Q4.2030: 14.3$, tỷ lệ tăng giá: 2%/năm
+
++ Chi phí vận hành sỉ TTTM: 4%
+
++ Tỷ lệ lắp đầy sỉ TTTM: 80%
+
+3. Hiệu quả (không tính chi phí đất) IRR: 15.9%
+
+ 
+
+II. Bảng so sánh 02 phương án:
+
+Kết luận: Hiệu quả dự án gần như không thay đổi nhiều
+
+2026.05.20BC.pdf
+```
+
+
+## Chunk 105 — batch_094.txt
+
+```text
+Hanh T - INVT
+5/15 5:31 PM
+Edited
+Translate
+
+Với thông tin quy hoạch như anh Tài đánh giá thì phần đất QH đất ở rất thấp chỉ 336 m2 và gần như là không có dân số, đa phần là đất thuộc TMDV (800 dân cho cả ô phố 16,4ha) và khả năng xin điều chỉnh để nâng hệ số sử dụng đất và dân số cho khu đất 1,1 ha này là khó. 
+
+ 
+
+Do đó, phòng xin ý kiến Sếp có tiếp tục nghiên cứu sâu DA này không. Phòng xin gửi đính kèm thông tin về khu đất từ phía Sacombank chào đấu giá. 
+
+Trân trọng. 
+
+TanPhu 1.pdf
+```
+
+
+## Chunk 106 — batch_094.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về cập nhật thêm thông tin khu đất tại 02 Tây Thạnh, Tân Phú như sau: 
+
+Diện tích đất : 11.221,7 m², đất ở lâu dài, mục đích sử dụng là đất sản xuất kinh doanh. 
+Vị trí: Mặt tiền đường Tây Thạnh (dài khoảng 65m, lòng đường 16m, vỉa hè mỗi bên 8m). 
+Nằm trong bán kính TOD metro số 2 (chưa xác định chính xác có thuộc ranh đền bù của dự án TOD).
+Cập nhật sang tên cá nhân ông Phạm Công Danh từ ngày 13/06/2006.
+Hiện Sacombank đang rao đấu giá xử lý nợ.
+
+Lịch sử các lần đưa ra đấu giá không thành: 
+
+Cuối 2023 - Giữa 2024:  Mức giá 508,56 tỷ đồng.
+Tháng 09/2024: Hạ xuống 483,13 tỷ đồng (giảm hơn 25 tỷ)
+Nửa đầu năm 2025 đến 2026: Đại hạ giá xuống mức 410 tỷ đồng (đơn giá đất khoảng 36,5 triệu/m²). 
+
+Các rủi ro tiềm ẩn và hiện hữu đối với khu đất : 
+
+Bẫy thuế TNCN và thủ tục hành chính: Quy chế đấu giá của Sacombank đẩy toàn bộ nghĩa vụ thuế chuyển nhượng (2% trên giá trị trúng đấu giá) sang cho người mua. Hồ sơ thuế yêu cầu chữ ký chính chủ, trong khi ông Phạm Công Danh đang thụ án tù, tạo ra điểm nghẽn hành chính giữa các cơ quan tư pháp => Khó có đất sạch sau khi bỏ tiền ra mua đất giá.
+Tranh chấp quyền sử dụng mặt bằng: Khu đất do Chi nhánh Công ty TNHH Tập đoàn Thái Tuấn Logistics sử dụng . => Người mua sẽ đối mặt với rủi ro thừa kế hợp đồng thuê cũ hoặc phải theo đuổi kiện tụng dân sự kéo dài để đòi lại mặt bằng. 
+Rủi ro ngăn chặn thi hành án: Tài sản liên đới đến đại án hình sự, có nguy cơ bị các cơ quan thi hành án dân sự siết nợ hoặc áp dụng biện pháp ngăn chặn để bảo đảm thi hành các nghĩa vụ dân sự khác của ông Danh.
+```
+
+
+## Chunk 107 — batch_097.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ khu đất 11.000 m2, đường Tây Thạnh, Q.Tân Phú (nguồn từ Mr.Khôi gửi - Đấu giá Sacombank, giá chào 592 tỷ đồng ~ 52,7 tr/m2 đất ở), như sau:
+
+Ví trí  map
+Ranh đất: 
+Thông tin theo GCN: được cấp năm 2005.
+
+           + Diện tích đất: 11.221 m2. 
+
+           + Hình thức sử dụng sản xuất kinh doanh,
+
+           + Mục đích sử dụng là đất ở, thời hạn lâu dài. 
+
+Quy hoạch: Theo ý kiến của anh Tài thì khu đất thuộc QH hiện hữu là ô phố I82b (16,4ha, gồm đất giáo dục, TMDV, cây xanh, đất ở 0,49 ha). Chi tiết theo anh Tài tính toán:
+Vị trí và ranh đất 1.1ha Tây Thạnh – Google My Maps
+
+Vị trí và ranh đất 1.1ha Tây Thạnh
+
+www.google.com
+Message by Hanh T - INVT
+```
+
+
+## Chunk 108 — batch_097.txt
+
+```text
+Phòng đầu tư xin báo cáo sếp Admin 01 về lô mặt tiền Quốc Lộ 13, Hiệp Bình Phước, TP Thủ Đức.
+
+ 
+
+1. Vị trí dự án: https://maps.app.goo.gl/oHEYY6H9GGykdD9C6
+
+ 
+
+2. Thông tin lô đất (nguồn anh Hùng):
+
+a. Diện tích: 42x100m (4.214m2)
+
+b. MĐSDĐ: Đất sản xuất phi nông nghiệp, thời hạn sử dung đất lâu dài
+
+c. Giá: 350 tỷ
+
+ 
+
+3. Quy hoạch 1/2000: lô đất được quy hoạc
+```
+
+
+## Chunk 109 — batch_098.txt
+
+```text
+Huy M - IM
+5/14 6:20 PM
+Translate
+Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm tính đóng thêm tiền sử dụng đất khoảng hơn 200 tỷ thì mới làm đc pa condotel. Nếu ko reset được thì chỉ có pa là xây ks vận hành cho thuê. Chứ condotel thì thua à
+Mấy lần họp pl dự án a có trao đổi về việc ... by Huy M - IM
+```
+
+
+## Chunk 110 — batch_099.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 FS dự án Holiday Beach theo phương án kết hợp Khách sạn và Condotel, như sau:
+
+I. TỔNG QUAN DỰ ÁN VÀ CƠ CẤU SẢN PHẨM:
+
+Quy mô xây dựng: 2 tầng hầm, 30 tầng nổi, tổng diện tích GFA gồm hầm 75.913 m2.
+
+Tỷ lệ diện tích thương phẩm 43.702 m2 ~ 58%/GFA gồm hầm, ~ 66%/GFA chưa hầm.
+
+II. TỔNG MỨC ĐẦU TƯ DỰ KIẾN
+
+Tổng mức đầu tư (bao gồm VAT) được dự kiến xây dựng hoàn thiện tiêu chuẩn 5 sao.
+
+III. PHÂN BỔ GIÁ VỐN VÀ TÍNH GIÁ HÒA VỐN:
+
+Cơ cấu giá vốn/m2 thương phẩm
+Giá vốn phân bổ cho từng loại sản phẩm: 
+
+Do tổng diện tích kinh doanh gồm nhiều loại hình (bán, cho thuê, shop, condotel), với giả định các sản phẩm có khả năng tạo ra dòng tiền cao hơn sẽ gánh tỷ trọng giá vốn lớn hơn nên áp dụng phương pháp Phân bổ giá vốn của từng loại sản phẩm theo doanh thu ước tính để có tỷ lệ phù hợp, từ đó làm cơ sở để tính toán giá hòa vốn cho từng loại hình sản phẩm.
+
+Giá hòa vốn khách sạn 5.3 tr/đêm (~ 106 tr/m2), giá có lợi nhuận 12% ~ 6 tr/đêm (~143,4 tr/m2).
+Giá hòa vốn Condotel: 128 tr/m2 (chưa gồm chi phí bán hàng), 153,6 tr/m2 (gồm CP bán hàng 20%), giá bán có lợi nhuận 176 tr/m2 (lợi nhuận mục tiêu 15%, gồm VAT), 161 tr/m2 chưa VAT, 50 năm, giá bán thời điểm 2028.
+Giá hòa vốn Shop TM 183 tr/m2 (gồm VAT. Chưa CP bán hàng).
+
+IV. KẾ HOẠCH BÁN HÀNG VÀ DOANH THU DỰ KIẾN:
+
+Đơn giá bán:
+Condotel: Giá bán R&D đề xuất từ 115 tr/m2, thời điểm 2028. Giá trung bình 125.5 tr/m2. Mức giá bán đề xuất hiện đang thấp hơn giá hòa vốn (128 tr chưa CPBH, 153,6 tr gồm CPBH 20%).
+Shop khối đế: 188 tr/m2 (~ 1.5 lần giá bán Condotel)
+Khách sạn: Giá bán phòng trung bình, năm 2030 ~ 4,5 tr/phòng/đêm, công suất ổn định 71% (từ năm 2031), CPKD ~ 30% doanh thu phòng.
+Thu khác từ TMDV, tiện ích khách sạn ~ 35% DT phòng.
+
+       2. Doanh thu và chi phí bán hàng, chi phí vận hành:
+
+V. HIỆU QUẢ TÀI CHÍNH:
+
+Với suất vốn All-in 33 tr/m2 CFA và giá bán Condotel ~ 125.5 tr/m2, giá bán phòng 4.5 tr/phòng/đêm thì DA chưa đạt hiệu quả tài chính với IRR chỉ 5.7% và thời gian hoàn vốn lên đến 16 năm.
+
+PHÂN TÍCH ĐỘ NHẠY:
+
+Dự án chưa đạt hiệu quả tài chính do giá bán đầu ra của các loại hình sản phẩm đều thấp hơn giá vốn (chưa tính đến CP bán hàng).
+
+ 
+
+ 
+
+Với bảng phân tích độ nhạy thì DA đạt hiệu quả tài chính với IRR ~ 12% khi giá bán Condotel và Giá bán như sau :
+
+Giá bán Condotel 2028 (trđ/m²)
+
+	
+
+ 
+
+	
+
+215 tr/m2
+
+	
+
+ 
+
+195.5 (chưa VAT)
+
+
+
+
+Giá thuê 2030 (trđ/room)
+
+	
+
+ 
+
+	
+
+7.6 tr/phòng
+
+	
+
+ 
+
+  6.9 (chưa VAT)
+
+=> Đây là mức giá khá cao, khó khả thi để bán được. 
+
+PHÂN TÍCH ĐỘ NHẠY VỚI IRR MỤC TIÊU ~ 10%:
+
+Giá bán Condotel đề xuất cho năm 2028: 180 tr/m2
+Giá bán phòng khách sạn đề xuất cho năm 2030: 6.5 tr/m2
+CP Xây dựng All-in ~ 90% SV đang tính ~ 29.7 tr/m2 All-in 
+
+Nội dung so sánh
+
+	
+
+Nobu
+
+	
+
+Holiday Beach
+
+
+
+
+Quy mô
+
+	
+
+Dt đất 3000 m2
+
+43 tầng, 2 hầm
+
+186 phòng KS
+
+264 căn Condotel
+
+ 
+
+	
+
+Dt đất 4700 m2
+
+30 tầng, 2 hầm
+
+417 phòng KS
+
+287 căn Condotel
+
+ 
+
+
+
+
+Diện tích CFA (gồm hầm)
+
+	
+
+65.528 m2
+
+	
+
+75.913 m2
+
+
+
+
+Suất vốn XD/CFA
+
+	
+
+40 tr/m2
+
+	
+
+33 tr/m2
+
+
+
+
+Suất vốn/Key
+
+	
+
+5,8 tỷ
+
+	
+
+4,7 tỷ
+
+
+
+
+Giá bán Condotel
+
+	
+
+135 tr/m2
+
+	
+
+180 tr/m2
+
+
+
+
+Thời điểm bán
+
+	
+
+2024-2025
+
+	
+
+2028-2029
+
+
+
+
+Thời hạn sử dụng đất
+
+	
+
+34 năm
+
+	
+
+50 năm (mục tiêu reset lại)
+
+
+
+
+Tỷ lệ hấp thụ
+
+	
+
+88/264 ~ (33%)
+
+	
+
+Bán trong 3 năm
+
+Giả định với mức giá bán của Nobu và tốc độ tăng giá 5%/năm thì giá bán của Nobu vào năm 2028 sẽ tương ứng với giá 156 tr/m2 cho thời hạn còn lại 31 năm.
+
+Dự án Holiday Beach dự kiến bán với giá 180 tr/m2, ~ cao hơn 15% giá của Nobu cho thời hạn 50 năm rất khả thi nhờ một số ưu thế vượt trội mà Holiday sở hữu như:
+
+Thời hạn sử dụng đất tối ưu: Điểm cộng lớn nhất về mặt đầu tư chính là thời hạn sử dụng đất được reset mới 50 năm. Điều này không chỉ đảm bảo giá trị tài sản bền vững theo thời gian mà còn mang lại sự an tâm tuyệt đối cho khách hàng so với các dự án có thời hạn sở hữu còn lại ngắn hơn.
+Kết nối an toàn & đẳng cấp: Holiday Beach sở hữu hầm đi bộ băng qua đường Võ Nguyên Giáp, tạo ra luồng di chuyển biệt lập, an toàn và sang trọng trực tiếp từ dự án ra bãi biển. Đây là tiện ích hiếm hoi mà các dự án cùng trục đường khó lòng có được.
+Đặc quyền khai thác mặt biển: Dự án được cấp quyền quản lý và sử dụng diện tích phía bãi biển đối diện để vận hành Bar ngoài trời. Tiện ích này không chỉ phục vụ trực tiếp cho cư dân/khách lưu trú mà còn khẳng định vị thế "sát biển đúng nghĩa", điều mà Nobu khó có thể thiết lập tương đương.
+Diện tích và hình dạng khu đất: Với khuôn viên rộng khoảng 4.700 m2, vuông vức, Holiday Beach sở hữu quy mô hơn 1.5 lần so với Nobu (~3.000 m2).Quỹ đất rộng rãi cho phép chủ đầu tư dễ dàng hơn trong việc bố trí hệ thống tiện ích nội khu đa dạng, tạo cảnh quan thoáng và tối ưu hóa tầm nhìn (view) hướng biển cho phần lớn các căn hộ/phòng nghỉ mà không bị gò bó về không gian.
+Thời điểm bán hàng dự kiến 2028 là thời điểm thị trường Đà Nẵng khả năng phục hồi tốt hơn, Trung tâm tài chính xây dựng và hoàn thành khả năng sẽ thu hút nhiều chuyên gia nước ngoài, nhu cầu thuê Condotel hay khách sạn dài ngày sẽ khá hơn thời điểm hiện tại.
+
+Tóm lại: Holiday Beach không chỉ ưu thế về mặt không gian (diện tích lớn) mà còn sở hữu những tiện ích độc bản (hầm đi bộ, Bar biển) và lợi thế pháp lý (reset 50 năm), tạo nên một gói giải pháp đầu tư và nghỉ dưỡng hoàn thiện hơn so với đối thủ cạnh tranh.
+
+VI. ĐỀ XUẤT:
+
+Với những ưu thế mà Holiday có được ở phân tích trên, chạy FS lại với kịch bản đơn giá bán Condotel (năm 2028) 180 tr/m2, giá cho thuê phòng 6.5 /phòng/đêm thì DA đạt hiệu quả cải thiện nhiều với chỉ tiêu IRR 9.5%.
+
+Tuy nhiên, chỉ tiêu 9.5% này vẫn chưa đạt lợi nhuận kỳ vọng thông thường khoảng 12% đến 15%. Do đó, Phòng có một số đề xuất như sau:
+
+Nghiên cứu đề xuất tăng tầng cao, xin làm công trình điểm nhấn để tăng diện tích thương phẩm, từ đó có thể tăng hiệu quả tài chính;
+Điều chỉnh cơ cấu sản phẩm theo hướng tham khảo DA Nobu (186 phòng và 264 Condotel, tỷ lệ là 4/6), để tăng dòng tiền bán nhanh từ Condotel thay vì tỷ lệ như hiện tại của Holiday Beach là (417 phòng, 287 Condotel
+```
+
+
+## Chunk 111 — batch_099.txt
+
+```text
+Phòng xin gửi đính kèm báo cáo lời và bảng trình bày + Bảng FS.
+
+Trân trọng,
+
+BC Trinh bay - DA Holiday Beach - 14.05.2026.pdf
+BC lời DA Holiday Beach - 14.5.2026.pdf
+FS Holiday Beach - PA Condotel + Hotel 14.5.2026.pdf
+Message by Admin 01
+```
+
+
+## Chunk 112 — batch_100.txt
+
+```text
+P.ĐT xin báo cáo sếp Admin 01 về sơ bộ dự án chung cư Hải Sơn có diện tích đất 8.321 m2 (nguồn từ anh Sơn Trợ lý) tại đường Huỳnh Văn Nghệ, P. Biên Hòa, Thành phố Đồng Nai như sau:
+
+ 
+
+I. Vị trí và ranh đất:
+
+https://www.google.com/maps/d/edit?mid=1pYF3M65dQngj9P_VP8SbXUKy92nYnFo&usp=sharing
+
+ 
+
+=> Đánh giá sơ bộ hiện trạng:
+
+Đường kết nối vào khu đất từ đường Huỳnh Văn Nghệ có bề ngang nhỏ, chỉ khoảng 8.8 m, cần đánh giá có đủ điều kiện kết nối giao thông cho dự án chung cư cao tầng hay không. 
+Chiều sâu từ đường Huỳnh Văn Nghệ vào khoảng 28 m, lối vào có hình nút thắt cổ chai.
+Hình dạng khu đất kiểu đa giác không đều, khó bố trí không gian.
+Đối diện là khu đất nghĩa trang, có mặt tiền ôm đường hơn 100 m, trọn khu khoảng 8.600 m2.
+
+II. Hiện trạng pháp lý:
+
+-  Pháp lý về đất:
+
+Sổ đất cá nhân được cấp Giấy CNQSD ngày 30/9/2025. Tổng diện tích 8.132 m2, trong đó: Đất ở 86 m2 và đất Cây hằng năm: 8.046 m2 (đến 01/10/2056). 
+Đã có văn bản chấp thuận độ cao tĩnh không, chiều cao tối đa 99 m.
+Chưa thực hiện thủ tục chấp thuận chủ trương đầu tư. (Đối tác chào bao thủ tục này).
+Chưa có thông tin đưa đất vào thí điểm nên chưa đảm bảo về phê duyệt Chủ trương đầu tư do có phần đất ở thấp dưới 2% (86/8.132 m2).
+
+-  Pháp lý về Quy hoạch:
+
+Hiện chưa tra ra được đồ án QH phân khu do sát nhập hành chính.
+Quy hoạch chung thuộc đất ở.
+Quy hoạch dự kiến của đối tác (chưa có cơ sở check sự phù hợp, nhưng đối tác chào giá bán là bao chủ trương đầu tư, đồng nghĩa với bao chỉ tiêu dự kiến này) :
+
+      + Chung cư cao tầng kết hợp thương mại dịch vụ
+
+      + Hệ số 12,4 lần, dân số 2.016 người.
+      + Tầng cao 30 (đế 2, tháp 28), 2 tầng hầm,      
+
+      + Sản phẩm 964 căn gồm 865 căn hộ ở, 22 căn Shophouse khối đế.
+
+III. Giá chào:
+
+Dự án có giá chào 270 tỷ đồng ~ Đơn giá bán DA khoảng 33,2 triệu đồng/m2 theo hiện trạng (đa phần là đất cây hằng năm, chỉ có 86 m2 đất ở, chia trên diện tích 8.321,5 m2), bao Quyết định chủ trương đầu tư.
+
+ 
+
+Với 03 điểm hạn chế của khu đất như:
+
+Đối diện với khu đất nghĩa trang tương đối lớn ~ 8.600 m2
+Đường vào nút thắt cổ chai, bề rộng đường kết nối vào 8.8 m, chiều sâu 28 m.
+Chưa hình thành dự án, đang là đất cá nhân và tỷ lệ đất ở thấp, dưới 2% (86 m2/8.321 m2).
+```
+
+
+## Chunk 113 — batch_100.txt
+
+```text
+Phòng Đầu tư xin ý kiến chỉ đạo của Sếp về việc có tính FS dự án không với những hạn chế ở trên.
+
+Trân trọng. 
+
+Bản đồ CC HaiSon - Huỳnh Văn Nghệ - Bửu Long - Đồng Nai
+
+www.google.com
+Thôi  by Admin 01
+```
+
+
+## Chunk 114 — batch_103.txt
+
+```text
+Dạ báo cáo sếp Admin 01, liên quan đến công tác chuyển nhượng dự án thành phần lô A2-3 Hòa Xuân, Đà Nẵng, 
+
+P.TC-KT đang làm việc với ngân hàng để có thư cam kết tín dụng thực hiện dự án, đây là 1 trong hồ sơ cần có để nộp Sở Tài chính duyệt chuyển nhượng. Và hiện tại Ngân hàng đang yêu cầu công ty bổ sung thêm FS lô A2-3, 
+
+Do đó P.ĐT xin ý kiến phê duyệt từ sếp để gửi fs lô A2-3 cho P.TC-KT và Ngân hàng ạ
+
+Ok by Admin 01
+```
+
+
+## Chunk 115 — batch_107.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ dự án 10ha Đường Long Thuận, Long Phước, Quận 9, TP.HCM
+
+PHƯƠNG ÁN 1: Dân số 1500 người
+
+Phương án 1a
+```
+
+
+## Chunk 116 — batch_107.txt
+
+```text
+P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tuy nhiên theo nghiên cứu và đề xuất của Phòng RD không triển khai làm căn hộ dịch vụ vì tại vị trí dự án, thị trường chưa phổ biến loại hình này.  P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS.
+
+Hiệu quả dự án như sau:
+
+Doanh thu chưa VAT: 5.899 tỷ đồng (Đơn giá bình quân căn hộ tim tường chưa VAT 57 triệu/m2, Shophouse chưa VAT 56 triệu/m2; thời điểm bán 2028).
+Tổng mức đầu tư chưa VAT: 3.692 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2, tiền sử dụng đất tạm tính 805 tỷ đồng, suất all in chưa VAT 13triệu/m2).
+Lợi nhuận trước thuế: 1.322 tỷ đồng
+Bảng độ nhạy dự án
+
+ 
+
+ 
+
+--> Để đạt hiệu quả LNTT/TMĐT = 20% thì giá mua đất 7,4 Triệu/m2
+
+ 
+
+PHƯƠNG ÁN 1b:
+```
+
+
+## Chunk 117 — batch_107.txt
+
+```text
+P.ĐT thực hiện binh một phương án khác, tăng diện tích đất ở bằng cách chuyển đổi phần đất DVCC cấp đô thị sang đất ở khoảng 16.536m2 (tạm tính 40% x 41.339,4m2). Phần đất ở tăng thêm theo đề xuất và nghiên cứu của RD bố trí làm biệt thự vườn. Hiệu quả dự án gồm như sau:
+
+Doanh thu chưa VAT: 8.127 tỷ đồng (Trong đó, Đơn giá bình quân chưa VAT bao gồm đất + CTXD là 133 Triệu/m2; Đơn giá bình quân đất biệt thự chưa VAT là 110 Triệu/m2 và Giá căn hộ bình quân chưa VAT tim tường là 57 triệu/m2, Thời điểm bán 2028).
+Tổng mức đầu tư chưa VAT: 4.620 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2; tiền sử dụng đất tạm tính 1.387 tỷ; suất all in chưa VAT của biệt thự 11 triệu/m2)
+Lợi nhuận trước thuế: 2.288 tỷ đồng
+Bảng độ nhạy dự án
+
+ 
+
+ 
+
+--> Để đạt hiệu quả LNTT/TMĐT = 20% thì giá mua đất 13,5 Triệu/m2
+
+ 
+
+Lưu ý:
+
+Đối với Phương án Quy hoạch:
+
+     + PA 1a: Hiện tại Phòng QH kiểm tra không thấy dân số nên PA 1 chỉ tạm binh, dân số 1.503 người chưa chắc có thể xin được.
+
+     + PA 1b: Do chưa chắc có thể xin được dân số nên P.ĐT tạm binh phần đất ở tăng thêm làm thấp tầng.
+
+Giá bán thấp tầng, căn hộ vào năm 2028 với điều kiện là các nút giao thông Vành đai 2, Vành đai 3 phải hoàn thành trước thời điểm bán hàng để việc kết nối đến dự án thuận lợi.
+
+ 
+
+PHƯƠNG ÁN 2: 3900 DÂN
+```
+
+
+## Chunk 118 — batch_107.txt
+
+```text
+P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tương tự PA 1a P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS. Hiệu quả dự án như sau:
+
+Doanh thu chưa VAT: 7.290 tỷ đồng (thời điểm mở bán 2028 giá bán căn hộ và giá shop là 60 triệu bao gồm VAT).
+Tổng mức đầu tư chưa VAT: 4.520 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2, tiền sử dụng đất tạm tính 1.229 tỷ đồng, suất all in chưa VAT 13triệu/m2).
+Lợi nhuận trước thuế: 1.676 tỷ đồng.
+Bảng độ nhạy dự án
+
+Để đạt hiệu quả LNTT/TMĐT = 20% thì giá mua đất 8,7 Triệu/m2
+
+Lưu ý:
+
+Giá bán căn hộ vào năm 2028 với điều kiện là các nút giao thông Vành đai 2, Vành đai 3 phải hoàn thành trước thời điểm bán hàng để việc kết nối đến dự án thuận lợi.
+Phương án theo P.QH bố trí, chỉ xây dựng nhà ở trên phần đất ở 1,7ha/10ha
+```
+
+
+## Chunk 119 — batch_113.txt
+
+```text
+Admin 01
+5/11/2026 2:33 PM
+Tính thử nếu đi vào ổn định thì tỷ suất so với vốn đc bnhiu
+
+Này 
+
+Begin quote, Admin 01, 5/11/2026 2:42 PM, N... by Thao L - INVT
+```
+
+
+## Chunk 120 — batch_113.txt
+
+```text
+Admin 01
+5/27/2026 7:36 PM
+2. 120 tỷ là số chốt chưa hay áng chừng nhỉ
+Mình đang tạm lấy theo số bên đó báo Sếp. Số liệu chi tiết thẩm định, cơ sở thì chưa có thông tin để check nên anh mới đề xuất có plda tham gia để đánh giá thêm về chuyên mô á Sếp. Với cái này họ chuyển cty nên cũng cần PTC thẩm định về bctc công tin để xem có khoản nợ tiề
+```
+
+
+## Chunk 121 — batch_114.txt
+
+```text
+Admin 01
+5/11 2:33 PM
+Translate
+
+Tính thử nếu đi vào ổn định thì tỷ suất so với vốn đc bnhiu 
+
+Tính giá 27$ theo Opal có khi cũng hơi cao ... by Admin 01
+```
+
+
+## Chunk 122 — batch_114.txt
+
+```text
+Admin 01
+5/11 2:34 PM
+Translate
+
+Tính giá 27$ theo Opal có khi cũng hơi cao à, Opal vị trí vẫn đẹp hơn 
+
+Begin quote, Admin 01, 5/11/2026 2:34 PM, T... by Thao L - INVT
+```
+
+
+## Chunk 123 — batch_115.txt
+
+```text
+Thao L - INVT
+5/11 1:38 PM
+Edited
+Translate
+
+K.ĐT gửi anh Admin 01 báo cáo dự án 31 Trần Não như sau:
+
+I. TỔNG QUAN 02 PHƯƠNG ÁN:
+
+ 
+
+II. PHƯƠNG ÁN CĂN HỘ DỊCH VỤ KẾT HỢP VĂN PHÒNG VÀ TRUNG TÂM THƯƠNG MẠI
+
+1. Chi phí xây dựng (VAT): 1,800 tỷ
+
+- Đơn giá XD Allin: 21.5tr/m2 (trong đó SĐT VP + hầm: 18.6tr/m2 - Dựa vào S.ĐT P.QS tính theo chuẩn VP Opal)
+
+- SĐT/CHDV: 3.1 tỷ/key
+
+2. Doanh thu và Chi phí vận hành (VAT):
+
+- Tỷ lệ diện tích thương phẩm Văn phòng đạt khoảng 79%, CHDV chỉ khoảng 60% (nhiều tiện ích đi kèm)
+
+- Giá thuê và phí dịch vụ của văn phòng năm đầu: 38.5$/m2/tháng gồm VP: 33$/m²/tháng + phí dịch vụ 5.5$/m²/tháng; CPVH: 20% DT; Tỷ lệ tăng giá thuê 3%/năm
+
+- Giá thuê CHDV năm đầu:
+
++ Dài ngày chiếm 70%: 33tr/căn/tháng ~ 23.2$/m2/tháng
+
++ Ngắn ngày chiếm 30%: 1.6tr/căn/đêm ~ 33.9$/m²/tháng
+
+=> Quy đổi trung bình đơn giá thuê CHDV năm đầu: 26.4$ /m²/tháng, CPVH: 50% DT; Tỷ lệ tăng giá thuê 5%/năm
+
+- Giá thuê sỉ TTTM năm đầu: 14.3$/m2/tháng; CPVH: 4% DT;  Tỷ lệ tăng giá thuê 2%/năm
+
+ 
+
+3. Hiệu quả đầu tư:
+
+- Nếu tính chi phí đất (2,700 tỷ, gồm: 2,500 tỷ tiền đất và 200 tỷ tiền SDĐ): IRR = 5.47%
+
+- Nếu không tính chi phí đất (chỉ gồm 200 tỷ tiền SDĐ): IRR = 11.63% và độ nhạy:
+
+ 
+
+III. PHƯƠNG ÁN FULL VĂN PHÒNG VÀ TRUNG TÂM THƯƠNG MẠI
+
+1. Chi phí xây dựng (VAT): 1,525 tỷ
+
+- Đơn giá XD Allin: 18.6tr/m2 (Dựa vào S.ĐT P.QS tính theo chuẩn VP Opal)
+
+2. Doanh thu và Chi phí vận hành (VAT):
+
+- Tỷ lệ diện tích thương phẩm Văn phòng đạt khoảng 79%
+
+- Giá thuê và phí dịch vụ của văn phòng năm đầu: 35.2$/m2/tháng gồm VP: 29.7$/m²/tháng + phí dịch vụ 5.5$/m²/tháng; CPVH: 20% DT,  Tỷ lệ tăng giá thuê 2%/năm
+
+- Giá thuê sỉ TTTM năm đầu: 14.3$/m2/tháng; CPVH: 4% DT, Tỷ lệ tăng giá thuê 2%/năm
+
+3. Hiệu quả đầu tư:
+
+- Nếu tính chi phí đất (2.500 tỷ tiền đất, không có đất ở nên tạm tính không đóng thêm TSDĐ): IRR = 5.69%
+
+- Nếu không tính chi phí đất: IRR = 15.64% và độ nhạy:
+
+ 
+
+IV. ĐÁNH GIÁ
+
+Phương án 2 – Full Văn phòng cho thấy hiệu quả tài chính tốt hơn so với phương án kết hợp CHDV + Văn phòng, nhờ các yếu tố chính sau:
+
+- Tỷ lệ diện tích thương phẩm cao hơn: Văn phòng đạt khoảng 79%, trong khi CHDV chỉ khoảng 60%.
+
+- Suất đầu tư xây dựng thấp hơn: Văn phòng khoảng 18,5 triệu đồng/m², thấp hơn phương án CHDV + VP khoảng 21,5 triệu đồng/m².
+
+- Hiệu quả khai thác cho thuê tốt hơn: Giá thuê và phí dịch vụ của văn phòng cao hơn khi xét trên diện tích thương phẩm (VP: 29,7$/m²/tháng + phí dịch vụ 5,5$/m²/tháng; CHDV: 26,4 USD/m²/tháng).
+
+- Chi phí vận hành thấp hơn: Văn phòng khoảng 20% doanh thu, trong khi CHDV khoảng 50% doanh thu.
+
+     
+
+- Mặc dù phương án Full Văn phòng được tính cùng chung chuẩn xây dựng (Opal), tuy nhiên giả định giá thuê VP (chưa VAT) thận trọng hơn: 27$/m2/tháng - 2030 tương đồng với Opal ~ 27.5$/m2/tháng – 2025 để nhằm tăng tính cạnh tranh và hỗ trợ khả năng lấp đầy, hiệu quả tài chính tổng thể của dự án vẫn tốt hơn phương án kết hợp CHDV + Văn phòng vì các lý do nêu trên.
+
+ 
+
+V. KẾT LUẬN:
+
+Phương án Full VP có Chi phí xây dựng thấp hơn, Đơn giá khi thác thuê tốt hơn vì thế IRR tốt hơn.
+
+ 
+
+Đính kèm báo cáo ĐT và RD:
+
+050526_R&D_De xuat PA 31 Tran Nao_CHDV & VP_Tong hop (2).pdf
+2026.05.08_Bc 1.pdf
+Tính thử nếu đi vào ổn định thì tỷ suất so ... by Admin 01
+```
+
+
+## Chunk 124 — batch_115.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau:
+1. Giá chào cập nhật 600 tỷ
+
+ 
+
+2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua chịu) 120 tỷ -
+```
+
+
+## Chunk 125 — batch_116.txt
+
+```text
+P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau:
+1. Giá chào cập nhật 600 tỷ
+
+ 
+
+2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua
+```
+
+
+## Chunk 126 — batch_117.txt
+
+```text
+Admin 01
+5/8 12:19 PM
+Translate
+
+Giá bình dương khó lên cao đc vậy lắm. Chắc phải 10-15 năm nữa 
+
+Nên tính thận trọng hơn xíu, hạ giá xuống  by Admin 01
+```
+
+
+## Chunk 127 — batch_117.txt
+
+```text
+Admin 01
+5/8 12:19 PM
+Translate
+
+Nên tính thận trọng hơn xíu, hạ giá xuống 
+
+Hỏi a Tài với a Minh xem những vị trí này t... by Admin 01
+```
+
+
+## Chunk 128 — batch_117.txt
+
+```text
+Dạ nếu tính theo ranh địa lý hành chính cũ thì khu vực này vẫn thuộc Hồ Chí Minh ạ
+
+Sở dĩ giá bán này là vì team cũng đã cân nhắc về quy mô dự án 12ha đủ lớn để có thể địn hướng triển khai tiện ích cảnh quan, mảng xanh, cải tạo công viên bờ kênh, xây thêm cầu kết nối, yếu tố thời gian và những ý tưởng về các tiện ích mà dự án có thể mang lại cho cư dân.
+```
+
+
+## Chunk 129 — batch_117.txt
+
+```text
+Dạ để đảm bảo tính thận trọng, em sẽ tính thêm phương án giá thấp ạ. 
+
+đồng thời cũng sẽ làm việc lại với a Tài & a Minh câu chuyện xin chỉ tiêu khả thi không và xin được bao nhiêu (nếu có).
+
+ 
+
+Ok e. Sau này phải làm nhiều kịch bản  by Admin 01
+```
+
+
+## Chunk 130 — batch_124.txt
+
+```text
+Admin 01
+5/8 12:09 PM
+Translate
+
+Sao Phân khu 1 là giáp đường lớn mà giá lại thấp nhất nhỉ 
+
+Giá bán cc thấy hơi cao đó  by Admin 01
+```
+
+
+## Chunk 131 — batch_124.txt
+
+```text
+Khoa L - INVT
+5/8 12:12 PM
+Translate
+
+dạ do các chung cư căn hộ được bố trí trong 3 phân khu được triển khai lần lượt. Đợt đầu giá dao động từ 50-60, đợt 2 từ 60-70, và cuối cùng phân khu cao nhất là 79.
+
+ 
+
+về giá bán phân khu 1 thấp do đang dự định bán phân khu 1 trước, để thu hút traffic khu vực ạ. Các phân khu sau sẽ làm theo hình thức cao cấp hơn, yên tĩnh riêng tư hơn và sẽ triển khai sau khi mình dự kiến làm xong các con đường và cầu kết nối.
+
+dạ team cũng xác định truc đường ven kênh s... by Khoa L - INVT
+```
+
+
+## Chunk 132 — batch_124.txt
+
+```text
+Khoa L - INVT
+5/8 12:13 PM
+Translate
+
+dạ team cũng xác định truc đường ven kênh sẽ là trục đường có giá trị cao nhất, mình đầu tư cảnh quan ven kênh để tăng giá trị các phân khu sau. 
+
+Giá bán hiện team đang dự kiến cho 3-4 năm nữa ạ.
+
+Giá bình dương khó lên cao đc vậy lắm. Chắc... by Admin 01
+```
+
+
+## Chunk 133 — batch_127.txt
+
+```text
+Dạ P.ĐT báo cáo sếp Admin 01 dự án 12ha KDC Vĩnh Phú gần Phú Quang.
+
+I. Thông tin tổng quan:
+
+Dựa vào sự phù hợp quy hoạch và hình dáng thuận lợi để triển khai dự án, P.ĐT đề xuất gom mua diện tích đất nằm trong ranh đỏ như trong hình với diện tích ~ 12.5 ha
+
+Quỹ đất gom mua sẽ thuộc phân khu 3 thành phố Thủ Đức, Đất đơn vị ở 1, quy hoạch nhóm nhà ở, nằm trọn các ô đất OD 3, OD5, OD8, OD9, OD4, OD10 và 1 phần OD4, OD11.
+
+Thông số quy hoạch như sau:
+- Tầng cao: 15-30
+- Hệ số: 6-8
+- Dân số: 6,151
+
+
+II. Phương án quy hoạch vừa cao tầng và thấp tầng:
+
+
+Phương án quy hoạch định hướng theo cách bố trí hỗn cao tầng và thấp tầng trong từng ô nhằm sử dụng tối ưu dân số và tầng cao.
+- 4 khu cao tầng (3 khu cao 30 tầng và 1 khu cao 15 tầng): 2.464 căn hộ, 46 căn shophouse 
+- 164 căn nhà phố liên kế, 
+- 51 căn biệt thự
+
+III. PA triển khai đầu tư:
+a) Giả định kinh doanh:
++ Giá bán căn hộ: 50 - 79 tr/m2 (gồm V, tim tường)
++ Giá bán shop TM: 60 -100 tr/m2 (gồm V, tim tường)
++ Nhà trẻ: Cho thuê giá 4$/m2/tháng.
++ Giá bán nhà phố: 70tr/m2 (gồm nhà và đất) (trong đó giá đất: 43tr/m2)
++ Giá bán biệt thự: 66 – 77 tr/m2 (gồm nhà và đất) (trong đó giá đất: 50-58 tr/m2) 
+
+
+b) Giả định chi phí:
++ Suất xây dựng cao tầng: 15 - 20 tr/m2 (gồm V, allin)
++ Suất xây dựng thấp tầng (1 trệt 2 lầu): 7.8 - 9tr/m2 (gồm V, all-in, xây hoàn thiện mặt ngoài, thô bên trong)
++Chi phí bán hàng: 17%/doanh thu
++ Lãi suất: 12%/năm
++ Tiền sử dụng đất: 956 tỷ
+c) Hiệu quả đầu tư:
+Để đảm bảo hiệu quả tài chỉnh LNTT/TMĐT đạt 20%, LNST 1.395 tỷ, IRR 16% thì  giá gom đất trung bình cho tổng diện tích 12.5ha, đa phần đất lúa và HNK, là 1.124 tỷ, tương đương đơn giá mua đất là 9tr./m2
+
+ĐỀ XUẤT:
+- Tập trung gom các thửa đất nằm trọn trong các ô quy hoạch OD3, OD5, OD8, OD9, OD10, một phần ô OD4 và OD11 (như trong hình vẽ) để đảm bảo thuận lợi triển khai ý tưởng kinh doanh
+- Vì vị trí khu đất hiện tại gặp bất lợi về kết nối giao thông, do đó để đảm bảo hoạt động bán hàng tốt và mức giá cao cần triển khai cầu kết nối KDC Bình Đồng và cầu kết nối ra QL13.
+
+2026.05.07-Bao cao 12ha Vinh Phu 2.pdf
+Giá bán cc sao biên độ xa vậy  by Admin 01
+```
+
+
+## Chunk 134 — batch_127.txt
+
+```text
+Thao L - INVT
+5/27 4:30 PM
+Edited
+Translate
+
+K.ĐT gửi anh Admin 01 báo cáo dự án Bà Kèo, Phú Quốc với 03 phương án 10,11,12 như sau:
+
+ 
+
+1. THÔNG SỐ QUY HOẠCH:
+
+- Theo thông tin từ P.QH, toàn bộ phần đất thương phẩm của dự án có khả năng được chuyển đổi sang
+```
+
+
+## Chunk 135 — batch_131.txt
+
+```text
+Huy M - IM
+5/5 8:38 PM
+Translate
+Ok Sếp. Mai anh trao đổi việc điều chỉnh cục bộ vs A Tài. Hiện là Quy hoạch ở nhưng chỉ dc hs 2 và tầng cao là 7. Và đặc biệt là có phần đất mộ kế bên
+```
+
+
+## Chunk 136 — batch_131.txt
+
+```text
+Admin 01
+5/6/2026 9:15 AM
+Hồi đó họ chào nhiêu
+
+Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở
+```
+
+
+## Chunk 137 — batch_131.txt
+
+```text
+Dạ sau khi trao đổi với anh Tài Phòng ĐT báo cáo Sếp Admin 01 miếng đất Đăng Văn Bi, theo quy hoạch phân khu mới nhất thì khu mình sẽ được xây 20 tầng, hệ số 6 (nếu xin được ưu tiên thì sẽ được cộng thêm 1). dân số khoảng 252 người (Diện tích 6.303m2) ạ
+
+Tính fs thử by Admin 01
+```
+
+
+## Chunk 138 — batch_132.txt
+
+```text
+Huy M - IM
+5/5 7:11 PM
+
+https://maps.app.goo.gl/g4iRsHeX4nji9iob6?g_st=com.microsoft.skype.teams.extshare
+
+Anh gửi Sếp by Huy M - IM
+```
+
+
+## Chunk 139 — batch_137.txt
+
+```text
+Admin 01
+4/22 5:36 PM
+Translate
+PGK tính bán 45tr sợ hơi chua đó. Bình Dương giờ thấy khó lên được lắm
+Em gửi lại anh giá đề xuất của RD ạ 1. Phươ... by Thao L - INVT
+```
+
+
+## Chunk 140 — batch_137.txt
+
+```text
+Thao L - INVT
+4/22 5:50 PM
+Edited
+Translate
+
+Em gửi lại anh giá đề xuất của RD ạ
+
+1. Phương án thấp tầng (căn hộ + dãy shophoue liền kề) hiện đang đề xuất giá chưa VAT cho căn hộ: 40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)
+
+2. Phương án cao tầng (căn hộ + officetel)  hiện đang đề xuất giá chưa VAT:
+
++  Căn hộ:  38 - 41tr/m2 => trung bình chỉ 39.5tr/m2
+
++  Officetel: 40 - 44tr/m2 => trung bình : 42.3tr/m2  (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn)
+
+ 
+
+ 
+
+Nghiên cứu kỹ nha, chứ anh thấy dù 3 năm nữ... by Admin 01
+```
+
+
+## Chunk 141 — batch_137.txt
+
+```text
+P.ĐT báo cáo Sếp Admin 01  về hiệu quả dự án KDC An Tôn theo 02 phương án quy hoạch như sau:
+
+ 
+
+I. QUY HOẠCH 02 PHƯƠNG ÁN
+
+PA 1: Xây dựng NOXH 6 tầng (391 căn), 122 NLK (nhà liên kế) và 111 NBT (nhà biệt thự).
+PA 2 : Chuyển đổi quỹ đất NOXH -> NLK và NBT, gồm 134 NLK (tăng thêm 12 căn) và 165 NBT (tăng 54 căn).
+
+Lý do có PA 2: Tối ưu hóa quỹ đất, tăng giá trị thương mại cho toàn dự án.
+
+ 
+
+Nội dung 
+
+	
+
+PA1 NOXH (Chung cư), Nhà LK, BT
+
+	
+
+PA2 Chuyển NOXH -> Nhà LK, BT
+
+	
+
+Ghi Chú
+
+
+
+
+NOXH
+
+	
+
+ 391 căn NOXH
+
+	
+
+0 căn NOXH, +54 NBT, 12 NLK
+
+	 
+
+
+Nhà liên kế
+
+	
+
+122 căn, 4 tầng, DT đất 105m2/nền
+
+	
+
+134 căn, 3 tầng, DT đất 105m2/nền
+
+	 
+
+
+Nhà biệt thự   
+
+	
+
+111 căn, 3 tầng, DT đất 276m2/nền
+
+	
+
+153 căn, 3 tầng, DT đất 276 m2/nền
+
+	 
+
+
+Tổng
+
+	
+
+391 căn NOXH, 233 căn nhà thấp tầng
+
+	
+
+287 căn nhà thấp tầng 
+
+	 
+
+ 
+
+ 
+
+II. SO SÁNH CHỈ TIÊU TÀI CHÍNH 02 PHƯƠNG ÁN
+
+               (chi tiết chi phí và doanh thu sẽ được đính kèm ở bảng tổng hợp)
+
+Trong đó, các giả định và cơ sở tính toán của phòng:
+
+Chi phí xây dựng tính toán dựa vào suất vốn đầu tư được công bố năm 2026, có điều chỉnh tỷ lệ về mức độ hoàn thiện (xây nhà hoàn thiện mặt ngoài, thô bên trong) và yếu tố địa hình ở Đà Lạt
+Tiền sử dụng đất tính theo phương pháp thặng dư, đơn giá đất ở khoảng 29 tr/m2, gấp 3,4 lần đơn giá đất nhà nước đường An Tôn ~ 8,5 tr/m2. Đây là mức giá phòng ĐT tính cho bài toán an toàn về sau, trường hợp giá tiền sử dụng đất khi đi vào thực tế có thể thấp hơn, khi đó hiệu quả tài chính dự án sẽ được cải thiện tốt hơn.
+Các chi phí liên quan đến bồi thường được tính đủ gồm tạm cư, chi trả tiếp phần đền bù cũ và tính 2.735 m2 chưa đền bù với mức giá khá cao theo thị trường. (Nguồn tham khảo từ anh Dương, ~ 20 tr/m2 đất nông nghiệp).
+Giá bán NOXH theo nguyên tắc hoàn vốn và theo quy định.
+Giá bán nhà liên kế và nhà biệt thự theo đề xuất từ phòng R&D, thời gian bán hàng trong vòng 4 năm từ 2028 đến 2031, giá LK bình quân 86 tr/m2 (gồm công trình) và giá BT 76 tr/m2 (gồm công trình):
+
+(Bản đồ so sánh giá từ phòng R&D đề xuất)
+
+Trên cơ sở giá đề xuất, P.ĐT có tính và tách giá đất cho mỗi lại hình như sau:
+
+* Nhà liên kế: ~86,8 triệu/m2, chưa VAT (~9,1 tỷ/căn 105m2).
+* Nhà biệt thự: ~76 triệu/m2, chưa VAT (~21 tỷ/căn 276 m2).
+
+ 
+
+III. TÓM TẮT HIỆU QUẢ VÀ ĐỀ XUẤT :
+
+ 
+
+Dựa vào bảng tổng hợp tài chính thì Phương án 2 có hiệu quả tài chính tốt hơn Phương án 1: 
+
+Doanh thu: 4.552 tỷ VNĐ (tăng 635 tỷ).
+Lợi nhuận trước thuế (LNTT): 577 tỷ VNĐ (tăng 77 tỷ).
+Tỷ suất LNTT/TMĐT: 16,8% (tương đương PA 1 ~16.7%).
+IRR: 7,9% 
+
+Tuy nhiên tỷ suất hoàn vốn IRR của PA2 chỉ 7,9% là tương đối thấp, do đề xuất của R&D về thời gian, tỷ lệ và giá bán rất thận trọng (tổng số lượng 287 căn bán trong vòng 4 năm từ 2028 đến 2031) và so với giá bán các dự án xung quanh thì giá đề xuất dự án An Tôn đang ở cận dưới của các dự án so sánh, trong khi giá đề xuất DA An Tôn đang là giá tương lai từ năm 2028, còn giá các DA so sánh đang là giá hiện tại. 
+
+ 
+
+Theo quan điểm của phòng Đầu tư thì với quy mô dự án hơn 10ha, đầy đủ tiện ích và công năng của một khu đô thị, cộng hưởng với đường Vành Đai vừa mới hoàn thành thì giá bán có khả năng tốt hơn mức giá mà phòng R&D đề xuất. 
+
+Do đó, phòng ĐT chạy thêm độ nhạy về thay đổi giá bán (tăng giá) kết hợp biến số trọng yếu là tiền sử dụng đất để xem khung giá bán bao nhiêu thì dự án đạt hiệu quả cao hơn (IRR >15%). 
+
+ 
+
+ĐỘ NHẠY THAY ĐỔI GIÁ BÁN VÀ TIỀN SỬ DỤNG ĐẤT CỦA PA2.
+
+Dựa vào kết quả bảng phân tích độ nhạy thì PA2 đạt kịch bản tối ưu (IRR > 15%, biên lợi nhuận > 20%) khi giá bán nhà liên kế gồm công trình và chưa VAT đạt từ 99 tr/m2 ~ 10,3 tỷ/căn NLK trở lên, ~ tăng 14% so với đơn giá đề xuất (86,6 tr/m2) . (Khung màu xanh ở bảng độ nhạy)
+
+
+ĐỀ XUẤT:
+
+Ưu tiên thực hiện Phương án 2 để tối ưu doanh thu và lợi nhuận.
+Đẩy nhanh công tác hoàn thành về bồi thường, giải phóng mặt bằng, đồng thời xin điều chỉnh quy hoạch 1/500 và chuyển đổi chức năng sử dụng đất.
+Điều chỉnh tầng cao nhà liên kế xuống 3 tầng để giảm giá thành, tăng tính thanh khoản.
+```
+
+
+## Chunk 142 — batch_137.txt
+
+```text
+Phòng xin gửi đính kèm báo cáo đầu tư của phòng ĐT và báo cáo đề xuất giá của phòng R&D.
+
+Trân trọng. 
+
+13042026_R&D_PA de xuat chi tiet KDC Doi An Ton (1) 1.pdf
+BANG TONG HOP 2 PHUONG AN - DA AN TON.pdf
+23042026 BC DAU TU KDC AN TON.pdf
+Mai 15h báo anh này by Admin 01
+```
+
+
+## Chunk 143 — batch_138.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về khu đất phường Phú Thọ Hòa, Quận Tân Phú, TP HCM (Nguồn Sếp Tâm) như sau:
+
+ 
+
+1. Pháp lý đất:
+
+Diện tích: 13,907.5 m2
+
+Mục đích: Đất trồng cây lâu năm
+
+Thời hạn: 50 năm ( 07/2011 – 07/2061)
+
+Nguồn gốc sử dụng: Nhà nước công nhận quyền sử dụng đất
+
+Vị trí: https://maps.app.goo.gl/v8GdHbU3xb5G8JFs9
+
+Ranh đất:
+
+ 
+
+Hạ tang giao thông nội bộ: có bề rộng mặt đường hẹp (7m) và vị trí khó khả thi phát triển thành khu thương mại dịch vụ.
+
+ 
+
+2. Quy hoạch:
+
+ 
+
+3. Đánh giá: 
+
+ 
+
+Hiện trạng khu đất là đất trồng cây lâu năm có thời hạn sử dụng đến tháng 07/2061.
+
+Căn cứ theo Tra cứu Quy hoạch như trên, Khu đất có quy hoạch công viên cây xanh chiếm tỉ trọng lớn 56% và phần còn lại là đất TMDV, không có quy hoạch đất ở. Dựa trên vị trí khu đất và hạ tầng xung quanh, khu đất khó phát triển TMDV mà chỉ phù hợp phát triển dự án nhà ở. Tuy nhiên, qua trao đổi với phòng Quy hoạch, khu đất khó điều chỉnh quy hoạch sang đất ở và đã hết chỉ tiêu dân số cùng chưa duyệt quy hoạch phân khu. Vì vậy, đề xuất không tiếp tục nghiên cứu sâu dự án này.
+
+ 
+
+Lô đất phường Phú Thọ Hòa.pdf
+```
+
+
+## Chunk 144 — batch_141.txt
+
+```text
+Dạ vâng ạ, để tối nay em cày voted ạ.
+4 DA nha em:
+
+1. Legacy Hoi An
+2. Sen Hoi An
+3. Bel Marina Hoi An
+4. The Signature Hoi An
+
+K.ĐT báo cáo anh  Admin   01  về dự án Bà K... by Thao L - INVT
+```
+
+
+## Chunk 145 — batch_141.txt
+
+```text
+Thao L - INVT
+4/14 7:44 PM
+Edited
+Translate
+
+K.ĐT báo cáo anh Admin 01 về dự án Bà Kèo, Phú Quốc với 02 phương án như sau:
+
+ 
+
+I. PHÁP LÝ:
+
+- Hiện trạng CIC chưa gửi thêm thông tin về tiến độ Pháp lý dự án đã yều cầu như cuộc họp trước
+
+- Vì thế K.ĐT giả định các mốc thời gian pháp lý để tính hiệu quả dự án như sau:
+
++ GPĐB đất + chạy PL dự án: Q2.2026 - Q3.2027
+
++ Đóng tiền sử dụng đất: Q2.2027 - Q3.2027
+
++ Bắt đầu xây dựng: Q4.2027
+
+ 
+
+II. TỔNG QUAN 02 PHƯƠNG ÁN
+
+1. Quy hoạch:
+
+a. Phương án Thấp tầng:
+
+- Các loại hình sản phẩm:
+
+ 
+
+b. Phương án Cao tầng
+
+- Các loại hình sản phẩm:
+
+ 
+
+2. Về thị trường:
+
+- P.A Thấp tầng được ưu tiên hơn vì đa dạng loại hình sản phẩm, tạo được cảnh quan thông thoáng, lượng sản phẩm phù hợp với tiêu chí vận hành của các Đơn vị quốc tế và Dễ định vị cao cấp hơn.
+
+ 
+
+3. Về giá bán và chính sách bán hàng
+
+- Đẩy nhanh tiến độ khởi công dự án vào cuối 2027 để cộng hưởng tích cực từ Apec
+
+- Đưa đơn vị 5 sao quốc tế vận hành Condotel và Khách sạn
+
+- Kết hợp cùng đơn vị vận hành tư vấn thiết kế, bàn giao nội thất theo chuẩn 5 sao
+
+- Áp dụng chính sách chia lợi nhuận với Khách hàng theo thời điểm mở bán để thu hút người mua
+
+- Ưu tiên bán số lượng căn hơn là việc thu tiền về nhanh (Dãn tiến độ thu tiền)
+
+- PA1 Thấp tầng có giá bán Căn hộ và Condotel tốt hơn PA2 Cao tầng:
+
++ Lượng nguồn cung căn hộ, shophouse nhiều hơn 300 căn trong khi với giá 100tr/m2 là giá trị đã rất cao, khó thanh khoản.
+
++ Tầm view sẽ bị chắn nhiều, khó xử lý hàng này, căn hộ có thể không cần view nhưng Condotel phải cần.
+
++ Dự án toàn cao tầng dẫn đến cảm giác rất ngộp, rất khó hợp tác với các đơn vị vận hành quốc tế và thu hút khách hàng.
+
+ 
+
+4. Về hiệu quả
+
+- Tách PnL bán hàng và vận hành của 02 PA:
+
+Phương án Thấp tầng: IRR  cả dự án = 9.8%, LNTT/TMĐT sản phẩm bán = 37.9%
+
+ 
+
+Phương án Cao tầng: IRR  cả dự án = 7.7%, LNTT/TMĐT sản phẩm bán = 19.1%
+
+ 
+
+Khi tách riêng từng loại hình trong dự án:
+
+- Khách sạn và TMDV (Vận hành) tạo dòng tiền ổn định trong dài hạn. Tuy nhiên, Dòng tiền từ doanh thu vận hành khi chiết khấu về tại thời điểm bắt đầu vận hành không thể gánh được toàn bộ Chi phí đất và Chi phí xây dựng tương ứng.
+
+- Nhà liên kế, Căn hộ ở, Shophouse và Condotel (sản phẩm bán): hiệu quả tài chính tốt, nhờ khả năng thu hồi vốn tốt và biên lợi nhuận cao. Tuy nhiên phần lợi nhuận từ các sản phẩm bán phải bù đắp phần chi phí đất + xây dựng của sản phẩm vận hành làm Hiệu quả tài chính cả dự án bị giảm mạnh, IRR thấp.
+
+-  Và với PA Thấp tầng có giá bán tốt hơn nên Hiệu quả dự án tốt hơn => IRR PA Thấp tầng tốt hơn.
+
+Chi tiết 02 PA: A. PHƯƠNG ÁN THẤP TẦNG: 1. ... by Thao L - INVT
+```
+
+
+## Chunk 146 — batch_141.txt
+
+```text
+Thao L - INVT
+4/14 7:45 PM
+Edited
+Translate
+
+Chi tiết 02 PA:
+
+A. PHƯƠNG ÁN THẤP TẦNG:
+
+1. Chi phí (gồm VAT):
+
+1.1. Chi phí đất: 2,558 tỷ ~ 90tr/m2 đất thương phẩm
+
+- Chi phí đất hiện trạng (lấy theo BCTC): 113 tỷ
+
+- Chi phí đền bù dự kiến phần còn lại: 300 tỷ
+
+- Tiền CMĐ SDĐ: 2,145 tỷ
+
+1.2. Chi phí Pháp lý: 165 tỷ
+
+1.3. Chi phí Nhà mẫu: 88 tỷ
+
+1.4. Chi phí cảnh quan: 27 tỷ
+
+1.5. Chi phí xây dựng: 7,951 tỷ
+
+1.6. Chi phí lãi vay: 945 tỷ (lãi 11%)
+
+1.7. Chi phí hoạt động: 39,000 tỷ
+
+- Chi phí bán hàng Nhà liên kế: 13%
+
+- Chi phí bán hàng căn hộ và Shophouse: 15%
+
+- Chi phí bán Condotel: 20%
+
+- Chi phí vận hành TMDV: 4%/năm
+
+- Chi phí vận hành Khách sạn: 80% cho các năm có tỷ lệ lắp đầy dưới 55% và 70% cho các năm có tỷ lệ lắp đầy trên 55%
+
+2. Doanh thu (gồm VAT): 69,271 tỷ
+
+- Doanh thu bán hàng: 13,838 tỷ
+
+- Doanh thu vận hành: 55,433 tỷ
+
+3. Hiệu quả: Dự án không đạt được hiệu quả với NPV: - 237 tỷ và IRR = 9.8%
+
+LNTT/TMĐT sản phẩm bán = 37.9%
+
+ 
+
+B. PHƯƠNG ÁN CAO TẦNG:
+
+1. Chi phí (gồm VAT):
+
+1.1. Chi phí đất: 2,613 tỷ ~ 89tr/m2 đất thương phẩm
+
+- Chi phí đất hiện trạng (lấy theo BCTC): 113 tỷ
+
+- Chi phí đền bù dự kiến phần còn lại: 300 tỷ
+
+- Tiền CMĐ SDĐ: 2,200 tỷ
+
+1.2. Chi phí Pháp lý: 165 tỷ
+
+1.3. Chi phí Nhà mẫu: 88 tỷ
+
+1.4. Chi phí cảnh quan: 25.4 tỷ
+
+1.5. Chi phí xây dựng: 8,680 tỷ
+
+1.6. Chi phí lãi vay: 979 tỷ (lãi 11%)
+
+1.7. Chi phí hoạt động: 38,500 tỷ
+
+- Chi phí bán hàng căn hộ và Shophouse: 15%
+
+- Chi phí bán Condotel: 20%
+
+- Chi phí vận hành TMDV: 4%/năm
+
+- Chi phí vận hành Khách sạn: 80% cho các năm có tỷ lệ lắp đầy dưới 55% và 70% cho các năm có tỷ lệ lắp đầy trên 55%
+
+2. Doanh thu (gồm VAT): 68,350 tỷ
+
+- Doanh thu bán hàng: 12,978 tỷ
+
+- Doanh thu vận hành: 55,371 tỷ
+
+3. Hiệu quả: Dự án không đạt được hiệu quả với NPV: - 804 tỷ và IRR = 7.7%
+
+LNTT/TMĐT sản phẩm bán = 19.1%
+
+Đính kèm:  by Thao L - INVT, has attachments.
+```
+
+
+## Chunk 147 — batch_142.txt
+
+```text
+Admin 01
+4/14/2026 5:38 PM
+
+Nhờ các anh chị bỏ chút ít thời gian bình chọn giúp cho tập đoàn mình nha. Có thể bình chọn được nhiều cơ sở. 
+
+ 
+
+- Hotel/ Resort có dịch vụ lưu trú tốt nhất | Legacy Hoi An Resort, Sen Village Hoi An, Bel Marina Hoi An Resort: https://vote.vietnamgolfmagazine.net/khach-san-co-dich-vu-luu-tru-tot-nhat
+- Hotel/ Resort có dịch vụ ẩm thực tốt nhất | The Signature Hoi An: https://vote.vietnamgolfmagazine.net/khach-san-co-dich-vu-an-uong-tot-nhat
+- Hotel/ Resort có spa tốt nhất | Legacy Hoi An Resort, Sen Village Hoi An: https://vote.vietnamgolfmagazine.net/khach-san-co-dich-vu-spa-tot-nhat
+
+ 
+
+Em mong nhận được sự hỗ trợ từ các Anh Chị. Em cám ơn!
+
+PTĐT mình bình chọn và nhờ người nhà vote l... by Huy M - IM
+```
+
+
+## Chunk 148 — batch_142.txt
+
+```text
+Hanh T - INVT
+4/14 7:01 PM
+Translate
+
+Nãy có Chị có kêu học sinh trường Thủ Đức vào cày view giúp, cũng tăng lên kha khá đó.
+Mọi người có thể vào bằng chrome chọn tab ecognito là chọn được thêm lượt luôn.
+
+Fake nhiều ip chọn cũng dc by Huy M - IM
+```
+
+
+## Chunk 149 — batch_142.txt
+
+```text
+Hanh T - INVT
+4/14/2026 7:01 PM
+Nãy có Chị có kêu học sinh trường Thủ Đức vào cày view giúp, cũng tăng lên kha khá đó. Mọi người có thể vào bằng chrome chọn tab ecognito là chọn được thêm lượt luôn.
+Đúng rồi
+
+Begin quote, Huy M - IM, 4/14/2026 6:40 PM,... by Hoa D - CVDT
+4/14 7:24 PM
+Hoa D - CVDT
+```
+
+
+## Chunk 150 — batch_143.txt
+
+```text
+Dạ do đất ở lâu dài, sau khi hết thời hạn vận hành, thì giá trị quyền sử dụng đất vẫn còn nguyên, nên phòng đầu tư mới đề xuất tính them 1 phương không có đất vào. 
+
+Đối với phương án tính đất, Phòng Đầu tư đang giả định giá đất chỉ tăng có 5%, dẫn đến hiệu quả dự án IRR thấp hơn ạ.
+```
+
+
+## Chunk 151 — batch_143.txt
+
+```text
+Dạ P.ĐT báo cáo sếp Admin 01 cập nhật dự án khu mặt tiền đường Ngô Chí Quốc (gom đất gần Phú Quang)- Cập nhật Quy hoạch Phân khu. 
+Theo QH PK3 được duyệt 2025, quỹ đất quan tâm thuộc ô đất OD-1, MN-1 và CX-2 (thuộc Đơn vị ở 1), trong đô ô OD-1 (diện tích PHQH 2.15ha) có các thông số sau:
++ Dân số 1.300 (tăng 800 dân so với QH cũ), 
++ Tầng cao: 30 (không đổi)
++ Hệ số: 7 (không đổi)
+* ô MN-1 và CX-2 vẫn có chức năng giáo dục và cây xanh (không đổi)
+
+
+
+
+A/Phương án hỗn hợp thấp tầng (tối ưu số dân 1.300, hệ số sdđ đạt 3.1):
+
+
+1. Quy mô: Gồm 1 block chung cư hỗn hợp 24 tầng (căn hộ, officetel, shop TM và sàn TTTM) và 67 căn nhà phố
+2. PA đầu tư:
+a) Giả định kinh doanh:
++ Giá bán căn hộ: 61 tr/m2 (chưa V, tim tường)
++ Giá bán shop TM: 70 tr/m2 (chưa V, tim tường)
++ Giá bán officetel: 55 tr.m2 (chưa V, tim tường)
++ Sàn TTTM: cho thuê sỉ giá 10$/m2/tháng
++ Nhà trẻ: Cho thuê giá 4$/m2/tháng.
++ Giá bán nhà phố: 100tr/m2 (gồm nhà và đất) (trong đó giá đất: 75.4tr/m2)
+b) Giả định chi phí:
++ Suất xây dựng cao tầng: 15tr/m2 (gồm V, allin)
++ Suất xây dựng thấp tầng (1 trệt 2 lầu): 7tr/m2 (gồm V, all-in, xây hoàn thiện mặt ngoài, thô bên trong)
++Chi phí bán hàng: 18%/doanh thu
++ Lãi suất: 12%/năm
++ Tiền sử dụng đất: 478 tỷ (đơn giá sau khi khấu trừ hiện trạng là 30tr/m2 đất ở)
+c) Hiệu quả đầu tư:
+Để đảm bảo hiệu quả tài chỉnh LNTT/TMĐT đạt 20%, LNST 358 tỷ, IRR 22% thì  giá gom đất trung bình cho tổng diện tích 2.76ha, đa phần đất lúa và HNK, là 275 tỷ (10tr./m2)
+
+B/Phương án full cao tầng: (đảm bảo dùng hết hệ số 7 => xin thêm 2.214 dân)
+1. Quy mô: Gồm 2 block chung cư 30 tầng 2 hầm (căn hộ và shop TM)
+2. PA đầu tư:
+a) Giả định kinh doanh:
++ Giá bán căn hộ: 61 tr/m2 (chưa V, tim tường)
++ Giá bán shop TM: 70 tr/m2 (chưa V, tim tường)
++ Nhà trẻ: Cho thuê giá 4$/m2/tháng.
+b) Giả định chi phí:
++ Suất xây dựng cao tầng: 16.2tr/m2 (gồm V, allin)
++ Lãi suất: 12%/năm
++ Chi phí bán hàng: 18%/doanh thu
++ Tiền sử dụng đất: 862 tỷ (đơn giá sau khi khấu trừ hiện trạng 40tr/m2 đất ở)
+c) Hiệu quả đầu tư:
+Để đảm bảo hiệu quả tài chỉnh LNTT/TMĐT đạt 20%, LNST: 845 tỷ, IRR 21.4%giá gom đất trung bình cho tổng diện tích 2.76ha, đa phần đất lúa và HNK, là 774 tỷ (28tr./m2)
+
+ĐỀ XUẤT:
+- P. ĐT giữ đề xuất chỉ tập trung gom các thừa đất thuộc ô đất OD-1 (diện tích tổng là 2.76ha, diện tích phù hợp quy hoạch 2.15ha). 
+- Do tiền sử dụng đất tại khu vực tăng mạnh, trong đó giá đất ở đường Ngô Chí Quốc theo bảng giá đất 2025 và 2026 lên đến 42.9tr/m2. Vì vậy để đảm bảo mức LNTT/TMĐT 20% thì đơn giá đất mua vào (trên tổng diện tích 2.76ha) tương ứng quy hoạch hiện trạng 1.300 dân, chỉ ở mức 10tr/m2. P.ĐT cho rằng mức giá này khó khả thi dựa vào tình hình thị trường hiện tại.
+=> Do đó, trường hợp không thể đảm bảo mức giá mua đầu vào 10tr/m2. P.ĐT đề xuất PA xin điều chỉnh quy hoạch cục bô ô đất, cụ thể xin thêm 2.214 dân, xây dựng full cao tầng đạt max hệ số 7. Theo PA này, để đảm bảo LNTT/TMĐT mức 20% thì đơn giá đất mua vào ở mức 28tr/m2.
+
+Gửi file pdf báo cáo nha  by Admin 01
+```
+
+
+## Chunk 152 — batch_149.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về dự án Khách sạn 5 sao tại đường 12 Hùng Vương, TP Đà Lạt, Tỉnh Lâm Đồng như sau:
+
+ 
+
+I. SƠ BỘ VỀ DỰ ÁN
+
+Vị trí: 12 Hùng Vương, TP Đà Lạt, Tỉnh Lâm Đồng (Map: https://maps.app.goo.gl/6iyNdteYfVyyT9Xy9)
+Pháp lý: Đất ở, thời hạn sử dụng đất: lâu dài
+Quy hoạch: Được quy hoạch làm khách sạn 5 tầng + 2 hầm, tính theo phương án 159 phòng.
+
+II. ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN
+
+ 
+
+GIẢ ĐỊNH:
+
+1. Phương án kinh doanh (Theo anh David Cường)
+
+ 
+
+2. Tổng Mức Đầu Tư Dự Án: Hiện chưa có TMĐT nên BP Đầu tư giả định gồm có CPXD và tiền đất
+
+Nhận xét:
+
+Do quỹ đất là đất TMDV có thời hạn sử dụng lâu dài, giá trị quyền sử dụng đất không bị giảm sau khi dự án khách sạn kết thúc vòng đời vận hành.
+
+Do đó Bộ phận đầu tư sẽ tính theo 2 phương án:
+
+Phương án có đất
+Phương án không có đất (đánh giá tỷ suất lợi nhuận dựa trên chi phí đầu tư xây dựng ban đầu)
+
+a) Hiệu quả 2 phương án
+
+b) Độ nhạy
+
+Độ nhạy TMĐT/Phòng (bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA bao gồm đất
+
+Độ nhạy TMĐT/Phòng (Bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA không bao gồm đất
+
+Ủa chỗ giá bán đất là sao nhỉ by Admin 01
+```
+
+
+## Chunk 153 — batch_149.txt
+
+```text
+Dạ trong phương án có đất, khi kết thúc vòng đời dự án, Phòng Đầu tư giả định giá trị thanh lý đất tại thời điểm kết thúc vòng đợi dự án được xác định bằng giá vốn ban đầu, tăng trưởng với tốc độ 5%/năm ạ
+
+Begin quote, Admin 01, 4/13/2026 5:10 PM, C... by Hoa D - CVDT
+4/13 5:14 PM
+Hoa D - CVDT
+```
+
+
+## Chunk 154 — batch_149.txt
+
+```text
+Dạ đối với phương án không tính đất, để dự án hiệu quả IRR đạt 10%, thì suất vốn có thể nâng lên là 3 tỷ 1/key ạ. Với suất vốn này, thì phương án tính đất sẽ là 6.4% ạ
+
+Phải tính đất chứ. by Admin 01
+```
+
+
+## Chunk 155 — batch_152.txt
+
+```text
+Dạ giá này là do bên R&D đề xuất ạ. Em xin gửi sếp file đính kèm ạ. Dạ giá khai thác tại thời điểm 2029 là 37 $/m2 (có VAT) tương 34$/m2 (chưa VAT) ạ
+
+03042026_R&D_De xuat PA VP Mai Chi Tho.pdf
+```
+
+
+## Chunk 156 — batch_152.txt
+
+```text
+Phòng ĐT báo cáo Sếp Admin 01 về cập nhật FS dự án Hội An Riverside Resort & Spa theo Concept Lamanon và giá kinh doanh của anh David Cường cung cấp, như sau:
+
+ 
+
+1/ Cơ cấu phòng: 125 phòng gồm 105 phòng khách sạn và 20 phòng Villa (không thay đổi)
+
+2/ Suất đầu tư 
+
+Chi phí đầu tư (gồm VAT)
+
+	
+
+Tháng 4/2026
+
+	
+
+Tháng 12/2024
+
+
+
+
+Suất vốn đầu tư /key
+
+	
+
+2,7 tỷ/key
+
+	
+
+2,3 tỷ/key
+
+
+
+
+Đơn giá All - in
+
+	
+
+17,8 tr/m2
+
+	
+
+15 tr/m2
+
+
+
+
+Tổng chi phí đầu tư 
+
+	
+
+377 tỷ đồng
+
+	
+
+303 tỷ đồng
+
+3/Giá bán, tỷ lệ lấp đầy, chi phí vận hành:
+
+Giá kinh doanh
+
+	
+
+Tháng 4/2026
+
+	
+
+Tháng 12/2024
+
+
+
+
+Giá phòng khách sạn         
+
+	
+
+2,97 triệu/phòng
+
+	
+
+2,7 triệu/phòng
+
+
+
+
+Giá phòng Villa
+
+	
+
+9,27 triệu/phòng
+
+	
+
+8 triệu/phòng
+
+
+
+
+Công suất
+
+	
+
+65%,70%,72%,80%
+
+	
+
+60%,65%,70%, 75%, 80%
+
+
+
+
+Doanh thu khác
+
+	
+
+31%
+
+	
+
+35%
+
+Giá bình quân 150 USD (tỷ giá 27.000 đồng)
+
+4/Hiệu quả đầu tư
+
+Chỉ tiêu
+
+	
+
+Tháng 4/2026
+
+	
+
+Tháng 12/2024
+
+
+
+
+IRR
+
+	
+
+17.1%
+
+	
+
+17.1%
+
+
+
+
+NPV
+
+	
+
+75 tỷ đồng
+
+	
+
+104 tỷ đồng
+
+
+
+
+Thời gian hoàn vốn 
+
+	
+
+7 năm
+
+	
+
+9 năm
+
+Do concept mới chưa có suất vốn đầu tư nên phòng đang tạm tính theo suất vốn chuẩn 5 sao mức đầu tư cao cấp ~ 2,7 tỷ/key và có tính độ nhạy hiệu quả thay đổi theo suất vốn đầu tư, như sau:
+
+ 
+
+Dựa vào bảng độ nhạy thì dự án đạt hiệu quả với giới hạn suất vốn đầu tư/key tối đa ~2,9 tỷ/key, tương đương với đơn giá xây dựng all-in khoảng 19 tr/m2.
+
+ 
+
+Mặc dù phương án thời điểm tháng 4/2026 tính theo suất vốn đầu tư chuẩn 5* cao cấp (~ 2,7 tỷ/key) cao hơn suất vốn thời điểm tháng 12/2024 (~ 2,3 tỷ/key), chi phí xây dựng tăng 74 tỷ đồng nhưng nhờ Giá bán phòng bình quân tăng từ 130 USD lên 150 USD nên phương án mới cập nhật giá của anh David đạt hiệu quả với IRR 17.1% và thời gian hoàn vốn rút ngắn xuống còn 7 năm (so với phương án trước đó là 9 năm).
+```
+
+
+## Chunk 157 — batch_152.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về cập nhật thêm thông tin khu đất tại 02 Tây Thạnh, Tân Phú như sau: 
+
+Diện tích đất : 11.221,7 m², đất ở lâu dài, mục đích sử dụng là đất sản xuất kinh doanh. 
+Vị trí: Mặt tiền đường Tây Thạnh (dài khoảng 65m, lòng đường 16m, vỉa hè mỗi bên 8m). 
+Nằm trong bán kính TOD metro số 2 (chưa xác định chính xác có thuộc ranh đền bù của dự án TOD).
+Cập nhật sang tên cá nhân ông Phạm Công Danh từ ngày 13/06/2006.
+Hiện Sacombank
+```
+
+
+## Chunk 158 — batch_156.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về cập nhật thêm thông tin khu đất tại 02 Tây Thạnh, Tân Phú như sau: 
+
+Diện tích đất : 11.221,7 m², đất ở lâu dài, mục đích sử dụng là đất sản xuất kinh doanh. 
+Vị trí: Mặt tiền đường Tây Thạnh (dài khoảng 65m, lòng đường 16m, vỉa hè mỗi bên 8m). 
+Nằm trong bán kính TOD metro số 2 (chưa x
+```
+
+
+## Chunk 159 — batch_160.txt
+
+```text
+Dạ em xin gửi sếp Admin 01 file báo cáo tổng thể ạ
+
+BC Van Phong Mai Chi Tho.pdf
+Bên đó mà giá 34$ thì hơi cao đó. 30$ thui  by Admin 01
+```
+
+
+## Chunk 160 — batch_160.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 về cập nhật thêm thông tin khu đất tại 02 Tây Thạnh, Tân Phú như sau: 
+
+Diện tích đất : 11.221,7 m²,
+```
+
+
+## Chunk 161 — batch_161.txt
+
+```text
+P.ĐT xin báo cáo sếp Admin 01 về dự án Văn phòng – An Phú, mặt tiền đường Mai Chí Thọ, phường An Phú, TP. Thủ Đức (Quận 2 cũ), TP.Hồ Chí Minh như sau:
+
+1/ Pháp lý:
+
+Do dự án đã hết hạn chấp thuận chủ trương đầu tư từ năm 2010, nên sẽ có khả năng vướng các vấn đề sau:
+
+Gia hạn chấp thuận chủ trương đầu tư: Khó gia hạn do phải rà soát lại pháp lý (bị chồng chéo), quy hoạch và năng lực chủ đầu tư.
+Chưa hoàn thành nghĩa vụ tài chính: Khó xác định đầy đủ nghĩa vụ, có thể bị truy thu và phát sinh chi phí.
+Chưa đóng góp kinh phí hạ tầng chính: Khó xác định quy hoạch và nghĩa vụ các bên, ảnh hưởng tiến độ.
+
+2/ Quy hoạch
+
+Chỉ tiêu xây dựng của khu đất văn phòng
+
+- Mật độ xây dựng: 92,8%
+
+- Hệ số sử dụng đất: 21,7
+
+- Tổng diện tích GFA (bao gồm hầm và kỹ thuật): 52.419m²
+
+- Số tầng: 2 hầm + 27 tầng (trong đó 6 tầng thương mại và 19 tầng văn phòng + 2 tầng kỹ thuật)
+
+- Số chỗ để xe: 586 chỗ xe máy và 152 chỗ xe ô tô
+
+3/ Hiệu quả đầu tư
+
+Doanh thu: Giả định dự án vận hành trong 30 năm
+
+Chi phí
+
+Hiệu quả dự án
+
+Với giá mua đất là 246 tỷ VNĐ (tương đương 94 Tr.VNĐ/m2 đất) và giá cho thuê văn phòng là 34$/m2 thì dự án có IRR đạt 15%.
+
+4/ Độ nhạy dự án
+
+=>Dự án đạt hiệu quả với giá mua đất (Đã đủ điều kiện chuyển nhượng và đủ điều kiện xây dựng) là 246 tỷ VNĐ(tương đương 94 tr.VNĐ/m2). Do dự án đã triển khai từ năm 2008 nên sẽ phát sinh nhiều rủi ro pháp lý như trên. Hiện anh Minh đang tìm kiếm các nguồn thông tin để rà soát, tuy nhiên đến nay vẫn chưa có thông tin.
+
+Gửi file báo cáo tổng thể nha by Admin 01
+```
+
+
+## Chunk 162 — batch_162.txt
+
+```text
+Huy M - IM
+5/14 6:20 PM
+Translate
+Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm tính đóng thêm tiền sử dụng đất khoảng hơn 200 tỷ thì mới làm đc pa condotel. Nếu ko reset được thì chỉ
+```
+
+
+## Chunk 163 — batch_166.txt
+
+```text
+Thao L - INVT
+3/25 6:26 PM
+Edited
+Translate
+
+K.ĐT gửi anh Admin 01 báo cáo cập nhật dự án 31 Trần Não như sau:
+
+1. Phương án đề xuất:
+
+- Loại hình: Căn hộ ở, Căn hộ dịch vụ và Shophouse
+
+- Quy mô: Tòa 35 tầng + 2 hầm:
+
++ 2 Tầng shophouse
+
++ CHDV: 1 tầng dịch vụ CHDV, 17 tầng CHDV,
+
++ Căn hộ ở: 2 tầng lánh nạn + dịch vụ, 13 tầng căn hộ ở
+
+2. Tổng chi phí (VAT)
+
+TMĐT: 4,200 tỷ
+
+- Chi phí đất: 2,500 tỷ ~ 476tr/m2
+
+- Tiền SDĐ tạm tính; 160 tỷ (tạm tính 20% Đơn giá đất ở VT1 Đường Trần Não)
+
+- CPXD Allin trung bình:  1,250 tỷ ~ 18.4tr/m2
+
++ CPXD/CHDV: 2.24 tỷ/căn
+
+- Chi phí lãi vay: 255 tỷ
+
+CPBH:  11,500 tỷ
+
+- Chi phí bán hàng: 15% Doanh thu bán hàng
+
+- Chi phí vận hành: 60% Doanh thu vận hành CHDV
+
+3. Tổng Doanh thu
+
+- Căn hộ: 3,360 tỷ
+
+ + Đơn giá: 220tr/m2 ~ 20.2 tỷ/căn (chưa VAT, tim tường), Mở bán từ Q4/2028 - Q2/2029, Bàn giao nội thất cơ bản
+
+- Shophouse: 1,280 tỷ
+
+ + Đơn giá: 250tr/m2 ~ 30.2 tỷ/căn (chưa VAT, tim tường), Mở bán từ Q3/2030 - Q4/2030, Bàn giao thô
+
+- CHDV: Bắt đầu vận hành 2031, Bàn giao nội thất đầy đủ
+
++ 32.8tr/căn/tháng (gồm VAT, tim tường) ~ 1,215$/căn/tháng, 20.9$/m2/tháng.
+
++ Tỷ lệ lấp đầy: Năm 1: 55%, Năm 2: 60%, Năm 3: 65%, Ổn định: 70% 
+
++ Tỷ lệ tăng giá: 5%/năm
+
+4. Hiệu quả dự án:
+
+- LNTT loại hình bán Căn hộ và Shophouse = 1,360tỷ
+
+- Dòng tiền thu về của CHDV sau khi trừ CPHD = 6,500 tỷ  cho 48 năm ~ 136 tỷ/năm
+
+- IRR cả dự án: 5.4%
+
+*Phân tích hiệu quả theo loại hình sản phẩm
+
+Khi tách riêng từng loại hình trong dự án:
+
+- Căn hộ dịch vụ (vận hành): tạo dòng tiền ổn định trong dài hạn. Tuy nhiên, Dòng tiền từ doanh thu vận hành CHDV khi chiết khấu về tại thời điểm bắt đầu vận hành thì chỉ đủ bù đắp gần đủ phần Chi phí xây dựng và Chi phí vận hành (60%), nhưng không gánh được phần Chi phí đất ở tương ứng.
+
+- Căn hộ ở và Shophouse (sản phẩm bán): hiệu quả tài chính tốt, nhờ khả năng thu hồi vốn nhanh và biên lợi nhuận cao nhưng nếu gánh phần chi phí đất của CHDV thì LNTT giảm còn 200 tỷ
+
+=> Do CHDV không đạt hiệu quả tài chính độc lập, phần lợi nhuận từ các sản phẩm bán (căn hộ ở và shophouse) phải bù đắp phần chi phí đất thiếu hụt (chi phí đất) của CHDV.
+
+=> Hiệu quả tài chính cả dự án bị giảm mạnh, IRR thấp.
+
+5. Độ nhạy IRR giữa Giá đất và Giá xây dựng
+
+Vào anh  by Admin 01
+```
+
+
+## Chunk 164 — batch_167.txt
+
+```text
+Admin 01
+3/25/2026 2:20 PM
+Ủa bữa a David có gửi bài toán kinh doanh cho Casa rồi, mình có áp lại ra hiệu quả chưa
+
+BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:
+
+I. SƠ BỘ VỀ DỰ ÁN
+
+Vị trí:
+Tọa lạc ở khu vực trung tâm thành phố.
+Hẻm nhỏ và cụt, rộng khoảng 5m, cách mặt tiền đường Hùng Vương khoảng 50m
+Xung quanh dự án có nhiều tòa cao tầng, bị chắn tầm nhìn ra biển
+Cách bãi biển tương đối xa, khoảng 320m
+Pháp lý: đất TMDV có thời hạn sử dụng lâu dài do có nguồn gốc đất ở
+Quy hoạch: Dựa trên giấy phép quy hoạch 02/GPQH - SXD: Được quy hoạch làm khách sạn, 26 tầng nổi, 1 tum thang + 2 tầng hầm, hiện đang tính theo phương án 242 phòng.    
+
+II. ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN
+
+GIẢ ĐỊNH
+
+Giả định chung cho cả 2 phương án (Dựa trên file CASA của anh Cường)
+
+a) Giá trị đất:
+
+Giá vốn đất: 120 tỷ (Tương đương 166tr/m2 đất)
+
+Thoái vốn đất:
+
+Thời điểm bán: 2060
+Giá khảo sát tại thời điểm hiện tại: 170 Tr.vnđ/m2
+Giả định: Tốc độ tăng giá đất là: 5%/1 năm
+Tổng giá trị bán: 643 tỷ (tương đương 893 Tr.vnđ/m2 đất)
+
+b) Tổng Mức Đầu Tư Dự Án: Do hiện tại chưa có TMĐT, nên BP ĐT giả định TMĐT bao gồm: Tiền đất + CPXD
+
+TMĐT của dự án (chưa bao gồm lãi vay, có VAT): 482 tỷ
+Giá đất: 120 tỷ (Tương đương 166tr/m2 đất)
+Chi phí xây dựng ALL in  : 362 tỷ (Tương đương 20.4tr/m2), tương đương 1.5 tỷ/phòng
+
+Nhận xét:
+
+Do quỹ đất là đất TMDV có thời hạn sử dụng lâu dài, giá trị quyền sử dụng đất không bị giảm sau khi dự án khách sạn kết thúc vòng đời vận hành.
+
+Do đó Bộ phận đầu tư sẽ tính theo 2 phương án:
+
+Phương án có đất
+Phương án không có đất (đánh giá tỷ suất lợi nhuận dựa trên chi phí đầu tư xây dựng ban đầu)
+
+So sánh hiệu quả 2 phương án:
+
+c) Độ nhạy
+
+Độ nhạy TMĐT/Phòng (bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA bao gồm đất
+
+Độ nhạy TMĐT/Phòng (Bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA không bao gồm đất
+
+1 Like reaction.
+Gửi File tổng hợp nha  by Admin 01
+```
+
+
+## Chunk 165 — batch_169.txt
+
+```text
+Dạ đây là bảng hiệu quả của FS của lô A2-3, phương án giá bán 45 tr/m2 báo cáo ngày 04.08.2025
+
+Thời điểm này mình đang để giá mua là 400 tỷ cho 2 lô
+
+Admin   01  Báo cáo Sếp! Báo cáo FS cũ phươ... by Unknown User
+Hoang V - IM
+3/25 5:27 PM
+Edited
+Translate
+
+Admin 01 Báo cáo Sếp!
+```
+
+
+## Chunk 166 — batch_169.txt
+
+```text
+Báo cáo FS cũ phương án thiết kế chưa có bán shop, tính tiền mua đất 400 tỷ cao hơn hợp đồng 100 tỷ, giá bán thị trường lúc đó 45 tr/m2 chưa gồm VAT và mới chỉ tính 1 thửa đất thôi cũng đã có lời như vậy rồi.
+
+2. FS cập nhật gần nhất:
+
+Bổ sung bán căn shop, đất mình mỗi thửa đều có 4 mặt tiền.
+Giá bán căn hộ tốt hơn, dự kiến bán vào năm 2029.
+Chi phí mua đất cập nhật theo hợp đồng chỉ 300 tỷ.
+
+=> Tựu lại Mua đất làm cao tầng hiện giá chỉ 45 tr/m2 còn thấp hơn đất ở của dân đang bán tại Khu đô thị Hòa Xuân từ 60 tr- 80 tr/m2, chồng lên 15, 18 tầng bán, không phải đóng thêm tiền sử dung đất gì nữa chỉ cần dân gian => Như vậy thì chỉ có siêu lợi nhuận thôi Sếp.
+
+ 
+
+ 
+
+Begin quote, Admin 01, 3/25/2026 2:20 PM, Ủ... by Hoa D - CVDT
+3/25 5:34 PM
+Edited
+Hoa D - CVDT
+```
+
+
+## Chunk 167 — batch_171.txt
+
+```text
+Admin 01
+3/25 5:10 PM
+Translate
+
+Ủa a nhớ hồi xưa FS cũ tính ra ko lời mấy, lúc bán giá 45 hay sao đó 
+
+  Dạ đây là bảng hiệu quả của FS của lô A2-... by Khoa L - INVT
+```
+
+
+## Chunk 168 — batch_171.txt
+
+```text
+P.ĐT xin báo cáo Sếp Admin 01 FS dự án Holiday Beach theo phương án kết hợp Khách sạn và Condotel, như sau:
+
+I. TỔNG QUAN DỰ ÁN VÀ CƠ CẤU SẢN PHẨM:
+
+Quy mô xây dựng: 2 tầng hầm, 30 tầng nổi, tổng diện tích GFA gồm hầm 75.913 m2.
+
+Tỷ lệ diện tích thương phẩm 43.702 m2 ~ 58%/GFA gồm hầm, ~ 66%/GFA chưa hầm.
+
+II. TỔNG MỨC ĐẦU TƯ DỰ KIẾN
+
+Tổng mức đầu tư (bao gồm VAT) được dự kiến xây dựng hoàn thiện tiêu chuẩn 5 sao.
+
+III. PHÂN BỔ GIÁ VỐN VÀ TÍNH GIÁ HÒA VỐN:
+
+Cơ cấu giá
+```
+
+
+## Chunk 169 — batch_172.txt
+
+```text
+P.ĐT báo cáo sếp hiệu quả dự án chung cư Hòa Xuân (A2-3 & A2-4)
+
+1. Thông tin tổng quan
+
+a) Diện tích: 6.648 m2; Trong đó:
+
++ A2-3: 3.508 m2
+
++ A2-4: 3.140 m2
+
+b) Quy hoạch theo QHPK mới:
+
++ A2-3: 18 tầng, 880 dân, mđxd 73%, hệ số 12.4 (Thiết kế đc 12.4)
+
++ A2-4: 15 tầng, 804 dân (thiết kế được 682) , mđxd 76%, hệ số 12.2 (thiết kế được 10.6)
+
+ 
+
+2. Hiệu quả:
+
+a) Giả định kinh doanh (tham chiếu báo cáo từ RnD):
+
++ Giá bán căn hộ: 55 – 60 tr/m2 (chưa VAT tim tường)
+
++ Giá bán shop: 80 tr/m2 (chưa VAT tim tường)
+
++ Nhà trẻ: cho thuê 3.5$/m2/tháng
+
++ Chi phí bán hàng: 19 %/doanh thu
+
+b) Giả định xây dựng:
+
++ Suất xây dựng: 13tr./m2 (gồm VAT), trang bị nội thất liền tường.
+
++ Suất Đầu tư all in: 15tr/m2
+
++ Chi phí pháp lý: 36 tỷ (dành cho gđ xin GPXD, nghiệm thu, ra sổ)
+
++ Ls: 12%/năm
+
+c) Hiệu quả kinh doanh:
+
+LNTT: 956 tỷ
+
+LNST: 765 tỷ
+
+NPV: 512 tỷ
+
+IRR: 141%
+
+LNTT/TMĐT: 49,1%
+
+300126_R D_De xuat PA phat trien 2 lo Hoa Xuan_full dat o.pdf
+Ủa giá mua là bao nhiêu  by Admin 01
+```
+
+
+## Chunk 170 — batch_172.txt
+
+```text
+Dạ giá mua 2 lô là 300 tỷ. Họ bán hiện trạng đúng theo QH1/500 do đó mình ko nộp tiền sử dụng đất thêm.
+
+Ủa a nhớ hồi xưa FS cũ tính ra ko lời mấy, ... by Admin 01
+```
+
+
+## Chunk 171 — batch_172.txt
+
+```text
+Dạ em xin gửi sếp Admin 01 file báo cáo tổng thể ạ
+
+BC Van Phong Mai Chi Tho.pdf
+Preview
+Bên đó mà giá 34$ thì hơi cao đó. 30$ thui  by Admin 01
+```
+
+
+## Chunk 172 — batch_174.txt
+
+```text
+Huy M - IM
+3/25 2:28 PM
+Translate
+
+OK Sếp. Team sẽ trao đổi với RD về nhu cầu của loại hình CHDV ntn.
+
+Gửi lại e FS 2 lô Sungroup  by Admin 01
+```
+
+
+## Chunk 173 — batch_176.txt
+
+```text
+Huy M - IM
+3/24 5:09 PM
+Translate
+
+Đúng rồi Sếp. Duyệt dân số là toàn dư án , tuy nhiên 4 lock chung cư họ đã xây thì đã sử dụng hết dân số. còn lại miếng đất trống ngoài mặt tiền là làm văn phòng (theo QH 1.500 2008 được duyệt) . QH phân khu mới duyệt vừa rồi dân số thậm chí còn thấp hơn số 1.500  được duyệt nên mình không chuyển được thành ở Sếp
+
+Định giá lô này mua nhiêu là ổn by Admin 01
+```
+
+
+## Chunk 174 — batch_178.txt
+
+```text
+Admin 01
+3/24/2026 12:00 PM
+Cái 31 TN tính lại chưa ta Thao L - INVT
+
+Do vấn đề về pháp lý của các loại hình phải phù hợp với dân số theo QH 1/2000. 
+
+Hiện trạng bây giờ P.QH đã binh lại theo phương án mới là Căn hộ bán + Căn hộ dịch vụ (chỉ được vận hành, không bán một lần được)
+
+Và P.RD đang làm báo cáo thị trường (đặt biệt thị trường loại hình Vận hành căn hộ dịch vụ)
+
+Dự kiến trong nay RD sẽ gửi lại báo báo
+```
+
+
+## Chunk 175 — batch_178.txt
+
+```text
+Dạ P.ĐT xin gửi sếp Admin 01 file trình bày ạ
+
+Dự Án Khu Chung Cư & Văn Phòng An Phú 2.pdf
+Ủa được duyệt dân số đó là cho toàn khu hã by Admin 01
+```
+
+
+## Chunk 176 — batch_178.txt
+
+```text
+P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tương tự PA 1a P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS. Hiệu quả dự án như sau:
+
+Doanh thu chưa VAT: 7.290 tỷ đồng (thời điểm mở bán 2028 giá bán căn hộ và giá shop là 60 triệu bao gồm VAT).
+Tổng mức đầu tư chưa VAT: 4.520 tỷ đồng (T
+```
+
+
+## Chunk 177 — batch_179.txt
+
+```text
+P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tương tự PA 1a P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS. Hiệu quả dự án như sau:
+
+D
+```

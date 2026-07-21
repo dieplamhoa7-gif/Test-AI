@@ -21,7 +21,7 @@ ws.addEventListener('open', async()=>{
   const summary = [];
   try{
     await send('Runtime.enable');
-    for(let i=1;i<=60;i++){
+    for(let i=61;i<=180;i++){
       const expr = `(() => {
         const candidates = [...document.querySelectorAll('[role="main"], [role="list"], [data-tid*="message"], div')]
           .filter(el => el.scrollHeight > el.clientHeight + 200)

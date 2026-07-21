@@ -4,7 +4,7 @@ p=Path(r'C:\Users\HoaD-CVDT\.openclaw\workspace\projects\bds-project-database')
 reader=csv.DictReader(open(p/'projects_from_teams_draft.csv',encoding='utf-8-sig'))
 fieldnames=reader.fieldnames
 rows=list(reader)
-maps=json.load(open(p/'map_link_resolution_full.json',encoding='utf-8'))
+maps=json.load(open(p/'map_link_resolution_all.json',encoding='utf-8'))
 d={m['url']:(m.get('lat',''),m.get('lng','')) for m in maps}
 changed=0
 for r in rows:
