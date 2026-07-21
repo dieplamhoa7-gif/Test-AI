@@ -155,18 +155,6 @@ table.tb td:first-child{text-align:left;font-weight:700;color:#cfe0ff}
 
 
 
-<div class="hero">
-
- <div class="eyebrow">LH Investment · Macro Web</div>
-
- <h1>Vĩ mô Việt Nam & Tương quan cổ phiếu</h1>
-
- <div class="sub">21 chỉ tiêu vĩ mô theo thời gian · tương quan tới 120 cổ phiếu VN100 chia theo 14 nhóm ngành · đã nhúng dữ liệu master 2021→08/07/2026 (partial July update) (nearest source-backed); kỳ thiếu nguồn giữ trống.</div>
-
-</div>
-
-
-
 <div class="tabs">
 
  <div class="tab on" data-p="macro">📊 Chỉ tiêu Vĩ mô</div>
@@ -403,43 +391,7 @@ addMonetaryPolicySection();
 
 
 
-function fmtBn(v){return (v/1e9).toLocaleString('vi-VN',{maximumFractionDigits:1})+' tỷ VND'}
-
-function addNetFlowCard(){
-
- const nf=DATA.netFlow;if(!nf||!nf.summary)return;
-
- const s=nf.summary;
-
- const div=document.createElement('div');
-
- div.className='card';
-
- div.style.margin='10px 0 14px';div.style.padding='12px 14px';
-
- div.innerHTML='<h3 style="margin-bottom:6px">Mua/bán ròng VN100</h3>'+
-
- '<div class="note">Nguồn: VietstockFinance workbook · kỳ '+(nf.period||'')+' · net = mua - bán; khối ngoại gồm khớp lệnh + thỏa thuận khi có dữ liệu.</div>'+
-
- '<div class="kpis" style="grid-template-columns:repeat(4,1fr);margin-top:10px">'+
-
- '<div class="kpi"><div class="l">Khối ngoại mua</div><div class="v pos">'+fmtBn(s.foreign_buy_total_value_vnd)+'</div></div>'+
-
- '<div class="kpi"><div class="l">Khối ngoại bán</div><div class="v neg">'+fmtBn(s.foreign_sell_total_value_vnd)+'</div></div>'+
-
- '<div class="kpi"><div class="l">Khối ngoại ròng</div><div class="v '+(s.foreign_net_value_vnd>=0?'pos':'neg')+'">'+fmtBn(s.foreign_net_value_vnd)+'</div></div>'+
-
- '<div class="kpi"><div class="l">Tự doanh ròng</div><div class="v '+(s.proprietary_net_value_vnd_computed>=0?'pos':'neg')+'">'+fmtBn(s.proprietary_net_value_vnd_computed)+'</div></div>'+
-
- '</div>';
-
- document.querySelector('.hero')?.appendChild(div);
-
-}
-
-addNetFlowCard();
-
-
+// Removed from macro page per request: VN100 net flow summary card.
 
 const crosshair={id:'ch',afterDraw(c){if(c.tooltip&&c.tooltip._active&&c.tooltip._active.length){const x=c.tooltip._active[0].element.x;const{top,bottom}=c.chartArea;const ctx=c.ctx;ctx.save();ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.lineWidth=1;ctx.strokeStyle='rgba(34,211,238,.45)';ctx.stroke();ctx.restore();}}};
 
