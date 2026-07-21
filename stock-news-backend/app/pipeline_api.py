@@ -958,11 +958,25 @@ def _run_model3_full_export_sync(ticker: str, with_notebooklm: bool = True, prog
             if progress_cb:
                 progress_cb("✅ NotebookLM export xong")
         except Exception as exc:  # noqa: BLE001
-            # NotebookLM auth/quota is external. Keep the completed Model3 DOCX/report visible
-            # instead of failing the entire job.
+            # NotebookLM auth/quota/runtime is external. Keep the completed Model3 DOCX/report visible
+            # instead of failing the entire job; create a local fallback PDF/HTML when possible.
             err = str(exc)[-1500:]
             result["notebooklm"] = None
             result["notebooklm_error"] = err
+            try:
+                from model3_fallback_report import create_fallback_report_from_docx
+                fb = create_fallback_report_from_docx(str(docx), title=f"{ticker} Model3 fallback report")
+                result["fallback_report"] = fb
+                if fb.get("pdf_path"):
+                    result["fallback_pdf_path"] = fb.get("pdf_path")
+                    result["fallback_pdf_url"] = f"/pipeline/model3/file/{Path(str(fb.get('pdf_path'))).name}"
+                if fb.get("html_path"):
+                    result["fallback_html_path"] = fb.get("html_path")
+                    result["fallback_html_url"] = f"/pipeline/model3/file/{Path(str(fb.get('html_path'))).name}"
+                if progress_cb:
+                    progress_cb("✅ NotebookLM lỗi; đã tạo PDF fallback từ DOCX")
+            except Exception as fb_exc:  # noqa: BLE001
+                result["fallback_error"] = str(fb_exc)[-1000:]
             if progress_cb:
                 progress_cb(f"❌ NotebookLM export lỗi: {err}")
     return result
