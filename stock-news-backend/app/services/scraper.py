@@ -15,8 +15,18 @@ SOURCE_CONFIG = {
         "rss": [
             "https://cafef.vn/thi-truong-chung-khoan.rss",
             "https://cafef.vn/doanh-nghiep.rss",
+            "https://cafef.vn/tai-chinh-ngan-hang.rss",
+            "https://cafef.vn/bat-dong-san.rss",
         ],
         "homepage": "https://cafef.vn/",
+    },
+    "vnexpress": {
+        "rss": [
+            "https://vnexpress.net/rss/kinh-doanh.rss",
+            "https://vnexpress.net/rss/bat-dong-san.rss",
+            "https://vnexpress.net/rss/tai-chinh.rss",
+        ],
+        "homepage": "https://vnexpress.net/kinh-doanh",
     },
     "vietstock": {
         "rss": [
@@ -199,7 +209,8 @@ def parse_vietstock_homepage(html: str, limit: int) -> list[dict]:
 
 def collect_news(limit: int = 10) -> list[dict]:
     collected: list[dict] = []
-    per_source_limit = min(MAX_ARTICLES_PER_SOURCE, max(1, limit // 2 + 1))
+    source_count = max(1, len(SOURCE_CONFIG))
+    per_source_limit = max(MAX_ARTICLES_PER_SOURCE, max(10, limit // source_count + 5))
 
     for source, cfg in SOURCE_CONFIG.items():
         source_items = []
@@ -215,8 +226,10 @@ def collect_news(limit: int = 10) -> list[dict]:
                 html = _fetch(cfg["homepage"])
                 if source == "cafef":
                     source_items = parse_cafef_homepage(html, per_source_limit)
-                else:
+                elif source == "vietstock":
                     source_items = parse_vietstock_homepage(html, per_source_limit)
+                else:
+                    source_items = parse_cafef_homepage(html, per_source_limit)
             except Exception:
                 source_items = []
 

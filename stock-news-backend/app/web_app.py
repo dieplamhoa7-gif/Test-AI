@@ -483,10 +483,10 @@ def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)
 
 
 @app.get("/news")
-def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
-    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
+def news(limit: int = Query(default=30, ge=1, le=1000), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 1000))
     start = (page - 1) * limit
     end = start + limit
-    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh}
+    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh, "status": "python-rss-refresh" if refresh else "python-news-cache", "updatedAt": _utcnow().isoformat()}
 
 
