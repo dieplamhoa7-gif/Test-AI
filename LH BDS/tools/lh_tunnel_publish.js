@@ -29,6 +29,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const DEPLOY_DIR = process.env.DEPLOY_DIR || 'public_final_2026_07_11';
 const CONFIG_PATH = path.join(ROOT, DEPLOY_DIR, 'api-config.json');
+const AUDIT_PATH = path.join(ROOT, DEPLOY_DIR, 'deploy-audit.txt');
+const FIREBASE_CACHE_DIR = path.join(ROOT, '.firebase');
 const FIREBASE_SITE = process.env.FIREBASE_SITE || 'lhrealestate';
 const FIREBASE_PROJECT = process.env.FIREBASE_PROJECT || 'hoa-investment';
 const FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || 'firebase.json';
@@ -67,13 +69,26 @@ function writeConfigAndDeploy() {
   cfg.updated = new Date().toISOString();
   for (const { role } of ROLES) cfg[role + 'ApiBase'] = state[role] || '';
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(cfg, null, 2));
+  fs.writeFileSync(AUDIT_PATH, `lhrealestate tunnel publish ${cfg.updated}\nrd=${cfg.rdApiBase || ''}\nqh=${cfg.qhApiBase || ''}\n`);
   log('api-config.json updated:', JSON.stringify({ rd: cfg.rdApiBase, qh: cfg.qhApiBase }));
   const deployCmd = `firebase deploy --project ${FIREBASE_PROJECT} --config ${FIREBASE_CONFIG} --only hosting:${FIREBASE_SITE}`;
   if (SKIP_DEPLOY) { log('SKIP_DEPLOY=1 -> khong deploy; nho deploy tay:', deployCmd); return; }
   try {
+    try { fs.rmSync(FIREBASE_CACHE_DIR, { recursive: true, force: true }); log('firebase cache cleared:', FIREBASE_CACHE_DIR); } catch (_) {}
     execSync(deployCmd, { cwd: ROOT, stdio: 'inherit' });
     log('firebase deploy xong.');
+    verifyPublicConfig(cfg);
   } catch (e) { log('firebase deploy LOI:', e.message, '-> se thu lai lan cap nhat sau.'); }
+}
+
+async function verifyPublicConfig(expected) {
+  try {
+    const r = await fetch(`https://${FIREBASE_SITE}.web.app/api-config.json?verify=${Date.now()}`, { cache: 'no-store' });
+    const j = await r.json();
+    const ok = (!expected.rdApiBase || j.rdApiBase === expected.rdApiBase) && (!expected.qhApiBase || j.qhApiBase === expected.qhApiBase);
+    if (ok) log('public api-config verified:', JSON.stringify({ rd: j.rdApiBase, qh: j.qhApiBase }));
+    else log('public api-config MISMATCH:', JSON.stringify({ expected: { rd: expected.rdApiBase, qh: expected.qhApiBase }, public: { rd: j.rdApiBase, qh: j.qhApiBase } }));
+  } catch (e) { log('public api-config verify LOI:', e.message); }
 }
 
 async function healthOk(url, needFlag) {
