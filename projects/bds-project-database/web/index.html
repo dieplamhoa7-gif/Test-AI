@@ -3,72 +3,65 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BĐS Investment Map — Teams Database</title>
-  <link rel="preconnect" href="https://unpkg.com">
+  <title>BĐS Investment Cockpit</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar" aria-label="Danh sách dự án">
-      <header class="brand-block">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">LH</div>
         <div>
           <p class="eyebrow">Bee || Phân Tích Đầu Tư</p>
-          <h1>BĐS Project Map</h1>
-          <p class="subtitle">Map dự án từ Teams database — click bảng để bay tới marker, click marker để xem popup thông tin.</p>
+          <h1>BĐS Investment Cockpit</h1>
         </div>
-        <div class="metric-grid" id="metrics"></div>
-      </header>
+      </div>
+      <div class="header-actions">
+        <div class="quick-search">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Tìm dự án, vị trí, pháp lý, IRR, giá…" autocomplete="off" />
+        </div>
+        <button id="fitMapBtn" class="ghost-btn">Fit map</button>
+      </div>
+    </header>
 
-      <section class="controls" aria-label="Bộ lọc">
-        <label class="search-box">
-          <span>Tìm dự án / địa điểm / note</span>
-          <input id="search" type="search" placeholder="VD: Thủ Đức, Cát Lái, Holiday Beach…" autocomplete="off" />
-        </label>
-        <div class="filter-row">
-          <label>
-            <span>Trạng thái</span>
-            <select id="statusFilter"><option value="">Tất cả</option></select>
-          </label>
-          <label>
-            <span>Loại</span>
-            <select id="typeFilter"><option value="">Tất cả</option></select>
-          </label>
+    <aside class="left-panel">
+      <section class="metric-grid" id="metrics"></section>
+      <section class="filter-card">
+        <div class="section-title">
+          <span>Bộ lọc</span>
+          <button id="resetFilters" class="link-btn">Reset</button>
         </div>
-        <label class="sort-control">
-          <span>Sắp xếp</span>
-          <select id="sortMode">
-            <option value="score">Score cao trước</option>
-            <option value="date">Ngày mới trước</option>
-            <option value="name">Tên A-Z</option>
-          </select>
-        </label>
+        <div class="control-grid">
+          <label><span>Trạng thái</span><select id="statusFilter"><option value="">Tất cả</option></select></label>
+          <label><span>Loại</span><select id="typeFilter"><option value="">Tất cả</option></select></label>
+          <label><span>Score tối thiểu</span><input id="minScore" type="range" min="0" max="100" value="0" /><b id="minScoreLabel">0</b></label>
+          <label><span>Sắp xếp</span><select id="sortMode"><option value="score">Score cao trước</option><option value="date">Ngày mới trước</option><option value="name">Tên A-Z</option></select></label>
+        </div>
       </section>
-
-      <section class="table-card">
-        <div class="table-head">
-          <strong>Danh sách dự án có tọa độ</strong>
-          <span id="countLabel"></span>
-        </div>
+      <section class="list-card">
+        <div class="section-title"><span>Danh sách dự án</span><b id="countLabel"></b></div>
         <div class="project-list" id="projectList" role="list"></div>
       </section>
     </aside>
 
-    <main class="map-panel">
-      <div class="topbar">
-        <div>
-          <p class="eyebrow">Interactive dashboard</p>
-          <h2>Map & thông tin đầu tư</h2>
-        </div>
-        <div class="legend" aria-label="Chú giải">
-          <span><i class="dot high"></i>High</span>
-          <span><i class="dot medium"></i>Medium/Review</span>
-          <span><i class="dot low"></i>Low</span>
-        </div>
-      </div>
+    <main class="map-stage">
       <div id="map" aria-label="Bản đồ dự án"></div>
-      <div class="detail-drawer" id="detailDrawer" hidden></div>
+      <div class="map-legend">
+        <span><i class="legend-dot high"></i>High score</span>
+        <span><i class="legend-dot mid"></i>Review</span>
+        <span><i class="legend-dot low"></i>Raw</span>
+      </div>
     </main>
+
+    <aside class="detail-panel" id="detailPanel">
+      <div class="empty-detail">
+        <p class="eyebrow">Chưa chọn dự án</p>
+        <h2>Chọn marker hoặc dòng trong bảng</h2>
+        <p>Panel này sẽ trình bày đầy đủ thông tin theo nhóm: nguồn, vị trí, quy hoạch, pháp lý, giá, chi phí, hiệu quả, rủi ro.</p>
+      </div>
+    </aside>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
