@@ -32,13 +32,18 @@ function formatValue(label,val){
 const FIELD_FALLBACKS={land_area_main:['land_area'],land_area_main_raw:['land_area_raw_mentions'],asking_land_price:['asking_price'],selling_price:['price_mentions'],far_clean:['far'],max_floors_clean:['max_floors'],density_clean:['building_density'],population_clean:['population'],total_investment_clean:['total_investment'],revenue_clean:['revenue'],profit_clean:['profit'],irr_clean:['irr'],npv_clean:['npv'],payback_clean:['payback']};
 function fieldValue(r,k){if(clean(r[k]))return r[k];for(const alt of FIELD_FALLBACKS[k]||[]){if(clean(r[alt]))return r[alt];}return '';}
 function table(fields,r){const body=fields.map(([label,k])=>[label,k,fieldValue(r,k)]).filter(([,,v])=>clean(v)).map(([label,k,v])=>`<tr><th>${esc(label)}</th><td>${formatValue(label,v)}</td></tr>`).join('');return body?`<table class="info-table"><tbody>${body}</tbody></table>`:'';}
+function financialEvidencePanel(r){
+  let items=[];try{items=JSON.parse(r.financial_line_items||'[]')}catch(e){} if(!Array.isArray(items)||!items.length)return '';
+  const groups={};items.forEach(x=>{const k=x.label||'Chưa phân loại';(groups[k]||(groups[k]=[])).push(x.value)});
+  return `<section class="financial-evidence" data-group="financial-evidence"><h4>CHI TIẾT SỐ LIỆU TÀI CHÍNH TỪ BÁO CÁO</h4><p>Mỗi dòng giữ nhãn/ngữ cảnh từ báo cáo nguồn; không hiển thị số rời.</p>${Object.entries(groups).map(([label,vals])=>`<div class="financial-evidence-group"><b>${esc(label)}</b><ul>${vals.slice(0,12).map(v=>`<li>${esc(v)}</li>`).join('')}</ul></div>`).join('')}</section>`;
+}
 function scenarioPanel(r){
   if(!clean(r.scenario_data))return '';
   let scenarios=[];try{scenarios=JSON.parse(r.scenario_data)}catch(e){return '';} if(!Array.isArray(scenarios)||!scenarios.length)return '';
   const body=scenarios.map((s,i)=>`<section class="scenario-pane ${i?'hidden':''}" data-scenario="${esc(s.id)}"><div class="scenario-status">${esc(s.status||'Phương án')}</div><div class="scenario-grid">${Object.entries(s).filter(([k])=>!['id','title','status'].includes(k)).map(([k,v])=>`<div><span>${esc(({area:'Quy mô',planning:'Quy hoạch',products:'Sản phẩm',population:'Dân số',legal:'Pháp lý',financial:'Tài chính',revenue:'Doanh thu',selling_price:'Giá bán',investment:'Tổng mức đầu tư',cost:'Chi phí hoạt động',profit:'Lợi nhuận'})[k]||k)}</span><b>${esc(v)}</b></div>`).join('')}</div></section>`).join('');
   return `<section class="scenario-panel" data-group="scenarios"><h4>PHƯƠNG ÁN ĐẦU TƯ (${scenarios.length})</h4><div class="scenario-tabs">${scenarios.map((s,i)=>`<button class="${i?'':'active'}" data-scenario-target="${esc(s.id)}">${esc(s.title)}</button>`).join('')}</div>${body}</section>`;
 }
-function detailGroups(p){const r=p.popup||{};return scenarioPanel(r)+GROUPS.map(([id,title,fields])=>{const t=table(fields,r);return t?`<section class="info-group" data-group="${id}"><h4>${esc(title)}</h4>${t}</section>`:''}).join('')+`<section class="excerpt-box"><b>Excerpt tin nhắn gốc</b><p>${esc(r.source_excerpt||p.excerpt||'')}</p>${p.map_url?`<a class="map-link" href="${esc(p.map_url)}" target="_blank" rel="noreferrer">Mở Google Maps gốc</a>`:''}</section>`;}
+function detailGroups(p){const r=p.popup||{};return scenarioPanel(r)+GROUPS.map(([id,title,fields])=>{const t=table(fields,r);const evidence=id==='financial'?financialEvidencePanel(r):'';return (t||evidence)?`<section class="info-group" data-group="${id}"><h4>${esc(title)}</h4>${t||''}${evidence}</section>`:''}).join('')+`<section class="excerpt-box"><b>Excerpt tin nhắn gốc</b><p>${esc(r.source_excerpt||p.excerpt||'')}</p>${p.map_url?`<a class="map-link" href="${esc(p.map_url)}" target="_blank" rel="noreferrer">Mở Google Maps gốc</a>`:''}</section>`;}
 function productSummary(p){
   const r=p.popup||{};
   const src=[r.selling_price,r.project_type,r.planning_summary,r.source_excerpt].filter(Boolean).join('\n');

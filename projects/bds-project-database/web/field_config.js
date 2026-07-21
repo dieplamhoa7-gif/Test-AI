@@ -74,8 +74,7 @@ window.FIELD_SECTIONS = [
       ['Lợi nhuận', 'profit_clean'],
       ['IRR', 'irr_clean'],
       ['NPV', 'npv_clean'],
-      ['Hoàn vốn', 'payback_clean'],
-      ['Raw số liệu tài chính', 'financial_raw_mentions']
+      ['Hoàn vốn', 'payback_clean']
     ]
   },
   {
