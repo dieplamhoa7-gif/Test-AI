@@ -5,6 +5,7 @@ import os
 import re
 import subprocess
 import time
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ from vietnamese_text_guard import repair_vietnamese_text, vietnamese_quality_rep
 
 WORKSPACE = Path(r"C:\Users\HoaD-CVDT\.openclaw\workspace")
 TEMP_DIR = WORKSPACE / "temp" / "notebooklm-share"
+PROFILE_STATE = TEMP_DIR / "nlm-profile-pool-state.json"
 NLM = Path(os.environ.get("NLM_EXE", Path(os.environ.get("LOCALAPPDATA", "")) / r"Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts\nlm.exe"))
 
 NOTEBOOKLM_STOCK_PROMPT = """
@@ -105,6 +107,40 @@ FOCUS_PROMPT = (
 )
 
 
+
+def _profile_pool() -> list[str]:
+    raw = os.environ.get("NLM_PROFILE_POOL") or os.environ.get("NOTEBOOKLM_PROFILE_POOL") or ""
+    return [x.strip() for x in re.split(r"[,;\s]+", raw) if x.strip()]
+
+
+def _select_profile() -> str | None:
+    pool = _profile_pool()
+    if not pool:
+        return os.environ.get("NLM_PROFILE") or os.environ.get("NOTEBOOKLM_PROFILE") or None
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    idx = 0
+    try:
+        data = json.loads(PROFILE_STATE.read_text(encoding="utf-8")) if PROFILE_STATE.exists() else {}
+        idx = int(data.get("idx", 0))
+    except Exception:
+        idx = 0
+    profile = pool[idx % len(pool)]
+    try:
+        PROFILE_STATE.write_text(json.dumps({"idx": idx + 1, "last_profile": profile, "pool": pool}, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+    return profile
+
+
+def _with_profile(args: list[str], profile: str | None = None) -> list[str]:
+    prof = profile or _ACTIVE_PROFILE
+    if not prof:
+        return args
+    # login has its own --profile option; other commands also expose --profile.
+    if "--profile" in args or "-p" in args:
+        return args
+    return [*args, "--profile", prof]
+
 def cleanup_temp(max_age_days: int = 3) -> None:
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
     cutoff = time.time() - max_age_days * 86400
@@ -116,10 +152,12 @@ def cleanup_temp(max_age_days: int = 3) -> None:
             pass
 
 
+_ACTIVE_PROFILE: str | None = None
+
 def _run_once(args: list[str], timeout: int = 900) -> tuple[int, str]:
     if not NLM.exists():
         raise FileNotFoundError(f"nlm.exe not found: {NLM}")
-    proc = subprocess.run([str(NLM), *args], text=True, capture_output=True, encoding="utf-8", errors="replace", timeout=timeout)
+    proc = subprocess.run([str(NLM), *_with_profile(args)], text=True, capture_output=True, encoding="utf-8", errors="replace", timeout=timeout)
     out = (proc.stdout or "") + ("\n" + proc.stderr if proc.stderr else "")
     return proc.returncode, out
 
@@ -162,6 +200,11 @@ def notebooklm_auth_check(auto_login: bool = True, timeout: int = 360) -> dict[s
     return {"ok": False, "stage": "verify_after_login", "error": out[-2000:]}
 
 
+def _is_rate_limited_output(out: str) -> bool:
+    low = str(out or "").lower()
+    return any(x in low for x in ("rate limited", "resource_exhausted", "rpc rate limit", "code 8"))
+
+
 def _run(args: list[str], timeout: int = 900) -> str:
     code, out = _run_once(args, timeout=timeout)
     if code == 0:
@@ -177,8 +220,21 @@ def _run(args: list[str], timeout: int = 900) -> str:
             code = code2
         else:
             out = f"{out}\n\nAUTO_AUTH_FAILED: {auth}"
+    if _is_rate_limited_output(out):
+        delays = [60, 120, 240]
+        last = out
+        code2 = code
+        for delay in delays:
+            time.sleep(delay)
+            code2, out2 = _run_once(args, timeout=timeout)
+            if code2 == 0:
+                return out2.strip()
+            last = out2
+            if not _is_rate_limited_output(out2):
+                break
+        out = f"NOTEBOOKLM_RATE_LIMIT: NotebookLM đang giới hạn tạo slide/PDF; đã retry {sum(delays)}s. Chi tiết: {last[-1600:]}"
+        code = code2
     raise RuntimeError(f"nlm {' '.join(args)} failed ({code}): {out[-2000:]}")
-
 
 def _extract_id(text: str) -> str:
     try:
@@ -265,7 +321,34 @@ def _pdf_quality_score(pdf_path: Path) -> dict[str, Any]:
     return info
 
 
+def _clean_notebooklm_prompt(text: str) -> str:
+    """Repair legacy UTF-8/latin1 mojibake before sending --focus to NotebookLM."""
+    value = str(text or "")
+    try:
+        import ftfy  # type: ignore
+        # Two passes are intentional for occasional double-encoded legacy literals.
+        value = ftfy.fix_text(ftfy.fix_text(value))
+    except Exception:
+        value = repair_vietnamese_text(value)
+    value = unicodedata.normalize("NFC", value)
+    # Guard the exact high-impact labels/instructions used by Model3.
+    replacements = {
+        "K?9ch bản ? ầu tư": "Kịch bản đầu tư",
+        "Ká»‹ch bản Ä‘áº§u tÆ°": "Kịch bản đầu tư",
+        "Executive Summary cuá»‘i": "Executive Summary",
+        "Executive Summary cuối": "Executive Summary",
+    }
+    for bad, good in replacements.items():
+        value = value.replace(bad, good)
+    report = vietnamese_quality_report(value)
+    if report.get("mojibake_markers") or report.get("replacement_chars"):
+        raise RuntimeError(f"NotebookLM focus prompt vẫn lỗi Unicode/mojibake sau repair: {report}")
+    return value
+
+
 def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Model 3 Report") -> dict[str, Any]:
+    global _ACTIVE_PROFILE
+    _ACTIVE_PROFILE = _select_profile()
     cleanup_temp(3)
     docx = Path(docx_path)
     if not docx.exists():
@@ -276,27 +359,24 @@ def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Mod
 
     _run(["source", "add", notebook_id, "--file", str(docx), "--wait", "--wait-timeout", "600"], timeout=900)
 
-    # Nháº­p prompt trá»±c tiáº¿p vÃ o bÆ°á»›c táº¡o trang trÃ¬nh bÃ y (--focus), khÃ´ng thÃªm prompt nhÆ° má»™t source
-    # Ä‘á»ƒ trÃ¡nh NotebookLM Ä‘Æ°a ná»™i dung chá»‰ dáº«n vÃ o slide nhÆ° dá»¯ liá»‡u bÃ¡o cÃ¡o.
-    base_prompt = repair_vietnamese_text(f"{FOCUS_PROMPT}\n\n{NOTEBOOKLM_STOCK_PROMPT}")
-    retry_prompt = base_prompt + (
-        "\n\nKIá»‚M TRA CHáº¤T LÆ¯á»¢NG Báº®T BUá»˜C CHO MODEL 3: náº¿u báº£n trÆ°á»›c ra nhiá»u slide/trang thÆ°a, báº£ng/card quÃ¡ bá»±, chá»¯ quÃ¡ bá»±, Ã­t ná»™i dung hoáº·c lá»—i mojibake/Unicode, "
-        "hÃ£y táº¡o láº¡i thÃ nh Ä‘Ãºng 2 trang dá»c dÃ i dense hÆ¡n: Trang 1 panel 01-05, Trang 2 panel 06-10, nhiá»u visual/smartart/icon/mini chart hÆ¡n, giáº£m khoáº£ng tráº¯ng, giá»¯ Ä‘á»§ ná»™i dung quan trá»ng. "
-        "KhÃ´ng bung thÃ nh deck ngang hoáº·c hÆ¡n 2 trang náº¿u khÃ´ng báº¯t buá»™c. Báº®T BUá»˜C tiáº¿ng Viá»‡t Unicode sáº¡ch, khÃ´ng mojibake."
+    # Nhập prompt trực tiếp vào bước tạo bản trình bày (--focus), không thêm prompt như một source.
+    # Repair toàn bộ prompt SAU KHI ghép cả retry instruction để không lọt literal mojibake.
+    base_prompt = _clean_notebooklm_prompt(f"{FOCUS_PROMPT}\n\n{NOTEBOOKLM_STOCK_PROMPT}")
+    retry_instruction = (
+        "\n\nKIỂM TRA CHẤT LƯỢNG BẮT BUỘC CHO MODEL 3: nếu bản trước ra nhiều slide/trang thưa, "
+        "bảng/card quá bự, chữ quá bự, ít nội dung hoặc lỗi mojibake/Unicode, hãy tạo lại thành đúng 2 trang dọc dài "
+        "dense hơn: Trang 1 panel 01-05, Trang 2 panel 06-10, nhiều visual/smartart/icon/mini chart hơn, giảm khoảng "
+        "trắng, giữ đủ nội dung quan trọng. Không bung thành deck ngang hoặc hơn 2 trang nếu không bắt buộc. "
+        "BẮT BUỘC tiếng Việt Unicode sạch, không mojibake."
     )
+    retry_prompt = _clean_notebooklm_prompt(base_prompt + retry_instruction)
 
     safe = re.sub(r"[^A-Za-z0-9_-]+", "-", title)[:60].strip("-") or "notebooklm-slide-deck"
     last_err = ""
     last_quality: dict[str, Any] = {}
     for attempt, prompt in enumerate((base_prompt, retry_prompt), 1):
-        # Model 3: yêu cầu đúng 2 trang dọc dense; dùng detailed_deck nhưng focus ép two-page portrait / 10 panels.
-        try:
-            _run(["slides", "create", notebook_id, "--format", "detailed_deck", "--length", "short", "--language", "vi", "--focus", prompt, "--confirm"], timeout=900)
-        except Exception as exc:
-            err = str(exc)
-            if "Rate limited" in err or "RESOURCE_EXHAUSTED" in err or "code 8" in err:
-                return {"ok": True, "notebook_id": notebook_id, "slide_pdf": None, "slide_deck_error": "NotebookLM Studio slide/PDF quota/rate limit; notebook/source created successfully; retry slide deck later.", "attempt": attempt}
-            raise
+        # Model 3: yÃªu cáº§u Ä‘Ãºng 2 trang dá»c dense; dÃ¹ng detailed_deck nhÆ°ng focus Ã©p two-page portrait / 10 panels.
+        _run(["slides", "create", notebook_id, "--format", "detailed_deck", "--length", "short", "--language", "vi", "--focus", prompt, "--confirm"], timeout=900)
         out_pdf = TEMP_DIR / f"{time.strftime('%Y%m%d-%H%M%S')}-{safe}-attempt{attempt}.pdf"
         for _ in range(30):
             try:
@@ -310,10 +390,10 @@ def create_presentation_from_docx(docx_path: str, title: str = "LHInvestment Mod
                         pass  # thiáº¿u PyMuPDF/Pillow thÃ¬ giá»¯ nguyÃªn PDF, khÃ´ng cháº·n pipeline
                     last_quality = _pdf_quality_score(out_pdf)
                     if last_quality.get("ok", True) or attempt == 2:
-                        return {"ok": bool(last_quality.get("ok", True)), "notebook_id": notebook_id, "slide_pdf": str(out_pdf), "quality": last_quality, "attempt": attempt}
+                        return {"ok": bool(last_quality.get("ok", True)), "profile": _ACTIVE_PROFILE, "notebook_id": notebook_id, "slide_pdf": str(out_pdf), "quality": last_quality, "attempt": attempt}
                     last_err = str(last_quality.get("reason") or "deck quality too sparse")
                     break
             except Exception as exc:
                 last_err = str(exc)
             time.sleep(20)
-    return {"ok": False, "notebook_id": notebook_id, "error": last_err, "quality": last_quality}
+    return {"ok": False, "profile": _ACTIVE_PROFILE, "notebook_id": notebook_id, "error": last_err, "quality": last_quality}
