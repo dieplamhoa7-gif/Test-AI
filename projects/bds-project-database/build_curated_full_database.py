@@ -4,7 +4,7 @@ base=Path(r'C:\Users\HoaD-CVDT\.openclaw\workspace\projects\bds-project-database
 rows=json.load(open(base/'project_master_curated_deduped.json',encoding='utf-8'))
 
 def clean(s): return re.sub(r'\s+',' ',str(s or '')).strip()
-fields=['curated_id','master_id','merged_from_ids','project_name','mention_count','first_report_date','latest_report_date','source_files','senders','latitude','longitude','coordinates','coordinate_quality','coordinate_anomaly_note','map_urls','location','province_city','district_area','land_area_main','land_area_main_raw','other_area_mentions','project_type','land_type','planning_doc_status','planning_summary','max_floors_clean','far_clean','density_clean','population_clean','legal_summary','legal_status','gpm_status','lur_status','approval_status','asking_land_price','selling_price','land_cost','total_investment_clean','revenue_clean','profit_clean','irr_clean','npv_clean','payback_clean','financial_raw_mentions','risks','next_actions','attachments','data_completeness_score','score_total','score_grade','score_location','score_data','score_planning','score_legal','score_financial','score_risk_penalty','score_notes','source_excerpt']
+fields=['curated_id','master_id','merged_from_ids','project_name','mention_count','first_report_date','latest_report_date','source_files','senders','latitude','longitude','coordinates','coordinate_quality','coordinate_anomaly_note','map_urls','location','province_city','district_area','land_area_main','land_area_main_raw','other_area_mentions','project_type','land_type','planning_doc_status','planning_summary','max_floors_clean','far_clean','density_clean','population_clean','legal_summary','legal_status','gpm_status','lur_status','approval_status','asking_land_price','selling_price','land_cost','total_investment_clean','revenue_clean','profit_clean','irr_clean','npv_clean','payback_clean','financial_raw_mentions','risks','next_actions','attachments','data_completeness_score','score_total','score_grade','score_location','score_data','score_planning','score_legal','score_financial','score_risk_penalty','score_notes','entity_type','entity_valid_for_project_map','entity_classification_note','source_excerpt']
 out=[]
 for r in rows:
     row={f:clean(r.get(f,'')) for f in fields}
@@ -25,6 +25,7 @@ with open(base/'full_project_database_curated.csv','w',encoding='utf-8-sig',newl
 # map subset
 mapped=[]
 for r in out:
+    if r.get('entity_valid_for_project_map')=='no': continue
     if not(r['latitude'] and r['longitude']): continue
     try: lat=float(r['latitude']); lng=float(r['longitude'])
     except: continue
