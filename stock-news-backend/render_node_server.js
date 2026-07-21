@@ -264,6 +264,11 @@ async function refreshNewsCache(limit = 1000) {
   const feeds = [
     ['cafef', 'https://cafef.vn/thi-truong-chung-khoan.rss'],
     ['cafef', 'https://cafef.vn/doanh-nghiep.rss'],
+    ['cafef', 'https://cafef.vn/tai-chinh-ngan-hang.rss'],
+    ['cafef', 'https://cafef.vn/bat-dong-san.rss'],
+    ['vnexpress', 'https://vnexpress.net/rss/kinh-doanh.rss'],
+    ['vnexpress', 'https://vnexpress.net/rss/bat-dong-san.rss'],
+    ['vnexpress', 'https://vnexpress.net/rss/tai-chinh.rss'],
     ['vietstock', 'https://vietstock.vn/rss/chung-khoan.rss'],
     ['vietstock', 'https://vietstock.vn/rss/doanh-nghiep.rss'],
   ];
