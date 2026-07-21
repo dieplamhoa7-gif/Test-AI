@@ -5,7 +5,7 @@ masters=json.load(open(base/'project_popup_master_clean.json',encoding='utf-8'))
 chunks=json.load(open(base/'teams_candidate_chunks_with_dates.json',encoding='utf-8'))
 res=json.load(open(base/'map_link_resolution_all.json',encoding='utf-8')) if (base/'map_link_resolution_all.json').exists() else []
 coord={x['url']:(x.get('lat'),x.get('lng')) for x in res if x.get('lat') and x.get('lng')}
-MAP_RE=re.compile(r'https?://(?:maps\.app\.goo\.gl|goo\.gl/maps|www\.google\.com/maps)[^\s,)>\]]+',re.I)
+MAP_RE=re.compile(r'https?://(?:maps\.app\.goo\.gl|goo\.gl/maps|www\.google\.com/maps)[^\s)>\]]+',re.I)
 
 def clean(s): return re.sub(r'\s+',' ',str(s or '')).strip()
 def norm(s):

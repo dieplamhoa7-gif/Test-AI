@@ -3,9 +3,16 @@ const base='C:/Users/HoaD-CVDT/.openclaw/workspace/projects/bds-project-database
 const masters=JSON.parse(fs.readFileSync(base+'/project_popup_master_clean.json','utf8'));
 let existing=[]; try{existing=JSON.parse(fs.readFileSync(base+'/map_link_resolution_all.json','utf8'));}catch{}
 const byUrl=new Map(existing.map(x=>[x.url,x]));
-const re=/https?:\/\/(?:maps\.app\.goo\.gl|goo\.gl\/maps|www\.google\.com\/maps)[^\s,)>\]]+/ig;
+const re=/https?:\/\/(?:maps\.app\.goo\.gl|goo\.gl\/maps|www\.google\.com\/maps)[^\s)>\]]+/ig;
 const urls=[...new Set(masters.flatMap(r=>[...(r.map_urls||'').matchAll(re)].map(m=>m[0].replace(/[.,;)]+$/,''))))];
-function coordsFrom(loc){let m=loc.match(/(?:search\/|@)(-?\d+\.\d+),\+?\s*(-?\d+\.\d+)/); if(m)return [m[1],m[2]]; m=loc.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/); if(m)return [m[1],m[2]]; return ['',''];}
+function coordsFrom(loc){
+  loc=decodeURIComponent(loc||'');
+  let m=loc.match(/[?&]ll=(-?\d+\.\d+),\s*(-?\d+\.\d+)/); if(m)return [m[1],m[2]];
+  m=loc.match(/[?&]q=(-?\d+\.\d+),\s*(-?\d+\.\d+)/); if(m)return [m[1],m[2]];
+  m=loc.match(/(?:search\/|@)(-?\d+\.\d+),\+?\s*(-?\d+\.\d+)/); if(m)return [m[1],m[2]];
+  m=loc.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/); if(m)return [m[1],m[2]];
+  return ['',''];
+}
 (async()=>{
  let changed=0;
  for(const url of urls){
