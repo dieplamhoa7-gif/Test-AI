@@ -23,3 +23,17 @@ services:
         sync: false
       - key: MARKET_API_BASE
         sync: false
+
+  - type: cron
+    name: hoa-investment-news-refresh
+    runtime: python
+    plan: free
+    rootDir: .
+    schedule: "*/15 0-11 * * 1-5"
+    buildCommand: pip install -r requirements.web.txt
+    startCommand: python tools/render_refresh_news.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.7
+      - key: NEWS_REFRESH_URL
+        value: https://hoa-investment.onrender.com/news?refresh=true&limit=1000
