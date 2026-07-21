@@ -190,15 +190,17 @@ async def discover_batdongsan_evidence_links(targets: list[SearchTarget], per_ta
         # 2) Deterministic Batdongsan search/category evidence URL. It is not a fake listing;
         # it is a reproducible source-search page for manual verification when indexed links are absent.
         slug = _slug_vi(project)
-        deterministic = [
-            (f'{project} - Batdongsan search', 'https://batdongsan.com.vn/tim-kiem?keyword=' + quote_plus(project)),
-        ]
+        deterministic = []
+        # Category URL: can show project page/listings/prices when Batdongsan has that slug.
+        # This is acceptable as category-level evidence, but still weaker than a parsed listing URL.
         if slug:
-            deterministic.append((f'{project} - Batdongsan căn hộ bán', f'https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}'))
-        for title, url in deterministic:
+            deterministic.append(('Batdongsan.com.vn [category-evidence]', f'{project} - Batdongsan căn hộ bán (category; kiểm chứng được giá nếu trang tồn tại)', f'https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}'))
+        # Search URL: manual verification only. It must not be treated as price evidence.
+        deterministic.append(('Batdongsan.com.vn [manual-check-only]', f'{project} - Batdongsan search (manual-check; không dùng làm evidence giá)', 'https://batdongsan.com.vn/tim-kiem?keyword=' + quote_plus(project)))
+        for source_label, title, url in deterministic:
             if url not in seen:
                 seen.add(url)
-                bucket.append(Listing('Batdongsan.com.vn [evidence-search]', title, url=url))
+                bucket.append(Listing(source_label, title, url=url))
     return {'Batdongsan.com.vn': bucket} if bucket else {}
 
 
