@@ -1,0 +1,20 @@
+const { chromium } = require('playwright');
+(async()=>{
+ const b=await chromium.launch({headless:true});
+ const p=await b.newPage();
+ p.on('console',m=>console.log('CONSOLE',m.type(),m.text()));
+ p.on('pageerror',e=>console.log('PAGEERROR',e.message));
+ p.on('response',async r=>{if(r.url().includes('/planning/lookup')||r.url().includes('api-config')) console.log('RESP',r.status(),r.url());});
+ await p.goto('https://lhrealestate.web.app/quyhoach.html?v='+Date.now(),{waitUntil:'networkidle',timeout:60000});
+ console.log('TITLE',await p.title());
+ console.log('STATIC',JSON.stringify((await p.locator('body').innerText()).slice(0,500)));
+ await p.locator('#coord').fill('10.764170937189563, 106.59137392951396');
+ await p.locator('button', {hasText:'Tra quy hoạch'}).click();
+ await p.waitForTimeout(45000);
+ console.log('STATUS',await p.locator('#status').innerText());
+ console.log('LOCATION',JSON.stringify((await p.locator('#locationBox').innerText()).slice(0,1000)));
+ console.log('PLANNING',JSON.stringify((await p.locator('#planningBox').innerText()).slice(0,1500)));
+ console.log('SOURCE',JSON.stringify((await p.locator('#sourceBox').innerText()).slice(0,2500)));
+ await p.screenshot({path:'logs/qh_e2e_public.png',fullPage:true});
+ await b.close();
+})().catch(e=>{console.error('FATAL',e);process.exit(1)});
