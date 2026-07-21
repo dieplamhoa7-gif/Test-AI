@@ -20,4 +20,25 @@ function setViewMode(mode){viewMode=mode;qs('#cardViewBtn').classList.toggle('ac
 function initFilters(){for(const [id,key]of[['#statusFilter','status'],['#typeFilter','type']]){const sel=qs(id);[...new Set(projects.map(p=>p[key]).filter(Boolean))].sort().forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o);});sel.addEventListener('change',renderList);}qs('#search').addEventListener('input',renderList);qs('#sortMode').addEventListener('change',e=>{sortMode=e.target.value;renderList();});qs('#minScore').addEventListener('input',e=>{qs('#minScoreLabel').textContent=e.target.value;renderList();});qs('#resetFilters').addEventListener('click',()=>{qs('#search').value='';qs('#statusFilter').value='';qs('#typeFilter').value='';qs('#minScore').value=0;qs('#minScoreLabel').textContent='0';renderList();});qs('#fitMapBtn').addEventListener('click',()=>{if(allBounds)map.fitBounds(allBounds.pad(.15));});qs('#exportCsvBtn').addEventListener('click',exportFilteredCsv);qs('#cardViewBtn').addEventListener('click',()=>setViewMode('cards'));qs('#tableViewBtn').addEventListener('click',()=>setViewMode('table'));}
 function initMetrics(){const high=projects.filter(p=>(+p.score||0)>=70).length,avg=Math.round(projects.reduce((a,p)=>a+(+p.score||0),0)/(projects.length||1));qs('#metrics').innerHTML=`<div class="metric"><b>${projects.length}</b><span>Điểm map</span></div><div class="metric"><b>${high}</b><span>Score ≥70</span></div><div class="metric"><b>${avg}</b><span>Score TB</span></div>`;}
 function initMap(){const group=[];projects.forEach(p=>{const m=L.marker([+p.lat,+p.lng],{icon:markerIcon(p),title:p.name}).bindPopup(popupHtml(p),{maxWidth:380});m.on('click',()=>setActive(p.id,false));markers.set(p.id,m);group.push(m);m.addTo(map);});if(group.length){allBounds=L.featureGroup(group).getBounds();map.fitBounds(allBounds.pad(.15));}}
-initMetrics();initFilters();initMap();renderList();if(projects[0])setActive(projects[0].id,false);
+
+function renderFullTable(){
+  const q=(qs('#fullTableSearch')?.value||'').toLowerCase();
+  const rows=(window.FULL_PROJECTS||[]).filter(r=>!q||Object.values(r).join(' ').toLowerCase().includes(q));
+  const tb=qs('#fullProjectTable tbody'); if(!tb)return;
+  tb.innerHTML=rows.map(r=>`<tr><td>${esc(r.project_name||'')}<div class="table-muted">${esc(r.master_id||'')} · ${esc(r.province_city||'')}</div></td><td>${esc(r.report_date||'—')}</td><td><span class="flag ${r.has_coordinates==='yes'?'yes':'no'}">${r.has_coordinates}</span></td><td><span class="flag ${r.has_area==='yes'?'yes':'no'}">${r.has_area}</span><div class="table-muted">${short(r.land_area_main,70)||''}</div></td><td><span class="flag ${r.has_planning==='yes'?'yes':'no'}">${r.has_planning}</span></td><td><span class="flag ${r.has_legal==='yes'?'yes':'no'}">${r.has_legal}</span></td><td><span class="flag ${r.has_financial==='yes'?'yes':'no'}">${r.has_financial}</span></td><td><span class="score-badge ${scoreClass(r.data_completeness_score)}">${esc(r.data_completeness_score||0)}</span></td></tr>`).join('');
+}
+function exportFullCsv(){
+  const rows=window.FULL_PROJECTS||[]; if(!rows.length)return;
+  const fields=Object.keys(rows[0]);
+  const csv=[fields.join(',')].concat(rows.map(r=>fields.map(f=>csvCell(r[f])).join(','))).join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='bds_full_project_database.csv'; a.click(); URL.revokeObjectURL(a.href);
+}
+function initFullProjects(){
+  qs('#allProjectsBtn')?.addEventListener('click',()=>{qs('#allProjectsOverlay').hidden=false;renderFullTable();});
+  qs('#closeAllProjects')?.addEventListener('click',()=>qs('#allProjectsOverlay').hidden=true);
+  qs('#fullTableSearch')?.addEventListener('input',renderFullTable);
+  qs('#exportFullCsvBtn')?.addEventListener('click',exportFullCsv);
+}
+
+initMetrics();initFilters();initFullProjects();initMap();renderList();if(projects[0])setActive(projects[0].id,false);

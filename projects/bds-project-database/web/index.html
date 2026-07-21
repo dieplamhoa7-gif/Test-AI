@@ -27,6 +27,7 @@
           <button id="tableViewBtn" type="button">Table</button>
         </div>
         <button id="fitMapBtn" class="ghost-btn">Fit map</button>
+        <button id="allProjectsBtn" class="ghost-btn">All Projects</button>
         <button id="exportCsvBtn" class="ghost-btn">Export CSV</button>
       </div>
     </header>
@@ -76,7 +77,31 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <div class="all-projects-overlay" id="allProjectsOverlay" hidden>
+    <div class="all-projects-panel">
+      <div class="all-projects-head">
+        <div>
+          <p class="eyebrow">Full database</p>
+          <h2>Toàn bộ dự án master</h2>
+          <p>Gồm cả dự án chưa có tọa độ — map chỉ hiển thị subset có tọa độ.</p>
+        </div>
+        <button id="closeAllProjects" class="ghost-btn">Đóng</button>
+      </div>
+      <div class="full-table-tools">
+        <input id="fullTableSearch" type="search" placeholder="Tìm trong 503 dự án…" />
+        <button id="exportFullCsvBtn" class="ghost-btn">Export Full CSV</button>
+      </div>
+      <div class="full-table-wrap">
+        <table class="full-project-table" id="fullProjectTable">
+          <thead><tr><th>Dự án</th><th>Ngày</th><th>Map</th><th>Area</th><th>Planning</th><th>Legal</th><th>Financial</th><th>Score</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <script src="projects_data.js"></script>
+  <script src="full_project_database.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
