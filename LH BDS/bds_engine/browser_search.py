@@ -9,6 +9,7 @@ import re
 from dataclasses import dataclass
 from html import unescape
 from urllib.parse import parse_qs, quote_plus, unquote, urlparse
+from unicodedata import normalize
 
 import httpx
 
@@ -145,6 +146,60 @@ def listings_from_search_hits(hits_by_source: dict[str, list[SearchHit]]) -> dic
     for source, hits in hits_by_source.items():
         buckets[source] = [Listing(source=source, title=h.title, url=h.url) for h in hits]
     return buckets
+
+
+def _slug_vi(text: str) -> str:
+    s = normalize('NFD', str(text or ''))
+    s = ''.join(ch for ch in s if not re.match(r'[\u0300-\u036f]', ch))
+    s = s.replace('đ', 'd').replace('Đ', 'D').lower()
+    s = re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+    return s
+
+
+async def discover_batdongsan_evidence_links(targets: list[SearchTarget], per_target_limit: int = 2) -> dict[str, list[Listing]]:
+    """Fast evidence layer for comparable flow.
+
+    Playwright price scraping can return numeric samples without reliable source URLs,
+    and DDG discovery can timeout. This function first tries DDG restricted to
+    batdongsan.com.vn, then always adds deterministic Batdongsan search/category URLs
+    per project so the report has an evidence trail instead of empty evidence.
+    """
+    bucket: list[Listing] = []
+    seen: set[str] = set()
+    for target in (targets or [])[:6]:
+        project = (target.project or '').strip()
+        if not project:
+            continue
+        # 1) Real indexed results from DDG, short timeout handled by caller.
+        for kw in (target.keywords or [project])[:2]:
+            q = f'site:batdongsan.com.vn {kw}'
+            try:
+                rows = await ddg_search(q, max_results=per_target_limit)
+            except Exception:
+                rows = []
+            for title, url, snippet in rows:
+                if url in seen or not _domain_ok(url, 'batdongsan.com.vn') or not _looks_listing(url):
+                    continue
+                text = (title + ' ' + snippet + ' ' + url).lower()
+                if any(ex in text for ex in target.exclude_keywords):
+                    continue
+                if not _transaction_ok(text):
+                    continue
+                seen.add(url)
+                bucket.append(Listing('Batdongsan.com.vn', f'{project} - {title[:180]}', url=url[:500]))
+        # 2) Deterministic Batdongsan search/category evidence URL. It is not a fake listing;
+        # it is a reproducible source-search page for manual verification when indexed links are absent.
+        slug = _slug_vi(project)
+        deterministic = [
+            (f'{project} - Batdongsan search', 'https://batdongsan.com.vn/tim-kiem?keyword=' + quote_plus(project)),
+        ]
+        if slug:
+            deterministic.append((f'{project} - Batdongsan căn hộ bán', f'https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}'))
+        for title, url in deterministic:
+            if url not in seen:
+                seen.add(url)
+                bucket.append(Listing('Batdongsan.com.vn [evidence-search]', title, url=url))
+    return {'Batdongsan.com.vn': bucket} if bucket else {}
 
 
 def merge_listing_buckets(primary: dict[str, list[Listing]], evidence: dict[str, list[Listing]]) -> dict[str, list[Listing]]:

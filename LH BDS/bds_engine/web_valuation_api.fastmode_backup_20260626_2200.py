@@ -228,8 +228,8 @@ async def ai_support_agent(ai, stage: str, payload: dict[str, Any], error: Excep
         return f"AI support agent không phản hồi ({type(e).__name__}); dùng fallback: {fallback}"
 
 from ai_client import NineRouterClient, make_role_client
-from ai_search_planner import build_search_targets
-from browser_search import discover_real_source_links, listings_from_search_hits, merge_listing_buckets
+from ai_search_planner import build_search_targets, fallback_search_targets
+from browser_search import discover_real_source_links, discover_batdongsan_evidence_links, listings_from_search_hits, merge_listing_buckets
 from browser_crawler import browser_price_buckets
 from playwright_bds_scraper import browser_true_buckets_async, scrape_batdongsan_playwright
 from search_fallback import fallback_source_links
@@ -1044,14 +1044,25 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
         )
 
     project_names = [p.get('name', '') for p in projects.projects if p.get('name')]
+    write_progress('discover_links', 'Đang search evidence Batdongsan/Guland/Alonhadat cho các dự án comparable...', warnings)
+    try:
+        search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=(10 if is_fast_mode else 25))
+    except Exception as e:
+        search_targets = fallback_search_targets(criteria, projects)
+        warnings.append(f'build_search_targets lỗi/timeout, dùng keyword fallback: {type(e).__name__}.')
+
     if use_comparable_flow:
-        write_progress('discover_links', 'Web fast-mode: bỏ qua search link nguồn thật chậm cho flow comparable; dùng fallback links + AI estimate...', warnings)
-        warnings.append('Web fast-mode: bỏ qua discover_real_source_links cho flow comparable vì bước này thường timeout 45-75s trên web; dùng fallback links + AI chính.')
-        evidence_buckets = fallback_source_links(project_names, criteria.lat, criteria.lng)
-    else:
-        write_progress('discover_links', 'Đang search link nguồn thật Batdongsan/Guland/Alonhadat...', warnings)
+        # Comparable apartment flow still needs evidence URLs. Run a lightweight Batdongsan
+        # discovery layer instead of skipping evidence entirely, then merge coordinate fallback.
         try:
-            search_targets = await asyncio.wait_for(build_search_targets(ai_fast, criteria, projects), timeout=(12 if is_fast_mode else 30))
+            evidence_buckets = await asyncio.wait_for(discover_batdongsan_evidence_links(search_targets, per_target_limit=(1 if is_fast_mode else 2)), timeout=(18 if is_fast_mode else 35))
+        except Exception as e:
+            warnings.append(f'Batdongsan evidence search lỗi/timeout, dùng fallback links: {type(e).__name__}.')
+            log_error('discover_batdongsan_evidence', payload, e, 'fallback_source_links', 'Evidence search failed')
+            evidence_buckets = {}
+        evidence_buckets = merge_listing_buckets(evidence_buckets, fallback_source_links(project_names, criteria.lat, criteria.lng))
+    else:
+        try:
             source_hits = await asyncio.wait_for(discover_real_source_links(search_targets, per_source_limit=(2 if is_fast_mode else 4)), timeout=(18 if is_fast_mode else 45))
             evidence_buckets = listings_from_search_hits(source_hits)
         except Exception as e:
