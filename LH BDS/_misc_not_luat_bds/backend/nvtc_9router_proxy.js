@@ -366,9 +366,7 @@ const server = http.createServer(async (req, res) => {
         const sum = summarize(raw);
         const geo = sum.location || {};
         if (req.url === '/planning/lookup') {
-          let qhviet = null;
-          let guland = null;
-          if (payload.includeQhViet !== false && readQhVietPopupText && parseQhVietPopupText) {
+          const qhvietTask = (payload.includeQhViet !== false && readQhVietPopupText && parseQhVietPopupText) ? (async () => {
             try {
               const got = await Promise.race([
                 readQhVietPopupText(lat, lon, geo),
@@ -378,12 +376,12 @@ const server = http.createServer(async (req, res) => {
               const hasParsed = !!(parsed?.parcel?.map_sheet || parsed?.parcel?.land_code || parsed?.area_name || parsed?.old_area_name || (parsed?.planning || []).length);
               const rawText = String(got?.text || '');
               const summary = compactExternalText(rawText, 'qhviet');
-              qhviet = { ok: !got?.degraded && hasParsed, summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !hasParsed, status: hasParsed ? 'ok' : 'manual_check_required', note: hasParsed ? '' : 'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
+              return { ok: !got?.degraded && hasParsed, summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !hasParsed, status: hasParsed ? 'ok' : 'manual_check_required', note: hasParsed ? '' : 'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
             } catch (e) {
-              qhviet = { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
+              return { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
             }
-          }
-          if (payload.includeGuland !== false && readGulandPopupText && parseGulandPopupText) {
+          })() : Promise.resolve(null);
+          const gulandTask = (payload.includeGuland !== false && readGulandPopupText && parseGulandPopupText) ? (async () => {
             try {
               const got = await Promise.race([
                 readGulandPopupText(lat, lon),
@@ -391,14 +389,15 @@ const server = http.createServer(async (req, res) => {
               ]);
               const parsed = parseGulandPopupText(got?.text || '');
               const hasParsed = !!(parsed?.parcel?.map_sheet || parsed?.parcel?.land_code || (parsed?.planning || []).length);
-              const hasUsefulText = /Ký hiệu đất|Quy hoạch|Phường|Bắc Ninh|Bắc Giang|Dữ liệu chỉ có giá trị tham khảo/i.test(String(got?.text || ''));
+              const hasUsefulText = /Ký hiệu đất|Quy hoạch|Phường|Bắc Ninh|Bắc Giang|Dữ liệu chỉ có giá trị tham khảo|triệu\/m²|tỷ\s*\d*\s*m²|Tin đã đăng/i.test(String(got?.text || ''));
               const rawText = String(got?.text || '');
               const summary = compactExternalText(rawText, 'guland');
-              guland = { ok: !got?.degraded && (hasParsed || hasUsefulText), summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !(hasParsed || hasUsefulText), status: (hasParsed || hasUsefulText) ? 'ok' : 'manual_check_required', note: (hasParsed || hasUsefulText) ? '' : 'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
+              return { ok: !got?.degraded && (hasParsed || hasUsefulText), summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !(hasParsed || hasUsefulText), status: (hasParsed || hasUsefulText) ? 'ok' : 'manual_check_required', note: (hasParsed || hasUsefulText) ? '' : 'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
             } catch (e) {
-              guland = { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
+              return { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
             }
-          }
+          })() : Promise.resolve(null);
+          const [qhviet, guland] = await Promise.all([qhvietTask, gulandTask]);
           res.writeHead(200, {'content-type':'application/json; charset=utf-8'});
           return res.end(JSON.stringify({ ok:true, location: geo, planning: sum, raw, qhviet, guland }));
         }
