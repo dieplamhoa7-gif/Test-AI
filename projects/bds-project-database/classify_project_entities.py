@@ -20,10 +20,10 @@ for r in rows:
     if len(name)>95 or (len(name)>55 and re.search(r'\b(?:và|đến|tại|có|thuộc|theo)\b',low)): is_ref=True
     if is_ref:
         kind='reference_or_narrative'; reason='Tên lấy từ câu mô tả vị trí/nội dung, không phải tên dự án'; valid='no'
-    elif any(re.search(x,low,re.I) for x in land_patterns) or re.search(r'\b(?:kdc|khu dân cư)\b.*\b(?:gần|gom|thu gom)\b',low):
-        kind='land_opportunity'; reason='Đề xuất gom quỹ đất/khu đất cơ hội; chưa phải dự án đã định danh'; valid='no'
+    elif any(re.search(x,low,re.I) for x in land_patterns):
+        kind='land_opportunity'; reason='Khu đất/quỹ đất cơ hội, chưa khẳng định tên dự án'; valid='yes'
     else:
-        kind='project_or_deal'; reason='Tên dự án/deal đã định danh, có thể hiển thị lớp Dự án'; valid='yes'
+        kind='project_or_deal'; reason='Tên dự án/deal có thể hiển thị'; valid='yes'
     r['entity_type']=kind; r['entity_valid_for_project_map']=valid; r['entity_classification_note']=reason
 # output same master + audit
 p.write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8')
