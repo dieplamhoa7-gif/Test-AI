@@ -376,7 +376,9 @@ const server = http.createServer(async (req, res) => {
               ]);
               const parsed = parseQhVietPopupText(got?.text || '');
               const hasParsed = !!(parsed?.parcel?.map_sheet || parsed?.parcel?.land_code || parsed?.area_name || parsed?.old_area_name || (parsed?.planning || []).length);
-              qhviet = { ok: !got?.degraded && hasParsed, summary: compactExternalText(got?.text || '', 'qhviet'), text: '', parsed, degraded: !hasParsed, status: hasParsed ? 'ok' : 'manual_check_required', note: hasParsed ? '' : 'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
+              const rawText = String(got?.text || '');
+              const summary = compactExternalText(rawText, 'qhviet');
+              qhviet = { ok: !got?.degraded && hasParsed, summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !hasParsed, status: hasParsed ? 'ok' : 'manual_check_required', note: hasParsed ? '' : 'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
             } catch (e) {
               qhviet = { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở QH Việt để kiểm tra thủ công.' };
             }
@@ -390,7 +392,9 @@ const server = http.createServer(async (req, res) => {
               const parsed = parseGulandPopupText(got?.text || '');
               const hasParsed = !!(parsed?.parcel?.map_sheet || parsed?.parcel?.land_code || (parsed?.planning || []).length);
               const hasUsefulText = /Ký hiệu đất|Quy hoạch|Phường|Bắc Ninh|Bắc Giang|Dữ liệu chỉ có giá trị tham khảo/i.test(String(got?.text || ''));
-              guland = { ok: !got?.degraded && (hasParsed || hasUsefulText), summary: compactExternalText(got?.text || '', 'guland'), text: '', parsed, degraded: !(hasParsed || hasUsefulText), status: (hasParsed || hasUsefulText) ? 'ok' : 'manual_check_required', note: (hasParsed || hasUsefulText) ? '' : 'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
+              const rawText = String(got?.text || '');
+              const summary = compactExternalText(rawText, 'guland');
+              guland = { ok: !got?.degraded && (hasParsed || hasUsefulText), summary, text: rawText || summary || JSON.stringify(parsed || {}), parsed, degraded: !(hasParsed || hasUsefulText), status: (hasParsed || hasUsefulText) ? 'ok' : 'manual_check_required', note: (hasParsed || hasUsefulText) ? '' : 'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
             } catch (e) {
               guland = { ok:false, status:'manual_check_required', error:String(e && e.message || e), note:'Chưa bóc được popup tự động; mở Guland để kiểm tra thủ công.' };
             }
