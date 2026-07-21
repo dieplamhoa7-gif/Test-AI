@@ -2,7 +2,7 @@ from pathlib import Path
 import json
 base=Path(r'C:\Users\HoaD-CVDT\.openclaw\workspace\projects\bds-project-database')
 web=base/'web'; web.mkdir(exist_ok=True)
-records=json.load(open(base/'project_popup_master.json',encoding='utf-8'))
+records=json.load(open(base/'project_popup_master_clean.json',encoding='utf-8'))
 rows=[]
 for r in records:
     if not (r.get('latitude') and r.get('longitude')): continue
