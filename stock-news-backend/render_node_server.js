@@ -373,7 +373,7 @@ const server = http.createServer((req, res) => {
   const pathname = url.pathname;
   try {
     if (pathname === '/health') {
-      return send(res, 200, JSON.stringify({ ok: true, service: 'web', runtime: 'node-cache-server' }));
+      return send(res, 200, JSON.stringify({ ok: true, service: 'web', runtime: 'node-cache-server', deploy: 'render-news-rss-expanded-20260721-1048' }));
     }
     if (pathname.startsWith('/pipeline/model3/latest/')) {
       const symbol = decodeURIComponent(pathname.split('/').pop() || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 8);
