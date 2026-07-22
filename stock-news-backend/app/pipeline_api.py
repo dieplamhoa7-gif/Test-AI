@@ -1266,17 +1266,26 @@ def _recover_model3_docx_result(job: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+def _artifact_basename(value: Any) -> str:
+    """Return a safe basename for paths produced on either Windows or Linux."""
+    raw = str(value or "").strip().replace("\\", "/")
+    return raw.rsplit("/", 1)[-1] if raw else ""
+
+
 def _public_model3_result(result: dict[str, Any] | None) -> dict[str, Any] | None:
     if not isinstance(result, dict):
         return None
     out = dict(result)
-    docx_name = Path(out.get("docx_path", "")).name
+    docx_name = _artifact_basename(out.get("docx_path"))
     if docx_name:
         out["docx_url"] = f"/pipeline/model3/file/{docx_name}"
     nb = out.get("notebooklm") or {}
     pdf = nb.get("slide_pdf") if isinstance(nb, dict) else None
-    if pdf:
-        out["notebooklm_pdf_url"] = f"/pipeline/model3/file/{Path(pdf).name}"
+    # Always rebuild the public PDF URL from a basename. Local workers report
+    # absolute Windows paths, which must never be embedded in a Render URL.
+    pdf_name = _artifact_basename(pdf or out.get("notebooklm_pdf_name") or out.get("notebooklm_pdf_url"))
+    if pdf_name:
+        out["notebooklm_pdf_url"] = f"/pipeline/model3/file/{pdf_name}"
     notebook_id = nb.get("notebook_id") if isinstance(nb, dict) else None
     if notebook_id:
         out["notebooklm_url"] = f"https://notebooklm.google.com/notebook/{notebook_id}"
