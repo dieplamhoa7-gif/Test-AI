@@ -1513,7 +1513,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
      ['opening','Dư nợ đầu kỳ','b'],['cashAO','Tiền mặt sau opex','b'],['gap','Nhu cầu vốn','b'],['facil','Hạn mức còn lại','b'],['psurplus','Thặng dư trả gốc','b'],['eq','Vốn chủ bơm trong kỳ (equity)','b'],
      ['cit','Thuế TNDN bán riêng','b'],['cfSale','Dòng tiền bán (sau thuế)','b'],['cfLease','Dòng tiền cho thuê (sau thuế)','b']].forEach(x=>ORD.push(['Y',x[0],x[1],x[2]]));
     ORD.push(['SEC','','F · THÔNG SỐ TRUNG GIAN (tính một lần)','']);
-    [['nsaCH','NSA căn hộ (m²)','n'],['nsaSH','NSA shop (m²)','n'],['I86','CPXD chính (chưa VAT)','b'],['leaseConstr','CPXD tháp cho thuê','b'],['saleConstr','CPXD tháp bán','b'],['leaseGFA','GFA cho thuê (m²)','n'],['totGFA','Tổng GFA (m²)','n'],['lsC','Tỷ trọng phân bổ cho thuê (CPXD)','p'],['footLease','Tỷ trọng phân bổ đất theo sàn đế','p'],['leaseDepBase','Cơ sở khấu hao thuê (ex-đất)','b'],['I85','Hạ tầng (chưa VAT)','b'],['I97','Tư vấn/QLDA','b'],['I101','Dự phòng','b'],['I84','Tổng CPXD (chưa VAT)','b'],['J84','Tổng CPXD (gồm VAT)','b'],['I83','Chi phí pháp lý','b'],['I78','Đất + pháp lý','b'],['TMDT','Tổng mức đầu tư (chưa lãi vay)','b'],['sddV','Tiền sử dụng đất','b'],['shopShare','Tỷ trọng NSA shop','p'],['opr','CP hoạt động / DT','p'],['escal','Trượt giá bán','p'],['giaV','Giá căn hộ (đ/m²)','n'],['shopBaseV','Giá shop (đ/m²)','n'],['firstYrCH','Năm mở bán căn hộ','n'],['firstYrSH','Năm mở bán shop','n'],['tot_cn','Tổng chuyển nhượng','b'],['tot_db','Tổng đền bù','b'],['tot_sdd','Tổng tiền SDĐ','b'],['tot_phaply','Tổng pháp lý','b'],['tot_hatang','Tổng hạ tầng (VAT)','b'],['tot_xdban','Tổng XD bán (VAT)','b'],['tot_xdthue','Tổng XD thuê (VAT)','b'],['tot_tuvan','Tổng tư vấn (VAT)','b'],['tot_duphong','Tổng dự phòng (VAT)','b'],['F280','DT căn hộ (gồm VAT)','b'],['F287','DT shop (gồm VAT)','b'],['F275','Tổng DT (gồm VAT)','b'],['F274','Tổng thực thu','b'],['VATout','VAT đầu ra','b'],['F421','Tổng CP hoạt động','b'],['VATinput','VAT đầu vào','b'],['VATpay','VAT phải nộp','b'],['leaseCapexTot','Tổng capex cho thuê','b'],['F389','Tổng chi đầu tư','b'],['leaseShare','Tỷ trọng vốn cho thuê','p'],['F425','Tổng lãi vay','b'],['DTnet','DT thuần (chưa VAT)','b'],['LNTTcons','LNTT cơ sở hợp nhất (đủ lãi vay)','b'],['intSale','Lãi vay phân bổ Bán','b'],['LNTT','LNTT Bán riêng','b'],['LNST','LNST Bán riêng','b'],['citTotalSale','TNDN Bán (tổng)','b'],['leaseTV','PV thuê ngoài horizon','b'],['totLNTT','LNTT hợp nhất','b'],['totCIT','TNDN hợp nhất','b']].forEach(x=>ORD.push(['S',x[0],x[1],x[2]]));
+    [['nsaCH','NSA căn hộ (m²)','n'],['nsaSH','NSA shop (m²)','n'],['I86','CPXD chính (chưa VAT)','b'],['leaseConstr','CPXD tháp cho thuê','b'],['saleConstr','CPXD tháp bán','b'],['leaseGFA','GFA cho thuê (m²)','n'],['totGFA','Tổng GFA (m²)','n'],['lsC','Tỷ trọng phân bổ cho thuê (CPXD)','p'],['footLease','Tỷ trọng phân bổ đất theo sàn đế','p'],['leaseDepBase','Cơ sở khấu hao thuê (ex-đất)','b'],['I85','Hạ tầng (chưa VAT)','b'],['I97','Tư vấn/QLDA','b'],['I101','Dự phòng','b'],['I84','Tổng CPXD (chưa VAT)','b'],['J84','Tổng CPXD (gồm VAT)','b'],['I83','Chi phí pháp lý','b'],['I78','Đất + pháp lý','b'],['TMDT','Tổng mức đầu tư (chưa lãi vay)','b'],['sddV','Tiền sử dụng đất','b'],['shopShare','Tỷ trọng NSA shop','p'],['opr','CP hoạt động / DT','p'],['escal','Trượt giá bán','p'],['giaV','Giá căn hộ (đ/m²)','n'],['shopBaseV','Giá shop (đ/m²)','n'],['firstYrCH','Năm mở bán căn hộ','n'],['firstYrSH','Năm mở bán shop','n'],['tot_cn','Tổng chuyển nhượng','b'],['tot_db','Tổng đền bù','b'],['tot_sdd','Tổng tiền SDĐ','b'],['tot_phaply','Tổng pháp lý','b'],['tot_hatang','Tổng hạ tầng (VAT)','b'],['tot_xdban','Tổng XD bán (VAT)','b'],['tot_xdthue','Tổng XD thuê (VAT)','b'],['tot_tuvan','Tổng tư vấn (VAT)','b'],['tot_duphong','Tổng dự phòng (VAT)','b'],['F280','DT căn hộ (gồm VAT)','b'],['F287','DT shop (gồm VAT)','b'],['F275','Tổng DT (gồm VAT)','b'],['F274','Tổng thực thu','b'],['VATout','VAT đầu ra','b'],['F421','Tổng CP hoạt động','b'],['VATinput','VAT đầu vào','b'],['VATpay','VAT phải nộp','b'],['leaseCapexTot','Tổng capex cho thuê','b'],['F389','Tổng chi đầu tư','b'],['leaseShare','Tỷ trọng vốn cho thuê','p'],['F425','Tổng lãi vay','b'],['DTnet','DT thuần (chưa VAT)','b'],['LNTTcons','LNTT cơ sở hợp nhất (đủ lãi vay)','b'],['intSale','Lãi vay phân bổ Bán','b'],['intLease','Lãi vay phân bổ Cho thuê','b'],['VATinputLease','VAT đầu vào xây dựng Cho thuê','b'],['LNTT','LNTT Bán riêng','b'],['LNST','LNST Bán riêng','b'],['citTotalSale','TNDN Bán (tổng)','b'],['leaseTV','PV thuê ngoài horizon','b'],['totLNTT','LNTT hợp nhất','b'],['totCIT','TNDN hợp nhất','b']].forEach(x=>ORD.push(['S',x[0],x[1],x[2]]));
     // (Lease inputs đã gộp về sheet INPUT — FS tham chiếu trực tiếp INPUT, không lặp lại ở FS)
     // pass A: allocate rows + labels + banners
     const RW={}; let r=3;
@@ -1550,13 +1550,14 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       leaseCapexTot:`=SUM(${colr('leaseCapex')})`,F389:`=SUM(${colr('invest')})`,leaseShare:`=IF(${Rr('F389')}>0,${Rr('leaseCapexTot')}/${Rr('F389')},0)`,
       F425:`=SUM(${colr('interest')})`,DTnet:`=${Rr('F275')}-${Rr('VATout')}`,
       LNTTcons:`=${Rr('DTnet')}-((${Rr('I78')}+${Rr('I84')})*(1-${Rr('leaseShare')})+${Rr('F425')}+${Rr('F421')}/${vv})`,
-      intSale:`=(1-${Rr('leaseShare')})*${Rr('F425')}`,
+      intSale:`=(1-${Rr('leaseShare')})*${Rr('F425')}`,intLease:`=${Rr('leaseShare')}*${Rr('F425')}`,
+      VATinputLease:`=${vf}*${Rr('leaseDepBase')}`,
       LNTT:`=${Rr('DTnet')}-((${Rr('I78')}+${Rr('I84')})*(1-${Rr('leaseShare')})+${Rr('intSale')}+${Rr('F421')}/${vv})`,
       LNST:`=${Rr('LNTT')}-${Rr('citTotalSale')}`,citTotalSale:`=MAX(${Rr('LNTT')},0)*INPUT!$C$7/100`,leaseTV:`=SUM(${colr('leaseTVterm')})`,
       NPV:`=${A('cfEq',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfEq']}:${LASTY}${RW['cfEq']})`,
       NPVsale:`=${A('cfSale',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfSale']}:${LASTY}${RW['cfSale']})`,
       IRReq:`=IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,0.1),IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,0.3),IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,-0.2),"n/a")))`,IRRprj:`=IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,0.1),IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,0.3),IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,-0.2),"n/a")))`,
-      totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-INPUT!$C$3/100*(${Rr('I84')}*${Rr('leaseShare')}),0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
+      totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
     ORD.forEach(([t,k,lb,f])=>{
@@ -1576,9 +1577,10 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       } else { Y('revCH',0); Y('revSH',0); }
       Y('vintRev',`=${A('revCH',i)}+${A('revSH',i)}`);
       if(inSale){
-        for(let v=0;v<NY;v++) Y(cm[v],`=${yc(v)}${RW['vintRev']}*TIENDO!${td}${20+v}/100`);
-        const fb=`+IF(AND(${A('vintRev',i)}>0,SUM(TIENDO!$C$${20+i}:$O$${20+i})<0.0001),${A('vintRev',i)},0)`;
-        Y('collArr',`=SUM(${ci}${RW[cm[0]]}:${ci}${RW[cm[NY-1]]})${fb}`);
+        for(let v=0;v<NY;v++) Y(cm[v],`=${yc(v)}${RW['revCH']}*TIENDO!${td}${TD_COLL_ROW0+v}/100+${yc(v)}${RW['revSH']}*TIENDO!${td}${TD_COLL_SH_ROW0+v}/100`);
+        const fbCH=`+IF(AND(${A('revCH',i)}>0,SUM(TIENDO!$C$${TD_COLL_ROW0+i}:$O$${TD_COLL_ROW0+i})<0.0001),${A('revCH',i)},0)`;
+        const fbSH=`+IF(AND(${A('revSH',i)}>0,SUM(TIENDO!$C$${TD_COLL_SH_ROW0+i}:$O$${TD_COLL_SH_ROW0+i})<0.0001),${A('revSH',i)},0)`;
+        Y('collArr',`=SUM(${ci}${RW[cm[0]]}:${ci}${RW[cm[NY-1]]})${fbCH}${fbSH}`);
       } else { for(let v=0;v<NY;v++) Y(cm[v],0); Y('collArr',0); }
       Y('op',`=${A('vintRev',i)}*(INPUT!$C$118+INPUT!$C$119+INPUT!$C$120+INPUT!$C$121+INPUT!$C$123+INPUT!$C$124)/100+${A('collArr',i)}*INPUT!$C$122/100`);
       {
@@ -1648,8 +1650,8 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('citYr',`=IF(${i}=${lastRevExpr},MAX(${Rr('totLNTT')}*INPUT!$C$7/100-${citPaidPrev},-${citPaidPrev}),${A('collArr',i)}*INPUT!$C$8/100)`);
       Y('newLoss',`=MAX(-${A('ebt',i)},0)`);
       Y('cit',`=IF(${Rr('F274')}>0,${Rr('citTotalSale')}*${A('collArr',i)}/${Rr('F274')},0)`);
-      Y('cfPrj',`=${A('collArr',i)}+${A('gross',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('leaseCapex',i)}-${A('leaseCostYr',i)}-${A('citYr',i)}`);
-      Y('cfEq',`=${A('cfPrj',i)}-${A('interest',i)}+${A('draw',i)}-${A('repay',i)}`);
+      Y('cfPrj',`=${A('collArr',i)}+${A('gross',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('leaseCapex',i)}-${A('leaseCostYr',i)}-${A('citYr',i)}-${A('interest',i)}`);
+      Y('cfEq',`=${A('cfPrj',i)}+${A('draw',i)}-${A('repay',i)}`);
       Y('cfSale',`=${A('collArr',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('cit',i)}`);
       Y('cfLease',`=${A('latNoi',i)}-${A('leaseCapex',i)}`);
     }
