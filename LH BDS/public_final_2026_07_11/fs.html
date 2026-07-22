@@ -1334,7 +1334,7 @@ const XSCAL=[
  ['hs_tang','C52','Chiều cao trung bình 1 tầng','m'],
  ['kkv','C55','Hệ số vùng Kkv (QĐ 409/QĐ-BXD)','lần'],['ktg','C56','Hệ số thời điểm Ktg','lần'],
  ['vonchu_mode','C64','Vốn chủ: 1=tự động theo waterfall, 2=cố định theo ô C25',''],
- ['debt_draw_mode','C63','Phương pháp vay: 1=giải ngân thực tế, 2=hạn mức cơ cấu vay',''],
+ ['debt_draw_mode','C54','Phương pháp vay: 1=giải ngân thực tế, 2=hạn mức cơ cấu vay',''], // C63 là ghi chú pháp lý dự án
  ['loan_sdd','C65','Tỷ lệ vay tiền sử dụng đất','%'],['loan_hatang','C66','Tỷ lệ vay hạ tầng','%'],
  ['loan_build','C67','Tỷ lệ vay CPXD chính','%'],['loan_tuvan','C68','Tỷ lệ vay tư vấn/QLDA/khác','%'],['loan_duphong','C69','Tỷ lệ vay dự phòng','%'],
  ['kh_cap','C37','Trần % tiền KH dùng cho ĐẦU TƯ','%'],['r_kh','C38','Chi phí vốn huy động KH','%/năm'],
@@ -1536,7 +1536,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       lsC:`=IF(${Lr('le_alloc_basis')}=2,IF(${Rr('totGFA')}>0,${Rr('leaseGFA')}/${Rr('totGFA')},0),IF(${Lr('le_alloc_basis')}=3,${Lr('le_alloc_manual')}/100,IF(${Rr('I86')}>0,${Rr('leaseConstr')}/${Rr('I86')},0)))`,
       footLease:`=IF(SUMPRODUCT(INPUT!$C$45:$F$45)>0,SUMPRODUCT(INPUT!$C$45:$F$45*(INPUT!$C$50:$F$50=2))/SUMPRODUCT(INPUT!$C$45:$F$45),${Rr('lsC')})`,
       leaseDepBase:`=${Rr('leaseConstr')}+${Rr('lsC')}*(${Rr('I85')}+${Rr('I97')}+${Rr('I101')})`,
-      I85:'=(INPUT!$C$10-INPUT!$C$11)*INPUT!$C$17*1000000',I97:`=INPUT!$C$19/100*${Rr('I86')}`,I101:`=INPUT!$C$20/100*(${Rr('I86')}+${Rr('I97')})`,
+      I85:'=INPUT!$C$10*INPUT!$C$17*1000000',I97:`=INPUT!$C$19/100*${Rr('I86')}`,I101:`=INPUT!$C$20/100*(${Rr('I86')}+${Rr('I97')})`,
       I84:`=${Rr('I85')}+${Rr('I86')}+${Rr('I97')}+${Rr('I101')}`,J84:`=${Rr('I84')}*${vv}`,I83:`=IF(INPUT!$C$117>0,INPUT!$C$117*1000000000,INPUT!$C$16/100*${Rr('I84')})`,
       I78:`=(INPUT!$C$12+INPUT!$C$13+INPUT!$C$14+INPUT!$C$15)*1000000000+${Rr('I83')}`,TMDT:`=${Rr('I78')}+${Rr('J84')}`,
       sddV:'=INPUT!$C$14*1000000000',shopShare:`=IF((${Rr('nsaCH')}+${Rr('nsaSH')})>0,${Rr('nsaSH')}/(${Rr('nsaCH')}+${Rr('nsaSH')}),0)`,
@@ -1556,7 +1556,9 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       LNST:`=${Rr('LNTT')}-${Rr('citTotalSale')}`,citTotalSale:`=MAX(${Rr('LNTT')},0)*INPUT!$C$7/100`,leaseTV:`=SUM(${colr('leaseTVterm')})`,
       NPV:`=${A('cfEq',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfEq']}:${LASTY}${RW['cfEq']})`,
       NPVsale:`=${A('cfSale',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfSale']}:${LASTY}${RW['cfSale']})`,
-      IRReq:`=IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,0.1),IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,0.3),IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,-0.2),"n/a")))`,IRRprj:`=IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,0.1),IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,0.3),IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,-0.2),"n/a")))`,
+      // Dòng tiền có nhiều lần đổi dấu nên Excel có thể hội tụ về nghiệm gần 0 nếu guess thấp.
+      // Engine web dùng bracket rộng và chọn nghiệm kinh tế dương; guess=1 giúp XIRR hội tụ cùng nghiệm đó.
+      IRReq:`=IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,1),"n/a")`,IRRprj:`=IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,1),"n/a")`,
       totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
@@ -1585,7 +1587,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('op',`=${A('vintRev',i)}*(INPUT!$C$118+INPUT!$C$119+INPUT!$C$120+INPUT!$C$121+INPUT!$C$123+INPUT!$C$124)/100+${A('collArr',i)}*INPUT!$C$122/100`);
       {
         const vatOutCum=[...Array(i+1)].map((_,j)=>`IF(${Rr('F274')}>0,${Rr('VATout')}*${A('collArr',j)}/${Rr('F274')},0)`).join('+');
-        const vatInCum=[...Array(i+1)].map((_,j)=>`(${tm('tot_xdban',8,'1')}+${A('op',j)})*INPUT!$C$6/(100+INPUT!$C$6)`).join('+');
+        const vatInCum=[...Array(i+1)].map((_,j)=>`(${A('cf_cpxd_s',j)}+${A('op',j)})*INPUT!$C$6/(100+INPUT!$C$6)`).join('+');
         const prevVatPaid=i>0?`SUM(${yc(0)}${RW['vatpay']}:${yc(i-1)}${RW['vatpay']})`:'0';
         Y('vatpay',`=MAX((${vatOutCum})-(${vatInCum})-${prevVatPaid},0)`);
       }
@@ -1593,12 +1595,12 @@ function buildSheets(p, sched, cost, coll, full, collShop){
         Y('cf_dat_s',`=${tm('tot_cn',3,'(1-'+lf2+')')}+${tm('tot_db',4,'(1-'+lf2+')')}`);
         Y('cf_sdd_s',`=${tm('tot_sdd',5,'(1-'+lf2+')')}`);
         Y('cf_phaply_s',`=${tm('tot_phaply',6,'(1-'+lf2+')')}`);
-        Y('cf_cpxd_s',`=(${tm('tot_hatang',7,'(1-'+lf2+')')}+${tm('tot_xdban',8,'1')}+${tm('tot_tuvan',10,'(1-'+lsc+')')}+INPUT!$C$125/100*${tm('tot_duphong',11,'(1-'+lsc+')')})/(1+INPUT!$C$6/100)`);
+        Y('cf_cpxd_s',`=${tm('tot_hatang',7,'(1-'+lf2+')')}+${tm('tot_xdban',8,'1')}+${tm('tot_tuvan',10,'(1-'+lsc+')')}+${tm('tot_duphong',11,'(1-'+lsc+')')}`);
         Y('saleInvest',`=${A('cf_dat_s',i)}+${A('cf_sdd_s',i)}+${A('cf_phaply_s',i)}+${A('cf_cpxd_s',i)}`);
         Y('cf_dat_l',`=${tm('tot_cn',3,lf2)}+${tm('tot_db',4,lf2)}`);
         Y('cf_sdd_l',`=${tm('tot_sdd',5,lf2)}`);
         Y('cf_phaply_l',`=${tm('tot_phaply',6,lf2)}`);
-        Y('cf_cpxd_l',`=${tm('tot_hatang',7,lf2)}+${tm('tot_xdthue',9,'1')}+${tm('tot_tuvan',10,lsc)}+${tm('tot_duphong',11,lsc)}`);
+        Y('cf_cpxd_l',`=(${tm('tot_hatang',7,lf2)}+${tm('tot_xdthue',9,'1')}+${tm('tot_tuvan',10,lsc)}+${tm('tot_duphong',11,lsc)})/(1+INPUT!$C$6/100)`);
         Y('leaseCapex',`=${A('cf_dat_l',i)}+${A('cf_sdd_l',i)}+${A('cf_phaply_l',i)}+${A('cf_cpxd_l',i)}`);
         Y('debtElig',`=(${Rr('tot_sdd')}*INPUT!$C$65/100*TIENDO!${td}5+${Rr('tot_hatang')}*INPUT!$C$66/100*TIENDO!${td}7+${Rr('tot_xdban')}*INPUT!$C$67/100*TIENDO!${td}8+${Rr('tot_xdthue')}*INPUT!$C$67/100*TIENDO!${td}9+${Rr('tot_tuvan')}*INPUT!$C$68/100*TIENDO!${td}10+${Rr('tot_duphong')}*INPUT!$C$69/100*TIENDO!${td}11)/100`);
         Y('ownerLand',`=(${Rr('tot_cn')}*TIENDO!${td}3+${Rr('tot_db')}*TIENDO!${td}4)/100`);
@@ -1627,7 +1629,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('cashAO',`=MAX(${A('collArr',i)}-${A('op',i)},0)+MAX(${A('lnoi',i)},0)${tv}`);
       Y('gap',`=MAX(${A('invest',i)}-${A('cashAO',i)}-${A('ownerLand',i)},0)`);
       Y('facil', i===0?`=${A('debtElig',i)}`:`=${P('facil',i)}-${P('draw',i)}+${A('debtElig',i)}`);
-      Y('draw',`=IF(INPUT!$C$63=2,MAX(${A('debtElig',i)},0),MIN(${A('gap',i)},MAX(${A('facil',i)},0)))`);
+      Y('draw',`=IF(INPUT!$C$54=2,MAX(${A('debtElig',i)},0),MIN(${A('gap',i)},MAX(${A('facil',i)},0)))`);
       Y('interest',`=INPUT!$C$5/100*${A('opening',i)}`);
       Y('psurplus',`=MAX(${A('cashAO',i)}-${A('invest',i)},0)`);
       Y('repay',`=MIN(${A('opening',i)}+${A('draw',i)},${A('psurplus',i)})`);
@@ -1645,9 +1647,12 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('u2',`=MIN(${A('D2',i)},MAX(${A('prof',i)}-${A('u5',i)}-${A('u4',i)}-${A('u3',i)},0))`);
       Y('u1',`=MIN(${A('D1',i)},MAX(${A('prof',i)}-${A('u5',i)}-${A('u4',i)}-${A('u3',i)}-${A('u2',i)},0))`);
       Y('taxable',`=MAX(${A('prof',i)}-(${A('D1',i)}+${A('D2',i)}+${A('D3',i)}+${A('D4',i)}+${A('D5',i)}),0)`);
-      const lastRevExpr=`IFERROR(MATCH(2,1/(${yc(0)}${RW['collArr']}:${yc(NXX-1)}${RW['collArr']}>0))-1,0)`;
+      // Kỳ quyết toán = kỳ cuối cùng có thực thu. Dùng SUM phần đuôi thay MATCH mảng để Excel thường,
+      // Excel Online và LibreOffice đều tự tính ổn định, không cần công thức mảng/CSE.
+      const noFutureRev=i===NXX-1?'TRUE':`SUM(${yc(i+1)}${RW['collArr']}:${LASTY}${RW['collArr']})=0`;
+      const isLastRev=`AND(${A('collArr',i)}>0,${noFutureRev})`;
       const citPaidPrev=i===0?'0':`SUM(${yc(0)}${RW['citYr']}:${yc(i-1)}${RW['citYr']})`;
-      Y('citYr',`=IF(${i}=${lastRevExpr},MAX(${Rr('totLNTT')}*INPUT!$C$7/100-${citPaidPrev},-${citPaidPrev}),${A('collArr',i)}*INPUT!$C$8/100)`);
+      Y('citYr',`=IF(${isLastRev},MAX(${Rr('totLNTT')}*INPUT!$C$7/100-${citPaidPrev},-${citPaidPrev}),${A('collArr',i)}*INPUT!$C$8/100)`);
       Y('newLoss',`=MAX(-${A('ebt',i)},0)`);
       Y('cit',`=IF(${Rr('F274')}>0,${Rr('citTotalSale')}*${A('collArr',i)}/${Rr('F274')},0)`);
       Y('cfPrj',`=${A('collArr',i)}+${A('gross',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('leaseCapex',i)}-${A('leaseCostYr',i)}-${A('citYr',i)}-${A('interest',i)}`);
