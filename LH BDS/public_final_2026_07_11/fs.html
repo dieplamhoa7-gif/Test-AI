@@ -1556,9 +1556,9 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       LNST:`=${Rr('LNTT')}-${Rr('citTotalSale')}`,citTotalSale:`=MAX(${Rr('LNTT')},0)*INPUT!$C$7/100`,leaseTV:`=SUM(${colr('leaseTVterm')})`,
       NPV:`=${A('cfEq',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfEq']}:${LASTY}${RW['cfEq']})`,
       NPVsale:`=${A('cfSale',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfSale']}:${LASTY}${RW['cfSale']})`,
-      // Dòng tiền có nhiều lần đổi dấu nên Excel có thể hội tụ về nghiệm gần 0 nếu guess thấp.
-      // Engine web dùng bracket rộng và chọn nghiệm kinh tế dương; guess=1 giúp XIRR hội tụ cùng nghiệm đó.
-      IRReq:`=IFERROR(XIRR(${colr('cfEq')},${yc(0)}$2:${LASTY}$2,1),"n/a")`,IRRprj:`=IFERROR(XIRR(${colr('cfPrj')},${yc(0)}$2:${LASTY}$2,1),"n/a")`,
+      // IRR lấy từ sheet IRR_SOLVER: 80 bước chia đôi hoàn toàn bằng công thức Excel.
+      // Cần tự solver vì XIRR của Excel có thể hội tụ về nghiệm giả khi CF đổi dấu nhiều lần.
+      IRReq:'=IRR_SOLVER!$F$84',IRRprj:'=IRR_SOLVER!$L$84',
       totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
@@ -1657,7 +1657,8 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       Y('cit',`=IF(${Rr('F274')}>0,${Rr('citTotalSale')}*${A('collArr',i)}/${Rr('F274')},0)`);
       Y('cfPrj',`=${A('collArr',i)}+${A('gross',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('leaseCapex',i)}-${A('leaseCostYr',i)}-${A('citYr',i)}-${A('interest',i)}`);
       Y('cfEq',`=${A('cfPrj',i)}+${A('draw',i)}-${A('repay',i)}`);
-      Y('cfSale',`=${A('collArr',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('cit',i)}`);
+      // cfSale web trừ TNDN bán riêng theo tỷ trọng thu, đồng thời trừ tạm nộp TNDN cash (trừ kỳ quyết toán).
+      Y('cfSale',`=${A('collArr',i)}-${A('saleInvest',i)}-${A('op',i)}-${A('vatpay',i)}-${A('cit',i)}-IF(${isLastRev},0,${A('collArr',i)}*INPUT!$C$8/100)`);
       Y('cfLease',`=${A('latNoi',i)}-${A('leaseCapex',i)}`);
     }
     ws.merges=['B1:'+LASTY+'1']; ws.freeze='D3'; ws.rowH={1:26,2:18}; ws.tab='1F3864';
@@ -1935,7 +1936,35 @@ function buildSheets(p, sched, cost, coll, full, collShop){
   }
 
   addWebResultSheets();
+  addIrrSolver();
   addHDSD();
+
+  // Solver IRR bằng công thức: mỗi dòng là một vòng bisection, bracket giống engine web [-99%; 1.000%].
+  // Không có giá trị kết quả nào được pass từ JavaScript; chỉ tham chiếu dòng tiền công thức trên sheet FS.
+  function addIrrSolver(){
+    const wi=mk('IRR_SOLVER',[5,16,16,16,16,16,4,16,16,16,16,16]);
+    set(wi,'A1','IRR SOLVER — BISECTION BẰNG CÔNG THỨC EXCEL (80 vòng, bracket -99% đến 1.000%)',5);
+    wi.merges=['A1:L1'];
+    ['Vòng','Low','High','Mid','NPV(Mid)','IRR CĐT','', 'Vòng','Low','High','Mid','NPV(Mid)','IRR dự án'].forEach((h,i)=>set(wi,colName(i)+'3',h,3));
+    // D:BK là 60 năm dòng tiền FS; hàng 32 = CF CĐT, hàng 27 = CF dự án.
+    const npv=(row,rate)=>`SUMPRODUCT(FS!$D$${row}:$BK$${row}/(1+${rate})^((FS!$D$2:$BK$2-FS!$D$2)/365))`;
+    for(let r=4;r<=84;r++){
+      const prev=r-1;
+      set(wi,'A'+r,r-3); set(wi,'H'+r,r-3);
+      if(r===4){ set(wi,'B'+r,-0.99); set(wi,'C'+r,10); set(wi,'I'+r,-0.99); set(wi,'J'+r,10); }
+      else {
+        set(wi,'B'+r,`=IF(${npv(32,'B'+prev)}*${npv(32,'D'+prev)}<=0,B${prev},D${prev})`);
+        set(wi,'C'+r,`=IF(${npv(32,'B'+prev)}*${npv(32,'D'+prev)}<=0,D${prev},C${prev})`);
+        set(wi,'I'+r,`=IF(${npv(27,'I'+prev)}*${npv(27,'K'+prev)}<=0,I${prev},K${prev})`);
+        set(wi,'J'+r,`=IF(${npv(27,'I'+prev)}*${npv(27,'K'+prev)}<=0,K${prev},J${prev})`);
+      }
+      set(wi,'D'+r,`=(B${r}+C${r})/2`); set(wi,'E'+r,`=${npv(32,'D'+r)}`); set(wi,'F'+r,`=D${r}`,8);
+      set(wi,'K'+r,`=(I${r}+J${r})/2`); set(wi,'L'+r,`=K${r}`,8);
+      // NPV dự án giữ ở cột G ẩn; cột L luôn là kết quả IRR dự án.
+      set(wi,'G'+r,`=${npv(27,'K'+r)}`);
+    }
+    wi.hiddenCols=['G']; wi.freeze='A4'; wi.tab='64748B';
+  }
   return sheets;
 
   function addHDSD(){
