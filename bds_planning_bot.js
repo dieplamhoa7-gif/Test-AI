@@ -1,4 +1,4 @@
-﻿// Telegram MVP bot for B─ÉS planning reports.
+// Telegram MVP bot for B─ÉS planning reports.
 // Usage:
 //   $env:TELEGRAM_BOT_TOKEN="<token>"; node bds_planning_bot.js
 // Optional:
@@ -482,6 +482,19 @@ function buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors = 
   return report;
 }
 
+function planningMapKeyboard(summary) {
+  const lat = summary?.input?.lat;
+  const lon = summary?.input?.lon;
+  if (!Number.isFinite(Number(lat)) || !Number.isFinite(Number(lon))) return undefined;
+  const official = summary.cross_check_links?.hcm_official?.web_url;
+  const guland = summary.cross_check_links?.guland?.coordinate_planning_url || `https://guland.vn/soi-quy-hoach?lat=${lat}&lng=${lon}`;
+  const maps = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+  const rows = [];
+  if (official) rows.push([{ text: '🗺 Mở bản đồ quy hoạch TP.HCM', url: official }]);
+  rows.push([{ text: '📍 Xem quy hoạch tại vị trí (Guland)', url: guland }]);
+  rows.push([{ text: '🌐 Mở đúng địa điểm trên Google Maps', url: maps }]);
+  return { inline_keyboard: rows };
+}
 async function askPriceStep(req, key) {
   const selected = [
     req.asset ? `Loại tài sản: ${assetLabel(req.asset)}` : null,
@@ -627,7 +640,7 @@ async function handleMessage(msg) {
       combinedText,
     ].filter(Boolean).join(' ');
     let report = buildPlanningReportOnly(summary, gulandText, qhvietText, popupErrors);
-    await sendMessage(chatId, report, msg.message_id);
+    await sendMessage(chatId, report, msg.message_id, { reply_markup: planningMapKeyboard(summary) });
   } catch (err) {
     await sendMessage(chatId, `Em tra bß╗ï lß╗ùi: ${err.message || err}. Anh gß╗¡i lß║íi tß╗ìa ─æß╗Ö/link gi├║p em.`, msg.message_id);
   }
