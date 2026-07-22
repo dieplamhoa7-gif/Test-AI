@@ -1,3 +1,11 @@
+---
+name: image-first-ocr-discipline
+description: Mandatory automatic image-reading and OCR workflow for every image, screenshot, photo, scan, chart, map, or document image supplied by Hoa Dai ka. Always inspect image pixels and extract visible content before combining it with the accompanying message; never infer unseen details.
+metadata:
+  author: local
+  version: "1.1.0"
+---
+
 # Image First OCR Discipline
 
 ## Trigger
