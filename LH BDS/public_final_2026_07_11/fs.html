@@ -3855,20 +3855,30 @@ tr,.avoid-cut{break-inside:avoid;page-break-inside:avoid}
 <scr${''}ipt src="mojibake-cleaner.js"></scr${''}ipt></body></html>`;
 }
 function taoBaoCao(selId){
+  // Open synchronously from the tap; mobile browsers otherwise block it as a popup.
+  const w=window.open('','_blank');
   try{
     const sel=document.getElementById(selId||'rep-mode'); const mode=(sel&&sel.value)||'full';
-    const html=buildReportHTML(mode);
-    const w=window.open('','_blank');
-    if(w&&w.document){ w.document.open(); w.document.write(html); w.document.close(); }
-    else{
+    if(w&&w.document){
+      w.document.open();
+      w.document.write('<!doctype html><meta charset="utf-8"><title>Đang tạo báo cáo…</title><p style="font-family:Arial;padding:28px">Đang tạo báo cáo, vui lòng chờ…</p>');
+      w.document.close();
+      const html=buildReportHTML(mode);
+      w.document.open(); w.document.write(html); w.document.close();
+    }else{
+      const html=buildReportHTML(mode);
       const blob=new Blob([html],{type:'text/html'});
       const a=document.createElement('a');
       a.href=URL.createObjectURL(blob); a.download='BaoCao_FS_'+new Date().toISOString().slice(0,10)+'.html';
-      document.body.appendChild(a); a.click(); setTimeout(()=>a.remove(),800);
-      alert('Trình duyệt chặn pop-up — báo cáo đã được tải xuống dạng file HTML.');
+      document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);
+      alert('Trình duyệt chặn tab báo cáo nên hệ thống đã tải file HTML về máy.');
     }
-  }catch(e){alert('Lỗi tạo báo cáo: '+e.message);}
+  }catch(e){
+    if(w&&!w.closed)w.close();
+    alert('Lỗi tạo báo cáo: '+e.message);
+  }
 }
+
 </script>
 <script src="account-cloud.js"></script>
 </body>
