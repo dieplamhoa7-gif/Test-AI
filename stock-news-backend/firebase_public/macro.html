@@ -178,13 +178,13 @@ table.tb td:first-child{text-align:left;font-weight:700;color:#cfe0ff}
  <div class="card"><h3>Giai đoạn chu kỳ kinh tế 2021 → nay</h3><div class="cap">Nền chart được tô màu theo pha · bấm pha để xem mô tả</div><div id="phaseTL" style="display:flex;gap:4px;margin-bottom:8px"></div><div id="phaseDesc" style="font-size:12px;color:var(--mut);line-height:1.6"></div></div>
 
  <div class="card" id="cycleEvidenceCard" style="margin-top:14px">
-  <h3>Vì sao hiện tại là cuối chu kỳ mở rộng?</h3>
-  <div class="cap">Đánh giá đa biến từ chính dữ liệu trên dashboard; không dựa vào một chỉ tiêu đơn lẻ.</div>
+  <h3>Vì sao hiện tại được xếp vào cuối pha mở rộng?</h3>
+  <div class="cap">Đánh giá đa biến từ dữ liệu hiện có; pha vĩ mô được xác định độc lập với diễn biến VN-Index.</div>
   <div id="cycleEvidence" style="margin-top:10px"></div>
  </div>
  <div class="card" id="cyclePhaseTableCard" style="margin-top:14px">
-  <h3>Bảng phân tích các giai đoạn chu kỳ vĩ mô và VN-Index</h3>
-  <div class="cap">Thống kê theo khoảng thời gian đã tô nền trên chart. Lợi suất và drawdown VN-Index được tính trực tiếp từ chuỗi tháng của dashboard.</div>
+  <h3>Các giai đoạn chu kỳ vĩ mô và phản ứng của VN-Index</h3>
+  <div class="cap">Thống kê mô tả theo các pha trên chart. VN-Index chỉ phản ánh phản ứng thị trường, không được dùng để tự xác nhận pha vĩ mô.</div>
   <div id="cyclePhaseTable" style="overflow-x:auto;margin-top:10px"></div>
  </div>
  <div class="layout">
@@ -623,9 +623,9 @@ function phaseVniStats(i0,i1){
 function pct(v,d=1){return v==null?'–':(v>0?'+':'')+v.toFixed(d)+'%'}
 function phaseImpact(st,p){
  if(st.ret==null)return 'Thiếu dữ liệu VN-Index trong giai đoạn.';
- if(st.ret>15&&st.dd>-15)return 'Thuận lợi: tăng trưởng/thanh khoản hỗ trợ định giá; VN-Index tăng với drawdown được kiểm soát.';
+ if(st.ret>15&&st.dd>-15)return 'VN-Index tăng trong giai đoạn này; đây là phản ứng quan sát được, cần đọc cùng định giá, lãi suất và dòng tiền.';
  if(st.ret>0&&st.dd<=-15)return 'Tăng nhưng biến động lớn: cơ hội còn, song rủi ro điều chỉnh đã cao và cần hạ đòn bẩy.';
- if(st.ret<=-15)return 'Bất lợi/risk-off: lợi nhuận kỳ vọng giảm, định giá co lại và VN-Index chịu drawdown mạnh.';
+ if(st.ret<=-15)return 'VN-Index giảm mạnh trong giai đoạn này; dữ liệu vĩ mô là một phần bối cảnh, không phải nguyên nhân duy nhất.';
  return 'Trung tính đến thận trọng: chỉ số thiếu xu hướng rõ, ưu tiên chọn lọc doanh nghiệp và quản trị rủi ro.';
 }
 function renderCycleEvidence(){
@@ -645,7 +645,7 @@ function renderCycleEvidence(){
 }
 function renderCyclePhaseTable(){
  const rows=(DATA.phases||[]).map(p=>{let i0=M.indexOf(p.s),i1=M.indexOf(p.e);if(i0<0)i0=0;if(i1<0)i1=M.length-1;const st=phaseVniStats(i0,i1);const g=phaseMetricAvg('gdp_growth_ff',i0,i1),c=phaseMetricAvg('cpi_yoy',i0,i1),cr=phaseMetricAvg('credit_yoy',i0,i1),m2=phaseMetricAvg('m2_yoy',i0,i1);return {p,st,g,c,cr,m2}});
- document.getElementById('cyclePhaseTable').innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:980px"><thead><tr><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Giai đoạn</th><th style="padding:8px;border-bottom:1px solid var(--line)">GDP TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">CPI TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">Tín dụng TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">M2 TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">VN-Index</th><th style="padding:8px;border-bottom:1px solid var(--line)">Max drawdown</th><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Tác động/diễn giải</th></tr></thead><tbody>${rows.map(x=>`<tr><td style="padding:8px;border-bottom:1px solid var(--line);min-width:180px"><b style="color:${x.p.col}">${x.p.name}</b><div style="color:var(--mut2)">${x.p.s} → ${x.p.e}</div></td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.g,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.c,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.cr,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.m2,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line);color:${x.st.ret>=0?'#34d399':'#fb7185'}"><b>${pct(x.st.ret)}</b><div style="color:var(--mut2)">${x.st.start==null?'–':Math.round(x.st.start).toLocaleString('vi')} → ${x.st.end==null?'–':Math.round(x.st.end).toLocaleString('vi')}</div></td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line);color:#fb7185">${pct(x.st.dd)}</td><td style="padding:8px;border-bottom:1px solid var(--line);color:var(--mut);min-width:280px">${phaseImpact(x.st,x.p)}</td></tr>`).join('')}</tbody></table><div style="font-size:10.5px;color:var(--mut2);margin-top:8px">Lưu ý: đây là thống kê mô tả trên dữ liệu tháng của dashboard, không khẳng định quan hệ nhân quả và không phải dự báo lợi suất.</div>`;
+ document.getElementById('cyclePhaseTable').innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:980px"><thead><tr><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Giai đoạn</th><th style="padding:8px;border-bottom:1px solid var(--line)">GDP TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">CPI TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">Tín dụng TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">M2 TB</th><th style="padding:8px;border-bottom:1px solid var(--line)">VN-Index</th><th style="padding:8px;border-bottom:1px solid var(--line)">Drawdown tháng</th><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Tác động/diễn giải</th></tr></thead><tbody>${rows.map(x=>`<tr><td style="padding:8px;border-bottom:1px solid var(--line);min-width:180px"><b style="color:${x.p.col}">${x.p.name}</b><div style="color:var(--mut2)">${x.p.s} → ${x.p.e>M[M.length-1]?'YTD '+M[M.length-1]:x.p.e}</div></td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.g,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.c,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.cr,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line)">${fmt(x.m2,'%')}</td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line);color:${x.st.ret>=0?'#34d399':'#fb7185'}"><b>${pct(x.st.ret)}</b><div style="color:var(--mut2)">${x.st.start==null?'–':Math.round(x.st.start).toLocaleString('vi')} → ${x.st.end==null?'–':Math.round(x.st.end).toLocaleString('vi')}</div></td><td style="text-align:center;padding:8px;border-bottom:1px solid var(--line);color:#fb7185">${pct(x.st.dd)}</td><td style="padding:8px;border-bottom:1px solid var(--line);color:var(--mut);min-width:280px">${phaseImpact(x.st,x.p)}</td></tr>`).join('')}</tbody></table><div style="font-size:10.5px;color:var(--mut2);margin-top:8px">Lưu ý: GDP là dữ liệu quý được đưa về trục tháng để hiển thị; CPI, tín dụng và M2 là dữ liệu tháng. Các số bình quân vì vậy chỉ mang tính mô tả. Drawdown được tính từ điểm đóng cửa tháng, không phải đáy trong ngày. Pha 2026 là YTD đến kỳ dữ liệu mới nhất, không phải cả năm.</div>`;
 }
 
 renderPhaseTL();
