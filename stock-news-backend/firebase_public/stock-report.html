@@ -22,7 +22,7 @@
 <div class="shell">
   <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><nav class="main-tabs" aria-label="Điều hướng chính"><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/macro">Vĩ mô</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn active" href="/stock-report" aria-current="page">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header>
 <section class="report-hero">
-<div class="tickerbar"><input id="ticker" placeholder="MWG" value="MWG"/><button id="runModel3" onclick="startModel3()">Chạy Model3</button><button class="secondary" onclick="testNotebookAuth()">Test NotebookLM</button></div>
+<div class="tickerbar"><input id="ticker" list="tickerOptions" placeholder="Nhập mã: SSI, MWG..." value="MWG" autocomplete="off"/><datalist id="tickerOptions"></datalist><button id="runModel3" onclick="startModel3()">Chạy Model3</button><button class="secondary" onclick="testNotebookAuth()">Test NotebookLM</button></div>
     <div class="bar"><span id="progressBar"></span></div>
     <div class="metrics"><div class="metric"><small>Job</small><b id="jobId">-</b></div><div class="metric"><small>Thời gian chạy</small><b id="elapsed">00:00</b></div><div class="metric"><small>Tiến độ</small><b id="progressText">0%</b></div><div class="metric"><small>NotebookLM</small><b id="notebookAuth">sẵn sàng</b></div></div>
     <div class="scopes" id="scopes"></div>
@@ -84,6 +84,37 @@ function renderAgents(a){$('agents').innerHTML=Object.entries(agentMeta).map(([n
 function node(s){return `<div class="node ${cls(s.status)}"><div style="display:flex;justify-content:space-between;gap:8px"><div><div class="name">${clean(s.name||s.key)}</div><div class="by">${clean(s.agent||'-')}</div></div><span class="pill ${cls(s.status)}">${s.status==='running'?'<span class="spin"></span>':''}${st(s.status)}</span></div><div class="mini"><span style="width:${pct(s.status)}%"></span></div></div>`}
 function renderGraph(sections){const by=Object.fromEntries((sections||[]).map(s=>[s.key,s]));$('graph').innerHTML=phases.map(p=>`<div class="phase"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><b>${p[0]}</b><span class="pill">${p[1].length} phần</span></div><div class="nodes">${p[1].map(k=>node(by[k]||{key:k,name:k,agent:'-',status:'pending'})).join('')}</div></div>`).join('')}
 function renderLostJob(job){try{localStorage.removeItem('lh_model3_last_job');localStorage.removeItem('lh_model3_last_start')}catch(_){}if(timer)clearInterval(timer);if(uiTimer)clearInterval(uiTimer);current=null;lastJob=null;renderEmpty();$('runModel3').disabled=false}
+
+async function loadTickerOptions(){
+  const dl=document.getElementById('tickerOptions');
+  if(!dl)return;
+  try{
+    const r=await fetch('/data/market_symbols.json?t='+Date.now(),{cache:'no-store'});
+    const data=await r.json();
+    const arr=Array.isArray(data)?data:(data.symbols||data.data||data.items||[]);
+    const rows=arr.map(x=>typeof x==='string'?{symbol:x}:x).filter(Boolean);
+    const html=rows.map(x=>{
+      const sym=String(x.symbol||x.ticker||x.code||x.Symbol||'').toUpperCase().trim();
+      if(!sym)return '';
+      const name=String(x.name||x.company_name||x.fullname||x.exchange||'').replace(/"/g,'&quot;');
+      return `<option value="${sym}" label="${name}"></option>`;
+    }).join('');
+    if(html)dl.innerHTML=html;
+  }catch(e){
+    try{
+      const r=await fetch('/data/market_data.json?t='+Date.now(),{cache:'no-store'});
+      const data=await r.json();
+      const rows=Array.isArray(data)?data:(data.stocks||data.data||data.items||[]);
+      dl.innerHTML=rows.map(x=>{
+        const sym=String(x.symbol||x.ticker||x.code||'').toUpperCase().trim();
+        const name=String(x.name||x.company_name||'').replace(/"/g,'&quot;');
+        return sym?`<option value="${sym}" label="${name}"></option>`:'';
+      }).join('');
+    }catch(_){ }
+  }
+}
+loadTickerOptions();
+
 $('ticker').addEventListener('keydown',e=>{if(e.key==='Enter')startModel3()});const preset=(params.get('ticker')||params.get('symbol')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(preset)$('ticker').value=preset;renderEmpty();(function resume(){const job=params.get('job')||params.get('job_id')||localStorage.getItem('lh_model3_last_job');const t=params.get('ticker')||params.get('symbol')||localStorage.getItem('lh_model3_last_ticker');if(t)$('ticker').value=String(t).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,8);if(job){current=job;localStart=Number(localStorage.getItem('lh_model3_last_start')||0)||Date.now();timer=setInterval(poll,2500);poll()}})();
 </script>
 </body>
