@@ -43,6 +43,9 @@ jobs:
       - name: Guard final frontend markers after static build
         run: python verify_lh_final_frontend_markers.py
 
+      - name: Guard approved rich bullet news format
+        run: python verify_lh_news_format_lock.py
+
       - name: Commit updated cache
         run: |
           git config user.name "LH Investment Bot"
