@@ -1528,7 +1528,9 @@ function buildSheets(p, sched, cost, coll, full, collShop){
     // pass B: scalar formulas, lease inputs, flow Tổng + label styles
     const fmtOf={}; ORD.forEach(([t,k,lb,f])=>{ if(k) fmtOf[k]=f; });
     const SF={
-      nsaCH:`=SUMPRODUCT((${gfN}-${sde})*${ttp}/100*(${uf}<>2))`,nsaSH:`=SUMPRODUCT(${nsh}*(${uf}<>2))`,
+      // Đồng nhất towerNsaCanho() của engine web: ưu tiên NSA căn hộ nhập trực tiếp ở INPUT!C116;
+      // nếu không có mới tính (GFA nổi - sàn khối đế) × tỷ lệ thương phẩm.
+      nsaCH:`=IF(INPUT!$C$116>0,INPUT!$C$116,SUMPRODUCT((${gfN}-${sde})*${ttp}/100*(${uf}<>2)))`,nsaSH:`=SUMPRODUCT(${nsh}*(${uf}<>2))`,
       I86:`=SUMPRODUCT((${gfN}+${gfH})*${sx})*1000000*${heso}/${vv}`,leaseConstr:`=SUMPRODUCT((${gfN}+${gfH})*${sx}*(${uf}=2))*1000000*${heso}/${vv}`,
       saleConstr:`=${Rr('I86')}-${Rr('leaseConstr')}`,
       leaseGFA:`=SUMPRODUCT((INPUT!$C$43:$F$43+INPUT!$C$44:$F$44)*(INPUT!$C$50:$F$50=2))`,
@@ -1559,10 +1561,10 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       // (không dùng ngày lịch thực tế có năm nhuận). Không lấy hay tham chiếu web cash flow.
       NPV:`=XNPV(INPUT!$C$4/100,${yc(0)}${RW['cfEq']}:${LASTY}${RW['cfEq']},${yc(0)}$156:${LASTY}$156)`,
       NPVsale:`=XNPV(INPUT!$C$4/100,${yc(0)}${RW['cfSale']}:${LASTY}${RW['cfSale']},${yc(0)}$156:${LASTY}$156)`,
-      // Bỏ kỳ 2026 có CF=0: Excel XIRR sẽ coi mốc 0 là nghiệm khi mảng bắt đầu bằng 0.
-      // Bắt đầu từ 2027; XIRR dùng ngày lịch thực tế, đúng cách hàm annual-XIRR của web xác định số ngày.
-      IRReq:`=XIRR(${yc(1)}${RW['cfEq']}:${LASTY}${RW['cfEq']},${yc(1)}$2:${LASTY}$2,10%)`,
-      IRRprj:`=XIRR(${yc(1)}${RW['cfPrj']}:${LASTY}${RW['cfPrj']},${yc(1)}$2:${LASTY}$2,10%)`, 
+      // XIRR bắt buộc lấy TOÀN BỘ chuỗi, gồm cả CF và ngày 01/01/2026.
+      // Đây là mốc dòng tiền đầu tiên của mô hình, phải đồng nhất với engine web.
+      IRReq:`=XIRR(${yc(0)}${RW['cfEq']}:${LASTY}${RW['cfEq']},${yc(0)}$2:${LASTY}$2,10%)`,
+      IRRprj:`=XIRR(${yc(0)}${RW['cfPrj']}:${LASTY}${RW['cfPrj']},${yc(0)}$2:${LASTY}$2,10%)`, 
       totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
@@ -2034,7 +2036,15 @@ function parseSheets(maps){
     for(let i=0;i<NY;i++){const x=num(wt,tdCol(i)+(TD_COLL_ROW0+r),0); if(x)row[Y0+i]=x;}
     if(Object.keys(row).length)coll[Y0+r]=row;
   }
-  return {p,sched,cost,coll};
+  // Matrix shop là dữ liệu độc lập; giữ nguyên khi import để web và Excel dùng cùng một cấu trúc thu tiền.
+  const collShop={};
+  const shopRow0=TD_COLL_ROW0+NY+3;
+  for(let r=0;r<NY;r++){
+    const row={};
+    for(let i=0;i<NY;i++){const x=num(wt,tdCol(i)+(shopRow0+r),0); if(x)row[Y0+i]=x;}
+    if(Object.keys(row).length)collShop[Y0+r]=row;
+  }
+  return {p,sched,cost,coll,collShop};
 }
 /*ENGINE-END*/
 
@@ -2986,7 +2996,7 @@ async function importInput(inp){
     const buf=await file.arrayBuffer();
     const maps=await readXlsx(buf);
     const st=parseSheets(maps);
-    P=st.p; SCHED=st.sched; COST=st.cost; COLL=st.coll; COLL_SH=JSON.parse(JSON.stringify(st.coll||{}));
+    P=st.p; SCHED=st.sched; COST=st.cost; COLL=st.coll; COLL_SH=JSON.parse(JSON.stringify(st.collShop||st.coll||{}));
     FS_LAST_IMPORT_TS=Date.now();
     buildAll(); fsSaveNow();
     const R=run(P,SCHED,COST,COLL);
