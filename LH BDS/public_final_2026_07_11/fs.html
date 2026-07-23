@@ -1554,13 +1554,12 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       VATinputLease:`=${vf}*${Rr('leaseDepBase')}`,
       LNTT:`=${Rr('DTnet')}-((${Rr('I78')}+${Rr('I84')})*(1-${Rr('leaseShare')})+${Rr('intSale')}+${Rr('F421')}/${vv})`,
       LNST:`=${Rr('LNTT')}-${Rr('citTotalSale')}`,citTotalSale:`=MAX(${Rr('LNTT')},0)*INPUT!$C$7/100`,leaseTV:`=SUM(${colr('leaseTVterm')})`,
-      // Dùng trực tiếp XNPV/XIRR của Excel trên đúng chuỗi dòng tiền engine web.
-      // WEB_CF dùng mốc ngày cách nhau đúng 365 ngày để XNPV đồng nhất với quy ước kỳ năm của web,
-      // kể cả khi khoảng thời gian đi qua năm nhuận.
-      NPV:'=XNPV(INPUT!$C$4/100,WEB_CF!$M$2:$M$61,WEB_CF!$O$2:$O$61)*1000000000',
-      NPVsale:'=XNPV(INPUT!$C$4/100,WEB_CF!$P$2:$P$61,WEB_CF!$O$2:$O$61)*1000000000',
-      IRReq:'=XIRR(WEB_CF!$M$2:$M$61,WEB_CF!$O$2:$O$61)',
-      IRRprj:'=XIRR(WEB_CF!$L$2:$L$61,WEB_CF!$O$2:$O$61)',
+      // Excel tự tính trên dòng CF của sheet FS (nguồn duy nhất: INPUT + TIENDO).
+      // D2:BK2 là ngày dòng tiền theo năm; không lấy hay tham chiếu kết quả/web cash flow.
+      NPV:`=XNPV(INPUT!$C$4/100,${yc(0)}${RW['cfEq']}:${LASTY}${RW['cfEq']},${yc(0)}$2:${LASTY}$2)`,
+      NPVsale:`=XNPV(INPUT!$C$4/100,${yc(0)}${RW['cfSale']}:${LASTY}${RW['cfSale']},${yc(0)}$2:${LASTY}$2)`,
+      IRReq:`=XIRR(${yc(0)}${RW['cfEq']}:${LASTY}${RW['cfEq']},${yc(0)}$2:${LASTY}$2)`,
+      IRRprj:`=XIRR(${yc(0)}${RW['cfPrj']}:${LASTY}${RW['cfPrj']},${yc(0)}$2:${LASTY}$2)`, 
       totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
@@ -1940,7 +1939,7 @@ function buildSheets(p, sched, cost, coll, full, collShop){
     });
   }
 
-  addWebResultSheets();
+  // Không xuất WEB_RESULT / WEB_CF: workbook tự tính toàn bộ từ INPUT + TIENDO.
   addHDSD();
 
   // Solver IRR bằng công thức: mỗi dòng là một vòng bisection, bracket giống engine web [-99%; 1.000%].
