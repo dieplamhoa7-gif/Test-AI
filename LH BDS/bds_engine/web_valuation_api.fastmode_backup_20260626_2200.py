@@ -544,7 +544,35 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     return buckets
 
 
-def build_direct_land_report(projects: ProjectsResult, buckets: dict) -> str:
+def _filter_buckets_by_transaction(buckets: dict, is_rent: bool) -> dict:
+    """Final transaction guard: never mix sale evidence into rent (or vice versa)."""
+    filtered = {}
+    for bucket_name, listings in (buckets or {}).items():
+        kept = []
+        for listing in listings or []:
+            url = str(getattr(listing, 'url', '') or '').lower()
+            title = fix_vn_text(str(getattr(listing, 'title', '') or '')).lower()
+            blob = f"{url} {title}"
+            if is_rent:
+                if '/ban-' in url or '/nha-dat-ban' in url or '/ban-nha-' in url:
+                    continue
+                if url and '/cho-thue-' not in url:
+                    continue
+                if not url and not any(x in blob for x in ('cho thuê', 'cho thue', '/tháng', '/thang')):
+                    continue
+            else:
+                if '/cho-thue-' in url or any(x in blob for x in ('cho thuê', 'cho thue', '/tháng', '/thang')):
+                    continue
+                if url and not ('/ban-' in url or '/nha-dat-ban' in url or '/ban-nha-' in url):
+                    continue
+            kept.append(listing)
+        if kept:
+            filtered[bucket_name] = kept
+    return filtered
+
+
+def build_direct_land_report(projects: ProjectsResult, buckets: dict, is_rent: bool = False) -> str:
+    buckets = _filter_buckets_by_transaction(buckets, is_rent)
     all_items = []
     for bucket_name, listings in (buckets or {}).items():
         for l in listings or []:
@@ -1165,10 +1193,15 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 warnings.append(f'AI estimate lỗi: {type(e).__name__}. {note}')
                 log_error('ai_support', payload, e, 'continue with available buckets', note)
 
+    # Enforce transaction intent after every source has been merged, before any
+    # report text, price summary, or verification link is rendered.
+    is_rent = (getattr(criteria, 'transaction', 'buy') or 'buy') == 'rent'
+    buckets = _filter_buckets_by_transaction(buckets, is_rent)
+
     write_progress('build_report', 'Đang tổng hợp báo cáo trực tiếp theo tên đường/khu vực...' if not use_comparable_flow else 'Đang tổng hợp báo cáo theo dự án/khu vực comparable...', warnings)
     try:
         if not use_comparable_flow:
-            report = build_direct_land_report(projects, buckets)
+            report = build_direct_land_report(projects, buckets, is_rent=is_rent)
         else:
             report = await asyncio.wait_for(build_project_price_report(ai_report, criteria, projects, buckets), timeout=60)
     except Exception as e:
