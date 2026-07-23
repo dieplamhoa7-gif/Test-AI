@@ -82,13 +82,18 @@ Promise.all([fetch('tpre_bds_flow.json').then(r=>r.json()),fetch('tpre_legal_dee
 function esc(x){
  const safe=String(x||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
  const keywords=[
-  /\b(?:Luật Đất đai|Luật Đầu tư|Luật Đấu thầu|Luật Nhà ở|Nghị định|NĐ)\s*(?:\d{1,3}\/\d{4}(?:\/NĐ-CP)?|\d{4})?(?:\s*[-–—]\s*Điều\s*\d+(?:\s*,\s*\d+)*)?/giu,
-  /\bĐiều\s+\d+(?:\s*,\s*Điều\s*\d+)*(?:\s+khoản\s+\d+)?/giu,
-  /\b(?:đấu giá QSDĐ|đấu thầu(?: lựa chọn)? NĐT|chấp thuận chủ trương đầu tư|chấp thuận NĐT|lựa chọn NĐT|nhà đầu tư|chủ đầu tư|quyền sử dụng đất|QSDĐ|GCN|HSMT|GPMB|CTCTĐT|CTĐT)\b/giu,
-  /\b(?:đủ điều kiện|tư cách hợp lệ|năng lực tài chính|vốn chủ sở hữu|kinh nghiệm|ký quỹ|bảo đảm thực hiện dự án|quy hoạch|kế hoạch sử dụng đất|giá khởi điểm|nghĩa vụ tài chính|phương án đấu giá|hồ sơ mời thầu|kết quả lựa chọn|quyết định phê duyệt|giao đất|cho thuê đất|chuyển mục đích sử dụng đất)\b/giu,
-  /\b(?:HĐND cấp tỉnh|UBND cấp tỉnh|UBND tỉnh|Thủ tướng|Quốc hội|cơ quan đăng ký đầu tư|bên mời thầu)\b/giu,
-  /\b(?:nhà ở xã hội|cải tạo(?:\/xây lại)? chung cư|xử lý chất thải rắn sinh hoạt|cấp nước|trạm dừng nghỉ|dịch vụ hàng không|giáo dục|y tế|văn hóa|thể thao|môi trường)\b/giu,
-  /\b(?:từ 02 NĐT|02 NĐT|không thuộc diện bắt buộc|không áp dụng|rủi ro|điều kiện|hồ sơ|output pháp lý)\b/giu
+  // Căn cứ và cấu trúc pháp luật
+  /\b(?:Hiến pháp|Bộ luật|Luật(?:\s+[A-ZĐ][\p{L}\p{M}\s]*?)?|Nghị định|Thông tư|Quyết định|Nghị quyết|Chỉ thị)\s*(?:số\s*)?\d{0,3}(?:\/\d{4}(?:\/NĐ-CP|\/TT-[A-ZĐ]+|\/QH\d+)?)?(?:\s*[-–—]\s*Điều\s*\d+(?:\s*,\s*\d+)*)?/giu,
+  /\b(?:Điều|Khoản|Điểm|Mục|Chương|Phụ lục)\s+\d+[a-zA-Z]?(?:\s*,\s*(?:Điều|Khoản|Điểm)\s*\d+[a-zA-Z]?)*(?:\s+của\s+(?:Luật|Nghị định|Thông tư))?/giu,
+  // Chủ thể, thẩm quyền và cơ quan
+  /\b(?:nhà đầu tư|NĐT|chủ đầu tư|CĐT|bên mời thầu|nhà thầu|tổ chức kinh tế|doanh nghiệp|người sử dụng đất|người trúng đấu giá|cơ quan nhà nước có thẩm quyền|cơ quan đăng ký đầu tư|cơ quan chuyên môn về đất đai|HĐND(?:\s+cấp tỉnh)?|UBND(?:\s+cấp tỉnh)?|UBND tỉnh|Thủ tướng(?: Chính phủ)?|Quốc hội|Bộ Quốc phòng|Bộ Công an)\b/giu,
+  // Đầu tư, lựa chọn NĐT và đất đai
+  /\b(?:chấp thuận chủ trương đầu tư|CTCTĐT|chấp thuận nhà đầu tư|chấp thuận NĐT|lựa chọn nhà đầu tư|lựa chọn NĐT|đấu giá quyền sử dụng đất|đấu giá QSDĐ|đấu thầu lựa chọn NĐT|đấu thầu nhà đầu tư|dự án đầu tư có sử dụng đất|danh mục dự án|danh mục khu đất đấu thầu|quyền sử dụng đất|QSDĐ|GCN|Giấy chứng nhận|giao đất|cho thuê đất|chuyển mục đích sử dụng đất|nhận chuyển nhượng|thuê quyền sử dụng đất|góp vốn bằng QSDĐ|thu hồi đất|đất công xen kẹt|đất sạch)\b/giu,
+  // Quy hoạch, hồ sơ, thủ tục và tài chính
+  /\b(?:quy hoạch|quy hoạch chi tiết|QHCT|kế hoạch sử dụng đất|kế hoạch phát triển nhà ở|hồ sơ mời thầu|HSMT|hồ sơ mời quan tâm|hồ sơ năng lực|hồ sơ pháp lý|đề xuất dự án|phương án đầu tư|phương án đấu giá|phương án sử dụng đất|phương án bồi thường|GPMB|tái định cư|giá khởi điểm|giá đất cụ thể|nghĩa vụ tài chính|tiền sử dụng đất|tiền thuê đất|tiền đặt trước|vốn chủ sở hữu|năng lực tài chính|kinh nghiệm|ký quỹ|bảo đảm thực hiện dự án|bảo lãnh|tổng mức đầu tư|tiến độ thực hiện dự án)\b/giu,
+  // Kết quả, điều kiện, rủi ro và các nhóm dự án chuyên ngành
+  /\b(?:đủ điều kiện|điều kiện áp dụng|tư cách hợp lệ|độc lập với bên mời thầu|đáp ứng yêu cầu|không thuộc diện bắt buộc|không áp dụng|quyết định phê duyệt|kết quả lựa chọn NĐT|kết quả trúng đấu giá|hợp đồng dự án|nghĩa vụ hạ tầng|nghĩa vụ ngân sách|rủi ro pháp lý|khiếu nại|hủy kết quả|vi phạm tiến độ|nhà ở xã hội|NOXH|cải tạo chung cư|xây lại chung cư|nhà ở cho lực lượng vũ trang|xử lý chất thải rắn sinh hoạt|cấp nước|chợ|trạm dừng nghỉ|dịch vụ hàng không|giáo dục|y tế|văn hóa|thể thao|môi trường)\b/giu,
+  /\b(?:từ\s+0?2\s+NĐT|0?2\s+NĐT|dự án PPP|đầu tư theo phương thức đối tác công tư)\b/giu
  ];
  return keywords.reduce((html,re)=>html.replace(re,m=>`<strong class="kw">${m}</strong>`),safe);
 }
