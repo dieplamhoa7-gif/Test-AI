@@ -1554,11 +1554,13 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       VATinputLease:`=${vf}*${Rr('leaseDepBase')}`,
       LNTT:`=${Rr('DTnet')}-((${Rr('I78')}+${Rr('I84')})*(1-${Rr('leaseShare')})+${Rr('intSale')}+${Rr('F421')}/${vv})`,
       LNST:`=${Rr('LNTT')}-${Rr('citTotalSale')}`,citTotalSale:`=MAX(${Rr('LNTT')},0)*INPUT!$C$7/100`,leaseTV:`=SUM(${colr('leaseTVterm')})`,
-      NPV:`=${A('cfEq',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfEq']}:${LASTY}${RW['cfEq']})`,
-      NPVsale:`=${A('cfSale',0)}+NPV(INPUT!$C$4/100,${yc(1)}${RW['cfSale']}:${LASTY}${RW['cfSale']})`,
-      // IRR lấy từ sheet IRR_SOLVER: 80 bước chia đôi hoàn toàn bằng công thức Excel.
-      // Cần tự solver vì XIRR của Excel có thể hội tụ về nghiệm giả khi CF đổi dấu nhiều lần.
-      IRReq:'=IRR_SOLVER!$F$84',IRRprj:'=IRR_SOLVER!$L$84',
+      // Dùng trực tiếp XNPV/XIRR của Excel trên đúng chuỗi dòng tiền engine web.
+      // WEB_CF dùng mốc ngày cách nhau đúng 365 ngày để XNPV đồng nhất với quy ước kỳ năm của web,
+      // kể cả khi khoảng thời gian đi qua năm nhuận.
+      NPV:'=XNPV(INPUT!$C$4/100,WEB_CF!$M$2:$M$61,WEB_CF!$O$2:$O$61)*1000000000',
+      NPVsale:'=XNPV(INPUT!$C$4/100,WEB_CF!$P$2:$P$61,WEB_CF!$O$2:$O$61)*1000000000',
+      IRReq:'=XIRR(WEB_CF!$M$2:$M$61,WEB_CF!$O$2:$O$61)',
+      IRRprj:'=XIRR(WEB_CF!$L$2:$L$61,WEB_CF!$O$2:$O$61)',
       totLNTT:`=${Rr('F274')}-MAX(${Rr('F389')}-${Rr('VATinput')}-${Rr('VATinputLease')},0)-(${Rr('F421')}+${Rr('VATpay')})-${Rr('F425')}+(SUM(${colr('lnoi')})-SUM(${colr('ldep')})-${Rr('intLease')})`,totCIT:`=SUM(${colr('citYr')})`,totLNST:`=${Rr('totLNTT')}-${Rr('totCIT')}`,TMDTall:`=${Rr('TMDT')}+${Rr('F425')}`,
     };
     const sStyle=f=>f==='p'?8:f==='n'?0:20;   // value style
@@ -1921,12 +1923,15 @@ function buildSheets(p, sched, cost, coll, full, collShop){
       ['Hoàn vốn',Rw.payback||'—','năm'],['NSA căn hộ',Rw.nsaCH,'m²'],['NSA shop',Rw.nsaSH,'m²']
     ];
     rows.forEach((x,i)=>{const r=4+i; set(wr,'A'+r,x[0]); set(wr,'B'+r,x[1]); set(wr,'C'+r,x[2]);});
-    const wc=mk('WEB_CF',[4,16,16,16,16,16,16,16,16,16,16,16,16,16]);
-    const hdr=['Năm','Thực thu bán','DT thuê/exit','Chi đầu tư bán','Chi đầu tư thuê','Opex bán','VAT nộp','CIT cash','Lãi vay','Giải ngân vay','Trả gốc','CF dự án','CF CĐT','Dư nợ cuối kỳ'];
+    const wc=mk('WEB_CF',[4,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16]);
+    const hdr=['Năm','Thực thu bán','DT thuê/exit','Chi đầu tư bán','Chi đầu tư thuê','Opex bán','VAT nộp','CIT cash','Lãi vay','Giải ngân vay','Trả gốc','CF dự án','CF CĐT','Dư nợ cuối kỳ','Ngày XIRR/XNPV','CF bán riêng'];
     hdr.forEach((h,i)=>set(wc,colName(i)+'1',h));
     (Rw.YEARSX||[]).forEach((y,i)=>{
       const r=2+i, arr=[y,Rw.collArr[i],Rw.leaseThuYr[i],Rw.saleInvest[i],Rw.leaseCapex[i],Rw.op[i],Rw.vatpay[i],Rw.citCashYr[i],Rw.interest[i],Rw.draw[i],Rw.repay[i],Rw.cfPrj[i],Rw.cfEq[i],Rw.balEnd[i]];
       arr.forEach((v,j)=>set(wc,colName(j)+r,j===0?v:v/1e9));
+      // Mốc đầu + 365*i: XNPV cho kết quả đúng bằng chiết khấu kỳ năm của engine web.
+      set(wc,'O'+r,`=DATE(2026,1,1)+365*${i}`,10);
+      set(wc,'P'+r,(Rw.cfSale[i]||0)/1e9);
     });
     const wa=mk('WEB_COLLECTION_SPLIT',[4,16,16,16]);
     ['Năm','Thu căn hộ','Thu shop','Tổng thu'].forEach((h,i)=>set(wa,colName(i)+'1',h));
@@ -1936,7 +1941,6 @@ function buildSheets(p, sched, cost, coll, full, collShop){
   }
 
   addWebResultSheets();
-  addIrrSolver();
   addHDSD();
 
   // Solver IRR bằng công thức: mỗi dòng là một vòng bisection, bracket giống engine web [-99%; 1.000%].
