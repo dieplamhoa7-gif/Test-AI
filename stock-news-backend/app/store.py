@@ -9,7 +9,7 @@ from pymongo import MongoClient, DESCENDING
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DATA_FILE = DATA_DIR / "news_cache.json"
-MAX_NEWS_ITEMS = 500
+MAX_NEWS_ITEMS = 1000
 MONGODB_URI = os.getenv("MONGODB_URI", "").strip()
 MONGODB_DB = os.getenv("MONGODB_DB", "hoa_investment")
 MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION", "news_cache")
@@ -122,6 +122,9 @@ def save_news(items: List[Dict]) -> List[Dict]:
 
 
 def merge_news(new_items: List[Dict]) -> List[Dict]:
+    # New crawl results must replace same stories, otherwise stale summaries from
+    # Mongo/file cache survive forever and make the frontend appear rolled back.
     existing = load_news()
-    combined = list(new_items) + existing
+    incoming_keys = {_dedupe_key(item) for item in new_items}
+    combined = list(new_items) + [item for item in existing if _dedupe_key(item) not in incoming_keys]
     return save_news(combined)

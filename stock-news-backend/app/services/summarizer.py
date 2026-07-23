@@ -113,7 +113,14 @@ def _fallback_sentences(text: str, title: str = "", min_sentences: int = 4, max_
 
 
 def _to_bullets(summary: str) -> list[str]:
-    return [x.strip() for x in _split_sentences_vi(summary)[:5]]
+    """Preserve approved <strong> markup while normalizing summaries to 3-5 bullets."""
+    raw = (summary or "").strip()
+    explicit = [re.sub(r"^\s*[-•]\s*", "", x).strip() for x in raw.splitlines() if re.match(r"^\s*[-•]", x)]
+    if explicit:
+        return explicit[:5]
+    # Sentence fallback must not call _clean_news_text(), which strips <strong>.
+    parts = re.split(r"(?<=[.!?])\s+", raw)
+    return [x.strip() for x in parts if len(re.sub(r"<[^>]+>", "", x).strip()) >= 20][:5]
 
 def _fallback_snippet(item: Dict) -> str:
     full_text = (item.get("fullText") or "").strip()
@@ -134,12 +141,13 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
     prompt = (
         "Bạn là giám đốc đầu tư chứng khoán. "
         "Hãy đọc kỹ tin và phân loại đúng 1 nhãn: Chứng khoán, Ngân hàng, Bất động sản, Doanh nghiệp, Vĩ mô, Quốc tế, Pháp luật, Khác. "
-        "Tóm tắt đúng 5 câu, khoảng 100-140 từ: đủ bối cảnh, sự kiện chính, hệ quả đầu tư và rủi ro nếu có. "
+        "Tóm tắt thành đúng 5 gạch đầu dòng, tổng khoảng 100-140 từ: mỗi dòng chỉ một ý, đủ bối cảnh, sự kiện chính, hệ quả đầu tư và rủi ro nếu có. "
+        "Mỗi gạch đầu dòng bắt buộc bắt đầu bằng ký tự '- '. Không viết thành đoạn văn liền. "
         "Bắt buộc bôi đậm bằng thẻ <strong>...</strong> các số liệu, thời gian, mã cổ phiếu, tên riêng quan trọng, sự kiện then chốt (% giá trị, chỉ số, tiền, khối lượng, ngày chốt quyền, KQKD). "
         "Phong cách thực dụng, đi thẳng vào vấn đề, không lan man, không lặp tiêu đề, không bịa; ưu tiên thông tin có thể tác động đến giá/nhóm ngành. "
         "Nêu nhận định ảnh hưởng tích cực/tiêu cực/trung tính đến các cổ phiếu có trong bài nếu đủ dữ kiện. "
         "Không dùng Markdown **, không dùng HTML khác ngoài <strong>. "
-        "Trả đúng 2 dòng: Category: <nhãn> và Summary: <đúng 5 câu>."
+        "Trả theo đúng cấu trúc: dòng đầu 'Category: <nhãn>', dòng sau 'Summary:', tiếp theo đúng 5 dòng bắt đầu '- '."
     )
 
     try:
@@ -155,14 +163,21 @@ def classify_and_summarize_item(item: Dict) -> Dict[str, str]:
         content = (resp.choices[0].message.content or "").strip()
         category = "Kinh Tế"
         summary = ""
+        bullet_lines: list[str] = []
         for line in content.splitlines():
             line = line.strip()
             lower = line.lower()
             if lower.startswith("category:"):
                 category = line.split(":", 1)[1].strip() or "Khác"
             elif lower.startswith("summary:"):
-                summary = line.split(":", 1)[1].strip()
-        if not summary:
+                inline = line.split(":", 1)[1].strip()
+                if inline:
+                    summary = inline
+            elif re.match(r"^[-•]\s+", line):
+                bullet_lines.append(re.sub(r"^[-•]\s+", "", line).strip())
+        if bullet_lines:
+            summary = "\n".join(f"- {x}" for x in bullet_lines[:5])
+        elif not summary:
             summary = content.strip()
         return {"category": category, "summary": summary or _fallback_snippet(item)}
     except Exception:
