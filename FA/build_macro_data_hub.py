@@ -95,6 +95,11 @@ def main() -> dict[str, Any]:
     te = d.get("tradingEconomicsVisible") or {}
     add(rows, "tradingeconomics_visible", "page_count", te.get("count"), "pages", "TradingEconomics public visible", snap_date, te.get("status", ""), te.get("note", ""))
 
+    # Tổng cục Hải quan: public rendered table for monthly trade statistics.
+    customs = d.get("customsTrade") or {}
+    for k, item in (customs.get("rows") or {}).items():
+        add(rows, "customs_trade", k, item.get("value"), customs.get("unit", "bn USD"), customs.get("source", "Tổng cục Hải quan Việt Nam"), customs.get("period", snap_date), customs.get("status", "ok"), f"changePrevPct={item.get('changePrevPct')}")
+
     fiin = d.get("fiinproxExcel") or {}
     add(rows, "fiinprox_excel", "rowCount", fiin.get("rowCount"), "rows", "FiinProX Excel", snap_date, fiin.get("status", ""))
     add(rows, "fiinprox_excel", "indicatorCount", fiin.get("indicatorCount"), "indicators", "FiinProX Excel", snap_date, fiin.get("status", ""))
