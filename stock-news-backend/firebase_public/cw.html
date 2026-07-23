@@ -1297,6 +1297,15 @@
     function bsCall(S,K,T,vol=0.35,r=0.045){ if(!S||!K||T<=0) return Math.max(0,S-K); const sig=Math.max(0.01,vol); const d1=(Math.log(S/K)+(r+sig*sig/2)*T)/(sig*Math.sqrt(T)); const d2=d1-sig*Math.sqrt(T); return Math.max(0,S*cdf(d1)-K*Math.exp(-r*T)*cdf(d2)); }
     function calc(item,target,shortDays,volPct,ratePct){const ratio=num(item.conversionRatio)||1,strike=num(item.exercisePrice),price=num(item.lastPrice||item.marketPrice||item.fairValue),left=daysLeft(item),remain=Math.max(1,left-shortDays),vol=Math.max(0.01,num(volPct)/100||0.35),rate=num(ratePct)/100||0.045; const payoff=Math.max(0,(target-strike)/ratio), payoffPct=price?((payoff-price)/price*100):NaN; const bsNow=bsCall(target,strike,left/365,vol,rate)/ratio, bsNowPct=price?((bsNow-price)/price*100):NaN; const bsShort=bsCall(target,strike,remain/365,vol,rate)/ratio, bsShortPct=price?((bsShort-price)/price*100):NaN; return {ratio,strike,price,left,remain,payoff,payoffPct,bsNow,bsNowPct,bsShort,bsShortPct,vol,rate};}
     let items=[]; try{const r=await fetch('/data/warrants_data.json?ts='+Date.now(),{cache:'no-store'}); const p=await r.json(); items=(Array.isArray(p.items)?p.items:p).map(x=>({...x,code:String(x.code||'').toUpperCase()}));}catch(e){}
+    async function refreshStandaloneLiveCw(){
+      const codes=[...new Set([...document.querySelectorAll('[data-warrant]')].map(el=>String(el.dataset.warrant||'').toUpperCase()).filter(Boolean))].slice(0,120);
+      if(!codes.length) return;
+      const fresh=await Promise.all(codes.map(async code=>{try{return [code, await fetchVpsQuote(code)]}catch(_){return [code,null]}}));
+      const by=new Map(items.map(x=>[String(x.code||'').toUpperCase(),x]));
+      fresh.forEach(([code,q])=>{ if(!q) return; const old=by.get(code)||{}; const price=Number(q.lastPrice||q.marketPrice||q.price||0), ref=Number(q.refPrice||old.refPrice||0); by.set(code,{...old,...q,code,lastPrice:price,marketPrice:price,refPrice:ref,change:Number(q.change||0),changePct:Number(q.changePct||0),volume:Number(q.volume||0),bid:Number(q.bid||old.bid||0),ask:Number(q.ask||old.ask||0),realtimeUpdatedAt:new Date().toISOString()}); });
+      items=[...by.values()]; const st=document.getElementById('warrantStatus')||document.querySelector('#apiStatus'); if(st)st.textContent='CW realtime VPS • '+new Date().toLocaleTimeString('vi-VN');
+    }
+    setInterval(()=>refreshStandaloneLiveCw().catch(()=>{}),15000); setTimeout(()=>refreshStandaloneLiveCw().catch(()=>{}),800);
     function openRich(code){
       const item=items.find(x=>x.code===String(code||'').toUpperCase()); if(!item) return;
       const price=num(item.lastPrice||item.marketPrice||item.fairValue), change=signedPct(item), sign=change>0?'+':'';
