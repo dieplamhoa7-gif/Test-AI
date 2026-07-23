@@ -266,26 +266,95 @@ function stripHtml(value = '') {
     .trim();
 }
 
-function newsSummaryBullets(value, max = 5) {
-  const clean = String(value || '').replace(/\r/g, '').trim();
-  const explicit = clean.split('\n').map(x => x.replace(/^\s*[-•]\s*/, '').trim()).filter(x => x.length > 18);
-  if (explicit.length > 1) return explicit.slice(0, max);
-  return clean.split(/(?<=[.!?])\s+/).map(x => x.trim()).filter(x => x.length > 18).slice(0, max);
+function newsDedupeKey(item) {
+  const rawUrl = String(item.url || item.link || '').split('#')[0].split('?')[0].replace(/\/$/, '').toLowerCase();
+  if (rawUrl) return `url:${rawUrl}`;
+  return `title:${stripHtml(item.title || '').toLowerCase().replace(/\s+/g, ' ').trim()}`;
 }
 
-function newsFromCache(limit = 30, lang = 'vi') {
+function normalizeNewsItem(item) {
+  const title = stripHtml(item.title || '');
+  const snippet = stripHtml(item.snippet || item.summary || item.description || '');
+  return {
+    source: item.source || 'unknown',
+    title,
+    url: item.url || item.link || '',
+    published_at: item.published_at || item.publishedAt || item.pubDate || '',
+    snippet: snippet.slice(0, 900),
+    summary: stripHtml(item.summary || snippet).slice(0, 1200),
+    fullText: stripHtml(item.fullText || item.content || snippet).slice(0, 5000),
+    fetched_at: item.fetched_at || item.fetchedAt || new Date().toISOString(),
+  };
+}
+
+function newsPayload(raw, limit = 30, lang = 'vi', status = null) {
   const useEn = String(lang || '').toLowerCase().startsWith('en');
-  const enPath = path.join(DATA, 'news_cache_en.json');
-  const raw = useEn && fs.existsSync(enPath) ? readJsonPath(enPath) : readJson('news_cache.json');
   const items = Array.isArray(raw) ? raw : (Array.isArray(raw.items) ? raw.items : []);
   const cleanItems = items.slice(0, limit).map(item => {
     const title = useEn ? (item.titleEn || item.title) : item.title;
     const snippet = useEn ? (item.snippetEn || item.summaryEn || item.snippet || item.summary) : (item.snippet || item.summary);
     const summary = useEn ? (item.summaryEn || item.snippetEn || item.summary || item.snippet) : (item.summary || item.snippet);
     const cleanSummary = stripHtml(summary || '');
-    return { ...item, title: stripHtml(title || ''), snippet: stripHtml(snippet || ''), summary: cleanSummary, summaryBullets: newsSummaryBullets(cleanSummary), formatVersion: 'LH_NEWS_FORMAT_V2', lang: useEn ? 'en' : (item.lang || 'vi') };
+    const summaryBullets = String(cleanSummary).split(/(?<=[.!?])\s+/).map(x => x.trim()).filter(x => x.length > 18).slice(0, 5);
+    return { ...item, title: stripHtml(title || ''), snippet: stripHtml(snippet || ''), summary: cleanSummary, summaryBullets, formatVersion: 'LH_NEWS_FORMAT_V2_LOCKED', lang: useEn ? 'en' : (item.lang || 'vi') };
   });
-  return { items: cleanItems, updatedAt: raw.updatedAt || raw.createdAt || null, translation: raw.translation || null, status: useEn ? 'news-en-cache-node-fallback' : 'news-cache-node-fallback' };
+  return { items: cleanItems, updatedAt: raw.updatedAt || raw.createdAt || null, translation: raw.translation || null, status: status || (useEn ? 'news-en-cache-node-fallback' : 'news-cache-node-fallback') };
+}
+
+function newsFromCache(limit = 30, lang = 'vi') {
+  const useEn = String(lang || '').toLowerCase().startsWith('en');
+  const enPath = path.join(DATA, 'news_cache_en.json');
+  const raw = useEn && fs.existsSync(enPath) ? readJsonPath(enPath) : readJson('news_cache.json');
+  return newsPayload(raw, limit, lang);
+}
+
+function parseRssItems(xml, source, limit) {
+  const blocks = String(xml || '').match(/<item[\s\S]*?<\/item>/gi) || [];
+  return blocks.slice(0, limit).map(block => {
+    const pick = tag => {
+      const m = block.match(new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, 'i'));
+      return m ? m[1].replace(/^<!\[CDATA\[/, '').replace(/\]\]>$/, '').trim() : '';
+    };
+    return normalizeNewsItem({ source, title: pick('title'), url: pick('link'), published_at: pick('pubDate'), snippet: pick('description') });
+  }).filter(x => x.title && x.url);
+}
+
+async function fetchText(url) {
+  const resp = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 HoaInvestmentRenderNews/1.0' } });
+  if (!resp.ok) throw new Error(`HTTP ${resp.status} ${url}`);
+  return resp.text();
+}
+
+async function refreshNewsCache(limit = 1000) {
+  const feeds = [
+    ['cafef', 'https://cafef.vn/thi-truong-chung-khoan.rss'],
+    ['cafef', 'https://cafef.vn/doanh-nghiep.rss'],
+    ['vietstock', 'https://vietstock.vn/rss/chung-khoan.rss'],
+    ['vietstock', 'https://vietstock.vn/rss/doanh-nghiep.rss'],
+  ];
+  const fresh = [];
+  for (const [source, feedUrl] of feeds) {
+    try {
+      fresh.push(...parseRssItems(await fetchText(feedUrl), source, Math.max(20, Math.ceil(limit / feeds.length))));
+    } catch (err) {
+      console.warn('news feed failed', feedUrl, String(err && err.message || err));
+    }
+  }
+  const existingRaw = fs.existsSync(path.join(DATA, 'news_cache.json')) ? readJson('news_cache.json') : [];
+  const existing = Array.isArray(existingRaw) ? existingRaw : (existingRaw.items || []);
+  const seen = new Set();
+  const merged = [];
+  for (const item of [...fresh, ...existing].map(normalizeNewsItem)) {
+    const key = newsDedupeKey(item);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    merged.push(item);
+    if (merged.length >= limit) break;
+  }
+  const payload = { items: merged, updatedAt: new Date().toISOString(), status: 'render-node-rss-refresh', total_items: merged.length };
+  fs.mkdirSync(DATA, { recursive: true });
+  fs.writeFileSync(path.join(DATA, 'news_cache.json'), JSON.stringify(payload, null, 2), 'utf8');
+  return payload;
 }
 
 function warrantsFromCache(symbols = '') {
@@ -429,8 +498,15 @@ const server = http.createServer((req, res) => {
       return send(res, 200, JSON.stringify(warrantsFromCache(url.searchParams.get('symbols') || '')));
     }
     if (pathname === '/news') {
-      const limit = Math.max(1, Math.min(200, Number(url.searchParams.get('limit') || 30)));
+      const limit = Math.max(1, Math.min(1000, Number(url.searchParams.get('limit') || 30)));
       const lang = url.searchParams.get('lang') || 'vi';
+      const refresh = ['1', 'true', 'yes'].includes(String(url.searchParams.get('refresh') || '').toLowerCase());
+      if (refresh && !String(lang || '').toLowerCase().startsWith('en')) {
+        return refreshNewsCache(limit).then(payload => send(res, 200, JSON.stringify(newsPayload(payload, limit, lang, 'render-node-rss-refresh')))).catch(err => {
+          const fallback = newsFromCache(limit, lang);
+          return send(res, 200, JSON.stringify({ ...fallback, refreshError: String(err && err.message || err), status: 'render-node-rss-refresh-fallback' }));
+        });
+      }
       return send(res, 200, JSON.stringify(newsFromCache(limit, lang)));
     }
     return notFound(res);
