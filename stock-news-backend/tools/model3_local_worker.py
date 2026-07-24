@@ -199,6 +199,20 @@ def run_job(base: str, token: str, job: dict[str, Any], out_dir: Path) -> None:
         if isinstance(s, dict)
     )
     if wants_notebook:
+        if not (shutil.which("nlm") or shutil.which("nlm.exe")):
+            result = dict((uploaded_job.get("result") or {}) if isinstance(uploaded_job, dict) else {})
+            result["notebooklm"] = None
+            result["notebooklm_error"] = "NotebookLM CLI nlm.exe not found on local worker; Word report is ready."
+            sections = uploaded_job.get("sections") or job.get("sections") or []
+            agents = uploaded_job.get("agents") or job.get("agents") or {}
+            for sec in sections:
+                if isinstance(sec, dict) and sec.get("key") == "notebooklm":
+                    sec["status"] = "skipped"
+            if isinstance(agents, dict):
+                agents["NotebookLM"] = "skipped"
+            post_status(base, token, job_id, status="done", progress=100, result=result, sections=sections, agents=agents, log="NotebookLM CLI missing; skipped. Word report ready.")
+            log(f"{job_id} NotebookLM skipped: nlm.exe missing")
+            return
         try:
             progress("NotebookLM: đang tạo notebook/slides từ DOCX...")
             from model3_notebooklm import create_presentation_from_docx  # type: ignore
@@ -301,10 +315,12 @@ def main() -> int:
     out_dir = Path(args.out_dir)
 
     while True:
+        claimed_job: dict[str, Any] | None = None
         try:
             nxt = request_json("GET", f"{args.base}/pipeline/model3/worker/next", args.token, timeout=45)
             job = nxt if nxt.get("job_id") else nxt.get("job")
             if job and job.get("job_id"):
+                claimed_job = job
                 run_job(args.base, args.token, job, out_dir)
             elif args.once:
                 return 0
@@ -314,7 +330,19 @@ def main() -> int:
             return 0
         except Exception as exc:  # noqa: BLE001
             log(f"ERROR {type(exc).__name__}: {exc}")
-            # If a job was already claimed, status update is handled inside run_job where possible.
+            if claimed_job and claimed_job.get("job_id"):
+                try:
+                    post_status(
+                        args.base,
+                        args.token,
+                        str(claimed_job.get("job_id")),
+                        status="error",
+                        progress=100,
+                        error=f"{type(exc).__name__}: {exc}",
+                        log=f"Local worker error: {type(exc).__name__}: {exc}",
+                    )
+                except Exception as post_exc:  # noqa: BLE001
+                    log(f"WARN error status update failed: {post_exc}")
             if args.once:
                 return 2
             time.sleep(max(args.sleep, 30))
