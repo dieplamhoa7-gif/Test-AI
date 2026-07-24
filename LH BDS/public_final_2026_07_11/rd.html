@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 <head>
   <script src="/security-guard.js"></script>
@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="local-taste.css">
 </head>
 <body data-app="rd" class="hightech hightech">
-<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">Nghĩa vụ tài chính</a><a href="quyhoach.html">Quy hoạch</a><a class="active" href="rd.html">R&D thị trường</a><a href="/fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header>
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">T?ng quan</a><a href="nvtc.html">NVTC</a><a href="quyhoach.html">Quy ho?ch</a><a class="active" href="rd.html">R&D</a><a href="fs.html">FS</a><a href="legal.html">Legal AI</a><a href="dossier.html">Dossier</a><a href="status.html">Status</a></nav></div></header>
 <main class="wrap">
   <section class="hero-rd"><div class="hero"><span class="eyebrow">LH Real Estate Research</span><h1>Báo cáo R&D thị trường</h1><p>Hỗ trợ chủ đầu tư ra quyết định: xác định vị trí, phạm vi so sánh, mẫu tin thị trường, mặt bằng giá và bản đồ kiểm chứng.</p><div class="chips"><span class="chip">Dữ liệu thị trường</span><span class="chip">Khoảng cách comparable</span><span class="chip">Map kiểm chứng</span><span class="chip">Giá có nguồn</span></div></div>
     <div class="panel"><div class="grid"><div class="full"><label>Tọa độ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"></div><div><label>Giao dịch</label><select id="transaction" onchange="syncFlow()"><option value="buy">Mua</option><option value="rent">Thuê</option></select></div><div><label id="ptypeLabel">Loại tài sản</label><select id="ptype" onchange="syncFlow()"></select></div><div id="mdsddBox"><label>MĐSDĐ</label><select id="mdsdd"></select></div><div id="segmentBox"><label>Phân khúc</label><select id="segment"><option value="A">A - Cao cấp</option><option value="B" selected>B - Trung cấp</option><option value="C">C - Bình dân</option></select></div><div><label>Chế độ R&D</label><select id="rdMode"><option value="fast">Nhanh</option><option value="standard" selected>Chuẩn</option><option value="deep">Sâu</option></select></div><div class="full"><label>Đặc tính/vị trí</label><select id="feature"><option value="mattien">Mặt tiền</option><option value="corner">Căn góc / 2 mặt tiền</option><option value="hem">Hẻm / ngõ</option><option value="skip">Bỏ qua</option></select></div></div><div class="toolbar"><button class="btn" onclick="analyze()">Tạo báo cáo</button><button class="btn secondary" onclick="resumeLastJob()">Xem báo cáo gần nhất</button></div><div id="status" class="status"></div></div>
@@ -139,6 +139,7 @@ syncFlow();
 <script src="local-motion.js"></script>
 <script src="account-cloud.js"></script>
 </body></html>
+
 
 
 
