@@ -57,3 +57,66 @@ body.light-theme th{background:#f3f6fb!important;color:#253348!important}
 body.light-theme td{background:#fff!important;color:#243244!important;border-color:#edf1f6!important}
 body.light-theme tr:nth-child(even) td{background:#fbfcff!important}
 @media(max-width:900px){body.light-theme .shell{width:calc(100% - 16px)!important;padding-top:10px!important}body.light-theme .topbar{height:auto!important;min-height:0!important;border-radius:18px!important}body.light-theme .main-tabs{height:auto!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}body.light-theme .main-tabs .chip-btn{padding:10px 6px!important;text-align:center!important;white-space:normal!important}}
+
+
+/* Taste polish v4 — brighter, premium, less default-admin */
+body.light-theme{
+  --lt-bg:#f3f0e8;
+  --lt-paper:#fffaf1;
+  --lt-card:#fffdf8;
+  --lt-ink:#132033;
+  --lt-muted:#607086;
+  --lt-navy:#102542;
+  --lt-navy2:#1d3f70;
+  --lt-gold:#b98b2e;
+  --lt-blue:#2864d9;
+  --lt-line:#dfd5c5;
+  --lt-shadow:0 18px 44px rgba(38,30,18,.10);
+  background:#f3f0e8!important;
+  color:var(--lt-ink)!important;
+}
+body.light-theme:before{
+  background:
+    radial-gradient(820px circle at 8% -14%,rgba(185,139,46,.18),transparent 40%),
+    radial-gradient(760px circle at 92% -12%,rgba(40,100,217,.12),transparent 36%),
+    linear-gradient(180deg,#fffcf7 0%,#f3f0e8 54%,#ebe4d7 100%)!important;
+}
+body.light-theme .shell{width:min(1300px,calc(100% - 104px))!important;padding-top:20px!important}
+body.light-theme .topbar{
+  height:86px!important;min-height:86px!important;
+  background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(255,248,236,.92))!important;
+  background-image:linear-gradient(180deg,rgba(255,253,248,.96),rgba(255,248,236,.92))!important;
+  border:1px solid rgba(177,145,94,.22)!important;border-radius:26px!important;
+  box-shadow:0 18px 48px rgba(38,30,18,.11),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  padding:13px 16px!important;
+}
+body.light-theme .brand-icon{
+  width:56px!important;height:56px!important;border-radius:18px!important;background:linear-gradient(135deg,#102542,#244f86)!important;
+  box-shadow:0 14px 32px rgba(16,37,66,.18),inset 0 0 0 1px rgba(255,255,255,.18)!important;
+}
+body.light-theme .brand-icon img{background:#fff!important;border-radius:14px!important;transform:scale(.92)!important}
+body.light-theme .brand-text h1{font-size:24px!important;color:var(--lt-navy)!important;-webkit-text-fill-color:var(--lt-navy)!important;letter-spacing:.03em!important;font-weight:950!important}
+body.light-theme .brand-text p{font-size:10.5px!important;color:#8a6b35!important;-webkit-text-fill-color:#8a6b35!important;letter-spacing:.24em!important;font-weight:850!important}
+body.light-theme .theme-toggle{background:#fffaf1!important;border-color:#e1d2bd!important;color:#31415a!important;box-shadow:0 8px 18px rgba(38,30,18,.06)!important}
+body.light-theme .status-pill{background:#f0fdf4!important;color:#0f7a55!important;border-color:#b7ead7!important;box-shadow:0 8px 18px rgba(18,128,92,.06)!important}
+body.light-theme .main-tabs{
+  height:52px!important;margin-top:16px!important;padding:6px!important;gap:7px!important;
+  background:rgba(255,253,248,.78)!important;background-image:none!important;border:1px solid rgba(177,145,94,.16)!important;border-radius:18px!important;
+  box-shadow:0 14px 34px rgba(38,30,18,.08),inset 0 1px 0 rgba(255,255,255,.82)!important;
+  backdrop-filter:blur(14px)!important;
+}
+body.light-theme .main-tabs .chip-btn,body.light-theme .main-tabs a{min-height:38px!important;border-radius:13px!important;padding:0 14px!important;color:#526176!important;font-weight:900!important}
+body.light-theme .main-tabs .chip-btn:hover,body.light-theme .main-tabs a:hover{background:#fff!important;border-color:#e6d8c6!important;color:var(--lt-navy)!important;box-shadow:0 8px 20px rgba(38,30,18,.07)!important}
+body.light-theme .main-tabs .chip-btn.active,body.light-theme .main-tabs a.active{background:linear-gradient(135deg,var(--lt-navy),var(--lt-navy2))!important;color:#fff!important;border-color:rgba(255,255,255,.2)!important;box-shadow:0 10px 24px rgba(16,37,66,.18)!important}
+body.light-theme .panel,body.light-theme .card,body.light-theme .market-panel,body.light-theme .feed-panel,body.light-theme .warrant-panel,body.light-theme .news-card,body.light-theme .market-card,body.light-theme .report-hero,body.light-theme .tickerbar,body.light-theme .stock-card,body.light-theme .analysis-card,body.light-theme .strategy-card,body.light-theme .filter-board,body.light-theme .strategy-board{
+  background:linear-gradient(180deg,#fffdf8,#fff8ee)!important;background-image:linear-gradient(180deg,#fffdf8,#fff8ee)!important;
+  border:1px solid rgba(177,145,94,.18)!important;border-radius:24px!important;color:var(--lt-ink)!important;
+  box-shadow:0 18px 44px rgba(38,30,18,.10),inset 0 1px 0 rgba(255,255,255,.82)!important;
+}
+body.light-theme .panel:hover,body.light-theme .card:hover,body.light-theme .news-card:hover,body.light-theme .stock-card:hover{border-color:rgba(185,139,46,.38)!important;box-shadow:0 24px 60px rgba(38,30,18,.13)!important}
+body.light-theme h1,body.light-theme h2,body.light-theme h3,body.light-theme .section-title,body.light-theme .market-title{color:var(--lt-navy)!important;-webkit-text-fill-color:var(--lt-navy)!important;font-weight:900!important;letter-spacing:-.04em!important}
+body.light-theme p,body.light-theme .muted,body.light-theme .small,body.light-theme .market-meta,body.light-theme .news-meta,body.light-theme .news-snippet{color:var(--lt-muted)!important}
+body.light-theme .index-card,body.light-theme .stat-card,body.light-theme .filter-card,body.light-theme .strategy-card{background:#fff!important;border-color:#eadfce!important;box-shadow:0 10px 26px rgba(38,30,18,.065)!important}
+body.light-theme .btn,body.light-theme button.primary,body.light-theme .reload-btn,body.light-theme .open-link{background:linear-gradient(135deg,var(--lt-navy),var(--lt-navy2))!important;color:#fff!important;border-radius:13px!important;box-shadow:0 12px 26px rgba(16,37,66,.16)!important}
+body.light-theme .pos,body.light-theme .up,body.light-theme .green{color:#0f7a55!important}body.light-theme .neg,body.light-theme .down,body.light-theme .red{color:#b42318!important}
+body.light-theme th{background:#f1e7d8!important;color:#27364d!important}body.light-theme tr:nth-child(even) td{background:#fffbf5!important}
