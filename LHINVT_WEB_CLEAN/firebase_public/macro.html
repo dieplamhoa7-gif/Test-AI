@@ -84,7 +84,18 @@ body>.topbar,body>.main-tabs{width:min(var(--lh-header-max),calc(100% - var(--lh
 @media(max-width:900px){:root{--lh-header-side:14px}.shell,.wrap{padding-top:8px!important}.topbar{position:static!important;align-items:flex-start!important;min-height:0!important;padding:10px!important;border-radius:16px!important}.main-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;margin-top:10px!important}.main-tabs .chip-btn{min-height:40px!important;padding:10px 6px!important;font-size:12px!important;white-space:normal!important;text-align:center!important}.brand-text h1{font-size:21px!important}.top-actions{margin-left:auto!important}.status-pill{display:none!important}}
 @media(max-width:560px){.topbar{flex-direction:column!important}.top-actions{width:100%!important;justify-content:space-between!important}.main-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.brand-text p{letter-spacing:.16em!important}}
 </style>
-</head><body><header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vi mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/fundamental-test">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav><div class="wrap">
+
+<style id="lh-exact-stocks-header-style">
+html body.lh-premium-taste .topbar{background:linear-gradient(rgba(8,15,29,.86),rgba(8,15,29,.66))!important;border:1px solid rgba(126,211,255,.22)!important;box-shadow:0 18px 70px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.07)!important;border-radius:30px!important;}
+html body.lh-premium-taste .main-tabs{gap:12px!important;margin-top:18px!important;}
+html body.lh-premium-taste .main-tabs .chip-btn,html body.lh-premium-taste .theme-toggle,html body.lh-premium-taste .status-pill{border-radius:999px!important;}
+</style>
+
+<style id="lh-exact-stocks-header-position">
+body>.topbar{margin-top:32px!important;}
+.shell>.topbar{margin-top:18px!important;}
+</style>
+</head><body class="lh-unified-page lh-premium-taste lh-realestate-skin"><header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vi mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/fundamental-test">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav><div class="wrap">
 
 <div class="hero">
  <div class="eyebrow">LH Investment · Macro Web</div>
