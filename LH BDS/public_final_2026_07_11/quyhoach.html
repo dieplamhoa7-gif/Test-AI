@@ -1,28 +1,7 @@
 <!doctype html><html lang="vi"><head>
   <script src="/security-guard.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LH Real Estate - Quy hoạch</title><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="local-taste.css">
-
-
-
-
-
-
-
-<style id="lh-overview-header-sync">
-header.siteTop{display:none!important}
-header.top{position:sticky!important;top:0!important;z-index:80!important;background:rgba(7,13,24,.76)!important;color:#eef6ff!important;padding:12px!important;box-shadow:0 16px 60px rgba(0,0,0,.22)!important;border-bottom:1px solid rgba(84,214,255,.18)!important;backdrop-filter:blur(18px)!important}
-header.top .inner{max-width:1280px!important;margin:auto!important;display:block!important;padding:0!important}
-header.top .brand{display:flex!important;align-items:center!important;gap:12px!important;font-weight:900!important;font-size:22px!important;letter-spacing:-.045em!important;color:#f5fbff!important;font-family:Inter,Segoe UI,Arial,sans-serif!important}
-header.top .brand .logo,header.top .logo{width:50px!important;height:50px!important;border-radius:14px!important;background:#fff!important;display:grid!important;place-items:center!important;overflow:hidden!important;color:#f6d98d!important;font-weight:800!important;box-shadow:0 10px 26px rgba(0,0,0,.18),inset 0 0 0 1px rgba(255,255,255,.35)!important}
-header.top .logo img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
-header.top .nav{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:10px!important;margin-top:20px!important;justify-content:stretch!important;width:100%!important}
-header.top .nav a{color:#c9d7e8!important;text-decoration:none!important;border:1px solid rgba(84,214,255,.12)!important;padding:12px 14px!important;border-radius:999px!important;background:rgba(255,255,255,.025)!important;font-weight:800!important;font-size:14px!important;letter-spacing:0!important;font-family:Inter,Segoe UI,Arial,sans-serif!important;transition:.18s transform,.18s background,.18s box-shadow!important;text-align:center!important;display:flex!important;align-items:center!important;justify-content:center!important;min-height:46px!important}
-header.top .nav a.active,header.top .nav a:hover{background:rgba(84,214,255,.12)!important;color:#fff!important;border-color:rgba(84,214,255,.28)!important;box-shadow:0 0 28px rgba(84,214,255,.12)!important;transform:translateY(-1px)}
-@media(max-width:900px){header.top .nav{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}header.top .nav a{font-size:13px!important;padding:10px 8px!important;min-height:42px!important}}
-@media(max-width:760px){header.top{padding:12px!important}header.top .brand{font-size:18px!important}header.top .logo{width:42px!important;height:42px!important}header.top .nav{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding-bottom:4px!important}header.top .nav a{white-space:normal!important;font-size:12px!important;padding:9px 8px!important}}
-</style>
-<link rel="stylesheet" href="light-taste.css">
-</head><body data-app="quyhoach" class="hightech">
-<header class="top"><div class="inner"><div class="brand"><div class="logo"><img src="assets/lh-logo.jpg" alt="LH Real Estate logo"></div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">NVTC</a><a class="active" href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D</a><a href="fs.html">FS</a><a href="tpre_flow_app.html">Pháp lý Đầu tư (đang phát triển)</a></nav></div></header><main class="wrap"><section class="grid2"><div class="card"><h1>Tra quy hoạch</h1><p class="muted">Bản này hiển thị kết quả như bot Quyhoach hơn: vị trí, đồ án, chức năng đất, tầng cao, MĐXD, HSSDĐ, dân số và 3 nguồn đối chiếu. JSON kỹ thuật đã ẩn.</p><label>Tọa độ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"><button class="btn" onclick="lookup()">Tra quy hoạch</button><div id="status" class="status"></div></div><div class="card qh-result-card"><h2>Kết quả vị trí</h2><div id="locationBox" class="muted">Chưa tra cứu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>Đồ án quy hoạch</h2><div id="planningBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Chỉ tiêu ô đất / chức năng đất</h2><div id="indicatorBox" class="muted">Chưa có dữ liệu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>3 nguồn đối chiếu</h2><div id="sourceBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Cảnh báo kiểm tra</h2><div id="riskBox" class="muted">Chưa có dữ liệu.</div></div></section></main><script>const API_WORKER='https://lh-realestate-api.lhrealestate.workers.dev';
+</head><body data-app="quyhoach" class="hightech hightech">
+<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate<div class="muted" style="color:#dbeafe">Tra cứu quy hoạch theo tọa độ</div></div></div><nav class="nav"><a href="/">Tổng quan</a><a href="/nvtc.html">Nghĩa vụ tài chính</a><a class="active" href="/quyhoach.html">Quy hoạch</a><a href="/rd.html">R&D thị trường</a><a href="/fs.html">FS hiệu quả dự án</a><a href="legal.html">Pháp lý & Đầu tư</a><a href="dossier.html">Hồ sơ dự án</a><a href="status.html">Status</a></nav></div></header><main class="wrap"><section class="grid2"><div class="card"><h1>Tra quy hoạch</h1><p class="muted">Bản này hiển thị kết quả như bot Quyhoach hơn: vị trí, đồ án, chức năng đất, tầng cao, MĐXD, HSSDĐ, dân số và 3 nguồn đối chiếu. JSON kỹ thuật đã ẩn.</p><label>Tọa độ lat, lng</label><input id="coord" value="10.708963884321415, 106.73778019006706"><button class="btn" onclick="lookup()">Tra quy hoạch</button><div id="status" class="status"></div></div><div class="card qh-result-card"><h2>Kết quả vị trí</h2><div id="locationBox" class="muted">Chưa tra cứu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>Đồ án quy hoạch</h2><div id="planningBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Chỉ tiêu ô đất / chức năng đất</h2><div id="indicatorBox" class="muted">Chưa có dữ liệu.</div></div></section><section class="grid2" style="margin-top:16px"><div class="card qh-result-card"><h2>3 nguồn đối chiếu</h2><div id="sourceBox" class="muted">Chưa có dữ liệu.</div></div><div class="card qh-result-card"><h2>Cảnh báo kiểm tra</h2><div id="riskBox" class="muted">Chưa có dữ liệu.</div></div></section></main><script>const API_WORKER='https://lh-realestate-api.lhrealestate.workers.dev';
 const API_FALLBACKS_QH=['https://peninsula-bull-impression-concentration.trycloudflare.com','https://peninsula-bull-impression-concentration.trycloudflare.com','https://bicycle-shelf-ellis-prevention.trycloudflare.com','https://gibson-elderly-introduction-hazards.trycloudflare.com'];
 let API_BASE=(function(){try{return localStorage.getItem('lh_api_override_qh')||''}catch(e){return ''}})();
 async function _liveApiBase(role){try{const r=await fetch('/api-config.json?ts='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();const u=j[role+'ApiBase']||j.apiBase;if(u)return u;}}catch(e){}try{const r=await fetch(API_WORKER+'/api/endpoint?role='+role+'&ts='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&j.url)return j.url;}}catch(e){}return '';}
@@ -59,7 +38,6 @@ async function ensureApiBase(){
 })();
 </script>
 <script src="account-cloud.js"></script>
-<script src="site-cleanup.js"></script>
 </body></html>
 
 
