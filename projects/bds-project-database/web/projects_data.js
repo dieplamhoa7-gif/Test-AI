@@ -670,8 +670,8 @@ window.PROJECTS = [
       "entity_type": "project_or_deal",
       "entity_classification_note": "",
       "product_structure": "",
-      "financial_line_items": "[{\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"/27/2023 3:56 PM KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật dự án KDC Long Phước có quy mô 18ha tại Phường Long Phước, Q9, TPHCM của chủ đầu tư Song Đạt, có giá chào bán 2200 tỷ: A/ Vị trí và hiện trang: + Dự án tiếp giáp với đường Long Phước, phường Long Phước, Q9, TPHCM, và có các mặt tiếp xúc kênh rạch cách cầu Long Đại khoảng 5km và cầu Trường Phước khoảng 4km, cách KCN cao khoảng 14,3kn, cách trung tâm Q1 khoảng\"}, {\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"giá chào bán 2200 tỷ\"}, {\"label\": \"IRR\", \"value\": \"IRR là 18,74%\"}, {\"label\": \"IRR\", \"value\": \"IRR 20%\"}]",
-      "financial_unclassified_items": "[{\"label\": \"Chưa phân loại\", \"value\": \"2200 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"101 tr/m2\"}, {\"label\": \"Chưa phân loại\", \"value\": \"80tr/m2\"}, {\"label\": \"Chưa phân loại\", \"value\": \"49 tr/m2\"}, {\"label\": \"Chưa phân loại\", \"value\": \"45 tr/m2\"}, {\"label\": \"Chưa phân loại\", \"value\": \"24.3tr/m2\"}, {\"label\": \"Chưa phân loại\", \"value\": \"4.939 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"2.249 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"2.200 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"2.690 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"9073 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"8.116 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"2.653 tỷ\"}, {\"label\": \"Chưa phân loại\", \"value\": \"2100 tỷ\"}]",
+      "financial_line_items": "[{\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"giá chào bán 2.200 tỷ\"}, {\"label\": \"Giá bán căn hộ\", \"value\": \"101 tr/m²\"}, {\"label\": \"Giá bán căn hộ\", \"value\": \"80 tr/m²\"}, {\"label\": \"Giá bán nhà phố/biệt thự/đất\", \"value\": \"49 tr/m²\"}, {\"label\": \"Giá bán nhà phố/biệt thự/đất\", \"value\": \"45 tr/m²\"}, {\"label\": \"Chi phí mua đất\", \"value\": \"24,3 tr/m²\"}, {\"label\": \"Doanh thu\", \"value\": \"4.939 tỷ\"}, {\"label\": \"Tổng mức đầu tư\", \"value\": \"2.249 tỷ\"}, {\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"2.200 tỷ\"}, {\"label\": \"Lợi nhuận trước thuế\", \"value\": \"2.690 tỷ\"}, {\"label\": \"Doanh thu\", \"value\": \"9.073 tỷ\"}, {\"label\": \"Tổng mức đầu tư\", \"value\": \"8.116 tỷ\"}, {\"label\": \"Lợi nhuận trước thuế\", \"value\": \"2.653 tỷ\"}, {\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"2.100 tỷ\"}, {\"label\": \"IRR\", \"value\": \"IRR là 18,74%\"}, {\"label\": \"IRR\", \"value\": \"IRR 20%\"}]",
+      "financial_unclassified_items": "[]",
       "record_classification": "project_or_deal",
       "cleaning_status": "published_candidate",
       "cleaning_notes": "",
@@ -682,7 +682,73 @@ window.PROJECTS = [
       "has_planning": "yes",
       "has_legal": "yes",
       "has_financial": "yes",
-      "record_id": "BDS-CURATED-0014"
+      "record_id": "BDS-CURATED-0014",
+      "financial_labeled_items": [
+        {
+          "label": "Giá chào / chuyển nhượng",
+          "value": "giá chào bán 2.200 tỷ"
+        },
+        {
+          "label": "Giá bán căn hộ",
+          "value": "101 tr/m²"
+        },
+        {
+          "label": "Giá bán căn hộ",
+          "value": "80 tr/m²"
+        },
+        {
+          "label": "Giá bán nhà phố/biệt thự/đất",
+          "value": "49 tr/m²"
+        },
+        {
+          "label": "Giá bán nhà phố/biệt thự/đất",
+          "value": "45 tr/m²"
+        },
+        {
+          "label": "Chi phí mua đất",
+          "value": "24,3 tr/m²"
+        },
+        {
+          "label": "Doanh thu",
+          "value": "4.939 tỷ"
+        },
+        {
+          "label": "Tổng mức đầu tư",
+          "value": "2.249 tỷ"
+        },
+        {
+          "label": "Giá chào / chuyển nhượng",
+          "value": "2.200 tỷ"
+        },
+        {
+          "label": "Lợi nhuận trước thuế",
+          "value": "2.690 tỷ"
+        },
+        {
+          "label": "Doanh thu",
+          "value": "9.073 tỷ"
+        },
+        {
+          "label": "Tổng mức đầu tư",
+          "value": "8.116 tỷ"
+        },
+        {
+          "label": "Lợi nhuận trước thuế",
+          "value": "2.653 tỷ"
+        },
+        {
+          "label": "Giá chào / chuyển nhượng",
+          "value": "2.100 tỷ"
+        },
+        {
+          "label": "IRR",
+          "value": "IRR là 18,74%"
+        },
+        {
+          "label": "IRR",
+          "value": "IRR 20%"
+        }
+      ]
     },
     "area": "180.000 m² (~18.00 ha)",
     "price": "giá chào bán 2200 tỷ",
@@ -693,7 +759,75 @@ window.PROJECTS = [
     "excerpt": "[2023-12-27] Trieu Nguyen-PTDT 12/27/2023 3:56 PM KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật dự án KDC Long Phước có quy mô 18ha tại Phường Long Phước, Q9, TPHCM của chủ đầu tư Song Đạt, có giá chào bán 2200 tỷ: A/ Vị trí và hiện trang: + Dự án tiếp giáp với đường Long Phước, phường Long Phước, Q9, TPHCM, và có các mặt tiếp xúc kênh rạch cách cầu Long Đại khoảng 5km và cầu Trường Phước khoảng 4km, cách KCN cao khoảng 14,3kn, cách trung tâm Q1 khoảng 23,6km + Dự án đã được san lắp và làm hạ tầng giao thông khoảng 80% + Dự án nằm gần các dự án đầu mối hạ tầng giao thông quan trọng: B/ Pháp lý dự án: 1/ Pháp lý đất: + Đã hoàn thành tiền sử dụng đất và có GCNQSDĐ cho 180.123m2, mục đích sử dụng là đất ở đô thị, thời hạn lâu dài đối với phần thương phẩm đất ở và có thời hạn đến 07/08/2056 đối với phần đất công cộng kinh doanh 2/ Pháp lý quy hoạch: + QH 1/2000 năm 2013: + Đã Phê duyệt Q/H chi tiết 1/500 số 507/QĐ-UB ngày 30/12/2009, phù hợp QH 1/2000 theo quyết định số 5258/QĐ-UBND duyệt ngày 25/09/2013 + Thông số chỉ tiêu quy hoạch: Quy mô dân số: 1.752 người (trong đó 672 người cho nhóm nhà ở chung cư) Hệ số sử dụng đất: 0,85 lần Tầng cao xây dựng: từ 1 - 8 tầng (Chưa bao gồm tầng hầm, tầng lửng và",
     "map_url": "https://maps.app.goo.gl/zAmPVdt254bS1UUU7",
     "source_file": "batch_714.txt",
-    "source_chat": "Bee || Phân Tích Đầu Tư"
+    "source_chat": "Bee || Phân Tích Đầu Tư",
+    "financial_line_items": "[{\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"giá chào bán 2.200 tỷ\"}, {\"label\": \"Giá bán căn hộ\", \"value\": \"101 tr/m²\"}, {\"label\": \"Giá bán căn hộ\", \"value\": \"80 tr/m²\"}, {\"label\": \"Giá bán nhà phố/biệt thự/đất\", \"value\": \"49 tr/m²\"}, {\"label\": \"Giá bán nhà phố/biệt thự/đất\", \"value\": \"45 tr/m²\"}, {\"label\": \"Chi phí mua đất\", \"value\": \"24,3 tr/m²\"}, {\"label\": \"Doanh thu\", \"value\": \"4.939 tỷ\"}, {\"label\": \"Tổng mức đầu tư\", \"value\": \"2.249 tỷ\"}, {\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"2.200 tỷ\"}, {\"label\": \"Lợi nhuận trước thuế\", \"value\": \"2.690 tỷ\"}, {\"label\": \"Doanh thu\", \"value\": \"9.073 tỷ\"}, {\"label\": \"Tổng mức đầu tư\", \"value\": \"8.116 tỷ\"}, {\"label\": \"Lợi nhuận trước thuế\", \"value\": \"2.653 tỷ\"}, {\"label\": \"Giá chào / chuyển nhượng\", \"value\": \"2.100 tỷ\"}, {\"label\": \"IRR\", \"value\": \"IRR là 18,74%\"}, {\"label\": \"IRR\", \"value\": \"IRR 20%\"}]",
+    "financial_unclassified_items": "[]",
+    "financial_labeled_items": [
+      {
+        "label": "Giá chào / chuyển nhượng",
+        "value": "giá chào bán 2.200 tỷ"
+      },
+      {
+        "label": "Giá bán căn hộ",
+        "value": "101 tr/m²"
+      },
+      {
+        "label": "Giá bán căn hộ",
+        "value": "80 tr/m²"
+      },
+      {
+        "label": "Giá bán nhà phố/biệt thự/đất",
+        "value": "49 tr/m²"
+      },
+      {
+        "label": "Giá bán nhà phố/biệt thự/đất",
+        "value": "45 tr/m²"
+      },
+      {
+        "label": "Chi phí mua đất",
+        "value": "24,3 tr/m²"
+      },
+      {
+        "label": "Doanh thu",
+        "value": "4.939 tỷ"
+      },
+      {
+        "label": "Tổng mức đầu tư",
+        "value": "2.249 tỷ"
+      },
+      {
+        "label": "Giá chào / chuyển nhượng",
+        "value": "2.200 tỷ"
+      },
+      {
+        "label": "Lợi nhuận trước thuế",
+        "value": "2.690 tỷ"
+      },
+      {
+        "label": "Doanh thu",
+        "value": "9.073 tỷ"
+      },
+      {
+        "label": "Tổng mức đầu tư",
+        "value": "8.116 tỷ"
+      },
+      {
+        "label": "Lợi nhuận trước thuế",
+        "value": "2.653 tỷ"
+      },
+      {
+        "label": "Giá chào / chuyển nhượng",
+        "value": "2.100 tỷ"
+      },
+      {
+        "label": "IRR",
+        "value": "IRR là 18,74%"
+      },
+      {
+        "label": "IRR",
+        "value": "IRR 20%"
+      }
+    ]
   },
   {
     "id": "BDS-CURATED-0016",

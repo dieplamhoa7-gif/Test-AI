@@ -34,9 +34,11 @@ function fieldValue(r,k){if(clean(r[k]))return r[k];for(const alt of FIELD_FALLB
 function table(fields,r){const body=fields.map(([label,k])=>[label,k,fieldValue(r,k)]).filter(([,,v])=>clean(v)).map(([label,k,v])=>`<tr><th>${esc(label)}</th><td>${formatValue(label,v)}</td></tr>`).join('');return body?`<table class="info-table"><tbody>${body}</tbody></table>`:'';}
 function financialEvidencePanel(r){
   let items=[];try{items=JSON.parse(r.financial_line_items||'[]')}catch(e){} if(!Array.isArray(items)||!items.length)return '';
-  const groups={};items.forEach(x=>{const k=x.label||'Chưa phân loại';(groups[k]||(groups[k]=[])).push(x.value)});
-  return `<section class="financial-evidence" data-group="financial-evidence"><h4>CHI TIẾT SỐ LIỆU TÀI CHÍNH TỪ BÁO CÁO</h4><p>Mỗi dòng giữ nhãn/ngữ cảnh từ báo cáo nguồn; không hiển thị số rời.</p>${Object.entries(groups).map(([label,vals])=>`<div class="financial-evidence-group"><b>${esc(label)}</b><ul>${vals.slice(0,12).map(v=>`<li>${esc(v)}</li>`).join('')}</ul></div>`).join('')}</section>`;
+  const rows=items.filter(x=>clean(x&&x.label)&&clean(x&&x.value)).slice(0,80).map(x=>`<tr><th>${esc(x.label)}</th><td>${esc(x.value)}</td></tr>`).join('');
+  if(!rows)return '';
+  return `<section class="financial-evidence" data-group="financial-evidence"><h4>CHI TIẾT SỐ LIỆU TÀI CHÍNH TỪ BÁO CÁO</h4><p>Mỗi dòng gồm đúng 2 cột: <b>Mục</b> và <b>Giá trị</b>. Không hiển thị số rời không có nhãn.</p><table class="financial-table"><thead><tr><th>Mục</th><th>Giá trị</th></tr></thead><tbody>${rows}</tbody></table></section>`;
 }
+
 function scenarioPanel(r){
   if(!clean(r.scenario_data))return '';
   let scenarios=[];try{scenarios=JSON.parse(r.scenario_data)}catch(e){return '';} if(!Array.isArray(scenarios)||!scenarios.length)return '';
