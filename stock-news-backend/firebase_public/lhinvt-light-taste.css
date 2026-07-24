@@ -72,3 +72,148 @@ html body.lh-light-taste .main-tabs{
   background-color:rgba(255,250,242,.84)!important;
   border-color:rgba(16,37,66,.12)!important;
 }
+
+
+/* LHINVT Taste v2 — premium light financial dashboard */
+:root{
+  --taste-bg:#f4efe6;
+  --taste-bg-2:#fffaf1;
+  --taste-ink:#0f172a;
+  --taste-muted:#64748b;
+  --taste-navy:#0d2342;
+  --taste-navy-2:#153861;
+  --taste-gold:#b98b2e;
+  --taste-cyan:#2b7fff;
+  --taste-line:rgba(15,35,66,.14);
+  --taste-card:rgba(255,250,241,.88);
+  --taste-shadow:0 24px 70px rgba(42,33,18,.13);
+}
+html{background:var(--taste-bg)!important;color-scheme:light!important}
+html body{
+  background:var(--taste-bg)!important;
+  color:var(--taste-ink)!important;
+}
+html body:before{
+  content:""!important;position:fixed!important;inset:0!important;z-index:-2!important;pointer-events:none!important;
+  background:
+    radial-gradient(900px circle at 8% -10%, rgba(185,139,46,.24), transparent 38%),
+    radial-gradient(760px circle at 96% -8%, rgba(43,127,255,.16), transparent 35%),
+    radial-gradient(820px circle at 72% 84%, rgba(13,35,66,.08), transparent 42%),
+    linear-gradient(180deg,#fbf7ef 0%,#f4efe6 48%,#eee5d7 100%)!important;
+  background-size:auto!important;
+  opacity:1!important;
+}
+html body:after{
+  content:""!important;display:block!important;position:fixed!important;inset:0!important;pointer-events:none!important;z-index:-1!important;opacity:.22!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.20'/%3E%3C/svg%3E")!important;
+  mix-blend-mode:multiply!important;
+}
+html body .shell{width:min(1320px,calc(100% - 120px))!important;max-width:1320px!important;margin:0 auto!important;padding-top:22px!important}
+html body header.topbar,
+html body .topbar{
+  height:92px!important;min-height:92px!important;
+  background:
+    linear-gradient(135deg,rgba(13,35,66,.98),rgba(21,56,97,.95) 58%,rgba(34,79,126,.92))!important;
+  background-image:linear-gradient(135deg,rgba(13,35,66,.98),rgba(21,56,97,.95) 58%,rgba(34,79,126,.92))!important;
+  color:#fff!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:28px!important;
+  box-shadow:0 26px 70px rgba(13,35,66,.24), inset 0 1px 0 rgba(255,255,255,.18)!important;
+  padding:16px 18px!important;overflow:hidden!important;position:relative!important;
+}
+html body header.topbar:before,
+html body .topbar:before{
+  content:"";position:absolute;inset:-1px;pointer-events:none;
+  background:radial-gradient(520px circle at 18% 0%,rgba(255,221,145,.20),transparent 42%),radial-gradient(480px circle at 92% 28%,rgba(95,188,255,.18),transparent 44%);
+}
+html body .brand-wrap,html body .top-actions{position:relative!important;z-index:1!important}
+html body .brand-icon{width:58px!important;height:58px!important;border-radius:18px!important;background:linear-gradient(135deg,#f5d98b,#b98b2e)!important;box-shadow:0 16px 34px rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.28)!important}
+html body .brand-icon img{filter:saturate(1.04) contrast(1.04)!important}
+html body .brand-text h1{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:24px!important;letter-spacing:.045em!important;line-height:1!important;text-shadow:0 8px 24px rgba(0,0,0,.22)!important}
+html body .brand-text p{color:#dbeafe!important;-webkit-text-fill-color:#dbeafe!important;font-size:11px!important;letter-spacing:.24em!important;margin-top:7px!important}
+html body .status-pill{background:rgba(255,255,255,.14)!important;color:#f8e7b0!important;border:1px solid rgba(255,255,255,.22)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)!important;backdrop-filter:blur(10px)!important;font-weight:900!important}
+html body nav.main-tabs,
+html body .main-tabs{
+  height:58px!important;margin-top:18px!important;
+  background:rgba(255,250,241,.92)!important;background-image:none!important;background-color:rgba(255,250,241,.92)!important;
+  border:1px solid rgba(15,35,66,.12)!important;border-radius:22px!important;
+  box-shadow:0 18px 44px rgba(42,33,18,.10), inset 0 1px 0 rgba(255,255,255,.78)!important;
+  padding:7px!important;gap:7px!important;backdrop-filter:blur(16px)!important;
+}
+html body .main-tabs .chip-btn,
+html body .main-tabs a{
+  min-height:42px!important;border-radius:16px!important;padding:0 16px!important;color:#475569!important;border:1px solid transparent!important;background:transparent!important;font-size:13px!important;font-weight:900!important;letter-spacing:-.01em!important;transition:.18s ease!important;
+}
+html body .main-tabs .chip-btn:hover,
+html body .main-tabs a:hover{
+  background:#fff!important;color:var(--taste-navy)!important;border-color:rgba(15,35,66,.12)!important;box-shadow:0 10px 24px rgba(15,35,66,.08)!important;transform:translateY(-1px)!important;
+}
+html body .main-tabs .chip-btn.active,
+html body .main-tabs a.active{
+  background:linear-gradient(135deg,var(--taste-navy),var(--taste-navy-2))!important;color:#fff!important;border-color:rgba(255,255,255,.20)!important;box-shadow:0 12px 30px rgba(13,35,66,.22)!important;
+}
+html body .market-panel,
+html body .panel,
+html body .card,
+html body .report-hero,
+html body .tickerbar,
+html body .stock-card,
+html body .news-card,
+html body .warrant-card,
+html body .metric,
+html body .kpi,
+html body .analysis-card,
+html body .strategy-card{
+  background:linear-gradient(180deg,rgba(255,250,241,.92),rgba(255,246,231,.86))!important;
+  border:1px solid rgba(15,35,66,.12)!important;border-radius:26px!important;color:var(--taste-ink)!important;
+  box-shadow:var(--taste-shadow), inset 0 1px 0 rgba(255,255,255,.72)!important;
+}
+html body .panel h1,html body .panel h2,html body .panel h3,html body .card h1,html body .card h2,html body .card h3,html body h1,html body h2,html body h3{color:var(--taste-navy)!important;-webkit-text-fill-color:var(--taste-navy)!important;text-shadow:none!important;letter-spacing:-.045em!important}
+html body p,html body .muted,html body .small,html body .market-meta,html body .news-meta{color:var(--taste-muted)!important}
+html body .btn,html body button.primary,html body .reload-btn,html body .open-link{background:linear-gradient(135deg,var(--taste-navy),#245184)!important;color:#fff!important;border-radius:14px!important;box-shadow:0 14px 34px rgba(13,35,66,.18)!important}
+html body input,html body select,html body textarea{background:#fffdfa!important;color:var(--taste-ink)!important;border:1px solid rgba(15,35,66,.16)!important;border-radius:13px!important}
+html body table{background:#fffaf2!important;border-color:rgba(15,35,66,.12)!important}
+html body th{background:#efe3d1!important;color:#1f2f46!important}
+html body td{background:#fffaf2!important;color:#243244!important;border-color:#eadfce!important}
+html body tr:nth-child(even) td{background:#fbf2e5!important}
+@media(max-width:900px){html body .shell{width:calc(100% - 16px)!important;padding-top:10px!important}html body header.topbar,html body .topbar{height:auto!important;min-height:0!important;border-radius:20px!important}html body nav.main-tabs,html body .main-tabs{height:auto!important;border-radius:20px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}.main-tabs .chip-btn{padding:10px 6px!important;text-align:center!important;white-space:normal!important}}
+
+/* Taste v2 final cascade lock */
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste header.topbar,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .topbar{
+  background:linear-gradient(135deg,rgba(13,35,66,.98),rgba(21,56,97,.95) 58%,rgba(34,79,126,.92))!important;
+  background-image:linear-gradient(135deg,rgba(13,35,66,.98),rgba(21,56,97,.95) 58%,rgba(34,79,126,.92))!important;
+  background-color:#0d2342!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  color:#fff!important;
+  box-shadow:0 26px 70px rgba(13,35,66,.24), inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste nav.main-tabs,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .main-tabs{
+  background:rgba(255,250,241,.94)!important;
+  background-image:none!important;
+  background-color:rgba(255,250,241,.94)!important;
+  border:1px solid rgba(15,35,66,.12)!important;
+  border-radius:22px!important;
+}
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .main-tabs .chip-btn.active,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .main-tabs a.active{
+  background:linear-gradient(135deg,#0d2342,#153861)!important;
+  color:#fff!important;
+}
+
+/* Taste v2 panel lock: keep body content light, not dark glass */
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .panel,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .card,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .market-panel,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .feed-panel,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .warrant-panel,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .news-card,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .market-card,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .report-hero,
+html body.lh-unified-page.lh-premium-taste.lh-realestate-skin.lh-light-taste .tickerbar{
+  background:linear-gradient(180deg,rgba(255,250,241,.94),rgba(255,246,231,.88))!important;
+  background-image:linear-gradient(180deg,rgba(255,250,241,.94),rgba(255,246,231,.88))!important;
+  background-color:#fffaf1!important;
+  border:1px solid rgba(15,35,66,.12)!important;
+  color:#0f172a!important;
+  box-shadow:0 24px 70px rgba(42,33,18,.13), inset 0 1px 0 rgba(255,255,255,.72)!important;
+}
