@@ -52,8 +52,8 @@ async def build_search_targets(client: NineRouterClient, criteria: SearchCriteri
     project_names = [p.get("name", "") for p in projects.projects if p.get("name")]
     system = (
         "Bạn là chuyên gia tìm kiếm dữ liệu bất động sản Việt Nam. "
-        "Nhiệm vụ: tạo bộ keyword tối ưu để tìm tin rao thật trên Batdongsan, Guland, Alonhadat. "
-        "Bắt buộc ưu tiên keyword dạng: tên dự án sạch + thành phố. "
+        "Nhiệm vụ: tạo bộ keyword tối ưu để tìm tin rao thật trên Batdongsan, Guland, Alonhadat cho đúng 5 comparable đã được chọn. "
+        "Keyword phải bám tên dự án/tòa nhà/khu vực comparable sạch + intent giao dịch + thành phố; không tự đổi sang dự án khác. "
         "Không bịa giá/link. Chỉ lập kế hoạch search. Trả JSON hợp lệ."
     )
     user = f"""Tiêu chí định giá:
@@ -65,7 +65,8 @@ async def build_search_targets(client: NineRouterClient, criteria: SearchCriteri
 - Dự án/khu vực comparable: {project_names}
 
 Tạo keywords để tìm tin rao thật. Quy tắc bắt buộc:
-- AI đã chọn 5 dự án/khu vực comparable trước; keyword search Playwright trên Batdongsan phải ưu tiên "Tên dự án + thành phố".
+- AI đã chọn 5 dự án/tòa nhà/khu vực comparable trước theo vị trí, hạng/phân khúc, loại tài sản và khả năng kiểm chứng; keyword search phải bám đúng từng comparable đó.
+- Keyword đầu tiên phải gồm intent giao dịch + tên comparable sạch + thành phố, ví dụ "cho thuê văn phòng The Hallmark Hồ Chí Minh" hoặc "cho thuê căn hộ Masteri An Phú Hồ Chí Minh".
 - Nếu Giao dịch là thuê thì keyword bắt buộc bắt đầu bằng intent thuê, không dùng keyword mua/bán.
 - Thuê chung cư/căn hộ: dùng "cho thuê căn hộ <Tên dự án> <thành phố>", "cho thuê chung cư <Tên dự án>"; đơn vị phân tích là triệu/căn/tháng.
 - Thuê văn phòng: dùng "cho thuê văn phòng <Tên tòa nhà/khu vực> <thành phố>", "cho thuê sàn văn phòng <khu vực>"; đơn vị là triệu/m²/tháng.

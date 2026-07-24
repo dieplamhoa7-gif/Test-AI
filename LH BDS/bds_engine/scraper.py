@@ -145,9 +145,9 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
     """Dùng AI để xác định khu vực và liệt kê 5 dự án/khu vực comparable."""
     segment = getattr(criteria, "segment", None)
     system = (
-        "Bạn là chuyên gia bất động sản Việt Nam, am hiểu các dự án, khu dân cư, đường phố. "
-        "Khi nhận toạ độ GPS, bạn xác định chính xác vị trí (phường, quận, thành phố), rồi liệt kê "
-        "5 dự án/khu vực phù hợp tiêu chí người dùng để dùng làm tham chiếu định giá."
+        "Bạn là chuyên gia bất động sản Việt Nam, am hiểu các dự án, khu dân cư, tòa nhà văn phòng, trung tâm thương mại và đường phố. "
+        "Khi nhận toạ độ GPS, bạn xác định chính xác vị trí (phường, quận, thành phố), rồi liệt kê đúng 5 dự án/tòa nhà/khu vực comparable "
+        "tương đồng nhất để dùng tham chiếu định giá. Comparable phải gần tọa độ và tương đồng về loại tài sản, hạng/phân khúc, vị trí, khả năng khai thác và mặt bằng thị trường."
     )
     explicit_name = _requested_project_name(criteria)
     user = (
@@ -160,13 +160,17 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         f"Phân khúc nếu có: {segment or 'không yêu cầu'}\n"
         f"Giao dịch: {getattr(criteria, 'transaction', 'buy')}\n\n"
         "Hãy:\n"
-        "1. Xác định khu vực (đường/trục đường gần nhất, phường, quận, thành phố/tỉnh) của toạ độ này.\n"
-        "2. Khi chọn dự án, ưu tiên dạng: \"dự án ... hạng ... gần đường ... ở TP ...\" để bắt đúng comparable.\n"
-        "3. Chọn bán kính tìm kiếm phù hợp mật độ dự án khu vực (1-5 km).\n"
-        "4. Liệt kê 5 dự án/khu vực có thể dùng tham chiếu định giá; ưu tiên dự án có nhiều tin rao trên "
-        "Batdongsan.com.vn, Guland.vn, Alonhadat.com.vn.\n"
-        "5. Mỗi dự án kèm metadata ngắn: chủ đầu tư (developer), quy mô (scale), năm vận hành/bàn giao "
-        "(operation_year), tình trạng bàn giao (handover_status).\n\n"
+        "1. Xác định khu vực quanh tọa độ: đường/trục đường gần nhất, phường, quận, thành phố/tỉnh.\n"
+        "2. Chọn đúng 5 comparable gần tọa độ nhất nhưng KHÔNG chỉ gần về địa lý; phải tương đồng theo thứ tự ưu tiên:\n"
+        "   a) cùng loại tài sản/giao dịch (căn hộ thuê, văn phòng thuê, sàn thương mại thuê, căn hộ bán, đất/nhà phố...),\n"
+        "   b) cùng hạng/phân khúc nếu có (A/B/C, cao cấp/trung cấp/bình dân; văn phòng hạng A/B/C; retail prime/neighborhood...),\n"
+        "   c) cùng vị thế đô thị/trục kết nối/khu dân cư hoặc khu thương mại xung quanh,\n"
+        "   d) cùng giai đoạn vận hành/bàn giao và chất lượng khai thác,\n"
+        "   e) có khả năng tìm được tin rao/giá kiểm chứng trên Batdongsan.com.vn, Guland.vn, Alonhadat.com.vn.\n"
+        "3. Chọn bán kính phù hợp mật độ thị trường: ưu tiên 1-3 km ở khu dày dự án, có thể mở 5-8 km nếu thiếu comparable cùng hạng.\n"
+        "4. Không chọn dự án chỉ vì nổi tiếng nếu lệch hạng, quá xa, khác loại tài sản hoặc khác thị trường thuê/bán.\n"
+        "5. Mỗi comparable kèm metadata ngắn: chủ đầu tư/đơn vị quản lý (developer), quy mô (scale), năm vận hành/bàn giao "
+        "(operation_year), tình trạng bàn giao/khai thác (handover_status), và ghi chú vì sao tương đồng (note).\n\n"
         "Trả về JSON đúng schema:\n"
         "{\n"
         '  "area": "Phường ..., Quận ..., TP ...",\n'
@@ -182,7 +186,8 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         "}\n\n"
         "Quy tắc: không để trống developer/scale/operation_year/handover_status; "
         "không chắc thì ghi 'đang kiểm chứng', không bịa chi tiết. "
-        "Tuyệt đối không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố."
+        "Name phải là tên dự án/tòa nhà/khu vực sạch, không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố. "
+        "Nếu không đủ 5 dự án/tòa nhà đúng cùng loại trong bán kính gần, có thể dùng khu vực/tuyến đường comparable nhưng phải ghi rõ lý do trong note."
     )
     data = await client.chat_json(system, user, temperature=0.2)
     if not isinstance(data, dict):
