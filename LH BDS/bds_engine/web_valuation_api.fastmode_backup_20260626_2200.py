@@ -496,9 +496,9 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
     elif ptype == 'shophouse':
         sale_terms = ['bán shophouse', 'bán nhà phố thương mại', 'bán mặt bằng kinh doanh']
         if rent_subtype == 'rent_vanphong':
-            rent_terms = ['cho thuê văn phòng', 'cho thuê mặt bằng văn phòng', 'cho thuê sàn văn phòng']
+            rent_terms = ['cho thuê văn phòng', 'cho thuê sàn văn phòng', 'văn phòng cho thuê', 'cho thuê tòa nhà văn phòng']
         elif rent_subtype == 'rent_santhuongmai':
-            rent_terms = ['cho thuê mặt bằng kinh doanh', 'cho thuê sàn thương mại', 'cho thuê shophouse']
+            rent_terms = ['cho thuê sàn thương mại', 'cho thuê mặt bằng thương mại', 'cho thuê mặt bằng kinh doanh', 'cho thuê retail space']
         else:
             rent_terms = ['cho thuê shophouse', 'cho thuê mặt bằng kinh doanh', 'cho thuê nhà phố thương mại']
     elif ptype == 'chungcu':

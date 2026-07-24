@@ -66,9 +66,13 @@ async def build_search_targets(client: NineRouterClient, criteria: SearchCriteri
 
 Tạo keywords để tìm tin rao thật. Quy tắc bắt buộc:
 - AI đã chọn 5 dự án/khu vực comparable trước; keyword search Playwright trên Batdongsan phải ưu tiên "Tên dự án + thành phố".
+- Nếu Giao dịch là thuê thì keyword bắt buộc bắt đầu bằng intent thuê, không dùng keyword mua/bán.
+- Thuê chung cư/căn hộ: dùng "cho thuê căn hộ <Tên dự án> <thành phố>", "cho thuê chung cư <Tên dự án>"; đơn vị phân tích là triệu/căn/tháng.
+- Thuê văn phòng: dùng "cho thuê văn phòng <Tên tòa nhà/khu vực> <thành phố>", "cho thuê sàn văn phòng <khu vực>"; đơn vị là triệu/m²/tháng.
+- Thuê sàn thương mại: dùng "cho thuê sàn thương mại <khu vực>", "cho thuê mặt bằng kinh doanh <khu vực>", "cho thuê mặt bằng thương mại <khu vực>"; đơn vị là triệu/m²/tháng.
 - Tên dự án phải sạch, không kèm lại phường/quận/thành phố nếu đã có field area.
 - Không tạo keyword bị lặp thành phố, ví dụ cấm "Phường Phú Thuận Thành phố Hồ Chí Minh Thành phố Hồ Chí Minh".
-- Mỗi target 2-4 keyword là đủ; keyword đầu tiên phải là "Tên dự án + thành phố".
+- Mỗi target 2-4 keyword là đủ; keyword đầu tiên phải là intent chính + "Tên dự án/khu vực + thành phố".
 
 JSON schema:
 {{
@@ -104,25 +108,55 @@ JSON schema:
 
 
 def fallback_search_targets(criteria: SearchCriteria, projects: ProjectsResult) -> list[SearchTarget]:
-    """Keyword fallback khi AI timeout."""
+    """Keyword fallback khi AI timeout; must preserve buy/rent intent."""
     ptype = PROPERTY_TYPE_LABELS.get(criteria.property_type, criteria.property_type)
     area = projects.area_description
     city = _city_from_area(area)
+    is_rent = getattr(criteria, "transaction", "buy") == "rent"
+    rent_subtype = getattr(criteria, "rent_subtype", "") or ""
     out: list[SearchTarget] = []
     for p in projects.projects[:5]:
         name = _clean_project_name(str(p.get("name", "")).strip())
         if not name:
             continue
-        kws = [
-            _dedupe_city_keyword(name, city),
-            f"bán {ptype} {name}",
-            f"{name} {ptype}",
-        ]
+        if is_rent and rent_subtype == "rent_chungcu":
+            kws = [
+                f"cho thuê căn hộ {name} {city}",
+                f"cho thuê chung cư {name}",
+                f"thuê căn hộ {name}",
+            ]
+        elif is_rent and rent_subtype == "rent_vanphong":
+            kws = [
+                f"cho thuê văn phòng {name} {city}",
+                f"cho thuê sàn văn phòng {name}",
+                f"văn phòng cho thuê {name}",
+            ]
+        elif is_rent and rent_subtype == "rent_santhuongmai":
+            kws = [
+                f"cho thuê sàn thương mại {name} {city}",
+                f"cho thuê mặt bằng kinh doanh {name}",
+                f"cho thuê mặt bằng thương mại {name}",
+            ]
+        elif is_rent:
+            kws = [
+                f"cho thuê {ptype} {name} {city}",
+                f"{ptype} cho thuê {name}",
+                f"thuê {ptype} {name}",
+            ]
+        else:
+            kws = [
+                _dedupe_city_keyword(name, city),
+                f"bán {ptype} {name}",
+                f"{name} {ptype}",
+            ]
         # Preserve order while deduping.
         dedup=[]
         for kw in kws:
             ck=_dedupe_city_keyword(kw, city)
             if ck.lower() not in {x.lower() for x in dedup}:
                 dedup.append(ck)
-        out.append(SearchTarget(project=name, area=area, keywords=dedup[:4], exclude_keywords=["tuyển dụng", "wiki", "tin tức"]))
+        excludes=["tuyển dụng", "wiki", "tin tức"]
+        if is_rent:
+            excludes += ["bán", "mua bán", "sang nhượng"]
+        out.append(SearchTarget(project=name, area=area, keywords=dedup[:4], exclude_keywords=excludes))
     return out
