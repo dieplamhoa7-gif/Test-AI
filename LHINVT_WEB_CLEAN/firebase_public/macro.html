@@ -58,7 +58,26 @@ table.tb td:first-child{text-align:left;font-weight:700;color:#cfe0ff}
 .foot{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--mut2)}.foot b{color:var(--mut)}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(3,1fr)}.layout,.secgrid{grid-template-columns:1fr}.mini{grid-template-columns:repeat(2,1fr)}}
 </style>
-</head><body><header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vi mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/stock-report">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav><div class="wrap">
+
+
+<style id="lh-unified-header-layout-fix">
+:root{--lh-header-max:1320px;--lh-header-side:120px;}
+.shell,.wrap{width:min(var(--lh-header-max),calc(100% - var(--lh-header-side)))!important;max-width:var(--lh-header-max)!important;margin-left:auto!important;margin-right:auto!important;}
+.topbar{box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:14px 16px!important;border-radius:24px!important;min-height:88px!important;margin:16px auto 0!important;}
+.main-tabs{box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:12px!important;flex-wrap:wrap!important;padding:0!important;margin:18px auto 0!important;}
+body>.topbar,body>.main-tabs{width:min(var(--lh-header-max),calc(100% - var(--lh-header-side)))!important;max-width:var(--lh-header-max)!important;}
+.shell>.topbar,.shell>.main-tabs,.wrap>.topbar,.wrap>.main-tabs{width:100%!important;max-width:100%!important;}
+.brand-wrap{display:flex!important;align-items:center!important;gap:14px!important;text-decoration:none!important;min-width:0!important;}
+.brand-icon{width:56px!important;height:56px!important;min-width:56px!important;border-radius:18px!important;overflow:hidden!important;display:grid!important;place-items:center!important;}
+.brand-icon img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;}
+.brand-text h1{margin:0!important;font-size:24px!important;line-height:1.05!important;letter-spacing:.04em!important;}
+.brand-text p{margin:6px 0 0!important;font-size:11px!important;letter-spacing:.24em!important;line-height:1.2!important;}
+.top-actions{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:nowrap!important;}
+.main-tabs .chip-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:41px!important;padding:11px 16px!important;border-radius:999px!important;white-space:nowrap!important;line-height:1.15!important;text-decoration:none!important;box-sizing:border-box!important;}
+@media(max-width:900px){:root{--lh-header-side:14px}.shell,.wrap{padding-top:8px!important}.topbar{position:static!important;align-items:flex-start!important;min-height:0!important;padding:10px!important;border-radius:16px!important}.main-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;margin-top:10px!important}.main-tabs .chip-btn{min-height:40px!important;padding:10px 6px!important;font-size:12px!important;white-space:normal!important;text-align:center!important}.brand-text h1{font-size:21px!important}.top-actions{margin-left:auto!important}}
+@media(max-width:560px){.topbar{flex-direction:column!important}.top-actions{width:100%!important;justify-content:space-between!important}.main-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.brand-text p{letter-spacing:.16em!important}}
+</style>
+</head><body><header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn active" href="/macro" aria-current="page">Vi mô</a><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn" href="/account">Account</a></nav><div class="wrap">
 
 <div class="hero">
  <div class="eyebrow">LH Investment · Macro Web</div>
