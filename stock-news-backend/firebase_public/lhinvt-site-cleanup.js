@@ -5,15 +5,15 @@
   }
   function syncThemeClass(){
     if(!document.body) return;
-    document.body.classList.add('lh-light-taste');
     const pref = preferredTheme();
-    if(document.body.classList.contains('dark') || pref === 'dark') {
-      document.body.classList.remove('light');
-      document.body.classList.add('dark');
-    } else if(!pref || pref === 'light' || document.body.classList.contains('light')) {
-      document.body.classList.add('light');
-      document.body.classList.remove('dark');
+    document.body.classList.add('lh-light-taste');
+    if(pref === 'dark' || document.body.classList.contains('dark')) {
+      if(document.body.classList.contains('light')) document.body.classList.remove('light');
+      if(!document.body.classList.contains('dark')) document.body.classList.add('dark');
+      return;
     }
+    if(!document.body.classList.contains('light')) document.body.classList.add('light');
+    if(document.body.classList.contains('dark')) document.body.classList.remove('dark');
   }
   function cleanup(){
     document.documentElement.lang='vi';
@@ -32,9 +32,4 @@
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',cleanup,{once:true});
   else setTimeout(cleanup,0);
   window.addEventListener('load',()=>{cleanup();setTimeout(cleanup,100);setTimeout(cleanup,500);},{once:true});
-  try {
-    const obs = new MutationObserver(()=>syncThemeClass());
-    if(document.body) obs.observe(document.body,{attributes:true,attributeFilter:['class']});
-    else document.addEventListener('DOMContentLoaded',()=>obs.observe(document.body,{attributes:true,attributeFilter:['class']}),{once:true});
-  } catch(e) {}
 })();
