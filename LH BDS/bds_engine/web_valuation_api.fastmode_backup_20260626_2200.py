@@ -501,6 +501,12 @@ async def browser_direct_land_buckets(criteria: SearchCriteria, projects: Projec
             rent_terms = ['cho thuê mặt bằng kinh doanh', 'cho thuê sàn thương mại', 'cho thuê shophouse']
         else:
             rent_terms = ['cho thuê shophouse', 'cho thuê mặt bằng kinh doanh', 'cho thuê nhà phố thương mại']
+    elif ptype == 'chungcu':
+        sale_terms = ['bán căn hộ chung cư', 'bán chung cư', 'mua bán căn hộ']
+        if rent_subtype == 'rent_chungcu':
+            rent_terms = ['cho thuê căn hộ chung cư', 'cho thuê chung cư', 'thuê căn hộ']
+        else:
+            rent_terms = ['cho thuê căn hộ chung cư', 'cho thuê chung cư']
     else:
         sale_terms = ['bán nhà đất mặt tiền', 'bán đất mặt tiền']
         rent_terms = ['cho thuê nhà đất mặt tiền', 'cho thuê mặt bằng']
@@ -571,8 +577,60 @@ def _filter_buckets_by_transaction(buckets: dict, is_rent: bool) -> dict:
     return filtered
 
 
+def _rd_ascii_blob(text: str) -> str:
+    import unicodedata
+    raw = fix_vn_text(str(text or '')).lower()
+    no = ''.join(c for c in unicodedata.normalize('NFD', raw) if unicodedata.category(c) != 'Mn')
+    return (raw + ' ' + no).lower()
+
+
+def _filter_buckets_by_rent_subtype(buckets: dict, rent_subtype: str = '') -> dict:
+    """Keep rent evidence aligned to the selected rental product.
+
+    In particular, commercial floor / office rental must not be polluted by
+    apartment/chung-cu rental listings, because unit economics differ and the
+    UI should show ngàn/m²/tháng for commercial rent.
+    """
+    subtype = (rent_subtype or '').lower()
+    if subtype not in {'rent_santhuongmai', 'rent_vanphong'}:
+        return buckets
+    reject = ('căn hộ', 'can ho', 'can-ho', 'chung cư', 'chung cu', 'chung-cu', 'apartment', 'studio', 'phòng ngủ', 'phong ngu', '1pn', '2pn', '3pn')
+    if subtype == 'rent_santhuongmai':
+        accept = ('sàn thương mại', 'san thuong mai', 'san-thuong-mai', 'mặt bằng', 'mat bang', 'mat-bang', 'shophouse', 'shop house', 'nhà phố thương mại', 'nha pho thuong mai', 'kinh doanh', 'retail', 'cửa hàng', 'cua hang')
+    else:
+        accept = ('văn phòng', 'van phong', 'van-phong', 'office', 'mặt bằng văn phòng', 'mat bang van phong', 'sàn văn phòng', 'san van phong')
+    filtered = {}
+    for bucket_name, listings in (buckets or {}).items():
+        kept = []
+        for listing in listings or []:
+            url = str(getattr(listing, 'url', '') or '').lower()
+            title = str(getattr(listing, 'title', '') or '')
+            source = str(getattr(listing, 'source', '') or '')
+            blob = _rd_ascii_blob(f"{url} {title} {source}")
+            if any(x in blob for x in reject):
+                continue
+            if any(x in blob for x in accept) or 'cho-thue-van-phong' in url or 'cho-thue-sang-nhuong' in url or 'cho-thue-cua-hang' in url:
+                kept.append(listing)
+        if kept:
+            filtered[bucket_name] = kept
+    return filtered
+
+
+def _rent_ppm_to_ngan_label(value: float | int | None, decimals: int = 0) -> str:
+    try:
+        v = float(value)
+    except Exception:
+        return ''
+    if v <= 0:
+        return ''
+    # Internal parser stores rent price_per_m2 in triệu/m²/month. User-facing
+    # commercial rent unit must be ngàn/m²/tháng.
+    return f"{_fmt_num(v * 1000, decimals)} ngàn/m²/tháng"
+
+
 def build_direct_land_report(projects: ProjectsResult, buckets: dict, is_rent: bool = False) -> str:
     buckets = _filter_buckets_by_transaction(buckets, is_rent)
+    buckets = _filter_buckets_by_rent_subtype(buckets, getattr(criteria, 'rent_subtype', '') if is_rent else '')
     all_items = []
     for bucket_name, listings in (buckets or {}).items():
         for l in listings or []:
@@ -601,8 +659,8 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict, is_rent: b
         return vals[n//2] if n % 2 else (vals[n//2-1] + vals[n//2]) / 2
     if ppms:
         lines.append(f"- Số mẫu có giá/m²: {len(ppms)}")
-        lines.append(f"- Giá/m² median: ~{_fmt_num(med(ppms),0)} tr/m²")
-        lines.append(f"- Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} tr/m²")
+        lines.append(f"- Giá thuê/m² median: ~{_rent_ppm_to_ngan_label(med(ppms),0)}" if is_rent else f"- Giá/m² median: ~{_fmt_num(med(ppms),0)} tr/m²")
+        lines.append(f"- Biên giá thuê/m²: {_rent_ppm_to_ngan_label(min(ppms),0)}–{_rent_ppm_to_ngan_label(max(ppms),0)}" if is_rent else f"- Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} tr/m²")
     elif totals:
         lines.append(f"- Số mẫu có giá tổng: {len(totals)}")
         lines.append(f"- Giá tổng median: ~{_fmt_num(med(totals),1)} tỷ")
@@ -610,7 +668,7 @@ def build_direct_land_report(projects: ProjectsResult, buckets: dict, is_rent: b
     lines.append('*Mẫu tin/link kiểm chứng:*')
     for i, x in enumerate(all_items[:12], 1):
         desc = []
-        if x.get('ppm'): desc.append(f"~{_fmt_num(x['ppm'],0)} tr/m²")
+        if x.get('ppm'): desc.append(f"~{_rent_ppm_to_ngan_label(x['ppm'],0)}" if is_rent else f"~{_fmt_num(x['ppm'],0)} tr/m²")
         if x.get('total'): desc.append(f"~{_fmt_num(x['total'],1)} tỷ")
         suffix = (' — ' + ', '.join(desc)) if desc else ''
         lines.append(f" {i}) {x.get('source')}{suffix}")
@@ -680,9 +738,9 @@ def direct_market_structured_fields(buckets: dict, is_rent: bool = False) -> dic
     investor = {}
     if median_ppm:
         if is_rent:
-            investor['average_suggested_price'] = f"{_fmt_num(median_ppm,2)} triệu/m²/tháng"
+            investor['average_suggested_price'] = _rent_ppm_to_ngan_label(median_ppm,0)
             investor['suggested_price'] = investor['average_suggested_price']
-            investor['reference_price_label'] = f"{_fmt_num(median_ppm,2)} triệu/m²/tháng · {len(ppms)} mẫu Batdongsan"
+            investor['reference_price_label'] = f"{_rent_ppm_to_ngan_label(median_ppm,0)} · {len(ppms)} mẫu Batdongsan"
         else:
             investor['average_suggested_price'] = f"{_fmt_num(median_ppm,0)} triệu/m²"
             investor['suggested_price'] = investor['average_suggested_price']
@@ -691,15 +749,15 @@ def direct_market_structured_fields(buckets: dict, is_rent: bool = False) -> dic
         investor['adjustment_bullets'] = [
             f"Đã đọc {len(samples)} mẫu tin trực tiếp từ nguồn web.",
             f"Có {len(ppms)} mẫu parse được giá/m².",
-            (f"Biên giá thuê: {_fmt_num(min(ppms),2)}–{_fmt_num(max(ppms),2)} triệu/m²/tháng." if is_rent else f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m².") if ppms else '',
+            (f"Biên giá thuê: {_rent_ppm_to_ngan_label(min(ppms),0)}–{_rent_ppm_to_ngan_label(max(ppms),0)}." if is_rent else f"Biên giá/m²: {_fmt_num(min(ppms),0)}–{_fmt_num(max(ppms),0)} triệu/m².") if ppms else '',
         ]
         investor['adjustment_bullets'] = [x for x in investor['adjustment_bullets'] if x]
         investor['price_rationale'] = 'Median từ mẫu giá trực tiếp; cần kiểm tra pháp lý, diện tích và vị trí trước khi chốt.'
     elif totals:
         if is_rent:
-            investor['average_suggested_price'] = f"{_fmt_num(med(totals)*1000,1)} triệu/căn/tháng"
+            investor['average_suggested_price'] = f"{_fmt_num(med(totals)*1000,1)} triệu/tài sản/tháng"
             investor['suggested_price'] = investor['average_suggested_price']
-            investor['reference_price_label'] = f"{_fmt_num(med(totals)*1000,1)} triệu/căn/tháng · {len(totals)} mẫu có giá thuê tổng"
+            investor['reference_price_label'] = f"{_fmt_num(med(totals)*1000,1)} triệu/tài sản/tháng · {len(totals)} mẫu có giá thuê tổng"
         else:
             investor['average_suggested_price'] = f"{_fmt_num(med(totals),1)} tỷ/tài sản"
             investor['suggested_price'] = investor['average_suggested_price']
@@ -711,9 +769,9 @@ def direct_market_structured_fields(buckets: dict, is_rent: bool = False) -> dic
         total = s.get('price_total')
         label_parts = []
         if isinstance(ppm, (int, float)) and ppm > 0:
-            label_parts.append(f"{_fmt_num(ppm,2)} triệu/m²/tháng" if is_rent else f"{_fmt_num(ppm,0)} triệu/m²")
+            label_parts.append(_rent_ppm_to_ngan_label(ppm,0) if is_rent else f"{_fmt_num(ppm,0)} triệu/m²")
         if isinstance(total, (int, float)) and total > 0:
-            label_parts.append(f"{_fmt_num(total*1000,1)} triệu/căn/tháng" if is_rent else f"{_fmt_num(total,1)} tỷ")
+            label_parts.append(f"{_fmt_num(total*1000,1)} triệu/tài sản/tháng" if is_rent else f"{_fmt_num(total,1)} tỷ")
         comps.append({
             'name': s.get('title') or f"Mẫu Batdongsan {idx}",
             'developer': s.get('source') or s.get('bucket') or 'Batdongsan.com.vn',
@@ -1140,41 +1198,45 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
                 warnings.append(f"browser land search lỗi/timeout: {type(e).__name__}. {note}")
                 log_error('browser_land_search', payload, e, 'continue with scraped/direct source buckets only', note)
     else:
-        write_progress('browser_buckets', 'Flow comparable: Playwright đang search Batdongsan theo tên dự án/khu vực + quận + thành phố...', warnings)
-        try:
-            apt_browser = await asyncio.wait_for(
-                browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
-                timeout=(700 if is_fast_mode else 780),
-            )
-            sample_count = sum(len(v or []) for v in apt_browser.values())
-            if sample_count == 0:
-                loc = getattr(criteria, 'location_context', {}) or {}
-                city = (loc.get('city') or loc.get('province') or 'TP Hồ Chí Minh') if isinstance(loc, dict) else 'TP Hồ Chí Minh'
-                district = loc.get('district') if isinstance(loc, dict) else ''
-                fallback_browser = {}
-                for pr in (projects.projects or [])[:5]:
-                    pname = (pr.get('name') or '').strip()
-                    if not pname:
-                        continue
-                    keyword = (pr.get('search_keyword') or '').strip() or ' '.join(x for x in [pname, district, city] if x)
-                    try:
-                        rows = await asyncio.wait_for(scrape_batdongsan_playwright(keyword, limit=10, headless=False, mode=getattr(criteria, 'transaction', 'buy') or 'buy'), timeout=75)
-                    except Exception:
-                        rows = []
-                    if rows:
-                        fallback_browser.setdefault(f'Batdongsan.com.vn::{pname}', []).extend(rows)
-                if fallback_browser:
-                    apt_browser = fallback_browser
-                    sample_count = sum(len(v or []) for v in apt_browser.values())
-                    warnings.append('Reuse-session Batdongsan trả 0 mẫu; đã fallback mở search độc lập từng dự án.')
-            buckets = merge_listing_buckets(buckets, apt_browser)
-            warnings.append(f'Playwright Batdongsan flow comparable: {len(apt_browser)} bucket, {sample_count} mẫu giá.')
-            if sample_count:
-                warnings.append('Đã lấy mẫu giá Batdongsan bằng Playwright theo keyword tên dự án + quận + thành phố.')
-        except Exception as e:
-            note = 'Playwright Batdongsan flow comparable timeout/lỗi; tiếp tục bằng evidence/fallback + AI estimate.'
-            warnings.append(f'browser flow comparable lỗi/timeout: {type(e).__name__}. {note}')
-            log_error('browser_buckets_comparable', payload, e, 'continue with fallback/AI estimate', note)
+        write_progress('browser_buckets', 'Flow comparable: Playwright ?ang search Batdongsan theo t?n d? ?n/khu v?c + qu?n + th?nh ph?...', warnings)
+        is_rent_chungcu = (getattr(criteria, 'transaction', 'buy') == 'rent' and getattr(criteria, 'rent_subtype', '') == 'rent_chungcu')
+        if is_rent_chungcu and is_fast_mode:
+            warnings.append('R&D cho thu? chung c? fast-mode: b? qua Playwright comparable n?ng ?? tr?nh treo; d?ng evidence/fallback + AI estimate ??n v? tri?u/c?n/th?ng.')
+        else:
+            try:
+                apt_browser = await asyncio.wait_for(
+                    browser_true_buckets_async(criteria, projects, max_projects=5, per_project_timeout=(55 if is_fast_mode else 70)),
+                    timeout=(700 if is_fast_mode else 780),
+                )
+                sample_count = sum(len(v or []) for v in apt_browser.values())
+                if sample_count == 0:
+                    loc = getattr(criteria, 'location_context', {}) or {}
+                    city = (loc.get('city') or loc.get('province') or 'TP H? Ch? Minh') if isinstance(loc, dict) else 'TP H? Ch? Minh'
+                    district = loc.get('district') if isinstance(loc, dict) else ''
+                    fallback_browser = {}
+                    for pr in (projects.projects or [])[:5]:
+                        pname = (pr.get('name') or '').strip()
+                        if not pname:
+                            continue
+                        keyword = (pr.get('search_keyword') or '').strip() or ' '.join(x for x in [pname, district, city] if x)
+                        try:
+                            rows = await asyncio.wait_for(scrape_batdongsan_playwright(keyword, limit=10, headless=False, mode=getattr(criteria, 'transaction', 'buy') or 'buy'), timeout=75)
+                        except Exception:
+                            rows = []
+                        if rows:
+                            fallback_browser.setdefault(f'Batdongsan.com.vn::{pname}', []).extend(rows)
+                    if fallback_browser:
+                        apt_browser = fallback_browser
+                        sample_count = sum(len(v or []) for v in apt_browser.values())
+                        warnings.append('Reuse-session Batdongsan tr? 0 m?u; ?? fallback m? search ??c l?p t?ng d? ?n.')
+                buckets = merge_listing_buckets(buckets, apt_browser)
+                warnings.append(f'Playwright Batdongsan flow comparable: {len(apt_browser)} bucket, {sample_count} m?u gi?.')
+                if sample_count:
+                    warnings.append('?? l?y m?u gi? Batdongsan b?ng Playwright theo keyword t?n d? ?n + qu?n + th?nh ph?.')
+            except Exception as e:
+                note = 'Playwright Batdongsan flow comparable timeout/l?i; ti?p t?c b?ng evidence/fallback + AI estimate.'
+                warnings.append(f'browser flow comparable l?i/timeout: {type(e).__name__}. {note}')
+                log_error('browser_buckets_comparable', payload, e, 'continue with fallback/AI estimate', note)
 
     has_price = any((getattr(l, 'price_total', None) or getattr(l, 'price_per_m2', None)) for listings in buckets.values() for l in listings)
     if not has_price:
@@ -1197,6 +1259,7 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     # report text, price summary, or verification link is rendered.
     is_rent = (getattr(criteria, 'transaction', 'buy') or 'buy') == 'rent'
     buckets = _filter_buckets_by_transaction(buckets, is_rent)
+    buckets = _filter_buckets_by_rent_subtype(buckets, getattr(criteria, 'rent_subtype', '') if is_rent else '')
 
     write_progress('build_report', 'Đang tổng hợp báo cáo trực tiếp theo tên đường/khu vực...' if not use_comparable_flow else 'Đang tổng hợp báo cáo theo dự án/khu vực comparable...', warnings)
     try:
@@ -1296,6 +1359,41 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     direct_struct = direct_market_structured_fields(buckets, is_rent=(getattr(criteria, 'transaction', 'buy') == 'rent')) if not use_comparable_flow else {}
     merged_investor_summary = dict(direct_struct.get('investor_summary') or {})
     merged_investor_summary.update(investor_summary or {})
+    if (direct_struct.get('price_sample_count') or 0) > 0 and not use_comparable_flow:
+        ref = merged_investor_summary.get('reference_price_label') or merged_investor_summary.get('average_suggested_price') or direct_struct.get('suggested_price_range') or ''
+        samples = direct_struct.get('price_samples') or []
+        sample_lines = []
+        for i, sm in enumerate(samples[:8], 1):
+            title = sm.get('title') or sm.get('source') or 'Mẫu thị trường'
+            ppm = sm.get('price_per_m2')
+            total = sm.get('price_total')
+            bits = []
+            try:
+                if ppm and is_rent:
+                    bits.append(f"{_fmt_num(float(ppm)*1000,0)} ngàn/m²/tháng")
+                elif ppm:
+                    bits.append(f"{_fmt_num(float(ppm),0)} triệu/m²")
+            except Exception:
+                pass
+            try:
+                if total and is_rent:
+                    bits.append(f"{_fmt_num(float(total)*1000,1)} triệu/tài sản/tháng")
+                elif total:
+                    bits.append(f"{_fmt_num(float(total),1)} tỷ")
+            except Exception:
+                pass
+            sample_lines.append(f"{i}. {title[:180]}" + (" — " + " / ".join(bits) if bits else ""))
+        report = '\n'.join([
+            '📍 *Định giá trực tiếp theo mẫu tin thị trường*',
+            '',
+            f"Giá tham chiếu: {ref}" if ref else 'Giá tham chiếu: cần kiểm chứng thêm',
+            f"Số mẫu có giá: {direct_struct.get('price_sample_count') or 0}/{direct_struct.get('sample_count') or 0}",
+            '',
+            '*Mẫu tin/link kiểm chứng:*',
+            *sample_lines,
+            '',
+            'Lưu ý: giá là median/tổng hợp từ mẫu tin thị trường đã parse được; cần kiểm chứng diện tích, vị trí, pháp lý và trạng thái tin trước khi ra quyết định.'
+        ])
     result_comparables = projects.projects[:5] if use_comparable_flow else (direct_struct.get('direct_comparables') or [])
     if needs_ai_comparables:
         seen_names = {str(x.get('name') or '').strip().lower() for x in result_comparables if isinstance(x, dict)}

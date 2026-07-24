@@ -140,7 +140,8 @@ async def resolve_location_context(client, criteria: SearchCriteria) -> dict[str
 # --------------------------------------------------------------------------- #
 async def build_ai_estimate_buckets(client, criteria: SearchCriteria, projects: ProjectsResult) -> dict[str, list[Listing]]:
     is_rent = getattr(criteria, "transaction", "buy") == "rent"
-    unit = "triệu/m²/tháng" if is_rent else "triệu/m²"
+    is_rent_chungcu = is_rent and getattr(criteria, "rent_subtype", "") == "rent_chungcu"
+    unit = "triệu/căn/tháng" if is_rent_chungcu else ("triệu/m²/tháng" if is_rent else "triệu/m²")
     names = [p.get("name", "") for p in (projects.projects or [])[:5] if p.get("name")]
     system = (
         "Bạn là chuyên gia thẩm định giá BĐS. Đưa khoảng giá thị trường ước lượng gần đây cho "
@@ -188,7 +189,8 @@ def _median(vals: list[float]) -> float | None:
 async def build_project_price_report(client, criteria: SearchCriteria, projects: ProjectsResult, buckets: dict) -> str:
     """Báo cáo giá theo dự án/khu vực (chủ yếu deterministic từ mẫu thật)."""
     is_rent = getattr(criteria, "transaction", "buy") == "rent"
-    unit = "triệu/m²/tháng" if is_rent else "triệu/m²"
+    is_rent_chungcu = is_rent and getattr(criteria, "rent_subtype", "") == "rent_chungcu"
+    unit = "triệu/căn/tháng" if is_rent_chungcu else ("triệu/m²/tháng" if is_rent else "triệu/m²")
     lines = ["📍 *Định giá theo dự án/khu vực comparable*", "", f"Khu vực: {projects.area_description}", ""]
     all_ppm: list[float] = []
     for i, p in enumerate(projects.projects[:5], 1):

@@ -320,4 +320,31 @@ def fallback_nearby_projects(criteria: SearchCriteria, reason: str = "") -> Proj
             "type_hint": "area",
             "note": f"fallback geocode-only ({reason})" if reason else "fallback geocode-only",
         })
+    # Rental apartment must still render a 5-item comparable set even when AI times out.
+    # Use local area scopes as explicit market comparables; backend/search later attaches evidence/price if available.
+    if getattr(criteria, "transaction", "buy") == "rent" and getattr(criteria, "rent_subtype", "") == "rent_chungcu":
+        base = [x for x in [road, ward, district, city] if x]
+        more = [
+            " ".join(x for x in [ward, district, city] if x),
+            " ".join(x for x in [district, city] if x),
+            f"Căn hộ cho thuê {district or city}".strip(),
+            f"Chung cư cho thuê {city}".strip(),
+            f"Thị trường căn hộ cho thuê quanh {criteria.lat:.5f},{criteria.lng:.5f}",
+        ]
+        for name in more:
+            name = name.strip()
+            if not name or name.lower() in seen:
+                continue
+            seen.add(name.lower())
+            projects.append({
+                "name": name,
+                "developer": "Khu vực căn hộ cho thuê - cần kiểm chứng dự án cụ thể",
+                "scale": "tham chiếu thị trường thuê căn hộ",
+                "operation_year": "không áp dụng",
+                "handover_status": "đang khai thác/cho thuê",
+                "type_hint": "rent_apartment_area",
+                "note": f"fallback rent_chungcu ({reason})" if reason else "fallback rent_chungcu",
+            })
+            if len(projects) >= 5:
+                break
     return ProjectsResult(area_description=area, projects=projects[:5])
