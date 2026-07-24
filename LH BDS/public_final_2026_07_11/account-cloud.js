@@ -1,0 +1,31 @@
+// LH Real Estate account + per-user cloud save (Firebase Auth + Firestore)
+// Public Firebase config is intentionally safe for frontend use; access is protected by Auth + Firestore rules.
+(function(){
+  const CFG={apiKey:'AIzaSyCjUjwmRoWV1CoIy8IEU7-t0Uu8y24qkVg',authDomain:'hoa-investment.firebaseapp.com',projectId:'hoa-investment',storageBucket:'hoa-investment.firebasestorage.app',messagingSenderId:'364921999548',appId:'1:364921999548:web:09e201a8bd3471469d00b9'};
+  const PAGE=(document.body?.dataset?.app||location.pathname.split('/').pop().replace('.html','')||'index').toLowerCase();
+  // FS has its own structured autosave/import pipeline; generic field restore can overwrite imported Excel state.
+  if(PAGE==='fs') return;
+  const LS='lh_cloud_latest:'+PAGE;
+  let app, auth, db, mods={}, user=null, ready=false, saveTimer=null;
+  const $=(s)=>document.querySelector(s);
+  function friendly(e){const c=(e&&e.code)||String(e&&e.message||e); if(c.includes('configuration-not-found')||c.includes('operation-not-allowed'))return 'Firebase Auth/Google provider chưa bật'; if(c.includes('permission-denied'))return 'Firestore rules/API chưa bật hoặc chưa cho ghi'; if(c.includes('failed-precondition')||c.includes('not-found'))return 'Firestore database chưa tạo'; if(c.includes('popup'))return 'Popup Google bị chặn, bấm lại nút Google'; return c;}
+  function status(t,bad){const el=$('#lh-account-status')||$('#fs-auth-status'); if(el){el.textContent=t; el.style.color=bad?'#ffb4aa':'#d5e3f6';}}
+  function ensureBox(){
+    if($('#lh-account-box'))return;
+    const box=document.createElement('div'); box.id='lh-account-box'; box.innerHTML=`<div class="lh-acc-head"><b>Tài khoản LH</b><span id="lh-account-status">Chưa đăng nhập · lưu trên máy</span></div><button id="lh-google-btn" type="button"><span>G</span> Tiếp tục với Google</button><button id="lh-signout-btn" type="button" style="display:none">Đăng xuất</button>`;
+    document.body.appendChild(box);
+    const css=document.createElement('style'); css.textContent=`#lh-account-box{position:fixed;right:18px;bottom:18px;z-index:9999;max-width:min(360px,calc(100vw - 28px));display:flex;align-items:center;gap:9px;flex-wrap:wrap;border:1px solid rgba(201,162,39,.44);background:linear-gradient(135deg,rgba(11,31,58,.94),rgba(3,10,24,.90));border-radius:16px;padding:10px 12px;box-shadow:0 18px 44px rgba(0,0,0,.35);font-family:inherit}.lh-acc-head{display:flex;flex-direction:column;gap:2px;min-width:160px}.lh-acc-head b{color:#ffe7a3}.lh-acc-head span{font-size:11.5px;color:#d5e3f6;line-height:1.35}#lh-google-btn,#lh-signout-btn{border:0;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}#lh-google-btn{background:linear-gradient(135deg,#fff,#eef4ff);color:#172033}#lh-google-btn span{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;margin-right:6px;color:#1a73e8;border:1px solid #d9e4ff}#lh-signout-btn{background:#64748b;color:#fff}@media(max-width:760px){#lh-account-box{left:10px;right:10px;bottom:10px}#lh-google-btn{width:100%}}`;
+    document.head.appendChild(css);
+    $('#lh-google-btn').onclick=signInGoogle; $('#lh-signout-btn').onclick=signOut;
+  }
+  function collect(){const data={url:location.pathname,ts:Date.now(),fields:{}}; document.querySelectorAll('input,select,textarea').forEach((el,i)=>{if(el.type==='password')return; const key=el.id||el.name||el.dataset.k||el.dataset.ik||el.dataset.pk||('field_'+i); data.fields[key]=(el.type==='checkbox')?el.checked:el.value;}); return data;}
+  function apply(data){if(!data||!data.fields)return; document.querySelectorAll('input,select,textarea').forEach((el,i)=>{if(el.type==='password')return; const key=el.id||el.name||el.dataset.k||el.dataset.ik||el.dataset.pk||('field_'+i); if(!(key in data.fields))return; if(el.type==='checkbox')el.checked=!!data.fields[key]; else el.value=data.fields[key]; el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true}));});}
+  async function init(){ensureBox(); try{mods.app=await import('https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js'); mods.auth=await import('https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js'); mods.fs=await import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js'); app=mods.app.initializeApp(CFG,'lh-cloud-'+PAGE); auth=mods.auth.getAuth(app); db=mods.fs.getFirestore(app); ready=true; mods.auth.onAuthStateChanged(auth,async u=>{user=u||null; const so=$('#lh-signout-btn'); if(so)so.style.display=user?'inline-block':'none'; if(user){status('Đã đăng nhập: '+(user.email||'Google')); await loadCloud(); await saveCloud();} else status('Chưa đăng nhập · lưu trên máy');});}catch(e){status('Không tải được Firebase · lưu local',true); console.warn(e);} try{const local=JSON.parse(localStorage.getItem(LS)||'null'); if(local)apply(local);}catch(e){} document.addEventListener('input',scheduleSave,true); document.addEventListener('change',scheduleSave,true);}
+  function scheduleSave(){clearTimeout(saveTimer); saveTimer=setTimeout(()=>{try{localStorage.setItem(LS,JSON.stringify(collect()));}catch(e){} if(user)saveCloud();},700);}
+  async function saveCloud(){if(!ready||!user)return; try{await mods.fs.setDoc(mods.fs.doc(db,'users',user.uid,'apps',PAGE),collect(),{merge:true}); status('Đã lưu cloud: '+(user.email||'Google'));}catch(e){status('Chưa lưu cloud: '+friendly(e),true);}}
+  async function loadCloud(){if(!ready||!user)return; try{const snap=await mods.fs.getDoc(mods.fs.doc(db,'users',user.uid,'apps',PAGE)); if(snap.exists())apply(snap.data());}catch(e){status('Chưa đọc cloud: '+friendly(e),true);}}
+  async function signInGoogle(){try{if(!ready)await init(); const provider=new mods.auth.GoogleAuthProvider(); provider.setCustomParameters({prompt:'select_account'}); await mods.auth.signInWithPopup(auth,provider);}catch(e){status('Lỗi Google/Gmail: '+friendly(e),true);}}
+  async function signOut(){try{if(auth)await mods.auth.signOut(auth);}catch(e){status('Lỗi đăng xuất: '+friendly(e),true);}}
+  window.LHCloud={init,save:saveCloud,load:loadCloud,signInGoogle,signOut};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+})();
