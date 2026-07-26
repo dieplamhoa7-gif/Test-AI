@@ -1,0 +1,14138 @@
+window.MANUAL_RECORDS_FRONTEND_DB = {
+  "generated_at": "2026-07-26T10:50:53",
+  "records": [
+    {
+      "id": "M01-0001",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Dự án cao tầng Trung tâm Quận 9 - Gamudaland nghiên cứu M&A",
+      "report_date": "2026-07-02",
+      "source_chunks": [
+        "1"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "Dung N - DCEO",
+      "location": "Trung tâm Quận 9, TPHCM",
+      "map_url": "",
+      "scale_raw": "3,1 ha; HSSDĐ 8,0; dân số 3.000; tổng 1.240 căn hộ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "8,0",
+        "population": "3.000",
+        "area_mentions": [
+          "3,1 ha"
+        ],
+        "raw": "3,1 ha; HSSDĐ 8,0; dân số 3.000; tổng 1.240 căn hộ"
+      },
+      "legal": {
+        "land": "đã đưa đất vào công ty",
+        "project": "GPMB 100%",
+        "raw": "GPMB 100%; đã đưa đất vào công ty; đã được duyệt danh sách 171"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng giá trị M&A dự kiến",
+          "value": "khoảng 3.600 tỷ",
+          "source_chunk": "1"
+        },
+        {
+          "label": "Giá bán dự kiến",
+          "value": "90-110 tr/m2, chưa VAT",
+          "source_chunk": "1"
+        }
+      ],
+      "business_notes": "Gamudaland nghiên cứu M&A; CĐT cũ nắm 20%, Gamuda/đối tác hợp tác phần 80% còn lại",
+      "excerpt": "Tập đoàn Gamudaland (Malaysia) đang nghiên cứu M&A một dự án cao tầng tại Trung tâm Quận 9 (TPHCM) với quy mô 3,1 ha... Tổng giá trị M&A dự kiến khoảng 3,600 tỷ... giá bán dự kiến 90-110 tr/m2 (chưa VAT)."
+    },
+    {
+      "id": "M01-0002",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Richland Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "3"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Quận 9, TPHCM",
+      "map_url": "",
+      "scale_raw": "Ranh dự án 49.443 m2; chỉ tiêu phê duyệt 6.972 người, 1.743 căn hộ, HSSDĐ toàn khu 4,99 lần",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "49.443 m2",
+          "11.308,7 m2"
+        ],
+        "raw": "Ranh dự án 49.443 m2; chỉ tiêu phê duyệt 6.972 người, 1.743 căn hộ, HSSDĐ toàn khu 4,99 lần"
+      },
+      "legal": {
+        "land": "chậm tiến độ/chậm đưa đất vào sử dụng",
+        "project": "",
+        "raw": "Dự án phải hoàn thành tháng 3/2011; chậm tiến độ/chậm đưa đất vào sử dụng; cần làm rõ gia hạn sử dụng đất; chưa hoàn thành nghĩa vụ tài chính theo chỉ tiêu QH; còn 11.308,7 m2 đền bù thiếu hồ sơ đính kèm"
+      },
+      "financial_items": [],
+      "business_notes": "Báo cáo pháp lý/các điểm cần lưu ý",
+      "excerpt": "DA Richland Quận 9... Dự án phải hoàn thành vào tháng 3/2011... Nghĩa vụ tài chính dự án: Chưa hoàn thành... Diện tích đền bù: 11.308,7 m2... ranh dự án 49.443 m2."
+    },
+    {
+      "id": "M01-0003",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Dự án Trần Đức 1",
+      "report_date": "",
+      "source_chunks": [
+        "4"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Ngã tư Mỹ Phước Tân Vạn - Thủ Khoa Huân, P. Thuận Giao, Bình Dương cũ",
+      "map_url": "https://maps.app.goo.gl/t178LDzcrFtjxgEz9",
+      "scale_raw": "2,8 ha; khu đất thuộc ô khu phố 8,5 ha; HSSDĐ sơ bộ 5,08; dân số 2.700; cao tầng 1,46 ha 30 tầng gồm 1.275 căn hộ, 18 shop TM, 154 officetel; thấp tầng 6.572 m2 đất thương phẩm gồm 73 nhà liên kế",
+      "planning": {
+        "floors": "30",
+        "density": "",
+        "far": "",
+        "population": "2.700",
+        "area_mentions": [
+          "2,8 ha",
+          "8,5 ha",
+          "1,46 ha",
+          "6.572 m2",
+          "2.8 ha"
+        ],
+        "raw": "2,8 ha; khu đất thuộc ô khu phố 8,5 ha; HSSDĐ sơ bộ 5,08; dân số 2.700; cao tầng 1,46 ha 30 tầng gồm 1.275 căn hộ, 18 shop TM, 154 officetel; thấp tầng 6.572 m2 đất thương phẩm gồm 73 nhà liên kế"
+      },
+      "legal": {
+        "land": "",
+        "project": "PA quy hoạch sơ bộ do P.TKQH binh",
+        "raw": "PA quy hoạch sơ bộ do P.TKQH binh; không lấy hết dân số 4.000 của ô phố vì dự án chỉ 2,8 ha"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ",
+          "value": "52 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "4"
+        },
+        {
+          "label": "Giá bán Shop TM",
+          "value": "55 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "4"
+        }
+      ],
+      "business_notes": "PA triển khai đầu tư có giả định kinh doanh căn hộ/shop",
+      "excerpt": "dự án Trần Đức 1 (2.8ha)... Vị trí: Ngã tư Mỹ Phước Tân Vạn - Thủ Khoa Huân, P.Thuận Giao, Bình Dương... Giá bán căn hộ: 52 tr/m2... Giá bán Shop TM: 55 tr/m2."
+    },
+    {
+      "id": "M01-0004",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án Sông Đà - Quốc Cường Gia Lai / Quốc Lộ 13",
+      "report_date": "",
+      "source_chunks": [
+        "5",
+        "6",
+        "7"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Mặt tiền Quốc Lộ 13, P. Hiệp Bình, Thủ Đức cũ, TP.HCM; gần KĐT Vạn Phúc; giáp sông",
+      "map_url": "",
+      "scale_raw": "Diện tích phù hợp quy hoạch 2,5 ha / 25.045,10 m2; phương án QH so sánh HSSDĐ 10 lần và 7,2 lần; dân số 3.411; PA 35 tầng hoặc 20 tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "10 lần",
+        "population": "3.411",
+        "area_mentions": [
+          "2,5 ha",
+          "25.045,10 m2",
+          "28 m2",
+          "50.000 m2"
+        ],
+        "raw": "Diện tích phù hợp quy hoạch 2,5 ha / 25.045,10 m2; phương án QH so sánh HSSDĐ 10 lần và 7,2 lần; dân số 3.411; PA 35 tầng hoặc 20 tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "Thông số QH theo 1/2000",
+        "raw": "Thông số QH theo 1/2000; P.Đầu tư tính lại theo tham khảo anh Tài/P.QH, an toàn dùng 28 m2/người làm giảm NFA căn hộ khoảng 50.000 m2 sàn"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "6.500 tỷ đồng cho diện tích phù hợp QH 2,5 ha, khoảng 259,5 tr/m2",
+          "source_chunk": "5"
+        },
+        {
+          "label": "Tiền sử dụng đất ước tính chưa bao gồm trong giá chào",
+          "value": "khoảng 1.900 tỷ đồng",
+          "source_chunk": "7"
+        }
+      ],
+      "business_notes": "Nguồn từ Mr Tiến R&D; cập nhật giá chưa bao gồm tiền sử dụng đất",
+      "excerpt": "dự án Sông Đà - Quốc Cường Gia Lai... giá chào 6.500 tỷ đồng cho diện tích phù hợp QH 2,5ha ~259,5 tr/m2 đường Quốc Lộ 13... giá 6.500 tỷ đồng chưa bao gồm tiền sử dụng đất... khoảng 1.900 tỷ đồng."
+    },
+    {
+      "id": "M01-0005",
+      "part": 1,
+      "decision": "project_record_from_excerpt_name",
+      "project_name": "Dự án 2.316 ha Phía Nam Nhơn Trạch / Phước An Nhơn Trạch",
+      "report_date": "",
+      "source_chunks": [
+        "8",
+        "9"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Phía Nam Nhơn Trạch / Phước An, Nhơn Trạch",
+      "map_url": "",
+      "scale_raw": "2.316 ha",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.316 ha"
+        ],
+        "raw": "2.316 ha"
+      },
+      "legal": {
+        "land": "",
+        "project": "Chỉ tiêu quy hoạch tạm tính theo anh Tài",
+        "raw": "Chỉ tiêu quy hoạch tạm tính theo anh Tài; có báo cáo R&D đính kèm 03072026 - R&D - 2.316 ha Phước An, Nhơn Trạch"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ đề xuất",
+          "value": "28 tr/m2",
+          "source_chunk": "8"
+        },
+        {
+          "label": "Giá bán đất nền nhà liên kế đề xuất",
+          "value": "36 tr/m2",
+          "source_chunk": "8"
+        },
+        {
+          "label": "Giá bán đất nền biệt thự đề xuất",
+          "value": "35 tr/m2",
+          "source_chunk": "8"
+        },
+        {
+          "label": "Đơn giá đất đường gần nhất theo bảng giá đất vị trí 1",
+          "value": "6,5 tr/m2",
+          "source_chunk": "8"
+        },
+        {
+          "label": "Đơn giá đất gồm tiền sử dụng đất theo bài toán ngược LNTT/TMĐT 20%",
+          "value": "khoảng 3,3 tr/m2 bình quân",
+          "source_chunk": "8"
+        }
+      ],
+      "business_notes": "Sơ bộ hiệu quả đầu tư/P&L; giá bán do R&D đề xuất; tính bài toán ngược với LNTT/TMĐT đạt 20%",
+      "excerpt": "dự án 2.316 ha Phía Nam Nhơn Trạch... Giá bán... Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2... LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2."
+    },
+    {
+      "id": "M01-0006",
+      "part": 1,
+      "decision": "multi_project_status_note",
+      "project_name": "Khảo sát hiện trạng Hải Nhân / Richland / Parklane",
+      "report_date": "",
+      "source_chunks": [
+        "12"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Khu Quận 9, liên quan đường Lê Văn Việt",
+      "map_url": "",
+      "scale_raw": "3 dự án được khảo sát thực tế: Hải Nhân, Richland, Parklane",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "3 dự án được khảo sát thực tế: Hải Nhân, Richland, Parklane"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Có link bài viết mở rộng đường Lê Văn Việt lên 6 làn xe, 30m"
+      },
+      "financial_items": [],
+      "business_notes": "Đây là note khảo sát đa dự án, không merge vào từng dự án riêng nếu thiếu chi tiết",
+      "excerpt": "sơ bộ hiện trạng 03 dự án Hải Nhân, Richland, Parklane... Link bài viết mở rộng đường Lê Văn Việt lên 6 làn xe, 30 m."
+    },
+    {
+      "id": "M01-0007",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án Hải Nhân 4.5ha",
+      "report_date": "",
+      "source_chunks": [
+        "13",
+        "14",
+        "15"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Khu Quận 9 / khu vực so sánh với Richland, Parklane",
+      "map_url": "",
+      "scale_raw": "45.933 m2 phù hợp quy hoạch; ô phố 1.2 số 02; tầng cao tối đa 50; HSSDĐ 10 lần; dân số 5.177; chung cư 28.604 m2 gồm 78 shop, 2.472 căn hộ; nhà liên kế 5.685 m2 gồm 63 nền 90 m2/nền",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "10 lần",
+        "population": "5.177",
+        "area_mentions": [
+          "45.933 m2",
+          "28.604 m2",
+          "5.685 m2",
+          "90 m2",
+          "4.5 ha"
+        ],
+        "raw": "45.933 m2 phù hợp quy hoạch; ô phố 1.2 số 02; tầng cao tối đa 50; HSSDĐ 10 lần; dân số 5.177; chung cư 28.604 m2 gồm 78 shop, 2.472 căn hộ; nhà liên kế 5.685 m2 gồm 63 nền 90 m2/nền"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Có báo cáo lời, FS và đề xuất giá R&D đính kèm ngày 16.7.2026 / 15.7.2026"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá đất Hải Nhân trên diện tích thương phẩm",
+          "value": "29 tr/m2",
+          "source_chunk": "15"
+        },
+        {
+          "label": "Đơn giá đất Richland so sánh trên diện tích thương phẩm",
+          "value": "28,9 tr/m2",
+          "source_chunk": "15"
+        },
+        {
+          "label": "Đơn giá đất Parklane so sánh trên diện tích thương phẩm",
+          "value": "43 tr/m2",
+          "source_chunk": "15"
+        }
+      ],
+      "business_notes": "Phân tích đầu tư từ nguồn Mr Duy; có so sánh giá chào bán với Richland/Parklane",
+      "excerpt": "dự án Hải Nhân 4.5ha... Tổng diện tích đất phù hợp quy hoạch: 45.933 m2... 2.472 căn hộ... 63 nền... Hải Nhân (29 tr/m2) và Richland (28,9 tr/m2) tốt hơn Parklane (43 tr/m2)."
+    },
+    {
+      "id": "M01-0008",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Parklane Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "16",
+        "17"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "Quận 9, TPHCM; khu vực đường Lê Văn Việt",
+      "map_url": "",
+      "scale_raw": "Dự án bị khống chế dân số khoảng 3.000 người theo QH 1/2000; PA1 thận trọng theo P.QH; không phù hợp TTTM quy mô lớn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án bị khống chế dân số khoảng 3.000 người theo QH 1/2000; PA1 thận trọng theo P.QH; không phù hợp TTTM quy mô lớn"
+      },
+      "legal": {
+        "land": "",
+        "project": "Có thông tin deal, QH 1/2000, tiến độ pháp lý dự kiến, so sánh 2 phương án phát triển",
+        "raw": "Có thông tin deal, QH 1/2000, tiến độ pháp lý dự kiến, so sánh 2 phương án phát triển"
+      },
+      "financial_items": [],
+      "business_notes": "RD cập nhật lại giá có thương hiệu sau khảo sát thực tế; chọn PA1 do phù hợp quy hoạch/dân số và hạn chế thương mại",
+      "excerpt": "Parklane, Quận 9... THÔNG TIN DEAL... QUY HOẠCH 1/2000... Dự án được tính theo PA1 (Thận trọng – Theo P.QH)... dân số khoảng 3.000 người."
+    },
+    {
+      "id": "M01-0009",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Hermes Power 1",
+      "report_date": "",
+      "source_chunks": [
+        "18"
+      ],
+      "source_file": "batch_001.txt",
+      "sender": "",
+      "location": "KĐT Thủ Thiêm; vị trí theo file chào Công ty Hải Hưng, chưa xác định ranh cụ thể",
+      "map_url": "https://maps.app.goo.gl/qDbb6mJHvwhXw4Az6",
+      "scale_raw": "Ô quy hoạch K4.4HH; HSSDĐ 7,31; dân số 1.002; quy mô 15 tầng, 438 căn hộ ở, 42 căn shop TM",
+      "planning": {
+        "floors": "15",
+        "density": "",
+        "far": "7,31",
+        "population": "1.002",
+        "area_mentions": [],
+        "raw": "Ô quy hoạch K4.4HH; HSSDĐ 7,31; dân số 1.002; quy mô 15 tầng, 438 căn hộ ở, 42 căn shop TM"
+      },
+      "legal": {
+        "land": "khu đất chưa có đường",
+        "project": "",
+        "raw": "Hiện trạng pháp lý chưa có gì; khu đất chưa có đường; đường Lương Định Của đang thi công; dự kiến mất 2 năm xử lý pháp lý"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ",
+          "value": "250 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "18"
+        },
+        {
+          "label": "Giá bán căn shop",
+          "value": "300 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "18"
+        }
+      ],
+      "business_notes": "FS sơ bộ; thời điểm bán hàng dự kiến 2029",
+      "excerpt": "dự án Hermes Power 1... Vị trí: KĐT Thủ Thiêm... ô quy hoạch K4.4HH... Giá bán: 250 tr/m2... Giá bán căn shop: 300 tr/m2."
+    },
+    {
+      "id": "M01-0010",
+      "part": 1,
+      "decision": "update_to_existing_project",
+      "project_name": "Richland Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "19"
+      ],
+      "source_file": "batch_004.txt",
+      "sender": "",
+      "location": "Đường Lê Văn Việt, Quận 9 cũ",
+      "map_url": "",
+      "scale_raw": "Diện tích đất thực hiện dự án 48.380 m2; có GCN 38.528 m2 gồm 4 sổ đất ở đô thị lâu dài; thiếu khoảng 9.852 m2 chưa có thông tin",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "48.380 m2",
+          "38.528 m2",
+          "9.852 m2",
+          "4,8 ha"
+        ],
+        "raw": "Diện tích đất thực hiện dự án 48.380 m2; có GCN 38.528 m2 gồm 4 sổ đất ở đô thị lâu dài; thiếu khoảng 9.852 m2 chưa có thông tin"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cấp GPXD 2008, đã xây móng/hầm gần 18 năm nên không còn sử dụng được",
+        "raw": "Cấp GPXD 2008, đã xây móng/hầm gần 18 năm nên không còn sử dụng được; chưa hoàn thành nghĩa vụ tài chính; chưa phải dành 20% NOXH tại thời điểm cũ; có đường dây điện cao thế ngang khu đất"
+      },
+      "financial_items": [],
+      "business_notes": "Cập nhật pháp lý, chi phí phát sinh phá dỡ/hạ ngầm điện có thể xảy ra",
+      "excerpt": "cập nhật dự án Richland, diện tích 4,8 ha đường Lê Văn Việt, Quận 9 cũ... diện tích đất thực hiện 48.380 m2... đã được cấp GPXD năm 2008..."
+    },
+    {
+      "id": "M01-0011",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Khách sạn Felicia",
+      "report_date": "",
+      "source_chunks": [
+        "20"
+      ],
+      "source_file": "batch_005.txt",
+      "sender": "Hoa D - CVDT",
+      "location": "Không nêu rõ trong excerpt này",
+      "map_url": "",
+      "scale_raw": "Khách sạn/dự án vận hành; báo cáo sau thông tin từ anh David Cường",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn/dự án vận hành; báo cáo sau thông tin từ anh David Cường"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có pháp lý trong excerpt; có attachment Bao Cao Khach_San_Felicia.pdf"
+      },
+      "financial_items": [
+        {
+          "label": "ADR doanh thu",
+          "value": "2,55 tr/phòng/đêm",
+          "source_chunk": "20"
+        },
+        {
+          "label": "OCC năm đầu",
+          "value": "75%",
+          "source_chunk": "20"
+        },
+        {
+          "label": "OCC ổn định",
+          "value": "88%",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Tăng giá",
+          "value": "5% mỗi năm",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Chi phí đầu tư",
+          "value": "1.000 tỷ VNĐ",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Chi phí HĐKD năm đầu",
+          "value": "52%",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Chi phí HĐKD ổn định",
+          "value": "46%",
+          "source_chunk": "20"
+        },
+        {
+          "label": "FF&E",
+          "value": "3% doanh thu",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Phí quản lý",
+          "value": "4% doanh thu",
+          "source_chunk": "20"
+        },
+        {
+          "label": "Phí bảo hiểm",
+          "value": "0,1% TMĐT",
+          "source_chunk": "20"
+        }
+      ],
+      "business_notes": "Giả định vận hành khách sạn: ADR/OCC/tăng giá/chi phí HĐKD; bổ sung chi phí sau GOP",
+      "excerpt": "dự án Felicia... ADR 2.55tr/phòng/đêm OCC năm đầu 75%, ổn định 88%... Chi phí đầu tư: 1,000 Tỷ VNĐ... FF&E 3% Doanh thu..."
+    },
+    {
+      "id": "M01-0012",
+      "part": 1,
+      "decision": "project_record_with_reply_context",
+      "project_name": "Dự án Tân Phú 43ha - Bình Dương / Kim Oanh",
+      "report_date": "2026-06-29",
+      "source_chunks": [
+        "21",
+        "22",
+        "23"
+      ],
+      "source_file": "batch_006.txt; batch_007.txt; batch_011.txt",
+      "sender": "Admin 01",
+      "location": "Bình Dương; đối diện Sygamo theo câu hỏi trong reply",
+      "map_url": "",
+      "scale_raw": "43 ha; giá chào cho toàn khu; theo 1/500 dự kiến đối tác đề xuất quy đổi đất ở thương phẩm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "43 ha"
+        ],
+        "raw": "43 ha; giá chào cho toàn khu; theo 1/500 dự kiến đối tác đề xuất quy đổi đất ở thương phẩm"
+      },
+      "legal": {
+        "land": "Liên quan vụ án 43ha đất vàng Bình Dương； đất công có khả năng thu hồi đấu giá",
+        "project": "đất công có khả năng thu hồi đấu giá",
+        "raw": "Liên quan vụ án 43ha đất vàng Bình Dương; đất công có khả năng thu hồi đấu giá; HĐXX 2022 chưa thu hồi và tạm giao Cty Tân Phú; vấn đề pháp lý lớn"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào toàn dự án",
+          "value": "13 tr/m2 cho 43 ha, khoảng 5.600 tỷ",
+          "source_chunk": "23"
+        },
+        {
+          "label": "Giá chào quy đổi đất ở thương phẩm",
+          "value": "khoảng 30 tr/m2 theo 1/500 dự kiến đối tác đề xuất",
+          "source_chunk": "23"
+        }
+      ],
+      "business_notes": "P.ĐT đề xuất không nghiên cứu, nhưng Admin yêu cầu cứ nghiên cứu xem lợi nhuận",
+      "excerpt": "dự án 43ha - Dự án Tân phú, Bình Dương (Kim Oanh)... Đối tác đang chào bán 13tr/m2 cho 43 ha (5,600 tỷ) ~ 30tr/m2 đất ở thương phẩm... Đề xuất: Không nghiên cứu dự án này."
+    },
+    {
+      "id": "M01-0013",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
+      "report_date": "",
+      "source_chunks": [
+        "24",
+        "25",
+        "26"
+      ],
+      "source_file": "batch_015.txt; batch_016.txt",
+      "sender": "",
+      "location": "Phú Quốc, đường Trần Hưng Đạo theo cơ sở tính giá đất",
+      "map_url": "",
+      "scale_raw": "Theo QH 1/500 cũ 100% thấp tầng; dân số 325; đất ở 2,8 ha chiếm 65%; 65 căn biệt thự; mỗi căn 430 m2 đất, MĐXD 33%, 3 tầng, 430 m2 sàn/căn",
+      "planning": {
+        "floors": "",
+        "density": "33%",
+        "far": "",
+        "population": "325",
+        "area_mentions": [
+          "2,8 ha",
+          "430 m2"
+        ],
+        "raw": "Theo QH 1/500 cũ 100% thấp tầng; dân số 325; đất ở 2,8 ha chiếm 65%; 65 căn biệt thự; mỗi căn 430 m2 đất, MĐXD 33%, 3 tầng, 430 m2 sàn/căn"
+      },
+      "legal": {
+        "land": "Ước tính tiền sử dụng đất theo QĐ 29/QĐ-BQLPTPQ ngày 03/04/2014； thảo luận về khi có người mua mới đóng TSDĐ/tách công ty",
+        "project": "",
+        "raw": "Ước tính tiền sử dụng đất theo QĐ 29/QĐ-BQLPTPQ ngày 03/04/2014; thảo luận về khi có người mua mới đóng TSDĐ/tách công ty"
+      },
+      "financial_items": [
+        {
+          "label": "TSDĐ kịch bản Min",
+          "value": "khoảng 1.750 tỷ",
+          "source_chunk": "26"
+        },
+        {
+          "label": "Cơ sở Min",
+          "value": "đơn giá đất Nhà nước mặt tiền đường Trần Hưng Đạo khoảng 67,5 tr/m2",
+          "source_chunk": "26"
+        },
+        {
+          "label": "TSDĐ kịch bản Max",
+          "value": "khoảng 2.300 tỷ",
+          "source_chunk": "26"
+        },
+        {
+          "label": "Cơ sở Max",
+          "value": "phương pháp thặng dư, đơn giá đất thặng dư ước khoảng 1,3 lần đơn giá đất Nhà nước",
+          "source_chunk": "26"
+        }
+      ],
+      "business_notes": "Tính TSDĐ theo quy hoạch 1/500 cũ",
+      "excerpt": "dự án Bà Kèo theo Quy hoạch 1/500 cũ... Dân số 325 người... 65 căn biệt thự... Kịch bản Min khoảng 1,750 tỷ... Kịch bản Max khoảng 2,300 tỷ."
+    },
+    {
+      "id": "M01-0014",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Thủ Đức Living",
+      "report_date": "",
+      "source_chunks": [
+        "27"
+      ],
+      "source_file": "batch_016.txt",
+      "sender": "",
+      "location": "Đường Phạm Văn Đồng, TP.HCM",
+      "map_url": "https://maps.app.goo.gl/D8GuCY5LefTH8JVq9",
+      "scale_raw": "Tổng diện tích 4.661 m2 gồm 1.471 m2 đất ở, 3.190 m2 đất cây hằng năm; phù hợp QH còn 3.545 m2 do dính lộ giới 1.111 m2; 25 tầng, 0 hầm; HSSDĐ 6 lần, dân số 500",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "6 lần",
+        "population": "500",
+        "area_mentions": [
+          "4.661 m2",
+          "1.471 m2",
+          "3.190 m2",
+          "3.545 m2",
+          "1.111 m2",
+          "4,661 m2"
+        ],
+        "raw": "Tổng diện tích 4.661 m2 gồm 1.471 m2 đất ở, 3.190 m2 đất cây hằng năm; phù hợp QH còn 3.545 m2 do dính lộ giới 1.111 m2; 25 tầng, 0 hầm; HSSDĐ 6 lần, dân số 500"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Được thực hiện dự án thí điểm Nhà ở thương mại theo Nghị quyết 171; pháp lý QH còn hạn chế do lộ giới"
+      },
+      "financial_items": [
+        {
+          "label": "Doanh thu có VAT",
+          "value": "1.179 tỷ VNĐ",
+          "source_chunk": "27"
+        },
+        {
+          "label": "Giá trị bán căn hộ chung cư",
+          "value": "1.038 tỷ, tương ứng 66 tr/m2 tim tường",
+          "source_chunk": "27"
+        },
+        {
+          "label": "Giá trị bán Shophouse",
+          "value": "141 tỷ, tương ứng 78 tr/m2 tim tường",
+          "source_chunk": "27"
+        },
+        {
+          "label": "Chi phí có VAT",
+          "value": "1.415 tỷ VNĐ",
+          "source_chunk": "27"
+        }
+      ],
+      "business_notes": "Báo cáo sơ bộ hiện trạng pháp lý và hiệu quả dự án",
+      "excerpt": "dự án Thủ Đức Living, Đường Phạm Văn Đồng... Tổng diện tích khu đất 4,661 m2... Doanh thu 1,179 tỷ VNĐ... Chi phí 1,415 tỷ VNĐ."
+    },
+    {
+      "id": "M01-0015",
+      "part": 1,
+      "decision": "multi_project_record",
+      "project_name": "LDG High và West Intela",
+      "report_date": "",
+      "source_chunks": [
+        "28"
+      ],
+      "source_file": "batch_016.txt",
+      "sender": "",
+      "location": "Theo bản đồ 2 khu đất LDG - High + West Intela",
+      "map_url": "",
+      "scale_raw": "2 dự án High và West của LDG; thiết kế 2017 có 65% căn hộ 2PN khoảng 60 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "60 m2"
+        ],
+        "raw": "2 dự án High và West của LDG; thiết kế 2017 có 65% căn hộ 2PN khoảng 60 m2"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Rủi ro pháp lý/nghĩa vụ tài chính; chưa hoàn tất nghĩa vụ tài chính giai đoạn 2017-2018; cần thẩm định pháp lý chuyên sâu; thiết kế lỗi thời"
+      },
+      "financial_items": [
+        {
+          "label": "Nghĩa vụ tài chính bổ sung đối tác ước tính",
+          "value": "khoảng 270 tỷ đồng cho hai dự án",
+          "source_chunk": "28"
+        }
+      ],
+      "business_notes": "Nguồn từ anh Dũng; đánh giá rủi ro pháp lý và phương án thiết kế",
+      "excerpt": "2 dự án High và West của LDG... Đối tác ước tính nghĩa vụ tài chính bổ sung khoảng 270 tỷ đồng cho hai dự án... Thiết kế dự án từ năm 2017 đã lạc hậu."
+    },
+    {
+      "id": "M01-0016",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "30"
+      ],
+      "source_file": "batch_022.txt",
+      "sender": "",
+      "location": "Đường Long Thuận, Long Phước, Quận 9, TP.HCM",
+      "map_url": "",
+      "scale_raw": "10 ha; phương án 1 dân số 1.500 người",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "1.500 người",
+        "area_mentions": [
+          "10 ha"
+        ],
+        "raw": "10 ha; phương án 1 dân số 1.500 người"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Có PA theo bố trí phòng QH nhưng excerpt bị cắt"
+      },
+      "financial_items": [],
+      "business_notes": "Báo cáo sơ bộ, Admin yêu cầu trình bày lại",
+      "excerpt": "sơ bộ dự án 10ha Đường Long Thuận, Long Phước, Quận 9, TP.HCM PHƯƠNG ÁN 1: Dân số 1500 người..."
+    },
+    {
+      "id": "M01-0017",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
+      "report_date": "",
+      "source_chunks": [
+        "41",
+        "51",
+        "52",
+        "66",
+        "67"
+      ],
+      "source_file": "batch_035.txt; batch_042.txt; batch_062.txt",
+      "sender": "",
+      "location": "Võ Văn Kiệt; 2 lô A17-01 và A17-02",
+      "map_url": "",
+      "scale_raw": "Diện tích khoảng 4.600/4.613 m2; PA gộp 2 lô; dân số 1.290; HSSDĐ 13,7 cũ cập nhật 14,7; 2 block 30 tầng nổi/3 hầm cũ, cập nhật tầng cao 36; sản phẩm 833 lên 852 căn; shop 3 tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "13,7",
+        "population": "1.290",
+        "area_mentions": [
+          "4.613 m2",
+          "4.600 m2"
+        ],
+        "raw": "Diện tích khoảng 4.600/4.613 m2; PA gộp 2 lô; dân số 1.290; HSSDĐ 13,7 cũ cập nhật 14,7; 2 block 30 tầng nổi/3 hầm cũ, cập nhật tầng cao 36; sản phẩm 833 lên 852 căn; shop 3 tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Theo chỉ tiêu QH dự kiến điều chỉnh; phòng QH giả định giữ/tăng chỉ tiêu dân số và hệ số"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá xây dựng All-in",
+          "value": "21 tr/m2 gồm VAT",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Chi phí kinh doanh bán hàng",
+          "value": "19% doanh thu",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Giá bán căn hộ cập nhật",
+          "value": "giảm từ 105 xuống 99 tr/m2 gồm VAT, tương đương 90 tr chưa VAT",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Giá bán shop tầng 1+2",
+          "value": "230 tr/m2",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Giá bán shop tầng 3",
+          "value": "110 tr/m2",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Đơn giá bình quân shop 3 tầng",
+          "value": "193 tr/m2 gồm VAT, khoảng 175 tr chưa VAT, khoảng 50,8 tỷ/căn 290 m2",
+          "source_chunk": "41"
+        },
+        {
+          "label": "Giá mua để IRR khoảng 15% tại giá bán căn hộ 90 tr/m2",
+          "value": "260-280 tr/m2, khoảng 685-738 tỷ cho lô A17-01 diện tích 2.635 m2",
+          "source_chunk": "52"
+        },
+        {
+          "label": "Giá mua lô A17-02",
+          "value": "cố định khoảng 190 tr/m2",
+          "source_chunk": "66"
+        },
+        {
+          "label": "Giá chào lô A17-01",
+          "value": "380 tr/m2",
+          "source_chunk": "66"
+        }
+      ],
+      "business_notes": "Có báo cáo đầu tư và đề xuất giá R&D 28.5/27.5; đang tính độ nhạy theo giá mua dự án và giá bán căn hộ",
+      "excerpt": "DA Võ Văn Kiệt (Gộp 2 Lô)... Hệ số tăng từ 13,7 lên 14,7... Giá bán căn hộ giảm từ 105 xuống 99 tr/m2... PA gộp 2 lô Võ Văn Kiệt diện tích 4.600 m2."
+    },
+    {
+      "id": "M01-0018",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+      "report_date": "2026-05-27",
+      "source_chunks": [
+        "46",
+        "70",
+        "71",
+        "75",
+        "79",
+        "80"
+      ],
+      "source_file": "batch_037.txt; batch_064.txt; batch_068.txt; batch_073.txt",
+      "sender": "Admin 01",
+      "location": "KDC Cát Lái I, lô H2-02",
+      "map_url": "",
+      "scale_raw": "Dự án căn hộ H2-02/Sky Habitat; cập nhật FS và pháp lý sơ bộ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án căn hộ H2-02/Sky Habitat; cập nhật FS và pháp lý sơ bộ"
+      },
+      "legal": {
+        "land": "có GPXD/GCN theo thông tin đối tác nhưng cần P.PLDA đánh giá",
+        "project": "có GPXD/GCN theo thông tin đối tác nhưng cần P.PLDA đánh giá",
+        "raw": "Cần làm rõ 120 tỷ LUR theo hệ số K; chuyển nhượng từ Invesco sang Phú Gia trước khi hoàn thành hạ tầng; cần ý kiến giải trình Sở NNMT; có GPXD/GCN theo thông tin đối tác nhưng cần P.PLDA đánh giá"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào PA 690",
+          "value": "690 tỷ, bao tiền sử dụng đất/LUR",
+          "source_chunk": "46"
+        },
+        {
+          "label": "Giá vốn công ty dự án ghi nhận",
+          "value": "50 tỷ",
+          "source_chunk": "46"
+        },
+        {
+          "label": "Thiệt hại thuế TNDN ước tính",
+          "value": "128 tỷ = (690-50)x20%",
+          "source_chunk": "46"
+        },
+        {
+          "label": "Tổng giá đầu vào gồm giá chào và thiệt hại thuế",
+          "value": "818 tỷ, khoảng 102 tr/m2",
+          "source_chunk": "46"
+        },
+        {
+          "label": "Giá bán trung bình dự án cập nhật",
+          "value": "80,8 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "46"
+        },
+        {
+          "label": "LNTT điều chỉnh thiệt hại thuế",
+          "value": "424 tỷ",
+          "source_chunk": "46"
+        },
+        {
+          "label": "LNST điều chỉnh thiệt hại thuế",
+          "value": "340 tỷ",
+          "source_chunk": "46"
+        },
+        {
+          "label": "IRR PA 690",
+          "value": "15,5%",
+          "source_chunk": "46"
+        },
+        {
+          "label": "LNTT/TMĐT PA 690",
+          "value": "25,2%",
+          "source_chunk": "46"
+        },
+        {
+          "label": "Giá chào cập nhật PA H2-02",
+          "value": "600 tỷ",
+          "source_chunk": "75"
+        },
+        {
+          "label": "Tiền sử dụng đất còn phải nộp",
+          "value": "120 tỷ theo hệ số K, bên mua chịu",
+          "source_chunk": "75"
+        },
+        {
+          "label": "Suất xây dựng gồm VAT",
+          "value": "17 tr/m2 all-in",
+          "source_chunk": "75"
+        },
+        {
+          "label": "Giá bán PA H2-02",
+          "value": "75 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "75"
+        },
+        {
+          "label": "Chi phí bán hàng PA H2-02",
+          "value": "15% doanh thu",
+          "source_chunk": "75"
+        },
+        {
+          "label": "LNTT PA H2-02",
+          "value": "342 tỷ",
+          "source_chunk": "75"
+        },
+        {
+          "label": "NPV PA H2-02",
+          "value": "53 tỷ",
+          "source_chunk": "75"
+        },
+        {
+          "label": "IRR PA H2-02",
+          "value": "14,4%",
+          "source_chunk": "75"
+        },
+        {
+          "label": "LNTT/TMĐT PA H2-02",
+          "value": "19,8%",
+          "source_chunk": "75"
+        }
+      ],
+      "business_notes": "Giá chào thay đổi 600/690 tỷ; có rủi ro thuế TNDN do giá vốn công ty dự án ghi nhận thấp; khảo sát dự án hàng xóm chuẩn bàn giao thấp",
+      "excerpt": "Cát Lái - Sky Habitat... PA giá chào 690 tỷ bao LUR... H2-02 giá chào 600 tỷ, TSDĐ 120 tỷ, giá bán 75 tr/m2, IRR 14.4%."
+    },
+    {
+      "id": "M01-0019",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án Bà Kèo, Phú Quốc",
+      "report_date": "2026-05-27",
+      "source_chunks": [
+        "49",
+        "57",
+        "61",
+        "73",
+        "74",
+        "78"
+      ],
+      "source_file": "batch_039.txt; batch_050.txt; batch_058.txt; batch_066.txt; batch_068.txt",
+      "sender": "Admin 01",
+      "location": "Bà Kèo, Phú Quốc; mặt tiền Trần Hưng Đạo trong một số PA",
+      "map_url": "",
+      "scale_raw": "PA10 1.501 căn/35 tầng/HSSDĐ 4,4/dân số 3.531; PA11 2.004 căn/HSSDĐ 5,0/dân số 4.355; PA12 2.000 căn/40 tầng/HSSDĐ 5,3/dân số 4.525; PA12A 2.269 căn/40 tầng/HSSDĐ 5,7/dân số 5.000; có nhà liên kế/shophouse/TTTM tùy PA",
+      "planning": {
+        "floors": "40",
+        "density": "",
+        "far": "4,4",
+        "population": "3.531",
+        "area_mentions": [],
+        "raw": "PA10 1.501 căn/35 tầng/HSSDĐ 4,4/dân số 3.531; PA11 2.004 căn/HSSDĐ 5,0/dân số 4.355; PA12 2.000 căn/40 tầng/HSSDĐ 5,3/dân số 4.525; PA12A 2.269 căn/40 tầng/HSSDĐ 5,7/dân số 5.000; có nhà liên kế/shophouse/TTTM tùy PA"
+      },
+      "legal": {
+        "land": "toàn bộ đất thương phẩm có khả năng chuyển sang đất ở theo thông tin P.QH",
+        "project": "Điều kiện tiên quyết PA bán toàn dự án: hoàn thành GPMB",
+        "raw": "Điều kiện tiên quyết PA bán toàn dự án: hoàn thành GPMB; toàn bộ đất thương phẩm có khả năng chuyển sang đất ở theo thông tin P.QH"
+      },
+      "financial_items": [
+        {
+          "label": "Giá vốn đất ban đầu trước chuyển nhượng",
+          "value": "500 tỷ",
+          "source_chunk": "49"
+        },
+        {
+          "label": "Chi phí bồi thường GPMB",
+          "value": "413 tỷ",
+          "source_chunk": "49"
+        },
+        {
+          "label": "Chi phí pháp lý từ hiện trạng đến đóng tiền SDĐ",
+          "value": "87 tỷ",
+          "source_chunk": "49"
+        },
+        {
+          "label": "Giá vốn đất quy đổi toàn khu",
+          "value": "khoảng 12 tr/m2 đất toàn khu 4,2ha",
+          "source_chunk": "49"
+        },
+        {
+          "label": "Giá vốn đất quy đổi đất ở thương phẩm",
+          "value": "khoảng 20 tr/m2 đất ở thương phẩm theo QH 2,5ha",
+          "source_chunk": "49"
+        },
+        {
+          "label": "Chi phí bán hàng PA10 chưa VAT",
+          "value": "1.362 tỷ",
+          "source_chunk": "73"
+        },
+        {
+          "label": "Chi phí bán hàng PA11 chưa VAT",
+          "value": "1.513 tỷ",
+          "source_chunk": "73"
+        },
+        {
+          "label": "Chi phí bán hàng PA12 chưa VAT",
+          "value": "1.590 tỷ",
+          "source_chunk": "73"
+        }
+      ],
+      "business_notes": "Nghiên cứu PA tối đa để rao bán toàn dự án; cần tăng chi phí bán hàng ngoài đảo; so sánh chi phí xây dựng 30/40 tầng; PA12A được đánh giá khai thác tối đa và hiệu quả ổn",
+      "excerpt": "dự án Bà Kèo, Phú Quốc... PA12A 2.269 căn hộ, cao 40 tầng, HSSDĐ 5.7 lần, tổng dân số 5.000... Giá vốn đất ban đầu 500 tỷ."
+    },
+    {
+      "id": "M01-0020",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án 5,1ha Kinh Đô / lô Quốc Lộ 13 Hiệp Bình Phước",
+      "report_date": "",
+      "source_chunks": [
+        "54",
+        "65",
+        "69"
+      ],
+      "source_file": "batch_046.txt; batch_060.txt; batch_062.txt",
+      "sender": "",
+      "location": "Mặt tiền Quốc Lộ 13 / Đường số 4, phường Hiệp Bình Phước, TP Thủ Đức; tọa độ 10.8403809,106.7198151",
+      "map_url": "https://www.google.com/maps?q=10.8403809,106.7198151",
+      "scale_raw": "Lô đất 42x100m = 4.214 m2 trong tin anh Hùng; dự án Kinh Đô 5,1ha; đất phù hợp hỗn hợp nhóm ở&DV 2.900 m2 và cây xanh 1.300 m2; bản 5,1ha có 4,9ha đã cấp sổ đất sản xuất",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "4.214 m2",
+          "5,1 ha",
+          "2.900 m2",
+          "1.300 m2",
+          "4,9 ha"
+        ],
+        "raw": "Lô đất 42x100m = 4.214 m2 trong tin anh Hùng; dự án Kinh Đô 5,1ha; đất phù hợp hỗn hợp nhóm ở&DV 2.900 m2 và cây xanh 1.300 m2; bản 5,1ha có 4,9ha đã cấp sổ đất sản xuất"
+      },
+      "legal": {
+        "land": "Đất sản xuất phi nông nghiệp/thời hạn lâu dài",
+        "project": "quy hoạch 1/2000 có 31% cây xanh ở lô 4.214 m2",
+        "raw": "Đất sản xuất phi nông nghiệp/thời hạn lâu dài; quy hoạch 1/2000 có 31% cây xanh ở lô 4.214 m2; P.ĐT đề xuất không nghiên cứu sâu lô nhỏ"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào lô 4.214 m2",
+          "value": "350 tỷ",
+          "source_chunk": "54"
+        },
+        {
+          "label": "Đơn giá quy đổi đất hỗn hợp nhóm ở&DV",
+          "value": "120 tr/m2",
+          "source_chunk": "54"
+        }
+      ],
+      "business_notes": "Có khả năng cùng khu Kinh Đô nhưng ghi rõ 2 nguồn kích thước khác nhau; giữ trong cùng hồ sơ với note khác quy mô, không coi là một deal duy nhất nếu cần chốt",
+      "excerpt": "lô mặt tiền Quốc Lộ 13, Hiệp Bình Phước... 42x100m (4.214m2)... Giá 350 tỷ... Kinh Đô 5,1ha mặt tiền Đường số 4..."
+    },
+    {
+      "id": "M01-0021",
+      "part": 1,
+      "decision": "project_record_with_related_replies",
+      "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
+      "report_date": "2026-05-08",
+      "source_chunks": [
+        "58",
+        "59",
+        "62",
+        "63"
+      ],
+      "source_file": "batch_052.txt; batch_059.txt",
+      "sender": "Khoa L - INVT",
+      "location": "Vĩnh Phú, gần Phú Quang",
+      "map_url": "",
+      "scale_raw": "Khoảng 12ha KDC Vĩnh Phú; chi tiết bị cắt trong excerpt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "12 ha"
+        ],
+        "raw": "Khoảng 12ha KDC Vĩnh Phú; chi tiết bị cắt trong excerpt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Có thông tin dự án đã được đưa vào danh sách thí điểm 171, số thứ tự 41, danh sách thí điểm đợt 3 năm 2025 ngày 12/12/2025"
+      },
+      "financial_items": [
+        {
+          "label": "Khung giá đất yêu cầu làm độ nhạy",
+          "value": "12-14 tr/m2",
+          "source_chunk": "59"
+        }
+      ],
+      "business_notes": "P.ĐT đề xuất gom mua; có bảng độ nhạy theo đơn giá đất/tổng giá mua đất; Admin yêu cầu làm từ giá 12-14tr",
+      "excerpt": "dự án 12ha KDC Vĩnh Phú gần Phú Quang... đề xuất gom mua... làm từ giá 12-14tr... đã được đưa vào danh sách thí điểm 171 số thứ tự 41."
+    },
+    {
+      "id": "M01-0022",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
+      "report_date": "",
+      "source_chunks": [
+        "76"
+      ],
+      "source_file": "batch_068.txt",
+      "sender": "Hoa D - CVDT",
+      "location": "290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Lô đất làm khách sạn; giả định 25 tầng; HSSDĐ 14,7",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "14,7",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Lô đất làm khách sạn; giả định 25 tầng; HSSDĐ 14,7"
+      },
+      "legal": {
+        "land": "Đất TMDV thời hạn sử dụng lâu dài",
+        "project": "",
+        "raw": "Đất TMDV thời hạn sử dụng lâu dài; sổ cấp sai thời hạn nên khi xin dự án điều chỉnh còn 50 năm tới 2061"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào đất khách sạn",
+          "value": "650 tr/m2",
+          "source_chunk": "76"
+        }
+      ],
+      "business_notes": "Dựa trên dự án KS Serene để giả định kinh doanh; có dòng tiền và độ nhạy TMĐT/phòng",
+      "excerpt": "lô đất làm dự án khách sạn cạnh TMS... giá chào 650tr/m2 tại 290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng... giả định 25 tầng, HSSDĐ 14.7."
+    },
+    {
+      "id": "M01-0023",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Chung cư Hạnh Phúc",
+      "report_date": "",
+      "source_chunks": [
+        "77"
+      ],
+      "source_file": "batch_068.txt",
+      "sender": "",
+      "location": "Số 10 Trần Đại Nghĩa, H. Bình Chánh, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích đất gần 7.000 m2 / GCN 6.952 m2; đất SXKD; cao ốc căn hộ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "7.000 m2",
+          "6.952 m2"
+        ],
+        "raw": "Diện tích đất gần 7.000 m2 / GCN 6.952 m2; đất SXKD; cao ốc căn hộ"
+      },
+      "legal": {
+        "land": "QĐ 4448/QĐ-UBND ngày 11/10/2008 giao đất； chưa hoàn thành nghĩa vụ tài chính khi chuyển mục đích SKC sang đất ở chung cư",
+        "project": "QĐ 54/QĐ-SXD-PTN ngày 29/04/2008 phê duyệt dự án đầu tư xây dựng Cao ốc căn hộ Hạnh Phúc, tương đương GPXD thời điểm đó",
+        "raw": "QĐ 54/QĐ-SXD-PTN ngày 29/04/2008 phê duyệt dự án đầu tư xây dựng Cao ốc căn hộ Hạnh Phúc, tương đương GPXD thời điểm đó; QĐ 4448/QĐ-UBND ngày 11/10/2008 giao đất; chưa hoàn thành nghĩa vụ tài chính khi chuyển mục đích SKC sang đất ở chung cư"
+      },
+      "financial_items": [],
+      "business_notes": "Nguồn Mr.Khôi; báo cáo sơ bộ pháp lý",
+      "excerpt": "DA Chung cư Hạnh Phúc... diện tích đất gần 7.000 m2, đường Trần Đại Nghĩa, H.Bình Chánh... chưa hoàn thành nghĩa vụ tài chính khi chuyển mục đích SKC sang đất ở xây dựng chung cư."
+    },
+    {
+      "id": "M01-0024",
+      "part": 1,
+      "decision": "project_record",
+      "project_name": "Dự án lô A17-01 kế bên Võ Văn Kiệt, Đà Nẵng",
+      "report_date": "",
+      "source_chunks": [
+        "83"
+      ],
+      "source_file": "batch_074.txt",
+      "sender": "",
+      "location": "Lô A17-01, sát bên dự án Võ Văn Kiệt của Công ty (A17-02), đường Võ Văn Kiệt, TP Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích 2.635 m2; dân số 740; MĐXD 60%; 27 tầng nổi, 3 hầm; 305 căn gồm 299 căn hộ ở và 6 shop khối đế; HSSDĐ 12,8 lần",
+      "planning": {
+        "floors": "",
+        "density": "60%",
+        "far": "12,8 lần",
+        "population": "740",
+        "area_mentions": [
+          "2.635 m2"
+        ],
+        "raw": "Diện tích 2.635 m2; dân số 740; MĐXD 60%; 27 tầng nổi, 3 hầm; 305 căn gồm 299 căn hộ ở và 6 shop khối đế; HSSDĐ 12,8 lần"
+      },
+      "legal": {
+        "land": "",
+        "project": "Theo QĐ chủ trương đầu tư 2915/QĐ-UBND ngày 09/12/2025 từ cổng thông tin TP Đà Nẵng",
+        "raw": "Theo QĐ chủ trương đầu tư 2915/QĐ-UBND ngày 09/12/2025 từ cổng thông tin TP Đà Nẵng"
+      },
+      "financial_items": [
+        {
+          "label": "Chi phí đất gồm VAT",
+          "value": "1.182 tỷ đồng, khoảng 52%, gồm chi phí mua dự án và tiền sử dụng đất nộp bổ sung",
+          "source_chunk": "83"
+        }
+      ],
+      "business_notes": "Tính FS để ra giá có thể mua được; sau này có thể gộp với dự án Võ Văn Kiệt nhưng hiện giữ record riêng vì đây là lô A17-01 riêng",
+      "excerpt": "dự án kế bên DA Võ Văn Kiệt, TP Đà Nẵng... lô A17-01... Diện tích 2.635 m2... 27 tầng nổi, 3 tầng hầm... Chi phí đất 1.182 tỷ đồng."
+    },
+    {
+      "id": "M01-0025",
+      "part": 1,
+      "decision": "market_reference_not_project_db",
+      "project_name": "Gladia Heights - thông tin thị trường tham chiếu",
+      "report_date": "",
+      "source_chunks": [
+        "86"
+      ],
+      "source_file": "batch_084.txt",
+      "sender": "",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Dự kiến triển khai trong 2026",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự kiến triển khai trong 2026"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có"
+      },
+      "financial_items": [
+        {
+          "label": "Rumor giá bán",
+          "value": "100 tr/m2",
+          "source_chunk": "86"
+        }
+      ],
+      "business_notes": "Tin tham chiếu thị trường, không phải báo cáo dự án nghiên cứu chính",
+      "excerpt": "dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2."
+    },
+    {
+      "id": "M01-0026",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+      "report_date": "",
+      "source_chunks": [
+        "89",
+        "90",
+        "92",
+        "94"
+      ],
+      "source_file": "batch_089.txt; batch_091.txt; batch_093.txt",
+      "sender": "Hoa D - CVDT",
+      "location": "120 Đặng Văn Bi, phường Thủ Đức, TP.HCM; cách ga Metro Bình Thái khoảng 700m",
+      "map_url": "https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA",
+      "scale_raw": "Khoảng 4.600 m2; theo list sơ bộ 22 tầng, HSSDĐ 7; phát triển chung cư và căn hộ dịch vụ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "7",
+        "population": "",
+        "area_mentions": [
+          "4.600 m2"
+        ],
+        "raw": "Khoảng 4.600 m2; theo list sơ bộ 22 tầng, HSSDĐ 7; phát triển chung cư và căn hộ dịch vụ"
+      },
+      "legal": {
+        "land": "Cần xác minh tỷ lệ đất ở； chi phí chuyển mục đích đang giả định thận trọng 100% đất CLN； rủi ro phần đất mộ cần xử lý/di dời và tác động tâm lý người mua",
+        "project": "",
+        "raw": "Cần xác minh tỷ lệ đất ở; chi phí chuyển mục đích đang giả định thận trọng 100% đất CLN; rủi ro phần đất mộ cần xử lý/di dời và tác động tâm lý người mua"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí gần trường đại học, KCNC, khu dân cư hiện hữu; nhu cầu mua/thuê ổn định; nguồn cung căn hộ/căn hộ dịch vụ còn hạn chế; deadline 21/05/2026 trong list công việc",
+      "excerpt": "khu đất 4.600 m2 tại 120 Đặng Văn Bi... vị trí ranh dự án... cách ga Metro Bình Thái khoảng 700m... Dự án phát triển chung cư và căn hộ dịch vụ."
+    },
+    {
+      "id": "M01-0027",
+      "part": 1,
+      "decision": "project_record_with_list_context",
+      "project_name": "Dự án 31 Trần Não – PA4 full văn phòng + tiện ích",
+      "report_date": "",
+      "source_chunks": [
+        "94",
+        "95"
+      ],
+      "source_file": "batch_093.txt",
+      "sender": "Thao L - INVT",
+      "location": "31 Trần Não, Quận 2, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích 5.835 m2; PA4 35 tầng văn phòng + tiện ích; một phần tầng 03 làm hồ bơi 240 m2 và 378 m2 tiện ích; tiện ích gồm giải khát 25 chỗ, gym, yoga/fitness, khu ăn uống 50 chỗ, WC/thay đồ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "5.835 m2",
+          "240 m2",
+          "378 m2"
+        ],
+        "raw": "Diện tích 5.835 m2; PA4 35 tầng văn phòng + tiện ích; một phần tầng 03 làm hồ bơi 240 m2 và 378 m2 tiện ích; tiện ích gồm giải khát 25 chỗ, gym, yoga/fitness, khu ăn uống 50 chỗ, WC/thay đồ"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Theo list dự án deadline 20/05/2026; đang tính PA4"
+      },
+      "financial_items": [
+        {
+          "label": "Chi phí xây dựng PA4 có tiện ích gồm VAT",
+          "value": "1.578 tỷ đồng, SĐT all-in khoảng 19 tr/m2 sàn",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Chi phí xây dựng PA3 không tiện ích gồm VAT",
+          "value": "1.525 tỷ đồng, SĐT all-in khoảng 18,4 tr/m2 sàn",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Chi phí tăng thêm do tiện ích",
+          "value": "khoảng 54 tỷ đồng",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Giá thuê văn phòng Q4/2030",
+          "value": "30,8 USD",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Tỷ lệ tăng giá thuê",
+          "value": "2%/năm",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Phí dịch vụ văn phòng 4 năm đầu",
+          "value": "5 USD",
+          "source_chunk": "95"
+        },
+        {
+          "label": "Phí dịch vụ văn phòng ổn định",
+          "value": "7 USD",
+          "source_chunk": "95"
+        }
+      ],
+      "business_notes": "PA4 đầu tư hoàn thiện full nội thất tiện ích để vận hành ngay khi hoàn thành",
+      "excerpt": "dự án 31 Trần Não – PA4: Full VP + tiện ích... Chi phí xây dựng PA4 1.578 tỷ... PA3 1.525 tỷ... Giá thuê VP Q4.2030 30.8$."
+    },
+    {
+      "id": "M01-0028",
+      "part": 1,
+      "decision": "merged_same_project_update",
+      "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+      "report_date": "",
+      "source_chunks": [
+        "96",
+        "97",
+        "98"
+      ],
+      "source_file": "batch_094.txt; batch_097.txt",
+      "sender": "",
+      "location": "02 Tây Thạnh / đường Tây Thạnh, Q. Tân Phú; mặt tiền dài khoảng 65m, lòng đường 16m, vỉa hè mỗi bên 8m; bán kính TOD metro số 2",
+      "map_url": "",
+      "scale_raw": "Diện tích 11.221–11.221,7 m2; đất ở lâu dài nhưng mục đích sử dụng đất sản xuất kinh doanh; theo QH ô phố I82b 16,4ha có đất giáo dục, TMDV, cây xanh, đất ở 0,49ha; phần đất QH đất ở rất thấp chỉ 336 m2 theo đánh giá",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "11.221,7 m2",
+          "16,4 ha",
+          "0,49 ha",
+          "336 m2",
+          "11.221,7 m²",
+          "11.000 m2"
+        ],
+        "raw": "Diện tích 11.221–11.221,7 m2; đất ở lâu dài nhưng mục đích sử dụng đất sản xuất kinh doanh; theo QH ô phố I82b 16,4ha có đất giáo dục, TMDV, cây xanh, đất ở 0,49ha; phần đất QH đất ở rất thấp chỉ 336 m2 theo đánh giá"
+      },
+      "legal": {
+        "land": "GCN cấp 2005",
+        "project": "Sacombank rao đấu giá xử lý nợ",
+        "raw": "GCN cấp 2005; sang tên cá nhân ông Phạm Công Danh ngày 13/06/2006; Sacombank rao đấu giá xử lý nợ; rủi ro TOD chưa xác định ranh đền bù; khả năng xin điều chỉnh HSSDĐ/dân số khó"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào nguồn Mr.Khôi/Sacombank ban đầu",
+          "value": "592 tỷ, khoảng 52,7 tr/m2 đất ở",
+          "source_chunk": "98"
+        },
+        {
+          "label": "Giá đấu giá cuối 2023 - giữa 2024",
+          "value": "508,56 tỷ đồng",
+          "source_chunk": "97"
+        },
+        {
+          "label": "Giá đấu giá tháng 09/2024",
+          "value": "483,13 tỷ đồng",
+          "source_chunk": "97"
+        },
+        {
+          "label": "Giá đấu giá nửa đầu 2025 đến 2026",
+          "value": "410 tỷ đồng, khoảng 36,5 tr/m2",
+          "source_chunk": "97"
+        }
+      ],
+      "business_notes": "Nguồn Mr.Khôi/đấu giá Sacombank; phòng xin ý kiến có tiếp tục nghiên cứu sâu hay không",
+      "excerpt": "khu đất tại 02 Tây Thạnh, Tân Phú... Diện tích 11.221,7 m²... Sacombank đang rao đấu giá xử lý nợ... giá 410 tỷ... sơ bộ khu đất 11.000 m2 đường Tây Thạnh."
+    },
+    {
+      "id": "M01-0029",
+      "part": 1,
+      "decision": "project_record_with_reply_context",
+      "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+      "report_date": "",
+      "source_chunks": [
+        "100",
+        "101"
+      ],
+      "source_file": "batch_098.txt; batch_099.txt",
+      "sender": "Huy M - IM",
+      "location": "Không nêu rõ trong excerpt này; dự án Holiday Beach",
+      "map_url": "",
+      "scale_raw": "2 tầng hầm, 30 tầng nổi; tổng GFA gồm hầm 75.913 m2; diện tích thương phẩm 43.702 m2, khoảng 58% GFA gồm hầm/66% GFA chưa hầm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "75.913 m2",
+          "43.702 m2"
+        ],
+        "raw": "2 tầng hầm, 30 tầng nổi; tổng GFA gồm hầm 75.913 m2; diện tích thương phẩm 43.702 m2, khoảng 58% GFA gồm hầm/66% GFA chưa hầm"
+      },
+      "legal": {
+        "land": "giả định reset lại 50 năm từ hiện tại và tạm tính đóng thêm TSDĐ hơn 200 tỷ để làm PA condotel",
+        "project": "",
+        "raw": "Vấn đề thời hạn còn tới khoảng 2058/2060; nếu làm pháp lý/xây dựng đến 2030 thì Condotel còn 28–30 năm khó bán; giả định reset lại 50 năm từ hiện tại và tạm tính đóng thêm TSDĐ hơn 200 tỷ để làm PA condotel; nếu không reset được thì chỉ PA khách sạn vận hành cho thuê"
+      },
+      "financial_items": [
+        {
+          "label": "Tiền sử dụng đất tạm tính để reset thời hạn làm condotel",
+          "value": "hơn 200 tỷ",
+          "source_chunk": "100"
+        }
+      ],
+      "business_notes": "FS phương án kết hợp khách sạn và condotel; xây hoàn thiện tiêu chuẩn 5 sao; phân bổ giá vốn theo doanh thu ước tính cho các loại sản phẩm",
+      "excerpt": "FS dự án Holiday Beach theo phương án kết hợp Khách sạn và Condotel... 2 tầng hầm, 30 tầng nổi, GFA 75.913 m2... nếu không reset được thời hạn thì chỉ có PA khách sạn vận hành cho thuê."
+    },
+    {
+      "id": "M02-0001",
+      "part": 2,
+      "decision": "attachment_update_to_existing_project",
+      "project_name": "Holiday Beach - phương án Condotel + Hotel",
+      "report_date": "",
+      "source_chunks": [
+        "102"
+      ],
+      "source_file": "batch_099.txt",
+      "sender": "",
+      "location": "Holiday Beach",
+      "map_url": "",
+      "scale_raw": "Theo hồ sơ BC trình bày/BC lời/FS ngày 14.05.2026",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Theo hồ sơ BC trình bày/BC lời/FS ngày 14.05.2026"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có thêm trong excerpt"
+      },
+      "financial_items": [],
+      "business_notes": "Đính kèm báo cáo lời, bảng trình bày và bảng FS Holiday Beach - PA Condotel + Hotel 14.5.2026; là update/hồ sơ bổ sung cho record Holiday Beach Part 1",
+      "excerpt": "BC Trinh bay - DA Holiday Beach - 14.05.2026.pdf; BC lời DA Holiday Beach - 14.5.2026.pdf; FS Holiday Beach - PA Condotel + Hotel 14.5.2026.pdf"
+    },
+    {
+      "id": "M02-0002",
+      "part": 2,
+      "decision": "project_record_with_stop_reply",
+      "project_name": "Chung cư Hải Sơn - Huỳnh Văn Nghệ, Đồng Nai",
+      "report_date": "",
+      "source_chunks": [
+        "103",
+        "104"
+      ],
+      "source_file": "batch_100.txt",
+      "sender": "",
+      "location": "Đường Huỳnh Văn Nghệ, P. Biên Hòa, TP Đồng Nai; đối diện nghĩa trang",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1pYF3M65dQngj9P_VP8SbXUKy92nYnFo&usp=sharing",
+      "scale_raw": "Diện tích đất 8.321 m2; đối diện khu đất nghĩa trang khoảng 8.600 m2; đường kết nối rộng khoảng 8,8 m, chiều sâu vào khoảng 28 m, lối vào nút thắt cổ chai",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "8.321 m2",
+          "8.600 m2"
+        ],
+        "raw": "Diện tích đất 8.321 m2; đối diện khu đất nghĩa trang khoảng 8.600 m2; đường kết nối rộng khoảng 8,8 m, chiều sâu vào khoảng 28 m, lối vào nút thắt cổ chai"
+      },
+      "legal": {
+        "land": "Sổ đất cá nhân",
+        "project": "",
+        "raw": "Sổ đất cá nhân; excerpt bị cắt phần pháp lý chi tiết"
+      },
+      "financial_items": [],
+      "business_notes": "P.ĐT xin ý kiến có tính FS không do nhiều hạn chế; Admin trả lời 'Thôi' nên status dừng nghiên cứu",
+      "excerpt": "dự án chung cư Hải Sơn... diện tích đất 8.321 m2... đường Huỳnh Văn Nghệ... đường kết nối chỉ khoảng 8.8 m... đối diện khu đất nghĩa trang... Thôi by Admin 01"
+    },
+    {
+      "id": "M02-0003",
+      "part": 2,
+      "decision": "project_process_update",
+      "project_name": "Lô A2-3 Hòa Xuân, Đà Nẵng",
+      "report_date": "",
+      "source_chunks": [
+        "105"
+      ],
+      "source_file": "batch_103.txt",
+      "sender": "",
+      "location": "Hòa Xuân, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Dự án thành phần lô A2-3",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án thành phần lô A2-3"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Đang làm thủ tục chuyển nhượng; P.TC-KT làm việc với ngân hàng để có thư cam kết tín dụng nộp Sở Tài chính duyệt chuyển nhượng"
+      },
+      "financial_items": [],
+      "business_notes": "Ngân hàng yêu cầu bổ sung FS lô A2-3; P.ĐT xin duyệt gửi FS cho P.TC-KT và ngân hàng; Admin OK",
+      "excerpt": "chuyển nhượng dự án thành phần lô A2-3 Hòa Xuân... ngân hàng yêu cầu công ty bổ sung thêm FS lô A2-3... Ok by Admin 01"
+    },
+    {
+      "id": "M02-0004",
+      "part": 2,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "106",
+        "107",
+        "108",
+        "109"
+      ],
+      "source_file": "batch_107.txt",
+      "sender": "",
+      "location": "Đường Long Thuận, Long Phước, Quận 9, TP.HCM",
+      "map_url": "",
+      "scale_raw": "10ha; PA1 dân số 1.500; PA1a/1b/PA theo P.QH; có phần đất DVCC cấp đô thị khoảng 41.339,4m2, PA1b chuyển đổi 40% tương ứng 16.536m2 sang đất ở bố trí biệt thự vườn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "1.500",
+        "area_mentions": [
+          "10 ha",
+          "41.339,4 m2",
+          "16.536 m2"
+        ],
+        "raw": "10ha; PA1 dân số 1.500; PA1a/1b/PA theo P.QH; có phần đất DVCC cấp đô thị khoảng 41.339,4m2, PA1b chuyển đổi 40% tương ứng 16.536m2 sang đất ở bố trí biệt thự vườn"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Phụ thuộc phương án bố trí phòng QH và nghiên cứu RD; lưu ý điều kiện giao thông Vành đai 2/Vành đai 3 hoàn thành trước bán hàng 2028"
+      },
+      "financial_items": [
+        {
+          "label": "PA1a doanh thu chưa VAT",
+          "value": "5.899 tỷ đồng",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a giá bán bình quân căn hộ tim tường chưa VAT",
+          "value": "57 tr/m2",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a giá bán shophouse chưa VAT",
+          "value": "56 tr/m2",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a tổng mức đầu tư chưa VAT",
+          "value": "3.692 tỷ đồng",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a đơn giá đất hiện trạng",
+          "value": "3 tr/m2",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a tiền sử dụng đất tạm tính",
+          "value": "805 tỷ đồng",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a suất all-in chưa VAT",
+          "value": "13 tr/m2",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a LNTT",
+          "value": "1.322 tỷ đồng",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1a giá mua đất để LNTT/TMĐT = 20%",
+          "value": "7,4 tr/m2",
+          "source_chunk": "107"
+        },
+        {
+          "label": "PA1b doanh thu chưa VAT",
+          "value": "8.127 tỷ đồng",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b đơn giá bình quân gồm đất + CTXD chưa VAT",
+          "value": "133 tr/m2",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b đơn giá bình quân đất biệt thự chưa VAT",
+          "value": "110 tr/m2",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b giá căn hộ bình quân chưa VAT tim tường",
+          "value": "57 tr/m2",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b tổng mức đầu tư chưa VAT",
+          "value": "4.620 tỷ đồng",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b tiền sử dụng đất tạm tính",
+          "value": "1.387 tỷ đồng",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b suất all-in biệt thự chưa VAT",
+          "value": "11 tr/m2",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b LNTT",
+          "value": "2.288 tỷ đồng",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA1b giá mua đất để LNTT/TMĐT = 20%",
+          "value": "13,5 tr/m2",
+          "source_chunk": "108"
+        },
+        {
+          "label": "PA theo P.QH doanh thu chưa VAT",
+          "value": "7.290 tỷ đồng",
+          "source_chunk": "109"
+        },
+        {
+          "label": "PA theo P.QH giá bán căn hộ và shop năm 2028",
+          "value": "60 tr/m2 gồm VAT",
+          "source_chunk": "109"
+        },
+        {
+          "label": "PA theo P.QH tổng mức đầu tư chưa VAT",
+          "value": "4.520 tỷ đồng",
+          "source_chunk": "109"
+        },
+        {
+          "label": "PA theo P.QH tiền sử dụng đất tạm tính",
+          "value": "1.229 tỷ đồng",
+          "source_chunk": "109"
+        },
+        {
+          "label": "PA theo P.QH LNTT",
+          "value": "1.676 tỷ đồng",
+          "source_chunk": "109"
+        },
+        {
+          "label": "PA theo P.QH giá mua đất để LNTT/TMĐT = 20%",
+          "value": "8,7 tr/m2",
+          "source_chunk": "109"
+        }
+      ],
+      "business_notes": "Không triển khai căn hộ dịch vụ tại vị trí này theo RD; PA1a để trống đất DVCC trong FS; PA1b tăng đất ở/biệt thự vườn; PA khác theo P.QH",
+      "excerpt": "10ha Đường Long Thuận... PA1a doanh thu 5.899 tỷ... PA1b doanh thu 8.127 tỷ... PA theo P.QH doanh thu 7.290 tỷ..."
+    },
+    {
+      "id": "M02-0005",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
+      "report_date": "",
+      "source_chunks": [
+        "110",
+        "111"
+      ],
+      "source_file": "batch_107.txt; batch_109.txt",
+      "sender": "",
+      "location": "Võ Văn Kiệt, 2 lô A17-01/A17-02",
+      "map_url": "",
+      "scale_raw": "Trùng nội dung PA gộp 2 lô đã nhập Part 1: diện tích 4.613 m2, dân số 1.290, HSSDĐ 13,7, 2 block 30 tầng nổi, 3 hầm, 833 căn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "13,7,",
+        "population": "1.290,",
+        "area_mentions": [
+          "4.613 m2",
+          "4.600 m2"
+        ],
+        "raw": "Trùng nội dung PA gộp 2 lô đã nhập Part 1: diện tích 4.613 m2, dân số 1.290, HSSDĐ 13,7, 2 block 30 tầng nổi, 3 hầm, 833 căn"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Trùng/nhắc lại"
+      },
+      "financial_items": [],
+      "business_notes": "Gắn là duplicate update, không tạo dự án mới",
+      "excerpt": "phương án gộp 2 lô Võ Văn Kiệt ~ diện tích 4.600 m2..."
+    },
+    {
+      "id": "M02-0006",
+      "part": 2,
+      "decision": "project_record_update",
+      "project_name": "Dự án 31 Trần Não - PA căn hộ dịch vụ + văn phòng + TTTM",
+      "report_date": "",
+      "source_chunks": [
+        "116"
+      ],
+      "source_file": "batch_115.txt",
+      "sender": "Thao L - INVT",
+      "location": "31 Trần Não, Quận 2, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Phương án căn hộ dịch vụ kết hợp văn phòng và trung tâm thương mại",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Phương án căn hộ dịch vụ kết hợp văn phòng và trung tâm thương mại"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có thêm trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Chi phí xây dựng gồm VAT",
+          "value": "1.800 tỷ",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Đơn giá xây dựng all-in",
+          "value": "21,5 tr/m2",
+          "source_chunk": "116"
+        },
+        {
+          "label": "SĐT văn phòng + hầm",
+          "value": "18,6 tr/m2, theo chuẩn VP Opal",
+          "source_chunk": "116"
+        },
+        {
+          "label": "SĐT căn hộ dịch vụ",
+          "value": "3,1 tỷ/key",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Tỷ lệ diện tích thương phẩm văn phòng",
+          "value": "khoảng 79%",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Tỷ lệ diện tích thương phẩm CHDV",
+          "value": "khoảng 60%",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Giá thuê + phí dịch vụ văn phòng năm đầu",
+          "value": "38,5 USD/m2/tháng gồm VP 33 USD + phí dịch vụ 5,5 USD",
+          "source_chunk": "116"
+        },
+        {
+          "label": "CPVH văn phòng",
+          "value": "20% doanh thu",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Tỷ lệ tăng giá thuê",
+          "value": "3%/năm",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Giá thuê CHDV dài ngày",
+          "value": "33 tr/căn/tháng, khoảng 23,2 USD/m2/tháng",
+          "source_chunk": "116"
+        },
+        {
+          "label": "Giá thuê CHDV ngắn ngày",
+          "value": "1,6 tr/căn/đêm, khoảng 33,9 USD/m2/tháng",
+          "source_chunk": "116"
+        }
+      ],
+      "business_notes": "Báo cáo PA trước PA4; có giả định giá thuê/CPVH",
+      "excerpt": "dự án 31 Trần Não... PA căn hộ dịch vụ kết hợp văn phòng và TTTM... Chi phí xây dựng 1.800 tỷ... giá thuê VP 38.5$/m2/tháng..."
+    },
+    {
+      "id": "M02-0007",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+      "report_date": "",
+      "source_chunks": [
+        "117",
+        "118"
+      ],
+      "source_file": "batch_115.txt; batch_116.txt",
+      "sender": "",
+      "location": "KDC Cát Lái I, lô H2-02",
+      "map_url": "",
+      "scale_raw": "Trùng cập nhật FS giá chào 600 tỷ và TSDĐ 120 tỷ đã nhập Part 1",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng cập nhật FS giá chào 600 tỷ và TSDĐ 120 tỷ đã nhập Part 1"
+      },
+      "legal": {
+        "land": "Cần đánh giá TSDĐ hệ số K/P.PLDA",
+        "project": "",
+        "raw": "Cần đánh giá TSDĐ hệ số K/P.PLDA"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào cập nhật",
+          "value": "600 tỷ",
+          "source_chunk": "117"
+        },
+        {
+          "label": "Tiền sử dụng đất còn phải nộp",
+          "value": "120 tỷ theo hệ số K, bên mua chịu",
+          "source_chunk": "117"
+        }
+      ],
+      "business_notes": "Duplicate, không tạo dự án mới",
+      "excerpt": "H2-02... Giá chào cập nhật 600 tỷ... Tiền sử dụng đất 120 tỷ..."
+    },
+    {
+      "id": "M02-0008",
+      "part": 2,
+      "decision": "merged_same_project_update",
+      "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
+      "report_date": "",
+      "source_chunks": [
+        "119",
+        "120",
+        "121",
+        "122",
+        "123",
+        "124"
+      ],
+      "source_file": "batch_117.txt; batch_124.txt; batch_127.txt",
+      "sender": "Khoa L - INVT",
+      "location": "Vĩnh Phú gần Phú Quang; theo ranh hành chính cũ vẫn thuộc Hồ Chí Minh; thuộc phân khu 3 TP Thủ Đức",
+      "map_url": "",
+      "scale_raw": "Gom mua khoảng 12,5 ha; quy hoạch nhóm nhà ở, ô OD3, OD5, OD8, OD9, OD4, OD10 và một phần OD4/OD11; tầng cao 15-30; HSSDĐ 6-8; dân số 6.151; 4 khu cao tầng gồm 2.464 căn hộ và 46 shophouse; 164 nhà phố liên kế; 51 căn khác (excerpt cắt)",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "6",
+        "population": "6.151",
+        "area_mentions": [
+          "12,5 ha",
+          "12 ha",
+          "12.5 ha"
+        ],
+        "raw": "Gom mua khoảng 12,5 ha; quy hoạch nhóm nhà ở, ô OD3, OD5, OD8, OD9, OD4, OD10 và một phần OD4/OD11; tầng cao 15-30; HSSDĐ 6-8; dân số 6.151; 4 khu cao tầng gồm 2.464 căn hộ và 46 shophouse; 164 nhà phố liên kế; 51 căn khác (excerpt cắt)"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dự án đã được đưa vào danh sách thí điểm 171 số thứ tự 41 theo tin liên quan Part 1; cần làm việc anh Tài/anh Minh về chỉ tiêu khả thi"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán phân khu đợt đầu",
+          "value": "50-60 tr/m2",
+          "source_chunk": "122"
+        },
+        {
+          "label": "Giá bán phân khu đợt 2",
+          "value": "60-70 tr/m2",
+          "source_chunk": "122"
+        },
+        {
+          "label": "Giá bán phân khu cao nhất",
+          "value": "79 tr/m2",
+          "source_chunk": "122"
+        }
+      ],
+      "business_notes": "Admin yêu cầu tính thận trọng hơn/hạ giá; team giải thích giá bán do quy mô 12ha có thể làm tiện ích cảnh quan, kênh, cầu kết nối; cần nhiều kịch bản",
+      "excerpt": "dự án 12ha KDC Vĩnh Phú gần Phú Quang... gom mua diện tích ~12.5 ha... Hệ số 6-8, dân số 6.151... 2.464 căn hộ, 46 shophouse..."
+    },
+    {
+      "id": "M02-0009",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Bà Kèo, Phú Quốc",
+      "report_date": "",
+      "source_chunks": [
+        "125"
+      ],
+      "source_file": "batch_127.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bà Kèo, Phú Quốc",
+      "map_url": "",
+      "scale_raw": "Trùng/đoạn cắt về 03 PA10/11/12 đã nhập Part 1",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng/đoạn cắt về 03 PA10/11/12 đã nhập Part 1"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không thêm do excerpt cắt"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate update, không tạo dự án mới",
+      "excerpt": "báo cáo dự án Bà Kèo, Phú Quốc với 03 phương án 10,11,12..."
+    },
+    {
+      "id": "M02-0010",
+      "part": 2,
+      "decision": "update_to_existing_project",
+      "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
+      "report_date": "2026-05-06",
+      "source_chunks": [
+        "126",
+        "127",
+        "128"
+      ],
+      "source_file": "batch_131.txt",
+      "sender": "Admin 01",
+      "location": "Đặng Văn Bi, Thủ Đức; có phần đất mộ kế bên",
+      "map_url": "",
+      "scale_raw": "Diện tích 6.303 m2 trong cập nhật QH; QH mới xây 20 tầng, HSSDĐ 6, nếu ưu tiên có thể cộng thêm 1; dân số khoảng 252; trước đó hồ sơ giả định 100% đất ở do chưa có cơ cấu đất",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "6,",
+        "population": "",
+        "area_mentions": [
+          "6.303 m2"
+        ],
+        "raw": "Diện tích 6.303 m2 trong cập nhật QH; QH mới xây 20 tầng, HSSDĐ 6, nếu ưu tiên có thể cộng thêm 1; dân số khoảng 252; trước đó hồ sơ giả định 100% đất ở do chưa có cơ cấu đất"
+      },
+      "legal": {
+        "land": "có đất mộ kế bên",
+        "project": "",
+        "raw": "QH ở nhưng chỉ được HSSDĐ 2 và tầng cao 7 theo một trao đổi; sau trao đổi anh Tài cập nhật QH mới 20 tầng/HSSDĐ 6; có đất mộ kế bên; cần tính FS thử"
+      },
+      "financial_items": [],
+      "business_notes": "Admin hỏi giá chào cũ; trước không có giá chào, chỉ định giá theo so sánh với giả định 100% đất ở",
+      "excerpt": "miếng đất Đăng Văn Bi... quy hoạch phân khu mới nhất xây 20 tầng, hệ số 6... dân số khoảng 252 người (Diện tích 6.303m2)... Tính fs thử"
+    },
+    {
+      "id": "M02-0011",
+      "part": 2,
+      "decision": "project_record_with_price_reply",
+      "project_name": "KDC An Tôn",
+      "report_date": "",
+      "source_chunks": [
+        "130",
+        "131",
+        "132"
+      ],
+      "source_file": "batch_137.txt",
+      "sender": "Thao L - INVT",
+      "location": "An Tôn",
+      "map_url": "",
+      "scale_raw": "PA1: NOXH 6 tầng 391 căn, 122 nhà liên kế, 111 biệt thự; PA2 chuyển NOXH sang nhà thấp tầng gồm 134 NLK và 153/165 NBT theo excerpt, tổng khoảng 287 căn thấp tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "PA1: NOXH 6 tầng 391 căn, 122 nhà liên kế, 111 biệt thự; PA2 chuyển NOXH sang nhà thấp tầng gồm 134 NLK và 153/165 NBT theo excerpt, tổng khoảng 287 căn thấp tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "PA2 tối ưu hóa quỹ đất, tăng giá trị thương mại; có báo cáo đầu tư và R&D đính kèm 23/04/2026 và 13/04/2026"
+      },
+      "financial_items": [
+        {
+          "label": "Giá căn hộ PA thấp tầng chưa VAT",
+          "value": "40-45 tr/m2, trung bình 42,5 tr/m2",
+          "source_chunk": "130"
+        },
+        {
+          "label": "Giá căn hộ PA cao tầng chưa VAT",
+          "value": "38-41 tr/m2, trung bình 39,5 tr/m2",
+          "source_chunk": "130"
+        },
+        {
+          "label": "Giá officetel PA cao tầng chưa VAT",
+          "value": "40-44 tr/m2, trung bình 42,3 tr/m2",
+          "source_chunk": "130"
+        }
+      ],
+      "business_notes": "Có giá đề xuất R&D cho phương án thấp tầng và cao tầng; cần nghiên cứu kỹ theo Admin",
+      "excerpt": "KDC An Tôn theo 02 phương án quy hoạch... PA1 NOXH 391 căn... PA2 chuyển NOXH -> nhà LK, BT... giá căn hộ 40-45 tr/m2..."
+    },
+    {
+      "id": "M02-0012",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Khu đất phường Phú Thọ Hòa, Quận Tân Phú",
+      "report_date": "",
+      "source_chunks": [
+        "133"
+      ],
+      "source_file": "batch_138.txt",
+      "sender": "",
+      "location": "Phường Phú Thọ Hòa, Quận Tân Phú, TP.HCM",
+      "map_url": "https://maps.app.goo.gl/v8GdHbU3xb5G8JFs9",
+      "scale_raw": "Diện tích 13.907,5 m2; đất trồng cây lâu năm; đường nội bộ hẹp 7m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "13.907,5 m2",
+          "13,907.5 m2"
+        ],
+        "raw": "Diện tích 13.907,5 m2; đất trồng cây lâu năm; đường nội bộ hẹp 7m"
+      },
+      "legal": {
+        "land": "nguồn gốc Nhà nước công nhận QSDĐ； quy hoạch công viên cây xanh chiếm 56%, còn lại TMDV, không có đất ở",
+        "project": "quy hoạch công viên cây xanh chiếm 56%, còn lại TMDV, không có đất ở",
+        "raw": "Thời hạn 50 năm từ 07/2011–07/2061; nguồn gốc Nhà nước công nhận QSDĐ; quy hoạch công viên cây xanh chiếm 56%, còn lại TMDV, không có đất ở"
+      },
+      "financial_items": [],
+      "business_notes": "Khó phát triển TMDV do vị trí/hạ tầng; giữ record để review đầu tư, không phải dự án nhà ở",
+      "excerpt": "khu đất phường Phú Thọ Hòa... Diện tích 13,907.5 m2... đất trồng cây lâu năm... quy hoạch công viên cây xanh 56% và TMDV, không có đất ở."
+    },
+    {
+      "id": "M02-0013",
+      "part": 2,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án Bà Kèo, Phú Quốc - 02 phương án thấp tầng/cao tầng",
+      "report_date": "",
+      "source_chunks": [
+        "134",
+        "135",
+        "136"
+      ],
+      "source_file": "batch_141.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bà Kèo, Phú Quốc",
+      "map_url": "",
+      "scale_raw": "02 phương án thấp tầng và cao tầng; PA thấp tầng được ưu tiên vì đa dạng sản phẩm, cảnh quan thông thoáng, phù hợp vận hành quốc tế và định vị cao cấp",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "02 phương án thấp tầng và cao tầng; PA thấp tầng được ưu tiên vì đa dạng sản phẩm, cảnh quan thông thoáng, phù hợp vận hành quốc tế và định vị cao cấp"
+      },
+      "legal": {
+        "land": "giả định GPĐB đất + chạy PL Q2/2026-Q3/2027； đóng TSDĐ Q2/2027-Q3/2027",
+        "project": "",
+        "raw": "CIC chưa gửi thêm tiến độ pháp lý; giả định GPĐB đất + chạy PL Q2/2026-Q3/2027; đóng TSDĐ Q2/2027-Q3/2027; bắt đầu xây dựng Q4/2027"
+      },
+      "financial_items": [
+        {
+          "label": "PA thấp tầng chi phí đất gồm VAT",
+          "value": "2.558 tỷ, khoảng 90 tr/m2 đất thương phẩm",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí đất hiện trạng theo BCTC",
+          "value": "113 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí đền bù dự kiến còn lại",
+          "value": "300 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng tiền CMĐ SDĐ",
+          "value": "2.145 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí pháp lý",
+          "value": "165 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí nhà mẫu",
+          "value": "88 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí cảnh quan",
+          "value": "27 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí xây dựng",
+          "value": "7.951 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng chi phí lãi vay",
+          "value": "945 tỷ, lãi 11%",
+          "source_chunk": "136"
+        },
+        {
+          "label": "Chi phí bán hàng nhà liên kế",
+          "value": "13%",
+          "source_chunk": "136"
+        },
+        {
+          "label": "Chi phí bán hàng căn hộ và shophouse",
+          "value": "15%",
+          "source_chunk": "136"
+        },
+        {
+          "label": "Chi phí bán Condotel",
+          "value": "20%",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng doanh thu gồm VAT",
+          "value": "69.271 tỷ",
+          "source_chunk": "136"
+        },
+        {
+          "label": "PA thấp tầng doanh thu bán hàng",
+          "value": "13.838 tỷ",
+          "source_chunk": "136"
+        }
+      ],
+      "business_notes": "Báo cáo sâu hơn cho Bà Kèo, có chỉ tiêu chi phí/doanh thu PA thấp tầng; gắn update vào record Bà Kèo",
+      "excerpt": "Bà Kèo, Phú Quốc với 02 phương án... GPĐB đất + chạy PL Q2.2026-Q3.2027... Chi phí đất 2.558 tỷ... Doanh thu 69.271 tỷ."
+    },
+    {
+      "id": "M02-0014",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+      "report_date": "",
+      "source_chunks": [
+        "137"
+      ],
+      "source_file": "batch_141.txt",
+      "sender": "",
+      "location": "KDC Cát Lái, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Lô H2-02 diện tích 7.988,9 m2; tầng cao 25; HSSDĐ 5; MĐXD 40%; dân số 988; 1 khối đế 2 tầng, 2 tháp 23 tầng và 1 hầm",
+      "planning": {
+        "floors": "",
+        "density": "40%",
+        "far": "5",
+        "population": "988",
+        "area_mentions": [
+          "7.988,9 m2",
+          "7,988.9 m2"
+        ],
+        "raw": "Lô H2-02 diện tích 7.988,9 m2; tầng cao 25; HSSDĐ 5; MĐXD 40%; dân số 988; 1 khối đế 2 tầng, 2 tháp 23 tầng và 1 hầm"
+      },
+      "legal": {
+        "land": "",
+        "project": "2023 Phú Gia phê duyệt CTĐT chung cư H2-02",
+        "raw": "Invesco chuyển nhượng H2-02/H2-05 cho Phú Gia năm 2014; 2023 Phú Gia phê duyệt CTĐT chung cư H2-02; hồ sơ TKCS 05/2025"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update chi tiết tổng quan, gắn vào H2-02",
+      "excerpt": "H2-02 (Sky Habitat)... diện tích 7,988.9 m2... CĐT Công ty CP Phú Gia... tầng cao 25, hệ số 5, dân số 988."
+    },
+    {
+      "id": "M02-0015",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Khu mặt tiền đường Ngô Chí Quốc - gom đất gần Phú Quang",
+      "report_date": "",
+      "source_chunks": [
+        "142"
+      ],
+      "source_file": "batch_143.txt",
+      "sender": "",
+      "location": "Mặt tiền đường Ngô Chí Quốc, gần Phú Quang; thuộc Đơn vị ở 1, ô OD-1/MN-1/CX-2 theo QH PK3 2025",
+      "map_url": "",
+      "scale_raw": "Ô OD-1 diện tích phù hợp QH 2,15ha; dân số 1.300 tăng 800 so QH cũ; tầng cao 30; HSSDĐ 7; PA hỗn hợp thấp tầng tối ưu dân số 1.300, HSSDĐ đạt 3,1; 1 block chung cư hỗn hợp 24 tầng và 67 nhà phố",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "7",
+        "population": "1.300",
+        "area_mentions": [
+          "2,15 ha",
+          "2.15 ha"
+        ],
+        "raw": "Ô OD-1 diện tích phù hợp QH 2,15ha; dân số 1.300 tăng 800 so QH cũ; tầng cao 30; HSSDĐ 7; PA hỗn hợp thấp tầng tối ưu dân số 1.300, HSSDĐ đạt 3,1; 1 block chung cư hỗn hợp 24 tầng và 67 nhà phố"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cập nhật QH phân khu PK3 duyệt 2025; MN-1 và CX-2 giữ chức năng giáo dục/cây xanh"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ",
+          "value": "61 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "142"
+        },
+        {
+          "label": "Giá bán shop TM",
+          "value": "70 tr/m2, chưa VAT, tim tường",
+          "source_chunk": "142"
+        },
+        {
+          "label": "Giá bán officetel",
+          "value": "55 tr/m2, chưa VAT",
+          "source_chunk": "142"
+        }
+      ],
+      "business_notes": "PA hỗn hợp thấp tầng, có căn hộ/officetel/shop/TTTM và nhà phố",
+      "excerpt": "khu mặt tiền đường Ngô Chí Quốc... OD-1 diện tích PHQH 2.15ha... dân số 1.300... 1 block chung cư hỗn hợp 24 tầng và 67 căn nhà phố."
+    },
+    {
+      "id": "M02-0016",
+      "part": 2,
+      "decision": "project_record_with_replies",
+      "project_name": "Khách sạn 5 sao 12 Hùng Vương, Đà Lạt",
+      "report_date": "",
+      "source_chunks": [
+        "143",
+        "144",
+        "145"
+      ],
+      "source_file": "batch_149.txt",
+      "sender": "",
+      "location": "12 Hùng Vương, TP Đà Lạt, tỉnh Lâm Đồng",
+      "map_url": "https://maps.app.goo.gl/6iyNdteYfVyyT9Xy9",
+      "scale_raw": "Khách sạn 5 tầng + 2 hầm; phương án 159 phòng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn 5 tầng + 2 hầm; phương án 159 phòng"
+      },
+      "legal": {
+        "land": "Đất ở, thời hạn sử dụng lâu dài； tính 2 PA có đất/không có đất do QSDĐ lâu dài không giảm sau vòng đời vận hành",
+        "project": "",
+        "raw": "Đất ở, thời hạn sử dụng lâu dài; tính 2 PA có đất/không có đất do QSDĐ lâu dài không giảm sau vòng đời vận hành"
+      },
+      "financial_items": [
+        {
+          "label": "Suất vốn để PA không tính đất đạt IRR 10%",
+          "value": "3 tỷ/key",
+          "source_chunk": "145"
+        },
+        {
+          "label": "IRR PA tính đất tại suất vốn 3 tỷ/key",
+          "value": "6,4%",
+          "source_chunk": "145"
+        },
+        {
+          "label": "Tốc độ tăng giá trị thanh lý đất giả định",
+          "value": "5%/năm",
+          "source_chunk": "144"
+        }
+      ],
+      "business_notes": "Theo phương án kinh doanh anh David Cường; reply nhấn phải tính đất; PA không tính đất muốn IRR 10% thì suất vốn 3 tỷ/key, PA tính đất IRR 6,4%",
+      "excerpt": "Khách sạn 5 sao tại 12 Hùng Vương, Đà Lạt... đất ở lâu dài... khách sạn 5 tầng + 2 hầm, 159 phòng... phải tính đất."
+    },
+    {
+      "id": "M02-0017",
+      "part": 2,
+      "decision": "project_record_with_related_replies",
+      "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+      "report_date": "",
+      "source_chunks": [
+        "146",
+        "150",
+        "162"
+      ],
+      "source_file": "batch_152.txt; batch_161.txt; batch_172.txt",
+      "sender": "",
+      "location": "Mặt tiền đường Mai Chí Thọ, phường An Phú, TP Thủ Đức (Quận 2 cũ), TP.HCM",
+      "map_url": "",
+      "scale_raw": "Khu đất văn phòng: MĐXD 92,8%; HSSDĐ 21,7; GFA gồm hầm/kỹ thuật 52.419 m2; 2 hầm + 27 tầng",
+      "planning": {
+        "floors": "",
+        "density": "92,8%",
+        "far": "21,7",
+        "population": "",
+        "area_mentions": [
+          "52.419 m2"
+        ],
+        "raw": "Khu đất văn phòng: MĐXD 92,8%; HSSDĐ 21,7; GFA gồm hầm/kỹ thuật 52.419 m2; 2 hầm + 27 tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "Hết hạn chấp thuận chủ trương đầu tư từ 2010； khó gia hạn do rà soát pháp lý/quy hoạch/năng lực CĐT",
+        "raw": "Hết hạn chấp thuận chủ trương đầu tư từ 2010; khó gia hạn do rà soát pháp lý/quy hoạch/năng lực CĐT; chưa hoàn thành nghĩa vụ tài chính; chưa đóng góp hạ tầng chính"
+      },
+      "financial_items": [
+        {
+          "label": "Giá khai thác thời điểm 2029 có VAT",
+          "value": "37 USD/m2",
+          "source_chunk": "146"
+        },
+        {
+          "label": "Giá khai thác thời điểm 2029 chưa VAT",
+          "value": "34 USD/m2",
+          "source_chunk": "146"
+        },
+        {
+          "label": "Giá Admin góp ý nên dùng",
+          "value": "30 USD/m2",
+          "source_chunk": "162"
+        }
+      ],
+      "business_notes": "Có báo cáo tổng thể BC Van Phong Mai Chi Tho.pdf; giá khai thác R&D 2029 bị Admin nhận xét 34 USD hơi cao, 30 USD thôi",
+      "excerpt": "dự án Văn phòng – An Phú, mặt tiền đường Mai Chí Thọ... MĐXD 92,8%, HSSDĐ 21,7, GFA 52.419m2... hết hạn CTĐT từ 2010."
+    },
+    {
+      "id": "M02-0018",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Hội An Riverside Resort & Spa - Concept Lamanon",
+      "report_date": "",
+      "source_chunks": [
+        "147"
+      ],
+      "source_file": "batch_152.txt",
+      "sender": "",
+      "location": "Hội An",
+      "map_url": "",
+      "scale_raw": "125 phòng gồm 105 phòng khách sạn và 20 phòng Villa; Concept Lamanon",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "125 phòng gồm 105 phòng khách sạn và 20 phòng Villa; Concept Lamanon"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Suất vốn đầu tư/key tháng 4/2026",
+          "value": "2,7 tỷ/key",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Suất vốn đầu tư/key tháng 12/2024",
+          "value": "2,3 tỷ/key",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Đơn giá all-in tháng 4/2026",
+          "value": "17,8 tr/m2",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Đơn giá all-in tháng 12/2024",
+          "value": "15 tr/m2",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Tổng chi phí đầu tư tháng 4/2026",
+          "value": "377 tỷ đồng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Tổng chi phí đầu tư tháng 12/2024",
+          "value": "303 tỷ đồng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Giá phòng khách sạn tháng 4/2026",
+          "value": "2,97 triệu/phòng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Giá phòng khách sạn tháng 12/2024",
+          "value": "2,7 triệu/phòng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Giá phòng Villa tháng 4/2026",
+          "value": "9,27 triệu/phòng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Giá phòng Villa tháng 12/2024",
+          "value": "8 triệu/phòng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Doanh thu khác tháng 4/2026",
+          "value": "31%",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Doanh thu khác tháng 12/2024",
+          "value": "35%",
+          "source_chunk": "147"
+        },
+        {
+          "label": "Giá bình quân",
+          "value": "150 USD, tỷ giá 27.000 đồng",
+          "source_chunk": "147"
+        },
+        {
+          "label": "IRR tháng 4/2026",
+          "value": "17,1%",
+          "source_chunk": "147"
+        }
+      ],
+      "business_notes": "Cập nhật FS theo giá kinh doanh anh David Cường; so sánh tháng 4/2026 và 12/2024",
+      "excerpt": "Hội An Riverside Resort & Spa theo Concept Lamanon... 125 phòng... Suất vốn 2,7 tỷ/key... Tổng chi phí đầu tư 377 tỷ... IRR 17.1%."
+    },
+    {
+      "id": "M02-0019",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+      "report_date": "",
+      "source_chunks": [
+        "148",
+        "149"
+      ],
+      "source_file": "batch_152.txt; batch_156.txt",
+      "sender": "",
+      "location": "02 Tây Thạnh, Tân Phú",
+      "map_url": "",
+      "scale_raw": "Trùng cập nhật Tây Thạnh đã nhập Part 1; diện tích 11.221,7 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "11.221,7 m2"
+        ],
+        "raw": "Trùng cập nhật Tây Thạnh đã nhập Part 1; diện tích 11.221,7 m2"
+      },
+      "legal": {
+        "land": "Đất ở lâu dài, mục đích SXKD",
+        "project": "Sacombank rao đấu giá",
+        "raw": "Đất ở lâu dài, mục đích SXKD; mặt tiền Tây Thạnh; bán kính TOD metro số 2; sang tên Phạm Công Danh 13/06/2006; Sacombank rao đấu giá"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update, không tạo dự án mới",
+      "excerpt": "cập nhật thêm thông tin khu đất tại 02 Tây Thạnh, Tân Phú... diện tích 11.221,7 m2..."
+    },
+    {
+      "id": "M02-0020",
+      "part": 2,
+      "decision": "update_to_existing_project",
+      "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+      "report_date": "",
+      "source_chunks": [
+        "151",
+        "152",
+        "157",
+        "159"
+      ],
+      "source_file": "batch_161.txt; batch_162.txt; batch_166.txt; batch_171.txt",
+      "sender": "Huy M - IM",
+      "location": "Holiday Beach",
+      "map_url": "",
+      "scale_raw": "2 tầng hầm, 30 tầng nổi, GFA gồm hầm 75.913 m2; diện tích thương phẩm 43.702 m2 ~58% GFA gồm hầm/~66% GFA chưa hầm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "75.913 m2",
+          "43.702 m2"
+        ],
+        "raw": "2 tầng hầm, 30 tầng nổi, GFA gồm hầm 75.913 m2; diện tích thương phẩm 43.702 m2 ~58% GFA gồm hầm/~66% GFA chưa hầm"
+      },
+      "legal": {
+        "land": "giả định reset 50 năm và đóng thêm TSDĐ hơn 200 tỷ",
+        "project": "",
+        "raw": "Thời hạn còn tới 2058/2060; nếu pháp lý+xây dựng đến 2030 thì Condotel còn 28-30 năm khó bán; giả định reset 50 năm và đóng thêm TSDĐ hơn 200 tỷ; nếu không reset được thì chỉ PA khách sạn vận hành"
+      },
+      "financial_items": [
+        {
+          "label": "TSDĐ tạm tính để reset thời hạn",
+          "value": "hơn 200 tỷ",
+          "source_chunk": "151"
+        }
+      ],
+      "business_notes": "FS PA kết hợp khách sạn và condotel; trùng/tiếp diễn record Part 1",
+      "excerpt": "Holiday Beach theo phương án kết hợp Khách sạn và Condotel... GFA 75.913 m2... còn tới 2060/2058... tạm tính đóng thêm TSDĐ hơn 200 tỷ."
+    },
+    {
+      "id": "M02-0021",
+      "part": 2,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án 31 Trần Não - căn hộ ở + CHDV + shophouse",
+      "report_date": "2026-03-24",
+      "source_chunks": [
+        "153",
+        "165"
+      ],
+      "source_file": "batch_166.txt; batch_178.txt",
+      "sender": "Thao L - INVT",
+      "location": "31 Trần Não",
+      "map_url": "",
+      "scale_raw": "Tòa 35 tầng + 2 hầm; 2 tầng shophouse; CHDV gồm 1 tầng dịch vụ và 17 tầng CHDV; căn hộ ở gồm 2 tầng lánh nạn + dịch vụ và 13 tầng căn hộ ở",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Tòa 35 tầng + 2 hầm; 2 tầng shophouse; CHDV gồm 1 tầng dịch vụ và 17 tầng CHDV; căn hộ ở gồm 2 tầng lánh nạn + dịch vụ và 13 tầng căn hộ ở"
+      },
+      "legal": {
+        "land": "",
+        "project": "Vấn đề pháp lý loại hình phải phù hợp dân số QH 1/2000",
+        "raw": "Vấn đề pháp lý loại hình phải phù hợp dân số QH 1/2000; P.QH binh lại PA căn hộ bán + CHDV vận hành, không bán một lần; P.RD đang làm báo cáo thị trường CHDV"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT gồm VAT",
+          "value": "4.200 tỷ",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Chi phí đất",
+          "value": "2.500 tỷ, khoảng 476 tr/m2",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Tiền SDĐ tạm tính",
+          "value": "160 tỷ, tạm tính 20% đơn giá đất ở VT1 đường Trần Não",
+          "source_chunk": "153"
+        },
+        {
+          "label": "CPXD all-in trung bình",
+          "value": "1.250 tỷ, khoảng 18,4 tr/m2",
+          "source_chunk": "153"
+        },
+        {
+          "label": "CPXD/CHDV",
+          "value": "2,24 tỷ/căn",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Chi phí lãi vay",
+          "value": "255 tỷ",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Chi phí bán hàng",
+          "value": "15% doanh thu bán hàng",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Chi phí vận hành CHDV",
+          "value": "60% doanh thu vận hành CHDV",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Doanh thu căn hộ",
+          "value": "3.360 tỷ",
+          "source_chunk": "153"
+        },
+        {
+          "label": "Đơn giá căn hộ",
+          "value": "220 tr/m2, khoảng 20,2 tỷ/căn, chưa VAT tim tường",
+          "source_chunk": "153"
+        }
+      ],
+      "business_notes": "Cập nhật PA trước các PA văn phòng/tiện ích; có FS chi tiết",
+      "excerpt": "31 Trần Não... Loại hình căn hộ ở, CHDV và Shophouse... TMĐT 4.200 tỷ... Chi phí đất 2.500 tỷ... Doanh thu căn hộ 3.360 tỷ."
+    },
+    {
+      "id": "M02-0022",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+      "report_date": "2026-03-25",
+      "source_chunks": [
+        "154"
+      ],
+      "source_file": "batch_167.txt",
+      "sender": "Admin 01",
+      "location": "Phường Lộc Thọ, TP Nha Trang, Khánh Hòa; hẻm nhỏ/cụt rộng 5m, cách Hùng Vương khoảng 50m, cách biển khoảng 320m",
+      "map_url": "",
+      "scale_raw": "Khách sạn 26 tầng nổi, 1 tum thang + 2 hầm; phương án 242 phòng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn 26 tầng nổi, 1 tum thang + 2 hầm; phương án 242 phòng"
+      },
+      "legal": {
+        "land": "Đất TMDV thời hạn lâu dài do nguồn gốc đất ở",
+        "project": "theo giấy phép quy hoạch 02/GPQH-SXD",
+        "raw": "Đất TMDV thời hạn lâu dài do nguồn gốc đất ở; theo giấy phép quy hoạch 02/GPQH-SXD"
+      },
+      "financial_items": [],
+      "business_notes": "Áp bài toán kinh doanh Casa/anh David vào đánh giá hiệu quả; vị trí bị chắn view biển, hẻm nhỏ",
+      "excerpt": "khách sạn Đông Á Premier tại Phường Lộc Thọ... hẻm nhỏ và cụt 5m... cách bãi biển 320m... 26 tầng nổi, 2 tầng hầm, 242 phòng."
+    },
+    {
+      "id": "M02-0023",
+      "part": 2,
+      "decision": "project_record_update",
+      "project_name": "Chung cư Hòa Xuân A2-3 & A2-4",
+      "report_date": "",
+      "source_chunks": [
+        "155",
+        "156",
+        "160",
+        "161"
+      ],
+      "source_file": "batch_169.txt; batch_172.txt",
+      "sender": "",
+      "location": "Hòa Xuân, Đà Nẵng; 2 lô A2-3 và A2-4",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 6.648 m2; A2-3 3.508 m2, A2-4 3.140 m2; A2-3 18 tầng, 880 dân, MĐXD 73%, HSSDĐ 12,4; A2-4 15 tầng, 804 dân (thiết kế 682), MĐXD 76%, HSSDĐ 12,2 (thiết kế 10,6)",
+      "planning": {
+        "floors": "",
+        "density": "73%",
+        "far": "12,4",
+        "population": "",
+        "area_mentions": [
+          "6.648 m2",
+          "3.508 m2",
+          "3.140 m2"
+        ],
+        "raw": "Tổng diện tích 6.648 m2; A2-3 3.508 m2, A2-4 3.140 m2; A2-3 18 tầng, 880 dân, MĐXD 73%, HSSDĐ 12,4; A2-4 15 tầng, 804 dân (thiết kế 682), MĐXD 76%, HSSDĐ 12,2 (thiết kế 10,6)"
+      },
+      "legal": {
+        "land": "Bán hiện trạng đúng QH 1/500, không nộp thêm TSDĐ",
+        "project": "Bán hiện trạng đúng QH 1/500, không nộp thêm TSDĐ",
+        "raw": "Bán hiện trạng đúng QH 1/500, không nộp thêm TSDĐ; FS cũ chỉ tính 1 thửa/thiết kế chưa bán shop; FS mới bổ sung shop"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ giả định",
+          "value": "55-60 tr/m2, chưa VAT tim tường",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Giá bán shop",
+          "value": "80 tr/m2, chưa VAT tim tường",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Nhà trẻ cho thuê",
+          "value": "3,5 USD/m2/tháng",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Chi phí bán hàng",
+          "value": "19% doanh thu",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Suất xây dựng",
+          "value": "13 tr/m2 gồm VAT, trang bị nội thất liền tường",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Suất đầu tư all-in",
+          "value": "15 tr/m2",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Chi phí pháp lý",
+          "value": "36 tỷ",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Lãi suất",
+          "value": "12%/năm",
+          "source_chunk": "160"
+        },
+        {
+          "label": "Giá mua 2 lô theo hợp đồng",
+          "value": "300 tỷ",
+          "source_chunk": "161"
+        },
+        {
+          "label": "Giá mua FS cũ",
+          "value": "400 tỷ cho 2 lô",
+          "source_chunk": "155"
+        },
+        {
+          "label": "Giá bán thị trường FS cũ",
+          "value": "45 tr/m2 chưa VAT",
+          "source_chunk": "156"
+        }
+      ],
+      "business_notes": "Giá mua 2 lô 300 tỷ theo hợp đồng; FS cũ dùng giá mua 400 tỷ; nhận xét siêu lợi nhuận do giá đất cao tầng thấp hơn đất ở dân 60-80 tr/m2",
+      "excerpt": "chung cư Hòa Xuân (A2-3 & A2-4)... diện tích 6.648 m2... Giá bán căn hộ 55-60 tr/m2... giá mua 2 lô 300 tỷ."
+    },
+    {
+      "id": "M02-0024",
+      "part": 2,
+      "decision": "project_record_update",
+      "project_name": "Khu Chung cư & Văn phòng An Phú 2",
+      "report_date": "2026-03-24",
+      "source_chunks": [
+        "164",
+        "166",
+        "169"
+      ],
+      "source_file": "batch_176.txt; batch_178.txt; batch_183.txt",
+      "sender": "Tai L - UPDM",
+      "location": "An Phú 2",
+      "map_url": "",
+      "scale_raw": "QHCT 1/500 đã phê duyệt có 3 khu chức năng: văn phòng, chung cư, dịch vụ; dân số duyệt 1.672 người; QHPK mới nhất 15/6/2025 là 1.488 người thấp hơn 184; 4 block chung cư đã xây sử dụng hết dân số, đất trống mặt tiền làm văn phòng theo QH 1/500 2008",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": ",",
+        "area_mentions": [],
+        "raw": "QHCT 1/500 đã phê duyệt có 3 khu chức năng: văn phòng, chung cư, dịch vụ; dân số duyệt 1.672 người; QHPK mới nhất 15/6/2025 là 1.488 người thấp hơn 184; 4 block chung cư đã xây sử dụng hết dân số, đất trống mặt tiền làm văn phòng theo QH 1/500 2008"
+      },
+      "legal": {
+        "land": "",
+        "project": "Không thể chuyển chức năng từ văn phòng sang ở vì QH 1/500 phân khu chức năng và dân số không còn",
+        "raw": "Không thể chuyển chức năng từ văn phòng sang ở vì QH 1/500 phân khu chức năng và dân số không còn; QHPK mới dân số thấp hơn"
+      },
+      "financial_items": [],
+      "business_notes": "Admin yêu cầu làm file báo cáo, bản vẽ, vị trí; định giá lô này mua nhiêu là ổn",
+      "excerpt": "Khu chung Cư và văn phòng An Phú... dân số được duyệt 1.672, QHPK mới 1.488... không thể chuyển chức năng từ văn phòng sang ở."
+    },
+    {
+      "id": "M02-0025",
+      "part": 2,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức - nguồn Mr. Duy",
+      "report_date": "",
+      "source_chunks": [
+        "171",
+        "172",
+        "173",
+        "174",
+        "175",
+        "176",
+        "177"
+      ],
+      "source_file": "batch_187.txt; batch_188.txt",
+      "sender": "Thao L - INVT",
+      "location": "Mặt tiền đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức, TPHCM; giáp ranh Bình Dương; cách Gò Dưa/Vành Đai 2 khoảng 3km, QL13 khoảng 2km, cách Phú Quang một con rạch, đối diện KCX Linh Trung 2, cách nghĩa trang Gò Đình 400m",
+      "map_url": "https://goo.gl/maps/Empzn8zwhyULFrqV8",
+      "scale_raw": "Tổng diện tích tính quy ngược 27.629,71 m2; I.12/OD-1 khoảng 2,15ha; dân số QH 500 nhưng PA cao tầng dùng 3.022 người phải xin thêm 2.522; PA cao tầng 2 hầm + 2 tầng khối đế + 26 tầng căn hộ; NOXH 291 căn/15.110 m2, căn hộ TM 1.040 căn/60.430 m2, tổng 1.331 căn; PA thấp tầng không xin thêm dân số",
+      "planning": {
+        "floors": "2",
+        "density": "",
+        "far": "7,",
+        "population": "500",
+        "area_mentions": [
+          "27.629,71 m2",
+          "2,15 ha",
+          "15.110 m2",
+          "60.430 m2"
+        ],
+        "raw": "Tổng diện tích tính quy ngược 27.629,71 m2; I.12/OD-1 khoảng 2,15ha; dân số QH 500 nhưng PA cao tầng dùng 3.022 người phải xin thêm 2.522; PA cao tầng 2 hầm + 2 tầng khối đế + 26 tầng căn hộ; NOXH 291 căn/15.110 m2, căn hộ TM 1.040 căn/60.430 m2, tổng 1.331 căn; PA thấp tầng không xin thêm dân số"
+      },
+      "legal": {
+        "land": "QH I.12 đất nhóm nhà ở hiện hữu kết hợp xây mới",
+        "project": "cần A Tài/anh Minh cập nhật quy hoạch và khả thi xin thêm dân số",
+        "raw": "QH I.12 đất nhóm nhà ở hiện hữu kết hợp xây mới; MĐXD tối đa 50%, tầng cao 30, HSSDĐ 7, dân số 500; cần A Tài/anh Minh cập nhật quy hoạch và khả thi xin thêm dân số"
+      },
+      "financial_items": [
+        {
+          "label": "PA cao tầng giá gom đất để IRR = 20%",
+          "value": "16,55 tr/m2 cho tổng diện tích 27.629,71 m2, đa phần đất lúa/cây hằng năm khác",
+          "source_chunk": "172"
+        },
+        {
+          "label": "PA thấp tầng giá gom đất để IRR = 20%",
+          "value": "11,2 tr/m2 cho tổng diện tích 27.629,71 m2, đa phần đất lúa/cây hằng năm khác",
+          "source_chunk": "172"
+        }
+      ],
+      "business_notes": "Nguồn Mr.Duy; cần quy ngược giá mua có hiệu quả; ưu tiên gom phần đất có đất ở lâu dài, rà soát QH/kế hoạch SDĐ",
+      "excerpt": "dự án đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức... PA cao tầng phải xin thêm 2.522 dân... IRR=20% giá gom đất 16,55tr/m2; PA thấp tầng 11,2tr/m2."
+    },
+    {
+      "id": "M02-0026",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
+      "report_date": "",
+      "source_chunks": [
+        "178"
+      ],
+      "source_file": "batch_188.txt",
+      "sender": "",
+      "location": "Vĩnh Phú gần Phú Quang",
+      "map_url": "",
+      "scale_raw": "Trùng báo cáo 12,5ha đã nhập M02-0008",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "6.151.",
+        "area_mentions": [
+          "12,5 ha",
+          "12 ha",
+          "12.5 ha"
+        ],
+        "raw": "Trùng báo cáo 12,5ha đã nhập M02-0008"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "dự án 12ha KDC Vĩnh Phú gần Phú Quang... ~12.5 ha... tầng cao 15-30, hệ số 6-8, dân số 6.151."
+    },
+    {
+      "id": "M02-0027",
+      "part": 2,
+      "decision": "multi_project_research_report",
+      "project_name": "Nghiên cứu các KCN gần cảng Cái Mép",
+      "report_date": "",
+      "source_chunks": [
+        "181"
+      ],
+      "source_file": "batch_191.txt",
+      "sender": "Hoa D - CVDT",
+      "location": "Bán kính 20-30 km từ cảng Cái Mép; ưu tiên Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "4 khu công nghiệp tiềm năng; KCN Bắc Châu Đức quy mô khoảng 2.500 ha (excerpt bị cắt các KCN còn lại)",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.500 ha"
+        ],
+        "raw": "4 khu công nghiệp tiềm năng; KCN Bắc Châu Đức quy mô khoảng 2.500 ha (excerpt bị cắt các KCN còn lại)"
+      },
+      "legal": {
+        "land": "Bà Rịa - Vũng Tàu còn diện tích mở rộng/quỹ đất gần cảng",
+        "project": "",
+        "raw": "Đồng Nai gần hết quỹ đất/KCN được CĐT quan tâm; Bà Rịa - Vũng Tàu còn diện tích mở rộng/quỹ đất gần cảng"
+      },
+      "financial_items": [],
+      "business_notes": "Báo cáo nghiên cứu nhóm KCN, không phải một dự án BĐS nhà ở; đưa vào DB dạng multi-project research",
+      "excerpt": "báo cáo đánh giá nghiên cứu các Khu Công Nghiệp gần khu cảng Cái Mép... ưu tiên 4 quỹ đất gần cảng... KCN Bắc Châu Đức quy mô khoảng 2.500 ha."
+    },
+    {
+      "id": "M02-0028",
+      "part": 2,
+      "decision": "project_record_update",
+      "project_name": "Dự án Fenica",
+      "report_date": "",
+      "source_chunks": [
+        "182",
+        "183"
+      ],
+      "source_file": "batch_191.txt",
+      "sender": "Thao L - INVT",
+      "location": "Không nêu rõ trong excerpt Part 2",
+      "map_url": "",
+      "scale_raw": "Cập nhật dự án Fenica; P.RD và P.QH đang binh phương án mới phù hợp dân số và thị trường",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật dự án Fenica; P.RD và P.QH đang binh phương án mới phù hợp dân số và thị trường"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Lãi vay xây dựng",
+          "value": "7%",
+          "source_chunk": "183"
+        },
+        {
+          "label": "Suất đầu tư cập nhật",
+          "value": "675 tỷ",
+          "source_chunk": "183"
+        },
+        {
+          "label": "Suất đầu tư nền trước",
+          "value": "646 tỷ, đã gồm điều chỉnh từ 633 tỷ và nâng cấp hoàn thiện",
+          "source_chunk": "183"
+        },
+        {
+          "label": "Tăng dự phòng",
+          "value": "từ 7% lên 12%, tương ứng +29 tỷ",
+          "source_chunk": "183"
+        },
+        {
+          "label": "Mức tăng chi phí thực",
+          "value": "khoảng 11 tỷ so với PA trước sau bù trừ",
+          "source_chunk": "183"
+        },
+        {
+          "label": "PRD đề xuất giá bán shophouse tim tường chưa VAT",
+          "value": "57,57 tr/m2",
+          "source_chunk": "183"
+        },
+        {
+          "label": "P.ĐT tạm tính giá bán shophouse tim tường chưa VAT",
+          "value": "52,5 tr/m2, phương án thận trọng",
+          "source_chunk": "183"
+        }
+      ],
+      "business_notes": "Cập nhật lãi vay xây dựng, suất đầu tư, giá shophouse; sau báo cáo RD/QH sẽ chạy lại FS",
+      "excerpt": "cập nhật dự án Fenica... lãi vay XD 7%, SĐT 675 tỷ... PRD đề xuất giá shophouse 57.57tr/m2, P.ĐT tạm tính 52.5tr/m2."
+    },
+    {
+      "id": "M02-0029",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "KDC An Tôn",
+      "report_date": "",
+      "source_chunks": [
+        "185"
+      ],
+      "source_file": "batch_191.txt",
+      "sender": "",
+      "location": "An Tôn",
+      "map_url": "",
+      "scale_raw": "Trùng KDC An Tôn PA1/PA2 đã nhập M02-0011",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng KDC An Tôn PA1/PA2 đã nhập M02-0011"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "KDC An Tôn theo 02 phương án quy hoạch... PA1 NOXH 391 căn... PA2 chuyển NOXH."
+    },
+    {
+      "id": "M02-0030",
+      "part": 2,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án 31 Trần Não - pháp lý đất/cao tầng/văn phòng",
+      "report_date": "2026-03-13",
+      "source_chunks": [
+        "186",
+        "187",
+        "188",
+        "189",
+        "190",
+        "194",
+        "195"
+      ],
+      "source_file": "batch_192.txt; batch_199.txt; batch_204.txt",
+      "sender": "Admin 01; Thao L - INVT",
+      "location": "31 Trần Não, Quận 2/TP.HCM; tiếp giáp đường Trần Não",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích theo Admin 5.243,6 m2 gồm 5 sổ: đất ở 5.239,6 m2, đất CLN 4 m2; bản cập nhật P.ĐT có 04 thửa 5.243 m2, GCN 1 thửa 3.580 m2 gồm 1.354 m2 đất ở và 2.226 m2 CLN; dân số T01/2025 583, QHPK T06/2025 giảm còn 461; PA cao tầng tổng đất 5.243,6 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": ",",
+        "area_mentions": [
+          "5.243,6 m2",
+          "5.239,6 m2",
+          "4 m2",
+          "5.243 m2",
+          "3.580 m2",
+          "1.354 m2"
+        ],
+        "raw": "Tổng diện tích theo Admin 5.243,6 m2 gồm 5 sổ: đất ở 5.239,6 m2, đất CLN 4 m2; bản cập nhật P.ĐT có 04 thửa 5.243 m2, GCN 1 thửa 3.580 m2 gồm 1.354 m2 đất ở và 2.226 m2 CLN; dân số T01/2025 583, QHPK T06/2025 giảm còn 461; PA cao tầng tổng đất 5.243,6 m2"
+      },
+      "legal": {
+        "land": "Cần làm rõ chi phí đất 2.500 tỷ đã gồm CMĐ toàn khu hay chưa； cần GCN toàn khu",
+        "project": "",
+        "raw": "Cần làm rõ chi phí đất 2.500 tỷ đã gồm CMĐ toàn khu hay chưa; cần GCN toàn khu; hồ sơ pháp lý chưa đủ, cần P.PLDA đánh giá; có thông tin nguồn gốc full ở lâu dài nhưng cần xác minh"
+      },
+      "financial_items": [
+        {
+          "label": "Diện tích đất ở theo Admin",
+          "value": "5.239,6 m2",
+          "source_chunk": "186"
+        },
+        {
+          "label": "Diện tích đất CLN theo Admin",
+          "value": "4 m2",
+          "source_chunk": "186"
+        },
+        {
+          "label": "Giá căn ở block đẹp nghe trước đó",
+          "value": "150-170 tr/m2 theo câu hỏi; trả lời trung bình dự án 120-130 tr/m2",
+          "source_chunk": "188"
+        },
+        {
+          "label": "Giá trung bình dự án",
+          "value": "120-130 tr/m2",
+          "source_chunk": "188"
+        },
+        {
+          "label": "Đơn giá cho thuê sàn văn phòng gồm VAT 2025",
+          "value": "28 USD/m2/tháng",
+          "source_chunk": "189"
+        },
+        {
+          "label": "Chi phí đất ban đầu PA cao tầng",
+          "value": "894 tỷ, khoảng 170 tr/m2, full ở",
+          "source_chunk": "194"
+        }
+      ],
+      "business_notes": "Các reply giá thị trường/Opal là tham chiếu; giữ làm update pháp lý/định giá cho 31TN",
+      "excerpt": "31TN gồm 5 sổ tổng diện tích 5243,6 m2... 31 Trần Não cập nhật dân số, pháp lý đất... Cao tầng 31 Trần Não chi phí đất ban đầu 894 tỷ ~170tr/m2."
+    },
+    {
+      "id": "M02-0031",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu đất phường Phú Thọ Hòa, Quận Tân Phú",
+      "report_date": "",
+      "source_chunks": [
+        "191"
+      ],
+      "source_file": "batch_199.txt",
+      "sender": "",
+      "location": "Phường Phú Thọ Hòa, Quận Tân Phú",
+      "map_url": "",
+      "scale_raw": "Trùng record M02-0012",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "13,907.5 m2"
+        ],
+        "raw": "Trùng record M02-0012"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "khu đất phường Phú Thọ Hòa... Diện tích 13,907.5 m2..."
+    },
+    {
+      "id": "M02-0032",
+      "part": 2,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Bà Kèo, Phú Quốc",
+      "report_date": "",
+      "source_chunks": [
+        "196"
+      ],
+      "source_file": "batch_204.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bà Kèo, Phú Quốc",
+      "map_url": "",
+      "scale_raw": "Trùng báo cáo Bà Kèo 02 PA đã nhập M02-0013",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng báo cáo Bà Kèo 02 PA đã nhập M02-0013"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Bà Kèo, Phú Quốc với 02 phương án... excerpt cắt."
+    },
+    {
+      "id": "M02-0033",
+      "part": 2,
+      "decision": "project_record_update",
+      "project_name": "Hội An Riverside Resort & Spa",
+      "report_date": "",
+      "source_chunks": [
+        "197"
+      ],
+      "source_file": "batch_208.txt",
+      "sender": "",
+      "location": "Mặt tiền đường Cửa Đại, phường Cẩm Châu, TP Hội An, tỉnh Quảng Nam",
+      "map_url": "",
+      "scale_raw": "So sánh thiết kế tháng 12: 125 phòng (105 KS, 20 villa), tháng 10: 104 phòng (84 KS, 20 villa); diện tích TB KS 39 vs 48 m2; villa 66 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "48 m2",
+          "66 m2"
+        ],
+        "raw": "So sánh thiết kế tháng 12: 125 phòng (105 KS, 20 villa), tháng 10: 104 phòng (84 KS, 20 villa); diện tích TB KS 39 vs 48 m2; villa 66 m2"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng mức đầu tư",
+          "value": "295 tỷ, dự án không sử dụng vốn vay",
+          "source_chunk": "197"
+        },
+        {
+          "label": "Suất đầu tư all-in tháng 12 theo key",
+          "value": "2.315 triệu đồng/key",
+          "source_chunk": "197"
+        },
+        {
+          "label": "Suất đầu tư all-in tháng 10 theo key",
+          "value": "2.819 triệu đồng/key",
+          "source_chunk": "197"
+        }
+      ],
+      "business_notes": "Bản cũ hơn so với Concept Lamanon; không sử dụng vốn vay; suất đầu tư sẽ cập nhật sau khi QS hoàn thành suất đầu tư chung",
+      "excerpt": "Hội An Riverside Resort & Spa, mặt tiền Cửa Đại... tháng 12 125 phòng, tháng 10 104 phòng... TMĐT 295 tỷ."
+    },
+    {
+      "id": "M02-0034",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Asia Phú Mỹ – Bình Chánh",
+      "report_date": "",
+      "source_chunks": [
+        "198",
+        "199"
+      ],
+      "source_file": "batch_212.txt",
+      "sender": "",
+      "location": "Đại lộ Nguyễn Văn Linh, Bình Chánh/Bình Hưng, TP.HCM",
+      "map_url": "https://maps.app.goo.gl/H57L1w8ReXXNhtb99",
+      "scale_raw": "Quy mô 27,9ha; đã cấp sổ 24ha, P.ĐT tập trung phân tích 24ha đã cấp sổ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "27,9 ha",
+          "24 ha",
+          "27.9 ha"
+        ],
+        "raw": "Quy mô 27,9ha; đã cấp sổ 24ha, P.ĐT tập trung phân tích 24ha đã cấp sổ"
+      },
+      "legal": {
+        "land": "",
+        "project": "dự kiến 1 năm xử lý nợ và 2 năm pháp lý kế thừa QH 1/500, xây dựng cuối 2028-đầu 2029",
+        "raw": "Triển khai từ năm 2000, CĐT Công ty Phú Mỹ liên doanh cổ đông Malaysia; liên quan sai phạm Agribank Mạc Thị Bưởi/Công ty Phú Mỹ; đang xử lý nợ DATC; dự kiến 1 năm xử lý nợ và 2 năm pháp lý kế thừa QH 1/500, xây dựng cuối 2028-đầu 2029"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ",
+          "value": "56-66 tr/m2, chưa VAT tim tường",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Giá bán căn shop",
+          "value": "69-79 tr/m2, chưa VAT tim tường",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Giá bán căn hộ cho thuê/sản phẩm 50 năm",
+          "value": "47-56 tr/m2, chưa VAT tim tường",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Giá thuê sàn thương mại siêu thị",
+          "value": "8 USD/m2/tháng",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Giá thuê sàn thương mại văn phòng",
+          "value": "9,5 USD/m2/tháng",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Giá thuê sàn nhà trẻ",
+          "value": "4 USD/m2/tháng",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Suất xây dựng all-in",
+          "value": "14,5 tr/m2 gồm VAT",
+          "source_chunk": "199"
+        },
+        {
+          "label": "Chi phí pháp lý",
+          "value": "khoảng 200 tỷ",
+          "source_chunk": "199"
+        }
+      ],
+      "business_notes": "Nguồn anh Hiếu-GĐPL; có nhóm sản phẩm bán và khai thác cho thuê",
+      "excerpt": "Asia Phú Mỹ – Bình Chánh... Đại lộ Nguyễn Văn Linh... 27.9ha, đã cấp sổ 24ha... xử lý nợ DATC... giá bán căn hộ 56-66 tr/m2."
+    },
+    {
+      "id": "M02-0035",
+      "part": 2,
+      "decision": "project_record",
+      "project_name": "Khu đất 35ha/38,8ha tại Kiên Giang - CKG",
+      "report_date": "",
+      "source_chunks": [
+        "200",
+        "201",
+        "202"
+      ],
+      "source_file": "batch_212.txt",
+      "sender": "Hanh T - INVT",
+      "location": "Đường Lạc Hồng, xã Thạnh Lộc, H. Châu Thành, Kiên Giang cũ / nay xã Thạnh Lộc, An Giang; giáp ranh TP Rạch Giá",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1SAcLUqc-JTEBiY1uNXVoDUdI-a5wJd0&ll=10.002013642197713%2C105",
+      "scale_raw": "Khoảng 35ha/38,8ha lập dự án; chủ yếu đất lúa; hiện chưa lập dự án; định hướng mua gom >75% diện tích đất lập dự án khoảng 38ha; có NOXH cao tầng trong PA an toàn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "35 ha",
+          "38,8 ha",
+          "38 ha"
+        ],
+        "raw": "Khoảng 35ha/38,8ha lập dự án; chủ yếu đất lúa; hiện chưa lập dự án; định hướng mua gom >75% diện tích đất lập dự án khoảng 38ha; có NOXH cao tầng trong PA an toàn"
+      },
+      "legal": {
+        "land": "Xin QĐ chủ trương đầu tư theo hướng tự thỏa thuận QSDĐ và vận dụng thí điểm； cần hoàn tất mua đất trong ranh và đường kết nối, đối tác đảm bảo điều kiện phê duyệt CTĐT",
+        "project": "Xin QĐ chủ trương đầu tư theo hướng tự thỏa thuận QSDĐ và vận dụng thí điểm； cần hoàn tất mua đất trong ranh và đường kết nối, đối tác đảm bảo điều kiện phê duyệt CTĐT",
+        "raw": "Xin QĐ chủ trương đầu tư theo hướng tự thỏa thuận QSDĐ và vận dụng thí điểm; chưa có QH phân khu sau sáp nhập nên P.QH tạm áp QH chung; cần hoàn tất mua đất trong ranh và đường kết nối, đối tác đảm bảo điều kiện phê duyệt CTĐT"
+      },
+      "financial_items": [],
+      "business_notes": "Đề xuất nghiên cứu sâu với điều kiện; quỹ đất dự trữ tương lai CKG do quỹ đất nội thành Rạch Giá khan hiếm; hạn chế: chưa có đường kết nối, chưa hình thành dự án, xen cài chưa mua xong, pháp lý/nguồn gốc chưa đủ, đất lúa nền thấp chi phí san lấp/cát cao",
+      "excerpt": "khu đất 35ha tại Kiên Giang... từ CKG... chủ yếu đất lúa... đề xuất tiếp cận và nghiên cứu sâu với các điều kiện hoàn tất mua thêm đất/đường kết nối."
+    },
+    {
+      "id": "M03-0001",
+      "part": 3,
+      "decision": "attachment_update_to_existing_project",
+      "project_name": "Khu đất 35ha/38,8ha tại Kiên Giang - CKG",
+      "report_date": "",
+      "source_chunks": [
+        "203"
+      ],
+      "source_file": "batch_212.txt",
+      "sender": "",
+      "location": "Rạch Giá/Kiên Giang context",
+      "map_url": "",
+      "scale_raw": "Attachment hiện trạng/rành đất DA 35ha",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "35 ha"
+        ],
+        "raw": "Attachment hiện trạng/rành đất DA 35ha"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có thêm trong excerpt"
+      },
+      "financial_items": [],
+      "business_notes": "Đính kèm hình/video hiện trạng khu đất; update cho record CKG Part 2",
+      "excerpt": "DAT RACH GIA.mp4; Vi tri va Ranh dat DA 35ha 1.pdf; DAT RACH GIA 1.mp4"
+    },
+    {
+      "id": "M03-0002",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+      "report_date": "",
+      "source_chunks": [
+        "204"
+      ],
+      "source_file": "batch_212.txt",
+      "sender": "",
+      "location": "Mặt tiền Mai Chí Thọ, An Phú, TP Thủ Đức",
+      "map_url": "",
+      "scale_raw": "Trùng record Part 2, excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng record Part 2, excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "Hết hạn CTĐT 2010, khó gia hạn/chưa hoàn thành nghĩa vụ tài chính",
+        "raw": "Hết hạn CTĐT 2010, khó gia hạn/chưa hoàn thành nghĩa vụ tài chính"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update, không tạo dự án mới",
+      "excerpt": "Văn phòng – An Phú, mặt tiền đường Mai Chí Thọ... hết hạn chấp thuận chủ trương đầu tư từ năm 2010..."
+    },
+    {
+      "id": "M03-0003",
+      "part": 3,
+      "decision": "project_record_with_replies",
+      "project_name": "Dự án 48 Nguyễn Thiện Thuật, TP Nha Trang",
+      "report_date": "",
+      "source_chunks": [
+        "206",
+        "207",
+        "208",
+        "209"
+      ],
+      "source_file": "batch_213.txt",
+      "sender": "Hanh T - INVT",
+      "location": "48 Nguyễn Thiện Thuật, TP Nha Trang; cách biển khoảng 350m, không có view biển, bị che bởi cao tầng Trần Phú",
+      "map_url": "",
+      "scale_raw": "Diện tích GCN 1.703,3 m2; diện tích phù hợp QH 1.655,2 m2; QH 20 tầng, HSSDĐ 13, MĐXD 75%; tổng sàn XD 28.884 m2 gồm 3 hầm, 2 tầng shop TM khối đế 13 căn và 18 tầng tháp căn hộ",
+      "planning": {
+        "floors": "",
+        "density": "75%",
+        "far": "13,",
+        "population": "",
+        "area_mentions": [
+          "1.703,3 m2",
+          "1.655,2 m2",
+          "28.884 m2"
+        ],
+        "raw": "Diện tích GCN 1.703,3 m2; diện tích phù hợp QH 1.655,2 m2; QH 20 tầng, HSSDĐ 13, MĐXD 75%; tổng sàn XD 28.884 m2 gồm 3 hầm, 2 tầng shop TM khối đế 13 căn và 18 tầng tháp căn hộ"
+      },
+      "legal": {
+        "land": "Đất đã có GCN ở lâu dài； chưa hình thành dự án, mới có QSDĐ và chỉ tiêu QH 1/2000",
+        "project": "chưa hình thành dự án, mới có QSDĐ và chỉ tiêu QH 1/2000",
+        "raw": "Đất đã có GCN ở lâu dài; chưa hình thành dự án, mới có QSDĐ và chỉ tiêu QH 1/2000; không phải điều chỉnh QH"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ bình quân để LNTT/TMĐT mục tiêu 20%",
+          "value": "từ 75 tr/m2 chưa VAT trở lên",
+          "source_chunk": "207"
+        },
+        {
+          "label": "Giá bán căn hộ độ nhạy cố định giá bán",
+          "value": "68,8 tr/m2",
+          "source_chunk": "208"
+        },
+        {
+          "label": "Đơn giá đất được khấu trừ cố định",
+          "value": "168 tr/m2",
+          "source_chunk": "208"
+        },
+        {
+          "label": "Suất vốn đầu tư all-in để đạt LNTT/TMĐT >=20%",
+          "value": "dưới 12,7 tr/m2 all-in chưa VAT khi giá bán từ 75 tr/m2",
+          "source_chunk": "208"
+        },
+        {
+          "label": "Đơn giá đất được khấu trừ tối đa",
+          "value": "khoảng 185 tr/m2, bằng đơn giá đất thặng dư/không đóng thêm TSDĐ bổ sung",
+          "source_chunk": "208"
+        },
+        {
+          "label": "LNTT/TMĐT tại giá bán 68,8 và khấu trừ tối đa",
+          "value": "10,8%",
+          "source_chunk": "208"
+        }
+      ],
+      "business_notes": "FS cho thấy giá bán cần đạt cao mới hiệu quả; R&D/QH có file đính kèm",
+      "excerpt": "48 Nguyễn Thiện Thuật... QH 20 tầng, hệ số 13... giá bán căn hộ bình quân từ 75 tr/m2 chưa VAT mới đạt LNTT/TMĐT mục tiêu 20%."
+    },
+    {
+      "id": "M03-0004",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+      "report_date": "2026-03-25",
+      "source_chunks": [
+        "210"
+      ],
+      "source_file": "batch_214.txt",
+      "sender": "Admin 01",
+      "location": "Phường Lộc Thọ, TP Nha Trang",
+      "map_url": "",
+      "scale_raw": "Khách sạn 26 tầng nổi, 1 tum thang + 2 hầm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn 26 tầng nổi, 1 tum thang + 2 hầm"
+      },
+      "legal": {
+        "land": "Đất TMDV thời hạn lâu dài do nguồn gốc đất ở",
+        "project": "",
+        "raw": "Đất TMDV thời hạn lâu dài do nguồn gốc đất ở"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update từ Part 2; Admin hỏi áp bài toán Casa/David Cường chưa",
+      "excerpt": "khách sạn Đông Á Premier tại Phường Lộc Thọ... hẻm nhỏ và cụt 5m... cách biển 320m..."
+    },
+    {
+      "id": "M03-0005",
+      "part": 3,
+      "decision": "project_record_with_reply",
+      "project_name": "Hoa viên Vĩnh Thanh",
+      "report_date": "2026-01-23",
+      "source_chunks": [
+        "211",
+        "213"
+      ],
+      "source_file": "batch_217.txt",
+      "sender": "Thao L - INVT",
+      "location": "Vĩnh Thanh",
+      "map_url": "",
+      "scale_raw": "Tổng 57ha; diện tích thương phẩm 290.217 m2 khoảng 51%; mô hình hoa viên/nghĩa trang với đất mộ, hạ tầng công viên/cảnh quan/kênh/giao thông/bãi xe/xử lý môi trường",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "57 ha",
+          "290.217 m2"
+        ],
+        "raw": "Tổng 57ha; diện tích thương phẩm 290.217 m2 khoảng 51%; mô hình hoa viên/nghĩa trang với đất mộ, hạ tầng công viên/cảnh quan/kênh/giao thông/bãi xe/xử lý môi trường"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không tính SĐT công trình tiện ích/phụ trợ như nhà tang lễ, tịnh xá, hỏa táng, nhà hàng, nhà điều hành; tạm xem bù trừ bởi doanh thu hoạt động"
+      },
+      "financial_items": [
+        {
+          "label": "SĐT all-in gồm VAT",
+          "value": "1,898 tr.đ/m2 cho tổng 57ha, khoảng 1.081 tỷ",
+          "source_chunk": "211"
+        }
+      ],
+      "business_notes": "Admin yêu cầu so sánh hạ tầng/cảnh quan Sala với Phúc An Viên",
+      "excerpt": "Hoa viên Vĩnh Thanh... diện tích thương phẩm 290.217m2 ~51%; SĐT all-in 1,898 tr.đ/m2 cho tổng 57ha ~1.081 tỷ."
+    },
+    {
+      "id": "M03-0006",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026",
+      "report_date": "",
+      "source_chunks": [
+        "212"
+      ],
+      "source_file": "batch_217.txt",
+      "sender": "",
+      "location": "P. Trấn Biên, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Diện tích toàn khu 131.690,94 m2; KDC nhà ở kết hợp TMDV, giáo dục-văn hóa-y tế; bán hàng Q2/2027-Q1/2030",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "131.690,94 m2"
+        ],
+        "raw": "Diện tích toàn khu 131.690,94 m2; KDC nhà ở kết hợp TMDV, giáo dục-văn hóa-y tế; bán hàng Q2/2027-Q1/2030"
+      },
+      "legal": {
+        "land": "",
+        "project": "Thuộc danh sách dự kiến đấu giá Đồng Nai 2026",
+        "raw": "Thuộc danh sách dự kiến đấu giá Đồng Nai 2026"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ",
+          "value": "55-60 tr/m2",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá bán Shop TMDV",
+          "value": "75-80 tr/m2",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá bán nhà phố liên kế",
+          "value": "95-100 tr/m2",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá bán shophouse liên kế",
+          "value": "115-120 tr/m2",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá bán biệt thự",
+          "value": "85-100 tr/m2",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá định CPXD chung cư 19 tầng",
+          "value": "12,8-13,3 tr/m2 gồm VAT all-in",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá định CPXD nhà phố",
+          "value": "7,5 tr/m2, hoàn thiện mặt ngoài-thô bên trong",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Giá định CPXD biệt thự",
+          "value": "9,5 tr/m2, hoàn thiện mặt ngoài-thô bên trong",
+          "source_chunk": "212"
+        },
+        {
+          "label": "Chi phí bán hàng giả định",
+          "value": "khoảng 18% doanh thu",
+          "source_chunk": "212"
+        }
+      ],
+      "business_notes": "Định giá đất theo hiệu quả dự án; giả định nhiều sản phẩm",
+      "excerpt": "khu nhà ở Tân Mai... P.Trấn Biên, Đồng Nai... diện tích 131.690,94 m2... căn hộ 55-60 tr/m2..."
+    },
+    {
+      "id": "M03-0007",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+      "report_date": "",
+      "source_chunks": [
+        "214",
+        "215",
+        "217"
+      ],
+      "source_file": "batch_220.txt; batch_221.txt",
+      "sender": "Thanh L - INVT",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích đất 1.381 m2; thời gian sử dụng 50 năm đến 17/03/2061; phương án khách sạn Luxury/Lifestyle; vận hành 15 năm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1.381 m2"
+        ],
+        "raw": "Diện tích đất 1.381 m2; thời gian sử dụng 50 năm đến 17/03/2061; phương án khách sạn Luxury/Lifestyle; vận hành 15 năm"
+      },
+      "legal": {
+        "land": "Đất thời hạn 50 năm tới 2061",
+        "project": "",
+        "raw": "Đất thời hạn 50 năm tới 2061"
+      },
+      "financial_items": [
+        {
+          "label": "Phí quản lý",
+          "value": "4% doanh thu",
+          "source_chunk": "215"
+        },
+        {
+          "label": "Phí nâng cấp cải tạo",
+          "value": "2% doanh thu mỗi năm trích vào năm 7 và 2%/doanh thu mỗi năm trích vào năm 15",
+          "source_chunk": "215"
+        },
+        {
+          "label": "Đơn giá đất tạm tính",
+          "value": "350 tr/m2",
+          "source_chunk": "215"
+        },
+        {
+          "label": "TMĐT không bao gồm đất",
+          "value": "656 tỷ đồng gồm VAT và lãi vay",
+          "source_chunk": "215"
+        },
+        {
+          "label": "TMĐT bao gồm đất",
+          "value": "1.148 tỷ đồng gồm VAT",
+          "source_chunk": "215"
+        },
+        {
+          "label": "GOP bình quân PA vận hành 15 năm",
+          "value": "51,4%",
+          "source_chunk": "215"
+        },
+        {
+          "label": "EBITDA/Rev bình quân PA vận hành 15 năm",
+          "value": "45,3%",
+          "source_chunk": "215"
+        },
+        {
+          "label": "IRR dòng tiền vận hành 15 năm không gồm đất",
+          "value": "19,97%",
+          "source_chunk": "215"
+        }
+      ],
+      "business_notes": "Phân tích Luxury Hotel vs Lifestyle Hotel; PA kinh doanh theo anh Cường; TMĐT có/không gồm đất",
+      "excerpt": "Serene Đà Nẵng... diện tích đất 1.381 m2... TMĐT không gồm đất 656 tỷ, gồm đất 1.148 tỷ... IRR 19,97%."
+    },
+    {
+      "id": "M03-0008",
+      "part": 3,
+      "decision": "project_record_update",
+      "project_name": "Phú Gia Khiêm - điều chỉnh chỉ tiêu dân số",
+      "report_date": "",
+      "source_chunks": [
+        "223",
+        "224",
+        "228"
+      ],
+      "source_file": "batch_232.txt; batch_235.txt",
+      "sender": "Thao L - INVT",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Chỉ tiêu dân số đang tính 3.973 (căn hộ ở 3.500, officetel 473); dự kiến điều chỉnh 3.673 (căn hộ ở 3.200, officetel 473); PLDA cập nhật chốt xin giữ dân số 3.800",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "3.800",
+        "area_mentions": [
+          "25 m2",
+          "32 m2"
+        ],
+        "raw": "Chỉ tiêu dân số đang tính 3.973 (căn hộ ở 3.500, officetel 473); dự kiến điều chỉnh 3.673 (căn hộ ở 3.200, officetel 473); PLDA cập nhật chốt xin giữ dân số 3.800"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Liên quan cách tính dân số theo tiêu chuẩn diện tích thông thủy/người 25m2 và dự thảo TP.HCM 32m2/người"
+      },
+      "financial_items": [],
+      "business_notes": "Giảm dân số làm giảm hiệu quả kinh doanh; giữ dân số 3.800 giúp điều chỉnh cơ cấu sản phẩm sau này dễ hơn",
+      "excerpt": "Phú Gia Khiêm... dân số đang tính 3.973... dự kiến điều chỉnh 3.673... PLDA cập nhật chốt xin giữ dân số 3800."
+    },
+    {
+      "id": "M03-0009",
+      "part": 3,
+      "decision": "multi_project_research_report",
+      "project_name": "Danh sách khu đất đấu giá Đồng Nai 2026",
+      "report_date": "",
+      "source_chunks": [
+        "225",
+        "226"
+      ],
+      "source_file": "batch_232.txt",
+      "sender": "",
+      "location": "Đồng Nai: Biên Hòa, Long Thành, Nhơn Trạch",
+      "map_url": "",
+      "scale_raw": "3 phụ lục ưu tiên; đề xuất nghiên cứu các khu đất Biên Hòa/Long Thành/Nhơn Trạch: Tân Mai 13,2ha; KĐT-TMDV hỗn hợp khu vực 1 Trấn Biên 51,65ha; khu A+B KĐT Long Thành 610,5ha; khu E KĐT Long Thành 329ha...",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "13,2 ha",
+          "51,65 ha",
+          "610,5 ha",
+          "329 ha"
+        ],
+        "raw": "3 phụ lục ưu tiên; đề xuất nghiên cứu các khu đất Biên Hòa/Long Thành/Nhơn Trạch: Tân Mai 13,2ha; KĐT-TMDV hỗn hợp khu vực 1 Trấn Biên 51,65ha; khu A+B KĐT Long Thành 610,5ha; khu E KĐT Long Thành 329ha..."
+      },
+      "legal": {
+        "land": "",
+        "project": "Phụ lục 2 tập trung đấu giá 2026； Phụ lục 3 cần GPMB",
+        "raw": "Phụ lục 1 chuyển tiếp 2025 đã duyệt giá khởi điểm; Phụ lục 2 tập trung đấu giá 2026; Phụ lục 3 cần GPMB"
+      },
+      "financial_items": [],
+      "business_notes": "Báo cáo danh sách nghiên cứu, không phải một dự án duy nhất",
+      "excerpt": "danh sách các khu đất trong kế hoạch đấu giá năm 2026 Đồng Nai... đề xuất nghiên cứu Biên Hòa, Long Thành, Nhơn Trạch..."
+    },
+    {
+      "id": "M03-0010",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức",
+      "report_date": "",
+      "source_chunks": [
+        "229",
+        "230"
+      ],
+      "source_file": "batch_235.txt; batch_236.txt",
+      "sender": "Thao L - INVT",
+      "location": "Mặt tiền đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức",
+      "map_url": "https://goo.gl/maps/Empzn8zwhyULFrqV8",
+      "scale_raw": "Trùng record Part 2 M02-0025",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng record Part 2 M02-0025"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "báo cáo dự án đường Ngô Chí Quốc, Bình Chiểu, Thủ Đức..."
+    },
+    {
+      "id": "M03-0011",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
+      "report_date": "",
+      "source_chunks": [
+        "231"
+      ],
+      "source_file": "batch_244.txt",
+      "sender": "",
+      "location": "Phước An, Nhơn Trạch, Đồng Nai",
+      "map_url": "https://maps.app.goo.gl/QVMCmJp83pMBNKrL8",
+      "scale_raw": "Tổng diện tích toàn khu 1.019.443,5 m2 (102ha); đất ở 34,6%, đất CTCC 8,1%; nhà liên kế, biệt thự, chung cư 5 tầng + để xe nổi",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1.019.443,5 m2",
+          "102 ha"
+        ],
+        "raw": "Tổng diện tích toàn khu 1.019.443,5 m2 (102ha); đất ở 34,6%, đất CTCC 8,1%; nhà liên kế, biệt thự, chung cư 5 tầng + để xe nổi"
+      },
+      "legal": {
+        "land": "",
+        "project": "Theo PA đấu giá 10/11/2025 giá khởi điểm 1.696 tỷ； thông báo đấu giá 24/11/2025 tăng giá khởi điểm 5.013 tỷ",
+        "raw": "Theo PA đấu giá 10/11/2025 giá khởi điểm 1.696 tỷ; thông báo đấu giá 24/11/2025 tăng giá khởi điểm 5.013 tỷ"
+      },
+      "financial_items": [
+        {
+          "label": "Giá khởi điểm PA đấu giá 10/11/2025",
+          "value": "1.696 tỷ đồng",
+          "source_chunk": "231"
+        },
+        {
+          "label": "Giá khởi điểm thông báo đấu giá 24/11/2025",
+          "value": "5.013 tỷ đồng",
+          "source_chunk": "231"
+        },
+        {
+          "label": "Suất vốn all-in nhà liên kế gồm VAT",
+          "value": "8 tr/m2",
+          "source_chunk": "231"
+        },
+        {
+          "label": "Suất vốn all-in nhà biệt thự gồm VAT",
+          "value": "9,6 tr/m2",
+          "source_chunk": "231"
+        },
+        {
+          "label": "Suất vốn all-in chung cư 5 tầng + để xe nổi gồm VAT",
+          "value": "10 tr/m2",
+          "source_chunk": "231"
+        }
+      ],
+      "business_notes": "Đánh giá hiệu quả dự án đấu giá; P.RD đề xuất giá bán",
+      "excerpt": "đấu giá 102ha, Phước An, Nhơn Trạch... diện tích 1.019.443,5m2... giá khởi điểm tăng từ 1.696 tỷ lên 5.013 tỷ."
+    },
+    {
+      "id": "M03-0012",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "KĐT Trấn Biên / KCN Biên Hòa 1 đấu giá Đồng Nai",
+      "report_date": "",
+      "source_chunks": [
+        "232"
+      ],
+      "source_file": "batch_244.txt",
+      "sender": "",
+      "location": "Trấn Biên, Đồng Nai; thuộc KCN Biên Hòa 1",
+      "map_url": "https://maps.app.goo.gl/Mww4k2RWctPHssMQA",
+      "scale_raw": "Diện tích 51,65ha gồm 16,7ha đất ở, 4,8ha hạ tầng xã hội + TMDV; sản phẩm nhà phố, biệt thự, 3 khu chung cư 40-45 tầng, TTTM, trường học, y tế; dân số khoảng 19.774",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "19.774...",
+        "area_mentions": [
+          "51,65 ha",
+          "16,7 ha",
+          "4,8 ha",
+          "51.65 ha"
+        ],
+        "raw": "Diện tích 51,65ha gồm 16,7ha đất ở, 4,8ha hạ tầng xã hội + TMDV; sản phẩm nhà phố, biệt thự, 3 khu chung cư 40-45 tầng, TTTM, trường học, y tế; dân số khoảng 19.774"
+      },
+      "legal": {
+        "land": "",
+        "project": "Đã có QH 1/500； đang GPMB để đấu giá； đấu giá 18/12/2025",
+        "raw": "Đã có QH 1/500; đang GPMB để đấu giá; nộp hồ sơ/tiền ứng trước 17/11-16/12/2025; xét duyệt 04/12-10/12; đấu giá 18/12/2025"
+      },
+      "financial_items": [
+        {
+          "label": "Giá khởi điểm thông báo đấu giá",
+          "value": "9.363 tỷ",
+          "source_chunk": "232"
+        },
+        {
+          "label": "Giá theo PA đấu giá Trung tâm PT quỹ đất đề xuất",
+          "value": "2.110 tỷ",
+          "source_chunk": "232"
+        }
+      ],
+      "business_notes": "Đánh giá sơ bộ hiệu quả dự án đấu giá",
+      "excerpt": "KĐT Trấn Biên... diện tích 51.65ha... dân số 19.774... giá khởi điểm 9.363 tỷ."
+    },
+    {
+      "id": "M03-0013",
+      "part": 3,
+      "decision": "multi_asset_project_record",
+      "project_name": "03 tài sản CHDV tại TPHCM / 391A NKKN, 728 CMT8, Đường 12 An Phú",
+      "report_date": "2025-10-31",
+      "source_chunks": [
+        "233",
+        "240",
+        "241",
+        "242"
+      ],
+      "source_file": "batch_244.txt; batch_250.txt",
+      "sender": "Thanh L - INVT",
+      "location": "TP.HCM: 391A Nam Kỳ Khởi Nghĩa, 728 Cách Mạng Tháng 8, Đường 12 An Phú Q2; 3 tài sản vị trí gần nhau theo Google My Maps",
+      "map_url": "https://www.google.com/maps/d/edit?mid=11z_Bkaxe4GIV5AYsicAES_ivCxDZbmM&usp=sharing",
+      "scale_raw": "3 tài sản khai thác căn hộ dịch vụ/phòng trọ cao cấp; lấp đầy ổn định 80% từ 2029 cho 3 dự án; vận hành CHDV ổn định công suất 90% trong một tính toán",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "3 tài sản khai thác căn hộ dịch vụ/phòng trọ cao cấp; lấp đầy ổn định 80% từ 2029 cho 3 dự án; vận hành CHDV ổn định công suất 90% trong một tính toán"
+      },
+      "legal": {
+        "land": "Nghĩa vụ tài chính đất tạm chưa đưa vào do hồ sơ pháp lý đất hạn chế； chỉ có loại đất và giá vốn mua",
+        "project": "",
+        "raw": "Nghĩa vụ tài chính đất tạm chưa đưa vào do hồ sơ pháp lý đất hạn chế; chỉ có loại đất và giá vốn mua"
+      },
+      "financial_items": [
+        {
+          "label": "728 CMT8 TMĐT chưa VAT",
+          "value": "407 tỷ đồng",
+          "source_chunk": "233"
+        },
+        {
+          "label": "728 CMT8 chi phí mua đất",
+          "value": "297 tỷ đồng, khoảng 204 tr/m2, đất TMDV",
+          "source_chunk": "233"
+        },
+        {
+          "label": "728 CMT8 CPXD",
+          "value": "108 tỷ đồng, suất vốn all-in khoảng 10 tr/m2",
+          "source_chunk": "233"
+        },
+        {
+          "label": "Phòng trọ cao cấp 20-25m2 có gác lửng",
+          "value": "3,5-3,7 triệu đồng/tháng",
+          "source_chunk": "241"
+        },
+        {
+          "label": "Phòng 20-25m2 có gác lửng/ban công",
+          "value": "4,0-4,2 triệu đồng/tháng",
+          "source_chunk": "241"
+        },
+        {
+          "label": "Phòng 30m2 gác lửng/ban công/căn góc",
+          "value": "5 triệu đồng/tháng",
+          "source_chunk": "241"
+        },
+        {
+          "label": "Chi phí vận hành",
+          "value": "25% tổng doanh thu",
+          "source_chunk": "241"
+        },
+        {
+          "label": "Công suất thuê phòng ổn định",
+          "value": "90%",
+          "source_chunk": "241"
+        },
+        {
+          "label": "Trượt giá QSDĐ khi chuyển nhượng năm 11",
+          "value": "5%/năm trên giá trị mua đất hiện tại",
+          "source_chunk": "241"
+        }
+      ],
+      "business_notes": "Đề xuất chung giá thuê cho 3 tài sản; có báo cáo đánh giá và RD đính kèm",
+      "excerpt": "03 tài sản tại TPHCM gồm 391A NKKN, 728 CMT8, Đường 12 An Phú... TMĐT 728 CMT8 407 tỷ... giá thuê phòng 3,5-5 triệu/tháng."
+    },
+    {
+      "id": "M03-0014",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Chung cư Đỗ Xuân Hợp, Phước Long B, Thủ Đức",
+      "report_date": "2025-11-13",
+      "source_chunks": [
+        "234"
+      ],
+      "source_file": "batch_245.txt",
+      "sender": "Thanh L - INVT",
+      "location": "Đỗ Xuân Hợp, P. Phước Long B, Thủ Đức",
+      "map_url": "https://maps.app.goo.gl/Hn6baY7yBKNTcRXs8",
+      "scale_raw": "Diện tích đất 2.067 m2; MĐXD 40%; HSSDĐ 8,01; 33 tầng + 1 hầm + tầng để xe nổi; tổng sàn 19.492,5 m2; diện tích kinh doanh 11.529,8 m2; 203 căn hộ + 1 shop, bình quân 55m2/căn",
+      "planning": {
+        "floors": "",
+        "density": "40%",
+        "far": "8,01",
+        "population": "",
+        "area_mentions": [
+          "2.067 m2",
+          "19.492,5 m2",
+          "11.529,8 m2",
+          "55 m2"
+        ],
+        "raw": "Diện tích đất 2.067 m2; MĐXD 40%; HSSDĐ 8,01; 33 tầng + 1 hầm + tầng để xe nổi; tổng sàn 19.492,5 m2; diện tích kinh doanh 11.529,8 m2; 203 căn hộ + 1 shop, bình quân 55m2/căn"
+      },
+      "legal": {
+        "land": "",
+        "project": "Thông tin quy hoạch",
+        "raw": "Thông tin quy hoạch; PA1 bán căn hộ ở"
+      },
+      "financial_items": [
+        {
+          "label": "PA1 TMĐT chưa VAT",
+          "value": "560 tỷ đồng",
+          "source_chunk": "234"
+        },
+        {
+          "label": "Suất vốn all-in gồm VAT",
+          "value": "14,2 tr/m2",
+          "source_chunk": "234"
+        },
+        {
+          "label": "Chi phí mua đất",
+          "value": "170 tỷ",
+          "source_chunk": "234"
+        },
+        {
+          "label": "Tiền sử dụng đất",
+          "value": "135 tỷ đồng",
+          "source_chunk": "234"
+        },
+        {
+          "label": "Giá trị lô đất theo thặng dư",
+          "value": "280 tỷ, tương đương 135 tr/m2",
+          "source_chunk": "234"
+        }
+      ],
+      "business_notes": "Báo cáo hiệu quả đầu tư",
+      "excerpt": "Chung cư Đỗ Xuân Hợp... diện tích 2.067m2... 33 tầng... TMĐT 560 tỷ, chi phí mua đất 170 tỷ, TSDĐ 135 tỷ."
+    },
+    {
+      "id": "M03-0015",
+      "part": 3,
+      "decision": "valuation_update_to_existing_project",
+      "project_name": "Fenica - báo cáo định giá",
+      "report_date": "2025-11-06",
+      "source_chunks": [
+        "235",
+        "236"
+      ],
+      "source_file": "batch_246.txt",
+      "sender": "Thoi L - ASST.",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Báo cáo định giá dự án Fenica bởi Cty Định Giá Việt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Báo cáo định giá dự án Fenica bởi Cty Định Giá Việt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "PP so sánh trực tiếp đề xuất giá bán trung bình",
+          "value": "38,4 tr/m2",
+          "source_chunk": "235"
+        }
+      ],
+      "business_notes": "Gửi Huy rà soát điều chỉnh và báo cáo Sếp; mục tiêu định giá thực để làm việc với N... (excerpt cắt)",
+      "excerpt": "Fenica - Dự thảo định giá DA - Cty Định Giá Việt... PP so sánh trực tiếp đề xuất giá bán trung bình 38.4tr/m2."
+    },
+    {
+      "id": "M03-0016",
+      "part": 3,
+      "decision": "project_record_with_reply",
+      "project_name": "Dự án 1ha Sơn Trà, Đà Nẵng",
+      "report_date": "2025-11-03",
+      "source_chunks": [
+        "237",
+        "238",
+        "239"
+      ],
+      "source_file": "batch_248.txt",
+      "sender": "Mr Mike1 -CEO",
+      "location": "Sơn Trà, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích đất 10.063 m2; HSSDĐ 11,94; tổng sàn gồm hầm/kỹ thuật 162.271 m2; diện tích thương phẩm căn hộ 74.619 m2 khoảng 915 căn; khách sạn 175 phòng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "11,94",
+        "population": "",
+        "area_mentions": [
+          "10.063 m2",
+          "162.271 m2",
+          "74.619 m2",
+          "1 ha"
+        ],
+        "raw": "Diện tích đất 10.063 m2; HSSDĐ 11,94; tổng sàn gồm hầm/kỹ thuật 162.271 m2; diện tích thương phẩm căn hộ 74.619 m2 khoảng 915 căn; khách sạn 175 phòng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Doanh thu căn hộ chưa VAT",
+          "value": "6.763 tỷ đồng",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Giá căn hộ gồm VAT thời điểm mở bán 2027",
+          "value": "90 tr/m2",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Giá shophouse gồm VAT",
+          "value": "90 tr/m2",
+          "source_chunk": "237"
+        },
+        {
+          "label": "TMĐT chưa VAT gồm lãi vay",
+          "value": "4.950 tỷ đồng",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Đơn giá all-in gồm VAT",
+          "value": "20 tr/m2",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Chi phí mua đất",
+          "value": "1.347 tỷ đồng",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Tiền sử dụng đất",
+          "value": "1.188 tỷ đồng",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Tổng chi phí hoạt động chưa VAT",
+          "value": "1.014 tỷ đồng, 15% doanh thu",
+          "source_chunk": "237"
+        },
+        {
+          "label": "LNTT",
+          "value": "799 tỷ đồng",
+          "source_chunk": "237"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "16,13%",
+          "source_chunk": "237"
+        },
+        {
+          "label": "Giá mua đất theo chứng thư 2022",
+          "value": "1.347 tỷ đồng",
+          "source_chunk": "238"
+        }
+      ],
+      "business_notes": "Admin yêu cầu R&D nghiên cứu lại giá bán Đà Nẵng; giá mua đất theo chứng thư thẩm định giá 2022",
+      "excerpt": "1ha Sơn Trà, Đà Nẵng... 915 căn hộ, 175 phòng khách sạn... doanh thu căn hộ 6.763 tỷ, TMĐT 4.950 tỷ, LNTT 799 tỷ."
+    },
+    {
+      "id": "M03-0017",
+      "part": 3,
+      "decision": "project_record_with_reply",
+      "project_name": "KĐT An Phú – PG",
+      "report_date": "",
+      "source_chunks": [
+        "243",
+        "244",
+        "245"
+      ],
+      "source_file": "batch_254.txt",
+      "sender": "",
+      "location": "P. An Phú, Thuận An, Bình Dương; cách Phú Gia Khiêm 1km, cách Fenica 2,5km",
+      "map_url": "",
+      "scale_raw": "Diện tích 3ha; 3 tháp 30 tầng gồm 1.874 căn hộ, 504 officetel, 17 shophouse; 55 nhà phố thấp tầng; dân số 3.899",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "3.899",
+        "area_mentions": [
+          "3 ha"
+        ],
+        "raw": "Diện tích 3ha; 3 tháp 30 tầng gồm 1.874 căn hộ, 504 officetel, 17 shophouse; 55 nhà phố thấp tầng; dân số 3.899"
+      },
+      "legal": {
+        "land": "",
+        "project": "Đã có quyết định chủ trương đầu tư phê duyệt 06/2025； cam kết pháp lý đến 1/500 và thiết kế 1/500 theo ý người mua",
+        "raw": "Đã có quyết định chủ trương đầu tư phê duyệt 06/2025; cam kết pháp lý đến 1/500 và thiết kế 1/500 theo ý người mua"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "730 tỷ",
+          "source_chunk": "243"
+        },
+        {
+          "label": "Nguồn cung căn hộ bán kính 4km",
+          "value": "khoảng 10.000 căn hộ",
+          "source_chunk": "244"
+        }
+      ],
+      "business_notes": "Nguồn Ý-Pháp Chế; gần Fenica/PGK, cạnh tranh khu vực cao trong 2-3 năm tới, hơn 500 officetel hấp thụ còn là dấu hỏi; P.ĐT đề xuất theo dõi thêm",
+      "excerpt": "KĐT An Phú – PG... 3ha, An Phú Thuận An... giá chào 730 tỷ... 1.874 căn hộ, 504 officetel, 55 nhà phố."
+    },
+    {
+      "id": "M03-0018",
+      "part": 3,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án 353 Nơ Trang Long, Bình Thạnh",
+      "report_date": "2025-10-07",
+      "source_chunks": [
+        "246",
+        "261",
+        "262"
+      ],
+      "source_file": "batch_258.txt; batch_283.txt",
+      "sender": "Hanh T - INVT",
+      "location": "353 Nơ Trang Long, Bình Thạnh, TPHCM",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1Fl7DvT-DOnJvyHZ0Oq5v-nUadBLGHFo&usp=sharing",
+      "scale_raw": "Diện tích đất 3.399 m2, phù hợp QH sau lộ giới 3.195 m2; QH 1/2000 QĐ 5674/QĐ-UBND 2017: HSSDĐ 6, dân số 606, tầng cao 18, MĐXD 70%; PA1 18 tầng, 1 hầm, HSSDĐ 6, dân số 465, sàn XD 25.289 m2, sàn KD 13.694 m2 (căn hộ 12.151,3 m2; shophouse 1.543 m2); PA2 cao hơn chỉ tiêu, PA3 shophouse thấp tầng 26 căn 5 tầng",
+      "planning": {
+        "floors": "",
+        "density": "70%",
+        "far": "6,",
+        "population": "606,",
+        "area_mentions": [
+          "3.399 m2",
+          "3.195 m2",
+          "25.289 m2",
+          "13.694 m2",
+          "12.151,3 m2",
+          "1.543 m2"
+        ],
+        "raw": "Diện tích đất 3.399 m2, phù hợp QH sau lộ giới 3.195 m2; QH 1/2000 QĐ 5674/QĐ-UBND 2017: HSSDĐ 6, dân số 606, tầng cao 18, MĐXD 70%; PA1 18 tầng, 1 hầm, HSSDĐ 6, dân số 465, sàn XD 25.289 m2, sàn KD 13.694 m2 (căn hộ 12.151,3 m2; shophouse 1.543 m2); PA2 cao hơn chỉ tiêu, PA3 shophouse thấp tầng 26 căn 5 tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "PA2 tham khảo Ascent Plaza; cần shop khối đế 1 trệt 1 lầu như nhà phố; có PA thấp tầng riêng"
+      },
+      "financial_items": [
+        {
+          "label": "PA1 tổng doanh thu chưa VAT",
+          "value": "984 tỷ đồng",
+          "source_chunk": "246"
+        },
+        {
+          "label": "PA1 giá căn hộ",
+          "value": "khoảng 68 tr/m2",
+          "source_chunk": "246"
+        },
+        {
+          "label": "PA1 giá bán ShopTM 1T1L",
+          "value": "khoảng 1,5 lần giá căn hộ, khoảng 102 tr/m2",
+          "source_chunk": "246"
+        }
+      ],
+      "business_notes": "Cập nhật nhiều PA Nơ Trang Long, không trộn với dự án khác",
+      "excerpt": "Nơ Trang Long... 353 Nơ Trang Long... PA1 18 tầng, hệ số 6, dân số 465... doanh thu 984 tỷ, giá căn hộ 68tr/m2."
+    },
+    {
+      "id": "M03-0019",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Asia Phú Mỹ – Bình Chánh",
+      "report_date": "",
+      "source_chunks": [
+        "247"
+      ],
+      "source_file": "batch_258.txt",
+      "sender": "",
+      "location": "Đại lộ Nguyễn Văn Linh, Bình Chánh/Bình Hưng",
+      "map_url": "https://maps.app.goo.gl/H57L1w8ReXXNhtb99",
+      "scale_raw": "Trùng Asia Phú Mỹ Part 2, excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "27.9 ha",
+          "24 ha"
+        ],
+        "raw": "Trùng Asia Phú Mỹ Part 2, excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Asia Phú Mỹ – Bình Chánh... 27.9ha, đã cấp sổ 24ha..."
+    },
+    {
+      "id": "M03-0020",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
+      "report_date": "",
+      "source_chunks": [
+        "248"
+      ],
+      "source_file": "batch_261.txt",
+      "sender": "",
+      "location": "1691/3N Quốc lộ 1A, P. An Phú Đông, Quận 12, TP.HCM",
+      "map_url": "https://maps.app.goo.gl/bKZVkKUcnYGRLJWw5",
+      "scale_raw": "Diện tích 10.052,1 m2 theo sổ 2017; đất SKC thời hạn lâu dài; phù hợp phát triển nhà ở nhưng chưa có pháp lý đầu tư",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "10.052,1 m2"
+        ],
+        "raw": "Diện tích 10.052,1 m2 theo sổ 2017; đất SKC thời hạn lâu dài; phù hợp phát triển nhà ở nhưng chưa có pháp lý đầu tư"
+      },
+      "legal": {
+        "land": "Nguồn gốc đất nông nghiệp cá nhân chuyển thổ cư, chuyển nhượng DN, chuyển mục đích SKC",
+        "project": "chưa có QĐ CTĐT",
+        "raw": "Nguồn gốc đất nông nghiệp cá nhân chuyển thổ cư, chuyển nhượng DN, chuyển mục đích SKC; cần hồ sơ xác minh; công văn 6445/UBND-ĐT về khoảng hở 2 thửa chưa rõ xử lý xong; chưa có QĐ CTĐT"
+      },
+      "financial_items": [],
+      "business_notes": "Cần đối tác cung cấp thêm hồ sơ; record đầu vào nghiên cứu",
+      "excerpt": "khu đất 10.052,1 m2 tại 1691/3N Quốc lộ 1A, An Phú Đông... đất SKC lâu dài... chưa thực hiện QĐ CTĐT."
+    },
+    {
+      "id": "M03-0021",
+      "part": 3,
+      "decision": "project_record_update",
+      "project_name": "Dự án Phượng Hoàng - chính sách bán hàng / ngân hàng",
+      "report_date": "2025-10-13",
+      "source_chunks": [
+        "249",
+        "250",
+        "252",
+        "254",
+        "255",
+        "257",
+        "258",
+        "283"
+      ],
+      "source_file": "batch_263.txt; batch_264.txt; batch_271.txt; batch_277.txt; batch_281.txt; batch_291.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Dự án căn hộ Phượng Hoàng; chính sách bán hàng nội bộ/mua sỉ/thanh toán nhanh; so sánh tài trợ BIDV/Vietin",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án căn hộ Phượng Hoàng; chính sách bán hàng nội bộ/mua sỉ/thanh toán nhanh; so sánh tài trợ BIDV/Vietin"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá vốn hiện tại",
+          "value": "28,7 tr/m2 giá sàn, chưa gồm CPBH",
+          "source_chunk": "249"
+        },
+        {
+          "label": "Tổng CPBH dự kiến",
+          "value": "215 tỷ chưa VAT",
+          "source_chunk": "249"
+        },
+        {
+          "label": "Giá bán hòa vốn dự kiến",
+          "value": "khoảng 36 tr/m2",
+          "source_chunk": "249"
+        },
+        {
+          "label": "Mục tiêu giá bán trung bình",
+          "value": "36,5 tr/m2",
+          "source_chunk": "252"
+        },
+        {
+          "label": "Mr David mua sỉ",
+          "value": "15 căn gồm 1 căn suất nội bộ + 14 căn",
+          "source_chunk": "252"
+        },
+        {
+          "label": "Nhân viên mua suất nội bộ",
+          "value": "49 suất",
+          "source_chunk": "252"
+        },
+        {
+          "label": "Tổng căn thanh toán sớm 95%",
+          "value": "64 căn",
+          "source_chunk": "252"
+        },
+        {
+          "label": "Ngân sách chiết khấu vượt dự toán",
+          "value": "khoảng 2 tỷ",
+          "source_chunk": "252"
+        },
+        {
+          "label": "Deal David 700 m2 x 36,5tr",
+          "value": "25,550 tỷ trước chiết khấu",
+          "source_chunk": "254"
+        },
+        {
+          "label": "Chiết khấu thâm niên",
+          "value": "9%",
+          "source_chunk": "254"
+        },
+        {
+          "label": "Chiết khấu thanh toán nhanh 95%",
+          "value": "13,8%",
+          "source_chunk": "254"
+        },
+        {
+          "label": "Early Bird",
+          "value": "3%",
+          "source_chunk": "257"
+        },
+        {
+          "label": "Chiết khấu mua sỉ từ 5 căn",
+          "value": "2%",
+          "source_chunk": "257"
+        },
+        {
+          "label": "Giá bán cuối sau CK 27,8%",
+          "value": "18,447 tỷ chưa VAT/phí BT; 26,4 tr/m2; 29,5 tr/m2 đã VAT/phí BT",
+          "source_chunk": "257"
+        },
+        {
+          "label": "BIDV vốn tự có không phải bỏ thêm",
+          "value": "71 tỷ",
+          "source_chunk": "283"
+        },
+        {
+          "label": "Vietin vốn tự có không phải bỏ thêm",
+          "value": "182 tỷ",
+          "source_chunk": "283"
+        },
+        {
+          "label": "BIDV hỗ trợ hoàn vốn tiền đất",
+          "value": "khoảng 38 tỷ",
+          "source_chunk": "283"
+        },
+        {
+          "label": "BIDV tài trợ CPBH",
+          "value": "khoảng 33 tỷ",
+          "source_chunk": "283"
+        },
+        {
+          "label": "Vietin tài trợ CPBH",
+          "value": "khoảng 178 tỷ",
+          "source_chunk": "283"
+        },
+        {
+          "label": "Vietin hỗ trợ lãi vay giai đoạn móng cọc",
+          "value": "khoảng 4 tỷ",
+          "source_chunk": "283"
+        }
+      ],
+      "business_notes": "Cần làm việc với anh Cường Sales về chính sách; ngân sách bán hàng 215 tỷ để đạt giá bình quân 36,5tr/m2; rủi ro chiết khấu vượt dự toán; Vietin có lợi thế giải ngân/vốn tự có",
+      "excerpt": "Phượng Hoàng... ngân sách bán hàng 215 tỷ... giá hòa vốn 36tr/m2... chính sách chiết khấu David... BIDV vs Vietin."
+    },
+    {
+      "id": "M03-0022",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 48 Nguyễn Thiện Thuật, TP Nha Trang",
+      "report_date": "",
+      "source_chunks": [
+        "251"
+      ],
+      "source_file": "batch_263.txt",
+      "sender": "",
+      "location": "48 Nguyễn Thiện Thuật, Nha Trang",
+      "map_url": "",
+      "scale_raw": "Trùng record M03-0003",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng record M03-0003"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "48 Nguyễn Thiện Thuật... QH 20 tầng, hệ số 13..."
+    },
+    {
+      "id": "M03-0023",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Hoa viên Vĩnh Thanh",
+      "report_date": "2026-01-23",
+      "source_chunks": [
+        "253",
+        "260"
+      ],
+      "source_file": "batch_270.txt; batch_282.txt",
+      "sender": "Thao L - INVT",
+      "location": "Vĩnh Thanh",
+      "map_url": "",
+      "scale_raw": "Trùng Hoa viên Vĩnh Thanh đã nhập M03-0005",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "290.217 m2"
+        ],
+        "raw": "Trùng Hoa viên Vĩnh Thanh đã nhập M03-0005"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Hoa viên Vĩnh Thanh... diện tích thương phẩm 290.217m2... SĐT 1.898 tr.đ/m2."
+    },
+    {
+      "id": "M03-0024",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026",
+      "report_date": "",
+      "source_chunks": [
+        "256"
+      ],
+      "source_file": "batch_273.txt",
+      "sender": "",
+      "location": "P. Trấn Biên, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Trùng Tân Mai M03-0006, excerpt cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "131.690,94 m2"
+        ],
+        "raw": "Trùng Tân Mai M03-0006, excerpt cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "khu nhà ở Tân Mai... diện tích toàn khu 131.690,94 m2..."
+    },
+    {
+      "id": "M03-0025",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+      "report_date": "",
+      "source_chunks": [
+        "263"
+      ],
+      "source_file": "batch_283.txt",
+      "sender": "",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Trùng Serene M03-0007",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng Serene M03-0007"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "TMĐT không bao gồm đất 656 tỷ... TMĐT bao gồm đất 1.148 tỷ... IRR 19.97%."
+    },
+    {
+      "id": "M03-0026",
+      "part": 3,
+      "decision": "project_record_update",
+      "project_name": "Phú Gia Khiêm - 02 phương án căn hộ/shophouse/officetel",
+      "report_date": "2025-10-01",
+      "source_chunks": [
+        "266",
+        "267",
+        "268",
+        "275",
+        "279",
+        "280"
+      ],
+      "source_file": "batch_284.txt; batch_286.txt; batch_287.txt; batch_288.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bình Chuẩn 67 context / gần Fenica; exact location not in excerpt",
+      "map_url": "",
+      "scale_raw": "PA A căn hộ + dãy shophouse liền kề chuyển officetel thành thấp tầng; PA B căn hộ + officetel; dân số PGK updates như M03-0008",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "PA A căn hộ + dãy shophouse liền kề chuyển officetel thành thấp tầng; PA B căn hộ + officetel; dân số PGK updates như M03-0008"
+      },
+      "legal": {
+        "land": "TSDĐ rủi ro trọng yếu； timeline TSDĐ khoảng Q1/2026 có thể áp giá mới 2025-2026 gần PGK",
+        "project": "",
+        "raw": "TSDĐ rủi ro trọng yếu; tạm tính theo mức tối thiểu 4 lần đơn giá NN đường Bình Chuẩn 67; timeline TSDĐ khoảng Q1/2026 có thể áp giá mới 2025-2026 gần PGK"
+      },
+      "financial_items": [
+        {
+          "label": "PA A tổng chi phí dự án gồm VAT",
+          "value": "5.025 tỷ",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A tổng mức đầu tư",
+          "value": "3.883 tỷ",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A chi phí TSDĐ thấp nhất",
+          "value": "712 tỷ",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A suất xây dựng căn hộ all-in VAT",
+          "value": "13 tr/m2 sàn",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A suất xây dựng shophouse liên kế VAT",
+          "value": "6 tr/m2 sàn",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A chi phí bán hàng VAT",
+          "value": "787 tỷ, khoảng 17% doanh thu chưa VAT",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA A tổng doanh thu VAT",
+          "value": "5.187 tỷ",
+          "source_chunk": "266"
+        },
+        {
+          "label": "PA B tổng chi phí dự án VAT",
+          "value": "6.173 tỷ",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B tổng mức đầu tư",
+          "value": "4.655 tỷ",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B chi phí TSDĐ thấp nhất",
+          "value": "715 tỷ",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B suất xây dựng căn hộ all-in VAT",
+          "value": "13 tr/m2 sàn",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B suất xây dựng officetel VAT",
+          "value": "13,7 tr/m2 sàn",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B chi phí bán hàng VAT",
+          "value": "1.004 tỷ, khoảng 17% doanh thu chưa VAT",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B tổng doanh thu VAT",
+          "value": "6.620 tỷ",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B đơn giá trung bình căn hộ",
+          "value": "39,5 tr/m2 sàn chưa VAT, tim tường",
+          "source_chunk": "267"
+        },
+        {
+          "label": "PA B đơn giá trung bình shophouse khối căn hộ",
+          "value": "85 tr/m2 sàn chưa VAT, tim tường",
+          "source_chunk": "267"
+        }
+      ],
+      "business_notes": "So sánh hiệu quả PA căn hộ+shophouse và căn hộ+officetel; giảm dân số PGK ảnh hưởng hiệu quả",
+      "excerpt": "Phú Gia Khiêm... PA căn hộ + shophouse tổng chi phí 5.025 tỷ; PA căn hộ + officetel tổng chi phí 6.173 tỷ... rủi ro TSDĐ."
+    },
+    {
+      "id": "M03-0027",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 1ha Sơn Trà, Đà Nẵng / Hiyori reference",
+      "report_date": "2025-09-29",
+      "source_chunks": [
+        "273",
+        "276",
+        "277",
+        "278"
+      ],
+      "source_file": "batch_286.txt; batch_287.txt",
+      "sender": "Thanh L - INVT; Mr Mike1 -CEO",
+      "location": "Sơn Trà, Đà Nẵng; reference Hiyori Aqua Tower 03 Khu A2-1, Thọ Quang",
+      "map_url": "https://maps.app.goo.gl/LU2Nvzo1LBLur6Tj6",
+      "scale_raw": "Trùng 1ha Sơn Trà M03-0016; Hiyori là reference cần lấy thông tin",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1 ha"
+        ],
+        "raw": "Trùng 1ha Sơn Trà M03-0016; Hiyori là reference cần lấy thông tin"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có thêm"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ gồm VAT thời điểm 2027",
+          "value": "90 tr/m2",
+          "source_chunk": "277"
+        }
+      ],
+      "business_notes": "Admin cho rằng giá bán 90tr hơi rẻ, yêu cầu lấy thông tin Hiyori Aqua Tower và R&D nghiên cứu lại giá Đà Nẵng",
+      "excerpt": "1ha Sơn Trà... giá bán 90tr hơi rẻ... Hiyori Aqua Tower reference."
+    },
+    {
+      "id": "M03-0028",
+      "part": 3,
+      "decision": "multi_project_hotel_reference",
+      "project_name": "06 dự án khách sạn - B11 / Serene / nhóm hotel reference",
+      "report_date": "2025-04-17",
+      "source_chunks": [
+        "284",
+        "285"
+      ],
+      "source_file": "batch_297.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "Nhiều vị trí khách sạn, gồm B11 gần Alacarte và Serene",
+      "map_url": "",
+      "scale_raw": "06 dự án khách sạn; B11 diện tích đất 597,7m2, đất ở đô thị lâu dài; Serene diện tích 1.381m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "597,7 m2",
+          "1.381 m2"
+        ],
+        "raw": "06 dự án khách sạn; B11 diện tích đất 597,7m2, đất ở đô thị lâu dài; Serene diện tích 1.381m2"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "B11 loại vì anh Cường nhầm vị trí nên PA kinh doanh không chính xác; Sếp chốt không nghiên cứu tiếp lô B11"
+      },
+      "financial_items": [],
+      "business_notes": "Bảng chỉ tiêu hoạt động khách sạn; reference, không phải record deal duy nhất",
+      "excerpt": "06 dự án Khách sạn... B11 gần Alacarte 597,7m2... Serene 1.381m2... lô B11 bị loại không nghiên cứu tiếp."
+    },
+    {
+      "id": "M03-0029",
+      "part": 3,
+      "decision": "project_record",
+      "project_name": "Khu đất 7.276 m2 Bưng Ông Thoàn, Phú Hữu",
+      "report_date": "",
+      "source_chunks": [
+        "286",
+        "287",
+        "288"
+      ],
+      "source_file": "batch_299.txt",
+      "sender": "",
+      "location": "Đường Bưng Ông Thoàn, P. Phú Hữu, TPHCM",
+      "map_url": "",
+      "scale_raw": "Diện tích sổ 7.276,8 m2 gồm 6.824,3 m2 đất ở lâu dài và 452,5 m2 đất CLN lộ giới; phù hợp QH còn 6.800 m2; ô phố OD11 tầng cao 20, HSSDĐ cơ bản 6 có thể tăng (excerpt cắt)",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "7.276,8 m2",
+          "6.824,3 m2",
+          "452,5 m2",
+          "6.800 m2",
+          "7.276 m2"
+        ],
+        "raw": "Diện tích sổ 7.276,8 m2 gồm 6.824,3 m2 đất ở lâu dài và 452,5 m2 đất CLN lộ giới; phù hợp QH còn 6.800 m2; ô phố OD11 tầng cao 20, HSSDĐ cơ bản 6 có thể tăng (excerpt cắt)"
+      },
+      "legal": {
+        "land": "Sổ 2018 còn nợ TSDĐ khoảng 16,5 tỷ； nguồn gốc đất cá nhân phù hợp phát triển nhà ở； cần làm rõ nghĩa vụ tài chính/nợ tiền đất chuyển mục đích và khả năng đóng lại theo giá mới, khả năng xin tăng dân + hệ số",
+        "project": "chưa có QĐ CTĐT/thủ tục đầu tư",
+        "raw": "Sổ 2018 còn nợ TSDĐ khoảng 16,5 tỷ; chưa có QĐ CTĐT/thủ tục đầu tư; nguồn gốc đất cá nhân phù hợp phát triển nhà ở; cần làm rõ nghĩa vụ tài chính/nợ tiền đất chuyển mục đích và khả năng đóng lại theo giá mới, khả năng xin tăng dân + hệ số"
+      },
+      "financial_items": [
+        {
+          "label": "Tiền sử dụng đất chủ cũ nợ theo GCN 2018",
+          "value": "khoảng 16,5 tỷ đồng",
+          "source_chunk": "286"
+        }
+      ],
+      "business_notes": "Nguồn Mr Nhật - Phòng PTQĐ; P.ĐT đề xuất nghiên cứu; có P&L và độ nhạy đính kèm",
+      "excerpt": "khu đất 7.276 m2 đường Bưng Ông Thoàn, Phú Hữu... 6.824,3 m2 đất ở lâu dài... nợ TSDĐ 16,5 tỷ..."
+    },
+    {
+      "id": "M03-0030",
+      "part": 3,
+      "decision": "non_bds_investment_review",
+      "project_name": "560MW Wind Farms in Ben Tre VMN",
+      "report_date": "2025-09-18",
+      "source_chunks": [
+        "289",
+        "290"
+      ],
+      "source_file": "batch_299.txt; batch_301.txt",
+      "sender": "Mr Mike1 -CEO",
+      "location": "Bến Tre",
+      "map_url": "",
+      "scale_raw": "560MW điện gió theo teaser PDF",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "560MW điện gió theo teaser PDF"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Giá/giá trị nhắc trong reply",
+          "value": "10 triệu USD",
+          "source_chunk": "290"
+        }
+      ],
+      "business_notes": "Không phải BĐS; giữ review/ngoài DB chính nếu database chỉ BĐS",
+      "excerpt": "560MW Wind Farms in Ben Tre... Điện gió này sạch sẽ, giá 10tr đô."
+    },
+    {
+      "id": "M03-0031",
+      "part": 3,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
+      "report_date": "",
+      "source_chunks": [
+        "291",
+        "292"
+      ],
+      "source_file": "batch_301.txt; batch_302.txt",
+      "sender": "",
+      "location": "Phước An, Nhơn Trạch, Đồng Nai",
+      "map_url": "https://maps.app.goo.gl/QVMCmJp83pMBNKrL8",
+      "scale_raw": "Trùng record M03-0011, excerpt cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "102 ha"
+        ],
+        "raw": "Trùng record M03-0011, excerpt cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "đấu giá 102ha Phước An Nhơn Trạch... giá khởi điểm 1.696 tỷ tăng 5.013 tỷ."
+    },
+    {
+      "id": "M03-0032",
+      "part": 3,
+      "decision": "project_record_with_replies",
+      "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+      "report_date": "2025-09-03",
+      "source_chunks": [
+        "293",
+        "300",
+        "301",
+        "302"
+      ],
+      "source_file": "batch_303.txt; batch_308.txt; batch_312.txt",
+      "sender": "Unknown User",
+      "location": "Võ Thị Sáu, phường Thống Nhất, TP Biên Hòa, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "2,1ha; PA1: 3 hầm + 2 tầng shop + 4 tầng TMDV + 26 tầng căn hộ; HSSDĐ 10, dân số 3.306, 32 tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "10,",
+        "population": "3.306,",
+        "area_mentions": [
+          "2,1 ha"
+        ],
+        "raw": "2,1ha; PA1: 3 hầm + 2 tầng shop + 4 tầng TMDV + 26 tầng căn hộ; HSSDĐ 10, dân số 3.306, 32 tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Hồ sơ pháp lý còn nhiều vướng mắc; P.ĐT yêu cầu A. Được liên hệ đối tác cung cấp hồ sơ để Pháp lý đánh giá thêm; đang chờ anh Tài làm việc với QH để có PA điều chỉnh; tạm chưa cung cấp thông tin 2 PA cho đối tác theo reply Khoan"
+      },
+      "financial_items": [
+        {
+          "label": "PA1 tổng doanh thu chưa VAT",
+          "value": "5.884 tỷ đồng",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 giá bán căn hộ bình quân chưa VAT",
+          "value": "57 tr/m2",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 giá shop bình quân chưa VAT",
+          "value": "74 tr/m2",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 TMĐT chưa VAT chưa lãi vay",
+          "value": "3.980 tỷ đồng",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 suất all-in chưa VAT",
+          "value": "14,3 tr/m2",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 LNTT",
+          "value": "772 tỷ đồng",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA1 LNTT/TMĐT",
+          "value": "19,4%",
+          "source_chunk": "300"
+        },
+        {
+          "label": "PA hiệu quả nhất hiện tại theo reply",
+          "value": "dân số 3.306, hệ số 8,3",
+          "source_chunk": "299"
+        }
+      ],
+      "business_notes": "PA hiện chưa đạt tối ưu; cần độ nhạy giá mua 800-900; PA1 ưu/nhược điểm dẫn tới binh PA2",
+      "excerpt": "2,1ha Võ Thị Sáu, Biên Hòa... PA1 doanh thu 5.884 tỷ, TMĐT 3.980 tỷ, LNTT 772 tỷ, LNTT/TMĐT 19,4%."
+    },
+    {
+      "id": "M03-0033",
+      "part": 3,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án Phượng Hoàng - chính sách bán hàng mới từ Mr Cường",
+      "report_date": "2025-09-10",
+      "source_chunks": [
+        "294",
+        "295"
+      ],
+      "source_file": "batch_303.txt",
+      "sender": "Thao L - INVT",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Cập nhật hiệu quả đầu tư theo chính sách bán hàng mới",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật hiệu quả đầu tư theo chính sách bán hàng mới"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có trong excerpt"
+      },
+      "financial_items": [],
+      "business_notes": "Đã tính toán độc lập đối chiếu với Ms.Hạnh, kết quả tương đương; Admin chốt PKD phương án này và báo anh Cường",
+      "excerpt": "Phượng Hoàng theo Chính sách bán hàng mới từ Mr Cường... kết quả hai bên tương đương... chốt PKD phương án này."
+    },
+    {
+      "id": "M03-0034",
+      "part": 3,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+      "report_date": "",
+      "source_chunks": [
+        "296",
+        "297",
+        "303"
+      ],
+      "source_file": "batch_303.txt; batch_313.txt",
+      "sender": "",
+      "location": "Đường Long Thuận, Long Phước, Quận 9, HCM",
+      "map_url": "",
+      "scale_raw": "PA cập nhật 3.900 dân; PA1 và PA theo QH đã nhập Part 2; không triển khai CHDV, để trống đất DVCC cấp đô thị",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "10 ha"
+        ],
+        "raw": "PA cập nhật 3.900 dân; PA1 và PA theo QH đã nhập Part 2; không triển khai CHDV, để trống đất DVCC cấp đô thị"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Giá bán 2028 phụ thuộc hoàn thành nút giao Vành đai 2/Vành đai 3"
+      },
+      "financial_items": [
+        {
+          "label": "PA cập nhật doanh thu chưa VAT",
+          "value": "7.290 tỷ đồng",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật giá bán căn hộ và shop 2028",
+          "value": "60 tr/m2 gồm VAT",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật TMĐT chưa VAT",
+          "value": "4.520 tỷ đồng",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật đơn giá đất hiện trạng",
+          "value": "3 tr/m2",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật TSDĐ tạm tính",
+          "value": "1.229 tỷ đồng",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật suất all-in chưa VAT",
+          "value": "13 tr/m2",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật LNTT",
+          "value": "1.676 tỷ đồng",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA cập nhật giá mua đất để LNTT/TMĐT=20%",
+          "value": "8,7 tr/m2",
+          "source_chunk": "297"
+        },
+        {
+          "label": "PA1 doanh thu chưa VAT",
+          "value": "5.899 tỷ đồng",
+          "source_chunk": "303"
+        },
+        {
+          "label": "PA1 TMĐT chưa VAT",
+          "value": "3.692 tỷ đồng",
+          "source_chunk": "303"
+        },
+        {
+          "label": "PA1 LNTT",
+          "value": "1.322 tỷ đồng",
+          "source_chunk": "303"
+        }
+      ],
+      "business_notes": "Duplicate/update chi tiết FS Long Thuận, không tạo dự án mới",
+      "excerpt": "10ha Đường Long Thuận... PA 3.900 dân... doanh thu 7.290 tỷ... PA1 doanh thu 5.899 tỷ."
+    },
+    {
+      "id": "M03-0035",
+      "part": 3,
+      "decision": "update_to_existing_project",
+      "project_name": "Phú Gia Khiêm - phương án thấp tầng",
+      "report_date": "2025-09-11",
+      "source_chunks": [
+        "298",
+        "299"
+      ],
+      "source_file": "batch_303.txt; batch_307.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "PGK context",
+      "map_url": "",
+      "scale_raw": "PA thấp tầng Phú Gia Khiêm; PA hiệu quả nhất hiện tại dân số 3.306, HSSDĐ 8,3; cần tăng dân và hệ số để hiệu quả hơn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "8,3",
+        "population": "3.306,",
+        "area_mentions": [],
+        "raw": "PA thấp tầng Phú Gia Khiêm; PA hiệu quả nhất hiện tại dân số 3.306, HSSDĐ 8,3; cần tăng dân và hệ số để hiệu quả hơn"
+      },
+      "legal": {
+        "land": "TSDĐ gấp 3,1 lần đơn giá NN mặt tiền Bình Chuẩn 67",
+        "project": "",
+        "raw": "TSDĐ gấp 3,1 lần đơn giá NN mặt tiền Bình Chuẩn 67; cần độ nhạy giá mua 800-900"
+      },
+      "financial_items": [
+        {
+          "label": "PA thấp tầng chi phí dự án gồm VAT",
+          "value": "4.847 tỷ",
+          "source_chunk": "298"
+        },
+        {
+          "label": "Chi phí M&A",
+          "value": "700 tỷ",
+          "source_chunk": "298"
+        },
+        {
+          "label": "Chi phí pháp lý",
+          "value": "55 tỷ",
+          "source_chunk": "298"
+        },
+        {
+          "label": "Chi phí chuyển mục đích/TSDĐ",
+          "value": "550 tỷ, khoảng 17,5 tr/m2",
+          "source_chunk": "298"
+        },
+        {
+          "label": "Tổng chi phí xây dựng all-in",
+          "value": "2.197 tỷ",
+          "source_chunk": "298"
+        },
+        {
+          "label": "CPXD hạ tầng/cảnh quan all-in",
+          "value": "48 tỷ, khoảng 1,42 tr/m2 đất",
+          "source_chunk": "298"
+        },
+        {
+          "label": "CPXD chung cư all-in",
+          "value": "2.088 tỷ, khoảng 13 tr/m2 sàn",
+          "source_chunk": "298"
+        },
+        {
+          "label": "CPXD nhà liên kế all-in",
+          "value": "42 tỷ, khoảng 6 tr/m2 sàn",
+          "source_chunk": "298"
+        }
+      ],
+      "business_notes": "Update cho PGK, không tạo dự án mới",
+      "excerpt": "Phú Gia Khiêm PA thấp tầng... chi phí dự án 4.847 tỷ, M&A 700 tỷ, TSDĐ 550 tỷ..."
+    },
+    {
+      "id": "M04-0001",
+      "part": 4,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "KĐT An Phú – PG",
+      "report_date": "",
+      "source_chunks": [
+        "304"
+      ],
+      "source_file": "batch_313.txt",
+      "sender": "",
+      "location": "Gần Fenica và Phú Gia Khiêm",
+      "map_url": "",
+      "scale_raw": "Nguồn cung bán kính 4km khoảng 10k căn hộ; dự án có hơn 500 officetel",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Nguồn cung bán kính 4km khoảng 10k căn hộ; dự án có hơn 500 officetel"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không thêm trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Nguồn cung căn hộ bán kính 4km",
+          "value": "khoảng 10.000 căn hộ",
+          "source_chunk": "304"
+        }
+      ],
+      "business_notes": "Duplicate/update cho KĐT An Phú – PG Part 3; ghi nhận rủi ro cạnh tranh/officetel hấp thụ",
+      "excerpt": "dự án có vị trí gần với Fenica và Phú Gia Khiêm... nguồn cung khu vực bán kính 4km ~10k căn hộ... hơn 500 căn officetel."
+    },
+    {
+      "id": "M04-0002",
+      "part": 4,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án Đông Trung",
+      "report_date": "2025-08-12",
+      "source_chunks": [
+        "305",
+        "317",
+        "322",
+        "327",
+        "331"
+      ],
+      "source_file": "batch_314.txt; batch_325.txt; batch_328.txt; batch_329.txt",
+      "sender": "Mr Mike1 -CEO",
+      "location": "Đông Trung",
+      "map_url": "",
+      "scale_raw": "PA tách đất công/đất thịt: khu 4,8ha NOTM bố trí 2 khu chung cư 40 tầng 1.886 căn và 2 khu thấp tầng 116 nền; 8.000 m2 đất công/Nhà ở cán bộ bố trí 2 block 18 tầng khoảng 359 căn; PA NOTM tính 3.950 dân và 3.021 dân",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "3.950",
+        "area_mentions": [
+          "4,8 ha",
+          "8.000 m2",
+          "4.8 ha",
+          "8000 m2"
+        ],
+        "raw": "PA tách đất công/đất thịt: khu 4,8ha NOTM bố trí 2 khu chung cư 40 tầng 1.886 căn và 2 khu thấp tầng 116 nền; 8.000 m2 đất công/Nhà ở cán bộ bố trí 2 block 18 tầng khoảng 359 căn; PA NOTM tính 3.950 dân và 3.021 dân"
+      },
+      "legal": {
+        "land": "Đề xuất hướng mới: đất công làm NOXH/nhà ở cán bộ, đất thịt làm NOTM",
+        "project": "",
+        "raw": "Đề xuất hướng mới: đất công làm NOXH/nhà ở cán bộ, đất thịt làm NOTM; dân số 3.950 cho riêng khu 4,8ha, nhà ở lực lượng vũ trang khoảng 550 dân; vấn đề dân số là trọng yếu"
+      },
+      "financial_items": [
+        {
+          "label": "Suất đầu tư nhà ở cán bộ theo Bộ XD",
+          "value": "13,6 tr/m2 cho công trình 18 tầng",
+          "source_chunk": "305"
+        },
+        {
+          "label": "Tiền bồi thường được khấu trừ khi đấu thầu cập nhật",
+          "value": "khoảng 235 tỷ, 5 tr/m2 trên phần 4,6ha, thấp hơn PA trước khoảng 230 tỷ",
+          "source_chunk": "322"
+        },
+        {
+          "label": "Tổng TSDĐ sau khấu trừ cập nhật",
+          "value": "khoảng 1.010 tỷ, cao hơn PA trước khoảng 230 tỷ",
+          "source_chunk": "322"
+        },
+        {
+          "label": "Suất đầu tư xây dựng-thiết bị all-in gồm VAT",
+          "value": "13,9 tr/m2; quy đổi hiện tại khoảng 12,6 tr/m2",
+          "source_chunk": "331"
+        },
+        {
+          "label": "Giá bán căn hộ",
+          "value": "40,6-45 tr/m2, tim tường chưa VAT",
+          "source_chunk": "331"
+        },
+        {
+          "label": "Giá tham khảo The FELIX",
+          "value": "38 tr/m2, tim tường chưa VAT",
+          "source_chunk": "331"
+        }
+      ],
+      "business_notes": "Cập nhật FS sau khi giảm tiền bồi thường được khấu trừ khi đấu thầu, tăng nghĩa vụ TSDĐ; PA 3.950 dân vẫn hiệu quả, PA 3.021 dân không hiệu quả",
+      "excerpt": "Đông Trung... 4.8ha NOTM và 8000m2 đất công nhà ở cán bộ... TSDĐ sau khấu trừ 1.010 tỷ... PA 3.950 dân vẫn hiệu quả."
+    },
+    {
+      "id": "M04-0003",
+      "part": 4,
+      "decision": "merged_same_project_update",
+      "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
+      "report_date": "2025-08-13",
+      "source_chunks": [
+        "306",
+        "312",
+        "315",
+        "328",
+        "329",
+        "330"
+      ],
+      "source_file": "batch_315.txt; batch_321.txt; batch_324.txt; batch_328.txt; batch_329.txt",
+      "sender": "Mr Mike1 -CEO",
+      "location": "Long Thành, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 772.835,2 m2; quy mô dân số 12.000-20.000; lập QH 1/500; thương phẩm gồm nhà liên kế 181.049,5 m2/1.729 căn, biệt thự 51.855,1 m2/229 căn, căn hộ 159.379 m2/2.444 căn, shophouse 22.884 m2, đất GD/YT/VH/TMDV",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "12.000",
+        "area_mentions": [
+          "772.835,2 m2",
+          "181.049,5 m2",
+          "51.855,1 m2",
+          "159.379 m2",
+          "22.884 m2",
+          "77 ha"
+        ],
+        "raw": "Tổng diện tích 772.835,2 m2; quy mô dân số 12.000-20.000; lập QH 1/500; thương phẩm gồm nhà liên kế 181.049,5 m2/1.729 căn, biệt thự 51.855,1 m2/229 căn, căn hộ 159.379 m2/2.444 căn, shophouse 22.884 m2, đất GD/YT/VH/TMDV"
+      },
+      "legal": {
+        "land": "Không được điều chỉnh cục bộ bố cục ô đất chức năng sau trúng đấu giá vì giá khởi điểm đã định theo bố cục 1/500",
+        "project": "Không được điều chỉnh cục bộ bố cục ô đất chức năng sau trúng đấu giá vì giá khởi điểm đã định theo bố cục 1/500； cần tính giá đầu ra theo quy hoạch",
+        "raw": "Không được điều chỉnh cục bộ bố cục ô đất chức năng sau trúng đấu giá vì giá khởi điểm đã định theo bố cục 1/500; cần tính giá đầu ra theo quy hoạch"
+      },
+      "financial_items": [
+        {
+          "label": "Doanh thu chưa VAT cập nhật chi tiết phân khu",
+          "value": "31.158 tỷ, tăng 2.900 tỷ so với 28.282 tỷ ngày 08/08/2025",
+          "source_chunk": "306"
+        },
+        {
+          "label": "TMĐT cập nhật",
+          "value": "22.319 tỷ, tăng 4.500 tỷ so với 17.749 tỷ ngày 08/08/2025",
+          "source_chunk": "306"
+        },
+        {
+          "label": "Dự trù nghĩa vụ NOXH",
+          "value": "1.900 tỷ",
+          "source_chunk": "306"
+        },
+        {
+          "label": "Giá đấu khởi điểm bản trước",
+          "value": "4.755 tỷ, đơn giá đất toàn khu 6,2 tr/m2",
+          "source_chunk": "328"
+        },
+        {
+          "label": "TMĐT bản trước gồm VAT và lãi vay vốn hóa",
+          "value": "17.749 tỷ",
+          "source_chunk": "328"
+        },
+        {
+          "label": "Suất vốn all-in nhà liên kế",
+          "value": "7,5 tr/m2",
+          "source_chunk": "328"
+        },
+        {
+          "label": "Suất vốn all-in biệt thự",
+          "value": "9,96 tr/m2",
+          "source_chunk": "328"
+        },
+        {
+          "label": "Suất vốn all-in chung cư",
+          "value": "11,96 tr/m2",
+          "source_chunk": "328"
+        }
+      ],
+      "business_notes": "User/CEO yêu cầu khảo sát kỹ đường lớn bé, giá thị trường đất dân, áp giá chi tiết theo lộ giới; cập nhật R&D theo từng phân khu",
+      "excerpt": "đấu giá 77ha Long Thành... doanh thu 31.158 tỷ, TMĐT 22.319 tỷ... không được đổi bố cục ô đất theo 1/500."
+    },
+    {
+      "id": "M04-0004",
+      "part": 4,
+      "decision": "reply_update_to_existing_project",
+      "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+      "report_date": "2025-08-24",
+      "source_chunks": [
+        "307",
+        "308"
+      ],
+      "source_file": "batch_317.txt",
+      "sender": "Huy M - IM",
+      "location": "Đường Long Thuận, Long Phước, Quận 9",
+      "map_url": "",
+      "scale_raw": "10ha, QH hiện tại chỉ 1,7ha đất ở được áp HSSDĐ 8, tầng cao 30; team thử PA tăng đất ở lên 4ha với thấp tầng/cao tầng/hỗn hợp",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "8,",
+        "population": "",
+        "area_mentions": [
+          "10 ha",
+          "1,7 ha",
+          "4 ha",
+          "1.7 ha"
+        ],
+        "raw": "10ha, QH hiện tại chỉ 1,7ha đất ở được áp HSSDĐ 8, tầng cao 30; team thử PA tăng đất ở lên 4ha với thấp tầng/cao tầng/hỗn hợp"
+      },
+      "legal": {
+        "land": "Tăng tỷ lệ đất ở phải đóng thêm TSDĐ theo bảng giá đất đường Long Thuận khoảng 42 tr/m2 đất ở",
+        "project": "",
+        "raw": "Tăng tỷ lệ đất ở phải đóng thêm TSDĐ theo bảng giá đất đường Long Thuận khoảng 42 tr/m2 đất ở"
+      },
+      "financial_items": [
+        {
+          "label": "Giá đầu vào theo A Sơn Trợ lý",
+          "value": "30 tr/m2 trên 10ha",
+          "source_chunk": "307"
+        },
+        {
+          "label": "Giá bán RD đề xuất QH hiện tại",
+          "value": "42-47 tr/m2 chưa VAT, tim tường",
+          "source_chunk": "307"
+        },
+        {
+          "label": "Đơn giá bảng giá đất NN/TSDĐ đoạn qua dự án",
+          "value": "42 tr/m2",
+          "source_chunk": "307"
+        },
+        {
+          "label": "Giá bán cao tầng PA tăng đất ở",
+          "value": "khoảng 50 tr/m2",
+          "source_chunk": "308"
+        },
+        {
+          "label": "Giá bán thấp tầng PA tăng đất ở",
+          "value": "70 tr/m2 đất + nhà",
+          "source_chunk": "308"
+        }
+      ],
+      "business_notes": "Theo reply, dự án không đạt hiệu quả với QH hiện tại; Admin vẫn yêu cầu tính doanh thu/lợi nhuận, khoan bỏ",
+      "excerpt": "Long Thuận 10ha... chỉ 1.7ha đất ở... giá đầu vào 30tr/m2 trên 10ha... các PA chưa đạt hiệu quả."
+    },
+    {
+      "id": "M04-0005",
+      "part": 4,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 353 Nơ Trang Long, Bình Thạnh",
+      "report_date": "",
+      "source_chunks": [
+        "309"
+      ],
+      "source_file": "batch_317.txt",
+      "sender": "",
+      "location": "Nơ Trang Long",
+      "map_url": "",
+      "scale_raw": "Trùng cập nhật PA1/PA2/PA3 đã nhập Part 3",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Trùng cập nhật PA1/PA2/PA3 đã nhập Part 3"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Nơ Trang Long... điều chỉnh Shop khối đế 1 trệt 1 lầu... thêm PA3 shophouse thấp tầng."
+    },
+    {
+      "id": "M04-0006",
+      "part": 4,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án Phượng Hoàng",
+      "report_date": "2025-08-20",
+      "source_chunks": [
+        "310",
+        "311",
+        "318",
+        "320",
+        "343"
+      ],
+      "source_file": "batch_319.txt; batch_325.txt; batch_326.txt; batch_340.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "Không nêu rõ trong excerpt",
+      "map_url": "",
+      "scale_raw": "Cập nhật chi phí nhà mẫu/XD/lãi vay/bán hàng; chính sách bán hàng; so sánh BIDV/Vietin",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật chi phí nhà mẫu/XD/lãi vay/bán hàng; chính sách bán hàng; so sánh BIDV/Vietin"
+      },
+      "legal": {
+        "land": "",
+        "project": "Có chi phí pháp lý điều chỉnh GPXD/lobby trong reply",
+        "raw": "Có chi phí pháp lý điều chỉnh GPXD/lobby trong reply"
+      },
+      "financial_items": [
+        {
+          "label": "Chi phí nhà mẫu cập nhật",
+          "value": "14,5 tỷ, PA cũ 12 tỷ",
+          "source_chunk": "310"
+        },
+        {
+          "label": "Chi phí xây dựng chung cư",
+          "value": "618,8 tỷ",
+          "source_chunk": "310"
+        },
+        {
+          "label": "Lãi suất PA mới",
+          "value": "6,5%",
+          "source_chunk": "310"
+        },
+        {
+          "label": "Chi phí bán hàng theo Mr Cường",
+          "value": "15%, đã gồm 27 tỷ hỗ trợ lãi suất người mua",
+          "source_chunk": "310"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "8,2%; nếu tiết giảm 5% CPXD chung cư thì 11,9%",
+          "source_chunk": "310"
+        },
+        {
+          "label": "LNTT/VCSH",
+          "value": "25%",
+          "source_chunk": "310"
+        },
+        {
+          "label": "Giá vốn hiện tại",
+          "value": "28,7 tr/m2 giá sàn, chưa gồm CPBH",
+          "source_chunk": "318"
+        },
+        {
+          "label": "CPBH dự kiến",
+          "value": "215 tỷ chưa VAT",
+          "source_chunk": "318"
+        },
+        {
+          "label": "Giá bán trung bình mục tiêu",
+          "value": "36,5 tr/m2",
+          "source_chunk": "320"
+        },
+        {
+          "label": "BIDV vốn tự có không phải bỏ thêm",
+          "value": "71 tỷ",
+          "source_chunk": "343"
+        },
+        {
+          "label": "Vietin vốn tự có không phải bỏ thêm",
+          "value": "182 tỷ",
+          "source_chunk": "343"
+        }
+      ],
+      "business_notes": "FS theo phương án thanh toán chuẩn Mr Cường; Vietin ưu thế tổng mức giải ngân/cpbh hơn BIDV",
+      "excerpt": "Phượng Hoàng... chi phí nhà mẫu 14,5 tỷ, CPXD 618,8 tỷ, LNTT/TMĐT 8,2%... BIDV/Vietin."
+    },
+    {
+      "id": "M04-0007",
+      "part": 4,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
+      "report_date": "",
+      "source_chunks": [
+        "316"
+      ],
+      "source_file": "batch_324.txt",
+      "sender": "",
+      "location": "1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
+      "map_url": "https://maps.app.goo.gl/bKZVkKUcnYGRLJWw5",
+      "scale_raw": "Trùng record Part 3, excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "10.052,1 m2"
+        ],
+        "raw": "Trùng record Part 3, excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Duplicate/update"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "khu đất 10.052,1 m2 tại 1691/3N Quốc lộ 1A..."
+    },
+    {
+      "id": "M04-0008",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Chung cư Long Vân 3,09ha - Quốc Lộ 13, Lái Thiêu",
+      "report_date": "2025-08-08",
+      "source_chunks": [
+        "323",
+        "324",
+        "325",
+        "326"
+      ],
+      "source_file": "batch_328.txt",
+      "sender": "Hanh T - INVT",
+      "location": "Số 76 Đại Lộ Bình Dương/Quốc Lộ 13, P. Lái Thiêu, Bình Dương cũ/TPHCM; đối diện đường Lái Thiêu 110 và Cầu Phú Long qua Q12",
+      "map_url": "https://maps.app.goo.gl/pTzfCxqkMYLuLe9z9",
+      "scale_raw": "Tổng đất lập dự án 30.970,5 m2; 7 GCN; SKC 21.439 m2 ~69%; giả định dân 3.952, 31 tầng nổi có 2 tầng xe, 1 hầm, HSSDĐ 7,5, 1.921 căn hộ diện tích bình quân 67 m2/căn, không shop",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "7,5,",
+        "population": "",
+        "area_mentions": [
+          "30.970,5 m2",
+          "21.439 m2",
+          "67 m2",
+          "3,09 ha"
+        ],
+        "raw": "Tổng đất lập dự án 30.970,5 m2; 7 GCN; SKC 21.439 m2 ~69%; giả định dân 3.952, 31 tầng nổi có 2 tầng xe, 1 hầm, HSSDĐ 7,5, 1.921 căn hộ diện tích bình quân 67 m2/căn, không shop"
+      },
+      "legal": {
+        "land": "",
+        "project": "Chưa có QĐ CTĐT",
+        "raw": "Chưa có QĐ CTĐT; mới duyệt danh sách thí điểm nhà ở tháng 6/2025; đề xuất không nghiên cứu sâu nếu đối tác không có điều kiện/giá hấp dẫn hơn"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng chi phí chưa VAT",
+          "value": "6.424 tỷ",
+          "source_chunk": "324"
+        },
+        {
+          "label": "Chi phí mua đất",
+          "value": "1.000 tỷ",
+          "source_chunk": "324"
+        },
+        {
+          "label": "Tiền sử dụng đất giả định",
+          "value": "630 tỷ; giả định khấu trừ tiền đất theo sổ 40%, đóng 60% trên TSDĐ thặng dư 1.050 tỷ",
+          "source_chunk": "324"
+        },
+        {
+          "label": "CPXD",
+          "value": "3.294 tỷ",
+          "source_chunk": "324"
+        },
+        {
+          "label": "Giá bán căn hộ để đạt hiệu quả theo độ nhạy",
+          "value": "từ 50 tr/m2 chưa VAT",
+          "source_chunk": "325"
+        },
+        {
+          "label": "Giá mua dự án hiệu quả tại giá bán 50tr",
+          "value": "khoảng 17 tr/m2, ngưỡng 520 tỷ, bằng nửa giá chào",
+          "source_chunk": "325"
+        }
+      ],
+      "business_notes": "Nguồn Mr Sơn Trợ lý; số lượng căn lớn và nguồn cung Bình Dương lớn nên khó cạnh tranh giá 50tr",
+      "excerpt": "Long Vân 3,09ha... Quốc Lộ 13 Lái Thiêu... 1.921 căn hộ... tổng chi phí 6.424 tỷ... đề xuất không nghiên cứu sâu."
+    },
+    {
+      "id": "M04-0009",
+      "part": 4,
+      "decision": "market_auction_lead",
+      "project_name": "Đồng Nai - 3 khu đất đấu giá / Núi Chứa Chan và vị trí map cao tầng",
+      "report_date": "2025-07-31",
+      "source_chunks": [
+        "335",
+        "336",
+        "337"
+      ],
+      "source_file": "batch_331.txt",
+      "sender": "Mr Mike1 -CEO",
+      "location": "Đồng Nai; map 10°48'34.8N 106°50'50.5E",
+      "map_url": "https://maps.app.goo.gl/7uS84wL1B4oMwKEw9",
+      "scale_raw": "Tin báo Đồng Nai đấu giá 3 khu đất, gồm dự án du lịch sinh thái nghỉ dưỡng giải trí Núi Chứa Chan và dự án TMDV/dân cư; một vị trí khác cần anh Tài check QH mới, có thể lên cao tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Tin báo Đồng Nai đấu giá 3 khu đất, gồm dự án du lịch sinh thái nghỉ dưỡng giải trí Núi Chứa Chan và dự án TMDV/dân cư; một vị trí khác cần anh Tài check QH mới, có thể lên cao tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần check quy hoạch mới và tính khái toán",
+        "raw": "Cần check quy hoạch mới và tính khái toán"
+      },
+      "financial_items": [
+        {
+          "label": "Giá dự án Núi Chứa Chan theo báo",
+          "value": "khoảng 1.165 tỷ đồng",
+          "source_chunk": "335"
+        }
+      ],
+      "business_notes": "Lead thị trường/đấu giá, chưa đủ dữ liệu dự án chi tiết để nhập thành deal chính",
+      "excerpt": "Đồng Nai tính thu gần 7.000 tỷ từ 3 khu đất đấu giá... Núi Chứa Chan giá khoảng 1.165 tỷ... check QH mới khu này."
+    },
+    {
+      "id": "M04-0010",
+      "part": 4,
+      "decision": "multi_asset_valuation_report",
+      "project_name": "Định giá 6 tài sản - 69 Võ Văn Tần, 76 Hai Bà Trưng, Thanh Đa...",
+      "report_date": "2025-07-16",
+      "source_chunks": [
+        "339",
+        "340"
+      ],
+      "source_file": "batch_338.txt",
+      "sender": "Binh D - CVDT",
+      "location": "TP.HCM nhiều tài sản; link My Maps các khu đất định giá",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1Yy94Bk_zJc1qdBIr51K9nl1FJ6GMm1g&usp=sharing",
+      "scale_raw": "Báo cáo định giá 6 tài sản; excerpt thấy 69 Võ Văn Tần diện tích 718,4 m2 chưa GCN, biệt thự sàn 1.118,3 m2; 76 Hai Bà Trưng diện tích 1.158,7 m2 đất ở theo GCN 2025",
+      "planning": {
+        "floors": "",
+        "density": "70%",
+        "far": "4",
+        "population": "",
+        "area_mentions": [
+          "718,4 m2",
+          "1.118,3 m2",
+          "76 Ha",
+          "1.158,7 m2"
+        ],
+        "raw": "Báo cáo định giá 6 tài sản; excerpt thấy 69 Võ Văn Tần diện tích 718,4 m2 chưa GCN, biệt thự sàn 1.118,3 m2; 76 Hai Bà Trưng diện tích 1.158,7 m2 đất ở theo GCN 2025"
+      },
+      "legal": {
+        "land": "69 Võ Văn Tần chưa xác định mục đích sử dụng, giả định đất ở； QH đất phức hợp HSSDĐ 4 MĐXD 70%",
+        "project": "",
+        "raw": "69 Võ Văn Tần chưa xác định mục đích sử dụng, giả định đất ở; biệt thự cũ bảo tồn nhóm 2; QH đất phức hợp HSSDĐ 4 MĐXD 70%"
+      },
+      "financial_items": [
+        {
+          "label": "69 Võ Văn Tần đơn giá đất ở định giá",
+          "value": "705 tr/m2 đất",
+          "source_chunk": "339"
+        },
+        {
+          "label": "69 Võ Văn Tần giá trị định giá không gồm công trình hiện hữu",
+          "value": "506,5 tỷ",
+          "source_chunk": "339"
+        }
+      ],
+      "business_notes": "Multi-asset valuation, không gộp với dự án nhà ở riêng",
+      "excerpt": "P.ĐT báo cáo định giá 6 tài sản... 69 Võ Văn Tần 718,4 m2, đơn giá 705tr/m2, giá trị 506,5 tỷ..."
+    },
+    {
+      "id": "M04-0011",
+      "part": 4,
+      "decision": "multi_project_report",
+      "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+      "report_date": "2025-07-15",
+      "source_chunks": [
+        "341",
+        "342"
+      ],
+      "source_file": "batch_340.txt",
+      "sender": "Hanh T - INVT",
+      "location": "Nhơn Trạch, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Cụm 386ha gồm 4 phân khu: PK3 80ha, PK4 92ha, PK5 129ha, PK6 85ha; mỗi PK có đất cao tầng và thấp tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "386 ha",
+          "80 ha",
+          "92 ha",
+          "129 ha",
+          "85 ha"
+        ],
+        "raw": "Cụm 386ha gồm 4 phân khu: PK3 80ha, PK4 92ha, PK5 129ha, PK6 85ha; mỗi PK có đất cao tầng và thấp tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "đấu thầu cụm dự án",
+        "raw": "Dựa trên chỉ tiêu QH anh Tài gửi; đấu thầu cụm dự án"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT cụm 386ha",
+          "value": "84.900 tỷ, khoảng 220 tỷ/ha",
+          "source_chunk": "341"
+        },
+        {
+          "label": "Giá bồi thường giả định",
+          "value": "khoảng 3 tr/m2",
+          "source_chunk": "341"
+        },
+        {
+          "label": "Vốn CSH tối thiểu",
+          "value": "khoảng 15% TMĐT, khoảng 12.740 tỷ",
+          "source_chunk": "341"
+        },
+        {
+          "label": "PK3 TMĐT",
+          "value": "khoảng 15.100 tỷ, VCSH >2.265 tỷ",
+          "source_chunk": "341"
+        },
+        {
+          "label": "PK4 TMĐT",
+          "value": "khoảng 16.500 tỷ, VCSH >2.470 tỷ",
+          "source_chunk": "341"
+        }
+      ],
+      "business_notes": "Sơ bộ TMĐT và vốn CSH tối thiểu",
+      "excerpt": "cụm DA đấu thầu Nhơn Trạch 386ha... TMĐT 84.900 tỷ, VCSH tối thiểu 12.740 tỷ."
+    },
+    {
+      "id": "M04-0012",
+      "part": 4,
+      "decision": "multi_project_record",
+      "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+      "report_date": "2025-07-14",
+      "source_chunks": [
+        "344"
+      ],
+      "source_file": "batch_341.txt",
+      "sender": "Khoa L - INVT",
+      "location": "Phước An, Nhơn Trạch",
+      "map_url": "",
+      "scale_raw": "NOXH 2,1ha và NOXH 3,7ha; P.TKQH binh tỷ lệ hiệu dụng khoảng 73%",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2,1 ha",
+          "3,7 ha"
+        ],
+        "raw": "NOXH 2,1ha và NOXH 3,7ha; P.TKQH binh tỷ lệ hiệu dụng khoảng 73%"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Thông tin từ anh Hiếu PLDA; team TKQH bố trí QH cụ thể"
+      },
+      "financial_items": [
+        {
+          "label": "NOXH 2,1ha tổng doanh thu",
+          "value": "1.711 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 2,1ha LNTT",
+          "value": "194,84 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 2,1ha NPV",
+          "value": "135,17 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 2,1ha LNTT/TMĐT",
+          "value": "13,8%",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 3,7ha tổng doanh thu",
+          "value": "1.839,8 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 3,7ha LNTT",
+          "value": "211,17 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 3,7ha NPV",
+          "value": "138,18 tỷ",
+          "source_chunk": "344"
+        },
+        {
+          "label": "NOXH 3,7ha LNTT/TMĐT",
+          "value": "14%",
+          "source_chunk": "344"
+        }
+      ],
+      "business_notes": "FS chi tiết cho 2 dự án NOXH",
+      "excerpt": "2 dự án NOXH khu vực Phước An Nhơn Trạch... doanh thu 1.711 tỷ và 1.839,8 tỷ..."
+    },
+    {
+      "id": "M04-0013",
+      "part": 4,
+      "decision": "project_record_update",
+      "project_name": "Dự án Phú Quang",
+      "report_date": "2025-07-15",
+      "source_chunks": [
+        "345"
+      ],
+      "source_file": "batch_341.txt",
+      "sender": "Khoa L - INVT",
+      "location": "Phú Quang",
+      "map_url": "",
+      "scale_raw": "Cập nhật FS theo phương án đóng full TSDĐ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật FS theo phương án đóng full TSDĐ"
+      },
+      "legal": {
+        "land": "phải đóng full TSDĐ",
+        "project": "QH 1/500 mới hoàn thành trước đóng tiền đợt 1 nên có khả năng không được khấu trừ tiền SDĐ đợt 1 vào đợt 2",
+        "raw": "QH 1/500 mới hoàn thành trước đóng tiền đợt 1 nên có khả năng không được khấu trừ tiền SDĐ đợt 1 vào đợt 2; phải đóng full TSDĐ"
+      },
+      "financial_items": [
+        {
+          "label": "TSDĐ full ước tính",
+          "value": "khoảng 8.000 tỷ",
+          "source_chunk": "345"
+        },
+        {
+          "label": "LNTT",
+          "value": "23.797 tỷ",
+          "source_chunk": "345"
+        },
+        {
+          "label": "NPV",
+          "value": "3.676 tỷ",
+          "source_chunk": "345"
+        },
+        {
+          "label": "IRR",
+          "value": "19,17%",
+          "source_chunk": "345"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "51,06%",
+          "source_chunk": "345"
+        }
+      ],
+      "business_notes": "Ảnh hưởng nghĩa vụ TSDĐ nhưng hiệu quả vẫn lớn",
+      "excerpt": "Phú Quang... cập nhật FS theo phương án đóng full tiền sử dụng đất ước tính 8.000 tỷ... IRR 19,17%."
+    },
+    {
+      "id": "M04-0014",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc",
+      "report_date": "",
+      "source_chunks": [
+        "349",
+        "350",
+        "351"
+      ],
+      "source_file": "batch_344.txt",
+      "sender": "",
+      "location": "Đường Ngô Gia Tự, xã Nhơn Trạch, Đồng Nai; tọa độ 10.721592,106.892393",
+      "map_url": "https://www.google.com/maps?q=10.721592,106.892393",
+      "scale_raw": "Tổng diện tích lập QH 1/500 92.075 m2; đất ở 55.825 m2 61%, chung cư 18.830 m2 gồm 1 block 15 tầng và 1 block 22 tầng, biệt thự+nhà liên kế 36.995 m2/248 căn, cây xanh 5.462 m2, giao thông 30.788 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "92.075 m2",
+          "55.825 m2",
+          "18.830 m2",
+          "36.995 m2",
+          "5.462 m2",
+          "30.788 m2"
+        ],
+        "raw": "Tổng diện tích lập QH 1/500 92.075 m2; đất ở 55.825 m2 61%, chung cư 18.830 m2 gồm 1 block 15 tầng và 1 block 22 tầng, biệt thự+nhà liên kế 36.995 m2/248 căn, cây xanh 5.462 m2, giao thông 30.788 m2"
+      },
+      "legal": {
+        "land": "Nguồn gốc đất bồi thường 89.166,3 m2 + UBND xã quản lý 1.443,8 m2； lệch diện tích giao đất/QH",
+        "project": "cần điều chỉnh 1/500",
+        "raw": "Nguồn gốc đất bồi thường 89.166,3 m2 + UBND xã quản lý 1.443,8 m2; chồng ranh trường Nguyễn Bỉnh Khiêm hơn 1.460 m2; lệch diện tích giao đất/QH; cần điều chỉnh 1/500; có thể hết hạn thực hiện tháng 07/2025, rủi ro thu hồi không bồi hoàn; cần PLDA đánh giá"
+      },
+      "financial_items": [],
+      "business_notes": "Dự án nhà ở công nhân/chuyên gia KCN Nhơn Trạch; vị trí trung tâm hành chính mới/cửa ngõ sân bay Long Thành, xung quanh KCN",
+      "excerpt": "Khu nhà ở công nhân và chuyên gia Nhơn Trạch... diện tích 92.075m2... nhiều vấn đề pháp lý chưa rõ, có thể hết hạn thực hiện 07/2025."
+    },
+    {
+      "id": "M04-0015",
+      "part": 4,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+      "report_date": "2025-07-07",
+      "source_chunks": [
+        "354",
+        "355"
+      ],
+      "source_file": "batch_350.txt",
+      "sender": "Thanh L - INVT",
+      "location": "Mặt tiền Võ Thị Sáu, P. Thống Nhất, TP Biên Hòa, Đồng Nai",
+      "map_url": "https://maps.app.goo.gl/7yPFeG3okyKbrLCM9",
+      "scale_raw": "Diện tích 21.393,8 m2; mới giao đất 20.144,3 m2, còn 1.249 m2 chưa giao; 3 GCN diện tích 5.632,2 m2; PA hệ số có thể xin 10, đang dùng 8,3 vì TMDV không hiệu quả",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "21.393,8 m2",
+          "20.144,3 m2",
+          "1.249 m2",
+          "5.632,2 m2"
+        ],
+        "raw": "Diện tích 21.393,8 m2; mới giao đất 20.144,3 m2, còn 1.249 m2 chưa giao; 3 GCN diện tích 5.632,2 m2; PA hệ số có thể xin 10, đang dùng 8,3 vì TMDV không hiệu quả"
+      },
+      "legal": {
+        "land": "",
+        "project": "Có khả năng bị kiến nghị thu hồi để đấu thầu lựa chọn NĐT",
+        "raw": "Có khả năng bị kiến nghị thu hồi để đấu thầu lựa chọn NĐT; chưa rõ nghĩa vụ tài chính; cần đánh giá PL chi tiết"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update chi tiết pháp lý cho Võ Thị Sáu Part 3",
+      "excerpt": "Chung cư Võ Thị Sáu Biên Hòa... có khả năng bị kiến nghị thu hồi đấu thầu... diện tích 21.393,8m2."
+    },
+    {
+      "id": "M04-0016",
+      "part": 4,
+      "decision": "project_record_with_market_replies",
+      "project_name": "Dự án Trần Hưng Đạo, cầu Trần Thị Lý, Đà Nẵng",
+      "report_date": "",
+      "source_chunks": [
+        "356",
+        "357",
+        "347",
+        "348"
+      ],
+      "source_file": "batch_352.txt; batch_342.txt; batch_343.txt",
+      "sender": "",
+      "location": "Đường Trần Hưng Đạo, cầu Trần Thị Lý, TP Đà Nẵng",
+      "map_url": "https://maps.app.goo.gl/acrdQ54V3NVNNkKh9",
+      "scale_raw": "Diện tích 2.117 m2; đất ở xây dựng chung cư, thời hạn CĐT đến 2062 còn khoảng 37 năm; lô nhỏ 2.000 m2; so với dự án đối diện 3,5ha/650 căn/101 nhà phố/45 villa",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.117 m2",
+          "2.000 m2",
+          "3,5 ha"
+        ],
+        "raw": "Diện tích 2.117 m2; đất ở xây dựng chung cư, thời hạn CĐT đến 2062 còn khoảng 37 năm; lô nhỏ 2.000 m2; so với dự án đối diện 3,5ha/650 căn/101 nhà phố/45 villa"
+      },
+      "legal": {
+        "land": "sổ đất cấp 2017 nhưng chưa rõ chỉ tiêu tương ứng nghĩa vụ tài chính",
+        "project": "Đã CTĐT tháng 7/2024, phê duyệt 1/500 tháng 4/2025, phù hợp 1/2000",
+        "raw": "Đã CTĐT tháng 7/2024, phê duyệt 1/500 tháng 4/2025, phù hợp 1/2000; sổ đất cấp 2017 nhưng chưa rõ chỉ tiêu tương ứng nghĩa vụ tài chính; thời hạn còn 37 năm"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "518 tỷ cho 2.117 m2",
+          "source_chunk": "356"
+        },
+        {
+          "label": "Đơn giá chào",
+          "value": "245 tr/m2, cao 2,4 lần đơn giá đất Nhà nước 101 tr/m2",
+          "source_chunk": "356"
+        },
+        {
+          "label": "Giá mua tối đa để LNTT/TMĐT 15%",
+          "value": "291 tỷ, khoảng 137,8 tr/m2",
+          "source_chunk": "357"
+        },
+        {
+          "label": "Giá bán căn hộ cần để LNTT/TMĐT >12% nếu giữ giá chào 245tr/m2",
+          "value": "từ 90 tr/m2",
+          "source_chunk": "347"
+        },
+        {
+          "label": "Giá thứ cấp dự án đối diện",
+          "value": "76-93 tr/m2",
+          "source_chunk": "348"
+        },
+        {
+          "label": "Giá bán thận trọng P.ĐT đang tính",
+          "value": "75 tr/m2",
+          "source_chunk": "348"
+        }
+      ],
+      "business_notes": "Giá chào quá cao, chỉ cân nhắc nếu giảm về mức đạt hiệu quả; P.ĐT tính 75tr là giá thận trọng/an toàn do dự án đối diện giá thứ cấp 76-93tr nhưng thương hiệu Sun mạnh hơn",
+      "excerpt": "Trần Hưng Đạo Đà Nẵng... giá chào 518 tỷ, 245tr/m2... giá mua tối đa hiệu quả 291 tỷ, 137,8tr/m2."
+    },
+    {
+      "id": "M04-0017",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "02 lô A12 và A14 - Trung tâm tài chính quốc tế Đà Nẵng",
+      "report_date": "2025-07-01",
+      "source_chunks": [
+        "360"
+      ],
+      "source_file": "batch_354.txt",
+      "sender": "Phòng Đầu tư",
+      "location": "Trung tâm tài chính quốc tế Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Lô A12 diện tích 7.633 m2, MĐXD 40-90%, 38 tầng; lô A14 diện tích 10.327 m2, MĐXD 40-90%, 38 tầng; quy hoạch căn hộ cao cấp",
+      "planning": {
+        "floors": "",
+        "density": "40",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "7.633 m2",
+          "10.327 m2"
+        ],
+        "raw": "Lô A12 diện tích 7.633 m2, MĐXD 40-90%, 38 tầng; lô A14 diện tích 10.327 m2, MĐXD 40-90%, 38 tầng; quy hoạch căn hộ cao cấp"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Theo đề án trung tâm tài chính quốc tế Đà Nẵng và báo cáo SXD Đà Nẵng; chức năng căn hộ cao cấp"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ cao cấp R&D đề xuất",
+          "value": "167 tr/m2 gồm VAT, thông thủy",
+          "source_chunk": "360"
+        },
+        {
+          "label": "Chi phí đầu tư xây dựng all-in",
+          "value": "22,3 tr/m2 gồm VAT",
+          "source_chunk": "360"
+        },
+        {
+          "label": "Chi phí bán hàng",
+          "value": "25% doanh thu",
+          "source_chunk": "360"
+        },
+        {
+          "label": "Mức giá đấu tối đa theo name_hint",
+          "value": "khoảng 370 tr/m2 để khả thi tại vị trí nghiên cứu",
+          "source_chunk": "360"
+        }
+      ],
+      "business_notes": "P.ĐT đề xuất nghiên cứu vì tiềm năng lợi nhuận và dòng thu sớm; giá bán R&D đề xuất 167tr/m2 gồm VAT thông thủy; CPBH 25% doanh thu",
+      "excerpt": "2 lô A12/A14 trung tâm tài chính quốc tế Đà Nẵng... A12 7.633m2, A14 10.327m2, 38 tầng... giá bán 167tr/m2, CPXD 22,3tr/m2."
+    },
+    {
+      "id": "M04-0018",
+      "part": 4,
+      "decision": "project_record_with_replies",
+      "project_name": "Dự án Felecia/Felicia, Đà Nẵng",
+      "report_date": "2025-06-28",
+      "source_chunks": [
+        "371",
+        "372",
+        "367",
+        "368",
+        "369",
+        "370",
+        "362",
+        "363",
+        "364",
+        "365"
+      ],
+      "source_file": "batch_368.txt; batch_365.txt; batch_358.txt; batch_355.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Khách sạn 5 sao quy mô 25 tầng + 2 hầm, tổng sàn xây dựng 22.204 m2, 250 phòng; đã xây xong phần thô nên khó điều chỉnh thiết kế hơn xây mới",
+      "planning": {
+        "floors": "25",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "22.204 m2"
+        ],
+        "raw": "Khách sạn 5 sao quy mô 25 tầng + 2 hầm, tổng sàn xây dựng 22.204 m2, 250 phòng; đã xây xong phần thô nên khó điều chỉnh thiết kế hơn xây mới"
+      },
+      "legal": {
+        "land": "GCNQSDĐ đất cơ sở sản xuất kinh doanh, thời hạn 2060 tạm tính； Nhà nước giao đất có thu tiền SDĐ",
+        "project": "",
+        "raw": "GCNQSDĐ đất cơ sở sản xuất kinh doanh, thời hạn 2060 tạm tính; Nhà nước giao đất có thu tiền SDĐ"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chuyển nhượng",
+          "value": "600 tỷ gồm đất + CTXD khách sạn",
+          "source_chunk": "371"
+        },
+        {
+          "label": "Giá đất tạm tính",
+          "value": "500 tỷ",
+          "source_chunk": "371"
+        },
+        {
+          "label": "Giá trị CTXD phần thô tạm tính",
+          "value": "100 tỷ, khoảng 4,5-5 tr/m2 sàn",
+          "source_chunk": "371"
+        },
+        {
+          "label": "Giá phòng/ADR Mr David ban đầu",
+          "value": "2,05 tr/phòng/đêm chưa VAT, thấp hơn Serene",
+          "source_chunk": "367"
+        },
+        {
+          "label": "GOP",
+          "value": "47% doanh thu theo Mr David",
+          "source_chunk": "368"
+        },
+        {
+          "label": "Chi phí quản lý/khác",
+          "value": "khoảng 8% doanh thu, thận trọng theo Ms Hana; tập đoàn đang vận hành 5-8%",
+          "source_chunk": "368"
+        },
+        {
+          "label": "EBITDA",
+          "value": "39% doanh thu; hiện chỉ đủ trả lãi, không đủ trả gốc nếu có vay",
+          "source_chunk": "368"
+        }
+      ],
+      "business_notes": "Giá chuyển nhượng cao làm hiệu quả thấp hơn Làng Cá/lô kế Nobu; cần họp thêm với A Kiên về điều chỉnh thiết kế/hạn chế và trao đổi A David về giá; Khôi liên hệ Vietin về khoản vay",
+      "excerpt": "Felecia Đà Nẵng... giá chuyển nhượng 600 tỷ, đất 500 tỷ, CTXD thô 100 tỷ... 25 tầng + 2 hầm, 250 phòng... EBITDA 39%."
+    },
+    {
+      "id": "M04-0019",
+      "part": 4,
+      "decision": "multi_project_record_with_updates",
+      "project_name": "Nhóm dự án NOXH Đồng Nai / Nhơn Trạch / Biên Hòa",
+      "report_date": "2025-06-26",
+      "source_chunks": [
+        "373",
+        "374",
+        "375",
+        "376",
+        "377",
+        "378",
+        "379"
+      ],
+      "source_file": "batch_369.txt; batch_370.txt; batch_371.txt",
+      "sender": "Khoa L - INVT; Huy M - IM",
+      "location": "Đồng Nai: Nhơn Trạch, Biên Hòa, Trảng Bom",
+      "map_url": "https://maps.app.goo.gl/Fsyo4xmwK3kmzbC9A; https://maps.app.goo.gl/hMM3KEF5KhFhsZJi7",
+      "scale_raw": "6 dự án NOXH Đồng Nai từng được đánh giá: 2 Nhơn Trạch, 3 Biên Hòa, 1 Trảng Bom; riêng Phước An/Nhơn Trạch có khu 2,1ha và 3,7ha",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2,1 ha",
+          "3,7 ha"
+        ],
+        "raw": "6 dự án NOXH Đồng Nai từng được đánh giá: 2 Nhơn Trạch, 3 Biên Hòa, 1 Trảng Bom; riêng Phước An/Nhơn Trạch có khu 2,1ha và 3,7ha"
+      },
+      "legal": {
+        "land": "",
+        "project": "Dự án dạng đấu thầu, yêu cầu năng lực CĐT đã/đang làm NOXH nên khó cho công ty； mua lại NOXH thông qua đấu thầu khả năng cao chỉ qua mua cổ phần nên chi phí không được tính",
+        "raw": "Dự án dạng đấu thầu, yêu cầu năng lực CĐT đã/đang làm NOXH nên khó cho công ty; mua lại NOXH thông qua đấu thầu khả năng cao chỉ qua mua cổ phần nên chi phí không được tính; hồ sơ mời quan tâm QĐ 789 khu 2,1ha và QĐ 787 khu 3,7ha"
+      },
+      "financial_items": [
+        {
+          "label": "NOXH Nhơn Trạch 2,1ha giá bán chưa VAT",
+          "value": "20,8 tr/m2",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 2,1ha suất XD chưa VAT",
+          "value": "9,93 tr/m2",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 2,1ha tổng doanh thu",
+          "value": "1.377 tỷ",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 2,1ha tổng chi phí",
+          "value": "1.180 tỷ",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 2,1ha LNTT/NPV/LNTT-TMĐT",
+          "value": "197,5 tỷ / 127,4 tỷ / 17,34%",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 3,7ha giá bán chưa VAT",
+          "value": "21,1 tr/m2",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 3,7ha suất XD chưa VAT",
+          "value": "9,92 tr/m2",
+          "source_chunk": "377"
+        },
+        {
+          "label": "NOXH Nhơn Trạch 3,7ha tổng doanh thu/chi phí",
+          "value": "1.768 tỷ / 1.508 tỷ",
+          "source_chunk": "377"
+        }
+      ],
+      "business_notes": "Team trước đây đánh giá nhu cầu NOXH Nhơn Trạch chưa cao và dự án Biên Hòa phù hợp hơn; có nhiều nhà đầu tư đã đăng ký như Hoàng Quân, Nam Long liên danh, Hancorp, IEC...",
+      "excerpt": "NOXH Đồng Nai/Nhơn Trạch... 2,1ha và 3,7ha Phước An... trước đây thống nhất nghiên cứu dự án Biên Hòa hơn Nhơn Trạch."
+    },
+    {
+      "id": "M04-0020",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Dự án 53ha đấu thầu đường Thăng Long, sông Cẩm Lệ, Đà Nẵng",
+      "report_date": "2025-06-23",
+      "source_chunks": [
+        "380",
+        "383"
+      ],
+      "source_file": "batch_372.txt; batch_373.txt",
+      "sender": "P.ĐT",
+      "location": "Đường Thăng Long, sông Cẩm Lệ, TP Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 53ha; đất nhà nước quản lý 64%, đất lúa 29%; theo QH 1/2000 đất ở khoảng 30%, sau NOXH đất NOTM 24%, đất thương phẩm 19% khoảng 10ha/53ha; cây xanh công cộng 40%",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "53 ha",
+          "10 ha"
+        ],
+        "raw": "Tổng diện tích 53ha; đất nhà nước quản lý 64%, đất lúa 29%; theo QH 1/2000 đất ở khoảng 30%, sau NOXH đất NOTM 24%, đất thương phẩm 19% khoảng 10ha/53ha; cây xanh công cộng 40%"
+      },
+      "legal": {
+        "land": "",
+        "project": "Dự án đấu thầu có sử dụng đất",
+        "raw": "Dự án đấu thầu có sử dụng đất; nghiên cứu năng lực NĐT theo NĐ 115/2024/NĐ-CP; cần năng lực tài chính/vốn chủ tương ứng TMĐT"
+      },
+      "financial_items": [
+        {
+          "label": "Sơ bộ TMĐT dự án 50ha mẫu",
+          "value": "khoảng 15.000 tỷ, khoảng 300 tỷ/ha",
+          "source_chunk": "380"
+        },
+        {
+          "label": "CP bồi thường GPMT dự án 50ha mẫu",
+          "value": "1.000 tỷ, khoảng 2 tr/m2 bình quân",
+          "source_chunk": "380"
+        },
+        {
+          "label": "CP đầu tư xây dựng dự án 50ha mẫu",
+          "value": "12.500 tỷ theo suất vốn BXD",
+          "source_chunk": "380"
+        },
+        {
+          "label": "Chi phí dự phòng dự án 50ha mẫu",
+          "value": "1.500 tỷ, khoảng 10% CP bồi thường + CPXD",
+          "source_chunk": "380"
+        },
+        {
+          "label": "Giá bán thị trường R&D khu vực",
+          "value": "khoảng 35 tr/m2",
+          "source_chunk": "383"
+        }
+      ],
+      "business_notes": "Tỷ lệ đất thương phẩm thấp khiến hiệu quả yếu dù bồi thường thấp; cần xem khả năng điều chỉnh quy hoạch/cơ cấu đất",
+      "excerpt": "53ha đấu thầu đường Thăng Long Sông Cẩm Lệ... đất thương phẩm chỉ 19% khoảng 10ha/53ha, CXCC 40%."
+    },
+    {
+      "id": "M04-0021",
+      "part": 4,
+      "decision": "multi_project_record",
+      "project_name": "02 dự án NOXH của Công ty Ba Huân",
+      "report_date": "2025-06-??",
+      "source_chunks": [
+        "385",
+        "386",
+        "387"
+      ],
+      "source_file": "batch_375.txt",
+      "sender": "P.ĐT",
+      "location": "Tân Nhựt, Bình Chánh, TP.HCM và khu vực Bình Dương/Tân Uyên theo khảo sát",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1p-2wMqsZAnTQXubtXx7Lse6Sq-8rC64&usp=sharing",
+      "scale_raw": "Một dự án NOXH xã Tân Nhựt, Bình Chánh tại đường Thế Lữ; dự án còn lại được so sánh với KCN Vsip II/Tân Uyên",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Một dự án NOXH xã Tân Nhựt, Bình Chánh tại đường Thế Lữ; dự án còn lại được so sánh với KCN Vsip II/Tân Uyên"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần nghiên cứu hồ sơ pháp lý/vị trí; excerpt chưa đủ pháp lý chi tiết"
+      },
+      "financial_items": [
+        {
+          "label": "Khoảng cách Tân Nhựt đến trung tâm TPHCM",
+          "value": "khoảng 20 km",
+          "source_chunk": "386"
+        },
+        {
+          "label": "Giá đất ở ngoài KCN Vsip II",
+          "value": "10-15 tr/m2",
+          "source_chunk": "387"
+        },
+        {
+          "label": "Giá đất KDC trong KCN Vsip II",
+          "value": "trên dưới 15 tr/m2",
+          "source_chunk": "387"
+        },
+        {
+          "label": "Giá căn hộ Tecco Felice NOTM",
+          "value": "trên dưới 20 tr/m2, cách dự án NOXH khoảng 15km",
+          "source_chunk": "387"
+        },
+        {
+          "label": "Giá đất UBND mặt tiền ĐT742",
+          "value": "5 tr/m2",
+          "source_chunk": "387"
+        },
+        {
+          "label": "Giá căn hộ NOXH ước tính",
+          "value": "23-25 tr/m2, cao hơn 50-60% giá đất KDC xung quanh",
+          "source_chunk": "387"
+        }
+      ],
+      "business_notes": "Đánh giá vị trí Tân Nhựt xa trung tâm, phía Tây tăng trưởng khiêm tốn, tiện ích bán kính 5km chưa nhiều, đường Thế Lữ hiện hữu 6-8m; dự án NOXH khu vực Vsip/Tân Uyên không khả thi do giá NOXH cao hơn nhiều so với đất KDC xung quanh",
+      "excerpt": "2 dự án NOXH Ba Huân... Tân Nhựt Bình Chánh vị trí xa/thiếu tiện ích; NOXH khu Vsip/Tân Uyên giá 23-25tr/m2 không khả thi."
+    },
+    {
+      "id": "M04-0022",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Dự án Võ Văn Kiệt, Đà Nẵng",
+      "report_date": "2025-06-17",
+      "source_chunks": [
+        "388",
+        "389",
+        "390"
+      ],
+      "source_file": "batch_377.txt",
+      "sender": "P.ĐT; Hanh T - INVT",
+      "location": "Mặt tiền Võ Văn Kiệt, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích đất 2.013,5 m2; dân số 523 dân; MĐXD 60%; tầng cao chỉ tiêu 38 tầng; PA đề xuất 03 hầm, 32 tầng nổi, HSSDĐ 12,8; 270 căn gồm 8 shop TM 2 tầng và 262 căn hộ; dân số 507 còn dư 17 dân",
+      "planning": {
+        "floors": "38",
+        "density": "60%",
+        "far": "12,8",
+        "population": "523 dân",
+        "area_mentions": [
+          "2.013,5 m2",
+          "32 m2"
+        ],
+        "raw": "Diện tích đất 2.013,5 m2; dân số 523 dân; MĐXD 60%; tầng cao chỉ tiêu 38 tầng; PA đề xuất 03 hầm, 32 tầng nổi, HSSDĐ 12,8; 270 căn gồm 8 shop TM 2 tầng và 262 căn hộ; dân số 507 còn dư 17 dân"
+      },
+      "legal": {
+        "land": "",
+        "project": "Đề xuất chọn phương án quy hoạch làm cơ sở hồ sơ thủ tục pháp lý",
+        "raw": "Đề xuất chọn phương án quy hoạch làm cơ sở hồ sơ thủ tục pháp lý; phòng QH cần bố trí shop tầng trệt cân đối mặt tiền và tận dụng dân số dư"
+      },
+      "financial_items": [
+        {
+          "label": "Diện tích căn hộ theo chỉ tiêu 32m2/dân",
+          "value": "16.736 m2 = 523 dân x 32m2/dân",
+          "source_chunk": "389"
+        },
+        {
+          "label": "Diện tích căn hộ theo chỉ tiêu 25m2/dân",
+          "value": "13.075 m2 = 523 dân x 25m2/dân",
+          "source_chunk": "389"
+        },
+        {
+          "label": "Giá bán căn hộ cuối 2026",
+          "value": "87 tr/m2 tim tường chưa VAT, khoảng 5,86 tỷ/căn 67m2",
+          "source_chunk": "389"
+        },
+        {
+          "label": "Giá bán shop TM tầng 1-2 mặt tiền cuối 2027",
+          "value": "210 tr/m2 chưa VAT",
+          "source_chunk": "389"
+        }
+      ],
+      "business_notes": "Tối ưu hệ số và diện tích thương phẩm theo chỉ tiêu 32 m2/dân; ưu tiên hệ số cho shop vì giá bán tốt hơn căn hộ",
+      "excerpt": "Võ Văn Kiệt Đà Nẵng... đất 2.013,5m2, dân số 523, HSSDĐ 12,8, 270 căn, giá căn hộ 87tr/m2."
+    },
+    {
+      "id": "M04-0023",
+      "part": 4,
+      "decision": "multi_asset_valuation_report_update",
+      "project_name": "Định giá 6 tài sản - bổ sung 69 Võ Văn Tần",
+      "report_date": "2025-07-16",
+      "source_chunks": [
+        "391"
+      ],
+      "source_file": "batch_377.txt",
+      "sender": "Binh D - CVDT",
+      "location": "69 Võ Văn Tần, P. Võ Thị Sáu, Q1, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Tài sản 69 Võ Văn Tần diện tích đất 718,4 m2 chưa có GCN; biệt thự diện tích sàn khoảng 1.118,3 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "718,4 m2",
+          "1.118,3 m2"
+        ],
+        "raw": "Tài sản 69 Võ Văn Tần diện tích đất 718,4 m2 chưa có GCN; biệt thự diện tích sàn khoảng 1.118,3 m2"
+      },
+      "legal": {
+        "land": "Chưa có GCN",
+        "project": "",
+        "raw": "Chưa có GCN; tài sản biệt thự hiện hữu cần xét pháp lý/bảo tồn theo record định giá 6 tài sản"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá đất ở định giá 69 Võ Văn Tần",
+          "value": "705 tr/m2 đất",
+          "source_chunk": "391"
+        }
+      ],
+      "business_notes": "Bổ sung/duplicate update cho M04-0010, không tạo dự án phát triển riêng",
+      "excerpt": "69 Võ Văn Tần... đất 718,4m2 chưa GCN, biệt thự sàn 1.118,3m2, đơn giá đất ở định giá 705tr/m2."
+    },
+    {
+      "id": "M04-0024",
+      "part": 4,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+      "report_date": "2025-07-15",
+      "source_chunks": [
+        "392",
+        "393",
+        "394",
+        "395",
+        "396"
+      ],
+      "source_file": "batch_379.txt; batch_380.txt; batch_381.txt; batch_383.txt; batch_384.txt",
+      "sender": "Hanh T - INVT",
+      "location": "Nhơn Trạch, Đồng Nai",
+      "map_url": "Google My Maps đính kèm trong chunk 392",
+      "scale_raw": "Cụm 386ha gồm PK3 80ha, PK4 92ha, PK5 129ha, PK6 85ha; có đất cao tầng và thấp tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "386 ha",
+          "80 ha",
+          "92 ha",
+          "129 ha",
+          "85 ha"
+        ],
+        "raw": "Cụm 386ha gồm PK3 80ha, PK4 92ha, PK5 129ha, PK6 85ha; có đất cao tầng và thấp tầng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cập nhật trùng record M04-0011; thông tin kèm vị trí và số liệu chi tiết TMĐT từng phân khu"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT cụm 386ha",
+          "value": "84.900 tỷ, khoảng 220 tỷ/ha",
+          "source_chunk": "393"
+        },
+        {
+          "label": "Vốn CSH tối thiểu",
+          "value": "khoảng 12.740 tỷ, 15% TMĐT",
+          "source_chunk": "393"
+        },
+        {
+          "label": "Giá bồi thường giả định",
+          "value": "khoảng 3 tr/m2",
+          "source_chunk": "393"
+        }
+      ],
+      "business_notes": "Duplicate/update, không tạo dự án mới",
+      "excerpt": "Nhơn Trạch 386ha... PK3 80ha, PK4 92ha, PK5 129ha, PK6 85ha... TMĐT 84.900 tỷ."
+    },
+    {
+      "id": "M04-0025",
+      "part": 4,
+      "decision": "project_record_update",
+      "project_name": "Dự án Phú Quang",
+      "report_date": "2025-07-15",
+      "source_chunks": [
+        "397",
+        "400",
+        "401",
+        "402"
+      ],
+      "source_file": "batch_385.txt; batch_392.txt",
+      "sender": "Khoa L - INVT; P.ĐT",
+      "location": "Phú Quang / khu Vĩnh Phú",
+      "map_url": "",
+      "scale_raw": "Cập nhật FS phương án NOTM thay thế NOXH; tính 2 PA: PA1 chuyển NOXH thành NOTM và các phân kỳ; có đất thương phẩm làm cơ sở quy đổi TSDĐ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "89.166,3 m2",
+          "1.443,8 m2",
+          "1.460 m2"
+        ],
+        "raw": "Cập nhật FS phương án NOTM thay thế NOXH; tính 2 PA: PA1 chuyển NOXH thành NOTM và các phân kỳ; có đất thương phẩm làm cơ sở quy đổi TSDĐ"
+      },
+      "legal": {
+        "land": "QH 1/500 mới, giả định giao đất/xác định nghĩa vụ tài chính đợt 2 năm 2027； vấn đề pháp lý chưa rõ gồm nguồn gốc đất bồi thường 89.166,3 m2, UBND xã quản lý 1.443,8 m2； lệch diện tích giao đất 2005 và diện tích lập QH",
+        "project": "QH 1/500 mới, giả định giao đất/xác định nghĩa vụ tài chính đợt 2 năm 2027",
+        "raw": "QH 1/500 mới, giả định giao đất/xác định nghĩa vụ tài chính đợt 2 năm 2027; vấn đề pháp lý chưa rõ gồm nguồn gốc đất bồi thường 89.166,3 m2, UBND xã quản lý 1.443,8 m2; chồng ranh trường Nguyễn Bỉnh Khiêm hơn 1.460 m2; lệch diện tích giao đất 2005 và diện tích lập QH"
+      },
+      "financial_items": [
+        {
+          "label": "Giá đất thị trường đầu vào cập nhật",
+          "value": "khoảng 50 tr/m2",
+          "source_chunk": "400"
+        },
+        {
+          "label": "Giá trị khấu trừ tiền đất đợt 1 ước tính",
+          "value": "1.592 tỷ",
+          "source_chunk": "401"
+        },
+        {
+          "label": "LUR/TSDĐ phải đóng ước tính",
+          "value": "6.540 tỷ",
+          "source_chunk": "401"
+        },
+        {
+          "label": "LUR nếu áp giá Emerald 68 khoảng 63tr/m2",
+          "value": "tiệm cận 10.000 tỷ",
+          "source_chunk": "401"
+        },
+        {
+          "label": "Đơn giá TSDĐ trên diện tích đất thương phẩm",
+          "value": "khoảng 65,5 tr/m2",
+          "source_chunk": "401"
+        },
+        {
+          "label": "Đơn giá đất đường Vĩnh Phú 41",
+          "value": "6,62 tr/m2",
+          "source_chunk": "401"
+        }
+      ],
+      "business_notes": "P.ĐT chọn giá đất đầu vào 50tr/m2 sau khi cân nhắc Stown, Splus, Marina; số TSDĐ có tính tùy biến cao theo thị trường và phân kỳ triển khai",
+      "excerpt": "Phú Quang cập nhật NOTM thay NOXH... giá đất 50tr/m2, khấu trừ 1.592 tỷ, LUR phải đóng 6.540 tỷ; pháp lý còn chưa rõ."
+    },
+    {
+      "id": "M04-0026",
+      "part": 4,
+      "decision": "project_record_update",
+      "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+      "report_date": "2025-06-05",
+      "source_chunks": [
+        "398"
+      ],
+      "source_file": "batch_392.txt",
+      "sender": "P.ĐT",
+      "location": "Biên Hòa, Đồng Nai - Bộ Quốc Phòng / Quân chủng PK-KQ",
+      "map_url": "",
+      "scale_raw": "Dự án 8,46ha gồm khu 5,52ha và 2,94ha; PA đối tác cung cấp có thể xây 15 tầng, độ cao tĩnh 55m; mỗi khu phải dưới 4.000 dân để không hình thành đơn vị ở; PA không xây hầm, gồm 2 tầng khối đế và 13 tầng tháp",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "8,46 ha",
+          "5,52 ha",
+          "2,94 ha"
+        ],
+        "raw": "Dự án 8,46ha gồm khu 5,52ha và 2,94ha; PA đối tác cung cấp có thể xây 15 tầng, độ cao tĩnh 55m; mỗi khu phải dưới 4.000 dân để không hình thành đơn vị ở; PA không xây hầm, gồm 2 tầng khối đế và 13 tầng tháp"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dự án nhà ở gia đình quân nhân thuộc BQP; cần kiểm soát dân số từng khu dưới 4.000 để tránh yêu cầu cây xanh/công cộng đơn vị ở"
+      },
+      "financial_items": [],
+      "business_notes": "Tăng tầng cao và không xây hầm để tiết kiệm chi phí/tăng thương phẩm; 2 tầng khối đế bố trí để xe kết hợp căn hộ ở",
+      "excerpt": "Khu gia đình quân nhân PK-KQ 8,46ha Biên Hòa... 15 tầng, cao 55m, dưới 4.000 dân mỗi khu, không hầm."
+    },
+    {
+      "id": "M04-0027",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
+      "report_date": "2025-06-05",
+      "source_chunks": [
+        "399"
+      ],
+      "source_file": "batch_392.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường Hoàng Sa, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích 2.769 m2; dự án căn hộ/khách sạn theo FS, chưa bao gồm TSDĐ bổ sung",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.769 m2",
+          "2769 m2"
+        ],
+        "raw": "Diện tích 2.769 m2; dự án căn hộ/khách sạn theo FS, chưa bao gồm TSDĐ bổ sung"
+      },
+      "legal": {
+        "land": "Chưa bao gồm tiền sử dụng đất bổ sung",
+        "project": "",
+        "raw": "Chưa bao gồm tiền sử dụng đất bổ sung; cần làm rõ nghĩa vụ tài chính bổ sung"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ trung bình cuối 2026",
+          "value": "70 tr/m2 gồm VAT, doanh thu khoảng 770 tỷ",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Giá thuê khách sạn/đêm 2026",
+          "value": "2,05 tr/phòng/đêm chưa VAT",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Giá thuê khách sạn/đêm 2029",
+          "value": "2,4 tr/phòng/đêm gồm VAT",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Tỷ lệ lấp đầy",
+          "value": "70%",
+          "source_chunk": "399"
+        },
+        {
+          "label": "EBITDA",
+          "value": "33%-37%",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Đơn giá đất",
+          "value": "250 tr/m2, khoảng 692 tỷ",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Chi phí pháp lý + nhà mẫu",
+          "value": "77 tỷ gồm VAT",
+          "source_chunk": "399"
+        },
+        {
+          "label": "Đơn giá xây dựng trung bình",
+          "value": "24 tr/m2 gồm VAT giai đoạn cuối 2026-2028, khoảng 1.160 tỷ",
+          "source_chunk": "399"
+        }
+      ],
+      "business_notes": "FS gồm phương án bán căn hộ và vận hành khách sạn; R&D đề xuất giá bán, Mr David đề xuất vận hành",
+      "excerpt": "2769m2 Hoàng Sa Đà Nẵng... giá căn hộ 70tr/m2, doanh thu 770 tỷ; khách sạn ADR 2,05-2,4tr/phòng/đêm; đất 692 tỷ."
+    },
+    {
+      "id": "M04-0028",
+      "part": 4,
+      "decision": "project_record",
+      "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
+      "report_date": "2025-05-26",
+      "source_chunks": [
+        "403",
+        "404"
+      ],
+      "source_file": "batch_393.txt",
+      "sender": "P.ĐT",
+      "location": "Văn Giang, Hưng Yên",
+      "map_url": "",
+      "scale_raw": "Khu đô thị 446,9ha; mục tiêu khu nhà ở, thương mại, du lịch sinh thái và nông nghiệp sạch; tổng vốn 86.369 tỷ, vốn góp NĐT 20,84%; thời hạn 50 năm; thực hiện 72 tháng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "446,9 ha",
+          "400 ha"
+        ],
+        "raw": "Khu đô thị 446,9ha; mục tiêu khu nhà ở, thương mại, du lịch sinh thái và nông nghiệp sạch; tổng vốn 86.369 tỷ, vốn góp NĐT 20,84%; thời hạn 50 năm; thực hiện 72 tháng"
+      },
+      "legal": {
+        "land": "hiện trạng chủ yếu đất nông nghiệp, chưa hạ tầng, không dân cư； thuộc đất đô thị hóa đến 2050 theo QHC Văn Giang QĐ 86/QĐ-TTg； cần bổ sung cơ cấu đất, hiện trạng, phương án bồi thường, QH phân khu 1/2000, TMĐT, PAKD, TSDĐ",
+        "project": "Hình thức đấu thầu dự án có sử dụng đất； cần bổ sung cơ cấu đất, hiện trạng, phương án bồi thường, QH phân khu 1/2000, TMĐT, PAKD, TSDĐ； cần pháp lý nghiên cứu quy trình đấu thầu",
+        "raw": "Hình thức đấu thầu dự án có sử dụng đất; đang giai đoạn đề xuất từ 16/05/2022, chưa có tiến triển pháp lý rõ; hiện trạng chủ yếu đất nông nghiệp, chưa hạ tầng, không dân cư; thuộc đất đô thị hóa đến 2050 theo QHC Văn Giang QĐ 86/QĐ-TTg; chưa có QH phân khu; cần bổ sung cơ cấu đất, hiện trạng, phương án bồi thường, QH phân khu 1/2000, TMĐT, PAKD, TSDĐ; cần pháp lý nghiên cứu quy trình đấu thầu"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng vốn đầu tư",
+          "value": "86.369 tỷ đồng",
+          "source_chunk": "403"
+        },
+        {
+          "label": "Tỷ lệ vốn góp nhà đầu tư",
+          "value": "20,84%",
+          "source_chunk": "403"
+        },
+        {
+          "label": "Thời hạn dự án",
+          "value": "50 năm, thực hiện trong 72 tháng",
+          "source_chunk": "403"
+        }
+      ],
+      "business_notes": "Vị trí có tiềm năng phát triển KĐT nhưng quy mô >400ha và TMĐT >80.000 tỷ đòi hỏi doanh nghiệp/liên danh đủ năng lực",
+      "excerpt": "KĐT Văn Giang Red River Villa Hưng Yên... 446,9ha, tổng vốn 86.369 tỷ, đấu thầu dự án có sử dụng đất, chưa có QH phân khu."
+    },
+    {
+      "id": "M05-0001",
+      "part": 5,
+      "decision": "update_to_existing_project",
+      "project_name": "Dự án Phượng Hoàng",
+      "report_date": "2025-06-03",
+      "source_chunks": [
+        "405",
+        "419",
+        "454"
+      ],
+      "source_file": "batch_393.txt; batch_408.txt; batch_447.txt",
+      "sender": "Thao L - INVT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Cập nhật phương án bao tiêu DXG và FS: TSDĐ cao nhất 40 tỷ; CPXD chọn 619 tỷ/RD 624 tỷ; sau tiết giảm 5% còn 588/593 tỷ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật phương án bao tiêu DXG và FS: TSDĐ cao nhất 40 tỷ; CPXD chọn 619 tỷ/RD 624 tỷ; sau tiết giảm 5% còn 588/593 tỷ"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không thêm pháp lý mới trong excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "TSDĐ cao nhất",
+          "value": "40 tỷ",
+          "source_chunk": "419"
+        },
+        {
+          "label": "CPXD chọn/RD đề xuất",
+          "value": "619 tỷ / 624 tỷ",
+          "source_chunk": "419"
+        },
+        {
+          "label": "CPXD sau tiết giảm 5%",
+          "value": "588 tỷ / 593 tỷ",
+          "source_chunk": "419"
+        },
+        {
+          "label": "Giá bán RD đề xuất",
+          "value": "36 tr/m2 chưa VAT, tim tường",
+          "source_chunk": "419"
+        },
+        {
+          "label": "LNTT/TMĐT theo CPXD RD 624 tỷ",
+          "value": "10%",
+          "source_chunk": "419"
+        },
+        {
+          "label": "LNTT/TMĐT sau tiết giảm CPXD RD 593 tỷ",
+          "value": "13,6%",
+          "source_chunk": "419"
+        }
+      ],
+      "business_notes": "DXG chưa đủ cơ sở đề xuất giá bán bao tiêu do thiếu chính sách thanh toán, tỷ lệ/thời hạn/chế tài bao tiêu, spec/concept nội thất; giá bán RD 36tr/m2 chưa VAT tim tường",
+      "excerpt": "Phượng Hoàng... DXG bao tiêu chưa đủ cơ sở; TSDĐ 40 tỷ, CPXD 619-624 tỷ, giá bán 36tr/m2, LNTT/TMĐT 10%-13,6%."
+    },
+    {
+      "id": "M05-0002",
+      "part": 5,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+      "report_date": "2025-07-07",
+      "source_chunks": [
+        "406"
+      ],
+      "source_file": "batch_394.txt",
+      "sender": "Thanh L - INVT",
+      "location": "Mặt tiền Võ Thị Sáu, P. Thống Nhất, Biên Hòa, Đồng Nai",
+      "map_url": "https://maps.app.goo.gl/7yPFeG3okyKbrLCM9",
+      "scale_raw": "Diện tích 21.393,8 m2; đã giao 20.144,3 m2, còn 1.249 m2 chưa giao; 3 GCN 5.632,2 m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "21.393,8 m2",
+          "20.144,3 m2",
+          "1.249 m2",
+          "5.632,2 m2"
+        ],
+        "raw": "Diện tích 21.393,8 m2; đã giao 20.144,3 m2, còn 1.249 m2 chưa giao; 3 GCN 5.632,2 m2"
+      },
+      "legal": {
+        "land": "",
+        "project": "Có khả năng bị kiến nghị thu hồi để đấu thầu lựa chọn NĐT",
+        "raw": "Có khả năng bị kiến nghị thu hồi để đấu thầu lựa chọn NĐT; chưa rõ nghĩa vụ tài chính"
+      },
+      "financial_items": [],
+      "business_notes": "Trùng/update Part 4, giữ nguồn chunk mới",
+      "excerpt": "Chung cư Võ Thị Sáu Biên Hòa... khả năng bị thu hồi đấu thầu, diện tích 21.393,8m2."
+    },
+    {
+      "id": "M05-0003",
+      "part": 5,
+      "decision": "project_lead_context",
+      "project_name": "Khu đất/khu đô thị Hưng Yên gần Xuân Cầu và Trump International Hưng Yên",
+      "report_date": "2025-05-25",
+      "source_chunks": [
+        "407",
+        "408",
+        "409",
+        "410"
+      ],
+      "source_file": "batch_395.txt",
+      "sender": "Huy M - IM; Mr Mike1 -CEO",
+      "location": "Khoái Châu/Văn Giang khu vực Hưng Yên, gần Xuân Cầu và Trump",
+      "map_url": "",
+      "scale_raw": "Lead vị trí nằm giữa Xuân Cầu và Trump; liên quan dự án Trump International Hưng Yên/khu phức hợp đô thị, du lịch sinh thái, sân golf",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Lead vị trí nằm giữa Xuân Cầu và Trump; liên quan dự án Trump International Hưng Yên/khu phức hợp đô thị, du lịch sinh thái, sân golf"
+      },
+      "legal": {
+        "land": "bối cảnh thí điểm chỉ gỡ 30% cho hồ sơ hiện trạng đất chưa full ở, các dự án sau chủ yếu đấu thầu/đấu giá",
+        "project": "A Hiếu - PL sẽ đánh giá hồ sơ và nghiên cứu đấu thầu； bối cảnh thí điểm chỉ gỡ 30% cho hồ sơ hiện trạng đất chưa full ở, các dự án sau chủ yếu đấu thầu/đấu giá",
+        "raw": "A Hiếu - PL sẽ đánh giá hồ sơ và nghiên cứu đấu thầu; bối cảnh thí điểm chỉ gỡ 30% cho hồ sơ hiện trạng đất chưa full ở, các dự án sau chủ yếu đấu thầu/đấu giá"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí được đánh giá ổn nhưng trọng yếu là giá đấu thầu; cần nghiên cứu chi tiết phần đấu thầu",
+      "excerpt": "Chỗ mình quan tâm nằm giữa Xuân Cầu và Trump... vị trí ok, quan trọng giá đấu thầu; pháp lý nghiên cứu đấu thầu."
+    },
+    {
+      "id": "M05-0004",
+      "part": 5,
+      "decision": "project_deal_note",
+      "project_name": "Dự án NOXH Thiên Lộc / đối tác A Trường - A Tâm",
+      "report_date": "2025-05-23",
+      "source_chunks": [
+        "411"
+      ],
+      "source_file": "batch_404.txt",
+      "sender": "Huy M - IM",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Chưa nêu quy mô trong excerpt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chưa nêu quy mô trong excerpt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Thiên Lộc sẽ làm pháp lý; Thiên Lộc trước đây chưa làm NOXH, chỉ triển khai NOTM ở Thái Nguyên"
+      },
+      "financial_items": [],
+      "business_notes": "Phương án hợp tác: bên mình bỏ vốn và triển khai dự án; Thiên Lộc xử lý pháp lý; chờ tính toán hiệu quả xong để trao đổi A Tâm",
+      "excerpt": "Thiên Lộc làm pháp lý, bên mình bỏ vốn triển khai; Thiên Lộc chưa làm NOXH."
+    },
+    {
+      "id": "M05-0005",
+      "part": 5,
+      "decision": "merged_same_project_update",
+      "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+      "report_date": "2025-05-22",
+      "source_chunks": [
+        "412",
+        "447",
+        "463"
+      ],
+      "source_file": "batch_405.txt; batch_440.txt; batch_455.txt",
+      "sender": "P.ĐT",
+      "location": "Biên Hòa, Đồng Nai - Bộ Quốc Phòng",
+      "map_url": "https://maps.app.goo.gl/ET75kfpwVX837fEE6; https://maps.app.goo.gl/47PLkeuNfzKvw38w8; https://maps.app.goo.gl/RXcEPNYx6EwAbDxF9",
+      "scale_raw": "Tổng 8,46ha gồm khu 5,52ha và 2,94ha; PA thiết kế 1 hầm + 7 tầng, 3 block mỗi khu + NOTM thấp tầng; 153 nhà liên kế NOTM và 1.737 căn NOXH",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "8,46 ha",
+          "5,52 ha",
+          "2,94 ha"
+        ],
+        "raw": "Tổng 8,46ha gồm khu 5,52ha và 2,94ha; PA thiết kế 1 hầm + 7 tầng, 3 block mỗi khu + NOTM thấp tầng; 153 nhà liên kế NOTM và 1.737 căn NOXH"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dự án nhà ở lực lượng vũ trang/BQP; cập nhật thêm PA theo phía đối tác ở chunk 447/463 bị cắt"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT",
+          "value": "2.441 tỷ; suất đầu tư xây dựng 13,6 tr/m2",
+          "source_chunk": "412"
+        },
+        {
+          "label": "Tổng doanh thu",
+          "value": "3.209 tỷ",
+          "source_chunk": "412"
+        },
+        {
+          "label": "Giá đất nhà liên kế NOTM",
+          "value": "65 tr/m2",
+          "source_chunk": "412"
+        }
+      ],
+      "business_notes": "Hiệu quả sơ bộ theo giá NOTM 65tr/m2 và NOXH; duplicate/update Part 4",
+      "excerpt": "PK-KQ 8,46ha Biên Hòa... 153 liên kế NOTM, 1.737 NOXH, TMĐT 2.441 tỷ, doanh thu 3.209 tỷ."
+    },
+    {
+      "id": "M05-0006",
+      "part": 5,
+      "decision": "multi_project_record",
+      "project_name": "02 dự án nhà ở lực lượng vũ trang nhân dân Quận 12",
+      "report_date": "2025-05-22",
+      "source_chunks": [
+        "413"
+      ],
+      "source_file": "batch_406.txt",
+      "sender": "P.ĐT",
+      "location": "Quận 12, TP.HCM",
+      "map_url": "https://maps.app.goo.gl/xg6rRMGswq5scyCbA; https://maps.app.goo.gl/whvDoK2djK9ZczAK8",
+      "scale_raw": "Dự án Tân Thới Nhất 1,18ha: 2 block 12 tầng, 1 hầm, 129 NOTM + 539 NOXH. Dự án Hiệp Thành 5,5ha: excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1,18 ha",
+          "5,5 ha"
+        ],
+        "raw": "Dự án Tân Thới Nhất 1,18ha: 2 block 12 tầng, 1 hầm, 129 NOTM + 539 NOXH. Dự án Hiệp Thành 5,5ha: excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Nhà ở lực lượng vũ trang nhân dân; cần theo hồ sơ BCA/BQP tương ứng"
+      },
+      "financial_items": [
+        {
+          "label": "Tân Thới Nhất TMĐT",
+          "value": "904,9 tỷ; suất đầu tư 11,2 tr/m2",
+          "source_chunk": "413"
+        },
+        {
+          "label": "Tân Thới Nhất tổng doanh thu",
+          "value": "1.081,2 tỷ",
+          "source_chunk": "413"
+        },
+        {
+          "label": "Giá bán NOTM/NOXH",
+          "value": "57 tr/m2 / 24,1 tr/m2",
+          "source_chunk": "413"
+        },
+        {
+          "label": "LNTT/LNST/NPV/IRR",
+          "value": "105,38 tỷ / 93,1 tỷ / 16,8 tỷ / 16,0%",
+          "source_chunk": "413"
+        },
+        {
+          "label": "LNTT/TMĐT; LNTT/VCSH",
+          "value": "11,65%; 50,5%",
+          "source_chunk": "413"
+        }
+      ],
+      "business_notes": "Tân Thới Nhất hiệu quả sơ bộ dương, IRR 16%",
+      "excerpt": "Nhà ở LLVT Quận 12: Tân Thới Nhất 1,18ha, 129 NOTM, 539 NOXH, TMĐT 904,9 tỷ, IRR 16%."
+    },
+    {
+      "id": "M05-0007",
+      "part": 5,
+      "decision": "merged_same_project_update",
+      "project_name": "Cù Lao Tân Vạn – Centria Island",
+      "report_date": "2025-05-22",
+      "source_chunks": [
+        "414",
+        "415",
+        "416",
+        "417",
+        "418",
+        "430",
+        "439",
+        "446",
+        "461",
+        "462",
+        "464",
+        "465",
+        "466",
+        "467",
+        "468",
+        "469",
+        "470",
+        "471",
+        "472"
+      ],
+      "source_file": "batch_406.txt; batch_407.txt; batch_423.txt; batch_431.txt; batch_455.txt; batch_463.txt; batch_464.txt; batch_466.txt",
+      "sender": "Huy M - IM; Thao L - INVT",
+      "location": "Cù lao Tân Vạn, Biên Hòa, Đồng Nai",
+      "map_url": "momento360 hiện trạng trong chunk 466",
+      "scale_raw": "Dự án biệt lập 4 mặt sông, quy mô khoảng 48ha; 72 căn + 219 nền theo cấu trúc vay; đã bán hơn 200 nền, khoảng 70 căn đã xây; phát triển đồng bộ tiện ích/bến du thuyền/TTTM/trường học/sân golf",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "48 ha"
+        ],
+        "raw": "Dự án biệt lập 4 mặt sông, quy mô khoảng 48ha; 72 căn + 219 nền theo cấu trúc vay; đã bán hơn 200 nền, khoảng 70 căn đã xây; phát triển đồng bộ tiện ích/bến du thuyền/TTTM/trường học/sân golf"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Có thể vào xây dựng liền theo trao đổi; xong pháp lý mới bán; cần kiểm tra hiện trạng đã bán nền/xây dựng"
+      },
+      "financial_items": [
+        {
+          "label": "Cash mua 72 căn",
+          "value": "95%, khoảng 1.092 tỷ",
+          "source_chunk": "414"
+        },
+        {
+          "label": "Cọc cash mua 219 nền",
+          "value": "30%, khoảng 1.441 tỷ",
+          "source_chunk": "414"
+        },
+        {
+          "label": "Vay phần còn lại 219 nền",
+          "value": "65%, khoảng 3.123 tỷ giải ngân theo tiến độ",
+          "source_chunk": "414"
+        },
+        {
+          "label": "Tổng tiền tươi chi ra",
+          "value": "khoảng 2.478 tỷ, tương đương 42%",
+          "source_chunk": "414"
+        },
+        {
+          "label": "Giá bán biệt thự đơn lập giáp sông/kênh",
+          "value": "100 tr/m2 đất + nhà",
+          "source_chunk": "430"
+        },
+        {
+          "label": "Giá bán biệt thự đơn lập phía trong",
+          "value": "90 tr/m2 đất + nhà",
+          "source_chunk": "430"
+        },
+        {
+          "label": "Giá bán biệt thự song lập",
+          "value": "85 tr/m2 đất + nhà",
+          "source_chunk": "430"
+        },
+        {
+          "label": "Giá bán nhà liên kế",
+          "value": "95 tr/m2 đất + nhà",
+          "source_chunk": "430"
+        },
+        {
+          "label": "Tỷ suất LNTT/TMĐT theo giá Mr Lâm",
+          "value": "30%",
+          "source_chunk": "430"
+        },
+        {
+          "label": "Tỷ lệ đơn giá TB Cù Lao Tân Vạn/Vạn Phúc",
+          "value": "44%",
+          "source_chunk": "439"
+        },
+        {
+          "label": "Giá bán đợt 1 căn hộ/PH context",
+          "value": "33 tr/m2 Q4/2025, giá 36tr bị hỏi cao",
+          "source_chunk": "415"
+        }
+      ],
+      "business_notes": "Hạ tầng hưởng lợi Vành Đai 3, cầu Nhơn Trạch, ga Bình Thắng 3 tuyến metro, mở rộng cao tốc HCM-Dầu Giây, Aeon Mall/Sun Cù lao Phố; giá bán dự kiến thấp hơn các CĐT lớn nhưng làm theo mô hình tiện ích đồng bộ",
+      "excerpt": "Cù Lao Tân Vạn... cấu trúc deal TTC, cash 2.478 tỷ, giá bán theo Mr Lâm, LNTT/TMĐT 30%, hưởng lợi hạ tầng lớn."
+    },
+    {
+      "id": "M05-0008",
+      "part": 5,
+      "decision": "project_record",
+      "project_name": "KCN Phước An / Cảng Phước An, Nhơn Trạch",
+      "report_date": "2025-05-15",
+      "source_chunks": [
+        "421"
+      ],
+      "source_file": "batch_409.txt",
+      "sender": "Khang Do - CVDT",
+      "location": "Xã Phước An, Nhơn Trạch, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "GĐ1 330ha, GĐ2 220ha, GĐ3 183ha; tổng 733ha; GĐ1+2 SKK dịch vụ hậu cần cảng, GĐ3 DGT Cảng Phước An",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "330 ha",
+          "220 ha",
+          "183 ha",
+          "733 ha"
+        ],
+        "raw": "GĐ1 330ha, GĐ2 220ha, GĐ3 183ha; tổng 733ha; GĐ1+2 SKK dịch vụ hậu cần cảng, GĐ3 DGT Cảng Phước An"
+      },
+      "legal": {
+        "land": "không phải cho thuê đất làm KCN truyền thống mà là dịch vụ hậu cần cảng/kho bãi",
+        "project": "",
+        "raw": "Thời hạn sử dụng đến 21/08/2059, còn khoảng 34 năm; không phải cho thuê đất làm KCN truyền thống mà là dịch vụ hậu cần cảng/kho bãi"
+      },
+      "financial_items": [],
+      "business_notes": "Cần đánh giá thị trường xung quanh và mô hình dịch vụ cảng: nâng hạ, vệ sinh/sửa container, cho thuê kho bãi",
+      "excerpt": "KCN Phước An Nhơn Trạch tổng 733ha, dịch vụ hậu cần cảng/cảng Phước An, thời hạn đến 2059."
+    },
+    {
+      "id": "M05-0009",
+      "part": 5,
+      "decision": "multi_project_screening",
+      "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+      "report_date": "2025-05-13",
+      "source_chunks": [
+        "424",
+        "425"
+      ],
+      "source_file": "batch_415.txt",
+      "sender": "Hanh T - INVT",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Theo BC 106/BC-UBND ngày 20/03/2025 có 13 khu đất đấu thầu gồm 10 khu đất KĐT và 3 dự án giáo dục; P.ĐT tập trung 10 khu đất KĐT, đề xuất quan tâm 5 dự án có ranh đất file đính kèm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Theo BC 106/BC-UBND ngày 20/03/2025 có 13 khu đất đấu thầu gồm 10 khu đất KĐT và 3 dự án giáo dục; P.ĐT tập trung 10 khu đất KĐT, đề xuất quan tâm 5 dự án có ranh đất file đính kèm"
+      },
+      "legal": {
+        "land": "Danh mục khu đất thực hiện đấu thầu, các KĐT thông qua HĐND",
+        "project": "Danh mục khu đất thực hiện đấu thầu, các KĐT thông qua HĐND",
+        "raw": "Danh mục khu đất thực hiện đấu thầu, các KĐT thông qua HĐND"
+      },
+      "financial_items": [],
+      "business_notes": "Tiêu chí sàng lọc: kết nối giao thông hiện trạng/quy hoạch, hình dáng đất, mặt tiền, khoảng cách trung tâm/dân cư, view sông/đường hiện trạng, chỉ tiêu quy hoạch ở",
+      "excerpt": "Đà Nẵng có 13 khu đất đấu thầu, tập trung 10 khu KĐT; đề xuất quan tâm 5 dự án."
+    },
+    {
+      "id": "M05-0010",
+      "part": 5,
+      "decision": "project_record_update",
+      "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+      "report_date": "2025-05-13",
+      "source_chunks": [
+        "426",
+        "431",
+        "481"
+      ],
+      "source_file": "batch_417.txt; batch_423.txt; batch_469.txt",
+      "sender": "Huy M - IM; Hanh T - INVT",
+      "location": "48 Nguyễn Thiện Thuật, P. Tân Lập, Nha Trang; Đoàn Trần Nghiệp, Nha Trang",
+      "map_url": "",
+      "scale_raw": "48 Nguyễn Thiện Thuật đất GCN 1.703,3 m2, phù hợp QH 1.655,2 m2; 2 mặt tiền Biệt Thự và Nguyễn Thiện Thuật, cách biển 350m; PA 20 tầng đã duyệt và 32 tầng xin điều chỉnh",
+      "planning": {
+        "floors": "",
+        "density": "60%",
+        "far": "13 lần",
+        "population": "",
+        "area_mentions": [
+          "1.703,3 m2",
+          "1.655,2 m2",
+          "1.703 m2"
+        ],
+        "raw": "48 Nguyễn Thiện Thuật đất GCN 1.703,3 m2, phù hợp QH 1.655,2 m2; 2 mặt tiền Biệt Thự và Nguyễn Thiện Thuật, cách biển 350m; PA 20 tầng đã duyệt và 32 tầng xin điều chỉnh"
+      },
+      "legal": {
+        "land": "QH 1/2000 QĐ 816/QĐ-UBND ngày 27/03/2025: HSSDĐ 13 lần, tầng cao 20, MĐXD 60%, đất hỗn hợp nhóm nhà ở và dịch vụ",
+        "project": "QH 1/2000 QĐ 816/QĐ-UBND ngày 27/03/2025: HSSDĐ 13 lần, tầng cao 20, MĐXD 60%, đất hỗn hợp nhóm nhà ở và dịch vụ",
+        "raw": "QH 1/2000 QĐ 816/QĐ-UBND ngày 27/03/2025: HSSDĐ 13 lần, tầng cao 20, MĐXD 60%, đất hỗn hợp nhóm nhà ở và dịch vụ"
+      },
+      "financial_items": [],
+      "business_notes": "PA chung cư không đạt hiệu quả nên P.ĐT đề xuất làm khách sạn nhưng vẫn giữ đất ở; nhờ A Cường David hỗ trợ phương án kinh doanh khách sạn",
+      "excerpt": "Nguyễn Thiện Thuật/Đoàn Trần Nghiệp Nha Trang chung cư không hiệu quả, đề xuất khách sạn; 48 NTT 1.703m2, HSSDĐ 13, 20-32 tầng."
+    },
+    {
+      "id": "M05-0011",
+      "part": 5,
+      "decision": "multi_project_record_update",
+      "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+      "report_date": "2025-03-25",
+      "source_chunks": [
+        "427",
+        "495",
+        "496",
+        "501",
+        "502",
+        "422",
+        "423",
+        "498"
+      ],
+      "source_file": "batch_417.txt; batch_484.txt; batch_492.txt; batch_409.txt; batch_410.txt; batch_485.txt",
+      "sender": "Khoa L - INVT; P.ĐT",
+      "location": "Biên Hòa, Trảng Bom, Nhơn Trạch, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "6 vị trí: Đoàn Văn Cừ Tam Hiệp 6.405,5m2/520 căn; TĐC Long Bình 24.279m2/1.248 căn; Phước Tân 11.761m2/478 căn; KCN Bàu Xéo 34.994m2/956-963 căn; Phước An Nhơn Trạch 21.162m2/1.800 căn; Phước An Nhơn Trạch 37.139m2/1.490 căn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "6.405,5 m2",
+          "24.279 m2",
+          "11.761 m2",
+          "34.994 m2",
+          "21.162 m2",
+          "37.139 m2"
+        ],
+        "raw": "6 vị trí: Đoàn Văn Cừ Tam Hiệp 6.405,5m2/520 căn; TĐC Long Bình 24.279m2/1.248 căn; Phước Tân 11.761m2/478 căn; KCN Bàu Xéo 34.994m2/956-963 căn; Phước An Nhơn Trạch 21.162m2/1.800 căn; Phước An Nhơn Trạch 37.139m2/1.490 căn"
+      },
+      "legal": {
+        "land": "",
+        "project": "Dự án đấu thầu",
+        "raw": "Dự án đấu thầu; cần nộp hồ sơ đăng ký trước 9h ngày 28/04/2025 theo QĐ 788/thông báo 25/03/2025; công ty thiếu năng lực kinh nghiệm nên đề xuất liên danh; chuyển nhượng khả năng qua mua cổ phần nên chi phí không được tính"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT vị trí 1-6",
+          "value": "649 tỷ; 1.135,4 tỷ; 722,5 tỷ; 733 tỷ; 1.040,6 tỷ; 1.206 tỷ",
+          "source_chunk": "501"
+        }
+      ],
+      "business_notes": "Ưu tiên chọn 2 dự án tốt nhất để tính chi tiết vì nhân sự mỏng; NOXH giúp thương hiệu tích cực nhưng bị giới hạn khách hàng/giá bán nên cần thị trường quanh đủ hấp thụ",
+      "excerpt": "6 NOXH Đồng Nai: Biên Hòa/Trảng Bom/Nhơn Trạch, quy mô 520-1.800 căn; cần liên danh do thiếu năng lực NOXH."
+    },
+    {
+      "id": "M05-0012",
+      "part": 5,
+      "decision": "company_valuation_record",
+      "project_name": "Định giá Công ty DXG - Đất Xanh",
+      "report_date": "2025-05-12",
+      "source_chunks": [
+        "429"
+      ],
+      "source_file": "batch_418.txt",
+      "sender": "P.ĐT",
+      "location": "Trụ sở 2W Ung Văn Khiêm, P.25, Bình Thạnh, HCM",
+      "map_url": "",
+      "scale_raw": "Định giá tài sản ròng bằng cách xác định lại giá trị dự án/quỹ đất DXG trên BCTC; thông tin dự án DXG hạn chế hơn DIG/HDC nên định giá thận trọng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Định giá tài sản ròng bằng cách xác định lại giá trị dự án/quỹ đất DXG trên BCTC; thông tin dự án DXG hạn chế hơn DIG/HDC nên định giá thận trọng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dựa trên BCTC/báo cáo thường niên/bản cáo bạch; cần phân loại hàng tồn kho, dự án đã/đang thực hiện"
+      },
+      "financial_items": [
+        {
+          "label": "Thị giá cổ phiếu ngày 12/05/2025",
+          "value": "16.300 đồng/cp",
+          "source_chunk": "429"
+        },
+        {
+          "label": "Số lượng cổ phiếu lưu hành",
+          "value": "870.849.983 cổ phiếu",
+          "source_chunk": "429"
+        }
+      ],
+      "business_notes": "Làm cơ sở ước tính giá trị cổ phiếu DXG hợp lý",
+      "excerpt": "Định giá DXG theo NAV/quỹ đất, thị giá 16.300đ, 870,85 triệu cp."
+    },
+    {
+      "id": "M05-0013",
+      "part": 5,
+      "decision": "company_valuation_record",
+      "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
+      "report_date": "2025-05-07",
+      "source_chunks": [
+        "432"
+      ],
+      "source_file": "batch_423.txt",
+      "sender": "P.ĐT",
+      "location": "36 Nguyễn Thái Học, P.7, TP Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Định giá tài sản ròng bằng cách xác định lại dự án/quỹ đất HDC trên BCTC; dự án pháp lý đền bù GPMB xem là quỹ đất và định giá theo đất lúa/CLN/HNK tùy địa hình",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Định giá tài sản ròng bằng cách xác định lại dự án/quỹ đất HDC trên BCTC; dự án pháp lý đền bù GPMB xem là quỹ đất và định giá theo đất lúa/CLN/HNK tùy địa hình"
+      },
+      "legal": {
+        "land": "",
+        "project": "Phân loại theo tình trạng pháp lý/đền bù/GPMB",
+        "raw": "Phân loại theo tình trạng pháp lý/đền bù/GPMB; giá trị hàng tồn kho/CP đầu tư xây dựng ghi nhận theo BCTC"
+      },
+      "financial_items": [
+        {
+          "label": "Thị giá ngày 07/05/2025",
+          "value": "23.400 đồng/cp",
+          "source_chunk": "432"
+        },
+        {
+          "label": "Số lượng cổ phiếu lưu hành",
+          "value": "178.354.966 cổ phần",
+          "source_chunk": "432"
+        }
+      ],
+      "business_notes": "Cần thêm thời gian vì HDC nhiều dự án và phân mảng",
+      "excerpt": "Định giá HDC theo NAV/quỹ đất, thị giá 23.400đ, 178,35 triệu cp."
+    },
+    {
+      "id": "M05-0014",
+      "part": 5,
+      "decision": "project_record_update",
+      "project_name": "Khách sạn 25 Trần Phú, Đà Lạt",
+      "report_date": "2025-04-28",
+      "source_chunks": [
+        "433",
+        "434",
+        "493",
+        "482",
+        "489"
+      ],
+      "source_file": "batch_424.txt; batch_470.txt; batch_478.txt",
+      "sender": "Thoi L - ASST; Thao L - INVT",
+      "location": "25 Trần Phú, Đà Lạt",
+      "map_url": "",
+      "scale_raw": "Chốt PA 5 tầng nổi + 1 tầng hầm, MĐXD 60%, 108 phòng, tiêu chuẩn 5 sao; PA khác 130 phòng từng được gửi",
+      "planning": {
+        "floors": "",
+        "density": "60%",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chốt PA 5 tầng nổi + 1 tầng hầm, MĐXD 60%, 108 phòng, tiêu chuẩn 5 sao; PA khác 130 phòng từng được gửi"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Sau khi A Tùng làm việc với XSD Lâm Đồng; tiếp tục xúc tiến xin dự án theo PA này; cần hỏi hết thời hạn thì đóng tiền gia hạn như thế nào"
+      },
+      "financial_items": [
+        {
+          "label": "Giá/định hướng cũ được nhắc",
+          "value": "300 tỷ theo message đính kèm hồ sơ",
+          "source_chunk": "489"
+        }
+      ],
+      "business_notes": "Tính giá đất theo định giá trước; có file QĐ 2805 UBNDTP QH 1/2000 01/07/2019 và bản vẽ hiện trạng Gia Long/Sơ đồ Gia Long",
+      "excerpt": "KS 25 Trần Phú đi PA 5 tầng nổi + 1 hầm, MĐXD 60%, 108 phòng 5 sao."
+    },
+    {
+      "id": "M05-0015",
+      "part": 5,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Võ Văn Kiệt, Đà Nẵng",
+      "report_date": "2025-04-25",
+      "source_chunks": [
+        "435",
+        "437"
+      ],
+      "source_file": "batch_424.txt; batch_427.txt",
+      "sender": "P.ĐT",
+      "location": "Võ Văn Kiệt, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "PA 3 hầm, 32 tầng nổi, HSSDĐ 12,8; 270 căn gồm 8 shop TM 2 tầng và 262 căn hộ; dân số 507, dư 17; tối ưu diện tích căn hộ theo 32m2/dân",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "12,8",
+        "population": "507,",
+        "area_mentions": [
+          "32 m2"
+        ],
+        "raw": "PA 3 hầm, 32 tầng nổi, HSSDĐ 12,8; 270 căn gồm 8 shop TM 2 tầng và 262 căn hộ; dân số 507, dư 17; tối ưu diện tích căn hộ theo 32m2/dân"
+      },
+      "legal": {
+        "land": "cần theo chỉ tiêu khu đất Võ Văn Kiệt",
+        "project": "",
+        "raw": "Duplicate/update Part 4; cần theo chỉ tiêu khu đất Võ Văn Kiệt"
+      },
+      "financial_items": [
+        {
+          "label": "Diện tích căn hộ theo 32m2/dân",
+          "value": "16.736 m2 = 523 dân x 32m2/dân",
+          "source_chunk": "435"
+        },
+        {
+          "label": "Diện tích căn hộ theo 25m2/dân",
+          "value": "13.075 m2",
+          "source_chunk": "435"
+        }
+      ],
+      "business_notes": "Ưu tiên bố trí hệ số cho shop TM vì giá bán tốt hơn căn hộ",
+      "excerpt": "Võ Văn Kiệt Đà Nẵng... 32 tầng, HSSDĐ 12,8, 270 căn, tối ưu shop TM."
+    },
+    {
+      "id": "M05-0016",
+      "part": 5,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Phú Quang",
+      "report_date": "2025-04-25",
+      "source_chunks": [
+        "436",
+        "438"
+      ],
+      "source_file": "batch_427.txt; batch_430.txt",
+      "sender": "Khoa L - INVT",
+      "location": "Phú Quang / Vĩnh Phú",
+      "map_url": "",
+      "scale_raw": "QH mới 32ha, dân số 18.051; HSSDĐ 6,41-7,69; cây xanh 14,4ha, đất thương phẩm 17ha; thấp tầng 4,5ha, NOXH 2,8ha, NOTM 5,8ha; sàn NOXH 129.874m2, NOTM 323.986m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "6,41",
+        "population": "18.051",
+        "area_mentions": [
+          "32 ha",
+          "14,4 ha",
+          "17 ha",
+          "4,5 ha",
+          "2,8 ha",
+          "5,8 ha"
+        ],
+        "raw": "QH mới 32ha, dân số 18.051; HSSDĐ 6,41-7,69; cây xanh 14,4ha, đất thương phẩm 17ha; thấp tầng 4,5ha, NOXH 2,8ha, NOTM 5,8ha; sàn NOXH 129.874m2, NOTM 323.986m2"
+      },
+      "legal": {
+        "land": "Tính TSDĐ theo QH cũ cho phần giao đất đợt 1 12,5ha, sau này khấu trừ khi đóng TSDĐ theo QH 1/500 mới khoảng 700 tỷ",
+        "project": "Tính TSDĐ theo QH cũ cho phần giao đất đợt 1 12,5ha, sau này khấu trừ khi đóng TSDĐ theo QH 1/500 mới khoảng 700 tỷ",
+        "raw": "Tính TSDĐ theo QH cũ cho phần giao đất đợt 1 12,5ha, sau này khấu trừ khi đóng TSDĐ theo QH 1/500 mới khoảng 700 tỷ"
+      },
+      "financial_items": [
+        {
+          "label": "LNTT",
+          "value": "18.522,6 tỷ",
+          "source_chunk": "438"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "56,37%",
+          "source_chunk": "438"
+        },
+        {
+          "label": "NPV/IRR",
+          "value": "4.286 tỷ / 25,72%",
+          "source_chunk": "438"
+        },
+        {
+          "label": "Khấu trừ TSDĐ ước tính phần giao đất đợt 1",
+          "value": "khoảng 700 tỷ",
+          "source_chunk": "436"
+        }
+      ],
+      "business_notes": "So sánh PA 18.051 dân với PA 19.646 dân; hiệu quả cao do cơ cấu QH mới",
+      "excerpt": "Phú Quang QH mới 18.051 dân, đất thương phẩm 17ha, LNTT 18.522,6 tỷ, IRR 25,72%."
+    },
+    {
+      "id": "M05-0017",
+      "part": 5,
+      "decision": "project_record_update",
+      "project_name": "Holiday Beach, Võ Nguyên Giáp, Đà Nẵng",
+      "report_date": "2025-04-21",
+      "source_chunks": [
+        "440",
+        "460"
+      ],
+      "source_file": "batch_431.txt; batch_454.txt",
+      "sender": "P.ĐT; Huy M - IM",
+      "location": "Mặt tiền Võ Nguyên Giáp, P. Mỹ An, Q. Ngũ Hành Sơn, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Hotel & Condotel: MĐXD 71,5%, HSSDĐ 12,76, 19 tầng + 2 hầm; 680 sản phẩm gồm 272 phòng hotel TB 38m2 và 408 condotel TB 65m2; tỷ lệ 40% hotel/60% condotel",
+      "planning": {
+        "floors": "",
+        "density": "71,5%",
+        "far": "12,76,",
+        "population": "",
+        "area_mentions": [
+          "38 m2",
+          "65 m2"
+        ],
+        "raw": "Hotel & Condotel: MĐXD 71,5%, HSSDĐ 12,76, 19 tầng + 2 hầm; 680 sản phẩm gồm 272 phòng hotel TB 38m2 và 408 condotel TB 65m2; tỷ lệ 40% hotel/60% condotel"
+      },
+      "legal": {
+        "land": "Cần làm rõ thời hạn sử dụng đất còn lại vì ảnh hưởng giá bán condotel",
+        "project": "",
+        "raw": "Cần làm rõ thời hạn sử dụng đất còn lại vì ảnh hưởng giá bán condotel; A Hiếu PL nghiên cứu"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT",
+          "value": "5.127 tỷ",
+          "source_chunk": "440"
+        },
+        {
+          "label": "Chi phí chuyển nhượng",
+          "value": "1.725 tỷ, khoảng 367 tr/m2 đất",
+          "source_chunk": "440"
+        }
+      ],
+      "business_notes": "Muốn bán condotel Đà Nẵng cần thuê đơn vị vận hành 5 sao quốc tế tương tự Nobu",
+      "excerpt": "Holiday Beach Võ Nguyên Giáp... 19 tầng + 2 hầm, 680 sp, TMĐT 5.127 tỷ, chuyển nhượng 1.725 tỷ."
+    },
+    {
+      "id": "M05-0018",
+      "part": 5,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
+      "report_date": "2025-06-05",
+      "source_chunks": [
+        "441",
+        "442"
+      ],
+      "source_file": "batch_434.txt; batch_437.txt",
+      "sender": "Thao L - INVT",
+      "location": "Hoàng Sa, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Căn hộ/khách sạn; chưa bao gồm TSDĐ bổ sung",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2769 m2"
+        ],
+        "raw": "Căn hộ/khách sạn; chưa bao gồm TSDĐ bổ sung"
+      },
+      "legal": {
+        "land": "Cần làm rõ TSDĐ bổ sung",
+        "project": "",
+        "raw": "Cần làm rõ TSDĐ bổ sung"
+      },
+      "financial_items": [
+        {
+          "label": "Giá bán căn hộ TB cuối 2026",
+          "value": "70 tr/m2 gồm VAT, doanh thu khoảng 770 tỷ",
+          "source_chunk": "441"
+        },
+        {
+          "label": "Giá thuê KS/đêm 2026",
+          "value": "2,05 tr/phòng/đêm chưa VAT",
+          "source_chunk": "441"
+        },
+        {
+          "label": "Giá thuê KS/đêm 2029",
+          "value": "2,4 tr/phòng/đêm gồm VAT",
+          "source_chunk": "441"
+        },
+        {
+          "label": "Tỷ lệ lấp đầy; EBITDA",
+          "value": "70%; 33%-37%",
+          "source_chunk": "441"
+        }
+      ],
+      "business_notes": "Duplicate/update Part 4",
+      "excerpt": "2769m2 Hoàng Sa Đà Nẵng... căn hộ 70tr/m2, doanh thu 770 tỷ, hotel ADR 2,05-2,4tr."
+    },
+    {
+      "id": "M05-0019",
+      "part": 5,
+      "decision": "company_valuation_project_update",
+      "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
+      "report_date": "2025-04-18",
+      "source_chunks": [
+        "443",
+        "444",
+        "445",
+        "448",
+        "449",
+        "450",
+        "451",
+        "452",
+        "453",
+        "455",
+        "503",
+        "504"
+      ],
+      "source_file": "batch_440.txt; batch_441.txt; batch_443.txt; batch_444.txt; batch_447.txt; batch_450.txt; batch_492.txt; batch_495.txt",
+      "sender": "Khoa L - INVT; Huy M - IM",
+      "location": "Vũng Tàu/Đồng Nai - quỹ đất DIG/HDC; Long Tân",
+      "map_url": "https://www.google.com/maps/d/edit?mid=1HzxvPXBEhrOAj5K2Z-QIEzEWdybIQXU&usp=sharing; https://maps.app.goo.gl/5iiRqTtYeBvcHiWK6",
+      "scale_raw": "Map riêng DIG/HDC; điểm xanh DIG, đỏ HDC. Long Tân đã đền bù 183ha theo bản cáo bạch/báo cáo thường niên DIG",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "183 ha"
+        ],
+        "raw": "Map riêng DIG/HDC; điểm xanh DIG, đỏ HDC. Long Tân đã đền bù 183ha theo bản cáo bạch/báo cáo thường niên DIG"
+      },
+      "legal": {
+        "land": "Dự án trong giai đoạn pháp lý đền bù GPMB xem là quỹ đất, định giá theo giá thị trường đất lúa/CLN/HNK tùy địa hình； chưa rõ cơ cấu đất Long Tân nên tạm lấy đất lúa thận trọng",
+        "project": "Dự án trong giai đoạn pháp lý đền bù GPMB xem là quỹ đất, định giá theo giá thị trường đất lúa/CLN/HNK tùy địa hình",
+        "raw": "Dự án trong giai đoạn pháp lý đền bù GPMB xem là quỹ đất, định giá theo giá thị trường đất lúa/CLN/HNK tùy địa hình; chưa rõ cơ cấu đất Long Tân nên tạm lấy đất lúa thận trọng"
+      },
+      "financial_items": [
+        {
+          "label": "DIG thị giá 18/04/2025",
+          "value": "15.650 đồng/cp",
+          "source_chunk": "455"
+        },
+        {
+          "label": "DIG số lượng cp lưu hành",
+          "value": "609.581.995 cổ phần",
+          "source_chunk": "455"
+        },
+        {
+          "label": "Long Tân giá vốn ghi nhận",
+          "value": "khoảng 871 tỷ",
+          "source_chunk": "453"
+        },
+        {
+          "label": "Long Tân tiền tạm ứng bồi thường",
+          "value": "khoảng 2.656 tỷ",
+          "source_chunk": "453"
+        },
+        {
+          "label": "Long Tân 183ha nếu 4tr/m2",
+          "value": "khoảng 7.300 tỷ",
+          "source_chunk": "452"
+        },
+        {
+          "label": "Định giá đang tạm lấy thận trọng",
+          "value": "khoảng 4.200 tỷ theo đất lúa/giá thấp",
+          "source_chunk": "451"
+        }
+      ],
+      "business_notes": "Team đánh giá Long Tân theo giá thị trường, không lấy giá sổ sách; giá khu vực 4tr/m2 được xem rẻ, xung quanh 6-7tr; nếu CLN 6-7tr, đất lúa 2-3tr, mix 50/50 khoảng 4tr",
+      "excerpt": "DIG/HDC map quỹ đất; Long Tân 183ha, giá vốn 871 tỷ, tạm ứng BT 2.656 tỷ, thị trường 4tr/m2 khoảng 7.300 tỷ."
+    },
+    {
+      "id": "M05-0020",
+      "part": 5,
+      "decision": "multi_project_hotel_operation_record",
+      "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+      "report_date": "2025-04-17",
+      "source_chunks": [
+        "456",
+        "475",
+        "476",
+        "480",
+        "485",
+        "487",
+        "488"
+      ],
+      "source_file": "batch_451.txt; batch_467.txt; batch_469.txt; batch_477.txt",
+      "sender": "Thao L - INVT; Mr Mike1 -CEO",
+      "location": "Đà Nẵng, Đà Lạt, Phan Thiết/Phú Hải",
+      "map_url": "",
+      "scale_raw": "Báo cáo chỉ tiêu hoạt động 04-06 dự án khách sạn: B11 gần Alacarte 597,7m2 đất ở lâu dài; Serence 1.381m2 đất CSKD lâu dài; Felicia 1.120m2 đất CSKD lâu dài; Phú Hải mới/cũ; Đà Lạt down 20% từ kết quả Mr David",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "597,7 m2",
+          "1.381 m2",
+          "1.120 m2"
+        ],
+        "raw": "Báo cáo chỉ tiêu hoạt động 04-06 dự án khách sạn: B11 gần Alacarte 597,7m2 đất ở lâu dài; Serence 1.381m2 đất CSKD lâu dài; Felicia 1.120m2 đất CSKD lâu dài; Phú Hải mới/cũ; Đà Lạt down 20% từ kết quả Mr David"
+      },
+      "legal": {
+        "land": "Cần hỏi vấn đề hết thời hạn đất thì gia hạn/đóng tiền như thế nào； Phú Hải mới là đất thuê trả tiền hằng năm, không tính chi phí đất do trong dự án Phú Hải",
+        "project": "",
+        "raw": "Cần hỏi vấn đề hết thời hạn đất thì gia hạn/đóng tiền như thế nào; Phú Hải mới là đất thuê trả tiền hằng năm, không tính chi phí đất do trong dự án Phú Hải"
+      },
+      "financial_items": [
+        {
+          "label": "Serence đất thị trường tạm tính",
+          "value": "350 tr/m2",
+          "source_chunk": "485"
+        },
+        {
+          "label": "Serence số phòng theo QH Mr Tài",
+          "value": "222 phòng",
+          "source_chunk": "485"
+        },
+        {
+          "label": "Suất xây dựng khách sạn",
+          "value": "2,1 tỷ/key chưa VAT",
+          "source_chunk": "485"
+        },
+        {
+          "label": "Điều chỉnh EBITDA Đà Lạt/Serence/Phú Hải",
+          "value": "giảm 20% theo phương án Mr David",
+          "source_chunk": "485"
+        }
+      ],
+      "business_notes": "CEO chỉ đạo Phú Hải phải gộp với khối cũ; kiểm tra thêm tỷ lệ GOP đến EBITDA với Ms Hana để bổ sung chi phí vận hành đặc thù; Đà Lạt down 20%, các cụm khác hỏi thêm chỉ đạo",
+      "excerpt": "Nhóm khách sạn B11/Serence/Felicia/Phú Hải... Serence 1.381m2, 222 phòng, đất 350tr/m2, suất 2,1 tỷ/key; cần kiểm tra GOP-EBITDA."
+    },
+    {
+      "id": "M05-0021",
+      "part": 5,
+      "decision": "project_record",
+      "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
+      "report_date": "2025-04-09",
+      "source_chunks": [
+        "477",
+        "494",
+        "497"
+      ],
+      "source_file": "batch_468.txt; batch_483.txt; batch_484.txt",
+      "sender": "Khoa L - INVT; P.ĐT",
+      "location": "DT743C, P. Tân Đông Hiệp, Dĩ An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Diện tích khoảng 22.394 m2/2,2ha; hiện trạng cho thuê kho bãi; ô đất hỗn hợp HSSDĐ 12, dân số 3.456, MĐXD 60%, tầng cao 40",
+      "planning": {
+        "floors": "",
+        "density": "60%",
+        "far": "12,",
+        "population": "3.456,",
+        "area_mentions": [
+          "22.394 m2",
+          "2,2 ha",
+          "170 m2"
+        ],
+        "raw": "Diện tích khoảng 22.394 m2/2,2ha; hiện trạng cho thuê kho bãi; ô đất hỗn hợp HSSDĐ 12, dân số 3.456, MĐXD 60%, tầng cao 40"
+      },
+      "legal": {
+        "land": "100% đất SKC thuê trả tiền hằng năm đến 2031/10-09-2031, chưa có thông tin đầu tư/quy hoạch chi tiết； CĐT mua thêm 170m2 đất ở để gộp nhưng không triển khai được theo quy định； có QH đất ở hỗn hợp 40 tầng nhưng cần hỏi A Tài chỉ tiêu riêng",
+        "project": "100% đất SKC thuê trả tiền hằng năm đến 2031/10-09-2031, chưa có thông tin đầu tư/quy hoạch chi tiết",
+        "raw": "100% đất SKC thuê trả tiền hằng năm đến 2031/10-09-2031, chưa có thông tin đầu tư/quy hoạch chi tiết; CĐT mua thêm 170m2 đất ở để gộp nhưng không triển khai được theo quy định; có QH đất ở hỗn hợp 40 tầng nhưng cần hỏi A Tài chỉ tiêu riêng"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT sơ bộ",
+          "value": "2.960 tỷ",
+          "source_chunk": "477"
+        },
+        {
+          "label": "Tiền mua đất",
+          "value": "154 tỷ, khoảng 7 tr/m2",
+          "source_chunk": "477"
+        },
+        {
+          "label": "So sánh giá PGK",
+          "value": "Thuận Nghiệp 7 tr/m2 vs PGK 21,2 tr/m2",
+          "source_chunk": "497"
+        }
+      ],
+      "business_notes": "Vị trí tốt hơn PGK, mặt tiền DT743C rộng khoảng 16m, giá bằng 1/3 PGK; nhưng 100% SKC và chưa CTĐT nên không đủ điều kiện làm dự án theo hướng hiện tại",
+      "excerpt": "Thuận Nghiệp DT743C Dĩ An 2,2ha SKC thuê hằng năm đến 2031, HSSDĐ 12, 40 tầng, TMĐT 2.960 tỷ."
+    },
+    {
+      "id": "M05-0022",
+      "part": 5,
+      "decision": "project_record",
+      "project_name": "Dự án thấp tầng SADACO - Phú Mỹ",
+      "report_date": "2025-04-08",
+      "source_chunks": [
+        "478",
+        "479",
+        "483",
+        "486",
+        "499",
+        "500"
+      ],
+      "source_file": "batch_469.txt; batch_470.txt; batch_477.txt; batch_485.txt",
+      "sender": "Sinh Nguyen-Dau Tu; Huy M - IM",
+      "location": "Mặt tiền Tô Nguyệt Đình, Mỹ Xuân, TP Phú Mỹ, Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Quy mô 20,5ha; đã có GCN 19,3ha/20,5ha; giai đoạn 1 quy mô 16,8ha; giáp Đồng Nai, cách QL51 5km, UBND Phú Mỹ 12km, sân bay Long Thành 20km, Cái Mép - Thị Vải 15km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "20,5 ha",
+          "19,3 ha",
+          "16,8 ha"
+        ],
+        "raw": "Quy mô 20,5ha; đã có GCN 19,3ha/20,5ha; giai đoạn 1 quy mô 16,8ha; giáp Đồng Nai, cách QL51 5km, UBND Phú Mỹ 12km, sân bay Long Thành 20km, Cái Mép - Thị Vải 15km"
+      },
+      "legal": {
+        "land": "",
+        "project": "Đã có CTĐT giai đoạn 1 nhưng tiến độ hết hạn",
+        "raw": "Đã có CTĐT giai đoạn 1 nhưng tiến độ hết hạn; CĐT xin gia hạn, dự kiến cuối 04/2025 có quyết định; đối tác chưa cung cấp đủ hồ sơ pháp lý nên chưa tính FS"
+      },
+      "financial_items": [],
+      "business_notes": "Phú Mỹ có câu chuyện cảng Cái Mép/cao tốc/sân bay nhưng quỹ đất nhiều, dân cư thưa, thanh khoản thấp; cần tầm nhìn trung-dài hạn và biên lợi nhuận cao, lãi mỏng dưới 20% là rủi ro",
+      "excerpt": "SADACO Phú Mỹ 20,5ha, GCN 19,3ha, CTĐT giai đoạn 1 hết hạn đang xin gia hạn; cần đủ hồ sơ pháp lý mới tính FS."
+    },
+    {
+      "id": "M05-0023",
+      "part": 5,
+      "decision": "skip_after_review_project_risk",
+      "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+      "report_date": "2025-04-03",
+      "source_chunks": [
+        "490",
+        "491",
+        "492"
+      ],
+      "source_file": "batch_478.txt",
+      "sender": "Huy M - IM",
+      "location": "Quận Bình Tân, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Lead giá 300 tỷ kèm hồ sơ QH 1/2000/bản vẽ hiện trạng/sơ đồ Gia Long",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Lead giá 300 tỷ kèm hồ sơ QH 1/2000/bản vẽ hiện trạng/sơ đồ Gia Long"
+      },
+      "legal": {
+        "land": "",
+        "project": "Nhiều vướng mắc: chưa GPXD, chưa phê duyệt TMB 1/500, chưa nghiệm thu hạ tầng kỹ thuật, chưa đủ điều kiện giao dịch； CTĐT/công nhận CĐT hết hiệu lực",
+        "raw": "Nhiều vướng mắc: chưa GPXD, chưa phê duyệt TMB 1/500, chưa nghiệm thu hạ tầng kỹ thuật, chưa đủ điều kiện giao dịch; CTĐT/công nhận CĐT hết hiệu lực; huy động vốn/tranh chấp khách hàng"
+      },
+      "financial_items": [
+        {
+          "label": "Giá lead",
+          "value": "300 tỷ",
+          "source_chunk": "490"
+        }
+      ],
+      "business_notes": "CEO kết luận bỏ qua do dự án bị phốt nhiều",
+      "excerpt": "Đức Long Western Park bị phốt/vướng pháp lý nhiều; bỏ qua."
+    },
+    {
+      "id": "M06-0001",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Cao tầng Icon Plaza, Thuận An, Bình Dương",
+      "report_date": "2025-03-14",
+      "source_chunks": [
+        "506",
+        "513",
+        "519",
+        "531",
+        "536",
+        "537"
+      ],
+      "source_file": "batch_500.txt; batch_508.txt; batch_509.txt; batch_524.txt",
+      "sender": "Thao L - INVT; Huy M - IM",
+      "location": "Mặt tiền DT743, Thuận An, Bình Dương",
+      "map_url": "https://maps.app.goo.gl/xomcfbw3UHPYcLxG8",
+      "scale_raw": "Diện tích 6.744,5 m2, phù hợp quy hoạch 5.400 m2; cao tầng Icon Plaza; cách ngã tư DT743-Mỹ Phước Tân Vạn 1,2km và DT743-DT747B 2,2km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "6.744,5 m2",
+          "5.400 m2"
+        ],
+        "raw": "Diện tích 6.744,5 m2, phù hợp quy hoạch 5.400 m2; cao tầng Icon Plaza; cách ngã tư DT743-Mỹ Phước Tân Vạn 1,2km và DT743-DT747B 2,2km"
+      },
+      "legal": {
+        "land": "Giả định dự án đã hoàn thành nghĩa vụ tài chính nhưng có rủi ro Bình Dương chỉ đóng TSDĐ trên diện tích đất xây dựng thay vì toàn khu, có thể phải đóng bổ sung",
+        "project": "",
+        "raw": "Giả định dự án đã hoàn thành nghĩa vụ tài chính nhưng có rủi ro Bình Dương chỉ đóng TSDĐ trên diện tích đất xây dựng thay vì toàn khu, có thể phải đóng bổ sung"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào chuyển nhượng",
+          "value": "390 tỷ, khoảng 72 tr/m2 trên diện tích PHQH",
+          "source_chunk": "513"
+        },
+        {
+          "label": "TMĐT gồm VAT",
+          "value": "1.558 tỷ",
+          "source_chunk": "513"
+        },
+        {
+          "label": "Suất đầu tư all-in gồm VAT",
+          "value": "12,5 tr/m2 sàn, tương đương Phú Gia Khiêm",
+          "source_chunk": "513"
+        },
+        {
+          "label": "Doanh thu gồm VAT",
+          "value": "2.186 tỷ",
+          "source_chunk": "513"
+        },
+        {
+          "label": "Chi phí bán hàng",
+          "value": "12% doanh thu",
+          "source_chunk": "513"
+        }
+      ],
+      "business_notes": "Nguồn Mr Sơn - XD; có đoạn trao đổi dự án không khả thi với một số giá mua/độ nhạy nhưng excerpt bị cắt, cần giữ nguồn để rà lại file gốc",
+      "excerpt": "Icon Plaza Thuận An, DT743... đất 6.744,5m2, PHQH 5.400m2, giá chào 390 tỷ, TMĐT 1.558 tỷ, doanh thu 2.186 tỷ."
+    },
+    {
+      "id": "M06-0002",
+      "part": 6,
+      "decision": "multi_project_record",
+      "project_name": "02 lô đất đấu giá ven sông Hàn Đà Nẵng - A1-6 Thuận Phước và lô liên quan",
+      "report_date": "2025-03-12",
+      "source_chunks": [
+        "517"
+      ],
+      "source_file": "batch_509.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường Như Nguyệt/Đức Lợi 3, P. Thuận Phước, Q. Hải Châu, Đà Nẵng",
+      "map_url": "https://maps.app.goo.gl/wbNjvBPsJioGNogn8",
+      "scale_raw": "Khu đất A1-6 diện tích 2.647,8 m2; QH 1/500 tổ hợp TMDV, văn phòng, căn hộ lưu trú; MĐXD 48%, 28 tầng, 2 hầm, HSSDĐ 12,8; thuê đất trả tiền một lần 50 năm",
+      "planning": {
+        "floors": "",
+        "density": "48%",
+        "far": "12,8",
+        "population": "",
+        "area_mentions": [
+          "2.647,8 m2"
+        ],
+        "raw": "Khu đất A1-6 diện tích 2.647,8 m2; QH 1/500 tổ hợp TMDV, văn phòng, căn hộ lưu trú; MĐXD 48%, 28 tầng, 2 hầm, HSSDĐ 12,8; thuê đất trả tiền một lần 50 năm"
+      },
+      "legal": {
+        "land": "đất đấu giá/thuê 50 năm",
+        "project": "đất đấu giá/thuê 50 năm",
+        "raw": "Hiện ở bước lựa chọn nhà thầu tư vấn xác định nghĩa vụ tài chính; đất đấu giá/thuê 50 năm"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí hạ nguồn sông Hàn gần cửa biển, khu vực cảng cá nên cần đánh giá định vị sản phẩm/khả năng hấp thụ",
+      "excerpt": "A1-6 ven sông Hàn Thuận Phước, 2.647,8m2, 28 tầng, 2 hầm, HSSDĐ 12,8, thuê đất 50 năm."
+    },
+    {
+      "id": "M06-0003",
+      "part": 6,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+      "report_date": "2025-03-12",
+      "source_chunks": [
+        "518",
+        "554",
+        "549",
+        "550"
+      ],
+      "source_file": "batch_509.txt; batch_544.txt; batch_540.txt",
+      "sender": "Khoa L - INVT; Huy M - IM",
+      "location": "Phú Quang / Vĩnh Phú",
+      "map_url": "",
+      "scale_raw": "Đợt 1 đã giao 12,6ha theo QĐ 2987 ngày 07/10/2020; phần còn lại khoảng 19ha; phạm vi bên mua chịu LURF phần diện tích còn lại và bổ sung LURF/chi phí liên quan phần đất công",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "12,6 ha",
+          "19 ha"
+        ],
+        "raw": "Đợt 1 đã giao 12,6ha theo QĐ 2987 ngày 07/10/2020; phần còn lại khoảng 19ha; phạm vi bên mua chịu LURF phần diện tích còn lại và bổ sung LURF/chi phí liên quan phần đất công"
+      },
+      "legal": {
+        "land": "Cấu trúc nghĩa vụ bên bán/bên mua cần tách: bên bán chịu bồi thường/GPMB, chuyển mục đích, bồi thường đất công trong 12,6ha đã giao",
+        "project": "Cấu trúc nghĩa vụ bên bán/bên mua cần tách: bên bán chịu bồi thường/GPMB, chuyển mục đích, bồi thường đất công trong 12,6ha đã giao",
+        "raw": "Cấu trúc nghĩa vụ bên bán/bên mua cần tách: bên bán chịu bồi thường/GPMB, chuyển mục đích, bồi thường đất công trong 12,6ha đã giao; bên mua chịu phần còn lại và bổ sung; trùng/update Part 4/5"
+      },
+      "financial_items": [],
+      "business_notes": "Cần theo dõi giả định Bình Dương/địa phương về TSDĐ toàn khu vs diện tích xây dựng",
+      "excerpt": "Phú Quang bổ sung LURF/TSDĐ và chi phí phần đất công; đợt 1 12,6ha đã giao, còn lại khoảng 19ha."
+    },
+    {
+      "id": "M06-0004",
+      "part": 6,
+      "decision": "merged_same_project_update",
+      "project_name": "Felicia Đà Nẵng - tổ hợp khách sạn và condotel",
+      "report_date": "2025-02-19",
+      "source_chunks": [
+        "527",
+        "563",
+        "606"
+      ],
+      "source_file": "batch_515.txt; batch_555.txt; batch_606.txt",
+      "sender": "Huy M - IM; Sinh Nguyen-Dau Tu",
+      "location": "Mặt tiền Võ Nguyên Giáp, lô B5, Royal Era 1, P. Mỹ An, Q. Ngũ Hành Sơn, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Công trình khách sạn dở dang 2 hầm + 25 tầng nổi, đã cất nóc; bên trái giáp Serene Beach, cách Holiday Beach 350m; cách giao lộ Võ Nguyên Giáp - Võ Văn Kiệt 1,2km và Võ Nguyên Giáp - Hồ Xuân Hương 1,4km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Công trình khách sạn dở dang 2 hầm + 25 tầng nổi, đã cất nóc; bên trái giáp Serene Beach, cách Holiday Beach 350m; cách giao lộ Võ Nguyên Giáp - Võ Văn Kiệt 1,2km và Võ Nguyên Giáp - Hồ Xuân Hương 1,4km"
+      },
+      "legal": {
+        "land": "Đã có GCN QSDĐ cấp 17/03/2020 theo excerpt bị cắt",
+        "project": "",
+        "raw": "Đã có GCN QSDĐ cấp 17/03/2020 theo excerpt bị cắt; chưa đánh giá được tính phù hợp hiện trạng xây dựng và hồ sơ thiết kế/xây dựng được duyệt"
+      },
+      "financial_items": [],
+      "business_notes": "PA tổ hợp hotel + condotel; duplicate/update Felecia/Felicia Part 4/5 nhưng giữ bản báo cáo nguồn cũ",
+      "excerpt": "Felicia Võ Nguyên Giáp Đà Nẵng, lô B5 Royal Era 1, 2 hầm + 25 tầng nổi đã cất nóc, cần rà pháp lý xây dựng/hồ sơ thiết kế."
+    },
+    {
+      "id": "M06-0005",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+      "report_date": "2025-02-??",
+      "source_chunks": [
+        "535"
+      ],
+      "source_file": "batch_523.txt",
+      "sender": "P.ĐT",
+      "location": "Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+      "map_url": "https://maps.app.goo.gl/o5yA5cAF8qJoTZqW8",
+      "scale_raw": "Quy mô 34.916 m2 gồm 25.852 m2 được giao đất và 9.064 m2 đất thuê; định hướng điều chỉnh từ biệt thự cao cấp + khách sạn/TMDV sang tổ hợp căn hộ chung cư cao cấp + khách sạn TMDV",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "34.916 m2",
+          "25.852 m2",
+          "9.064 m2"
+        ],
+        "raw": "Quy mô 34.916 m2 gồm 25.852 m2 được giao đất và 9.064 m2 đất thuê; định hướng điều chỉnh từ biệt thự cao cấp + khách sạn/TMDV sang tổ hợp căn hộ chung cư cao cấp + khách sạn TMDV"
+      },
+      "legal": {
+        "land": "",
+        "project": "Chủ đầu tư chưa cung cấp hồ sơ điều chỉnh CTĐT từ thấp tầng lên căn hộ + khách sạn cao tầng",
+        "raw": "Chủ đầu tư chưa cung cấp hồ sơ điều chỉnh CTĐT từ thấp tầng lên căn hộ + khách sạn cao tầng; đến thời điểm báo cáo chưa triển khai thêm; cần rà báo cáo PL và A Tịnh pháp lý địa phương Đà Nẵng"
+      },
+      "financial_items": [],
+      "business_notes": "Dự án lớn mặt tiền biển, nhưng pháp lý điều chỉnh định hướng/chủ trương là điểm nghẽn chính",
+      "excerpt": "THAT 1 Võ Nguyên Giáp Sơn Trà, 34.916m2, điều chỉnh từ biệt thự+KS sang chung cư cao cấp+KS, chưa rõ CTĐT điều chỉnh."
+    },
+    {
+      "id": "M06-0006",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Chen Sea 3,1ha, Cửa Dương, Phú Quốc",
+      "report_date": "2025-02-08",
+      "source_chunks": [
+        "543"
+      ],
+      "source_file": "batch_531.txt",
+      "sender": "P.ĐT",
+      "location": "Xã Cửa Dương, Phú Quốc, Kiên Giang",
+      "map_url": "",
+      "scale_raw": "Quy mô dự án 4,7ha; đã có GCN 3,1ha khu 1; phần 1,6ha còn lại chưa GCN/chưa GPMB; hiện đã khai thác một phần với 22 villas tương ứng 36 phòng; cách sân bay Phú Quốc 19km, cách đường Dinh Bà 350m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "4,7 ha",
+          "3,1 ha",
+          "1,6 ha"
+        ],
+        "raw": "Quy mô dự án 4,7ha; đã có GCN 3,1ha khu 1; phần 1,6ha còn lại chưa GCN/chưa GPMB; hiện đã khai thác một phần với 22 villas tương ứng 36 phòng; cách sân bay Phú Quốc 19km, cách đường Dinh Bà 350m"
+      },
+      "legal": {
+        "land": "Đất sản xuất kinh doanh, thuê đất trả tiền một lần, thời hạn đến 16/12/2052",
+        "project": "đã có QH chi tiết 1/500 số 272/QĐ-BQLKKTPQ ngày 02/11/2023 cho 4,7ha, chỉ triển khai 3,1ha khu 1",
+        "raw": "Đất sản xuất kinh doanh, thuê đất trả tiền một lần, thời hạn đến 16/12/2052; đã có QH chi tiết 1/500 số 272/QĐ-BQLKKTPQ ngày 02/11/2023 cho 4,7ha, chỉ triển khai 3,1ha khu 1"
+      },
+      "financial_items": [],
+      "business_notes": "Dự án resort đang vận hành một phần, cần định giá phần đã khai thác và phần mở rộng 1,6ha chưa sạch",
+      "excerpt": "Chen Sea Phú Quốc 4,7ha, có GCN 3,1ha, 22 villas/36 phòng đang khai thác, đất SXKD thuê 1 lần đến 2052."
+    },
+    {
+      "id": "M06-0007",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Hoa viên Vĩnh Thanh, Nhơn Trạch, Đồng Nai",
+      "report_date": "2025-02-08",
+      "source_chunks": [
+        "544",
+        "559"
+      ],
+      "source_file": "batch_531.txt; batch_548.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường nhánh DT19, Vĩnh Thanh, Nhơn Trạch, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 57ha; diện tích thương phẩm cập nhật 290.217 m2 ~51%; đường tiếp giáp rộng 6-8m; cách cao tốc Bến Lức-Long Thành 700m, cách sông Đồng Nai 1km; hiện trạng đất trũng/thấp/bùn lầy/hồ nuôi thủy sản",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "57 ha",
+          "290.217 m2"
+        ],
+        "raw": "Tổng diện tích 57ha; diện tích thương phẩm cập nhật 290.217 m2 ~51%; đường tiếp giáp rộng 6-8m; cách cao tốc Bến Lức-Long Thành 700m, cách sông Đồng Nai 1km; hiện trạng đất trũng/thấp/bùn lầy/hồ nuôi thủy sản"
+      },
+      "legal": {
+        "land": "",
+        "project": "mô hình hoa viên/nghĩa trang cần xử lý quy hoạch, môi trường và hạ tầng kỹ thuật",
+        "raw": "Pháp lý đang dừng tại bước góp ý hồ sơ theo chunk 559; mô hình hoa viên/nghĩa trang cần xử lý quy hoạch, môi trường và hạ tầng kỹ thuật"
+      },
+      "financial_items": [
+        {
+          "label": "Giá đền bù ước tính",
+          "value": "1 tr/m2, khoảng 570 tỷ",
+          "source_chunk": "559"
+        },
+        {
+          "label": "SĐT all-in gồm VAT",
+          "value": "1,898 tr/m2 cho tổng 57ha, khoảng 1.081 tỷ",
+          "source_chunk": "544"
+        },
+        {
+          "label": "Diện tích thương phẩm",
+          "value": "290.217 m2, khoảng 51%",
+          "source_chunk": "544"
+        }
+      ],
+      "business_notes": "SĐT chỉ tính san lấp/hạ tầng chờ, chưa tính công trình tiện ích phụ trợ như nhà tang lễ, tịnh xá, hỏa táng, nhà hàng, nhà điều hành; tạm xem chi phí này bù bởi doanh thu hoạt động",
+      "excerpt": "Hoa viên Vĩnh Thanh 57ha Nhơn Trạch, thương phẩm 290.217m2, SĐT 1.081 tỷ, đền bù 570 tỷ, đất trũng/hồ nuôi thủy sản."
+    },
+    {
+      "id": "M06-0008",
+      "part": 6,
+      "decision": "market_update_to_existing_project",
+      "project_name": "KDC Đại Nam T01.2025",
+      "report_date": "2025-01-20",
+      "source_chunks": [
+        "551"
+      ],
+      "source_file": "batch_542.txt",
+      "sender": "Thao L - INVT",
+      "location": "KDC Đại Nam",
+      "map_url": "",
+      "scale_raw": "Cập nhật thị trường T01.2025 cho KDC Đại Nam",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật thị trường T01.2025 cho KDC Đại Nam"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không thêm pháp lý mới"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá đất nhà nước 2025",
+          "value": "5-8 tr/m2 tùy vị trí đường, tăng khoảng 1 tr/m2 so với 2024",
+          "source_chunk": "551"
+        },
+        {
+          "label": "Đơn giá thị trường T01.2025",
+          "value": "7-10 tr/m2 tùy vị trí đường, không đổi so với T10.2024",
+          "source_chunk": "551"
+        }
+      ],
+      "business_notes": "Giá NN và giá thị trường tiệm cận, giao dịch ít; nhận định mua dự án có thể rẻ hơn tự đi làm theo trao đổi",
+      "excerpt": "KDC Đại Nam giá NN 5-8tr/m2, thị trường 7-10tr/m2, giao dịch ít, chênh lệch thấp."
+    },
+    {
+      "id": "M06-0009",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Dự án 2,3ha Bình Điền - Bình Chánh",
+      "report_date": "2025-01-??",
+      "source_chunks": [
+        "553"
+      ],
+      "source_file": "batch_543.txt",
+      "sender": "P.ĐT",
+      "location": "Bình Điền, Bình Chánh, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích 2,3ha; cách chợ đầu mối Bình Điền 400m, ranh Q8-Bình Chánh 150m, UBND Bình Chánh 3,2km, nút Vành Đai 2 - Nguyễn Văn Linh 2,2km; gần bến xe Miền Tây mới 1,5km; ga Metro line 7 trong bán kính 500m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2,3 ha"
+        ],
+        "raw": "Diện tích 2,3ha; cách chợ đầu mối Bình Điền 400m, ranh Q8-Bình Chánh 150m, UBND Bình Chánh 3,2km, nút Vành Đai 2 - Nguyễn Văn Linh 2,2km; gần bến xe Miền Tây mới 1,5km; ga Metro line 7 trong bán kính 500m"
+      },
+      "legal": {
+        "land": "",
+        "project": "theo PL/QH gặp đối tác, cần kiểm tra chi tiết điều kiện gia hạn/tiến độ/GPMB",
+        "raw": "Đã được chấp thuận đầu tư và gia hạn tiến độ 2 năm kể từ ngày được cấp phép; theo PL/QH gặp đối tác, cần kiểm tra chi tiết điều kiện gia hạn/tiến độ/GPMB"
+      },
+      "financial_items": [],
+      "business_notes": "Hưởng lợi khu trung tâm lưu thông hàng hóa I/II Phú Mỹ Hưng dự kiến hoàn tất GPMB 30/04/2025",
+      "excerpt": "Bình Điền Bình Chánh 2,3ha, đã CTĐT và gia hạn tiến độ 2 năm, gần chợ Bình Điền/VĐ2/Metro line 7."
+    },
+    {
+      "id": "M06-0010",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+      "report_date": "2025-01-??",
+      "source_chunks": [
+        "555"
+      ],
+      "source_file": "batch_544.txt",
+      "sender": "P.ĐT",
+      "location": "Mặt tiền Phan Văn Hớn, P. Tân Thới Nhất, Quận 12, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 16.471,8 m2; mặt tiền 41m, chiều sâu 227m; đất sạch có nhà xưởng; cách Phan Văn Hớn-Trường Chinh 1km, sân bay TSN 3,5km, Depot Tham Lương 1km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "16.471,8 m2",
+          "197 m2",
+          "16.274,8 m2",
+          "1,6 ha"
+        ],
+        "raw": "Tổng diện tích 16.471,8 m2; mặt tiền 41m, chiều sâu 227m; đất sạch có nhà xưởng; cách Phan Văn Hớn-Trường Chinh 1km, sân bay TSN 3,5km, Depot Tham Lương 1km"
+      },
+      "legal": {
+        "land": "Đã có GCN； cơ cấu đất ở 197 m2 và HNK 16.274,8 m2",
+        "project": "có quyết định CTĐT và có thể có QH 1/500 nhưng chưa được cung cấp",
+        "raw": "Đã có GCN; cơ cấu đất ở 197 m2 và HNK 16.274,8 m2; có quyết định CTĐT và có thể có QH 1/500 nhưng chưa được cung cấp; cần rà QH TP.HCM đồ án điều chỉnh QH chi tiết"
+      },
+      "financial_items": [],
+      "business_notes": "Nguồn A Tâm - Phó Chủ tịch; vị trí đô thị tốt nhưng pháp lý đất HNK rất lớn cần xử lý chuyển mục đích/thí điểm/đấu thầu",
+      "excerpt": "1,6ha Phan Văn Hớn Q12, đất sạch nhà xưởng, GCN có 197m2 đất ở và 16.274,8m2 HNK, gần Depot Tham Lương."
+    },
+    {
+      "id": "M06-0011",
+      "part": 6,
+      "decision": "project_record_update",
+      "project_name": "Hội An Riverside Resort & Spa",
+      "report_date": "2025-01-02",
+      "source_chunks": [
+        "557",
+        "558",
+        "560"
+      ],
+      "source_file": "batch_547.txt; batch_549.txt",
+      "sender": "Thoi L - ASST; Sinh Nguyen-Dau Tu",
+      "location": "Mặt tiền Cửa Đại, P. Cẩm Châu, Hội An, Quảng Nam",
+      "map_url": "",
+      "scale_raw": "Cơ cấu tháng 12: 125 phòng gồm 105 khách sạn và 20 villas; tháng 10: 104 phòng gồm 84 khách sạn và 20 villas; diện tích TB khách sạn giảm 48m2 xuống 39m2, villas 66m2; có khả năng thay đổi concept do khoảng lùi hành lang bờ sông 10m thay vì thiết kế 5m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "48 m2",
+          "39 m2",
+          "66 m2"
+        ],
+        "raw": "Cơ cấu tháng 12: 125 phòng gồm 105 khách sạn và 20 villas; tháng 10: 104 phòng gồm 84 khách sạn và 20 villas; diện tích TB khách sạn giảm 48m2 xuống 39m2, villas 66m2; có khả năng thay đổi concept do khoảng lùi hành lang bờ sông 10m thay vì thiết kế 5m"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Vướng quy định khoảng lùi hành lang bờ sông 10m; cần A Kiên cập nhật thiết kế/concept"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT",
+          "value": "295 tỷ, không sử dụng vốn vay",
+          "source_chunk": "560"
+        },
+        {
+          "label": "Suất xây dựng all-in 2025 tháng 12",
+          "value": "2.315 triệu đồng/key",
+          "source_chunk": "560"
+        },
+        {
+          "label": "Suất xây dựng all-in tháng 10",
+          "value": "2.819 triệu đồng/key",
+          "source_chunk": "560"
+        }
+      ],
+      "business_notes": "TMĐT theo P.QS không dùng vốn vay; suất đầu tư all-in sẽ cập nhật sau khi QS hoàn thành suất chung cho các dự án",
+      "excerpt": "Hội An Riverside 125 phòng, TMĐT 295 tỷ, vướng khoảng lùi sông 10m nên có thể đổi concept."
+    },
+    {
+      "id": "M06-0012",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+      "report_date": "2024-12-16",
+      "source_chunks": [
+        "572",
+        "573",
+        "574",
+        "575"
+      ],
+      "source_file": "batch_570.txt",
+      "sender": "Huy M - IM; Thoi L - ASST",
+      "location": "Huyện Vĩnh Tường - Yên Lạc, tỉnh Vĩnh Phúc, gần TP Vĩnh Yên",
+      "map_url": "https://goo.gl/maps/eqfdgJBc7XT7VhAW8",
+      "scale_raw": "Quy mô 50ha; nằm trên trục QL2C, cách TP Vĩnh Yên khoảng 10km, giữa Vành đai 3 dự kiến 2030 và Vành đai 4 tỉnh Vĩnh Phúc; phần lớn đất lúa",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "50 ha"
+        ],
+        "raw": "Quy mô 50ha; nằm trên trục QL2C, cách TP Vĩnh Yên khoảng 10km, giữa Vành đai 3 dự kiến 2030 và Vành đai 4 tỉnh Vĩnh Phúc; phần lớn đất lúa"
+      },
+      "legal": {
+        "land": "",
+        "project": "Đang xin chủ trương tỉnh ủy/đấu thầu thực hiện dự án； chuẩn bị ĐB GPMB； thông số thương phẩm dựa trên đề xuất 1/500 chưa duyệt",
+        "raw": "Đang xin chủ trương tỉnh ủy/đấu thầu thực hiện dự án; chuẩn bị ĐB GPMB; thông số thương phẩm dựa trên đề xuất 1/500 chưa duyệt"
+      },
+      "financial_items": [
+        {
+          "label": "Đơn giá bồi thường ước tính",
+          "value": "1 tr/m2 toàn khu",
+          "source_chunk": "574"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "24,1%",
+          "source_chunk": "575"
+        },
+        {
+          "label": "NPV chủ đầu tư",
+          "value": "(20,637)",
+          "source_chunk": "575"
+        },
+        {
+          "label": "IRR chủ đầu tư",
+          "value": "11,68%",
+          "source_chunk": "575"
+        }
+      ],
+      "business_notes": "Thị trường Vĩnh Tường-Yên Lạc chưa phù hợp TMDV do nhu cầu thấp/thanh khoản kém; đề xuất chuyển toàn bộ/đa phần TMDV sang đất ở để tăng thanh khoản",
+      "excerpt": "50ha Vĩnh Tường-Yên Lạc, đang xin đấu thầu, đất lúa, bồi thường 1tr/m2, LNTT/TMĐT 24,1% nhưng IRR 11,68%, NPV âm."
+    },
+    {
+      "id": "M06-0013",
+      "part": 6,
+      "decision": "status_update_to_existing_project",
+      "project_name": "Dự án Phượng Hoàng",
+      "report_date": "2024-12-12",
+      "source_chunks": [
+        "578"
+      ],
+      "source_file": "batch_573.txt",
+      "sender": "Huy M - IM",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Cập nhật tình hình rà soát, chưa có số liệu dự án mới",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật tình hình rà soát, chưa có số liệu dự án mới"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Đã nhận thông tin rà soát từ Anh Thới, Anh Học, P.PLDA, P.QH; chờ P.RD và P.QS để tổng hợp báo cáo CEO"
+      },
+      "financial_items": [],
+      "business_notes": "Status update, không tạo dự án mới",
+      "excerpt": "Phượng Hoàng đang rà soát từ PLDA/QH/RD/QS để tổng hợp báo cáo CEO."
+    },
+    {
+      "id": "M06-0014",
+      "part": 6,
+      "decision": "project_record_with_legal_risk",
+      "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+      "report_date": "2024-12-06",
+      "source_chunks": [
+        "587",
+        "592",
+        "594",
+        "595",
+        "597"
+      ],
+      "source_file": "batch_579.txt; batch_584.txt; batch_586.txt",
+      "sender": "Huy M - IM",
+      "location": "Đường D4/Thuận Giao 09, Thuận Giao, Thuận An, Bình Dương",
+      "map_url": "https://goo.gl/maps/xNEqZWHrXNzKYLHe6",
+      "scale_raw": "Diện tích 9.652,2 m2; dự án cao tầng gồm 02 khối tháp, mỗi khối 24 tầng + 2 hầm; HSSDĐ toàn khu 10,7; hiện trạng đất trống + nhà xưởng tạm",
+      "planning": {
+        "floors": "24",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "9.652,2 m2",
+          "9.652 m2"
+        ],
+        "raw": "Diện tích 9.652,2 m2; dự án cao tầng gồm 02 khối tháp, mỗi khối 24 tầng + 2 hầm; HSSDĐ toàn khu 10,7; hiện trạng đất trống + nhà xưởng tạm"
+      },
+      "legal": {
+        "land": "Không đáp ứng điều kiện pháp lý hiện hành: đất SKC hết hạn không gia hạn được do không phù hợp quy hoạch dẫn đến nguy cơ thu hồi； Công ty Việt An chưa có QSDĐ hợp pháp",
+        "project": "Không đáp ứng điều kiện pháp lý hiện hành: đất SKC hết hạn không gia hạn được do không phù hợp quy hoạch dẫn đến nguy cơ thu hồi； chưa phê duyệt CTĐT； nếu tiếp tục có thể phải đấu thầu hoặc thí điểm, tốn nguồn lực/thời gian/rủi ro",
+        "raw": "Không đáp ứng điều kiện pháp lý hiện hành: đất SKC hết hạn không gia hạn được do không phù hợp quy hoạch dẫn đến nguy cơ thu hồi; chưa phê duyệt CTĐT; Công ty Việt An chưa có QSDĐ hợp pháp; nếu tiếp tục có thể phải đấu thầu hoặc thí điểm, tốn nguồn lực/thời gian/rủi ro"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "200 tỷ",
+          "source_chunk": "595"
+        },
+        {
+          "label": "Đơn giá đất theo giá chào",
+          "value": "20,7 tr/m2",
+          "source_chunk": "595"
+        }
+      ],
+      "business_notes": "Dự án có thể đạt hiệu quả đầu tư tính toán nhưng vướng pháp lý đất nên rủi ro cao; P.PLDA kết luận không đủ điều kiện thực hiện theo hiện hành",
+      "excerpt": "Việt An Thuận Giao 9.652m2, 2 tháp 24 tầng, giá 200 tỷ, hiệu quả tính toán nhưng vướng SKC hết hạn/chưa CTĐT/QSDĐ."
+    },
+    {
+      "id": "M06-0015",
+      "part": 6,
+      "decision": "project_record",
+      "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+      "report_date": "2024-11-27",
+      "source_chunks": [
+        "599",
+        "600"
+      ],
+      "source_file": "batch_588.txt",
+      "sender": "Sinh Nguyen-Dau Tu",
+      "location": "Mặt tiền Trần Não, P. Bình An, Q2/TP Thủ Đức, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Tọa lạc trong Khu nhà ở phường Bình An; cách bùng binh Lương Định Của - Trần Não 250m, vòng xoay An Phú 2,3km, ga Thủ Thiêm 1,2km; hiện trạng đất trống và vài hộ dân sinh sống",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Tọa lạc trong Khu nhà ở phường Bình An; cách bùng binh Lương Định Của - Trần Não 250m, vòng xoay An Phú 2,3km, ga Thủ Thiêm 1,2km; hiện trạng đất trống và vài hộ dân sinh sống"
+      },
+      "legal": {
+        "land": "Đã có quyết định giao đất và hoàn thành nghĩa vụ tài chính； chưa được cung cấp GCN QSDĐ",
+        "project": "đã có QĐ 18/QĐ-SXD-PTN ngày 04/02/2009 phê duyệt dự án đầu tư xây dựng",
+        "raw": "Đã có quyết định giao đất và hoàn thành nghĩa vụ tài chính; chưa được cung cấp GCN QSDĐ; đã có QĐ 18/QĐ-SXD-PTN ngày 04/02/2009 phê duyệt dự án đầu tư xây dựng; cần rà pháp lý xây dựng/tiến độ"
+      },
+      "financial_items": [
+        {
+          "label": "Thời điểm bán dự kiến theo name_hint",
+          "value": "Q4/2026",
+          "source_chunk": "600"
+        }
+      ],
+      "business_notes": "Vị trí gần Thủ Thiêm/Trần Não tốt; cần kiểm tra ranh/hộ dân và khả năng triển khai thực tế",
+      "excerpt": "Chung cư Trường Thịnh Trần Não, đã giao đất/hoàn thành nghĩa vụ tài chính, chưa cung cấp GCN, có QĐ phê duyệt DA 2009."
+    },
+    {
+      "id": "M06-0016",
+      "part": 6,
+      "decision": "planning_update_to_existing_project",
+      "project_name": "Dự án Chợ Lớn",
+      "report_date": "2024-11-25",
+      "source_chunks": [
+        "601",
+        "603"
+      ],
+      "source_file": "batch_591.txt; batch_600.txt",
+      "sender": "Huy M - IM",
+      "location": "Chợ Lớn",
+      "map_url": "",
+      "scale_raw": "Dự án đang làm quy hoạch, có cập nhật ranh Metro",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án đang làm quy hoạch, có cập nhật ranh Metro"
+      },
+      "legal": {
+        "land": "",
+        "project": "A Tài đã cập nhật ranh Metro vào quy hoạch",
+        "raw": "Có khả năng phải điều chỉnh ranh do phương án làm nổi/Metro; A Tài đã cập nhật ranh Metro vào quy hoạch"
+      },
+      "financial_items": [],
+      "business_notes": "Planning update, chưa đủ dữ liệu tài chính/quy mô để tạo record phát triển chi tiết",
+      "excerpt": "Dự án Chợ Lớn đang làm quy hoạch, có thể điều chỉnh ranh; đã cập nhật ranh Metro."
+    },
+    {
+      "id": "M07-0001",
+      "part": 7,
+      "decision": "project_record_update",
+      "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+      "report_date": "2024-11-27",
+      "source_chunks": [
+        "607",
+        "608",
+        "609"
+      ],
+      "source_file": "batch_607.txt",
+      "sender": "Sinh Nguyen-Dau Tu",
+      "location": "Mặt tiền Trần Não, P. Bình An, TP Thủ Đức, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Dự án chung cư tại khu nhà ở phường Bình An; vị trí gần trục Trần Não, Thủ Thiêm và vòng xoay An Phú; cập nhật trùng Part 6",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án chung cư tại khu nhà ở phường Bình An; vị trí gần trục Trần Não, Thủ Thiêm và vòng xoay An Phú; cập nhật trùng Part 6"
+      },
+      "legal": {
+        "land": "Đã có quyết định giao đất và hoàn thành nghĩa vụ tài chính； cần rà GCN, pháp lý xây dựng và tiến độ",
+        "project": "",
+        "raw": "Đã có quyết định giao đất và hoàn thành nghĩa vụ tài chính; cần rà GCN, pháp lý xây dựng và tiến độ"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí tốt nhưng cần rà tồn tại pháp lý/hiện trạng hộ dân",
+      "excerpt": "Chung cư Trường Thịnh Trần Não, Bình An; update nguồn Part 7."
+    },
+    {
+      "id": "M07-0002",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Khu đất 72-74 Võ Thị Sáu, Quận 1",
+      "report_date": "2024-11-27",
+      "source_chunks": [
+        "610",
+        "611",
+        "612",
+        "613"
+      ],
+      "source_file": "batch_610.txt",
+      "sender": "P.ĐT",
+      "location": "72-74 Võ Thị Sáu, Quận 1, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Khu đất văn phòng/nhà hiện hữu tại mặt tiền Võ Thị Sáu; chi tiết diện tích trong excerpt bị cắt ở part này",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khu đất văn phòng/nhà hiện hữu tại mặt tiền Võ Thị Sáu; chi tiết diện tích trong excerpt bị cắt ở part này"
+      },
+      "legal": {
+        "land": "Có nội dung về giao đất có thu tiền sử dụng đất, thời hạn ổn định lâu dài căn cứ QĐ 2232/QĐ-UB ngày 16/6/2003",
+        "project": "",
+        "raw": "Có nội dung về giao đất có thu tiền sử dụng đất, thời hạn ổn định lâu dài căn cứ QĐ 2232/QĐ-UB ngày 16/6/2003; cần rà hồ sơ gốc"
+      },
+      "financial_items": [],
+      "business_notes": "Lead tài sản trung tâm Q1, cần định giá theo hiện trạng và khả năng khai thác/chuyển đổi",
+      "excerpt": "Văn phòng/khu đất 72-74 Võ Thị Sáu; giao đất có thu tiền, ổn định lâu dài theo QĐ 2232/QĐ-UB."
+    },
+    {
+      "id": "M07-0003",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
+      "report_date": "2024-11-27",
+      "source_chunks": [
+        "614",
+        "615",
+        "616",
+        "617"
+      ],
+      "source_file": "batch_614.txt",
+      "sender": "P.ĐT",
+      "location": "Quận 2 / TP Thủ Đức, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Căn hộ dịch vụ quy mô khoảng 1,1ha theo name_hint; excerpt bị cắt nên thiếu chỉ tiêu chi tiết",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1,1 ha"
+        ],
+        "raw": "Căn hộ dịch vụ quy mô khoảng 1,1ha theo name_hint; excerpt bị cắt nên thiếu chỉ tiêu chi tiết"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà loại đất, chức năng căn hộ dịch vụ và thời hạn đất"
+      },
+      "financial_items": [],
+      "business_notes": "Lead cần bổ sung hồ sơ chi tiết trước khi tính FS",
+      "excerpt": "Căn hộ Dịch vụ Quận 2 1,1ha; dữ liệu part bị cắt, lưu lead để rà tiếp."
+    },
+    {
+      "id": "M07-0004",
+      "part": 7,
+      "decision": "policy_market_context",
+      "project_name": "Thí điểm nhà ở thương mại thông qua thỏa thuận QSDĐ",
+      "report_date": "2024-11-22",
+      "source_chunks": [
+        "618",
+        "619",
+        "620"
+      ],
+      "source_file": "batch_618.txt",
+      "sender": "Thoi L - ASST; Huy M - IM",
+      "location": "Việt Nam",
+      "map_url": "",
+      "scale_raw": "Chính sách chung ảnh hưởng quỹ đất thương mại, đất lúa/nông nghiệp, dự án chưa full đất ở",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chính sách chung ảnh hưởng quỹ đất thương mại, đất lúa/nông nghiệp, dự án chưa full đất ở"
+      },
+      "legal": {
+        "land": "Theo thảo luận Quốc hội về nghị quyết thí điểm thực hiện dự án NOTM thông qua thỏa thuận nhận QSDĐ/đang có QSDĐ； chỉ áp dụng có kiểm soát, không đại trà đất lúa/nông nghiệp",
+        "project": "",
+        "raw": "Theo thảo luận Quốc hội về nghị quyết thí điểm thực hiện dự án NOTM thông qua thỏa thuận nhận QSDĐ/đang có QSDĐ; chỉ áp dụng có kiểm soát, không đại trà đất lúa/nông nghiệp"
+      },
+      "financial_items": [],
+      "business_notes": "Ghi policy context cho các lead vướng đất SKC/HNK/đất nông nghiệp; không phải dự án riêng nhưng có ý nghĩa pháp lý",
+      "excerpt": "Nghị quyết thí điểm NOTM thông qua thỏa thuận QSDĐ; không đại trà lấy đất lúa/nông nghiệp."
+    },
+    {
+      "id": "M07-0005",
+      "part": 7,
+      "decision": "project_record_update",
+      "project_name": "Felicia Đà Nẵng - hotel/condotel",
+      "report_date": "2024-11-21",
+      "source_chunks": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "source_file": "batch_621.txt",
+      "sender": "Sinh Nguyen-Dau Tu",
+      "location": "Lô B5 Royal Era 1, Võ Nguyên Giáp, Mỹ An, Ngũ Hành Sơn, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Khách sạn dở dang 2 hầm + 25 tầng nổi, đã cất nóc; mặt tiền Võ Nguyên Giáp, gần Serene/Holiday Beach",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn dở dang 2 hầm + 25 tầng nổi, đã cất nóc; mặt tiền Võ Nguyên Giáp, gần Serene/Holiday Beach"
+      },
+      "legal": {
+        "land": "Đã có GCN QSDĐ",
+        "project": "",
+        "raw": "Đã có GCN QSDĐ; cần rà phù hợp hiện trạng xây dựng với hồ sơ thiết kế/xây dựng được duyệt"
+      },
+      "financial_items": [],
+      "business_notes": "Duplicate/update Part 4/6, giữ nguồn cũ phục vụ timeline",
+      "excerpt": "Felicia Đà Nẵng hotel/condotel, 2 hầm + 25 tầng, đã cất nóc, cần rà pháp lý xây dựng."
+    },
+    {
+      "id": "M07-0006",
+      "part": 7,
+      "decision": "project_record_update",
+      "project_name": "Ana Mandara Villas Dalat Resort & Spa",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "625",
+        "626",
+        "627",
+        "628"
+      ],
+      "source_file": "batch_625.txt",
+      "sender": "P.ĐT",
+      "location": "Đà Lạt, Lâm Đồng",
+      "map_url": "",
+      "scale_raw": "Resort/villa khách sạn Đà Lạt; part này có nhắc Ana Mandara Villas Dalat Resort & Spa nhưng excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Resort/villa khách sạn Đà Lạt; part này có nhắc Ana Mandara Villas Dalat Resort & Spa nhưng excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà thời hạn đất, pháp lý khách sạn/resort và khả năng gia hạn"
+      },
+      "financial_items": [],
+      "business_notes": "Đưa vào nhóm khách sạn nghỉ dưỡng theo dõi/định giá vận hành",
+      "excerpt": "Ana Mandara Villas Dalat Resort & Spa; dữ liệu bị cắt, lưu lead khách sạn nghỉ dưỡng."
+    },
+    {
+      "id": "M07-0007",
+      "part": 7,
+      "decision": "project_record_update",
+      "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "629",
+        "630",
+        "631",
+        "632",
+        "633",
+        "634"
+      ],
+      "source_file": "batch_629.txt",
+      "sender": "P.ĐT; Huy M - IM",
+      "location": "Bình Dương",
+      "map_url": "",
+      "scale_raw": "Cập nhật PA mua/chuyển nhượng 900 tỷ; có đoạn nhắc LNTT/TMĐT 22... và PA 900 tỷ; trùng dự án PGK đã nhập các part trước",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cập nhật PA mua/chuyển nhượng 900 tỷ; có đoạn nhắc LNTT/TMĐT 22... và PA 900 tỷ; trùng dự án PGK đã nhập các part trước"
+      },
+      "legal": {
+        "land": "Cần theo pháp lý PGK và khả năng đóng bổ sung TSDĐ nếu địa phương tính sai",
+        "project": "",
+        "raw": "Cần theo pháp lý PGK và khả năng đóng bổ sung TSDĐ nếu địa phương tính sai"
+      },
+      "financial_items": [
+        {
+          "label": "Giá/PA mua nhắc trong chunk",
+          "value": "900 tỷ",
+          "source_chunk": "654"
+        }
+      ],
+      "business_notes": "Có trao đổi hình ảnh không load được và phương án 900 tỷ; giữ làm update nhạy cảm giá mua",
+      "excerpt": "PGK phương án 900 tỷ; có nhắc LNTT/TMĐT 22... nhưng excerpt cắt."
+    },
+    {
+      "id": "M07-0008",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Holiday Beach Đà Nẵng - phương án vận hành khách sạn tạm thời",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "635",
+        "636",
+        "637",
+        "638",
+        "639"
+      ],
+      "source_file": "batch_635.txt",
+      "sender": "P.ĐT",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Holiday Beach tại Đà Nẵng; đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian chờ phương án dài hạn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Holiday Beach tại Đà Nẵng; đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian chờ phương án dài hạn"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà thời hạn đất/condotel/hotel và giấy phép vận hành"
+      },
+      "financial_items": [],
+      "business_notes": "Gắn nhóm khách sạn Đà Nẵng; có thể vận hành tạm để tạo dòng tiền trước khi tái cấu trúc dự án",
+      "excerpt": "Holiday Beach Đà Nẵng đánh giá vận hành khách sạn tạm thời."
+    },
+    {
+      "id": "M07-0009",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Khách sạn Đông Á Premier, 186/14 Hùng Vương",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "640",
+        "641",
+        "642",
+        "643"
+      ],
+      "source_file": "batch_640.txt",
+      "sender": "P.ĐT",
+      "location": "186/14 Hùng Vương",
+      "map_url": "",
+      "scale_raw": "Khách sạn Đông Á Premier tại số 186/14 Hùng Vương; excerpt bị cắt, thiếu địa phương/quy mô",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khách sạn Đông Á Premier tại số 186/14 Hùng Vương; excerpt bị cắt, thiếu địa phương/quy mô"
+      },
+      "legal": {
+        "land": "Cần rà hồ sơ đất khách sạn, thời hạn, giấy phép xây dựng/vận hành",
+        "project": "",
+        "raw": "Cần rà hồ sơ đất khách sạn, thời hạn, giấy phép xây dựng/vận hành"
+      },
+      "financial_items": [],
+      "business_notes": "Lead khách sạn cần bổ sung hồ sơ trước FS",
+      "excerpt": "Khách sạn Đông Á Premier 186/14 Hùng Vương; lưu lead do part bị cắt."
+    },
+    {
+      "id": "M07-0010",
+      "part": 7,
+      "decision": "project_record_update",
+      "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "644",
+        "645",
+        "646",
+        "647",
+        "648"
+      ],
+      "source_file": "batch_644.txt",
+      "sender": "P.ĐT; Huy M - IM",
+      "location": "Đồng Nai / TP.HCM theo dự án Novaland",
+      "map_url": "",
+      "scale_raw": "Nhắc Aqua City của Novaland đã được tháo gỡ vướng mắc pháp lý; liên quan Waterbay và Lakeview theo NQ170 của Quốc hội",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Nhắc Aqua City của Novaland đã được tháo gỡ vướng mắc pháp lý; liên quan Waterbay và Lakeview theo NQ170 của Quốc hội"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "NQ170 tháo gỡ một số vướng mắc pháp lý cho dự án Novaland; policy/project context, cần rà văn bản cụ thể"
+      },
+      "financial_items": [],
+      "business_notes": "Đưa vào list theo dõi tác động tháo gỡ pháp lý các dự án lớn của Novaland",
+      "excerpt": "Aqua City/Waterbay/Lakeview Novaland được tháo gỡ vướng mắc pháp lý theo NQ170."
+    },
+    {
+      "id": "M07-0011",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Khu du lịch nghỉ dưỡng từng liên quan bà Trương Mỹ Lan / VietinBank",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "649",
+        "650"
+      ],
+      "source_file": "batch_649.txt",
+      "sender": "P.ĐT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Tin dự án nghỉ dưỡng nghìn tỷ từng được bà Trương Mỹ Lan thâu tóm; liên quan Ngân hàng TMCP Công Thương Việt Nam theo name_hint",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Tin dự án nghỉ dưỡng nghìn tỷ từng được bà Trương Mỹ Lan thâu tóm; liên quan Ngân hàng TMCP Công Thương Việt Nam theo name_hint"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà nguồn pháp lý/tài sản ngân hàng xử lý nợ nếu muốn theo dõi cơ hội"
+      },
+      "financial_items": [],
+      "business_notes": "Đưa vào list theo dõi, chưa đủ thông tin để FS",
+      "excerpt": "Dự án nghỉ dưỡng nghìn tỷ từng liên quan Trương Mỹ Lan/VietinBank; đưa vào list theo dõi."
+    },
+    {
+      "id": "M07-0012",
+      "part": 7,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Hội An Riverside Resort & Spa",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "660",
+        "674"
+      ],
+      "source_file": "batch_660.txt; batch_674.txt",
+      "sender": "P.ĐT",
+      "location": "Cửa Đại, Hội An, Quảng Nam",
+      "map_url": "",
+      "scale_raw": "Update/duplicate dự án Hội An Riverside; có khả năng thay đổi concept do hành lang bờ sông và cập nhật PA khách sạn/villas",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Update/duplicate dự án Hội An Riverside; có khả năng thay đổi concept do hành lang bờ sông và cập nhật PA khách sạn/villas"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Vướng khoảng lùi hành lang bờ sông 10m; cần cập nhật concept"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới, gắn vào record M06-0011",
+      "excerpt": "Hội An Riverside Resort & Spa update concept."
+    },
+    {
+      "id": "M07-0013",
+      "part": 7,
+      "decision": "project_lead",
+      "project_name": "Khu phân lô bán nền 4ha Long Phước",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "664"
+      ],
+      "source_file": "batch_664.txt",
+      "sender": "P.ĐT",
+      "location": "Long Phước",
+      "map_url": "",
+      "scale_raw": "Khu phân lô bán nền khoảng 4ha theo name_hint; vị trí dự án bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "4 ha"
+        ],
+        "raw": "Khu phân lô bán nền khoảng 4ha theo name_hint; vị trí dự án bị cắt"
+      },
+      "legal": {
+        "land": "Cần rà đất ở/quy hoạch phân lô và điều kiện chuyển nhượng nền",
+        "project": "Cần rà đất ở/quy hoạch phân lô và điều kiện chuyển nhượng nền",
+        "raw": "Cần rà đất ở/quy hoạch phân lô và điều kiện chuyển nhượng nền"
+      },
+      "financial_items": [],
+      "business_notes": "Lead nhỏ, cần bổ sung hồ sơ",
+      "excerpt": "Phân lô bán nền 4ha Long Phước, dữ liệu bị cắt."
+    },
+    {
+      "id": "M07-0014",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Thấp tầng Phú An Hội, mặt tiền Tôn Đức Thắng (25B)",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "669"
+      ],
+      "source_file": "batch_669.txt",
+      "sender": "P.ĐT",
+      "location": "Mặt tiền Tôn Đức Thắng / 25B",
+      "map_url": "",
+      "scale_raw": "Dự án thấp tầng Phú An Hội giáp mặt tiền Tôn Đức Thắng (25B); excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án thấp tầng Phú An Hội giáp mặt tiền Tôn Đức Thắng (25B); excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần rà pháp lý đất/quy hoạch thấp tầng",
+        "raw": "Cần rà pháp lý đất/quy hoạch thấp tầng"
+      },
+      "financial_items": [],
+      "business_notes": "Lead thấp tầng cần bổ sung hồ sơ",
+      "excerpt": "Thấp tầng Phú An Hội giáp Tôn Đức Thắng 25B; lưu lead."
+    },
+    {
+      "id": "M07-0015",
+      "part": 7,
+      "decision": "infrastructure_context",
+      "project_name": "Cảng tổng hợp và container Cái Mép Hạ",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "678"
+      ],
+      "source_file": "batch_678.txt",
+      "sender": "P.ĐT",
+      "location": "Cái Mép - Thị Vải, Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn khoảng 50... (excerpt bị cắt)",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn khoảng 50... (excerpt bị cắt)"
+      },
+      "legal": {
+        "land": "Hạ tầng logistics/cảng, không phải dự án BĐS nhưng ảnh hưởng quỹ đất Phú Mỹ/Long Thành/Nhơn Trạch",
+        "project": "",
+        "raw": "Hạ tầng logistics/cảng, không phải dự án BĐS nhưng ảnh hưởng quỹ đất Phú Mỹ/Long Thành/Nhơn Trạch"
+      },
+      "financial_items": [],
+      "business_notes": "Gắn context hạ tầng cho các dự án KCN/logistics/khu đô thị vùng cảng",
+      "excerpt": "Cảng Cái Mép Hạ tổng vốn khoảng 50...; hạ tầng context vùng cảng."
+    },
+    {
+      "id": "M07-0016",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "Khu đô thị mới G1",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "683",
+        "684",
+        "685"
+      ],
+      "source_file": "batch_683.txt",
+      "sender": "P.ĐT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Khu đô thị mới G1; excerpt bị cắt nên thiếu vị trí/quy mô",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khu đô thị mới G1; excerpt bị cắt nên thiếu vị trí/quy mô"
+      },
+      "legal": {
+        "land": "Có trao đổi được tính TSDĐ theo phương pháp thặng dư",
+        "project": "",
+        "raw": "Có trao đổi được tính TSDĐ theo phương pháp thặng dư; cần rà hồ sơ định giá đất"
+      },
+      "financial_items": [],
+      "business_notes": "Lead KĐT cần bổ sung hồ sơ",
+      "excerpt": "KĐT mới G1; tính TSDĐ theo phương pháp thặng dư."
+    },
+    {
+      "id": "M07-0017",
+      "part": 7,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "688"
+      ],
+      "source_file": "batch_688.txt",
+      "sender": "P.ĐT",
+      "location": "Quận 2 / TP Thủ Đức",
+      "map_url": "",
+      "scale_raw": "Trùng lead M07-0003",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1,1 ha"
+        ],
+        "raw": "Trùng lead M07-0003"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà pháp lý căn hộ dịch vụ"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Căn hộ dịch vụ Quận 2 1,1ha duplicate."
+    },
+    {
+      "id": "M07-0018",
+      "part": 7,
+      "decision": "project_lead",
+      "project_name": "Chung cư Hòa Xuân",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "691"
+      ],
+      "source_file": "batch_691.txt",
+      "sender": "P.ĐT",
+      "location": "Hòa Xuân",
+      "map_url": "",
+      "scale_raw": "Chung cư Hòa Xuân; excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chung cư Hòa Xuân; excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần bổ sung pháp lý/quy hoạch",
+        "raw": "Cần bổ sung pháp lý/quy hoạch"
+      },
+      "financial_items": [],
+      "business_notes": "Lead cần rà thêm",
+      "excerpt": "Chung cư Hòa Xuân; dữ liệu bị cắt."
+    },
+    {
+      "id": "M07-0019",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "KCN và Khu phi thuế quan Xuân Cầu - Lạch Huyện",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "692"
+      ],
+      "source_file": "batch_692.txt",
+      "sender": "P.ĐT",
+      "location": "Khu cảng cửa ngõ quốc tế Lạch Huyện, Hải Phòng",
+      "map_url": "",
+      "scale_raw": "Khu công nghiệp và khu phi thuế quan Xuân Cầu tại khu cảng cửa ngõ quốc tế Lạch Huyện; excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khu công nghiệp và khu phi thuế quan Xuân Cầu tại khu cảng cửa ngõ quốc tế Lạch Huyện; excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà pháp lý KCN/khu phi thuế quan và thời hạn đất"
+      },
+      "financial_items": [],
+      "business_notes": "Lead logistics/KCN gắn hạ tầng cảng Lạch Huyện",
+      "excerpt": "KCN & Khu phi thuế quan Xuân Cầu tại cảng Lạch Huyện."
+    },
+    {
+      "id": "M07-0020",
+      "part": 7,
+      "decision": "project_lead",
+      "project_name": "Dự án cao tầng diện tích đất khoảng 10ha",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "693"
+      ],
+      "source_file": "batch_693.txt",
+      "sender": "P.ĐT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Cao tầng với tổng diện tích đất dự án khoảng 10ha theo name_hint; excerpt bị cắt thiếu tên",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "10 ha"
+        ],
+        "raw": "Cao tầng với tổng diện tích đất dự án khoảng 10ha theo name_hint; excerpt bị cắt thiếu tên"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần xác định pháp lý đất/quy hoạch",
+        "raw": "Cần xác định pháp lý đất/quy hoạch"
+      },
+      "financial_items": [],
+      "business_notes": "Lead bị cắt, giữ để rà gốc",
+      "excerpt": "Cao tầng tổng diện tích đất 10ha; thiếu tên dự án."
+    },
+    {
+      "id": "M07-0021",
+      "part": 7,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "694"
+      ],
+      "source_file": "batch_694.txt",
+      "sender": "P.ĐT",
+      "location": "72-74 Võ Thị Sáu",
+      "map_url": "",
+      "scale_raw": "Duplicate M07-0002",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Duplicate M07-0002"
+      },
+      "legal": {
+        "land": "Giao đất có thu tiền, ổn định lâu dài theo excerpt M07-0002",
+        "project": "",
+        "raw": "Giao đất có thu tiền, ổn định lâu dài theo excerpt M07-0002"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Văn phòng 72-74 Võ Thị Sáu duplicate."
+    },
+    {
+      "id": "M07-0022",
+      "part": 7,
+      "decision": "project_record",
+      "project_name": "KDC Long Phước 18ha",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "696"
+      ],
+      "source_file": "batch_696.txt",
+      "sender": "P.ĐT",
+      "location": "Phường Long Phước",
+      "map_url": "",
+      "scale_raw": "KDC Long Phước quy mô 18ha tại phường Long Phước",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "18 ha"
+        ],
+        "raw": "KDC Long Phước quy mô 18ha tại phường Long Phước"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần rà pháp lý phân lô/KDC/quy hoạch",
+        "raw": "Cần rà pháp lý phân lô/KDC/quy hoạch"
+      },
+      "financial_items": [],
+      "business_notes": "Lead KDC, có thể liên quan các trao đổi Long Phước trước",
+      "excerpt": "KDC Long Phước quy mô 18ha tại phường Long Phước."
+    },
+    {
+      "id": "M07-0023",
+      "part": 7,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Holiday Beach Đà Nẵng - vận hành khách sạn tạm thời",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "697"
+      ],
+      "source_file": "batch_697.txt",
+      "sender": "P.ĐT",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Duplicate/update M07-0008",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Duplicate/update M07-0008"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà hotel/condotel"
+      },
+      "financial_items": [],
+      "business_notes": "Không tạo dự án mới",
+      "excerpt": "Holiday Beach vận hành khách sạn tạm thời duplicate."
+    },
+    {
+      "id": "M07-0024",
+      "part": 7,
+      "decision": "project_lead",
+      "project_name": "Urban Green",
+      "report_date": "2024-11-20",
+      "source_chunks": [
+        "703"
+      ],
+      "source_file": "batch_703.txt",
+      "sender": "P.ĐT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Urban Green; excerpt bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Urban Green; excerpt bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần rà pháp lý/quy hoạch",
+        "raw": "Cần rà pháp lý/quy hoạch"
+      },
+      "financial_items": [],
+      "business_notes": "Lead market/project comp cần bổ sung dữ liệu",
+      "excerpt": "Urban Green; dữ liệu bị cắt."
+    },
+    {
+      "id": "M07-0025",
+      "part": 7,
+      "decision": "land_bank_research",
+      "project_name": "Quỹ đất xã Tân Hiệp, Long Thành, Đồng Nai",
+      "report_date": "2023-11-27",
+      "source_chunks": [
+        "705",
+        "706"
+      ],
+      "source_file": "batch_728.txt",
+      "sender": "Sinh Nguyen-Dau Tu; Huy M - IM",
+      "location": "Xã Tân Hiệp, huyện Long Thành, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Nghiên cứu 2 khu đất/quỹ đất tại Tân Hiệp; hưởng lợi cao tốc Bến Lức-Long Thành, Biên Hòa-Vũng Tàu, Long Thành-Dầu Giây, VĐ3/VĐ4, QL51, DT770B, 25C, sân bay Long Thành, cảng Cái Mép-Thị Vải, đường sắt Biên Hòa-Vũng Tàu/Thủ Thiêm-Long Thành",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Nghiên cứu 2 khu đất/quỹ đất tại Tân Hiệp; hưởng lợi cao tốc Bến Lức-Long Thành, Biên Hòa-Vũng Tàu, Long Thành-Dầu Giây, VĐ3/VĐ4, QL51, DT770B, 25C, sân bay Long Thành, cảng Cái Mép-Thị Vải, đường sắt Biên Hòa-Vũng Tàu/Thủ Thiêm-Long Thành"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần báo cáo chi tiết hơn nếu CEO yêu cầu; part này chủ yếu là nghiên cứu hạ tầng/kết nối"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí vùng Long Thành hưởng lợi mạnh từ hạ tầng quốc gia; cần xin lịch CEO để báo cáo rõ hơn về 2 khu đất",
+      "excerpt": "Nghiên cứu quỹ đất Tân Hiệp Long Thành, kết nối 9-16km đến các nút cao tốc/QL51C/25C, hưởng lợi sân bay/cảng/đường sắt."
+    },
+    {
+      "id": "M07-0026",
+      "part": 7,
+      "decision": "land_assembly_record",
+      "project_name": "Thu gom quỹ đất Bình Chiểu, Thủ Đức gần Phú Quang",
+      "report_date": "2023-11-27",
+      "source_chunks": [
+        "707"
+      ],
+      "source_file": "batch_735.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Phường Bình Chiểu, Thủ Đức, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Khu đất mặt tiền rộng khoảng 200m, tiếp giáp đường 4A ra Ngô Chí Quốc/QL13; cách Phú Quang khoảng 350m; 2 mặt tiếp xúc kênh rạch; đường 4A đoạn đã mở rộng lộ giới khoảng 23m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khu đất mặt tiền rộng khoảng 200m, tiếp giáp đường 4A ra Ngô Chí Quốc/QL13; cách Phú Quang khoảng 350m; 2 mặt tiếp xúc kênh rạch; đường 4A đoạn đã mở rộng lộ giới khoảng 23m"
+      },
+      "legal": {
+        "land": "",
+        "project": "cần rà quy hoạch/ranh/thu gom",
+        "raw": "Kết nối đường chính chưa hoàn chỉnh: phía Đông chưa đấu nối đường 4A ra Ngô Chí Quốc; phía Tây LKV9 và Vĩnh Phú 32 chưa hoàn thành ra QL13; cần rà quy hoạch/ranh/thu gom"
+      },
+      "financial_items": [],
+      "business_notes": "Lead thu gom đất gần Phú Quang, có lợi thế kênh rạch và mặt tiền rộng nhưng phụ thuộc hạ tầng kết nối",
+      "excerpt": "Thu gom quỹ đất Bình Chiểu gần Phú Quang 350m, mặt tiền 200m đường 4A, 2 mặt kênh rạch, kết nối còn thiếu."
+    },
+    {
+      "id": "M08-0001",
+      "part": 8,
+      "decision": "infrastructure_context",
+      "project_name": "Siêu cảng Cái Mép Hạ",
+      "report_date": "2024-06-03",
+      "source_chunks": [
+        "711"
+      ],
+      "source_file": "batch_737.txt",
+      "sender": "Huy M - IM",
+      "location": "Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Dự án cảng tổng hợp và container Cái Mép Hạ quy mô 351ha, tổng vốn đề xuất 50.820 tỷ, có thể đón tàu biển lớn nhất thế giới",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "351 ha"
+        ],
+        "raw": "Dự án cảng tổng hợp và container Cái Mép Hạ quy mô 351ha, tổng vốn đề xuất 50.820 tỷ, có thể đón tàu biển lớn nhất thế giới"
+      },
+      "legal": {
+        "land": "Dự án hạ tầng/cảng, không phải BĐS trực tiếp nhưng ảnh hưởng logistics/KCN/đất đô thị vùng Phú Mỹ - Nhơn Trạch - Long Thành",
+        "project": "",
+        "raw": "Dự án hạ tầng/cảng, không phải BĐS trực tiếp nhưng ảnh hưởng logistics/KCN/đất đô thị vùng Phú Mỹ - Nhơn Trạch - Long Thành"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng vốn đề xuất",
+          "value": "50.820 tỷ đồng",
+          "source_chunk": "711"
+        },
+        {
+          "label": "Quy mô",
+          "value": "351 ha",
+          "source_chunk": "711"
+        }
+      ],
+      "business_notes": "Gắn context cho các dự án KCN/logistics và quỹ đất vùng Cái Mép - Thị Vải",
+      "excerpt": "Cảng Cái Mép Hạ tổng vốn 50.820 tỷ, quy mô 351ha."
+    },
+    {
+      "id": "M08-0002",
+      "part": 8,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
+      "report_date": "2023-10-17",
+      "source_chunks": [
+        "715",
+        "717",
+        "718",
+        "730",
+        "731",
+        "732"
+      ],
+      "source_file": "batch_745.txt; batch_749.txt; batch_756.txt",
+      "sender": "Huy M - IM; Trieu Nguyen-PTDT",
+      "location": "Phú Quang",
+      "map_url": "",
+      "scale_raw": "KĐT gửi CEO phương án đề xuất triển khai/đề xuất phát triển và cập nhật hiệu quả đầu tư; có đính kèm file 2023.10.17 Đề xuất phát triển Phú Quang.pdf",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "KĐT gửi CEO phương án đề xuất triển khai/đề xuất phát triển và cập nhật hiệu quả đầu tư; có đính kèm file 2023.10.17 Đề xuất phát triển Phú Quang.pdf"
+      },
+      "legal": {
+        "land": "",
+        "project": "Có nhắc điều chỉnh QH 1/500 và phương án trước làm phân khu",
+        "raw": "Có nhắc điều chỉnh QH 1/500 và phương án trước làm phân khu; trùng dự án Phú Quang đã nhập các part trước"
+      },
+      "financial_items": [],
+      "business_notes": "Lưu nguồn timeline 2023 về đề xuất phát triển Phú Quang; đã xin lịch CEO để họp với các phòng ban",
+      "excerpt": "Phú Quang: báo cáo đề xuất phát triển và cập nhật hiệu quả, có file OneDrive/PDF ngày 17/10/2023."
+    },
+    {
+      "id": "M08-0003",
+      "part": 8,
+      "decision": "project_watchlist",
+      "project_name": "Dự án nghỉ dưỡng Greenhill Village / khoản nợ VietinBank Thủ Thiêm",
+      "report_date": "2024-06-02",
+      "source_chunks": [
+        "716"
+      ],
+      "source_file": "batch_745.txt",
+      "sender": "Tuan Tran-CEO",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "Dự án nghỉ dưỡng nghìn tỷ từng liên quan bà Trương Mỹ Lan; VietinBank Thủ Thiêm tìm đơn vị bán đấu giá khoản nợ Công ty CP Greenhill Village",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án nghỉ dưỡng nghìn tỷ từng liên quan bà Trương Mỹ Lan; VietinBank Thủ Thiêm tìm đơn vị bán đấu giá khoản nợ Công ty CP Greenhill Village"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cơ hội tài sản xử lý nợ/ngân hàng; cần rà pháp lý khoản nợ, tài sản bảo đảm và quyền triển khai dự án"
+      },
+      "financial_items": [],
+      "business_notes": "Đưa vào watchlist, trùng context Part 7 nhưng bổ sung tên Greenhill Village/VietinBank Thủ Thiêm",
+      "excerpt": "VietinBank Thủ Thiêm rao bán/đấu giá khoản nợ Greenhill Village, dự án nghỉ dưỡng nghìn tỷ từng liên quan Trương Mỹ Lan."
+    },
+    {
+      "id": "M08-0004",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "Khu du lịch sinh thái biển cao cấp Lạc Việt",
+      "report_date": "2023-09-06",
+      "source_chunks": [
+        "736",
+        "733",
+        "739"
+      ],
+      "source_file": "batch_766.txt",
+      "sender": "Thao L - INVT",
+      "location": "Xã Thắng Hải, huyện Hàm Tân, Bình Thuận",
+      "map_url": "https://goo.gl/maps/JhPoRTM15vQA7Kk6A",
+      "scale_raw": "Diện tích 72ha; khu nghỉ dưỡng, biệt thự, căn hộ, nhà vườn, khách sạn 4-5 sao ven sông, giải trí, TTTM, nhà hàng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "72 ha"
+        ],
+        "raw": "Diện tích 72ha; khu nghỉ dưỡng, biệt thự, căn hộ, nhà vườn, khách sạn 4-5 sao ven sông, giải trí, TTTM, nhà hàng"
+      },
+      "legal": {
+        "land": "Chưa có hồ sơ pháp lý đất trong báo cáo； mục tiêu kinh doanh du lịch nghỉ dưỡng, biệt thự/căn hộ du lịch biển gắn QSDĐ lâu dài",
+        "project": "CTĐT QĐ 2313/QĐ-UBND ngày 07/09/2018",
+        "raw": "Chưa có hồ sơ pháp lý đất trong báo cáo; CTĐT QĐ 2313/QĐ-UBND ngày 07/09/2018; doanh nghiệp Danh Việt ĐKKD 11/05/2007; mục tiêu kinh doanh du lịch nghỉ dưỡng, biệt thự/căn hộ du lịch biển gắn QSDĐ lâu dài"
+      },
+      "financial_items": [],
+      "business_notes": "Trước đây có thông tin nhưng đề xuất không quan tâm sâu do 2 nhược điểm theo reply bị cắt; cần rà lại lý do cụ thể nếu mở lại",
+      "excerpt": "Lạc Việt Hàm Tân Bình Thuận 72ha, CTĐT 2018, nghỉ dưỡng/biệt thự/căn hộ/khách sạn 4-5 sao, chưa có hồ sơ đất."
+    },
+    {
+      "id": "M08-0005",
+      "part": 8,
+      "decision": "market_comparable_record",
+      "project_name": "IDEO Charan 70 Riverview, Bangkok",
+      "report_date": "2023-08-17",
+      "source_chunks": [
+        "743",
+        "744",
+        "746"
+      ],
+      "source_file": "batch_770.txt; batch_771.txt",
+      "sender": "Thao L - INVT; Tuan Tran-CEO",
+      "location": "Charan Sanit Wong, Bang Phlat, Bangkok, Thái Lan",
+      "map_url": "https://goo.gl/maps/rzwM8zz1vmEphauk6",
+      "scale_raw": "Dự án cao tầng gần sông Chao Phraya, cách trung tâm Bangkok 6-7km; cách ga Bang Phlat MRT 300m, Bang Sue Grand 4 trạm, Chatuchak 6 trạm, bến tàu Wat Awut 390m; tiện ích Tesco 140m, gần Supreme/Major Pinklao/Central Pinklao, IconSiam 7km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án cao tầng gần sông Chao Phraya, cách trung tâm Bangkok 6-7km; cách ga Bang Phlat MRT 300m, Bang Sue Grand 4 trạm, Chatuchak 6 trạm, bến tàu Wat Awut 390m; tiện ích Tesco 140m, gần Supreme/Major Pinklao/Central Pinklao, IconSiam 7km"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dự án nước ngoài dùng làm comparable, không nhập pháp lý Việt Nam"
+      },
+      "financial_items": [],
+      "business_notes": "So sánh với khu Phạm Văn Đồng gần sông Sài Gòn/cầu Bình Lợi, cách Q1 6-7km; Bangkok có kết nối công cộng tốt hơn",
+      "excerpt": "IDEO Charan 70 Riverview Bangkok, cách trung tâm 6-7km, gần MRT/sông Chao Phraya; dùng so sánh giá với Phạm Văn Đồng HCM."
+    },
+    {
+      "id": "M08-0006",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "KCN và Khu Phi thuế quan Xuân Cầu - Lạch Huyện",
+      "report_date": "2024-01-09",
+      "source_chunks": [
+        "745"
+      ],
+      "source_file": "batch_770.txt",
+      "sender": "Thao L - INVT",
+      "location": "Khu cảng cửa ngõ quốc tế Lạch Huyện, KKT Đình Vũ - Cát Hải, Hải Phòng",
+      "map_url": "",
+      "scale_raw": "Diện tích 752ha thuộc Khu Phi thuế quan và KCN, đối diện cảng số 1-12 Zone 4 cảng nước sâu quốc tế Lạch Huyện",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "752 ha"
+        ],
+        "raw": "Diện tích 752ha thuộc Khu Phi thuế quan và KCN, đối diện cảng số 1-12 Zone 4 cảng nước sâu quốc tế Lạch Huyện"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Dự án KCN/khu phi thuế quan trong KKT Đình Vũ - Cát Hải; cần rà thời hạn đất, pháp lý hạ tầng KCN và cơ chế phi thuế quan"
+      },
+      "financial_items": [],
+      "business_notes": "Lead logistics/KCN quy mô lớn gắn cảng Lạch Huyện",
+      "excerpt": "Xuân Cầu Lạch Huyện 752ha, KCN & khu phi thuế quan, đối diện cảng nước sâu quốc tế Lạch Huyện."
+    },
+    {
+      "id": "M08-0007",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "Văn phòng/khu đất 72-74 Võ Thị Sáu, Tân Định, Quận 1",
+      "report_date": "2024-01-03",
+      "source_chunks": [
+        "747"
+      ],
+      "source_file": "batch_771.txt",
+      "sender": "Thao L - INVT",
+      "location": "72-74 Võ Thị Sáu, P. Tân Định, Q1, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích 2.157,7 m2; mặt tiền Võ Thị Sáu, đối diện Công viên Lê Văn Tám; giá chào 1.350 tỷ, tương đương 625,6 tr/m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.157,7 m2"
+        ],
+        "raw": "Diện tích 2.157,7 m2; mặt tiền Võ Thị Sáu, đối diện Công viên Lê Văn Tám; giá chào 1.350 tỷ, tương đương 625,6 tr/m2"
+      },
+      "legal": {
+        "land": "GCN QSDĐ đất ở đô thị, thời hạn lâu dài",
+        "project": "chưa có pháp lý đầu tư； QH phân khu 1/2000 KDC P. Tân Định theo VB 4793/QĐ-UBND ngày 08/09/2017",
+        "raw": "GCN QSDĐ đất ở đô thị, thời hạn lâu dài; chưa có pháp lý đầu tư; QH phân khu 1/2000 KDC P. Tân Định theo VB 4793/QĐ-UBND ngày 08/09/2017"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.350 tỷ",
+          "source_chunk": "747"
+        },
+        {
+          "label": "Đơn giá chào",
+          "value": "625,6 tr/m2",
+          "source_chunk": "747"
+        }
+      ],
+      "business_notes": "Lead văn phòng/Q1; cần xem phương án khai thác văn phòng trên đất ở lâu dài và nghĩa vụ/chuyển mục đích nếu có",
+      "excerpt": "72-74 Võ Thị Sáu Q1, 2.157,7m2, giá chào 1.350 tỷ, đất ở đô thị lâu dài, chưa có pháp lý đầu tư."
+    },
+    {
+      "id": "M08-0008",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "KDC Thuận Hưng Bình Điền 2,3ha",
+      "report_date": "2023-08-07",
+      "source_chunks": [
+        "755"
+      ],
+      "source_file": "batch_778.txt",
+      "sender": "Sinh Nguyen-Dau Tu",
+      "location": "Mặt tiền Nguyễn Văn Linh, xã An Phú Tây, Bình Chánh, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 22.335 m2; giá chào 200 tỷ; cách chợ đầu mối Bình Điền 400m, ranh Q8-Bình Chánh 150m, UBND Bình Chánh 3,2km, nút VĐ2 - Nguyễn Văn Linh 2,2km; đã hoàn tất bồi thường GPMB và bàn giao đất cho Thuận Hưng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "22.335 m2",
+          "2,3 ha"
+        ],
+        "raw": "Tổng diện tích 22.335 m2; giá chào 200 tỷ; cách chợ đầu mối Bình Điền 400m, ranh Q8-Bình Chánh 150m, UBND Bình Chánh 3,2km, nút VĐ2 - Nguyễn Văn Linh 2,2km; đã hoàn tất bồi thường GPMB và bàn giao đất cho Thuận Hưng"
+      },
+      "legal": {
+        "land": "Nguồn gốc đất do BQL Khu Nam GPMB bằng vốn ngân sách và giao lại Thuận Hưng, là 1 trong 2 khu đất hoán đổi đất Thuận Hưng bị thu hồi làm Chợ Bình Điền； thuộc trường hợp giao đất không qua đấu giá QSDĐ",
+        "project": "Nguồn gốc đất do BQL Khu Nam GPMB bằng vốn ngân sách và giao lại Thuận Hưng, là 1 trong 2 khu đất hoán đổi đất Thuận Hưng bị thu hồi làm Chợ Bình Điền； thuộc trường hợp giao đất không qua đấu giá QSDĐ",
+        "raw": "Nguồn gốc đất do BQL Khu Nam GPMB bằng vốn ngân sách và giao lại Thuận Hưng, là 1 trong 2 khu đất hoán đổi đất Thuận Hưng bị thu hồi làm Chợ Bình Điền; thuộc trường hợp giao đất không qua đấu giá QSDĐ; hồ sơ pháp lý cần rà chi tiết"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "200 tỷ",
+          "source_chunk": "755"
+        }
+      ],
+      "business_notes": "Trùng/cập nhật dự án Bình Điền Part 6 nhưng bổ sung giá chào và nguồn gốc hoán đổi",
+      "excerpt": "KDC Thuận Hưng Bình Điền 2,3ha, giá chào 200 tỷ, đất hoán đổi/giao không qua đấu giá, đã GPMB."
+    },
+    {
+      "id": "M08-0009",
+      "part": 8,
+      "decision": "project_planning_record",
+      "project_name": "Phương án cao tầng dự án chưa xác định - xin thêm 2.522 dân",
+      "report_date": "2023-08-03",
+      "source_chunks": [
+        "759"
+      ],
+      "source_file": "batch_784.txt",
+      "sender": "Thao L - INVT",
+      "location": "",
+      "map_url": "",
+      "scale_raw": "PA cao tầng gồm 2 hầm + 2 tầng khối đế + 26 tầng căn hộ, có NOXH 20%; 5.162 m2 sàn TTTM cho thuê, 75.540 m2 sàn căn hộ; NOXH 15.110 m2 ~291 căn TB 52m2; căn hộ thương mại 60.430 m2 ~1.040 căn TB 58m2; tổng 1.331 căn, dân số 3.022, QH hiện 500, cần xin thêm 2.522 dân",
+      "planning": {
+        "floors": "2",
+        "density": "",
+        "far": "",
+        "population": "3.022,",
+        "area_mentions": [
+          "5.162 m2",
+          "75.540 m2",
+          "15.110 m2",
+          "52 m2",
+          "60.430 m2",
+          "58 m2"
+        ],
+        "raw": "PA cao tầng gồm 2 hầm + 2 tầng khối đế + 26 tầng căn hộ, có NOXH 20%; 5.162 m2 sàn TTTM cho thuê, 75.540 m2 sàn căn hộ; NOXH 15.110 m2 ~291 căn TB 52m2; căn hộ thương mại 60.430 m2 ~1.040 căn TB 58m2; tổng 1.331 căn, dân số 3.022, QH hiện 500, cần xin thêm 2.522 dân"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần xác định tên dự án gốc và khả năng xin tăng dân số/chỉ tiêu QH"
+      },
+      "financial_items": [],
+      "business_notes": "Dữ liệu chỉ tiêu rất rõ nhưng thiếu tên dự án trong part; lưu như record planning để đối chiếu part khác",
+      "excerpt": "PA cao tầng 2 hầm + 26 tầng căn hộ, 1.331 căn, cần xin thêm 2.522 dân; thiếu tên dự án."
+    },
+    {
+      "id": "M08-0010",
+      "part": 8,
+      "decision": "market_research_record",
+      "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+      "report_date": "2023-08-03",
+      "source_chunks": [
+        "761",
+        "780"
+      ],
+      "source_file": "batch_784.txt; batch_811.txt",
+      "sender": "Phòng Đầu tư và R&D; Sinh Nguyen-Dau Tu",
+      "location": "Quận 9/TP Thủ Đức và Nhơn Trạch, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Đề xuất đầu tư khu vực giữa Quận 9 và Nhơn Trạch; khảo sát giá mặt tiền các trục đường chính phía Đông Thủ Đức và dự án phân lô bán nền không xây nhà giá rẻ ở Nhơn Trạch; có dự án đã có sổ riêng từng nền",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Đề xuất đầu tư khu vực giữa Quận 9 và Nhơn Trạch; khảo sát giá mặt tiền các trục đường chính phía Đông Thủ Đức và dự án phân lô bán nền không xây nhà giá rẻ ở Nhơn Trạch; có dự án đã có sổ riêng từng nền"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà pháp lý từng dự án phân lô/sổ riêng và điều kiện chuyển nhượng"
+      },
+      "financial_items": [],
+      "business_notes": "Cơ sở hạ tầng: Metro 1, VĐ2, VĐ3, mở rộng cao tốc Long Thành-Dầu Giây, song hành cao tốc, cầu Nhơn Trạch; giá đất giảm 15-20% so với năm trước với tài sản áp lực lãi vay/chứng khoán, thanh khoản thấp",
+      "excerpt": "Khảo sát Đông Thủ Đức/Nhơn Trạch: hạ tầng Metro/VĐ3/cầu Nhơn Trạch, đất giảm 15-20%, phân lô bán nền giá rẻ có sổ riêng."
+    },
+    {
+      "id": "M08-0011",
+      "part": 8,
+      "decision": "land_assembly_record",
+      "project_name": "Khu đất đường Ngô Chí Quốc / Bình Chiểu gần Phú Quang",
+      "report_date": "2023-08-03",
+      "source_chunks": [
+        "764",
+        "765",
+        "766"
+      ],
+      "source_file": "batch_785.txt",
+      "sender": "Thao L - INVT; Trieu Nguyen-PTDT",
+      "location": "Đường Ngô Chí Quốc / đường 4A, Bình Chiểu, Thủ Đức, TP.HCM",
+      "map_url": "https://goo.gl/maps/Empzn8zwhyULFrqV8",
+      "scale_raw": "Khu đất mặt tiền Ngô Chí Quốc, giáp Bình Dương; cách nút Gò Dưa/VĐ2 khoảng 3km, QL13 2km, cách Phú Quang một con rạch/350m; đối diện KCX Linh Trung 2, cách nghĩa trang Gò Đình 400m; đa phần đất lúa và đất vườn; một khu khác mặt tiền 200m tiếp giáp đường 4A, 2 mặt kênh rạch",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khu đất mặt tiền Ngô Chí Quốc, giáp Bình Dương; cách nút Gò Dưa/VĐ2 khoảng 3km, QL13 2km, cách Phú Quang một con rạch/350m; đối diện KCX Linh Trung 2, cách nghĩa trang Gò Đình 400m; đa phần đất lúa và đất vườn; một khu khác mặt tiền 200m tiếp giáp đường 4A, 2 mặt kênh rạch"
+      },
+      "legal": {
+        "land": "",
+        "project": "Theo QH 1/10.000 do Mr Duy cung cấp, cần rà quy hoạch chi tiết",
+        "raw": "Theo QH 1/10.000 do Mr Duy cung cấp, cần rà quy hoạch chi tiết; kết nối đường 4A ra Ngô Chí Quốc và LKV9/Vĩnh Phú 32 ra QL13 chưa hoàn chỉnh"
+      },
+      "financial_items": [],
+      "business_notes": "Lead thu gom đất gần Phú Quang, tiềm năng nhờ hạ tầng nhưng cần xử lý đất lúa/vườn và kết nối giao thông",
+      "excerpt": "Khu đất Ngô Chí Quốc/Bình Chiểu gần Phú Quang, đa phần đất lúa/vườn, gần QL13/VĐ2/KCX Linh Trung 2."
+    },
+    {
+      "id": "M08-0012",
+      "part": 8,
+      "decision": "market_research_record",
+      "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
+      "report_date": "2023-07-??",
+      "source_chunks": [
+        "767"
+      ],
+      "source_file": "batch_790.txt",
+      "sender": "Phòng Đầu tư và R&D",
+      "location": "Việt Nam, Indonesia, Thái Lan",
+      "map_url": "",
+      "scale_raw": "So sánh giá đất KCN và giá thuê kho xưởng giữa Việt Nam, Indonesia, Thái Lan",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "So sánh giá đất KCN và giá thuê kho xưởng giữa Việt Nam, Indonesia, Thái Lan"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Market research, không phải dự án cụ thể"
+      },
+      "financial_items": [
+        {
+          "label": "Giá đất KCN Việt Nam",
+          "value": "TPHCM 257 USD/m2/kỳ; Hà Nội 168; tỉnh phía Nam 158; tỉnh phía Bắc 115",
+          "source_chunk": "767"
+        },
+        {
+          "label": "Giá đất KCN Indonesia",
+          "value": "Jakarta 392 USD/m2/kỳ; West Java 150; East Java 397; Central Java 119",
+          "source_chunk": "767"
+        },
+        {
+          "label": "Giá đất KCN Thái Lan",
+          "value": "Bangkok Metropolitan 162 USD/m2/kỳ; EEC 130",
+          "source_chunk": "767"
+        },
+        {
+          "label": "Giá thuê kho/xưởng trung bình",
+          "value": "khoảng 4 USD/m2/tháng",
+          "source_chunk": "767"
+        }
+      ],
+      "business_notes": "Indonesia có giá đất KCN trung bình cao hơn Việt Nam và Thái Lan; giá thuê kho/xưởng 3 nước không khác biệt lớn, khoảng 4 USD/m2/tháng và phụ thuộc chất lượng/kết nối",
+      "excerpt": "Market KCN VN/Indonesia/Thailand: Indonesia cao hơn, kho xưởng quanh 4 USD/m2/tháng."
+    },
+    {
+      "id": "M08-0013",
+      "part": 8,
+      "decision": "project_risk_record",
+      "project_name": "Dự án 31ha trong Khu du lịch đô thị Đại Phước / Swan Bay và nhóm Swan Park - Sơn Tiên",
+      "report_date": "2023-07-07",
+      "source_chunks": [
+        "772",
+        "773"
+      ],
+      "source_file": "batch_803.txt; batch_804.txt",
+      "sender": "Huy M - IM",
+      "location": "Đồng Nai / Đại Phước",
+      "map_url": "",
+      "scale_raw": "Dự án 31ha là dự án thành phần trong tổng dự án 465ha thuộc Khu Du lịch Đô thị Đại Phước (Swan Bay); liên quan nhóm dự án Swan Park Phú Thịnh Long Tân, Swan Bay Đại Phước, KĐT du lịch Sơn Tiên",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "31 ha",
+          "465 ha"
+        ],
+        "raw": "Dự án 31ha là dự án thành phần trong tổng dự án 465ha thuộc Khu Du lịch Đô thị Đại Phước (Swan Bay); liên quan nhóm dự án Swan Park Phú Thịnh Long Tân, Swan Bay Đại Phước, KĐT du lịch Sơn Tiên"
+      },
+      "legal": {
+        "land": "Theo kết luận UBKT Trung ương 14/06/2023, các dự án lớn có sai phạm nghiêm trọng trong quản lý đất đai Đồng Nai",
+        "project": "",
+        "raw": "Theo kết luận UBKT Trung ương 14/06/2023, các dự án lớn có sai phạm nghiêm trọng trong quản lý đất đai Đồng Nai; quy trình xử lý khắc phục kéo dài/phức tạp, rủi ro không ước tính được"
+      },
+      "financial_items": [],
+      "business_notes": "K.ĐT đề xuất không nghiên cứu sâu các dự án liên quan nhóm này",
+      "excerpt": "Dự án 31ha thuộc Swan Bay 465ha; nhóm Swan Park/Swan Bay/Sơn Tiên có sai phạm đất đai Đồng Nai, đề xuất không nghiên cứu sâu."
+    },
+    {
+      "id": "M08-0014",
+      "part": 8,
+      "decision": "project_lead",
+      "project_name": "Dự án phường An Bình, Dĩ An quy mô 86.834,2 m2",
+      "report_date": "2023-09-07",
+      "source_chunks": [
+        "779"
+      ],
+      "source_file": "batch_810.txt",
+      "sender": "Tuan Tran-CEO",
+      "location": "P. An Bình, TP Dĩ An",
+      "map_url": "",
+      "scale_raw": "Quy mô đầu tư dự kiến 86.834,2 m2; tổng diện tích sàn xây dựng 410.000 m2; gồm 11 tòa cao tối đa 30 tầng; tổng sản phẩm bị cắt",
+      "planning": {
+        "floors": "30",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "86.834,2 m2",
+          "410.000 m2"
+        ],
+        "raw": "Quy mô đầu tư dự kiến 86.834,2 m2; tổng diện tích sàn xây dựng 410.000 m2; gồm 11 tòa cao tối đa 30 tầng; tổng sản phẩm bị cắt"
+      },
+      "legal": {
+        "land": "Cần xác định tên dự án, pháp lý đất và QH",
+        "project": "",
+        "raw": "Cần xác định tên dự án, pháp lý đất và QH"
+      },
+      "financial_items": [],
+      "business_notes": "Lead cao tầng Dĩ An lớn, cần hồ sơ chi tiết",
+      "excerpt": "Dự án An Bình Dĩ An 86.834,2m2, 410.000m2 sàn, 11 tòa tối đa 30 tầng."
+    },
+    {
+      "id": "M08-0015",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+      "report_date": "2023-07-03",
+      "source_chunks": [
+        "782"
+      ],
+      "source_file": "batch_812.txt",
+      "sender": "Thao L - INVT",
+      "location": "197 Lê Văn Sỹ, P.13, Q3, TP.HCM",
+      "map_url": "https://goo.gl/maps/BgnUiLh44bo3Nyq37",
+      "scale_raw": "Diện tích 985,7 m2; mặt tiền Lê Văn Sỹ và hẻm 195, cách cầu Lê Văn Sỹ 50m; cập nhật HSSDĐ mới 9,5 lần; giá chào 340 tỷ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "9,5",
+        "population": "",
+        "area_mentions": [
+          "985,7 m2"
+        ],
+        "raw": "Diện tích 985,7 m2; mặt tiền Lê Văn Sỹ và hẻm 195, cách cầu Lê Văn Sỹ 50m; cập nhật HSSDĐ mới 9,5 lần; giá chào 340 tỷ"
+      },
+      "legal": {
+        "land": "Mục tiêu xây dựng/vận hành văn phòng nhưng giữ mục đích đất ở lâu dài； đề xuất cá nhân đứng tên GCN, công ty thuê đất 20 năm rồi gia hạn dần trong 52 năm",
+        "project": "",
+        "raw": "Mục tiêu xây dựng/vận hành văn phòng nhưng giữ mục đích đất ở lâu dài; đề xuất cá nhân đứng tên GCN, công ty thuê đất 20 năm rồi gia hạn dần trong 52 năm"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "340 tỷ",
+          "source_chunk": "782"
+        },
+        {
+          "label": "HSSDĐ cập nhật",
+          "value": "9,5 lần",
+          "source_chunk": "782"
+        }
+      ],
+      "business_notes": "Cần rà rủi ro cấu trúc thuê đất cá nhân - công ty, giấy phép xây văn phòng trên đất ở và nghĩa vụ tài chính",
+      "excerpt": "197 Lê Văn Sỹ Q3, 985,7m2, giá 340 tỷ, HSSDĐ 9,5; PA giữ đất ở lâu dài bằng cấu trúc cá nhân cho công ty thuê."
+    },
+    {
+      "id": "M08-0016",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "Khu đô thị mới Bắc Quán Hành, Nghi Lộc, Nghệ An",
+      "report_date": "2023-07-03",
+      "source_chunks": [
+        "783",
+        "797",
+        "804",
+        "785"
+      ],
+      "source_file": "batch_812.txt; batch_834.txt; batch_836.txt",
+      "sender": "Thao L - INVT; Tuan Tran-CEO",
+      "location": "Thị trấn Quán Hành, huyện Nghi Lộc, Nghệ An",
+      "map_url": "https://goo.gl/maps/FmDxfXdHa9mdoGK99",
+      "scale_raw": "Diện tích 18,43ha; dân số 1.900; khoảng 180 căn nhà theo excerpt bị cắt; cách TP Vinh 14km, sân bay Vinh 11km, biển Cửa Lò 11km, nút cao tốc Diễn Châu - Bãi Vọt 11km; thị trấn Quán Hành diện tích 3,9 km2, dân số 6.197 người năm 2019",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "1.900",
+        "area_mentions": [
+          "18,43 ha"
+        ],
+        "raw": "Diện tích 18,43ha; dân số 1.900; khoảng 180 căn nhà theo excerpt bị cắt; cách TP Vinh 14km, sân bay Vinh 11km, biển Cửa Lò 11km, nút cao tốc Diễn Châu - Bãi Vọt 11km; thị trấn Quán Hành diện tích 3,9 km2, dân số 6.197 người năm 2019"
+      },
+      "legal": {
+        "land": "",
+        "project": "Hình thức lựa chọn NĐT: đấu thầu dự án đầu tư có sử dụng đất； rủi ro GPMB do nhà dân xen cài nhiều trong ranh",
+        "raw": "Hình thức lựa chọn NĐT: đấu thầu dự án đầu tư có sử dụng đất; dự án gần 1.000 tỷ từng gia hạn thời gian đăng ký thêm 30 ngày; rủi ro GPMB do nhà dân xen cài nhiều trong ranh"
+      },
+      "financial_items": [
+        {
+          "label": "Tổng mức đầu tư theo bài báo/name_hint",
+          "value": "gần 1.000 tỷ",
+          "source_chunk": "804"
+        }
+      ],
+      "business_notes": "Khu vực hưởng lợi cao tốc Hà Nội - Nghệ An, nhưng cần đánh giá thanh khoản thị trường Nghi Lộc/Quán Hành và GPMB",
+      "excerpt": "Bắc Quán Hành Nghệ An 18,43ha, dân số 1.900, đấu thầu dự án có sử dụng đất, gần 1.000 tỷ, rủi ro GPMB nhà dân xen cài."
+    },
+    {
+      "id": "M08-0017",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+      "report_date": "2023-06-16",
+      "source_chunks": [
+        "787",
+        "808",
+        "807"
+      ],
+      "source_file": "batch_820.txt; batch_839.txt",
+      "sender": "Sinh Nguyen-Dau Tu; Unknown User",
+      "location": "Xã Thái Hòa và Bắc Bình, huyện Lập Thạch, Vĩnh Phúc",
+      "map_url": "https://goo.gl/maps/ZVuC7...",
+      "scale_raw": "Khu vực 1 quy mô 284ha; có các lô chuyển nhượng trong Khu vực II 5ha, 11,3ha, 14,8ha; cách QL2C 80m, TP Vĩnh Yên 22km, Vành Đai 5 16,5km, nút cao tốc Hà Nội - Lào Cai 16km, Nội Bài 52km, Hà Nội 78km, Hải Phòng 175km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "284 ha",
+          "5 ha",
+          "11,3 ha",
+          "14,8 ha"
+        ],
+        "raw": "Khu vực 1 quy mô 284ha; có các lô chuyển nhượng trong Khu vực II 5ha, 11,3ha, 14,8ha; cách QL2C 80m, TP Vĩnh Yên 22km, Vành Đai 5 16,5km, nút cao tốc Hà Nội - Lào Cai 16km, Nội Bài 52km, Hà Nội 78km, Hải Phòng 175km"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Pháp lý/hạ tầng KCN đang thi công; hiện trạng còn nhiều nhà dân trong ranh, một cụm lớn ở giữa và nhiều hộ da beo; chưa ước tính chi phí san lấp do chưa rõ cao độ khi làm KCN"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào lô KCN Khu vực II",
+          "value": "85 USD/m2",
+          "source_chunk": "787"
+        }
+      ],
+      "business_notes": "Vị trí xa Hà Nội/Hải Phòng nhất trong hướng nghiên cứu; giá lead 85 USD/m2 được quảng cáo rẻ nhưng GPMB/san lấp là rủi ro lớn",
+      "excerpt": "KCN Thái Hòa-Liễn Sơn-Liên Hòa Vĩnh Phúc: KV1 284ha, lô 5/11,3/14,8ha giá 85 USD/m2, xa trung tâm, nhiều nhà dân trong ranh."
+    },
+    {
+      "id": "M08-0018",
+      "part": 8,
+      "decision": "market_price_review",
+      "project_name": "Diamond Island Quận 9",
+      "report_date": "2023-06-22",
+      "source_chunks": [
+        "792",
+        "795"
+      ],
+      "source_file": "batch_821.txt",
+      "sender": "Unknown User; Tuan Tran-CEO",
+      "location": "Quận 9 / TP Thủ Đức",
+      "map_url": "",
+      "scale_raw": "Chi tiết vị trí/giá bán theo hình ảnh; so sánh các lô C3/A2, E1/E2/E4",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chi tiết vị trí/giá bán theo hình ảnh; so sánh các lô C3/A2, E1/E2/E4"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Không có pháp lý mới; market review"
+      },
+      "financial_items": [
+        {
+          "label": "Ví dụ giá lô C3/A2",
+          "value": "64,8m vs 66,8m; 54tr vs 59,9tr",
+          "source_chunk": "792"
+        },
+        {
+          "label": "Ví dụ giá lô E1/E2/E4",
+          "value": "E1 54,3; E2 64,8; E4 58,3 dù đường bé",
+          "source_chunk": "792"
+        }
+      ],
+      "business_notes": "CEO nhận xét giá rao không hợp lý: các lô đối diện/cùng đường chênh 10%, đường bé nhưng giá cao hơn đường lớn; cần kiểm tra giá thị trường thực tế",
+      "excerpt": "Diamond Island Q9, giá rao theo hình ảnh bị CEO đánh giá không hợp lý do chênh lệch giữa lô cùng đường/đối diện."
+    },
+    {
+      "id": "M08-0019",
+      "part": 8,
+      "decision": "project_record",
+      "project_name": "Khu đô thị mới Hậu Nghĩa - Đức Hòa",
+      "report_date": "2023-06-17",
+      "source_chunks": [
+        "806"
+      ],
+      "source_file": "batch_837.txt",
+      "sender": "Thao L - INVT",
+      "location": "Hậu Nghĩa, Đức Hòa, Long An",
+      "map_url": "https://goo.gl/maps/KCGefw7KgVDUzTPh7",
+      "scale_raw": "Dự án KĐT mới Hậu Nghĩa - Đức Hòa; Vingroup từng có văn bản đề xuất lập quy hoạch đầu tư năm 2018 nhưng năm 2023 SKHĐT mời quan tâm đấu thầu dự án có sử dụng đất",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án KĐT mới Hậu Nghĩa - Đức Hòa; Vingroup từng có văn bản đề xuất lập quy hoạch đầu tư năm 2018 nhưng năm 2023 SKHĐT mời quan tâm đấu thầu dự án có sử dụng đất"
+      },
+      "legal": {
+        "land": "",
+        "project": "hình thức đấu thầu dự án",
+        "raw": "Thông báo 773/TB-SKHĐT ngày 07/06/2023 mời quan tâm dự án đầu tư có sử dụng đất; thời hạn nộp hồ sơ 10/07/2023; hình thức đấu thầu dự án"
+      },
+      "financial_items": [],
+      "business_notes": "Cần đánh giá lại do thông tin thị trường/Guland có thể vẫn ghi Vingroup là CĐT nhưng thực tế mời quan tâm đấu thầu",
+      "excerpt": "KĐT mới Hậu Nghĩa-Đức Hòa, Vingroup từng đề xuất 2018 nhưng 2023 SKHĐT mời quan tâm đấu thầu, hạn 10/07/2023."
+    },
+    {
+      "id": "M09-0001",
+      "part": 9,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+      "report_date": "2023-05-20",
+      "source_chunks": [
+        "809",
+        "810",
+        "812",
+        "842",
+        "871",
+        "873"
+      ],
+      "source_file": "batch_839.txt; batch_840.txt; batch_875.txt; batch_897.txt; batch_898.txt",
+      "sender": "Sinh Nguyen-Dau Tu; Huy M - IM",
+      "location": "Xã Thái Hòa và xã Bắc Bình, huyện Lập Thạch, Vĩnh Phúc",
+      "map_url": "",
+      "scale_raw": "Khu vực 1 quy mô 284ha; hiện trạng đất lúa xen kẽ nhiều nhà dân và đồi cao; còn nhiều nhà dân trong ranh, 1 cụm lớn ở giữa và nhiều hộ da beo",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "284 ha"
+        ],
+        "raw": "Khu vực 1 quy mô 284ha; hiện trạng đất lúa xen kẽ nhiều nhà dân và đồi cao; còn nhiều nhà dân trong ranh, 1 cụm lớn ở giữa và nhiều hộ da beo"
+      },
+      "legal": {
+        "land": "",
+        "project": "Dự án KCN, cần xử lý GPMB, san lấp và pháp lý đầu tư KCN",
+        "raw": "Dự án KCN, cần xử lý GPMB, san lấp và pháp lý đầu tư KCN; trùng/update Part 8"
+      },
+      "financial_items": [
+        {
+          "label": "Chi phí san lấp/hạ tầng KCN TB",
+          "value": "800.000 - 1.000.000 đ/m2",
+          "source_chunk": "809"
+        },
+        {
+          "label": "San lấp bổ sung vùng thấp",
+          "value": "250.000 đ/m3",
+          "source_chunk": "809"
+        }
+      ],
+      "business_notes": "Chi phí san lấp/hạ tầng KCN trung bình 800k-1tr/m2; nếu vùng đất thấp phải san lấp thêm thì 250k/m3; chưa có cao độ dự án khi khảo sát flycam",
+      "excerpt": "KCN Vĩnh Phúc đất lúa xen nhà dân/đồi; san lấp hạ tầng 800k-1tr/m2, vùng thấp thêm 250k/m3."
+    },
+    {
+      "id": "M09-0002",
+      "part": 9,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Khu đô thị mới Hậu Nghĩa - Đức Hòa",
+      "report_date": "2023-06-16",
+      "source_chunks": [
+        "811"
+      ],
+      "source_file": "batch_840.txt",
+      "sender": "Tuan Tran-CEO",
+      "location": "Hậu Nghĩa, Đức Hòa, Long An",
+      "map_url": "",
+      "scale_raw": "KĐT quy mô hơn 1 tỷ USD theo bài báo; SKHĐT Long An thông báo 773/TB-SKHĐT mời NĐT quan tâm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "KĐT quy mô hơn 1 tỷ USD theo bài báo; SKHĐT Long An thông báo 773/TB-SKHĐT mời NĐT quan tâm"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Mời quan tâm dự án có sử dụng đất; trùng Part 8"
+      },
+      "financial_items": [],
+      "business_notes": "CEO yêu cầu check thông tin",
+      "excerpt": "Hậu Nghĩa - Đức Hòa Long An mời quan tâm dự án KĐT hơn 1 tỷ USD."
+    },
+    {
+      "id": "M09-0003",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Khu nhà ở Đại Quang Minh, Thuận Giao, Bình Dương",
+      "report_date": "2023-06-12",
+      "source_chunks": [
+        "813"
+      ],
+      "source_file": "batch_842.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường D4/Thuận Giao 09, Thuận Giao, Thuận An, Bình Dương",
+      "map_url": "https://goo.gl/maps/GPVNSt7Q6a73xSKHA",
+      "scale_raw": "Dự án thấp tầng cùng khu cao tầng Việt An; diện tích 9.680m2, 5.034,8m2 đất ở tương ứng 75 căn; đã bán 20 căn 1.392,4m2, còn 55 nền/3.642,4m2 đất ở thương phẩm; HTKT hoàn thành, 8/20 căn đã bán xây thô",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "9.680 m2",
+          "5.034,8 m2",
+          "1.392,4 m2",
+          "3.642,4 m2"
+        ],
+        "raw": "Dự án thấp tầng cùng khu cao tầng Việt An; diện tích 9.680m2, 5.034,8m2 đất ở tương ứng 75 căn; đã bán 20 căn 1.392,4m2, còn 55 nền/3.642,4m2 đất ở thương phẩm; HTKT hoàn thành, 8/20 căn đã bán xây thô"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà sổ/pháp lý chuyển nhượng phần còn lại; hạ tầng đã hoàn thiện"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào phần còn lại",
+          "value": "135 tỷ cho 55 nền",
+          "source_chunk": "813"
+        },
+        {
+          "label": "Đơn giá đất ở còn lại",
+          "value": "37,1 tr/m2 đất ở",
+          "source_chunk": "813"
+        }
+      ],
+      "business_notes": "Nguồn Mr Duy - P.PTQĐ; phần còn lại giá chào 135 tỷ",
+      "excerpt": "Đại Quang Minh Thuận Giao 9.680m2, còn 55 nền giá 135 tỷ, HTKT hoàn thành."
+    },
+    {
+      "id": "M09-0004",
+      "part": 9,
+      "decision": "market_comparable_record",
+      "project_name": "So sánh Swan Park - Swan Bay - Aqua City",
+      "report_date": "2023-06-10",
+      "source_chunks": [
+        "814",
+        "820",
+        "821",
+        "824",
+        "825",
+        "829",
+        "834",
+        "835",
+        "837",
+        "841",
+        "887",
+        "888",
+        "889",
+        "890"
+      ],
+      "source_file": "batch_842.txt; batch_848.txt; batch_854.txt; batch_862.txt; batch_864.txt; batch_867.txt; batch_872.txt; batch_873.txt; batch_908.txt; batch_909.txt; batch_910.txt; batch_911.txt",
+      "sender": "Sinh Nguyen-Dau Tu; Huy M - IM; Binh Vo-GD-PTDT",
+      "location": "Nhơn Trạch/Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Swan Bay 456ha nhiều dự án con do DIC chuyển nhượng lại; Swan Bay biệt lập trên đảo định vị nghỉ dưỡng cao cấp, Swan Park trung tâm Nhơn Trạch định vị thương mại-dịch vụ tầm trung; Aqua City nhiều phân khu của Nova",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "456 ha"
+        ],
+        "raw": "Swan Bay 456ha nhiều dự án con do DIC chuyển nhượng lại; Swan Bay biệt lập trên đảo định vị nghỉ dưỡng cao cấp, Swan Park trung tâm Nhơn Trạch định vị thương mại-dịch vụ tầm trung; Aqua City nhiều phân khu của Nova"
+      },
+      "legal": {
+        "land": "Nhóm dự án Đồng Nai cần lưu ý rủi ro pháp lý/sai phạm đất đai từ các part trước",
+        "project": "",
+        "raw": "Nhóm dự án Đồng Nai cần lưu ý rủi ro pháp lý/sai phạm đất đai từ các part trước; Aqua City/Nova giai đoạn 2022-2023 dừng triển khai/bán hàng"
+      },
+      "financial_items": [
+        {
+          "label": "SwanBay vs SwanPark - nhà phố hiện tại",
+          "value": "SwanBay cao hơn khoảng 120%-150%",
+          "source_chunk": "814"
+        },
+        {
+          "label": "SwanBay vs SwanPark - song lập hiện tại",
+          "value": "SwanBay cao hơn khoảng 30%-50%",
+          "source_chunk": "814"
+        },
+        {
+          "label": "SwanBay vs SwanPark - đơn lập hiện tại",
+          "value": "SwanBay cao hơn khoảng 110%-160%",
+          "source_chunk": "814"
+        },
+        {
+          "label": "SwanBay vs SwanPark - shophouse hiện tại",
+          "value": "SwanBay cao hơn khoảng 40%-50%",
+          "source_chunk": "814"
+        },
+        {
+          "label": "SwanBay vs SwanPark - dinh thự hiện tại",
+          "value": "SwanBay cao hơn khoảng 210%-310%",
+          "source_chunk": "814"
+        }
+      ],
+      "business_notes": "SwanBay cao hơn SwanPark mạnh: nhà phố hiện tại +120-150%, song lập +30-50%, đơn lập +110-160%, shophouse +40-50%, dinh thự +210-310%; Aqua thanh khoản thấp/dừng triển khai, từng giảm giá 45-50% với thanh toán 95% lúc khủng hoảng",
+      "excerpt": "So sánh Swan Park/Swan Bay/Aqua City: khác biệt phân khúc, vị trí, thanh khoản; SwanBay cao hơn SwanPark đáng kể."
+    },
+    {
+      "id": "M09-0005",
+      "part": 9,
+      "decision": "market_research_record",
+      "project_name": "Khảo sát Long Phước/Đông Thủ Đức/Nhơn Trạch",
+      "report_date": "2023-06-10",
+      "source_chunks": [
+        "816",
+        "817",
+        "830",
+        "857",
+        "882"
+      ],
+      "source_file": "batch_843.txt; batch_862.txt; batch_889.txt; batch_901.txt",
+      "sender": "Tuan Tran-CEO; Sinh Nguyen-Dau Tu",
+      "location": "Long Phước, Quận 9/TP Thủ Đức và Nhơn Trạch",
+      "map_url": "https://goo.gl/maps/CJMhzfJXxVkLkHgVA",
+      "scale_raw": "Khảo sát dự án cùng phân khúc rẻ nhất Q9/Long Phước, phân lô bán nền không xây nhà giá rẻ Nhơn Trạch, so sánh với Swan Park/Diamond Island",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Khảo sát dự án cùng phân khúc rẻ nhất Q9/Long Phước, phân lô bán nền không xây nhà giá rẻ Nhơn Trạch, so sánh với Swan Park/Diamond Island"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Market research, cần rà pháp lý từng dự án phân lô/sổ nền"
+      },
+      "financial_items": [],
+      "business_notes": "Giá đất giảm 15-20% so với năm trước với tài sản áp lực lãi vay/chứng khoán; thanh khoản thấp, ít tin rao",
+      "excerpt": "CEO yêu cầu kiếm dự án Long Phước/Q9 cùng phân khúc rẻ nhất so Swan Park; khảo sát phân lô Nhơn Trạch."
+    },
+    {
+      "id": "M09-0006",
+      "part": 9,
+      "decision": "project_record_with_risk",
+      "project_name": "The Bale, Mũi Né/Phan Thiết",
+      "report_date": "2023-06-09",
+      "source_chunks": [
+        "822",
+        "838",
+        "839",
+        "853"
+      ],
+      "source_file": "batch_850.txt; batch_873.txt; batch_881.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Hẻm Nguyễn Đình Chiểu, Mũi Né/Phan Thiết, Bình Thuận",
+      "map_url": "",
+      "scale_raw": "Dự án du lịch không có mặt tiền biển/đường ven biển, cách biển khoảng 500m, bị khu dân cư chắn hướng ra biển",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án du lịch không có mặt tiền biển/đường ven biển, cách biển khoảng 500m, bị khu dân cư chắn hướng ra biển"
+      },
+      "legal": {
+        "land": "Đất TMDV thuê trả tiền hằng năm đến 2059/2058； được phép bán/cho thuê công trình trên đất, đủ điều kiện tách QSDĐ theo QH 1/500 sau khi hoàn tất xây dựng nhưng hình thức thuê đất trả tiền hằng năm khó bán sản phẩm thu tiền một lần, pháp lý chuyển giao chưa rõ",
+        "project": "được phép bán/cho thuê công trình trên đất, đủ điều kiện tách QSDĐ theo QH 1/500 sau khi hoàn tất xây dựng nhưng hình thức thuê đất trả tiền hằng năm khó bán sản phẩm thu tiền một lần, pháp lý chuyển giao chưa rõ",
+        "raw": "Đất TMDV thuê trả tiền hằng năm đến 2059/2058; được phép bán/cho thuê công trình trên đất, đủ điều kiện tách QSDĐ theo QH 1/500 sau khi hoàn tất xây dựng nhưng hình thức thuê đất trả tiền hằng năm khó bán sản phẩm thu tiền một lần, pháp lý chuyển giao chưa rõ"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào cập nhật",
+          "value": "2.000.000 đ/m2 đất",
+          "source_chunk": "822"
+        }
+      ],
+      "business_notes": "Giá giảm xuống 2tr/m2 nhưng pháp lý đất thuê hằng năm và không mặt biển khiến dự án kém hấp dẫn; thời hạn còn khoảng 35 năm, triển khai 3-5 năm thì còn khoảng 30 năm khai thác",
+      "excerpt": "The Bale Mũi Né giá giảm còn 2tr/m2 nhưng đất TMDV thuê hằng năm, không mặt biển, thời hạn còn ngắn nên không hấp dẫn."
+    },
+    {
+      "id": "M09-0007",
+      "part": 9,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+      "report_date": "2023-05-27",
+      "source_chunks": [
+        "843"
+      ],
+      "source_file": "batch_875.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường D4/Thuận Giao 09, Thuận Giao, Thuận An, Bình Dương",
+      "map_url": "https://goo.gl/maps/xNEqZWHrXNzKYLHe6",
+      "scale_raw": "Diện tích 9.652,2m2, 2 khối 24 tầng + 2 hầm, HSSDĐ 10,7; giá chào 200 tỷ",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "10,7",
+        "population": "",
+        "area_mentions": [
+          "9.652,2 m2",
+          "86,7 m2",
+          "3.153,3 m2",
+          "2.000 m2",
+          "4.412,2 m2",
+          "9.652 m2"
+        ],
+        "raw": "Diện tích 9.652,2m2, 2 khối 24 tầng + 2 hầm, HSSDĐ 10,7; giá chào 200 tỷ"
+      },
+      "legal": {
+        "land": "3 GCN gồm ODT 86,7m2 lâu dài, HNK 3.153,3m2 đến 10/2063, TMDV 2.000m2 đã hết hạn 12/2020, SKC 4.412,2m2 đến 01/2050",
+        "project": "",
+        "raw": "3 GCN gồm ODT 86,7m2 lâu dài, HNK 3.153,3m2 đến 10/2063, TMDV 2.000m2 đã hết hạn 12/2020, SKC 4.412,2m2 đến 01/2050; trùng Part 6"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "200 tỷ, khoảng 20,7 tr/m2",
+          "source_chunk": "843"
+        }
+      ],
+      "business_notes": "Rủi ro pháp lý đất lớn, đã được nhập Part 6",
+      "excerpt": "Việt An Thuận Giao 9.652m2 giá 200 tỷ, đất hỗn hợp có TMDV hết hạn/SKC."
+    },
+    {
+      "id": "M09-0008",
+      "part": 9,
+      "decision": "project_watchlist",
+      "project_name": "Green Hill, Quy Nhơn",
+      "report_date": "2023-05-18",
+      "source_chunks": [
+        "848",
+        "849",
+        "850",
+        "851"
+      ],
+      "source_file": "batch_879.txt; batch_880.txt",
+      "sender": "Huy M - IM",
+      "location": "Quy Nhơn, Bình Định",
+      "map_url": "",
+      "scale_raw": "Dự án Green Hill Quy Nhơn; có video quang cảnh và báo cáo khảo sát/đánh giá pháp lý 2022.08.22",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Dự án Green Hill Quy Nhơn; có video quang cảnh và báo cáo khảo sát/đánh giá pháp lý 2022.08.22"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần đối chiếu file thiết kế/hồ sơ pháp lý; trùng record Green Hill Part 10 sẽ chi tiết hơn"
+      },
+      "financial_items": [],
+      "business_notes": "CEO yêu cầu gửi lại thông tin dự án Quy Nhơn; lưu nguồn link SharePoint/video",
+      "excerpt": "Green Hill Quy Nhơn: gửi lại báo cáo khảo sát và đánh giá pháp lý, link hồ sơ/video."
+    },
+    {
+      "id": "M09-0009",
+      "part": 9,
+      "decision": "project_record_update",
+      "project_name": "Cụm công nghiệp Giao Yến, Giao Thủy, Nam Định",
+      "report_date": "2023-04-26",
+      "source_chunks": [
+        "856",
+        "859",
+        "860",
+        "861"
+      ],
+      "source_file": "batch_888.txt; batch_893.txt",
+      "sender": "Huy M - IM",
+      "location": "Xã Giao Yến, huyện Giao Thủy, Nam Định",
+      "map_url": "https://goo.gl/maps/nSTM1wgMZyyzcAhg9",
+      "scale_raw": "CCN Giao Yến ở bước đầu xin dự án, phải bồi thường GPMB, pháp lý, xây dựng hạ tầng KCN; đề xuất xin thêm 75ha bên cạnh để tăng scale/hiệu quả; triển khai đồng bộ theo hạ tầng tỉnh: đường ven biển, Nam Định - Lạc Quần, cao tốc, VSIP",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "75 ha"
+        ],
+        "raw": "CCN Giao Yến ở bước đầu xin dự án, phải bồi thường GPMB, pháp lý, xây dựng hạ tầng KCN; đề xuất xin thêm 75ha bên cạnh để tăng scale/hiệu quả; triển khai đồng bộ theo hạ tầng tỉnh: đường ven biển, Nam Định - Lạc Quần, cao tốc, VSIP"
+      },
+      "legal": {
+        "land": "",
+        "project": "Dự án CCN cần xin chủ trương, GPMB, đầu tư hạ tầng",
+        "raw": "Dự án CCN cần xin chủ trương, GPMB, đầu tư hạ tầng; theo dõi cầu Thái Định/đường ven biển"
+      },
+      "financial_items": [],
+      "business_notes": "Mục tiêu đón điểm rơi hạ tầng và KCN VSIP, gia tăng hiệu quả do không tốn thêm bộ máy vận hành nếu mở rộng",
+      "excerpt": "CCN Giao Yến Nam Định: bước đầu xin dự án, hưởng lợi VSIP/đường ven biển/cao tốc; cân nhắc xin thêm 75ha."
+    },
+    {
+      "id": "M09-0010",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
+      "report_date": "2023-04-13",
+      "source_chunks": [
+        "877"
+      ],
+      "source_file": "batch_900.txt",
+      "sender": "Sinh Nguyen-Dau Tu",
+      "location": "Số 2 Mai Hắc Đế, P. Quán Bàu, TP Vinh, Nghệ An",
+      "map_url": "",
+      "scale_raw": "Diện tích đất bàn giao 11.233,6m2; đã bàn giao đợt 1 9.722,9m2, chưa bàn giao đợt 2 1.510,7m2; 3 mặt tiền Mai Hắc Đế QH 45m, Phan Bội Châu QH 40m, đường nội bộ QH 12m; cách chợ Vinh 2,7km, ga Vinh 1km, TTHC Vinh 2,5km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "11.233,6 m2",
+          "9.722,9 m2",
+          "1.510,7 m2",
+          "3.478,3 m2",
+          "1.978 m2",
+          "4.266,6 m2"
+        ],
+        "raw": "Diện tích đất bàn giao 11.233,6m2; đã bàn giao đợt 1 9.722,9m2, chưa bàn giao đợt 2 1.510,7m2; 3 mặt tiền Mai Hắc Đế QH 45m, Phan Bội Châu QH 40m, đường nội bộ QH 12m; cách chợ Vinh 2,7km, ga Vinh 1km, TTHC Vinh 2,5km"
+      },
+      "legal": {
+        "land": "Đợt 1 gồm SKC 3.478,3m2, ODT 1.978m2, DGT 4.266,6m2； đợt 2 gồm SKC 758,3m2, ODT 752,4m2； đất SKC tổng 4.236,6m2 vẫn của Nhà nước chưa chuyển mục đích",
+        "project": "",
+        "raw": "Đợt 1 gồm SKC 3.478,3m2, ODT 1.978m2, DGT 4.266,6m2; đợt 2 gồm SKC 758,3m2, ODT 752,4m2; đất SKC tổng 4.236,6m2 vẫn của Nhà nước chưa chuyển mục đích"
+      },
+      "financial_items": [],
+      "business_notes": "Cần xử lý chuyển mục đích SKC/hoàn tất bàn giao đất đợt 2",
+      "excerpt": "DKC Arita Twin Tower Vinh 1,1ha, 3 mặt tiền, còn SKC chưa chuyển mục đích và đất đợt 2 chưa bàn giao."
+    },
+    {
+      "id": "M09-0011",
+      "part": 9,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+      "report_date": "2023-04-11",
+      "source_chunks": [
+        "879",
+        "881"
+      ],
+      "source_file": "batch_901.txt",
+      "sender": "Thao L - INVT",
+      "location": "197 Lê Văn Sỹ, P.13, Q3, TP.HCM",
+      "map_url": "https://goo.gl/maps/AivqKgNA3GRARDNZ7",
+      "scale_raw": "Diện tích 985,7m2; lộ giới 120,07m2, đất phù hợp QH 865,63m2; đất ở lâu dài; pháp lý đầu tư chưa có; QH theo VB 3004/SQHKT-QHKVI ngày 27/08/2020 mục đích văn phòng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "985,7 m2",
+          "120,07 m2",
+          "865,63 m2"
+        ],
+        "raw": "Diện tích 985,7m2; lộ giới 120,07m2, đất phù hợp QH 865,63m2; đất ở lâu dài; pháp lý đầu tư chưa có; QH theo VB 3004/SQHKT-QHKVI ngày 27/08/2020 mục đích văn phòng"
+      },
+      "legal": {
+        "land": "Phương án giữ đất lâu dài bằng cách không tính chi phí đất/cấu trúc vận hành cần rà pháp lý",
+        "project": "",
+        "raw": "Phương án giữ đất lâu dài bằng cách không tính chi phí đất/cấu trúc vận hành cần rà pháp lý"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "340 tỷ",
+          "source_chunk": "879"
+        },
+        {
+          "label": "NPV/IRR nếu tính chi phí đất",
+          "value": "NPV -216 tỷ, IRR 7,24%",
+          "source_chunk": "881"
+        },
+        {
+          "label": "NPV/IRR nếu không tính chi phí đất",
+          "value": "NPV 107 tỷ, IRR 24,45%",
+          "source_chunk": "881"
+        }
+      ],
+      "business_notes": "Có tính 2 phương án tài chính: tính chi phí đất thì không hiệu quả, không tính chi phí đất thì hiệu quả",
+      "excerpt": "197 Lê Văn Sỹ: 985,7m2, giá 340 tỷ; tính đất thì NPV -216/IRR 7,24%, không tính đất thì NPV 107/IRR 24,45%."
+    },
+    {
+      "id": "M09-0012",
+      "part": 9,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+      "report_date": "2022-08-22",
+      "source_chunks": [
+        "892",
+        "893"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+      "map_url": "https://goo.gl/maps/eqfdgJBc7XT7VhAW8",
+      "scale_raw": "Cơ cấu giá bán sản phẩm KDC/KĐT; đất ở thấp 23,7%, TMDV khoảng 14% làm hiệu quả kém",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "50 ha"
+        ],
+        "raw": "Cơ cấu giá bán sản phẩm KDC/KĐT; đất ở thấp 23,7%, TMDV khoảng 14% làm hiệu quả kém"
+      },
+      "legal": {
+        "land": "Đang xin chủ trương đấu thầu, đất lúa/GPMB, QH đề xuất chưa duyệt",
+        "project": "Đang xin chủ trương đấu thầu, đất lúa/GPMB, QH đề xuất chưa duyệt",
+        "raw": "Đang xin chủ trương đấu thầu, đất lúa/GPMB, QH đề xuất chưa duyệt; trùng Part 6"
+      },
+      "financial_items": [
+        {
+          "label": "Giá hiện tại nhà liền kề",
+          "value": "25 tr/m2 đất, 9 tr/m2 sàn",
+          "source_chunk": "892"
+        },
+        {
+          "label": "Giá hiện tại shophouse",
+          "value": "30 tr/m2 đất, 9 tr/m2 sàn",
+          "source_chunk": "892"
+        },
+        {
+          "label": "LNTT/TMĐT",
+          "value": "24,1%",
+          "source_chunk": "893"
+        },
+        {
+          "label": "NPV/IRR CĐT",
+          "value": "NPV (20,637), IRR 11,68%",
+          "source_chunk": "893"
+        }
+      ],
+      "business_notes": "Đề xuất chuyển toàn bộ/đa phần TMDV sang đất ở để tăng thanh khoản",
+      "excerpt": "50ha Vĩnh Phúc: LNTT/TMĐT 24,1% nhưng NPV âm/IRR 11,68%; đất ở thấp, TMDV cao."
+    },
+    {
+      "id": "M09-0013",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Quỹ đất 3,4ha Nguyễn Hữu Thọ, Nhà Bè",
+      "report_date": "2022-08-26",
+      "source_chunks": [
+        "895"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Đường Nguyễn Hữu Thọ, Nhà Bè, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích hiện trạng 34.729m2 đất nông; giá chào 589 tỷ, 17tr/m2; mặt tiền rộng khoảng 100m Nguyễn Hữu Thọ, cách Nguyễn Văn Linh 5km, Q1 11km, TSN 17km, đối diện GS Metro City, cách Zeitgeist 600m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "34.729 m2",
+          "3,4 ha"
+        ],
+        "raw": "Diện tích hiện trạng 34.729m2 đất nông; giá chào 589 tỷ, 17tr/m2; mặt tiền rộng khoảng 100m Nguyễn Hữu Thọ, cách Nguyễn Văn Linh 5km, Q1 11km, TSN 17km, đối diện GS Metro City, cách Zeitgeist 600m"
+      },
+      "legal": {
+        "land": "cần rà quy hoạch và khả năng chuyển mục đích/phát triển",
+        "project": "pháp lý đầu tư chưa có； cần rà quy hoạch và khả năng chuyển mục đích/phát triển",
+        "raw": "Chưa có hồ sơ pháp lý cụ thể; pháp lý đầu tư chưa có; cần rà quy hoạch và khả năng chuyển mục đích/phát triển"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "589 tỷ, khoảng 17 tr/m2 đất",
+          "source_chunk": "895"
+        }
+      ],
+      "business_notes": "Lead lớn vị trí tốt nhưng cần xử lý pháp lý đất nông nghiệp",
+      "excerpt": "3,4ha Nguyễn Hữu Thọ Nhà Bè, giá 589 tỷ, đất nông, đối diện GS Metro City/cách Zeitgeist 600m."
+    },
+    {
+      "id": "M09-0014",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+      "report_date": "2022-08-26",
+      "source_chunks": [
+        "897",
+        "898"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Quy Vo-PTDT",
+      "location": "486 Ngọc Hồi, TT Văn Điển, Thanh Trì, Hà Nội",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 24.282m2; giá chào khoảng 1.500 tỷ, 61,7tr/m2; nằm trên đường Ngọc Hồi/QL1A cửa ngõ Nam Hà Nội, cách CBD Hà Nội 9,5km, gần VĐ3 trên cao, cao tốc Hà Nội-Ninh Bình, cách Depot Ngọc Hồi 2,5km; giáp đường sắt Bắc Nam/tương lai đường sắt đô thị Yên Viên - Ngọc Hồi",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "24.282 m2"
+        ],
+        "raw": "Tổng diện tích 24.282m2; giá chào khoảng 1.500 tỷ, 61,7tr/m2; nằm trên đường Ngọc Hồi/QL1A cửa ngõ Nam Hà Nội, cách CBD Hà Nội 9,5km, gần VĐ3 trên cao, cao tốc Hà Nội-Ninh Bình, cách Depot Ngọc Hồi 2,5km; giáp đường sắt Bắc Nam/tương lai đường sắt đô thị Yên Viên - Ngọc Hồi"
+      },
+      "legal": {
+        "land": "Có GCNQSDĐ theo báo cáo nhưng excerpt bị cắt",
+        "project": "",
+        "raw": "Có GCNQSDĐ theo báo cáo nhưng excerpt bị cắt; cần rà pháp lý đất/đầu tư/xây dựng"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "khoảng 1.500 tỷ, 61,7 tr/m2",
+          "source_chunk": "897"
+        }
+      ],
+      "business_notes": "Vị trí giao thông tốt nhưng bị ảnh hưởng tiếng ồn/đường sắt; giá chào lớn",
+      "excerpt": "Ngọc Hồi Thanh Trì 24.282m2, giá 1.500 tỷ, gần Depot Ngọc Hồi/đường sắt."
+    },
+    {
+      "id": "M09-0015",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Dự án Suối Nhum",
+      "report_date": "2022-08-30",
+      "source_chunks": [
+        "899"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Suối Nhum",
+      "map_url": "",
+      "scale_raw": "Chuyển nhượng 100% cổ phần công ty sở hữu dự án; QH mới dự kiến điều chỉnh",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Chuyển nhượng 100% cổ phần công ty sở hữu dự án; QH mới dự kiến điều chỉnh"
+      },
+      "legal": {
+        "land": "Cần rà pháp lý công ty/dự án và nghĩa vụ TSDĐ； tính đã dự trù đóng thêm TSDĐ được miễn giảm 20% theo bảng giá đất 2013 là 25 tỷ",
+        "project": "",
+        "raw": "Cần rà pháp lý công ty/dự án và nghĩa vụ TSDĐ; tính đã dự trù đóng thêm TSDĐ được miễn giảm 20% theo bảng giá đất 2013 là 25 tỷ"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.180 tỷ theo chuyển nhượng 100% cổ phần",
+          "source_chunk": "899"
+        },
+        {
+          "label": "IRR theo QH mới",
+          "value": "23,4%",
+          "source_chunk": "899"
+        },
+        {
+          "label": "TSDĐ đóng thêm dự tính",
+          "value": "25 tỷ, đã miễn giảm 20% theo bảng giá đất 2013",
+          "source_chunk": "899"
+        }
+      ],
+      "business_notes": "KĐT đề xuất xúc tiến làm việc với đối tác để nhận chuyển nhượng công ty sở hữu dự án",
+      "excerpt": "Suối Nhum giá 1.180 tỷ chuyển nhượng cổ phần, QH mới IRR 23,4%, đề xuất xúc tiến."
+    },
+    {
+      "id": "M09-0016",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
+      "report_date": "2022-09-06",
+      "source_chunks": [
+        "900"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "P. Linh Trung, Thủ Đức, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Diện tích 2,6ha; mặt tiền Song Hành XLHN rộng khoảng 110m và đường Linh Trung rộng 200m; cách ga Metro 500m, cầu Sài Gòn 10km, Nguyễn Huệ Q1 15km; hiện có biệt thự trong khuôn viên, gần trụ điện cao thế",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2,6 ha",
+          "9.227 m2"
+        ],
+        "raw": "Diện tích 2,6ha; mặt tiền Song Hành XLHN rộng khoảng 110m và đường Linh Trung rộng 200m; cách ga Metro 500m, cầu Sài Gòn 10km, Nguyễn Huệ Q1 15km; hiện có biệt thự trong khuôn viên, gần trụ điện cao thế"
+      },
+      "legal": {
+        "land": "Chưa cấp GCN nhưng có quyết định giao đất, cho phép chuyển mục đích sang dự án chung cư và đã hoàn tất nghĩa vụ tài chính； đất ở 9.227m2 giao đất có thu tiền SDĐ lâu dài theo excerpt",
+        "project": "",
+        "raw": "Chưa cấp GCN nhưng có quyết định giao đất, cho phép chuyển mục đích sang dự án chung cư và đã hoàn tất nghĩa vụ tài chính; đất ở 9.227m2 giao đất có thu tiền SDĐ lâu dài theo excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.250 tỷ, khoảng 48 tr/m2 đất",
+          "source_chunk": "900"
+        }
+      ],
+      "business_notes": "Vị trí giao thông tốt nhưng cần rà GCN, điện cao thế và pháp lý xây dựng",
+      "excerpt": "2,6ha Song Hành XLHN Linh Trung, giá 1.250 tỷ, gần Metro 500m, có QĐ giao đất/chuyển mục đích nhưng chưa GCN."
+    },
+    {
+      "id": "M09-0017",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
+      "report_date": "2022-09-06",
+      "source_chunks": [
+        "904",
+        "905",
+        "906"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Đường Thuận An Hóa/An Phú 11, An Phú, Thuận An, Bình Dương",
+      "map_url": "https://goo.gl/maps/C86NnDNwQKH22Bek9",
+      "scale_raw": "Diện tích 12.705m2 GCN cá nhân; 2 mặt tiền Thuận An Hóa rộng 60m và An Phú 11 rộng 175m; cách Mỹ Phước-Tân Vạn 80m, QL13 3,5km, TPHCM 10km; gần VSIP 1 và KDC hiện hữu",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "2.685,",
+        "area_mentions": [
+          "12.705 m2",
+          "12.433,9 m2",
+          "711,8 m2",
+          "1,2 ha"
+        ],
+        "raw": "Diện tích 12.705m2 GCN cá nhân; 2 mặt tiền Thuận An Hóa rộng 60m và An Phú 11 rộng 175m; cách Mỹ Phước-Tân Vạn 80m, QL13 3,5km, TPHCM 10km; gần VSIP 1 và KDC hiện hữu"
+      },
+      "legal": {
+        "land": "Đất hàng năm khác thời hạn đến 2018/2020； QHSDĐ có 12.433,9m2 ODT và 711,8m2 giao thông",
+        "project": "pháp lý đầu tư chưa có； cần PL kiểm tra QH 1/2000 mới nhất, khả năng xin dân số 2.685, chuyển lên thổ cư/làm chung cư và quy trình",
+        "raw": "Đất hàng năm khác thời hạn đến 2018/2020; pháp lý đầu tư chưa có; QHSDĐ có 12.433,9m2 ODT và 711,8m2 giao thông; cần PL kiểm tra QH 1/2000 mới nhất, khả năng xin dân số 2.685, chuyển lên thổ cư/làm chung cư và quy trình"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "240 tỷ, khoảng 18,575 tr/m2 đất",
+          "source_chunk": "904"
+        }
+      ],
+      "business_notes": "Lead từ Mr Nhựt; giá chào hiện trạng, rủi ro chuyển mục đích/pháp lý cao",
+      "excerpt": "1,2ha Thuận An Hóa giá 240 tỷ, GCN đất hàng năm hết hạn, QH ODT; cần kiểm tra chuyển thổ cư/làm chung cư."
+    },
+    {
+      "id": "M09-0018",
+      "part": 9,
+      "decision": "project_record",
+      "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
+      "report_date": "2022-09-06",
+      "source_chunks": [
+        "907",
+        "909"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bãi Trường, Dương Tơ, Phú Quốc",
+      "map_url": "",
+      "scale_raw": "Quy mô 15,6ha; phần biển dài khoảng 350m, tiếp giáp Trần Hưng Đạo, cách MeyHomes 1,5km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "15,6 ha",
+          "8,5 ha",
+          "1,4 ha",
+          "7,4 ha",
+          "7,1 ha"
+        ],
+        "raw": "Quy mô 15,6ha; phần biển dài khoảng 350m, tiếp giáp Trần Hưng Đạo, cách MeyHomes 1,5km"
+      },
+      "legal": {
+        "land": "8,5ha đất TMDV thuê đất đến 2064, gồm 1,4ha trả tiền một lần và 7,4ha trả tiền hằng năm； có GCN/định thuê/hợp đồng thuê； có GCNĐKĐT KDL Toàn Thịnh Phát",
+        "project": "7,1ha giao thông/cây xanh ngoại khu miễn tiền thuê và bàn giao Nhà nước",
+        "raw": "8,5ha đất TMDV thuê đất đến 2064, gồm 1,4ha trả tiền một lần và 7,4ha trả tiền hằng năm; 7,1ha giao thông/cây xanh ngoại khu miễn tiền thuê và bàn giao Nhà nước; có GCN/định thuê/hợp đồng thuê; có GCNĐKĐT KDL Toàn Thịnh Phát; pháp lý bán sản phẩm nghỉ dưỡng chưa rõ với mục tiêu vận hành"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào chuyển nhượng",
+          "value": "1.300 tỷ",
+          "source_chunk": "907"
+        },
+        {
+          "label": "IRR/NPV",
+          "value": "IRR 14,72%, NPV 698,475",
+          "source_chunk": "909"
+        }
+      ],
+      "business_notes": "Cơ bản đạt hiệu quả tài chính, đề xuất xúc tiến và đàm phán giá; cần lưu ý QHC Phú Quốc 2040 có thể tăng chỉ tiêu sau phê duyệt",
+      "excerpt": "Toàn Thịnh Phát Bãi Trường 15,6ha giá 1.300 tỷ, biển 350m, IRR 14,72%, NPV 698,475; pháp lý bán nghỉ dưỡng chưa rõ."
+    },
+    {
+      "id": "M10-0001",
+      "part": 10,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+      "report_date": "2022-11-02",
+      "source_chunks": [
+        "910",
+        "930"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Thuận An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Quy mô đất 4,6ha đã đền bù dân; CTĐT ban đầu nhà phố thấp tầng 12ha, UBND chấp thuận điều chỉnh từ thấp tầng sang cao tầng + thấp tầng và giảm quy mô 12ha xuống 4,6ha",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "2.970 người",
+        "area_mentions": [
+          "4,6 ha",
+          "12 ha",
+          "5,4 ha"
+        ],
+        "raw": "Quy mô đất 4,6ha đã đền bù dân; CTĐT ban đầu nhà phố thấp tầng 12ha, UBND chấp thuận điều chỉnh từ thấp tầng sang cao tầng + thấp tầng và giảm quy mô 12ha xuống 4,6ha"
+      },
+      "legal": {
+        "land": "phát hiện 5,4ha nguồn gốc đất công nên CĐT cũ trình QH 1/500 điều chỉnh còn 4,6ha gồm thấp tầng và đất hỗn hợp cao tầng",
+        "project": "Có QH 1/500 12ha dân số 2.970 người； phát hiện 5,4ha nguồn gốc đất công nên CĐT cũ trình QH 1/500 điều chỉnh còn 4,6ha gồm thấp tầng và đất hỗn hợp cao tầng",
+        "raw": "Có QH 1/500 12ha dân số 2.970 người; phát hiện 5,4ha nguồn gốc đất công nên CĐT cũ trình QH 1/500 điều chỉnh còn 4,6ha gồm thấp tầng và đất hỗn hợp cao tầng; chưa có pháp lý xây dựng"
+      },
+      "financial_items": [],
+      "business_notes": "Nguồn sớm của dự án Đông Trung, bổ sung timeline khảo sát và pháp lý",
+      "excerpt": "Đông Trung 4,6ha đã đền bù, điều chỉnh từ 12ha thấp tầng sang 4,6ha cao tầng + thấp tầng do 5,4ha đất công."
+    },
+    {
+      "id": "M10-0002",
+      "part": 10,
+      "decision": "portfolio_context",
+      "project_name": "Cụm dự án Đà Nẵng của BeeGroup / chiến lược khách sạn Đà Nẵng",
+      "report_date": "2022-09-12",
+      "source_chunks": [
+        "911",
+        "969",
+        "970"
+      ],
+      "source_file": "batch_917.txt; batch_922.txt",
+      "sender": "Huy M - IM; Binh Vo-GD-PTDT",
+      "location": "Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Danh sách tổng hợp hiện trạng 12 dự án BeeGroup tại Đà Nẵng; cần thu thập hồ sơ dự án/pháp lý/lộ trình/vị trí để xây dựng chiến lược cụm dự án/khách sạn Đà Nẵng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Danh sách tổng hợp hiện trạng 12 dự án BeeGroup tại Đà Nẵng; cần thu thập hồ sơ dự án/pháp lý/lộ trình/vị trí để xây dựng chiến lược cụm dự án/khách sạn Đà Nẵng"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần phối hợp phòng ban liên quan để tổng hợp hồ sơ còn thiếu"
+      },
+      "financial_items": [],
+      "business_notes": "Context portfolio, team bị phân bổ thời gian do nhiều dự án tiền M&A",
+      "excerpt": "Cụm 12 dự án Đà Nẵng/chiến lược khách sạn Đà Nẵng: cần tổng hợp hồ sơ pháp lý, vị trí, lộ trình."
+    },
+    {
+      "id": "M10-0003",
+      "part": 10,
+      "decision": "project_record_update",
+      "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+      "report_date": "2022-08-26",
+      "source_chunks": [
+        "914",
+        "915"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Nguyễn Hữu Thọ, Nhà Bè, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Cập nhật từ 3,4ha lên tổng quy mô 3,97ha; giá chào 675,3 tỷ, 17tr/m2; không có mặt tiền trực tiếp Nguyễn Hữu Thọ, chỉ có mặt tiền 80m đường QH lộ giới 40m cắt ngang quỹ đất",
+      "planning": {
+        "floors": "",
+        "density": "20%",
+        "far": "3,85",
+        "population": "2.448,",
+        "area_mentions": [
+          "3,4 ha",
+          "3,97 ha",
+          "46.000 m2",
+          "97.086 m2"
+        ],
+        "raw": "Cập nhật từ 3,4ha lên tổng quy mô 3,97ha; giá chào 675,3 tỷ, 17tr/m2; không có mặt tiền trực tiếp Nguyễn Hữu Thọ, chỉ có mặt tiền 80m đường QH lộ giới 40m cắt ngang quỹ đất"
+      },
+      "legal": {
+        "land": "hướng 2 giữ đất chờ luật sửa đổi",
+        "project": "QH 1/2000 thuộc một phần ô I.04 chức năng khu nhà cao tầng 46.000m2, dân số 2.448, tầng cao 18-23, MĐXD 20%, HSSD 3,85-4,93； hướng 1 mua thêm thửa liền kề để sở hữu đủ ô I.04/đấu thầu",
+        "raw": "QH 1/2000 thuộc một phần ô I.04 chức năng khu nhà cao tầng 46.000m2, dân số 2.448, tầng cao 18-23, MĐXD 20%, HSSD 3,85-4,93; hướng 1 mua thêm thửa liền kề để sở hữu đủ ô I.04/đấu thầu; hướng 2 giữ đất chờ luật sửa đổi"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào cập nhật",
+          "value": "675,3 tỷ, khoảng 17 tr/m2",
+          "source_chunk": "914"
+        }
+      ],
+      "business_notes": "Sản phẩm phát triển thay đổi: 1.494 căn chung cư, DTKD 97.086m2 theo excerpt; cần mua thêm đất hoặc chờ pháp lý mới",
+      "excerpt": "Nguyễn Hữu Thọ Nhà Bè cập nhật 3,97ha giá 675,3 tỷ; không mặt tiền NHT, cần mua đủ ô I.04 hoặc chờ luật."
+    },
+    {
+      "id": "M10-0004",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+      "report_date": "2022-09-19",
+      "source_chunks": [
+        "917",
+        "918"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Hẻm E6 đường CMT8, P.11, Q3, TP.HCM",
+      "map_url": "",
+      "scale_raw": "Quy mô 7.234m2; giá chào 1.200 tỷ, 165,86tr/m2 đất, bao gồm TSDĐ và QH 1/500; mặt tiền tiếp xúc hẻm rộng 130m, cách CMT8 70m, vòng xoay Dân Chủ 2km, Nguyễn Huệ 5,4km, công viên Lê Thị Riêng/Metro số 2 125m; sau giáp ga xe lửa Sài Gòn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "7.234 m2"
+        ],
+        "raw": "Quy mô 7.234m2; giá chào 1.200 tỷ, 165,86tr/m2 đất, bao gồm TSDĐ và QH 1/500; mặt tiền tiếp xúc hẻm rộng 130m, cách CMT8 70m, vòng xoay Dân Chủ 2km, Nguyễn Huệ 5,4km, công viên Lê Thị Riêng/Metro số 2 125m; sau giáp ga xe lửa Sài Gòn"
+      },
+      "legal": {
+        "land": "",
+        "project": "đã được phê duyệt dự án đầu tư theo excerpt bị cắt",
+        "raw": "Chưa được cung cấp pháp lý đất; đã được phê duyệt dự án đầu tư theo excerpt bị cắt; cần rà tiếng ồn/ga xe lửa, QH và pháp lý đất"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.200 tỷ, khoảng 165,86 tr/m2 đất",
+          "source_chunk": "917"
+        }
+      ],
+      "business_notes": "Vị trí trung tâm Q3 gần Metro nhưng giá cao, có ảnh hưởng tiếng ồn đường sắt",
+      "excerpt": "Minh Ngọc CMT8 Q3 7.234m2 giá 1.200 tỷ, gần Metro/công viên Lê Thị Riêng, sau giáp ga Sài Gòn."
+    },
+    {
+      "id": "M10-0005",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Vương Bảo Long, An Bình, Dĩ An",
+      "report_date": "2022-09-23",
+      "source_chunks": [
+        "919",
+        "920"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Đường Bà Giang, An Bình, Dĩ An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Diện tích GCN 86.834,2m2; khu đất kho bãi container; lối tiếp cận chính đường Bà Giang rộng 16m, đường vào nghĩa trang bên hông rộng 245m; sau giáp nghĩa trang Hải Nam, phía trước có mộ dân, bên hông kho bãi container",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "86.834,2 m2",
+          "3.420,2 m2",
+          "83.336,4 m2",
+          "86.834 m2"
+        ],
+        "raw": "Diện tích GCN 86.834,2m2; khu đất kho bãi container; lối tiếp cận chính đường Bà Giang rộng 16m, đường vào nghĩa trang bên hông rộng 245m; sau giáp nghĩa trang Hải Nam, phía trước có mộ dân, bên hông kho bãi container"
+      },
+      "legal": {
+        "land": "Đất cơ sở sản xuất phi nông nghiệp: 3.420,2m2 trả tiền hằng năm đến 2057 phần QH đường sắt",
+        "project": "",
+        "raw": "Đất cơ sở sản xuất phi nông nghiệp: 3.420,2m2 trả tiền hằng năm đến 2057 phần QH đường sắt; 83.336,4m2 trả tiền một lần; cần rà đánh giá pháp lý đính kèm"
+      },
+      "financial_items": [],
+      "business_notes": "Vị trí An Bình Dĩ An quy mô lớn nhưng nhược điểm nghĩa trang/mộ dân/kho bãi và pháp lý SKC",
+      "excerpt": "Vương Bảo Long Dĩ An 86.834m2 SKC, kho container, giáp nghĩa trang/mộ dân, cần rà pháp lý."
+    },
+    {
+      "id": "M10-0006",
+      "part": 10,
+      "decision": "land_bank_record",
+      "project_name": "Quỹ đất 10,9ha Hiệp Hòa, Biên Hòa",
+      "report_date": "2022-09-26",
+      "source_chunks": [
+        "921",
+        "922",
+        "923"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Hiệp Hòa, Biên Hòa, Đồng Nai",
+      "map_url": "",
+      "scale_raw": "Quỹ đất 10,9ha chào bán, gồm 9,4ha đất nông nghiệp QH đa phần đất ở giá 7,8tr/m2, phần còn lại là rạch Nhà nước; cần đường kết nối từ Đặng Văn Trơn; đất ngoài ranh nghiên cứu 42.474m2 chiếm 24,7%, cây xanh 5.512m2, đất NN QH đất ở hiện hữu chỉnh trang 8.710m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "10,9 ha",
+          "9,4 ha",
+          "42.474 m2",
+          "5.512 m2",
+          "8.710 m2",
+          "15,8 ha"
+        ],
+        "raw": "Quỹ đất 10,9ha chào bán, gồm 9,4ha đất nông nghiệp QH đa phần đất ở giá 7,8tr/m2, phần còn lại là rạch Nhà nước; cần đường kết nối từ Đặng Văn Trơn; đất ngoài ranh nghiên cứu 42.474m2 chiếm 24,7%, cây xanh 5.512m2, đất NN QH đất ở hiện hữu chỉnh trang 8.710m2"
+      },
+      "legal": {
+        "land": "chưa có đất ở và có rạch Nhà nước xen kẽ nên phải đấu thầu dự án có sử dụng đất",
+        "project": "chưa có đất ở và có rạch Nhà nước xen kẽ nên phải đấu thầu dự án có sử dụng đất",
+        "raw": "Chưa có đường đủ điều kiện kết nối; hiện chỉ có bản vẽ vị trí/ranh; chưa có đất ở và có rạch Nhà nước xen kẽ nên phải đấu thầu dự án có sử dụng đất; ranh dự án phải trọn ô chức năng"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào đất nông nghiệp",
+          "value": "7,8 tr/m2, bao gồm phần đất mở đường QH",
+          "source_chunk": "921"
+        },
+        {
+          "label": "TSDĐ tạm tính",
+          "value": "12 tr/m2 phần đất thương phẩm",
+          "source_chunk": "922"
+        },
+        {
+          "label": "Chi phí làm đường",
+          "value": "1 tr/m2 cho 1,8ha diện tích làm đường",
+          "source_chunk": "922"
+        },
+        {
+          "label": "Giá bán đất ở thương mại",
+          "value": "77 tr/m2 đất và 8,7 tr/m2 sàn năm 2025-2026",
+          "source_chunk": "923"
+        },
+        {
+          "label": "LNTT/TMĐT và LNTT",
+          "value": "15,5%, LNTT 559,5 tỷ",
+          "source_chunk": "923"
+        }
+      ],
+      "business_notes": "Điều kiện tiên quyết: đối tác có sẵn phần đất QH đường kết nối vào dự án từ Đặng Văn Trơn và giá chào đã bao gồm phần đất này; nếu tổng đền bù/chuyển nhượng 1.249 tỷ cho 15,8ha thì cần đàm để đạt LNTT/TMĐT 20%",
+      "excerpt": "Hiệp Hòa Biên Hòa 10,9ha, giá 7,8tr/m2, phải đấu thầu do đất nông nghiệp/rạch, LNTT/TMĐT 15,5%."
+    },
+    {
+      "id": "M10-0007",
+      "part": 10,
+      "decision": "market_survey_plan",
+      "project_name": "Dự án Hùng Thắng 1,7ha / khảo sát thị trường Quảng Ninh",
+      "report_date": "2022-10-01",
+      "source_chunks": [
+        "924"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Huy M - IM",
+      "location": "Quảng Ninh",
+      "map_url": "",
+      "scale_raw": "Kế hoạch khảo sát thị trường Quảng Ninh, các dự án lớn/quy mô tương tự dự án nghiên cứu Hùng Thắng 1,7ha; thời gian 3-5/11/2022",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1,7 ha"
+        ],
+        "raw": "Kế hoạch khảo sát thị trường Quảng Ninh, các dự án lớn/quy mô tương tự dự án nghiên cứu Hùng Thắng 1,7ha; thời gian 3-5/11/2022"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Kế hoạch khảo sát, chưa có pháp lý dự án cụ thể"
+      },
+      "financial_items": [],
+      "business_notes": "Nhân sự Võ Bình, Mai Huy, Nguyễn Thanh Sơn, Văn Đình Sơn",
+      "excerpt": "Kế hoạch khảo sát Quảng Ninh cho dự án Hùng Thắng 1,7ha."
+    },
+    {
+      "id": "M10-0008",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "The Bale, Phan Thiết/Bình Thuận",
+      "report_date": "2022-10-11",
+      "source_chunks": [
+        "925",
+        "926"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Hẻm Nguyễn Đình Chiểu, Phan Thiết, Bình Thuận",
+      "map_url": "",
+      "scale_raw": "Quy mô 13ha; 2 sổ TMDV 11,3ha thuê đất hằng năm đến 2059; còn 1,9ha đang đền bù; cách biển 500m; QH 1/500 đất biệt thự 37%, căn hộ 5%, bungalow 12,8%, nhà hàng 1,2%, còn lại hạ tầng",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "13 ha",
+          "11,3 ha",
+          "1,9 ha"
+        ],
+        "raw": "Quy mô 13ha; 2 sổ TMDV 11,3ha thuê đất hằng năm đến 2059; còn 1,9ha đang đền bù; cách biển 500m; QH 1/500 đất biệt thự 37%, căn hộ 5%, bungalow 12,8%, nhà hàng 1,2%, còn lại hạ tầng"
+      },
+      "legal": {
+        "land": "đất TMDV thuê hằng năm, CĐT cam kết hoàn thành đường kết nối, đền bù, đóng tiền thuê đất một lần nhưng BeeG trả tiền thuê đất",
+        "project": "Đã có CTĐT duyệt bán/cho thuê theo vòng đời dự án",
+        "raw": "Đã có CTĐT duyệt bán/cho thuê theo vòng đời dự án; đất TMDV thuê hằng năm, CĐT cam kết hoàn thành đường kết nối, đền bù, đóng tiền thuê đất một lần nhưng BeeG trả tiền thuê đất"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "390,48 tỷ, khoảng 3 tr/m2 đất",
+          "source_chunk": "925"
+        }
+      ],
+      "business_notes": "Bản báo cáo sớm với giá 3tr/m2, sau này cập nhật giảm nhưng vẫn rủi ro pháp lý/không mặt biển",
+      "excerpt": "The Bale Phan Thiết 13ha, giá 390,48 tỷ, TMDV thuê hằng năm đến 2059, cách biển 500m."
+    },
+    {
+      "id": "M10-0009",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
+      "report_date": "2022-10-31",
+      "source_chunks": [
+        "927"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Đường Hoàng Quốc Việt, Hạ Long, Quảng Ninh",
+      "map_url": "",
+      "scale_raw": "Diện tích 17.098m2; 4 mặt tiền trục Hoàng Quốc Việt trong quần thể BIM Group, hướng biển, đối diện công viên/biển hồ; QH phân khu đất hỗn hợp, MĐXD 65%, HSSD 12, 30 tầng; đề xuất chung cư cao cấp 133.555m2 sàn",
+      "planning": {
+        "floors": "",
+        "density": "65%",
+        "far": "12,",
+        "population": "",
+        "area_mentions": [
+          "17.098 m2",
+          "133.555 m2",
+          "1,7 ha"
+        ],
+        "raw": "Diện tích 17.098m2; 4 mặt tiền trục Hoàng Quốc Việt trong quần thể BIM Group, hướng biển, đối diện công viên/biển hồ; QH phân khu đất hỗn hợp, MĐXD 65%, HSSD 12, 30 tầng; đề xuất chung cư cao cấp 133.555m2 sàn"
+      },
+      "legal": {
+        "land": "GCNQSDĐ đất ở kết hợp cửa hàng, lâu dài, nguồn gốc Nhà nước giao đất có thu TSDĐ",
+        "project": "pháp lý đầu tư/xây dựng chưa có",
+        "raw": "GCNQSDĐ đất ở kết hợp cửa hàng, lâu dài, nguồn gốc Nhà nước giao đất có thu TSDĐ; pháp lý đầu tư/xây dựng chưa có"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "2.400 tỷ, khoảng 140 tr/m2 đất",
+          "source_chunk": "927"
+        },
+        {
+          "label": "Giá bán chung cư tham khảo",
+          "value": "53 tr/m2 sàn thông thủy có VAT năm 2025",
+          "source_chunk": "927"
+        }
+      ],
+      "business_notes": "Dự án vị trí đẹp nhưng giá rất cao; tham khảo ICON 40 cho giá bán căn hộ",
+      "excerpt": "1,7ha Hoàng Quốc Việt Hạ Long giá 2.400 tỷ, 4 mặt tiền, QH 30 tầng/HSSD 12."
+    },
+    {
+      "id": "M10-0010",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Khu nhà ở Lộc Phú Gia, Phú Giáo, Bình Dương",
+      "report_date": "2022-??-??",
+      "source_chunks": [
+        "929"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "P.ĐT",
+      "location": "Mặt tiền ĐH505 và ĐH507, xã Vĩnh Hòa, huyện Phú Giáo, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Tổng diện tích 690.000m2; giá chào 1.725 tỷ, 2,5tr/m2; mặt tiền ĐH505 khoảng 643m, ĐH507 khoảng 95m, đường nhựa 10m QH 32m; gần ĐT750B lộ giới 52m, cách ĐT741 3,5km; cách KCN An Linh 12km, cao su Đồng Phú 8km, Vĩnh Lộc 2 15km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "690.000 m2",
+          "69 ha"
+        ],
+        "raw": "Tổng diện tích 690.000m2; giá chào 1.725 tỷ, 2,5tr/m2; mặt tiền ĐH505 khoảng 643m, ĐH507 khoảng 95m, đường nhựa 10m QH 32m; gần ĐT750B lộ giới 52m, cách ĐT741 3,5km; cách KCN An Linh 12km, cao su Đồng Phú 8km, Vĩnh Lộc 2 15km"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà pháp lý đất/QH chi tiết; excerpt bị cắt sau phần vị trí"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.725 tỷ, khoảng 2,5 tr/m2",
+          "source_chunk": "929"
+        }
+      ],
+      "business_notes": "Quỹ đất lớn giá thấp ở Phú Giáo, phụ thuộc hạ tầng/thị trường xa trung tâm",
+      "excerpt": "Lộc Phú Gia Phú Giáo 69ha giá 1.725 tỷ, mặt tiền ĐH505/ĐH507, gần các KCN."
+    },
+    {
+      "id": "M10-0011",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+      "report_date": "2022-11-04",
+      "source_chunks": [
+        "931",
+        "932"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bãi Trường, Dương Tơ, Phú Quốc",
+      "map_url": "",
+      "scale_raw": "Quy mô 11,2ha; phần biển dài 250m, tiếp giáp Trần Hưng Đạo, cách MeyHomes 2,3km; hiện có công trình đang xây dựng chưa rõ tiến độ/quy mô/giá trị",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "11,2 ha",
+          "8,37 ha",
+          "6,95 ha",
+          "1,4 ha"
+        ],
+        "raw": "Quy mô 11,2ha; phần biển dài 250m, tiếp giáp Trần Hưng Đạo, cách MeyHomes 2,3km; hiện có công trình đang xây dựng chưa rõ tiến độ/quy mô/giá trị"
+      },
+      "legal": {
+        "land": "GCN 8,37ha đất TMDV đến 2082, nguồn gốc giao đất có thu TSDĐ/đóng tiền thuê đất một lần, giảm 50% TSDĐ theo QĐ 695/QĐ-CT ngày 11/06/2018 với 6,95ha； phần 1,4ha giao thông nội bộ/cây xanh nội khu đóng thuê đất hằng năm đến 2082",
+        "project": "",
+        "raw": "GCN 8,37ha đất TMDV đến 2082, nguồn gốc giao đất có thu TSDĐ/đóng tiền thuê đất một lần, giảm 50% TSDĐ theo QĐ 695/QĐ-CT ngày 11/06/2018 với 6,95ha; phần 1,4ha giao thông nội bộ/cây xanh nội khu đóng thuê đất hằng năm đến 2082"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào chuyển nhượng",
+          "value": "1.100 tỷ, khoảng 9,7 tr/m2, gồm công trình trên đất",
+          "source_chunk": "931"
+        },
+        {
+          "label": "TSDĐ/thuê đất đóng thêm ước tính",
+          "value": "100 tỷ cho 6,95ha, khoảng 1,4 tr/m2",
+          "source_chunk": "932"
+        },
+        {
+          "label": "Thuê đất hằng năm phần 1,4ha đến 2082",
+          "value": "tổng 408 tỷ",
+          "source_chunk": "932"
+        }
+      ],
+      "business_notes": "Không đạt hiệu quả tài chính theo chunk 932; cần rà giá trị công trình hiện hữu và nghĩa vụ nộp thêm phần miễn giảm",
+      "excerpt": "Hải Âu Bãi Trường 11,2ha giá 1.100 tỷ, biển 250m, không đạt hiệu quả tài chính, nghĩa vụ thuê đất lớn."
+    },
+    {
+      "id": "M10-0012",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+      "report_date": "2022-11-08",
+      "source_chunks": [
+        "933",
+        "939",
+        "942"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Huy M - IM; Thao L - INVT",
+      "location": "Huyện Nghĩa Hưng và Giao Thủy, Nam Định",
+      "map_url": "",
+      "scale_raw": "Đề xuất 2 dự án Giao Thủy: KDL TMDV 7ha Quất Lâm và CCN 50ha Giao Tiến. KCN Nghĩa Sơn quy mô dự kiến 120ha tại Nghĩa Hưng, giữa trục Cao Bồ - Nam Điền và ĐT490C; gần KCN Xuân Thiện/VSIP context",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "7 ha",
+          "50 ha",
+          "120 ha"
+        ],
+        "raw": "Đề xuất 2 dự án Giao Thủy: KDL TMDV 7ha Quất Lâm và CCN 50ha Giao Tiến. KCN Nghĩa Sơn quy mô dự kiến 120ha tại Nghĩa Hưng, giữa trục Cao Bồ - Nam Điền và ĐT490C; gần KCN Xuân Thiện/VSIP context"
+      },
+      "legal": {
+        "land": "quỹ đất chủ yếu đất lúa ô lớn thuận lợi GPMB",
+        "project": "quỹ đất chủ yếu đất lúa ô lớn thuận lợi GPMB",
+        "raw": "KCN Nghĩa Sơn đang trình duyệt, chưa có ranh chính xác; quỹ đất chủ yếu đất lúa ô lớn thuận lợi GPMB; cần làm việc cơ quan ban ngành lấy thông tin và khảo sát thực địa"
+      },
+      "financial_items": [
+        {
+          "label": "Bồi thường KCN Nghĩa Sơn ước tính",
+          "value": "khoảng 200.000 đ/m2",
+          "source_chunk": "942"
+        }
+      ],
+      "business_notes": "KCN Nghĩa Sơn có đơn giá bồi thường thấp ~200k/m2, kết nối lên cao tốc Ninh Bình - Hải Phòng - Quảng Ninh hướng Bắc; Giao Thủy hưởng lợi hạ tầng nhưng KDL Quất Lâm hạ tầng kém phát triển",
+      "excerpt": "KCN Nghĩa Sơn Nam Định dự kiến 120ha, đất lúa ô lớn, bồi thường 200k/m2; thêm KDL 7ha Quất Lâm và CCN 50ha Giao Tiến."
+    },
+    {
+      "id": "M10-0013",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+      "report_date": "2022-11-16",
+      "source_chunks": [
+        "934"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "P. Tân Bình, TP Dĩ An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Quy mô 9.379m2; 2 mặt tiền hẻm bê tông kết nối Thanh Niên và Nguyễn Thị Minh Khai; cách Mỹ Phước Tân Vạn 640m, DT743B 3km, QL1K bị cắt; cần hoàn thành đường N5 lộ giới 17m dài 150m",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "9.379 m2"
+        ],
+        "raw": "Quy mô 9.379m2; 2 mặt tiền hẻm bê tông kết nối Thanh Niên và Nguyễn Thị Minh Khai; cách Mỹ Phước Tân Vạn 640m, DT743B 3km, QL1K bị cắt; cần hoàn thành đường N5 lộ giới 17m dài 150m"
+      },
+      "legal": {
+        "land": "giá chào gồm TSDĐ và đền bù/đường kết nối",
+        "project": "",
+        "raw": "Cần rà pháp lý đất/đầu tư/QH; giá chào gồm TSDĐ và đền bù/đường kết nối"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào ban đầu",
+          "value": "380 tỷ",
+          "source_chunk": "934"
+        },
+        {
+          "label": "Giá có thể thương lượng",
+          "value": "320 tỷ gồm 237,55 tỷ đất+TSDĐ và 82,45 tỷ đền bù/đường N5",
+          "source_chunk": "934"
+        }
+      ],
+      "business_notes": "Chủ cần bán gấp nên thương lượng từ 380 xuống 320 tỷ; cấu phần giá gồm đất/TSDĐ và chi phí đền bù đường",
+      "excerpt": "Chung cư Tân Bình Dĩ An 9.379m2, giá chào 380 tỷ có thể 320 tỷ, cần làm đường N5."
+    },
+    {
+      "id": "M10-0014",
+      "part": 10,
+      "decision": "project_valuation_record",
+      "project_name": "Anantara Mũi Né Resort",
+      "report_date": "2022-11-18",
+      "source_chunks": [
+        "935",
+        "936",
+        "937",
+        "938"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Nguyễn Đình Chiểu - Nguyễn Thông, Hàm Tiến, Phan Thiết, Bình Thuận",
+      "map_url": "",
+      "scale_raw": "Resort đang vận hành bởi Minor Hotel Group; mặt tiền biển khoảng 120m, giữa thủ phủ nghỉ dưỡng Phan Thiết, cách Sea Links 1km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [],
+        "raw": "Resort đang vận hành bởi Minor Hotel Group; mặt tiền biển khoảng 120m, giữa thủ phủ nghỉ dưỡng Phan Thiết, cách Sea Links 1km"
+      },
+      "legal": {
+        "land": "QSDĐ và tài sản trên đất đang thế chấp bảo đảm khoản vay",
+        "project": "",
+        "raw": "QSDĐ và tài sản trên đất đang thế chấp bảo đảm khoản vay; cần rà BCTC/giao dịch cổ phần và pháp lý tài sản"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào chuyển nhượng",
+          "value": "875 tỷ",
+          "source_chunk": "935"
+        },
+        {
+          "label": "Khoản vay 31/10/2022",
+          "value": "550 tỷ",
+          "source_chunk": "935"
+        },
+        {
+          "label": "Giá chuyển nhượng cổ phần",
+          "value": "325 tỷ",
+          "source_chunk": "935"
+        },
+        {
+          "label": "Giá trị QSDĐ+CTXD tham chiếu Phú Hải",
+          "value": "759 tỷ",
+          "source_chunk": "937"
+        },
+        {
+          "label": "Chuyển nhượng cổ phần 25/12/2014 và 29/01/2018",
+          "value": "247,7 tỷ và 241,13 tỷ",
+          "source_chunk": "938"
+        }
+      ],
+      "business_notes": "Định giá tham chiếu theo Phú Hải: giá trị QSDĐ+CTXD 759 tỷ; giá đàm phán thấp nhất chủ quan có thể tương đương dư nợ vay 550 tỷ",
+      "excerpt": "Anantara Mũi Né giá chào 875 tỷ, nợ vay 550 tỷ, cổ phần 325 tỷ, định giá tham chiếu Phú Hải 759 tỷ."
+    },
+    {
+      "id": "M10-0015",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Dự án 4,4ha Phú Mỹ, Quốc lộ 51 - Hùng Vương",
+      "report_date": "2022-??-??",
+      "source_chunks": [
+        "941"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "P.ĐT",
+      "location": "P. Tân Phước, TX Phú Mỹ, Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Diện tích 4,4ha; giá chào 600 tỷ, 13,4tr/m2; 2 mặt tiền QL51 khoảng 110m đường 46m và Hùng Vương 78,7m đường 25m; cách TTHC Phú Mỹ 1km, tiện ích trong 2,5km; gần KCN Phú Mỹ I 1,5km, Phú Mỹ II bị cắt",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "4,4 ha"
+        ],
+        "raw": "Diện tích 4,4ha; giá chào 600 tỷ, 13,4tr/m2; 2 mặt tiền QL51 khoảng 110m đường 46m và Hùng Vương 78,7m đường 25m; cách TTHC Phú Mỹ 1km, tiện ích trong 2,5km; gần KCN Phú Mỹ I 1,5km, Phú Mỹ II bị cắt"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cần rà hồ sơ đất/CTĐT/QH",
+        "raw": "Cần rà hồ sơ đất/CTĐT/QH; excerpt chủ yếu vị trí"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "600 tỷ, khoảng 13,4 tr/m2",
+          "source_chunk": "941"
+        }
+      ],
+      "business_notes": "Vị trí thương mại tốt tại trung tâm Phú Mỹ và gần KCN/cảng",
+      "excerpt": "4,4ha Phú Mỹ 2 mặt tiền QL51/Hùng Vương, giá 600 tỷ, cách TTHC Phú Mỹ 1km."
+    },
+    {
+      "id": "M10-0016",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "KDC Minh Hưng, Chơn Thành, Bình Phước",
+      "report_date": "2022-12-14",
+      "source_chunks": [
+        "943",
+        "945",
+        "946"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Xã Minh Hưng, Chơn Thành, Bình Phước",
+      "map_url": "",
+      "scale_raw": "Quy mô 15,2ha; đường vào giáp QL13 rộng 16m, cách KDC Đại Nam 1km; khu vực nhiều KCN hiện hữu và tương lai; giá đất hiện tại TB 11,5tr/m2, tăng giá giả định 10%/năm",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "15,2 ha"
+        ],
+        "raw": "Quy mô 15,2ha; đường vào giáp QL13 rộng 16m, cách KDC Đại Nam 1km; khu vực nhiều KCN hiện hữu và tương lai; giá đất hiện tại TB 11,5tr/m2, tăng giá giả định 10%/năm"
+      },
+      "legal": {
+        "land": "giả định phải hoàn thiện hạ tầng và xây thô tiện ích mới sang tên GCN khách hàng； NOXH chiếm 20% quỹ đất ở",
+        "project": "chỉ nhận chuyển nhượng nếu CTĐT cho phép phân lô bán nền",
+        "raw": "Giá chào chưa gồm CMĐSDĐ; chỉ nhận chuyển nhượng nếu CTĐT cho phép phân lô bán nền; giả định phải hoàn thiện hạ tầng và xây thô tiện ích mới sang tên GCN khách hàng; NOXH chiếm 20% quỹ đất ở"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "280 tỷ, khoảng 1,83 tr/m2, chưa gồm CMĐSDĐ",
+          "source_chunk": "943"
+        },
+        {
+          "label": "TMĐT chưa VAT",
+          "value": "750 tỷ, gồm CMĐSDĐ tạm 100 tỷ",
+          "source_chunk": "945"
+        },
+        {
+          "label": "Doanh thu chưa VAT",
+          "value": "1.037 tỷ",
+          "source_chunk": "945"
+        },
+        {
+          "label": "LNTT",
+          "value": "194 tỷ",
+          "source_chunk": "945"
+        },
+        {
+          "label": "Giá nhận chuyển nhượng để hiệu quả",
+          "value": "204 tỷ IRR 20% đến 250 tỷ IRR 15%, chưa gồm CMĐSDĐ",
+          "source_chunk": "946"
+        }
+      ],
+      "business_notes": "Không đạt hiệu quả tài chính ở giá 280 tỷ; giá hiệu quả 204-250 tỷ chưa gồm CMĐSDĐ",
+      "excerpt": "KDC Minh Hưng 15,2ha giá 280 tỷ chưa gồm CMĐSDĐ; không hiệu quả, giá nên 204-250 tỷ."
+    },
+    {
+      "id": "M10-0017",
+      "part": 10,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+      "report_date": "2022-12-15",
+      "source_chunks": [
+        "947"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Thao L - INVT",
+      "location": "Xã Giao Yến, Giao Thủy, Nam Định",
+      "map_url": "",
+      "scale_raw": "Quy mô 75ha; hiện trạng đất nông nghiệp trống, chưa có đường lớn kết nối; giáp đường bộ ven biển, kết nối QL37B, đường Nam Định - Lạc Quần dài 24,7km TMĐT 6.000 tỷ, mặt cắt lớn nhất 100m, dự kiến hoàn thành 2027; gần VSIP 1.100ha",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "75 ha",
+          "1.100 ha"
+        ],
+        "raw": "Quy mô 75ha; hiện trạng đất nông nghiệp trống, chưa có đường lớn kết nối; giáp đường bộ ven biển, kết nối QL37B, đường Nam Định - Lạc Quần dài 24,7km TMĐT 6.000 tỷ, mặt cắt lớn nhất 100m, dự kiến hoàn thành 2027; gần VSIP 1.100ha"
+      },
+      "legal": {
+        "land": "",
+        "project": "CCN cần thực hiện pháp lý đầu tư, GPMB, hạ tầng",
+        "raw": "CCN cần thực hiện pháp lý đầu tư, GPMB, hạ tầng; trùng Part 9"
+      },
+      "financial_items": [
+        {
+          "label": "TMĐT đường Nam Định - Lạc Quần",
+          "value": "6.000 tỷ, dài 24,7km",
+          "source_chunk": "947"
+        }
+      ],
+      "business_notes": "Hưởng lợi hạ tầng và VSIP; triển khai đón điểm rơi hạ tầng",
+      "excerpt": "CCN Giao Yến 75ha đất nông nghiệp, hưởng lợi đường ven biển/Nam Định-Lạc Quần/VSIP."
+    },
+    {
+      "id": "M10-0018",
+      "part": 10,
+      "decision": "hotel_operation_record",
+      "project_name": "Khách sạn Regalia Gold, Nha Trang",
+      "report_date": "2022-12-27",
+      "source_chunks": [
+        "948",
+        "949"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Nguyễn Thị Minh Khai, P. Tân Lập, Nha Trang",
+      "map_url": "",
+      "scale_raw": "Khách sạn 4 sao cao 40 tầng, 850 phòng; cách biển 400m; khu đất 2.584m2 gồm 1.704m2 ODT lâu dài và 884m2 đất thuê trả tiền hằng năm trong QH giao thông",
+      "planning": {
+        "floors": "40",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "2.584 m2",
+          "1.704 m2",
+          "884 m2"
+        ],
+        "raw": "Khách sạn 4 sao cao 40 tầng, 850 phòng; cách biển 400m; khu đất 2.584m2 gồm 1.704m2 ODT lâu dài và 884m2 đất thuê trả tiền hằng năm trong QH giao thông"
+      },
+      "legal": {
+        "land": "Cần rà đất thuê trong QH giao thông và pháp lý vận hành/đất ODT",
+        "project": "",
+        "raw": "Cần rà đất thuê trong QH giao thông và pháp lý vận hành/đất ODT; báo cáo chỉ dự phòng P&L 5 năm 2023-2027"
+      },
+      "financial_items": [
+        {
+          "label": "Giá thuê khách sạn 4 sao cùng vị trí",
+          "value": "40-54 USD/đêm/phòng",
+          "source_chunk": "948"
+        }
+      ],
+      "business_notes": "Không đánh giá chi phí đầu vào, chi phí duy tu sửa chữa sau dịch và chi phí mua dự án nên chưa đánh giá hiệu quả theo dòng tiền",
+      "excerpt": "Regalia Gold Nha Trang 40 tầng 850 phòng, đất 2.584m2, P&L 2023-2027 chưa tính chi phí mua/duy tu."
+    },
+    {
+      "id": "M10-0019",
+      "part": 10,
+      "decision": "multi_lot_legal_review",
+      "project_name": "12 lô đất Sun Group - KĐT ven sông Hòa Xuân, Cẩm Lệ, Đà Nẵng",
+      "report_date": "2023-03-15",
+      "source_chunks": [
+        "952"
+      ],
+      "source_file": "batch_917.txt",
+      "sender": "Huy M - IM",
+      "location": "KĐT ven sông Hòa Xuân, Cẩm Lệ, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "12 lô đất mục tiêu làm chung cư cao tầng; GCN mẫu diện tích khoảng 5.000m2 mỗi lô, đất cơ sở sản xuất kinh doanh, lâu dài, nguồn gốc Nhà nước giao đất có thu TSDĐ, cấp 15/06/2011",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "5.000 m2"
+        ],
+        "raw": "12 lô đất mục tiêu làm chung cư cao tầng; GCN mẫu diện tích khoảng 5.000m2 mỗi lô, đất cơ sở sản xuất kinh doanh, lâu dài, nguồn gốc Nhà nước giao đất có thu TSDĐ, cấp 15/06/2011"
+      },
+      "legal": {
+        "land": "Do mục đích SKC chưa chuyển sang đất ở, nếu làm dự án nhà ở khi chuyển mục đích sang đất ở theo Luật Đất đai phải đấu giá",
+        "project": "Do mục đích SKC chưa chuyển sang đất ở, nếu làm dự án nhà ở khi chuyển mục đích sang đất ở theo Luật Đất đai phải đấu giá",
+        "raw": "Do mục đích SKC chưa chuyển sang đất ở, nếu làm dự án nhà ở khi chuyển mục đích sang đất ở theo Luật Đất đai phải đấu giá; QH theo VB 3175 ngày 03/05/2019 của SXD Đà Nẵng phần lớn bị cắt"
+      },
+      "financial_items": [],
+      "business_notes": "Rủi ro pháp lý chuyển mục đích/đấu giá là điểm nghẽn chính",
+      "excerpt": "12 lô Sun Hòa Xuân là đất SKC lâu dài, muốn làm nhà ở phải chuyển mục đích và có thể đấu giá."
+    },
+    {
+      "id": "M10-0020",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Green Hill, Quy Nhơn",
+      "report_date": "2022-08-10",
+      "source_chunks": [
+        "955",
+        "956",
+        "958",
+        "959",
+        "980",
+        "982"
+      ],
+      "source_file": "batch_918.txt; batch_921.txt; batch_923.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Đường D1, Quy Nhơn, Bình Định",
+      "map_url": "",
+      "scale_raw": "Quy mô 16,62ha; 2 phân khu gồm biệt thự tựa đồi view biển 15,08ha và phân khu mặt tiền biển 1,54ha; cách trung tâm Quy Nhơn 8,4km, FPT 15ha khoảng 2km, bãi biển Quy Hòa 135m; có video quang cảnh/hầm chui ra biển",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "16,62 ha",
+          "15,08 ha",
+          "1,54 ha",
+          "15 ha",
+          "13,64 ha",
+          "2,97 ha"
+        ],
+        "raw": "Quy mô 16,62ha; 2 phân khu gồm biệt thự tựa đồi view biển 15,08ha và phân khu mặt tiền biển 1,54ha; cách trung tâm Quy Nhơn 8,4km, FPT 15ha khoảng 2km, bãi biển Quy Hòa 135m; có video quang cảnh/hầm chui ra biển"
+      },
+      "legal": {
+        "land": "UBND cho thuê đất 13,64ha ngày 25/10/2019 làm KDL và giao 2,97ha hành lang hạ tầng kỹ thuật； thông báo nộp tiền thuê đất một lần 45,733 tỷ ngày 16/01/2020 đã khấu trừ đền bù； 7 GCN 136.471,8m2 đất TMDV thuê đất trả tiền một lần, thời hạn bị cắt",
+        "project": "",
+        "raw": "UBND cho thuê đất 13,64ha ngày 25/10/2019 làm KDL và giao 2,97ha hành lang hạ tầng kỹ thuật; thông báo nộp tiền thuê đất một lần 45,733 tỷ ngày 16/01/2020 đã khấu trừ đền bù; 7 GCN 136.471,8m2 đất TMDV thuê đất trả tiền một lần, thời hạn bị cắt"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "1.300 tỷ, khoảng 7,8 tr/m2 đất",
+          "source_chunk": "980"
+        },
+        {
+          "label": "Tiền thuê đất một lần đã thông báo",
+          "value": "45,733 tỷ, đã khấu trừ đền bù",
+          "source_chunk": "980"
+        }
+      ],
+      "business_notes": "Dự án nghỉ dưỡng Quy Nhơn có lợi thế gần biển/view đồi; cần rà hầm chui/kết nối biển và hồ sơ thiết kế",
+      "excerpt": "Green Hill Quy Nhơn 16,62ha giá 1.300 tỷ, 7 GCN TMDV thuê 1 lần, gần biển Quy Hòa 135m."
+    },
+    {
+      "id": "M10-0021",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Stown Gateway, Thuận An, Bình Dương",
+      "report_date": "2022-08-10",
+      "source_chunks": [
+        "960",
+        "981"
+      ],
+      "source_file": "batch_922.txt; batch_923.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Hẻm Quốc lộ 13, Thuận An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Quy mô 8.816m2; cách QL13 50m, Phú Quang 2,5km, ranh TPHCM 1,6km; hiện đã ép cọc, có văn phòng bán hàng; QH 1/500 căn hộ HSSDĐ 8,94, MĐXD 38,55%, 2 hầm + 26 tầng nổi",
+      "planning": {
+        "floors": "",
+        "density": "38,55%",
+        "far": "8,94,",
+        "population": "",
+        "area_mentions": [
+          "8.816 m2",
+          "8.236,6 m2",
+          "265,6 m2",
+          "8.236 m2"
+        ],
+        "raw": "Quy mô 8.816m2; cách QL13 50m, Phú Quang 2,5km, ranh TPHCM 1,6km; hiện đã ép cọc, có văn phòng bán hàng; QH 1/500 căn hộ HSSDĐ 8,94, MĐXD 38,55%, 2 hầm + 26 tầng nổi"
+      },
+      "legal": {
+        "land": "2 GCN gồm 8.236,6m2 ODT và 265,6m2 CLN； QHXD còn có đất TMDV/du lịch và đất công trình công cộng theo excerpt",
+        "project": "pháp lý đầu tư chưa cung cấp",
+        "raw": "2 GCN gồm 8.236,6m2 ODT và 265,6m2 CLN; pháp lý đầu tư chưa cung cấp; QHXD còn có đất TMDV/du lịch và đất công trình công cộng theo excerpt"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "530 tỷ, khoảng 60 tr/m2 đất, gồm TSDĐ và GPXD",
+          "source_chunk": "981"
+        }
+      ],
+      "business_notes": "Giá chào gồm TSDĐ và GPXD nhưng cần rà thực trạng pháp lý/thiết kế/địa hình",
+      "excerpt": "Stown Gateway Thuận An 8.816m2 giá 530 tỷ, ODT 8.236m2, HSSDĐ 8,94, 2 hầm + 26 tầng."
+    },
+    {
+      "id": "M10-0022",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Quỹ đất 54ha liền kề sân bay Phan Thiết",
+      "report_date": "2022-08-11",
+      "source_chunks": [
+        "967"
+      ],
+      "source_file": "batch_922.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Liền kề sân bay Phan Thiết, Bình Thuận",
+      "map_url": "",
+      "scale_raw": "Quy mô 54ha; sát cảng hàng không nội địa Phan Thiết đang hoàn thành CTĐT/GPMB; tiếp giáp đường 715, cách Võ Nguyên Giáp 6,8km, biển 7,4km, TP Phan Thiết 24km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "54 ha"
+        ],
+        "raw": "Quy mô 54ha; sát cảng hàng không nội địa Phan Thiết đang hoàn thành CTĐT/GPMB; tiếp giáp đường 715, cách Võ Nguyên Giáp 6,8km, biển 7,4km, TP Phan Thiết 24km"
+      },
+      "legal": {
+        "land": "",
+        "project": "",
+        "raw": "Cần rà pháp lý đất/đầu tư; excerpt chủ yếu đánh giá ảnh hưởng sân bay"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "860-900 tỷ",
+          "source_chunk": "967"
+        }
+      ],
+      "business_notes": "Lead đất lớn ăn theo sân bay Phan Thiết, cần khảo sát địa hình/định hướng sản phẩm",
+      "excerpt": "54ha gần sân bay Phan Thiết giá 860-900 tỷ, cách biển 7,4km, sát sân bay."
+    },
+    {
+      "id": "M10-0023",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+      "report_date": "2022-08-09",
+      "source_chunks": [
+        "972"
+      ],
+      "source_file": "batch_923.txt",
+      "sender": "Quy Vo-PTDT",
+      "location": "Đường Hồ Văn Mên, P. An Thạnh, Thuận An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Diện tích đất phù hợp QH 8.368,3m2; diện tích đất chào bán 9.582,6m2; cách TP mới Bình Dương 10km, VSIP 1 4km, TSN 15km; nằm trên đường Hồ Văn Mên QH Vành đai 3",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "8.368,3 m2",
+          "9.582,6 m2",
+          "320 m2",
+          "9.262,6 m2",
+          "9.582 m2"
+        ],
+        "raw": "Diện tích đất phù hợp QH 8.368,3m2; diện tích đất chào bán 9.582,6m2; cách TP mới Bình Dương 10km, VSIP 1 4km, TSN 15km; nằm trên đường Hồ Văn Mên QH Vành đai 3"
+      },
+      "legal": {
+        "land": "GCN cá nhân: 320m2 ODT giao đất có thu tiền, 9.262,6m2 CLN giao đất không thu tiền đến 2024",
+        "project": "VB 4237/UBND-KT Bình Dương về pháp lý đầu tư bị cắt",
+        "raw": "GCN cá nhân: 320m2 ODT giao đất có thu tiền, 9.262,6m2 CLN giao đất không thu tiền đến 2024; VB 4237/UBND-KT Bình Dương về pháp lý đầu tư bị cắt"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "300 tỷ, khoảng 31,3 tr/m2 trên diện tích chào bán",
+          "source_chunk": "972"
+        }
+      ],
+      "business_notes": "Cần xử lý CLN/chuyển mục đích và pháp lý dự án chung cư",
+      "excerpt": "Chung cư Thành Lộc Thuận An 9.582m2 giá 300 tỷ, phần lớn CLN đến 2024, QH Vành đai 3."
+    },
+    {
+      "id": "M10-0024",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Redstar - tổ hợp văn phòng, khách sạn, chung cư Phạm Văn Đồng, Đà Nẵng",
+      "report_date": "2022-08-10",
+      "source_chunks": [
+        "973",
+        "976",
+        "977",
+        "978",
+        "979"
+      ],
+      "source_file": "batch_923.txt",
+      "sender": "Quy Vo-PTDT",
+      "location": "Đường Phạm Văn Đồng, P. An Hải Bắc, Sơn Trà, Đà Nẵng",
+      "map_url": "",
+      "scale_raw": "Diện tích 12.363,9m2; 4 mặt tiền Phạm Văn Đồng, Chính Hữu, Dương Đình Nghệ, Lý Văn Tố; cách sân bay 5km, Hải Châu 2km, bãi tắm Phạm Văn Đồng khoảng 0,5-1km; sát CBD mới Đà Nẵng; hình dạng đất bị khuyết",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "12.363,9 m2",
+          "12.364 m2"
+        ],
+        "raw": "Diện tích 12.363,9m2; 4 mặt tiền Phạm Văn Đồng, Chính Hữu, Dương Đình Nghệ, Lý Văn Tố; cách sân bay 5km, Hải Châu 2km, bãi tắm Phạm Văn Đồng khoảng 0,5-1km; sát CBD mới Đà Nẵng; hình dạng đất bị khuyết"
+      },
+      "legal": {
+        "land": "GCN năm 2005 đất cơ sở sản xuất kinh doanh (XD văn phòng, biệt thự, khách sạn)； pháp lý đầu tư chưa có thêm ngoài GCN",
+        "project": "pháp lý đầu tư chưa có thêm ngoài GCN",
+        "raw": "GCN năm 2005 đất cơ sở sản xuất kinh doanh (XD văn phòng, biệt thự, khách sạn); pháp lý đầu tư chưa có thêm ngoài GCN; cần rà chuyển đổi sang tổ hợp chung cư/văn phòng/khách sạn"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "2.100 tỷ, khoảng 170 tr/m2",
+          "source_chunk": "973"
+        },
+        {
+          "label": "Giá comp The Sang Residence",
+          "value": "58-68 tr/m2",
+          "source_chunk": "979"
+        },
+        {
+          "label": "Giá comp The 6nature",
+          "value": "55-95 tr/m2",
+          "source_chunk": "976"
+        }
+      ],
+      "business_notes": "Giá bán căn hộ tham chiếu The 6nature 55-95tr/m2, The Sang Residence 58-68tr/m2; shophouse đề xuất khoảng 1,5 lần căn hộ",
+      "excerpt": "Redstar Phạm Văn Đồng Đà Nẵng 12.364m2, 4 mặt tiền, giá 2.100 tỷ, đất SKC, gần biển/CBD mới."
+    },
+    {
+      "id": "M10-0025",
+      "part": 10,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án Phú Quang - cập nhật PA2/PA3",
+      "report_date": "2022-08-03",
+      "source_chunks": [
+        "985"
+      ],
+      "source_file": "batch_926.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Phú Quang",
+      "map_url": "",
+      "scale_raw": "PA2 tối ưu: HSSDĐ 2,74, cao tối đa 117m có tầng lánh nạn, dân số 19.441 (+1.391 so PA 1/500), sàn TM chung cư 313.853m2, sàn NOXH 97.860m2. PA3 thay NOXH bằng chung cư thương mại 3, HSSDĐ 2,79, cao 94,5m không tầng lánh nạn",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "2,74,",
+        "population": "19.441",
+        "area_mentions": [
+          "313.853 m2",
+          "97.860 m2"
+        ],
+        "raw": "PA2 tối ưu: HSSDĐ 2,74, cao tối đa 117m có tầng lánh nạn, dân số 19.441 (+1.391 so PA 1/500), sàn TM chung cư 313.853m2, sàn NOXH 97.860m2. PA3 thay NOXH bằng chung cư thương mại 3, HSSDĐ 2,79, cao 94,5m không tầng lánh nạn"
+      },
+      "legal": {
+        "land": "",
+        "project": "Cập nhật chỉ tiêu quy hoạch/tăng dân số/di chuyển NOXH",
+        "raw": "Cập nhật chỉ tiêu quy hoạch/tăng dân số/di chuyển NOXH; trùng Phú Quang các part trước"
+      },
+      "financial_items": [
+        {
+          "label": "PA2 IRR/NPV",
+          "value": "IRR 35,59%, NPV 3.507,7 tỷ",
+          "source_chunk": "985"
+        }
+      ],
+      "business_notes": "PA2 cho IRR/NPV rất cao; giữ làm nguồn sớm về tối ưu QH",
+      "excerpt": "Phú Quang PA2 HSSD 2,74, dân số 19.441, IRR 35,59%, NPV 3.507,7 tỷ; PA3 thay NOXH bằng NOTM."
+    },
+    {
+      "id": "M10-0026",
+      "part": 10,
+      "decision": "duplicate_update_to_existing_project",
+      "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+      "report_date": "2022-08-03",
+      "source_chunks": [
+        "986"
+      ],
+      "source_file": "batch_926.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Đà Nẵng/Sơn Trà",
+      "map_url": "",
+      "scale_raw": "Diện tích 2.769m2 đất ODT lâu dài, nguồn gốc đấu giá/giao đất có thu TSDĐ; thông số QH HSSDĐ 14,92, MĐXD 59,24%, 36 tầng",
+      "planning": {
+        "floors": "",
+        "density": "59,24%",
+        "far": "14,92,",
+        "population": "",
+        "area_mentions": [
+          "2.769 m2",
+          "2769 m2"
+        ],
+        "raw": "Diện tích 2.769m2 đất ODT lâu dài, nguồn gốc đấu giá/giao đất có thu TSDĐ; thông số QH HSSDĐ 14,92, MĐXD 59,24%, 36 tầng"
+      },
+      "legal": {
+        "land": "PL đề xuất không lập dự án/không xin CTĐT để giữ đất và thời hạn lâu dài； cá nhân đứng tên GCN, pháp nhân thuê để xây và kinh doanh khách sạn",
+        "project": "PL đề xuất không lập dự án/không xin CTĐT để giữ đất và thời hạn lâu dài",
+        "raw": "PL đề xuất không lập dự án/không xin CTĐT để giữ đất và thời hạn lâu dài; cá nhân đứng tên GCN, pháp nhân thuê để xây và kinh doanh khách sạn; cần rà NĐ 31/2021 và pháp lý xây dựng"
+      },
+      "financial_items": [],
+      "business_notes": "Trùng dự án Hoàng Sa/2769m2 các part trước, bổ sung cấu trúc pháp lý cá nhân cho thuê",
+      "excerpt": "2769m2 Đà Nẵng đất ODT lâu dài, HSSD 14,92, 36 tầng; đề xuất cá nhân đứng tên cho pháp nhân thuê làm khách sạn."
+    },
+    {
+      "id": "M10-0027",
+      "part": 10,
+      "decision": "multi_project_logistics_record",
+      "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+      "report_date": "2022-08-09",
+      "source_chunks": [
+        "989",
+        "990"
+      ],
+      "source_file": "batch_926.txt",
+      "sender": "Quy Vo-PTDT",
+      "location": "Mỹ Xuân/Phước Hòa, Phú Mỹ, Bà Rịa - Vũng Tàu",
+      "map_url": "",
+      "scale_raw": "Cảng Sài Gòn - Thép Việt 34,5ha giá 100 USD/m2; Cảng Sao Biển 69,04ha giá 1,76tr/m2; Bãi Container & Dịch vụ Cảng 31ha giá 2tr/m2; nằm/kết nối khu bến Cái Mép - Thị Vải, gần đường 991B, Liên Cảng Cái Mép, cao tốc Bến Lức - Long Thành qua cầu Phước An",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "34,5 ha",
+          "69,04 ha",
+          "31 ha"
+        ],
+        "raw": "Cảng Sài Gòn - Thép Việt 34,5ha giá 100 USD/m2; Cảng Sao Biển 69,04ha giá 1,76tr/m2; Bãi Container & Dịch vụ Cảng 31ha giá 2tr/m2; nằm/kết nối khu bến Cái Mép - Thị Vải, gần đường 991B, Liên Cảng Cái Mép, cao tốc Bến Lức - Long Thành qua cầu Phước An"
+      },
+      "legal": {
+        "land": "Cảng Sài Gòn - Thép Việt có CTĐT, GCN đất SXKD đến 2059 thuê đất trả tiền 1 lần, chưa GPXD； Cảng Sao Biển theo excerpt lặp tên nhưng đất SXKD đến 2060 thuê hằng năm, chưa GPXD； Bãi Container có CTĐT, GCN đất SXKD đến 2061 thuê đất trả tiền 1 lần, chưa GPXD",
+        "project": "Cảng Sài Gòn - Thép Việt có CTĐT, GCN đất SXKD đến 2059 thuê đất trả tiền 1 lần, chưa GPXD； Cảng Sao Biển theo excerpt lặp tên nhưng đất SXKD đến 2060 thuê hằng năm, chưa GPXD； Bãi Container có CTĐT, GCN đất SXKD đến 2061 thuê đất trả tiền 1 lần, chưa GPXD",
+        "raw": "Cảng Sài Gòn - Thép Việt có CTĐT, GCN đất SXKD đến 2059 thuê đất trả tiền 1 lần, chưa GPXD; Cảng Sao Biển theo excerpt lặp tên nhưng đất SXKD đến 2060 thuê hằng năm, chưa GPXD; Bãi Container có CTĐT, GCN đất SXKD đến 2061 thuê đất trả tiền 1 lần, chưa GPXD"
+      },
+      "financial_items": [
+        {
+          "label": "Giá Cảng Sài Gòn - Thép Việt",
+          "value": "100 USD/m2 cho 34,5ha",
+          "source_chunk": "989"
+        },
+        {
+          "label": "Giá Cảng Sao Biển",
+          "value": "1,76 tr/m2 cho 69,04ha",
+          "source_chunk": "989"
+        },
+        {
+          "label": "Giá Bãi Container & Dịch vụ Cảng",
+          "value": "2 tr/m2 cho 31ha",
+          "source_chunk": "990"
+        }
+      ],
+      "business_notes": "Nhóm logistics/cảng gắn Cái Mép - Thị Vải, hưởng lợi cầu Phước An/cao tốc",
+      "excerpt": "3 dự án logistics/cảng Phú Mỹ: 34,5ha, 69,04ha, 31ha; giá 100 USD/m2, 1,76tr/m2, 2tr/m2."
+    },
+    {
+      "id": "M10-0028",
+      "part": 10,
+      "decision": "project_record",
+      "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
+      "report_date": "2022-07-20",
+      "source_chunks": [
+        "991"
+      ],
+      "source_file": "batch_927.txt",
+      "sender": "Quy Vo-PTDT",
+      "location": "Thôn Ngọc Than, xã Ngọc Mỹ, Quốc Oai, Hà Nội",
+      "map_url": "",
+      "scale_raw": "Diện tích đất chào bán khoảng 6,3ha, đã bồi thường 62.573,8m2; bên cạnh đường dẫn cao tốc Láng - Hòa Lạc, sát KCN Thạch Thất Quốc Oai 150ha, cách KCN cao Hòa Lạc 10km, trung tâm Hà Nội 20km, Nội Bài 37km",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "6,3 ha",
+          "62.573,8 m2",
+          "150 ha"
+        ],
+        "raw": "Diện tích đất chào bán khoảng 6,3ha, đã bồi thường 62.573,8m2; bên cạnh đường dẫn cao tốc Láng - Hòa Lạc, sát KCN Thạch Thất Quốc Oai 150ha, cách KCN cao Hòa Lạc 10km, trung tâm Hà Nội 20km, Nội Bài 37km"
+      },
+      "legal": {
+        "land": "Chưa nhận được hồ sơ xác nhận pháp lý đất đầy đủ； cần rà bồi thường/giao đất/QH",
+        "project": "",
+        "raw": "Chưa nhận được hồ sơ xác nhận pháp lý đất đầy đủ; cần rà bồi thường/giao đất/QH"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "500 tỷ, khoảng 8 tr/m2",
+          "source_chunk": "991"
+        }
+      ],
+      "business_notes": "Lead ven cao tốc/KCN, giá 8tr/m2",
+      "excerpt": "Trung Thượng Quốc Oai 6,3ha giá 500 tỷ, sát cao tốc Láng-Hòa Lạc/KCN Thạch Thất Quốc Oai."
+    },
+    {
+      "id": "M10-0029",
+      "part": 10,
+      "decision": "multi_project_record",
+      "project_name": "02 dự án Bình Dương: Victory Hoàn Cầu và lô 8.029m2 Mỹ Phước - Tân Vạn",
+      "report_date": "2022-07-28",
+      "source_chunks": [
+        "992",
+        "993"
+      ],
+      "source_file": "batch_927.txt",
+      "sender": "Thao L - INVT",
+      "location": "Bình Chuẩn/Thuận Giao, Thuận An, Bình Dương",
+      "map_url": "",
+      "scale_raw": "Victory Hoàn Cầu 1,36ha đất nông nghiệp, hữu dụng 1,25ha, nhà xưởng mặt tiền Bình Chuẩn 69 khoảng 100m, lối vào nhỏ 4-5m và đường dẫn từ Bình Chuẩn 62 rộng 9m sâu 100m. Lô Mỹ Phước - Tân Vạn 8.029m2, đất trống mặt tiền MP-TV 60m, phù hợp QH 6.954m2",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "1,36 ha",
+          "1,25 ha",
+          "8.029 m2",
+          "6.954 m2",
+          "7.785 m2"
+        ],
+        "raw": "Victory Hoàn Cầu 1,36ha đất nông nghiệp, hữu dụng 1,25ha, nhà xưởng mặt tiền Bình Chuẩn 69 khoảng 100m, lối vào nhỏ 4-5m và đường dẫn từ Bình Chuẩn 62 rộng 9m sâu 100m. Lô Mỹ Phước - Tân Vạn 8.029m2, đất trống mặt tiền MP-TV 60m, phù hợp QH 6.954m2"
+      },
+      "legal": {
+        "land": "Victory: được duyệt đăng ký SDĐ và chấp thuận nhận chuyển nhượng QSDĐ nông nghiệp để thực hiện dự án đầu tư； lô MP-TV: GCN CT80867 đất cơ sở SXKD phi nông nghiệp thuê trả tiền 1 lần 7.785m2 đến 09/01/2049, chưa có pháp lý đầu tư/QH đối tác cung cấp, tra cứu QH là đất ở hỗn hợp + dịch vụ đô thị",
+        "project": "lô MP-TV: GCN CT80867 đất cơ sở SXKD phi nông nghiệp thuê trả tiền 1 lần 7.785m2 đến 09/01/2049, chưa có pháp lý đầu tư/QH đối tác cung cấp, tra cứu QH là đất ở hỗn hợp + dịch vụ đô thị",
+        "raw": "Victory: được duyệt đăng ký SDĐ và chấp thuận nhận chuyển nhượng QSDĐ nông nghiệp để thực hiện dự án đầu tư; lô MP-TV: GCN CT80867 đất cơ sở SXKD phi nông nghiệp thuê trả tiền 1 lần 7.785m2 đến 09/01/2049, chưa có pháp lý đầu tư/QH đối tác cung cấp, tra cứu QH là đất ở hỗn hợp + dịch vụ đô thị"
+      },
+      "financial_items": [
+        {
+          "label": "Victory Hoàn Cầu giá chào",
+          "value": "400 tỷ, 32 tr/m2 diện tích hữu dụng",
+          "source_chunk": "992"
+        },
+        {
+          "label": "Lô Mỹ Phước - Tân Vạn giá chào",
+          "value": "200 tỷ, 24,9 tr/m2",
+          "source_chunk": "993"
+        }
+      ],
+      "business_notes": "Cả 2 là lead Bình Dương cần rà pháp lý chuyển đổi/chung cư",
+      "excerpt": "Victory Hoàn Cầu 1,36ha giá 400 tỷ; lô MP-TV 8.029m2 giá 200 tỷ, đất SXKD thuê đến 2049."
+    },
+    {
+      "id": "M10-0030",
+      "part": 10,
+      "decision": "land_bank_record",
+      "project_name": "Quỹ đất 168ha Phong Phú, Bình Chánh gần Đa Phước",
+      "report_date": "2022-07-19",
+      "source_chunks": [
+        "998",
+        "999"
+      ],
+      "source_file": "batch_928.txt",
+      "sender": "Trieu Nguyen-PTDT",
+      "location": "Xã Phong Phú, Bình Chánh, TP.HCM",
+      "map_url": "https://goo.gl/maps/35GfKER...",
+      "scale_raw": "Quy mô 168ha; hẻm QL50, cách QL50 1,4km, tiếp giáp sông rạch 3,7km, cách Q1 18km; đường vào 2 hẻm nhỏ bê tông một phần, rộng khoảng 2,5m càng gần dự án; nhiều ao hồ/rạch/cây cối, cách khu xử lý chất thải Đa Phước một con rạch",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "168 ha"
+        ],
+        "raw": "Quy mô 168ha; hẻm QL50, cách QL50 1,4km, tiếp giáp sông rạch 3,7km, cách Q1 18km; đường vào 2 hẻm nhỏ bê tông một phần, rộng khoảng 2,5m càng gần dự án; nhiều ao hồ/rạch/cây cối, cách khu xử lý chất thải Đa Phước một con rạch"
+      },
+      "legal": {
+        "land": "",
+        "project": "cần rà quy hoạch và pháp lý đất",
+        "raw": "Chưa được cung cấp hồ sơ pháp lý; đánh giá nhanh thị trường/vị trí; cần rà quy hoạch và pháp lý đất"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào",
+          "value": "2,5 tr/m2",
+          "source_chunk": "998"
+        }
+      ],
+      "business_notes": "Khu vực dân cư thưa, bị ảnh hưởng ô nhiễm từ Đa Phước, chi phí san lấp cao do ao hồ/rạch/cây cối; giá thấp nhưng rủi ro vị trí/hạ tầng/môi trường cao",
+      "excerpt": "168ha Phong Phú Bình Chánh giá 2,5tr/m2, gần Đa Phước, đường vào hẻm nhỏ, nhiều ao hồ/rạch, pháp lý chưa cung cấp."
+    },
+    {
+      "id": "M10-0031",
+      "part": 10,
+      "decision": "multi_project_tourism_record",
+      "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
+      "report_date": "2022-07-19",
+      "source_chunks": [
+        "1001"
+      ],
+      "source_file": "batch_930.txt",
+      "sender": "Thao L - INVT",
+      "location": "Mũi Né, Phan Thiết, Bình Thuận",
+      "map_url": "",
+      "scale_raw": "Cụm 2 dự án kết nối bằng Huỳnh Thúc Kháng - Hồ Xuân Hương hoặc Võ Nguyên Giáp - Nguyễn Hữu Thọ; cách sân bay Phan Thiết 17km/25p, trung tâm Phan Thiết 26km/35p, nằm trong cụm dân cư làng chài ven biển; The Salling Bay 4,7ha, mặt biển 245m, GĐ1 1,7ha TMDV thuê hằng năm đến 2058, 325 phòng gồm 295 phòng KS 4 sao đang hoạt động",
+      "planning": {
+        "floors": "",
+        "density": "",
+        "far": "",
+        "population": "",
+        "area_mentions": [
+          "4,7 ha",
+          "1,7 ha"
+        ],
+        "raw": "Cụm 2 dự án kết nối bằng Huỳnh Thúc Kháng - Hồ Xuân Hương hoặc Võ Nguyên Giáp - Nguyễn Hữu Thọ; cách sân bay Phan Thiết 17km/25p, trung tâm Phan Thiết 26km/35p, nằm trong cụm dân cư làng chài ven biển; The Salling Bay 4,7ha, mặt biển 245m, GĐ1 1,7ha TMDV thuê hằng năm đến 2058, 325 phòng gồm 295 phòng KS 4 sao đang hoạt động"
+      },
+      "legal": {
+        "land": "The Salling Bay đất TMDV thuê hằng năm； cần rà pháp lý bán/chuyển nhượng, CTXD, thời hạn và nghĩa vụ thuê đất",
+        "project": "",
+        "raw": "The Salling Bay đất TMDV thuê hằng năm; cần rà pháp lý bán/chuyển nhượng, CTXD, thời hạn và nghĩa vụ thuê đất"
+      },
+      "financial_items": [
+        {
+          "label": "Giá chào The Salling Bay",
+          "value": "520 tỷ, khoảng 11 tr/m2 gồm CTXD",
+          "source_chunk": "1001"
+        },
+        {
+          "label": "Giá trị CTXD ước tính",
+          "value": "67,5 tỷ",
+          "source_chunk": "1001"
+        },
+        {
+          "label": "Đơn giá đất sau trừ CTXD",
+          "value": "9,6 tr/m2",
+          "source_chunk": "1001"
+        }
+      ],
+      "business_notes": "Giá chào gồm CTXD, ước CTXD 67,5 tỷ, đơn giá đất sau trừ CTXD 9,6tr/m2; dự án đang có hoạt động khách sạn GĐ1",
+      "excerpt": "The Salling Bay Mũi Né 4,7ha mặt biển 245m, giá 520 tỷ gồm CTXD, GĐ1 có 325 phòng KS 4 sao."
+    }
+  ],
+  "review": [
+    {
+      "chunk_id": "2",
+      "reason": "comment về giá Richland, không đủ dữ liệu dự án độc lập",
+      "part": 1
+    },
+    {
+      "chunk_id": "10",
+      "reason": "comment ngắn, không nêu tên dự án rõ trong excerpt",
+      "part": 1
+    },
+    {
+      "chunk_id": "11",
+      "reason": "comment về giá vốn/giá căn hộ, thiếu dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "29",
+      "reason": "tin nhắn hỏi phương án hợp tác Gamuda, không có dữ liệu dự án độc lập",
+      "part": 1
+    },
+    {
+      "chunk_id": "31",
+      "reason": "reply giải thích IRR/LNTT, thiếu tên dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "32",
+      "reason": "reply về giá chào 692/690, thiếu dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "33",
+      "reason": "reply về bỏ 120t TSDĐ/thuế, thiếu dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "34",
+      "reason": "reply/ngữ cảnh bị cắt, thiếu dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "35",
+      "reason": "reply về LUR/không nộp thêm, thiếu tên dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "37",
+      "reason": "ước tính TSDĐ nhưng tên dự án PKG/AK không đủ rõ trong excerpt; giữ review chờ liên kết dự án",
+      "part": 1
+    },
+    {
+      "chunk_id": "42",
+      "reason": "giá dự án xung quanh, không phải báo cáo dự án cụ thể",
+      "part": 1
+    },
+    {
+      "chunk_id": "43",
+      "reason": "attachment tổng hợp thị trường xung quanh, không tạo dự án",
+      "part": 1
+    },
+    {
+      "chunk_id": "44",
+      "reason": "reply hỏi cách check 120 tỷ, không phải báo cáo dự án",
+      "part": 1
+    },
+    {
+      "chunk_id": "45",
+      "reason": "reply hiệu quả nếu giá bán 70tr/không đóng LUR, thiếu dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "47",
+      "reason": "reply hỏi 120 tỷ, không tạo record",
+      "part": 1
+    },
+    {
+      "chunk_id": "48",
+      "reason": "độ nhạy thiếu tên dự án rõ trong excerpt",
+      "part": 1
+    },
+    {
+      "chunk_id": "50",
+      "reason": "reply hỏi số 690/600/120 đã bao gồm LUR chưa, gắn ngữ cảnh H2-02 nhưng không tạo record mới",
+      "part": 1
+    },
+    {
+      "chunk_id": "53",
+      "reason": "reply về cách tiếp cận rao bán, không đủ dự án rõ",
+      "part": 1
+    },
+    {
+      "chunk_id": "55",
+      "reason": "reply về CPXD 30/40 tầng, gắn Bà Kèo nhưng không tạo record riêng",
+      "part": 1
+    },
+    {
+      "chunk_id": "56",
+      "reason": "reply về tăng tầng/SĐT và yêu cầu PA max, gắn Bà Kèo nhưng không tạo record riêng",
+      "part": 1
+    },
+    {
+      "chunk_id": "68",
+      "reason": "reply so sánh CPXD Phú Quốc/Đà Nẵng, không tạo record",
+      "part": 1
+    },
+    {
+      "chunk_id": "72",
+      "reason": "trùng/cắt cụt với Tân Phú 43ha đã nhập chunk 23",
+      "part": 1
+    },
+    {
+      "chunk_id": "73",
+      "reason": "reply chi phí bán hàng Bà Kèo, đã gắn vào record Bà Kèo",
+      "part": 1
+    },
+    {
+      "chunk_id": "74",
+      "reason": "reply chi phí xây dựng Bà Kèo, đã gắn vào record Bà Kèo",
+      "part": 1
+    },
+    {
+      "chunk_id": "81",
+      "reason": "reply khảo sát hiện trạng/xung quanh H2-02, không tạo record riêng",
+      "part": 1
+    },
+    {
+      "chunk_id": "82",
+      "reason": "trùng với khách sạn cạnh TMS đã nhập chunk 76",
+      "part": 1
+    },
+    {
+      "chunk_id": "84",
+      "reason": "reply về ráp 2 miếng/warning zone, thiếu dự án rõ trong excerpt",
+      "part": 1
+    },
+    {
+      "chunk_id": "85",
+      "reason": "trùng lô Quốc Lộ 13 Hiệp Bình Phước đã nhập chunk 54/65/69",
+      "part": 1
+    },
+    {
+      "chunk_id": "88",
+      "reason": "trùng cập nhật Võ Văn Kiệt gộp 2 lô đã nhập chunk 41",
+      "part": 1
+    },
+    {
+      "chunk_id": "91",
+      "reason": "trùng Cát Lái/Sky Habitat đã nhập chunk 46",
+      "part": 1
+    },
+    {
+      "chunk_id": "93",
+      "reason": "trùng Cát Lái/Sky Habitat đã nhập chunk 46",
+      "part": 1
+    },
+    {
+      "chunk_id": "112",
+      "reason": "reply hỏi tỷ suất ổn định, thiếu dự án rõ",
+      "part": 2
+    },
+    {
+      "chunk_id": "113",
+      "reason": "reply về 120 tỷ H2-02, đã gắn vào H2-02",
+      "part": 2
+    },
+    {
+      "chunk_id": "114",
+      "reason": "reply về giá 27 USD theo Opal, thiếu dự án rõ",
+      "part": 2
+    },
+    {
+      "chunk_id": "115",
+      "reason": "reply về Opal/vị trí đẹp hơn, thiếu dự án rõ",
+      "part": 2
+    },
+    {
+      "chunk_id": "138",
+      "reason": "tin bình chọn resort/golf, không phải báo cáo dự án đầu tư",
+      "part": 2
+    },
+    {
+      "chunk_id": "139",
+      "reason": "reply cày vote/view, không phải dự án",
+      "part": 2
+    },
+    {
+      "chunk_id": "140",
+      "reason": "reply cày vote/view, không phải dự án",
+      "part": 2
+    },
+    {
+      "chunk_id": "141",
+      "reason": "reply giải thích IRR thấp do tính đất, gắn khách sạn 12 Hùng Vương nếu cần nhưng không tạo record riêng",
+      "part": 2
+    },
+    {
+      "chunk_id": "158",
+      "reason": "reply nhắc FS cũ lô A2-3, đã gắn Hòa Xuân",
+      "part": 2
+    },
+    {
+      "chunk_id": "163",
+      "reason": "reply gửi lại FS 2 lô SunGroup, thiếu dữ liệu dự án độc lập",
+      "part": 2
+    },
+    {
+      "chunk_id": "167",
+      "reason": "trùng PA Long Thuận chunk 109 đã nhập M02-0004",
+      "part": 2
+    },
+    {
+      "chunk_id": "168",
+      "reason": "trùng/cắt cụt PA Long Thuận đã nhập M02-0004",
+      "part": 2
+    },
+    {
+      "chunk_id": "170",
+      "reason": "trùng PA1b Long Thuận đã nhập M02-0004",
+      "part": 2
+    },
+    {
+      "chunk_id": "179",
+      "reason": "reply khu 1/khu 2 gần Phú Quang, không đủ dự án độc lập",
+      "part": 2
+    },
+    {
+      "chunk_id": "180",
+      "reason": "reply yêu cầu tính quy ngược giá mua, gắn Ngô Chí Quốc/Phú Quang nhưng không tạo record riêng",
+      "part": 2
+    },
+    {
+      "chunk_id": "184",
+      "reason": "reply hỏi khu 15ha gần Phú Quang, thiếu dữ liệu dự án độc lập",
+      "part": 2
+    },
+    {
+      "chunk_id": "192",
+      "reason": "reply hỏi giá Global, không phải báo cáo dự án",
+      "part": 2
+    },
+    {
+      "chunk_id": "193",
+      "reason": "reply yêu cầu R&D nghiên cứu TMDV khách sạn hay VP, thiếu dự án rõ",
+      "part": 2
+    },
+    {
+      "chunk_id": "205",
+      "reason": "reply/status khảo sát thị trường, không phải báo cáo dự án cụ thể",
+      "part": 3
+    },
+    {
+      "chunk_id": "216",
+      "reason": "reply trùng Ngô Chí Quốc/I.12, gắn record đường Ngô Chí Quốc",
+      "part": 3
+    },
+    {
+      "chunk_id": "218",
+      "reason": "chỉ gửi định vị Google Maps gần Vincity, thiếu tên/dữ liệu dự án",
+      "part": 3
+    },
+    {
+      "chunk_id": "219",
+      "reason": "trùng đề xuất Ngô Chí Quốc đã nhập Part 2/Part 3",
+      "part": 3
+    },
+    {
+      "chunk_id": "220",
+      "reason": "chỉ trao đổi gửi định vị, thiếu dự án rõ",
+      "part": 3
+    },
+    {
+      "chunk_id": "221",
+      "reason": "trùng đề xuất Ngô Chí Quốc",
+      "part": 3
+    },
+    {
+      "chunk_id": "222",
+      "reason": "tin/link báo nút giao Gò Công, không phải báo cáo dự án đầu tư",
+      "part": 3
+    },
+    {
+      "chunk_id": "227",
+      "reason": "trùng tin/link nút giao Gò Công",
+      "part": 3
+    },
+    {
+      "chunk_id": "259",
+      "reason": "reply xin binh thêm PA khoảng xanh/khoảng lùi, thiếu dự án rõ",
+      "part": 3
+    },
+    {
+      "chunk_id": "264",
+      "reason": "reply giá khu khác xa biển, likely Sơn Trà/Hiyori context but no independent project report",
+      "part": 3
+    },
+    {
+      "chunk_id": "265",
+      "reason": "reply Sun/condotel giá khu vực, không tạo record",
+      "part": 3
+    },
+    {
+      "chunk_id": "269",
+      "reason": "reply giá bán 90tr hơi rẻ, gắn Sơn Trà/Hiyori context",
+      "part": 3
+    },
+    {
+      "chunk_id": "270",
+      "reason": "reply Sun triển khai/view biển, gắn Sơn Trà context",
+      "part": 3
+    },
+    {
+      "chunk_id": "271",
+      "reason": "reply sẽ đánh giá kỹ, không tạo record",
+      "part": 3
+    },
+    {
+      "chunk_id": "272",
+      "reason": "trùng danh sách đấu giá Đồng Nai đã nhập M03-0009",
+      "part": 3
+    },
+    {
+      "chunk_id": "274",
+      "reason": "status đang tổng hợp Hiyori, chưa có báo cáo dự án",
+      "part": 3
+    },
+    {
+      "chunk_id": "281",
+      "reason": "reply vốn/chi phí bán hàng, gắn Phượng Hoàng nhưng không tạo riêng",
+      "part": 3
+    },
+    {
+      "chunk_id": "282",
+      "reason": "reply FS không sử dụng hết, gắn Phượng Hoàng ngân hàng nhưng không tạo riêng",
+      "part": 3
+    },
+    {
+      "chunk_id": "313",
+      "reason": "status P.ĐT/RD/QH đang làm chi tiết giá, thiếu dự án độc lập",
+      "part": 4
+    },
+    {
+      "chunk_id": "314",
+      "reason": "reply yêu cầu tính lại góc nhìn cá nhân, gắn 77ha Long Thành",
+      "part": 4
+    },
+    {
+      "chunk_id": "319",
+      "reason": "reply so sánh JD Junction, thiếu dự án rõ",
+      "part": 4
+    },
+    {
+      "chunk_id": "321",
+      "reason": "attachment thị trường RD, thiếu project cụ thể",
+      "part": 4
+    },
+    {
+      "chunk_id": "333",
+      "reason": "link bài báo Đồng Nai đấu giá, lead đã gắn M04-0009",
+      "part": 4
+    },
+    {
+      "chunk_id": "334",
+      "reason": "agenda báo Sếp nhiều dự án, không phải record dự án riêng",
+      "part": 4
+    },
+    {
+      "chunk_id": "338",
+      "reason": "reply giá khu biển/Sun, gắn Sơn Trà/Trần Hưng Đạo context nhưng không tạo record",
+      "part": 4
+    },
+    {
+      "chunk_id": "346",
+      "reason": "reply giá bàn giao thô Sun Cosmo, market comp không tạo dự án",
+      "part": 4
+    },
+    {
+      "chunk_id": "352",
+      "reason": "trùng PGK thấp tầng đã nhập Part 3",
+      "part": 4
+    },
+    {
+      "chunk_id": "353",
+      "reason": "trùng PGK thấp tầng đã nhập Part 3",
+      "part": 4
+    },
+    {
+      "chunk_id": "358",
+      "reason": "chỉ nhắc deadline hồ sơ, không phải báo cáo dự án",
+      "part": 4
+    },
+    {
+      "chunk_id": "359",
+      "reason": "link chính sách đất chung, không phải dự án cụ thể",
+      "part": 4
+    },
+    {
+      "chunk_id": "361",
+      "reason": "trùng/update dự án đấu giá 77ha Long Thành, đã gắn M04-0003",
+      "part": 4
+    },
+    {
+      "chunk_id": "366",
+      "reason": "reply tính hiệu quả dự án 10ha Long Thuận, đã gắn M04-0004; không tạo record mới",
+      "part": 4
+    },
+    {
+      "chunk_id": "381",
+      "reason": "reply hỏi chi phí xây Fenica, chưa đủ báo cáo dự án độc lập",
+      "part": 4
+    },
+    {
+      "chunk_id": "382",
+      "reason": "reply pháp lý NOXH/ODT chung, thiếu tên dự án rõ; không tạo record mới",
+      "part": 4
+    },
+    {
+      "chunk_id": "384",
+      "reason": "trùng/update Đông Trung, đã gắn M04-0002",
+      "part": 4
+    },
+    {
+      "chunk_id": "420",
+      "reason": "reply giải thích EBITDA trùng Felecia/nhóm khách sạn Part 4/Part 5, không tạo record riêng",
+      "part": 5
+    },
+    {
+      "chunk_id": "422",
+      "reason": "reply NOXH chuyển nhượng qua mua cổ phần, đã gắn M05-0011",
+      "part": 5
+    },
+    {
+      "chunk_id": "423",
+      "reason": "trùng chunk 422, đã gắn M05-0011",
+      "part": 5
+    },
+    {
+      "chunk_id": "428",
+      "reason": "bảng giá KCN Bà Rịa Vũng Tàu Q2.2025, market data chung, không có dự án cụ thể",
+      "part": 5
+    },
+    {
+      "chunk_id": "457",
+      "reason": "trao đổi deadline báo cáo DIG/HDC, không phải record dự án",
+      "part": 5
+    },
+    {
+      "chunk_id": "458",
+      "reason": "trao đổi tổ chức họp DLR/Lâm Đồng, chưa có dự án cụ thể",
+      "part": 5
+    },
+    {
+      "chunk_id": "459",
+      "reason": "nhắc hỏi gia hạn thời hạn đất, đã gắn nhóm khách sạn M05-0020",
+      "part": 5
+    },
+    {
+      "chunk_id": "473",
+      "reason": "reply pháp lý thí điểm kiểu PGK, thiếu tên dự án rõ",
+      "part": 5
+    },
+    {
+      "chunk_id": "474",
+      "reason": "reply chỉ đạo nói chuyện A Tâm/A Minh, không phải báo cáo dự án",
+      "part": 5
+    },
+    {
+      "chunk_id": "484",
+      "reason": "reply hỏi giá đất cũ 10 HV Đà Lạt, thiếu báo cáo dự án",
+      "part": 5
+    },
+    {
+      "chunk_id": "489",
+      "reason": "file đính kèm/giá 300 tỷ đã gắn Đức Long/25 Trần Phú context, không tạo thêm",
+      "part": 5
+    },
+    {
+      "chunk_id": "505",
+      "reason": "reply so sánh Icon và Phượng Hoàng, không đủ dữ liệu dự án Icon để tạo record",
+      "part": 5
+    },
+    {
+      "chunk_id": "507",
+      "reason": "reply VAT/chi phí ngắn, thiếu dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "508",
+      "reason": "tin trao đổi bị cắt, không đủ nội dung dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "509",
+      "reason": "tin trao đổi bị cắt, không đủ nội dung dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "510",
+      "reason": "tin trao đổi bị cắt, không đủ nội dung dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "511",
+      "reason": "tin trao đổi bị cắt, không đủ nội dung dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "512",
+      "reason": "reply tăng chi phí, thiếu tên dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "514",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "515",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "516",
+      "reason": "THTT/trao đổi ngắn, thiếu dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "520",
+      "reason": "reply ngắn, đã gắn Icon/DT743 nếu liên quan",
+      "part": 6
+    },
+    {
+      "chunk_id": "521",
+      "reason": "liên hệ A Tịnh Đà Nẵng, không phải record dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "522",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "523",
+      "reason": "tin Novaland/Waterbay/Lakeview theo NQ170 là tin pháp lý chung, chưa nhập dự án riêng trong part này",
+      "part": 6
+    },
+    {
+      "chunk_id": "524",
+      "reason": "Khu du lịch bị cắt, thiếu dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "525",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "526",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "528",
+      "reason": "tin trống/bị cắt/trùng Felicia",
+      "part": 6
+    },
+    {
+      "chunk_id": "529",
+      "reason": "giải thích HSSDĐ/giá 300 tỷ, thiếu tên dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "530",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "532",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "533",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "534",
+      "reason": "cao tầng tổng diện tích 5..., bị cắt thiếu tên dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "538",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "539",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "540",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "541",
+      "reason": "số 547 tỷ bị cắt, thiếu dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "542",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "545",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "546",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "547",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "548",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "552",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "556",
+      "reason": "liên hệ A Tịnh Đà Nẵng, không phải record dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "561",
+      "reason": "reply Long Phước phân lô bán nền bị cắt, thiếu dữ liệu",
+      "part": 6
+    },
+    {
+      "chunk_id": "562",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "564",
+      "reason": "tin trống/bị cắt/trùng Felicia",
+      "part": 6
+    },
+    {
+      "chunk_id": "565",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "566",
+      "reason": "pháp lý chung dự án lớn phải đấu thầu, không có dự án cụ thể",
+      "part": 6
+    },
+    {
+      "chunk_id": "567",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "568",
+      "reason": "reply dự án >1000ha Nova/BRVT bị cắt, thiếu dự án cụ thể",
+      "part": 6
+    },
+    {
+      "chunk_id": "569",
+      "reason": "trùng/bị cắt Nova BRVT >1000ha",
+      "part": 6
+    },
+    {
+      "chunk_id": "570",
+      "reason": "trùng/bị cắt Nova BRVT >1000ha",
+      "part": 6
+    },
+    {
+      "chunk_id": "571",
+      "reason": "pháp lý chung dự án lớn phải đấu thầu, không có dự án cụ thể",
+      "part": 6
+    },
+    {
+      "chunk_id": "576",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "577",
+      "reason": "market comp Phú Đông Premier gần Phượng Hoàng, đã gắn context Phượng Hoàng các part trước",
+      "part": 6
+    },
+    {
+      "chunk_id": "579",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "580",
+      "reason": "market comp Phú Đông Premier gần PH trùng chunk 577",
+      "part": 6
+    },
+    {
+      "chunk_id": "581",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "582",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "583",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "584",
+      "reason": "cao tầng tổng diện tích 5..., bị cắt thiếu tên dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "585",
+      "reason": "số 547 tỷ bị cắt, thiếu dự án rõ",
+      "part": 6
+    },
+    {
+      "chunk_id": "586",
+      "reason": "tin cao tốc TP bị cắt, không phải dự án BĐS cụ thể",
+      "part": 6
+    },
+    {
+      "chunk_id": "588",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "589",
+      "reason": "thị trường HCM mở bán mới, market data chung",
+      "part": 6
+    },
+    {
+      "chunk_id": "590",
+      "reason": "market comment HN/SG, không phải dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "591",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "593",
+      "reason": "file attachment không có text dự án",
+      "part": 6
+    },
+    {
+      "chunk_id": "596",
+      "reason": "reply by Huy M, bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "598",
+      "reason": "tin trống/bị cắt",
+      "part": 6
+    },
+    {
+      "chunk_id": "602",
+      "reason": "tin ngắn 'này', không đủ dữ liệu",
+      "part": 6
+    },
+    {
+      "chunk_id": "604",
+      "reason": "bài báo/chính sách nhà ở thương mại thỏa thuận QSDĐ, không phải dự án cụ thể",
+      "part": 6
+    },
+    {
+      "chunk_id": "605",
+      "reason": "trích kết luận Quốc hội về nghị quyết thí điểm, policy chung không tạo record",
+      "part": 6
+    },
+    {
+      "chunk_id": "651",
+      "reason": "Phú Gia Khiêm trùng record M07-0007/part trước",
+      "part": 7
+    },
+    {
+      "chunk_id": "652",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "653",
+      "reason": "số liệu LNTT/TMĐT bị cắt, đã gắn PGK M07-0007",
+      "part": 7
+    },
+    {
+      "chunk_id": "655",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "656",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "657",
+      "reason": "PGK PA 900 tỷ trùng M07-0007",
+      "part": 7
+    },
+    {
+      "chunk_id": "658",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "659",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "661",
+      "reason": "Phú Gia Khiêm trùng M07-0007",
+      "part": 7
+    },
+    {
+      "chunk_id": "662",
+      "reason": "khách sạn/Holiday bị cắt, đã gắn M07-0008",
+      "part": 7
+    },
+    {
+      "chunk_id": "663",
+      "reason": "Holiday Beach trùng M07-0008",
+      "part": 7
+    },
+    {
+      "chunk_id": "665",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "666",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "667",
+      "reason": "giai đoạn đóng tiền/đền bù bị cắt, thiếu dự án rõ",
+      "part": 7
+    },
+    {
+      "chunk_id": "668",
+      "reason": "giai đoạn đóng TSDĐ bị cắt, thiếu dự án rõ",
+      "part": 7
+    },
+    {
+      "chunk_id": "670",
+      "reason": "Ana Mandara trùng M07-0006",
+      "part": 7
+    },
+    {
+      "chunk_id": "671",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "672",
+      "reason": "Đông Á Premier trùng M07-0009",
+      "part": 7
+    },
+    {
+      "chunk_id": "673",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "675",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "676",
+      "reason": "Felicia trùng M07-0005",
+      "part": 7
+    },
+    {
+      "chunk_id": "677",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "679",
+      "reason": "chỉ đạo đưa vào list theo dõi",
+      "part": 7
+    },
+    {
+      "chunk_id": "680",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "681",
+      "reason": "dự án nghỉ dưỡng Trương Mỹ Lan trùng M07-0011",
+      "part": 7
+    },
+    {
+      "chunk_id": "682",
+      "reason": "reply hỏi giá rao 900 tỷ, đã gắn PGK M07-0007",
+      "part": 7
+    },
+    {
+      "chunk_id": "686",
+      "reason": "comment 'tuy có bãi biển đẹp' bị cắt, thiếu dự án rõ",
+      "part": 7
+    },
+    {
+      "chunk_id": "687",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "689",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "690",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "695",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "698",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "699",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "700",
+      "reason": "quote bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "701",
+      "reason": "reply 'tuy nhiên' bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "702",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "704",
+      "reason": "tin trống/bị cắt",
+      "part": 7
+    },
+    {
+      "chunk_id": "708",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "709",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "710",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "712",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "713",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "714",
+      "reason": "BeeGroup quote bị cắt, không đủ nội dung",
+      "part": 8
+    },
+    {
+      "chunk_id": "719",
+      "reason": "reply 'triển khai' ngắn, đã gắn Phú Quang nếu liên quan",
+      "part": 8
+    },
+    {
+      "chunk_id": "720",
+      "reason": "reply hỏi triển khai/list dự án, không phải record riêng",
+      "part": 8
+    },
+    {
+      "chunk_id": "721",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "722",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "723",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "724",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "725",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "726",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "727",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "728",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "729",
+      "reason": "reply 'rồi' không có dữ liệu",
+      "part": 8
+    },
+    {
+      "chunk_id": "734",
+      "reason": "reply nuôi sale/chốt mua, thiếu dự án rõ",
+      "part": 8
+    },
+    {
+      "chunk_id": "735",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "737",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "738",
+      "reason": "vị trí An Bình bị cắt, đã gắn M08-0014 nếu liên quan",
+      "part": 8
+    },
+    {
+      "chunk_id": "740",
+      "reason": "reply bị cắt về nhược điểm dự án, đã gắn Lạc Việt M08-0004",
+      "part": 8
+    },
+    {
+      "chunk_id": "741",
+      "reason": "reply ngắn 'này nha'",
+      "part": 8
+    },
+    {
+      "chunk_id": "742",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "748",
+      "reason": "comment TSDĐ hàng năm tăng, thiếu dự án rõ",
+      "part": 8
+    },
+    {
+      "chunk_id": "749",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "750",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "751",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "752",
+      "reason": "trùng comment TSDĐ hàng năm bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "753",
+      "reason": "reply chuyển A Tâm/K.ĐT bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "754",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "756",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "757",
+      "reason": "reply ngắn 'này'",
+      "part": 8
+    },
+    {
+      "chunk_id": "758",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "760",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "762",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "763",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "768",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "769",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "770",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "771",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "774",
+      "reason": "reply không nghiên cứu, đã gắn nhóm Swan/Sơn Tiên M08-0013 nếu liên quan",
+      "part": 8
+    },
+    {
+      "chunk_id": "775",
+      "reason": "reply hỏi dự án nào nghiên cứu, không tạo record",
+      "part": 8
+    },
+    {
+      "chunk_id": "776",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "777",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "778",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "781",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "784",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "786",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "788",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "789",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "790",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "791",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "793",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "794",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "796",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "798",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "799",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "800",
+      "reason": "phân lô bị cắt, đã gắn M08-0010",
+      "part": 8
+    },
+    {
+      "chunk_id": "801",
+      "reason": "reply hỏi phân lô rẻ nhất, đã gắn market M08-0010",
+      "part": 8
+    },
+    {
+      "chunk_id": "802",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "803",
+      "reason": "ở P... bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "805",
+      "reason": "tin trống/bị cắt",
+      "part": 8
+    },
+    {
+      "chunk_id": "815",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "818",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "819",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "823",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "826",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "827",
+      "reason": "reply Aqua/Nova giảm giá bị cắt, gắn M09-0004",
+      "part": 9
+    },
+    {
+      "chunk_id": "828",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "831",
+      "reason": "Nova khởi công/dừng bán hàng gắn M09-0004",
+      "part": 9
+    },
+    {
+      "chunk_id": "832",
+      "reason": "Nova khởi công lại chưa bán hàng gắn M09-0004",
+      "part": 9
+    },
+    {
+      "chunk_id": "833",
+      "reason": "Nova khủng hoảng/gắn M09-0004",
+      "part": 9
+    },
+    {
+      "chunk_id": "836",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "840",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "844",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "845",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "846",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "847",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "852",
+      "reason": "lịch công tác phía Bắc, gắn context KCN Vĩnh Phúc",
+      "part": 9
+    },
+    {
+      "chunk_id": "854",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "855",
+      "reason": "đường kết nối Hải Phòng, context CCN Giao Yến",
+      "part": 9
+    },
+    {
+      "chunk_id": "858",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "862",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "863",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "864",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "866",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "867",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "868",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "869",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "870",
+      "reason": "supporting documents admin, không phải dự án",
+      "part": 9
+    },
+    {
+      "chunk_id": "872",
+      "reason": "kế hoạch khảo sát phía Bắc, không tạo record riêng",
+      "part": 9
+    },
+    {
+      "chunk_id": "874",
+      "reason": "lịch công tác phía Bắc, không tạo record riêng",
+      "part": 9
+    },
+    {
+      "chunk_id": "875",
+      "reason": "reply dự án Thái Lan, thiếu dự án cụ thể",
+      "part": 9
+    },
+    {
+      "chunk_id": "876",
+      "reason": "kế hoạch gửi báo cáo dự án 1ha Bangkok, chưa đủ dữ liệu",
+      "part": 9
+    },
+    {
+      "chunk_id": "878",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "880",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "883",
+      "reason": "reply hỏi hồ sơ, không đủ tên dự án",
+      "part": 9
+    },
+    {
+      "chunk_id": "884",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "885",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "886",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "891",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "894",
+      "reason": "HLW/MerryLand chỉ link training/marketing, không nhập record tài chính",
+      "part": 9
+    },
+    {
+      "chunk_id": "896",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "901",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "902",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "903",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "908",
+      "reason": "tin trống/bị cắt",
+      "part": 9
+    },
+    {
+      "chunk_id": "912",
+      "reason": "hình ảnh/vị trí khu đất bị cắt, thiếu tên dự án",
+      "part": 10
+    },
+    {
+      "chunk_id": "913",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "916",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "928",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "940",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "944",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "950",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "951",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "953",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "954",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "961",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "962",
+      "reason": "reply cần khảo sát địa hình, thiếu dự án rõ/đã gắn Green Hill nếu liên quan",
+      "part": 10
+    },
+    {
+      "chunk_id": "963",
+      "reason": "reply pháp lý đến cấp sổ biệt thự bị cắt, thiếu dự án rõ",
+      "part": 10
+    },
+    {
+      "chunk_id": "964",
+      "reason": "reply cấp sổ biệt thự/điều chỉnh QH bị cắt, thiếu dự án rõ",
+      "part": 10
+    },
+    {
+      "chunk_id": "965",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "966",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "968",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "971",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "974",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "975",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "983",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "984",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "987",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "988",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "994",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "995",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "996",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "997",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    },
+    {
+      "chunk_id": "1000",
+      "reason": "tin trống/bị cắt",
+      "part": 10
+    }
+  ],
+  "summary": [
+    {
+      "part": 1,
+      "records": 29,
+      "review": 31,
+      "financial": 22,
+      "duplicates": 0
+    },
+    {
+      "part": 2,
+      "records": 35,
+      "review": 18,
+      "financial": 18,
+      "duplicates": 9
+    },
+    {
+      "part": 3,
+      "records": 35,
+      "review": 18,
+      "financial": 20,
+      "duplicates": 10
+    },
+    {
+      "part": 4,
+      "records": 28,
+      "review": 17,
+      "financial": 23,
+      "duplicates": 5
+    },
+    {
+      "part": 5,
+      "records": 23,
+      "review": 12,
+      "financial": 16,
+      "duplicates": 4
+    },
+    {
+      "part": 6,
+      "records": 16,
+      "review": 63,
+      "financial": 7,
+      "duplicates": 1
+    },
+    {
+      "part": 7,
+      "records": 26,
+      "review": 37,
+      "financial": 1,
+      "duplicates": 4
+    },
+    {
+      "part": 8,
+      "records": 19,
+      "review": 63,
+      "financial": 8,
+      "duplicates": 1
+    },
+    {
+      "part": 9,
+      "records": 18,
+      "review": 45,
+      "financial": 13,
+      "duplicates": 5
+    },
+    {
+      "part": 10,
+      "records": 31,
+      "review": 29,
+      "financial": 25,
+      "duplicates": 4
+    }
+  ],
+  "totals": {
+    "records": 260,
+    "review": 333,
+    "financial_records": 153,
+    "financial_items": 634,
+    "duplicates": 43
+  }
+};

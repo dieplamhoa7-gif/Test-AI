@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BĐS Manual Project Database</title>
+  <link rel="stylesheet" href="manual-database.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">LH</div>
+        <div>
+          <p class="eyebrow">Manual 10 Parts · Bee Investment</p>
+          <h1>Cơ sở dữ liệu dự án BĐS</h1>
+          <p class="subtitle">Bốc tách từ báo cáo chat: quy hoạch, pháp lý đất, pháp lý dự án và các chỉ tiêu tài chính có nhãn nguồn.</p>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+    </header>
+
+    <aside class="sidebar">
+      <div class="searchbox">
+        <span>⌕</span>
+        <input id="search" type="search" placeholder="Tìm dự án, địa phương, IRR, pháp lý, chunk…" autocomplete="off" />
+      </div>
+      <div class="filters">
+        <label><span>Phần</span><select id="partFilter"><option value="">Tất cả</option></select></label>
+        <label><span>Loại record</span><select id="decisionFilter"><option value="">Tất cả</option></select></label>
+        <label class="check"><input id="financialOnly" type="checkbox" /> Chỉ dự án có tài chính</label>
+      </div>
+      <div class="mode-tabs">
+        <button class="active" data-mode="records">Dự án</button>
+        <button data-mode="financial">Tài chính</button>
+        <button data-mode="review">Review/Skip</button>
+      </div>
+      <div class="result-head"><b id="countLabel"></b><button id="resetBtn">Reset</button></div>
+      <div id="list" class="list"></div>
+    </aside>
+
+    <main class="detail" id="detail">
+      <section class="empty">
+        <p class="eyebrow">Chưa chọn hồ sơ</p>
+        <h2>Chọn một dự án bên trái</h2>
+        <p>Giao diện mới trình bày theo đúng cấu trúc: Quy hoạch gồm Tầng cao, MĐXD, HS SDĐ, Dân số; Pháp lý tách Pháp lý đất và Pháp lý dự án; Tài chính giữ từng mục có nhãn và chunk nguồn.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="manual_records_frontend_database.js"></script>
+  <script src="manual-database.js"></script>
+</body>
+</html>
