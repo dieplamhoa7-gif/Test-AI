@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-20T16:56:42+07:00",
+  "updatedAt": "2026-07-26T09:37:17.208998",
   "title": "LH Current Strategy Matrix",
-  "note": "Current LH1-LH4 matrix rebuilt from today 4-strategy run and market_data overlay.",
+  "note": "LH1-LH4 final strategy matrix. Tooltip explains strategy in Vietnamese, full indicators, and validation trade count.",
   "displayMode": "matrix",
   "buyCount": 0,
   "watchCount": 14,
@@ -12,8 +12,8 @@
       "name": "LH1",
       "shortName": "LH1",
       "priority": 1,
-      "summary": "Kéo nền theo xu hướng: còn xu hướng, gần hỗ trợ, RSI vừa phải, volume hợp lệ và tránh phân kỳ âm rõ.",
-      "indicators": "RSI, MACD, Volume, hỗ trợ/kháng cự, Ichimoku, Bollinger, ADX/DI, ROC20.",
+      "summary": "Chiến lược mua kéo hồi trong xu hướng tăng: chỉ chọn cổ phiếu còn giữ nền giá tốt, giá gần vùng hỗ trợ, xu hướng/động lượng chưa gãy. Đạt đủ điều kiện mới vào BUY; thiếu nhẹ một vài tiêu chí thì đưa vào WATCH để theo dõi.",
+      "indicators": "RSI14; MACD, MACD Signal, MACD Histogram; MA20, MA50, MA200; VWAP; Volume Ratio; vùng hỗ trợ/kháng cự ngày; Ichimoku Cloud/Tenkan/Kijun; Bollinger %B; ADX/+DI/-DI; ROC20; tín hiệu phân kỳ động lượng.",
       "tooltipMetrics": {
         "winRate": "82,76%",
         "averageReturn": "+8,26%/lệnh",
@@ -1719,13 +1719,13 @@
       "name": "LH2",
       "shortName": "LH2",
       "priority": 2,
-      "summary": "Mua rũ hỗ trợ: giá thủng hỗ trợ vừa phải, chưa yếu quá, kỳ vọng hồi lại sau nhịp shakeout.",
-      "indicators": "Support break %, RSI, Volume Ratio, hỗ trợ/kháng cự.",
+      "summary": "Chiến lược breakout cân bằng: tìm cổ phiếu vượt đỉnh 20/50 phiên, có sức mạnh tương đối tốt, dòng tiền xác nhận và không quá xa nền giá. BUY là vượt đầy đủ bộ lọc; WATCH là gần đạt để chờ xác nhận thêm.",
+      "indicators": "Breakout high20/high50; RS Rank; Volume Ratio; OBV slope20; VWAP slope5; độ rộng thị trường/breadth; Range Position 60 phiên; ADX14; RSI14; khoảng cách tới đỉnh 252 phiên; MA20/MA50; thanh khoản xác nhận.",
       "tooltipMetrics": {
-        "tradeCount": "theo cache hiện tại",
-        "winRate": "-",
-        "averageReturn": "-",
-        "totalReturn": "-"
+        "winRate": "OOS 53,85% / Full 58,33%",
+        "averageReturn": "OOS +3,85%/lệnh / Full +4,02%",
+        "totalReturn": "OOS +50,02% / Full +96,38%",
+        "tradeCount": "OOS 13 lệnh / Full 24 lệnh"
       },
       "buckets": {
         "buy": [],
@@ -3106,8 +3106,8 @@
       "name": "LH3",
       "shortName": "LH3",
       "priority": 3,
-      "summary": "Bắt hồi từ nền hỗ trợ: sát hỗ trợ, RSI thấp/vừa, Bollinger chưa quá cao, có dấu hiệu hồi kỹ thuật.",
-      "indicators": "RSI, Bollinger %B, MACD histogram, Volume, ROC20, hỗ trợ.",
+      "summary": "Chiến lược hồi phục từ hỗ trợ: ưu tiên mã đang chạm/gần hỗ trợ mạnh, có dấu hiệu bật lại bằng điểm luật và xác suất ML. Dùng để bắt nhịp hồi có kiểm soát rủi ro, không mua khi hỗ trợ bị phá rõ.",
+      "indicators": "Vùng hỗ trợ/kháng cự ngày; khoảng cách tới hỗ trợ; RSI14; Volume Ratio; breadth; MACD Histogram; MA20/MA50; xác suất ML; điểm rule score; trạng thái giữ hỗ trợ/phá hỗ trợ; tín hiệu dòng tiền hồi phục.",
       "tooltipMetrics": {
         "winRate": "OOS 80,00%",
         "averageReturn": "+3,60%/lệnh OOS",
@@ -4448,13 +4448,13 @@
       "name": "LH4 - Wave Momentum Entry",
       "shortName": "LH4 - Wave Momentum Entry",
       "priority": 4,
-      "summary": "Mua theo sóng tăng: nền tích lũy đủ lâu, breakout/động lượng xác nhận, volume và trend đồng thuận.",
-      "indicators": "Nền giá, breakout, RSI, MACD Histogram, Volume Ratio, ROC20, MA/Ichimoku, Bollinger.",
+      "summary": "Chiến lược sóng tăng sau nền tích lũy 6 tháng: tìm cổ phiếu đi ngang đủ lâu, nền không quá rộng, sau đó có breakout/động lượng tăng xác nhận. Bộ lọc rất chặt nên hiện tại có thể không có BUY/WATCH nếu thị trường không đạt chuẩn.",
+      "indicators": "Nền giá 6 tháng; biên độ nền <=35%; vị trí giá trong nền; breakout Donchian 20/60 phiên; RSI vùng 55-72; MACD Histogram dương và tăng; Volume Ratio 1,15-3,0; ROC20; Bollinger %B; MA20/MA50/MA200; Ichimoku above cloud; loại bỏ bearish divergence; kiểm tra giá không quá xa MA20.",
       "tooltipMetrics": {
-        "tradeCount": "theo cache hiện tại",
-        "winRate": "-",
-        "averageReturn": "-",
-        "totalReturn": "-"
+        "winRate": "Current180: 0,00% / Prev3M: WaveA 75,00%, WaveB 66,67%, WaveC 100,00%",
+        "averageReturn": "Current180: -8,00%/lệnh; Prev3M: WaveA +14,29%, WaveB +12,47%, WaveC +16,62%",
+        "totalReturn": "Current180: WaveA -8,00%, WaveB -40,00%, WaveC -40,00%; Prev3M: WaveA +57,15%, WaveB +149,66%, WaveC +16,62%",
+        "tradeCount": "Current180: 11 lệnh; Prev3M: 17 lệnh"
       },
       "buckets": {
         "buy": [],
