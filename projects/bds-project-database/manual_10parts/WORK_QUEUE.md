@@ -14,11 +14,11 @@ User instruction: làm liên tục. Khi xong 1 phần thì làm tiếp phần sa
 - [x] Part 3 chunks 203-303 — DONE — `part_03_manual_records.json` — commit `a2dff1a86`
 - [x] Part 4 chunks 304-404 — DONE — `part_04_manual_records.json`
 - [x] Part 5 chunks 405-505 — DONE — `part_05_manual_records.json`
-- [ ] Part 6 chunks 506-606 — NEXT
-- [ ] Part 7 chunks 607-707
+- [x] Part 6 chunks 506-606 — DONE — `part_06_manual_records.json`
+- [ ] Part 7 chunks 607-707 — NEXT
 - [ ] Part 8 chunks 708-808
 - [ ] Part 9 chunks 809-909
 - [ ] Part 10 chunks 910-1001
 
 ## Next action
-Continue with Part 6 (`manual_10parts/part_06.json`).
+Continue with Part 7 (`manual_10parts/part_07.json`).
