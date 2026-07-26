@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-07-26T09:37:17.208998",
   "title": "LH Current Strategy Matrix",
-  "note": "LH1-LH4 matrix: headers show strategy group names; tooltip includes full description, indicators, validation win rate/trades/avg/total return.",
+  "note": "LH1-LH4 canonical names restored: Trend Pullback, Shakeout Rebound, Support Rebound, Wave Momentum Entry. Tooltip includes full description, indicators, validation win rate/trades/avg/total return.",
   "displayMode": "matrix",
   "buyCount": 0,
   "watchCount": 14,
@@ -9,10 +9,10 @@
     {
       "id": "LH1_FINAL",
       "signalKey": "b4_trend_pullback",
-      "name": "LH1 - Trend Pullback / Kéo nền xu hướng",
-      "shortName": "LH1 - Kéo nền xu hướng",
+      "name": "LH1 - Trend Pullback",
+      "shortName": "LH1 - Trend Pullback",
       "priority": 1,
-      "summary": "Chiến lược mua kéo hồi trong xu hướng tăng: chỉ chọn cổ phiếu còn giữ nền giá tốt, giá gần vùng hỗ trợ, xu hướng/động lượng chưa gãy. Đạt đủ điều kiện mới vào BUY; thiếu nhẹ một vài tiêu chí thì đưa vào WATCH để theo dõi.",
+      "summary": "Trend Pullback: mua nhịp kéo hồi trong xu hướng tăng; chỉ chọn cổ phiếu còn giữ nền giá tốt, giá gần vùng hỗ trợ, xu hướng/động lượng chưa gãy. Đạt đủ điều kiện mới vào BUY; thiếu nhẹ một vài tiêu chí thì đưa vào WATCH để theo dõi.",
       "indicators": "RSI14; MACD, MACD Signal, MACD Histogram; MA20, MA50, MA200; VWAP; Volume Ratio; vùng hỗ trợ/kháng cự ngày; Ichimoku Cloud/Tenkan/Kijun; Bollinger %B; ADX/+DI/-DI; ROC20; tín hiệu phân kỳ động lượng.",
       "tooltipMetrics": {
         "winRate": "82,76%",
@@ -1716,11 +1716,11 @@
     {
       "id": "LH2_FINAL",
       "signalKey": "shakeout_breakdown_rebound",
-      "name": "LH2 - Balanced Breakout / Breakout cân bằng",
-      "shortName": "LH2 - Breakout cân bằng",
+      "name": "LH2 - Shakeout Rebound",
+      "shortName": "LH2 - Shakeout Rebound",
       "priority": 2,
-      "summary": "Chiến lược breakout cân bằng: tìm cổ phiếu vượt đỉnh 20/50 phiên, có sức mạnh tương đối tốt, dòng tiền xác nhận và không quá xa nền giá. BUY là vượt đầy đủ bộ lọc; WATCH là gần đạt để chờ xác nhận thêm.",
-      "indicators": "Breakout high20/high50; RS Rank; Volume Ratio; OBV slope20; VWAP slope5; độ rộng thị trường/breadth; Range Position 60 phiên; ADX14; RSI14; khoảng cách tới đỉnh 252 phiên; MA20/MA50; thanh khoản xác nhận.",
+      "summary": "Shakeout Rebound: bắt nhịp hồi sau pha rũ hàng; giá thủng/kiểm định hỗ trợ ngắn hạn để loại bỏ lực yếu rồi kéo ngược lại vùng hỗ trợ cũ. Chiến lược biến động mạnh hơn, cần stop chặt và ưu tiên mã có dòng tiền quay lại rõ.",
+      "indicators": "Support break/reclaim %, vùng hỗ trợ/kháng cự ngày, RSI14, Volume Ratio, MACD Histogram, MA20/MA50, RS Rank/sức mạnh tương đối, OBV slope20, VWAP slope5, breadth/thị trường chung, ADX14, Range Position 60 phiên.",
       "tooltipMetrics": {
         "winRate": "OOS 53,85% / Full 58,33%",
         "averageReturn": "OOS +3,85%/lệnh / Full +4,02%",
@@ -3103,10 +3103,10 @@
     {
       "id": "LH3_FINAL",
       "signalKey": "clean_split_a_bottom",
-      "name": "LH3 - Support Rebound / Hồi phục hỗ trợ",
-      "shortName": "LH3 - Hồi phục hỗ trợ",
+      "name": "LH3 - Support Rebound",
+      "shortName": "LH3 - Support Rebound",
       "priority": 3,
-      "summary": "Chiến lược hồi phục từ hỗ trợ: ưu tiên mã đang chạm/gần hỗ trợ mạnh, có dấu hiệu bật lại bằng điểm luật và xác suất ML. Dùng để bắt nhịp hồi có kiểm soát rủi ro, không mua khi hỗ trợ bị phá rõ.",
+      "summary": "Support Rebound: hồi phục từ nền hỗ trợ; ưu tiên mã đang chạm/gần hỗ trợ mạnh, có dấu hiệu bật lại bằng điểm luật và xác suất ML. Dùng để bắt nhịp hồi có kiểm soát rủi ro, không mua khi hỗ trợ bị phá rõ.",
       "indicators": "Vùng hỗ trợ/kháng cự ngày; khoảng cách tới hỗ trợ; RSI14; Volume Ratio; breadth; MACD Histogram; MA20/MA50; xác suất ML; điểm rule score; trạng thái giữ hỗ trợ/phá hỗ trợ; tín hiệu dòng tiền hồi phục.",
       "tooltipMetrics": {
         "winRate": "OOS 80,00%",
@@ -4445,10 +4445,10 @@
     {
       "id": "LH4_FINAL",
       "signalKey": "lh4",
-      "name": "LH4 - Wave Momentum Entry / Sóng tăng",
-      "shortName": "LH4 - Sóng tăng",
+      "name": "LH4 - Wave Momentum Entry",
+      "shortName": "LH4 - Wave Momentum Entry",
       "priority": 4,
-      "summary": "Chiến lược sóng tăng sau nền tích lũy 6 tháng: tìm cổ phiếu đi ngang đủ lâu, nền không quá rộng, sau đó có breakout/động lượng tăng xác nhận. Bộ lọc rất chặt nên hiện tại có thể không có BUY/WATCH nếu thị trường không đạt chuẩn.",
+      "summary": "Wave Momentum Entry: mua theo sóng tăng sau nền tích lũy đủ lâu; nền không quá rộng, sau đó có breakout/động lượng tăng xác nhận bằng MACD/volume/ROC/trend. Bộ lọc rất chặt nên hiện tại có thể không có BUY/WATCH nếu thị trường không đạt chuẩn.",
       "indicators": "Nền giá 6 tháng; biên độ nền <=35%; vị trí giá trong nền; breakout Donchian 20/60 phiên; RSI vùng 55-72; MACD Histogram dương và tăng; Volume Ratio 1,15-3,0; ROC20; Bollinger %B; MA20/MA50/MA200; Ichimoku above cloud; loại bỏ bearish divergence; kiểm tra giá không quá xa MA20.",
       "tooltipMetrics": {
         "winRate": "Current180: 0,00% / Prev3M: WaveA 75,00%, WaveB 66,67%, WaveC 100,00%",
