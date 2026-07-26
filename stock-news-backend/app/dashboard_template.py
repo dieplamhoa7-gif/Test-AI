@@ -1085,11 +1085,12 @@ DASHBOARD_HTML = r'''
       const indicators = translateStrategyText(col.indicators || col.outputIndicators || 'RSI, MACD, Volume, R/S');
       const m = col.tooltipMetrics || {};
       const validation = [
+        `${currentLang === 'en' ? 'Trades' : 'Số lệnh kiểm định'}: ${m.tradeCount || '-'}`,
         `Win rate: ${m.winRate || '-'}`,
         `${currentLang === 'en' ? 'Average Return' : 'Lợi nhuận TB'}: ${translateStrategyText(m.averageReturn || '-')}`,
         `${currentLang === 'en' ? 'Total Return' : 'Tổng lợi nhuận'}: ${translateStrategyText(m.totalReturn || '-')}`
       ].join('<br>');
-      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>${currentLang === 'en' ? 'Strategy' : 'Chiến lược'}:</b><br>${escapeHtml(translateStrategyText(col.summary || col.name || ''))}</div><div><b>${currentLang === 'en' ? 'Indicators' : 'Chỉ báo'}:</b><br>${escapeHtml(indicators)}</div><div><b>${currentLang === 'en' ? 'Validation' : 'Kiểm định'}:</b><br>${validation}</div></span></span>`;
+      return `<span class="strategy-help" tabindex="0">? <span class="strategy-tooltip"><div><b>${currentLang === 'en' ? 'Group' : 'Nhóm'}:</b><br>${escapeHtml(translateStrategyText(col.name || col.shortName || ''))}</div><div><b>${currentLang === 'en' ? 'Strategy' : 'Chiến lược'}:</b><br>${escapeHtml(translateStrategyText(col.summary || col.name || ''))}</div><div><b>${currentLang === 'en' ? 'Indicators' : 'Chỉ báo sử dụng'}:</b><br>${escapeHtml(indicators)}</div><div><b>${currentLang === 'en' ? 'Validation' : 'Hiệu quả kiểm định'}:</b><br>${validation}</div></span></span>`;
     }
 
     function parsePriceMid(value) {
