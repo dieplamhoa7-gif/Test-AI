@@ -5,12 +5,15 @@ import pandas as pd
 
 base = Path(__file__).resolve().parent
 files = sorted(base.glob('part_*_manual_records.json'))
+parts = []
 rows=[]
 fin_rows=[]
 skip_rows=[]
 for fp in files:
     d=json.load(open(fp,encoding='utf-8'))
     part=d.get('part')
+    if part is not None:
+        parts.append(int(part))
     for r in d.get('records',[]):
         rows.append({
             'part': part,
@@ -40,7 +43,8 @@ for fp in files:
     for s in d.get('review_or_skip',[]) or []:
         skip_rows.append({'part':part,'chunk_id':s.get('chunk_id',''),'reason':s.get('reason','')})
 
-out = base / f'manual_records_parts_01_07_view_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xlsx'
+part_label = f'{min(parts):02d}_{max(parts):02d}' if parts else 'none'
+out = base / f'manual_records_parts_{part_label}_view_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xlsx'
 with pd.ExcelWriter(out, engine='openpyxl') as writer:
     pd.DataFrame(rows).to_excel(writer, sheet_name='records', index=False)
     pd.DataFrame(fin_rows).to_excel(writer, sheet_name='financial_items', index=False)

@@ -17,8 +17,8 @@ User instruction: làm liên tục. Khi xong 1 phần thì làm tiếp phần sa
 - [x] Part 6 chunks 506-606 — DONE — `part_06_manual_records.json`
 - [x] Part 7 chunks 607-707 — DONE — `part_07_manual_records.json`
 - [x] Part 8 chunks 708-808 — DONE — `part_08_manual_records.json`
-- [ ] Part 9 chunks 809-909 — NEXT
-- [ ] Part 10 chunks 910-1001
+- [x] Part 9 chunks 809-909 — DONE — `part_09_manual_records.json`
+- [x] Part 10 chunks 910-1001 — DONE — `part_10_manual_records.json`
 
 ## Next action
-Continue with Part 9 (`manual_10parts/part_09.json`).
+All 10 manual parts are reviewed. Export/check full Excel view and merge manual outputs into final database/web if requested.
