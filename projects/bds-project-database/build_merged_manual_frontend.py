@@ -81,6 +81,62 @@ def canon(name):
 
 def date_key(r): return r.get('report_date') or '9999-99-99'
 
+
+def generic_financial_lines(text, chunk='', existing=None):
+    txt=text or ''
+    existing_blob=' '.join((x.get('label','')+' '+x.get('value','')) for x in (existing or [])).lower()
+    keys=re.compile(r'(IRR|NPV|LNTT|LNST|TMĐT|TMDT|doanh thu|giá bán|giá chào|giá đất|giá đấu|max|tỷ|tr/m2|triệu/m2|chi phí|vốn|lãi vay|hiệu quả|khả thi|tổng mức đầu tư|tiền sử dụng đất)',re.I)
+    bad=re.compile(r'^(by |message by|translate|edited|image by|image$)',re.I)
+    out=[]
+    for line in [re.sub(r'\s+',' ',x).strip(' -•\t') for x in txt.splitlines()]:
+        if len(line)<18 or len(line)>260 or bad.search(line): continue
+        if not keys.search(line): continue
+        low=line.lower()
+        if low in existing_blob: continue
+        # keep dense numeric/financial evidence, skip generic narrative unless it has a number
+        if not re.search(r'\d', line): continue
+        label='Dòng số liệu từ nguồn'
+        if re.search(r'IRR|NPV|LNTT|LNST|hiệu quả|khả thi', line, re.I): label='Hiệu quả / FS từ nguồn'
+        elif re.search(r'giá bán|giá chào|giá đất|giá đấu|tr/m2|triệu/m2', line, re.I): label='Giá / đơn giá từ nguồn'
+        elif re.search(r'chi phí|vốn|lãi vay|tổng mức đầu tư|tiền sử dụng đất|TMĐT|TMDT', line, re.I): label='Chi phí / vốn từ nguồn'
+        item={'label':label,'value':line,'source_chunk':str(chunk)}
+        if item['value'].lower() not in [x.get('value','').lower() for x in out]: out.append(item)
+        if len(out)>=12: break
+    return out
+
+def scenario_items(text, chunk=''):
+    txt=text or ''
+    out=[]
+    m=re.search(r'3\.\s*Hiệu quả(.*?)(?:\n\s*4\.\s*Đề xuất|$)', txt, flags=re.S|re.I)
+    if not m: return out
+    block=m.group(1)
+    lot=''; debt=''
+    sale=''
+    for raw in block.splitlines():
+        line=raw.strip()
+        if not line: continue
+        lm=re.match(r'[ab]\)\s*(Lô\s*A\d+)', line, flags=re.I)
+        if lm: lot=lm.group(1); continue
+        if line.lower().startswith('trường hợp'):
+            debt=line; continue
+        sm=re.search(r'Giả định giá bán căn hộ:\s*([^:]+):?', line, flags=re.I)
+        if sm: sale=sm.group(1).strip(); continue
+        if 'Giá đấu giá max' in line and 'LNTT' in line:
+            irr=re.search(r'IRR\s*([\d,.]+)%', line, flags=re.I)
+            price=re.search(r'Giá đấu giá max:\s*([^\(,]+)', line, flags=re.I)
+            land=re.search(r'tổng giá trị đất:\s*([^\)]+)', line, flags=re.I)
+            margin=re.search(r'LNTT/TMĐT:\s*([\d,.]+%)', line, flags=re.I)
+            label=' · '.join(x for x in [lot, debt, ('giá bán '+sale if sale else '')] if x)
+            val='; '.join(x for x in [
+                ('IRR mục tiêu '+irr.group(1)+'%' if irr else ''),
+                ('giá đấu max '+price.group(1).strip() if price else ''),
+                ('tổng đất '+land.group(1).strip() if land else ''),
+                ('LNTT/TMĐT '+margin.group(1) if margin else '')
+            ] if x)
+            if label and val: out.append({'label':'Kịch bản hiệu quả - '+label,'value':val,'source_chunk':str(chunk)})
+    return out
+
+
 records=[]; reviews=[]
 for fp in sorted(MAN.glob('part_*_manual_records.json')):
     d=json.loads(fp.read_text(encoding='utf-8')); part=d.get('part')
@@ -99,7 +155,10 @@ for i,(name,rs) in enumerate(sorted(groups.items(), key=lambda kv: norm(kv[0])),
     financial=[]; chunks=[]; decisions=set(); locations=[]; maps=[]
     reports=[]
     for idx,r in enumerate(rs,1):
-        fin=r.get('financial_items') or []
+        fin=list(r.get('financial_items') or [])
+        rawtxt=chunk_texts(r.get('source_chunks',[]))
+        fin += scenario_items(rawtxt, (r.get('source_chunks') or [''])[0])
+        fin += generic_financial_lines(rawtxt, (r.get('source_chunks') or [''])[0], fin)
         financial += [{**x,'record_id':r.get('id'),'report_no':idx,'project_name':r.get('project_name'),'part':r.get('part')} for x in fin]
         chunks += [str(c) for c in r.get('source_chunks',[])]
         decisions.add(r.get('decision',''))

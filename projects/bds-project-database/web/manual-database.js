@@ -22,6 +22,7 @@ function finTable(items){
   return `<div class="fin-summary"><div><b>${items.length}</b><span>chỉ tiêu tài chính</span></div><div class="fin-chips">${chips}</div></div><div class="fin-card-grid">${cards}</div><details class="fin-raw"><summary>Xem dạng bảng nguồn</summary><table class="financial-table"><thead><tr><th>Mục</th><th>Giá trị</th><th>Báo cáo / chunk</th></tr></thead><tbody>${rows.map(x=>`<tr><th>${esc(x.label)}</th><td>${esc(x.value)}</td><td>Lần ${esc(x.report_no||'')} · ${esc(x.record_id||'')} · chunk ${esc(x.source_chunk||x.chunk_id||'')}</td></tr>`).join('')}</tbody></table></details>`
 }
 function sourceText(r){return clean(r.full_excerpt||r.excerpt||'')}
+function hasImageMarker(r){return /\bimage\b|hình ảnh|hinh anh|ảnh/i.test(sourceText(r))}
 function reportBlock(r){
   const src=sourceText(r);
   const srcHtml=src?esc(src):'<span class="empty-value">Chưa có nội dung nguồn đầy đủ cho báo cáo này.</span>';
