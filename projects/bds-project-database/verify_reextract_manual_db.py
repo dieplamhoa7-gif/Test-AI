@@ -8,11 +8,11 @@ items=sum(len(g.get('financial_items') or []) for g in db['groups'])
 fin_groups=sum(1 for g in db['groups'] if g.get('financial_items'))
 reports=sum(len(g.get('reports') or []) for g in db['groups'])
 full_lens=[len(r.get('full_excerpt') or '') for g in db['groups'] for r in g.get('reports') or []]
-assert db['totals']['groups']==len(db['groups'])==173
-assert db['totals']['raw_records']==260
-assert db['totals']['financial_items']==items==3030, (db['totals']['financial_items'], items)
-assert db['totals']['financial_groups']==fin_groups==164, fin_groups
-assert reports==260, reports
+assert db['totals']['groups']==len(db['groups'])==181
+assert db['totals']['raw_records']==284
+assert db['totals']['financial_items']==items==3240, (db['totals']['financial_items'], items)
+assert db['totals']['financial_groups']==fin_groups==171, fin_groups
+assert reports==284, reports
 assert min(full_lens)>=0 and max(full_lens)>10000 and sum(full_lens)//len(full_lens)>2500
 # A12/A14 scenario checks
 g=next(g for g in db['groups'] if 'A12' in g['project_name'] and 'A14' in g['project_name'])
