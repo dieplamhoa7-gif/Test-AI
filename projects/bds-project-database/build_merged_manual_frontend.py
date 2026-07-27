@@ -76,8 +76,23 @@ def canon(name):
       ('the bale', 'The Bale, Mũi Né/Phan Thiết'),
       ('bai truong phu quoc', None),
     ]
+    # High-confidence duplicate aliases found by possible_duplicate_groups_audit.py
     if 'ang van bi' in n and 'thu uc' in n:
         return 'Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức'
+    if '769m2' in n and 'hoang sa' in n and 'nang' in n:
+        return '2.769m2 Hoàng Sa, Đà Nẵng'
+    if 'hoa xuan' in n or 'oa xuan' in n:
+        return 'Chung cư Hòa Xuân A2-3 & A2-4'
+    if '72 74' in n and 'vo thi sau' in n:
+        return 'Khu đất/văn phòng 72-74 Võ Thị Sáu, Tân Định, Quận 1'
+    if '1ha' in n and 'son tra' in n and 'nang' in n:
+        return 'Dự án 1ha Sơn Trà, Đà Nẵng'
+    if 'giao yen' in n and 'giao thuy' in n and 'nam' in n:
+        return 'CCN Giao Yến, Giao Thủy, Nam Định'
+    if 'ong trung' in n and ('thuan an' in n or 'binh duong' in n or n.strip() == 'ong trung'):
+        return 'Dự án Đông Trung, Thuận An/Bình Dương'
+    if 'felicia' in n and 'nhom' not in n and 'b11' not in n and 'serence' not in n and 'phu hai' not in n:
+        return 'Felicia Đà Nẵng - tổ hợp khách sạn và condotel'
     for needle,label in rules:
         if needle in n and label: return label
     return name.strip()
