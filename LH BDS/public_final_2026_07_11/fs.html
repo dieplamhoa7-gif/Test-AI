@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
   <script src="/security-guard.js"></script>
+<script type="module" src="/auth-gate.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FS Dự án BĐS — Khái toán QĐ 425 · Excel I/O</title>
@@ -206,6 +207,15 @@ td.lb{background:#F3F6FB!important;font-weight:600}
 .fs-auth-google .fs-auth-head{display:flex;flex-direction:column;gap:2px;min-width:190px}.fs-auth-google .fs-auth-head b{color:#ffe7a3;font-weight:800;letter-spacing:.2px}.fs-auth-box #fs-auth-status{color:#d5e3f6!important;line-height:1.35}.btn.google{display:inline-flex;align-items:center;gap:8px;background:#fff!important;color:#172033!important;border:1px solid rgba(255,255,255,.82)!important;box-shadow:0 9px 22px rgba(0,0,0,.22)!important}.btn.google .gmark{width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;font-weight:900;color:#1a73e8;background:linear-gradient(135deg,#fff,#eef4ff);border:1px solid #d9e4ff}.fs-email-fallback{color:#c8d8ec;font-size:11.5px}.fs-email-fallback summary{cursor:pointer;opacity:.82}.fs-email-fallback[open]{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;padding-top:6px}.fs-auth-box input{width:150px!important;min-height:30px!important;padding:5px 8px!important;border-radius:8px!important;background:rgba(3,10,24,.78)!important;color:#fff!important;border:1px solid rgba(120,205,255,.26)!important;text-align:left!important}.fs-auth-box input::placeholder{color:#b8c7dd!important}
 @media(max-width:760px){.fs-auth-box{width:100%}.fs-auth-google .fs-auth-head{width:100%}.btn.google{width:100%;justify-content:center}.fs-auth-box input{width:100%!important}.fs-auth-box #fs-auth-status{white-space:normal}}
 
+
+/* Financial efficiency display polish */
+.kpis#kpis{grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;align-items:stretch}
+.kpi-fin-head{grid-column:1/-1;display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 16px;border:1px solid rgba(84,214,255,.22);border-radius:22px;background:linear-gradient(135deg,rgba(84,214,255,.12),rgba(185,139,46,.10));box-shadow:0 18px 60px rgba(0,0,0,.18)}
+.kpi-fin-head b{display:block;color:#fff;font-size:18px;letter-spacing:.2px}.kpi-fin-head span{display:block;color:#c7d7eb;font-size:12px;margin-top:2px}.kpi-fin-head em{font-style:normal;font-weight:900;font-size:12px;letter-spacing:1px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.kpi.fin{grid-column:span 3;min-height:118px;padding:16px 17px!important}.kpi.fin.hero{grid-column:span 4;min-height:136px;background:linear-gradient(180deg,rgba(12,30,55,.98),rgba(5,13,27,.96))!important;border-color:rgba(84,214,255,.36)!important}.kpi.fin .grp{display:inline-flex;width:max-content;margin-bottom:9px;padding:4px 8px;border-radius:999px;background:rgba(84,214,255,.10);color:#9fe9ff;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}.kpi.fin .vl{font-size:29px!important;line-height:1.05}.kpi.fin.hero .vl{font-size:34px!important}.kpi.fin .un{margin-top:7px!important;line-height:1.35}.kpi-fin-head .pos,.kpi.fin .pos{color:#42d392!important}.kpi-fin-head .neg,.kpi.fin .neg{color:#ff6b7a!important}.kpi-fin-head .warn{color:#ffd166!important}
+@media(max-width:980px){.kpi.fin,.kpi.fin.hero{grid-column:span 6}.kpi.fin .vl,.kpi.fin.hero .vl{font-size:25px!important}}
+@media(max-width:620px){.kpis#kpis{grid-template-columns:1fr}.kpi.fin,.kpi.fin.hero{grid-column:1/-1}.kpi-fin-head{align-items:flex-start;flex-direction:column}.kpi-fin-head em{align-self:flex-start}}
+
 </style>
 
 <style id="lh-fs-style-sync-final">
@@ -352,10 +362,25 @@ body.hightech .cf-stmt td{padding-top:6px!important;padding-bottom:6px!important
 }
 </style>
 
+
+
+<style id="lh-overview-header-sync">
+header.siteTop{display:none!important}
+header.top{position:sticky!important;top:0!important;z-index:80!important;background:rgba(7,13,24,.76)!important;color:#eef6ff!important;padding:12px!important;box-shadow:0 16px 60px rgba(0,0,0,.22)!important;border-bottom:1px solid rgba(84,214,255,.18)!important;backdrop-filter:blur(18px)!important}
+header.top .inner{max-width:1320px!important;margin:auto!important;display:flex!important;align-items:center!important;gap:18px!important;padding:0!important}
+header.top .brand{display:flex!important;align-items:center!important;gap:0!important;flex:0 0 auto!important;width:max-content!important;color:#f5fbff!important;font-family:Inter,Segoe UI,Arial,sans-serif!important}
+header.top .brand .logo,header.top .logo{width:106px!important;height:44px!important;border-radius:12px!important;background:transparent!important;display:grid!important;place-items:center!important;overflow:hidden!important;box-shadow:0 6px 14px rgba(0,0,0,.18)!important}
+header.top .logo img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;min-height:0!important;object-fit:contain!important;display:block!important;padding:0!important;border-radius:12px!important;filter:none!important;box-sizing:border-box!important}
+header.top .nav{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:10px!important;margin-top:0!important;justify-content:stretch!important;flex:1 1 auto!important;width:auto!important;min-width:0!important}
+header.top .nav a{color:#c9d7e8!important;text-decoration:none!important;border:1px solid rgba(84,214,255,.12)!important;padding:10px 14px!important;border-radius:999px!important;background:rgba(255,255,255,.025)!important;font-weight:800!important;font-size:14px!important;letter-spacing:0!important;font-family:Inter,Segoe UI,Arial,sans-serif!important;transition:.18s transform,.18s background,.18s box-shadow!important;text-align:center!important;display:flex!important;align-items:center!important;justify-content:center!important;min-height:46px!important;height:46px!important;line-height:1.15!important;box-sizing:border-box!important}
+header.top .nav a.active,header.top .nav a:hover{background:rgba(84,214,255,.12)!important;color:#fff!important;border-color:rgba(84,214,255,.28)!important;box-shadow:0 0 28px rgba(84,214,255,.12)!important;transform:translateY(-1px)}
+@media(max-width:1060px){header.top .inner{display:block!important}header.top .nav{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;margin-top:12px!important;width:100%!important}header.top .nav a{font-size:13px!important;padding:10px 8px!important;min-height:42px!important;height:auto!important}}
+@media(max-width:760px){header.top{padding:12px!important}header.top .brand{font-size:18px!important}header.top .logo{width:92px!important;height:38px!important;border-radius:12px!important}header.top .logo img{width:100%!important;height:100%!important;border-radius:12px!important}header.top .nav{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding-bottom:4px!important;margin-top:12px!important}header.top .nav a{white-space:normal!important;font-size:12px!important;padding:9px 8px!important;height:auto!important}}
+</style>
 </head>
 <body data-app="fs" class="hightech">
 <datalist id="dl-prod"><option value="Chung cư"><option value="Đất đai"><option value="Shophouse"><option value="Sàn thương mại"><option value="Khách sạn"><option value="Resort"></datalist>
-<header class="top"><div class="inner"><div class="brand"><div class="logo">LH</div><div>LH Real Estate</div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">NVTC</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D</a><a class="active" href="fs.html">FS</a><a href="legal.html">Legal AI</a><a href="dossier.html">Dossier</a><a href="status.html">Status</a></nav></div></header>
+<header class="top"><div class="inner"><div class="brand"><div class="logo"><img src="assets/lh-logo.jpg" alt="LH Real Estate logo"></div></div><nav class="nav"><a href="index.html">Tổng quan</a><a href="nvtc.html">NVTC</a><a href="quyhoach.html">Quy hoạch</a><a href="rd.html">R&D</a><a class="active" href="fs.html">FS</a><a href="tpre_flow_app.html">Pháp lý Đầu tư (đang phát triển)</a></nav></div></header>
 <div class="lh-band"><div class="lh-doc">
   <div>
     <div class="eyebrow">Báo cáo nghiên cứu khả thi · Feasibility Study</div>
@@ -2323,20 +2348,28 @@ function renderKPI(R){
   const k=document.getElementById('kpis');
   // KPI TMĐT phải cùng basis với dòng "Chi đầu tư (chưa gồm lãi vay)" trong bảng CF: saleInvest + leaseCapex, không dùng TMDT legacy/gross.
   const kpiTmdt=(R.F389||0)+(R.leaseCapexTot||0);
+  const spreadEq=(R.IRReq||0)-P.r_ck/100;
+  const spreadPrj=(R.IRRprj||0)-P.r_ck/100;
+  const margin=kpiTmdt?R.NPV/kpiTmdt:null;
+  const verdict=R.NPV>0&&spreadEq>0?'ĐẠT NGƯỠNG':(R.NPV>-0.03*kpiTmdt?'CẬN BIÊN':'CHƯA ĐẠT');
+  const verdictCls=R.NPV>0&&spreadEq>0?'pos':(R.NPV>-0.03*kpiTmdt?'warn':'neg');
   const items=[
-    ['TMĐT (chưa lãi vay)',fB(kpiTmdt),'tỷ đ',0],
-    ['Lãi vay (dòng tiền tổng)',fB(R.F425),'tỷ đ',0],
-    ['DT bán (có VAT)',fB(R.F275),'tỷ đ',0],
-    ['PV tài sản cho thuê',fB((R.lease&&R.lease.on)?R.lease.pv:0),'tỷ đ',(R.lease&&R.lease.on)?R.lease.pv:0],
-    ['LNST tổng hợp',fB(R.totLNST),'tỷ đ',R.totLNST],
-    ['NPV CĐT @'+fN(P.r_ck)+'% (tổng)',fB2(R.NPV),'tỷ đ',R.NPV],
-    ['IRR dự án (tổng)',fP(R.IRRprj),'',(R.IRRprj||0)-P.r_ck/100],
-    ['IRR CĐT (tổng)',fP(R.IRReq),'',(R.IRReq||0)-P.r_ck/100],
-    ['NPV bán riêng',fB2(R.NPVsale),'tỷ đ',R.NPVsale],
-    ['Hoàn vốn',R.payback===null?'—':R.payback+' năm',R.payback===null?'':'('+(Y0+R.payback)+')',0],
+    {g:'Kết luận',lb:'Đánh giá nhanh',vl:verdict,un:`NPV ${fB2(R.NPV)} tỷ · spread IRR CĐT ${fP(spreadEq)}`,sg:R.NPV,hero:true},
+    {g:'Hiệu quả',lb:'NPV CĐT @'+fN(P.r_ck)+'% (tổng)',vl:fB2(R.NPV),un:`tỷ đ · ${margin===null?'—':fP(margin)} / vốn đầu tư`,sg:R.NPV,hero:true},
+    {g:'Hiệu quả',lb:'IRR CĐT (levered)',vl:fP(R.IRReq),un:`chênh suất CK: ${fP(spreadEq)}`,sg:spreadEq,hero:true},
+    {g:'Hiệu quả',lb:'IRR dự án (unlevered)',vl:fP(R.IRRprj),un:`chênh suất CK: ${fP(spreadPrj)}`,sg:spreadPrj},
+    {g:'Hiệu quả',lb:'Hoàn vốn',vl:R.payback===null?'—':R.payback+' năm',un:R.payback===null?'chưa hoàn vốn trong kỳ':'năm '+(Y0+R.payback),sg:R.payback===null?-1:1},
+    {g:'Lợi nhuận',lb:'LNST tổng hợp',vl:fB(R.totLNST),un:'tỷ đ',sg:R.totLNST},
+    {g:'Lợi nhuận',lb:'NPV bán riêng',vl:fB2(R.NPVsale),un:'tỷ đ',sg:R.NPVsale},
+    {g:'Quy mô',lb:'TMĐT (chưa lãi vay)',vl:fB(kpiTmdt),un:'tỷ đ',sg:0},
+    {g:'Quy mô',lb:'Lãi vay dòng tiền',vl:fB(R.F425),un:`tỷ đ · ${kpiTmdt?fP(R.F425/kpiTmdt):'—'} / TMĐT`,sg:0},
+    {g:'Quy mô',lb:'DT bán (có VAT)',vl:fB(R.F275),un:'tỷ đ',sg:0},
+    {g:'Cho thuê',lb:'PV tài sản cho thuê',vl:fB((R.lease&&R.lease.on)?R.lease.pv:0),un:'tỷ đ',sg:(R.lease&&R.lease.on)?R.lease.pv:0},
   ];
-  k.innerHTML=items.map(([lb,vl,un,sg])=>`<div class="kpi"><div class="lb">${lb}</div><div class="vl ${sg>0?'pos':sg<0?'neg':''}">${vl}</div><div class="un">${un}</div></div>`).join('');
+  k.innerHTML=`<div class="kpi-fin-head"><div><b>Hiệu quả tài chính</b><span>Ưu tiên NPV, IRR và khả năng hoàn vốn</span></div><em class="${verdictCls}">${verdict}</em></div>`+
+    items.map(it=>`<div class="kpi fin ${it.hero?'hero':''} ${it.g.toLowerCase().replace(/\s+/g,'-')}"><div class="grp">${it.g}</div><div class="lb">${it.lb}</div><div class="vl ${it.sg>0?'pos':it.sg<0?'neg':''}">${it.vl}</div><div class="un">${it.un}</div></div>`).join('');
 }
+
 function renderPL(R){
   const v=P.vat/100, L=R.lease||{grossTot:0,opexTot:0,ffeTot:0,insTot:0,depTot:0};
   const rows=[
@@ -2505,7 +2538,7 @@ function sourcesUsesModel(R){
   ];
   const useRows=[
     {lb:'Chi đầu tư còn lại (không gồm nghĩa vụ tài chính đất)', fn:investNoSdd},
-    {lb:'Nghĩa vụ tài chính đất / tiền sử dụng đất', fn:sddAll},
+    {lb:'NVTC đất / tiền sử dụng đất', fn:sddAll},
     {lb:'Chi phí hoạt động (bán + cho thuê)', fn:opAll},
     {lb:'Thuế TNDN tạm ứng', fn:i=>at(R.citTamArr,i)},
     {lb:'Thuế VAT phải nộp', fn:i=>at(R.vatpay,i)},
@@ -3269,7 +3302,11 @@ function rGantt(R){
    ['Mở bán shop khối đế',SCHED.shop,RPT.green,1],
    ['Thu tiền khách hàng',collY,RPT.blue,1],
   ];
-  const last=Math.max(lastYearIdx(R), ...rows.flatMap(r=>Object.keys(r[1]||{}).map(y=>Number(y)-Y0)).filter(x=>Number.isFinite(x)), 0);
+  // Report timeline chỉ nên thể hiện các năm có phát sinh trong các dòng tiến độ.
+  // Không dùng lastYearIdx(R) vì dòng lease/exit có thể kéo horizon tới 50-60 năm,
+  // làm PDF ép 2026-2074 vào một hàng và chữ bị dính sát nhau.
+  const activeIdx=rows.flatMap(r=>Object.keys(r[1]||{}).map(y=>Number(y)-Y0)).filter(x=>Number.isFinite(x)&&x>=0);
+  const last=Math.min(Math.max(...activeIdx,0),8); // tối đa 9 năm trên trang A4
   const W=690,lab=148,rh=27,top=24,n=Math.max(1,last+1),cw=(W-lab-8)/n,H=top+rows.length*rh+30;
   let s='';
   for(let i=0;i<=n;i++){const x=lab+i*cw;
@@ -3556,13 +3593,13 @@ function saleReport(R,INF,sL,lL,today){
   let c=0; const cumPct=R.collArr.slice(0,L).map(x=>{c+=x;return R.F274>0?c/R.F274*100:0;});
   const eqT=R.eq.reduce((a,b)=>a+b,0),vayT=R.draw.reduce((a,b)=>a+b,0),khT=Math.max(R.F389-eqT-vayT,0);
   const sy=Object.keys(SCHED.canho||{}).map(Number).filter(y=>(SCHED.canho[y]||0)>0).sort((a,b)=>a-b),fy=sy.length?sy[0]:Y0,sLad=(sy.length?sy:[Y0]).map(y=>P.gia_canho*Math.pow(1+P.escal/100,y-fy));
-  const verdict=R.NPVsale>0?['HIỆU QUẢ',RPT.green]:['CẬN BIÊN — CẦN TỐI ƯU',RPT.gold];
-  const heroes=rHero('Doanh thu '+sL,rF0(R.F275),'tỷ đ','gồm VAT · giá '+rN(P.gia_canho)+' tr/m²')+rHero('LNST '+sL,rF0(R.LNST),'tỷ đ','biên '+rP(R.DTnet>0?R.LNST/R.DTnet:0))+rHero('NPV '+sL,rF(R.NPVsale),'tỷ đ','@'+rN(P.r_ck)+'%/năm');
-  const kpis=rKpi('IRR '+sL,rP(R.IRRsale),'')+rKpi('Thực thu',rF0(R.F274),'tỷ đ')+rKpi('Thương phẩm',rN0(R.nsaCH+R.nsaSH),'m²')+rKpi('Số căn',rN0(R.soCan),'căn');
+  const verdict=R.NPV>0?['HIỆU QUẢ',RPT.green]:['CẬN BIÊN — CẦN TỐI ƯU',RPT.gold];
+  const heroes=rHero('Doanh thu '+sL,rF0(R.F275),'tỷ đ','gồm VAT · giá '+rN(P.gia_canho)+' tr/m²')+rHero('LNST theo web',rF0(R.totLNST),'tỷ đ','biên '+rP(R.DTnet>0?R.totLNST/R.DTnet:0))+rHero('NPV CĐT',rF(R.NPV),'tỷ đ','@'+rN(P.r_ck)+'%/năm');
+  const kpis=rKpi('IRR CĐT',rP(R.IRReq),'')+rKpi('Thực thu',rF0(R.F274),'tỷ đ')+rKpi('Thương phẩm',rN0(R.nsaCH+R.nsaSH),'m²')+rKpi('Số căn',rN0(R.soCan),'căn');
   const sub=P.towers.length+' tháp · '+rN0(R.soCan)+' căn hộ · '+rN0(R.nsaCH+R.nsaSH)+' m² thương phẩm';
   const donutVon=rDonut([{lb:'Vốn vay',val:vayT,color:RPT.gold},{lb:'Vốn chủ',val:eqT,color:RPT.blue},{lb:'Khách hàng',val:khT,color:RPT.goldL}],152,rF0(R.F389),'tỷ vốn');
   const wf=rWaterfallArr([{lb:'DT thuần',v:R.DTnet/1e9,k:'base'},{lb:'(−) Đất+XD',v:-((R.I78+R.I84)*(1-R.leaseShare))/1e9},{lb:'(−) Lãi vay',v:-R.F425/1e9},{lb:'(−) Vận hành',v:-(R.F421/(1+P.vat/100))/1e9},{lb:'LNTT',v:R.LNTT/1e9,k:'total'},{lb:'(−) TNDN',v:-(R.LNTT*P.cit/100)/1e9},{lb:'LNST',v:R.LNST/1e9,k:'total'}]);
-  const reco=R.NPVsale>0?`Phân khúc <b>${sL}</b> đạt NPV <b>${rF(R.NPVsale)} tỷ</b> · IRR <b>${rP(R.IRRsale)}</b> — vượt ngưỡng ${rN(P.r_ck)}%/năm. Khuyến nghị đẩy nhanh tiến độ thu tiền và kiểm soát chi phí bán hàng để gia tăng biên lợi nhuận.`:`Phân khúc <b>${sL}</b> ở mức cận biên (NPV ${rF(R.NPVsale)} tỷ). Nên tối ưu giá bán, tiến độ thu tiền và cơ cấu vốn vay trước khi ra quyết định đầu tư.`;
+  const reco=R.NPV>0?`Phân khúc <b>${sL}</b> có NPV CĐT <b>${rF(R.NPV)} tỷ</b> · IRR CĐT <b>${rP(R.IRReq)}</b> — so với ngưỡng ${rN(P.r_ck)}%/năm. Khuyến nghị đẩy nhanh tiến độ thu tiền và kiểm soát chi phí bán hàng để gia tăng hiệu quả.`:`Phân khúc <b>${sL}</b> ở mức cận biên theo chỉ tiêu CĐT (NPV ${rF(R.NPV)} tỷ · IRR ${rP(R.IRReq)}). Nên tối ưu giá bán, tiến độ thu tiền và cơ cấu vốn vay trước khi ra quyết định đầu tư.`;
   const gd=`<div style="font-size:9pt;line-height:1.85;color:${RPT.txt}"><div>◆ Giá bán: <b>${rN(P.gia_canho)} tr/m²</b> · trượt giá <b>${rN(P.escal)}%/năm</b> · shop = <b>${rN0(P.shop_x)}%</b> giá căn hộ.</div><div>◆ Diện tích thương phẩm: căn hộ <b>${rN0(R.nsaCH)} m²</b> · shop <b>${rN0(R.nsaSH)} m²</b> (${rN0(R.soCan)} căn).</div><div>◆ Chi phí bán hàng & QLDN: <b>${rN(P.banhang_pct+P.qldn_pct)}%</b> doanh thu · TNDN <b>${rN(P.cit)}%</b>.</div><div>◆ Cơ cấu vốn: vay <b>${rP(vayT/R.F389)}</b> · chủ sở hữu <b>${rP(eqT/R.F389)}</b> · khách hàng <b>${rP(khT/R.F389)}</b>.</div></div>`;
   const P2=`<div class="pg">${repHdr(2,TOT,INF)}<div class="pad">${rSec('01','TỔNG QUAN & TIẾN ĐỘ — '+sL.toUpperCase())}
     ${repBanner(prodArt(ty,720,200,'sov'),sL,INF.vitri)}
@@ -3581,7 +3618,7 @@ function saleReport(R,INF,sL,lL,today){
   const P5=`<div class="pg">${repHdr(5,TOT,INF)}<div class="pad">${rSec('04','DÒNG TIỀN & HIỆU QUẢ')}
     <div class="card"><div style="font-size:7.4pt;letter-spacing:2px;text-transform:uppercase;color:${RPT.goldL};margin-bottom:7px">Dòng tiền ${sL} sau thuế theo năm (tỷ đồng)</div>${rCols(ys,cfs,RPT.gold)}</div>
     <div class="card" style="margin-top:11px"><div style="font-size:7.4pt;letter-spacing:2px;text-transform:uppercase;color:${RPT.goldL};margin-bottom:7px">Thác lợi nhuận — P&L waterfall (tỷ đồng)</div>${wf}</div>
-    <div style="display:grid;grid-template-columns:0.9fr 2.1fr;gap:12px;margin-top:11px;align-items:stretch"><div class="card" style="display:flex;flex-direction:column;justify-content:center">${chartCap('IRR '+sL)}${rRing(Math.min((R.IRRsale||0)/0.30,1),rP(R.IRRsale),'ngưỡng '+rN(P.r_ck)+'%',R.NPVsale>0?RPT.green:RPT.gold)}</div><div class="card"><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px 20px;height:100%;align-content:center">${rKpi('NPV @'+rN(P.r_ck)+'%',rF(R.NPVsale),'tỷ đ')}${rKpi('LNST',rF0(R.LNST),'tỷ đ')}${rKpi('Thực thu',rF0(R.F274),'tỷ đ')}${rKpi('Hoàn vốn',R.payback===null?'—':'năm '+(Y0+R.payback),'')}</div></div></div>
+    <div style="display:grid;grid-template-columns:0.9fr 2.1fr;gap:12px;margin-top:11px;align-items:stretch"><div class="card" style="display:flex;flex-direction:column;justify-content:center">${chartCap('IRR CĐT')}${rRing(Math.min((R.IRReq||0)/0.30,1),rP(R.IRReq),'ngưỡng '+rN(P.r_ck)+'%',R.NPV>0?RPT.green:RPT.gold)}</div><div class="card"><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px 20px;height:100%;align-content:center">${rKpi('NPV CĐT @'+rN(P.r_ck)+'%',rF(R.NPV),'tỷ đ')}${rKpi('LNST theo web',rF0(R.totLNST),'tỷ đ')}${rKpi('Thực thu',rF0(R.F274),'tỷ đ')}${rKpi('Hoàn vốn',R.payback===null?'—':'năm '+(Y0+R.payback),'')}</div></div></div>
     ${repFtr(INF,today,tag)}</div></div>`;
   const P6=`<div class="pg">${repHdr(6,TOT,INF)}<div class="pad">${rSec('05','GIẢ ĐỊNH & KHUYẾN NGHỊ')}
     <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:12px"><div class="card">${gd}</div>${photoCard(RIMG.b2,'PHỐI CẢNH KHU CĂN HỘ — ẢNH MINH HỌA',undefined)}</div>
@@ -3916,6 +3953,9 @@ function taoBaoCao(selId){
   const w=window.open('','_blank');
   try{
     const sel=document.getElementById(selId||'rep-mode'); const mode=(sel&&sel.value)||'full';
+    // Báo cáo phải bám số liệu web hiện tại: ép tính lại đồng bộ trước khi build HTML.
+    // Nếu người dùng vừa đổi input và chưa bấm "Chạy FS", report vẫn lấy state mới nhất.
+    if(typeof recalc==='function') recalc(true);
     if(w&&w.document){
       w.document.open();
       w.document.write('<!doctype html><meta charset="utf-8"><title>Đang tạo báo cáo…</title><p style="font-family:Arial;padding:28px">Đang tạo báo cáo, vui lòng chờ…</p>');
