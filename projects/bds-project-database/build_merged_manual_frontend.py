@@ -106,8 +106,16 @@ def generic_financial_lines(text, chunk='', existing=None):
     keys=re.compile(r'(IRR|NPV|LNTT|LNST|TMĐT|TMDT|doanh thu|giá bán|giá chào|giá đất|giá đấu|max|tỷ|tr/m2|triệu/m2|chi phí|vốn|lãi vay|hiệu quả|khả thi|tổng mức đầu tư|tiền sử dụng đất)',re.I)
     bad=re.compile(r'^(by |message by|translate|edited|image by|image$)',re.I)
     out=[]
-    for line in [re.sub(r'\s+',' ',x).strip(' -•\t') for x in txt.splitlines()]:
-        if len(line)<18 or len(line)>260 or bad.search(line): continue
+    candidates=[re.sub(r'\s+',' ',x).strip(' -•\t') for x in txt.splitlines()]
+    # Some Teams exports collapse report bullets into long paragraphs. Split those into compact evidence sentences too.
+    blob=re.sub(r'\s+',' ',txt)
+    candidates += [x.strip(' -•\t') for x in re.split(r'(?<=[.;:])\s+(?=[A-ZÀ-Ỵ0-9+\-])|\s+(?=\d+[/.]\s)|\s+(?=[IVX]+/)', blob)]
+    seen=set()
+    for line in candidates:
+        if line in seen: continue
+        seen.add(line)
+        if len(line)<18 or bad.search(line): continue
+        if len(line)>360: line=line[:357].rstrip()+ '…'
         if not keys.search(line): continue
         low=line.lower()
         if low in existing_blob: continue

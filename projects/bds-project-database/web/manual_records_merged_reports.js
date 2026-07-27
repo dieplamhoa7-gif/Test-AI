@@ -1,5 +1,5 @@
 window.MANUAL_MERGED_REPORTS_DB = {
-  "generated_at": "2026-07-27T09:51:49",
+  "generated_at": "2026-07-27T10:02:36",
   "groups": [
     {
       "master_id": "G0001",
@@ -225,6 +225,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 lô A12 và A14 - Trung tâm tài chính quốc tế Đà Nẵng",
           "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "với phương án giá bán theo đề xuất của RnD (>160tr/m2 – gồm VAT thông thủy) và phương án quy hoạch sơ bộ từ TkQH thì việc triển khai dự án căn hộ cao cấp tại vị trí nghiên cứu là khả thi với mức giá đấu max 370 tr./m2. Tuy nhiên cần xem xét các yếu tố sau trong việc phân tích đánh giá dự án:",
+          "source_chunk": "360",
+          "record_id": "M04-0017",
+          "report_no": 1,
+          "project_name": "02 lô A12 và A14 - Trung tâm tài chính quốc tế Đà Nẵng",
+          "part": 4
         }
       ],
       "reports": [
@@ -360,6 +369,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để đảm bảo IRR 15% => Giá đấu giá max: 358 tr/m2 (tổng giá trị đất: 3.698 tỷ), LNTT/TMĐT: 28%",
               "source_chunk": "360"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "với phương án giá bán theo đề xuất của RnD (>160tr/m2 – gồm VAT thông thủy) và phương án quy hoạch sơ bộ từ TkQH thì việc triển khai dự án căn hộ cao cấp tại vị trí nghiên cứu là khả thi với mức giá đấu max 370 tr./m2. Tuy nhiên cần xem xét các yếu tố sau trong việc phân tích đánh giá dự án:",
+              "source_chunk": "360"
             }
           ],
           "excerpt": "2 lô A12/A14 trung tâm tài chính quốc tế Đà Nẵng... A12 7.633m2, A14 10.327m2, 38 tầng... giá bán 167tr/m2, CPXD 22,3tr/m2.",
@@ -397,6 +411,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Mức giá khởi điểm: 7,9tr/m2 ~ 1.022 tỷ.",
+          "source_chunk": "517",
+          "record_id": "M06-0002",
+          "report_no": 1,
+          "project_name": "02 lô đất đấu giá ven sông Hàn Đà Nẵng - A1-6 Thuận Phước và lô liên quan",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "7,9tr/m2 ~ 1.022 tỷ.",
           "source_chunk": "517",
           "record_id": "M06-0002",
           "report_no": 1,
@@ -471,6 +494,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Mức giá khởi điểm: 7,9tr/m2 ~ 1.022 tỷ.",
+              "source_chunk": "517"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "7,9tr/m2 ~ 1.022 tỷ.",
               "source_chunk": "517"
             },
             {
@@ -557,6 +585,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 dự án Bình Dương: Victory Hoàn Cầu và lô 8.029m2 Mỹ Phước - Tân Vạn",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "chunk --- Thao L - INVT 7/28/2022 5:04 PM B/ Dự án 8029 m2 tại Mỹ Phước - Tân Vạn, Thuận Giao, Thuận An, Tỉnh Bình Dương với giá chào 200 tỷ ( 24.9 tr/m2) 1) Vị trí và hiện trạng:",
+          "source_chunk": "992",
+          "record_id": "M10-0029",
+          "report_no": 1,
+          "project_name": "02 dự án Bình Dương: Victory Hoàn Cầu và lô 8.029m2 Mỹ Phước - Tân Vạn",
+          "part": 10
         }
       ],
       "reports": [
@@ -597,6 +634,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "B/ Dự án 8029 m2 tại Mỹ Phước - Tân Vạn, Thuận Giao, Thuận An, Tỉnh Bình Dương với giá chào 200 tỷ ( 24.9 tr/m2)",
+              "source_chunk": "992"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "chunk --- Thao L - INVT 7/28/2022 5:04 PM B/ Dự án 8029 m2 tại Mỹ Phước - Tân Vạn, Thuận Giao, Thuận An, Tỉnh Bình Dương với giá chào 200 tỷ ( 24.9 tr/m2) 1) Vị trí và hiện trạng:",
               "source_chunk": "992"
             }
           ],
@@ -676,6 +718,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Dự án The Salling Bay với giá chào chuyển nhượng là 520tỷ ~ 11tr/m2 (bao gồm CTXD), tạm uớc tính giá trị CTXD trên đất:",
+          "source_chunk": "1001",
+          "record_id": "M10-0031",
+          "report_no": 1,
+          "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "67.5tỷ => đơn giá đất 9.6tr/m2 (Đất TMDV, thuê đẩt trả tiền hằng năm), có quy mô:",
+          "source_chunk": "1001",
+          "record_id": "M10-0031",
+          "report_no": 1,
+          "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đang xin quy hoạch xây dựng biệt thự nghỉ dưỡng, Villa (theo thông tin được cung cấp) Dự án Muine Bay với giá chào chuyển nhượng là 550 tỷ ~ 9.3tr/m2 (bao gồm CTXD -Đất TMDV, thuê đất trả tiền hằng năm), có quy mô:",
+          "source_chunk": "1001",
+          "record_id": "M10-0031",
+          "report_no": 1,
+          "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Đất thuê trả tiền hàng năm, chỉ còn khoảng từ 27 - 40 năm -> Không khả thi đối với phương án bán Villa biệt thự nghỉ dưỡng.",
+          "source_chunk": "1001",
+          "record_id": "M10-0031",
+          "report_no": 1,
+          "project_name": "02 dự án du lịch Mũi Né - The Salling Bay và dự án còn lại",
+          "part": 10
         }
       ],
       "reports": [
@@ -725,6 +803,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Pháp lý đất: Đất thuê trả tiền hàng năm, chỉ còn khoảng từ 27 - 40 năm -> Không khả thi đối với phương án bán Villa biệt thự nghỉ dưỡng.",
+              "source_chunk": "1001"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Dự án The Salling Bay với giá chào chuyển nhượng là 520tỷ ~ 11tr/m2 (bao gồm CTXD), tạm uớc tính giá trị CTXD trên đất:",
+              "source_chunk": "1001"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "67.5tỷ => đơn giá đất 9.6tr/m2 (Đất TMDV, thuê đẩt trả tiền hằng năm), có quy mô:",
+              "source_chunk": "1001"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đang xin quy hoạch xây dựng biệt thự nghỉ dưỡng, Villa (theo thông tin được cung cấp) Dự án Muine Bay với giá chào chuyển nhượng là 550 tỷ ~ 9.3tr/m2 (bao gồm CTXD -Đất TMDV, thuê đất trả tiền hằng năm), có quy mô:",
+              "source_chunk": "1001"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Đất thuê trả tiền hàng năm, chỉ còn khoảng từ 27 - 40 năm -> Không khả thi đối với phương án bán Villa biệt thự nghỉ dưỡng.",
               "source_chunk": "1001"
             }
           ],
@@ -876,6 +974,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 dự án nhà ở lực lượng vũ trang nhân dân Quận 12",
           "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Về tiền sử dụng đất, P.ĐT áp dụng phương pháp thặng dư để tính tiền sử dụng đất. Trong trường hợp PP Thặng dư cho ra số thấp hơn giá đất trong khu vực, thì để đảm bảo tính thận trọng Phòng Đầu tư sẽ lấy theo giá đất của đường có quy mô và vị trí tương đương (cả 2 dự án đang nằm trên trục đường không có trong bảng giá đất) và dự phòng thêm 10%.",
+          "source_chunk": "413",
+          "record_id": "M05-0006",
+          "report_no": 1,
+          "project_name": "02 dự án nhà ở lực lượng vũ trang nhân dân Quận 12",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án nhà ở lực lượng vũ trang nhân dân Quận",
+          "source_chunk": "413",
+          "record_id": "M05-0006",
+          "report_no": 1,
+          "project_name": "02 dự án nhà ở lực lượng vũ trang nhân dân Quận 12",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "539 căn - Tổng mức đầu tư:",
+          "source_chunk": "413",
+          "record_id": "M05-0006",
+          "report_no": 1,
+          "project_name": "02 dự án nhà ở lực lượng vũ trang nhân dân Quận 12",
+          "part": 5
         }
       ],
       "reports": [
@@ -965,6 +1090,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Định hướng cả 2 dự án sẽ theo chiến lược tách biệt phần NOTM và triển khai gần như độc lập 2 phân khu nhằm đảm bảo mức giá bán tốt cho phân khu NOTM",
+              "source_chunk": "413"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Về tiền sử dụng đất, P.ĐT áp dụng phương pháp thặng dư để tính tiền sử dụng đất. Trong trường hợp PP Thặng dư cho ra số thấp hơn giá đất trong khu vực, thì để đảm bảo tính thận trọng Phòng Đầu tư sẽ lấy theo giá đất của đường có quy mô và vị trí tương đương (cả 2 dự án đang nằm trên trục đường không có trong bảng giá đất) và dự phòng thêm 10%.",
+              "source_chunk": "413"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án nhà ở lực lượng vũ trang nhân dân Quận",
+              "source_chunk": "413"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "539 căn - Tổng mức đầu tư:",
               "source_chunk": "413"
             }
           ],
@@ -1091,6 +1231,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 dự án NOXH của Công ty Ba Huân",
           "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hạng Mục Đơn giá Giá đất ở ngoài KCN Vsip II 10 Triệu/m2 - 15 Triệu/m2 Giá đất KDC trong KCN Vsip II Trên dưới 15 Tr/m2 Giá căn hộ Tecco Felice (NOTM) Gần trung tâm Tp Tân Uyên, cách dự án NOXH đang đánh giá khoảng 15Km Trên dưới 20 Triệu/m2 Giá đất UBND MT đường DT742 5 Triệu/m2 Theo Tổng mức đầu tư ước tính từ suất vốn đầu tư của Bộ xây dựng để tính toá…",
+          "source_chunk": "385",
+          "record_id": "M04-0021",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH của Công ty Ba Huân",
+          "part": 4
         }
       ],
       "reports": [
@@ -1167,6 +1316,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá căn hộ NOXH ước tính khoảng 23 Triệu/m2 - 25 Triệu/ m2 cao hơn 50%-60% giá đất ở KDC xung quanh dự án.",
+              "source_chunk": "385"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hạng Mục Đơn giá Giá đất ở ngoài KCN Vsip II 10 Triệu/m2 - 15 Triệu/m2 Giá đất KDC trong KCN Vsip II Trên dưới 15 Tr/m2 Giá căn hộ Tecco Felice (NOTM) Gần trung tâm Tp Tân Uyên, cách dự án NOXH đang đánh giá khoảng 15Km Trên dưới 20 Triệu/m2 Giá đất UBND MT đường DT742 5 Triệu/m2 Theo Tổng mức đầu tư ước tính từ suất vốn đầu tư của Bộ xây dựng để tính toá…",
               "source_chunk": "385"
             }
           ],
@@ -1300,6 +1454,78 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
           "part": 4
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Về phương án quy hoạch P.TKQH hiện đang binh tỷ lệ hiệu dụng ~ 73%, con số này gần tương đương các dự án NOTM. Theo quan điểm P.ĐT , đối với dự án NOXH chúng ta có thể bố trí tiết giảm diện tích hành lang căn hộ, lược bỏ sảnh căn hộ (chỉ cần đảm bảo có khu nhận thư, bảo vệ) và các khu vực tiện ích cho cư dân (chỉ cần đảm bảo khu SHCĐ theo quy chuẩn). Như…",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Khoa L - INVT 7/14/2025 6:26 PM Edited Translate P.Đầu tư báo cáo CEO Mr Mike1 -CEO hiệu quả 2 dự án NOXH khu vực Phước An, Nhơn Trạch Sau khi tổng hợp thông tin thêm từ a Hiếu PLDA, P.Đầu tư đã làm việc với team TKQH để có bài bố trí quy hoạch cụ thể cho 2 dự án và tính toán FS chi tiết như sau:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Hiệu quả dự án: a) Dự án NOXH 2,1ha Phước An Nhơn Trạch: https://maps.app.goo.gl/Fsyo4xmwK3kmzbC9A - Tổng doanh thu:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "135,17 tỷ - LNTT/TMĐT:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "13,8% b) Dự án NOXH 3,7ha Phước An Nhơn Trạch: https://maps.app.goo.gl/hMM3KEF5KhFhsZJi7 - Tổng doanh thu:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "1.839,8 tỷ - LNTT:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "138,18 tỷ - LNTT/TMĐT:",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Về phương án quy hoạch P.TKQH hiện đang binh tỷ lệ hiệu dụng ~ 73%, con số này gần tương đương các dự án NOTM.",
+          "source_chunk": "344",
+          "record_id": "M04-0012",
+          "report_no": 1,
+          "project_name": "02 dự án NOXH khu vực Phước An, Nhơn Trạch",
+          "part": 4
         }
       ],
       "reports": [
@@ -1379,6 +1605,46 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tổng doanh thu: 1.839,8 tỷ",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Về phương án quy hoạch P.TKQH hiện đang binh tỷ lệ hiệu dụng ~ 73%, con số này gần tương đương các dự án NOTM. Theo quan điểm P.ĐT , đối với dự án NOXH chúng ta có thể bố trí tiết giảm diện tích hành lang căn hộ, lược bỏ sảnh căn hộ (chỉ cần đảm bảo có khu nhận thư, bảo vệ) và các khu vực tiện ích cho cư dân (chỉ cần đảm bảo khu SHCĐ theo quy chuẩn). Như…",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Khoa L - INVT 7/14/2025 6:26 PM Edited Translate P.Đầu tư báo cáo CEO Mr Mike1 -CEO hiệu quả 2 dự án NOXH khu vực Phước An, Nhơn Trạch Sau khi tổng hợp thông tin thêm từ a Hiếu PLDA, P.Đầu tư đã làm việc với team TKQH để có bài bố trí quy hoạch cụ thể cho 2 dự án và tính toán FS chi tiết như sau:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Hiệu quả dự án: a) Dự án NOXH 2,1ha Phước An Nhơn Trạch: https://maps.app.goo.gl/Fsyo4xmwK3kmzbC9A - Tổng doanh thu:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "135,17 tỷ - LNTT/TMĐT:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "13,8% b) Dự án NOXH 3,7ha Phước An Nhơn Trạch: https://maps.app.goo.gl/hMM3KEF5KhFhsZJi7 - Tổng doanh thu:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "1.839,8 tỷ - LNTT:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "138,18 tỷ - LNTT/TMĐT:",
+              "source_chunk": "344"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Về phương án quy hoạch P.TKQH hiện đang binh tỷ lệ hiệu dụng ~ 73%, con số này gần tương đương các dự án NOTM.",
               "source_chunk": "344"
             }
           ],
@@ -1572,7 +1838,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "+ Cân nhắc chỉ triển khai đầu tư đối với mặt bằng tại 391A Nam Kỳ Khởi Nghĩa (ưu tiên xin chỉ tiêu phương án QH2 tầng cao 28 trước vì hiệu quả cao hơn và điều chỉnh 2 tầng thương mại dịch vụ tại tầng 2 và 3 thành văn phòng cho thuê cả 2 phương án).",
+          "value": "+ Khu đất tại 391A Nam Kỳ Khởi Nghĩa với phương án dự kiến đầu tư xây dựng văn phòng cho thuê ~ 18 USD/m2/tháng (chưa VAT, chưa phí quản lý là có khả thi về mặt tài chính có thể triển khai với tỷ suất hoàn vốn khá IRR đạt từ 8% với phương án 1 ~ 16 tầng và 10% với phương án 2 ~ 28 tầng.",
           "source_chunk": "233",
           "record_id": "M03-0013",
           "report_no": 1,
@@ -1581,7 +1847,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "+ Chưa ưu tiên đầu tư xây dựng đối với 2 mặt bằng còn lại, có thể xin trước chỉ tiêu Quy hoạch nhưng phải cao hơn chỉ tiêu theo phương án hiện tại vì hệ số thấp nên chưa đạt được hiệu quả tài chính tương ứng.",
+          "value": "+ Khu đất tại 728 Cách Mạng Tháng 8 thì chưa khả thi với tỷ suất hoàn vốn IRR thấp ~ 5.8 % do giá cho thuê Văn Phòng khu vực chỉ dao động từ 12 đến 15 USD/m2 và cũng chưa phải là khu vực tập trung sản phẩm phân khúc cho thuê văn phòng chuyên nghiệp nên nhu cầu thuê tại khu vực này chưa cao.",
           "source_chunk": "233",
           "record_id": "M03-0013",
           "report_no": 1,
@@ -1590,7 +1856,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "Kính gửi Mr Mike1 -CEO, P.ĐT báo cáo đánh giá 3 tài sản thực hiện căn hộ dịch vụ với hiệu quả dự án đầu tư như sau:",
+          "value": "+ Khu đất tại đường 12 An Phú thì không khả thi với IRR 1.1% ~ do giá vốn mua đất cao ~ 200 tr.đồng/m2 và phương án quy hoạch với hệ số sử dụng đất thấp ~ 4 lần ~ 12 tầng và sản phẩm căn hộ dịch vụ chịu sự cạnh tranh lớn từ khu vực xung quanh với giá cho thuê thấp ~ 7,5 tr/căn 31 m2/tháng dẫn đến không hiệu quả.",
           "source_chunk": "233",
           "record_id": "M03-0013",
           "report_no": 1,
@@ -1712,17 +1978,17 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
-              "value": "+ Cân nhắc chỉ triển khai đầu tư đối với mặt bằng tại 391A Nam Kỳ Khởi Nghĩa (ưu tiên xin chỉ tiêu phương án QH2 tầng cao 28 trước vì hiệu quả cao hơn và điều chỉnh 2 tầng thương mại dịch vụ tại tầng 2 và 3 thành văn phòng cho thuê cả 2 phương án).",
+              "value": "+ Khu đất tại 391A Nam Kỳ Khởi Nghĩa với phương án dự kiến đầu tư xây dựng văn phòng cho thuê ~ 18 USD/m2/tháng (chưa VAT, chưa phí quản lý là có khả thi về mặt tài chính có thể triển khai với tỷ suất hoàn vốn khá IRR đạt từ 8% với phương án 1 ~ 16 tầng và 10% với phương án 2 ~ 28 tầng.",
               "source_chunk": "233"
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
-              "value": "+ Chưa ưu tiên đầu tư xây dựng đối với 2 mặt bằng còn lại, có thể xin trước chỉ tiêu Quy hoạch nhưng phải cao hơn chỉ tiêu theo phương án hiện tại vì hệ số thấp nên chưa đạt được hiệu quả tài chính tương ứng.",
+              "value": "+ Khu đất tại 728 Cách Mạng Tháng 8 thì chưa khả thi với tỷ suất hoàn vốn IRR thấp ~ 5.8 % do giá cho thuê Văn Phòng khu vực chỉ dao động từ 12 đến 15 USD/m2 và cũng chưa phải là khu vực tập trung sản phẩm phân khúc cho thuê văn phòng chuyên nghiệp nên nhu cầu thuê tại khu vực này chưa cao.",
               "source_chunk": "233"
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
-              "value": "Kính gửi Mr Mike1 -CEO, P.ĐT báo cáo đánh giá 3 tài sản thực hiện căn hộ dịch vụ với hiệu quả dự án đầu tư như sau:",
+              "value": "+ Khu đất tại đường 12 An Phú thì không khả thi với IRR 1.1% ~ do giá vốn mua đất cao ~ 200 tr.đồng/m2 và phương án quy hoạch với hệ số sử dụng đất thấp ~ 4 lần ~ 12 tầng và sản phẩm căn hộ dịch vụ chịu sự cạnh tranh lớn từ khu vực xung quanh với giá cho thuê thấp ~ 7,5 tr/căn 31 m2/tháng dẫn đến không hiệu quả.",
               "source_chunk": "233"
             }
           ],
@@ -1854,6 +2120,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Theo thông tin giá đầu vào A Sơn Trợ lý báo 30 trđ/m2 trên 10ha. Tuy nhiên QH chỉ có 1.7 ha trên tổng 10 ha là đất ở. Dc áp hệ số 8, Tầng cao 30 tầng chỉ cho 1.7 ha. Giá bán RD đề xuất là 42 47 chưa v, tim. Trong khi giá vốn 10ha chia lại 1.7 đang rất cao và đơn giá bản giá đất NN tiền sử đụng đất đoạn qua dự án cũng 42 tr/m2. Nên Dự án ko đạt hiệu quả vớ…",
+          "source_chunk": "307",
+          "record_id": "M04-0004",
+          "report_no": 1,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 4
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Nếu tăng tỷ lệ đất ở, đồng nghĩa với việc đóng thêm tiền sử dụng đất (theo bảng giá đất ở đường Long Thuận khoảng 42tr/m2 đất ở)",
           "source_chunk": "307",
@@ -1865,6 +2140,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Giá bán sản phẩm theo RD đề xuất với cao tầng khoảng 50tr/m2, thấp tầng 70tr/m2 (Đất + nhà) không đủ để cover giá vốn sản phẩm (giá vốn sản phẩm theo các phương án tính vẫn lớn hơn 1,5 lần giá bán)",
+          "source_chunk": "307",
+          "record_id": "M04-0004",
+          "report_no": 1,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Giá bán RD đề xuất là 42 47 chưa v, tim.",
+          "source_chunk": "307",
+          "record_id": "M04-0004",
+          "report_no": 1,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trong khi giá vốn 10ha chia lại 1.7 đang rất cao và đơn giá bản giá đất NN tiền sử đụng đất đoạn qua dự án cũng 42 tr/m2.",
+          "source_chunk": "307",
+          "record_id": "M04-0004",
+          "report_no": 1,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Nên Dự án ko đạt hiệu quả với Quy hoạch hiện tại Ngoài ra Team cũng thử binh phương án quy h... by Huy M - IM --- chunk --- Huy M - IM 8/24/2025 7:01 PM Translate Ngoài ra Team cũng thử binh phương án quy hoạch dc 4ha đất ở, với nhiều phương án: *Thấp tầng * Cao tầng * Thấp tầng + cao tầng Nếu tăng tỷ lệ đất ở, đồng nghĩa với việc đóng thêm tiền sử dụng đ…",
           "source_chunk": "307",
           "record_id": "M04-0004",
           "report_no": 1,
@@ -2124,6 +2426,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "P.ĐT thực hiện binh một phương án khác, tăng diện tích đất ở bằng cách chuyển đổi phần đất DVCC cấp đô thị sang đất ở khoảng 16.536m2 (tạm tính 40% x 41.339,4m2). Phần đất ở tăng thêm theo đề xuất và nghiên cứu của RD bố trí làm biệt thự vườn. Hiệu quả dự án gồm như sau:",
+          "source_chunk": "106",
+          "record_id": "M02-0004",
+          "report_no": 3,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 2
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Doanh thu chưa VAT: 8.127 tỷ đồng (Trong đó, Đơn giá bình quân chưa VAT bao gồm đất + CTXD là 133 Triệu/m2; Đơn giá bình quân đất biệt thự chưa VAT là 110 Triệu/m2 và Giá căn hộ bình quân chưa VAT tim tường là 57 triệu/m2, Thời điểm bán 2028).",
           "source_chunk": "106",
@@ -2180,15 +2491,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Doanh thu chưa VAT: 7.290 tỷ đồng (thời điểm mở bán 2028 giá bán căn hộ và giá shop là 60 triệu bao gồm VAT).",
-          "source_chunk": "106",
-          "record_id": "M02-0004",
-          "report_no": 3,
-          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
-          "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Tổng mức đầu tư chưa VAT: 4.520 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2, tiền sử dụng đất tạm tính 1.229 tỷ đồng, suất all in chưa VAT 13triệu/m2).",
           "source_chunk": "106",
           "record_id": "M02-0004",
           "report_no": 3,
@@ -2349,6 +2651,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "PHƯƠNG ÁN 1: P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tuy nhiên theo nghiên cứu và đề xuất của Phòng RD không triển khai làm căn hộ dịch vụ vì tại vị trí dự án, thị trường chưa phổ biến loại hình này. P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS. Hiệu quả dự án như sau:",
+          "source_chunk": "296",
+          "record_id": "M03-0034",
+          "report_no": 4,
+          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
+          "part": 3
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Doanh thu chưa VAT: 5.899 tỷ đồng (Đơn giá bình quân căn hộ tim tường chưa VAT 57 triệu/m2, Shophouse chưa VAT 56 triệu/m2; thời điểm bán 2028).",
           "source_chunk": "296",
@@ -2385,17 +2696,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Doanh thu chưa VAT: 8.127 tỷ đồng (Trong đó, Đơn giá bình quân chưa VAT bao gồm đất + CTXD là 133 Triệu/m2; Đơn giá bình quân đất biệt thự chưa VAT là 110 Triệu/m2 và Giá căn hộ bình quân chưa VAT tim tường là 57 triệu/m2, Thời điểm bán 2028).",
-          "source_chunk": "296",
-          "record_id": "M03-0034",
-          "report_no": 4,
-          "project_name": "Dự án 10ha Đường Long Thuận, Long Phước, Quận 9",
-          "part": 3
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Tổng mức đầu tư chưa VAT: 4.620 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2; tiền sử dụng đất tạm tính 1.387 tỷ; suất all in chưa VAT của biệt thự 11 triệu/m2)",
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "PHƯƠNG ÁN 2: P.ĐT thực hiện binh một phương án khác, tăng diện tích đất ở bằng cách chuyển đổi phần đất DVCC cấp đô thị sang đất ở khoảng 16.536m2 (tạm tính 40% x 41.339,4m2). Phần đất ở tăng thêm theo đề xuất và nghiên cứu của RD bố trí làm biệt thự vườn. Hiệu quả dự án gồm như sau:",
           "source_chunk": "296",
           "record_id": "M03-0034",
           "report_no": 4,
@@ -2449,6 +2751,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "308"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Theo thông tin giá đầu vào A Sơn Trợ lý báo 30 trđ/m2 trên 10ha. Tuy nhiên QH chỉ có 1.7 ha trên tổng 10 ha là đất ở. Dc áp hệ số 8, Tầng cao 30 tầng chỉ cho 1.7 ha. Giá bán RD đề xuất là 42 47 chưa v, tim. Trong khi giá vốn 10ha chia lại 1.7 đang rất cao và đơn giá bản giá đất NN tiền sử đụng đất đoạn qua dự án cũng 42 tr/m2. Nên Dự án ko đạt hiệu quả vớ…",
+              "source_chunk": "307"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Nếu tăng tỷ lệ đất ở, đồng nghĩa với việc đóng thêm tiền sử dụng đất (theo bảng giá đất ở đường Long Thuận khoảng 42tr/m2 đất ở)",
               "source_chunk": "307"
@@ -2456,6 +2763,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá bán sản phẩm theo RD đề xuất với cao tầng khoảng 50tr/m2, thấp tầng 70tr/m2 (Đất + nhà) không đủ để cover giá vốn sản phẩm (giá vốn sản phẩm theo các phương án tính vẫn lớn hơn 1,5 lần giá bán)",
+              "source_chunk": "307"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Giá bán RD đề xuất là 42 47 chưa v, tim.",
+              "source_chunk": "307"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trong khi giá vốn 10ha chia lại 1.7 đang rất cao và đơn giá bản giá đất NN tiền sử đụng đất đoạn qua dự án cũng 42 tr/m2.",
+              "source_chunk": "307"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Nên Dự án ko đạt hiệu quả với Quy hoạch hiện tại Ngoài ra Team cũng thử binh phương án quy h... by Huy M - IM --- chunk --- Huy M - IM 8/24/2025 7:01 PM Translate Ngoài ra Team cũng thử binh phương án quy hoạch dc 4ha đất ở, với nhiều phương án: *Thấp tầng * Cao tầng * Thấp tầng + cao tầng Nếu tăng tỷ lệ đất ở, đồng nghĩa với việc đóng thêm tiền sử dụng đ…",
               "source_chunk": "307"
             }
           ],
@@ -2645,6 +2967,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "106"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "P.ĐT thực hiện binh một phương án khác, tăng diện tích đất ở bằng cách chuyển đổi phần đất DVCC cấp đô thị sang đất ở khoảng 16.536m2 (tạm tính 40% x 41.339,4m2). Phần đất ở tăng thêm theo đề xuất và nghiên cứu của RD bố trí làm biệt thự vườn. Hiệu quả dự án gồm như sau:",
+              "source_chunk": "106"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Doanh thu chưa VAT: 8.127 tỷ đồng (Trong đó, Đơn giá bình quân chưa VAT bao gồm đất + CTXD là 133 Triệu/m2; Đơn giá bình quân đất biệt thự chưa VAT là 110 Triệu/m2 và Giá căn hộ bình quân chưa VAT tim tường là 57 triệu/m2, Thời điểm bán 2028).",
               "source_chunk": "106"
@@ -2677,11 +3004,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Doanh thu chưa VAT: 7.290 tỷ đồng (thời điểm mở bán 2028 giá bán căn hộ và giá shop là 60 triệu bao gồm VAT).",
-              "source_chunk": "106"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Tổng mức đầu tư chưa VAT: 4.520 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2, tiền sử dụng đất tạm tính 1.229 tỷ đồng, suất all in chưa VAT 13triệu/m2).",
               "source_chunk": "106"
             }
           ],
@@ -2794,6 +3116,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "296"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "PHƯƠNG ÁN 1: P.ĐT thực hiện tính theo phương án bố trí của phòng QH, tuy nhiên theo nghiên cứu và đề xuất của Phòng RD không triển khai làm căn hộ dịch vụ vì tại vị trí dự án, thị trường chưa phổ biến loại hình này. P.ĐT tạm để trống phần diện tích đất DVCC cấp đô thị và không thực hiện tính toán phần đất này trong FS. Hiệu quả dự án như sau:",
+              "source_chunk": "296"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Doanh thu chưa VAT: 5.899 tỷ đồng (Đơn giá bình quân căn hộ tim tường chưa VAT 57 triệu/m2, Shophouse chưa VAT 56 triệu/m2; thời điểm bán 2028).",
               "source_chunk": "296"
@@ -2814,13 +3141,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "296"
             },
             {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Doanh thu chưa VAT: 8.127 tỷ đồng (Trong đó, Đơn giá bình quân chưa VAT bao gồm đất + CTXD là 133 Triệu/m2; Đơn giá bình quân đất biệt thự chưa VAT là 110 Triệu/m2 và Giá căn hộ bình quân chưa VAT tim tường là 57 triệu/m2, Thời điểm bán 2028).",
-              "source_chunk": "296"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Tổng mức đầu tư chưa VAT: 4.620 tỷ đồng (Trong đó đơn giá đất hiện trạng 3tr/m2; tiền sử dụng đất tạm tính 1.387 tỷ; suất all in chưa VAT của biệt thự 11 triệu/m2)",
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "PHƯƠNG ÁN 2: P.ĐT thực hiện binh một phương án khác, tăng diện tích đất ở bằng cách chuyển đổi phần đất DVCC cấp đô thị sang đất ở khoảng 16.536m2 (tạm tính 40% x 41.339,4m2). Phần đất ở tăng thêm theo đề xuất và nghiên cứu của RD bố trí làm biệt thự vườn. Hiệu quả dự án gồm như sau:",
               "source_chunk": "296"
             }
           ],
@@ -2879,10 +3201,9 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
-          "label": "Giá/đơn giá bổ sung",
-          "value": "Làm từ giá 12-14tr nha by Admin 01",
-          "source_chunk": "59",
-          "review_status": "parallel_review_accepted",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thông tin tổng quan: 📷 Dựa vào sự phù hợp quy hoạch và hình dáng thuận lợi để triển khai dự án, P.ĐT đề xuất gom mua diện… Vào phòng a trình bày cái này --- chunk --- Dạ em gởi sếp bảng độ nhạy theo đơn giá đất và tổng giá mua đất (kèm file pdf đã cập nhật bảng độ nhạy) 2026.06.01-Bao cao 12ha Vinh Phu.pdf Làm từ giá 12-14tr nha by Admin 01 --- chunk ---…",
+          "source_chunk": "58",
           "record_id": "M01-0021",
           "report_no": 1,
           "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
@@ -2910,6 +3231,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "label": "Giá bán phân khu cao nhất",
           "value": "79 tr/m2",
           "source_chunk": "122",
+          "record_id": "M02-0008",
+          "report_no": 2,
+          "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Sở dĩ giá bán này là vì team cũng đã cân nhắc về quy mô dự án 12ha đủ lớn để có thể địn hướng triển khai tiện ích cảnh quan, mảng xanh, cải tạo công viên bờ kênh, xây thêm cầu kết nối, yếu tố thời gian và những ý tưởng về các tiện ích mà dự án có thể mang lại cho cư dân.",
+          "source_chunk": "119",
           "record_id": "M02-0008",
           "report_no": 2,
           "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
@@ -3013,15 +3343,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
           "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Giá bán cc sao biên độ xa vậy by Admin 01",
-          "source_chunk": "119",
-          "record_id": "M02-0008",
-          "report_no": 2,
-          "project_name": "12ha KDC Vĩnh Phú gần Phú Quang",
-          "part": 2
         }
       ],
       "reports": [
@@ -3057,10 +3378,9 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "58"
             },
             {
-              "label": "Giá/đơn giá bổ sung",
-              "value": "Làm từ giá 12-14tr nha by Admin 01",
-              "source_chunk": "59",
-              "review_status": "parallel_review_accepted"
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thông tin tổng quan: 📷 Dựa vào sự phù hợp quy hoạch và hình dáng thuận lợi để triển khai dự án, P.ĐT đề xuất gom mua diện… Vào phòng a trình bày cái này --- chunk --- Dạ em gởi sếp bảng độ nhạy theo đơn giá đất và tổng giá mua đất (kèm file pdf đã cập nhật bảng độ nhạy) 2026.06.01-Bao cao 12ha Vinh Phu.pdf Làm từ giá 12-14tr nha by Admin 01 --- chunk ---…",
+              "source_chunk": "58"
             }
           ],
           "excerpt": "dự án 12ha KDC Vĩnh Phú gần Phú Quang... đề xuất gom mua... làm từ giá 12-14tr... đã được đưa vào danh sách thí điểm 171 số thứ tự 41.",
@@ -3103,6 +3423,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Giá bán phân khu cao nhất",
               "value": "79 tr/m2",
               "source_chunk": "122"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Sở dĩ giá bán này là vì team cũng đã cân nhắc về quy mô dự án 12ha đủ lớn để có thể địn hướng triển khai tiện ích cảnh quan, mảng xanh, cải tạo công viên bờ kênh, xây thêm cầu kết nối, yếu tố thời gian và những ý tưởng về các tiện ích mà dự án có thể mang lại cho cư dân.",
+              "source_chunk": "119"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
@@ -3157,11 +3482,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để đảm bảo hiệu quả tài chỉnh LNTT/TMĐT đạt 20%, LNST 1.395 tỷ, IRR 16% thì giá gom đất trung bình cho tổng diện tích 12.5ha, đa phần đất lúa và HNK, là 1.124 tỷ, tương đương đơn giá mua đất là 9tr./m2",
-              "source_chunk": "119"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Giá bán cc sao biên độ xa vậy by Admin 01",
               "source_chunk": "119"
             }
           ],
@@ -3277,6 +3597,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 9
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Khu đất Nằm trên đường Lê Văn Sỹ và hẻm 195 Lê Văn Sỹ, cách cầu Lê Văn Sỹ khoảng 50m có tổng diện tích 985,7m2 với giá chào bán là 340 tỷ như sau:",
+          "source_chunk": "879",
+          "record_id": "M09-0011",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Imag... by Thao L - INVT --- chunk --- Thao L - INVT 4/11/2023 10:35 AM Edited 7.Hiệu quả đầu tư: a.Trường hợp 1:",
+          "source_chunk": "879",
+          "record_id": "M09-0011",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "NPV = -216 tỷ, IRR = 7,24%.",
+          "source_chunk": "879",
+          "record_id": "M09-0011",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Độ nhạy IRR: b.Phương án 2:",
+          "source_chunk": "879",
+          "record_id": "M09-0011",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "NPV = 107 tỷ, IRR = 24,45%.",
+          "source_chunk": "879",
+          "record_id": "M09-0011",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 9
+        },
+        {
           "label": "Giá chào",
           "value": "340 tỷ",
           "source_chunk": "782",
@@ -3315,6 +3680,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Trường hợp 2: Không tính chi phí đất, chỉ có chi phí xây dựng và chi phí hoạt động – thực hiện theo cách thức giữ được đất lâu dài. Dự án đạt hiệu quả tài chính: NPV = 133tỷ, IRR = 25,67%.",
+          "source_chunk": "782",
+          "record_id": "M08-0015",
+          "report_no": 2,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Khu đất Nằm trên đường Lê Văn Sỹ và hẻm 195 Lê Văn Sỹ, cách cầu Lê Văn Sỹ khoảng 50m có tổng diện tích 985,7m2 với giá chào bán là 340 tỷ.",
+          "source_chunk": "782",
+          "record_id": "M08-0015",
+          "report_no": 2,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 8
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "NPV = -189 tỷ, IRR = 8,03%.",
+          "source_chunk": "782",
+          "record_id": "M08-0015",
+          "report_no": 2,
+          "project_name": "Văn phòng/khu đất 197 Lê Văn Sỹ, Quận 3",
+          "part": 8
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "NPV = 133tỷ, IRR = 25,67%.",
           "source_chunk": "782",
           "record_id": "M08-0015",
           "report_no": 2,
@@ -3376,6 +3768,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "b.Phương án 2: Không tính chi phí đất, chỉ có chi phí xây dựng và chi phí hoạt động – thực hiện theo cách thức giữ được đất lâu dài. Dự án đạt hiệu quả tài chính: NPV = 107 tỷ, IRR = 24,45%.",
               "source_chunk": "879"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Khu đất Nằm trên đường Lê Văn Sỹ và hẻm 195 Lê Văn Sỹ, cách cầu Lê Văn Sỹ khoảng 50m có tổng diện tích 985,7m2 với giá chào bán là 340 tỷ như sau:",
+              "source_chunk": "879"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Imag... by Thao L - INVT --- chunk --- Thao L - INVT 4/11/2023 10:35 AM Edited 7.Hiệu quả đầu tư: a.Trường hợp 1:",
+              "source_chunk": "879"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "NPV = -216 tỷ, IRR = 7,24%.",
+              "source_chunk": "879"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Độ nhạy IRR: b.Phương án 2:",
+              "source_chunk": "879"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "NPV = 107 tỷ, IRR = 24,45%.",
+              "source_chunk": "879"
             }
           ],
           "excerpt": "197 Lê Văn Sỹ: 985,7m2, giá 340 tỷ; tính đất thì NPV -216/IRR 7,24%, không tính đất thì NPV 107/IRR 24,45%.",
@@ -3422,6 +3839,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Trường hợp 2: Không tính chi phí đất, chỉ có chi phí xây dựng và chi phí hoạt động – thực hiện theo cách thức giữ được đất lâu dài. Dự án đạt hiệu quả tài chính: NPV = 133tỷ, IRR = 25,67%.",
+              "source_chunk": "782"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Khu đất Nằm trên đường Lê Văn Sỹ và hẻm 195 Lê Văn Sỹ, cách cầu Lê Văn Sỹ khoảng 50m có tổng diện tích 985,7m2 với giá chào bán là 340 tỷ.",
+              "source_chunk": "782"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "NPV = -189 tỷ, IRR = 8,03%.",
+              "source_chunk": "782"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "NPV = 133tỷ, IRR = 25,67%.",
               "source_chunk": "782"
             }
           ],
@@ -4013,6 +4445,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Dự án 1ha Sơn Trà, Đà Nẵng",
           "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "175 phòng Hiệu quả dự án phần Căn hộ Tổng doanh thu căn hộ chưa VAT là:",
+          "source_chunk": "237",
+          "record_id": "M03-0016",
+          "report_no": 2,
+          "project_name": "Dự án 1ha Sơn Trà, Đà Nẵng",
+          "part": 3
         }
       ],
       "reports": [
@@ -4235,6 +4676,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Dạ Sếp, giá mua đất đang tính theo Chứng thư thẩm định giá 2022 với giá ước tính 1.347 tỷ đồng",
               "source_chunk": "237"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "175 phòng Hiệu quả dự án phần Căn hộ Tổng doanh thu căn hộ chưa VAT là:",
+              "source_chunk": "237"
             }
           ],
           "excerpt": "1ha Sơn Trà, Đà Nẵng... 915 căn hộ, 175 phòng khách sạn... doanh thu căn hộ 6.763 tỷ, TMĐT 4.950 tỷ, LNTT 799 tỷ.",
@@ -4362,6 +4808,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "+ Dự án đạt được tỷ suất trên khi XIN được các chỉ tiêu quy hoạch theo PA 3.",
+          "source_chunk": "354",
+          "record_id": "M04-0015",
+          "report_no": 1,
+          "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Dạ Sếp, đây là phương án tính nhanh. Hệ số có thể xin được 10, sau khi đã binh 2 tầng shop và hết dân số hệ số đạt 8.3, hệ số 1.7 là phần thương mại dịch vụ từ tầng 3 đến tầng 6 tuy nhiên theo nghiên cứu của P.ĐT thì giá thuê tương đối thấp, việc kinh doanh phần TMDV chưa đạt hiệu quả nên tạm sử dụng 4 tầng TMDV trên để làm xe nổi. Sau khi dự án triển kha…",
           "source_chunk": "354",
           "record_id": "M04-0015",
           "report_no": 1,
@@ -4520,6 +4975,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 3,
           "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
           "part": 3
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "GHI CHÚ: Trong 2 PA trên thì PA 2 là phương án tối ưu nhất. Trong đó, PA2 để giảm chi phí xây dựng thì giảm 3 hầm thành để xe nổi thay cho TMDV. Tuy nhiên dân số có giới hạn là 3.306 nên hệ số 8,3. Nếu tăng thêm hệ số lên 10 thì phải tăng thêm dân cao hơn 3.306 và theo thông tin P.QH thì dân số 3.306 người là mức xin tối đa.",
+          "source_chunk": "293",
+          "record_id": "M03-0032",
+          "report_no": 3,
+          "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Begin quote, Mr Mike1 -CEO , 9/5/2025 8:25 ... by Huy M - IM --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO Hiệu quả dự án 2,1ha Võ Thị Sáu, Phường Thống Nhất, Tp Biên Hòa, Đồng Nai như sau:",
+          "source_chunk": "293",
+          "record_id": "M03-0032",
+          "report_no": 3,
+          "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+          "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "32 Tổng doanh thu chưa VAT:",
+          "source_chunk": "293",
+          "record_id": "M03-0032",
+          "report_no": 3,
+          "project_name": "Dự án 2,1ha Võ Thị Sáu, Biên Hòa",
+          "part": 3
         }
       ],
       "reports": [
@@ -4595,6 +5077,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "+ Dự án đạt được tỷ suất trên khi XIN được các chỉ tiêu quy hoạch theo PA 3.",
+              "source_chunk": "354"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Dạ Sếp, đây là phương án tính nhanh. Hệ số có thể xin được 10, sau khi đã binh 2 tầng shop và hết dân số hệ số đạt 8.3, hệ số 1.7 là phần thương mại dịch vụ từ tầng 3 đến tầng 6 tuy nhiên theo nghiên cứu của P.ĐT thì giá thuê tương đối thấp, việc kinh doanh phần TMDV chưa đạt hiệu quả nên tạm sử dụng 4 tầng TMDV trên để làm xe nổi. Sau khi dự án triển kha…",
               "source_chunk": "354"
             }
           ],
@@ -4727,6 +5214,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Lợi nhuận trước thuế: 853 tỷ đồng",
               "source_chunk": "293"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "GHI CHÚ: Trong 2 PA trên thì PA 2 là phương án tối ưu nhất. Trong đó, PA2 để giảm chi phí xây dựng thì giảm 3 hầm thành để xe nổi thay cho TMDV. Tuy nhiên dân số có giới hạn là 3.306 nên hệ số 8,3. Nếu tăng thêm hệ số lên 10 thì phải tăng thêm dân cao hơn 3.306 và theo thông tin P.QH thì dân số 3.306 người là mức xin tối đa.",
+              "source_chunk": "293"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Begin quote, Mr Mike1 -CEO , 9/5/2025 8:25 ... by Huy M - IM --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO Hiệu quả dự án 2,1ha Võ Thị Sáu, Phường Thống Nhất, Tp Biên Hòa, Đồng Nai như sau:",
+              "source_chunk": "293"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "32 Tổng doanh thu chưa VAT:",
+              "source_chunk": "293"
             }
           ],
           "excerpt": "2,1ha Võ Thị Sáu, Biên Hòa... PA1 doanh thu 5.884 tỷ, TMĐT 3.980 tỷ, LNTT 772 tỷ, LNTT/TMĐT 19,4%.",
@@ -4775,10 +5277,9 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
-          "label": "Quy mô/thông số bổ sung",
-          "value": "Begin quote, Thao Le-PTDT , 4/8/2025 7:37 P... by Unknown User",
-          "source_chunk": "482",
-          "review_status": "parallel_review_accepted",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thông tin này tương đương với --- chunk --- Mr Mike1 -CEO 4/8/2025 7:38 PM Translate Cái 25 trần phú tính giá đất theo định giá hôm trước làm Begin quote, Thao Le-PTDT , 4/8/2025 7:37 P... by Unknown User --- chunk --- Mr Mike1 -CEO 4/3/2025 2:35 PM 300 tỷ QĐ 2805 UBNDTP - QUY HOẠCH 1-2000 1.7.2019 (4).pdf Bản vẽ hiện trạng Gia Long.pdf SO DO Gia Lo…",
+          "source_chunk": "433",
           "record_id": "M05-0014",
           "report_no": 1,
           "project_name": "Khách sạn 25 Trần Phú, Đà Lạt",
@@ -4819,10 +5320,9 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "433"
             },
             {
-              "label": "Quy mô/thông số bổ sung",
-              "value": "Begin quote, Thao Le-PTDT , 4/8/2025 7:37 P... by Unknown User",
-              "source_chunk": "482",
-              "review_status": "parallel_review_accepted"
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thông tin này tương đương với --- chunk --- Mr Mike1 -CEO 4/8/2025 7:38 PM Translate Cái 25 trần phú tính giá đất theo định giá hôm trước làm Begin quote, Thao Le-PTDT , 4/8/2025 7:37 P... by Unknown User --- chunk --- Mr Mike1 -CEO 4/3/2025 2:35 PM 300 tỷ QĐ 2805 UBNDTP - QUY HOẠCH 1-2000 1.7.2019 (4).pdf Bản vẽ hiện trạng Gia Long.pdf SO DO Gia Lo…",
+              "source_chunk": "433"
             }
           ],
           "excerpt": "KS 25 Trần Phú đi PA 5 tầng nổi + 1 hầm, MĐXD 60%, 108 phòng 5 sao.",
@@ -4894,6 +5394,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
           "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Kết luận: Dự án đạt tỷ lệ lợi nhuận trước thuế 18.92%, để đạt LNR 20% cần thương lượng với giá 216 tỷ (16.7 tr.đồng/m2 đất). Hiện tại chưa có pháp lý dự án cho quỹ đất này, mục tiêu là có thể mua để dành quỹ đất. Tuy nhiên cần kiểm tra các thông tin quy hoạch trước khi tiến hành mua",
+          "source_chunk": "904",
+          "record_id": "M09-0017",
+          "report_no": 1,
+          "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 9/6/2022 12:09 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án 1.2ha tại đường Thuận An Hóa, Thuận An, Bình Dương có giá chào 240 tỷ (18.575 tr.đồng/m2 đất), cụ thể:",
+          "source_chunk": "904",
+          "record_id": "M09-0017",
+          "report_no": 1,
+          "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Công trình chung cư trung cấp 1369 căn hộ chung cư: giá bán trung bình 42tr/m2 thông thủy có VAT tại năm 2024 37 căn shophouse khối đế (bố trí tận dụng 2 mặt tiền đường): giá bán trung bình 40tr/m2 thông thủy có VAT tại năm 2024 Sàn nhà trẻ 1610m2: tạm tính giá thuê khoáng $6/m2/tháng có VAT Tổng mức đầu tư là 2267.5 tỷ đồng, tổng doanh thu là 3031.99 tỷ…",
+          "source_chunk": "904",
+          "record_id": "M09-0017",
+          "report_no": 1,
+          "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án đạt tỷ lệ lợi nhuận trước thuế 18.92%, để đạt LNR 20% cần thương lượng với giá 216 tỷ (16.7 tr.đồng/m2 đất).",
+          "source_chunk": "904",
+          "record_id": "M09-0017",
+          "report_no": 1,
+          "project_name": "Dự án 1,2ha đường Thuận An Hòa, An Phú, Thuận An",
+          "part": 9
         }
       ],
       "reports": [
@@ -4940,6 +5476,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tổng mức đầu tư là 2267.5 tỷ đồng, tổng doanh thu là 3031.99 tỷ đồng => Lợi nhuận trước thuế là 400.4 tỷ đồng",
+              "source_chunk": "904"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Kết luận: Dự án đạt tỷ lệ lợi nhuận trước thuế 18.92%, để đạt LNR 20% cần thương lượng với giá 216 tỷ (16.7 tr.đồng/m2 đất). Hiện tại chưa có pháp lý dự án cho quỹ đất này, mục tiêu là có thể mua để dành quỹ đất. Tuy nhiên cần kiểm tra các thông tin quy hoạch trước khi tiến hành mua",
+              "source_chunk": "904"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 9/6/2022 12:09 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án 1.2ha tại đường Thuận An Hóa, Thuận An, Bình Dương có giá chào 240 tỷ (18.575 tr.đồng/m2 đất), cụ thể:",
+              "source_chunk": "904"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Công trình chung cư trung cấp 1369 căn hộ chung cư: giá bán trung bình 42tr/m2 thông thủy có VAT tại năm 2024 37 căn shophouse khối đế (bố trí tận dụng 2 mặt tiền đường): giá bán trung bình 40tr/m2 thông thủy có VAT tại năm 2024 Sàn nhà trẻ 1610m2: tạm tính giá thuê khoáng $6/m2/tháng có VAT Tổng mức đầu tư là 2267.5 tỷ đồng, tổng doanh thu là 3031.99 tỷ…",
+              "source_chunk": "904"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án đạt tỷ lệ lợi nhuận trước thuế 18.92%, để đạt LNR 20% cần thương lượng với giá 216 tỷ (16.7 tr.đồng/m2 đất).",
               "source_chunk": "904"
             }
           ],
@@ -6371,8 +6927,35 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Đơn giá chi phí đất (gồm tiền sử dụng đất)(đơn giá đất đường gần nhất khu đất vị trí 1 theo bảng giá đất là 6,5 tr/m2), phòng tính bài toán ngược với LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2 (tính bình quân cho nhiều vị trí phân khu bên trong khu đất);",
+          "source_chunk": "8",
+          "record_id": "M01-0005",
+          "report_no": 1,
+          "project_name": "Dự án 2.316 ha Phía Nam Nhơn Trạch / Phước An Nhơn Trạch",
+          "part": 1
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Suất vốn xây dựng cao tầng theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm 2026.",
+          "source_chunk": "8",
+          "record_id": "M01-0005",
+          "report_no": 1,
+          "project_name": "Dự án 2.316 ha Phía Nam Nhơn Trạch / Phước An Nhơn Trạch",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2;",
+          "source_chunk": "8",
+          "record_id": "M01-0005",
+          "report_no": 1,
+          "project_name": "Dự án 2.316 ha Phía Nam Nhơn Trạch / Phước An Nhơn Trạch",
+          "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Suất vốn xây dựng cao tầng theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm",
           "source_chunk": "8",
           "record_id": "M01-0005",
           "report_no": 1,
@@ -6436,8 +7019,23 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "8"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Đơn giá chi phí đất (gồm tiền sử dụng đất)(đơn giá đất đường gần nhất khu đất vị trí 1 theo bảng giá đất là 6,5 tr/m2), phòng tính bài toán ngược với LNTT/TMĐT đạt 20% thì đơn giá đất bao gồm tiền sử dụng đất khoảng 3,3 tr/m2 (tính bình quân cho nhiều vị trí phân khu bên trong khu đất);",
+              "source_chunk": "8"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Suất vốn xây dựng cao tầng theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm 2026.",
+              "source_chunk": "8"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2;",
+              "source_chunk": "8"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Suất vốn xây dựng cao tầng theo Quyết định 425 của Bộ Xây dựng áp dụng cho năm",
               "source_chunk": "8"
             }
           ],
@@ -7032,6 +7630,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "Lý do chính là chi phí mua đất (chưa tính đến tiền sử đụng đất bổ sung) tính trên m2 sàn thương phẩm cao, khoảng 46,53 triệu đồng/m2 (đối với phương án 20 tầng) và 36,36 triệu đồng/m2 (đối với phương án 32 tầng) trong khi giá bán căn hộ ở bình quân tại khu vực dự án chỉ giao động khoảng từ 50 đến 60 triệu đồng, trừ một số căn hộ cao cấp, có mặt tiền biển…",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "Giá vốn tính trên m2 thương phẩm đối với phương án 20 tầng là 79 triệu/m2 (riêng giá vốn đất đã 46 triệu đồng/m2) và phương án 32 tầng là 71 triệu/m2 (riêng giá vốn đất đã 36 triệu đồng/m2)",
           "source_chunk": "426",
           "record_id": "M05-0010",
@@ -7042,6 +7649,60 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Phương án 20 tầng: về thiết kế thì chưa tối ưu hệ số sử dụng đất (10,25 lần/13 lần) và không hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm 79 triệu đồng/m2, trong khi giá thị trường chỉ ở khoảng 50 đến 60 triệu đồng/m2.",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phương án 32 tầng: về thiết kế thì tối ưu hệ số sử dụng đất (12,95 lần/13 lần), tuy nhiên vẫn chưa đạt hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm cao 71 triệu đồng/m2. Do đó, để dự án đạt hiệu quả về tài chính thì giá bán cần đạt từ 80 triệu đồng/m2 trở lên, tuy nhiên giá này khó khả thi đối với dự án do diện tích khuôn viên của dự án…",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Huy M - IM 5/13/2025 10:22 AM Translate Dear Sếp, liên quan đến các dự án Nguyễn Thiện Thuật và Đoàn Trần Nghiệp - Nha Trang, qua tính toán sơ bộ thì phương án chung cư đều ko đạt hiệu quả.",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Giá vốn tính trên m2 thương phẩm đối với phương án 20 tầng là 79 triệu/m2 (riêng giá vốn đất đã 46 triệu đồng/m2) và phương án 32 tầng là 71 triệu/m2 (riêng giá vốn đất đã 36 triệu đồng/m2) Hiệu quả dự án P&L:",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phương án 32 tầng: về thiết kế thì tối ưu hệ số sử dụng đất (12,95 lần/13 lần), tuy nhiên vẫn chưa đạt hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm cao 71 triệu đồng/m2.",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Do đó, để dự án đạt hiệu quả về tài chính thì giá bán cần đạt từ 80 triệu đồng/m2 trở lên, tuy nhiên giá này khó khả thi đối với dự án do diện tích khuôn viên của dự án nhỏ nên sẽ khó bố trí được các tiện ích cho phân khúc căn hộ khá hay cao cấp và không có mặt tiền biển nên giảm ưu thế so với các dự án khác về view biển, cách biển khoảng 350 m.",
+          "source_chunk": "426",
+          "record_id": "M05-0010",
+          "report_no": 1,
+          "project_name": "48 Nguyễn Thiện Thuật và Đoàn Trần Nghiệp, Nha Trang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "chunk --- Huy M - IM 5/13/2025 10:22 AM Translate Dear Sếp, liên quan đến các dự án Nguyễn Thiện Thuật và Đoàn Trần Nghiệp - Nha Trang, qua tính toán sơ bộ thì phương án chung cư đều ko đạt hiệu quả.",
           "source_chunk": "426",
           "record_id": "M05-0010",
           "report_no": 1,
@@ -7220,6 +7881,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Đầu tư báo cáo Sếp Admin 01 về hiệu quả dự án 48 Nguyễn Thiện Thuật, TP Nha Trang theo phương án quy hoạch 20 tầng và hệ số 13 lần (phù hợp QH 1/2000, không phải điều chỉnh) như sau:",
+          "source_chunk": "251",
+          "record_id": "M03-0022",
+          "report_no": 3,
+          "project_name": "Dự án 48 Nguyễn Thiện Thuật, TP Nha Trang",
+          "part": 3
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "Diện tích đất theo Giấy chứng nhận: 1.703,3 m2 (đất đã được cấp GCN, ở lâu dài)",
           "source_chunk": "251",
@@ -7263,12 +7933,47 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "Lý do chính là chi phí mua đất (chưa tính đến tiền sử đụng đất bổ sung) tính trên m2 sàn thương phẩm cao, khoảng 46,53 triệu đồng/m2 (đối với phương án 20 tầng) và 36,36 triệu đồng/m2 (đối với phương án 32 tầng) trong khi giá bán căn hộ ở bình quân tại khu vực dự án chỉ giao động khoảng từ 50 đến 60 triệu đồng, trừ một số căn hộ cao cấp, có mặt tiền biển…",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "Giá vốn tính trên m2 thương phẩm đối với phương án 20 tầng là 79 triệu/m2 (riêng giá vốn đất đã 46 triệu đồng/m2) và phương án 32 tầng là 71 triệu/m2 (riêng giá vốn đất đã 36 triệu đồng/m2)",
               "source_chunk": "426"
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Phương án 20 tầng: về thiết kế thì chưa tối ưu hệ số sử dụng đất (10,25 lần/13 lần) và không hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm 79 triệu đồng/m2, trong khi giá thị trường chỉ ở khoảng 50 đến 60 triệu đồng/m2.",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phương án 32 tầng: về thiết kế thì tối ưu hệ số sử dụng đất (12,95 lần/13 lần), tuy nhiên vẫn chưa đạt hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm cao 71 triệu đồng/m2. Do đó, để dự án đạt hiệu quả về tài chính thì giá bán cần đạt từ 80 triệu đồng/m2 trở lên, tuy nhiên giá này khó khả thi đối với dự án do diện tích khuôn viên của dự án…",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Huy M - IM 5/13/2025 10:22 AM Translate Dear Sếp, liên quan đến các dự án Nguyễn Thiện Thuật và Đoàn Trần Nghiệp - Nha Trang, qua tính toán sơ bộ thì phương án chung cư đều ko đạt hiệu quả.",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Giá vốn tính trên m2 thương phẩm đối với phương án 20 tầng là 79 triệu/m2 (riêng giá vốn đất đã 46 triệu đồng/m2) và phương án 32 tầng là 71 triệu/m2 (riêng giá vốn đất đã 36 triệu đồng/m2) Hiệu quả dự án P&L:",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phương án 32 tầng: về thiết kế thì tối ưu hệ số sử dụng đất (12,95 lần/13 lần), tuy nhiên vẫn chưa đạt hiệu quả về mặt tài chính do giá vốn trên diện tích thương phẩm cao 71 triệu đồng/m2.",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Do đó, để dự án đạt hiệu quả về tài chính thì giá bán cần đạt từ 80 triệu đồng/m2 trở lên, tuy nhiên giá này khó khả thi đối với dự án do diện tích khuôn viên của dự án nhỏ nên sẽ khó bố trí được các tiện ích cho phân khúc căn hộ khá hay cao cấp và không có mặt tiền biển nên giảm ưu thế so với các dự án khác về view biển, cách biển khoảng 350 m.",
+              "source_chunk": "426"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "chunk --- Huy M - IM 5/13/2025 10:22 AM Translate Dear Sếp, liên quan đến các dự án Nguyễn Thiện Thuật và Đoàn Trần Nghiệp - Nha Trang, qua tính toán sơ bộ thì phương án chung cư đều ko đạt hiệu quả.",
               "source_chunk": "426"
             }
           ],
@@ -7414,6 +8119,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "251"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Đầu tư báo cáo Sếp Admin 01 về hiệu quả dự án 48 Nguyễn Thiện Thuật, TP Nha Trang theo phương án quy hoạch 20 tầng và hệ số 13 lần (phù hợp QH 1/2000, không phải điều chỉnh) như sau:",
+              "source_chunk": "251"
+            },
+            {
               "label": "Quy mô/thông số bổ sung",
               "value": "Diện tích đất theo Giấy chứng nhận: 1.703,3 m2 (đất đã được cấp GCN, ở lâu dài)",
               "source_chunk": "251",
@@ -7455,6 +8165,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Báo cáo Dự án 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4,4ha (giá chào bán 600 tỷ tương đương 13,4 tr/m2) tại 2 mặt tiền đường Quốc lộ 51 và đường Hùng Vương thuộc Phường Tân Phước, Thị xã Phú Mỹ, tỉnh Bà Rịa – Vũng Tàu:",
+          "source_chunk": "941",
+          "record_id": "M10-0015",
+          "report_no": 1,
+          "project_name": "Dự án 4,4ha Phú Mỹ, Quốc lộ 51 - Hùng Vương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Phương án kinh doanh căn hộ được tham khảo từ giá bán dự án Tumys Phú Mỹ của Công Ty TNHH Thương Mại Tùng Mỹ với quy mô dự án khoảng 1,2ha trong đó số lượng mở bán tháng 12/2022 khoảng 650 căn với giá bán khoảng 35-37 tr/m2 (có VAT và diện tích tính theo thông thủy).",
           "source_chunk": "941",
           "record_id": "M10-0015",
           "report_no": 1,
@@ -7532,6 +8251,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án 4,4ha Phú Mỹ, Quốc lộ 51 - Hùng Vương",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "30tr/m2 (DA nằm trung tâm hành chính TX.Phú Mỹ).",
+          "source_chunk": "941",
+          "record_id": "M10-0015",
+          "report_no": 1,
+          "project_name": "Dự án 4,4ha Phú Mỹ, Quốc lộ 51 - Hùng Vương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "III/2025 khoảng 36.5 tr/m2 sàn (có VAT, diện tích tính theo thông thủy).",
+          "source_chunk": "941",
+          "record_id": "M10-0015",
+          "report_no": 1,
+          "project_name": "Dự án 4,4ha Phú Mỹ, Quốc lộ 51 - Hùng Vương",
+          "part": 10
         }
       ],
       "reports": [
@@ -7561,6 +8298,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Báo cáo Dự án 4ha Thị xã Phú Mỹ với tổng diện tích đất thực hiện dự án là 4,4ha (giá chào bán 600 tỷ tương đương 13,4 tr/m2) tại 2 mặt tiền đường Quốc lộ 51 và đường Hùng Vương thuộc Phường Tân Phước, Thị xã Phú Mỹ, tỉnh Bà Rịa – Vũng Tàu:",
+              "source_chunk": "941"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Phương án kinh doanh căn hộ được tham khảo từ giá bán dự án Tumys Phú Mỹ của Công Ty TNHH Thương Mại Tùng Mỹ với quy mô dự án khoảng 1,2ha trong đó số lượng mở bán tháng 12/2022 khoảng 650 căn với giá bán khoảng 35-37 tr/m2 (có VAT và diện tích tính theo thông thủy).",
               "source_chunk": "941"
             },
             {
@@ -7601,6 +8343,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Đề xuất trong điều kiện đất xây cao tầng (Căn cứ phê duyệt QĐ 2471/QĐ-UBND - Phương án 1), giá mua đất: 304 tỷ đồng để đạt IRR=15%. Với cùng giá mua đất: 304 tỷ đồng nếu theo phương án xây thấp tầng (Phương án 2) thì IRR = 22,1%",
+              "source_chunk": "941"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "30tr/m2 (DA nằm trung tâm hành chính TX.Phú Mỹ).",
+              "source_chunk": "941"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "III/2025 khoảng 36.5 tr/m2 sàn (có VAT, diện tích tính theo thông thủy).",
               "source_chunk": "941"
             }
           ],
@@ -7876,6 +8628,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
           "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đơn giá bồi thường ước tính 1tr/m2 cho diện tích toàn khu 2) Pháp lý đất:",
+          "source_chunk": "572",
+          "record_id": "M06-0012",
+          "report_no": 2,
+          "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "8) Hiệu quả tài chính: • Lợi nhuận trước ... by Huy M - IM --- chunk --- Huy M - IM 12/16/2024 5:49 PM Translate 8) Hiệu quả tài chính: • Lợi nhuận trước thuế/TMĐT:",
+          "source_chunk": "572",
+          "record_id": "M06-0012",
+          "report_no": 2,
+          "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "24.1% • NPV chủ đầu tư: (20,637) • IRR chủ đầu tư:",
+          "source_chunk": "572",
+          "record_id": "M06-0012",
+          "report_no": 2,
+          "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Dự án có tỷ lệ LNTT/TMDT đạt hiệu quả nhưng không đạt hiệu quả về chỉ tiêu IRR, NPV 10) Đề xuất: • Thị trường huyện Vĩnh Tường và Yên Lạc chưa phù hợp với việc phát triển trung tâm thương mại dịch vụ vì nhu cầu thị trường thấp, tính thanh khoản kém.",
+          "source_chunk": "572",
+          "record_id": "M06-0012",
+          "report_no": 2,
+          "project_name": "Dự án 50ha Vĩnh Tường - Yên Lạc, Vĩnh Phúc",
+          "part": 6
         }
       ],
       "reports": [
@@ -8057,6 +8845,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "9) Kết luận: Dự án có tỷ lệ LNTT/TMDT đạt hiệu quả nhưng không đạt hiệu quả về chỉ tiêu IRR, NPV",
               "source_chunk": "572"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đơn giá bồi thường ước tính 1tr/m2 cho diện tích toàn khu 2) Pháp lý đất:",
+              "source_chunk": "572"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "8) Hiệu quả tài chính: • Lợi nhuận trước ... by Huy M - IM --- chunk --- Huy M - IM 12/16/2024 5:49 PM Translate 8) Hiệu quả tài chính: • Lợi nhuận trước thuế/TMĐT:",
+              "source_chunk": "572"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "24.1% • NPV chủ đầu tư: (20,637) • IRR chủ đầu tư:",
+              "source_chunk": "572"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Dự án có tỷ lệ LNTT/TMDT đạt hiệu quả nhưng không đạt hiệu quả về chỉ tiêu IRR, NPV 10) Đề xuất: • Thị trường huyện Vĩnh Tường và Yên Lạc chưa phù hợp với việc phát triển trung tâm thương mại dịch vụ vì nhu cầu thị trường thấp, tính thanh khoản kém.",
+              "source_chunk": "572"
             }
           ],
           "excerpt": "50ha Vĩnh Tường-Yên Lạc, đang xin đấu thầu, đất lúa, bồi thường 1tr/m2, LNTT/TMĐT 24,1% nhưng IRR 11,68%, NPV âm.",
@@ -8219,8 +9027,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Giá vốn tiền đất 32 triệu đồng/m2;",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Với giá bán thị trường theo khảo sát của R&D tại khu vực dự án khoảng 35 triệu đồng/m2, TUY NHIÊN do tỷ lệ đất thương phẩm thấp (19% 10ha/53 ha) dẫn tới suất vốn đất + XD hạ tầng tính trên diện tích thương phẩm CAO tới 41 triệu đồng/m2 (chưa kể các chi phí khác như lãi vay, quản lý, bán hàng,...) gồm:",
           "source_chunk": "380",
           "record_id": "M04-0020",
           "report_no": 1,
@@ -8229,7 +9037,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Chi phí / vốn từ nguồn",
-          "value": "Giá vốn xây dựng hạ tầng phân bổ 9 triệu đồng/m2 (tính 1,5 triệu đồng/m2 trên diện tích 53ha, do cốt nền khu đất này thấp nhiều so với mặt đường Thăng Long nên chi phí cho phần san lắp sẽ cao hơn các khu đất khác).",
+          "value": "Giá vốn tiền đất 32 triệu đồng/m2;",
           "source_chunk": "380",
           "record_id": "M04-0020",
           "report_no": 1,
@@ -8333,13 +9141,13 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "380"
             },
             {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Giá vốn tiền đất 32 triệu đồng/m2;",
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Với giá bán thị trường theo khảo sát của R&D tại khu vực dự án khoảng 35 triệu đồng/m2, TUY NHIÊN do tỷ lệ đất thương phẩm thấp (19% 10ha/53 ha) dẫn tới suất vốn đất + XD hạ tầng tính trên diện tích thương phẩm CAO tới 41 triệu đồng/m2 (chưa kể các chi phí khác như lãi vay, quản lý, bán hàng,...) gồm:",
               "source_chunk": "380"
             },
             {
               "label": "Chi phí / vốn từ nguồn",
-              "value": "Giá vốn xây dựng hạ tầng phân bổ 9 triệu đồng/m2 (tính 1,5 triệu đồng/m2 trên diện tích 53ha, do cốt nền khu đất này thấp nhiều so với mặt đường Thăng Long nên chi phí cho phần san lắp sẽ cao hơn các khu đất khác).",
+              "value": "Giá vốn tiền đất 32 triệu đồng/m2;",
               "source_chunk": "380"
             }
           ],
@@ -8506,6 +9314,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
           "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 9/6/2022 10:34 AM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 2.6ha tại mặt tiền đường Song Hành XLHN, Thủ Đức có giá chào 1250 tỷ (48tr.đồng/m2 đất), cụ thể:",
+          "source_chunk": "900",
+          "record_id": "M09-0016",
+          "report_no": 1,
+          "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
+          "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "9227m2 giao đất có thu tiền sử dụng đất, thời hạn lâu dài + Đất văn phòng, tmdv:",
+          "source_chunk": "900",
+          "record_id": "M09-0016",
+          "report_no": 1,
+          "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
+          "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "5047m2, giao đất có thu tiền sử dụng đất, thời hạn 50 năm + Đất công cộng:",
+          "source_chunk": "900",
+          "record_id": "M09-0016",
+          "report_no": 1,
+          "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Công trình chung cư trung cấp và nhà phố thấp tầng 43 căn shophouse khối đế chung cư: giá bán trung bình 71.5tr/m2 sàn thông thủy có VAT tại năm 2024 1074 căn hộ chung cư: giá bán trung bình 65tr/m2 sàn thông thủy có VAT tại năm 2024 24 lô nhà phố thấp tầng: giá bán trung bình 124tr/m2 đất 1 sàn nhà trẻ: tạm tính cho thuê khoán $8/m2/tháng có VAT Giả định…",
+          "source_chunk": "900",
+          "record_id": "M09-0016",
+          "report_no": 1,
+          "project_name": "Dự án 2,6ha mặt tiền Song Hành Xa lộ Hà Nội, Thủ Đức",
+          "part": 9
         }
       ],
       "reports": [
@@ -8571,6 +9415,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Kết luận: Dự án đạt hiệu quả tài chính tốt, LNR 21.73%. Đề nghị xúc tiến thu thập thêm hồ sơ pháp lý để nghiên cứu sâu.",
               "source_chunk": "900"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 9/6/2022 10:34 AM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 2.6ha tại mặt tiền đường Song Hành XLHN, Thủ Đức có giá chào 1250 tỷ (48tr.đồng/m2 đất), cụ thể:",
+              "source_chunk": "900"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "9227m2 giao đất có thu tiền sử dụng đất, thời hạn lâu dài + Đất văn phòng, tmdv:",
+              "source_chunk": "900"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "5047m2, giao đất có thu tiền sử dụng đất, thời hạn 50 năm + Đất công cộng:",
+              "source_chunk": "900"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Công trình chung cư trung cấp và nhà phố thấp tầng 43 căn shophouse khối đế chung cư: giá bán trung bình 71.5tr/m2 sàn thông thủy có VAT tại năm 2024 1074 căn hộ chung cư: giá bán trung bình 65tr/m2 sàn thông thủy có VAT tại năm 2024 24 lô nhà phố thấp tầng: giá bán trung bình 124tr/m2 đất 1 sàn nhà trẻ: tạm tính cho thuê khoán $8/m2/tháng có VAT Giả định…",
+              "source_chunk": "900"
             }
           ],
           "excerpt": "2,6ha Song Hành XLHN Linh Trung, giá 1.250 tỷ, gần Metro 500m, có QĐ giao đất/chuyển mục đích nhưng chưa GCN.",
@@ -8633,8 +9497,71 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 6
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Bảng giá đất nhà nước tăng cao vì thế tiền sử dụng đất cũng tăng rất cao, cụ thể: theo quyết định 02 (cũ) đơn giá đất ở mặt tiền đường Phan Văn Hớn năm 2024: 18,5tr/m², tuy nhiên theo quyết định 79/2024 ban hành ngày 21/10/2024, đơn giá đất ở mặt tiền đường Phan Văn Hớn: 101,9tr/m², cao gấp 5,5 lần so với quyết định 02 (cũ). Nếu sử dụng giá đất trong bảng…",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đối với dự án đầu tư thì tiền sử dụng đất được áp dụng phương pháp thặng dư, kết quả là tổng số tiền để nộp không quy ra đơn giá trên m² đất, tuy nhiên theo điều 158 Luật Đất đai 2024, trường hợp áp dụng phương pháp thặng dư để xác định giá đất cụ thể mà có kết quả thấp hơn giá đất trong bảng giá đất thì sử dụng giá đất trong bảng giá đất, do vậy nếu tạm…",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Nếu buộc phải đóng tiền sử dụng đất theo bảng giá đất nhà nước thì dự án không khả thi với bất kỳ phương án nào, do tiền sử dụng đất quá cao (1.375 tỷ đồng)",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Nghĩa vụ tài chính được tính toán theo phương pháp thặng dư, không áp dụng theo điều 158 Luật Đất 2024 thì giá trị định giá theo 2 phương án là: (1) Phương án 1: 252 tỷ đồng, với dân số 572 dân; (2) Phương án 2: 547 tỷ đồng, sử dụng hết hệ số sử dụng đất và tầng cao thì phải xin thêm 661 dân",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Theo thông tin quy hoạch Thành phố Hồ Chí Minh Đồ án \"Đồ án điều chỉnh quy hoạch chi tiết xây dựng đô thị tỷ lệ 1/2000 Khu dân cư Phường Tân Thới Nhất (Khu 2), Quận 12\" đã được UBND Quận 12 phê duyệt tại Quyết định số 628/QĐ- UBND-ĐT ngày 23/12/2008 - Mật độ xây dựng:",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "350 tỷ (21tr/m²) 4.2/ Phương pháp dòng tiền chiết khấu (DCF) Do hồ sơ pháp lý không được cung cấp đầy đủ, vì thế phòng tính toán dựa trên cổng thông tin quy hoạch Thành phố Hồ Chí Minh và được tính toán theo 2 phương án như sau:",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Để lợi nhuận trước thuế / Tổng mức đầu tư đạt 20% thì giá trị định giá là:",
+          "source_chunk": "555",
+          "record_id": "M06-0010",
+          "report_no": 1,
+          "project_name": "Dự án 1,6ha Phan Văn Hớn, Tân Thới Nhất, Quận 12",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Giá trị (trđ) Đơn giá (trđ/m²) Phương án 1 252.419 15 Phương án 2 546.951 33 - Độ nhạy giữa lợi nhuận trước thuế / Tổng mức đầu tư:",
           "source_chunk": "555",
           "record_id": "M06-0010",
           "report_no": 1,
@@ -8682,8 +9609,43 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "555"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Bảng giá đất nhà nước tăng cao vì thế tiền sử dụng đất cũng tăng rất cao, cụ thể: theo quyết định 02 (cũ) đơn giá đất ở mặt tiền đường Phan Văn Hớn năm 2024: 18,5tr/m², tuy nhiên theo quyết định 79/2024 ban hành ngày 21/10/2024, đơn giá đất ở mặt tiền đường Phan Văn Hớn: 101,9tr/m², cao gấp 5,5 lần so với quyết định 02 (cũ). Nếu sử dụng giá đất trong bảng…",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đối với dự án đầu tư thì tiền sử dụng đất được áp dụng phương pháp thặng dư, kết quả là tổng số tiền để nộp không quy ra đơn giá trên m² đất, tuy nhiên theo điều 158 Luật Đất đai 2024, trường hợp áp dụng phương pháp thặng dư để xác định giá đất cụ thể mà có kết quả thấp hơn giá đất trong bảng giá đất thì sử dụng giá đất trong bảng giá đất, do vậy nếu tạm…",
+              "source_chunk": "555"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Nếu buộc phải đóng tiền sử dụng đất theo bảng giá đất nhà nước thì dự án không khả thi với bất kỳ phương án nào, do tiền sử dụng đất quá cao (1.375 tỷ đồng)",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Nghĩa vụ tài chính được tính toán theo phương pháp thặng dư, không áp dụng theo điều 158 Luật Đất 2024 thì giá trị định giá theo 2 phương án là: (1) Phương án 1: 252 tỷ đồng, với dân số 572 dân; (2) Phương án 2: 547 tỷ đồng, sử dụng hết hệ số sử dụng đất và tầng cao thì phải xin thêm 661 dân",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Theo thông tin quy hoạch Thành phố Hồ Chí Minh Đồ án \"Đồ án điều chỉnh quy hoạch chi tiết xây dựng đô thị tỷ lệ 1/2000 Khu dân cư Phường Tân Thới Nhất (Khu 2), Quận 12\" đã được UBND Quận 12 phê duyệt tại Quyết định số 628/QĐ- UBND-ĐT ngày 23/12/2008 - Mật độ xây dựng:",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "350 tỷ (21tr/m²) 4.2/ Phương pháp dòng tiền chiết khấu (DCF) Do hồ sơ pháp lý không được cung cấp đầy đủ, vì thế phòng tính toán dựa trên cổng thông tin quy hoạch Thành phố Hồ Chí Minh và được tính toán theo 2 phương án như sau:",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Để lợi nhuận trước thuế / Tổng mức đầu tư đạt 20% thì giá trị định giá là:",
+              "source_chunk": "555"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Giá trị (trđ) Đơn giá (trđ/m²) Phương án 1 252.419 15 Phương án 2 546.951 33 - Độ nhạy giữa lợi nhuận trước thuế / Tổng mức đầu tư:",
               "source_chunk": "555"
             }
           ],
@@ -8773,6 +9735,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "=> Đơn giá đất tại năm 2073: 1,126,130 tr.đồng/m2 => Tổng giá bán đất tại năm 2073: 3,118,254 tỷ đồng",
+          "source_chunk": "986",
+          "record_id": "M10-0026",
+          "report_no": 1,
+          "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Giấy CNQSDĐ 2769m2 đất ODT, thời hạn lâu dài, có nguồn gốc đấu giá, nhà nước giao đất có thu tiền sử dụng đất Pháp lý đầu tư:",
+          "source_chunk": "986",
+          "record_id": "M10-0026",
+          "report_no": 1,
+          "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Vận hành kinh doanh Tổng mức đầu tư là 2,488.9 tỷ đồng (2.805 tỷ/key), tổng doanh thu là 100,464 tỷ đồng cho tổng thời gian thuê 50 năm Kết quả tài chính:",
+          "source_chunk": "986",
+          "record_id": "M10-0026",
+          "report_no": 1,
+          "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR 13.87%, NPV là 405,608 tỷ đồng - Phương án giả định bán đất sau khi hết 50 năm vận hành khách sạn tại năm 2073 để đánh giá khách quan hơn về lợi thế đất có thời hạn sử dụng lâu dài:",
+          "source_chunk": "986",
+          "record_id": "M10-0026",
+          "report_no": 1,
+          "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR 18.10%, NPV là 8,151 tỷ đồng + Giả định đơn giá mua đất đầu vào 243 tr.đồng/m2 tại năm 2022 + Khảo sát thị trường: giá đất mặt tiền biển Đà Nẵng năm 2006 là 7tr.đồng/m2, năm 2011 là 60tr.đồng/m2, năm 2022 là 300tr.đồng/m2 đất => tăng 26.5%/năm tính từ năm 2006 đến năm 2022 + Chọn tốc độ tăng giá đất:",
+          "source_chunk": "986",
+          "record_id": "M10-0026",
+          "report_no": 1,
+          "project_name": "Dự án 2.769m2 Đà Nẵng / Hoàng Sa",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "18%/năm tính từ năm 2022 đến năm 2073 (51 năm) => Đơn giá đất tại năm 2073:",
           "source_chunk": "986",
           "record_id": "M10-0026",
           "report_no": 1,
@@ -9012,6 +10019,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 3,
           "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
           "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Bán hàng – RD đề xuất - Đơn giá bán căn hộ trung bình tại thời điểm cuối 2026 (gồm VAT):",
+          "source_chunk": "441",
+          "record_id": "M05-0018",
+          "report_no": 3,
+          "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "70tr/m2 ~ 770 tỷ b.",
+          "source_chunk": "441",
+          "record_id": "M05-0018",
+          "report_no": 3,
+          "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "2.4tr/phòng/đêm - Tỷ lệ lấp đầy:",
+          "source_chunk": "441",
+          "record_id": "M05-0018",
+          "report_no": 3,
+          "project_name": "Dự án 2.769m2 Hoàng Sa, Đà Nẵng",
+          "part": 5
         }
       ],
       "reports": [
@@ -9066,6 +10100,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "=> Đơn giá đất tại năm 2073: 1,126,130 tr.đồng/m2 => Tổng giá bán đất tại năm 2073: 3,118,254 tỷ đồng",
+              "source_chunk": "986"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Giấy CNQSDĐ 2769m2 đất ODT, thời hạn lâu dài, có nguồn gốc đấu giá, nhà nước giao đất có thu tiền sử dụng đất Pháp lý đầu tư:",
+              "source_chunk": "986"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Vận hành kinh doanh Tổng mức đầu tư là 2,488.9 tỷ đồng (2.805 tỷ/key), tổng doanh thu là 100,464 tỷ đồng cho tổng thời gian thuê 50 năm Kết quả tài chính:",
+              "source_chunk": "986"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR 13.87%, NPV là 405,608 tỷ đồng - Phương án giả định bán đất sau khi hết 50 năm vận hành khách sạn tại năm 2073 để đánh giá khách quan hơn về lợi thế đất có thời hạn sử dụng lâu dài:",
+              "source_chunk": "986"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR 18.10%, NPV là 8,151 tỷ đồng + Giả định đơn giá mua đất đầu vào 243 tr.đồng/m2 tại năm 2022 + Khảo sát thị trường: giá đất mặt tiền biển Đà Nẵng năm 2006 là 7tr.đồng/m2, năm 2011 là 60tr.đồng/m2, năm 2022 là 300tr.đồng/m2 đất => tăng 26.5%/năm tính từ năm 2006 đến năm 2022 + Chọn tốc độ tăng giá đất:",
+              "source_chunk": "986"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "18%/năm tính từ năm 2022 đến năm 2073 (51 năm) => Đơn giá đất tại năm 2073:",
               "source_chunk": "986"
             }
           ],
@@ -9242,6 +10301,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tỷ lệ lấp đầy: 70%",
               "source_chunk": "441"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Bán hàng – RD đề xuất - Đơn giá bán căn hộ trung bình tại thời điểm cuối 2026 (gồm VAT):",
+              "source_chunk": "441"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "70tr/m2 ~ 770 tỷ b.",
+              "source_chunk": "441"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "2.4tr/phòng/đêm - Tỷ lệ lấp đầy:",
+              "source_chunk": "441"
             }
           ],
           "excerpt": "2769m2 Hoàng Sa Đà Nẵng... căn hộ 70tr/m2, doanh thu 770 tỷ, hotel ADR 2,05-2,4tr.",
@@ -9356,6 +10430,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Mặt khác, BIM nắm hầu hết các quỹ đất tại khu vực này nên việc định giá giá bán các loại hình sản phẩm bất động sản tại khu vực này do BIM quyết định, trong 2-3 năm tới nếu BIM tiếp tục tung ra thị trường các dự án chung cư khác sẽ gây cạnh tranh trực tiếp đến dự án này.",
+          "source_chunk": "927",
+          "record_id": "M10-0009",
+          "report_no": 1,
+          "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 10/31/2022 2:44 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 1.7ha tại đường Hoàng Quốc Việt, Hạ Long, Quảng Ninh có giá chào 140tr/m2 đất (2400 tỷ), cụ thể:",
+          "source_chunk": "927",
+          "record_id": "M10-0009",
+          "report_no": 1,
+          "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "GCNQSDĐ có quy mô 17098m2 đất ở kết hợp cửa hàng, thời hạn sử dụng lâu dài, có nguồn gốc nhà nước giao đất có thu tiền sử dụng đất Pháp lý đầu tư:",
+          "source_chunk": "927",
+          "record_id": "M10-0009",
+          "report_no": 1,
+          "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Công trình chung cư cao cấp 133,555m2 sàn chung cư: giá bán 53tr/m2 sàn thông thủy có VAT tại năm 2025 (tham khảo dự án ICON 40 có giá dự kiến 45-55tr/m2 tim tường có VAT mở bán T11/2022, và dự án Green Bay Premium mở bán Q4/2016 có giá sang tay 36-38tr/m2 hiện tại) 52 căn shophouse khối đế:",
+          "source_chunk": "927",
+          "record_id": "M10-0009",
+          "report_no": 1,
+          "project_name": "Dự án 1,7ha Hoàng Quốc Việt, Hạ Long",
+          "part": 10
         }
       ],
       "reports": [
@@ -9425,6 +10535,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Trong bối cảnh lạm phát cao và nhà nước siết tín dụng, ảnh hưởng thanh khoản và giá bán chung cư trong vòng 2-3 năm tới khó tăng đột biến",
+              "source_chunk": "927"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Mặt khác, BIM nắm hầu hết các quỹ đất tại khu vực này nên việc định giá giá bán các loại hình sản phẩm bất động sản tại khu vực này do BIM quyết định, trong 2-3 năm tới nếu BIM tiếp tục tung ra thị trường các dự án chung cư khác sẽ gây cạnh tranh trực tiếp đến dự án này.",
+              "source_chunk": "927"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 10/31/2022 2:44 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 1.7ha tại đường Hoàng Quốc Việt, Hạ Long, Quảng Ninh có giá chào 140tr/m2 đất (2400 tỷ), cụ thể:",
+              "source_chunk": "927"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "GCNQSDĐ có quy mô 17098m2 đất ở kết hợp cửa hàng, thời hạn sử dụng lâu dài, có nguồn gốc nhà nước giao đất có thu tiền sử dụng đất Pháp lý đầu tư:",
+              "source_chunk": "927"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Công trình chung cư cao cấp 133,555m2 sàn chung cư: giá bán 53tr/m2 sàn thông thủy có VAT tại năm 2025 (tham khảo dự án ICON 40 có giá dự kiến 45-55tr/m2 tim tường có VAT mở bán T11/2022, và dự án Green Bay Premium mở bán Q4/2016 có giá sang tay 36-38tr/m2 hiện tại) 52 căn shophouse khối đế:",
               "source_chunk": "927"
             }
           ],
@@ -9504,6 +10634,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "KDC Đại Nam T01.2025",
           "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đơn giá nhà nước năm 2025 tăng khoảng 1tr/m2 so với năm 2024 - Đơn giá nhà nước năm 2025 dao động từ 5tr - 8tr/m2 tùy vị trí đường",
+          "source_chunk": "551",
+          "record_id": "M06-0008",
+          "report_no": 1,
+          "project_name": "KDC Đại Nam T01.2025",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đơn giá thị trường của dự án khảo sát vào T10.2024 đến hiện tại T01.2025 không có sự thay đổi, giao dịch chuyển nhượng ít - Đơn giá thị trường T01.2025 dao động từ 7tr - 10tr/m2 tùy vị trí đường - Đơn giá nhà nước và thị trường hiện tại khá tiệm cận nhau và khoảng chênh lệch thấp Tính ra đi mua ở đây là còn rẻ hơn tự đi là... by Unknown User",
+          "source_chunk": "551",
+          "record_id": "M06-0008",
+          "report_no": 1,
+          "project_name": "KDC Đại Nam T01.2025",
+          "part": 6
         }
       ],
       "reports": [
@@ -9553,6 +10701,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Đơn giá thị trường T01.2025 dao động từ 7tr - 10tr/m2 tùy vị trí đường",
+              "source_chunk": "551"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đơn giá nhà nước năm 2025 tăng khoảng 1tr/m2 so với năm 2024 - Đơn giá nhà nước năm 2025 dao động từ 5tr - 8tr/m2 tùy vị trí đường",
+              "source_chunk": "551"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đơn giá thị trường của dự án khảo sát vào T10.2024 đến hiện tại T01.2025 không có sự thay đổi, giao dịch chuyển nhượng ít - Đơn giá thị trường T01.2025 dao động từ 7tr - 10tr/m2 tùy vị trí đường - Đơn giá nhà nước và thị trường hiện tại khá tiệm cận nhau và khoảng chênh lệch thấp Tính ra đi mua ở đây là còn rẻ hơn tự đi là... by Unknown User",
               "source_chunk": "551"
             }
           ],
@@ -9612,6 +10770,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "730 tỷ (cam kết pháp lý đến 1/500 và sẽ thiết kế 1/500 theo ý người mua)",
+          "source_chunk": "243",
+          "record_id": "M03-0017",
+          "report_no": 1,
+          "project_name": "KĐT An Phú – PG",
+          "part": 3
+        },
+        {
           "label": "Nguồn cung căn hộ bán kính 4km",
           "value": "khoảng 10.000 căn hộ",
           "source_chunk": "304",
@@ -9655,6 +10822,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "3. Giá chào: 730 tỷ (cam kết pháp lý đến 1/500 và sẽ thiết kế 1/500 theo ý người mua)",
+              "source_chunk": "243"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "730 tỷ (cam kết pháp lý đến 1/500 và sẽ thiết kế 1/500 theo ý người mua)",
               "source_chunk": "243"
             }
           ],
@@ -9785,6 +10957,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Tiền sử dụng đất tính theo phương pháp thặng dư, đơn giá đất ở khoảng 29 tr/m2, gấp 3,4 lần đơn giá đất nhà nước đường An Tôn ~ 8,5 tr/m2. Đây là mức giá phòng ĐT tính cho bài toán an toàn về sau, trường hợp giá tiền sử dụng đất khi đi vào thực tế có thể thấp hơn, khi đó hiệu quả tài chính dự án sẽ được cải thiện tốt hơn.",
+          "source_chunk": "130",
+          "record_id": "M02-0011",
+          "report_no": 1,
+          "project_name": "KDC An Tôn",
+          "part": 2
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Các chi phí liên quan đến bồi thường được tính đủ gồm tạm cư, chi trả tiếp phần đền bù cũ và tính 2.735 m2 chưa đền bù với mức giá khá cao theo thị trường. (Nguồn tham khảo từ anh Dương, ~ 20 tr/m2 đất nông nghiệp).",
           "source_chunk": "130",
@@ -9832,15 +11013,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "Doanh thu: 4.552 tỷ VNĐ (tăng 635 tỷ).",
-          "source_chunk": "130",
-          "record_id": "M02-0011",
-          "report_no": 1,
-          "project_name": "KDC An Tôn",
-          "part": 2
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "Lợi nhuận trước thuế (LNTT): 577 tỷ VNĐ (tăng 77 tỷ).",
           "source_chunk": "130",
           "record_id": "M02-0011",
           "report_no": 1,
@@ -9949,6 +11121,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "130"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Tiền sử dụng đất tính theo phương pháp thặng dư, đơn giá đất ở khoảng 29 tr/m2, gấp 3,4 lần đơn giá đất nhà nước đường An Tôn ~ 8,5 tr/m2. Đây là mức giá phòng ĐT tính cho bài toán an toàn về sau, trường hợp giá tiền sử dụng đất khi đi vào thực tế có thể thấp hơn, khi đó hiệu quả tài chính dự án sẽ được cải thiện tốt hơn.",
+              "source_chunk": "130"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Các chi phí liên quan đến bồi thường được tính đủ gồm tạm cư, chi trả tiếp phần đền bù cũ và tính 2.735 m2 chưa đền bù với mức giá khá cao theo thị trường. (Nguồn tham khảo từ anh Dương, ~ 20 tr/m2 đất nông nghiệp).",
               "source_chunk": "130"
@@ -9976,11 +11153,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Doanh thu: 4.552 tỷ VNĐ (tăng 635 tỷ).",
-              "source_chunk": "130"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "Lợi nhuận trước thuế (LNTT): 577 tỷ VNĐ (tăng 77 tỷ).",
               "source_chunk": "130"
             }
           ],
@@ -10144,6 +11316,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Ana Mandara Villas Dalat Resort & Spa",
           "part": 7
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "6/ Phương án kinh doanh 6.1/ Giả định tính toán - Hiện trạng công trình xây dựng phù hợp với hồ sơ cấp phép xây dựng - Công trình xây dựng dở dang: tạm tính với đơn giá xây dựng 8tr/m² - Giá trị hoàn thiện công trình dở dang khoảng 230 tỷ (Ước tính của anh Sơn – Trợ lý) 6.2 Kế hoạch kinh doanh - Thời gian dự án vận hành trong vòng 35 năm (từ năm 2026 đến…",
+          "source_chunk": "625",
+          "record_id": "M07-0006",
+          "report_no": 1,
+          "project_name": "Ana Mandara Villas Dalat Resort & Spa",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Năm 2011 là thời điểm cấp GCN QSDĐ nhưng do không xác định được thời điểm giao/thuê đất nên tạm xác định thời điểm cấp GCN là thời điểm bắt đầu dự án - Giá bán trung bình phòng (2026):",
+          "source_chunk": "625",
+          "record_id": "M07-0006",
+          "report_no": 1,
+          "project_name": "Ana Mandara Villas Dalat Resort & Spa",
+          "part": 7
         }
       ],
       "reports": [
@@ -10216,6 +11406,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tiền sử dụng đất (tạm tính): 120 tỷ (chưa khấu trừ đất hiện trang vì chưa cung cấp hồ sơ…",
+              "source_chunk": "625"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "6/ Phương án kinh doanh 6.1/ Giả định tính toán - Hiện trạng công trình xây dựng phù hợp với hồ sơ cấp phép xây dựng - Công trình xây dựng dở dang: tạm tính với đơn giá xây dựng 8tr/m² - Giá trị hoàn thiện công trình dở dang khoảng 230 tỷ (Ước tính của anh Sơn – Trợ lý) 6.2 Kế hoạch kinh doanh - Thời gian dự án vận hành trong vòng 35 năm (từ năm 2026 đến…",
+              "source_chunk": "625"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Năm 2011 là thời điểm cấp GCN QSDĐ nhưng do không xác định được thời điểm giao/thuê đất nên tạm xác định thời điểm cấp GCN là thời điểm bắt đầu dự án - Giá bán trung bình phòng (2026):",
               "source_chunk": "625"
             }
           ],
@@ -10388,6 +11588,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Anantara Mũi Né Resort",
           "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "550 tỷ - khoản vay liên quan khác (không phục vụ HĐSXKD).",
+          "source_chunk": "935",
+          "record_id": "M10-0014",
+          "report_no": 1,
+          "project_name": "Anantara Mũi Né Resort",
+          "part": 10
         }
       ],
       "reports": [
@@ -10491,6 +11700,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tuy nhiên, theo đánh giá chủ quan mức “Giá đàm phán” thấp nhất tương đương với dư nợ vay 31/10/2022 là 550 tỷ (vì đối tác sẽ không thể bỏ thêm tiền xử lý giải chấp tài sản trước khi chuyển nhượng dự án).",
               "source_chunk": "935"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "550 tỷ - khoản vay liên quan khác (không phục vụ HĐSXKD).",
+              "source_chunk": "935"
             }
           ],
           "excerpt": "Anantara Mũi Né giá chào 875 tỷ, nợ vay 550 tỷ, cổ phần 325 tỷ, định giá tham chiếu Phú Hải 759 tỷ.",
@@ -10564,6 +11778,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
           "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "65tr/m2 cho phần diện tích chuyển mục đích sử dụng đất - 10,490m2 và đảm bảo phải phù hợp Quy hoạch 1/2000 và 1/500 tương đương 681.86 tỷ.",
+          "source_chunk": "644",
+          "record_id": "M07-0010",
+          "report_no": 1,
+          "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "15.3tr/m2 (lấy theo chuẩn của Phú Gia Kiêm, và tăng 20% chi phí do vị trí ở Đảo) Đơn giá bán trung bình 2027-2029 gồm VAT:",
+          "source_chunk": "644",
+          "record_id": "M07-0010",
+          "report_no": 1,
+          "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "40.2 tr/m2 Hiệu quả:",
+          "source_chunk": "644",
+          "record_id": "M07-0010",
+          "report_no": 1,
+          "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "LNTT/TMĐT = -15.2% Độ nhạy Tỷ lệ LNTT/TMĐT giữa đơn giá bán trung bình của căn hộ 2027-2029 gồm VAT(tr/m2) và giá chuyển nhượng (tỷ): *Đính kèm Báo cáo thị trường P.RD Link map: https://maps.app.goo.gl/K3ASKRs9Sc5yfa9z9 Link hồ sơ:",
+          "source_chunk": "644",
+          "record_id": "M07-0010",
+          "report_no": 1,
+          "project_name": "Aqua City / Waterbay / Lakeview Novaland - NQ170",
+          "part": 7
         }
       ],
       "reports": [
@@ -10612,6 +11862,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Độ nhạy Tỷ lệ LNTT/TMĐT giữa đơn giá bán trung bình của căn hộ 2027-2029 gồm VAT(tr/m2) và giá chuyển nhượng (tỷ):",
+              "source_chunk": "644"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "65tr/m2 cho phần diện tích chuyển mục đích sử dụng đất - 10,490m2 và đảm bảo phải phù hợp Quy hoạch 1/2000 và 1/500 tương đương 681.86 tỷ.",
+              "source_chunk": "644"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "15.3tr/m2 (lấy theo chuẩn của Phú Gia Kiêm, và tăng 20% chi phí do vị trí ở Đảo) Đơn giá bán trung bình 2027-2029 gồm VAT:",
+              "source_chunk": "644"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "40.2 tr/m2 Hiệu quả:",
+              "source_chunk": "644"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "LNTT/TMĐT = -15.2% Độ nhạy Tỷ lệ LNTT/TMĐT giữa đơn giá bán trung bình của căn hộ 2027-2029 gồm VAT(tr/m2) và giá chuyển nhượng (tỷ): *Đính kèm Báo cáo thị trường P.RD Link map: https://maps.app.goo.gl/K3ASKRs9Sc5yfa9z9 Link hồ sơ:",
               "source_chunk": "644"
             }
           ],
@@ -10812,6 +12082,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Asia Phú Mỹ – Bình Chánh",
           "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "56-66 tr/m2 (chưa VAT tim tường) + Giá bán căn shop:",
+          "source_chunk": "198",
+          "record_id": "M02-0034",
+          "report_no": 1,
+          "project_name": "Asia Phú Mỹ – Bình Chánh",
+          "part": 2
         }
       ],
       "reports": [
@@ -10928,6 +12207,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Do đó trong trường hợp công ty nghiên cứu sâu, P.ĐT đề xuất đánh giá lại tổng thể QH 1/500 này và điều chỉnh toàn bộ để đảm bảo tối ưu hiệu quả thiết kế => tăng hiệu quả kinh doanh",
               "source_chunk": "198"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "56-66 tr/m2 (chưa VAT tim tường) + Giá bán căn shop:",
+              "source_chunk": "198"
             }
           ],
           "excerpt": "Asia Phú Mỹ – Bình Chánh... Đại lộ Nguyễn Văn Linh... 27.9ha, đã cấp sổ 24ha... xử lý nợ DATC... giá bán căn hộ 56-66 tr/m2.",
@@ -11005,6 +12289,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tổng mức đầu tư (chưa bao gồm VAT, chưa bao gồm lãi vay) là: 1,094 tỷ đồng bao gồm: chi phí đầu tư xây dựng 657 tỷ đồng (đơn giá xây dựng All in là 13.4 triệu/m2); Chi phí mua đất 400 tỷ đồng cho 8,739 m2 đất (tương đương 45.8 triệu đồng/m2 đất); Tiền sử dụng đất đóng thêm 24 tỷ đồng; chi phí pháp lý là 12.4 tỷ đồng;",
+          "source_chunk": "248",
+          "record_id": "M03-0020",
+          "report_no": 1,
+          "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
+          "part": 3
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Tổng chi phí hoạt động chưa VAT, 15% doanh thu: 225 tỷ đồng;",
           "source_chunk": "248",
@@ -11050,6 +12343,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tổng mức đầu tư chưa (bao gồm VAT, chưa bao gồm lãi vay) là: 1,917 tỷ đồng bao gồm: chi phí đầu tư xây dựng 1,127 tỷ đồng (đơn giá xây dựng All in là 13.7 triệu/m2); Chi phí mua đất 400 tỷ đồng cho 8,739 m2 đất (tương đương 45.8 triệu đồng/m2 đất); Tiền sử dụng đất đóng thêm 337 tỷ đồng; chi phí pháp lý là 53 tỷ đồng;",
+          "source_chunk": "248",
+          "record_id": "M03-0020",
+          "report_no": 1,
+          "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
+          "part": 3
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Tổng chi phí hoạt động chưa VAT, 15% doanh thu: 413 tỷ đồng;",
           "source_chunk": "248",
@@ -11061,24 +12363,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "Lợi nhuận trước thuế: 316 tỷ đồng;",
-          "source_chunk": "248",
-          "record_id": "M03-0020",
-          "report_no": 1,
-          "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
-          "part": 3
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "NPV chủ đầu tư là: - 13 tỷ đồng",
-          "source_chunk": "248",
-          "record_id": "M03-0020",
-          "report_no": 1,
-          "project_name": "Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12",
-          "part": 3
-        },
-        {
-          "label": "Dòng số liệu từ nguồn",
-          "value": "Phương án 1 là 300 tỷ đồng cho 8,739 m2 (tương đương 34.3 triệu đồng/m2 đất)",
           "source_chunk": "248",
           "record_id": "M03-0020",
           "report_no": 1,
@@ -11121,6 +12405,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "248"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tổng mức đầu tư (chưa bao gồm VAT, chưa bao gồm lãi vay) là: 1,094 tỷ đồng bao gồm: chi phí đầu tư xây dựng 657 tỷ đồng (đơn giá xây dựng All in là 13.4 triệu/m2); Chi phí mua đất 400 tỷ đồng cho 8,739 m2 đất (tương đương 45.8 triệu đồng/m2 đất); Tiền sử dụng đất đóng thêm 24 tỷ đồng; chi phí pháp lý là 12.4 tỷ đồng;",
+              "source_chunk": "248"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tổng chi phí hoạt động chưa VAT, 15% doanh thu: 225 tỷ đồng;",
               "source_chunk": "248"
@@ -11146,6 +12435,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "248"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tổng mức đầu tư chưa (bao gồm VAT, chưa bao gồm lãi vay) là: 1,917 tỷ đồng bao gồm: chi phí đầu tư xây dựng 1,127 tỷ đồng (đơn giá xây dựng All in là 13.7 triệu/m2); Chi phí mua đất 400 tỷ đồng cho 8,739 m2 đất (tương đương 45.8 triệu đồng/m2 đất); Tiền sử dụng đất đóng thêm 337 tỷ đồng; chi phí pháp lý là 53 tỷ đồng;",
+              "source_chunk": "248"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tổng chi phí hoạt động chưa VAT, 15% doanh thu: 413 tỷ đồng;",
               "source_chunk": "248"
@@ -11153,16 +12447,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Lợi nhuận trước thuế: 316 tỷ đồng;",
-              "source_chunk": "248"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "NPV chủ đầu tư là: - 13 tỷ đồng",
-              "source_chunk": "248"
-            },
-            {
-              "label": "Dòng số liệu từ nguồn",
-              "value": "Phương án 1 là 300 tỷ đồng cho 8,739 m2 (tương đương 34.3 triệu đồng/m2 đất)",
               "source_chunk": "248"
             }
           ],
@@ -11303,6 +12587,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "+ Chủ đất nợ hiện thế chấp sổ ở ngân hàng, gốc và lãi lên đến ~ 200 tỷ đồng => nếu quan tâm dự án này, thì giá trị mua khu đất cần được làm rõ về các điều kiện đính kèm giá mua cần đảm bảo làm sạch hết các nghĩa vụ của chủ cũ với ngân hàng, và thuế đối với nhà nước.",
+          "source_chunk": "286",
+          "record_id": "M03-0029",
+          "report_no": 1,
+          "project_name": "Khu đất 7.276 m2 Bưng Ông Thoàn, Phú Hữu",
+          "part": 3
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "+ Khu đất nằm trong ô phố quy hoạch cao tầng cho cả ô 3.22ha ~ 1.088 dân, => tính cho khu đất chỉ được khoảng 250 dân => cần xin tăng dân số lên khoảng 1.175 dân để đạt hiệu quả tính toán.",
           "source_chunk": "286",
@@ -11314,15 +12607,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Để DA đạt hiệu quả tài chính (~LNTT/TMĐT 20%) thì cần đạt được các điều kiện sau:",
-          "source_chunk": "286",
-          "record_id": "M03-0029",
-          "report_no": 1,
-          "project_name": "Khu đất 7.276 m2 Bưng Ông Thoàn, Phú Hữu",
-          "part": 3
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Ngưỡng giá đất all in 321 tỷ đồng ~ 44,2 triệu đồng/ m2 (gồm giá mua và toàn bộ nghĩa vụ tài chính về đất);",
           "source_chunk": "286",
           "record_id": "M03-0029",
           "report_no": 1,
@@ -11402,6 +12686,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "286"
             },
             {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "+ Chủ đất nợ hiện thế chấp sổ ở ngân hàng, gốc và lãi lên đến ~ 200 tỷ đồng => nếu quan tâm dự án này, thì giá trị mua khu đất cần được làm rõ về các điều kiện đính kèm giá mua cần đảm bảo làm sạch hết các nghĩa vụ của chủ cũ với ngân hàng, và thuế đối với nhà nước.",
+              "source_chunk": "286"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Khu đất nằm trong ô phố quy hoạch cao tầng cho cả ô 3.22ha ~ 1.088 dân, => tính cho khu đất chỉ được khoảng 250 dân => cần xin tăng dân số lên khoảng 1.175 dân để đạt hiệu quả tính toán.",
               "source_chunk": "286"
@@ -11409,11 +12698,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để DA đạt hiệu quả tài chính (~LNTT/TMĐT 20%) thì cần đạt được các điều kiện sau:",
-              "source_chunk": "286"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Ngưỡng giá đất all in 321 tỷ đồng ~ 44,2 triệu đồng/ m2 (gồm giá mua và toàn bộ nghĩa vụ tài chính về đất);",
               "source_chunk": "286"
             }
           ],
@@ -11698,6 +12982,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Và đặc biệt là có phần đất mộ kế bên --- chunk --- Admin 01 5/6/2026 9:15 AM Hồi đó họ chào nhiêu Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh.",
+          "source_chunk": "126",
+          "record_id": "M02-0010",
+          "report_no": 1,
+          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
+          "part": 2
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "2. Hiệu quả dự án:",
           "source_chunk": "89",
@@ -11768,6 +13061,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư Thông số quy hoạch Hiệu quả dự án Độ nhạy dự án Phương án 1:",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Trong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất) Nhận xét:",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào.",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện --- chunk --- Friday, May 22 P.",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
         }
       ],
       "reports": [
@@ -11794,6 +13123,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
+              "source_chunk": "126"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Và đặc biệt là có phần đất mộ kế bên --- chunk --- Admin 01 5/6/2026 9:15 AM Hồi đó họ chào nhiêu Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh.",
               "source_chunk": "126"
             }
           ],
@@ -11860,6 +13194,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được",
               "source_chunk": "89"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư Thông số quy hoạch Hiệu quả dự án Độ nhạy dự án Phương án 1:",
+              "source_chunk": "89"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Trong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất) Nhận xét:",
+              "source_chunk": "89"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào.",
+              "source_chunk": "89"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện --- chunk --- Friday, May 22 P.",
+              "source_chunk": "89"
             }
           ],
           "excerpt": "khu đất 4.600 m2 tại 120 Đặng Văn Bi... vị trí ranh dự án... cách ga Metro Bình Thái khoảng 700m... Dự án phát triển chung cư và căn hộ dịch vụ.",
@@ -11911,6 +13265,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "5/27 9:18 AM Edited Hoa D - CVDT K.ĐT báo cáo Sếp Admin 01, về lô đất làm dự án khách sạn cạnh TMS với giá chào là 650tr/m2 tại 290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng như sau:",
+          "source_chunk": "76",
+          "record_id": "M01-0022",
+          "report_no": 1,
+          "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "14.7 II ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN",
+          "source_chunk": "76",
+          "record_id": "M01-0022",
+          "report_no": 1,
+          "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Độ nhạy dự án Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá thuê (VAT) Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá mua đất Để IRR của dự án đạt 10% thì giá mua đất khoản 144 tỷ (Tương đương 129tr/m2) và TMĐT Phòng là 2.8 tỷ/key 2026.05.27_Bao cao Loi lo dat canh TMS.pdf",
+          "source_chunk": "76",
+          "record_id": "M01-0022",
+          "report_no": 1,
+          "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
+          "part": 1
         }
       ],
       "reports": [
@@ -11945,6 +13326,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để IRR của dự án đạt 10% thì giá mua đất khoản 144 tỷ (Tương đương 129tr/m2) và TMĐT Phòng là 2.8 tỷ/key",
+              "source_chunk": "76"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "5/27 9:18 AM Edited Hoa D - CVDT K.ĐT báo cáo Sếp Admin 01, về lô đất làm dự án khách sạn cạnh TMS với giá chào là 650tr/m2 tại 290 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng như sau:",
+              "source_chunk": "76"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "14.7 II ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN",
+              "source_chunk": "76"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Độ nhạy dự án Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá thuê (VAT) Độ nhạy TMĐT/Phòng (VAT)/phòng và Giá mua đất Để IRR của dự án đạt 10% thì giá mua đất khoản 144 tỷ (Tương đương 129tr/m2) và TMĐT Phòng là 2.8 tỷ/key 2026.05.27_Bao cao Loi lo dat canh TMS.pdf",
               "source_chunk": "76"
             }
           ],
@@ -12145,6 +13541,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
           "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Mức giá 508,56 tỷ đồng.",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Hạ xuống 483,13 tỷ đồng (giảm hơn 25 tỷ) Nửa đầu năm 2025 đến 2026:",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đại hạ giá xuống mức 410 tỷ đồng (đơn giá đất khoảng 36,5 triệu/m²).",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "chunk --- P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ khu đất 11.000 m2, đường Tây Thạnh, Q.Tân Phú (nguồn từ Mr.Khôi gửi - Đấu giá Sacombank, giá chào 592 tỷ đồng ~ 52,7 tr/m2 đất ở), như sau:",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
         }
       ],
       "reports": [
@@ -12206,6 +13638,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ khu đất 11.000 m2, đường Tây Thạnh, Q.Tân Phú (nguồn từ Mr.Khôi gửi - Đấu giá Sacombank, giá chào 592 tỷ đồng ~ 52,7 tr/m2 đất ở), như sau:",
+              "source_chunk": "96"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Mức giá 508,56 tỷ đồng.",
+              "source_chunk": "96"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Hạ xuống 483,13 tỷ đồng (giảm hơn 25 tỷ) Nửa đầu năm 2025 đến 2026:",
+              "source_chunk": "96"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đại hạ giá xuống mức 410 tỷ đồng (đơn giá đất khoảng 36,5 triệu/m²).",
+              "source_chunk": "96"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "chunk --- P.ĐT xin báo cáo Sếp Admin 01 về sơ bộ khu đất 11.000 m2, đường Tây Thạnh, Q.Tân Phú (nguồn từ Mr.Khôi gửi - Đấu giá Sacombank, giá chào 592 tỷ đồng ~ 52,7 tr/m2 đất ở), như sau:",
               "source_chunk": "96"
             }
           ],
@@ -12328,6 +13780,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 8
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "K.ĐT báo cáo anh Tuan Tran-CEO dự án Văn phòng tại khu đất 72-74 Võ Thị Sáu, phường Tân Định, Quận 1. Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+          "source_chunk": "747",
+          "record_id": "M08-0007",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 72-74 Võ Thị Sáu, Tân Định, Quận 1",
+          "part": 8
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Theo văn bản 4793/QD-UBND của UBND Thành phố Hồ Chí Minh cấp ngày 08/09/2017 Về Đồ án quy hoạch phân khu tỷ lệ 1/2000 Khu dân cư Phường Tân Định, Quận 1 (nội dung quy hoạch sử dụng đất",
           "source_chunk": "747",
@@ -12335,6 +13796,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Văn phòng/khu đất 72-74 Võ Thị Sáu, Tân Định, Quận 1",
           "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+          "source_chunk": "747",
+          "record_id": "M08-0007",
+          "report_no": 1,
+          "project_name": "Văn phòng/khu đất 72-74 Võ Thị Sáu, Tân Định, Quận 1",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "K.ĐT báo cáo anh Tuan Tran-CEO dự án Văn phòng tại khu đất 72-74 Võ Thị Sáu, phường Tân Định, Quận 1. Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+          "source_chunk": "694",
+          "record_id": "M07-0021",
+          "report_no": 2,
+          "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+          "part": 7
         },
         {
           "label": "Dòng số liệu từ nguồn",
@@ -12375,6 +13854,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "b.Trường hợp 2: Không tính chi phí đất, chỉ có chi phí xây dựng và chi phí hoạt động – thực hiện theo cách thức giữ được đất lâu dài. Dự án đạt hiệu quả tài chính: IRR= 33.21%; NPV= 938tỷ.",
+          "source_chunk": "694",
+          "record_id": "M07-0021",
+          "report_no": 2,
+          "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+          "source_chunk": "694",
+          "record_id": "M07-0021",
+          "report_no": 2,
+          "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "16,78tr/m2 sàn XD (Gồm VAT và các chi phí HTKT, cây xanh cảnh quan, tư vấn quản lý và dự phòng). d.",
+          "source_chunk": "694",
+          "record_id": "M07-0021",
+          "report_no": 2,
+          "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Hiệu quả đầu tư: a.Trường hợp 1:",
+          "source_chunk": "694",
+          "record_id": "M07-0021",
+          "report_no": 2,
+          "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Độ nhạy IRR: b.Trường hợp 2:",
           "source_chunk": "694",
           "record_id": "M07-0021",
           "report_no": 2,
@@ -12520,8 +14035,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "747"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "K.ĐT báo cáo anh Tuan Tran-CEO dự án Văn phòng tại khu đất 72-74 Võ Thị Sáu, phường Tân Định, Quận 1. Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+              "source_chunk": "747"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Theo văn bản 4793/QD-UBND của UBND Thành phố Hồ Chí Minh cấp ngày 08/09/2017 Về Đồ án quy hoạch phân khu tỷ lệ 1/2000 Khu dân cư Phường Tân Định, Quận 1 (nội dung quy hoạch sử dụng đất",
+              "source_chunk": "747"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
               "source_chunk": "747"
             }
           ],
@@ -12547,6 +14072,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "business_notes": "Không tạo dự án mới",
           "financial_items": [
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "K.ĐT báo cáo anh Tuan Tran-CEO dự án Văn phòng tại khu đất 72-74 Võ Thị Sáu, phường Tân Định, Quận 1. Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+              "source_chunk": "694"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Theo văn bản 4793/QD-UBND của UBND Thành phố Hồ Chí Minh cấp ngày 08/09/2017 Về Đồ án quy hoạch phân khu tỷ lệ 1/2000 Khu dân cư Phường Tân Định, Quận 1 (nội dung quy hoạch sử dụng đất, kiến trúc, giao thông).",
               "source_chunk": "694"
@@ -12569,6 +14099,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "b.Trường hợp 2: Không tính chi phí đất, chỉ có chi phí xây dựng và chi phí hoạt động – thực hiện theo cách thức giữ được đất lâu dài. Dự án đạt hiệu quả tài chính: IRR= 33.21%; NPV= 938tỷ.",
+              "source_chunk": "694"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Khu đất nằm trên đường Võ Thị Sáu, phía tay mặt, đối diện Công viên Lê Văn Tám có tổng diện tích 2157.7m2 với giá chào bán là 1350 tỷ, tương đương 625.6tr/m2 như sau:",
+              "source_chunk": "694"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "16,78tr/m2 sàn XD (Gồm VAT và các chi phí HTKT, cây xanh cảnh quan, tư vấn quản lý và dự phòng). d.",
+              "source_chunk": "694"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Hiệu quả đầu tư: a.Trường hợp 1:",
+              "source_chunk": "694"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Độ nhạy IRR: b.Trường hợp 2:",
               "source_chunk": "694"
             }
           ],
@@ -12853,6 +14403,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
           "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Theo Phương án đấu giá ngày 10/11/2025 giá khởi điểm 1.696 tỷ đồng.",
+          "source_chunk": "291",
+          "record_id": "M03-0031",
+          "report_no": 2,
+          "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
+          "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Tuy nhiên, Thông báo đấu giá ngày 24/11/2025 mức giá khởi điểm tăng lên 5.013 tỷ đồng.",
+          "source_chunk": "291",
+          "record_id": "M03-0031",
+          "report_no": 2,
+          "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "1.019.443 --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO về hiệu quả cho dự án đấu giá 102ha, Phước An, Nhơn Trạch, Đồng Nai như sau:",
+          "source_chunk": "291",
+          "record_id": "M03-0031",
+          "report_no": 2,
+          "project_name": "Dự án đấu giá 102ha Phước An, Nhơn Trạch",
+          "part": 3
         }
       ],
       "reports": [
@@ -12991,6 +14568,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Theo Phương án đấu giá ngày 10/11/2025 giá khởi điểm 1.696 tỷ đồng. Tuy nhiên, Thông báo đấu giá ngày 24/11/2025 mức giá khởi điểm tăng lên 5.013 tỷ đồng.",
               "source_chunk": "291"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Theo Phương án đấu giá ngày 10/11/2025 giá khởi điểm 1.696 tỷ đồng.",
+              "source_chunk": "291"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Tuy nhiên, Thông báo đấu giá ngày 24/11/2025 mức giá khởi điểm tăng lên 5.013 tỷ đồng.",
+              "source_chunk": "291"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "1.019.443 --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO về hiệu quả cho dự án đấu giá 102ha, Phước An, Nhơn Trạch, Đồng Nai như sau:",
+              "source_chunk": "291"
             }
           ],
           "excerpt": "đấu giá 102ha Phước An Nhơn Trạch... giá khởi điểm 1.696 tỷ tăng 5.013 tỷ.",
@@ -13103,6 +14695,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Doanh thu chưa bao gồm VAT: 31.158 tỷ đồng (Tăng 2.900 tỷ đồng so với ngày báo cáo 8/8/2025 là 28.282 tỷ đồng 🡪 Lý do: giá nhà liên kế sau khi khảo sát và điều chỉnh tăng khoảng 10%, Biệt thự không đổi, phần công trình công cộng chuyển từ bán đất sang bán sàn xây dựng) 🡪 Thời gian bán hàng kéo dài 4 năm",
+          "source_chunk": "306",
+          "record_id": "M04-0003",
+          "report_no": 1,
+          "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Tổng mức đầu tư 22.319 tỷ đồng, tăng 4.500 tỷ đồng so với ngày báo cáo 8/8/2025 là 17.749 tỷ 🡪 Lý do tăng: Do dự trù nghĩa vụ NOXH là 1.900 tỷ và theo thông tin của Trung Tâm phát triển quỹ đất CĐT phải xây dựng hoàn thành các công trình công cộng mới được phép chuyển nhượng nên phát sinh thêm chi phí xây dựng công trình công cộng 1.550 tỷ đồng, lãi vay t…",
+          "source_chunk": "306",
+          "record_id": "M04-0003",
+          "report_no": 1,
+          "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
+          "part": 4
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Trong đó: Nghĩa vụ NOXH bổ sung dự trù 40% so với giá đấu tương đương 1.900 tỷ đồng (bao gồm 20% NOXH + 20% do trượt giá 3 năm làm hạ tầng và trong 3 năm này đã bán hàng tạo giá trong dự án)",
           "source_chunk": "306",
@@ -13182,24 +14792,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
           "part": 4
-        },
-        {
-          "label": "Dòng số liệu từ nguồn",
-          "value": "Lợi nhuận trước thuế: 7.296 tỷ đồng",
-          "source_chunk": "306",
-          "record_id": "M04-0003",
-          "report_no": 1,
-          "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
-          "part": 4
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Lợi nhuận TT/TMĐT: 43,6%",
-          "source_chunk": "306",
-          "record_id": "M04-0003",
-          "report_no": 1,
-          "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
-          "part": 4
         }
       ],
       "reports": [
@@ -13272,6 +14864,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "306"
             },
             {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Doanh thu chưa bao gồm VAT: 31.158 tỷ đồng (Tăng 2.900 tỷ đồng so với ngày báo cáo 8/8/2025 là 28.282 tỷ đồng 🡪 Lý do: giá nhà liên kế sau khi khảo sát và điều chỉnh tăng khoảng 10%, Biệt thự không đổi, phần công trình công cộng chuyển từ bán đất sang bán sàn xây dựng) 🡪 Thời gian bán hàng kéo dài 4 năm",
+              "source_chunk": "306"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Tổng mức đầu tư 22.319 tỷ đồng, tăng 4.500 tỷ đồng so với ngày báo cáo 8/8/2025 là 17.749 tỷ 🡪 Lý do tăng: Do dự trù nghĩa vụ NOXH là 1.900 tỷ và theo thông tin của Trung Tâm phát triển quỹ đất CĐT phải xây dựng hoàn thành các công trình công cộng mới được phép chuyển nhượng nên phát sinh thêm chi phí xây dựng công trình công cộng 1.550 tỷ đồng, lãi vay t…",
+              "source_chunk": "306"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Trong đó: Nghĩa vụ NOXH bổ sung dự trù 40% so với giá đấu tương đương 1.900 tỷ đồng (bao gồm 20% NOXH + 20% do trượt giá 3 năm làm hạ tầng và trong 3 năm này đã bán hàng tạo giá trong dự án)",
               "source_chunk": "306"
@@ -13314,16 +14916,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Doanh thu chưa bao gồm VAT: 28.282 tỷ đồng",
-              "source_chunk": "306"
-            },
-            {
-              "label": "Dòng số liệu từ nguồn",
-              "value": "Lợi nhuận trước thuế: 7.296 tỷ đồng",
-              "source_chunk": "306"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Lợi nhuận TT/TMĐT: 43,6%",
               "source_chunk": "306"
             }
           ],
@@ -13413,6 +15005,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Chi phí / vốn từ nguồn",
+          "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025). Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+          "source_chunk": "341",
+          "record_id": "M04-0011",
+          "report_no": 1,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
           "value": "PK 3 ~ 80ha, TMĐT ~ 15.100 tỷ đồng, Vốn CSH>~2.265 tỷ đồng",
           "source_chunk": "341",
           "record_id": "M04-0011",
@@ -13441,6 +15042,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "PK 6 ~ 85ha, TMĐT ~ 20.600 tỷ đồng, Vốn CSH>~3.090 tỷ đồng",
+          "source_chunk": "341",
+          "record_id": "M04-0011",
+          "report_no": 1,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+          "source_chunk": "341",
+          "record_id": "M04-0011",
+          "report_no": 1,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025).",
+          "source_chunk": "341",
+          "record_id": "M04-0011",
+          "report_no": 1,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+          "source_chunk": "341",
+          "record_id": "M04-0011",
+          "report_no": 1,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "PK 3 ~ 80ha, TMĐT ~ 15.100 tỷ đồng, Vốn CSH>~2.265 tỷ đồng PK 4 ~ 92ha, TMĐT ~ 16.500 tỷ đồng, Vốn CSH>~2.470 tỷ đồng PK 5 ~ 129ha, TMĐT ~ 32.700 tỷ đồng, Vốn CSH>~4.900 tỷ đồng PK 6 ~ 85ha, TMĐT ~ 20.600 tỷ đồng, Vốn CSH>~3.090 tỷ đồng --- chunk --- Phòng xin gửi đính kèm vị trí vào số liệu chi tiết tổng mức đầu tư của từng phân khu.",
           "source_chunk": "341",
           "record_id": "M04-0011",
           "report_no": 1,
@@ -13477,6 +15114,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "P. ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+          "source_chunk": "392",
+          "record_id": "M04-0024",
+          "report_no": 2,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025). Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+          "source_chunk": "392",
+          "record_id": "M04-0024",
+          "report_no": 2,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+          "source_chunk": "392",
+          "record_id": "M04-0024",
+          "report_no": 2,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025).",
+          "source_chunk": "392",
+          "record_id": "M04-0024",
+          "report_no": 2,
+          "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch, Đồng Nai",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
           "source_chunk": "392",
           "record_id": "M04-0024",
           "report_no": 2,
@@ -13536,6 +15209,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Chi phí / vốn từ nguồn",
+              "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025). Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+              "source_chunk": "341"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
               "value": "PK 3 ~ 80ha, TMĐT ~ 15.100 tỷ đồng, Vốn CSH>~2.265 tỷ đồng",
               "source_chunk": "341"
             },
@@ -13552,6 +15230,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "PK 6 ~ 85ha, TMĐT ~ 20.600 tỷ đồng, Vốn CSH>~3.090 tỷ đồng",
+              "source_chunk": "341"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+              "source_chunk": "341"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025).",
+              "source_chunk": "341"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+              "source_chunk": "341"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "PK 3 ~ 80ha, TMĐT ~ 15.100 tỷ đồng, Vốn CSH>~2.265 tỷ đồng PK 4 ~ 92ha, TMĐT ~ 16.500 tỷ đồng, Vốn CSH>~2.470 tỷ đồng PK 5 ~ 129ha, TMĐT ~ 32.700 tỷ đồng, Vốn CSH>~4.900 tỷ đồng PK 6 ~ 85ha, TMĐT ~ 20.600 tỷ đồng, Vốn CSH>~3.090 tỷ đồng --- chunk --- Phòng xin gửi đính kèm vị trí vào số liệu chi tiết tổng mức đầu tư của từng phân khu.",
               "source_chunk": "341"
             }
           ],
@@ -13598,6 +15296,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "P. ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+              "source_chunk": "392"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025). Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
+              "source_chunk": "392"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "ĐT báo cáo Sếp Mr Mike1 -CEO về sơ bộ tổng mức đầu tư cụm DA đấu thầu tại Nhơn Trạch, Đồng Nai như sau:",
+              "source_chunk": "392"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Dựa trên thông số chỉ tiêu QH anh Tài gửi, P.ĐT tính sơ bộ tổng mức đầu tư cụm dự án 386 ha là 84.900 tỷ đồng ~ 220 tỷ đồng/ 1ha (giá bồi thường ~3 triệu đồng/m2, giá xây dựng áp theo QĐ của Suất vốn Bộ Xây Dựng 2025).",
+              "source_chunk": "392"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Và Vốn chủ sở hữu tối thiểu cần ~15% Tổng mức đầu tư ~12.740 tỷ đồng.",
               "source_chunk": "392"
             }
           ],
@@ -14478,6 +16196,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
           "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "QUY HOẠCH Theo Quyết định số 29/QĐ-BQLPTPQ ngày 03/04/2014 về phê duyệt Đồ án điều chỉn… Anh gửi lại Sếp tính tiền sử dụng đất theo 1.500 cũ của Bà Kèo à Begin quote, Thao L - INVT, 6/22/2026 12:01... by Admin 01 --- chunk --- P.ĐT gửi anh Admin 01 về việc ước tính TSDĐ dự án Bà Kèo theo Quy hoạch 1/500 cũ (100% thấp tầng) như sau:",
+          "source_chunk": "24",
+          "record_id": "M01-0013",
+          "report_no": 1,
+          "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "TSDĐ a.Kịch bản Min: khoảng 1,750 tỷ Cơ sở:",
+          "source_chunk": "24",
+          "record_id": "M01-0013",
+          "report_no": 1,
+          "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tính theo đơn giá đất Nhà nước mặt tiền đường Trần Hưng Đạo, khoảng 67.5tr/m². b.Kịch bản Max: khoảng 2,300 tỷ Cơ sở:",
+          "source_chunk": "24",
+          "record_id": "M01-0013",
+          "report_no": 1,
+          "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "đơn giá đất thặng dư ước khoảng 1,3 lần đơn giá đất Nhà nước.",
+          "source_chunk": "24",
+          "record_id": "M01-0013",
+          "report_no": 1,
+          "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
+          "part": 1
         }
       ],
       "reports": [
@@ -14544,6 +16298,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Cơ sở: Tính theo phương pháp thặng dư dựa trên Quy hoạch 1/500 trên; đơn giá đất thặng dư ước khoảng 1,3 lần đơn giá đất Nhà nước.",
+              "source_chunk": "24"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "QUY HOẠCH Theo Quyết định số 29/QĐ-BQLPTPQ ngày 03/04/2014 về phê duyệt Đồ án điều chỉn… Anh gửi lại Sếp tính tiền sử dụng đất theo 1.500 cũ của Bà Kèo à Begin quote, Thao L - INVT, 6/22/2026 12:01... by Admin 01 --- chunk --- P.ĐT gửi anh Admin 01 về việc ước tính TSDĐ dự án Bà Kèo theo Quy hoạch 1/500 cũ (100% thấp tầng) như sau:",
+              "source_chunk": "24"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "TSDĐ a.Kịch bản Min: khoảng 1,750 tỷ Cơ sở:",
+              "source_chunk": "24"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tính theo đơn giá đất Nhà nước mặt tiền đường Trần Hưng Đạo, khoảng 67.5tr/m². b.Kịch bản Max: khoảng 2,300 tỷ Cơ sở:",
+              "source_chunk": "24"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "đơn giá đất thặng dư ước khoảng 1,3 lần đơn giá đất Nhà nước.",
               "source_chunk": "24"
             }
           ],
@@ -14708,8 +16482,35 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 7
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Vận hành cho thuê Căn hộ Dịch vụ 6.3/ Tổng mức đầu tư dự án:",
+          "source_chunk": "688",
+          "record_id": "M07-0017",
+          "report_no": 1,
+          "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Không bao gồm chi phí Đất (Vì đất giữ được lâu dài) Chi phí xây dựng All in, 14 tầng + 2hầm, năm 2025:",
+          "source_chunk": "688",
+          "record_id": "M07-0017",
+          "report_no": 1,
+          "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
+          "part": 7
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Giá chuyển nhượng: 275 tỷ ~ 55.8tr/m2 cho 4,926.4m2, cam kết thực hiện pháp lý đến giấy phép xây dựng và gồm tiền chuyển đổi mục đích sử dụng đất.",
+          "source_chunk": "614",
+          "record_id": "M07-0003",
+          "report_no": 2,
+          "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "275 tỷ ~ 55.8tr/m2 cho 4,926.4m2, cam kết thực hiện pháp lý đến giấy phép xây dựng và gồm tiền chuyển đổi mục đích sử dụng đất.",
           "source_chunk": "614",
           "record_id": "M07-0003",
           "report_no": 2,
@@ -14795,6 +16596,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Thời gian hoàn vốn (có chiết khấu, Rₑ=12%)",
               "source_chunk": "688"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Vận hành cho thuê Căn hộ Dịch vụ 6.3/ Tổng mức đầu tư dự án:",
+              "source_chunk": "688"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Không bao gồm chi phí Đất (Vì đất giữ được lâu dài) Chi phí xây dựng All in, 14 tầng + 2hầm, năm 2025:",
+              "source_chunk": "688"
             }
           ],
           "excerpt": "Căn hộ dịch vụ Quận 2 1,1ha duplicate.",
@@ -14824,6 +16635,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá chuyển nhượng: 275 tỷ ~ 55.8tr/m2 cho 4,926.4m2, cam kết thực hiện pháp lý đến giấy phép xây dựng và gồm tiền chuyển đổi mục đích sử dụng đất.",
+              "source_chunk": "614"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "275 tỷ ~ 55.8tr/m2 cho 4,926.4m2, cam kết thực hiện pháp lý đến giấy phép xây dựng và gồm tiền chuyển đổi mục đích sử dụng đất.",
               "source_chunk": "614"
             },
             {
@@ -14902,6 +16718,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
           "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Unknown User 4/3/2025 2:35 PM 300 tỷ 📄 QĐ 2805 UBNDTP - QUY HOẠCH 1-2000 1.7.2019 (4).pdf 📄 Bản vẽ hiện trạng Gia Long.pdf 📄 SO DO Gia Long.pdf https://vietnamnet.vn/dien-bien-moi-vu-duc-long-gia-lai-land-bi-...",
+          "source_chunk": "490",
+          "record_id": "M05-0023",
+          "report_no": 1,
+          "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Pháp lý chưa hoàn thiện Dự án chưa được cấp phép xây dựng, chưa phê duyệt tổng mặt bằng chi tiết tỷ lệ 1/500, chưa nghiệm thu cơ sở hạ tầng kỹ thuật, và chưa đủ điều kiện để giao dịch kinh doanh bất động sản theo quy định của Luật Kinh doanh Bất động sản năm",
+          "source_chunk": "490",
+          "record_id": "M05-0023",
+          "report_no": 1,
+          "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Huy động vốn trái phép Chủ đầu tư đã ký hợp đồng đặt cọc với khách hàng từ năm 2017 – 2018, dù dự án chỉ là bãi đất trống và chưa đủ điều kiện kinh doanh35.",
+          "source_chunk": "490",
+          "record_id": "M05-0023",
+          "report_no": 1,
+          "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Việc huy động vốn trước khi hoàn thành phần móng của tòa nhà là vi phạm Điều 55 Luật Kinh doanh Bất động sản năm",
+          "source_chunk": "490",
+          "record_id": "M05-0023",
+          "report_no": 1,
+          "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Người dân mòn mỏi đi đòi tiền cọc mua căn hộ dự án Western Park (CAO) Mặc dù dự án Western Park (Q.Bình Tân,TPHCM) chưa hoàn thiện hồ sơ pháp lý và đủ điều kiện mở bán, nhưng Đức Long Gia Lai Land vẫn huy động vốn... congan.com.vn Begin quote, Mr Mike1 -CEO, 4/3/2025 2:35 P... by Huy M - IM --- chunk --- Unknown User 4/3/2025 2:35 PM 300 tỷ 📄 QĐ 2805 UBND…",
+          "source_chunk": "490",
+          "record_id": "M05-0023",
+          "report_no": 1,
+          "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
+          "part": 5
         }
       ],
       "reports": [
@@ -14948,6 +16809,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Việc huy động vốn trước khi hoàn thành phần móng của tòa nhà là vi phạm Điều 55 Luật Kinh doanh Bất động sản năm 201423.",
+              "source_chunk": "490"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Unknown User 4/3/2025 2:35 PM 300 tỷ 📄 QĐ 2805 UBNDTP - QUY HOẠCH 1-2000 1.7.2019 (4).pdf 📄 Bản vẽ hiện trạng Gia Long.pdf 📄 SO DO Gia Long.pdf https://vietnamnet.vn/dien-bien-moi-vu-duc-long-gia-lai-land-bi-...",
+              "source_chunk": "490"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Pháp lý chưa hoàn thiện Dự án chưa được cấp phép xây dựng, chưa phê duyệt tổng mặt bằng chi tiết tỷ lệ 1/500, chưa nghiệm thu cơ sở hạ tầng kỹ thuật, và chưa đủ điều kiện để giao dịch kinh doanh bất động sản theo quy định của Luật Kinh doanh Bất động sản năm",
+              "source_chunk": "490"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Huy động vốn trái phép Chủ đầu tư đã ký hợp đồng đặt cọc với khách hàng từ năm 2017 – 2018, dù dự án chỉ là bãi đất trống và chưa đủ điều kiện kinh doanh35.",
+              "source_chunk": "490"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Việc huy động vốn trước khi hoàn thành phần móng của tòa nhà là vi phạm Điều 55 Luật Kinh doanh Bất động sản năm",
+              "source_chunk": "490"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Người dân mòn mỏi đi đòi tiền cọc mua căn hộ dự án Western Park (CAO) Mặc dù dự án Western Park (Q.Bình Tân,TPHCM) chưa hoàn thiện hồ sơ pháp lý và đủ điều kiện mở bán, nhưng Đức Long Gia Lai Land vẫn huy động vốn... congan.com.vn Begin quote, Mr Mike1 -CEO, 4/3/2025 2:35 P... by Huy M - IM --- chunk --- Unknown User 4/3/2025 2:35 PM 300 tỷ 📄 QĐ 2805 UBND…",
               "source_chunk": "490"
             }
           ],
@@ -15012,8 +16898,35 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Nhu cầu về XNK, kho bãi: Sản lượng hàng hóa XNK ở Cảng Cái Mép – Thị Vải tăng cao (hiện công suất đạt 80%) làm tăng nhu cầu kho bãi dịch vụ phụ trợ cho cảng biển, phát triển thương mại điện tử và gia tăng thị phần các doanh nghiệp bán lẻ làm tăng lượng hàng hóa, gia tăng nguồn vốn FDI -> thúc đẩy nhu cầu thuê kho bãi, kho hàng ngày càng tăng cao.",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thị trường: một số khu đất được chào bán trên thị trường để làm kho bãi khoảng 1,4 tr.đ/m2 (chưa có giấy tờ pháp lý, không tiếp giáp cảng biển), Dự án cảng thủy nội địa Hồng Long với diện tích 35.8 ha với giá chào 1trđ/m2 (Đất SXKD, thời hạn SDĐ 2058, đóng tiền thuê đất hàng năm). Giá đất trong khu KCN Mỹ Xuân, KCN Phú Mỹ tại khu vực đã hoàn thiện hạ tầng…",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Giá chào 100 USD/m2 với diện tích đất 34.5 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 70-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền.",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Giá chào 1.76 trđ/m2 với diện tích đất 69.04 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, GCN với hình thức đóng tiền thuê đất hàng năm so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 70-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền. Ngoài ra dự án Cảng Hông Long diện tích 34 ha được…",
           "source_chunk": "989",
           "record_id": "M10-0027",
           "report_no": 1,
@@ -15032,6 +16945,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "+ Ngoài ra chức năng chính của dự án phục vụ làm khu bãi container, kho chứa hàng, dịch vụ cảng và sữa chữa container với tỷ lệ diện tích đất của công trình chiếm 50% => Dự án không chuyên về khu bến cảng.",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Giá chào 2 trđ/m2 với diện tích đất 31 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, GCN với hình thức đóng tiền thuê đất hàng năm, mục đích sử dụng chủ yếu cho kho bãi container so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 80-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền.",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Dự án Cảng Sài Gòn – Thép Việt (Diện tích 34.5 ha) với giá chào 100 USD/m2 và dự án Cảng Sao Biển (Diện tích 69.04 ha) với giá chào 1.76 trđ/m2 tại Mỹ Xuân, Phú Mỹ, Bà Rịa Vũng Tàu 1.1 Về Pháp lý Dự án:",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Sản lượng hàng hóa XNK ở Cảng Cái Mép – Thị Vải tăng cao (hiện công suất đạt 80%) làm tăng nhu cầu kho bãi dịch vụ phụ trợ cho cảng biển, phát triển thương mại điện tử và gia tăng thị phần các doanh nghiệp bán lẻ làm tăng lượng hàng hóa, gia tăng nguồn vốn FDI -> thúc đẩy nhu cầu thuê kho bãi, kho hàng ngày càng tăng cao.",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thị trường: một số khu đất được chào bán trên thị trường để làm kho bãi khoảng 1,4 tr.đ/m2 (chưa có giấy tờ pháp lý, không tiếp giáp cảng biển), Dự án cảng thủy nội địa Hồng Long với diện tích 35.8 ha với giá chào 1trđ/m2 (Đất SXKD, thời hạn SDĐ 2058, đóng tiền thuê đất hàng năm).",
+          "source_chunk": "989",
+          "record_id": "M10-0027",
+          "report_no": 1,
+          "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Giá đất trong khu KCN Mỹ Xuân, KCN Phú Mỹ tại khu vực đã hoàn thiện hạ tầng và san lấp khoảng 130 – 190 USD/m2.",
           "source_chunk": "989",
           "record_id": "M10-0027",
           "report_no": 1,
@@ -15080,8 +17038,23 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "989"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Nhu cầu về XNK, kho bãi: Sản lượng hàng hóa XNK ở Cảng Cái Mép – Thị Vải tăng cao (hiện công suất đạt 80%) làm tăng nhu cầu kho bãi dịch vụ phụ trợ cho cảng biển, phát triển thương mại điện tử và gia tăng thị phần các doanh nghiệp bán lẻ làm tăng lượng hàng hóa, gia tăng nguồn vốn FDI -> thúc đẩy nhu cầu thuê kho bãi, kho hàng ngày càng tăng cao.",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thị trường: một số khu đất được chào bán trên thị trường để làm kho bãi khoảng 1,4 tr.đ/m2 (chưa có giấy tờ pháp lý, không tiếp giáp cảng biển), Dự án cảng thủy nội địa Hồng Long với diện tích 35.8 ha với giá chào 1trđ/m2 (Đất SXKD, thời hạn SDĐ 2058, đóng tiền thuê đất hàng năm). Giá đất trong khu KCN Mỹ Xuân, KCN Phú Mỹ tại khu vực đã hoàn thiện hạ tầng…",
+              "source_chunk": "989"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "+ Giá chào 100 USD/m2 với diện tích đất 34.5 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 70-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền.",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Giá chào 1.76 trđ/m2 với diện tích đất 69.04 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, GCN với hình thức đóng tiền thuê đất hàng năm so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 70-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền. Ngoài ra dự án Cảng Hông Long diện tích 34 ha được…",
               "source_chunk": "989"
             },
             {
@@ -15092,6 +17065,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "+ Ngoài ra chức năng chính của dự án phục vụ làm khu bãi container, kho chứa hàng, dịch vụ cảng và sữa chữa container với tỷ lệ diện tích đất của công trình chiếm 50% => Dự án không chuyên về khu bến cảng.",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Giá chào 2 trđ/m2 với diện tích đất 31 ha ở mức cao với hiện trạng chưa đầu tư hạ tầng, chưa san nền, GCN với hình thức đóng tiền thuê đất hàng năm, mục đích sử dụng chủ yếu cho kho bãi container so với giá đất khu công nghiệp đang được chào ở khu vực Bà Rịa - Vũng Tàu ở khoảng 80-190 USD/Chu kỳ thuê với hiện trạng đã đầu tư hạ tầng và san nền.",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Dự án Cảng Sài Gòn – Thép Việt (Diện tích 34.5 ha) với giá chào 100 USD/m2 và dự án Cảng Sao Biển (Diện tích 69.04 ha) với giá chào 1.76 trđ/m2 tại Mỹ Xuân, Phú Mỹ, Bà Rịa Vũng Tàu 1.1 Về Pháp lý Dự án:",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Sản lượng hàng hóa XNK ở Cảng Cái Mép – Thị Vải tăng cao (hiện công suất đạt 80%) làm tăng nhu cầu kho bãi dịch vụ phụ trợ cho cảng biển, phát triển thương mại điện tử và gia tăng thị phần các doanh nghiệp bán lẻ làm tăng lượng hàng hóa, gia tăng nguồn vốn FDI -> thúc đẩy nhu cầu thuê kho bãi, kho hàng ngày càng tăng cao.",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thị trường: một số khu đất được chào bán trên thị trường để làm kho bãi khoảng 1,4 tr.đ/m2 (chưa có giấy tờ pháp lý, không tiếp giáp cảng biển), Dự án cảng thủy nội địa Hồng Long với diện tích 35.8 ha với giá chào 1trđ/m2 (Đất SXKD, thời hạn SDĐ 2058, đóng tiền thuê đất hàng năm).",
+              "source_chunk": "989"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Giá đất trong khu KCN Mỹ Xuân, KCN Phú Mỹ tại khu vực đã hoàn thiện hạ tầng và san lấp khoảng 130 – 190 USD/m2.",
               "source_chunk": "989"
             }
           ],
@@ -15126,6 +17124,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Cảng tổng hợp và container Cái Mép Hạ",
           "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Huy M - IM 6/3/2024 9:16 AM https://vnexpress.net/de-xuat-dau-tu-sieu-cang-cai-mep-ha-don-tau-bien-lon-nhat-the-gioi-4753385.html Đề xuất đầu tư 'siêu cảng' Cái Mép Hạ đón tàu biển lớn nhất thế giới Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhấ…",
+          "source_chunk": "678",
+          "record_id": "M07-0015",
+          "report_no": 1,
+          "project_name": "Cảng tổng hợp và container Cái Mép Hạ",
+          "part": 7
         }
       ],
       "reports": [
@@ -15150,6 +17157,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhất thế giới.",
+              "source_chunk": "678"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Huy M - IM 6/3/2024 9:16 AM https://vnexpress.net/de-xuat-dau-tu-sieu-cang-cai-mep-ha-don-tau-bien-lon-nhat-the-gioi-4753385.html Đề xuất đầu tư 'siêu cảng' Cái Mép Hạ đón tàu biển lớn nhất thế giới Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhấ…",
               "source_chunk": "678"
             }
           ],
@@ -15176,6 +17188,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         "project_record"
       ],
       "financial_items": [
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Liên quan đến việc chuyển đổi nêu trên, mặc dù đã được cấp GCN, Chủ đầu tư vẫn chưa hoàn thành nghĩa vụ tài chính bổ sung trong việc chuyển từ thấp tầng sang cao tầng. Bên cạnh đó, Dự án đang vướng công tác tính lại giá đất vì không có cơ sở tính toán. Ngoài ra theo CV 6109 của Cục thuế ĐN, cho thấy Chủ đầu tư chưa hoàn thành nghĩa vụ tài chính (tiền thuê…",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
+        },
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Condotel: 118tr/m2 (chưa gồm VAT), đi kèm chương trình cam kết lợi nhuận 6%/năm trong 8 năm, sau đó phân chia lợi nhuận 60-40",
@@ -15229,6 +17250,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
           "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Condotel – 1.395 căn Khách sạn (chuẩn 5 sao) – 929 phòng Chung cư cao cấp – 1.037 căn Giá bán sản phẩm:",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "118tr/m2 (chưa gồm VAT), đi kèm chương trình cam kết lợi nhuận 6%/năm trong 8 năm, sau đó phân chia lợi nhuận 60-40 Khách sạn:",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "32tr/m2 (chưa VAT) Căn hộ cao cấp:",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "12% trên doanh thu.",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "14.1 % Dự án đạt hiệu quả tương đối.",
+          "source_chunk": "535",
+          "record_id": "M06-0005",
+          "report_no": 1,
+          "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
+          "part": 6
         }
       ],
       "reports": [
@@ -15250,6 +17316,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "legal_planning": "Chủ đầu tư chưa cung cấp hồ sơ điều chỉnh CTĐT từ thấp tầng lên căn hộ + khách sạn cao tầng; đến thời điểm báo cáo chưa triển khai thêm; cần rà báo cáo PL và A Tịnh pháp lý địa phương Đà Nẵng",
           "business_notes": "Dự án lớn mặt tiền biển, nhưng pháp lý điều chỉnh định hướng/chủ trương là điểm nghẽn chính",
           "financial_items": [
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Liên quan đến việc chuyển đổi nêu trên, mặc dù đã được cấp GCN, Chủ đầu tư vẫn chưa hoàn thành nghĩa vụ tài chính bổ sung trong việc chuyển từ thấp tầng sang cao tầng. Bên cạnh đó, Dự án đang vướng công tác tính lại giá đất vì không có cơ sở tính toán. Ngoài ra theo CV 6109 của Cục thuế ĐN, cho thấy Chủ đầu tư chưa hoàn thành nghĩa vụ tài chính (tiền thuê…",
+              "source_chunk": "535"
+            },
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Condotel: 118tr/m2 (chưa gồm VAT), đi kèm chương trình cam kết lợi nhuận 6%/năm trong 8 năm, sau đó phân chia lợi nhuận 60-40",
@@ -15278,6 +17349,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "5. Hiệu quả dự án:",
+              "source_chunk": "535"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Condotel – 1.395 căn Khách sạn (chuẩn 5 sao) – 929 phòng Chung cư cao cấp – 1.037 căn Giá bán sản phẩm:",
+              "source_chunk": "535"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "118tr/m2 (chưa gồm VAT), đi kèm chương trình cam kết lợi nhuận 6%/năm trong 8 năm, sau đó phân chia lợi nhuận 60-40 Khách sạn:",
+              "source_chunk": "535"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "32tr/m2 (chưa VAT) Căn hộ cao cấp:",
+              "source_chunk": "535"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "12% trên doanh thu.",
+              "source_chunk": "535"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "14.1 % Dự án đạt hiệu quả tương đối.",
               "source_chunk": "535"
             }
           ],
@@ -15526,6 +17622,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 7
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "65tr/m2 cho phần diện tích chuyển mục đích sử dụng đất - 10,490m2 và đảm bảo phải phù hợp Quy hoạch 1/2000 và 1/500 tương đương 681.86 tỷ.",
+          "source_chunk": "693",
+          "record_id": "M07-0020",
+          "report_no": 1,
+          "project_name": "Dự án cao tầng diện tích đất khoảng 10ha",
+          "part": 7
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "Dự án cao tầng với tổng diện tích đất dự án là 10,490m2",
           "source_chunk": "693",
@@ -15558,6 +17663,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá chuyển nhượng: 65tr/m2 cho phần diện tích chuyển mục đích sử dụng đất - 10,490m2 và đảm bảo phải phù hợp Quy hoạch 1/2000 và 1/500 tương đương 681.86 tỷ.",
+              "source_chunk": "693"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "65tr/m2 cho phần diện tích chuyển mục đích sử dụng đất - 10,490m2 và đảm bảo phải phù hợp Quy hoạch 1/2000 và 1/500 tương đương 681.86 tỷ.",
               "source_chunk": "693"
             },
             {
@@ -16075,6 +18185,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 9
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1/ THÔNG TIN DỰ ÁN: • Giá chào:",
+          "source_chunk": "843",
+          "record_id": "M09-0007",
+          "report_no": 1,
+          "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "200 tỷ. • Diện tích đất:",
+          "source_chunk": "843",
+          "record_id": "M09-0007",
+          "report_no": 1,
+          "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+          "part": 9
+        },
+        {
           "label": "Giá chào",
           "value": "200 tỷ",
           "source_chunk": "595",
@@ -16181,6 +18309,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
           "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Ý kiến kết luận của P.PLDA: image by Huy M - IM --- chunk --- Huy M - IM 12/6/2024 8:05 AM Translate Dự án tuy đạt hiệu quả đầu tư về mặt tính toán nhưng sẽ bị vướng mắc về Pháp lý đất (đất SKC bị hết hạn, không gia hạn được do không phù hợp quy hoạch=> bị thu hồi), dự án chưa được phê duyệt chủ chương đầu tư, Công ty Việt An chưa có QSDĐ hợp pháp nên sẽ…",
+          "source_chunk": "587",
+          "record_id": "M06-0014",
+          "report_no": 2,
+          "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1/ THÔNG TIN DỰ ÁN: • Giá chào:",
+          "source_chunk": "587",
+          "record_id": "M06-0014",
+          "report_no": 2,
+          "project_name": "Cao tầng Việt An, Thuận Giao, Bình Dương",
+          "part": 6
         }
       ],
       "reports": [
@@ -16255,6 +18401,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "4/ HIỆU QUẢ ĐẦU TƯ: Dự án đạt hiệu quả tài chính với Lợi nhuận sau thuế = 225,2 tỷ; NPV = 70,4 tỷ; IRR= 20,42%.",
+              "source_chunk": "843"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1/ THÔNG TIN DỰ ÁN: • Giá chào:",
+              "source_chunk": "843"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "200 tỷ. • Diện tích đất:",
               "source_chunk": "843"
             }
           ],
@@ -16341,6 +18497,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "4/ HIỆU QUẢ ĐẦU TƯ: Dự án đạt hiệu quả tài chính với Lợi nhuận sau thuế = 225,2 tỷ; NPV = 70,4 tỷ; IRR= 20,42%.",
+              "source_chunk": "587"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Ý kiến kết luận của P.PLDA: image by Huy M - IM --- chunk --- Huy M - IM 12/6/2024 8:05 AM Translate Dự án tuy đạt hiệu quả đầu tư về mặt tính toán nhưng sẽ bị vướng mắc về Pháp lý đất (đất SKC bị hết hạn, không gia hạn được do không phù hợp quy hoạch=> bị thu hồi), dự án chưa được phê duyệt chủ chương đầu tư, Công ty Việt An chưa có QSDĐ hợp pháp nên sẽ…",
+              "source_chunk": "587"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1/ THÔNG TIN DỰ ÁN: • Giá chào:",
               "source_chunk": "587"
             }
           ],
@@ -16612,6 +18778,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Rủi ro liên quan đến LUR: Do chúng ta đã tiếp cận được thông tin công ty dự án có thể còn phải đóng 120 tỷ theo hệ số K. Nên trường hợp giá chào 690 tỷ, vẫn cần giấy xác nhận đã hoàn thành mọi nghĩa vụ tài chính, hoặc giấy tờ khác xác minh công ty dự án không còn phải thực hiện nghĩa vụ tài chính nào nữa, để đảm bảo 690 tỷ đã gồm tiền sử dụng đất.",
+          "source_chunk": "46",
+          "record_id": "M01-0018",
+          "report_no": 1,
+          "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+          "part": 1
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Trường hợp nếu phát sinh tiền sử dụng đất theo hệ số K là 120 tỷ, lúc này tổng giá trị đầu vào sẽ lên 938 tỷ bao gồm:",
           "source_chunk": "46",
@@ -16632,15 +18807,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "=> Lúc này LNTT/TMĐT sẽ chỉ còn 15.9%, IRR 9.7%, dự án không còn đạt hiệu quả",
-          "source_chunk": "46",
-          "record_id": "M01-0018",
-          "report_no": 1,
-          "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
-          "part": 1
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "=> Như vậy để đảm bảo dự án vẫn còn hiệu quả trong trường hợp trên thì cần đàm phán giá mua giảm xuống vùng dưới 600 tỷ",
           "source_chunk": "46",
           "record_id": "M01-0018",
           "report_no": 1,
@@ -16686,6 +18852,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua",
+          "source_chunk": "117",
+          "record_id": "M02-0007",
+          "report_no": 2,
+          "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Tiền sử dụng đất 120 tỷ.",
+          "source_chunk": "117",
+          "record_id": "M02-0007",
+          "report_no": 2,
+          "project_name": "Cát Lái - Sky Habitat / H2-02 thuộc KDC Cát Lái I",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua chịu) 120 tỷ - --- chunk --- P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau:",
           "source_chunk": "117",
           "record_id": "M02-0007",
           "report_no": 2,
@@ -16848,6 +19032,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "46"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Rủi ro liên quan đến LUR: Do chúng ta đã tiếp cận được thông tin công ty dự án có thể còn phải đóng 120 tỷ theo hệ số K. Nên trường hợp giá chào 690 tỷ, vẫn cần giấy xác nhận đã hoàn thành mọi nghĩa vụ tài chính, hoặc giấy tờ khác xác minh công ty dự án không còn phải thực hiện nghĩa vụ tài chính nào nữa, để đảm bảo 690 tỷ đã gồm tiền sử dụng đất.",
+              "source_chunk": "46"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Trường hợp nếu phát sinh tiền sử dụng đất theo hệ số K là 120 tỷ, lúc này tổng giá trị đầu vào sẽ lên 938 tỷ bao gồm:",
               "source_chunk": "46"
@@ -16860,11 +19049,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "=> Lúc này LNTT/TMĐT sẽ chỉ còn 15.9%, IRR 9.7%, dự án không còn đạt hiệu quả",
-              "source_chunk": "46"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "=> Như vậy để đảm bảo dự án vẫn còn hiệu quả trong trường hợp trên thì cần đàm phán giá mua giảm xuống vùng dưới 600 tỷ",
               "source_chunk": "46"
             }
           ],
@@ -16913,6 +19097,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "2. Tiền sử dụng đất 120 tỷ. Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua",
+              "source_chunk": "117"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Tiền sử dụng đất 120 tỷ.",
+              "source_chunk": "117"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Qua làm việc, đối tác thông báo tiền sử dụng đất còn phải nộp theo hệ số K (bên mua chịu) 120 tỷ - --- chunk --- P.ĐT báo cáo sếp Admin 01 cập nhật FS dự án H2-02 với các giả định cập nhật sau:",
               "source_chunk": "117"
             }
           ],
@@ -16995,6 +19189,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chen Sea 3,1ha, Cửa Dương, Phú Quốc",
           "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "+ Thời gian còn lại của Chen Sea nhiều hơn Phú Hải 6 năm như Chen Sea còn 27 năm và Phú Hải còn 21 năm + Nguồn gốc đất của Chen Sea đóng full diện tích đất đóng tiền 1 lần tốt hơn so với Phú Hải (vẫn còn khoảng 13%/DT đất, đóng tiền hằng năm) + Đơn giá đất của Chen Sea (16,6 tr/m²) đang tốt hơn so với Phú Hải (19,2 tr/m²) 6.2/ Hiệu quả kinh doanh:",
+          "source_chunk": "543",
+          "record_id": "M06-0006",
+          "report_no": 1,
+          "project_name": "Chen Sea 3,1ha, Cửa Dương, Phú Quốc",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Tuy số lượng phòng của Chen Sea bằng 1/3 so với Phú Hải nhưng tình hình kinh doanh của Chen Sea tốt hơn so với phú Hải như tổng doanh thu của Chen Sea cao hơn 22% so với Phú Hải và tỷ lệ GOP của Chen Sea cao 5,3% so với Phú Hải - Ngoài ra, nếu Chen Sea phát triển tiếp giai đoạn 2 thì tình hình kinh doanh sẽ còn hiệu quả hơn Vị trí dự án Chen Sea: https://…",
+          "source_chunk": "543",
+          "record_id": "M06-0006",
+          "report_no": 1,
+          "project_name": "Chen Sea 3,1ha, Cửa Dương, Phú Quốc",
+          "part": 6
         }
       ],
       "reports": [
@@ -17034,6 +19246,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Ngoài ra, nếu Chen Sea phát triển tiếp giai đoạn 2 thì tình hình kinh doanh sẽ còn hiệu quả hơn",
+              "source_chunk": "543"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "+ Thời gian còn lại của Chen Sea nhiều hơn Phú Hải 6 năm như Chen Sea còn 27 năm và Phú Hải còn 21 năm + Nguồn gốc đất của Chen Sea đóng full diện tích đất đóng tiền 1 lần tốt hơn so với Phú Hải (vẫn còn khoảng 13%/DT đất, đóng tiền hằng năm) + Đơn giá đất của Chen Sea (16,6 tr/m²) đang tốt hơn so với Phú Hải (19,2 tr/m²) 6.2/ Hiệu quả kinh doanh:",
+              "source_chunk": "543"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Tuy số lượng phòng của Chen Sea bằng 1/3 so với Phú Hải nhưng tình hình kinh doanh của Chen Sea tốt hơn so với phú Hải như tổng doanh thu của Chen Sea cao hơn 22% so với Phú Hải và tỷ lệ GOP của Chen Sea cao 5,3% so với Phú Hải - Ngoài ra, nếu Chen Sea phát triển tiếp giai đoạn 2 thì tình hình kinh doanh sẽ còn hiệu quả hơn Vị trí dự án Chen Sea: https://…",
               "source_chunk": "543"
             }
           ],
@@ -17535,6 +19757,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 9
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "6. Loại hình phát triển và phương án kinh doanh do KĐT tạm tính theo quy hoạch tổng mặt bằng tỷ lệ 1.500 đề xuất của đối tác theo đó dự án có hệ số sử dụng đất 7 lần, MĐXD 33.7%, 1,334 căn hộ (trong đó có 504 căn hộ NOXH chiếm 37.7 % số lượng căn hộ dự án), dân số 3,720 người:",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "830 căn hộ chung cư với DTTB 105 m2 được bàn giao hoàn thiện cơ bản với giá bán hiện tại khoảng 40 tr/m2 sàn (đã có VAT) và giá bán chung cư tại thời điểm mở bán Quý III/2024 45 tr/m2 sàn (đã có VAT), 504 căn hộ NOXH với DTTB 54.7 m2 với giá bán đã bao gồm 10% lợi nhuận của chủ đầu tư;",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "70 căn shophouse để bán với DTTB 100 m2 với giá hiện tại 56 tr/m2/sàn (đã có VAT) và giá bán tại thời điểm mở bán Quý III/2024 65 tr/m2/sàn (đã có VAT).",
           "source_chunk": "897",
@@ -17553,6 +19793,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 9
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Rose Town của Liên danh Xuân Mai Corp và Công ty cổ phần SX bao bì và Hàng xuất khẩu với quy mô dự án khoảng 4 hecta trong đó số lượng mở bán đợt này của tháp DV01 khoảng 300 căn với giá bán khoảng 41-43 tr/m2 (có VAT). Giá bán dự án được đề xuất thấp hơn giá bán trung bình của dự án tham khảo ở mức 40t…",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "7. Hiệu quả dự án và đề xuất",
           "source_chunk": "897",
@@ -17564,6 +19813,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "KĐT đề xuất không tham gia nhận chuyển nhượng dự án do hiệu quả tài chính của dự án ở mức thấp với LNTT/TMĐT của phương án là 1%.",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Quy Vo-PTDT 8/26/2022 2:20 PM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu dân cư cao tầng Ngọc Hồi với tổng diện tích đất thực hiện dự án là 24,282 m2 (giá chào bán khoảng 1,500 tỷ tương đương 61.7 tr/m2) tại 486 Ngọc Hồi, Thị Trấn Văn Điển, Huyện Thanh Trì, Tp.Hà Nội:",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Quyết định về phê duyệt điều chỉnh cục bộ quy hoạch tại khu đất xây dựng khu nhà ở thuộc ô đất quy hoạch có ký hiệu B5-1 trong quy hoạch chung xây dựng huyện Thanh Trì, tỷ lệ 1/500. (chưa có hồ sơ) - Quy hoạch tổng mặt bằng và phương án kiến trúc sơ bộ. (chưa có hồ sơ) - Kiểm tra thông tin quy hoạch sử dụng đất trên trang web Guland thì vị trí dự án được…",
+          "source_chunk": "897",
+          "record_id": "M09-0014",
+          "report_no": 1,
+          "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Loại hình phát triển và phương án kinh doanh do KĐT tạm tính theo quy hoạch tổng mặt bằng tỷ lệ 1.500 đề xuất của đối tác theo đó dự án có hệ số sử dụng đất 7 lần, MĐXD 33.7%, 1,334 căn hộ (trong đó có 504 căn hộ NOXH chiếm 37.7 % số lượng căn hộ dự án), dân số 3,720 người:",
           "source_chunk": "897",
           "record_id": "M09-0014",
           "report_no": 1,
@@ -17607,6 +19883,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "897"
             },
             {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "6. Loại hình phát triển và phương án kinh doanh do KĐT tạm tính theo quy hoạch tổng mặt bằng tỷ lệ 1.500 đề xuất của đối tác theo đó dự án có hệ số sử dụng đất 7 lần, MĐXD 33.7%, 1,334 căn hộ (trong đó có 504 căn hộ NOXH chiếm 37.7 % số lượng căn hộ dự án), dân số 3,720 người:",
+              "source_chunk": "897"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "830 căn hộ chung cư với DTTB 105 m2 được bàn giao hoàn thiện cơ bản với giá bán hiện tại khoảng 40 tr/m2 sàn (đã có VAT) và giá bán chung cư tại thời điểm mở bán Quý III/2024 45 tr/m2 sàn (đã có VAT), 504 căn hộ NOXH với DTTB 54.7 m2 với giá bán đã bao gồm 10% lợi nhuận của chủ đầu tư;",
+              "source_chunk": "897"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "70 căn shophouse để bán với DTTB 100 m2 với giá hiện tại 56 tr/m2/sàn (đã có VAT) và giá bán tại thời điểm mở bán Quý III/2024 65 tr/m2/sàn (đã có VAT).",
               "source_chunk": "897"
@@ -17617,6 +19903,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "897"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Rose Town của Liên danh Xuân Mai Corp và Công ty cổ phần SX bao bì và Hàng xuất khẩu với quy mô dự án khoảng 4 hecta trong đó số lượng mở bán đợt này của tháp DV01 khoảng 300 căn với giá bán khoảng 41-43 tr/m2 (có VAT). Giá bán dự án được đề xuất thấp hơn giá bán trung bình của dự án tham khảo ở mức 40t…",
+              "source_chunk": "897"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "7. Hiệu quả dự án và đề xuất",
               "source_chunk": "897"
@@ -17624,6 +19915,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "KĐT đề xuất không tham gia nhận chuyển nhượng dự án do hiệu quả tài chính của dự án ở mức thấp với LNTT/TMĐT của phương án là 1%.",
+              "source_chunk": "897"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Quy Vo-PTDT 8/26/2022 2:20 PM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu dân cư cao tầng Ngọc Hồi với tổng diện tích đất thực hiện dự án là 24,282 m2 (giá chào bán khoảng 1,500 tỷ tương đương 61.7 tr/m2) tại 486 Ngọc Hồi, Thị Trấn Văn Điển, Huyện Thanh Trì, Tp.Hà Nội:",
+              "source_chunk": "897"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Quyết định về phê duyệt điều chỉnh cục bộ quy hoạch tại khu đất xây dựng khu nhà ở thuộc ô đất quy hoạch có ký hiệu B5-1 trong quy hoạch chung xây dựng huyện Thanh Trì, tỷ lệ 1/500. (chưa có hồ sơ) - Quy hoạch tổng mặt bằng và phương án kiến trúc sơ bộ. (chưa có hồ sơ) - Kiểm tra thông tin quy hoạch sử dụng đất trên trang web Guland thì vị trí dự án được…",
+              "source_chunk": "897"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Loại hình phát triển và phương án kinh doanh do KĐT tạm tính theo quy hoạch tổng mặt bằng tỷ lệ 1.500 đề xuất của đối tác theo đó dự án có hệ số sử dụng đất 7 lần, MĐXD 33.7%, 1,334 căn hộ (trong đó có 504 căn hộ NOXH chiếm 37.7 % số lượng căn hộ dự án), dân số 3,720 người:",
               "source_chunk": "897"
             }
           ],
@@ -17651,6 +19957,60 @@ window.MANUAL_MERGED_REPORTS_DB = {
         "multi_project_screening"
       ],
       "financial_items": [
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Mô tả sơ bộ: Dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 và một vài nhà kiên cố xây mới khoảng 2 tầng nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Mô tả sơ bộ: Giáp dự án 53ha, dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Mô tả sơ bộ: Khu đất có vị trí đẹp, góc 02 mặt tiền đường Bà Nà - Suối Mơ và CT02, trong phạm vi ranh đất có nhà ở nhưng tỷ lệ thấp. Hiện tại, do nút giao đoạn Cao tốc và Bà Nà Suối Mơ đang sửa chữa nên bụi nhiều nhưng tương lai sau khi hoàn thiện sẽ đẹp và thuận lợi, điểm cộng của dự án.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 và một vài nhà kiên cố xây mới khoảng 2 tầng nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Giáp dự án 53ha, dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Khu đất có vị trí đẹp, góc 02 mặt tiền đường Bà Nà - Suối Mơ và CT02, trong phạm vi ranh đất có nhà ở nhưng tỷ lệ thấp.",
+          "source_chunk": "424",
+          "record_id": "M05-0009",
+          "report_no": 1,
+          "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
+          "part": 5
+        },
         {
           "label": "Quy mô/thông số bổ sung",
           "value": "1. Dự án có số thứ tự 08, diện tích 53 ha:",
@@ -17722,6 +20082,36 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "legal_planning": "Danh mục khu đất thực hiện đấu thầu, các KĐT thông qua HĐND",
           "business_notes": "Tiêu chí sàng lọc: kết nối giao thông hiện trạng/quy hoạch, hình dáng đất, mặt tiền, khoảng cách trung tâm/dân cư, view sông/đường hiện trạng, chỉ tiêu quy hoạch ở",
           "financial_items": [
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Mô tả sơ bộ: Dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 và một vài nhà kiên cố xây mới khoảng 2 tầng nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+              "source_chunk": "424"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Mô tả sơ bộ: Giáp dự án 53ha, dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+              "source_chunk": "424"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Mô tả sơ bộ: Khu đất có vị trí đẹp, góc 02 mặt tiền đường Bà Nà - Suối Mơ và CT02, trong phạm vi ranh đất có nhà ở nhưng tỷ lệ thấp. Hiện tại, do nút giao đoạn Cao tốc và Bà Nà Suối Mơ đang sửa chữa nên bụi nhiều nhưng tương lai sau khi hoàn thiện sẽ đẹp và thuận lợi, điểm cộng của dự án.",
+              "source_chunk": "424"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 và một vài nhà kiên cố xây mới khoảng 2 tầng nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+              "source_chunk": "424"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Giáp dự án 53ha, dự án trải dài dọc theo đường Thăng Long (đường mới, đẹp), view trực diện sông Cẩm Lệ, tỷ lệ đất trống nhiều (đa số là đất trồng lúa), có rải rác nhà nằm phía dọc đường Thăng Long nhưng không nhiều, đa số là nhà cấp 4 nên thuận lợi trong công tác đền bù giải phóng mặt bằng.",
+              "source_chunk": "424"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Khu đất có vị trí đẹp, góc 02 mặt tiền đường Bà Nà - Suối Mơ và CT02, trong phạm vi ranh đất có nhà ở nhưng tỷ lệ thấp.",
+              "source_chunk": "424"
+            },
             {
               "label": "Quy mô/thông số bổ sung",
               "value": "1. Dự án có số thứ tự 08, diện tích 53 ha:",
@@ -17954,6 +20344,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Diamond Island Quận 9",
           "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Unknown User 6/22/2023 2:57 PM K.ĐT gửi anh Tuan Tran-CEO chi tiết vị trí, giá bán của dự án Diamond Island Q.9 theo hình ảnh bên dưới: 📷 Giá này là giá thị trường đang rao bán hã, thấy ko hợp lý.",
+          "source_chunk": "792",
+          "record_id": "M08-0018",
+          "report_no": 1,
+          "project_name": "Diamond Island Quận 9",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "đường bé mà giá 58.3 cao hơn cả E1 đường lớn Begin quote, Tuan Tran-CEO, 6/23/2023 10:09... by Unknown User --- chunk --- Unknown User 6/22/2023 10:42 AM Cho cụ thể, ví dụ lô E thì vị trí nào 47.5tr và vị trí nào 64.8tr 📄 Screen Shot 2023-06-22 at 10.41.17.png K.ĐT gửi anh Tuan Tran-CEO chi tiết vị trí, giá bán của dự án Diamond Island Q.9 theo hình ảnh b…",
+          "source_chunk": "792",
+          "record_id": "M08-0018",
+          "report_no": 1,
+          "project_name": "Diamond Island Quận 9",
+          "part": 8
         }
       ],
       "reports": [
@@ -17994,6 +20402,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "K.ĐT gửi anh Tuan Tran-CEO chi tiết vị trí, giá bán của dự án Diamond Island Q.9 theo hình ảnh bên dưới:",
+              "source_chunk": "792"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Unknown User 6/22/2023 2:57 PM K.ĐT gửi anh Tuan Tran-CEO chi tiết vị trí, giá bán của dự án Diamond Island Q.9 theo hình ảnh bên dưới: 📷 Giá này là giá thị trường đang rao bán hã, thấy ko hợp lý.",
+              "source_chunk": "792"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "đường bé mà giá 58.3 cao hơn cả E1 đường lớn Begin quote, Tuan Tran-CEO, 6/23/2023 10:09... by Unknown User --- chunk --- Unknown User 6/22/2023 10:42 AM Cho cụ thể, ví dụ lô E thì vị trí nào 47.5tr và vị trí nào 64.8tr 📄 Screen Shot 2023-06-22 at 10.41.17.png K.ĐT gửi anh Tuan Tran-CEO chi tiết vị trí, giá bán của dự án Diamond Island Q.9 theo hình ảnh b…",
               "source_chunk": "792"
             }
           ],
@@ -18091,6 +20509,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
           "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Triển khai dự án (Chi phí chuyển nhượng, GPMB, Pháp lý) + Năm 2025:",
+          "source_chunk": "877",
+          "record_id": "M09-0010",
+          "report_no": 1,
+          "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
+          "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "10,5tr (chưa VAT), chuẩn B- + Chi phí chuyển nhượng:",
+          "source_chunk": "877",
+          "record_id": "M09-0010",
+          "report_no": 1,
+          "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
+          "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "150 tỷ + Chi phí GPMB:",
+          "source_chunk": "877",
+          "record_id": "M09-0010",
+          "report_no": 1,
+          "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "11,5 tỷ Thông tin thị trường:",
+          "source_chunk": "877",
+          "record_id": "M09-0010",
+          "report_no": 1,
+          "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
+          "part": 9
         }
       ],
       "reports": [
@@ -18150,6 +20604,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dự án không đạt hiệu quả đầu tư với NPV = -312,8 tỷ đồng, lợi nhuận trước thuế/Tổng mức đầu tư: -25%",
+              "source_chunk": "877"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Triển khai dự án (Chi phí chuyển nhượng, GPMB, Pháp lý) + Năm 2025:",
+              "source_chunk": "877"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "10,5tr (chưa VAT), chuẩn B- + Chi phí chuyển nhượng:",
+              "source_chunk": "877"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "150 tỷ + Chi phí GPMB:",
+              "source_chunk": "877"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "11,5 tỷ Thông tin thị trường:",
               "source_chunk": "877"
             }
           ],
@@ -18225,6 +20699,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "Dự án hiện đang nằm trong HD Bank để gánh số nợ 1.500 tỷ đồng sau thương vụ phát hành 6 lô trái phiếu vào năm 2020.",
+          "source_chunk": "736",
+          "record_id": "M08-0004",
+          "report_no": 1,
+          "project_name": "Khu du lịch sinh thái biển cao cấp Lạc Việt",
+          "part": 8
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án hiện đang nằm trong HD Bank để gánh số nợ 1.500 tỷ đồng sau thương vụ phát hành 6 lô trái phiếu vào năm",
+          "source_chunk": "736",
+          "record_id": "M08-0004",
+          "report_no": 1,
+          "project_name": "Khu du lịch sinh thái biển cao cấp Lạc Việt",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Nguồn gốc đất, Quyết định giao đất, GCNQSDĐ, các văn bản liên quan về nghĩa vụ tài chính như đóng tiền sử dụng đất, tiền thuê đất và hiện trạng BPGPMB (phần nào chưa di dời, vì sao, hướng giải quyết?) - Hiện trạng pháp lý đất đã thực hiện để chuyển một phần sang đất ở theo QĐ điều chỉnh QH 1/500 số 130/QĐ-UNBD ngày 18/01/2021?",
+          "source_chunk": "736",
+          "record_id": "M08-0004",
+          "report_no": 1,
+          "project_name": "Khu du lịch sinh thái biển cao cấp Lạc Việt",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Cung cấp hiện trạng việc chuyển nhượng dự án, thông kê chi tiết các phần đã nhận của khách hàng, hợp đồng,… - Đối tác đang muốn chào chuyển nhượng toàn bộ dự án hay một phần dự án? Và giá chào chuyển nhượng tương ứng là bao nhiêu? 2023.09.06 - BC PL Lạc Việt.pdf --- chunk --- Huy M - IM 9/7/2023 5:14 PM Dự án này hồi xưa mình có thông tin nhưng sau đó đề…",
           "source_chunk": "736",
           "record_id": "M08-0004",
           "report_no": 1,
@@ -18336,6 +20837,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Dự án hiện đang nằm trong HD Bank để gánh số nợ 1.500 tỷ đồng sau thương vụ phát hành 6 lô trái phiếu vào năm 2020.",
+              "source_chunk": "736"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án hiện đang nằm trong HD Bank để gánh số nợ 1.500 tỷ đồng sau thương vụ phát hành 6 lô trái phiếu vào năm",
+              "source_chunk": "736"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Nguồn gốc đất, Quyết định giao đất, GCNQSDĐ, các văn bản liên quan về nghĩa vụ tài chính như đóng tiền sử dụng đất, tiền thuê đất và hiện trạng BPGPMB (phần nào chưa di dời, vì sao, hướng giải quyết?) - Hiện trạng pháp lý đất đã thực hiện để chuyển một phần sang đất ở theo QĐ điều chỉnh QH 1/500 số 130/QĐ-UNBD ngày 18/01/2021?",
+              "source_chunk": "736"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Cung cấp hiện trạng việc chuyển nhượng dự án, thông kê chi tiết các phần đã nhận của khách hàng, hợp đồng,… - Đối tác đang muốn chào chuyển nhượng toàn bộ dự án hay một phần dự án? Và giá chào chuyển nhượng tương ứng là bao nhiêu? 2023.09.06 - BC PL Lạc Việt.pdf --- chunk --- Huy M - IM 9/7/2023 5:14 PM Dự án này hồi xưa mình có thông tin nhưng sau đó đề…",
               "source_chunk": "736"
             },
             {
@@ -18625,6 +21141,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Độ nhạy dự án theo Giá trị chuyển nhượng và Giá bán phòng (2026)",
+          "source_chunk": "527",
+          "record_id": "M06-0004",
+          "report_no": 2,
+          "project_name": "Felicia Đà Nẵng - tổ hợp khách sạn và condotel",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thị trường Condotel Đà Nẵng sau sự cố Cocobay gặp khó khăn do (1) Các cam kết lợi nhuận bị phá vỡ, (2) Khung pháp lý chưa rõ ràng, (3) Nguồn cung quá lớn, đến thời điểm hiện tại vẫn chưa có dấu hiệu phục hồi rõ nét và ổn định. Giá bán Condotel giảm mạnh và giữ xu hướng đi ngang từ năm 2023, đòi hỏi các dự án Condotel phải đưa ra chiến lược giá, chính sách…",
+          "source_chunk": "527",
+          "record_id": "M06-0004",
+          "report_no": 2,
+          "project_name": "Felicia Đà Nẵng - tổ hợp khách sạn và condotel",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Dự án Condotel thành công nhất là Melia Vinpearl Riverfront Danang, giữ nguyên cam kết lợi nhuận 10%/năm trong vòng 5 năm, chi trả đều đặn mỗi 6 tháng, và chia sẻ lợi nhuận 85% cho khách hàng từ năm thứ 6, do đó khách hàng có khả năng thu hồi vốn sau 9-10 năm cam kết.",
           "source_chunk": "527",
           "record_id": "M06-0004",
           "report_no": 2,
@@ -18945,6 +21479,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 4,
           "project_name": "Khách sạn Felicia",
           "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "1,000 Tỷ VNĐ % Chi phí HĐKD: năm đầu 52%, ổn định 46% Dựa theo các dự án của đang triển khai, P.",
+          "source_chunk": "20",
+          "record_id": "M01-0011",
+          "report_no": 4,
+          "project_name": "Khách sạn Felicia",
+          "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "3% Doanh thu (Chi phí dự trù cho việc sửa chữa cải tạo dự án) Phí Quản lý:",
+          "source_chunk": "20",
+          "record_id": "M01-0011",
+          "report_no": 4,
+          "project_name": "Khách sạn Felicia",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "4% Doanh thu Phí Bảo hiểm:",
+          "source_chunk": "20",
+          "record_id": "M01-0011",
+          "report_no": 4,
+          "project_name": "Khách sạn Felicia",
+          "part": 1
         }
       ],
       "reports": [
@@ -19101,6 +21662,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Độ nhạy dự án theo Giá trị chuyển nhượng và Giá bán phòng (2026)",
+              "source_chunk": "527"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thị trường Condotel Đà Nẵng sau sự cố Cocobay gặp khó khăn do (1) Các cam kết lợi nhuận bị phá vỡ, (2) Khung pháp lý chưa rõ ràng, (3) Nguồn cung quá lớn, đến thời điểm hiện tại vẫn chưa có dấu hiệu phục hồi rõ nét và ổn định. Giá bán Condotel giảm mạnh và giữ xu hướng đi ngang từ năm 2023, đòi hỏi các dự án Condotel phải đưa ra chiến lược giá, chính sách…",
+              "source_chunk": "527"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Dự án Condotel thành công nhất là Melia Vinpearl Riverfront Danang, giữ nguyên cam kết lợi nhuận 10%/năm trong vòng 5 năm, chi trả đều đặn mỗi 6 tháng, và chia sẻ lợi nhuận 85% cho khách hàng từ năm thứ 6, do đó khách hàng có khả năng thu hồi vốn sau 9-10 năm cam kết.",
               "source_chunk": "527"
             }
           ],
@@ -19330,6 +21901,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "3. Bảng so sánh sau khi thêm các chi phí của P Đầu Tư",
               "source_chunk": "20"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "1,000 Tỷ VNĐ % Chi phí HĐKD: năm đầu 52%, ổn định 46% Dựa theo các dự án của đang triển khai, P.",
+              "source_chunk": "20"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "3% Doanh thu (Chi phí dự trù cho việc sửa chữa cải tạo dự án) Phí Quản lý:",
+              "source_chunk": "20"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "4% Doanh thu Phí Bảo hiểm:",
+              "source_chunk": "20"
             }
           ],
           "excerpt": "dự án Felicia... ADR 2.55tr/phòng/đêm OCC năm đầu 75%, ổn định 88%... Chi phí đầu tư: 1,000 Tỷ VNĐ... FF&E 3% Doanh thu...",
@@ -19372,6 +21958,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Huy M - IM Anh gửi Huy xem qua b/c định giá của Fenica để rà soát điều chỉnh và b/c Sếp, nếu cần nhé. PP so sánh trực tiếp đề xuất giá bán trung bình là 38.4tr/m2.",
+          "source_chunk": "235",
+          "record_id": "M03-0015",
+          "report_no": 1,
+          "project_name": "Fenica - báo cáo định giá",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "PP so sánh trực tiếp đề xuất giá bán trung bình là 38.4tr/m2.",
           "source_chunk": "235",
           "record_id": "M03-0015",
           "report_no": 1,
@@ -19578,6 +22173,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Huy M - IM Anh gửi Huy xem qua b/c định giá của Fenica để rà soát điều chỉnh và b/c Sếp, nếu cần nhé. PP so sánh trực tiếp đề xuất giá bán trung bình là 38.4tr/m2.",
+              "source_chunk": "235"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "PP so sánh trực tiếp đề xuất giá bán trung bình là 38.4tr/m2.",
               "source_chunk": "235"
             }
           ],
@@ -19791,6 +22391,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Nhận định: Dự án có LNTT/TMĐT đạt 23% là tỷ suất sinh lợi cao hơn so với các dự án NOXH của Bộ Công An ở Quận 12, lý do là dự án đang đánh giá sử dụng quỹ đất 20% làm nhà nhà thấp tầng thay vì làm chung cư cao tầng và tiền sử dụng đất đóng cho phần đất NOTM này ở Đồng Nai thấp hơn khu vực Hồ Chí Minh.",
+          "source_chunk": "412",
+          "record_id": "M05-0005",
+          "report_no": 1,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 5
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Suất vốn đầu tư xây dựng đang lấy theo số liệu do BXD công bố và áp dung chung cho cả 2 sản phẩm NOXH. Nếu công ty triển khai thực tế có thể điều chỉnh theo hướng giảm xuống cho NOXH để đảm bảo phù hợp và tối ưu dự án.",
           "source_chunk": "412",
@@ -19818,8 +22427,53 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "1.737 căn hộ ở - Tổng mức đầu tư:",
+          "source_chunk": "412",
+          "record_id": "M05-0005",
+          "report_no": 1,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "2.441 tỷ (suất đầu tư xây dựng công trình :",
+          "source_chunk": "412",
+          "record_id": "M05-0005",
+          "report_no": 1,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "13,6 tr/m2) - Tổng doanh thu:",
+          "source_chunk": "412",
+          "record_id": "M05-0005",
+          "report_no": 1,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "3.209 tỷ (giá đất nhà liên kế -NOTM:",
+          "source_chunk": "412",
+          "record_id": "M05-0005",
+          "report_no": 1,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 5
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án Khu gia đình quân nhân quân chủng PK-KQ (8,46Ha) – Biên Hòa – Bộ Quốc Phòng. P.ĐT có tính thêm phương án theo phía đối tác cung cấp thông tin dự án có thể xây dựng được 15 tầng & độ cao tĩnh 55m.",
+          "source_chunk": "398",
+          "record_id": "M04-0026",
+          "report_no": 2,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Dự án gồm 2 Khu 5,52ha và 2,94ha, PA quy hoạch phải đảm bảo dân số dưới 4000 dân cho mỗi khu để không hình thành đơn vị ở (trường hợp dân số vượt 4000 dân sẽ hình thành đơn vị ở, khi đó dự án phải bố trí cây xanh, các công trình công cộng….). Để tránh mất diện tích thương phẩm, có thể tăng thêm cao tầng và tiết kiệm chi phí phương án quy hoạch thiết kế kh…",
           "source_chunk": "398",
           "record_id": "M04-0026",
           "report_no": 2,
@@ -19838,6 +22492,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Nhận định: LNTT/TMĐT của 2 phương án là như nhau, tuy nhiên do phương án tăng thêm tầng và diện tích thương phẩm tăng thêm nên lợi nhuận sau thuế tăng từ 487 tỷ lên 682 tỷ.",
+          "source_chunk": "398",
+          "record_id": "M04-0026",
+          "report_no": 2,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án Khu gia đình quân nhân quân chủng PK-KQ (8,46Ha) – Biên Hòa – Bộ Quốc Phòng.",
+          "source_chunk": "398",
+          "record_id": "M04-0026",
+          "report_no": 2,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Để tránh mất diện tích thương phẩm, có thể tăng thêm cao tầng và tiết kiệm chi phí phương án quy hoạch thiết kế không xây dựng hầm, gồm 2 tầng khối đế và 13 tầng tháp.",
+          "source_chunk": "398",
+          "record_id": "M04-0026",
+          "report_no": 2,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Dưới đây là bảng so sánh và tổng hợp hiệu quả tài chính của 2 Phương án quy hoạch Nhận định:",
+          "source_chunk": "398",
+          "record_id": "M04-0026",
+          "report_no": 2,
+          "project_name": "Khu gia đình quân nhân Quân chủng PK-KQ 8,46ha, Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "LNTT/TMĐT của 2 phương án là như nhau, tuy nhiên do phương án tăng thêm tầng và diện tích thương phẩm tăng thêm nên lợi nhuận sau thuế tăng từ 487 tỷ lên 682 tỷ.",
           "source_chunk": "398",
           "record_id": "M04-0026",
           "report_no": 2,
@@ -19902,6 +22592,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "412"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Nhận định: Dự án có LNTT/TMĐT đạt 23% là tỷ suất sinh lợi cao hơn so với các dự án NOXH của Bộ Công An ở Quận 12, lý do là dự án đang đánh giá sử dụng quỹ đất 20% làm nhà nhà thấp tầng thay vì làm chung cư cao tầng và tiền sử dụng đất đóng cho phần đất NOTM này ở Đồng Nai thấp hơn khu vực Hồ Chí Minh.",
+              "source_chunk": "412"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Suất vốn đầu tư xây dựng đang lấy theo số liệu do BXD công bố và áp dung chung cho cả 2 sản phẩm NOXH. Nếu công ty triển khai thực tế có thể điều chỉnh theo hướng giảm xuống cho NOXH để đảm bảo phù hợp và tối ưu dự án.",
               "source_chunk": "412"
@@ -19914,6 +22609,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án Khu gia đình quân nhân quân chủng PK-KQ (8,46Ha) – Biên Hòa – Bộ Quốc Phòng. P.ĐT có tính thêm phương án theo phía",
+              "source_chunk": "412"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "1.737 căn hộ ở - Tổng mức đầu tư:",
+              "source_chunk": "412"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "2.441 tỷ (suất đầu tư xây dựng công trình :",
+              "source_chunk": "412"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "13,6 tr/m2) - Tổng doanh thu:",
+              "source_chunk": "412"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "3.209 tỷ (giá đất nhà liên kế -NOTM:",
               "source_chunk": "412"
             }
           ],
@@ -19944,6 +22659,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "398"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Dự án gồm 2 Khu 5,52ha và 2,94ha, PA quy hoạch phải đảm bảo dân số dưới 4000 dân cho mỗi khu để không hình thành đơn vị ở (trường hợp dân số vượt 4000 dân sẽ hình thành đơn vị ở, khi đó dự án phải bố trí cây xanh, các công trình công cộng….). Để tránh mất diện tích thương phẩm, có thể tăng thêm cao tầng và tiết kiệm chi phí phương án quy hoạch thiết kế kh…",
+              "source_chunk": "398"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dưới đây là bảng so sánh và tổng hợp hiệu quả tài chính của 2 Phương án quy hoạch",
               "source_chunk": "398"
@@ -19951,6 +22671,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Nhận định: LNTT/TMĐT của 2 phương án là như nhau, tuy nhiên do phương án tăng thêm tầng và diện tích thương phẩm tăng thêm nên lợi nhuận sau thuế tăng từ 487 tỷ lên 682 tỷ.",
+              "source_chunk": "398"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "P.ĐT báo cáo anh Mr Mike1 -CEO về hiệu quả sơ bộ cho dự án Khu gia đình quân nhân quân chủng PK-KQ (8,46Ha) – Biên Hòa – Bộ Quốc Phòng.",
+              "source_chunk": "398"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Để tránh mất diện tích thương phẩm, có thể tăng thêm cao tầng và tiết kiệm chi phí phương án quy hoạch thiết kế không xây dựng hầm, gồm 2 tầng khối đế và 13 tầng tháp.",
+              "source_chunk": "398"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Dưới đây là bảng so sánh và tổng hợp hiệu quả tài chính của 2 Phương án quy hoạch Nhận định:",
+              "source_chunk": "398"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "LNTT/TMĐT của 2 phương án là như nhau, tuy nhiên do phương án tăng thêm tầng và diện tích thương phẩm tăng thêm nên lợi nhuận sau thuế tăng từ 487 tỷ lên 682 tỷ.",
               "source_chunk": "398"
             }
           ],
@@ -19994,6 +22734,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Chi phí / vốn từ nguồn",
+          "value": "Hạ tầng trương lai: Giáp với Đường bộ Ven biển, sẽ kết nối thẳng với QL37B (hiện hữu) và kết nối thẳng Đường Nam Định - Lạc Quần đang triển khai xây dựng và dự kiến hoàn thành năm 2027 với tổng chiều dài 24,7km, TMĐT: 6000 tỷ và mặt cắt tại đoạn lớn nhất 100m. Đường Nam Định - Lạc Quần sẽ trực tiếp kết nối Cao Tốc Ninh Bình – Hải Phòng – Quảng Ninh. => Tạ…",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
           "value": "+ Từ 2022-2023: Triển khai dự án (Chi phí đất, Pháp lý)",
           "source_chunk": "947",
           "record_id": "M10-0017",
@@ -20029,8 +22778,80 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Giáp với Đường bộ Ven biển, sẽ kết nối thẳng với QL37B (hiện hữu) và kết nối thẳng Đường Nam Định - Lạc Quần đang triển khai xây dựng và dự kiến hoàn thành năm 2027 với tổng chiều dài 24,7km, TMĐT:",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "6000 tỷ và mặt cắt tại đoạn lớn nhất 100m.",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Triển khai dự án (Chi phí đất, Pháp lý) + Từ 2023-2024:",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "+ Chi phí tư vấn, QLDA, dự phòng phần chi phí HTKT, cây xanh cảnh quan và phần công cộng 17% (có VAT):",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "127,2 tỷ - Đơn giá thuê đất, hạ tầng CCN trung bình 2024-2026 (có VAT):",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Để tự án đạt hiệu quả tài chính, giá trị đấu giá đất (phươnng án tạm tính đóng tiền thuê đất phải trả cho Nhà nước 1 lần) từ 180 tỷ (~240.000VNĐ/m2;",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR:20%) đến 247 tỷ (~ 330.000VNĐ/m2;",
+          "source_chunk": "947",
+          "record_id": "M10-0017",
+          "report_no": 1,
+          "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Anh có đề xuất nếu được mình xin thêm 75ha bên cạnh để scale dự án mình lên gia tăng hiệu quả đầu tư vì không tốn thêm bộ máy vận hành. Và sẽ ăn theo được khu Vsip khi họ phát triển",
+          "source_chunk": "856",
+          "record_id": "M09-0009",
+          "report_no": 2,
+          "project_name": "Cụm công nghiệp Giao Yến, Giao Thủy, Nam Định",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Tiến độ sẽ thực hiện đồng bộ để đón điểm rơi theo việc hoàn thành các hạ tầng trọng yếu (đường ven biến, đường Nam Định Lạc Quần, đường Cao tốc) và khu Công nghiệp VSIP. image by Huy M - IM --- chunk --- Huy M - IM 4/26/2023 10:10 AM Anh có đề xuất nếu được mình xin thêm 75ha bên cạnh để scale dự án mình lên gia tăng hiệu quả đầu tư vì không tốn thêm bộ m…",
           "source_chunk": "856",
           "record_id": "M09-0009",
           "report_no": 2,
@@ -20064,6 +22885,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Chi phí / vốn từ nguồn",
+              "value": "Hạ tầng trương lai: Giáp với Đường bộ Ven biển, sẽ kết nối thẳng với QL37B (hiện hữu) và kết nối thẳng Đường Nam Định - Lạc Quần đang triển khai xây dựng và dự kiến hoàn thành năm 2027 với tổng chiều dài 24,7km, TMĐT: 6000 tỷ và mặt cắt tại đoạn lớn nhất 100m. Đường Nam Định - Lạc Quần sẽ trực tiếp kết nối Cao Tốc Ninh Bình – Hải Phòng – Quảng Ninh. => Tạ…",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
               "value": "+ Từ 2022-2023: Triển khai dự án (Chi phí đất, Pháp lý)",
               "source_chunk": "947"
             },
@@ -20080,6 +22906,41 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "3. Hiệu quả: Để tự án đạt hiệu quả tài chính, giá trị đấu giá đất (phươnng án tạm tính đóng tiền thuê đất phải trả cho Nhà nước 1 lần) từ 180 tỷ (~240.000VNĐ/m2; IRR:20%) đến 247 tỷ (~ 330.000VNĐ/m2; IRR: 15%).",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Giáp với Đường bộ Ven biển, sẽ kết nối thẳng với QL37B (hiện hữu) và kết nối thẳng Đường Nam Định - Lạc Quần đang triển khai xây dựng và dự kiến hoàn thành năm 2027 với tổng chiều dài 24,7km, TMĐT:",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "6000 tỷ và mặt cắt tại đoạn lớn nhất 100m.",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Triển khai dự án (Chi phí đất, Pháp lý) + Từ 2023-2024:",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "+ Chi phí tư vấn, QLDA, dự phòng phần chi phí HTKT, cây xanh cảnh quan và phần công cộng 17% (có VAT):",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "127,2 tỷ - Đơn giá thuê đất, hạ tầng CCN trung bình 2024-2026 (có VAT):",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Để tự án đạt hiệu quả tài chính, giá trị đấu giá đất (phươnng án tạm tính đóng tiền thuê đất phải trả cho Nhà nước 1 lần) từ 180 tỷ (~240.000VNĐ/m2;",
+              "source_chunk": "947"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR:20%) đến 247 tỷ (~ 330.000VNĐ/m2;",
               "source_chunk": "947"
             }
           ],
@@ -20110,6 +22971,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Anh có đề xuất nếu được mình xin thêm 75ha bên cạnh để scale dự án mình lên gia tăng hiệu quả đầu tư vì không tốn thêm bộ máy vận hành. Và sẽ ăn theo được khu Vsip khi họ phát triển",
+              "source_chunk": "856"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Tiến độ sẽ thực hiện đồng bộ để đón điểm rơi theo việc hoàn thành các hạ tầng trọng yếu (đường ven biến, đường Nam Định Lạc Quần, đường Cao tốc) và khu Công nghiệp VSIP. image by Huy M - IM --- chunk --- Huy M - IM 4/26/2023 10:10 AM Anh có đề xuất nếu được mình xin thêm 75ha bên cạnh để scale dự án mình lên gia tăng hiệu quả đầu tư vì không tốn thêm bộ m…",
               "source_chunk": "856"
             }
           ],
@@ -20153,6 +23019,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Gladia Heights - thông tin thị trường tham chiếu",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ image Dạ đây là bản đồ các dự án cao tầng g... by Khoa L - INVT",
+          "source_chunk": "86",
+          "record_id": "M01-0025",
+          "report_no": 1,
+          "project_name": "Gladia Heights - thông tin thị trường tham chiếu",
+          "part": 1
         }
       ],
       "reports": [
@@ -20182,6 +23057,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ",
+              "source_chunk": "86"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ image Dạ đây là bản đồ các dự án cao tầng g... by Khoa L - INVT",
               "source_chunk": "86"
             }
           ],
@@ -20292,6 +23172,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "** Cơ sơ đề xuất giá bán biệt thự đồi được tham khảo từ 1) Dự án Merry Land cách trung tâm TP khoảng 18km: phân khu nhà phố có giá bán từ 81-90-98-240-310tr/m2 đất và phân khu biệt thự đồi sắp mở booking 12/8/2022 có giá dự kiến từ 100-135tr/m2 đất, 2) Dự án Gran Melia tại Nha Trang cách trung tâm TP khoảng 10km: có giá bán đất biệt thự đồi từ 100-120tr/m…",
+          "source_chunk": "955",
+          "record_id": "M10-0020",
+          "report_no": 1,
+          "project_name": "Green Hill, Quy Nhơn",
+          "part": 10
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Tổng mức đầu tư là 4,694 tỷ đồng, tổng doanh thu bán hàng và cho thuê là 184,278 tỷ đồng => Lợi nhuận trước thuế là 29,703 tỷ đồng",
           "source_chunk": "955",
@@ -20321,6 +23210,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Loại hình dự án biệt thự đồi ven biển là rất hiếm tại Quy Nhơn, hiện tại chỉ Merry Land là có lịch booking ngày 12/8/2022 bán phân khu biệt thự đồi giá từ 100 - 135tr/m2 (tối thiểu 50 tỷ/căn)",
+          "source_chunk": "955",
+          "record_id": "M10-0020",
+          "report_no": 1,
+          "project_name": "Green Hill, Quy Nhơn",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Green Hill tại Quy Nhơn, có quy mô 16.62ha, giá chào 1300 tỷ đồng (7.8tr/m2 đất), cụ thể: Vị trí và hiện trạng: - Dự án nằm mặt tiền đường D1, cách trung tâm TP Quy Nhơn khoảng 8.4km, cách dự án Trung tâm nghiên cứu Công Nghệ của FPT có quy mô 15ha khoản…",
           "source_chunk": "955",
           "record_id": "M10-0020",
           "report_no": 1,
@@ -20393,6 +23291,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "955"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "** Cơ sơ đề xuất giá bán biệt thự đồi được tham khảo từ 1) Dự án Merry Land cách trung tâm TP khoảng 18km: phân khu nhà phố có giá bán từ 81-90-98-240-310tr/m2 đất và phân khu biệt thự đồi sắp mở booking 12/8/2022 có giá dự kiến từ 100-135tr/m2 đất, 2) Dự án Gran Melia tại Nha Trang cách trung tâm TP khoảng 10km: có giá bán đất biệt thự đồi từ 100-120tr/m…",
+              "source_chunk": "955"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tổng mức đầu tư là 4,694 tỷ đồng, tổng doanh thu bán hàng và cho thuê là 184,278 tỷ đồng => Lợi nhuận trước thuế là 29,703 tỷ đồng",
               "source_chunk": "955"
@@ -20410,6 +23313,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Loại hình dự án biệt thự đồi ven biển là rất hiếm tại Quy Nhơn, hiện tại chỉ Merry Land là có lịch booking ngày 12/8/2022 bán phân khu biệt thự đồi giá từ 100 - 135tr/m2 (tối thiểu 50 tỷ/căn)",
+              "source_chunk": "955"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Green Hill tại Quy Nhơn, có quy mô 16.62ha, giá chào 1300 tỷ đồng (7.8tr/m2 đất), cụ thể: Vị trí và hiện trạng: - Dự án nằm mặt tiền đường D1, cách trung tâm TP Quy Nhơn khoảng 8.4km, cách dự án Trung tâm nghiên cứu Công Nghệ của FPT có quy mô 15ha khoản…",
               "source_chunk": "955"
             }
           ],
@@ -20550,6 +23458,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
           "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Nhược điểm của dự án: Đóng thêm tiền thuê đất; tỷ trọng cơ cấu Condotel và khách sạn cao (370 phòng khách sạn và 203 căn Condotel) và số lượng căn biệt thự thấp (87 căn). Đồng thời, tại thị trường Phú Quốc, loại hình Condotel hiện trong giai đoạn đang gặp nhiều vướng mắc, khó khăn và chậm phát triển.",
+          "source_chunk": "931",
+          "record_id": "M10-0011",
+          "report_no": 1,
+          "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Dự án có quy mô 11.2ha với giá chào chuyển nhượng là 1.100 tỷ tương ứng 9,7tr.đ/m2 (bao hồm hiện trạng có các công trình trên đất).",
+          "source_chunk": "931",
+          "record_id": "M10-0011",
+          "report_no": 1,
+          "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Được giảm 50% tiền sử dụng đất theo quy định số 695/QĐ-CT ngày 11/06/2018 với diện tích 6.95ha.) Thời hạn còn lại:",
+          "source_chunk": "931",
+          "record_id": "M10-0011",
+          "report_no": 1,
+          "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "K.ĐT đang tính toán phương án đóng thêm phần trả tiền thuê đất một lần đã được giảm 50% theo quyết định số 695/QĐ-CT ngày 11/06/2018 cho 6.95ha tương đương 100tỷ ~1.4tr/m2 (theo đơn giá đất năm 2018 và tính thêm 50%) Và phần diện tích giao thông nội bộ, cây xanh cảnh quan nội khu còn lại là 1.4ha sẽ đóng tiền thuê đất hằng năm, tổng 408tỷ (đến 2082, chia…",
+          "source_chunk": "931",
+          "record_id": "M10-0011",
+          "report_no": 1,
+          "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Để dự án đạt IRR=15% khi nhận chuyển nhượng với giá 764 tỷ.",
+          "source_chunk": "931",
+          "record_id": "M10-0011",
+          "report_no": 1,
+          "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
+          "part": 10
         }
       ],
       "reports": [
@@ -20621,6 +23574,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dự án không đạt hiệu quả tài chính. Để dự án đạt IRR=15% khi nhận chuyển nhượng với giá 764 tỷ.",
               "source_chunk": "931"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Nhược điểm của dự án: Đóng thêm tiền thuê đất; tỷ trọng cơ cấu Condotel và khách sạn cao (370 phòng khách sạn và 203 căn Condotel) và số lượng căn biệt thự thấp (87 căn). Đồng thời, tại thị trường Phú Quốc, loại hình Condotel hiện trong giai đoạn đang gặp nhiều vướng mắc, khó khăn và chậm phát triển.",
+              "source_chunk": "931"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Dự án có quy mô 11.2ha với giá chào chuyển nhượng là 1.100 tỷ tương ứng 9,7tr.đ/m2 (bao hồm hiện trạng có các công trình trên đất).",
+              "source_chunk": "931"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Được giảm 50% tiền sử dụng đất theo quy định số 695/QĐ-CT ngày 11/06/2018 với diện tích 6.95ha.) Thời hạn còn lại:",
+              "source_chunk": "931"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "K.ĐT đang tính toán phương án đóng thêm phần trả tiền thuê đất một lần đã được giảm 50% theo quyết định số 695/QĐ-CT ngày 11/06/2018 cho 6.95ha tương đương 100tỷ ~1.4tr/m2 (theo đơn giá đất năm 2018 và tính thêm 50%) Và phần diện tích giao thông nội bộ, cây xanh cảnh quan nội khu còn lại là 1.4ha sẽ đóng tiền thuê đất hằng năm, tổng 408tỷ (đến 2082, chia…",
+              "source_chunk": "931"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Để dự án đạt IRR=15% khi nhận chuyển nhượng với giá 764 tỷ.",
+              "source_chunk": "931"
             }
           ],
           "excerpt": "Hải Âu Bãi Trường 11,2ha giá 1.100 tỷ, biển 250m, không đạt hiệu quả tài chính, nghĩa vụ thuê đất lớn.",
@@ -20677,6 +23655,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "Do hồ sơ đất chưa được cung cấp chi tiết, nên phòng đang tạm tính tiền đất được khấu trừ theo 100% là đất nông nghiệp với đơn giá bằng 15% dơn giá đất ở vị trí 2 (44 tr/m2) ~ 9 tr/m2 và tiền đất được khấu trừ khoảng 395 tỷ đồng, chiếm 15% tiền sử dụng đất dự án.",
+          "source_chunk": "13",
+          "record_id": "M01-0007",
+          "report_no": 1,
+          "project_name": "Dự án Hải Nhân 4.5ha",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "Theo đó, tiền sử dụng đất sau khi khấu trừ đất nông nghiệp là 2.200 tỷ đồng ~ 49 tr/m2.",
           "source_chunk": "13",
           "record_id": "M01-0007",
@@ -20687,6 +23674,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Tiền đất (gồm CP mua đất + tiền sử dụng đất) khoảng 4.200 tỷ đồng ~ đơn giá 92 tr/m2.",
+          "source_chunk": "13",
+          "record_id": "M01-0007",
+          "report_no": 1,
+          "project_name": "Dự án Hải Nhân 4.5ha",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Qua khảo sát thực tế, phòng nhận thấy khu đất dự án có cao độ nền thấp và địa chất khu vực là đất yếu nên tính đơn giá xây dựng cho hạ tầng san nền đang để cao hơn mức bình thường ~ 2,8 tr/m2 (chưa VAT) và đơn giá xây dựng cao tầng ALL -in 23,3 tr/m2 chưa VAT cho công trình 50 tầng, 2 hầm. Đây là đơn giá tính khá thận trọng, phù hợp với tính chất pháp lý…",
           "source_chunk": "13",
           "record_id": "M01-0007",
           "report_no": 1,
@@ -20748,17 +23744,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Dựa vào hiện trạng pháp lý của dự án Hải Nhân, phòng đề xuất điều kiện tiên quyết để có thể tham gia hợp tác là giá chào dự án bao Chủ trương đầu tư (chứ không chỉ bao chỉ tiêu 1/500 như lời chào của đối tác).",
-          "source_chunk": "13",
-          "record_id": "M01-0007",
-          "report_no": 1,
-          "project_name": "Dự án Hải Nhân 4.5ha",
-          "part": 1
-        },
-        {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "Về hiệu quả tài chính: Dự án đạt hiệu quả tài chính khi giá mua ở mức 1.400 đến 1.500 tỷ đồng ~ đơn giá mua từ 30 - 33 tr/m2 hiện trạng kèm điều kiện tiên quyết bao chủ trương đầu tư.",
+          "value": "Theo kết quả phân tích độ nhạy thì dự án đạt hiệu quả ~ IRR từ 15% và LNTT/TMĐT từ 20% ở khung giá mua đất từ 1.400 - 1.500 tỷ ~ đơn giá mua từ 30 -33 tr/m2 bao gồm điều kiện bao chủ trương đầu tư + giá vốn đưa vào dự án bằng giá nhận chuyển nhượng (Để tránh rủi ro phát sinh thuế TNDN sau này).",
           "source_chunk": "13",
           "record_id": "M01-0007",
           "report_no": 1,
@@ -20767,16 +23754,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
-          "value": "Phòng có so sánh về giá chào bán của 03 dự án Hải Nhân, Richland, Parklane như bảng bên dưới:",
-          "source_chunk": "13",
-          "record_id": "M01-0007",
-          "report_no": 1,
-          "project_name": "Dự án Hải Nhân 4.5ha",
-          "part": 1
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Nếu so đơn giá đất (giá bán dự án gồm tiền sử dụng đất) trên diện tích thương phẩm thì Hải Nhân (29 tr/m2) và Richland (28,9 tr/m2) đang tốt hơn Parklane (43 tr/m2).",
+          "value": "Dự án chào về với giá 1.700 tỷ đồng ~ 37tr/m2 (hết 99% là đất nông nghiệp) bao ra chỉ tiêu 1/500, có lịch sử nhiều lần điều chỉnh chỉ tiêu từ thấp tầng lên 1 phần thấp tầng, 1 phần cao tầng và từng mở bán nền từ năm 2008, đến 2015 và 2017 được chấp thuận đầu tư.",
           "source_chunk": "13",
           "record_id": "M01-0007",
           "report_no": 1,
@@ -20822,12 +23800,22 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "Do hồ sơ đất chưa được cung cấp chi tiết, nên phòng đang tạm tính tiền đất được khấu trừ theo 100% là đất nông nghiệp với đơn giá bằng 15% dơn giá đất ở vị trí 2 (44 tr/m2) ~ 9 tr/m2 và tiền đất được khấu trừ khoảng 395 tỷ đồng, chiếm 15% tiền sử dụng đất dự án.",
+              "source_chunk": "13"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "Theo đó, tiền sử dụng đất sau khi khấu trừ đất nông nghiệp là 2.200 tỷ đồng ~ 49 tr/m2.",
               "source_chunk": "13"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Tiền đất (gồm CP mua đất + tiền sử dụng đất) khoảng 4.200 tỷ đồng ~ đơn giá 92 tr/m2.",
+              "source_chunk": "13"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Qua khảo sát thực tế, phòng nhận thấy khu đất dự án có cao độ nền thấp và địa chất khu vực là đất yếu nên tính đơn giá xây dựng cho hạ tầng san nền đang để cao hơn mức bình thường ~ 2,8 tr/m2 (chưa VAT) và đơn giá xây dựng cao tầng ALL -in 23,3 tr/m2 chưa VAT cho công trình 50 tầng, 2 hầm. Đây là đơn giá tính khá thận trọng, phù hợp với tính chất pháp lý…",
               "source_chunk": "13"
             },
             {
@@ -20861,23 +23849,13 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "13"
             },
             {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Dựa vào hiện trạng pháp lý của dự án Hải Nhân, phòng đề xuất điều kiện tiên quyết để có thể tham gia hợp tác là giá chào dự án bao Chủ trương đầu tư (chứ không chỉ bao chỉ tiêu 1/500 như lời chào của đối tác).",
-              "source_chunk": "13"
-            },
-            {
               "label": "Hiệu quả / FS từ nguồn",
-              "value": "Về hiệu quả tài chính: Dự án đạt hiệu quả tài chính khi giá mua ở mức 1.400 đến 1.500 tỷ đồng ~ đơn giá mua từ 30 - 33 tr/m2 hiện trạng kèm điều kiện tiên quyết bao chủ trương đầu tư.",
+              "value": "Theo kết quả phân tích độ nhạy thì dự án đạt hiệu quả ~ IRR từ 15% và LNTT/TMĐT từ 20% ở khung giá mua đất từ 1.400 - 1.500 tỷ ~ đơn giá mua từ 30 -33 tr/m2 bao gồm điều kiện bao chủ trương đầu tư + giá vốn đưa vào dự án bằng giá nhận chuyển nhượng (Để tránh rủi ro phát sinh thuế TNDN sau này).",
               "source_chunk": "13"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
-              "value": "Phòng có so sánh về giá chào bán của 03 dự án Hải Nhân, Richland, Parklane như bảng bên dưới:",
-              "source_chunk": "13"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Nếu so đơn giá đất (giá bán dự án gồm tiền sử dụng đất) trên diện tích thương phẩm thì Hải Nhân (29 tr/m2) và Richland (28,9 tr/m2) đang tốt hơn Parklane (43 tr/m2).",
+              "value": "Dự án chào về với giá 1.700 tỷ đồng ~ 37tr/m2 (hết 99% là đất nông nghiệp) bao ra chỉ tiêu 1/500, có lịch sử nhiều lần điều chỉnh chỉ tiêu từ thấp tầng lên 1 phần thấp tầng, 1 phần cao tầng và từng mở bán nền từ năm 2008, đến 2015 và 2017 được chấp thuận đầu tư.",
               "source_chunk": "13"
             }
           ],
@@ -21109,6 +24087,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "2020. * Huy động vốn trái quy định:",
+          "source_chunk": "77",
+          "record_id": "M01-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Hạnh Phúc",
+          "part": 1
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ DA Chung cư Hạnh Phúc (Nguồn Mr.Khôi), diện tích đất gần 7.000 m2, đường Trần Đại Nghĩa, H.Bình Chánh, TPHCM :",
           "source_chunk": "77",
@@ -21216,6 +24203,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "* Da Có giá chào cao ~ hơn 1.000 tỷ đồng /~ 7000 m2 (~ 143 tr/m2) cho 1 DA vướng quá nhiều pháp lý.",
+              "source_chunk": "77"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "2020. * Huy động vốn trái quy định:",
               "source_chunk": "77"
             },
             {
@@ -21370,6 +24362,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Hermes Power 1",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thời điểm bán hàng dự kiến 2029 (mất 2 năm xử lý pháp lý do hiện trạng pháp lý chưa có gì, khu đất chưa có đường, đường Lương Định Của đang triển khai thi công) + Giá bán:",
+          "source_chunk": "18",
+          "record_id": "M01-0009",
+          "report_no": 1,
+          "project_name": "Hermes Power 1",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "250 tr/m2 (chưa V, tim tường) + Giá bán căn shop:",
+          "source_chunk": "18",
+          "record_id": "M01-0009",
+          "report_no": 1,
+          "project_name": "Hermes Power 1",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "300 tr/m2 (chưa V tim tường) b) Giả định chi phí:",
+          "source_chunk": "18",
+          "record_id": "M01-0009",
+          "report_no": 1,
+          "project_name": "Hermes Power 1",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "3.380 tỷ (~ 130tr USD) Do hồ sơ đối tác gửi chưa có thông tin GCN, chưa xác định được mục đích sdđ hiện trạng.",
+          "source_chunk": "18",
+          "record_id": "M01-0009",
+          "report_no": 1,
+          "project_name": "Hermes Power 1",
+          "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "2.073 tỷ (tính theo PP Thặng dư, do đơn giá xây dựng 15 tầng theo suất vốn NN thấp, trong khi thị trường khu vực giao dịch mức giá rất cao dẫn đến tiền sử dụng đất lớn) + CP xây dựng:",
+          "source_chunk": "18",
+          "record_id": "M01-0009",
+          "report_no": 1,
+          "project_name": "Hermes Power 1",
+          "part": 1
         }
       ],
       "reports": [
@@ -21434,6 +24471,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để DA đạt mức IRR 15%, cân nhắc đàm phán giá mua xuống 2.660 tỷ, để IRR 20%, giá mua xuống 2.300 tỷ",
+              "source_chunk": "18"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thời điểm bán hàng dự kiến 2029 (mất 2 năm xử lý pháp lý do hiện trạng pháp lý chưa có gì, khu đất chưa có đường, đường Lương Định Của đang triển khai thi công) + Giá bán:",
+              "source_chunk": "18"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "250 tr/m2 (chưa V, tim tường) + Giá bán căn shop:",
+              "source_chunk": "18"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "300 tr/m2 (chưa V tim tường) b) Giả định chi phí:",
+              "source_chunk": "18"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "3.380 tỷ (~ 130tr USD) Do hồ sơ đối tác gửi chưa có thông tin GCN, chưa xác định được mục đích sdđ hiện trạng.",
+              "source_chunk": "18"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "2.073 tỷ (tính theo PP Thặng dư, do đơn giá xây dựng 15 tầng theo suất vốn NN thấp, trong khi thị trường khu vực giao dịch mức giá rất cao dẫn đến tiền sử dụng đất lớn) + CP xây dựng:",
               "source_chunk": "18"
             }
           ],
@@ -21695,7 +24757,43 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Dòng số liệu từ nguồn",
+          "value": "1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ * Phạm vi tính:",
+          "source_chunk": "211",
+          "record_id": "M03-0005",
+          "report_no": 2,
+          "project_name": "Hoa viên Vĩnh Thanh",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1.2tr/m2 cho tổng 57ha ~ 683 tỷ b.",
+          "source_chunk": "211",
+          "record_id": "M03-0005",
+          "report_no": 2,
+          "project_name": "Hoa viên Vĩnh Thanh",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Để dự án đạt IRR = 20%, NPV = 1,327 tỷ và LNTT = 10,362 tỷ (Tổng thời gian dự án 16 năm) khi:",
+          "source_chunk": "211",
+          "record_id": "M03-0005",
+          "report_no": 2,
+          "project_name": "Hoa viên Vĩnh Thanh",
+          "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
           "value": "b. SĐT All in gồm VAT: 1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ",
+          "source_chunk": "253",
+          "record_id": "M03-0023",
+          "report_no": 3,
+          "project_name": "Hoa viên Vĩnh Thanh",
+          "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ * Phạm vi tính:",
           "source_chunk": "253",
           "record_id": "M03-0023",
           "report_no": 3,
@@ -21880,6 +24978,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Giá / đơn giá từ nguồn",
               "value": "CHeck lại giá bán xem có tăng giá ko by Admin 01",
               "source_chunk": "211"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ * Phạm vi tính:",
+              "source_chunk": "211"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1.2tr/m2 cho tổng 57ha ~ 683 tỷ b.",
+              "source_chunk": "211"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Để dự án đạt IRR = 20%, NPV = 1,327 tỷ và LNTT = 10,362 tỷ (Tổng thời gian dự án 16 năm) khi:",
+              "source_chunk": "211"
             }
           ],
           "excerpt": "Hoa viên Vĩnh Thanh... diện tích thương phẩm 290.217m2 ~51%; SĐT all-in 1,898 tr.đ/m2 cho tổng 57ha ~1.081 tỷ.",
@@ -21907,6 +25020,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "b. SĐT All in gồm VAT: 1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ",
+              "source_chunk": "253"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "1.898 tr.đ/m2 cho tổng 57ha ~ 1,081 tỷ * Phạm vi tính:",
               "source_chunk": "253"
             },
             {
@@ -22095,6 +25213,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "=> Tựu lại Mua đất làm cao tầng hiện giá chỉ 45 tr/m2 còn thấp hơn đất ở của dân đang bán tại Khu đô thị Hòa Xuân từ 60 tr- 80 tr/m2, chồng lên 15, 18 tầng bán, không phải đóng thêm tiền sử dung đất gì nữa chỉ cần dân gian => Như vậy thì chỉ có siêu lợi nhuận thôi Sếp.",
+          "source_chunk": "155",
+          "record_id": "M02-0023",
+          "report_no": 4,
+          "project_name": "Chung cư Hòa Xuân A2-3 & A2-4",
+          "part": 2
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "P.ĐT báo cáo sếp hiệu quả dự án chung cư Hòa Xuân (A2-3 & A2-4)",
           "source_chunk": "155",
@@ -22142,15 +25269,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "+ Chi phí pháp lý: 36 tỷ (dành cho gđ xin GPXD, nghiệm thu, ra sổ)",
-          "source_chunk": "155",
-          "record_id": "M02-0023",
-          "report_no": 4,
-          "project_name": "Chung cư Hòa Xuân A2-3 & A2-4",
-          "part": 2
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Dạ giá mua 2 lô là 300 tỷ. Họ bán hiện trạng đúng theo QH1/500 do đó mình ko nộp tiền sử dụng đất thêm.",
           "source_chunk": "155",
           "record_id": "M02-0023",
           "report_no": 4,
@@ -22324,6 +25442,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "155"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "=> Tựu lại Mua đất làm cao tầng hiện giá chỉ 45 tr/m2 còn thấp hơn đất ở của dân đang bán tại Khu đô thị Hòa Xuân từ 60 tr- 80 tr/m2, chồng lên 15, 18 tầng bán, không phải đóng thêm tiền sử dung đất gì nữa chỉ cần dân gian => Như vậy thì chỉ có siêu lợi nhuận thôi Sếp.",
+              "source_chunk": "155"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "P.ĐT báo cáo sếp hiệu quả dự án chung cư Hòa Xuân (A2-3 & A2-4)",
               "source_chunk": "155"
@@ -22351,11 +25474,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "+ Chi phí pháp lý: 36 tỷ (dành cho gđ xin GPXD, nghiệm thu, ra sổ)",
-              "source_chunk": "155"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Dạ giá mua 2 lô là 300 tỷ. Họ bán hiện trạng đúng theo QH1/500 do đó mình ko nộp tiền sử dụng đất thêm.",
               "source_chunk": "155"
             }
           ],
@@ -22458,6 +25576,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Theo thiết kế, diện tích phòng khách sạn (50m²) lớn so với những dự án lân cận như dự án Hội An Aurora Riverside (38m²), trong khi giá thuê ngang nhau → Điều chỉnh lại diện tích phòng khách sạn nhỏ hơn để tăng số phòng khách sạn → Tăng hiệu quả dự án.",
+          "source_chunk": "660",
+          "record_id": "M07-0012",
+          "report_no": 1,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Vận hành khai thác 4.3/ Tổng mức đầu tư dự án:",
+          "source_chunk": "660",
+          "record_id": "M07-0012",
+          "report_no": 1,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Chi phí xây dựng All in năm 2025:",
+          "source_chunk": "660",
+          "record_id": "M07-0012",
+          "report_no": 1,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "24trđ/m² (chuẩn khách sạn resort 5 sao nhưng suất xây dựng 4 sao tại Việt Nam) - Tổng mức đầu tư:",
+          "source_chunk": "660",
+          "record_id": "M07-0012",
+          "report_no": 1,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "430 tỷ (Dự án không sử dụng vốn vay) 4.4/ Giá thuê đề xuất:",
           "source_chunk": "660",
           "record_id": "M07-0012",
           "report_no": 1,
@@ -22575,6 +25729,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Dự án đạt hiệu quả đầu tư tài chính IRR = 15% khi dự án không sử dụng vốn vay. Đồng thời, để dự án tăng hiệu quả đầu tư tài chính thì nên sử dụng đòn bẩy tài chính tối đa như IRR = 17,1% khi vay 70% giá trị công trình xây dựng.",
+          "source_chunk": "557",
+          "record_id": "M06-0011",
+          "report_no": 2,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "2/ Tổng mức đầu tư dự án: (theo đề xuất phòng QS) - Tổng mức đầu tư:",
+          "source_chunk": "557",
+          "record_id": "M06-0011",
+          "report_no": 2,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "295 tỷ (Dự án không sử dụng vốn vay) - Chi phí xây dựng All in năm 2025 (theo P.QS) Chi phí xây dựng All in (*) Tháng 12 Tháng 10 Tính theo/key (triệu đồng/key) 2.315 2.819 (*) Suất đầu tư này căn cứ theo đề xuất từ phòng QS, tuy nhiên sau khi phòng hoàn thành suất đầu tư chung cho các dự án thì sẽ cập nhật lại suất đầu tư Suất đầu tư tính trên key phương…",
           "source_chunk": "557",
           "record_id": "M06-0011",
           "report_no": 2,
@@ -22744,6 +25916,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Mặc dù phương án thời điểm tháng 4/2026 tính theo suất vốn đầu tư chuẩn 5* cao cấp (~ 2,7 tỷ/key) cao hơn suất vốn thời điểm tháng 12/2024 (~ 2,3 tỷ/key), chi phí xây dựng tăng 74 tỷ đồng nhưng nhờ Giá bán phòng bình quân tăng từ 130 USD lên 150 USD nên phương án mới cập nhật giá của anh David đạt hiệu quả với IRR 17.1% và thời gian hoàn vốn rút ngắn xuốn…",
+          "source_chunk": "147",
+          "record_id": "M02-0018",
+          "report_no": 3,
+          "project_name": "Hội An Riverside Resort & Spa - Concept Lamanon",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "2/ Suất đầu tư Chi phí đầu tư (gồm VAT) Tháng 4/2026 Tháng 12/2024 Suất vốn đầu tư /key 2,7 tỷ/key 2,3 tỷ/key Đơn giá All - in 17,8 tr/m2 15 tr/m2 Tổng chi phí đầu tư 377 tỷ đồng 303 tỷ đồng 3/Giá bán, tỷ lệ lấp đầy, chi phí vận hành:",
+          "source_chunk": "147",
+          "record_id": "M02-0018",
+          "report_no": 3,
+          "project_name": "Hội An Riverside Resort & Spa - Concept Lamanon",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Giá kinh doanh Tháng 4/2026 Tháng 12/2024 Giá phòng khách sạn 2,97 triệu/phòng 2,7 triệu/phòng Giá phòng Villa 9,27 triệu/phòng 8 triệu/phòng Công suất 65%,70%,72%,80% 60%,65%,70%, 75%, 80% Doanh thu khác 31% 35% Giá bình quân 150 USD (tỷ giá 27.000 đồng) 4/Hiệu quả đầu tư Chỉ tiêu Tháng 4/2026 Tháng 12/2024 IRR 17.1% 17.1% NPV 75 tỷ đồng 104 tỷ đồng Thời…",
+          "source_chunk": "147",
+          "record_id": "M02-0018",
+          "report_no": 3,
+          "project_name": "Hội An Riverside Resort & Spa - Concept Lamanon",
+          "part": 2
+        },
+        {
           "label": "Tổng mức đầu tư",
           "value": "295 tỷ, dự án không sử dụng vốn vay",
           "source_chunk": "197",
@@ -22868,6 +26067,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 4,
           "project_name": "Hội An Riverside Resort & Spa",
           "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "2/ Tổng mức đầu tư dự án: (theo đề xuất phòng QS) - Tổng mức đầu tư:",
+          "source_chunk": "197",
+          "record_id": "M02-0033",
+          "report_no": 4,
+          "project_name": "Hội An Riverside Resort & Spa",
+          "part": 2
         }
       ],
       "reports": [
@@ -22928,6 +26136,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Theo thiết kế, diện tích phòng khách sạn (50m²) lớn so với những dự án lân cận như dự án Hội An Aurora Riverside (38m²), trong khi giá thuê ngang nhau → Điều chỉnh lại diện tích phòng khách sạn nhỏ hơn để tăng số phòng khách sạn → Tăng hiệu quả dự án.",
+              "source_chunk": "660"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Vận hành khai thác 4.3/ Tổng mức đầu tư dự án:",
+              "source_chunk": "660"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Chi phí xây dựng All in năm 2025:",
+              "source_chunk": "660"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "24trđ/m² (chuẩn khách sạn resort 5 sao nhưng suất xây dựng 4 sao tại Việt Nam) - Tổng mức đầu tư:",
+              "source_chunk": "660"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "430 tỷ (Dự án không sử dụng vốn vay) 4.4/ Giá thuê đề xuất:",
               "source_chunk": "660"
             }
           ],
@@ -23017,6 +26245,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dự án đạt hiệu quả đầu tư tài chính IRR = 15% khi dự án không sử dụng vốn vay. Đồng thời, để dự án tăng hiệu quả đầu tư tài chính thì nên sử dụng đòn bẩy tài chính tối đa như IRR = 17,1% khi vay 70% giá trị công trình xây dựng.",
+              "source_chunk": "557"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "2/ Tổng mức đầu tư dự án: (theo đề xuất phòng QS) - Tổng mức đầu tư:",
+              "source_chunk": "557"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "295 tỷ (Dự án không sử dụng vốn vay) - Chi phí xây dựng All in năm 2025 (theo P.QS) Chi phí xây dựng All in (*) Tháng 12 Tháng 10 Tính theo/key (triệu đồng/key) 2.315 2.819 (*) Suất đầu tư này căn cứ theo đề xuất từ phòng QS, tuy nhiên sau khi phòng hoàn thành suất đầu tư chung cho các dự án thì sẽ cập nhật lại suất đầu tư Suất đầu tư tính trên key phương…",
               "source_chunk": "557"
             }
           ],
@@ -23130,6 +26368,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dựa vào bảng độ nhạy thì dự án đạt hiệu quả với giới hạn suất vốn đầu tư/key tối đa ~2,9 tỷ/key, tương đương với đơn giá xây dựng all-in khoảng 19 tr/m2.",
               "source_chunk": "147"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Mặc dù phương án thời điểm tháng 4/2026 tính theo suất vốn đầu tư chuẩn 5* cao cấp (~ 2,7 tỷ/key) cao hơn suất vốn thời điểm tháng 12/2024 (~ 2,3 tỷ/key), chi phí xây dựng tăng 74 tỷ đồng nhưng nhờ Giá bán phòng bình quân tăng từ 130 USD lên 150 USD nên phương án mới cập nhật giá của anh David đạt hiệu quả với IRR 17.1% và thời gian hoàn vốn rút ngắn xuốn…",
+              "source_chunk": "147"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "2/ Suất đầu tư Chi phí đầu tư (gồm VAT) Tháng 4/2026 Tháng 12/2024 Suất vốn đầu tư /key 2,7 tỷ/key 2,3 tỷ/key Đơn giá All - in 17,8 tr/m2 15 tr/m2 Tổng chi phí đầu tư 377 tỷ đồng 303 tỷ đồng 3/Giá bán, tỷ lệ lấp đầy, chi phí vận hành:",
+              "source_chunk": "147"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Giá kinh doanh Tháng 4/2026 Tháng 12/2024 Giá phòng khách sạn 2,97 triệu/phòng 2,7 triệu/phòng Giá phòng Villa 9,27 triệu/phòng 8 triệu/phòng Công suất 65%,70%,72%,80% 60%,65%,70%, 75%, 80% Doanh thu khác 31% 35% Giá bình quân 150 USD (tỷ giá 27.000 đồng) 4/Hiệu quả đầu tư Chỉ tiêu Tháng 4/2026 Tháng 12/2024 IRR 17.1% 17.1% NPV 75 tỷ đồng 104 tỷ đồng Thời…",
+              "source_chunk": "147"
             }
           ],
           "excerpt": "Hội An Riverside Resort & Spa theo Concept Lamanon... 125 phòng... Suất vốn 2,7 tỷ/key... Tổng chi phí đầu tư 377 tỷ... IRR 17.1%.",
@@ -23222,6 +26475,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Nếu có vay thì bao nhiêu năm hoà vốn by Admin 01",
               "source_chunk": "197"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "2/ Tổng mức đầu tư dự án: (theo đề xuất phòng QS) - Tổng mức đầu tư:",
+              "source_chunk": "197"
             }
           ],
           "excerpt": "Hội An Riverside Resort & Spa, mặt tiền Cửa Đại... tháng 12 125 phòng, tháng 10 104 phòng... TMĐT 295 tỷ.",
@@ -23272,6 +26530,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "Quyết định phê duyệt đồ án 1/500 - 30/06/2020, Trong đó: Đất ở tại đô thị : 3.6ha - tỷ lệ thương phẩm chiếm 48%",
+          "source_chunk": "635",
+          "record_id": "M07-0008",
+          "report_no": 1,
+          "project_name": "Holiday Beach Đà Nẵng - phương án vận hành khách sạn tạm thời",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tỷ lệ tăng giá: Thị trường BĐS hiện đang có tính thanh khoản rất kém mặc dù giá bán đã giảm rất thấp, vì thế, nếu dự án nghiên cứu được triển khai và mở bán trong giai đoạn 2025 – 2027 – giai đoạn này thị trường vẫn có xu hướng tiếp tục giảm => giá bán sẽ không thể tăng và chỉ duy trì như thời điểm hiện tại.",
           "source_chunk": "635",
           "record_id": "M07-0008",
           "report_no": 1,
@@ -23370,15 +26637,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "Tỷ lệ LNTT/TMĐT = - 12.4%",
-          "source_chunk": "635",
-          "record_id": "M07-0008",
-          "report_no": 1,
-          "project_name": "Holiday Beach Đà Nẵng - phương án vận hành khách sạn tạm thời",
-          "part": 7
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
           "value": "P.Đầu tư gửi anh Mr Mike1 -CEO Bảng tính toán hiệu quả dự án Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn:",
           "source_chunk": "697",
           "record_id": "M07-0023",
@@ -23398,6 +26656,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "+ Bảng tính không tính chi phí mua dự án đầu vào, chi phí hiện tại đã đầu tư vào công trình 524,8 tỷ (theo số liệu P. Tài chính cu",
+          "source_chunk": "697",
+          "record_id": "M07-0023",
+          "report_no": 2,
+          "project_name": "Holiday Beach Đà Nẵng - vận hành khách sạn tạm thời",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Trieu Nguyen-PTDT 9/14/2024 11:54 AM Translate P.Đầu tư gửi anh Mr Mike1 -CEO Bảng tính toán hiệu quả dự án Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn:",
+          "source_chunk": "697",
+          "record_id": "M07-0023",
+          "report_no": 2,
+          "project_name": "Holiday Beach Đà Nẵng - vận hành khách sạn tạm thời",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "198 tỷ có VAT được cung cấp bởi phòng QS + Bảng tính không tính chi phí mua dự án đầu vào, chi phí hiện tại đã đầu tư vào công trình 524,8 tỷ (theo số liệu P.",
           "source_chunk": "697",
           "record_id": "M07-0023",
           "report_no": 2,
@@ -23540,6 +26816,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm t…",
+          "source_chunk": "100",
+          "record_id": "M01-0029",
+          "report_no": 4,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 1
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Tỷ lệ diện tích thương phẩm 43.702 m2 ~ 58%/GFA gồm hầm, ~ 66%/GFA chưa hầm.",
           "source_chunk": "100",
@@ -23639,17 +26924,17 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "Với bảng phân tích độ nhạy thì DA đạt hiệu quả tài chính với IRR ~ 12% khi giá bán Condotel và Giá bán như sau :",
-          "source_chunk": "100",
-          "record_id": "M01-0029",
-          "report_no": 4,
-          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
-          "part": 1
-        },
-        {
           "label": "TSDĐ tạm tính để reset thời hạn",
           "value": "hơn 200 tỷ",
+          "source_chunk": "151",
+          "record_id": "M02-0020",
+          "report_no": 6,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm t…",
           "source_chunk": "151",
           "record_id": "M02-0020",
           "report_no": 6,
@@ -23677,6 +26962,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Cơ cấu giá vốn/m2 thương phẩm",
+          "source_chunk": "151",
+          "record_id": "M02-0020",
+          "report_no": 6,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel.",
+          "source_chunk": "151",
+          "record_id": "M02-0020",
+          "report_no": 6,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm tính đóng thêm tiền sử dụng đất khoảng hơn 200 tỷ thì mới làm đc pa condotel.",
+          "source_chunk": "151",
+          "record_id": "M02-0020",
+          "report_no": 6,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "TỔNG MỨC ĐẦU TƯ DỰ KIẾN Tổng mức đầu tư (bao gồm VAT) được dự kiến xây dựng hoàn thiện tiêu chuẩn 5 sao.",
+          "source_chunk": "151",
+          "record_id": "M02-0020",
+          "report_no": 6,
+          "project_name": "Holiday Beach - phương án Khách sạn + Condotel",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Cơ cấu giá vốn/m2 thương phẩm Giá vốn phân bổ cho từng loại sản phẩm:",
           "source_chunk": "151",
           "record_id": "M02-0020",
           "report_no": 6,
@@ -23710,6 +27031,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Quyết định phê duyệt đồ án 1/500 - 30/06/2020, Trong đó: Đất ở tại đô thị : 3.6ha - tỷ lệ thương phẩm chiếm 48%",
+              "source_chunk": "635"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tỷ lệ tăng giá: Thị trường BĐS hiện đang có tính thanh khoản rất kém mặc dù giá bán đã giảm rất thấp, vì thế, nếu dự án nghiên cứu được triển khai và mở bán trong giai đoạn 2025 – 2027 – giai đoạn này thị trường vẫn có xu hướng tiếp tục giảm => giá bán sẽ không thể tăng và chỉ duy trì như thời điểm hiện tại.",
               "source_chunk": "635"
             },
             {
@@ -23761,11 +27087,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "LỢI NHUẬN TRƯỚC THUẾ: - 50.7 tỷ",
               "source_chunk": "635"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "Tỷ lệ LNTT/TMĐT = - 12.4%",
-              "source_chunk": "635"
             }
           ],
           "excerpt": "Holiday Beach Đà Nẵng đánh giá vận hành khách sạn tạm thời.",
@@ -23802,6 +27123,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "+ Bảng tính không tính chi phí mua dự án đầu vào, chi phí hiện tại đã đầu tư vào công trình 524,8 tỷ (theo số liệu P. Tài chính cu",
+              "source_chunk": "697"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Trieu Nguyen-PTDT 9/14/2024 11:54 AM Translate P.Đầu tư gửi anh Mr Mike1 -CEO Bảng tính toán hiệu quả dự án Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn:",
+              "source_chunk": "697"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "198 tỷ có VAT được cung cấp bởi phòng QS + Bảng tính không tính chi phí mua dự án đầu vào, chi phí hiện tại đã đầu tư vào công trình 524,8 tỷ (theo số liệu P.",
               "source_chunk": "697"
             }
           ],
@@ -23926,6 +27257,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "100"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm t…",
+              "source_chunk": "100"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tỷ lệ diện tích thương phẩm 43.702 m2 ~ 58%/GFA gồm hầm, ~ 66%/GFA chưa hầm.",
               "source_chunk": "100"
@@ -23978,11 +27314,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Với suất vốn All-in 33 tr/m2 CFA và giá bán Condotel ~ 125.5 tr/m2, giá bán phòng 4.5 tr/phòng/đêm thì DA chưa đạt hiệu quả tài chính với IRR chỉ 5.7% và thời gian hoàn vốn lên đến 16 năm.",
-              "source_chunk": "100"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "Với bảng phân tích độ nhạy thì DA đạt hiệu quả tài chính với IRR ~ 12% khi giá bán Condotel và Giá bán như sau :",
               "source_chunk": "100"
             }
           ],
@@ -24037,6 +27368,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "151"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hiện tại holiday mình chỉ còn tới khoảng 2060 or 2058. Nếu làm pháp lý và xây dựng xong mất 4 năm tầm 2030 thì. Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel. Nobu còn 32 năm theo a là 1 trong những lý do key họ bán chậm. Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm t…",
+              "source_chunk": "151"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tỷ lệ diện tích thương phẩm 43.702 m2 ~ 58%/GFA gồm hầm, ~ 66%/GFA chưa hầm.",
               "source_chunk": "151"
@@ -24049,6 +27385,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Cơ cấu giá vốn/m2 thương phẩm",
+              "source_chunk": "151"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Condotel chỉ còn lại 28 30 năm thì chưa bàn tới giá bán vs số năm này thì ko ai mua condotel.",
+              "source_chunk": "151"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Nên trong bài này là mình giả định sẽ reset lại được lại 50 năm từ bây giờ và đang tạm tính đóng thêm tiền sử dụng đất khoảng hơn 200 tỷ thì mới làm đc pa condotel.",
+              "source_chunk": "151"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "TỔNG MỨC ĐẦU TƯ DỰ KIẾN Tổng mức đầu tư (bao gồm VAT) được dự kiến xây dựng hoàn thiện tiêu chuẩn 5 sao.",
+              "source_chunk": "151"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Cơ cấu giá vốn/m2 thương phẩm Giá vốn phân bổ cho từng loại sản phẩm:",
               "source_chunk": "151"
             }
           ],
@@ -24208,6 +27564,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "IDEO Charan 70 Riverview, Bangkok",
           "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đơn giá bán trung bình trên thị trường (từ CĐT và thứ cấp) là 62tr/m2; trong đó:",
+          "source_chunk": "743",
+          "record_id": "M08-0005",
+          "report_no": 1,
+          "project_name": "IDEO Charan 70 Riverview, Bangkok",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "57,5tr/m2 (tăng giảm tùy diện tích, vị trí, view và nội thất);",
+          "source_chunk": "743",
+          "record_id": "M08-0005",
+          "report_no": 1,
+          "project_name": "IDEO Charan 70 Riverview, Bangkok",
+          "part": 8
         }
       ],
       "reports": [
@@ -24280,6 +27654,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Theo thông tin từ môi giới tiktok hiệu suất thuê căn hộ khoảng 5%/năm và tỷ lệ bán hàng hiện tại là 70%.",
               "source_chunk": "743"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đơn giá bán trung bình trên thị trường (từ CĐT và thứ cấp) là 62tr/m2; trong đó:",
+              "source_chunk": "743"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "57,5tr/m2 (tăng giảm tùy diện tích, vị trí, view và nội thất);",
+              "source_chunk": "743"
             }
           ],
           "excerpt": "IDEO Charan 70 Riverview Bangkok, cách trung tâm 6-7km, gần MRT/sông Chao Phraya; dùng so sánh giá với Phạm Văn Đồng HCM.",
@@ -24322,6 +27706,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Định giá Công ty DXG - Đất Xanh",
           "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án Gem Sky World đã triển khai mở bán 2.400 sản phẩm và đã bàn giao lũy kế khoảng 1.800 sản phẩm. P.ĐT định giá lại những sản phẩm bao gồm chưa bán và chưa bàn giao. Vì khó khăn trong việc kiểm tra số lượng còn lại chưa bán ở các phân khu cũng như các căn đã xây dựng xong, P.ĐT tạm ghi nhận theo doanh thu dự báo của các sản phẩm còn lại theo VietCap vớ…",
+          "source_chunk": "429",
+          "record_id": "M05-0012",
+          "report_no": 1,
+          "project_name": "Định giá Công ty DXG - Đất Xanh",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Vì khó khăn trong việc kiểm tra số lượng còn lại chưa bán ở các phân khu cũng như các căn đã xây dựng xong, P.ĐT tạm ghi nhận theo doanh thu dự báo của các sản phẩm còn lại theo VietCap với giá trị tạm ghi nhận là 6.700 tỷ đồng.",
+          "source_chunk": "429",
+          "record_id": "M05-0012",
+          "report_no": 1,
+          "project_name": "Định giá Công ty DXG - Đất Xanh",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "29.183.374.176.075 đồng Vốn chủ sở hữu điều chỉnh = Tổng tài sản đánh giá lại – Nợ phải trả Cụ thể như sau:",
+          "source_chunk": "429",
+          "record_id": "M05-0012",
+          "report_no": 1,
+          "project_name": "Định giá Công ty DXG - Đất Xanh",
+          "part": 5
         }
       ],
       "reports": [
@@ -24351,6 +27762,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Số lượng cổ phiếu lưu hành",
               "value": "870.849.983 cổ phiếu",
+              "source_chunk": "429"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án Gem Sky World đã triển khai mở bán 2.400 sản phẩm và đã bàn giao lũy kế khoảng 1.800 sản phẩm. P.ĐT định giá lại những sản phẩm bao gồm chưa bán và chưa bàn giao. Vì khó khăn trong việc kiểm tra số lượng còn lại chưa bán ở các phân khu cũng như các căn đã xây dựng xong, P.ĐT tạm ghi nhận theo doanh thu dự báo của các sản phẩm còn lại theo VietCap vớ…",
+              "source_chunk": "429"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Vì khó khăn trong việc kiểm tra số lượng còn lại chưa bán ở các phân khu cũng như các căn đã xây dựng xong, P.ĐT tạm ghi nhận theo doanh thu dự báo của các sản phẩm còn lại theo VietCap với giá trị tạm ghi nhận là 6.700 tỷ đồng.",
+              "source_chunk": "429"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "29.183.374.176.075 đồng Vốn chủ sở hữu điều chỉnh = Tổng tài sản đánh giá lại – Nợ phải trả Cụ thể như sau:",
               "source_chunk": "429"
             }
           ],
@@ -24396,6 +27822,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Đối với dự án đồi Ngọc Tước, theo thông tin được cung cấp từ Anh Trung hiện dự án đang phải xử lý phần đất thuộc quản lý cơ quan Nhà nước nên chưa thể tiếp tục triển khai. Ngoài ra trên BCTC từ năm 2024 đến nay của HDC không ghi nhận thông tin phản ánh giá vốn của dự án. Do đó P.ĐT sẽ loại trừ dự án này khỏi danh mục dự án định giá lại tài sản.",
+          "source_chunk": "432",
+          "record_id": "M05-0013",
+          "report_no": 1,
+          "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
+          "part": 5
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Chênh lệch so với giá trị ghi nhận trên BCTC: 2.928,94 tỷ",
           "source_chunk": "432",
@@ -24425,6 +27860,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "=> Vốn chủ sở hữu sau điều chỉnh = Tổng TS sau định giá lại – Nợ phải trả = 5.214,6 tỷ. Cụ thể như sau:",
+          "source_chunk": "432",
+          "record_id": "M05-0013",
+          "report_no": 1,
+          "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Ngoài ra trên BCTC từ năm 2024 đến nay của HDC không ghi nhận thông tin phản ánh giá vốn của dự án.",
+          "source_chunk": "432",
+          "record_id": "M05-0013",
+          "report_no": 1,
+          "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "4.885,26 tỷ - Tổng tài sản sau khi định giá lại:",
+          "source_chunk": "432",
+          "record_id": "M05-0013",
+          "report_no": 1,
+          "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "7.814,2 tỷ => Vốn chủ sở hữu sau điều chỉnh = Tổng TS sau định giá lại – Nợ phải trả = 5.214,6 tỷ.",
           "source_chunk": "432",
           "record_id": "M05-0013",
           "report_no": 1,
@@ -24462,6 +27924,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "432"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Đối với dự án đồi Ngọc Tước, theo thông tin được cung cấp từ Anh Trung hiện dự án đang phải xử lý phần đất thuộc quản lý cơ quan Nhà nước nên chưa thể tiếp tục triển khai. Ngoài ra trên BCTC từ năm 2024 đến nay của HDC không ghi nhận thông tin phản ánh giá vốn của dự án. Do đó P.ĐT sẽ loại trừ dự án này khỏi danh mục dự án định giá lại tài sản.",
+              "source_chunk": "432"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Chênh lệch so với giá trị ghi nhận trên BCTC: 2.928,94 tỷ",
               "source_chunk": "432"
@@ -24479,6 +27946,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "=> Vốn chủ sở hữu sau điều chỉnh = Tổng TS sau định giá lại – Nợ phải trả = 5.214,6 tỷ. Cụ thể như sau:",
+              "source_chunk": "432"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Ngoài ra trên BCTC từ năm 2024 đến nay của HDC không ghi nhận thông tin phản ánh giá vốn của dự án.",
+              "source_chunk": "432"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "4.885,26 tỷ - Tổng tài sản sau khi định giá lại:",
+              "source_chunk": "432"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "7.814,2 tỷ => Vốn chủ sở hữu sau điều chỉnh = Tổng TS sau định giá lại – Nợ phải trả = 5.214,6 tỷ.",
               "source_chunk": "432"
             }
           ],
@@ -24565,6 +28047,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "label": "Định giá đang tạm lấy thận trọng",
           "value": "khoảng 4.200 tỷ theo đất lúa/giá thấp",
           "source_chunk": "451",
+          "record_id": "M05-0019",
+          "report_no": 1,
+          "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Đúng rồi à. Cái Long Tân này bên Team có đánh giá lại theo giá mới, không phải lấy theo giá sổ sách à. Nếu CLN thì giá tầm 6 7 tr còn đất lúa thì 2 3 nếu trung bình 50 50% thì giá trung bình là tầm 4. Cũng do là chưa biết cơ cấu bao nhiêu nên tạm lấy giá đấy lúa 2 3 triệu nên giá định giá đang là 4200 tỷ à. Ngoài ra còn có các dự án khác Team cũng có đánh…",
+          "source_chunk": "443",
           "record_id": "M05-0019",
           "report_no": 1,
           "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
@@ -24668,15 +28159,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
           "part": 5
-        },
-        {
-          "label": "Dòng số liệu từ nguồn",
-          "value": "Chênh lệch so với giá trị ghi nhận trên BCTC: 5.908,95 tỷ",
-          "source_chunk": "443",
-          "record_id": "M05-0019",
-          "report_no": 1,
-          "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
-          "part": 5
         }
       ],
       "reports": [
@@ -24741,6 +28223,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Dòng số liệu từ nguồn",
+              "value": "Đúng rồi à. Cái Long Tân này bên Team có đánh giá lại theo giá mới, không phải lấy theo giá sổ sách à. Nếu CLN thì giá tầm 6 7 tr còn đất lúa thì 2 3 nếu trung bình 50 50% thì giá trung bình là tầm 4. Cũng do là chưa biết cơ cấu bao nhiêu nên tạm lấy giá đấy lúa 2 3 triệu nên giá định giá đang là 4200 tỷ à. Ngoài ra còn có các dự án khác Team cũng có đánh…",
+              "source_chunk": "443"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
               "value": "Tính giá thị trường khu này giờ phải 4tr/m thì 183ha là 7300 tỷ rồi",
               "source_chunk": "443"
             },
@@ -24792,11 +28279,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tổng giá trị điều chỉnh: 7.405,6 tỷ",
-              "source_chunk": "443"
-            },
-            {
-              "label": "Dòng số liệu từ nguồn",
-              "value": "Chênh lệch so với giá trị ghi nhận trên BCTC: 5.908,95 tỷ",
               "source_chunk": "443"
             }
           ],
@@ -25084,10 +28566,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
-          "label": "Quy mô/thông số bổ sung",
-          "value": "+ Diện tích đất: 718.4 m2 (Chưa có GCN)",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "718.4 m2 (Chưa có GCN) + Diện tích xây dựng: nhà biệt thự, diện tích sàn khoảng 1118.3 m2 + Đơn giá đất ở định giá:",
           "source_chunk": "391",
-          "review_status": "parallel_review_accepted",
+          "record_id": "M04-0023",
+          "report_no": 1,
+          "project_name": "Định giá 6 tài sản - bổ sung 69 Võ Văn Tần",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "705 triệu/m2 đất + Giá trị định giá không bao gồm công trình hiện hữu:",
+          "source_chunk": "391",
           "record_id": "M04-0023",
           "report_no": 1,
           "project_name": "Định giá 6 tài sản - bổ sung 69 Võ Văn Tần",
@@ -25095,7 +28585,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Quy mô/thông số bổ sung",
-          "value": "+ Diện tích xây dựng: nhà biệt thự, diện tích sàn khoảng 1118.3 m2",
+          "value": "+ Diện tích đất: 718.4 m2 (Chưa có GCN)",
           "source_chunk": "391",
           "review_status": "parallel_review_accepted",
           "record_id": "M04-0023",
@@ -25134,14 +28624,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "391"
             },
             {
-              "label": "Quy mô/thông số bổ sung",
-              "value": "+ Diện tích đất: 718.4 m2 (Chưa có GCN)",
-              "source_chunk": "391",
-              "review_status": "parallel_review_accepted"
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "718.4 m2 (Chưa có GCN) + Diện tích xây dựng: nhà biệt thự, diện tích sàn khoảng 1118.3 m2 + Đơn giá đất ở định giá:",
+              "source_chunk": "391"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "705 triệu/m2 đất + Giá trị định giá không bao gồm công trình hiện hữu:",
+              "source_chunk": "391"
             },
             {
               "label": "Quy mô/thông số bổ sung",
-              "value": "+ Diện tích xây dựng: nhà biệt thự, diện tích sàn khoảng 1118.3 m2",
+              "value": "+ Diện tích đất: 718.4 m2 (Chưa có GCN)",
               "source_chunk": "391",
               "review_status": "parallel_review_accepted"
             }
@@ -25232,6 +28726,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khảo sát Long Phước/Đông Thủ Đức/Nhơn Trạch",
           "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Diện tích đất ưu tiên <200m² Giá giảm sâu khoảng 15-20% so với năm ngoái đối với những tài sản bị vướng trả lãi vay ngân hàng và chứng khoán.",
+          "source_chunk": "816",
+          "record_id": "M09-0005",
+          "report_no": 1,
+          "project_name": "Khảo sát Long Phước/Đông Thủ Đức/Nhơn Trạch",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Đồng thời, tính thanh khoản thấp, ít tin rao Tỷ lệ chênh lệch ±10% trên giá niêm yết --- chunk --- Sinh Nguyen-Dau Tu 6/19/2023 11:02 AM K.ĐT báo cáo anh Tuan Tran-CEO về so sánh giá Diamond Island Q.9, các dự án ở P.Long Phước và Swan Park như sau:",
+          "source_chunk": "816",
+          "record_id": "M09-0005",
+          "report_no": 1,
+          "project_name": "Khảo sát Long Phước/Đông Thủ Đức/Nhơn Trạch",
+          "part": 9
         }
       ],
       "reports": [
@@ -25265,6 +28777,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tỷ lệ chênh lệch ±10% trên giá niêm yết",
+              "source_chunk": "816"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Diện tích đất ưu tiên <200m² Giá giảm sâu khoảng 15-20% so với năm ngoái đối với những tài sản bị vướng trả lãi vay ngân hàng và chứng khoán.",
+              "source_chunk": "816"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Đồng thời, tính thanh khoản thấp, ít tin rao Tỷ lệ chênh lệch ±10% trên giá niêm yết --- chunk --- Sinh Nguyen-Dau Tu 6/19/2023 11:02 AM K.ĐT báo cáo anh Tuan Tran-CEO về so sánh giá Diamond Island Q.9, các dự án ở P.Long Phước và Swan Park như sau:",
               "source_chunk": "816"
             }
           ],
@@ -25311,6 +28833,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 8
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Sau khi đường VĐ3 và cầu Nhơn Trạch hoàn thiện kết nối giao thông giữa Nhơn Trạch và Quận 9, Nhơn Trạch sẽ được hưởng lợi nhiều hơn so với Quận 9, giá đất Nhơn Trạch tại vị trí đề xuất đầu tư sẽ tiệm cận giá hiện hữu tại khu vực Quận 9 nên mức sinh lợi nhuận sẽ tốt hơn so với Quận 9.",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "2.3/ Đối với các quỹ đất phát triển dự án của Tập đoàn tại Khu vực Quận 9 và Huyện Nhơn Trạch ưu tiên triển khai sớm các công tác pháp lý để thực hiện chuyển mục đích sử dụng đất nhằm giảm chi phí nghĩa vụ tài chính vì:",
           "source_chunk": "761",
@@ -25339,7 +28870,52 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "1/ Trong năm 2023 thị trường đất nền các dự án tại Nhơn Trạch giá bình quân đều giảm bình quân từ 12% – 17% (Tùy dự án) so với thời điểm năm 2022. Nguyên nhân chính dẫn đến giá đất giảm từ ảnh hưởng của thị trường chung và lãi suất ngân hàng cao dẫn đến khách hàng đầu tư cắt lỗ để thanh khoản sản phẩm.",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "2/ Mặc dù giá bán giảm tuy nhiên tính thanh khoản đất nền tại thị trường Nhơn Trạch không cao, khá khó bán các sản phẩm đất nền tại thị trường này bởi vì:",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Ưu tiên theo thứ tự Những dự án đã có sổ riêng từng nền, xây dựng tự do Nhưng dự án đã xong pháp lý đất, mua theo hợp đồng mua bán, sẽ ra sổ sau khi đã hoàn thành công trình xây dựng trên đất 1.3/ Giá bán thấp (hợp lý) ở khu vực 1.4/ Hiện trạng hạ tầng, quy hoạch của dự án bài bản",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Sau khi đường VĐ3 và cầu Nhơn Trạch hoàn thiện kết nối giao thông giữa Nhơn Trạch và Quận 9, Nhơn Trạch sẽ được hưởng lợi nhiều hơn so với Quận 9, giá đất Nhơn Trạch tại vị trí đề xuất đầu tư sẽ tiệm cận giá hiện hữu tại khu vực Quận 9 nên mức sinh lợi nhuận sẽ tốt hơn so với Quận",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Diện tích đất ưu tiên <200m² Giá giảm sâu khoảng 15-20% so với năm ngoái đối với những tài sản bị vướng trả lãi vay ngân hàng và chứng khoán.",
+          "source_chunk": "761",
+          "record_id": "M08-0010",
+          "report_no": 1,
+          "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
+          "part": 8
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Đồng thời, tính thanh khoản thấp, ít tin rao Tỷ lệ chênh lệch ±10% trên giá niêm yết phụ thuộc vào:",
           "source_chunk": "761",
           "record_id": "M08-0010",
           "report_no": 1,
@@ -25378,6 +28954,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "761"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Sau khi đường VĐ3 và cầu Nhơn Trạch hoàn thiện kết nối giao thông giữa Nhơn Trạch và Quận 9, Nhơn Trạch sẽ được hưởng lợi nhiều hơn so với Quận 9, giá đất Nhơn Trạch tại vị trí đề xuất đầu tư sẽ tiệm cận giá hiện hữu tại khu vực Quận 9 nên mức sinh lợi nhuận sẽ tốt hơn so với Quận 9.",
+              "source_chunk": "761"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "2.3/ Đối với các quỹ đất phát triển dự án của Tập đoàn tại Khu vực Quận 9 và Huyện Nhơn Trạch ưu tiên triển khai sớm các công tác pháp lý để thực hiện chuyển mục đích sử dụng đất nhằm giảm chi phí nghĩa vụ tài chính vì:",
               "source_chunk": "761"
@@ -25394,7 +28975,32 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "1/ Trong năm 2023 thị trường đất nền các dự án tại Nhơn Trạch giá bình quân đều giảm bình quân từ 12% – 17% (Tùy dự án) so với thời điểm năm 2022. Nguyên nhân chính dẫn đến giá đất giảm từ ảnh hưởng của thị trường chung và lãi suất ngân hàng cao dẫn đến khách hàng đầu tư cắt lỗ để thanh khoản sản phẩm.",
+              "source_chunk": "761"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "2/ Mặc dù giá bán giảm tuy nhiên tính thanh khoản đất nền tại thị trường Nhơn Trạch không cao, khá khó bán các sản phẩm đất nền tại thị trường này bởi vì:",
+              "source_chunk": "761"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Ưu tiên theo thứ tự Những dự án đã có sổ riêng từng nền, xây dựng tự do Nhưng dự án đã xong pháp lý đất, mua theo hợp đồng mua bán, sẽ ra sổ sau khi đã hoàn thành công trình xây dựng trên đất 1.3/ Giá bán thấp (hợp lý) ở khu vực 1.4/ Hiện trạng hạ tầng, quy hoạch của dự án bài bản",
+              "source_chunk": "761"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Sau khi đường VĐ3 và cầu Nhơn Trạch hoàn thiện kết nối giao thông giữa Nhơn Trạch và Quận 9, Nhơn Trạch sẽ được hưởng lợi nhiều hơn so với Quận 9, giá đất Nhơn Trạch tại vị trí đề xuất đầu tư sẽ tiệm cận giá hiện hữu tại khu vực Quận 9 nên mức sinh lợi nhuận sẽ tốt hơn so với Quận",
+              "source_chunk": "761"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Diện tích đất ưu tiên <200m² Giá giảm sâu khoảng 15-20% so với năm ngoái đối với những tài sản bị vướng trả lãi vay ngân hàng và chứng khoán.",
+              "source_chunk": "761"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Đồng thời, tính thanh khoản thấp, ít tin rao Tỷ lệ chênh lệch ±10% trên giá niêm yết phụ thuộc vào:",
               "source_chunk": "761"
             }
           ],
@@ -25424,6 +29030,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Nghĩa vụ tài chính bổ sung đối tác ước tính",
           "value": "khoảng 270 tỷ đồng cho hai dự án",
+          "source_chunk": "28",
+          "record_id": "M01-0015",
+          "report_no": 1,
+          "project_name": "LDG High và West Intela",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Đối tác ước tính nghĩa vụ tài chính bổ sung khoảng 270 tỷ đồng cho hai dự án. Tuy nhiên, cơ sở xác định số liệu này chưa rõ ràng. Do dự án chưa hoàn tất nghĩa vụ tài chính từ giai đoạn 2017-2018, cần thực hiện báo cáo thẩm định pháp lý chuyên sâu để xác định chính xác số tiền phải nộp và các rủi ro phát sinh.",
+          "source_chunk": "28",
+          "record_id": "M01-0015",
+          "report_no": 1,
+          "project_name": "LDG High và West Intela",
+          "part": 1
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Khoản huy động vốn từ khách hàng (đặt cọc/giữ chỗ) giai đoạn 2017-2018 ước tính khoảng 250 tỷ đồng. Đây là khoản nợ gây áp lực về chi phí và thời gian xử lý. Việc xử lý dứt điểm các tranh chấp này phải là điều kiện tiên quyết trước khi tiến hành giao dịch M&A dự án.",
           "source_chunk": "28",
           "record_id": "M01-0015",
           "report_no": 1,
@@ -25501,6 +29125,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "LDG High và West Intela",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Lưu ý: Kết quả tài chính đang tính với đơn giá bán bình quân căn hộ tại High là 70 tr/m2 (gồm VAT) và West là 50 tr/m2 (gồm VAT). Tương ứng với đơn giá xây dựng All - in của High là 16 tr/m2 (gồm VAT) cho 23 tầng không hầm và West là 14,6 tr/m2 (gồm VAT), cho 23 tầng 1 hầm.",
+          "source_chunk": "28",
+          "record_id": "M01-0015",
+          "report_no": 1,
+          "project_name": "LDG High và West Intela",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Đối tác ước tính nghĩa vụ tài chính bổ sung khoảng 270 tỷ đồng cho hai dự án.",
+          "source_chunk": "28",
+          "record_id": "M01-0015",
+          "report_no": 1,
+          "project_name": "LDG High và West Intela",
+          "part": 1
         }
       ],
       "reports": [
@@ -25525,6 +29167,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Nghĩa vụ tài chính bổ sung đối tác ước tính",
               "value": "khoảng 270 tỷ đồng cho hai dự án",
+              "source_chunk": "28"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Đối tác ước tính nghĩa vụ tài chính bổ sung khoảng 270 tỷ đồng cho hai dự án. Tuy nhiên, cơ sở xác định số liệu này chưa rõ ràng. Do dự án chưa hoàn tất nghĩa vụ tài chính từ giai đoạn 2017-2018, cần thực hiện báo cáo thẩm định pháp lý chuyên sâu để xác định chính xác số tiền phải nộp và các rủi ro phát sinh.",
+              "source_chunk": "28"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Khoản huy động vốn từ khách hàng (đặt cọc/giữ chỗ) giai đoạn 2017-2018 ước tính khoảng 250 tỷ đồng. Đây là khoản nợ gây áp lực về chi phí và thời gian xử lý. Việc xử lý dứt điểm các tranh chấp này phải là điều kiện tiên quyết trước khi tiến hành giao dịch M&A dự án.",
               "source_chunk": "28"
             },
             {
@@ -25565,6 +29217,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Chạy độ nhạy với tỷ lệ LNTT/TMĐT ~ 20% thì giá mua dự án sẽ ở mức từ dưới 635 tỷ đồng (thấp hơn giá chào 145 tỷ đồng).",
+              "source_chunk": "28"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Lưu ý: Kết quả tài chính đang tính với đơn giá bán bình quân căn hộ tại High là 70 tr/m2 (gồm VAT) và West là 50 tr/m2 (gồm VAT). Tương ứng với đơn giá xây dựng All - in của High là 16 tr/m2 (gồm VAT) cho 23 tầng không hầm và West là 14,6 tr/m2 (gồm VAT), cho 23 tầng 1 hầm.",
+              "source_chunk": "28"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Đối tác ước tính nghĩa vụ tài chính bổ sung khoảng 270 tỷ đồng cho hai dự án.",
               "source_chunk": "28"
             }
           ],
@@ -25933,6 +29595,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tổng doanh thu chưa VAT: 6.199 tỷ (giá bán khởi điểm tính ở thời điểm hiện tại~45 triệu đồng/m2, giá bình quân các đợt bán 47 triệu đồng/m2 tim tường, chưa VAT, tỷ lệ tăng giá 5%/năm, thời điểm dự kiến mở bán đợt đầu là Q4/2026, diện tích sàn của 1.921 căn hộ ở ~128.324 m2)",
+          "source_chunk": "323",
+          "record_id": "M04-0008",
+          "report_no": 1,
+          "project_name": "Chung cư Long Vân 3,09ha - Quốc Lộ 13, Lái Thiêu",
+          "part": 4
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "NPV: - 412 tỷ, IRR -9%",
           "source_chunk": "323",
@@ -25952,16 +29623,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
-          "value": "Đơn giá bán căn hộ ở bình quân tại thị trường khu vực, thời điểm hiện tại quanh khoảng 45 triệu đồng/m2 (chưa VAT, tim tường).",
-          "source_chunk": "323",
-          "record_id": "M04-0008",
-          "report_no": 1,
-          "project_name": "Chung cư Long Vân 3,09ha - Quốc Lộ 13, Lái Thiêu",
-          "part": 4
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "Tuy nhiên, về khả năng bán giá 50 triệu đồng (chưa VAT) tính ở thời điểm hiện tại thì khó khả thi do nguồn cung của khu vực Bình Dương đang rất lớn và DA số lượng căn hộ cũng lớn lên đến ~1.900 căn nên giá 50 triệu đồng khó cạnh tranh.",
+          "value": "Tiền sử dụng đất tính theo PP thặng dư: 1.050 tỷ đồng ~34 triệu đồng/m2, hơn 2,6 lần đơn giá đất nhà nước 13,25 triệu đồng. Hệ số này phù hợp với các dự án ở khu vực gần đó đã được duyệt giá đất (như Emerald 2,1 lần cùng trục đường QL 13, Phượng Hoàng khoảng 3 lần).",
           "source_chunk": "323",
           "record_id": "M04-0008",
           "report_no": 1,
@@ -26062,6 +29724,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "323"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tổng doanh thu chưa VAT: 6.199 tỷ (giá bán khởi điểm tính ở thời điểm hiện tại~45 triệu đồng/m2, giá bình quân các đợt bán 47 triệu đồng/m2 tim tường, chưa VAT, tỷ lệ tăng giá 5%/năm, thời điểm dự kiến mở bán đợt đầu là Q4/2026, diện tích sàn của 1.921 căn hộ ở ~128.324 m2)",
+              "source_chunk": "323"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "NPV: - 412 tỷ, IRR -9%",
               "source_chunk": "323"
@@ -26073,12 +29740,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
-              "value": "Đơn giá bán căn hộ ở bình quân tại thị trường khu vực, thời điểm hiện tại quanh khoảng 45 triệu đồng/m2 (chưa VAT, tim tường).",
-              "source_chunk": "323"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "Tuy nhiên, về khả năng bán giá 50 triệu đồng (chưa VAT) tính ở thời điểm hiện tại thì khó khả thi do nguồn cung của khu vực Bình Dương đang rất lớn và DA số lượng căn hộ cũng lớn lên đến ~1.900 căn nên giá 50 triệu đồng khó cạnh tranh.",
+              "value": "Tiền sử dụng đất tính theo PP thặng dư: 1.050 tỷ đồng ~34 triệu đồng/m2, hơn 2,6 lần đơn giá đất nhà nước 13,25 triệu đồng. Hệ số này phù hợp với các dự án ở khu vực gần đó đã được duyệt giá đất (như Emerald 2,1 lần cùng trục đường QL 13, Phượng Hoàng khoảng 3 lần).",
               "source_chunk": "323"
             }
           ],
@@ -26241,6 +29903,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "KDC Minh Hưng, Chơn Thành, Bình Phước",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Thao L - INVT 12/14/2022 11:04 AM K.ĐT gửi anh Tuan Tran-CEO báo cáo dự án KDC Minh Hưng tại xã Minh Hưng, Chơn Thành, Bình Phước có quy mô 15,2ha, có giá chào 280 tỷ (~1,83 tr.đồng/m2), chưa bao gồm tiền CMĐSDĐ, cụ thể:",
+          "source_chunk": "943",
+          "record_id": "M10-0016",
+          "report_no": 1,
+          "project_name": "KDC Minh Hưng, Chơn Thành, Bình Phước",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Sản phẩm theo thông tin quy hoạch đối ... by Thao L - INVT --- chunk --- Thao L - INVT 12/14/2022 11:08 AM Giá bán đề xuất:",
+          "source_chunk": "943",
+          "record_id": "M10-0016",
+          "report_no": 1,
+          "project_name": "KDC Minh Hưng, Chơn Thành, Bình Phước",
+          "part": 10
         }
       ],
       "reports": [
@@ -26337,6 +30017,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Để dự án đạt hiệu quả tài chính thì giá nhận chuyện nhượng dự án từ 204 tỷ đồng (~1,34tr/m2; IRR:20%) – 250 tỷ đồng (~1,65tr/m2; IRR:15%) chưa bao gồm tiền CMĐSDĐ..",
+              "source_chunk": "943"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Thao L - INVT 12/14/2022 11:04 AM K.ĐT gửi anh Tuan Tran-CEO báo cáo dự án KDC Minh Hưng tại xã Minh Hưng, Chơn Thành, Bình Phước có quy mô 15,2ha, có giá chào 280 tỷ (~1,83 tr.đồng/m2), chưa bao gồm tiền CMĐSDĐ, cụ thể:",
+              "source_chunk": "943"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Sản phẩm theo thông tin quy hoạch đối ... by Thao L - INVT --- chunk --- Thao L - INVT 12/14/2022 11:08 AM Giá bán đề xuất:",
               "source_chunk": "943"
             }
           ],
@@ -26435,6 +30125,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 9/19/2022 11:15 AM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Chung cư Minh Ngọc tại đường CMT8, P11, Q3, TPHCM có quy mô 7234m2 và giá chào 1200 tỷ đồng (tương đương 165.86tr/m2 đất) bao gồm tiền sử dụng đất và QH 1.500, cụ thể:",
+          "source_chunk": "917",
+          "record_id": "M10-0004",
+          "report_no": 1,
+          "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "QH 1.2000 năm 2013: thửa đất 434, tờ 13 có diện tích 7301.2m2 bao gồm 2527.93m2 đất hạ tầng giao thông, 4766.65 m2 đất sử dụng hỗn hợp, HSSD 2.5 lần, 2-8 tầng cao, MĐXD 49.84% Phía đối tác cam kết hoàn thành QH 1.500 xây dựng chung cư có HSSD 9 lần, MĐXD 45%, 22 tầng cao và 3 tầng hầm KĐT tính toán khả thi chỉ cho phần đất phù hợp quy hoạch là 4766.65m2 t…",
+          "source_chunk": "917",
+          "record_id": "M10-0004",
+          "report_no": 1,
+          "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1501 m2 sàn shophouse (khoảng 13 căn): giá bán trung bình 123.5tr/m2 sàn thông thủy có VAT tại năm 2024 28185 m2 sàn chung cư (khoảng 434 căn): giá bán trung bình khoảng 95tr/m2 sàn thông thủy có VAT tại năm 2024 (trên cơ sở giá hiện tại 80tr/m2 tham khảo từ DA Hà Đô Centrosa 90-100tr/m2, DA Kingdom 80-90tr/m2) 1501m2 sàn nhà trẻ và các tiện ích khác: tạm…",
+          "source_chunk": "917",
+          "record_id": "M10-0004",
+          "report_no": 1,
+          "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án đạt tỷ suất lợi nhuận 19.86%, để đạt tỷ lệ 20% cần thương lượng với giá 1190 tỷ đồng Điều kiện tiên quyết:",
+          "source_chunk": "917",
+          "record_id": "M10-0004",
+          "report_no": 1,
+          "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Giá mua 1190 tỷ đồng bao gồm tiền sử dụng đất và hoàn thành QH 1.500 dự án chung cư có HSSD 9 lần, 22 tầng cao, MĐXD 45%, Dân số 1127 người BeeG cần thực hiện dự án hạ tầng giao thông mở rộng hẻm 540 của đường CMT8 để tăng khả năng kết nối giao thông của dự án chung cư Mảnh đất này có liên quan đến các vụ kiện tụng của ông Liên Khui Thìn, nên BeeG chỉ nên…",
+          "source_chunk": "917",
+          "record_id": "M10-0004",
+          "report_no": 1,
+          "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
+          "part": 10
         }
       ],
       "reports": [
@@ -26495,6 +30230,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Giá mua 1190 tỷ đồng bao gồm tiền sử dụng đất và hoàn thành QH 1.500 dự án chung cư có HSSD 9 lần, 22 tầng cao, MĐXD 45%, Dân số 1127 người",
+              "source_chunk": "917"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 9/19/2022 11:15 AM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Chung cư Minh Ngọc tại đường CMT8, P11, Q3, TPHCM có quy mô 7234m2 và giá chào 1200 tỷ đồng (tương đương 165.86tr/m2 đất) bao gồm tiền sử dụng đất và QH 1.500, cụ thể:",
+              "source_chunk": "917"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "QH 1.2000 năm 2013: thửa đất 434, tờ 13 có diện tích 7301.2m2 bao gồm 2527.93m2 đất hạ tầng giao thông, 4766.65 m2 đất sử dụng hỗn hợp, HSSD 2.5 lần, 2-8 tầng cao, MĐXD 49.84% Phía đối tác cam kết hoàn thành QH 1.500 xây dựng chung cư có HSSD 9 lần, MĐXD 45%, 22 tầng cao và 3 tầng hầm KĐT tính toán khả thi chỉ cho phần đất phù hợp quy hoạch là 4766.65m2 t…",
+              "source_chunk": "917"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1501 m2 sàn shophouse (khoảng 13 căn): giá bán trung bình 123.5tr/m2 sàn thông thủy có VAT tại năm 2024 28185 m2 sàn chung cư (khoảng 434 căn): giá bán trung bình khoảng 95tr/m2 sàn thông thủy có VAT tại năm 2024 (trên cơ sở giá hiện tại 80tr/m2 tham khảo từ DA Hà Đô Centrosa 90-100tr/m2, DA Kingdom 80-90tr/m2) 1501m2 sàn nhà trẻ và các tiện ích khác: tạm…",
+              "source_chunk": "917"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án đạt tỷ suất lợi nhuận 19.86%, để đạt tỷ lệ 20% cần thương lượng với giá 1190 tỷ đồng Điều kiện tiên quyết:",
+              "source_chunk": "917"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Giá mua 1190 tỷ đồng bao gồm tiền sử dụng đất và hoàn thành QH 1.500 dự án chung cư có HSSD 9 lần, 22 tầng cao, MĐXD 45%, Dân số 1127 người BeeG cần thực hiện dự án hạ tầng giao thông mở rộng hẻm 540 của đường CMT8 để tăng khả năng kết nối giao thông của dự án chung cư Mảnh đất này có liên quan đến các vụ kiện tụng của ông Liên Khui Thìn, nên BeeG chỉ nên…",
               "source_chunk": "917"
             }
           ],
@@ -26646,6 +30406,60 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
           "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": ". Hướng về Phía Nam của Huyện là Khu Kinh tế Ninh Cơ Quy mô 56.000 ha. Và Dự án KCN do Tập đoàn Xuận Thiện làm CĐT với 02 Nhà máy Gang thép - Cán thép đã dược tỉnh phê duyệt chủ trương đầu tư với TMĐT là 98.000 tỷ, Nhà máy Sản xuất cấu kiện bê tông đúc sẵn đang triển khai với TMĐT là 900 tỷ và Cảng Chuyên dùng Xuân Thiện có TMĐT 35.000 tỷ.",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Thuộc xã Giao Tiến, Huyện Giao Thuỷ Tỉnh Nam Định, cách khu công nghiệp VSIP dự kiến trong tương lai dưới 10km, được hưởng lợi từ mức giá thuê và tỷ lệ lắp đầy của VSIP Link map: https://goo.gl/maps/tu8NToyeSY9qMEt19 Kết Nối:",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Diện tích nhỏ (50ha) Với tỷ lệ thương phẩm khoảng 65% ~ 33ha.",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Một khách thuê thường có nhu cầu thuê trung bình 8-10ha, do đó chỉ 3-4 công ty thuê sẽ lấp đầy; do đó sẽ không tối ưu hiệu quả cho Chủ đầu tư để duy trì bộ máy quản lý – vận hành Ngoài ra, các nguồn thu từ Duy tu, bảo dưỡng, cấp nước, xử lý nước thải sẽ là các nguồn chính của Chủ đầu tư cũng sẽ thấp đối với quy mô dự án nhỏ.",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Diện tích 50ha sẽ giảm hiệu quả trong việc phát triển và vận hành dự án => Không nghiên cứu đầu tư Đề xuất nghiên cứu các khu vực được quy hoạch khu công nghiệp có quy mô từ 200 ha trở lên tại các khu vực:",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Và Dự án KCN do Tập đoàn Xuận Thiện làm CĐT với 02 Nhà máy Gang thép - Cán thép đã dược tỉnh phê duyệt chủ trương đầu tư với TMĐT là 98.000 tỷ, Nhà máy Sản xuất cấu kiện bê tông đúc sẵn đang triển khai với TMĐT là 900 tỷ và Cảng Chuyên dùng Xuân Thiện có TMĐT 35.000 tỷ. => Với trục cao tốc Cao tốc Ninh Bình – Hải Phòng – Quảng Ninh, nhiều dự án quy mô rất…",
+          "source_chunk": "933",
+          "record_id": "M10-0012",
+          "report_no": 1,
+          "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
+          "part": 10
         }
       ],
       "reports": [
@@ -26687,6 +30501,36 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Đề xuất: Diện tích 50ha sẽ giảm hiệu quả trong việc phát triển và vận hành dự án => Không nghiên cứu đầu tư",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": ". Hướng về Phía Nam của Huyện là Khu Kinh tế Ninh Cơ Quy mô 56.000 ha. Và Dự án KCN do Tập đoàn Xuận Thiện làm CĐT với 02 Nhà máy Gang thép - Cán thép đã dược tỉnh phê duyệt chủ trương đầu tư với TMĐT là 98.000 tỷ, Nhà máy Sản xuất cấu kiện bê tông đúc sẵn đang triển khai với TMĐT là 900 tỷ và Cảng Chuyên dùng Xuân Thiện có TMĐT 35.000 tỷ.",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Thuộc xã Giao Tiến, Huyện Giao Thuỷ Tỉnh Nam Định, cách khu công nghiệp VSIP dự kiến trong tương lai dưới 10km, được hưởng lợi từ mức giá thuê và tỷ lệ lắp đầy của VSIP Link map: https://goo.gl/maps/tu8NToyeSY9qMEt19 Kết Nối:",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Diện tích nhỏ (50ha) Với tỷ lệ thương phẩm khoảng 65% ~ 33ha.",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Một khách thuê thường có nhu cầu thuê trung bình 8-10ha, do đó chỉ 3-4 công ty thuê sẽ lấp đầy; do đó sẽ không tối ưu hiệu quả cho Chủ đầu tư để duy trì bộ máy quản lý – vận hành Ngoài ra, các nguồn thu từ Duy tu, bảo dưỡng, cấp nước, xử lý nước thải sẽ là các nguồn chính của Chủ đầu tư cũng sẽ thấp đối với quy mô dự án nhỏ.",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Diện tích 50ha sẽ giảm hiệu quả trong việc phát triển và vận hành dự án => Không nghiên cứu đầu tư Đề xuất nghiên cứu các khu vực được quy hoạch khu công nghiệp có quy mô từ 200 ha trở lên tại các khu vực:",
+              "source_chunk": "933"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Và Dự án KCN do Tập đoàn Xuận Thiện làm CĐT với 02 Nhà máy Gang thép - Cán thép đã dược tỉnh phê duyệt chủ trương đầu tư với TMĐT là 98.000 tỷ, Nhà máy Sản xuất cấu kiện bê tông đúc sẵn đang triển khai với TMĐT là 900 tỷ và Cảng Chuyên dùng Xuân Thiện có TMĐT 35.000 tỷ. => Với trục cao tốc Cao tốc Ninh Bình – Hải Phòng – Quảng Ninh, nhiều dự án quy mô rất…",
               "source_chunk": "933"
             }
           ],
@@ -27165,6 +31009,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "Dear anh Tuan Tran-CEO, Anh Binh Vo-GD-PTDT và Mi đã gặp bên chào bán là công ty Anh Tuấn để lấy thông tin sơ bộ 2 dự án 3.4ha và 3ha, thông tin cụ thể: A/ Dự án 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, TPHCM có giá chào 589 tỷ (17tr/m2 đất): 1. Vị trí và hiện trạng: 📄 …",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật tình hình nghiên cứu quỹ đất 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, nay bổ sung thêm diện tích đất có tổng quy mô 3.97ha, giá chào bán 17tr/m2 đất tương đương 675.3 tỷ đồng, cụ thể:",
           "source_chunk": "914",
           "record_id": "M10-0003",
@@ -27211,6 +31064,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "5. Kết luận: Dự án đạt hiểu quả tốt về tài chính, tỷ suất lợi nhuận 22.52%. Đề xuất mua tích trữ quỹ đất này vì các ưu điểm sau:",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "A/ Dự án 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, TPHCM có giá chào 589 tỷ (17tr/m2 đất):",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Vị trí và hiện trạng: 📄 … KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật tình hình nghiên cứu quỹ đất 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, nay bổ sung thêm diện tích đất có tổng quy mô 3.97ha, giá chào bán 17tr/m2 đất tương đương 675.3 tỷ đồng, cụ thể:",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ 1494 căn chung cư, DTKD 97086m2 có giá bán trung bình 60tr/m2 sàn thông thủy có VAT tại năm 2024 + 1 sàn TMDV, DTKD 3800m2, giá thuê khoán $8/m2/tháng có VAT từ năm 2026 + 37 căn shophouse, DTKD 4433m2, có giá bán trung bình 66tr/m2 sàn thông thủy có VAT tại năm 2024 + 1 mảnh đất TMDV 414 m2, giá bán đất 57tr/m2 đất tại năm 2024",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Tổng mức đầu tư là 4476 tỷ đồng, tổng doanh thu là 6250 tỷ đồng => Lợi nhuận trước thuế là 950 tỷ đồng",
+          "source_chunk": "914",
+          "record_id": "M10-0003",
+          "report_no": 2,
+          "project_name": "Quỹ đất Nguyễn Hữu Thọ, Nhà Bè - cập nhật 3,97ha",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Dự án đạt hiểu quả tốt về tài chính, tỷ suất lợi nhuận 22.52%.",
           "source_chunk": "914",
           "record_id": "M10-0003",
           "report_no": 2,
@@ -27332,6 +31230,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "Dear anh Tuan Tran-CEO, Anh Binh Vo-GD-PTDT và Mi đã gặp bên chào bán là công ty Anh Tuấn để lấy thông tin sơ bộ 2 dự án 3.4ha và 3ha, thông tin cụ thể: A/ Dự án 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, TPHCM có giá chào 589 tỷ (17tr/m2 đất): 1. Vị trí và hiện trạng: 📄 …",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật tình hình nghiên cứu quỹ đất 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, nay bổ sung thêm diện tích đất có tổng quy mô 3.97ha, giá chào bán 17tr/m2 đất tương đương 675.3 tỷ đồng, cụ thể:",
               "source_chunk": "914"
             },
@@ -27358,6 +31261,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "5. Kết luận: Dự án đạt hiểu quả tốt về tài chính, tỷ suất lợi nhuận 22.52%. Đề xuất mua tích trữ quỹ đất này vì các ưu điểm sau:",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "A/ Dự án 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, TPHCM có giá chào 589 tỷ (17tr/m2 đất):",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Vị trí và hiện trạng: 📄 … KĐT gửi anh Tuan Tran-CEO báo cáo cập nhật tình hình nghiên cứu quỹ đất 3.4ha tại đường Nguyễn Hữu Thọ, Nhà Bè, nay bổ sung thêm diện tích đất có tổng quy mô 3.97ha, giá chào bán 17tr/m2 đất tương đương 675.3 tỷ đồng, cụ thể:",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ 1494 căn chung cư, DTKD 97086m2 có giá bán trung bình 60tr/m2 sàn thông thủy có VAT tại năm 2024 + 1 sàn TMDV, DTKD 3800m2, giá thuê khoán $8/m2/tháng có VAT từ năm 2026 + 37 căn shophouse, DTKD 4433m2, có giá bán trung bình 66tr/m2 sàn thông thủy có VAT tại năm 2024 + 1 mảnh đất TMDV 414 m2, giá bán đất 57tr/m2 đất tại năm 2024",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Tổng mức đầu tư là 4476 tỷ đồng, tổng doanh thu là 6250 tỷ đồng => Lợi nhuận trước thuế là 950 tỷ đồng",
+              "source_chunk": "914"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Dự án đạt hiểu quả tốt về tài chính, tỷ suất lợi nhuận 22.52%.",
               "source_chunk": "914"
             }
           ],
@@ -27636,6 +31564,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "STT Chức năng Diện tích (m2) Số lượng căn (căn) Tỷ lệ (%) 1 Đất ở 55,825 61% Đất xây dựng chung cư 18,830 1 Block cao 15 tầng, 1 Block cao 22 tầng 20% Biệt thự + nhà liên kế 36,995 248 40% 2 Đất cây xanh 5,462 6% 3 Đất giao thông 30,788 33% Tổng cộng 92,075 Tính chất dự án: quy hoạch đầu tư xây dựng khu nhà ở công nhân và chuyên gia làm việc tại các KCN N…",
+          "source_chunk": "349",
+          "record_id": "M04-0014",
+          "report_no": 1,
+          "project_name": "Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc",
+          "part": 4
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "+ Nguồn gốc đất ban đầu gồm đất bồi thường (89,166,3 m2) và UBND xã quản lý: 1.443,8 m2. Chưa xác định được hiện trạng mục đích sử dụng đất đã bồi thường.",
           "source_chunk": "351",
@@ -27658,16 +31595,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Quy mô/thông số bổ sung",
           "value": "1. Về vị trí: Thuộc trung tâm hành chính mới xã Nhơn Trạch, vị trí cửa ngõ sân bay Long Thành. Xung quanh dự án là KCN, dự án đã triển khai và quy hoạch nhiều dự án nhà ở phát triển trong tương lai.",
-          "source_chunk": "350",
-          "review_status": "parallel_review_accepted",
-          "record_id": "M04-0014",
-          "report_no": 1,
-          "project_name": "Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc",
-          "part": 4
-        },
-        {
-          "label": "Quy mô/thông số bổ sung",
-          "value": "1 Block cao 15 tầng, 1 Block cao 22 tầng",
           "source_chunk": "350",
           "review_status": "parallel_review_accepted",
           "record_id": "M04-0014",
@@ -27703,6 +31630,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "349"
             },
             {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "STT Chức năng Diện tích (m2) Số lượng căn (căn) Tỷ lệ (%) 1 Đất ở 55,825 61% Đất xây dựng chung cư 18,830 1 Block cao 15 tầng, 1 Block cao 22 tầng 20% Biệt thự + nhà liên kế 36,995 248 40% 2 Đất cây xanh 5,462 6% 3 Đất giao thông 30,788 33% Tổng cộng 92,075 Tính chất dự án: quy hoạch đầu tư xây dựng khu nhà ở công nhân và chuyên gia làm việc tại các KCN N…",
+              "source_chunk": "349"
+            },
+            {
               "label": "Quy mô/thông số bổ sung",
               "value": "+ Nguồn gốc đất ban đầu gồm đất bồi thường (89,166,3 m2) và UBND xã quản lý: 1.443,8 m2. Chưa xác định được hiện trạng mục đích sử dụng đất đã bồi thường.",
               "source_chunk": "351",
@@ -27717,12 +31649,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Quy mô/thông số bổ sung",
               "value": "1. Về vị trí: Thuộc trung tâm hành chính mới xã Nhơn Trạch, vị trí cửa ngõ sân bay Long Thành. Xung quanh dự án là KCN, dự án đã triển khai và quy hoạch nhiều dự án nhà ở phát triển trong tương lai.",
-              "source_chunk": "350",
-              "review_status": "parallel_review_accepted"
-            },
-            {
-              "label": "Quy mô/thông số bổ sung",
-              "value": "1 Block cao 15 tầng, 1 Block cao 22 tầng",
               "source_chunk": "350",
               "review_status": "parallel_review_accepted"
             }
@@ -27771,6 +31697,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "QĐ về việc phê duyệt Đồ án quy hoạch chi tiết tỷ lệ 1/500 số 290/QĐ-UBND ngày 20/7/2020:",
+          "source_chunk": "929",
+          "record_id": "M10-0010",
+          "report_no": 1,
+          "project_name": "Khu nhà ở Lộc Phú Gia, Phú Giáo, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Phương Trường An 6 của Công ty cổ phần Đầu Tư & Phát triển Bất động sản Phương Trường An với quy mô dự án khoảng 42 hecta trong đó số lượng mở bán đợt này khoảng 300 nền với giá bán khoảng 9-13 tr/m2 (có VAT).",
           "source_chunk": "929",
           "record_id": "M10-0010",
           "report_no": 1,
@@ -27857,15 +31792,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khu nhà ở Lộc Phú Gia, Phú Giáo, Bình Dương",
           "part": 10
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Lợi nhuận trước thuế/Tổng mức đầu tư = 30%",
-          "source_chunk": "929",
-          "record_id": "M10-0010",
-          "report_no": 1,
-          "project_name": "Khu nhà ở Lộc Phú Gia, Phú Giáo, Bình Dương",
-          "part": 10
         }
       ],
       "reports": [
@@ -27900,6 +31826,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "QĐ về việc phê duyệt Đồ án quy hoạch chi tiết tỷ lệ 1/500 số 290/QĐ-UBND ngày 20/7/2020:",
+              "source_chunk": "929"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Phương Trường An 6 của Công ty cổ phần Đầu Tư & Phát triển Bất động sản Phương Trường An với quy mô dự án khoảng 42 hecta trong đó số lượng mở bán đợt này khoảng 300 nền với giá bán khoảng 9-13 tr/m2 (có VAT).",
               "source_chunk": "929"
             },
             {
@@ -27945,11 +31876,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Lợi nhuận trước thuế/Tổng mức đầu tư = 10%",
-              "source_chunk": "929"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Lợi nhuận trước thuế/Tổng mức đầu tư = 30%",
               "source_chunk": "929"
             }
           ],
@@ -28150,6 +32076,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "55 – 60 tr/m2 Shop TMDV:",
+          "source_chunk": "212",
+          "record_id": "M03-0006",
+          "report_no": 1,
+          "project_name": "Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "75 – 80 tr/m2 Nhà phố liên kế:",
+          "source_chunk": "212",
+          "record_id": "M03-0006",
+          "report_no": 1,
+          "project_name": "Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026",
+          "part": 3
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "Diện tích toàn khu: 131.690,94 m2",
           "source_chunk": "256",
@@ -28272,6 +32216,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Hiệu quả theo mức đấu giá dự kiến là 2.010 tỷ để đạt mức IRR 20%",
+              "source_chunk": "212"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "55 – 60 tr/m2 Shop TMDV:",
+              "source_chunk": "212"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "75 – 80 tr/m2 Nhà phố liên kế:",
               "source_chunk": "212"
             }
           ],
@@ -28430,6 +32384,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
           "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "112 phòng - Giả định tỷ lệ tăng giá thuê đất hằng nằm cho chu kỳ 5 năm:",
+          "source_chunk": "456",
+          "record_id": "M05-0020",
+          "report_no": 1,
+          "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "25 Trần Phú PA1 - Đất cơ sản sản xuất kinh doanh, Đóng tiền hằng năm - Tiền thuê đất năm 2024 – 707tr/m2 – Kết thúc chu kỳ thuê 5 năm - Giả định tỷ lệ tăng giá thuê đất hằng nằm cho chu kỳ 5 năm:",
+          "source_chunk": "456",
+          "record_id": "M05-0020",
+          "report_no": 1,
+          "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Mỗi Đà Lạt thui by Unknown User --- chunk --- Unknown User 4/8/2025 7:37 PM Hana Anh xin trao đổi thêm với chỗ chị Hana về giữa chỗ tỷ lệ GOP về tới EBITDA đối với các dự án hiện tại mình đang vận hành để xem thử mình có chi phí nào khác cần bổ sung không à.",
+          "source_chunk": "456",
+          "record_id": "M05-0020",
+          "report_no": 1,
+          "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "350tr/m2 - Số phòng theo QH – Mr.",
+          "source_chunk": "456",
+          "record_id": "M05-0020",
+          "report_no": 1,
+          "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "110tr/m2 - Số phòng:",
+          "source_chunk": "456",
+          "record_id": "M05-0020",
+          "report_no": 1,
+          "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
+          "part": 5
         }
       ],
       "reports": [
@@ -28510,6 +32509,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Cái số 10 HV đà lạt nếu theo giá đất cũ thì... by Unknown User",
+              "source_chunk": "456"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "112 phòng - Giả định tỷ lệ tăng giá thuê đất hằng nằm cho chu kỳ 5 năm:",
+              "source_chunk": "456"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "25 Trần Phú PA1 - Đất cơ sản sản xuất kinh doanh, Đóng tiền hằng năm - Tiền thuê đất năm 2024 – 707tr/m2 – Kết thúc chu kỳ thuê 5 năm - Giả định tỷ lệ tăng giá thuê đất hằng nằm cho chu kỳ 5 năm:",
+              "source_chunk": "456"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Mỗi Đà Lạt thui by Unknown User --- chunk --- Unknown User 4/8/2025 7:37 PM Hana Anh xin trao đổi thêm với chỗ chị Hana về giữa chỗ tỷ lệ GOP về tới EBITDA đối với các dự án hiện tại mình đang vận hành để xem thử mình có chi phí nào khác cần bổ sung không à.",
+              "source_chunk": "456"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "350tr/m2 - Số phòng theo QH – Mr.",
+              "source_chunk": "456"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "110tr/m2 - Số phòng:",
               "source_chunk": "456"
             }
           ],
@@ -28703,6 +32727,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Nhóm dự án NOXH Đồng Nai / Nhơn Trạch / Biên Hòa",
           "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Ủa mình mua lại vậy đc tính vào chi phí ko Vì NOXH là hình thức cũng đặc thù và dự án thông qua đấu thầu nên khả năng cao chỉ thực hiện được chuyển nhượng thông qua hình thức mua cổ phần nên chi phí sẽ không được tính à P.Đầu tư gởi thêm hồ sơ mời quan tâm của 2 ... by Khoa L - INVT, has attachments.",
+          "source_chunk": "373",
+          "record_id": "M04-0019",
+          "report_no": 1,
+          "project_name": "Nhóm dự án NOXH Đồng Nai / Nhơn Trạch / Biên Hòa",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "20,8tr/m2 - Suất XD(chưa VAT):",
+          "source_chunk": "373",
+          "record_id": "M04-0019",
+          "report_no": 1,
+          "project_name": "Nhóm dự án NOXH Đồng Nai / Nhơn Trạch / Biên Hòa",
+          "part": 4
         }
       ],
       "reports": [
@@ -28819,6 +32861,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "* Chi tiết vị trí và thông tin hiệu quả 2 khu đất trong file đính kèm",
               "source_chunk": "373"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Ủa mình mua lại vậy đc tính vào chi phí ko Vì NOXH là hình thức cũng đặc thù và dự án thông qua đấu thầu nên khả năng cao chỉ thực hiện được chuyển nhượng thông qua hình thức mua cổ phần nên chi phí sẽ không được tính à P.Đầu tư gởi thêm hồ sơ mời quan tâm của 2 ... by Khoa L - INVT, has attachments.",
+              "source_chunk": "373"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "20,8tr/m2 - Suất XD(chưa VAT):",
+              "source_chunk": "373"
             }
           ],
           "excerpt": "NOXH Đồng Nai/Nhơn Trạch... 2,1ha và 3,7ha Phước An... trước đây thống nhất nghiên cứu dự án Biên Hòa hơn Nhơn Trạch.",
@@ -28913,6 +32965,60 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
           "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Thời hạn nộp hồ sơ đăng ký trước 9 giờ ngày 28/04/2025 Công tác đánh giá hiệu quả thực hiện dự án Căn cứ vào qđ 788/QĐ-UBND, Phòng Đầu tư tổng hợp thông tin và gửi yêu cầu hỗ trợ đến các Phòng chuyên môn triển khai phục vụ tính FS sơ bộ, cụ thể:",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "+ Suất vốn đầu tư do BXD cung cấp cho diện tích kinh doanh NOXHđể xác định giá bán NOXH + Suất vốn đầu tư thực tế cho diện tích kinh doanh NOXHđể tính hiệu quả thực tế + Suất vốn đầu tư thực tế cho diện tích kinh doanh NOTMchiếm 20% tổng diện tích sàn thương phẩm để tính hiệu quả thực tế",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Điều kiện năng lực tài chính Nhà đầu tư phải đáp ứng yêu cầu về vốn chủ sở hữu tối thiểu là 129,759 tỷ đồng Kinh nghiệm thực hiện dự án - NĐT phải có kinh nghiệm đầu tư, xâydựng công trình ít nhất 1 dự án NOXH, nhà ở tái định cư, nhà cho người thu nhập thấp, công trình dân dụng:",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "+Trong vòng 7,5 năm +Quy mô tương tự công trình cấp 1, cao tối thiểu 18 tầng +Tổng vốn đầu tư tối thiểu 324 tỷ - 389 tỷ - NĐT phải có kinh nghiệm vận hành, kinh doanh ít nhất 1 dự án NOXH, nhà ở tái định cư, nhà cho người thu nhập thấp, công trình dân dụng:",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "+ Trong vòng 7,5 năm + Quy mô tương tự công trình cấp 1, cao tối thiểu 18 tầng (hoặc có 2 công trình cấp thấp hơn liền kề cấp công trình dự án đang xét) + Quy mô công suất tối thiểu 324 tỷ - 389 tỷ",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "520 căn - Tổng mức đầu tư:",
+          "source_chunk": "427",
+          "record_id": "M05-0011",
+          "report_no": 1,
+          "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
+          "part": 5
         }
       ],
       "reports": [
@@ -28975,6 +33081,36 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Tổng mức đầu tư: 723 tỷ",
               "source_chunk": "427"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Thời hạn nộp hồ sơ đăng ký trước 9 giờ ngày 28/04/2025 Công tác đánh giá hiệu quả thực hiện dự án Căn cứ vào qđ 788/QĐ-UBND, Phòng Đầu tư tổng hợp thông tin và gửi yêu cầu hỗ trợ đến các Phòng chuyên môn triển khai phục vụ tính FS sơ bộ, cụ thể:",
+              "source_chunk": "427"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "+ Suất vốn đầu tư do BXD cung cấp cho diện tích kinh doanh NOXHđể xác định giá bán NOXH + Suất vốn đầu tư thực tế cho diện tích kinh doanh NOXHđể tính hiệu quả thực tế + Suất vốn đầu tư thực tế cho diện tích kinh doanh NOTMchiếm 20% tổng diện tích sàn thương phẩm để tính hiệu quả thực tế",
+              "source_chunk": "427"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Điều kiện năng lực tài chính Nhà đầu tư phải đáp ứng yêu cầu về vốn chủ sở hữu tối thiểu là 129,759 tỷ đồng Kinh nghiệm thực hiện dự án - NĐT phải có kinh nghiệm đầu tư, xâydựng công trình ít nhất 1 dự án NOXH, nhà ở tái định cư, nhà cho người thu nhập thấp, công trình dân dụng:",
+              "source_chunk": "427"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "+Trong vòng 7,5 năm +Quy mô tương tự công trình cấp 1, cao tối thiểu 18 tầng +Tổng vốn đầu tư tối thiểu 324 tỷ - 389 tỷ - NĐT phải có kinh nghiệm vận hành, kinh doanh ít nhất 1 dự án NOXH, nhà ở tái định cư, nhà cho người thu nhập thấp, công trình dân dụng:",
+              "source_chunk": "427"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "+ Trong vòng 7,5 năm + Quy mô tương tự công trình cấp 1, cao tối thiểu 18 tầng (hoặc có 2 công trình cấp thấp hơn liền kề cấp công trình dự án đang xét) + Quy mô công suất tối thiểu 324 tỷ - 389 tỷ",
+              "source_chunk": "427"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "520 căn - Tổng mức đầu tư:",
+              "source_chunk": "427"
             }
           ],
           "excerpt": "6 NOXH Đồng Nai: Biên Hòa/Trảng Bom/Nhơn Trạch, quy mô 520-1.800 căn; cần liên danh do thiếu năng lực NOXH.",
@@ -28999,7 +33135,17 @@ window.MANUAL_MERGED_REPORTS_DB = {
       "decisions": [
         "project_deal_note"
       ],
-      "financial_items": [],
+      "financial_items": [
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Huy M - IM 5/23/2025 5:36 PM Edited Translate Anh có hỏi A Trường - Thiên Lộc về phương án đầu tư thì ảnh có nói sẽ trao đổi cái với A Tâm sau khi bên mình tính toán hiệu quả xong.",
+          "source_chunk": "411",
+          "record_id": "M05-0004",
+          "report_no": 1,
+          "project_name": "Dự án NOXH Thiên Lộc / đối tác A Trường - A Tâm",
+          "part": 5
+        }
+      ],
       "reports": [
         {
           "report_no": 1,
@@ -29018,7 +33164,13 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "scale": "Chưa nêu quy mô trong excerpt",
           "legal_planning": "Thiên Lộc sẽ làm pháp lý; Thiên Lộc trước đây chưa làm NOXH, chỉ triển khai NOTM ở Thái Nguyên",
           "business_notes": "Phương án hợp tác: bên mình bỏ vốn và triển khai dự án; Thiên Lộc xử lý pháp lý; chờ tính toán hiệu quả xong để trao đổi A Tâm",
-          "financial_items": [],
+          "financial_items": [
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Huy M - IM 5/23/2025 5:36 PM Edited Translate Anh có hỏi A Trường - Thiên Lộc về phương án đầu tư thì ảnh có nói sẽ trao đổi cái với A Tâm sau khi bên mình tính toán hiệu quả xong.",
+              "source_chunk": "411"
+            }
+          ],
           "excerpt": "Thiên Lộc làm pháp lý, bên mình bỏ vốn triển khai; Thiên Lộc chưa làm NOXH.",
           "full_excerpt": "Huy M - IM\n5/23/2025 5:36 PM\nEdited\nTranslate\n\nAnh có hỏi A Trường - Thiên Lộc về phương án đầu tư thì ảnh có nói sẽ trao đổi cái với A Tâm sau khi bên mình tính toán hiệu quả xong.\n\nBên Thiên Lộc sẽ làm pháp lý. Bên mình sẽ bỏ vốn và triển khai dự án.\n\nThiên Lộc trước đây cũng chưa làm NOXH. Họ chỉ triển khai NOTM ở Thái Nguyên à\n\nOk by Unknown User"
         }
@@ -29070,6 +33222,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Đồng Nai - 3 khu đất đấu giá / Núi Chứa Chan và vị trí map cao tầng",
           "part": 4
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Mr Mike1 -CEO 7/31/2025 7:58 AM https://m.cafef.vn/dong-nai-tinh-thu-gan-7000-ty-tu-3-khu-dat-dau-gia-188250731071055431.chn Đồng Nai tính thu gần 7.000 tỷ từ 3 khu đất đấu giá Tỉnh Đồng Nai sẽ đưa ra đấu giá khu đất làm dự án du lịch sinh thái nghỉ dưỡng giải trí núi Chứa Chan với giá khoảng 1.165 tỷ đồng, dự án trung tâm thương mại dịch vụ và dân cư the…",
+          "source_chunk": "335",
+          "record_id": "M04-0009",
+          "report_no": 1,
+          "project_name": "Đồng Nai - 3 khu đất đấu giá / Núi Chứa Chan và vị trí map cao tầng",
+          "part": 4
         }
       ],
       "reports": [
@@ -29107,6 +33268,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tỉnh Đồng Nai sẽ đưa ra đấu giá khu đất làm dự án du lịch sinh thái nghỉ dưỡng giải trí núi Chứa Chan với giá khoảng 1.165 tỷ đồng, dự án trung tâm thương mại dịch vụ và dân cư theo quy hoạch hơn 7...",
               "source_chunk": "335"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Mr Mike1 -CEO 7/31/2025 7:58 AM https://m.cafef.vn/dong-nai-tinh-thu-gan-7000-ty-tu-3-khu-dat-dau-gia-188250731071055431.chn Đồng Nai tính thu gần 7.000 tỷ từ 3 khu đất đấu giá Tỉnh Đồng Nai sẽ đưa ra đấu giá khu đất làm dự án du lịch sinh thái nghỉ dưỡng giải trí núi Chứa Chan với giá khoảng 1.165 tỷ đồng, dự án trung tâm thương mại dịch vụ và dân cư the…",
+              "source_chunk": "335"
             }
           ],
           "excerpt": "Đồng Nai tính thu gần 7.000 tỷ từ 3 khu đất đấu giá... Núi Chứa Chan giá khoảng 1.165 tỷ... check QH mới khu này.",
@@ -29135,6 +33301,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         "project_record"
       ],
       "financial_items": [
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "P.Đầu tư gửi anh Mr Mike1 -CEO Bảng tính toán hiệu quả dự án Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn: 1/ Các giả định trong bảng tính: + Doanh thu và chi phí hoạt động được căn cứ theo phương án kinh doanh của Mr. Cường – GM 📷 + …",
+          "source_chunk": "640",
+          "record_id": "M07-0009",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, 186/14 Hùng Vương",
+          "part": 7
+        },
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Đơn giá đất tại dự án giảm khoảng 20% - 30% so với năm 2022.",
@@ -29233,15 +33408,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khách sạn Đông Á Premier, 186/14 Hùng Vương",
           "part": 7
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Suất vốn đất trung bình của căn hộ : 6,7tr/m2",
-          "source_chunk": "640",
-          "record_id": "M07-0009",
-          "report_no": 1,
-          "project_name": "Khách sạn Đông Á Premier, 186/14 Hùng Vương",
-          "part": 7
         }
       ],
       "reports": [
@@ -29266,6 +33432,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "legal_planning": "Cần rà hồ sơ đất khách sạn, thời hạn, giấy phép xây dựng/vận hành",
           "business_notes": "Lead khách sạn cần bổ sung hồ sơ trước FS",
           "financial_items": [
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "P.Đầu tư gửi anh Mr Mike1 -CEO Bảng tính toán hiệu quả dự án Holiday Beach tại Đà Nẵng đánh giá nhanh phương án vận hành khách sạn tạm thời trong thời gian ngắn: 1/ Các giả định trong bảng tính: + Doanh thu và chi phí hoạt động được căn cứ theo phương án kinh doanh của Mr. Cường – GM 📷 + …",
+              "source_chunk": "640"
+            },
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "+ Đơn giá đất tại dự án giảm khoảng 20% - 30% so với năm 2022.",
@@ -29319,11 +33490,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Suất vốn xây dựng trung bình của căn hộ : 22,5tr/m2",
-              "source_chunk": "640"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Suất vốn đất trung bình của căn hộ : 6,7tr/m2",
               "source_chunk": "640"
             }
           ],
@@ -29417,10 +33583,54 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
-          "label": "Quy mô/thông số bổ sung",
-          "value": "BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Admin 01 3/25/2026 2:20 PM Ủa bữa a David có gửi bài toán kinh doanh cho Casa rồi, mình có áp lại ra hiệu quả chưa BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
+          "source_chunk": "154",
+          "record_id": "M02-0022",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN GIẢ ĐỊNH Giả định chung cho cả 2 phương án (Dựa trên file CASA của anh Cường) a) Giá trị đất:",
+          "source_chunk": "154",
+          "record_id": "M02-0022",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "120 tỷ (Tương đương 166tr/m2 đất) Thoái vốn đất:",
+          "source_chunk": "154",
+          "record_id": "M02-0022",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "643 tỷ (tương đương 893 Tr.vnđ/m2 đất) b) Tổng Mức Đầu Tư Dự Án:",
+          "source_chunk": "154",
+          "record_id": "M02-0022",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+          "part": 2
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "120 tỷ (Tương đương 166tr/m2 đất) Chi phí xây dựng ALL in :",
+          "source_chunk": "154",
+          "record_id": "M02-0022",
+          "report_no": 1,
+          "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Admin 01 3/25/2026 2:20 PM Ủa bữa a David có gửi bài toán kinh doanh cho Casa rồi, mình có áp lại ra hiệu quả chưa BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
           "source_chunk": "210",
-          "review_status": "parallel_review_accepted",
           "record_id": "M03-0004",
           "report_no": 2,
           "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
@@ -29480,6 +33690,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "So sánh hiệu quả 2 phương án:",
               "source_chunk": "154"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Admin 01 3/25/2026 2:20 PM Ủa bữa a David có gửi bài toán kinh doanh cho Casa rồi, mình có áp lại ra hiệu quả chưa BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
+              "source_chunk": "154"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "ĐÁNH GIÁ HIỆU QUẢ DỰ ÁN GIẢ ĐỊNH Giả định chung cho cả 2 phương án (Dựa trên file CASA của anh Cường) a) Giá trị đất:",
+              "source_chunk": "154"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "120 tỷ (Tương đương 166tr/m2 đất) Thoái vốn đất:",
+              "source_chunk": "154"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "643 tỷ (tương đương 893 Tr.vnđ/m2 đất) b) Tổng Mức Đầu Tư Dự Án:",
+              "source_chunk": "154"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "120 tỷ (Tương đương 166tr/m2 đất) Chi phí xây dựng ALL in :",
+              "source_chunk": "154"
             }
           ],
           "excerpt": "khách sạn Đông Á Premier tại Phường Lộc Thọ... hẻm nhỏ và cụt 5m... cách bãi biển 320m... 26 tầng nổi, 2 tầng hầm, 242 phòng.",
@@ -29504,10 +33739,9 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "business_notes": "Duplicate/update từ Part 2; Admin hỏi áp bài toán Casa/David Cường chưa",
           "financial_items": [
             {
-              "label": "Quy mô/thông số bổ sung",
-              "value": "BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
-              "source_chunk": "210",
-              "review_status": "parallel_review_accepted"
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Admin 01 3/25/2026 2:20 PM Ủa bữa a David có gửi bài toán kinh doanh cho Casa rồi, mình có áp lại ra hiệu quả chưa BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau:",
+              "source_chunk": "210"
             }
           ],
           "excerpt": "khách sạn Đông Á Premier tại Phường Lộc Thọ... hẻm nhỏ và cụt 5m... cách biển 320m...",
@@ -29561,6 +33795,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "5 tòa Khối tháp chung cư trung cấp có 1622 căn, DTKD là 88422m2 sàn, giá bán trung bình 36.5tr/m2 sàn thông thủy có VAT tại năm 2024 (tham khảo giá bán hiện tại các dự án Opal Skyline 29-35.8tr/m2 sàn, Habitat 34 - 40tr/m2 sàn, Happy One Central 38-48tr/m2 sàn)",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "113 căn shophouse khối đế chung cư bao gồm 100 căn để bán có giá bán 43.8tr/m2 sàn thông thủy có VAT tại năm 2024 và 13 căn để cho thuê có giá thuê khoán tạm tính $6/m2/tháng",
           "source_chunk": "910",
           "record_id": "M10-0001",
@@ -29580,6 +33823,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Tổng mức đầu tư là 3452.9 tỷ đồng, tổng doanh thu là 5959.2 tỷ đồng => Lợi nhuận trước thuế cho cả vòng đời dự án là 3055.3 tỷ đồng => IRR chủ đầu tư là 25%",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tiền sử dụng đất tạm tính là 261 tỷ tính theo phương pháp thặng dư gấp 2.4 lần bảng giá đất nhà nước do có hệ số sử dựng dất toàn khu 3.8 lần là tương đối thấp (HSSD đất thấp tầng là 3.1 lần và cao tầng là 4.76 lần), cần rà soát lại với các cơ quan chức năng có liên quản để tính ra được chi phí tiền sử dụng đất cụ thể",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Trieu Nguyen-PTDT 9/7/2022 2:19 PM Edited KĐT đang phối hợp với team Chi Phí đi khảo sát Dự án Đông Trung tại Thuận An, Bình Dương vào ngày mai (08/09/2022) Anh Tuan Tran-CEO đồng ý duyệt để em sắp xếp 2 team đi khảo sát và tiến hành tính toán phương án phát triển cho dự án này nhé Ok e by Unknown User --- chunk --- Trieu Nguyen-PTDT 11/2/2022 6:28 PM KĐT…",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "80m2 đất/căn, có giá bán 65tr/m2 đất tại thời điểm cuối năm 2025 (tham khảo giá bán hiện tại các dự án Lavela 45tr/m2, KDC Việt Sing 40-60tr/m2, Eco Xuân 50-55tr/m2, An Phát 78tr/m2) - 5 tòa Khối tháp chung cư trung cấp có 1622 căn, DTKD là 88422m2 sàn, giá bán trung bình 36.5tr/m2 sàn thông thủy có VAT tại năm 2024 (tham khảo giá bán hiện tại các dự án O…",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Xây dựng và bán hàng Tổng mức đầu tư là 3452.9 tỷ đồng, tổng doanh thu là 5959.2 tỷ đồng => Lợi nhuận trước thuế cho cả vòng đời dự án là 3055.3 tỷ đồng => IRR chủ đầu tư là 25% Kết luận:",
+          "source_chunk": "910",
+          "record_id": "M10-0001",
+          "report_no": 1,
+          "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tiền sử dụng đất tạm tính là 261 tỷ tính theo phương pháp thặng dư gấp 2.4 lần bảng giá đất nhà nước do có hệ số sử dựng dất toàn khu 3.8 lần là tương đối thấp (HSSD đất thấp tầng là 3.1 lần và cao tầng là 4.76 lần), cần rà soát lại với các cơ quan chức năng có liên quản để tính ra được chi phí tiền sử dụng đất cụ thể - Quy mô 4.6ha đã đền bù cho dân tron…",
           "source_chunk": "910",
           "record_id": "M10-0001",
           "report_no": 1,
@@ -29696,6 +33984,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
+          "value": "=> Đối với Trường hợp 3.950 dân, tỷ suất sinh lợi giảm do tăng tiền sử dụng đất tuy nhiên PA này vẫn đảm bảo tính hiệu quả kinh tế. Trong khi PA 3.021 không có hiệu quả. Như vậy một lần nữa, vấn đề dân số là yếu tố quan trọng đảm bảo sinh lời của dự án Đông Trung.",
+          "source_chunk": "305",
+          "record_id": "M04-0002",
+          "report_no": 2,
+          "project_name": "Dự án Đông Trung",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
           "value": "P.ĐT báo cáo CEO Mr Mike1 -CEO về hiệu quả dự án Đông Trung theo phương án phát triển NOTM",
           "source_chunk": "305",
           "record_id": "M04-0002",
@@ -29731,17 +34028,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Chi phí bán hàng: 17%/doanh thu",
-          "source_chunk": "305",
-          "record_id": "M04-0002",
-          "report_no": 2,
-          "project_name": "Dự án Đông Trung",
-          "part": 4
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "2.2 Tiền sử dụng đất",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "* Giá bán được tham khảo từ dự án The FELIX của C-Holdings. Hiện dự án The FELIX có giá bình quân 38tr.m2 (tim tường chưa VAT) có quy mô là 0.9ha. Dự án Đông Trung của chúng ta có quy mô lớn hơn, 9.3ha, không gian cảnh quan rộng đủ để xây dựng nhiều chủ đề, điểm nhấn, giúp tăng giá bán. Vi vậy, P.ĐT đang set mức giá bình quân từ 40 tr.m2",
           "source_chunk": "305",
           "record_id": "M04-0002",
           "report_no": 2,
@@ -29781,6 +34069,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "5 tòa Khối tháp chung cư trung cấp có 1622 căn, DTKD là 88422m2 sàn, giá bán trung bình 36.5tr/m2 sàn thông thủy có VAT tại năm 2024 (tham khảo giá bán hiện tại các dự án Opal Skyline 29-35.8tr/m2 sàn, Habitat 34 - 40tr/m2 sàn, Happy One Central 38-48tr/m2 sàn)",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "113 căn shophouse khối đế chung cư bao gồm 100 căn để bán có giá bán 43.8tr/m2 sàn thông thủy có VAT tại năm 2024 và 13 căn để cho thuê có giá thuê khoán tạm tính $6/m2/tháng",
               "source_chunk": "910"
             },
@@ -29792,6 +34085,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Tổng mức đầu tư là 3452.9 tỷ đồng, tổng doanh thu là 5959.2 tỷ đồng => Lợi nhuận trước thuế cho cả vòng đời dự án là 3055.3 tỷ đồng => IRR chủ đầu tư là 25%",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tiền sử dụng đất tạm tính là 261 tỷ tính theo phương pháp thặng dư gấp 2.4 lần bảng giá đất nhà nước do có hệ số sử dựng dất toàn khu 3.8 lần là tương đối thấp (HSSD đất thấp tầng là 3.1 lần và cao tầng là 4.76 lần), cần rà soát lại với các cơ quan chức năng có liên quản để tính ra được chi phí tiền sử dụng đất cụ thể",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Trieu Nguyen-PTDT 9/7/2022 2:19 PM Edited KĐT đang phối hợp với team Chi Phí đi khảo sát Dự án Đông Trung tại Thuận An, Bình Dương vào ngày mai (08/09/2022) Anh Tuan Tran-CEO đồng ý duyệt để em sắp xếp 2 team đi khảo sát và tiến hành tính toán phương án phát triển cho dự án này nhé Ok e by Unknown User --- chunk --- Trieu Nguyen-PTDT 11/2/2022 6:28 PM KĐT…",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "80m2 đất/căn, có giá bán 65tr/m2 đất tại thời điểm cuối năm 2025 (tham khảo giá bán hiện tại các dự án Lavela 45tr/m2, KDC Việt Sing 40-60tr/m2, Eco Xuân 50-55tr/m2, An Phát 78tr/m2) - 5 tòa Khối tháp chung cư trung cấp có 1622 căn, DTKD là 88422m2 sàn, giá bán trung bình 36.5tr/m2 sàn thông thủy có VAT tại năm 2024 (tham khảo giá bán hiện tại các dự án O…",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Xây dựng và bán hàng Tổng mức đầu tư là 3452.9 tỷ đồng, tổng doanh thu là 5959.2 tỷ đồng => Lợi nhuận trước thuế cho cả vòng đời dự án là 3055.3 tỷ đồng => IRR chủ đầu tư là 25% Kết luận:",
+              "source_chunk": "910"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Tiền sử dụng đất tạm tính là 261 tỷ tính theo phương pháp thặng dư gấp 2.4 lần bảng giá đất nhà nước do có hệ số sử dựng dất toàn khu 3.8 lần là tương đối thấp (HSSD đất thấp tầng là 3.1 lần và cao tầng là 4.76 lần), cần rà soát lại với các cơ quan chức năng có liên quản để tính ra được chi phí tiền sử dụng đất cụ thể - Quy mô 4.6ha đã đền bù cho dân tron…",
               "source_chunk": "910"
             }
           ],
@@ -29882,6 +34200,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
+              "value": "=> Đối với Trường hợp 3.950 dân, tỷ suất sinh lợi giảm do tăng tiền sử dụng đất tuy nhiên PA này vẫn đảm bảo tính hiệu quả kinh tế. Trong khi PA 3.021 không có hiệu quả. Như vậy một lần nữa, vấn đề dân số là yếu tố quan trọng đảm bảo sinh lời của dự án Đông Trung.",
+              "source_chunk": "305"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
               "value": "P.ĐT báo cáo CEO Mr Mike1 -CEO về hiệu quả dự án Đông Trung theo phương án phát triển NOTM",
               "source_chunk": "305"
             },
@@ -29901,13 +34224,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "305"
             },
             {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Chi phí bán hàng: 17%/doanh thu",
-              "source_chunk": "305"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "2.2 Tiền sử dụng đất",
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "* Giá bán được tham khảo từ dự án The FELIX của C-Holdings. Hiện dự án The FELIX có giá bình quân 38tr.m2 (tim tường chưa VAT) có quy mô là 0.9ha. Dự án Đông Trung của chúng ta có quy mô lớn hơn, 9.3ha, không gian cảnh quan rộng đủ để xây dựng nhiều chủ đề, điểm nhấn, giúp tăng giá bán. Vi vậy, P.ĐT đang set mức giá bình quân từ 40 tr.m2",
               "source_chunk": "305"
             }
           ],
@@ -29988,6 +34306,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Parklane Quận 9",
           "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "RD vừa cập nhật lại giá có thương hiệu sau khi khảo sát thực tế Mai phòng sẽ báo lại hiệu quả ạ Friday K.ĐT gửii anh Admin 01 báo cáo về dự án... by Thao L - INVT, has an attachment.",
+          "source_chunk": "16",
+          "record_id": "M01-0008",
+          "report_no": 1,
+          "project_name": "Parklane Quận 9",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Doanh thu:Bán hàng 2028–2029 c.",
+          "source_chunk": "16",
+          "record_id": "M01-0008",
+          "report_no": 1,
+          "project_name": "Parklane Quận 9",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Kết quả hiệu quả tài chính => Dự án chỉ đạt hiệu quả tạm ổn khi giá bán căn hộ đạt ≥ 99 tr/m² (theo đề xuất Gamuda)",
+          "source_chunk": "16",
+          "record_id": "M01-0008",
+          "report_no": 1,
+          "project_name": "Parklane Quận 9",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hướng tiếp cận thông qua hệ thống đường nội nhỏ, mặc dù đáp ứng nhu cầu lưu thông nhưng không tạo được hình ảnh của một dự án cao cấp. => Đây là bất lợi trong công tác bán hàng và là rủi ro đối với giả định giá bán 99 triệu/m² mà Gamuda đề xuất. c.",
+          "source_chunk": "16",
+          "record_id": "M01-0008",
+          "report_no": 1,
+          "project_name": "Parklane Quận 9",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Ngay cả khi áp dụng mức giá bán theo đề xuất của Gamuda, hiệu quả đầu tư chỉ ở mức tạm ổn (IRR:13%), chưa đủ hấp dẫn so với các rủi ro pháp lý, quy hoạch và hạ tầng hiện hữu. => Việc quyết định đầu tư phụ thuộc chủ yếu vào khả năng thị trường chấp nhận mức giá bán khoảng 99 triệu/m² và tiến độ xử lý các rủi ro pháp lý, quy hoạch.",
+          "source_chunk": "16",
+          "record_id": "M01-0008",
+          "report_no": 1,
+          "project_name": "Parklane Quận 9",
+          "part": 1
         }
       ],
       "reports": [
@@ -30038,6 +34401,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "=> Việc quyết định đầu tư phụ thuộc chủ yếu vào khả năng thị trường chấp nhận mức giá bán khoảng 99 triệu/m² và tiến độ xử lý các rủi ro pháp lý, quy hoạch.",
+              "source_chunk": "16"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "RD vừa cập nhật lại giá có thương hiệu sau khi khảo sát thực tế Mai phòng sẽ báo lại hiệu quả ạ Friday K.ĐT gửii anh Admin 01 báo cáo về dự án... by Thao L - INVT, has an attachment.",
+              "source_chunk": "16"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Doanh thu:Bán hàng 2028–2029 c.",
+              "source_chunk": "16"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Kết quả hiệu quả tài chính => Dự án chỉ đạt hiệu quả tạm ổn khi giá bán căn hộ đạt ≥ 99 tr/m² (theo đề xuất Gamuda)",
+              "source_chunk": "16"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hướng tiếp cận thông qua hệ thống đường nội nhỏ, mặc dù đáp ứng nhu cầu lưu thông nhưng không tạo được hình ảnh của một dự án cao cấp. => Đây là bất lợi trong công tác bán hàng và là rủi ro đối với giả định giá bán 99 triệu/m² mà Gamuda đề xuất. c.",
+              "source_chunk": "16"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Ngay cả khi áp dụng mức giá bán theo đề xuất của Gamuda, hiệu quả đầu tư chỉ ở mức tạm ổn (IRR:13%), chưa đủ hấp dẫn so với các rủi ro pháp lý, quy hoạch và hạ tầng hiện hữu. => Việc quyết định đầu tư phụ thuộc chủ yếu vào khả năng thị trường chấp nhận mức giá bán khoảng 99 triệu/m² và tiến độ xử lý các rủi ro pháp lý, quy hoạch.",
               "source_chunk": "16"
             }
           ],
@@ -30270,6 +34658,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "Tiền sử dụng đất (tính theo phương pháp thặng dự) cao, chủ yếu là do doanh thu phát triển dự án tăng, trong khi đó các yếu tố chi phí phát triển được cố định theo QĐ 37. Doanh thu được hình thành từ viêc bán đất và căn hộ; Giá bán này nhà nước sẽ căn cứ theo giá bán của khu vực",
+          "source_chunk": "629",
+          "record_id": "M07-0007",
+          "report_no": 1,
+          "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "+ Doanh thu bán đất, dự án tạm tính theo giá bán khu dân cư Bình Điền bên cạnh. Đơn giá bán tạm tính khoảng 60tr/m² (chưa VAT)",
           "source_chunk": "629",
           "record_id": "M07-0007",
@@ -30289,6 +34686,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "> Vì vậy, Tiền sử dụng đất tạm tính khoảng 300 tỷ ạ.",
+          "source_chunk": "629",
+          "record_id": "M07-0007",
+          "report_no": 1,
+          "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Huy M - IM 12/6/2024 8:05 AM Translate Dự án tuy đạt hiệu quả đầu tư về mặt tính toán nhưng sẽ bị vướng mắc về Pháp lý đất (đất SKC bị hết hạn, không gia hạn được do không phù hợp quy hoạch=> bị thu hồi), dự án chưa được phê duyệt chủ chương đầu tư, Công ty Việt An chưa có QSDĐ hợp pháp nên --- chunk --- Thao L - INVT 10/14/2024 3:02 PM Edited Translate K…",
+          "source_chunk": "629",
+          "record_id": "M07-0007",
+          "report_no": 1,
+          "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Thử cho QS tính em by Unknown User --- chunk --- Mr Mike1 -CEO 10/14/2024 1:26 PM Translate - Tiền sử dụng đất (tạm tính):",
+          "source_chunk": "629",
+          "record_id": "M07-0007",
+          "report_no": 1,
+          "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "120 tỷ (chưa khấu trừ đất hiện trang vì chưa cung cấp hồ sơ) => Giá trung bình 3,3tr/m hã Begin quote, Mr Mike1 -CEO , 10/14/2024 1:2... by Thao L - INVT --- chunk --- Mr Mike1 -CEO 10/14/2024 1:27 PM Translate - Chi phí hạ tầng:",
+          "source_chunk": "629",
+          "record_id": "M07-0007",
+          "report_no": 1,
+          "project_name": "Phú Gia Khiêm / PGK phương án 900 tỷ",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "124 tỷ ~ 1.5tr/m2 (chưa bao gồm dự phòng 10%) => Tính trên diện tích 3,9ha hay sao Tính trên toàn khu 7.5ha ạ by Thao L - INVT --- chunk --- Mr Mike1 -CEO 10/14/2024 1:44 PM Translate Hạ tầng mà tính cả khu 1,5tr/m hơi cao đó vì 3,9ha thương phẩm mình đâu có làm gì by Unknown User --- chunk --- Sinh Nguyen-Dau Tu 10/7/2024 11:25 AM Edited Translate Dự án…",
           "source_chunk": "629",
           "record_id": "M07-0007",
           "report_no": 1,
@@ -30639,6 +35072,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Chi phí tiền sử dụng đất thấp nhất: 712 tỷ (Đơn giá đóng TSDĐ của PGK gấp 4 lần đơn giá Nhà nước đường Bình Chuẩn 67 = tỷ lệ giữa đơn giá theo văn bản Phê duyệt đơn giá đất để tính TSDĐ của dự án A&K vào Q1.2025 và đơn giá nhà nước đoạn đường tọa lạc của dự án A&K = 4 lần) – Tạm tính vào thời điểm 2025",
+          "source_chunk": "266",
+          "record_id": "M03-0026",
+          "report_no": 3,
+          "project_name": "Phú Gia Khiêm - 02 phương án căn hộ/shophouse/officetel",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "+ Suất xây dựng căn hộ allin (VAT): 13tr/m2 sàn",
           "source_chunk": "266",
           "record_id": "M03-0026",
@@ -30720,15 +35162,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
-          "value": "4. HIỆU QUẢ TÀI CHÍNH",
-          "source_chunk": "266",
-          "record_id": "M03-0026",
-          "report_no": 3,
-          "project_name": "Phú Gia Khiêm - 02 phương án căn hộ/shophouse/officetel",
-          "part": 3
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
           "value": "Với Quy định hiện tại về Tiêu chuẩn diện tích sàn thông thủy/người = 25m²/người, thì việc giảm chỉ tiêu dân số sẽ làm giảm Hiệu quả kinh doanh.",
           "source_chunk": "223",
           "record_id": "M03-0008",
@@ -30738,7 +35171,34 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
+          "value": "Tuy nhiên, Theo cách tính dân số căn cứ trên dự thảo xác định dân số TP.HCM cho căn hộ: Tiêu chuẩn diện tích sàn thông thủy/người = 32m²/người thì: Chỉ tiêu dân số dự kiến điều chỉnh (3.673 dân) đáp ứng quy định. Và đồng thời, P.QH và P.PLDA đảm bảo không làm thay đổi các chỉ tiêu còn lại của dự án thì sẽ Không ảnh hưởng Hiệu quả kinh doanh.",
+          "source_chunk": "223",
+          "record_id": "M03-0008",
+          "report_no": 4,
+          "project_name": "Phú Gia Khiêm - điều chỉnh chỉ tiêu dân số",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "+ Nếu chỉ giảm dân số về 3.673 dân và P.QH và P.PLDA đảm bảo toàn bộ các chỉ tiêu khác không thay đổi (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án không thay đổi.",
+          "source_chunk": "223",
+          "record_id": "M03-0008",
+          "report_no": 4,
+          "project_name": "Phú Gia Khiêm - điều chỉnh chỉ tiêu dân số",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
           "value": "+ Nếu giảm dân số về 3.673 dân và làm giảm các chỉ tiêu khác (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án sẽ giảm.",
+          "source_chunk": "223",
+          "record_id": "M03-0008",
+          "report_no": 4,
+          "project_name": "Phú Gia Khiêm - điều chỉnh chỉ tiêu dân số",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "473 dân (không thay đổi) - Với Quy định hiện tại về Tiêu chuẩn diện tích sàn thông thủy/người = 25m²/người, thì việc giảm chỉ tiêu dân số sẽ làm giảm Hiệu quả kinh doanh.",
           "source_chunk": "223",
           "record_id": "M03-0008",
           "report_no": 4,
@@ -30768,16 +35228,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Quy mô/thông số bổ sung",
           "value": "+ Dân số officetel: 473 dân (không thay đổi)",
-          "source_chunk": "228",
-          "review_status": "parallel_review_accepted",
-          "record_id": "M03-0008",
-          "report_no": 4,
-          "project_name": "Phú Gia Khiêm - điều chỉnh chỉ tiêu dân số",
-          "part": 3
-        },
-        {
-          "label": "Hiệu quả bổ sung",
-          "value": "+ Nếu chỉ giảm dân số về 3.673 dân và P.QH và P.PLDA đảm bảo toàn bộ các chỉ tiêu khác không thay đổi (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án không thay đổi.",
           "source_chunk": "228",
           "review_status": "parallel_review_accepted",
           "record_id": "M03-0008",
@@ -30837,6 +35287,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "Tiền sử dụng đất (tính theo phương pháp thặng dự) cao, chủ yếu là do doanh thu phát triển dự án tăng, trong khi đó các yếu tố chi phí phát triển được cố định theo QĐ 37. Doanh thu được hình thành từ viêc bán đất và căn hộ; Giá bán này nhà nước sẽ căn cứ theo giá bán của khu vực",
+              "source_chunk": "629"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "+ Doanh thu bán đất, dự án tạm tính theo giá bán khu dân cư Bình Điền bên cạnh. Đơn giá bán tạm tính khoảng 60tr/m² (chưa VAT)",
               "source_chunk": "629"
             },
@@ -30848,6 +35303,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "> Vì vậy, Tiền sử dụng đất tạm tính khoảng 300 tỷ ạ.",
+              "source_chunk": "629"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Huy M - IM 12/6/2024 8:05 AM Translate Dự án tuy đạt hiệu quả đầu tư về mặt tính toán nhưng sẽ bị vướng mắc về Pháp lý đất (đất SKC bị hết hạn, không gia hạn được do không phù hợp quy hoạch=> bị thu hồi), dự án chưa được phê duyệt chủ chương đầu tư, Công ty Việt An chưa có QSDĐ hợp pháp nên --- chunk --- Thao L - INVT 10/14/2024 3:02 PM Edited Translate K…",
+              "source_chunk": "629"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Thử cho QS tính em by Unknown User --- chunk --- Mr Mike1 -CEO 10/14/2024 1:26 PM Translate - Tiền sử dụng đất (tạm tính):",
+              "source_chunk": "629"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "120 tỷ (chưa khấu trừ đất hiện trang vì chưa cung cấp hồ sơ) => Giá trung bình 3,3tr/m hã Begin quote, Mr Mike1 -CEO , 10/14/2024 1:2... by Thao L - INVT --- chunk --- Mr Mike1 -CEO 10/14/2024 1:27 PM Translate - Chi phí hạ tầng:",
+              "source_chunk": "629"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "124 tỷ ~ 1.5tr/m2 (chưa bao gồm dự phòng 10%) => Tính trên diện tích 3,9ha hay sao Tính trên toàn khu 7.5ha ạ by Thao L - INVT --- chunk --- Mr Mike1 -CEO 10/14/2024 1:44 PM Translate Hạ tầng mà tính cả khu 1,5tr/m hơi cao đó vì 3,9ha thương phẩm mình đâu có làm gì by Unknown User --- chunk --- Sinh Nguyen-Dau Tu 10/7/2024 11:25 AM Edited Translate Dự án…",
               "source_chunk": "629"
             }
           ],
@@ -31092,6 +35567,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Chi phí tiền sử dụng đất thấp nhất: 712 tỷ (Đơn giá đóng TSDĐ của PGK gấp 4 lần đơn giá Nhà nước đường Bình Chuẩn 67 = tỷ lệ giữa đơn giá theo văn bản Phê duyệt đơn giá đất để tính TSDĐ của dự án A&K vào Q1.2025 và đơn giá nhà nước đoạn đường tọa lạc của dự án A&K = 4 lần) – Tạm tính vào thời điểm 2025",
+              "source_chunk": "266"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "+ Suất xây dựng căn hộ allin (VAT): 13tr/m2 sàn",
               "source_chunk": "266"
             },
@@ -31134,11 +35614,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Vốn huy động từ khách hàng: 28.4%",
               "source_chunk": "266"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "4. HIỆU QUẢ TÀI CHÍNH",
-              "source_chunk": "266"
             }
           ],
           "excerpt": "Phú Gia Khiêm... PA căn hộ + shophouse tổng chi phí 5.025 tỷ; PA căn hộ + officetel tổng chi phí 6.173 tỷ... rủi ro TSDĐ.",
@@ -31171,7 +35646,22 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
+              "value": "Tuy nhiên, Theo cách tính dân số căn cứ trên dự thảo xác định dân số TP.HCM cho căn hộ: Tiêu chuẩn diện tích sàn thông thủy/người = 32m²/người thì: Chỉ tiêu dân số dự kiến điều chỉnh (3.673 dân) đáp ứng quy định. Và đồng thời, P.QH và P.PLDA đảm bảo không làm thay đổi các chỉ tiêu còn lại của dự án thì sẽ Không ảnh hưởng Hiệu quả kinh doanh.",
+              "source_chunk": "223"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "+ Nếu chỉ giảm dân số về 3.673 dân và P.QH và P.PLDA đảm bảo toàn bộ các chỉ tiêu khác không thay đổi (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án không thay đổi.",
+              "source_chunk": "223"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Nếu giảm dân số về 3.673 dân và làm giảm các chỉ tiêu khác (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án sẽ giảm.",
+              "source_chunk": "223"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "473 dân (không thay đổi) - Với Quy định hiện tại về Tiêu chuẩn diện tích sàn thông thủy/người = 25m²/người, thì việc giảm chỉ tiêu dân số sẽ làm giảm Hiệu quả kinh doanh.",
               "source_chunk": "223"
             },
             {
@@ -31189,12 +35679,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Quy mô/thông số bổ sung",
               "value": "+ Dân số officetel: 473 dân (không thay đổi)",
-              "source_chunk": "228",
-              "review_status": "parallel_review_accepted"
-            },
-            {
-              "label": "Hiệu quả bổ sung",
-              "value": "+ Nếu chỉ giảm dân số về 3.673 dân và P.QH và P.PLDA đảm bảo toàn bộ các chỉ tiêu khác không thay đổi (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án không thay đổi.",
               "source_chunk": "228",
               "review_status": "parallel_review_accepted"
             }
@@ -31290,6 +35774,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Trieu Nguyen-PTDT 8/3/2022 11:11 AM KĐT gửi anh Tuan Tran-CEO cập nhật hiệu quả các phương án của dự án Phú Quang:",
+          "source_chunk": "985",
+          "record_id": "M10-0025",
+          "report_no": 1,
+          "project_name": "Dự án Phú Quang - cập nhật PA2/PA3",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR 35.59%, NPV là 3,507.7 tỷ đồng Phương án 3:",
+          "source_chunk": "985",
+          "record_id": "M10-0025",
+          "report_no": 1,
+          "project_name": "Dự án Phú Quang - cập nhật PA2/PA3",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR 45.15% (gấp 1.26 lần so với phương án 2), NPV 5,755.9 tỷ đồng (gấp 1.64 lần so với phương án 2)",
+          "source_chunk": "985",
+          "record_id": "M10-0025",
+          "report_no": 1,
+          "project_name": "Dự án Phú Quang - cập nhật PA2/PA3",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Việc di chuyển khu nhà ở xã hội sang dự án khác góp phần tạo nên dự án khu dân cư cao cấp một cách đồng bộ từ phân khúc bán hàng, mỹ quan công trình và phân khúc khách hàng => Phương án 3 có hiệu quả tài chính tối ưu rõ rệt",
+          "source_chunk": "985",
+          "record_id": "M10-0025",
+          "report_no": 1,
+          "project_name": "Dự án Phú Quang - cập nhật PA2/PA3",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang. Anh cho team biết ngày phù hợp để sắp xếp 1 cuộc họp với các phòng ban để trình bày về dự án này nhé. Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRS…",
+          "source_chunk": "715",
+          "record_id": "M08-0002",
+          "report_no": 3,
+          "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
+          "part": 8
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Vì cùng khu, và noxh ko thể bán giá cao được vì bị giới hạn định mức ln 10%, lưu ý chi phí đất ko được phân bổ vào giá thành của noxh vì noxh được miễn tiền sử dụng đất, và tiền bồi thường đất thì được khấu trừ trong tssđ của toàn dự án",
           "source_chunk": "715",
@@ -31299,20 +35828,36 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 8
         },
         {
-          "label": "Hiệu quả bổ sung",
-          "value": "KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang. Anh cho team biết ngày phù hợp để sắp xếp 1 cuộc họp với các phòng ban để trình bày về dự án này nhé. Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRS…",
-          "source_chunk": "717",
-          "review_status": "parallel_review_accepted",
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Với phương án của mình trước là làm phân khúc trung cao cho notm, giá cũng trên 50 tr/m2 và thời điểm ra hàng cho notm a nghĩ cũng nên vào năm 2025, cũng sẽ phù hợp vs tiến độ thực hiện pháp lý hiện trạng của dự án do mình có điều chỉnh qh 1/500, rồi tính tssđ lại...",
+          "source_chunk": "715",
           "record_id": "M08-0002",
           "report_no": 3,
           "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
           "part": 8
         },
         {
-          "label": "Giá/đơn giá bổ sung",
-          "value": "Với phương án của mình trước là làm phân khúc trung cao cho notm, giá cũng trên 50 tr/m2 và thời điểm ra hàng cho notm a nghĩ cũng nên vào năm 2025, cũng sẽ phù hợp vs tiến độ thực hiện pháp lý hiện trạng của dự án do mình có điều chỉnh qh 1/500, rồi tính tssđ lại...",
-          "source_chunk": "731",
-          "review_status": "parallel_review_accepted",
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Begin quote, Huy Mai-PTDT , 11/3/2023 8:11 ... by Unknown User --- chunk --- Unknown User 10/17/2023 4:44 PM KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang.",
+          "source_chunk": "715",
+          "record_id": "M08-0002",
+          "report_no": 3,
+          "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
+          "part": 8
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Do có đính kèm cả dự hiệu quả đầu tư nên gửi bên group này trước à Begin quote, Huy Mai-PTDT, 10/19/2023 2:30 ... by Huy M - IM --- chunk --- Trieu Nguyen-PTDT 10/17/2023 4:44 PM Edited KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang.",
+          "source_chunk": "715",
+          "record_id": "M08-0002",
+          "report_no": 3,
+          "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRSbMKqhcBsWsV-FgVmjB_vn2CQ0KbLw?e=WuVOLb 2023.10.17 DE XUAT PHAT TRIEN PHU QUANG.pdf --- chunk --- Binh Vo-GD-PTDT 9/25/2023 9:55 AM Vì cùng khu, và noxh ko thể bán giá cao được vì bị giới hạn định mức ln 10%, lưu ý chi phí đất ko được phân bổ vào giá thành c…",
+          "source_chunk": "715",
           "record_id": "M08-0002",
           "report_no": 3,
           "project_name": "Dự án Phú Quang - đề xuất phát triển/cập nhật hiệu quả",
@@ -31424,8 +35969,62 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 6
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hiện trạng phần đất công trong diện tích giao còn lại là khoảng 4.9ha, trong đó chủ yếu alà đất giao thông, thủy lợi, kênh mương, lúa. P.ĐT tạm tính phương án bồi thường theo giá thị trường đối với loại đất Nông nghiệp tại khu vực (~10tr/m2) => chi phí bồi thường phần đất công là ~ 489,6 tỷ",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "3. Cập nhật hiệu quả Phú Quang.",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Khoa L - INVT 3/12/2025 2:56 PM Translate K.ĐT gửi anh Mr Mike1 -CEO về hiệu quả dự án Phú Quang – Phương án bổ sung tiền sử dụng đất (LURF) và chi phí liên quan đến phần đất công trong dự án:",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Bên Bán Bên mua Diện tích giao đất đợt 1 (12.6ha) đã giao cho Phú Quang theo QĐ 2987 (07/10/2020) - Chi phí và công tác đền bù/ GPMB - Tiền chuyển mục đích sử dụng đất theo QĐ 2987 (07/10/2020) - Chi phí bồi thường phần đất công năm trong 12.6ha Diện tích giao đất còn lại (~ 19ha) - Chi phí và công tác GPMB - Tiền chuyển mục đích sử dụng đất - Chi phí bồi…",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Đóng LURF cho phần diện tích giao còn lại, - Đóng LURF bổ sung cho phần giao đất đợt 1 (12.6ha) khi điều chỉnh quy hoạch - Các chi phí liên quan đến phần đất công trong diện tích giao đất còn lại",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Đầu tư thực hiện tính toán tiền sử dụng đất theo 2 bước:",
+          "source_chunk": "518",
+          "record_id": "M06-0003",
+          "report_no": 5,
+          "project_name": "Dự án Phú Quang - bổ sung LURF/TSDĐ phần đất công",
+          "part": 6
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "P.ĐT tạm tính phương án bồi thường theo giá thị trường đối với loại đất Nông nghiệp tại khu vực (~10tr/m2) => chi phí bồi thường phần đất công là ~ 489,6 tỷ",
           "source_chunk": "518",
           "record_id": "M06-0003",
           "report_no": 5,
@@ -31514,8 +36113,62 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Lý do Hiệu quả của phương án mới (18.051 dân) thấp hơn nhiều so với phương án 19.646 dân là do sự thay đổi cơ cấu sản phẩm của dự án. Theo đó, phương án mới đang có diện tích đất nhà ở cao tầng cao hơn tuy nhiên hiệu quả khai thác lại thấp hơn. Trong khi sản phẩm thấp tầng có giá trị thương mại cao (giá bán cao) thì lại giảm diện tích. Cụ thể:",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Diện tích đất thịt phân khu nhà thấp tầng giảm 33.124 m2. Với giá bán đất thịt phân khu thấp tầng giao động từ 200-240 tr/m2 vì việc giảm diện tích thương làm sụt giảm doanh thu ~ 10.420 tỷ",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Diện tích đất xây dựng chung cư tăng lên 19.083 m2, tuy nhiên diện tích sàn thương phẩm các block chung cư theo phương án mới lại giảm 14.852 m2 so với phương án 19.646 dân => Tức theo phương án mới, phân khu chung cư chiếm nhiều đất hơn nhưng hiệu quả khai thác thấp hơn dẫn đến doanh thu cho phần căn hộ NTOM giảm 928 tỷ",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Unknown User 4/25/2025 6:53 PM Ủa các phương án trên đã tính tiền sử dụng đất chưa Theo ước tính thì mình tiếp tục cho tính tiền sử dụng đất theo QH cũ cho phần giao đất đợt 1 12.5ha sau này sẽ được lợi cho mình khấu trừ khi đóng tiền sử dụng đất theo QH 1/500 mới khoảng 700 tỷ --- chunk --- Khoa L - INVT 4/25/2025 6:04 PM Edited Translate P.Đầu tư Báo cá…",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "18.522,6 tỷ LNTT/TMĐT:",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Với phương án 18.051 dân, hiệu quả dự án sụt giảm so với phương án 19.646 dân.",
+          "source_chunk": "436",
+          "record_id": "M05-0016",
+          "report_no": 6,
+          "project_name": "Dự án Phú Quang",
+          "part": 5
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Tổng doanh thu giảm khoảng 9.375 tỷ; lợi nhuận trước thuế giảm khoảng 7.260 tỷ.",
           "source_chunk": "436",
           "record_id": "M05-0016",
           "report_no": 6,
@@ -31561,6 +36214,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "LNTT/TMĐT",
           "value": "51,06%",
+          "source_chunk": "345",
+          "record_id": "M04-0013",
+          "report_no": 7,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Về nghĩa vụ tiền sử dụng đất dự án, trước đây Công ty đang định hướng sẽ được khấu trừ phần tiền sử dụng đất mà đối tác cam kết nộp cho diện tích giao đất đợt 1 (tương ứng với QH 1/500 cũ) vào số tiền sử dụng đất đợt 2 (theo QH 1/500 mới). Tuy nhiên, hiện nay công tác điều chỉnh QH1/500 đã được hoàn thành trước công tác đóng tiền đợt 1 thực hiện. Do đó, k…",
+          "source_chunk": "345",
+          "record_id": "M04-0013",
+          "report_no": 7,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Khoa L - INVT 7/15/2025 5:46 PM Translate P.ĐT báo cáo CEO Mr Mike1 -CEO cập nhật FS dự án Phú Quang, Về nghĩa vụ tiền sử dụng đất dự án, trước đây Công ty đang định hướng sẽ được khấu trừ phần tiền sử dụng đất mà đối tác cam kết nộp cho diện tích giao đất đợt 1 (tương ứng với QH 1/500 cũ) vào số tiền sử dụng đất đợt 2 (theo QH 1/500 mới).",
+          "source_chunk": "345",
+          "record_id": "M04-0013",
+          "report_no": 7,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Do đó, khả năng công ty sẽ phải đóng full tiền sử dụng đất mà không được khấu trừ. => P.ĐT cập nhật lại FS dự án theo phương án đóng full tiền sử dụng đất. (ước tính ~8.000 tỷ) như sau:",
+          "source_chunk": "345",
+          "record_id": "M04-0013",
+          "report_no": 7,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "19.17% - LNTT/TMĐT:",
           "source_chunk": "345",
           "record_id": "M04-0013",
           "report_no": 7,
@@ -31624,6 +36313,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Giá bán và chi phí được cập nhật: Giá bán tham chiếu theo báo cáo thị trường của P.RnD, chi phí tính tăng lên khoảng 10% để phù hợp với tốc độ trượt giá và tình hình xây dựng hiện tại",
+          "source_chunk": "397",
+          "record_id": "M04-0025",
+          "report_no": 8,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Tiền sử dụng đất: Bài tính tiền sử dụng đất cập nhật lại giá thị trường (lên khoảng 50tr/m2) để làm số liệu đầu vào, đồng thời tính toán lại theo quy hoạch mới của P.TKQH. P.ĐT đang giả định thời điểm công ty được giao đất và xác định nghĩa vụ tài chính đợt 2 vào năm 2027. Ngoài ra P.ĐT cũng đã ước tính số tiền đối tác phải đóng cho lần giao đất đợt 1 để…",
           "source_chunk": "397",
           "record_id": "M04-0025",
           "report_no": 8,
@@ -31696,6 +36394,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "4. Hiệu quả dự án:",
+          "source_chunk": "397",
+          "record_id": "M04-0025",
+          "report_no": 8,
+          "project_name": "Dự án Phú Quang",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "P.ĐT lựa chọn giá đầu vào 50tr/m2 sau khi cân nhắc các dự án khác đang triển khai như Stown, Splus, Marina. Với giá trị khấu trừ tiền đất đợt 1 ước tính 1.592 tỷ, LUR phải đóng sẽ rơi vào khoảng 6.540 tỷ cho dự án này. Nếu áp giá bán hiện tại của Emerald 68 là ~ 63tr/m2 vào bài tính thặng dư thì LUR sẽ tiệm cận 10.000 tỷ.",
           "source_chunk": "397",
           "record_id": "M04-0025",
           "report_no": 8,
@@ -31885,6 +36592,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "3. Kết luận: Việc di chuyển khu nhà ở xã hội sang dự án khác góp phần tạo nên dự án khu dân cư cao cấp một cách đồng bộ từ phân khúc bán hàng, mỹ quan công trình và phân khúc khách hàng => Phương án 3 có hiệu quả tài chính tối ưu rõ rệt",
               "source_chunk": "985"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Trieu Nguyen-PTDT 8/3/2022 11:11 AM KĐT gửi anh Tuan Tran-CEO cập nhật hiệu quả các phương án của dự án Phú Quang:",
+              "source_chunk": "985"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR 35.59%, NPV là 3,507.7 tỷ đồng Phương án 3:",
+              "source_chunk": "985"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR 45.15% (gấp 1.26 lần so với phương án 2), NPV 5,755.9 tỷ đồng (gấp 1.64 lần so với phương án 2)",
+              "source_chunk": "985"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Việc di chuyển khu nhà ở xã hội sang dự án khác góp phần tạo nên dự án khu dân cư cao cấp một cách đồng bộ từ phân khúc bán hàng, mỹ quan công trình và phân khúc khách hàng => Phương án 3 có hiệu quả tài chính tối ưu rõ rệt",
+              "source_chunk": "985"
             }
           ],
           "excerpt": "Phú Quang PA2 HSSD 2,74, dân số 19.441, IRR 35,59%, NPV 3.507,7 tỷ; PA3 thay NOXH bằng NOTM.",
@@ -31937,21 +36664,34 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "business_notes": "Lưu nguồn timeline 2023 về đề xuất phát triển Phú Quang; đã xin lịch CEO để họp với các phòng ban",
           "financial_items": [
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang. Anh cho team biết ngày phù hợp để sắp xếp 1 cuộc họp với các phòng ban để trình bày về dự án này nhé. Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRS…",
+              "source_chunk": "715"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Vì cùng khu, và noxh ko thể bán giá cao được vì bị giới hạn định mức ln 10%, lưu ý chi phí đất ko được phân bổ vào giá thành của noxh vì noxh được miễn tiền sử dụng đất, và tiền bồi thường đất thì được khấu trừ trong tssđ của toàn dự án",
               "source_chunk": "715"
             },
             {
-              "label": "Hiệu quả bổ sung",
-              "value": "KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang. Anh cho team biết ngày phù hợp để sắp xếp 1 cuộc họp với các phòng ban để trình bày về dự án này nhé. Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRS…",
-              "source_chunk": "717",
-              "review_status": "parallel_review_accepted"
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Với phương án của mình trước là làm phân khúc trung cao cho notm, giá cũng trên 50 tr/m2 và thời điểm ra hàng cho notm a nghĩ cũng nên vào năm 2025, cũng sẽ phù hợp vs tiến độ thực hiện pháp lý hiện trạng của dự án do mình có điều chỉnh qh 1/500, rồi tính tssđ lại...",
+              "source_chunk": "715"
             },
             {
-              "label": "Giá/đơn giá bổ sung",
-              "value": "Với phương án của mình trước là làm phân khúc trung cao cho notm, giá cũng trên 50 tr/m2 và thời điểm ra hàng cho notm a nghĩ cũng nên vào năm 2025, cũng sẽ phù hợp vs tiến độ thực hiện pháp lý hiện trạng của dự án do mình có điều chỉnh qh 1/500, rồi tính tssđ lại...",
-              "source_chunk": "731",
-              "review_status": "parallel_review_accepted"
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Begin quote, Huy Mai-PTDT , 11/3/2023 8:11 ... by Unknown User --- chunk --- Unknown User 10/17/2023 4:44 PM KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang.",
+              "source_chunk": "715"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Do có đính kèm cả dự hiệu quả đầu tư nên gửi bên group này trước à Begin quote, Huy Mai-PTDT, 10/19/2023 2:30 ... by Huy M - IM --- chunk --- Trieu Nguyen-PTDT 10/17/2023 4:44 PM Edited KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang.",
+              "source_chunk": "715"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRSbMKqhcBsWsV-FgVmjB_vn2CQ0KbLw?e=WuVOLb 2023.10.17 DE XUAT PHAT TRIEN PHU QUANG.pdf --- chunk --- Binh Vo-GD-PTDT 9/25/2023 9:55 AM Vì cùng khu, và noxh ko thể bán giá cao được vì bị giới hạn định mức ln 10%, lưu ý chi phí đất ko được phân bổ vào giá thành c…",
+              "source_chunk": "715"
             }
           ],
           "excerpt": "Phú Quang: báo cáo đề xuất phát triển và cập nhật hiệu quả, có file OneDrive/PDF ngày 17/10/2023.",
@@ -32062,8 +36802,38 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "518"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hiện trạng phần đất công trong diện tích giao còn lại là khoảng 4.9ha, trong đó chủ yếu alà đất giao thông, thủy lợi, kênh mương, lúa. P.ĐT tạm tính phương án bồi thường theo giá thị trường đối với loại đất Nông nghiệp tại khu vực (~10tr/m2) => chi phí bồi thường phần đất công là ~ 489,6 tỷ",
+              "source_chunk": "518"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "3. Cập nhật hiệu quả Phú Quang.",
+              "source_chunk": "518"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Khoa L - INVT 3/12/2025 2:56 PM Translate K.ĐT gửi anh Mr Mike1 -CEO về hiệu quả dự án Phú Quang – Phương án bổ sung tiền sử dụng đất (LURF) và chi phí liên quan đến phần đất công trong dự án:",
+              "source_chunk": "518"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Bên Bán Bên mua Diện tích giao đất đợt 1 (12.6ha) đã giao cho Phú Quang theo QĐ 2987 (07/10/2020) - Chi phí và công tác đền bù/ GPMB - Tiền chuyển mục đích sử dụng đất theo QĐ 2987 (07/10/2020) - Chi phí bồi thường phần đất công năm trong 12.6ha Diện tích giao đất còn lại (~ 19ha) - Chi phí và công tác GPMB - Tiền chuyển mục đích sử dụng đất - Chi phí bồi…",
+              "source_chunk": "518"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Đóng LURF cho phần diện tích giao còn lại, - Đóng LURF bổ sung cho phần giao đất đợt 1 (12.6ha) khi điều chỉnh quy hoạch - Các chi phí liên quan đến phần đất công trong diện tích giao đất còn lại",
+              "source_chunk": "518"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Đầu tư thực hiện tính toán tiền sử dụng đất theo 2 bước:",
+              "source_chunk": "518"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "P.ĐT tạm tính phương án bồi thường theo giá thị trường đối với loại đất Nông nghiệp tại khu vực (~10tr/m2) => chi phí bồi thường phần đất công là ~ 489,6 tỷ",
               "source_chunk": "518"
             }
           ],
@@ -32135,8 +36905,38 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "436"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Lý do Hiệu quả của phương án mới (18.051 dân) thấp hơn nhiều so với phương án 19.646 dân là do sự thay đổi cơ cấu sản phẩm của dự án. Theo đó, phương án mới đang có diện tích đất nhà ở cao tầng cao hơn tuy nhiên hiệu quả khai thác lại thấp hơn. Trong khi sản phẩm thấp tầng có giá trị thương mại cao (giá bán cao) thì lại giảm diện tích. Cụ thể:",
+              "source_chunk": "436"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Diện tích đất thịt phân khu nhà thấp tầng giảm 33.124 m2. Với giá bán đất thịt phân khu thấp tầng giao động từ 200-240 tr/m2 vì việc giảm diện tích thương làm sụt giảm doanh thu ~ 10.420 tỷ",
+              "source_chunk": "436"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Diện tích đất xây dựng chung cư tăng lên 19.083 m2, tuy nhiên diện tích sàn thương phẩm các block chung cư theo phương án mới lại giảm 14.852 m2 so với phương án 19.646 dân => Tức theo phương án mới, phân khu chung cư chiếm nhiều đất hơn nhưng hiệu quả khai thác thấp hơn dẫn đến doanh thu cho phần căn hộ NTOM giảm 928 tỷ",
+              "source_chunk": "436"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Unknown User 4/25/2025 6:53 PM Ủa các phương án trên đã tính tiền sử dụng đất chưa Theo ước tính thì mình tiếp tục cho tính tiền sử dụng đất theo QH cũ cho phần giao đất đợt 1 12.5ha sau này sẽ được lợi cho mình khấu trừ khi đóng tiền sử dụng đất theo QH 1/500 mới khoảng 700 tỷ --- chunk --- Khoa L - INVT 4/25/2025 6:04 PM Edited Translate P.Đầu tư Báo cá…",
+              "source_chunk": "436"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "18.522,6 tỷ LNTT/TMĐT:",
+              "source_chunk": "436"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Với phương án 18.051 dân, hiệu quả dự án sụt giảm so với phương án 19.646 dân.",
+              "source_chunk": "436"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Tổng doanh thu giảm khoảng 9.375 tỷ; lợi nhuận trước thuế giảm khoảng 7.260 tỷ.",
               "source_chunk": "436"
             }
           ],
@@ -32184,6 +36984,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "LNTT/TMĐT",
               "value": "51,06%",
+              "source_chunk": "345"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Về nghĩa vụ tiền sử dụng đất dự án, trước đây Công ty đang định hướng sẽ được khấu trừ phần tiền sử dụng đất mà đối tác cam kết nộp cho diện tích giao đất đợt 1 (tương ứng với QH 1/500 cũ) vào số tiền sử dụng đất đợt 2 (theo QH 1/500 mới). Tuy nhiên, hiện nay công tác điều chỉnh QH1/500 đã được hoàn thành trước công tác đóng tiền đợt 1 thực hiện. Do đó, k…",
+              "source_chunk": "345"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Khoa L - INVT 7/15/2025 5:46 PM Translate P.ĐT báo cáo CEO Mr Mike1 -CEO cập nhật FS dự án Phú Quang, Về nghĩa vụ tiền sử dụng đất dự án, trước đây Công ty đang định hướng sẽ được khấu trừ phần tiền sử dụng đất mà đối tác cam kết nộp cho diện tích giao đất đợt 1 (tương ứng với QH 1/500 cũ) vào số tiền sử dụng đất đợt 2 (theo QH 1/500 mới).",
+              "source_chunk": "345"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Do đó, khả năng công ty sẽ phải đóng full tiền sử dụng đất mà không được khấu trừ. => P.ĐT cập nhật lại FS dự án theo phương án đóng full tiền sử dụng đất. (ước tính ~8.000 tỷ) như sau:",
+              "source_chunk": "345"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "19.17% - LNTT/TMĐT:",
               "source_chunk": "345"
             }
           ],
@@ -32248,6 +37068,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "Tiền sử dụng đất: Bài tính tiền sử dụng đất cập nhật lại giá thị trường (lên khoảng 50tr/m2) để làm số liệu đầu vào, đồng thời tính toán lại theo quy hoạch mới của P.TKQH. P.ĐT đang giả định thời điểm công ty được giao đất và xác định nghĩa vụ tài chính đợt 2 vào năm 2027. Ngoài ra P.ĐT cũng đã ước tính số tiền đối tác phải đóng cho lần giao đất đợt 1 để…",
+              "source_chunk": "397"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "3. Giá bán và Chi phí triển khai: (gồm VAT)",
               "source_chunk": "397"
             },
@@ -32284,6 +37109,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "4. Hiệu quả dự án:",
+              "source_chunk": "397"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "P.ĐT lựa chọn giá đầu vào 50tr/m2 sau khi cân nhắc các dự án khác đang triển khai như Stown, Splus, Marina. Với giá trị khấu trừ tiền đất đợt 1 ước tính 1.592 tỷ, LUR phải đóng sẽ rơi vào khoảng 6.540 tỷ cho dự án này. Nếu áp giá bán hiện tại của Emerald 68 là ~ 63tr/m2 vào bài tính thặng dư thì LUR sẽ tiệm cận 10.000 tỷ.",
               "source_chunk": "397"
             },
             {
@@ -32707,6 +37537,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 5
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Số tiền ký quỹ 10 tỷ (tương đương 20 triệu/căn) chỉ chiếm tỷ lệ rất nhỏ so với tổng giá trị phát triển dự án (TMĐT). Trường hợp DXG không hoàn thành việc bán hàng và dùng tiền ký quỹ để thanh toán phần căn tồn, thì khoản này không đủ bù đắp chi phí xây dựng, lãi vay,…",
+          "source_chunk": "405",
+          "record_id": "M05-0001",
+          "report_no": 2,
+          "project_name": "Dự án Phượng Hoàng",
+          "part": 5
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "K.ĐT gửi anh Mr Mike1 -CEO về cập nhật Hiệu quả dự án Phượng Hoàng như sau:",
           "source_chunk": "405",
@@ -32754,15 +37593,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "CPXD “RD đề xuất”: 624 tỷ",
-          "source_chunk": "405",
-          "record_id": "M05-0001",
-          "report_no": 2,
-          "project_name": "Dự án Phượng Hoàng",
-          "part": 5
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "b. Phương án “Tiết giảm thêm 5%” trong giai đoạn thiết kế thi công và dự toán đầy đủ - theo đánh giá Mr. Alex giảm phần này là khả thi",
           "source_chunk": "405",
           "record_id": "M05-0001",
           "report_no": 2,
@@ -32968,6 +37798,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "14.5 tỷ (phương án cũ 12 tỷ) - Chi phí XD chung cư:",
+          "source_chunk": "310",
+          "record_id": "M04-0006",
+          "report_no": 3,
+          "project_name": "Dự án Phượng Hoàng",
+          "part": 4
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sách bán hàng mới từ Mr Cường (SM) như sau:",
           "source_chunk": "294",
@@ -32979,6 +37818,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sá…",
+          "source_chunk": "294",
+          "record_id": "M03-0033",
+          "report_no": 4,
+          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng mới từ Mr Cường",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Thao L - INVT 9/10/2025 12:08 PM Translate K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sách bán hàng mới từ Mr Cường (SM) như sau:",
+          "source_chunk": "294",
+          "record_id": "M03-0033",
+          "report_no": 4,
+          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng mới từ Mr Cường",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "chunk --- Thao L - INVT 9/10/2025 12:08 PM K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sá… Vậy chốt PkD phương án này đi Ok Sếp.",
           "source_chunk": "294",
           "record_id": "M03-0033",
           "report_no": 4,
@@ -33202,8 +38059,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Theo giả định hiện tại, phần ngân sách dành cho chiết khấu vượt dự toán khoảng 2 tỷ, dẫn đến thâm hụt so với kế hoạch. Để duy trì tổng chi phí bán hàng trong giới hạn 215 tỷ đồng, Bộ phận SM cần thực hiện điều chỉnh, cắt giảm hoặc tối ưu các nhóm chi phí khác tương ứng.",
+          "source_chunk": "249",
+          "record_id": "M03-0021",
+          "report_no": 5,
+          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng / ngân hàng",
+          "part": 3
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Deal a David Ví dụ : Mua 700 m2 ( 1 sàn ) x 36.5 tr = 25,550 tỷ CK : 9% ( Thâm niên hơn 2,5 năm) CK: 13,8% ( Thanh toán nhanh 95%) CK : 3% ( Early…",
+          "source_chunk": "249",
+          "record_id": "M03-0021",
+          "report_no": 5,
+          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng / ngân hàng",
+          "part": 3
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Cái này A Cường phải làm việc rõ lại chỗ chiết khấu 13.8% khi thanh toán nhanh 95%. Vì kế hoạch bán hàng bữa trước của ảnh trình chỉ ước tính cho chính sách này vài căn thôi nên số tiền sẽ thấp. Nay nếu trường hợp A David mua nguyên sàng như vậy thì khoảng chi phí cho chính sách này bị over thì ảnh phải bóp những cái khác lại để bù",
           "source_chunk": "249",
           "record_id": "M03-0021",
           "report_no": 5,
@@ -33249,24 +38124,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "BIDV có lợi thế về vay hoàn vốn tiền đất (~38 tỷ), hỗ trợ tài trợ chi phí bán hàng (~33 tỷ), lãi suất thả nổi thấp hơn và thời hạn vay dài hơn. Vốn tự có không phải bỏ thêm: 71 tỷ",
-          "source_chunk": "249",
-          "record_id": "M03-0021",
-          "report_no": 5,
-          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng / ngân hàng",
-          "part": 3
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Vietin vượt trội về tài trợ chi phí bán hàng (~178 tỷ) và hỗ trợ lãi vay giai đoạn móng cọc (~ 4 tỷ). Vốn tự có không phải bỏ thêm: 182 tỷ",
-          "source_chunk": "249",
-          "record_id": "M03-0021",
-          "report_no": 5,
-          "project_name": "Dự án Phượng Hoàng - chính sách bán hàng / ngân hàng",
-          "part": 3
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "=> Xét tổng thể, Vietin có ưu thế về tổng mức giải ngân cao hơn, Giảm việc bỏ thêm vốn tự có (182 tỷ). Tuy nhiên, cần đàm phán để không thu hồi lãi vay theo lãi suất ưu đãi và cần kiểm soát chặt chẽ tiến độ trong 42 tháng nhằm giảm thiểu rủi ro.",
           "source_chunk": "249",
           "record_id": "M03-0021",
           "report_no": 5,
@@ -33372,6 +38229,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "405"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Số tiền ký quỹ 10 tỷ (tương đương 20 triệu/căn) chỉ chiếm tỷ lệ rất nhỏ so với tổng giá trị phát triển dự án (TMĐT). Trường hợp DXG không hoàn thành việc bán hàng và dùng tiền ký quỹ để thanh toán phần căn tồn, thì khoản này không đủ bù đắp chi phí xây dựng, lãi vay,…",
+              "source_chunk": "405"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "K.ĐT gửi anh Mr Mike1 -CEO về cập nhật Hiệu quả dự án Phượng Hoàng như sau:",
               "source_chunk": "405"
@@ -33399,11 +38261,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "CPXD “RD đề xuất”: 624 tỷ",
-              "source_chunk": "405"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "b. Phương án “Tiết giảm thêm 5%” trong giai đoạn thiết kế thi công và dự toán đầy đủ - theo đánh giá Mr. Alex giảm phần này là khả thi",
               "source_chunk": "405"
             }
           ],
@@ -33541,6 +38398,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Vietin vượt trội về tài trợ chi phí bán hàng (~178 tỷ) và hỗ trợ lãi vay giai đoạn móng cọc (~ 4 tỷ). Vốn tự có không phải bỏ thêm: 182 tỷ",
               "source_chunk": "310"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "14.5 tỷ (phương án cũ 12 tỷ) - Chi phí XD chung cư:",
+              "source_chunk": "310"
             }
           ],
           "excerpt": "Phượng Hoàng... chi phí nhà mẫu 14,5 tỷ, CPXD 618,8 tỷ, LNTT/TMĐT 8,2%... BIDV/Vietin.",
@@ -33573,6 +38435,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sá…",
+              "source_chunk": "294"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Thao L - INVT 9/10/2025 12:08 PM Translate K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sách bán hàng mới từ Mr Cường (SM) như sau:",
+              "source_chunk": "294"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "chunk --- Thao L - INVT 9/10/2025 12:08 PM K.ĐT báo cáo anh Mr Mike1 -CEO cập nhật hiệu quả đầu tư dự án Phượng Hoàng theo Chính sá… Vậy chốt PkD phương án này đi Ok Sếp.",
               "source_chunk": "294"
             }
           ],
@@ -33725,8 +38597,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "249"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Theo giả định hiện tại, phần ngân sách dành cho chiết khấu vượt dự toán khoảng 2 tỷ, dẫn đến thâm hụt so với kế hoạch. Để duy trì tổng chi phí bán hàng trong giới hạn 215 tỷ đồng, Bộ phận SM cần thực hiện điều chỉnh, cắt giảm hoặc tối ưu các nhóm chi phí khác tương ứng.",
+              "source_chunk": "249"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Deal a David Ví dụ : Mua 700 m2 ( 1 sàn ) x 36.5 tr = 25,550 tỷ CK : 9% ( Thâm niên hơn 2,5 năm) CK: 13,8% ( Thanh toán nhanh 95%) CK : 3% ( Early…",
+              "source_chunk": "249"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Cái này A Cường phải làm việc rõ lại chỗ chiết khấu 13.8% khi thanh toán nhanh 95%. Vì kế hoạch bán hàng bữa trước của ảnh trình chỉ ước tính cho chính sách này vài căn thôi nên số tiền sẽ thấp. Nay nếu trường hợp A David mua nguyên sàng như vậy thì khoảng chi phí cho chính sách này bị over thì ảnh phải bóp những cái khác lại để bù",
               "source_chunk": "249"
             },
             {
@@ -33752,16 +38634,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "BIDV có lợi thế về vay hoàn vốn tiền đất (~38 tỷ), hỗ trợ tài trợ chi phí bán hàng (~33 tỷ), lãi suất thả nổi thấp hơn và thời hạn vay dài hơn. Vốn tự có không phải bỏ thêm: 71 tỷ",
-              "source_chunk": "249"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Vietin vượt trội về tài trợ chi phí bán hàng (~178 tỷ) và hỗ trợ lãi vay giai đoạn móng cọc (~ 4 tỷ). Vốn tự có không phải bỏ thêm: 182 tỷ",
-              "source_chunk": "249"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "=> Xét tổng thể, Vietin có ưu thế về tổng mức giải ngân cao hơn, Giảm việc bỏ thêm vốn tự có (182 tỷ). Tuy nhiên, cần đàm phán để không thu hồi lãi vay theo lãi suất ưu đãi và cần kiểm soát chặt chẽ tiến độ trong 42 tháng nhằm giảm thiểu rủi ro.",
               "source_chunk": "249"
             }
           ],
@@ -34110,6 +38982,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Quỹ đất 168ha Phong Phú, Bình Chánh gần Đa Phước",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Bình Chánh, TPHCM với giá chào 2.5tr/m2, vì chưa được cung cấp hồ sơ pháp lý nên KĐT đánh gia nhanh về thị trường và vị trí của quỹ đất, cụ thể:",
+          "source_chunk": "998",
+          "record_id": "M10-0030",
+          "report_no": 1,
+          "project_name": "Quỹ đất 168ha Phong Phú, Bình Chánh gần Đa Phước",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Vị trí nằm liền kề khu xử lý chất thải gây ô nhiễm môi trường, ảnh hưởng dến cuộc sống người dân Quỹ đất nằm gần khu vực quy hoạch khu đô thị nên khó xin chuyển đổi quy hoạch sử dụng đất sang đất Khu công nghiệp Hạ tầng kết nối giao thông kém Giá vốn đầu tư ước tính là $364/m2 đất thương phẩm nếu thực hiện đầu tư KCN với giá chào 2.5tr/m2, trong khi giá t…",
+          "source_chunk": "998",
+          "record_id": "M10-0030",
+          "report_no": 1,
+          "project_name": "Quỹ đất 168ha Phong Phú, Bình Chánh gần Đa Phước",
+          "part": 10
         }
       ],
       "reports": [
@@ -34151,6 +39041,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá vốn đầu tư ước tính là $364/m2 đất thương phẩm nếu thực hiện đầu tư KCN với giá chào 2.5tr/m2, trong khi giá thuê đất KCN Long Hậu dao động từ 260-290tr/m2 đất",
               "source_chunk": "998"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Bình Chánh, TPHCM với giá chào 2.5tr/m2, vì chưa được cung cấp hồ sơ pháp lý nên KĐT đánh gia nhanh về thị trường và vị trí của quỹ đất, cụ thể:",
+              "source_chunk": "998"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Vị trí nằm liền kề khu xử lý chất thải gây ô nhiễm môi trường, ảnh hưởng dến cuộc sống người dân Quỹ đất nằm gần khu vực quy hoạch khu đô thị nên khó xin chuyển đổi quy hoạch sử dụng đất sang đất Khu công nghiệp Hạ tầng kết nối giao thông kém Giá vốn đầu tư ước tính là $364/m2 đất thương phẩm nếu thực hiện đầu tư KCN với giá chào 2.5tr/m2, trong khi giá t…",
+              "source_chunk": "998"
             }
           ],
           "excerpt": "168ha Phong Phú Bình Chánh giá 2,5tr/m2, gần Đa Phước, đường vào hẻm nhỏ, nhiều ao hồ/rạch, pháp lý chưa cung cấp.",
@@ -34188,6 +39088,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ:",
+          "source_chunk": "967",
+          "record_id": "M10-0022",
+          "report_no": 1,
+          "project_name": "Quỹ đất 54ha liền kề sân bay Phan Thiết",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 8/11/2022 12:10 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ:",
           "source_chunk": "967",
           "record_id": "M10-0022",
           "report_no": 1,
@@ -34285,6 +39194,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "967"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 8/11/2022 12:10 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án 54ha liền kề sân bay Phan Thiết có giá chào 860-900 tỷ:",
+              "source_chunk": "967"
+            },
+            {
               "label": "Giá/đơn giá bổ sung",
               "value": "Dự án nằm tiếp giáp đường 715, là tuyến đường kết nối đến đường Võ Nguyên Giáp - tuyến đường chính chạy về thành phố Phan Thiết, nằm cách đường Võ Nguyên Giáp khoảng 6.8km",
               "source_chunk": "967",
@@ -34355,6 +39269,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 7
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Đồng thời, khi sân bay Quốc tế Long Thành sẽ đưa vào khai thác giai đoạn 1 và ước tính khoảng 14.000 lao động về đây sinh sống và làm việc Giá đất ruộng hiện nay tương đối rẻ so với đất thổ cư hay một số dạng đất nền dự án → Việc hoàn thiện hồ sơ xin chuyển đổi mục đích sử dụng đất, chuyển đất ruộng thành đất thổ cư để thu về khoản lợi nhuận chênh lệch, n…",
+          "source_chunk": "705",
+          "record_id": "M07-0025",
+          "report_no": 1,
+          "project_name": "Quỹ đất xã Tân Hiệp, Long Thành, Đồng Nai",
+          "part": 7
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Nhà nước đấu giá Quỹ đất lợi thế (2026-2027) và hạ tầng giao thông hoàn thiện như DT770B, cao tốc Biên Hòa – Vũng Tàu (2026), sân bay quốc tế Long Thành (2026),… vì sau thời điểm này giá đất khu vực sẽ tăng cao Hiện nay, NHNN thực hiện “nới lỏng chính sách tiền tệ” (Lãi suất thấp,..);",
+          "source_chunk": "705",
+          "record_id": "M07-0025",
+          "report_no": 1,
+          "project_name": "Quỹ đất xã Tân Hiệp, Long Thành, Đồng Nai",
+          "part": 7
+        },
+        {
           "label": "Quy mô/thông số bổ sung",
           "value": "1.1/ Hạ tầng trọng điểm Đồng Nai:",
           "source_chunk": "705",
@@ -34408,6 +39340,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Nhà nước đấu giá Quỹ đất lợi thế (2026-2027) và hạ tầng giao thông hoàn thiện như DT770B, cao tốc Biên Hòa – Vũng Tàu (2026), sân bay quốc tế Long Thành (2026),… vì sau thời điểm này giá đất khu vực sẽ tăng cao",
+              "source_chunk": "705"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Đồng thời, khi sân bay Quốc tế Long Thành sẽ đưa vào khai thác giai đoạn 1 và ước tính khoảng 14.000 lao động về đây sinh sống và làm việc Giá đất ruộng hiện nay tương đối rẻ so với đất thổ cư hay một số dạng đất nền dự án → Việc hoàn thiện hồ sơ xin chuyển đổi mục đích sử dụng đất, chuyển đất ruộng thành đất thổ cư để thu về khoản lợi nhuận chênh lệch, n…",
+              "source_chunk": "705"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Nhà nước đấu giá Quỹ đất lợi thế (2026-2027) và hạ tầng giao thông hoàn thiện như DT770B, cao tốc Biên Hòa – Vũng Tàu (2026), sân bay quốc tế Long Thành (2026),… vì sau thời điểm này giá đất khu vực sẽ tăng cao Hiện nay, NHNN thực hiện “nới lỏng chính sách tiền tệ” (Lãi suất thấp,..);",
               "source_chunk": "705"
             },
             {
@@ -34484,6 +39426,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu tổ hợp văn phòng cho thuê, khách sạn và chung cư Redstar với diện tích đất 12,364 m2 (giá chào bán khoảng 2,100 tỷ tương đương 170 tr/m2) thuộc khu số 1,3,4, tờ bản đồ số QH:02, đường Phạm Văn Đồng, phường An Hải Bắc, quận Sơn Trà, thành phố Đà Nẵng:",
+          "source_chunk": "973",
+          "record_id": "M10-0024",
+          "report_no": 1,
+          "project_name": "Redstar - tổ hợp văn phòng, khách sạn, chung cư Phạm Văn Đồng, Đà Nẵng",
+          "part": 10
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "4. Pháp lý quy hoạch: Theo Quyết định phê duyệt quy hoạch chi tiết tỷ lệ 1/500 số 421/QĐ-UBND ngày 06/02/2020 dự án được phát triển thành khu tổ hợp văn phòng cho thuê, khách sạn và chung cư:",
           "source_chunk": "973",
@@ -34539,6 +39490,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Giá bán đã bao gồm tiền sử dụng đất (đối với phần Thương mại đã đóng tiền thuê đất 1 lần cho cả thời gian thuê với thời hạn thuê đất còn lại 50 năm, đối với phần TTTM, khách sạn và văn phòng phải chuyển được mục đích sang căn hộ để ở lâu dài và hoàn thành nghĩa vụ tài chính tiền sử dụng đất phát sinh liên quan đến việc chuyển đổi công năng này), nghĩa v…",
+          "source_chunk": "973",
+          "record_id": "M10-0024",
+          "report_no": 1,
+          "project_name": "Redstar - tổ hợp văn phòng, khách sạn, chung cư Phạm Văn Đồng, Đà Nẵng",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "Đối với giá bán chung cư cũng tham khảo các dự án xung quanh, riêng dự án Azura & Hiyori đã đi vào hoạt động lâu, còn dự án so sánh như The 6nature (55-95 trđ/m2 view biển 50 năm và view thành phố lâu dài) và The Sang Residence (58-68 trđ/m2)",
           "source_chunk": "973",
           "record_id": "M10-0024",
@@ -34558,6 +39518,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Dự án The Sang Residence đang gần hoàn thành xây dựng với giá bán (58-68trđ/m2) với vị trí nằm sâu trong đường Phạm Kiệt và khoảng cách đi ra biển Mỹ Khê khoảng 1.2-1.4 km không lợi thế hơn so với dự án của mình.",
+          "source_chunk": "973",
+          "record_id": "M10-0024",
+          "report_no": 1,
+          "project_name": "Redstar - tổ hợp văn phòng, khách sạn, chung cư Phạm Văn Đồng, Đà Nẵng",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Quy Vo-PTDT 8/10/2022 10:04 AM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu tổ hợp văn phòng cho thuê, khách sạn và chung cư Redstar với diện tích đất 12,364 m2 (giá chào bán khoảng 2,100 tỷ tương đương 170 tr/m2) thuộc khu số 1,3,4, tờ bản đồ số QH:02, đường Phạm Văn Đồng, phường An Hải Bắc, quận Sơn Trà, thành phố Đà Nẵng:",
           "source_chunk": "973",
           "record_id": "M10-0024",
           "report_no": 1,
@@ -34604,6 +39573,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "976"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu tổ hợp văn phòng cho thuê, khách sạn và chung cư Redstar với diện tích đất 12,364 m2 (giá chào bán khoảng 2,100 tỷ tương đương 170 tr/m2) thuộc khu số 1,3,4, tờ bản đồ số QH:02, đường Phạm Văn Đồng, phường An Hải Bắc, quận Sơn Trà, thành phố Đà Nẵng:",
+              "source_chunk": "973"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "4. Pháp lý quy hoạch: Theo Quyết định phê duyệt quy hoạch chi tiết tỷ lệ 1/500 số 421/QĐ-UBND ngày 06/02/2020 dự án được phát triển thành khu tổ hợp văn phòng cho thuê, khách sạn và chung cư:",
               "source_chunk": "973"
@@ -34635,6 +39609,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Giá bán đã bao gồm tiền sử dụng đất (đối với phần Thương mại đã đóng tiền thuê đất 1 lần cho cả thời gian thuê với thời hạn thuê đất còn lại 50 năm, đối với phần TTTM, khách sạn và văn phòng phải chuyển được mục đích sang căn hộ để ở lâu dài và hoàn thành nghĩa vụ tài chính tiền sử dụng đất phát sinh liên quan đến việc chuyển đổi công năng này), nghĩa v…",
+              "source_chunk": "973"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "Đối với giá bán chung cư cũng tham khảo các dự án xung quanh, riêng dự án Azura & Hiyori đã đi vào hoạt động lâu, còn dự án so sánh như The 6nature (55-95 trđ/m2 view biển 50 năm và view thành phố lâu dài) và The Sang Residence (58-68 trđ/m2)",
               "source_chunk": "973"
             },
@@ -34646,6 +39625,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Dự án The Sang Residence đang gần hoàn thành xây dựng với giá bán (58-68trđ/m2) với vị trí nằm sâu trong đường Phạm Kiệt và khoảng cách đi ra biển Mỹ Khê khoảng 1.2-1.4 km không lợi thế hơn so với dự án của mình.",
+              "source_chunk": "973"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Quy Vo-PTDT 8/10/2022 10:04 AM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án khu tổ hợp văn phòng cho thuê, khách sạn và chung cư Redstar với diện tích đất 12,364 m2 (giá chào bán khoảng 2,100 tỷ tương đương 170 tr/m2) thuộc khu số 1,3,4, tờ bản đồ số QH:02, đường Phạm Văn Đồng, phường An Hải Bắc, quận Sơn Trà, thành phố Đà Nẵng:",
               "source_chunk": "973"
             }
           ],
@@ -34683,8 +39667,35 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Theo thống kê, tỷ lệ khách du lịch nội địa năm 2022 tăng 18% so với năm 2019 là 1 phần kết quả sau 2 năm 2020 và 2021 người dân không được di du lịch. Tuy nhiên, lượng khách du lịch quốc tế không đạt như kỳ vòng, chỉ được 3.5 triệu du khách so với mục tiêu đề ra là 5 triệu du khách, thấp hơn nhiều các nước lân cận điển hình là Thái Lan đạt 10 triệu du khá…",
+          "source_chunk": "948",
+          "record_id": "M10-0018",
+          "report_no": 1,
+          "project_name": "Khách sạn Regalia Gold, Nha Trang",
+          "part": 10
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Đây là báo cáo dự phòng P&L cho 5 năm đánh giá về mặt cơ cấu doanh thu, chi phí hoạt động và EBITDA trong thời gian khai thác kinh doanh",
+          "source_chunk": "948",
+          "record_id": "M10-0018",
+          "report_no": 1,
+          "project_name": "Khách sạn Regalia Gold, Nha Trang",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Các khách sạn 4 sao nằm cùng vị trí (không ven biển) có giá thuê dao động từ $40 - 54/đêm/phòng, có quy mô từ 100 - 300 phòng Theo thống kê, tỷ lệ khách du lịch nội địa năm 2022 tăng 18% so với năm 2019 là 1 phần kết quả sau 2 năm 2020 và 2021 người dân không được di du lịch.",
+          "source_chunk": "948",
+          "record_id": "M10-0018",
+          "report_no": 1,
+          "project_name": "Khách sạn Regalia Gold, Nha Trang",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Đây là báo cáo dự phòng P&L cho 5 năm đánh giá về mặt cơ cấu doanh thu, chi phí hoạt động và EBITDA trong thời gian khai thác kinh doanh --- chunk --- Báo cáo này không đánh giá chi phí đầu vào bao gồm chi phí duy tu sửa chữa vì khách sạn đã không hoạt động trong giai đoạn dịch và chi phí mua dự án => Nên chưa đánh giá hiệu quả dự án theo yếu tố dòng tiền…",
           "source_chunk": "948",
           "record_id": "M10-0018",
           "report_no": 1,
@@ -34758,8 +39769,23 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "948"
             },
             {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Theo thống kê, tỷ lệ khách du lịch nội địa năm 2022 tăng 18% so với năm 2019 là 1 phần kết quả sau 2 năm 2020 và 2021 người dân không được di du lịch. Tuy nhiên, lượng khách du lịch quốc tế không đạt như kỳ vòng, chỉ được 3.5 triệu du khách so với mục tiêu đề ra là 5 triệu du khách, thấp hơn nhiều các nước lân cận điển hình là Thái Lan đạt 10 triệu du khá…",
+              "source_chunk": "948"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Đây là báo cáo dự phòng P&L cho 5 năm đánh giá về mặt cơ cấu doanh thu, chi phí hoạt động và EBITDA trong thời gian khai thác kinh doanh",
+              "source_chunk": "948"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Các khách sạn 4 sao nằm cùng vị trí (không ven biển) có giá thuê dao động từ $40 - 54/đêm/phòng, có quy mô từ 100 - 300 phòng Theo thống kê, tỷ lệ khách du lịch nội địa năm 2022 tăng 18% so với năm 2019 là 1 phần kết quả sau 2 năm 2020 và 2021 người dân không được di du lịch.",
+              "source_chunk": "948"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Đây là báo cáo dự phòng P&L cho 5 năm đánh giá về mặt cơ cấu doanh thu, chi phí hoạt động và EBITDA trong thời gian khai thác kinh doanh --- chunk --- Báo cáo này không đánh giá chi phí đầu vào bao gồm chi phí duy tu sửa chữa vì khách sạn đã không hoạt động trong giai đoạn dịch và chi phí mua dự án => Nên chưa đánh giá hiệu quả dự án theo yếu tố dòng tiền…",
               "source_chunk": "948"
             },
             {
@@ -35167,6 +40193,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khách sạn 5 sao 12 Hùng Vương, Đà Lạt",
           "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phương án có đất Phương án không có đất (đánh giá tỷ suất lợi nhuận dựa trên chi phí đầu tư xây dựng ban đầu) a) Hiệu quả 2 phương án b) Độ nhạy Độ nhạy TMĐT/Phòng (bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA bao gồm đất Độ nhạy TMĐT/Phòng (Bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA không bao gồm đất Ủa chỗ giá bán đất là sao nhỉ…",
+          "source_chunk": "143",
+          "record_id": "M02-0016",
+          "report_no": 1,
+          "project_name": "Khách sạn 5 sao 12 Hùng Vương, Đà Lạt",
+          "part": 2
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Với suất vốn này, thì phương án tính đất sẽ là 6.4% ạ Phải tính đất chứ. by Admin 01",
+          "source_chunk": "143",
+          "record_id": "M02-0016",
+          "report_no": 1,
+          "project_name": "Khách sạn 5 sao 12 Hùng Vương, Đà Lạt",
+          "part": 2
         }
       ],
       "reports": [
@@ -35228,6 +40272,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dạ đối với phương án không tính đất, để dự án hiệu quả IRR đạt 10%, thì suất vốn có thể nâng lên là 3 tỷ 1/key ạ. Với suất vốn này, thì phương án tính đất sẽ là 6.4% ạ",
+              "source_chunk": "143"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phương án có đất Phương án không có đất (đánh giá tỷ suất lợi nhuận dựa trên chi phí đầu tư xây dựng ban đầu) a) Hiệu quả 2 phương án b) Độ nhạy Độ nhạy TMĐT/Phòng (bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA bao gồm đất Độ nhạy TMĐT/Phòng (Bao gồm VAT)/phòng và Giá thuê (bao gồm VAT) đối với PA không bao gồm đất Ủa chỗ giá bán đất là sao nhỉ…",
+              "source_chunk": "143"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Với suất vốn này, thì phương án tính đất sẽ là 6.4% ạ Phải tính đất chứ. by Admin 01",
               "source_chunk": "143"
             }
           ],
@@ -35349,8 +40403,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 3
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "+ Đối mặt với rủi ro \"thay đổi xu hướng\". Do dựa vào yếu tố thời thượng để thu hút khách, thiết kế của Lifestyle hotel có thể trở nên lỗi thời nhanh chóng khi thị hiếu thay đổi. Điều này buộc chủ đầu tư phải trích lập quỹ dự phòng cao hơn 30%-40% TMĐT ban đầu và chấp nhận chu kỳ cải tạo ngắn hơn khoảng 3-5 năm để làm mới trải nghiệm, đặc biệt là tại các k…",
+          "source_chunk": "214",
+          "record_id": "M03-0007",
+          "report_no": 1,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "+ Việc tái đầu tư sẽ làm gián đoạn kinh doanh khoảng 6 tháng – 1 năm ảnh hưởng đến hiệu quả kinh doanh.",
+          "source_chunk": "214",
+          "record_id": "M03-0007",
+          "report_no": 1,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Chi phí tái đầu tư khách sạn sau 3-5 năm để phù hợp với xu hướng khoảng 30%-40% TMĐT ban đầu, buộc doanh thu kinh doanh phải cao hơn so với concept cũ vì chi phí tăng thêm dẫn đến giá bán phòng tăng so với trước đó hay nói cách khác chi phí tái đầu tư phải cộng thêm vào giá bán phòng hiện tại.",
           "source_chunk": "214",
           "record_id": "M03-0007",
           "report_no": 1,
@@ -35422,24 +40494,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Chi phí / vốn từ nguồn",
-          "value": "Tổng mức đầu tư ko bao gồm đất: 656 tỷ đồng bao gồm VAT và lãi vay",
-          "source_chunk": "214",
-          "record_id": "M03-0007",
-          "report_no": 1,
-          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
-          "part": 3
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "Tổng mức đầu tư bao gồm đất: 1.148 tỷ đồng bao gồm VAT",
-          "source_chunk": "214",
-          "record_id": "M03-0007",
-          "report_no": 1,
-          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
-          "part": 3
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
           "value": "Phòng đầu tư trích thêm các chi phí sau: phí quản lý 4%/Rev; Phí nâng cấp cải tạo 2%/Rev mỗi năm trích vào năm 7 và 2%/Rev mỗi năm trích vào năm 15.",
           "source_chunk": "263",
           "record_id": "M03-0025",
@@ -35486,6 +40540,60 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "+ IRR dòng tiền vận hành 15 năm: 19,97%",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Phòng đầu tư trích thêm các chi phí sau: phí quản lý 4%/Rev;",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1.381 m2 thời gian sử dụng 50 năm đến 17/03/2061 Đơn giá đất tạm tính:",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "350 triệu/m2 Tổng mức đầu tư ko bao gồm đất:",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "656 tỷ đồng bao gồm VAT và lãi vay Tổng mức đầu tư bao gồm đất:",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "1.148 tỷ đồng bao gồm VAT",
+          "source_chunk": "263",
+          "record_id": "M03-0025",
+          "report_no": 2,
+          "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
+          "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "2/ Hiệu quả tài chính dự án THEO PHƯƠNG ÁN KINH DOANH ANH CƯỜNG – TMĐT Ko bao gồm ĐẤT Kết quả kinh doanh – PA vận hành 15 năm + GOP bình quân mỗi năm:",
           "source_chunk": "263",
           "record_id": "M03-0025",
           "report_no": 2,
@@ -35565,8 +40673,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "214"
             },
             {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "+ Đối mặt với rủi ro \"thay đổi xu hướng\". Do dựa vào yếu tố thời thượng để thu hút khách, thiết kế của Lifestyle hotel có thể trở nên lỗi thời nhanh chóng khi thị hiếu thay đổi. Điều này buộc chủ đầu tư phải trích lập quỹ dự phòng cao hơn 30%-40% TMĐT ban đầu và chấp nhận chu kỳ cải tạo ngắn hơn khoảng 3-5 năm để làm mới trải nghiệm, đặc biệt là tại các k…",
+              "source_chunk": "214"
+            },
+            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Việc tái đầu tư sẽ làm gián đoạn kinh doanh khoảng 6 tháng – 1 năm ảnh hưởng đến hiệu quả kinh doanh.",
+              "source_chunk": "214"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Chi phí tái đầu tư khách sạn sau 3-5 năm để phù hợp với xu hướng khoảng 30%-40% TMĐT ban đầu, buộc doanh thu kinh doanh phải cao hơn so với concept cũ vì chi phí tăng thêm dẫn đến giá bán phòng tăng so với trước đó hay nói cách khác chi phí tái đầu tư phải cộng thêm vào giá bán phòng hiện tại.",
               "source_chunk": "214"
             },
             {
@@ -35602,16 +40720,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Đơn giá đất tạm tính: 350 triệu/m2",
-              "source_chunk": "214"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Tổng mức đầu tư ko bao gồm đất: 656 tỷ đồng bao gồm VAT và lãi vay",
-              "source_chunk": "214"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "Tổng mức đầu tư bao gồm đất: 1.148 tỷ đồng bao gồm VAT",
               "source_chunk": "214"
             }
           ],
@@ -35665,6 +40773,36 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "+ IRR dòng tiền vận hành 15 năm: 19,97%",
               "source_chunk": "263"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Phòng đầu tư trích thêm các chi phí sau: phí quản lý 4%/Rev;",
+              "source_chunk": "263"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1.381 m2 thời gian sử dụng 50 năm đến 17/03/2061 Đơn giá đất tạm tính:",
+              "source_chunk": "263"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "350 triệu/m2 Tổng mức đầu tư ko bao gồm đất:",
+              "source_chunk": "263"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "656 tỷ đồng bao gồm VAT và lãi vay Tổng mức đầu tư bao gồm đất:",
+              "source_chunk": "263"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "1.148 tỷ đồng bao gồm VAT",
+              "source_chunk": "263"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "2/ Hiệu quả tài chính dự án THEO PHƯƠNG ÁN KINH DOANH ANH CƯỜNG – TMĐT Ko bao gồm ĐẤT Kết quả kinh doanh – PA vận hành 15 năm + GOP bình quân mỗi năm:",
+              "source_chunk": "263"
             }
           ],
           "excerpt": "TMĐT không bao gồm đất 656 tỷ... TMĐT bao gồm đất 1.148 tỷ... IRR 19.97%.",
@@ -35716,6 +40854,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Siêu cảng Cái Mép Hạ",
           "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Huy M - IM 6/3/2024 9:16 AM https://vnexpress.net/de-xuat-dau-tu-sieu-cang-cai-mep-ha-don-tau-bien-lon-nhat-the-gioi-4753385.html Đề xuất đầu tư 'siêu cảng' Cái Mép Hạ đón tàu biển lớn nhất thế giới Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhấ…",
+          "source_chunk": "711",
+          "record_id": "M08-0001",
+          "report_no": 1,
+          "project_name": "Siêu cảng Cái Mép Hạ",
+          "part": 8
         }
       ],
       "reports": [
@@ -35750,6 +40897,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhất th",
+              "source_chunk": "711"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Huy M - IM 6/3/2024 9:16 AM https://vnexpress.net/de-xuat-dau-tu-sieu-cang-cai-mep-ha-don-tau-bien-lon-nhat-the-gioi-4753385.html Đề xuất đầu tư 'siêu cảng' Cái Mép Hạ đón tàu biển lớn nhất thế giới Bà Rịa - Vũng Tàu- Dự án cảng tổng hợp và container Cái Mép Hạ được đề xuất đầu tư với tổng vốn 50.820 tỷ đồng, quy mô 351 ha, có thể đón các tàu biển lớn nhấ…",
               "source_chunk": "711"
             }
           ],
@@ -36155,6 +41307,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
           "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Vietnam : tại TPHCM - $257, tại Hà Nội - $168, các tỉnh thành phía Nam - $158, các tỉnh thành phía Bắc - $115 + Indonesia : tại Jakarta - $392, West Java (liền kề Jakarta) - $150, Easta Java - $397, Central Java - $119 + Thái Lan : tại Vùng thủ đô Bangkok - $162, tại EEC - $130 => Indonesia có giá đất KCN trung bình cao hơn hẳn Việt Nam và Thái Lan",
+          "source_chunk": "767",
+          "record_id": "M08-0012",
+          "report_no": 1,
+          "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "87 - 89% => Việt Nam có tỷ lệ lắp đầy cao nhất, phản ánh sự dịch chuyển dòng vốn đầu tư từ nước ngoài vào Việt Nam mạnh mẽ trong những năm vừa qua.",
+          "source_chunk": "767",
+          "record_id": "M08-0012",
+          "report_no": 1,
+          "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Tỷ lệ lấp đầy của các KCN ở Việt Nam vượt trội hơn so với 2 nước còn lại, phản ánh sự dịch chuyển dòng vốn đầu tư từ nước ngoài vào Việt Nam mạnh mẽ trong những năm vừa qua + Khoảng chênh lệch lớn về giá đất KCN của Jakarta và TP.HCM so với các tỉnh lân cận là do sự khác biệt về chất lượng của (I) cơ sở hạ tầng và (ii) lực lượng lao động B/ Thông tin th…",
+          "source_chunk": "767",
+          "record_id": "M08-0012",
+          "report_no": 1,
+          "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
+          "part": 8
         }
       ],
       "reports": [
@@ -36214,6 +41393,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "1/ Giá đất KCN ( $/ m2 đất/ kỳ):",
+              "source_chunk": "767"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Vietnam : tại TPHCM - $257, tại Hà Nội - $168, các tỉnh thành phía Nam - $158, các tỉnh thành phía Bắc - $115 + Indonesia : tại Jakarta - $392, West Java (liền kề Jakarta) - $150, Easta Java - $397, Central Java - $119 + Thái Lan : tại Vùng thủ đô Bangkok - $162, tại EEC - $130 => Indonesia có giá đất KCN trung bình cao hơn hẳn Việt Nam và Thái Lan",
+              "source_chunk": "767"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "87 - 89% => Việt Nam có tỷ lệ lắp đầy cao nhất, phản ánh sự dịch chuyển dòng vốn đầu tư từ nước ngoài vào Việt Nam mạnh mẽ trong những năm vừa qua.",
+              "source_chunk": "767"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Tỷ lệ lấp đầy của các KCN ở Việt Nam vượt trội hơn so với 2 nước còn lại, phản ánh sự dịch chuyển dòng vốn đầu tư từ nước ngoài vào Việt Nam mạnh mẽ trong những năm vừa qua + Khoảng chênh lệch lớn về giá đất KCN của Jakarta và TP.HCM so với các tỉnh lân cận là do sự khác biệt về chất lượng của (I) cơ sở hạ tầng và (ii) lực lượng lao động B/ Thông tin th…",
               "source_chunk": "767"
             }
           ],
@@ -36496,6 +41690,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất): 1) Vị trí và hiện trạng: - Nằm cách Quốc lộ 13 khoảng 50m, cách dự án Phú Quang khoảng 2.5km đường …",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
           "source_chunk": "960",
           "record_id": "M10-0021",
@@ -36547,6 +41750,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Stown Gateway, Thuận An, Bình Dương",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Unknown User 8/10/2022 4:02 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Nằm cách Quốc lộ 13 khoảng 50m, cách dự án Phú Quang khoảng 2.5km đường … Này ai gửi nhỉ Image by Unknown User --- chunk --- Trieu Nguyen-PTDT 8/10/2022 4:02 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Chung cư cao cấp - 780 căn hộ chung cư, giá bán 55tr/m2 sàn có VAT thông thủy tại năm 2024, dựa trên cơ sở giá bán 50tr/m2 hiện tại. (Các dự án tham khảo chính:",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Lavita giá bán 42-52tr/m2, Astral giá bán 52-57tr/m2, Urban Green giá bán 63.6-68.8tr/m2) - 2 tầng khối đế bao gồm mini mart, nhà trẻ, minimart, sinh hoạt cộng đồng, nghiên cứu đầu tư vườn trên cao tại tầng 2 để nhắm tới phân khúc khách hàng cao cấp 7) Tổng mức đầu tư là 2052.5 tỷ đồng, Doanh thu là 2874.5 tỷ đồng => Lợi nhuận trước thuế:",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "452 tỷ 8) Kết luận:",
+          "source_chunk": "960",
+          "record_id": "M10-0021",
+          "report_no": 1,
+          "project_name": "Stown Gateway, Thuận An, Bình Dương",
+          "part": 10
         }
       ],
       "reports": [
@@ -36576,6 +41824,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất): 1) Vị trí và hiện trạng: - Nằm cách Quốc lộ 13 khoảng 50m, cách dự án Phú Quang khoảng 2.5km đường …",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
               "source_chunk": "960"
             },
@@ -36602,6 +41855,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá chào 530 tỷ bao gồm tiền sử dụng đất và GPXD",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Unknown User 8/10/2022 4:02 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Nằm cách Quốc lộ 13 khoảng 50m, cách dự án Phú Quang khoảng 2.5km đường … Này ai gửi nhỉ Image by Unknown User --- chunk --- Trieu Nguyen-PTDT 8/10/2022 4:02 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án Stown Gateway có quy mô 8816m2 tại hẻm Quốc lộ 13, Thuận An, Bình Dương có giá chào 530 tỷ (bao gồm tiền sử dụng đất và GPXD, tương đương 60tr/m2 đất):",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Chung cư cao cấp - 780 căn hộ chung cư, giá bán 55tr/m2 sàn có VAT thông thủy tại năm 2024, dựa trên cơ sở giá bán 50tr/m2 hiện tại. (Các dự án tham khảo chính:",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Lavita giá bán 42-52tr/m2, Astral giá bán 52-57tr/m2, Urban Green giá bán 63.6-68.8tr/m2) - 2 tầng khối đế bao gồm mini mart, nhà trẻ, minimart, sinh hoạt cộng đồng, nghiên cứu đầu tư vườn trên cao tại tầng 2 để nhắm tới phân khúc khách hàng cao cấp 7) Tổng mức đầu tư là 2052.5 tỷ đồng, Doanh thu là 2874.5 tỷ đồng => Lợi nhuận trước thuế:",
+              "source_chunk": "960"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "452 tỷ 8) Kết luận:",
               "source_chunk": "960"
             }
           ],
@@ -36762,6 +42040,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án chung cư tại Tân Bình, Dĩ An, Bình Dương có quy mô 9379m2, có giá chào 380 tỷ nhưng do chủ cần bán gấp nên vẫn có thể thương lượng ở mức 320 tỷ trong đó 237.55 tỷ (25.3 tr.đồng/m2)là tiền chuyển nhượng đất và tiền sử dụng đất + 82.45 tỷ là tiền đền bù và hoàn thành đường kết nối N5 có lộ giới 17m chiều dài 150m, cụ…",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Căn hộ chung cư 66530 m2 (1109 căn): giá bán trung bình 38tr/m2 sàn thông thủy có VAT tại năm 2024 tương đương giá hiện tại 33tr/m2 sàn, có tốc độ tăng 5%/năm (cơ sở tham chiếu từ 1/ Dự án Tecco Felice 29-31tr/m2 tại năm 2022, 2/ Dự án Legacy Kim Oanh 34- 36tr/m2 tại năm 2022, 3/ Dự án Đông Trung - giá trung bình đề xuất 36.5tr/m2 tại năm 2024)",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
           "value": "Shophouse khối đế 2111m2 (14 căn): giá bán trung bình 45tr/m2 sàn thông thủy có VAT tại nam 2024",
           "source_chunk": "934",
           "record_id": "M10-0013",
@@ -36804,6 +42100,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 11/16/2022 3:35 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án chung cư tại Tân Bình, Dĩ An, Bình Dương có quy mô 9379m2, có giá chào 380 tỷ nhưng do chủ cần bán gấp nên vẫn có thể thương lượng ở mức 320 tỷ trong đó 237.55 tỷ (25.3 tr.đồng/m2)là tiền chuyển nhượng đất và tiền sử dụng đất + 82.45 tỷ là tiền đền bù và hoàn thành đường k…",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Căn hộ chung cư 66530 m2 (1109 căn): giá bán trung bình 38tr/m2 sàn thông thủy có VAT tại năm 2024 tương đương giá hiện tại 33tr/m2 sàn, có tốc độ tăng 5%/năm (cơ sở tham chiếu từ",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1/ Dự án Tecco Felice 29-31tr/m2 tại năm 2022,",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "2/ Dự án Legacy Kim Oanh 34- 36tr/m2 tại năm 2022,",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "3/ Dự án Đông Trung - giá trung bình đề xuất 36.5tr/m2 tại năm 2024) - Shophouse khối đế 2111m2 (14 căn): giá bán trung bình 45tr/m2 sàn thông thủy có VAT tại nam 2024 - 1 tầng tiện ích: tạm tính giá thuê khoán $6/m2/tháng Giai đoạn dự án:",
+          "source_chunk": "934",
+          "record_id": "M10-0013",
+          "report_no": 1,
+          "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
+          "part": 10
         }
       ],
       "reports": [
@@ -36837,6 +42178,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi anh Tuan Tran-CEO báo cáo dự án chung cư tại Tân Bình, Dĩ An, Bình Dương có quy mô 9379m2, có giá chào 380 tỷ nhưng do chủ cần bán gấp nên vẫn có thể thương lượng ở mức 320 tỷ trong đó 237.55 tỷ (25.3 tr.đồng/m2)là tiền chuyển nhượng đất và tiền sử dụng đất + 82.45 tỷ là tiền đền bù và hoàn thành đường kết nối N5 có lộ giới 17m chiều dài 150m, cụ…",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Căn hộ chung cư 66530 m2 (1109 căn): giá bán trung bình 38tr/m2 sàn thông thủy có VAT tại năm 2024 tương đương giá hiện tại 33tr/m2 sàn, có tốc độ tăng 5%/năm (cơ sở tham chiếu từ 1/ Dự án Tecco Felice 29-31tr/m2 tại năm 2022, 2/ Dự án Legacy Kim Oanh 34- 36tr/m2 tại năm 2022, 3/ Dự án Đông Trung - giá trung bình đề xuất 36.5tr/m2 tại năm 2024)",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "Shophouse khối đế 2111m2 (14 căn): giá bán trung bình 45tr/m2 sàn thông thủy có VAT tại nam 2024",
               "source_chunk": "934"
             },
@@ -36858,6 +42209,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "+ Số tiền đền bù và chi trả hoàn thành đường 82.45 tỷ đã có văn bản đồng ý của chính quyền địa phương, BEEG có thể chi thẳng vào ban bồi thường giải phóng mặt bằng mà không đưa trực tiếp cho phía chào bán",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 11/16/2022 3:35 PM Edited KĐT gửi anh Tuan Tran-CEO báo cáo dự án chung cư tại Tân Bình, Dĩ An, Bình Dương có quy mô 9379m2, có giá chào 380 tỷ nhưng do chủ cần bán gấp nên vẫn có thể thương lượng ở mức 320 tỷ trong đó 237.55 tỷ (25.3 tr.đồng/m2)là tiền chuyển nhượng đất và tiền sử dụng đất + 82.45 tỷ là tiền đền bù và hoàn thành đường k…",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Căn hộ chung cư 66530 m2 (1109 căn): giá bán trung bình 38tr/m2 sàn thông thủy có VAT tại năm 2024 tương đương giá hiện tại 33tr/m2 sàn, có tốc độ tăng 5%/năm (cơ sở tham chiếu từ",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1/ Dự án Tecco Felice 29-31tr/m2 tại năm 2022,",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "2/ Dự án Legacy Kim Oanh 34- 36tr/m2 tại năm 2022,",
+              "source_chunk": "934"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "3/ Dự án Đông Trung - giá trung bình đề xuất 36.5tr/m2 tại năm 2024) - Shophouse khối đế 2111m2 (14 căn): giá bán trung bình 45tr/m2 sàn thông thủy có VAT tại nam 2024 - 1 tầng tiện ích: tạm tính giá thuê khoán $6/m2/tháng Giai đoạn dự án:",
               "source_chunk": "934"
             }
           ],
@@ -36912,6 +42288,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án Tân Phú 43ha - Bình Dương / Kim Oanh",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Công ty Kim Oanh liên quan gì đến vụ án 43ha “đất vàng” tại Bình Dương? Đối tác đang chào bán 13tr/m2 cho 43 ha (5,600 tỷ) ~ 30tr/m2 đất ở thương phẩm (theo 1/500 dự kiến đối tác đề xuất) và giá chào này theo hiện trạng dự án, không bao gồm TSDĐ và việc gỡ các vấn đề PL nêu trên => Đề xuất:",
+          "source_chunk": "21",
+          "record_id": "M01-0012",
+          "report_no": 1,
+          "project_name": "Dự án Tân Phú 43ha - Bình Dương / Kim Oanh",
+          "part": 1
         }
       ],
       "reports": [
@@ -36948,6 +42333,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Đối tác đang chào bán 13tr/m2 cho 43 ha (5,600 tỷ) ~ 30tr/m2 đất ở thương phẩm (theo 1/500 dự kiến đối tác đề xuất) và giá chào này theo hiện trạng dự án, không bao gồm TSDĐ và việc gỡ các vấn đề PL nêu trên",
+              "source_chunk": "21"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Công ty Kim Oanh liên quan gì đến vụ án 43ha “đất vàng” tại Bình Dương? Đối tác đang chào bán 13tr/m2 cho 43 ha (5,600 tỷ) ~ 30tr/m2 đất ở thương phẩm (theo 1/500 dự kiến đối tác đề xuất) và giá chào này theo hiện trạng dự án, không bao gồm TSDĐ và việc gỡ các vấn đề PL nêu trên => Đề xuất:",
               "source_chunk": "21"
             }
           ],
@@ -37039,6 +42429,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 9
         },
         {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Khảo sát đơn giá đền bù giải phóng mặt bằng đất nông nghiệp năm 2022 ở khu vực tương đối cao, khoảng 390.000 đồng/m². Việc có nhiều hộ dân sinh sống trong dự án sẽ đẩy chi phí bồi thường lên rất cao. Tuy nhiên, giá thuê đất KCN ở tỉnh Vĩnh Phúc ở mức thấp so với các KCN tỉnh vệ sinh của Hà Nội",
+          "source_chunk": "809",
+          "record_id": "M09-0001",
+          "report_no": 1,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 9
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Unknown User 6/16/2023 9:12 PM Chi phí san lấp mà hết 1.5tr cao dữ v hã Hiện nay chi phí san lấp, hạ tầng kcn trung bình tầm 800 - 1 trđ/m2.",
+          "source_chunk": "809",
+          "record_id": "M09-0001",
+          "report_no": 1,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "4/ Quy hoạch Quyết định về việc Phê duyệt đồ án QHCT tỷ lệ 1/2000 Khu công nghiệp Thái Hòa, Bắc Bình tại huyện Lập Thạch, tỉnh Vĩnh Phúc số 3424/QĐ-UBND ngày 26/11/2013 Căn cứ phê duyệt quy hoạch sử dụng đất thời kỳ 2021-2030 do UBND tỉnh lập:",
+          "source_chunk": "809",
+          "record_id": "M09-0001",
+          "report_no": 1,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Tỷ lệ lấp đầy khá cao và ổn định, duy trì ở mức 85% - 90% Khó khăn:",
+          "source_chunk": "809",
+          "record_id": "M09-0001",
+          "report_no": 1,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 9
+        },
+        {
           "label": "Giá chào lô KCN Khu vực II",
           "value": "85 USD/m2",
           "source_chunk": "787",
@@ -37067,6 +42493,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Chi phí / vốn từ nguồn",
+          "value": "Khảo sát đơn giá đền bù giải phóng mặt bằng đất nông nghiệp năm 2022 ở khu vực tương đối cao, khoảng 390.000 đồng/m². Việc có nhiều hộ dân sinh sống trong dự án sẽ đẩy chi phí bồi thường lên rất cao. Tuy nhiên, giá thuê đất KCN ở tỉnh Vĩnh Phúc ở mức thấp so với các KCN tỉnh vệ sinh của Hà Nội",
+          "source_chunk": "787",
+          "record_id": "M08-0017",
+          "report_no": 2,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
           "value": "Chi phí san lấp mà hết 1.5tr cao dữ v hã by Unknown User",
           "source_chunk": "787",
           "record_id": "M08-0017",
@@ -37077,6 +42512,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Lúc đi vẫn chưa có thông tin cao độ về dự án khi thực hiện kcn phải san lấp thêm ở mức bao nhiêu nên cũng chưa ước tính chi phí san lấp cho dự án này. Nên chưa rõ lắm về chi phí 1.5 trđ Tuấn đang đề cập à",
+          "source_chunk": "787",
+          "record_id": "M08-0017",
+          "report_no": 2,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 8
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "4/ Quy hoạch Quyết định về việc Phê duyệt đồ án QHCT tỷ lệ 1/2000 Khu công nghiệp Thái Hòa, Bắc Bình tại huyện Lập Thạch, tỉnh Vĩnh Phúc số 3424/QĐ-UBND ngày 26/11/2013 Căn cứ phê duyệt quy hoạch sử dụng đất thời kỳ 2021-2030 do UBND tỉnh lập:",
+          "source_chunk": "787",
+          "record_id": "M08-0017",
+          "report_no": 2,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 8
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Tỷ lệ lấp đầy khá cao và ổn định, duy trì ở mức 85% - 90% Khó khăn:",
+          "source_chunk": "787",
+          "record_id": "M08-0017",
+          "report_no": 2,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "21°28'23.0\"N 105°30'45.2\"E Find local businesses, view maps and get driving directions in Google Maps. goo.gl Chi phí san lấp mà hết 1.5tr cao dữ v hã by Unknown User --- chunk --- Huy M - IM 6/16/2023 9:24 PM Edited Lúc đi vẫn chưa có thông tin cao độ về dự án khi thực hiện kcn phải san lấp thêm ở mức bao nhiêu nên cũng chưa ước tính chi phí san lấp cho…",
+          "source_chunk": "787",
+          "record_id": "M08-0017",
+          "report_no": 2,
+          "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
+          "part": 8
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Nên chưa rõ lắm về chi phí 1.5 trđ Tuấn đang đề cập à image by Unknown User, has an attachment.",
           "source_chunk": "787",
           "record_id": "M08-0017",
           "report_no": 2,
@@ -37137,6 +42608,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tốc độ tăng trưởng giá thuê đất KCN khá tốt, khoảng 11,2%/năm. Tỷ lệ lấp đầy khá cao và ổn định, duy trì ở mức 85% - 90%",
               "source_chunk": "809"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Khảo sát đơn giá đền bù giải phóng mặt bằng đất nông nghiệp năm 2022 ở khu vực tương đối cao, khoảng 390.000 đồng/m². Việc có nhiều hộ dân sinh sống trong dự án sẽ đẩy chi phí bồi thường lên rất cao. Tuy nhiên, giá thuê đất KCN ở tỉnh Vĩnh Phúc ở mức thấp so với các KCN tỉnh vệ sinh của Hà Nội",
+              "source_chunk": "809"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Unknown User 6/16/2023 9:12 PM Chi phí san lấp mà hết 1.5tr cao dữ v hã Hiện nay chi phí san lấp, hạ tầng kcn trung bình tầm 800 - 1 trđ/m2.",
+              "source_chunk": "809"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "4/ Quy hoạch Quyết định về việc Phê duyệt đồ án QHCT tỷ lệ 1/2000 Khu công nghiệp Thái Hòa, Bắc Bình tại huyện Lập Thạch, tỉnh Vĩnh Phúc số 3424/QĐ-UBND ngày 26/11/2013 Căn cứ phê duyệt quy hoạch sử dụng đất thời kỳ 2021-2030 do UBND tỉnh lập:",
+              "source_chunk": "809"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Tỷ lệ lấp đầy khá cao và ổn định, duy trì ở mức 85% - 90% Khó khăn:",
+              "source_chunk": "809"
             }
           ],
           "excerpt": "KCN Vĩnh Phúc đất lúa xen nhà dân/đồi; san lấp hạ tầng 800k-1tr/m2, vùng thấp thêm 250k/m3.",
@@ -37179,12 +42670,37 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Chi phí / vốn từ nguồn",
+              "value": "Khảo sát đơn giá đền bù giải phóng mặt bằng đất nông nghiệp năm 2022 ở khu vực tương đối cao, khoảng 390.000 đồng/m². Việc có nhiều hộ dân sinh sống trong dự án sẽ đẩy chi phí bồi thường lên rất cao. Tuy nhiên, giá thuê đất KCN ở tỉnh Vĩnh Phúc ở mức thấp so với các KCN tỉnh vệ sinh của Hà Nội",
+              "source_chunk": "787"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
               "value": "Chi phí san lấp mà hết 1.5tr cao dữ v hã by Unknown User",
               "source_chunk": "787"
             },
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Lúc đi vẫn chưa có thông tin cao độ về dự án khi thực hiện kcn phải san lấp thêm ở mức bao nhiêu nên cũng chưa ước tính chi phí san lấp cho dự án này. Nên chưa rõ lắm về chi phí 1.5 trđ Tuấn đang đề cập à",
+              "source_chunk": "787"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "4/ Quy hoạch Quyết định về việc Phê duyệt đồ án QHCT tỷ lệ 1/2000 Khu công nghiệp Thái Hòa, Bắc Bình tại huyện Lập Thạch, tỉnh Vĩnh Phúc số 3424/QĐ-UBND ngày 26/11/2013 Căn cứ phê duyệt quy hoạch sử dụng đất thời kỳ 2021-2030 do UBND tỉnh lập:",
+              "source_chunk": "787"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Tỷ lệ lấp đầy khá cao và ổn định, duy trì ở mức 85% - 90% Khó khăn:",
+              "source_chunk": "787"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "21°28'23.0\"N 105°30'45.2\"E Find local businesses, view maps and get driving directions in Google Maps. goo.gl Chi phí san lấp mà hết 1.5tr cao dữ v hã by Unknown User --- chunk --- Huy M - IM 6/16/2023 9:24 PM Edited Lúc đi vẫn chưa có thông tin cao độ về dự án khi thực hiện kcn phải san lấp thêm ở mức bao nhiêu nên cũng chưa ước tính chi phí san lấp cho…",
+              "source_chunk": "787"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Nên chưa rõ lắm về chi phí 1.5 trđ Tuấn đang đề cập à image by Unknown User, has an attachment.",
               "source_chunk": "787"
             }
           ],
@@ -37214,6 +42730,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá chào",
           "value": "300 tỷ, khoảng 31,3 tr/m2 trên diện tích chào bán",
+          "source_chunk": "972",
+          "record_id": "M10-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án chung cư Thành Lộc với tổng diện tích đất phù hợp quy hoạch để thực hiện dự án là 8,368.3m2 (giá chào bán khoảng 300 tỷ tương đương 31.3 tr/m2 trên diện tích đất chào bán 9,582.6m2) thuộc phường An Thạnh, thành phố Thuận An, tỉnh Bình Dương:",
           "source_chunk": "972",
           "record_id": "M10-0023",
           "report_no": 1,
@@ -37282,6 +42807,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
           "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Quy Vo-PTDT 8/9/2022 4:15 PM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án chung cư Thành Lộc với tổng diện tích đất phù hợp quy hoạch để thực hiện dự án là 8,368.3m2 (giá chào bán khoảng 300 tỷ tương đương 31.3 tr/m2 trên diện tích đất chào bán 9,582.6m2) thuộc phường An Thạnh, thành phố Thuận An, tỉnh Bình Dương:",
+          "source_chunk": "972",
+          "record_id": "M10-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "682 căn hộ chung cư hạng B, DTTB 65 m2 với giá bán tại thời điểm hiện tại là 40 triệu/m2 & 46 triệu/m2 tại thời điểm mở bán Q1/2025.",
+          "source_chunk": "972",
+          "record_id": "M10-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "29 căn shophouse, DTTB 120 m2 với giá bán tại thời điểm hiện tại là 60 triệu/m2 & 69 triệu/m2 tại thời điểm mở bán Q1/2025.",
+          "source_chunk": "972",
+          "record_id": "M10-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Happy One Central của Vạn Xuân với quy mô dự án khoảng 1ha bao gồm 1287 căn hộ, giá bán khoảng 39-42 tr/m2.",
+          "source_chunk": "972",
+          "record_id": "M10-0023",
+          "report_no": 1,
+          "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
+          "part": 10
         }
       ],
       "reports": [
@@ -37306,6 +42867,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá chào",
               "value": "300 tỷ, khoảng 31,3 tr/m2 trên diện tích chào bán",
+              "source_chunk": "972"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án chung cư Thành Lộc với tổng diện tích đất phù hợp quy hoạch để thực hiện dự án là 8,368.3m2 (giá chào bán khoảng 300 tỷ tương đương 31.3 tr/m2 trên diện tích đất chào bán 9,582.6m2) thuộc phường An Thạnh, thành phố Thuận An, tỉnh Bình Dương:",
               "source_chunk": "972"
             },
             {
@@ -37341,6 +42907,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Dự án chưa đạt được hiệu quả tài chính dựa trên kết quả tính toán, để IRR đạt mức 20% thì giá mua đề xuất khoảng 250 tỷ đồng tương đương 26trđ/m2 (khoảng 83.29% so với giá chào 300 tỷ đồng).",
+              "source_chunk": "972"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Quy Vo-PTDT 8/9/2022 4:15 PM KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án chung cư Thành Lộc với tổng diện tích đất phù hợp quy hoạch để thực hiện dự án là 8,368.3m2 (giá chào bán khoảng 300 tỷ tương đương 31.3 tr/m2 trên diện tích đất chào bán 9,582.6m2) thuộc phường An Thạnh, thành phố Thuận An, tỉnh Bình Dương:",
+              "source_chunk": "972"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "682 căn hộ chung cư hạng B, DTTB 65 m2 với giá bán tại thời điểm hiện tại là 40 triệu/m2 & 46 triệu/m2 tại thời điểm mở bán Q1/2025.",
+              "source_chunk": "972"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "29 căn shophouse, DTTB 120 m2 với giá bán tại thời điểm hiện tại là 60 triệu/m2 & 69 triệu/m2 tại thời điểm mở bán Q1/2025.",
+              "source_chunk": "972"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Phương án kinh doanh được tham khảo từ giá bán dự án Happy One Central của Vạn Xuân với quy mô dự án khoảng 1ha bao gồm 1287 căn hộ, giá bán khoảng 39-42 tr/m2.",
               "source_chunk": "972"
             }
           ],
@@ -37729,8 +43315,62 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 10/11/2022 6:26 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án the Bale tại Phan Thiết, Bình Thuận có giá chào 390.48 tỷ đồng (3tr/m2 đất) cam kết hoàn thành đường kết nối, đền bù, và đóng tiền thuê đất 1 lần (BeeG trả tiền thuê đất) cụ thể:",
+          "source_chunk": "925",
+          "record_id": "M10-0008",
+          "report_no": 1,
+          "project_name": "The Bale, Phan Thiết/Bình Thuận",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "127 căn biệt thự: giá bán đất 39tr/m2 đất tại 2024 206 căn hộ: giá bán 40tr/m2 sàn thông thủy có VAT tại năm 2024 1 khu nhà hàng: giả định giá thuê khoán 21tr/m2 sàn cho tổng thời gian thuê 37 năm 59 căn bungalow: giả định giá bán đất 24tr/m2 đất cho tổng thời gian dự án 37 năm Tổng mức đầu tư là 2548 tỷ đồng (chưa bao gồm chi phí hoạt động và bán hàng),…",
+          "source_chunk": "925",
+          "record_id": "M10-0008",
+          "report_no": 1,
+          "project_name": "The Bale, Phan Thiết/Bình Thuận",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Vị trí dự án không có mặt tiền đường ven biển hoặc mặt tiền biển => Không đạt tiêu chí đầu tư Theo Điều 59 của dự thảo luật đất đai quy định đất TMDV không nằm trong danh mục đất được đóng tiền thuê 1 lần cho cả thời gian thuê => rủi ro về pháp lý đất (khó bán hàng) Thời hạn thuê đất chỉ còn 37 năm Hiệu quả tài chính kém, tỷ suất lợi nhuận 7.84% => Với cá…",
+          "source_chunk": "925",
+          "record_id": "M10-0008",
+          "report_no": 1,
+          "project_name": "The Bale, Phan Thiết/Bình Thuận",
+          "part": 10
+        },
+        {
           "label": "Giá chào cập nhật",
           "value": "2.000.000 đ/m2 đất",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi anh Tuan Tran-CEO đánh giá lại dự án Bale tại Mũi Né, Phan Thiết, có giá chào bán được điều chỉnh giảm còn 2.000.000 đồng/m2 đất kèm theo cam kết chủ đầu tư hoàn thành việc cấp phép đóng tiền thuê đất 1 lần, hoàn thành đường kết nối và công tác đền bù, cụ thể:",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ 127 căn biệt thự: giá bán đất trung bình 35.3tr/m2 đất (Giá bán tham khảo trực tiếp dự án Novaland. Hiện tại, Novaland không mở bán sản phẩm mới, các sản phẩm chủ yếu đang rao bán từ các cá nhân sở hữu. Phân khu Floria có giá bán đất trung bình 30tr/m2 đất. Vì đây là phân khu đầu tiên giá trị 1 căn từ 5,8 - 10,5 tỷ nên giá còn thấp và có giao dịch, còn…",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Căn hộ nghỉ dưỡng: 17,637 m2 sàn có giá bán trung bình 35tr/m2 sàn (Tham khảo trực tiếp từ dự án Sealink có giá bán từ 29- 39tr/m2 sàn bao gồm thuế phí. Ưu điểm: sổ lâu dài, nằm trong quần thể dự án lớn. Nhược điểm: diện tích căn 2PN hơn 100m2, xây dựng đã lâu).",
           "source_chunk": "822",
           "record_id": "M09-0006",
           "report_no": 2,
@@ -37775,7 +43415,43 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
+          "value": "+ Bảng tính sử dựng phương pháp thặng dư để tính số tiền thuê đất đóng 1 lần là khoảng 585 tỷ đồng tương đương 4,5 triệu đồng/m2 đất => IRR là 9,62% khi giá mua là 2.000.000 đồng/m2 đất, IRR là 15% khi giá mua là 1.400.000 đồng/m2 đất, IRR là 20% khi giá mua là 960.000 đồng/m2 đất",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
           "value": "+ Trong trường hợp, số tiền thuê đất đóng 1 lần được áp dụng phương pháp hệ số điều chỉnh theo bảng giá nhà nước thì số tiền phải đóng là khoảng 557 tỷ đồng tương đương 4,28 triệu đồng/m2 đất => IRR 11,2% với giá mua 2.000.000 đồng / m2 đất",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Trieu Nguyen-PTDT 6/9/2023 5:47 PM Edited KĐT gửi anh Tuan Tran-CEO đánh giá lại dự án Bale tại Mũi Né, Phan Thiết, có giá chào bán được điều chỉnh giảm còn 2.000.000 đồng/m2 đất kèm theo cam kết chủ đầu tư hoàn thành việc cấp phép đóng tiền thuê đất 1 lần, hoàn thành đường kết nối và công tác đền bù, cụ thể:",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "3/ Sản phẩm và thông tin thị trường + 127 căn biệt thự: giá bán đất trung bình 35.3tr/m2 đất (Giá bán tham khảo trực tiếp dự án Novaland.",
+          "source_chunk": "822",
+          "record_id": "M09-0006",
+          "report_no": 2,
+          "project_name": "The Bale, Mũi Né/Phan Thiết",
+          "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Phân khu Floria có giá bán đất trung bình 30tr/m2 đất.",
           "source_chunk": "822",
           "record_id": "M09-0006",
           "report_no": 2,
@@ -37842,6 +43518,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Hiệu quả tài chính kém, tỷ suất lợi nhuận 7.84%",
               "source_chunk": "925"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 10/11/2022 6:26 PM KĐT gửi anh Tuan Tran-CEO báo cáo dự án the Bale tại Phan Thiết, Bình Thuận có giá chào 390.48 tỷ đồng (3tr/m2 đất) cam kết hoàn thành đường kết nối, đền bù, và đóng tiền thuê đất 1 lần (BeeG trả tiền thuê đất) cụ thể:",
+              "source_chunk": "925"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "127 căn biệt thự: giá bán đất 39tr/m2 đất tại 2024 206 căn hộ: giá bán 40tr/m2 sàn thông thủy có VAT tại năm 2024 1 khu nhà hàng: giả định giá thuê khoán 21tr/m2 sàn cho tổng thời gian thuê 37 năm 59 căn bungalow: giả định giá bán đất 24tr/m2 đất cho tổng thời gian dự án 37 năm Tổng mức đầu tư là 2548 tỷ đồng (chưa bao gồm chi phí hoạt động và bán hàng),…",
+              "source_chunk": "925"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Vị trí dự án không có mặt tiền đường ven biển hoặc mặt tiền biển => Không đạt tiêu chí đầu tư Theo Điều 59 của dự thảo luật đất đai quy định đất TMDV không nằm trong danh mục đất được đóng tiền thuê 1 lần cho cả thời gian thuê => rủi ro về pháp lý đất (khó bán hàng) Thời hạn thuê đất chỉ còn 37 năm Hiệu quả tài chính kém, tỷ suất lợi nhuận 7.84% => Với cá…",
+              "source_chunk": "925"
             }
           ],
           "excerpt": "The Bale Phan Thiết 13ha, giá 390,48 tỷ, TMDV thuê hằng năm đến 2059, cách biển 500m.",
@@ -37875,6 +43566,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi anh Tuan Tran-CEO đánh giá lại dự án Bale tại Mũi Né, Phan Thiết, có giá chào bán được điều chỉnh giảm còn 2.000.000 đồng/m2 đất kèm theo cam kết chủ đầu tư hoàn thành việc cấp phép đóng tiền thuê đất 1 lần, hoàn thành đường kết nối và công tác đền bù, cụ thể:",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ 127 căn biệt thự: giá bán đất trung bình 35.3tr/m2 đất (Giá bán tham khảo trực tiếp dự án Novaland. Hiện tại, Novaland không mở bán sản phẩm mới, các sản phẩm chủ yếu đang rao bán từ các cá nhân sở hữu. Phân khu Floria có giá bán đất trung bình 30tr/m2 đất. Vì đây là phân khu đầu tiên giá trị 1 căn từ 5,8 - 10,5 tỷ nên giá còn thấp và có giao dịch, còn…",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Căn hộ nghỉ dưỡng: 17,637 m2 sàn có giá bán trung bình 35tr/m2 sàn (Tham khảo trực tiếp từ dự án Sealink có giá bán từ 29- 39tr/m2 sàn bao gồm thuế phí. Ưu điểm: sổ lâu dài, nằm trong quần thể dự án lớn. Nhược điểm: diện tích căn 2PN hơn 100m2, xây dựng đã lâu).",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
               "value": "+ 59 căn Bungalow: tạm tính giá bán đất 24,7tr/m2 đất (thực hiện quy đổi tính nhanh giá bán đất bằng 70% giá bán đất biệt thự. Chủ trương đầu tư không đề cập được phép bán, sau khi hoàn thành phát triển dự án sẽ đưa vào vận hành kinh doanh)",
               "source_chunk": "822"
             },
@@ -37895,7 +43601,27 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Hiệu quả / FS từ nguồn",
+              "value": "+ Bảng tính sử dựng phương pháp thặng dư để tính số tiền thuê đất đóng 1 lần là khoảng 585 tỷ đồng tương đương 4,5 triệu đồng/m2 đất => IRR là 9,62% khi giá mua là 2.000.000 đồng/m2 đất, IRR là 15% khi giá mua là 1.400.000 đồng/m2 đất, IRR là 20% khi giá mua là 960.000 đồng/m2 đất",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
               "value": "+ Trong trường hợp, số tiền thuê đất đóng 1 lần được áp dụng phương pháp hệ số điều chỉnh theo bảng giá nhà nước thì số tiền phải đóng là khoảng 557 tỷ đồng tương đương 4,28 triệu đồng/m2 đất => IRR 11,2% với giá mua 2.000.000 đồng / m2 đất",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Trieu Nguyen-PTDT 6/9/2023 5:47 PM Edited KĐT gửi anh Tuan Tran-CEO đánh giá lại dự án Bale tại Mũi Né, Phan Thiết, có giá chào bán được điều chỉnh giảm còn 2.000.000 đồng/m2 đất kèm theo cam kết chủ đầu tư hoàn thành việc cấp phép đóng tiền thuê đất 1 lần, hoàn thành đường kết nối và công tác đền bù, cụ thể:",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "3/ Sản phẩm và thông tin thị trường + 127 căn biệt thự: giá bán đất trung bình 35.3tr/m2 đất (Giá bán tham khảo trực tiếp dự án Novaland.",
+              "source_chunk": "822"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Phân khu Floria có giá bán đất trung bình 30tr/m2 đất.",
               "source_chunk": "822"
             }
           ],
@@ -38264,6 +43990,51 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khu đô thị mới G1",
           "part": 7
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Chức năng sử dụng đất - Đất thương phẩm chiếm tỷ lệ 46,23%:",
+          "source_chunk": "683",
+          "record_id": "M07-0016",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới G1",
+          "part": 7
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Chức năng sử dụng đất - Đất thương phẩm chiếm tỷ lệ 14,39%:",
+          "source_chunk": "683",
+          "record_id": "M07-0016",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới G1",
+          "part": 7
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Nghiên cứu việc có thể điều chỉnh quy họach phân khu để tăng tỷ lệ đất thương phẩm lên khoảng 40-45%.",
+          "source_chunk": "683",
+          "record_id": "M07-0016",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới G1",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Khu đô thị G1, G2 2024.05.25 Báo cáo về 02 DỰ ÁN KHU ĐÔ THỊ MỚI G1 G2.pdf --- chunk --- Sinh Nguyen-Dau Tu 10/7/2024 11:25 AM Edited Translate Dự án được tính tiền sử dụng đất theo phương pháp thặng dự:",
+          "source_chunk": "683",
+          "record_id": "M07-0016",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới G1",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Trong báo cáo đang giả định thời điểm giao đất là năm 2024 Cơ sở tính toán tiền sử dụng đất, căn cứ Quyết định số 37/2024/QĐ-UBND ngày 01/07/2024 về quy định cụ thể các yếu tố hình thành doanh thu và chi phí theo phương pháp thặng dư trên địa bàn TP.HCM Tiền sử dụng đất (tính theo phương pháp thặng dự) cao, chủ yếu là --- chunk --- Sinh Nguyen-Dau Tu 10/7…",
+          "source_chunk": "683",
+          "record_id": "M07-0016",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới G1",
+          "part": 7
         }
       ],
       "reports": [
@@ -38321,6 +44092,31 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Cơ sở tính toán tiền sử dụng đất, căn cứ Quyết định số 37/2024/QĐ-UBND ngày 01/07/2024 về quy định cụ thể các yếu tố hình thành doanh thu và chi phí theo phương pháp thặng dư trên địa bàn TP.HCM",
               "source_chunk": "683"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Chức năng sử dụng đất - Đất thương phẩm chiếm tỷ lệ 46,23%:",
+              "source_chunk": "683"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Chức năng sử dụng đất - Đất thương phẩm chiếm tỷ lệ 14,39%:",
+              "source_chunk": "683"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Nghiên cứu việc có thể điều chỉnh quy họach phân khu để tăng tỷ lệ đất thương phẩm lên khoảng 40-45%.",
+              "source_chunk": "683"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Khu đô thị G1, G2 2024.05.25 Báo cáo về 02 DỰ ÁN KHU ĐÔ THỊ MỚI G1 G2.pdf --- chunk --- Sinh Nguyen-Dau Tu 10/7/2024 11:25 AM Edited Translate Dự án được tính tiền sử dụng đất theo phương pháp thặng dự:",
+              "source_chunk": "683"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Trong báo cáo đang giả định thời điểm giao đất là năm 2024 Cơ sở tính toán tiền sử dụng đất, căn cứ Quyết định số 37/2024/QĐ-UBND ngày 01/07/2024 về quy định cụ thể các yếu tố hình thành doanh thu và chi phí theo phương pháp thặng dư trên địa bàn TP.HCM Tiền sử dụng đất (tính theo phương pháp thặng dự) cao, chủ yếu là --- chunk --- Sinh Nguyen-Dau Tu 10/7…",
+              "source_chunk": "683"
             }
           ],
           "excerpt": "KĐT mới G1; tính TSDĐ theo phương pháp thặng dư.",
@@ -38352,6 +44148,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "Diễn biến mới nhất khu đô thị quy mô hơn 1 tỷ USD tại Long An",
+          "source_chunk": "811",
+          "record_id": "M09-0002",
+          "report_no": 1,
+          "project_name": "Khu đô thị mới Hậu Nghĩa - Đức Hòa",
+          "part": 9
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Tuan Tran-CEO 6/16/2023 7:16 PM https://m.cafef.vn/dien-bien-moi-nhat-khu-do-thi-quy-mo-hon-1-ty-usd-tai-long-an-188230616170401978.chn Diễn biến mới nhất khu đô thị quy mô hơn 1 tỷ USD tại Long An Sở Kế hoạch và Đầu tư tỉnh Long An vừa có Thông báo số 773/TB-SKHĐT mời các nhà đầu tư quan tâm nộp hồ sơ đăng ký thực hiện dự án Khu đô thị mới Hậu Nghĩa - Đứ…",
           "source_chunk": "811",
           "record_id": "M09-0002",
           "report_no": 1,
@@ -38408,6 +44213,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "Diễn biến mới nhất khu đô thị quy mô hơn 1 tỷ USD tại Long An",
+              "source_chunk": "811"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Tuan Tran-CEO 6/16/2023 7:16 PM https://m.cafef.vn/dien-bien-moi-nhat-khu-do-thi-quy-mo-hon-1-ty-usd-tai-long-an-188230616170401978.chn Diễn biến mới nhất khu đô thị quy mô hơn 1 tỷ USD tại Long An Sở Kế hoạch và Đầu tư tỉnh Long An vừa có Thông báo số 773/TB-SKHĐT mời các nhà đầu tư quan tâm nộp hồ sơ đăng ký thực hiện dự án Khu đô thị mới Hậu Nghĩa - Đứ…",
               "source_chunk": "811"
             }
           ],
@@ -38516,6 +44326,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
           "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Tổng vốn 86.369 tỷ đồng (20,84% vốn góp NĐT), thời hạn 50 năm, thực hiện trong 72 tháng.",
+          "source_chunk": "403",
+          "record_id": "M04-0028",
+          "report_no": 1,
+          "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Lên phương án Quy hoạch Phân khu 1/2000 của Dự án Để ước tính Tổng mức Đầu tư xây dựng Phương án kinh doanh Ước tính tiền sử dụng đất Các nội dung này cần các phòng ban chuyên môn (Pháp lý, Quy hoạch..) làm việc với cơ quan nhà nước/Đối tác để lấy các thông tin và lên phương án đề xuất",
+          "source_chunk": "403",
+          "record_id": "M04-0028",
+          "report_no": 1,
+          "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
+          "part": 4
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Cần có doanh nghiệp hoặc liên doanh có năng lực để tham gia đấu thầu dự án có quy mô hơn 400 ha, TMĐT hơn 80.000 tỷ",
+          "source_chunk": "403",
+          "record_id": "M04-0028",
+          "report_no": 1,
+          "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
+          "part": 4
         }
       ],
       "reports": [
@@ -38561,6 +44398,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Chi phí / vốn từ nguồn",
               "value": "3. Về doanh nghiệp: Cần có doanh nghiệp hoặc liên doanh có năng lực để tham gia đấu thầu dự án có quy mô hơn 400 ha, TMĐT hơn 80.000 tỷ",
+              "source_chunk": "403"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Tổng vốn 86.369 tỷ đồng (20,84% vốn góp NĐT), thời hạn 50 năm, thực hiện trong 72 tháng.",
+              "source_chunk": "403"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Lên phương án Quy hoạch Phân khu 1/2000 của Dự án Để ước tính Tổng mức Đầu tư xây dựng Phương án kinh doanh Ước tính tiền sử dụng đất Các nội dung này cần các phòng ban chuyên môn (Pháp lý, Quy hoạch..) làm việc với cơ quan nhà nước/Đối tác để lấy các thông tin và lên phương án đề xuất",
+              "source_chunk": "403"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Cần có doanh nghiệp hoặc liên doanh có năng lực để tham gia đấu thầu dự án có quy mô hơn 400 ha, TMĐT hơn 80.000 tỷ",
               "source_chunk": "403"
             }
           ],
@@ -38712,6 +44564,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Thủ Đức Living",
           "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1,179 tỷ VNĐ Giá bán căn hộ chung cư:",
+          "source_chunk": "27",
+          "record_id": "M01-0014",
+          "report_no": 1,
+          "project_name": "Thủ Đức Living",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1,038 tỷ (66tr/m2 tim tường) Giá bán Shophouse:",
+          "source_chunk": "27",
+          "record_id": "M01-0014",
+          "report_no": 1,
+          "project_name": "Thủ Đức Living",
+          "part": 1
         }
       ],
       "reports": [
@@ -38802,6 +44672,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Chi phí bán hàng + thuế VAT + CP Khác = 223 tỷ (CPHB + QLDN = 17% Doanh thu)",
               "source_chunk": "27"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1,179 tỷ VNĐ Giá bán căn hộ chung cư:",
+              "source_chunk": "27"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1,038 tỷ (66tr/m2 tim tường) Giá bán Shophouse:",
+              "source_chunk": "27"
             }
           ],
           "excerpt": "dự án Thủ Đức Living, Đường Phạm Văn Đồng... Tổng diện tích khu đất 4,661 m2... Doanh thu 1,179 tỷ VNĐ... Chi phí 1,415 tỷ VNĐ.",
@@ -38846,6 +44726,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 8
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Việc khấu trừ 50% căn cứ vào số tiền đã nộp năm 1995 cho UBND Quận 8 chưa đủ và phải xác minh ngược lại việc thu tiền – sử dụng tiền của UBND quận 8 (năm 1995) có phù hợp hay không – không khả thi → Công ty Thuận Hưng phải thực hiện toàn bộ nghĩa vụ tài chính về đất",
+          "source_chunk": "755",
+          "record_id": "M08-0008",
+          "report_no": 1,
+          "project_name": "KDC Thuận Hưng Bình Điền 2,3ha",
+          "part": 8
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Tiền chuyển mục đích sử dụng đất tạm ước tính 240 tỷ",
           "source_chunk": "755",
@@ -38866,6 +44755,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "6.3/ Giá bán tại thời điểm khai thác:",
+          "source_chunk": "755",
+          "record_id": "M08-0008",
+          "report_no": 1,
+          "project_name": "KDC Thuận Hưng Bình Điền 2,3ha",
+          "part": 8
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "a) 27 căn biệt: Cơ sở tham khảo giá bán đất Biệt thự 80-89tr/m² đất của dự án Biệt thự The Mizuki (Nam Long), dự án Biệt thự Lovera Park (Khang Điền) có giá bán đất Biệt thự 80tr/m² đất, và dự án Amor Riverside Villas (BCG Land) có giá bán đất Biệt thự khoảng 80tr/m² => Đề xuất giá bán đất biệt thự 72tr/m² đất tại 2023",
           "source_chunk": "755",
           "record_id": "M08-0008",
           "report_no": 1,
@@ -38957,6 +44855,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "755"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Việc khấu trừ 50% căn cứ vào số tiền đã nộp năm 1995 cho UBND Quận 8 chưa đủ và phải xác minh ngược lại việc thu tiền – sử dụng tiền của UBND quận 8 (năm 1995) có phù hợp hay không – không khả thi → Công ty Thuận Hưng phải thực hiện toàn bộ nghĩa vụ tài chính về đất",
+              "source_chunk": "755"
+            },
+            {
               "label": "Dòng số liệu từ nguồn",
               "value": "Tiền chuyển mục đích sử dụng đất tạm ước tính 240 tỷ",
               "source_chunk": "755"
@@ -38969,6 +44872,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "6.3/ Giá bán tại thời điểm khai thác:",
+              "source_chunk": "755"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "a) 27 căn biệt: Cơ sở tham khảo giá bán đất Biệt thự 80-89tr/m² đất của dự án Biệt thự The Mizuki (Nam Long), dự án Biệt thự Lovera Park (Khang Điền) có giá bán đất Biệt thự 80tr/m² đất, và dự án Amor Riverside Villas (BCG Land) có giá bán đất Biệt thự khoảng 80tr/m² => Đề xuất giá bán đất biệt thự 72tr/m² đất tại 2023",
               "source_chunk": "755"
             },
             {
@@ -39134,6 +45042,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
           "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "3.1.Tổng mức đầu tư:",
+          "source_chunk": "477",
+          "record_id": "M05-0021",
+          "report_no": 1,
+          "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "2.960 tỷ đồng Tiền mua đất 154 tỷ (~ 7tr.đ/m2) Tiền sử dụng đất 353,5 tỷ (đơn giá:",
+          "source_chunk": "477",
+          "record_id": "M05-0021",
+          "report_no": 1,
+          "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
+          "part": 5
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "15.8tr./m2) Chi phí pháp lý 66 tỷ Tổng chi phí xây dựng 2386,9 tỷ (sxd all in:",
+          "source_chunk": "477",
+          "record_id": "M05-0021",
+          "report_no": 1,
+          "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
+          "part": 5
         }
       ],
       "reports": [
@@ -39216,6 +45151,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Giá bán bằng 1/3 so với giá Phú Gia Khiêm (cùng loại đất SKC)",
               "source_chunk": "477"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "3.1.Tổng mức đầu tư:",
+              "source_chunk": "477"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "2.960 tỷ đồng Tiền mua đất 154 tỷ (~ 7tr.đ/m2) Tiền sử dụng đất 353,5 tỷ (đơn giá:",
+              "source_chunk": "477"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "15.8tr./m2) Chi phí pháp lý 66 tỷ Tổng chi phí xây dựng 2386,9 tỷ (sxd all in:",
+              "source_chunk": "477"
             }
           ],
           "excerpt": "Thuận Nghiệp DT743C Dĩ An 2,2ha SKC thuê hằng năm đến 2031, HSSDĐ 12, 40 tầng, TMĐT 2.960 tỷ.",
@@ -39277,6 +45227,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
           "part": 9
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Dự án có quy mô 15.6ha với giá chào chuyển nhượng là 1.300tỷ.",
+          "source_chunk": "907",
+          "record_id": "M09-0018",
+          "report_no": 1,
+          "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phương án kinh doanh và sản phẩm triển khai... by Thao L - INVT --- chunk --- Thao L - INVT 9/6/2022 4:52 PM Hiệu quả tài chính:",
+          "source_chunk": "907",
+          "record_id": "M09-0018",
+          "report_no": 1,
+          "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "IRR = 14,72% và NPV = 698,475.",
+          "source_chunk": "907",
+          "record_id": "M09-0018",
+          "report_no": 1,
+          "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
+          "part": 9
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Trên cơ sở đó, tỉnh đang tiến hành lập đồ án QH chung trình Thủ tướng xem xét, phê phê duyệt, dự kiến công tác này hoàn thành trong năm 2023, các chỉ tiêu QH phê duyệt dự kiến sẽ tăng cao hơn so với hiện tại => Dự án sẽ đạt hiệu quả tài chính tốt hơn => tạo tiền đề làm gia tăng giá trị dự án đang nghiên cứu.",
+          "source_chunk": "907",
+          "record_id": "M09-0018",
+          "report_no": 1,
+          "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
+          "part": 9
         }
       ],
       "reports": [
@@ -39317,6 +45303,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Hiệu quả tài chính: IRR = 14,72% và NPV = 698,475.",
+              "source_chunk": "907"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Dự án có quy mô 15.6ha với giá chào chuyển nhượng là 1.300tỷ.",
+              "source_chunk": "907"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phương án kinh doanh và sản phẩm triển khai... by Thao L - INVT --- chunk --- Thao L - INVT 9/6/2022 4:52 PM Hiệu quả tài chính:",
+              "source_chunk": "907"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "IRR = 14,72% và NPV = 698,475.",
+              "source_chunk": "907"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Trên cơ sở đó, tỉnh đang tiến hành lập đồ án QH chung trình Thủ tướng xem xét, phê phê duyệt, dự kiến công tác này hoàn thành trong năm 2023, các chỉ tiêu QH phê duyệt dự kiến sẽ tăng cao hơn so với hiện tại => Dự án sẽ đạt hiệu quả tài chính tốt hơn => tạo tiền đề làm gia tăng giá trị dự án đang nghiên cứu.",
               "source_chunk": "907"
             }
           ],
@@ -39722,8 +45728,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phòng có tính thêm trường hợp giữ nguyên giá chào 245 triệu đồng/m2, (và giữ nguyên các yếu tố đầu vào như chi phí xây dựng, tiền sử dụng đất, các chi phí khác) THÌ giá bán bình quân căn hộ ở để dự án hiệu quả với tỷ lệ LNTT/TMĐT từ > 12% là từ 90 triệu đồng/m2, mà giá này thì khó khả thi ở vị trí DỰ ÁN và trong bối cảnh nguồn cung quá lớn ở Đà Nẵng.",
+          "source_chunk": "356",
+          "record_id": "M04-0016",
+          "report_no": 1,
+          "project_name": "Dự án Trần Hưng Đạo, cầu Trần Thị Lý, Đà Nẵng",
+          "part": 4
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Dạ giá bán DA đối diện hiện tại là giá chào của khách lẻ, thứ cấp từ 76 đến 93 tr.",
+          "source_chunk": "356",
+          "record_id": "M04-0016",
+          "report_no": 1,
+          "project_name": "Dự án Trần Hưng Đạo, cầu Trần Thị Lý, Đà Nẵng",
+          "part": 4
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "1.418 tỷ đồng (~đơn giá bán căn hộ ở 70 triệu đồng/m2, giá bán căn hộ du lịch 56 triệu đồng/m2 (~80% giá bán căn hộ ở).",
           "source_chunk": "356",
           "record_id": "M04-0016",
           "report_no": 1,
@@ -39829,8 +45853,18 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "356"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phòng có tính thêm trường hợp giữ nguyên giá chào 245 triệu đồng/m2, (và giữ nguyên các yếu tố đầu vào như chi phí xây dựng, tiền sử dụng đất, các chi phí khác) THÌ giá bán bình quân căn hộ ở để dự án hiệu quả với tỷ lệ LNTT/TMĐT từ > 12% là từ 90 triệu đồng/m2, mà giá này thì khó khả thi ở vị trí DỰ ÁN và trong bối cảnh nguồn cung quá lớn ở Đà Nẵng.",
+              "source_chunk": "356"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Dạ giá bán DA đối diện hiện tại là giá chào của khách lẻ, thứ cấp từ 76 đến 93 tr.",
+              "source_chunk": "356"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "1.418 tỷ đồng (~đơn giá bán căn hộ ở 70 triệu đồng/m2, giá bán căn hộ du lịch 56 triệu đồng/m2 (~80% giá bán căn hộ ở).",
               "source_chunk": "356"
             }
           ],
@@ -40107,6 +46141,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 10
         },
         {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án Khu trung tâm tòa nhà hỗn hợp thương mại, văn phòng cho thuê, nhà ở, dịch vụ, bán và bảo hành xe ô tô Trung Thượng với tổng diện tích đất chào bán khoảng 6.3 hecta (giá chào bán khoảng 500 tỷ tương đương 8 tr/m2) thuộc thôn Ngọc Than, xã Ngọc Mỹ, huyện Quốc Oai, TP. Hà Nội:",
+          "source_chunk": "991",
+          "record_id": "M10-0028",
+          "report_no": 1,
+          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
+          "part": 10
+        },
+        {
           "label": "Chi phí / vốn từ nguồn",
           "value": "2. Pháp lý đất: Tổng diện tích đất đã thực hiện bồi thường là 62,573.8 m2. Chưa nhận được hồ sơ về việc xác nhận đã hoàn thành nghĩa vụ tài chính về tiền sử dụng đất.",
           "source_chunk": "991",
@@ -40162,6 +46205,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
         },
         {
           "label": "Dòng số liệu từ nguồn",
+          "value": "Yếu tố thị trường: vị trí dự án nằm ở khu vực ngoại thành Hà Nội và dự án cung cấp sản phẩm chủ yếu là chung cư, khối đế bán lẻ, văn phòng cho thuê với tỷ lệ chiếm đất 45.3 % (tổng diện tích sàn xây dựng chưa bao gồm tầng hầm 238,835 m2) trong khi đó sản phẩm biệt thự với tỷ lệ chiếm đất rất thấp khoảng 9.2%. Tuy nhiên liên quan đến vấn đề thị trường, KĐT…",
+          "source_chunk": "991",
+          "record_id": "M10-0028",
+          "report_no": 1,
+          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
+          "part": 10
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Giá bán các đất dân trong ngõ khoảng 15-23 tr/m2; tại các khu đấu giá như Ngọc Mỹ - Bắc Nam với giá đất nền nhà phố liền kế khoảng 50-60 trđ/m2, nhà phố shophouse khoảng 85-100 tr; giá đất biệt thự song lập khoảng 35-37 tr/m2, đơn lập 40-45 tr/m2 tại dự án New House city.",
+          "source_chunk": "991",
+          "record_id": "M10-0028",
+          "report_no": 1,
+          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
+          "part": 10
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "KĐT có tính nhanh trong trường hợp dự án được chuyển quy hoạch sang đất ở thấp tầng thì dự án đạt được hiệu quả tài chính với Lợi nhuận trước thuế/TMĐT = 64%, điều kiện ràng buộc là giá chuyển nhượng không đổi, đã bao gồm nghĩa vụ tài chính về đất và không phát sinh thêm nghĩa vụ tài chính sau khi chuyển quy hoạch:",
+          "source_chunk": "991",
+          "record_id": "M10-0028",
+          "report_no": 1,
+          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
+          "part": 10
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
           "value": "+ Tổng diện tích đất thương phẩm: 24,703 m2 ( Tỷ lệ đất ở chiếm 45% trên tổng diện tích đất phù hợp quy hoạch 54,896 m2)",
           "source_chunk": "991",
           "record_id": "M10-0028",
@@ -40172,33 +46242,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Tổng doanh thu chưa VAT: 1,111 tỷ (giá bán đề xuất chưa VAT khoảng 45 triệu đồng/m2)",
-          "source_chunk": "991",
-          "record_id": "M10-0028",
-          "report_no": 1,
-          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
-          "part": 10
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "+ Tổng chi phí phát triển chưa VAT: 609 tỷ (Tiền nhận chuyển nhượng đất 500 tỷ và chi phí hạ tầng kỹ thuật, quản lý và tư vấn 109 tỷ)",
-          "source_chunk": "991",
-          "record_id": "M10-0028",
-          "report_no": 1,
-          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
-          "part": 10
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "+ Chi phí bán hàng và marketing chưa VAT: 111 tỷ",
-          "source_chunk": "991",
-          "record_id": "M10-0028",
-          "report_no": 1,
-          "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
-          "part": 10
-        },
-        {
-          "label": "Dòng số liệu từ nguồn",
-          "value": "+ Lợi nhuận trước thuế chưa VAT: 390 tỷ",
           "source_chunk": "991",
           "record_id": "M10-0028",
           "report_no": 1,
@@ -40228,6 +46271,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá chào",
               "value": "500 tỷ, khoảng 8 tr/m2",
+              "source_chunk": "991"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "KĐT gửi Mr.Tuấn Tuan Tran-CEO Báo cáo Dự án Khu trung tâm tòa nhà hỗn hợp thương mại, văn phòng cho thuê, nhà ở, dịch vụ, bán và bảo hành xe ô tô Trung Thượng với tổng diện tích đất chào bán khoảng 6.3 hecta (giá chào bán khoảng 500 tỷ tương đương 8 tr/m2) thuộc thôn Ngọc Than, xã Ngọc Mỹ, huyện Quốc Oai, TP. Hà Nội:",
               "source_chunk": "991"
             },
             {
@@ -40262,27 +46310,27 @@ window.MANUAL_MERGED_REPORTS_DB = {
             },
             {
               "label": "Dòng số liệu từ nguồn",
+              "value": "Yếu tố thị trường: vị trí dự án nằm ở khu vực ngoại thành Hà Nội và dự án cung cấp sản phẩm chủ yếu là chung cư, khối đế bán lẻ, văn phòng cho thuê với tỷ lệ chiếm đất 45.3 % (tổng diện tích sàn xây dựng chưa bao gồm tầng hầm 238,835 m2) trong khi đó sản phẩm biệt thự với tỷ lệ chiếm đất rất thấp khoảng 9.2%. Tuy nhiên liên quan đến vấn đề thị trường, KĐT…",
+              "source_chunk": "991"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Giá bán các đất dân trong ngõ khoảng 15-23 tr/m2; tại các khu đấu giá như Ngọc Mỹ - Bắc Nam với giá đất nền nhà phố liền kế khoảng 50-60 trđ/m2, nhà phố shophouse khoảng 85-100 tr; giá đất biệt thự song lập khoảng 35-37 tr/m2, đơn lập 40-45 tr/m2 tại dự án New House city.",
+              "source_chunk": "991"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "KĐT có tính nhanh trong trường hợp dự án được chuyển quy hoạch sang đất ở thấp tầng thì dự án đạt được hiệu quả tài chính với Lợi nhuận trước thuế/TMĐT = 64%, điều kiện ràng buộc là giá chuyển nhượng không đổi, đã bao gồm nghĩa vụ tài chính về đất và không phát sinh thêm nghĩa vụ tài chính sau khi chuyển quy hoạch:",
+              "source_chunk": "991"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
               "value": "+ Tổng diện tích đất thương phẩm: 24,703 m2 ( Tỷ lệ đất ở chiếm 45% trên tổng diện tích đất phù hợp quy hoạch 54,896 m2)",
               "source_chunk": "991"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "+ Tổng doanh thu chưa VAT: 1,111 tỷ (giá bán đề xuất chưa VAT khoảng 45 triệu đồng/m2)",
-              "source_chunk": "991"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "+ Tổng chi phí phát triển chưa VAT: 609 tỷ (Tiền nhận chuyển nhượng đất 500 tỷ và chi phí hạ tầng kỹ thuật, quản lý và tư vấn 109 tỷ)",
-              "source_chunk": "991"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "+ Chi phí bán hàng và marketing chưa VAT: 111 tỷ",
-              "source_chunk": "991"
-            },
-            {
-              "label": "Dòng số liệu từ nguồn",
-              "value": "+ Lợi nhuận trước thuế chưa VAT: 390 tỷ",
               "source_chunk": "991"
             }
           ],
@@ -40370,6 +46418,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 6
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Dự án đều hiệu quả với 2 phương án nhưng thông số quy hoạch dự án (QĐ 18 ngày 04/02/2009) không phù hợp với quy hoạch phân khu (QĐ 3634 ngày 11/07/2017) vì thế phải xin điều chỉnh quy hoạch phân khu và rà soát quy hoạch, phải giữ được chỉ tiêu quy hoạch theo hướng 1/500 được duyệt và xin thêm được dân 🡪 Để tăng thêm tính hiệu quả dự án.",
+          "source_chunk": "599",
+          "record_id": "M06-0015",
+          "report_no": 1,
+          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+          "part": 6
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Điều chỉnh được cơ cấu diện tích trung bình trên 1 căn hộ (diện tích trung bình/căn là 132m² cao hơn so mặt bằng diện tích căn hộ với thị trường) 🡪 Để phù hợp diện tích trung bình của thị trường, tăng giá bán và tính thanh khoản cho căn hộ",
           "source_chunk": "599",
@@ -40417,15 +46474,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "3/ Về thị trường (giá bán đã bao gồm VAT)",
-          "source_chunk": "599",
-          "record_id": "M06-0015",
-          "report_no": 1,
-          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
-          "part": 6
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Giá bán đất biệt thự đề xuất năm 2024: 80tr/m². Dự án bán Q4/2026, giá bán 88tr/m² đất, thời gian bán trong vòng 3 quý",
           "source_chunk": "599",
           "record_id": "M06-0015",
           "report_no": 1,
@@ -40503,6 +46551,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
           "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Theo khảo sát và đánh giá thị trường xu hướng chọn phòng, phânt tích thị hiếu khách hàng phân khúc 4 – 5 sao: diện tích phòng tối ưu đáp ứng được nhu cầu khách hàng 40m². Tuy nhiên, việc diện tích phòng trung bình của dự án đang khoảng 48m² (cao hơn 20%) -> Số lượng phòng khách sạn giảm đi -> Dẫn tới hiệu quả dự án chưa được tối ưu.",
+          "source_chunk": "607",
+          "record_id": "M07-0001",
+          "report_no": 2,
+          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+          "part": 7
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Phương án tính toán đang theo thiết kế chưa điều chỉnh lại một số nội dung như: mặt đứng giảm phương vị dọc, hợp 2 khối mái thành 1 khối, hạn chế vách côt, giảm 1 tầng của khối tiện ích. Do đó, mức đầu tư xây dựng công trình sẽ giảm hơn so với phương án đang tính toán -> Tăng hiệu quả tài chính của dự án",
+          "source_chunk": "607",
+          "record_id": "M07-0001",
+          "report_no": 2,
+          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Vận hành khai thác (vận hành 26 năm) 4.3/ Tổng mức đầu tư dự án:",
+          "source_chunk": "607",
+          "record_id": "M07-0001",
+          "report_no": 2,
+          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+          "part": 7
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Chi phí xây dựng All in năm 2025 (theo P.QS) + Tính theo CFA (có hầm và mái) :",
+          "source_chunk": "607",
+          "record_id": "M07-0001",
+          "report_no": 2,
+          "project_name": "Chung cư Trường Thịnh, Trần Não, Bình An, TP Thủ Đức",
+          "part": 7
         }
       ],
       "reports": [
@@ -40556,6 +46640,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "599"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Dự án đều hiệu quả với 2 phương án nhưng thông số quy hoạch dự án (QĐ 18 ngày 04/02/2009) không phù hợp với quy hoạch phân khu (QĐ 3634 ngày 11/07/2017) vì thế phải xin điều chỉnh quy hoạch phân khu và rà soát quy hoạch, phải giữ được chỉ tiêu quy hoạch theo hướng 1/500 được duyệt và xin thêm được dân 🡪 Để tăng thêm tính hiệu quả dự án.",
+              "source_chunk": "599"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Điều chỉnh được cơ cấu diện tích trung bình trên 1 căn hộ (diện tích trung bình/căn là 132m² cao hơn so mặt bằng diện tích căn hộ với thị trường) 🡪 Để phù hợp diện tích trung bình của thị trường, tăng giá bán và tính thanh khoản cho căn hộ",
               "source_chunk": "599"
@@ -40583,11 +46672,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "3/ Về thị trường (giá bán đã bao gồm VAT)",
-              "source_chunk": "599"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Giá bán đất biệt thự đề xuất năm 2024: 80tr/m². Dự án bán Q4/2026, giá bán 88tr/m² đất, thời gian bán trong vòng 3 quý",
               "source_chunk": "599"
             }
           ],
@@ -40652,6 +46736,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "6.1/ Nhận định: Dự án chưa đạt được hiệu quả đầu tư mong muốn (IRR=15%):",
+              "source_chunk": "607"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Theo khảo sát và đánh giá thị trường xu hướng chọn phòng, phânt tích thị hiếu khách hàng phân khúc 4 – 5 sao: diện tích phòng tối ưu đáp ứng được nhu cầu khách hàng 40m². Tuy nhiên, việc diện tích phòng trung bình của dự án đang khoảng 48m² (cao hơn 20%) -> Số lượng phòng khách sạn giảm đi -> Dẫn tới hiệu quả dự án chưa được tối ưu.",
+              "source_chunk": "607"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Phương án tính toán đang theo thiết kế chưa điều chỉnh lại một số nội dung như: mặt đứng giảm phương vị dọc, hợp 2 khối mái thành 1 khối, hạn chế vách côt, giảm 1 tầng của khối tiện ích. Do đó, mức đầu tư xây dựng công trình sẽ giảm hơn so với phương án đang tính toán -> Tăng hiệu quả tài chính của dự án",
+              "source_chunk": "607"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Vận hành khai thác (vận hành 26 năm) 4.3/ Tổng mức đầu tư dự án:",
+              "source_chunk": "607"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Chi phí xây dựng All in năm 2025 (theo P.QS) + Tính theo CFA (có hầm và mái) :",
               "source_chunk": "607"
             }
           ],
@@ -40952,6 +47056,42 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 2,
           "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
           "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "=>Dự án đạt hiệu quả với giá mua đất (Đã đủ điều kiện chuyển nhượng và đủ điều kiện xây dựng) là 246 tỷ VNĐ(tương đương 94 tr.VNĐ/m2). Do dự án đã triển khai từ năm 2008 nên sẽ phát sinh nhiều rủi ro pháp lý như trên. Hiện anh Minh đang tìm kiếm các nguồn thông tin để rà soát, tuy nhiên đến nay vẫn chưa có thông tin.",
+          "source_chunk": "146",
+          "record_id": "M02-0017",
+          "report_no": 2,
+          "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "3/ Hiệu quả đầu tư Doanh thu:",
+          "source_chunk": "146",
+          "record_id": "M02-0017",
+          "report_no": 2,
+          "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Giả định dự án vận hành trong 30 năm Chi phí Hiệu quả dự án Với giá mua đất là 246 tỷ VNĐ (tương đương 94 Tr.VNĐ/m2 đất) và giá cho thuê văn phòng là 34$/m2 thì dự án có IRR đạt 15%.",
+          "source_chunk": "146",
+          "record_id": "M02-0017",
+          "report_no": 2,
+          "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+          "part": 2
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "4/ Độ nhạy dự án =>Dự án đạt hiệu quả với giá mua đất (Đã đủ điều kiện chuyển nhượng và đủ điều kiện xây dựng) là 246 tỷ VNĐ(tương đương 94 tr.VNĐ/m2).",
+          "source_chunk": "146",
+          "record_id": "M02-0017",
+          "report_no": 2,
+          "project_name": "Dự án Văn phòng – An Phú / mặt tiền Mai Chí Thọ",
+          "part": 2
         }
       ],
       "reports": [
@@ -41026,6 +47166,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Với giá mua đất là 246 tỷ VNĐ (tương đương 94 Tr.VNĐ/m2 đất) và giá cho thuê văn phòng là 34$/m2 thì dự án có IRR đạt 15%.",
+              "source_chunk": "146"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "=>Dự án đạt hiệu quả với giá mua đất (Đã đủ điều kiện chuyển nhượng và đủ điều kiện xây dựng) là 246 tỷ VNĐ(tương đương 94 tr.VNĐ/m2). Do dự án đã triển khai từ năm 2008 nên sẽ phát sinh nhiều rủi ro pháp lý như trên. Hiện anh Minh đang tìm kiếm các nguồn thông tin để rà soát, tuy nhiên đến nay vẫn chưa có thông tin.",
+              "source_chunk": "146"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "3/ Hiệu quả đầu tư Doanh thu:",
+              "source_chunk": "146"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Giả định dự án vận hành trong 30 năm Chi phí Hiệu quả dự án Với giá mua đất là 246 tỷ VNĐ (tương đương 94 Tr.VNĐ/m2 đất) và giá cho thuê văn phòng là 34$/m2 thì dự án có IRR đạt 15%.",
+              "source_chunk": "146"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "4/ Độ nhạy dự án =>Dự án đạt hiệu quả với giá mua đất (Đã đủ điều kiện chuyển nhượng và đủ điều kiện xây dựng) là 246 tỷ VNĐ(tương đương 94 tr.VNĐ/m2).",
               "source_chunk": "146"
             }
           ],
@@ -41120,6 +47280,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Giá bán căn hộ ở thời điểm cuối năm 2026 (diện tích tim tường,",
+          "source_chunk": "435",
+          "record_id": "M05-0015",
+          "report_no": 1,
+          "project_name": "Dự án Võ Văn Kiệt, Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "HIỆU QUẢ TÀI CHÍNH 2.1 Doanh thu: (i) Giá bán theo P.R&D đề xuất như sau:",
+          "source_chunk": "435",
+          "record_id": "M05-0015",
+          "report_no": 1,
+          "project_name": "Dự án Võ Văn Kiệt, Đà Nẵng",
+          "part": 5
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Giá bán căn hộ ở thời điểm cuối năm 2026 (diện tích tim tường, --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO về dự án Võ Văn Kiệt, Đà Nẵng như sau:",
           "source_chunk": "435",
           "record_id": "M05-0015",
           "report_no": 1,
@@ -41253,8 +47431,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "Theo kết quả tính toán thì phương án QH mới với chỉ tiêu dân số được tính 32m2/dân và sử dụng tối đa hệ số thì dự án đạt hiệu quả khá tốt về mặt tài chính với các chỉ tiêu như sau:",
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Kết quả tính toán ở trên đã tính đến các yếu tố dự phòng tăng giá đối với tiền sử dụng đất bổ sung, đang tạm tính là 168 tỷ đồng (đã dự phòng tăng 10% so với tiền đất thặng dư tính toán). Khi vào thực tế triển khai thì tiền sử dụng đất bổ sung có thể đóng thấp hơn hoặc không đóng thêm.",
           "source_chunk": "388",
           "record_id": "M04-0022",
           "report_no": 2,
@@ -41262,8 +47440,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
-          "label": "Dòng số liệu từ nguồn",
-          "value": "Lợi nhuận trước thuế 251 tỷ đồng;",
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Theo kết quả tính toán thì phương án QH mới với chỉ tiêu dân số được tính 32m2/dân và sử dụng tối đa hệ số thì dự án đạt hiệu quả khá tốt về mặt tài chính với các chỉ tiêu như sau:",
           "source_chunk": "388",
           "record_id": "M04-0022",
           "report_no": 2,
@@ -41406,6 +47584,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Với đơn giá mua từ 365 tr/m2 đến 370 tr/m2 thì hiệu quả IRR sẽ đạt từ 10.2 đến 10.5% và LNTT/TMĐT từ 16.6 đến 17.1%. Để dự án đạt hiệu quả với IRR từ 15% và LNTT/TMĐT từ 20% thì giá bán tương ứng đạt 106 tr gồm VAT và 96 tr chưa VAT, mức giá này khả thi vì thời điểm bán từ Quy 4/2027 (và tính thận trọng tỷ lệ bán hàng chỉ 12%).",
+          "source_chunk": "41",
+          "record_id": "M01-0017",
+          "report_no": 3,
+          "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
+          "part": 1
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Hiệu quả và độ nhạy ở trên đang tính với giả định tiền sử dụng đất đóng bổ sung với hệ số K ~ 1.39 lần đơn giá bảng giá đất (227 tr/m2). Tuy nhiên, tiền sử dụng đất trong thời gian tới đang là ẩn số khá rủi ro khi TP Đà Nẵng đang có dự thảo ban hành hệ số K, sẽ được ban hành áp dụng từ ngày 01/7/2026. Trong trường hợp hệ số K cao hơn 1.39 (đang tính) thì…",
+          "source_chunk": "41",
+          "record_id": "M01-0017",
+          "report_no": 3,
+          "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
+          "part": 1
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Báo cáo Sếp Admin 01, bảng độ nhạy DA gộp 2 lô Võ Văn Kiệt theo thay đổi giá bán căn hộ và giá mua dự án:",
           "source_chunk": "41",
@@ -41442,24 +47638,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "* Lô A17-01 (gọi là DA Kế Võ Văn Kiệt) theo đơn giá chào là 380 tr/m2.",
-          "source_chunk": "41",
-          "record_id": "M01-0017",
-          "report_no": 3,
-          "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
-          "part": 1
-        },
-        {
-          "label": "Chi phí / vốn từ nguồn",
-          "value": "3.1 Chi phí (Gồm VAT):",
-          "source_chunk": "41",
-          "record_id": "M01-0017",
-          "report_no": 3,
-          "project_name": "Dự án gộp 2 lô Võ Văn Kiệt",
-          "part": 1
-        },
-        {
           "label": "Chi phí đất gồm VAT",
           "value": "1.182 tỷ đồng, khoảng 52%, gồm chi phí mua dự án và tiền sử dụng đất nộp bổ sung",
           "source_chunk": "83",
@@ -41489,6 +47667,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ CP nhận chuyển nhượng: 1.001 tỷ đồng ~ đơn giá chào là 380 tr.đ/m2, cao gấp đôi giá DA Võ Văn Kiệt là ~190 tr/m2.",
+          "source_chunk": "83",
+          "record_id": "M01-0024",
+          "report_no": 4,
+          "project_name": "Dự án lô A17-01 kế bên Võ Văn Kiệt, Đà Nẵng",
+          "part": 1
+        },
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "+ Tiền sử dụng đất bổ sung: 164 tỷ đồng, bằng (=) tiền sử dụng đất tính theo PP thặng dư (762 tỷ đồng) (-) trừ đi tiền đất theo hiện trạng được khấu trừ (hiện đơn giá đất ở nhà nước ban hành theo QĐ mới nhất là 227 tr/m2.) => Tiền đất được khấu trừ: 598 tỷ đồng (Theo QĐ số 45/2025/QĐ-UBND ngày 26/6/2025 áp dụng từ năm 2026);",
           "source_chunk": "83",
           "record_id": "M01-0024",
           "report_no": 4,
@@ -41566,15 +47753,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 4,
           "project_name": "Dự án lô A17-01 kế bên Võ Văn Kiệt, Đà Nẵng",
           "part": 1
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "+ Shophouse: ~270,4 tỷ VNĐ (Giá bán t~220 triệu VNĐ/m2 có VAT).",
-          "source_chunk": "83",
-          "record_id": "M01-0024",
-          "report_no": 4,
-          "project_name": "Dự án lô A17-01 kế bên Võ Văn Kiệt, Đà Nẵng",
-          "part": 1
         }
       ],
       "reports": [
@@ -41615,6 +47793,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "+ Giá bán căn hộ ở thời điểm cuối năm 2026 (diện tích tim tường,",
+              "source_chunk": "435"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "HIỆU QUẢ TÀI CHÍNH 2.1 Doanh thu: (i) Giá bán theo P.R&D đề xuất như sau:",
+              "source_chunk": "435"
+            },
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Giá bán căn hộ ở thời điểm cuối năm 2026 (diện tích tim tường, --- chunk --- P.ĐT báo cáo Sếp Mr Mike1 -CEO về dự án Võ Văn Kiệt, Đà Nẵng như sau:",
               "source_chunk": "435"
             }
           ],
@@ -41712,13 +47900,13 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "388"
             },
             {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "Theo kết quả tính toán thì phương án QH mới với chỉ tiêu dân số được tính 32m2/dân và sử dụng tối đa hệ số thì dự án đạt hiệu quả khá tốt về mặt tài chính với các chỉ tiêu như sau:",
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Kết quả tính toán ở trên đã tính đến các yếu tố dự phòng tăng giá đối với tiền sử dụng đất bổ sung, đang tạm tính là 168 tỷ đồng (đã dự phòng tăng 10% so với tiền đất thặng dư tính toán). Khi vào thực tế triển khai thì tiền sử dụng đất bổ sung có thể đóng thấp hơn hoặc không đóng thêm.",
               "source_chunk": "388"
             },
             {
-              "label": "Dòng số liệu từ nguồn",
-              "value": "Lợi nhuận trước thuế 251 tỷ đồng;",
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Theo kết quả tính toán thì phương án QH mới với chỉ tiêu dân số được tính 32m2/dân và sử dụng tối đa hệ số thì dự án đạt hiệu quả khá tốt về mặt tài chính với các chỉ tiêu như sau:",
               "source_chunk": "388"
             }
           ],
@@ -41823,6 +48011,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "41"
             },
             {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Với đơn giá mua từ 365 tr/m2 đến 370 tr/m2 thì hiệu quả IRR sẽ đạt từ 10.2 đến 10.5% và LNTT/TMĐT từ 16.6 đến 17.1%. Để dự án đạt hiệu quả với IRR từ 15% và LNTT/TMĐT từ 20% thì giá bán tương ứng đạt 106 tr gồm VAT và 96 tr chưa VAT, mức giá này khả thi vì thời điểm bán từ Quy 4/2027 (và tính thận trọng tỷ lệ bán hàng chỉ 12%).",
+              "source_chunk": "41"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Hiệu quả và độ nhạy ở trên đang tính với giả định tiền sử dụng đất đóng bổ sung với hệ số K ~ 1.39 lần đơn giá bảng giá đất (227 tr/m2). Tuy nhiên, tiền sử dụng đất trong thời gian tới đang là ẩn số khá rủi ro khi TP Đà Nẵng đang có dự thảo ban hành hệ số K, sẽ được ban hành áp dụng từ ngày 01/7/2026. Trong trường hợp hệ số K cao hơn 1.39 (đang tính) thì…",
+              "source_chunk": "41"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Báo cáo Sếp Admin 01, bảng độ nhạy DA gộp 2 lô Võ Văn Kiệt theo thay đổi giá bán căn hộ và giá mua dự án:",
               "source_chunk": "41"
@@ -41840,16 +48038,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "* Lô A17-02 (gọi là DA Võ Văn Kiệt) cố định ~ 190 tr/m2.",
-              "source_chunk": "41"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "* Lô A17-01 (gọi là DA Kế Võ Văn Kiệt) theo đơn giá chào là 380 tr/m2.",
-              "source_chunk": "41"
-            },
-            {
-              "label": "Chi phí / vốn từ nguồn",
-              "value": "3.1 Chi phí (Gồm VAT):",
               "source_chunk": "41"
             }
           ],
@@ -41895,6 +48083,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "83"
             },
             {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "+ Tiền sử dụng đất bổ sung: 164 tỷ đồng, bằng (=) tiền sử dụng đất tính theo PP thặng dư (762 tỷ đồng) (-) trừ đi tiền đất theo hiện trạng được khấu trừ (hiện đơn giá đất ở nhà nước ban hành theo QĐ mới nhất là 227 tr/m2.) => Tiền đất được khấu trừ: 598 tỷ đồng (Theo QĐ số 45/2025/QĐ-UBND ngày 26/6/2025 áp dụng từ năm 2026);",
+              "source_chunk": "83"
+            },
+            {
               "label": "Chi phí / vốn từ nguồn",
               "value": "+ CP pháp lý ~ 2% TMĐT ~ 15,7 tỷ đồng.",
               "source_chunk": "83"
@@ -41932,11 +48125,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "+ Căn hộ : ~2.633,1 tỷ VNĐ (Giá bán từ 100 tr, bình quân ~102 triệu VNĐ/m2 có VAT, thời điểm bán Q4/2027).",
-              "source_chunk": "83"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "+ Shophouse: ~270,4 tỷ VNĐ (Giá bán t~220 triệu VNĐ/m2 có VAT).",
               "source_chunk": "83"
             }
           ],
@@ -41998,6 +48186,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Dòng số liệu từ nguồn",
           "value": "+ HSSDĐ: max 8 lần.",
+          "source_chunk": "919",
+          "record_id": "M10-0005",
+          "report_no": 1,
+          "project_name": "Vương Bảo Long, An Bình, Dĩ An",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Hiện công ty Vương Bảo Long là chủ khu đất nghĩa trang Hải Nam rộng 9,4ha tiếp giáp phía sau dự án, đối tác cam kết sẽ hỗ trợ thủ tục chuyển đổi, di dời nghĩa trang thành khu vui chơi theo quy hoạch sử dụng đất. Tuy nhiên, nghĩa trang hiện có rất nhiều mộ đã xây dựng, việc di dời sẽ tốn nhiều thời gian và chi phí, ngoài ra có một phần tiếp giáp mộ dân (nằ…",
+          "source_chunk": "919",
+          "record_id": "M10-0005",
+          "report_no": 1,
+          "project_name": "Vương Bảo Long, An Bình, Dĩ An",
+          "part": 10
+        },
+        {
+          "label": "Chi phí / vốn từ nguồn",
+          "value": "Tuy nhiên, nghĩa trang hiện có rất nhiều mộ đã xây dựng, việc di dời sẽ tốn nhiều thời gian và chi phí, ngoài ra có một phần tiếp giáp mộ dân (nằm giữa 2 phần đất của dự án).",
           "source_chunk": "919",
           "record_id": "M10-0005",
           "report_no": 1,
@@ -42073,6 +48279,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Dòng số liệu từ nguồn",
               "value": "+ HSSDĐ: max 8 lần.",
+              "source_chunk": "919"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Hiện công ty Vương Bảo Long là chủ khu đất nghĩa trang Hải Nam rộng 9,4ha tiếp giáp phía sau dự án, đối tác cam kết sẽ hỗ trợ thủ tục chuyển đổi, di dời nghĩa trang thành khu vui chơi theo quy hoạch sử dụng đất. Tuy nhiên, nghĩa trang hiện có rất nhiều mộ đã xây dựng, việc di dời sẽ tốn nhiều thời gian và chi phí, ngoài ra có một phần tiếp giáp mộ dân (nằ…",
+              "source_chunk": "919"
+            },
+            {
+              "label": "Chi phí / vốn từ nguồn",
+              "value": "Tuy nhiên, nghĩa trang hiện có rất nhiều mộ đã xây dựng, việc di dời sẽ tốn nhiều thời gian và chi phí, ngoài ra có một phần tiếp giáp mộ dân (nằm giữa 2 phần đất của dự án).",
               "source_chunk": "919"
             },
             {
@@ -42266,6 +48482,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "report_no": 1,
           "project_name": "Chung cư Đỗ Xuân Hợp, Phước Long B, Thủ Đức",
           "part": 3
+        },
+        {
+          "label": "Hiệu quả / FS từ nguồn",
+          "value": "Thanh L - INVT 11/13/2025 8:40 AM Translate Kính gửi Sếp Mr Mike1 -CEO, P.ĐT báo cáo hiệu quả đầu tư dự án Chung cư Đỗ Xuân Hợp, P.Phước Long B, Thủ Đức như sau:",
+          "source_chunk": "234",
+          "record_id": "M03-0014",
+          "report_no": 1,
+          "project_name": "Chung cư Đỗ Xuân Hợp, Phước Long B, Thủ Đức",
+          "part": 3
         }
       ],
       "reports": [
@@ -42365,6 +48590,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Kết Luận: Với hiệu quả đầu tư của 2 PA trên, PA 1 đạt hiệu quả cao hơn PA 2 vì IRR của PA 2 khá thấp lý do là MĐXD chỉ đạt 40% và hệ số nén đạt 0,1 (Hệ số nén = Số lượng phòng/Diện tích đất) tương đối thấp so với thị trường đang có hệ số nén trên 0,15.",
+              "source_chunk": "234"
+            },
+            {
+              "label": "Hiệu quả / FS từ nguồn",
+              "value": "Thanh L - INVT 11/13/2025 8:40 AM Translate Kính gửi Sếp Mr Mike1 -CEO, P.ĐT báo cáo hiệu quả đầu tư dự án Chung cư Đỗ Xuân Hợp, P.Phước Long B, Thủ Đức như sau:",
               "source_chunk": "234"
             }
           ],
@@ -44045,8 +50275,8 @@ window.MANUAL_MERGED_REPORTS_DB = {
     "groups": 173,
     "raw_records": 260,
     "multi_report_groups": 50,
-    "financial_groups": 159,
-    "financial_items": 2263,
+    "financial_groups": 160,
+    "financial_items": 2709,
     "review": 333
   }
 };

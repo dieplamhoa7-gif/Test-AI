@@ -1,9 +1,9 @@
 # Parallel candidate merge review
 
-- Accepted items merged: 99
+- Accepted items merged: 91
 - Held/rejected candidates: 21
-- Financial groups after merge: 159
-- Financial items after merge: 2263
+- Financial groups after merge: 160
+- Financial items after merge: 2709
 
 ## Accepted
 
@@ -33,9 +33,6 @@
 
 ### Phú Gia Khiêm / PGK · M03-0008
 - **Quy mô/thông số bổ sung**: + Dân số officetel: 473 dân (không thay đổi) (chunk 228)
-
-### Phú Gia Khiêm / PGK · M03-0008
-- **Hiệu quả bổ sung**: + Nếu chỉ giảm dân số về 3.673 dân và P.QH và P.PLDA đảm bảo toàn bộ các chỉ tiêu khác không thay đổi (Diện tích sàn xây dựng, Diện tích thương phẩm, Diện tích bãi xe, Mật độ cây xanh, Các chỉ tiêu kiến trúc – quy hoạch khác,…) thì hiệu quả dự án không thay đổi. (chunk 228)
 
 ### Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026 · M03-0024
 - **Quy mô/thông số bổ sung**: Diện tích toàn khu: 131.690,94 m2 (chunk 256)
@@ -73,9 +70,6 @@
 ### Quỹ đất xã Tân Hiệp, Long Thành, Đồng Nai · M07-0025
 - **Giá/đơn giá bổ sung**: Giáp KCN Tân Hiệp – Bàu Cạn, quy hoạch KCN 2.627ha (KCN thuộc xã Tân Hiệp là 1.333ha) lớn thứ 2 tỉnh Đồng Nai và lớn thứ nhất huyện Long Thành; Giáp KCN Phước Bình, quy hoạch khoảng 1.000ha (chunk 705)
 
-### Dự án Phú Quang · M08-0002
-- **Hiệu quả bổ sung**: KĐT gửi anh Tuan Tran-CEO Báo cáo Đề xuất phát triển và cập nhật hiệu quả dự án Phú Quang. Anh cho team biết ngày phù hợp để sắp xếp 1 cuộc họp với các phòng ban để trình bày về dự án này nhé. Link One Drive: https://belgroupvn.sharepoint.com/:f:/s/BeeGroupCEOOffice-03.KhiuT/Eh2-qh03-h1Mg8xRS… (chunk 717)
-
 ### Khách sạn Regalia Gold, Nha Trang · M10-0018
 - **Quy mô/thông số bổ sung**: KĐT gửi anh Tuan Tran-CEO báo cáo dự phòng P&L 5 năm từ 2023 - 2027 cho Khách sạn Regalia Gold 4 sao tại Nha Trang, cụ thể: (chunk 948)
 
@@ -88,17 +82,11 @@
 ### Khách sạn Regalia Gold, Nha Trang · M10-0018
 - **Quy mô/thông số bổ sung**: Năm 2023, dự báo lượng khách du lịch nội địa sẽ không tăng trưởng nhiều so với năm 2022, thị trường du lịch Nha Trang sẽ phụ thuộc nhiều vào lượng khách Trung Quốc khi Trung Quốc mở cửa trở lại (chunk 948)
 
-### 12ha KDC Vĩnh Phú gần Phú Quang · M01-0021
-- **Giá/đơn giá bổ sung**: Làm từ giá 12-14tr nha by Admin 01 (chunk 59)
-
 ### Hoa viên Vĩnh Thanh · M03-0023
 - **Quy mô/thông số bổ sung**: a. Diện tích thương phẩm: 290,217m2 ~ 51% (chunk 260)
 
 ### Định giá 6 tài sản - bổ sung 69 Võ Văn Tần · M04-0023
 - **Quy mô/thông số bổ sung**: + Diện tích đất: 718.4 m2 (Chưa có GCN) (chunk 391)
-
-### Định giá 6 tài sản - bổ sung 69 Võ Văn Tần · M04-0023
-- **Quy mô/thông số bổ sung**: + Diện tích xây dựng: nhà biệt thự, diện tích sàn khoảng 1118.3 m2 (chunk 391)
 
 ### 02 lô đất đấu giá ven sông Hàn Đà Nẵng - A1-6 Thuận Phước và lô liên quan · M06-0002
 - **Quy mô/thông số bổ sung**: Diện tích: 2.647,8m2. (chunk 517)
@@ -175,9 +163,6 @@
 ### Chung cư Hải Sơn - Huỳnh Văn Nghệ, Đồng Nai · M02-0002
 - **Quy mô/thông số bổ sung**: + Tầng cao 30 (đế 2, tháp 28), 2 tầng hầm, (chunk 103)
 
-### Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang · M03-0004
-- **Quy mô/thông số bổ sung**: BP.ĐT báo cáo Sếp Admin 01, về dự án khách sạn Đông Á Premier tại Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa như sau: (chunk 210)
-
 ### 48 Nguyễn Thiện Thuật, Nha Trang · M03-0022
 - **Quy mô/thông số bổ sung**: Diện tích đất theo Giấy chứng nhận: 1.703,3 m2 (đất đã được cấp GCN, ở lâu dài) (chunk 251)
 
@@ -253,9 +238,6 @@
 ### Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc · M04-0014
 - **Quy mô/thông số bổ sung**: 1. Về vị trí: Thuộc trung tâm hành chính mới xã Nhơn Trạch, vị trí cửa ngõ sân bay Long Thành. Xung quanh dự án là KCN, dự án đã triển khai và quy hoạch nhiều dự án nhà ở phát triển trong tương lai. (chunk 350)
 
-### Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc · M04-0014
-- **Quy mô/thông số bổ sung**: 1 Block cao 15 tầng, 1 Block cao 22 tầng (chunk 350)
-
 ### KCN Phước An / Cảng Phước An, Nhơn Trạch · M05-0008
 - **Quy mô/thông số bổ sung**: Giai đoạn 1: 330 ha (chunk 421)
 
@@ -280,17 +262,11 @@
 ### KCN Phước An / Cảng Phước An, Nhơn Trạch · M05-0008
 - **Quy mô/thông số bổ sung**: Hình thức PA2: thuê hạ tầng và kinh doanh dịch vụ hậu cần cảng. (chunk 421)
 
-### Khách sạn 25 Trần Phú, Đà Lạt · M05-0014
-- **Quy mô/thông số bổ sung**: Begin quote, Thao Le-PTDT , 4/8/2025 7:37 P... by Unknown User (chunk 482)
-
 ### Căn hộ dịch vụ Quận 2 khoảng 1,1ha · M07-0003
 - **Quy mô/thông số bổ sung**: Dự án cao tầng với tổng diện tích đất là 5,537m2, diện tích đất phù hợp quy hoạch là 4,926.4m2. (chunk 616)
 
 ### Dự án cao tầng diện tích đất khoảng 10ha · M07-0020
 - **Quy mô/thông số bổ sung**: Dự án cao tầng với tổng diện tích đất dự án là 10,490m2 (chunk 693)
-
-### Dự án Phú Quang · M08-0002
-- **Giá/đơn giá bổ sung**: Với phương án của mình trước là làm phân khúc trung cao cho notm, giá cũng trên 50 tr/m2 và thời điểm ra hàng cho notm a nghĩ cũng nên vào năm 2025, cũng sẽ phù hợp vs tiến độ thực hiện pháp lý hiện trạng của dự án do mình có điều chỉnh qh 1/500, rồi tính tssđ lại... (chunk 731)
 
 ### Vương Bảo Long, An Bình, Dĩ An · M10-0005
 - **Quy mô/thông số bổ sung**: +Pháp lý đất: GCN quyền sử dụng đất cho 86.834,2m2, trong đó: (chunk 919)
