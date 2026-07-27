@@ -32,6 +32,10 @@ def adjacent_context_ids(ids, radius=3, minutes=45):
     for c in ids or []:
         try: base.append(int(c))
         except Exception: pass
+    # Project-specific guardrails: some clustered Teams exports interleave different standalone reports.
+    # Đặng Văn Bi chunks already contain the relevant source; nearby 86/88/91/93/96/123/130 are other projects or generic price notes.
+    if set(base) & {89,90,92,126,127,128}:
+        return []
     out=[]; base_set=set(base)
     for c in base:
         if not (1 <= c <= len(RAW_CHUNKS)): continue
@@ -209,6 +213,22 @@ def scenario_items(text, chunk=''):
     return out
 
 
+def dang_van_bi_items(text, chunk=''):
+    txt=text or ''
+    if not re.search(r'Đặng Văn Bi|Dang Van Bi|Đăng Văn Bi', txt, re.I):
+        return []
+    out=[]
+    def add(label,value): out.append({'label':label,'value':value,'source_chunk':str(chunk)})
+    if re.search(r'4[,.]60[04]\s*m2|4[,.]604\s*m2', txt, re.I): add('Diện tích khu đất', '4.604 m2 / khoảng 4.600 m2')
+    if re.search(r'Tầng cao\s*22|22 tầng', txt, re.I): add('Quy hoạch hiện hữu', '22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2')
+    if re.search(r'20 tầng|hệ số 6|252 người|6[,.]303m2', txt, re.I): add('Quy hoạch phân khu cập nhật', '20 tầng; HSSDĐ 6, có thể cộng thêm 1 nếu được ưu tiên; dân số khoảng 252 người; diện tích 6.303 m2')
+    if re.search(r'IRR\s*=\s*15|108\.5|234 tỷ|51tr', txt, re.I): add('PA1 - hiệu quả mục tiêu', 'IRR 15%; giá bán chung cư tối thiểu 108.5 tr/m2 sàn; giá mua đất 234 tỷ, tương đương 51 tr/m2 đất')
+    if re.search(r'650 người|276 tỷ|60tr', txt, re.I): add('PA2 - xin thêm dân số', 'Xin dân số lên 650 người để dùng full HSSDĐ; IRR 15%; giá mua đất 276 tỷ, tương đương 60 tr/m2 đất')
+    if re.search(r'100%\s*Đất CLN|tỷ lệ đất ở|chuyển mục đích', txt, re.I): add('Giả định chi phí đất', 'Chưa xác định tỷ lệ đất ở; chi phí chuyển mục đích giả định thận trọng 100% đất CLN; nếu tỷ lệ đất ở thực tế cao hơn thì giá mua có thể cải thiện')
+    if re.search(r'không có giá chào|định giá theo so sánh|100% đất ở', txt, re.I): add('Lịch sử định giá', 'Trước đó không có giá chào; định giá theo so sánh và giả định 100% đất ở do chưa có sổ/cơ cấu đất')
+    return out
+
+
 records=[]; reviews=[]
 for fp in sorted(MAN.glob('part_*_manual_records.json')):
     d=json.loads(fp.read_text(encoding='utf-8')); part=d.get('part')
@@ -229,6 +249,7 @@ for i,(name,rs) in enumerate(sorted(groups.items(), key=lambda kv: norm(kv[0])),
     for idx,r in enumerate(rs,1):
         fin=list(r.get('financial_items') or [])
         rawtxt,ctx_ids=chunk_texts_with_context(r.get('source_chunks',[]))
+        fin += dang_van_bi_items(rawtxt, (r.get('source_chunks') or [''])[0])
         fin += scenario_items(rawtxt, (r.get('source_chunks') or [''])[0])
         fin += generic_financial_lines(rawtxt, (r.get('source_chunks') or [''])[0], fin)
         financial += [{**x,'record_id':r.get('id'),'report_no':idx,'project_name':r.get('project_name'),'part':r.get('part')} for x in fin]

@@ -1,5 +1,5 @@
 window.MANUAL_MERGED_REPORTS_DB = {
-  "generated_at": "2026-07-27T10:20:31",
+  "generated_at": "2026-07-27T10:25:47",
   "groups": [
     {
       "master_id": "G0001",
@@ -7428,6 +7428,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Diện tích khu đất",
+          "value": "4.604 m2 / khoảng 4.600 m2",
+          "source_chunk": "94",
+          "record_id": "M01-0027",
+          "report_no": 1,
+          "project_name": "Dự án 31 Trần Não – PA4 full văn phòng + tiện ích",
+          "part": 1
+        },
+        {
+          "label": "Quy hoạch hiện hữu",
+          "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+          "source_chunk": "94",
+          "record_id": "M01-0027",
+          "report_no": 1,
+          "project_name": "Dự án 31 Trần Não – PA4 full văn phòng + tiện ích",
+          "part": 1
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Giá chào: 592 tỷ ~ 53 tr/m2.",
           "source_chunk": "94",
@@ -7590,6 +7608,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Phí dịch vụ văn phòng ổn định",
               "value": "7 USD",
               "source_chunk": "95"
+            },
+            {
+              "label": "Diện tích khu đất",
+              "value": "4.604 m2 / khoảng 4.600 m2",
+              "source_chunk": "94"
+            },
+            {
+              "label": "Quy hoạch hiện hữu",
+              "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+              "source_chunk": "94"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
@@ -15546,7 +15574,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
         "89",
         "90",
         "92",
-        "94",
         "126",
         "127",
         "128"
@@ -15559,44 +15586,26 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ],
       "financial_items": [
         {
+          "label": "Quy hoạch phân khu cập nhật",
+          "value": "20 tầng; HSSDĐ 6, có thể cộng thêm 1 nếu được ưu tiên; dân số khoảng 252 người; diện tích 6.303 m2",
+          "source_chunk": "126",
+          "record_id": "M02-0010",
+          "report_no": 1,
+          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
+          "part": 2
+        },
+        {
+          "label": "Lịch sử định giá",
+          "value": "Trước đó không có giá chào; định giá theo so sánh và giả định 100% đất ở do chưa có sổ/cơ cấu đất",
+          "source_chunk": "126",
+          "record_id": "M02-0010",
+          "report_no": 1,
+          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
+          "part": 2
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Giá bán hiện team đang dự kiến cho 3-4 năm nữa ạ.",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "1. Phương án thấp tầng (căn hộ + dãy shophoue liền kề) hiện đang đề xuất giá chưa VAT cho căn hộ: 40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "+ Căn hộ: 38 - 41tr/m2 => trung bình chỉ 39.5tr/m2",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "+ Officetel: 40 - 44tr/m2 => trung bình : 42.3tr/m2 (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn)",
           "source_chunk": "126",
           "record_id": "M02-0010",
           "report_no": 1,
@@ -15613,40 +15622,49 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 2
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
+          "label": "Diện tích khu đất",
+          "value": "4.604 m2 / khoảng 4.600 m2",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "38 - 41tr/m2 => trung bình chỉ 39.5tr/m2 + Officetel:",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
+          "label": "Quy hoạch hiện hữu",
+          "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "40 - 44tr/m2 => trung bình :",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
+          "label": "PA1 - hiệu quả mục tiêu",
+          "value": "IRR 15%; giá bán chung cư tối thiểu 108.5 tr/m2 sàn; giá mua đất 234 tỷ, tương đương 51 tr/m2 đất",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "42.3tr/m2 (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn) Nghiên cứu kỹ nha, chứ anh thấy dù 3 năm nữ... by Admin 01",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
+          "label": "PA2 - xin thêm dân số",
+          "value": "Xin dân số lên 650 người để dùng full HSSDĐ; IRR 15%; giá mua đất 276 tỷ, tương đương 60 tr/m2 đất",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
+        },
+        {
+          "label": "Giả định chi phí đất",
+          "value": "Chưa xác định tỷ lệ đất ở; chi phí chuyển mục đích giả định thận trọng 100% đất CLN; nếu tỷ lệ đất ở thực tế cao hơn thì giá mua có thể cải thiện",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
         },
         {
           "label": "Hiệu quả / FS từ nguồn",
@@ -15685,51 +15703,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "+ Giá chào: 592 tỷ ~ 53 tr/m2.",
-          "source_chunk": "89",
-          "record_id": "M01-0026",
-          "report_no": 2,
-          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-          "part": 1
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "* Thời điểm tháng 5/2025 là 3300 tỷ ~ 68 tr/m2",
-          "source_chunk": "89",
-          "record_id": "M01-0026",
-          "report_no": 2,
-          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-          "part": 1
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "3500 tỷ ~ 72 tr/m2.",
-          "source_chunk": "89",
-          "record_id": "M01-0026",
-          "report_no": 2,
-          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-          "part": 1
-        },
-        {
-          "label": "Hiệu quả / FS từ nguồn",
-          "value": "+ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được",
-          "source_chunk": "89",
-          "record_id": "M01-0026",
-          "report_no": 2,
-          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-          "part": 1
-        },
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ",
-          "source_chunk": "89",
-          "record_id": "M01-0026",
-          "report_no": 2,
-          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-          "part": 1
-        },
-        {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư Thông số quy hoạch Hiệu quả dự án Độ nhạy dự án Phương án 1:",
           "source_chunk": "89",
@@ -15750,6 +15723,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
         {
           "label": "Chi phí / vốn từ nguồn",
           "value": "Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào.",
+          "source_chunk": "89",
+          "record_id": "M01-0026",
+          "report_no": 2,
+          "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
+          "part": 1
+        },
+        {
+          "label": "Dòng số liệu từ nguồn",
+          "value": "Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện --- chunk --- Friday, May 22 P.",
           "source_chunk": "89",
           "record_id": "M01-0026",
           "report_no": 2,
@@ -15779,62 +15761,29 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "business_notes": "Admin hỏi giá chào cũ; trước không có giá chào, chỉ định giá theo so sánh với giả định 100% đất ở",
           "financial_items": [
             {
+              "label": "Quy hoạch phân khu cập nhật",
+              "value": "20 tầng; HSSDĐ 6, có thể cộng thêm 1 nếu được ưu tiên; dân số khoảng 252 người; diện tích 6.303 m2",
+              "source_chunk": "126"
+            },
+            {
+              "label": "Lịch sử định giá",
+              "value": "Trước đó không có giá chào; định giá theo so sánh và giả định 100% đất ở do chưa có sổ/cơ cấu đất",
+              "source_chunk": "126"
+            },
+            {
               "label": "Giá / đơn giá từ nguồn",
               "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
               "source_chunk": "126"
             },
             {
               "label": "Giá / đơn giá từ nguồn",
-              "value": "Giá bán hiện team đang dự kiến cho 3-4 năm nữa ạ.",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "1. Phương án thấp tầng (căn hộ + dãy shophoue liền kề) hiện đang đề xuất giá chưa VAT cho căn hộ: 40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "+ Căn hộ: 38 - 41tr/m2 => trung bình chỉ 39.5tr/m2",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "+ Officetel: 40 - 44tr/m2 => trung bình : 42.3tr/m2 (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn)",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
               "value": "Và đặc biệt là có phần đất mộ kế bên --- chunk --- Admin 01 5/6/2026 9:15 AM Hồi đó họ chào nhiêu Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh.",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "38 - 41tr/m2 => trung bình chỉ 39.5tr/m2 + Officetel:",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "40 - 44tr/m2 => trung bình :",
-              "source_chunk": "126"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "42.3tr/m2 (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn) Nghiên cứu kỹ nha, chứ anh thấy dù 3 năm nữ... by Admin 01",
               "source_chunk": "126"
             }
           ],
           "excerpt": "miếng đất Đăng Văn Bi... quy hoạch phân khu mới nhất xây 20 tầng, hệ số 6... dân số khoảng 252 người (Diện tích 6.303m2)... Tính fs thử",
-          "full_excerpt": "Huy M - IM\n5/5 8:38 PM\nTranslate\nOk Sếp. Mai anh trao đổi việc điều chỉnh cục bộ vs A Tài. Hiện là Quy hoạch ở nhưng chỉ dc hs 2 và tầng cao là 7. Và đặc biệt là có phần đất mộ kế bên\n\n--- chunk ---\n\nAdmin 01\n5/6/2026 9:15 AM\nHồi đó họ chào nhiêu\n\nHồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở\n\n--- chunk ---\n\nDạ sau khi trao đổi với anh Tài Phòng ĐT báo cáo Sếp Admin 01 miếng đất Đăng Văn Bi, theo quy hoạch phân khu mới nhất thì khu mình sẽ được xây 20 tầng, hệ số 6 (nếu xin được ưu tiên thì sẽ được cộng thêm 1). dân số khoảng 252 người (Diện tích 6.303m2) ạ\n\nTính fs thử by Admin 01\n\n--- adjacent context / tin nhắn liền kề ---\n\n[ADJACENT CONTEXT chunk 123]\nKhoa L - INVT\n5/8 12:13 PM\nTranslate\n\ndạ team cũng xác định truc đường ven kênh sẽ là trục đường có giá trị cao nhất, mình đầu tư cảnh quan ven kênh để tăng giá trị các phân khu sau. \n\nGiá bán hiện team đang dự kiến cho 3-4 năm nữa ạ.\n\nGiá bình dương khó lên cao đc vậy lắm. Chắc... by Admin 01\n\n[ADJACENT CONTEXT chunk 130]\nThao L - INVT\n4/22 5:50 PM\nEdited\nTranslate\n\nEm gửi lại anh giá đề xuất của RD ạ\n\n1. Phương án thấp tầng (căn hộ + dãy shophoue liền kề) hiện đang đề xuất giá chưa VAT cho căn hộ: 40 - 45 tr/m2, trung bình 42.5tr/m2 (giá 45tr/m2 là đợt mở bán cuối cùng)\n\n2. Phương án cao tầng (căn hộ + officetel)  hiện đang đề xuất giá chưa VAT:\n\n+  Căn hộ:  38 - 41tr/m2 => trung bình chỉ 39.5tr/m2\n\n+  Officetel: 40 - 44tr/m2 => trung bình : 42.3tr/m2  (giai đoạn bán sau, diện tích nhỏ trung bình khoảng 36m2/căn)\n\n \n\n \n\nNghiên cứu kỹ nha, chứ anh thấy dù 3 năm nữ... by Admin 01",
-          "adjacent_context_chunks": [
-            "123",
-            "130"
-          ]
+          "full_excerpt": "Huy M - IM\n5/5 8:38 PM\nTranslate\nOk Sếp. Mai anh trao đổi việc điều chỉnh cục bộ vs A Tài. Hiện là Quy hoạch ở nhưng chỉ dc hs 2 và tầng cao là 7. Và đặc biệt là có phần đất mộ kế bên\n\n--- chunk ---\n\nAdmin 01\n5/6/2026 9:15 AM\nHồi đó họ chào nhiêu\n\nHồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở\n\n--- chunk ---\n\nDạ sau khi trao đổi với anh Tài Phòng ĐT báo cáo Sếp Admin 01 miếng đất Đăng Văn Bi, theo quy hoạch phân khu mới nhất thì khu mình sẽ được xây 20 tầng, hệ số 6 (nếu xin được ưu tiên thì sẽ được cộng thêm 1). dân số khoảng 252 người (Diện tích 6.303m2) ạ\n\nTính fs thử by Admin 01",
+          "adjacent_context_chunks": []
         },
         {
           "report_no": 2,
@@ -15846,8 +15795,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "source_chunks": [
             "89",
             "90",
-            "92",
-            "94"
+            "92"
           ],
           "source_file": "batch_089.txt; batch_091.txt; batch_093.txt",
           "sender": "Hoa D - CVDT",
@@ -15855,8 +15803,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "map_url": "https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA",
           "scale": "Khoảng 4.600 m2; theo list sơ bộ 22 tầng, HSSDĐ 7; phát triển chung cư và căn hộ dịch vụ",
           "legal_planning": "Cần xác minh tỷ lệ đất ở; chi phí chuyển mục đích đang giả định thận trọng 100% đất CLN; rủi ro phần đất mộ cần xử lý/di dời và tác động tâm lý người mua",
-          "business_notes": "Vị trí gần trường đại học, KCNC, khu dân cư hiện hữu; nhu cầu mua/thuê ổn định; nguồn cung căn hộ/căn hộ dịch vụ còn hạn chế; deadline 21/05/2026 trong list công việc",
+          "business_notes": "Vị trí gần trường đại học, KCNC, khu dân cư hiện hữu; nhu cầu mua/thuê ổn định; nguồn cung căn hộ/căn hộ dịch vụ còn hạn chế; deadline 21/05/2026 trong list công việc Chunk 94 removed from primary source because it is a multi-project task list and polluted financial extraction; source report kept at chunks 89/90/92.",
           "financial_items": [
+            {
+              "label": "Diện tích khu đất",
+              "value": "4.604 m2 / khoảng 4.600 m2",
+              "source_chunk": "89"
+            },
+            {
+              "label": "Quy hoạch hiện hữu",
+              "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+              "source_chunk": "89"
+            },
+            {
+              "label": "PA1 - hiệu quả mục tiêu",
+              "value": "IRR 15%; giá bán chung cư tối thiểu 108.5 tr/m2 sàn; giá mua đất 234 tỷ, tương đương 51 tr/m2 đất",
+              "source_chunk": "89"
+            },
+            {
+              "label": "PA2 - xin thêm dân số",
+              "value": "Xin dân số lên 650 người để dùng full HSSDĐ; IRR 15%; giá mua đất 276 tỷ, tương đương 60 tr/m2 đất",
+              "source_chunk": "89"
+            },
+            {
+              "label": "Giả định chi phí đất",
+              "value": "Chưa xác định tỷ lệ đất ở; chi phí chuyển mục đích giả định thận trọng 100% đất CLN; nếu tỷ lệ đất ở thực tế cao hơn thì giá mua có thể cải thiện",
+              "source_chunk": "89"
+            },
             {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "2. Hiệu quả dự án:",
@@ -15878,31 +15851,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "source_chunk": "89"
             },
             {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "+ Giá chào: 592 tỷ ~ 53 tr/m2.",
-              "source_chunk": "89"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "* Thời điểm tháng 5/2025 là 3300 tỷ ~ 68 tr/m2",
-              "source_chunk": "89"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "3500 tỷ ~ 72 tr/m2.",
-              "source_chunk": "89"
-            },
-            {
-              "label": "Hiệu quả / FS từ nguồn",
-              "value": "+ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được",
-              "source_chunk": "89"
-            },
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ",
-              "source_chunk": "89"
-            },
-            {
               "label": "Hiệu quả / FS từ nguồn",
               "value": "Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ Phương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư Thông số quy hoạch Hiệu quả dự án Độ nhạy dự án Phương án 1:",
               "source_chunk": "89"
@@ -15916,14 +15864,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Chi phí / vốn từ nguồn",
               "value": "Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào.",
               "source_chunk": "89"
+            },
+            {
+              "label": "Dòng số liệu từ nguồn",
+              "value": "Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện --- chunk --- Friday, May 22 P.",
+              "source_chunk": "89"
             }
           ],
           "excerpt": "khu đất 4.600 m2 tại 120 Đặng Văn Bi... vị trí ranh dự án... cách ga Metro Bình Thái khoảng 700m... Dự án phát triển chung cư và căn hộ dịch vụ.",
-          "full_excerpt": "P. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.\n5/22 9:23 AM\nEdited\nHoa D - CVDT\n\nP. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: \n\n1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:\n\na) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA\n\nb) Đánh giá vị trí dự án:\n\nDự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.\n\n \n\nb. Sơ bộ hiện trạng pháp lý:\n\nTổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN\nPháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).\nPháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).\nTầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)\n\n2. Hiệu quả dự án:\n\nDo chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:\n\nPhương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ\nPhương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư\nThông số quy hoạch\n\nHiệu quả dự án\n\n \n\nĐộ nhạy dự án\n\nPhương án 1:\n\nĐể dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).\n\nDựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân\n\nPhương án 2:\n\nTrong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)\n\nNhận xét:\n\nDự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.\nHiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.\nChỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.\n\n--- chunk ---\n\nPhòng Đầu tư đã nhờ Bộ phận Pháp lý tìm kiếm và xác minh thêm các thông tin trên, tuy nhiên hiện chưa có kết quả.\nDo chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào. Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện\n\n--- chunk ---\n\nFriday, May 22\nP. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.\n5/22 9:23 AM\nEdited\nHoa D - CVDT\n\nP. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: \n\n1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:\n\na) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA\n\nb) Đánh giá vị trí dự án:\n\nDự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.\n\n \n\nb. Sơ bộ hiện trạng pháp lý:\n\nTổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN\nPháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).\nPháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).\nTầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)\n\n2. Hiệu quả dự án:\n\nDo chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:\n\nPhương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ\nPhương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư\nThông số quy hoạch\n\nHiệu quả dự án\n\n \n\nĐộ nhạy dự án\n\nPhương án 1:\n\nĐể dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).\n\nDựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân\n\nPhương án 2:\n\nTrong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)\n\nNhận xét:\n\nDự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.\nHiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.\nChỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.\n\n--- chunk ---\n\nP.ĐT gửi Sếp list các Dự án:\n1. 31 Trần Não\n+ Vị trí: 31 Trần Não, Quận 2, TP.HCM\n+ Diện tích: 5.835m2\n+ Hiện trạng: Đang tính phương án 4: 35 tầng VP + tiện ích (gym, hồi bơi,...)\n+ Deadline: 20/05/2026\n \n2. Dự án Đặng Văn Bi\n+ Vị trí: đường Đặng Văn Bi, Phường Thủ Đức, TP HCM\n+ Diện Tích, quy mô: Khoảng 4.600 m2, 22 tầng cao, HS SDĐ là 7\n+ Thông tin sơ bộ: Dự án phát triển chung cư và căn hộ dịch vụ\n+ Deadline: 21/05/2026\n \n3. Dự án sát bên dự án Võ Văn Kiệt - Đà Nẵng.\n+ Diện tích khoảng 2000 m2\n+ Giả định quy hoạch tương đương với miếng Võ Văn Kiệt.\n+ Tính FS để ra giá có thể mua được.\n+ Dealine: 22/5/2026.\n \n4. H2-02 Tên thương mại Sky Habitat\n+ Vị trí: KDC Cát Lái, tp.HCM\n+ Diện tích: 7.988,9\n+ Hiện trạng: DA đã có pháp lý tương đối đầy đủ và đã triển khai thông tin trên thị trường. P.ĐT đang rà soát pháp lý tổng thể và đánh giá hiệu quả FS\n+ Deadline: 22/05/2026\n \n5. Bà Kèo\n+ Vị trí: Trần Hưng Đạo, Phú Quốc\n+ Diện tích: 4,2ha\n+ Hiện trạng: Đang đợi báo cáo RD về 02 phương án mới (PA10: 1.500 căn hộ và PA11: 2.000 căn hộ)\n+ Deadline: 22/05/2026\n \n6. Dự án: Khách sạn Đà Nẵng cạnh TMS\n+ Vị trí: phường Mỹ An, Ngũ Hành Sơn, Đà Nẵng\n+ Diện tích: 1.120 m2\n+ Deadline: 28/05/2026\n \n7. Dự án 02 Tây Thạnh - Đấu giá Sacombank - Phân tích dự án.\n+ Vị Trí: 02 Tây Thạnh, Tân Phú. Diện tích 11.220 m2 (đất ở lâu dài/Mục đích Đất SKC)\n+ Giá chào: 592 tỷ ~ 53 tr/m2.\n+ Quy hoạch: Đất hỗn hợp (ở 92 m, 9000 m2 TMDV, còn lại là cây xanh, giáo dục).\n=> ĐÁNH GIÁ SƠ BỘ:\nKhông có dân số, khó điều chỉnh quy hoạch. Đang xin ý kiến Sếp không nghiên cứu sâu.\n \n8. Richland Hill - Lê Văn Việt, Quận 9. Nguồn Mr.Duy\n+ Vị Trí Lê Văn Việt, Quận 9.\n+ Diện tích 48.378 m2 (đất ở\nlâu dài)\n+ Có GPXD 2007 chung cư + TMVP. Đã thi công xây dựng 1 phần từ 2008 và ngưng đến nay.\n+ Sổ đất 3,85 ha, Dt đất dự án 4,8 ha “=> chênh lệch khoảng 1ha chưa xử lý nghĩa vụ tài chính.\n+ Giá chào:\n* Thời điểm tháng 5/2025 là 3300 tỷ ~ 68 tr/m2\n* Thời điểm hiện tại 5/2026\n3500 tỷ ~ 72 tr/m2.\nHiện đang chờ đối tác cập nhật báo cáo giải quyết những vướng mắt tồn tại trước đây.\n \n9. Dự án Holiday Beach:\n+ Tính và báo cáo phương án khách sạn kết hợp condotel với giả định reset lại thời hạn 50 năm .\n+ Đang chờ ý kiến chỉ đạo để cập nhật lại báo cáo.\n \n10. Hòa Xuân Đà Nẵng:\n+ Ví trí: Võ Chí Công, KDC Hòa Xuân, Đà Nẵng\n+ Diện tích: 3.508 m2\n+ Hiện trạng: Đánh giá dự án theo PA điều chỉnh tầng cao, đang đợi kết quả làm việc từ PLDA và Sở/Ban/Ngành. Song song với đó, P.ĐT vẫn thực hiện đàm phán và chuẩn bị hồ sơ gửi SGR để nhận chuyển nhượng trước lô A2-3.\n\n11. Dự án Phú Quang\n+ Vị trí: Thuận An, Bình Dương\n+ Diện tích: ~ 32ha\n+ Hiện trạng: Phối hợp Phòng/Ban chuẩn bị số liệu TMĐT. Cập nhật FS khi có thay đổi quy hoạch hoặc định hướng kinh doanh mới\n \n12. Dự án Đông Trung\n+ Vị Trí: Bùi Hữu Nghĩa, Thuận An, Bình Dương\n+ Diện tích: 9.6ha\n+ Hiện trạng: Phối hợp Phòng/Ban đánh giá cập nhật FS NO lực lượng vũ trang nhân dân (8km2) và FS nhóm nhà ở thương mại\n\n13. Dự án An Tôn:\n+ Tính và báo cáo phương án có NOXH và chuyển NOXH.\n+ Cập nhật FS khi có thay đổi chỉ tiêu QH.\n \n14. Dự án gom đất gần Phú Quang (KDC Vĩnh Phú) -\n+ Vị trí: KDC Vĩnh Phú, Tam Bình, HCM\n+ Diện tích: ~12.5 ha\n+ Hiện trạng: Đánh giá dự án theo PA điều chỉnh dân số\n\n15. Dự án Hotel Casa\n+ Vị trí: Phường Lộc Thọ, TP Nha Trang, Tỉnh Khánh Hòa\n+ Diện tích, quy mô: 700 m2, 242 phòng\n+ Hiện trạng: Đã báo cáo sếp và chốt làm khách sạn, không làm căn hộ dịch vụ\n \n16. Dự án Phú Hải Resort\n+ Vị trí: Mặt tiền Nguyễn Đình Chiểu, Khu phố 5, Thành phố Phan Thiết, Bình Thuận\n+ Diện tích, quy mô: Tổng diện tích đất 2.1 Ha, Phân khu 150 phòng (tầng cao 6)\n+ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được\n\nK.ĐT báo cáo anh Admin   01  về dự án 31 T... by Thao L - INVT, has an attachment.\n\n--- adjacent context / tin nhắn liền kề ---\n\n[ADJACENT CONTEXT chunk 86]\nDạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ\n\nimage Dạ đây là bản đồ các dự án cao tầng g... by Khoa L - INVT\n\n[ADJACENT CONTEXT chunk 96]\nHanh T - INVT\n5/15 5:31 PM\nEdited\nTranslate\n\nVới thông tin quy hoạch như anh Tài đánh giá thì phần đất QH đất ở rất thấp chỉ 336 m2 và gần như là không có dân số, đa phần là đất thuộc TMDV (800 dân cho cả ô phố 16,4ha) và khả năng xin điều chỉnh để nâng hệ số sử dụng đất và dân số cho khu đất 1,1 ha này là khó. \n\n \n\nDo đó, phòng xin ý kiến Sếp có tiếp tục nghiên cứu sâu DA này không. Phòng xin gửi đính kèm thông tin về khu đất từ phía Sacombank chào đấu giá. \n\nTrân trọng. \n\nTanPhu 1.pdf",
-          "adjacent_context_chunks": [
-            "86",
-            "96"
-          ]
+          "full_excerpt": "P. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.\n5/22 9:23 AM\nEdited\nHoa D - CVDT\n\nP. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: \n\n1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:\n\na) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA\n\nb) Đánh giá vị trí dự án:\n\nDự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.\n\n \n\nb. Sơ bộ hiện trạng pháp lý:\n\nTổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN\nPháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).\nPháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).\nTầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)\n\n2. Hiệu quả dự án:\n\nDo chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:\n\nPhương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ\nPhương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư\nThông số quy hoạch\n\nHiệu quả dự án\n\n \n\nĐộ nhạy dự án\n\nPhương án 1:\n\nĐể dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).\n\nDựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân\n\nPhương án 2:\n\nTrong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)\n\nNhận xét:\n\nDự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.\nHiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.\nChỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.\n\n--- chunk ---\n\nPhòng Đầu tư đã nhờ Bộ phận Pháp lý tìm kiếm và xác minh thêm các thông tin trên, tuy nhiên hiện chưa có kết quả.\nDo chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào. Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện\n\n--- chunk ---\n\nFriday, May 22\nP. ĐT báo cáo Sếp  Admin   01  về khu đất 4... by Hoa D - CVDT, has attachments.\n5/22 9:23 AM\nEdited\nHoa D - CVDT\n\nP. ĐT báo cáo Sếp Admin 01 về khu đất 4.600 m2 tại 120 Đặng Văn Bi, phường Thủ Đức, HCM như sau: \n\n1. Tóm tắt sơ bộ hiện trạng pháp lý dự án:\n\na) Vị trí và ranh dự án: https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA\n\nb) Đánh giá vị trí dự án:\n\nDự án có lợi thế vị trí khi cách ga Metro Bình Thái khoảng 700m, nằm gần các trường đại học, KCNC và khu dân cư hiện hữu. Khu vực ghi nhận nhu cầu mua ở thực và thuê ổn định, trong khi nguồn cung căn hộ mới còn hạn chế; đặc biệt, loại hình căn hộ dịch vụ chuẩn còn thiếu, tạo dư địa phát triển tốt cho dự án. Tuy nhiên, cần lưu ý rủi ro từ phần đất mộ cần xử lý/di dời và tác động tâm lý đối với người mua do vị trí tiếp giáp khu mộ.\n\n \n\nb. Sơ bộ hiện trạng pháp lý:\n\nTổng diện tích khu đất là: 4,604 m2, chưa xác định được loại đất nên Phòng Đầu tư tạm giả định là đất CLN\nPháp lý đất: Có nguồn gốc đất cá nhân, phù hợp để phát triển dự án nhà ở (Dựa theo Nghị quyết 171).\nPháp lý QH: Diện tích phù hợp QH còn 4,604 m2 (Không bị dính lộ giới).\nTầng cao 22 tầng cao và 1 hầm; Hệ số sử dụng đất 7 lần, dân số là 361 người (tương đương hệ số 3.6 ,chưa sử dụng hết được hệ số HS SDĐ)\n\n2. Hiệu quả dự án:\n\nDo chỉ tiêu dân số hiện tại còn thấp nên Phòng Đầu Tư tạm tính 2 phương án:\n\nPhương án 1: Tận dụng dân số hiện có 361 người để làm căn hộ chung cư, phần hệ số còn lại làm căn hộ dịch vụ\nPhương án 2: xin thêm dân số lên 650 người (để sử dụng full HS SDĐ) để làm căn hộ chung cư\nThông số quy hoạch\n\nHiệu quả dự án\n\n \n\nĐộ nhạy dự án\n\nPhương án 1:\n\nĐể dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).\n\nDựa trên vị trí và đối tượng (chủ yếu là sinh viên và người có thu nhập trung bình) của dự án, việc kinh doanh CHDV là không hiệu quả do giá thuê không được tốt và chi phí đầu tư ban đầu cao. Do đó đề xuất phương án xin thêm dân\n\nPhương án 2:\n\nTrong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)\n\nNhận xét:\n\nDự án tiếp giáp khu đất mộ, có thể ảnh hưởng đến tâm lý người mua/khách thuê, từ đó tác động đến giá bán và giá cho thuê.\nHiện chưa xác định được đầy đủ cơ cấu loại đất của khu đất. Do đó, Phòng Đầu tư tạm giả định toàn bộ là đất CLN để xây dựng phương án thận trọng nên tiền sử dụng đất cao.\nChỉ tiêu dân số hiện tại còn thấp, cần làm việc thêm với cơ quan chức năng để xem xét khả năng xin bổ sung dân số.",
+          "adjacent_context_chunks": []
         }
       ]
     },
@@ -16645,6 +16595,24 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Diện tích khu đất",
+          "value": "4.604 m2 / khoảng 4.600 m2",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
+        },
+        {
+          "label": "Quy hoạch hiện hữu",
+          "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+          "source_chunk": "96",
+          "record_id": "M01-0028",
+          "report_no": 1,
+          "project_name": "Khu đất 02 Tây Thạnh / 1,1ha Tây Thạnh, Tân Phú",
+          "part": 1
+        },
+        {
           "label": "Dòng số liệu từ nguồn",
           "value": "Cuối 2023 - Giữa 2024: Mức giá 508,56 tỷ đồng.",
           "source_chunk": "96",
@@ -16847,6 +16815,16 @@ window.MANUAL_MERGED_REPORTS_DB = {
               "label": "Giá đấu giá nửa đầu 2025 đến 2026",
               "value": "410 tỷ đồng, khoảng 36,5 tr/m2",
               "source_chunk": "97"
+            },
+            {
+              "label": "Diện tích khu đất",
+              "value": "4.604 m2 / khoảng 4.600 m2",
+              "source_chunk": "96"
+            },
+            {
+              "label": "Quy hoạch hiện hữu",
+              "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+              "source_chunk": "96"
             },
             {
               "label": "Dòng số liệu từ nguồn",
@@ -22614,6 +22592,33 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 1
         },
         {
+          "label": "Diện tích khu đất",
+          "value": "4.604 m2 / khoảng 4.600 m2",
+          "source_chunk": "91",
+          "record_id": "M01-AUTO006",
+          "report_no": 4,
+          "project_name": "Cát Lái - Sky Habitat / H2-02",
+          "part": 1
+        },
+        {
+          "label": "Quy hoạch hiện hữu",
+          "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+          "source_chunk": "91",
+          "record_id": "M01-AUTO006",
+          "report_no": 4,
+          "project_name": "Cát Lái - Sky Habitat / H2-02",
+          "part": 1
+        },
+        {
+          "label": "Giả định chi phí đất",
+          "value": "Chưa xác định tỷ lệ đất ở; chi phí chuyển mục đích giả định thận trọng 100% đất CLN; nếu tỷ lệ đất ở thực tế cao hơn thì giá mua có thể cải thiện",
+          "source_chunk": "91",
+          "record_id": "M01-AUTO006",
+          "report_no": 4,
+          "project_name": "Cát Lái - Sky Habitat / H2-02",
+          "part": 1
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "P.ĐT báo cáo sếp Admin 01 cập nhật FS cho dự án Cát Lái - Sky Habitat, theo PA giá chào 690 tỷ bao tiền sử dụng đất (LUR)",
           "source_chunk": "91",
@@ -23290,6 +23295,21 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "legal_planning": "",
           "business_notes": "Auto-imported from uncovered standalone report audit; verify manually.",
           "financial_items": [
+            {
+              "label": "Diện tích khu đất",
+              "value": "4.604 m2 / khoảng 4.600 m2",
+              "source_chunk": "91"
+            },
+            {
+              "label": "Quy hoạch hiện hữu",
+              "value": "22 tầng + 1 hầm; HSSDĐ 7; dân số 361 người; diện tích phù hợp QH 4.604 m2",
+              "source_chunk": "91"
+            },
+            {
+              "label": "Giả định chi phí đất",
+              "value": "Chưa xác định tỷ lệ đất ở; chi phí chuyển mục đích giả định thận trọng 100% đất CLN; nếu tỷ lệ đất ở thực tế cao hơn thì giá mua có thể cải thiện",
+              "source_chunk": "91"
+            },
             {
               "label": "Giá / đơn giá từ nguồn",
               "value": "P.ĐT báo cáo sếp Admin 01 cập nhật FS cho dự án Cát Lái - Sky Habitat, theo PA giá chào 690 tỷ bao tiền sử dụng đất (LUR)",
@@ -33820,6 +33840,15 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "part": 4
         },
         {
+          "label": "Quy hoạch phân khu cập nhật",
+          "value": "20 tầng; HSSDĐ 6, có thể cộng thêm 1 nếu được ưu tiên; dân số khoảng 252 người; diện tích 6.303 m2",
+          "source_chunk": "339",
+          "record_id": "M04-0010",
+          "report_no": 1,
+          "project_name": "Định giá 6 tài sản - 69 Võ Văn Tần, 76 Hai Bà Trưng, Thanh Đa...",
+          "part": 4
+        },
+        {
           "label": "Giá / đơn giá từ nguồn",
           "value": "+ Đơn giá đất ở định giá: 705 triệu/m2 đất",
           "source_chunk": "339",
@@ -33956,6 +33985,11 @@ window.MANUAL_MERGED_REPORTS_DB = {
             {
               "label": "69 Võ Văn Tần giá trị định giá không gồm công trình hiện hữu",
               "value": "506,5 tỷ",
+              "source_chunk": "339"
+            },
+            {
+              "label": "Quy hoạch phân khu cập nhật",
+              "value": "20 tầng; HSSDĐ 6, có thể cộng thêm 1 nếu được ưu tiên; dân số khoảng 252 người; diện tích 6.303 m2",
               "source_chunk": "339"
             },
             {
@@ -59314,7 +59348,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
     "raw_records": 284,
     "multi_report_groups": 55,
     "financial_groups": 171,
-    "financial_items": 3240,
+    "financial_items": 3243,
     "review": 333
   }
 };

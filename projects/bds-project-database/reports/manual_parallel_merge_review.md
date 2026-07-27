@@ -3,7 +3,7 @@
 - Accepted items merged: 92
 - Held/rejected candidates: 21
 - Financial groups after merge: 171
-- Financial items after merge: 3240
+- Financial items after merge: 3243
 
 ## Accepted
 

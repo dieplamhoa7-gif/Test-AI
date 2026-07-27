@@ -10,7 +10,7 @@ reports=sum(len(g.get('reports') or []) for g in db['groups'])
 full_lens=[len(r.get('full_excerpt') or '') for g in db['groups'] for r in g.get('reports') or []]
 assert db['totals']['groups']==len(db['groups'])==181
 assert db['totals']['raw_records']==284
-assert db['totals']['financial_items']==items==3240, (db['totals']['financial_items'], items)
+assert db['totals']['financial_items']==items==3243, (db['totals']['financial_items'], items)
 assert db['totals']['financial_groups']==fin_groups==171, fin_groups
 assert reports==284, reports
 assert min(full_lens)>=0 and max(full_lens)>10000 and sum(full_lens)//len(full_lens)>2500
