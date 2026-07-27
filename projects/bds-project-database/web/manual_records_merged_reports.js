@@ -1,5 +1,5 @@
 window.MANUAL_MERGED_REPORTS_DB = {
-  "generated_at": "2026-07-27T09:10:04",
+  "generated_at": "2026-07-27T09:46:05",
   "groups": [
     {
       "master_id": "G0001",
@@ -11789,30 +11789,44 @@ window.MANUAL_MERGED_REPORTS_DB = {
     {
       "master_id": "G0049",
       "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
-      "report_count": 1,
+      "report_count": 2,
       "parts": [
-        1
+        1,
+        2
       ],
-      "first_date": "",
+      "first_date": "2026-05-06",
       "latest_date": "",
       "source_chunks": [
         "89",
         "90",
         "92",
-        "94"
+        "94",
+        "126",
+        "127",
+        "128"
       ],
       "location": "120 Đặng Văn Bi, phường Thủ Đức, TP.HCM; cách ga Metro Bình Thái khoảng 700m",
       "map_url": "https://maps.app.goo.gl/dRnRPbNFPmCfsTHAA",
       "decisions": [
-        "merged_same_project_update"
+        "merged_same_project_update",
+        "update_to_existing_project"
       ],
       "financial_items": [
+        {
+          "label": "Giá / đơn giá từ nguồn",
+          "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
+          "source_chunk": "126",
+          "record_id": "M02-0010",
+          "report_no": 1,
+          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
+          "part": 2
+        },
         {
           "label": "Hiệu quả / FS từ nguồn",
           "value": "2. Hiệu quả dự án:",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11821,7 +11835,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "Để dự án đạt hiệu quả IRR = 15% cần giá bán chung cư tối thiểu 108.5tr/m2 sàn và giá mua đất là 234 tỷ (tương đương 51tr/m2 đất).",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11830,7 +11844,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "Trong trường hợp có thể xin thêm dân số, để dự án đạt hiệu quả IRR = 15% cần giá mua đất là 276 tỷ (tương đương 60tr/m2 đất)",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11839,7 +11853,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "Do chưa xác định được tỷ lệ đất ở, chi phí chuyển mục đích sử dụng đất đang được giả định thận trọng (100% Đất CLN), làm giảm giá mua đất đầu vào. Nếu tỷ lệ đất ở thực tế cao hơn, giá mua có thể được cải thiện",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11848,7 +11862,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "+ Giá chào: 592 tỷ ~ 53 tr/m2.",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11857,7 +11871,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "* Thời điểm tháng 5/2025 là 3300 tỷ ~ 68 tr/m2",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11866,7 +11880,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "3500 tỷ ~ 72 tr/m2.",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         },
@@ -11875,7 +11889,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
           "value": "+ Hiện trạng: Tổng mức đầu tư lớn (3.3 tỷ/key) nên đòi hỏi giá thuê phòng cao hơn mặt bằng chung khu vực thì dự án mới đạt hiệu quả. Đã báo cáo sếp. Chỉ đạo: giảm diện tích phòng xuống 38m2, do lãi suất neo cao nên chưa khởi công liền được",
           "source_chunk": "89",
           "record_id": "M01-0026",
-          "report_no": 1,
+          "report_no": 2,
           "project_name": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
           "part": 1
         }
@@ -11883,6 +11897,35 @@ window.MANUAL_MERGED_REPORTS_DB = {
       "reports": [
         {
           "report_no": 1,
+          "record_id": "M02-0010",
+          "part": 2,
+          "project_name_original": "Khu đất Đặng Văn Bi, Thủ Đức",
+          "decision": "update_to_existing_project",
+          "report_date": "2026-05-06",
+          "source_chunks": [
+            "126",
+            "127",
+            "128"
+          ],
+          "source_file": "batch_131.txt",
+          "sender": "Admin 01",
+          "location": "Đặng Văn Bi, Thủ Đức; có phần đất mộ kế bên",
+          "map_url": "",
+          "scale": "Diện tích 6.303 m2 trong cập nhật QH; QH mới xây 20 tầng, HSSDĐ 6, nếu ưu tiên có thể cộng thêm 1; dân số khoảng 252; trước đó hồ sơ giả định 100% đất ở do chưa có cơ cấu đất",
+          "legal_planning": "QH ở nhưng chỉ được HSSDĐ 2 và tầng cao 7 theo một trao đổi; sau trao đổi anh Tài cập nhật QH mới 20 tầng/HSSDĐ 6; có đất mộ kế bên; cần tính FS thử",
+          "business_notes": "Admin hỏi giá chào cũ; trước không có giá chào, chỉ định giá theo so sánh với giả định 100% đất ở",
+          "financial_items": [
+            {
+              "label": "Giá / đơn giá từ nguồn",
+              "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
+              "source_chunk": "126"
+            }
+          ],
+          "excerpt": "miếng đất Đăng Văn Bi... quy hoạch phân khu mới nhất xây 20 tầng, hệ số 6... dân số khoảng 252 người (Diện tích 6.303m2)... Tính fs thử",
+          "full_excerpt": "Huy M - IM\n5/5 8:38 PM\nTranslate\nOk Sếp. Mai anh trao đổi việc điều chỉnh cục bộ vs A Tài. Hiện là Quy hoạch ở nhưng chỉ dc hs 2 và tầng cao là 7. Và đặc biệt là có phần đất mộ kế bên\n\n--- chunk ---\n\nAdmin 01\n5/6/2026 9:15 AM\nHồi đó họ chào nhiêu\n\nHồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở\n\n--- chunk ---\n\nDạ sau khi trao đổi với anh Tài Phòng ĐT báo cáo Sếp Admin 01 miếng đất Đăng Văn Bi, theo quy hoạch phân khu mới nhất thì khu mình sẽ được xây 20 tầng, hệ số 6 (nếu xin được ưu tiên thì sẽ được cộng thêm 1). dân số khoảng 252 người (Diện tích 6.303m2) ạ\n\nTính fs thử by Admin 01"
+        },
+        {
+          "report_no": 2,
           "record_id": "M01-0026",
           "part": 1,
           "project_name_original": "Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức",
@@ -12168,68 +12211,6 @@ window.MANUAL_MERGED_REPORTS_DB = {
     },
     {
       "master_id": "G0051",
-      "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-      "report_count": 1,
-      "parts": [
-        2
-      ],
-      "first_date": "2026-05-06",
-      "latest_date": "2026-05-06",
-      "source_chunks": [
-        "126",
-        "127",
-        "128"
-      ],
-      "location": "Đặng Văn Bi, Thủ Đức; có phần đất mộ kế bên",
-      "map_url": "",
-      "decisions": [
-        "update_to_existing_project"
-      ],
-      "financial_items": [
-        {
-          "label": "Giá / đơn giá từ nguồn",
-          "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
-          "source_chunk": "126",
-          "record_id": "M02-0010",
-          "report_no": 1,
-          "project_name": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "part": 2
-        }
-      ],
-      "reports": [
-        {
-          "report_no": 1,
-          "record_id": "M02-0010",
-          "part": 2,
-          "project_name_original": "Khu đất Đặng Văn Bi, Thủ Đức",
-          "decision": "update_to_existing_project",
-          "report_date": "2026-05-06",
-          "source_chunks": [
-            "126",
-            "127",
-            "128"
-          ],
-          "source_file": "batch_131.txt",
-          "sender": "Admin 01",
-          "location": "Đặng Văn Bi, Thủ Đức; có phần đất mộ kế bên",
-          "map_url": "",
-          "scale": "Diện tích 6.303 m2 trong cập nhật QH; QH mới xây 20 tầng, HSSDĐ 6, nếu ưu tiên có thể cộng thêm 1; dân số khoảng 252; trước đó hồ sơ giả định 100% đất ở do chưa có cơ cấu đất",
-          "legal_planning": "QH ở nhưng chỉ được HSSDĐ 2 và tầng cao 7 theo một trao đổi; sau trao đổi anh Tài cập nhật QH mới 20 tầng/HSSDĐ 6; có đất mộ kế bên; cần tính FS thử",
-          "business_notes": "Admin hỏi giá chào cũ; trước không có giá chào, chỉ định giá theo so sánh với giả định 100% đất ở",
-          "financial_items": [
-            {
-              "label": "Giá / đơn giá từ nguồn",
-              "value": "Hồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở",
-              "source_chunk": "126"
-            }
-          ],
-          "excerpt": "miếng đất Đăng Văn Bi... quy hoạch phân khu mới nhất xây 20 tầng, hệ số 6... dân số khoảng 252 người (Diện tích 6.303m2)... Tính fs thử",
-          "full_excerpt": "Huy M - IM\n5/5 8:38 PM\nTranslate\nOk Sếp. Mai anh trao đổi việc điều chỉnh cục bộ vs A Tài. Hiện là Quy hoạch ở nhưng chỉ dc hs 2 và tầng cao là 7. Và đặc biệt là có phần đất mộ kế bên\n\n--- chunk ---\n\nAdmin 01\n5/6/2026 9:15 AM\nHồi đó họ chào nhiêu\n\nHồi đó không có giá chào Sếp, anh chỉ thực hiện đinh giá theo so sánh. Và giá định giá là giả định có 100% đất ở, vì hồ sơ không có gửi sổ đất cho mình và hỏi cũng không có cơ cấu đất là loại gì hết nên mới gỉa định là 100% đất ở\n\n--- chunk ---\n\nDạ sau khi trao đổi với anh Tài Phòng ĐT báo cáo Sếp Admin 01 miếng đất Đăng Văn Bi, theo quy hoạch phân khu mới nhất thì khu mình sẽ được xây 20 tầng, hệ số 6 (nếu xin được ưu tiên thì sẽ được cộng thêm 1). dân số khoảng 252 người (Diện tích 6.303m2) ạ\n\nTính fs thử by Admin 01"
-        }
-      ]
-    },
-    {
-      "master_id": "G0052",
       "project_name": "Lô đất khách sạn cạnh TMS - 290 Võ Nguyên Giáp",
       "report_count": 1,
       "parts": [
@@ -12315,7 +12296,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0053",
+      "master_id": "G0052",
       "project_name": "Khu đất Phú Thọ Hòa, Tân Phú",
       "report_count": 2,
       "parts": [
@@ -12412,7 +12393,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0054",
+      "master_id": "G0053",
       "project_name": "Khu đất Tây Thạnh, Tân Phú",
       "report_count": 2,
       "parts": [
@@ -12598,7 +12579,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0055",
+      "master_id": "G0054",
       "project_name": "Khu đất/khu đô thị Hưng Yên gần Xuân Cầu và Trump International Hưng Yên",
       "report_count": 1,
       "parts": [
@@ -12646,7 +12627,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0056",
+      "master_id": "G0055",
       "project_name": "Khu đất/văn phòng 72-74 Võ Thị Sáu",
       "report_count": 1,
       "parts": [
@@ -12760,7 +12741,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0057",
+      "master_id": "G0056",
       "project_name": "Đấu giá 102ha Phước An, Nhơn Trạch",
       "report_count": 2,
       "parts": [
@@ -13096,7 +13077,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0058",
+      "master_id": "G0057",
       "project_name": "Dự án đấu giá 77ha Long Thành, Đồng Nai",
       "report_count": 1,
       "parts": [
@@ -13430,7 +13411,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0059",
+      "master_id": "G0058",
       "project_name": "Cụm dự án đấu thầu 386ha Nhơn Trạch",
       "report_count": 2,
       "parts": [
@@ -13704,7 +13685,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0060",
+      "master_id": "G0059",
       "project_name": "Dự án Bà Kèo, Phú Quốc",
       "report_count": 4,
       "parts": [
@@ -14476,7 +14457,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0061",
+      "master_id": "G0060",
       "project_name": "Dự án Bà Kèo - Quy hoạch 1/500 cũ",
       "report_count": 1,
       "parts": [
@@ -14650,7 +14631,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0062",
+      "master_id": "G0061",
       "project_name": "Dự án phường An Bình, Dĩ An quy mô 86.834,2 m2",
       "report_count": 1,
       "parts": [
@@ -14692,7 +14673,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0063",
+      "master_id": "G0062",
       "project_name": "Căn hộ dịch vụ Quận 2 khoảng 1,1ha",
       "report_count": 2,
       "parts": [
@@ -14936,7 +14917,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0064",
+      "master_id": "G0063",
       "project_name": "Căn hộ Đức Long Western Park, Bình Tân",
       "report_count": 1,
       "parts": [
@@ -15054,7 +15035,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0065",
+      "master_id": "G0064",
       "project_name": "Cảng Sài Gòn - Thép Việt, Cảng Sao Biển, Bãi Container & Dịch vụ Cảng Phú Mỹ",
       "report_count": 1,
       "parts": [
@@ -15198,7 +15179,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0066",
+      "master_id": "G0065",
       "project_name": "Cảng tổng hợp và container Cái Mép Hạ",
       "report_count": 1,
       "parts": [
@@ -15256,7 +15237,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0067",
+      "master_id": "G0066",
       "project_name": "Chung cư cao cấp THAT 1, Võ Nguyên Giáp, Sơn Trà, Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -15384,7 +15365,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0068",
+      "master_id": "G0067",
       "project_name": "Phương án cao tầng dự án chưa xác định - xin thêm 2.522 dân",
       "report_count": 1,
       "parts": [
@@ -15596,7 +15577,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0069",
+      "master_id": "G0068",
       "project_name": "Dự án cao tầng diện tích đất khoảng 10ha",
       "report_count": 1,
       "parts": [
@@ -15670,7 +15651,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0070",
+      "master_id": "G0069",
       "project_name": "Cao tầng Icon Plaza, Thuận An, Bình Dương",
       "report_count": 1,
       "parts": [
@@ -15962,7 +15943,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0071",
+      "master_id": "G0070",
       "project_name": "Dự án cao tầng Trung tâm Quận 9 - Gamudaland nghiên cứu M&A",
       "report_count": 1,
       "parts": [
@@ -16048,7 +16029,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0072",
+      "master_id": "G0071",
       "project_name": "Cao tầng Việt An, Thuận Giao",
       "report_count": 2,
       "parts": [
@@ -16447,7 +16428,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0073",
+      "master_id": "G0072",
       "project_name": "Cát Lái - Sky Habitat / H2-02",
       "report_count": 3,
       "parts": [
@@ -17040,7 +17021,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0074",
+      "master_id": "G0073",
       "project_name": "Chen Sea 3,1ha, Cửa Dương, Phú Quốc",
       "report_count": 1,
       "parts": [
@@ -17140,7 +17121,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0075",
+      "master_id": "G0074",
       "project_name": "Dự án Chợ Lớn",
       "report_count": 1,
       "parts": [
@@ -17184,7 +17165,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0076",
+      "master_id": "G0075",
       "project_name": "Cù Lao Tân Vạn – Centria Island",
       "report_count": 1,
       "parts": [
@@ -17586,7 +17567,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0077",
+      "master_id": "G0076",
       "project_name": "Khu dân cư cao tầng Ngọc Hồi, Thanh Trì, Hà Nội",
       "report_count": 1,
       "parts": [
@@ -17730,7 +17711,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0078",
+      "master_id": "G0077",
       "project_name": "Danh mục 10 khu đất khu đô thị đấu thầu tại Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -17856,7 +17837,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0079",
+      "master_id": "G0078",
       "project_name": "Danh sách khu đất đấu giá Đồng Nai 2026",
       "report_count": 1,
       "parts": [
@@ -17998,7 +17979,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0080",
+      "master_id": "G0079",
       "project_name": "Diamond Island Quận 9",
       "report_count": 1,
       "parts": [
@@ -18100,7 +18081,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0081",
+      "master_id": "G0080",
       "project_name": "DKC Arita Twin Tower 1,1ha, Vinh, Nghệ An",
       "report_count": 1,
       "parts": [
@@ -18256,7 +18237,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0082",
+      "master_id": "G0081",
       "project_name": "Khu du lịch nghỉ dưỡng từng liên quan bà Trương Mỹ Lan / VietinBank",
       "report_count": 1,
       "parts": [
@@ -18300,7 +18281,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0083",
+      "master_id": "G0082",
       "project_name": "Khu du lịch sinh thái biển cao cấp Lạc Việt",
       "report_count": 1,
       "parts": [
@@ -18490,7 +18471,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0084",
+      "master_id": "G0083",
       "project_name": "Dự án Felecia/Felicia, Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -18818,7 +18799,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0085",
+      "master_id": "G0084",
       "project_name": "Khách sạn Felicia",
       "report_count": 1,
       "parts": [
@@ -19086,7 +19067,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0086",
+      "master_id": "G0085",
       "project_name": "Felicia Đà Nẵng - hotel/condotel",
       "report_count": 1,
       "parts": [
@@ -19304,7 +19285,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0087",
+      "master_id": "G0086",
       "project_name": "Felicia Đà Nẵng - tổ hợp khách sạn và condotel",
       "report_count": 1,
       "parts": [
@@ -19492,7 +19473,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0088",
+      "master_id": "G0087",
       "project_name": "Dự án Fenica",
       "report_count": 2,
       "parts": [
@@ -19859,7 +19840,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0089",
+      "master_id": "G0088",
       "project_name": "Khu gia đình quân nhân PK-KQ 8,46ha Biên Hòa",
       "report_count": 2,
       "parts": [
@@ -20114,7 +20095,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0090",
+      "master_id": "G0089",
       "project_name": "Cụm công nghiệp Giao Yến 75ha, Giao Thủy, Nam Định",
       "report_count": 1,
       "parts": [
@@ -20228,7 +20209,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0091",
+      "master_id": "G0090",
       "project_name": "CCN Giao Yến, Giao Thủy, Nam Định",
       "report_count": 1,
       "parts": [
@@ -20292,7 +20273,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0092",
+      "master_id": "G0091",
       "project_name": "Gladia Heights - thông tin thị trường tham chiếu",
       "report_count": 1,
       "parts": [
@@ -20364,7 +20345,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0093",
+      "master_id": "G0092",
       "project_name": "Green Hill, Quy Nhơn",
       "report_count": 2,
       "parts": [
@@ -20616,7 +20597,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0094",
+      "master_id": "G0093",
       "project_name": "Hải Âu, Bãi Trường, Phú Quốc",
       "report_count": 1,
       "parts": [
@@ -20802,7 +20783,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0095",
+      "master_id": "G0094",
       "project_name": "Dự án Hải Nhân 4.5ha",
       "report_count": 1,
       "parts": [
@@ -21060,7 +21041,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0096",
+      "master_id": "G0095",
       "project_name": "Chung cư Hải Sơn - Huỳnh Văn Nghệ, Đồng Nai",
       "report_count": 1,
       "parts": [
@@ -21246,7 +21227,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0097",
+      "master_id": "G0096",
       "project_name": "Chung cư Hạnh Phúc",
       "report_count": 1,
       "parts": [
@@ -21446,7 +21427,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0098",
+      "master_id": "G0097",
       "project_name": "Hermes Power 1",
       "report_count": 1,
       "parts": [
@@ -21616,7 +21597,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0099",
+      "master_id": "G0098",
       "project_name": "Hoa viên Vĩnh Thanh",
       "report_count": 3,
       "parts": [
@@ -22095,7 +22076,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0100",
+      "master_id": "G0099",
       "project_name": "Chung cư Hòa Xuân",
       "report_count": 1,
       "parts": [
@@ -22137,7 +22118,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0101",
+      "master_id": "G0100",
       "project_name": "Chung cư Hòa Xuân A2-3 & A2-4",
       "report_count": 1,
       "parts": [
@@ -22509,7 +22490,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0102",
+      "master_id": "G0101",
       "project_name": "Hội An Riverside Resort & Spa",
       "report_count": 4,
       "parts": [
@@ -23374,7 +23355,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0103",
+      "master_id": "G0102",
       "project_name": "Holiday Beach Đà Nẵng",
       "report_count": 6,
       "parts": [
@@ -24202,7 +24183,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0104",
+      "master_id": "G0103",
       "project_name": "Dự án Hùng Thắng 1,7ha / khảo sát thị trường Quảng Ninh",
       "report_count": 1,
       "parts": [
@@ -24244,7 +24225,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0105",
+      "master_id": "G0104",
       "project_name": "IDEO Charan 70 Riverview, Bangkok",
       "report_count": 1,
       "parts": [
@@ -24432,7 +24413,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0106",
+      "master_id": "G0105",
       "project_name": "Định giá Công ty DXG - Đất Xanh",
       "report_count": 1,
       "parts": [
@@ -24504,7 +24485,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0107",
+      "master_id": "G0106",
       "project_name": "Định giá Công ty HDC - Phát triển Nhà Bà Rịa Vũng Tàu",
       "report_count": 1,
       "parts": [
@@ -24632,7 +24613,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0108",
+      "master_id": "G0107",
       "project_name": "Định giá DIG/HDC - trọng tâm dự án Long Tân và bản đồ quỹ đất",
       "report_count": 1,
       "parts": [
@@ -24950,7 +24931,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0109",
+      "master_id": "G0108",
       "project_name": "Định giá 6 tài sản - 69 Võ Văn Tần, 76 Hai Bà Trưng, Thanh Đa...",
       "report_count": 1,
       "parts": [
@@ -25192,7 +25173,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0110",
+      "master_id": "G0109",
       "project_name": "Định giá 6 tài sản - bổ sung 69 Võ Văn Tần",
       "report_count": 1,
       "parts": [
@@ -25296,7 +25277,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0111",
+      "master_id": "G0110",
       "project_name": "Khảo sát hiện trạng Hải Nhân / Richland / Parklane",
       "report_count": 1,
       "parts": [
@@ -25338,7 +25319,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0112",
+      "master_id": "G0111",
       "project_name": "Khảo sát Long Phước/Đông Thủ Đức/Nhơn Trạch",
       "report_count": 1,
       "parts": [
@@ -25418,7 +25399,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0113",
+      "master_id": "G0112",
       "project_name": "Khảo sát phía Đông TP Thủ Đức và phân lô bán nền giá rẻ Nhơn Trạch",
       "report_count": 1,
       "parts": [
@@ -25548,7 +25529,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0114",
+      "master_id": "G0113",
       "project_name": "LDG High và West Intela",
       "report_count": 1,
       "parts": [
@@ -25718,7 +25699,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0115",
+      "master_id": "G0114",
       "project_name": "KDC Long Phước 18ha",
       "report_count": 1,
       "parts": [
@@ -25930,7 +25911,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0116",
+      "master_id": "G0115",
       "project_name": "Chung cư Long Vân 3,09ha - Quốc Lộ 13, Lái Thiêu",
       "report_count": 1,
       "parts": [
@@ -26232,7 +26213,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0117",
+      "master_id": "G0116",
       "project_name": "KDC Minh Hưng, Chơn Thành, Bình Phước",
       "report_count": 1,
       "parts": [
@@ -26490,7 +26471,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0118",
+      "master_id": "G0117",
       "project_name": "Chung cư Minh Ngọc, CMT8, Quận 3",
       "report_count": 1,
       "parts": [
@@ -26648,7 +26629,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0119",
+      "master_id": "G0118",
       "project_name": "Cụm dự án Đà Nẵng của BeeGroup / chiến lược khách sạn Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -26694,7 +26675,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0120",
+      "master_id": "G0119",
       "project_name": "Dự án nghỉ dưỡng Greenhill Village / khoản nợ VietinBank Thủ Thiêm",
       "report_count": 1,
       "parts": [
@@ -26736,7 +26717,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0121",
+      "master_id": "G0120",
       "project_name": "KCN Nghĩa Sơn và CCN/KDL Giao Thủy, Nam Định",
       "report_count": 1,
       "parts": [
@@ -26840,7 +26821,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0122",
+      "master_id": "G0121",
       "project_name": "Nghiên cứu các KCN gần cảng Cái Mép",
       "report_count": 1,
       "parts": [
@@ -26882,7 +26863,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0123",
+      "master_id": "G0122",
       "project_name": "Ngô Chí Quốc, Bình Chiểu, Thủ Đức",
       "report_count": 2,
       "parts": [
@@ -27160,7 +27141,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0124",
+      "master_id": "G0123",
       "project_name": "Nguyễn Hữu Thọ, Nhà Bè",
       "report_count": 2,
       "parts": [
@@ -27511,7 +27492,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0125",
+      "master_id": "G0124",
       "project_name": "Khu nhà ở Đại Quang Minh, Thuận Giao, Bình Dương",
       "report_count": 1,
       "parts": [
@@ -27751,7 +27732,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0126",
+      "master_id": "G0125",
       "project_name": "Khu nhà ở công nhân và chuyên gia Nhơn Trạch - Công ty TNHH Vạn Phúc",
       "report_count": 1,
       "parts": [
@@ -27877,7 +27858,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0127",
+      "master_id": "G0126",
       "project_name": "Khu nhà ở Lộc Phú Gia, Phú Giáo, Bình Dương",
       "report_count": 1,
       "parts": [
@@ -28103,7 +28084,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0128",
+      "master_id": "G0127",
       "project_name": "Khu nhà ở Tân Mai - danh sách đấu giá Đồng Nai 2026",
       "report_count": 2,
       "parts": [
@@ -28453,7 +28434,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0129",
+      "master_id": "G0128",
       "project_name": "Nhóm dự án khách sạn: B11/Serence/Felicia/Phú Hải/Đà Lạt/Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -28663,7 +28644,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0130",
+      "master_id": "G0129",
       "project_name": "Nhóm dự án NOXH Đồng Nai / Nhơn Trạch / Biên Hòa",
       "report_count": 1,
       "parts": [
@@ -28971,7 +28952,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0131",
+      "master_id": "G0130",
       "project_name": "6 dự án NOXH Đồng Nai mời quan tâm đấu thầu",
       "report_count": 1,
       "parts": [
@@ -29127,7 +29108,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0132",
+      "master_id": "G0131",
       "project_name": "Dự án NOXH Thiên Lộc / đối tác A Trường - A Tâm",
       "report_count": 1,
       "parts": [
@@ -29169,7 +29150,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0133",
+      "master_id": "G0132",
       "project_name": "Đồng Nai - 3 khu đất đấu giá / Núi Chứa Chan và vị trí map cao tầng",
       "report_count": 1,
       "parts": [
@@ -29259,7 +29240,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0134",
+      "master_id": "G0133",
       "project_name": "Khách sạn Đông Á Premier, 186/14 Hùng Vương",
       "report_count": 1,
       "parts": [
@@ -29477,7 +29458,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0135",
+      "master_id": "G0134",
       "project_name": "Khách sạn Đông Á Premier, Lộc Thọ, Nha Trang",
       "report_count": 2,
       "parts": [
@@ -29660,7 +29641,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0136",
+      "master_id": "G0135",
       "project_name": "Dự án Đông Trung",
       "report_count": 1,
       "parts": [
@@ -29964,7 +29945,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0137",
+      "master_id": "G0136",
       "project_name": "Dự án Đông Trung, Thuận An/Bình Dương",
       "report_count": 1,
       "parts": [
@@ -30080,7 +30061,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0138",
+      "master_id": "G0137",
       "project_name": "Parklane Quận 9",
       "report_count": 1,
       "parts": [
@@ -30210,7 +30191,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0139",
+      "master_id": "G0138",
       "project_name": "Khu phân lô bán nền 4ha Long Phước",
       "report_count": 1,
       "parts": [
@@ -30252,7 +30233,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0140",
+      "master_id": "G0139",
       "project_name": "KCN/Khu phi thuế quan Xuân Cầu - Lạch Huyện",
       "report_count": 2,
       "parts": [
@@ -30351,7 +30332,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0141",
+      "master_id": "G0140",
       "project_name": "Phú Gia Khiêm / PGK",
       "report_count": 4,
       "parts": [
@@ -31368,7 +31349,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0142",
+      "master_id": "G0141",
       "project_name": "Dự án Phú Quang",
       "report_count": 9,
       "parts": [
@@ -32558,7 +32539,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0143",
+      "master_id": "G0142",
       "project_name": "KCN Phước An / Cảng Phước An, Nhơn Trạch",
       "report_count": 1,
       "parts": [
@@ -32730,7 +32711,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0144",
+      "master_id": "G0143",
       "project_name": "Dự án Phượng Hoàng",
       "report_count": 5,
       "parts": [
@@ -33934,7 +33915,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0145",
+      "master_id": "G0144",
       "project_name": "Quỹ đất 10,9ha Hiệp Hòa, Biên Hòa",
       "report_count": 1,
       "parts": [
@@ -34220,7 +34201,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0146",
+      "master_id": "G0145",
       "project_name": "Quỹ đất 168ha Phong Phú, Bình Chánh gần Đa Phước",
       "report_count": 1,
       "parts": [
@@ -34322,7 +34303,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0147",
+      "master_id": "G0146",
       "project_name": "Quỹ đất 54ha liền kề sân bay Phan Thiết",
       "report_count": 1,
       "parts": [
@@ -34490,7 +34471,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0148",
+      "master_id": "G0147",
       "project_name": "Quỹ đất xã Tân Hiệp, Long Thành, Đồng Nai",
       "report_count": 1,
       "parts": [
@@ -34598,7 +34579,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0149",
+      "master_id": "G0148",
       "project_name": "Redstar - tổ hợp văn phòng, khách sạn, chung cư Phạm Văn Đồng, Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -34818,7 +34799,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0150",
+      "master_id": "G0149",
       "project_name": "Khách sạn Regalia Gold, Nha Trang",
       "report_count": 1,
       "parts": [
@@ -34956,7 +34937,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0151",
+      "master_id": "G0150",
       "project_name": "Richland Quận 9",
       "report_count": 2,
       "parts": [
@@ -35240,7 +35221,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0152",
+      "master_id": "G0151",
       "project_name": "Khách sạn 5 sao 12 Hùng Vương, Đà Lạt",
       "report_count": 1,
       "parts": [
@@ -35400,7 +35381,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0153",
+      "master_id": "G0152",
       "project_name": "Serene Đà Nẵng - khách sạn Luxury/Lifestyle",
       "report_count": 2,
       "parts": [
@@ -35836,7 +35817,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0154",
+      "master_id": "G0153",
       "project_name": "Siêu cảng Cái Mép Hạ",
       "report_count": 1,
       "parts": [
@@ -35922,7 +35903,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0155",
+      "master_id": "G0154",
       "project_name": "So sánh Swan Park - Swan Bay - Aqua City",
       "report_count": 1,
       "parts": [
@@ -36230,7 +36211,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0156",
+      "master_id": "G0155",
       "project_name": "So sánh thị trường BĐS KCN Việt Nam - Indonesia - Thái Lan",
       "report_count": 1,
       "parts": [
@@ -36386,7 +36367,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0157",
+      "master_id": "G0156",
       "project_name": "Dự án Sông Đà - Quốc Cường Gia Lai / Quốc Lộ 13",
       "report_count": 1,
       "parts": [
@@ -36630,7 +36611,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0158",
+      "master_id": "G0157",
       "project_name": "Stown Gateway, Thuận An, Bình Dương",
       "report_count": 1,
       "parts": [
@@ -36774,7 +36755,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0159",
+      "master_id": "G0158",
       "project_name": "Dự án Suối Nhum",
       "report_count": 1,
       "parts": [
@@ -36888,7 +36869,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0160",
+      "master_id": "G0159",
       "project_name": "Chung cư Tân Bình, Dĩ An, Bình Dương",
       "report_count": 1,
       "parts": [
@@ -37030,7 +37011,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0161",
+      "master_id": "G0160",
       "project_name": "Dự án Tân Phú 43ha - Bình Dương / Kim Oanh",
       "report_count": 1,
       "parts": [
@@ -37120,7 +37101,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0162",
+      "master_id": "G0161",
       "project_name": "KCN Thái Hòa - Liễn Sơn - Liên Hòa, Vĩnh Phúc",
       "report_count": 2,
       "parts": [
@@ -37357,7 +37338,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0163",
+      "master_id": "G0162",
       "project_name": "Chung cư Thành Lộc, An Thạnh, Thuận An",
       "report_count": 1,
       "parts": [
@@ -37513,7 +37494,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0164",
+      "master_id": "G0163",
       "project_name": "Thấp tầng Phú An Hội, mặt tiền Tôn Đức Thắng (25B)",
       "report_count": 1,
       "parts": [
@@ -37573,7 +37554,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0165",
+      "master_id": "G0164",
       "project_name": "Dự án thấp tầng SADACO - Phú Mỹ",
       "report_count": 1,
       "parts": [
@@ -37795,7 +37776,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0166",
+      "master_id": "G0165",
       "project_name": "The Bale, Mũi Né/Phan Thiết",
       "report_count": 2,
       "parts": [
@@ -38068,7 +38049,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0167",
+      "master_id": "G0166",
       "project_name": "Thí điểm nhà ở thương mại thông qua thỏa thuận QSDĐ",
       "report_count": 1,
       "parts": [
@@ -38114,7 +38095,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0168",
+      "master_id": "G0167",
       "project_name": "Khu đô thị mới Bắc Quán Hành, Nghi Lộc, Nghệ An",
       "report_count": 1,
       "parts": [
@@ -38346,7 +38327,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0169",
+      "master_id": "G0168",
       "project_name": "Khu đô thị mới G1",
       "report_count": 1,
       "parts": [
@@ -38492,7 +38473,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0170",
+      "master_id": "G0169",
       "project_name": "Khu đô thị mới Hậu Nghĩa - Đức Hòa",
       "report_count": 2,
       "parts": [
@@ -38617,7 +38598,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0171",
+      "master_id": "G0170",
       "project_name": "Khu đô thị Văn Giang / Red River Villa, Hưng Yên",
       "report_count": 1,
       "parts": [
@@ -38733,7 +38714,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0172",
+      "master_id": "G0171",
       "project_name": "Thủ Đức Living",
       "report_count": 1,
       "parts": [
@@ -38973,7 +38954,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0173",
+      "master_id": "G0172",
       "project_name": "KDC Thuận Hưng Bình Điền 2,3ha",
       "report_count": 1,
       "parts": [
@@ -39171,7 +39152,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0174",
+      "master_id": "G0173",
       "project_name": "Chung cư Thuận Nghiệp - DT743C, Dĩ An",
       "report_count": 1,
       "parts": [
@@ -39387,7 +39368,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0175",
+      "master_id": "G0174",
       "project_name": "Dự án Toàn Thịnh Phát, Bãi Trường, Phú Quốc",
       "report_count": 1,
       "parts": [
@@ -39489,7 +39470,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0176",
+      "master_id": "G0175",
       "project_name": "KĐT Trấn Biên / KCN Biên Hòa 1 đấu giá Đồng Nai",
       "report_count": 1,
       "parts": [
@@ -39729,7 +39710,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0177",
+      "master_id": "G0176",
       "project_name": "Dự án Trần Hưng Đạo, cầu Trần Thị Lý, Đà Nẵng",
       "report_count": 1,
       "parts": [
@@ -40003,7 +39984,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0178",
+      "master_id": "G0177",
       "project_name": "Dự án Trần Đức 1",
       "report_count": 1,
       "parts": [
@@ -40243,7 +40224,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0179",
+      "master_id": "G0178",
       "project_name": "Trung Thượng Quốc Oai - tổ hợp thương mại/văn phòng/nhà ở/dịch vụ ô tô",
       "report_count": 1,
       "parts": [
@@ -40455,7 +40436,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0180",
+      "master_id": "G0179",
       "project_name": "Chung cư Trường Thịnh, Trần Não",
       "report_count": 2,
       "parts": [
@@ -40824,7 +40805,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0181",
+      "master_id": "G0180",
       "project_name": "Urban Green",
       "report_count": 1,
       "parts": [
@@ -41036,7 +41017,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0182",
+      "master_id": "G0181",
       "project_name": "Văn phòng / Chung cư An Phú",
       "report_count": 3,
       "parts": [
@@ -41219,7 +41200,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0183",
+      "master_id": "G0182",
       "project_name": "Văn phòng/khu đất 72-74 Võ Thị Sáu, Tân Định, Quận 1",
       "report_count": 1,
       "parts": [
@@ -41305,7 +41286,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0184",
+      "master_id": "G0183",
       "project_name": "Dự án Võ Văn Kiệt",
       "report_count": 5,
       "parts": [
@@ -42217,7 +42198,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0185",
+      "master_id": "G0184",
       "project_name": "Vương Bảo Long, An Bình, Dĩ An",
       "report_count": 1,
       "parts": [
@@ -42355,7 +42336,7 @@ window.MANUAL_MERGED_REPORTS_DB = {
       ]
     },
     {
-      "master_id": "G0186",
+      "master_id": "G0185",
       "project_name": "Chung cư Đỗ Xuân Hợp, Phước Long B, Thủ Đức",
       "report_count": 1,
       "parts": [
@@ -44291,10 +44272,10 @@ window.MANUAL_MERGED_REPORTS_DB = {
     }
   ],
   "totals": {
-    "groups": 186,
+    "groups": 185,
     "raw_records": 260,
-    "multi_report_groups": 43,
-    "financial_groups": 169,
+    "multi_report_groups": 44,
+    "financial_groups": 168,
     "financial_items": 2263,
     "review": 333
   }

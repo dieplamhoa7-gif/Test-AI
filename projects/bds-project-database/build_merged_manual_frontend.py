@@ -70,11 +70,14 @@ def canon(name):
       ('felicia da nang', 'Felicia Đà Nẵng'),
       ('fenica', 'Dự án Fenica'),
       ('phu gia khiem', 'Phú Gia Khiêm / PGK'),
-      ('dang van bi thu duc', 'Khu đất Đặng Văn Bi, Thủ Đức'),
+      ('120 dang van bi thu duc', 'Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức'),
+      ('dang van bi thu duc', 'Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức'),
       ('ngo chi quoc binh chieu', 'Ngô Chí Quốc, Bình Chiểu, Thủ Đức'),
       ('the bale', 'The Bale, Mũi Né/Phan Thiết'),
       ('bai truong phu quoc', None),
     ]
+    if 'ang van bi' in n and 'thu uc' in n:
+        return 'Khu đất 4.600 m2 tại 120 Đặng Văn Bi, Thủ Đức'
     for needle,label in rules:
         if needle in n and label: return label
     return name.strip()
