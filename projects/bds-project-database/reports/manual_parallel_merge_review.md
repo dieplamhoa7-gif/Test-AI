@@ -1,9 +1,9 @@
 # Parallel candidate merge review
 
-- Accepted items merged: 91
+- Accepted items merged: 92
 - Held/rejected candidates: 21
-- Financial groups after merge: 160
-- Financial items after merge: 2709
+- Financial groups after merge: 164
+- Financial items after merge: 3030
 
 ## Accepted
 
@@ -81,6 +81,9 @@
 
 ### Khách sạn Regalia Gold, Nha Trang · M10-0018
 - **Quy mô/thông số bổ sung**: Năm 2023, dự báo lượng khách du lịch nội địa sẽ không tăng trưởng nhiều so với năm 2022, thị trường du lịch Nha Trang sẽ phụ thuộc nhiều vào lượng khách Trung Quốc khi Trung Quốc mở cửa trở lại (chunk 948)
+
+### 12ha KDC Vĩnh Phú gần Phú Quang · M01-0021
+- **Giá/đơn giá bổ sung**: Làm từ giá 12-14tr nha by Admin 01 (chunk 59)
 
 ### Hoa viên Vĩnh Thanh · M03-0023
 - **Quy mô/thông số bổ sung**: a. Diện tích thương phẩm: 290,217m2 ~ 51% (chunk 260)

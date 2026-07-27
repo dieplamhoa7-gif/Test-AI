@@ -10,36 +10,31 @@
 - missing_fin: 2
 - missing_plan: 3
 - missing_legal: 5
-- short_excerpt: 3
+- short_excerpt: 1
 - attach_marker: 157
 
-- total issues: 13
+- total issues: 11
 
 ## Issue list
 
 ### G0022 · Dự án 2.316 ha Phía Nam Nhơn Trạch / Phước An Nhơn Trạch · BC 1 · M01-0005
 - Issues: planning_summary_thin
-- Chunks: ['8', '9'] · fin_items 11 · scale_len 8 · legal_len 112 · full/raw 1323/1307
+- Chunks: ['8', '9'] · fin_items 17 · scale_len 8 · legal_len 112 · full/raw 4683/1307
 - Snippet: Phòng ĐT báo cáo Sếp Admin 01 về sơ bộ dự kiến hiệu quả đầu tư dự án 2.316 ha Phía Nam Nhơn Trạch, như sau: I/TỔNG QUAN MẶT BẰNG: II/CHỈ TIÊU QUY HOẠCH TẠM TÍNH (ANH TÀI): III/HIỆU QUẢ TẠM TÍNH (P&L SƠ BỘ) Dựa trên các giả định: Giá bán: cơ sở đề xuất giá bình quân cho từng loại sản phẩm của phòng R&D đề xuất: Căn hộ 28 tr/m2, đất nền Nhà liên kế 36 tr/m2, đất nền biệt thự 35 tr/m2; Đơn giá chi phí đất (gồm tiền sử dụng đất
 
 ### G0026 · 48 Nguyễn Thiện Thuật, Nha Trang · BC 3 · M03-0022
 - Issues: legal_summary_thin
-- Chunks: ['251'] · fin_items 3 · scale_len 21 · legal_len 16 · full/raw 394/394
+- Chunks: ['251'] · fin_items 11 · scale_len 21 · legal_len 16 · full/raw 1545/394
 - Snippet: Hanh T - INVT 2/25 3:45 PM Edited Translate P. Đầu tư báo cáo Sếp Admin 01 về hiệu quả dự án 48 Nguyễn Thiện Thuật, TP Nha Trang theo phương án quy hoạch 20 tầng và hệ số 13 lần (phù hợp QH 1/2000, không phải điều chỉnh) như sau: 1. Thông tin pháp lý và quy hoạch: Pháp lý: Diện tích đất theo Giấy chứng nhận: 1.703,3 m2 (đất đã được cấp GCN, ở lâu dài) Hiện chưa hình thành dự án, mới
 
 ### G0042 · Khu đất 1691/3N Quốc lộ 1A, An Phú Đông, Quận 12 · BC 2 · M04-0007
 - Issues: legal_summary_thin
-- Chunks: ['316'] · fin_items 0 · scale_len 35 · legal_len 16 · full/raw 377/377
+- Chunks: ['316'] · fin_items 6 · scale_len 35 · legal_len 16 · full/raw 1059/377
 - Snippet: P.ĐT báo cáo Sếp Mr Mike1 -CEO về khu đất 10,052.1 m2 tại 1691/3N (Quốc lộ 1A), P.An Phú Đông, Quận 12, TP HCM như sau: 1. Tóm tắt sơ bộ hiện trạng pháp lý dự án: a) Vị trí và ranh dự án: https://maps.app.goo.gl/bKZVkKUcnYGRLJWw5 b. Sơ bộ hiện trạng pháp lý: Tổng diện tích khu đất theo Sổ cấp 2017 là 10,052.1 m2, đất SKC, thời hạn sử dụng đất lâu dài (theo tham khảo
-
-### G0044 · Khu đất 35ha/38,8ha Kiên Giang - CKG · BC 2 · M03-0001
-- Issues: full_excerpt_short_vs_raw
-- Chunks: ['203'] · fin_items 0 · scale_len 38 · legal_len 27 · full/raw 174/174
-- Snippet: Phòng xin gửi đính kèm hình hiện trạng khu đất. DAT RACH GIA.mp4 Vi tri va Ranh dat DA 35ha 1.pdf DAT RACH GIA 1.mp4 Add a vào group Hội AN Riverside cái by Admin 01
 
 ### G0047 · Khu đất Phú Thọ Hòa, Tân Phú · BC 2 · M02-0031
 - Issues: legal_summary_thin
-- Chunks: ['191'] · fin_items 0 · scale_len 21 · legal_len 16 · full/raw 233/233
+- Chunks: ['191'] · fin_items 2 · scale_len 21 · legal_len 16 · full/raw 459/233
 - Snippet: P.ĐT xin báo cáo Sếp Admin 01 về khu đất phường Phú Thọ Hòa, Quận Tân Phú, TP HCM (Nguồn Sếp Tâm) như sau: 1. Pháp lý đất: Diện tích: 13,907.5 m2 Mục đích: Đất trồng cây lâu năm Thời hạn: 50 năm ( 07/2011 – 07/2061) Nguồn gốc
 
 ### G0049 · Khu đất/khu đô thị Hưng Yên gần Xuân Cầu và Trump International Hưng Yên · BC 1 · M05-0003
@@ -67,14 +62,9 @@
 - Chunks: ['688'] · fin_items 12 · scale_len 19 · legal_len 29 · full/raw 2986/2986
 - Snippet: Sinh Nguyen-Dau Tu 3/13/2024 10:22 AM Translate K.ĐT báo cáo anh Tuan Tran-CEO, dự án Căn hộ Dịch vụ Quận 2 (1.143m²) MT Đường số 12, phường An Khánh, Thành phố Thủ Đức, Thành phố Hồ Chí Minh (Nguồn Mr. Sơn – Trợ lý TGĐ) như sau: 1/ Vị trí + Tiếp giáp mặt tiền Đường số 12 rộng 12m, đường trải nhựa, bên hông quy hoạch đường rộng 12m, phía sau quy hoạch đường rộng 30m + Cách đường Trần Não khoảng 210m, cách đường Lương Định Của khoảng 550m + B
 
-### G0082 · Gladia Heights - thông tin thị trường tham chiếu · BC 1 · M01-0025
-- Issues: full_excerpt_short_vs_raw
-- Chunks: ['86'] · fin_items 3 · scale_len 29 · legal_len 8 · full/raw 165/165
-- Snippet: Dạ dự án Gladia heights dự kiến triển khai trong 2026 này, hiện thị trường đang rumor giá 100tr/m2 ạ image Dạ đây là bản đồ các dự án cao tầng g... by Khoa L - INVT
-
 ### G0090 · Chung cư Hòa Xuân A2-3 & A2-4 · BC 1 · M10-0019
 - Issues: missing_financial_items
-- Chunks: ['952'] · fin_items 0 · scale_len 178 · legal_len 186 · full/raw 2265/2265
+- Chunks: ['952'] · fin_items 0 · scale_len 178 · legal_len 186 · full/raw 2645/2265
 - Snippet: Huy M - IM 3/15/2023 10:20 AM KĐT báo cáo CEO Tuan Tran-CEO đánh giá nhanh 12 lô đất anh Duy gửi của Sun Group tại Khu Đô thị ven sông Hoà Xuân - Cẩm Lệ - Đà Nẵng với mục đích làm Khu Chung cư cao tầng. Về Pháp lý đất: Theo GCNQSDĐ được cung cấp (2 lô đại diện): + Diện tích: ~ 5.000 m2 + Mục đích sử dụng: Đất cơ sở sản xuất kinh doanh + Thời hạn: Lâu dài + Nguồn gốc đất: Nhà nước giao đất có thu tiền sử dụng đất. + Cấp ngày 15/06/2011 V
 
 ### G0090 · Chung cư Hòa Xuân A2-3 & A2-4 · BC 2 · M07-0018
@@ -83,18 +73,21 @@
 - Snippet: Thao L - INVT 9/27/2024 11:17 AM Translate K.ĐT báo cáo anh Mr Mike1 -CEO về Dự án chung cư Hòa Xuân, Cẩm Lệ, Đà Nẵng: lô A2-3 và A2-4 như sau: 1.
 
 
-## Review conclusion
+## Adjacent-message context pass
 
-- The audit checks whether raw Teams chunks contain finance / planning / legal / attachment markers that are not represented in structured fields.
-- After paragraph-level financial extraction, financial items increased to 2,709 after reviewed candidate merge.
-- Remaining `missing_financial_items` are reviewed false-positive / weak-finance cases rather than clear internal FS data:
-  - Hưng Yên / Trump International: chat/news mentions `giá đấu thầu` but no actual price or FS metric.
-  - Greenhill Village: news headline says `nghìn tỷ` khoản nợ, raw export is truncated and has no actionable internal financial line.
-- `planning_summary_thin` and `legal_summary_thin` cases still keep the complete source excerpt visible in UI; they are flagged because the manually curated short summary fields are thin, not because source text is missing.
-- `short_excerpt` cases are genuinely short Teams messages or attachment-only markers; original attachment files are not available in this export.
+Added a context-window extraction pass for Teams-style follow-up messages where users continue discussing the same project without repeating the project name.
 
-## Remaining follow-up if more precision is required
+Rules used:
+- For each report source chunk, scan nearby chunks within a small index window and about 45 minutes.
+- Include only short/reply-like financial/planning follow-ups.
+- Exclude chunks that look like a new standalone project report.
+- Mark included chunks in each report as `adjacent_context_chunks` and append them under `adjacent context / tin nhắn liền kề` in the full source excerpt.
 
-1. Download original Teams attachments/PDF/images for the 157 attachment-marker reports.
-2. OCR/index those attachments and merge extracted content into report excerpts and structured fields.
-3. Optionally manually enrich the 8 thin planning/legal summary fields from the already-visible full excerpts.
+Impact after reviewed merge:
+- Financial items: 2,709 → 3,030.
+- Financial groups: 160 → 164.
+- Average full excerpt length: 3,085 → 3,926 chars/report.
+- Hoa viên Vĩnh Thanh: 27 → 40 financial rows.
+- Đặng Văn Bi: 9 → 22 financial rows.
+
+This directly addresses the issue where Teams replies/follow-up messages have useful data but do not repeat the project name.

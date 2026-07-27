@@ -14,6 +14,52 @@ def chunk_texts(ids):
             if txt and txt not in out: out.append(txt)
     return '\n\n--- chunk ---\n\n'.join(out)
 
+def _dt_key(chunk):
+    raw=(chunk.get('report_datetime_raw') or chunk.get('report_date') or '').strip()
+    for fmt in ('%m/%d/%Y %I:%M %p','%m/%d/%y %I:%M %p','%m/%d %I:%M %p','%Y-%m-%d'):
+        try:
+            dt=datetime.strptime(raw,fmt)
+            if fmt.startswith('%m/%d ') and dt.year==1900: dt=dt.replace(year=2026)
+            return dt
+        except Exception: pass
+    return None
+
+_context_fin_re=re.compile(r'(IRR|NPV|LNTT|LNST|TMĐT|TMDT|doanh thu|giá bán|giá chào|giá đất|giá đấu|max|\b\d+[,.]?\d*\s*tỷ|tr/m2|triệu/m2|chi phí|vốn|lãi vay|hiệu quả|khả thi|tổng mức đầu tư|tiền sử dụng đất|đền bù|den bu|hệ số|HSSD|dân số)',re.I)
+_project_intro_re=re.compile(r'(K\.?ĐT|P\.?ĐT|Phòng ĐT|báo cáo|dự án|quỹ đất|khu đất|resort|khách sạn|KCN|CCN|chung cư|cao tầng)',re.I)
+
+def adjacent_context_ids(ids, radius=3, minutes=45):
+    base=[]
+    for c in ids or []:
+        try: base.append(int(c))
+        except Exception: pass
+    out=[]; base_set=set(base)
+    for c in base:
+        if not (1 <= c <= len(RAW_CHUNKS)): continue
+        dt0=_dt_key(RAW_CHUNKS[c-1])
+        for j in range(max(1,c-radius), min(len(RAW_CHUNKS),c+radius)+1):
+            if j in base_set or j in out: continue
+            txt=(RAW_CHUNKS[j-1].get('text') or '').strip()
+            if not txt or not _context_fin_re.search(txt): continue
+            dt=_dt_key(RAW_CHUNKS[j-1])
+            if dt0 and dt and abs((dt-dt0).total_seconds()) > minutes*60: continue
+            compact=re.sub(r'\s+',' ',txt)
+            head=compact[:260]
+            is_new_report=bool(_project_intro_re.search(head)) and bool(re.search(r'(như sau|về dự án|về khu đất|báo cáo anh|báo cáo sếp|gửi anh)', head, re.I))
+            is_reply=bool(re.search(r'^(Unknown User|Admin|Mr|Dạ|Ok|Là|Và|Còn|Check|Begin quote|Message by)| by ', compact, re.I))
+            if (not is_new_report) and (is_reply or len(compact) <= 520):
+                out.append(j)
+    return sorted(out)
+
+def chunk_texts_with_context(ids):
+    main=chunk_texts(ids)
+    ctx_ids=adjacent_context_ids(ids)
+    if not ctx_ids: return main, []
+    ctx=[]
+    for j in ctx_ids:
+        txt=(RAW_CHUNKS[j-1].get('text') or '').strip()
+        if txt: ctx.append(f'[ADJACENT CONTEXT chunk {j}]\n{txt}')
+    return main + '\n\n--- adjacent context / tin nhắn liền kề ---\n\n' + '\n\n'.join(ctx), [str(x) for x in ctx_ids]
+
 def norm(s):
     s=unicodedata.normalize('NFD',s or '')
     s=''.join(c for c in s if unicodedata.category(c)!='Mn').lower()
@@ -182,7 +228,7 @@ for i,(name,rs) in enumerate(sorted(groups.items(), key=lambda kv: norm(kv[0])),
     reports=[]
     for idx,r in enumerate(rs,1):
         fin=list(r.get('financial_items') or [])
-        rawtxt=chunk_texts(r.get('source_chunks',[]))
+        rawtxt,ctx_ids=chunk_texts_with_context(r.get('source_chunks',[]))
         fin += scenario_items(rawtxt, (r.get('source_chunks') or [''])[0])
         fin += generic_financial_lines(rawtxt, (r.get('source_chunks') or [''])[0], fin)
         financial += [{**x,'record_id':r.get('id'),'report_no':idx,'project_name':r.get('project_name'),'part':r.get('part')} for x in fin]
@@ -195,7 +241,7 @@ for i,(name,rs) in enumerate(sorted(groups.items(), key=lambda kv: norm(kv[0])),
             'decision': r.get('decision',''), 'report_date': r.get('report_date',''), 'source_chunks': r.get('source_chunks',[]),
             'source_file': r.get('source_file',''), 'sender': r.get('sender',''), 'location': r.get('location',''), 'map_url': r.get('map_url',''),
             'scale': r.get('scale',''), 'legal_planning': r.get('legal_planning',''), 'business_notes': r.get('business_notes',''),
-            'financial_items': fin, 'excerpt': r.get('excerpt',''), 'full_excerpt': chunk_texts(r.get('source_chunks',[]))
+            'financial_items': fin, 'excerpt': r.get('excerpt',''), 'full_excerpt': rawtxt, 'adjacent_context_chunks': ctx_ids
         })
     merged.append({
         'master_id': f'G{i:04d}', 'project_name': name, 'report_count': len(rs), 'parts': sorted(set(r.get('part') for r in rs)),
