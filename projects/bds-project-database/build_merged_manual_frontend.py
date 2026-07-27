@@ -3,6 +3,16 @@ from pathlib import Path
 from datetime import datetime
 BASE=Path(__file__).resolve().parent
 MAN=BASE/'manual_10parts'; WEB=BASE/'web'
+RAW_CHUNKS=json.loads((BASE/'teams_candidate_chunks_with_dates.json').read_text(encoding='utf-8'))
+def chunk_texts(ids):
+    out=[]
+    for c in ids or []:
+        try: i=int(c)-1
+        except Exception: continue
+        if 0 <= i < len(RAW_CHUNKS):
+            txt=(RAW_CHUNKS[i].get('text') or '').strip()
+            if txt and txt not in out: out.append(txt)
+    return '\n\n--- chunk ---\n\n'.join(out)
 
 def norm(s):
     s=unicodedata.normalize('NFD',s or '')
@@ -100,7 +110,7 @@ for i,(name,rs) in enumerate(sorted(groups.items(), key=lambda kv: norm(kv[0])),
             'decision': r.get('decision',''), 'report_date': r.get('report_date',''), 'source_chunks': r.get('source_chunks',[]),
             'source_file': r.get('source_file',''), 'sender': r.get('sender',''), 'location': r.get('location',''), 'map_url': r.get('map_url',''),
             'scale': r.get('scale',''), 'legal_planning': r.get('legal_planning',''), 'business_notes': r.get('business_notes',''),
-            'financial_items': fin, 'excerpt': r.get('excerpt','')
+            'financial_items': fin, 'excerpt': r.get('excerpt',''), 'full_excerpt': chunk_texts(r.get('source_chunks',[]))
         })
     merged.append({
         'master_id': f'G{i:04d}', 'project_name': name, 'report_count': len(rs), 'parts': sorted(set(r.get('part') for r in rs)),
