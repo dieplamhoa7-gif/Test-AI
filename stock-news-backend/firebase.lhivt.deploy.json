@@ -1,0 +1,73 @@
+{
+  "hosting": {
+    "site": "lhivt",
+    "public": "firebase_public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "/",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+          { "key": "Pragma", "value": "no-cache" },
+          { "key": "Expires", "value": "0" }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+          { "key": "Pragma", "value": "no-cache" },
+          { "key": "Expires", "value": "0" }
+        ]
+      },
+      {
+        "source": "/sw.js",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+          { "key": "Service-Worker-Allowed", "value": "/" },
+          { "key": "Pragma", "value": "no-cache" },
+          { "key": "Expires", "value": "0" }
+        ]
+      },
+      {
+        "source": "/version.json",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+          { "key": "Pragma", "value": "no-cache" },
+          { "key": "Expires", "value": "0" }
+        ]
+      },
+      {
+        "source": "/data/**",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=60" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        ]
+      }
+    ],
+    "rewrites": [
+      { "source": "/", "destination": "/stocks.html" },
+      { "source": "/stocks", "destination": "/stocks.html" },
+      { "source": "/stocks/**", "destination": "/stocks.html" },
+      { "source": "/warrants", "destination": "/warrants.html" },
+      { "source": "/warrants/**", "destination": "/warrants.html" },
+      { "source": "/cw", "destination": "/cw.html" },
+      { "source": "/cw/**", "destination": "/cw.html" },
+      { "source": "/macro", "destination": "/macro.html" },
+      { "source": "/macro/**", "destination": "/macro.html" },
+      { "source": "/stock-report", "destination": "/stock-report.html" },
+      { "source": "/stock-report/**", "destination": "/stock-report.html" },
+      { "source": "/news-page", "destination": "/news-page.html" },
+      { "source": "/account", "destination": "/account.html" },
+      { "source": "/portfolio-test", "destination": "/portfolio_test.html" },
+      { "source": "/admin-test", "destination": "/admin_test.html" },
+      { "source": "/fundamental-test", "destination": "/stock-report.html" },
+      { "source": "/fundamental-test/**", "destination": "/stock-report.html" }
+    ]
+  }
+}
