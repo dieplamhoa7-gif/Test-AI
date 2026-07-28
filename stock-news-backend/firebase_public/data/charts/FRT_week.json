@@ -1,10 +1,10 @@
 {
   "symbol": "FRT",
   "frame": "week",
-  "source": "vnstock-vci-history-refresh-for-core12",
+  "source": "rebuilt-from-day-cache",
   "rows": [
     {
-      "time": "2023-11-09",
+      "time": "2023-11-06",
       "open": 80.16,
       "high": 85.52,
       "low": 79.44,
@@ -68,7 +68,7 @@
       "volume": 2169728.0
     },
     {
-      "time": "2024-01-02",
+      "time": "2024-01-01",
       "open": 85.52,
       "high": 85.52,
       "low": 81.76,
@@ -116,7 +116,7 @@
       "volume": 2193470.0
     },
     {
-      "time": "2024-02-15",
+      "time": "2024-02-12",
       "open": 100.0,
       "high": 100.32,
       "low": 97.92,
@@ -204,7 +204,7 @@
       "volume": 6041624.0
     },
     {
-      "time": "2024-05-02",
+      "time": "2024-04-29",
       "open": 128.8,
       "high": 132.8,
       "low": 128.0,
@@ -348,7 +348,7 @@
       "volume": 3096938.0
     },
     {
-      "time": "2024-09-04",
+      "time": "2024-09-02",
       "open": 143.2,
       "high": 146.4,
       "low": 142.8,
@@ -588,7 +588,7 @@
       "volume": 4603153.0
     },
     {
-      "time": "2025-04-08",
+      "time": "2025-04-07",
       "open": 108.0,
       "high": 113.52,
       "low": 96.88,
@@ -756,7 +756,7 @@
       "volume": 2476700.0
     },
     {
-      "time": "2025-09-03",
+      "time": "2025-09-01",
       "open": 130.5,
       "high": 133.3,
       "low": 128.0,
@@ -1020,7 +1020,7 @@
       "volume": 1442400.0
     },
     {
-      "time": "2026-04-28",
+      "time": "2026-04-27",
       "open": 144.5,
       "high": 149.0,
       "low": 143.0,
@@ -6559,74 +6559,120 @@
   "patterns": [],
   "srLevels": [
     {
-      "price": 122.54,
+      "price": 76.56,
       "type": "support",
+      "origin": "support",
+      "status": "active-support",
       "horizon": "ST",
       "label": "ST Support",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "ST Support",
       "lookbackMonths": 6,
-      "touches": 2,
+      "source": "sr-role-reversal-v10",
+      "touches": 1,
+      "avgReactionPct": 69.38,
+      "recency": 0.024,
+      "strength": 86.3,
       "confidence": 95,
-      "strength": 50.87
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     },
     {
-      "price": 148.4,
+      "price": 167.52,
       "type": "resistance",
+      "origin": "resistance",
+      "status": "active-resistance",
       "horizon": "ST",
       "label": "ST Resistance",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "ST Resistance",
       "lookbackMonths": 6,
+      "source": "sr-role-reversal-v10",
       "touches": 1,
+      "avgReactionPct": 42.17,
+      "recency": 0.444,
+      "strength": 54.27,
       "confidence": 95,
-      "strength": 37.22
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     },
     {
-      "price": 122.54,
+      "price": 96.88,
       "type": "support",
+      "origin": "support",
+      "status": "active-support",
       "horizon": "LT",
       "label": "LT Support",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "LT Support",
       "lookbackMonths": 12,
-      "touches": 2,
+      "source": "sr-role-reversal-v10",
+      "touches": 1,
+      "avgReactionPct": 49.38,
+      "recency": 0.549,
+      "strength": 63.08,
       "confidence": 95,
-      "strength": 50.91
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     },
     {
-      "price": 148.4,
+      "price": 147.47,
       "type": "resistance",
+      "origin": "resistance",
+      "status": "active-resistance",
       "horizon": "LT",
       "label": "LT Resistance",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "LT Resistance",
       "lookbackMonths": 12,
-      "touches": 1,
+      "source": "sr-role-reversal-v10",
+      "touches": 3,
+      "avgReactionPct": 20.19,
+      "recency": 0.526,
+      "strength": 34.02,
       "confidence": 95,
-      "strength": 37.24
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     },
     {
-      "price": 122.54,
+      "price": 122.1,
       "type": "support",
+      "origin": "support",
+      "status": "active-support",
       "horizon": "Super LT",
       "label": "Super LT Support",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "SLT Support",
       "lookbackMonths": 24,
-      "touches": 2,
+      "source": "sr-role-reversal-v10",
+      "touches": 1,
+      "avgReactionPct": 35.14,
+      "recency": 0.737,
+      "strength": 46.27,
       "confidence": 95,
-      "strength": 50.91
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     },
     {
-      "price": 148.4,
+      "price": 159.0,
       "type": "resistance",
+      "origin": "resistance",
+      "status": "active-resistance",
       "horizon": "Super LT",
       "label": "Super LT Resistance",
-      "source": "sr-6m-1y-2y-v1",
+      "shortLabel": "SLT Resistance",
       "lookbackMonths": 24,
+      "source": "sr-role-reversal-v10",
       "touches": 1,
+      "avgReactionPct": 23.21,
+      "recency": 0.662,
+      "strength": 31.84,
       "confidence": 95,
-      "strength": 37.24
+      "duplicateZone": false,
+      "formula": "pivot origin zone; support-origin above price becomes Broken S→R, resistance-origin below price becomes Breakout R→S; score=touches*3+avgReactionPct*1.2+recency*1.5"
     }
   ],
-  "srFormula": "R/S v5: ST last 6 months + LT last 1 year + Super LT last 2 years; each horizon has 1 support and 1 resistance.",
+  "srFormula": "R/S v10 role-reversal: ST=6M, LT=1Y, Super LT=2Y. For each horizon choose strongest pivot-low zone and strongest pivot-high zone by score=touches*3+avgReactionPct*1.2+recency*1.5. Zones do not disappear after price crosses them: support-origin above price is Broken S→R; resistance-origin below price is Breakout R→S. Cluster radius 1%, avoid duplicate zones within 2%.",
+  "srDisplayLimit": "6 auditable S/R levels: one support and one resistance for ST/LT/Super LT.",
+  "legacySrSideFixed": "R/S side fixed by current close: above price = resistance, below price = support.",
   "trendlineFormula": "Trendline v3: ST last 6 months + LT last 1 year + Super LT last 2 years; each horizon has 1 support trend and 1 resistance trend.",
-  "srDisplayLimit": "ST Support/Resistance, LT Support/Resistance, Super LT Support/Resistance",
-  "trendlineDisplayLimit": "ST Support/Resistance Trend, LT Support/Resistance Trend, Super LT Support/Resistance Trend"
+  "trendlineDisplayLimit": "ST Support/Resistance Trend, LT Support/Resistance Trend, Super LT Support/Resistance Trend",
+  "srLegend": "Green=active support; red=active resistance; orange=broken support acting as retest resistance; cyan=breakout resistance acting as retest support.",
+  "updatedAt": "2026-07-17T17:53:15+07:00",
+  "latestTradingDate": "2026-06-03"
 }
