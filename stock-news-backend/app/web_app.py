@@ -42,7 +42,10 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-           ],
+        "https://lhinvest.web.app",
+        "https://lhivt-ff841.web.app",
+        "https://lhinvt.web.app",
+    ],
     allow_credentials=False,
     allow_methods=["GET", "POST", "HEAD", "OPTIONS"],
     allow_headers=["Content-Type"],
@@ -118,7 +121,7 @@ def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
 
     if should_refresh:
         try:
-            raw_items = collect_news(limit=min(limit, 20))
+            raw_items = collect_news(limit=min(limit, 1000))
             if raw_items:
                 try:
                     fresh_items = enrich_news_with_ai(raw_items)
@@ -241,7 +244,7 @@ def warrants_data(symbols: str = Query(default="", max_length=160), refresh: boo
 
 
 @app.get("/fundamental-top-upside")
-def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=500), refresh: bool = Query(default=False)):
+def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=1000), refresh: bool = Query(default=False)):
     return top_target_upside(limit=limit, max_symbols=max_symbols, force_refresh=refresh)
 
 
@@ -362,8 +365,8 @@ def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)
 
 
 @app.get("/news")
-def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
-    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
+def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=1000), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 1000))
     start = (page - 1) * limit
     end = start + limit
     return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh}

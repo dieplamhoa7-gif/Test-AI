@@ -23,7 +23,15 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="VN Stock News Backend", version="0.1.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://lhinvest.web.app",
+        "https://lhivt-ff841.web.app",
+        "https://lhinvt.web.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,7 +55,7 @@ def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
 
     if should_refresh:
         try:
-            raw_items = collect_news(limit=min(limit, 20))
+            raw_items = collect_news(limit=min(limit, 1000))
             if raw_items:
                 try:
                     fresh_items = enrich_news_with_ai(raw_items)
@@ -131,13 +139,13 @@ def market_symbols(query: str = Query(default=""), limit: int = Query(default=20
 
 
 @app.get("/news")
-def news(limit: int = Query(default=20, ge=1, le=500), refresh: bool = Query(default=False)):
+def news(limit: int = Query(default=20, ge=1, le=1000), refresh: bool = Query(default=False)):
     items = _refresh_news_if_needed(force=refresh, limit=limit)
     return {"total_items": len(items), "items": items[:limit]}
 
 
 @app.get("/summarize", response_model=SummarizeResponse)
-def summarize(limit: int = Query(default=20, ge=1, le=500), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
+def summarize(limit: int = Query(default=20, ge=1, le=1000), max_chars: int = Query(default=2200, ge=300, le=6000), refresh: bool = Query(default=False)):
     key = (limit, max_chars)
     if not refresh and key in _summary_cache:
         return _summary_cache[key]
