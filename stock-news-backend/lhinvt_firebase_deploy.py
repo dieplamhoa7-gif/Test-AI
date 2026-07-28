@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import shutil
@@ -59,7 +59,7 @@ def main() -> None:
     # and rebuild the SQLite DB used by Model3. If this fails, do not deploy a stale site.
     run([sys.executable, "sync_model3_public_data.py"], timeout=300, check=True)
     # Permanent no-rollback guards: every deploy path must preserve the
-    # final_backup_17.7.2026 strategy/app payload and current canonical frontend.
+    # final 28.07.2026 canonical firebase_public payload; no old backup fallback.
     run([sys.executable, "verify_lh_final_version_lock.py"], timeout=60, check=True)
     run([sys.executable, "verify_lh_final_frontend_markers.py"], timeout=60, check=True)
 
@@ -104,3 +104,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

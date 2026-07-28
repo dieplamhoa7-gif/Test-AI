@@ -445,8 +445,8 @@ def main() -> None:
         (DATA / "news_cache.json", PUBLIC_DATA / "news_cache.json"),
         (DATA / "news_cache_en.json", PUBLIC_DATA / "news_cache_en.json"),
         # Do NOT copy strategy/app lock files from data/. They are pinned below
-        # to final_backup_17.7.2026 to prevent data refreshes from rolling the
-        # web back to a mixed/old strategy version.
+        # to the current canonical live payload to prevent data refreshes from
+        # rolling the web back to a mixed/old strategy version.
         (DATA / "v3_full_indicator_cache_v2.json", PUBLIC_DATA / "v3_full_indicator_cache_v2.json"),
         (DATA / "lh_canonical_indicators_daily.json", PUBLIC_DATA / "lh_canonical_indicators_daily.json"),
         (DATA / "hourly_indicators_vn100_cache.json", PUBLIC_DATA / "hourly_indicators_vn100_cache.json"),
@@ -460,17 +460,16 @@ def main() -> None:
 
     # Re-pin the current approved live strategy/app payload every data build.
     # If data/live_strategy_lock exists, it is the active user-approved payload;
-    # otherwise fall back to final_backup_17.7.2026. This prevents unrelated data
-    # refreshes from rolling the strategy web payload backward/sideways.
+    # otherwise keep the current canonical firebase_public/data payload in place.
+    # Never fall back to archived old frontend/version folders during fresh data updates.
     lock = DATA / "live_strategy_lock"
-    backup = ROOT / "final_backup_17.7.2026" / "firebase_public" / "data"
-    strategy_source = lock if lock.exists() else backup
     for rel in ["app_version.json", "strategy_results_cache.json", "strategy_matrix_cache.json"]:
-        src = strategy_source / rel
         dst = PUBLIC_DATA / rel
+        src = (lock / rel) if lock.exists() else dst
         if not src.exists():
             raise FileNotFoundError(f"Missing canonical strategy payload: {src}")
-        shutil.copyfile(src, dst)
+        if src.resolve() != dst.resolve():
+            shutil.copyfile(src, dst)
 
     # Do not overwrite a just-refreshed live CW payload with the static catalog.
     existing_warrants = read_json(PUBLIC_DATA / "warrants_data.json", None)

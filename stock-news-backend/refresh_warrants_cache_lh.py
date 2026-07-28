@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -16,7 +16,7 @@ from app.warrants.service import (
 
 OUT_PATH = Path("firebase_public/data/warrants_data.json")
 # Do NOT update app_version.json here. app_version is locked to
-# final_backup_17.7.2026 by verify_lh_final_version_lock.py; warrants realtime
+# final 28.07.2026 canonical firebase_public payload by verify_lh_final_version_lock.py; warrants realtime
 # freshness lives in warrants_data.json only.
 MAX_WORKERS = 24
 
@@ -61,3 +61,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

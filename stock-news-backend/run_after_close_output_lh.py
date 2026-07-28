@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import shutil
@@ -107,7 +107,7 @@ def _run_pipeline(py: str) -> None:
         [py, "build_core12_ml_sr_full_universe.py"],
         [py, "build_lh_canonical_indicators_daily.py"],
         # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
-        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
+        # kept in the final 28.07.2026 canonical firebase_public payload. Rebuilding this from old versions was a rollback vector.
         [py, "refresh_market_prices_lh.py"],
         [py, "ml_pivot_zones.py", "--train"],
         [py, "build_pattern_winrates.py"],
@@ -174,3 +174,4 @@ def _run_pipeline(py: str) -> None:
 
 if __name__ == "__main__":
     main()
+

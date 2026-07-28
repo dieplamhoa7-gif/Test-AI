@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 import os, shutil, subprocess, sys
 from datetime import datetime
 from pathlib import Path
@@ -37,7 +37,7 @@ def main():
         [py,'patch_market_latest_history.py'],
         [py,'build_lh_canonical_indicators_daily.py'],
         # Do NOT rebuild strategy_results_cache here: strategy/app/matrix are
-        # locked to final_backup_17.7.2026. Rebuilding this was a rollback vector.
+        # kept in the final 28.07.2026 canonical firebase_public payload. Rebuilding this from old versions was a rollback vector.
         [py,'publish_vn100_history_for_frontend.py'],
         [py,'build_lhinvt_stock_chart_db.py'],
     ]
@@ -53,3 +53,4 @@ def main():
     log('DONE 15:30 prices + indicators + CW')
 
 if __name__=='__main__': main()
+

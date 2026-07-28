@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import sqlite3
@@ -14,7 +14,7 @@ PUBLIC_DATA = ROOT / "firebase_public" / "data"
 MARKET_SRC = DATA / "market_data.json"
 MARKET_DST = PUBLIC_DATA / "market_data.json"
 # Do NOT update app_version.json here. app_version is locked to
-# final_backup_17.7.2026 by verify_lh_final_version_lock.py. Model3 freshness is
+# final 28.07.2026 canonical firebase_public payload by verify_lh_final_version_lock.py. Model3 freshness is
 # verified from market_data/DB directly.
 DB = DATA / "lhinvt_stock_chart.db"
 
@@ -98,3 +98,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
