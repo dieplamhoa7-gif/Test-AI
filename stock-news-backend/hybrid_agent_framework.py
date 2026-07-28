@@ -1217,7 +1217,11 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
     mode = "Model 3 - TradingAgents Word" + (" premium" if premium else "")
     progress(f"🧩 {mode}: tradingagents={'OK' if _installed('tradingagents') else 'MISSING'}")
     progress("📥 Super_LH: phân công mới — GrokX news-impact, Codex indicator/fundamental/bull-bear/follow-up, Kiro scenario/risk; executive summary viết cuối sau khi đủ dữ liệu…")
+    live_context = os.environ.get("MODEL3_LIVE_CONTEXT", "").strip()
     lh_context = build_lhinvestment_context(task)
+    if live_context:
+        progress("✅ Model3 dùng live market snapshot override cho giá/volume/asOf mới nhất.")
+        lh_context = live_context + "\n\n" + lh_context
     news_context_future = _EXECUTOR.submit(build_model3_news_context, task, progress)
 
     state: dict[str, Any] = {"task": task, "feed": [], "framework": mode}
@@ -1387,7 +1391,7 @@ def run_model3_workflow(task: str, progress: ProgressFn) -> dict[str, Any]:
         _append(state, transcript, fallback_news)
         posts.append(fallback_news)
 
-    progress("✅ Super_LH dependency graph: các phân tích chính đã xong; bắt đầu viết Executive Summary cuối cùng.")
+    progress("✅ Super_LH dependency graph: các phân tích chính đã xong; bắt đầu viết Executive Summary.")
     try:
         summary_context = base_context + "\n\nKẾT QUẢ PHÂN TÍCH CHÍNH ĐÃ HOÀN TẤT:\n" + "\n\n".join(transcript[-14:])
         summary_post = _run_step(summary_context, MODEL3_QUICK_SUMMARY, [], progress, total_steps, total_steps, mode)
