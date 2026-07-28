@@ -1539,11 +1539,47 @@ html body .topbar .brand-text p{font-size:11px!important;line-height:1.2!importa
 html body .top-actions{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:nowrap!important;margin:0!important;}
 html body .main-tabs .chip-btn{min-height:42px!important;padding:0 15px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important;font-size:13px!important;font-weight:800!important;white-space:nowrap!important;line-height:1.15!important;box-sizing:border-box!important;}
 @media(max-width:900px){html body .shell,html body .wrap{width:calc(100% - 14px)!important;padding-top:8px!important}html body header.topbar{height:auto!important;min-height:0!important;position:static!important;align-items:flex-start!important;padding:10px!important;border-radius:16px!important}html body nav.main-tabs{height:auto!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;margin-top:10px!important;border-radius:18px!important}.main-tabs .chip-btn{min-height:40px!important;padding:10px 6px!important;font-size:12px!important;white-space:normal!important;text-align:center!important}.status-pill{display:none!important}}
+
+/* Stock report compact AI/workflow layout restore */
+body.lh-unified-page .layout{
+  display:grid!important;
+  grid-template-columns:minmax(220px,300px) minmax(0,1fr)!important;
+  gap:16px!important;
+  align-items:start!important;
+  margin-top:16px!important;
+}
+body.lh-unified-page .layout aside.card{
+  padding:14px!important;
+  border-radius:20px!important;
+}
+body.lh-unified-page .layout aside.card h2,
+body.lh-unified-page .layout main.card h2{
+  margin:0 0 12px!important;
+  font-size:18px!important;
+  letter-spacing:-.02em!important;
+}
+body.lh-unified-page .agents{gap:9px!important;}
+body.lh-unified-page .agent{
+  grid-template-columns:34px 1fr!important;
+  gap:9px!important;
+  padding:10px!important;
+  border-radius:14px!important;
+}
+body.lh-unified-page .agent .av{width:34px!important;height:34px!important;border-radius:11px!important;font-size:16px!important;}
+body.lh-unified-page .agent .name{font-size:13px!important;}
+body.lh-unified-page .agent .role{font-size:11px!important;line-height:1.25!important;}
+body.lh-unified-page .agent .pill{font-size:10px!important;padding:4px 8px!important;}
+body.lh-unified-page .graph{gap:10px!important;}
+body.lh-unified-page .phase{padding:12px!important;border-radius:16px!important;}
+body.lh-unified-page .nodes{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;}
+body.lh-unified-page .node{padding:10px!important;border-radius:14px!important;min-width:0!important;}
+@media(max-width:980px){body.lh-unified-page .layout{grid-template-columns:1fr!important;}body.lh-unified-page .nodes{grid-template-columns:1fr!important;}}
+
 </style>
-</head>
+<script id='lh-unified-24jul-cache-clean'>window.LHINVT_FRONTEND_VERSION='2026-07-27-unified-24jul-1321-v2';try{localStorage.setItem('lh.static.version','2026-07-27-unified-24jul-1321-v2');localStorage.setItem('hoa.cache.version','2026-07-27-unified-24jul-1321-v2');localStorage.removeItem('hoa.news.cache');if(window.caches&&caches.keys)caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));if('serviceWorker'in navigator)navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));}catch(e){}</script></head>
 <body class="lh-unified-page lh-premium-taste lh-realestate-skin">
 <div class="shell">
-  <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a><div class="top-actions"><div class="lang-toggle"><button class="lang-btn active" id="langViBtn" type="button">VI</button><button class="lang-btn" id="langEnBtn" type="button">EN</button></div><button class="theme-toggle" id="themeToggle" type="button">🌙 Tối</button><div class="status-pill" id="apiStatus">Online</div></div></header><nav class="main-tabs"><a class="chip-btn" href="/stocks">Chứng Khoán</a><a class="chip-btn" href="/macro">Vĩ mô</a><a class="chip-btn" href="/cw">Chứng Quyền</a><a class="chip-btn" href="/news-page">Tin Tức</a><a class="chip-btn active" href="/stock-report" aria-current="page">Báo cáo cổ phiếu</a><a class="chip-btn" href="/account">Account</a></nav>
+  <header class="topbar"><a class="brand-wrap" href="/stocks"><div class="brand-icon"><img src="/assets/lh-logo.jpg" alt="LHInvestment logo" /></div><div class="brand-text"><h1>LH INVESTMENT</h1><p>INVESTMENT INFORMATION</p></div></a></header><nav class="main-tabs"><a class="chip-btn" href="/stocks">Chá»©ng KhoÃ¡n</a><a class="chip-btn" href="/macro">VÄ© mÃ´</a><a class="chip-btn" href="/cw">Chá»©ng Quyá»n</a><a class="chip-btn" href="/news-page">Tin Tá»©c</a><a class="chip-btn active" href="/stock-report" aria-current="page">BÃ¡o cÃ¡o cá»• phiáº¿u</a><a class="chip-btn" href="/account">Account</a></nav>
 <section class="report-hero">
 <span id="jobStatus" class="pill" style="display:none">idle</span>
 <div class="tickerbar"><input id="ticker" list="tickerOptions" placeholder="Nhập mã: SSI, MWG..." value="MWG" autocomplete="off"/><datalist id="tickerOptions"></datalist><button id="runModel3" onclick="startModel3()">Chạy Model3</button><button class="secondary" onclick="testNotebookAuth()">Test NotebookLM</button></div>
@@ -1569,19 +1605,25 @@ const phases=[['Pha 1 — Dữ liệu nền',['news','technical','fundamental']]
 const scopeDefs=[{key:'data',name:'Data/Freshness',weight:15,desc:'Sync DB + freshness gate',sections:[]},{key:'news',name:'Grok News',weight:20,desc:'Tin tức/catalyst có tác động',sections:['news']},{key:'analysis',name:'Analysis',weight:35,desc:'TA, fundamental, scenario, risk',sections:['technical','fundamental','scenario','bull_bear','risk','followup','quick_summary']},{key:'word',name:'Word',weight:20,desc:'DOCX upload xong mới đạt',sections:['word']},{key:'notebook',name:'NotebookLM',weight:10,desc:'Phụ trợ, lỗi không chặn Word',sections:['notebooklm']}];
 const labels={queued:'Chờ',queued_external:'Chờ worker',claimed_external:'Worker nhận job',running:'Đang chạy',running_external:'Đang chạy',uploading_external:'Đang upload file',pending:'Chờ',done:'Xong',fallback:'Fallback',error:'Lỗi',skipped:'Bỏ qua',idle:'idle'};
 const $=id=>document.getElementById(id);const cls=s=>String(s||'pending').replace('_external','');const st=s=>labels[s]||s||'pending';
-function mojibakeScore(x){x=String(x||'');return (x.match(/[�ÃÂ¤¥§©ª«¬®¯°±²³µ¶·¸¹º»¼½¾¿]|A\?|A�|\?\?|d\?|�\?/g)||[]).length}
-function tryRepairLatin1(x){try{const bytes=Uint8Array.from(Array.from(String(x),c=>c.charCodeAt(0)&255));return new TextDecoder('utf-8',{fatal:false}).decode(bytes)}catch(_){return x}}
-function clean(s){let x=String(s??'');let y=tryRepairLatin1(x);if(mojibakeScore(y)<mojibakeScore(x))x=y;x=x.replace(/\uFFFD/g,'?').replace(/A��,AA_|A\?A\?A\?A�/g,'').replace(/d\?\?\?|d\?c|�\?3/g,'').replace(/\s+/g,' ').trim();
+function mojibakeScore(x){x=String(x||'');return (x.match(/[�ÃÂÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ\u0080-\u009F]|ðŸ|âœ|â|â€”|â€“|Ä|A\?|\?\?/g)||[]).length}
+function cp1252Byte(ch){const m={'€':0x80,'‚':0x82,'ƒ':0x83,'„':0x84,'…':0x85,'†':0x86,'‡':0x87,'ˆ':0x88,'‰':0x89,'Š':0x8A,'‹':0x8B,'Œ':0x8C,'Ž':0x8E,'‘':0x91,'’':0x92,'“':0x93,'”':0x94,'•':0x95,'–':0x96,'—':0x97,'˜':0x98,'™':0x99,'š':0x9A,'›':0x9B,'œ':0x9C,'ž':0x9E,'Ÿ':0x9F};const c=ch.charCodeAt(0);if(c<=255)return c;if(m[ch]!==undefined)return m[ch];return null}
+function tryRepairLatin1(x){try{const bytes=[];for(const ch of String(x)){const b=cp1252Byte(ch);if(b===null)return x;bytes.push(b)}return new TextDecoder('utf-8',{fatal:false}).decode(new Uint8Array(bytes))}catch(_){return x}}
+function clean(s){let x=String(s??'');for(let i=0;i<2;i++){let y=tryRepairLatin1(x);if(mojibakeScore(y)<mojibakeScore(x))x=y;else break}x=x.replace(/\uFFFD/g,'').replace(/A��,AA_|A\?A\?A\?A�/g,'').replace(/d\?\?\?|d\?c|�\?3/g,'').replace(/\s+/g,' ').trim();
+  // Common backend log repairs if the source line is still too broken.
+  x=x.replace(/^ðŸ§¾\s*/,'🧾 ').replace(/^ðŸ"Z\s*/,'🔎 ').replace(/^ðY"Z\s*/,'🔎 ').replace(/^ðŸ"�\s*/,'📥 ').replace(/^ðY"�\s*/,'📥 ').replace(/^ðYs�\s*/,'🔀 ').replace(/^ðYc\s*/,'📄 ').replace(/^âœ…\s*/,'✅ ').replace(/^âŒ\s*/,'❌ ');
+  x=x.replace(/^"?Z\s+Freshness gate/i,'🔎 Freshness gate').replace('Đã nhn yêu cầu','Đã nhận yêu cầu');
   const low=x.toLowerCase();
-  if(mojibakeScore(x)>6){
+  if(mojibakeScore(x)>4){
     if(low.includes('freshness gate')&&low.includes('ok'))return '✅ Freshness gate OK — dữ liệu giá/KL/PTKT đã qua kiểm tra.';
+    if(low.includes('freshness gate')&&low.includes('fail'))return '❌ Freshness gate FAIL — dữ liệu realtime chưa đạt chuẩn.';
     if(low.includes('freshness gate'))return '🔎 Freshness gate — đang kiểm tra dữ liệu mới nhất.';
-    if(low.includes('canonical db ok'))return x.replace(/[�ÃÂ]/g,'');
+    if(low.includes('canonical manifest ok'))return '✅ Canonical manifest OK.';
+    if(low.includes('canonical db ok'))return x.replace(/[�ÃÂÄ]/g,'');
     if(low.includes('grok news'))return '📰 Grok News — đang lấy/tổng hợp tin tác động.';
-    if(low.includes('uploading docx'))return x;
-    if(low.includes('local worker uploaded docx'))return x;
+    if(low.includes('uploaded')||low.includes('docx'))return '📄 Model3 — đã tạo/upload file Word.';
     if(low.includes('notebooklm'))return '🧠 NotebookLM/PDF — đang xử lý hoặc fallback nếu quota.';
     if(low.includes('model 3')||low.includes('model3'))return '📄 Model3 — đang chạy workflow và xuất báo cáo.';
+    if(low.includes('worker'))return '🔧 Local worker đang xử lý job.';
     return '• Log backend bị lỗi mã hóa; xem tiến độ chính ở các scope cards phía trên.';
   }
   return x
@@ -1640,6 +1682,30 @@ async function loadTickerOptions(){
 loadTickerOptions();
 
 $('ticker').addEventListener('keydown',e=>{if(e.key==='Enter')startModel3()});const preset=(params.get('ticker')||params.get('symbol')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(preset)$('ticker').value=preset;renderEmpty();(function resume(){const job=params.get('job')||params.get('job_id')||localStorage.getItem('lh_model3_last_job');const t=params.get('ticker')||params.get('symbol')||localStorage.getItem('lh_model3_last_ticker');if(t)$('ticker').value=String(t).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,8);if(job){current=job;localStart=Number(localStorage.getItem('lh_model3_last_start')||0)||Date.now();timer=setInterval(poll,2500);poll()}})();
+</script>
+
+<script id="lh-runtime-label-fix-v2">
+(function(){
+  const labels={
+    '/stocks':'Ch\u1ee9ng Kho\u00e1n','/macro':'V\u0129 m\u00f4','/cw':'Ch\u1ee9ng Quy\u1ec1n','/news-page':'Tin T\u1ee9c','/stock-report':'B\u00e1o c\u00e1o c\u1ed5 phi\u1ebfu','/account':'Account'
+  };
+  function fix(){
+    try{
+      document.querySelectorAll('nav.main-tabs a').forEach(a=>{ const p=new URL(a.href,location.href).pathname; if(labels[p]) a.textContent=labels[p]; });
+      if(location.pathname.startsWith('/news-page')){
+        const h=document.querySelector('#newsPanel h3, main h3'); if(h) h.textContent='D\u00f2ng tin';
+        const st=document.getElementById('statusText'); if(st && /Dang|t\?|�|DA/.test(st.textContent)) st.textContent='\u0110ang t\u1ea3i...';
+        const prev=document.getElementById('prevPageBtn'); if(prev) prev.textContent=' L\u00f9i';
+        const go=document.getElementById('goPageBtn'); if(go) go.textContent='\u0110i t\u1edbi';
+        const next=document.getElementById('nextPageBtn'); if(next) next.textContent='Ti\u1ebfp ';
+        document.querySelectorAll('#categoryBar button').forEach((b,i)=>{ const cats=['T\u1ed5ng h\u1ee3p','Ch\u1ee9ng kho\u00e1n','Ng\u00e2n h\u00e0ng','B\u1ea5t \u0111\u1ed9ng s\u1ea3n','Lu\u1eadt BDS','Doanh nghi\u1ec7p','V\u0129 m\u00f4','Qu\u1ed1c t\u1ebf','Ph\u00e1p lu\u1eadt','Kh\u00e1c']; if(cats[i]) b.textContent=cats[i]; });
+        document.querySelectorAll('a').forEach(a=>{ if(/g.|g\?|goc|g\u1ed1c|├|ß|É/.test(a.textContent)) { if(a.href && !Object.values(labels).includes(a.textContent)) a.textContent='\u0110\u1ecdc b\u00e0i g\u1ed1c'; } });
+      }
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fix); else fix();
+  setTimeout(fix,500); setTimeout(fix,1500);
+})();
 </script>
 </body>
 </html>
