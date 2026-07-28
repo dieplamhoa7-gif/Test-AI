@@ -327,6 +327,48 @@ def direct_land_projects(criteria: SearchCriteria) -> ProjectsResult:
     return ProjectsResult(area_description=area, projects=projects)
 
 
+def fallback_rent_apartment_projects(criteria: SearchCriteria, reason: str = 'fallback') -> ProjectsResult:
+    """Fallback for rent_chungcu must stay apartment-first, not road/ward-first."""
+    ctx = getattr(criteria, 'location_context', {}) or {}
+    area = _area_from_context(ctx, criteria)
+    ward = ctx.get('ward') or ctx.get('suburb') or ctx.get('phuong') or ''
+    district = ctx.get('district') or ctx.get('county') or ctx.get('city_district') or ''
+    city = ctx.get('city') or ctx.get('province') or 'TP Hồ Chí Minh'
+    scopes = []
+    for scope in [ward, district, area, city]:
+        scope = str(scope or '').strip()
+        if scope and scope.lower() not in {x.lower() for x in scopes}:
+            scopes.append(scope)
+    names = []
+    for scope in scopes:
+        names.extend([
+            f"Căn hộ chung cư cho thuê {scope}",
+            f"Chung cư cho thuê {scope}",
+            f"Apartment cho thuê {scope}",
+        ])
+    names.extend([
+        f"Căn hộ dịch vụ/chung cư cho thuê quanh {criteria.lat:.6f}, {criteria.lng:.6f}",
+        f"Thị trường căn hộ cho thuê {city}",
+    ])
+    projects, seen = [], set()
+    for name in names:
+        key = name.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        projects.append({
+            'name': name,
+            'developer': 'Khu/cụm căn hộ cho thuê - cần kiểm chứng dự án cụ thể',
+            'scale': 'tham chiếu thị trường thuê căn hộ/chung cư',
+            'operation_year': 'không áp dụng',
+            'delivered': 'đang khai thác/cho thuê',
+            'fallback_reason': reason,
+        })
+        if len(projects) >= 5:
+            break
+    return ProjectsResult(area_description=area, projects=projects)
+
+
 def _project_line(i: int, p: dict[str, Any]) -> str:
     name = p.get('name') or '?'
     developer = p.get('developer') or p.get('investor') or p.get('chu_dau_tu') or 'CĐT đang kiểm chứng'
@@ -385,8 +427,10 @@ def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, 
     does not add another AI call. This complements the raw R&D price table with
     a valuation-style conclusion like the older report.
     """
+    is_rent_chungcu = (getattr(criteria, 'transaction', 'buy') == 'rent' and getattr(criteria, 'rent_subtype', '') == 'rent_chungcu')
     project_rows = []
     all_ppm: list[float] = []
+    all_totals: list[float] = []
     for p in (projects.projects or [])[:5]:
         name = (p.get('name') or '').strip()
         listings = []
@@ -395,29 +439,37 @@ def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, 
             if name and (name.lower() in k or k.endswith('::' + name.lower())):
                 listings.extend(rows or [])
         ppms = [float(getattr(x, 'price_per_m2', 0) or 0) for x in listings if getattr(x, 'price_per_m2', None)]
-        if ppms:
+        totals = [float(getattr(x, 'price', 0) or 0) for x in listings if getattr(x, 'price', None)]
+        if is_rent_chungcu and totals:
+            med_total = _median(totals) or 0
+            project_rows.append({'name': name, 'median': med_total, 'min': min(totals), 'max': max(totals), 'n': len(totals), 'developer': p.get('developer') or '', 'scale': p.get('scale') or ''})
+            all_totals.extend(totals)
+            all_ppm.extend(ppms)
+        elif ppms:
             med = _median(ppms)
             project_rows.append({'name': name, 'median': med, 'min': min(ppms), 'max': max(ppms), 'n': len(ppms), 'developer': p.get('developer') or '', 'scale': p.get('scale') or ''})
             all_ppm.extend(ppms)
-    if not all_ppm:
+    value_samples = all_totals if is_rent_chungcu else all_ppm
+    if not value_samples:
         return ('', {})
-    market_med = _median(all_ppm) or 0
+    market_med = _median(value_samples) or 0
     low = market_med * 0.95
     high = market_med * 1.05
+    unit = 'triệu/căn/tháng' if is_rent_chungcu else 'triệu/m²'
     selected = sorted(project_rows, key=lambda r: (abs((r.get('median') or market_med) - market_med), -r.get('n', 0)))[0] if project_rows else {}
     lines = [
         '',
         '🏦 *Báo cáo thẩm định giá sơ bộ*',
         '',
-        f'- Phương pháp: so sánh trực tiếp từ {len(project_rows)} dự án comparable, {len(all_ppm)} mẫu giá rao có nguồn Batdongsan/Playwright.',
-        f'- Mặt bằng giá thị trường: khoảng {_fmt_num(min(all_ppm),1)}–{_fmt_num(max(all_ppm),1)} triệu/m²; median {_fmt_num(market_med,1)} triệu/m².',
-        f'- Khoảng giá đề xuất thận trọng cho sản phẩm mục tiêu: {_fmt_num(low,1)}–{_fmt_num(high,1)} triệu/m².',
+        f'- Phương pháp: so sánh trực tiếp từ {len(project_rows)} dự án comparable, {len(value_samples)} mẫu giá rao có nguồn Batdongsan/Playwright.',
+        f'- Mặt bằng giá thị trường: khoảng {_fmt_num(min(value_samples),1)}–{_fmt_num(max(value_samples),1)} {unit}; median {_fmt_num(market_med,1)} {unit}.',
+        f'- Khoảng giá đề xuất thận trọng cho sản phẩm mục tiêu: {_fmt_num(low,1)}–{_fmt_num(high,1)} {unit}.',
     ]
     if selected:
-        lines.append(f'- Comparable neo chính: {selected["name"]} (~{_fmt_num(selected["median"],1)} triệu/m², {selected["n"]} mẫu), sau đó đối chiếu với các dự án còn lại theo vị trí/quy mô/bàn giao.')
+        lines.append(f'- Comparable neo chính: {selected["name"]} (~{_fmt_num(selected["median"],1)} {unit}, {selected["n"]} mẫu), sau đó đối chiếu với các dự án còn lại theo vị trí/quy mô/bàn giao.')
     lines.extend(['', '*Bảng comparable dùng cho thẩm định:*'])
     for i, r in enumerate(sorted(project_rows, key=lambda x: x.get('median') or 0, reverse=True), 1):
-        lines.append(f'{i}. {r["name"]}: median ~{_fmt_num(r["median"],1)} triệu/m² ({r["n"]} mẫu; biên {_fmt_num(r["min"],1)}–{_fmt_num(r["max"],1)}).')
+        lines.append(f'{i}. {r["name"]}: median ~{_fmt_num(r["median"],1)} {unit} ({r["n"]} mẫu; biên {_fmt_num(r["min"],1)}–{_fmt_num(r["max"],1)}).')
     lines.extend(['', '*Phân tích vị trí - hạ tầng - tiện ích:*'])
     for note in _location_appraisal_notes(criteria, projects):
         lines.append(f'- {note}')
@@ -429,16 +481,16 @@ def build_appraisal_summary(criteria: SearchCriteria, projects: ProjectsResult, 
         '- Thanh khoản tốt khi dự án có pháp lý rõ, phí quản lý hợp lý, tỷ lệ lấp đầy cao, vị trí thuận tiện cho thuê/ở thật và chênh lệch giá không vượt quá nhóm cạnh tranh trực tiếp.',
         '',
         '*Kết luận sơ bộ:*',
-        f'- Nếu sản phẩm mục tiêu có chất lượng/vị trí tương đương nhóm trung vị, có thể lấy mốc {_fmt_num(market_med,1)} triệu/m² làm giá tham chiếu.',
+        f'- Nếu sản phẩm mục tiêu có chất lượng/vị trí tương đương nhóm trung vị, có thể lấy mốc {_fmt_num(market_med,1)} {unit} làm giá tham chiếu.',
         '- Nếu tầng/view/pháp lý/nội thất tốt hơn nhóm mẫu, xem xét cộng biên 3–7%; nếu bất lợi hơn, trừ 3–10%.',
         '- Đây là báo cáo sơ bộ từ giá rao thị trường; trước khi chốt giá cần kiểm chứng giao dịch thực tế, pháp lý căn hộ và tình trạng bàn giao.',
     ])
     summary = {
         'selected_comparable': selected.get('name'),
         'reference_price': round(market_med, 1),
-        'reference_price_label': f'~{_fmt_num(market_med,1)} triệu/m²',
-        'suggested_price_range': f'{_fmt_num(low,1)}–{_fmt_num(high,1)} triệu/m²',
-        'sample_count': len(all_ppm),
+        'reference_price_label': f'~{_fmt_num(market_med,1)} {unit}',
+        'suggested_price_range': f'{_fmt_num(low,1)}–{_fmt_num(high,1)} {unit}',
+        'sample_count': len(value_samples),
         'comparable_count': len(project_rows),
     }
     return '\n'.join(lines), summary
@@ -1074,13 +1126,25 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
     # returns generic ward/road comparables even when the user typed a project name.
     criteria.human_summary = " | ".join(str(payload.get(k) or '').strip() for k in ('project_name', 'project', 'text', 'address', 'query') if str(payload.get(k) or '').strip())
     if criteria.transaction == 'rent':
-        criteria.rent_subtype = criteria.property_type
-        if criteria.property_type == 'rent_chungcu':
+        raw_ptype = (criteria.property_type or '').lower()
+        # Normalize rental intent from the UI. Some forms send transaction=rent
+        # with property_type=chungcu/canho/apartment instead of rent_chungcu.
+        # Without this, downstream AI/search prompts may fall back to the generic
+        # apartment sale flow and generate "mua/bán chung cư" keywords.
+        if raw_ptype in {'rent_chungcu', 'chungcu', 'canho', 'can_ho', 'apartment'}:
+            criteria.rent_subtype = 'rent_chungcu'
             criteria.property_type = 'chungcu'
-        elif criteria.property_type in {'rent_vanphong', 'rent_santhuongmai'}:
+        elif raw_ptype in {'rent_vanphong', 'vanphong', 'van_phong', 'office'}:
+            criteria.rent_subtype = 'rent_vanphong'
             criteria.property_type = 'shophouse'
-        elif criteria.property_type == 'rent_nha':
+        elif raw_ptype in {'rent_santhuongmai', 'santhuongmai', 'san_thuong_mai', 'retail'}:
+            criteria.rent_subtype = 'rent_santhuongmai'
+            criteria.property_type = 'shophouse'
+        elif raw_ptype in {'rent_nha', 'nha'}:
+            criteria.rent_subtype = 'rent_nha'
             criteria.property_type = 'nha'
+        else:
+            criteria.rent_subtype = raw_ptype or 'rent_generic'
     # Apartments use project/comparable-first flow. Office lease keeps direct
     # street-search for rent prices, but also asks AI for 5 office/project
     # comparables so the report has a proper comparison set.
@@ -1113,7 +1177,10 @@ async def run_web_valuation(payload: dict[str, Any]) -> dict[str, Any]:
             note = 'Fallback dự án/khu vực vì AI tìm comparable quá chậm/timeout.'
             warnings.append(f"find_nearby_projects lỗi/timeout, dùng fallback: {type(e).__name__}. {note}")
             log_error('find_comparables', payload, e, 'fallback_nearby_projects', note)
-            projects = fallback_nearby_projects(criteria, type(e).__name__)
+            if criteria.transaction == 'rent' and rent_subtype == 'rent_chungcu':
+                projects = fallback_rent_apartment_projects(criteria, type(e).__name__)
+            else:
+                projects = fallback_nearby_projects(criteria, type(e).__name__)
 
     project_text = "\n".join(_project_line(i, p) for i, p in enumerate(projects.projects[:5])) or "  (AI không trả về dự án nào)"
     if not use_comparable_flow:

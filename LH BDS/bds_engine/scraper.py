@@ -146,8 +146,8 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
     segment = getattr(criteria, "segment", None)
     system = (
         "Bạn là chuyên gia bất động sản Việt Nam, am hiểu các dự án, khu dân cư, tòa nhà văn phòng, trung tâm thương mại và đường phố. "
-        "Khi nhận toạ độ GPS, bạn xác định chính xác vị trí (phường, quận, thành phố), rồi liệt kê đúng 5 dự án/tòa nhà/khu vực comparable "
-        "tương đồng nhất để dùng tham chiếu định giá. Comparable phải gần tọa độ và tương đồng về loại tài sản, hạng/phân khúc, vị trí, khả năng khai thác và mặt bằng thị trường."
+        "Khi nhận toạ độ GPS, bạn chỉ dùng phường/quận/thành phố để định vị, rồi liệt kê đúng 5 dự án/tòa nhà/khu vực comparable "
+        "tương đồng nhất để dùng tham chiếu định giá. Comparable phải là 5 tên dự án/tòa nhà thật nếu loại tài sản là căn hộ/chung cư hoặc văn phòng; không được trả lời bằng danh sách phường. Comparable phải gần tọa độ và tương đồng về loại tài sản, hạng/phân khúc, vị trí, khả năng khai thác và mặt bằng thị trường."
     )
     explicit_name = _requested_project_name(criteria)
     user = (
@@ -160,8 +160,8 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         f"Phân khúc nếu có: {segment or 'không yêu cầu'}\n"
         f"Giao dịch: {getattr(criteria, 'transaction', 'buy')}\n\n"
         "Hãy:\n"
-        "1. Xác định khu vực quanh tọa độ: đường/trục đường gần nhất, phường, quận, thành phố/tỉnh.\n"
-        "2. Chọn đúng 5 comparable gần tọa độ nhất nhưng KHÔNG chỉ gần về địa lý; phải tương đồng theo thứ tự ưu tiên:\n"
+        "1. Xác định khu vực quanh tọa độ: đường/trục đường gần nhất, phường, quận, thành phố/tỉnh — chỉ để làm ngữ cảnh area, KHÔNG dùng phường/quận làm name comparable.\n"
+        "2. Chọn đúng 5 comparable gần tọa độ nhất nhưng KHÔNG chỉ gần về địa lý; với căn hộ/chung cư/văn phòng phải ưu tiên tên dự án/tòa nhà thật, không trả 'Phường ...' làm comparable. Phải tương đồng theo thứ tự ưu tiên:\n"
         "   a) cùng loại tài sản/giao dịch (căn hộ thuê, văn phòng thuê, sàn thương mại thuê, căn hộ bán, đất/nhà phố...),\n"
         "   b) cùng hạng/phân khúc nếu có (A/B/C, cao cấp/trung cấp/bình dân; văn phòng hạng A/B/C; retail prime/neighborhood...),\n"
         "   c) cùng vị thế đô thị/trục kết nối/khu dân cư hoặc khu thương mại xung quanh,\n"
@@ -186,7 +186,7 @@ async def find_nearby_projects(client: NineRouterClient, criteria: SearchCriteri
         "}\n\n"
         "Quy tắc: không để trống developer/scale/operation_year/handover_status; "
         "không chắc thì ghi 'đang kiểm chứng', không bịa chi tiết. "
-        "Name phải là tên dự án/tòa nhà/khu vực sạch, không trả name kiểu 'Phường ... Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố. "
+        "Name phải là tên dự án/tòa nhà/khu vực sạch, không trả name kiểu 'Phường ...', 'Quận ...', 'Thành phố ...' hoặc name đã kèm thành phố; tránh làm keyword search bị lặp thành phố. Nếu loại tài sản là rent_chungcu/chungcu/căn hộ, name bắt buộc là tên chung cư/dự án căn hộ thật. "
         "Nếu không đủ 5 dự án/tòa nhà đúng cùng loại trong bán kính gần, có thể dùng khu vực/tuyến đường comparable nhưng phải ghi rõ lý do trong note."
     )
     data = await client.chat_json(system, user, temperature=0.2)
