@@ -9,7 +9,7 @@ from time import monotonic
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from pydantic import BaseModel
 
 from app.services.scraper import collect_news
@@ -34,7 +34,20 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
 app.include_router(pipeline_router)
-APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
+APP_ASSET_VERSION = "2026-07-28-model3-cors-v2"
+DEPLOY_COMMIT = os.getenv("RENDER_GIT_COMMIT", os.getenv("GITHUB_SHA", "local"))
+
+
+@app.get("/deploy-info")
+def deploy_info():
+    return {
+        "ok": True,
+        "service": "hoa-investment",
+        "commit": DEPLOY_COMMIT,
+        "model3_routes": True,
+    }
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -62,14 +75,17 @@ def _client_ip(request: Request) -> str:
 
 @app.middleware("http")
 async def security_middleware(request: Request, call_next):
+    if request.method.upper() == "OPTIONS":
+        return Response(
+            status_code=204,
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,POST,HEAD,OPTIONS",
+                "Access-Control-Allow-Headers": request.headers.get("access-control-request-headers", "*"),
+                "Access-Control-Max-Age": "600",
+            },
+        )
     path = request.url.path
-    if request.method == "OPTIONS":
-        response = JSONResponse({}, status_code=204)
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "GET,POST,HEAD,OPTIONS"
-        response.headers["Access-Control-Allow-Headers"] = request.headers.get("access-control-request-headers", "*")
-        response.headers["Access-Control-Max-Age"] = "600"
-        return response
     if path.startswith(("/.env", "/.git", "/admin", "/wp-", "/php", "/cgi-bin")):
         return JSONResponse({"detail": "Not Found"}, status_code=404)
     now = monotonic()
@@ -82,7 +98,8 @@ async def security_middleware(request: Request, call_next):
     response = await call_next(request)
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "GET,POST,HEAD,OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = request.headers.get("access-control-request-headers", "*")
+    response.headers["Access-Control-Max-Age"] = "600"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
@@ -123,7 +140,7 @@ def _refresh_news_if_needed(force: bool = False, limit: int = 20) -> list[dict]:
 
     if should_refresh:
         try:
-            raw_items = collect_news(limit=min(limit, 1000))
+            raw_items = collect_news(limit=min(limit, 20))
             if raw_items:
                 try:
                     fresh_items = enrich_news_with_ai(raw_items)
@@ -234,6 +251,43 @@ def _parse_iso_or_date(value):
         return None
 
 
+@app.get("/pipeline/model3/freshness/{symbol}")
+def model3_freshness(symbol: str):
+    normalized = _clean_symbol(symbol)[:8]
+    data = get_market_symbol(normalized, force_refresh=True)
+    now = _utcnow()
+    quote_dt = _parse_iso_or_date(data.get("quoteUpdatedAt") or data.get("updatedAt"))
+    hist_dt = _parse_iso_or_date(data.get("historyLastDate"))
+    quote_age_min = ((now - quote_dt).total_seconds() / 60) if quote_dt else 999999
+    hist_age_days = ((now.date() - hist_dt.date()).days) if hist_dt else 999999
+    issues = []
+    if data.get("source") != "vps":
+        issues.append(f"source không phải VPS live quote: {data.get('source')}")
+    if quote_dt is None or quote_age_min > 15:
+        issues.append(f"quote cũ/thiếu: quoteUpdatedAt={data.get('quoteUpdatedAt')}, age_min={quote_age_min:.1f}")
+    if hist_dt is None or hist_age_days > 1:
+        issues.append(f"PTKT/history cũ/thiếu: historyLastDate={data.get('historyLastDate')}, age_days={hist_age_days}")
+    if not data.get("price") or float(data.get("price") or 0) <= 0:
+        issues.append(f"giá không hợp lệ: {data.get('price')}")
+    if data.get("volume") is None or int(float(data.get("volume") or 0)) <= 0:
+        issues.append(f"KL không hợp lệ: {data.get('volume')}")
+    body = {
+        "ticker": normalized,
+        "source": data.get("source"),
+        "price": data.get("price"),
+        "volume": data.get("volume"),
+        "updatedAt": data.get("updatedAt"),
+        "quoteUpdatedAt": data.get("quoteUpdatedAt"),
+        "historyLastDate": data.get("historyLastDate"),
+        "quoteAgeMinutes": round(quote_age_min, 2),
+        "historyAgeDays": hist_age_days,
+        "fresh": not issues,
+        "issues": issues,
+        "logs": (["❌ Freshness gate FAIL: " + "; ".join(issues)] if issues else [f"✅ Freshness gate OK: {normalized} giá={data.get('price')}, KL={data.get('volume')}, quote={data.get('quoteUpdatedAt')}, history={data.get('historyLastDate')}"]),
+    }
+    return JSONResponse(body, status_code=200 if not issues else 503)
+
+
 @app.get("/market-symbols")
 def market_symbols(query: str = Query(default="", max_length=20), limit: int = Query(default=20, ge=1, le=30)):
     return get_symbol_catalog(query=query[:20], limit=limit)
@@ -246,7 +300,7 @@ def warrants_data(symbols: str = Query(default="", max_length=160), refresh: boo
 
 
 @app.get("/fundamental-top-upside")
-def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=1000), refresh: bool = Query(default=False)):
+def fundamental_top_upside(limit: int = Query(default=20, ge=1, le=50), max_symbols: int = Query(default=80, ge=20, le=500), refresh: bool = Query(default=False)):
     return top_target_upside(limit=limit, max_symbols=max_symbols, force_refresh=refresh)
 
 
@@ -367,8 +421,8 @@ def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)
 
 
 @app.get("/news")
-def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=1000), refresh: bool = Query(default=False)):
-    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 1000))
+def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
     start = (page - 1) * limit
     end = start + limit
     return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh}
