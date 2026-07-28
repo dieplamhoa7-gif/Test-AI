@@ -9,7 +9,7 @@ from time import monotonic
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from pydantic import BaseModel
 
 from app.services.scraper import collect_news
@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Hoa Investment Web", version="0.1.0", lifespan=lifespan)
 app.include_router(pipeline_router)
-APP_ASSET_VERSION = "2026-04-29-warrant-suggest-v4"
+APP_ASSET_VERSION = "2026-07-28-model3-cors-v2"
 DEPLOY_COMMIT = os.getenv("RENDER_GIT_COMMIT", os.getenv("GITHUB_SHA", "local"))
 
 
@@ -50,20 +50,10 @@ def deploy_info():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "https://hoa-investment.onrender.com",
-        "https://hoa-investment.web.app",
-        "https://hoa-investment.firebaseapp.com",
-        "https://lhinvt.web.app",
-        "https://lhinvt.firebaseapp.com",
-    ],
+    allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["GET", "HEAD", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 REFRESH_INTERVAL = timedelta(minutes=15)
@@ -85,6 +75,16 @@ def _client_ip(request: Request) -> str:
 
 @app.middleware("http")
 async def security_middleware(request: Request, call_next):
+    if request.method.upper() == "OPTIONS":
+        return Response(
+            status_code=204,
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,POST,HEAD,OPTIONS",
+                "Access-Control-Allow-Headers": request.headers.get("access-control-request-headers", "*"),
+                "Access-Control-Max-Age": "600",
+            },
+        )
     path = request.url.path
     if path.startswith(("/.env", "/.git", "/admin", "/wp-", "/php", "/cgi-bin")):
         return JSONResponse({"detail": "Not Found"}, status_code=404)
@@ -96,6 +96,10 @@ async def security_middleware(request: Request, call_next):
     bucket.append(now)
     _rate_buckets[ip] = bucket
     response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET,POST,HEAD,OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = request.headers.get("access-control-request-headers", "*")
+    response.headers["Access-Control-Max-Age"] = "600"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
@@ -284,72 +288,6 @@ def model3_freshness(symbol: str):
     return JSONResponse(body, status_code=200 if not issues else 503)
 
 
-@app.get("/pipeline/model3/latest/{symbol}")
-def model3_latest_direct(symbol: str):
-    """Direct latest Model3 route for Firebase stock-report.
-
-    Kept in web_app.py as a hard fallback because this Render service also owns
-    direct /pipeline/model3/freshness routes.
-    """
-    normalized = _clean_symbol(symbol)[:8]
-    if not normalized:
-        raise HTTPException(status_code=400, detail="Cần nhập mã cổ phiếu")
-    try:
-        from app import pipeline_api as p
-        candidates = []
-        for job in getattr(p, "MODEL3_JOBS", {}).values():
-            if str(job.get("ticker") or "").upper() == normalized:
-                candidates.append(job)
-        try:
-            for job in p._iter_model3_jobs_from_disk():
-                if isinstance(job, dict) and str(job.get("ticker") or "").upper() == normalized:
-                    candidates.append(job)
-        except Exception:
-            pass
-        by_id = {}
-        for job in candidates:
-            jid = str(job.get("job_id") or "")
-            if jid:
-                by_id[jid] = job
-        jobs = sorted(by_id.values(), key=lambda j: float(j.get("updated_at") or j.get("created_at") or 0), reverse=True)
-        if jobs:
-            out = p._public_model3_job(jobs[0])
-            out["latest"] = True
-            return JSONResponse(out)
-        docx = p._latest_model3_docx(normalized, set())
-        if docx and docx.exists():
-            mtime = docx.stat().st_mtime
-            pseudo = {
-                "job_id": f"latest-{normalized}-{int(mtime)}",
-                "ticker": normalized,
-                "status": "done",
-                "created_at": mtime,
-                "updated_at": mtime,
-                "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
-                "sections": [{"key": k, "agent": a, "name": n, "status": "done" if k != "notebooklm" else "skipped"} for k, a, n in p.MODEL3_SECTIONS],
-                "logs": [f"Loaded latest local Model3 DOCX for {normalized}: {docx.name}"],
-                "result": {"ok": True, "ticker": normalized, "docx_path": str(docx), "docx_name": docx.name},
-            }
-            out = p._public_model3_job(pseudo)
-            out["latest"] = True
-            return JSONResponse(out)
-    except Exception as exc:
-        return JSONResponse({"latest": False, "ticker": normalized, "error": str(exc)[-1500:]}, status_code=503)
-    import time
-    now = time.time()
-    return JSONResponse({
-        "latest": True,
-        "job_id": f"latest-{normalized}-empty",
-        "ticker": normalized,
-        "status": "no_report_yet",
-        "created_at": now,
-        "updated_at": now,
-        "logs": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {normalized}; cần chạy báo cáo mới để lấy data mới nhất."],
-        "logs_tail": [f"Chưa tìm thấy báo cáo Model3 đã lưu cho {normalized}; cần chạy báo cáo mới để lấy data mới nhất."],
-        "result": {"ok": False, "ticker": normalized, "reason": "no_saved_model3_report"},
-    })
-
-
 @app.get("/market-symbols")
 def market_symbols(query: str = Query(default="", max_length=20), limit: int = Query(default=20, ge=1, le=30)):
     return get_symbol_catalog(query=query[:20], limit=limit)
@@ -483,10 +421,10 @@ def fundamental_signals(symbol: str, limit: int = Query(default=50, ge=1, le=80)
 
 
 @app.get("/news")
-def news(limit: int = Query(default=30, ge=1, le=1000), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
-    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 1000))
+def news(limit: int = Query(default=5, ge=1, le=30), page: int = Query(default=1, ge=1, le=500), refresh: bool = Query(default=False)):
+    items = _refresh_news_if_needed(force=refresh, limit=min(limit, 20))
     start = (page - 1) * limit
     end = start + limit
-    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh, "status": "python-rss-refresh" if refresh else "python-news-cache", "updatedAt": _utcnow().isoformat()}
+    return {"total_items": len(items), "items": items[start:end], "page": page, "limit": limit, "cached": not refresh}
 
 
