@@ -63,6 +63,13 @@ def _client_ip(request: Request) -> str:
 @app.middleware("http")
 async def security_middleware(request: Request, call_next):
     path = request.url.path
+    if request.method == "OPTIONS":
+        response = JSONResponse({}, status_code=204)
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "GET,POST,HEAD,OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = request.headers.get("access-control-request-headers", "*")
+        response.headers["Access-Control-Max-Age"] = "600"
+        return response
     if path.startswith(("/.env", "/.git", "/admin", "/wp-", "/php", "/cgi-bin")):
         return JSONResponse({"detail": "Not Found"}, status_code=404)
     now = monotonic()
@@ -73,6 +80,9 @@ async def security_middleware(request: Request, call_next):
     bucket.append(now)
     _rate_buckets[ip] = bucket
     response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET,POST,HEAD,OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "*"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
