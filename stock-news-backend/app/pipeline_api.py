@@ -1559,7 +1559,10 @@ async def model3_latest(ticker: str):
             "created_at": docx.stat().st_mtime,
             "updated_at": docx.stat().st_mtime,
             "agents": {"Codex": "done", "Grok": "done", "Kiro": "done", "NotebookLM": "skipped"},
-            "sections": MODEL3_SECTIONS,
+            "sections": [
+                {"key": k, "agent": a, "name": n, "status": ("skipped" if k == "notebooklm" else "done")}
+                for k, a, n in MODEL3_SECTIONS
+            ],
             "logs": [f"✅ Latest DOCX found: {docx.name}"],
             "result": {"ok": True, "ticker": normalized, "docx_path": str(docx), "docx_name": docx.name, "partial_quality": False},
         }
