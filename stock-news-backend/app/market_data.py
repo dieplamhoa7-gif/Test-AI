@@ -583,9 +583,22 @@ def _smart_stop_loss(entry_price: float, support_levels: list[float] | None, atr
 
 
 def _build_rule_recommendation(price: float, support: float, resistance: float, next_support: float, next_resistance: float, trend: str, strength: str, rsi: float, macd: float, signal: float, vwap: float | None, structure: str | None, atr: float, support_levels: list[float] | None = None, resistance_levels: list[float] | None = None, bb_percent: float | None = None, donchian_high: float | None = None, donchian_low: float | None = None, volume_ratio: float | None = None, return_meta: bool = False) -> str | dict[str, Any]:
-    support_zones_all = _cluster_price_zones(support_levels or [support, next_support], atr, limit=10)
+    # Guard S/R sides strictly around current price. A support zone must not sit
+    # above the current price (except a tiny ATR/price tolerance for an in-zone
+    # test); otherwise it is really overhead supply/resistance and Codex PTKT can
+    # describe resistance as support.
+    side_tol = max(atr * 0.20, price * 0.003, 0.01)
+    raw_support_levels = [float(x) for x in (support_levels or [support, next_support]) if x and float(x) > 0]
+    raw_resistance_levels = [float(x) for x in (resistance_levels or [resistance, next_resistance]) if x and float(x) > 0]
+    support_side_levels = [x for x in raw_support_levels if x <= price + side_tol]
+    resistance_side_levels = [x for x in raw_resistance_levels if x >= price - side_tol]
+    if not support_side_levels:
+        support_side_levels = [x for x in raw_support_levels if x < price] or [support, next_support]
+    if not resistance_side_levels:
+        resistance_side_levels = [x for x in raw_resistance_levels if x > price] or [resistance, next_resistance]
+    support_zones_all = _cluster_price_zones(support_side_levels, atr, limit=10)
     support_zones = list(reversed(support_zones_all))[:1]
-    resistance_zones = _cluster_price_zones(resistance_levels or [resistance, next_resistance], atr, limit=1)
+    resistance_zones = _cluster_price_zones(resistance_side_levels, atr, limit=1)
     main_support_low, main_support_high = support_zones[0] if support_zones else (round(max(support - atr * 0.3, 0), 1), round(support + atr * 0.3, 1))
     main_resistance_low, main_resistance_high = resistance_zones[0] if resistance_zones else (round(max(resistance - atr * 0.25, 0), 1), round(resistance + atr * 0.25, 1))
     planned_entry = round((main_support_low + main_support_high) / 2, 1)
